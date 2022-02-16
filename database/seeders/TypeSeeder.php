@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\Type;
 
 class TypeSeeder extends Seeder
 {
@@ -14,19 +14,19 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('types')->insert([
+        Type::create([
         'type' => 'Condominium Association',
         'description' => 'Condominium Association'
         ]);
 
-        DB::table('types')->insert([
+        Type::create([
         'type' => 'Apartment Rentals',
          'description' => 'Condominium Association'
         ]);
 
-        DB::table('types')->insert([
+        Type::create([
          'type' => 'Student Dormitory',
-          'description' => 'Condominium Association'
+         'description' => 'Condominium Association'
          ]);
     }
 }

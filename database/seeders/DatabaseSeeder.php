@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Reference;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,17 +15,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            StatusSeeder::class,
+            CategorySeeder::class,
+            TypeSeeder::class,
             UserSeeder::class,
             RoleSeeder::class,
             BuildingSeeder::class,
             FloorSeeder::class,
             PropertySeeder::class,
             RoomBuildingSeeder::class,
-            StatusSeeder::class,
-            CategorySeeder::class,
-            TypeSeeder::class,
             PropertySeeder::class,
-            RoomSeeder::class
+            RoomSeeder::class,
+            GuardianSeeder::class,
+            ReferenceSeeder::class,
+            TenantSeeder::class,  
         ]);
     }
 }

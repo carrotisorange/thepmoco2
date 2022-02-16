@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\Building;
 
 class BuildingSeeder extends Seeder
 {
@@ -14,15 +14,15 @@ class BuildingSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('buildings')->insert([
+         Building::create([
          'building' => 'Harvard'
          ]);
 
-         DB::table('buildings')->insert([
+         Building::create([
          'building' => 'Princeton'
          ]);
 
-         DB::table('buildings')->insert([
+        Building::create([
          'building' => 'Wharton'
          ]);
     }

@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\Floor;
 
 class FloorSeeder extends Seeder
 {
@@ -14,27 +14,27 @@ class FloorSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('floors')->insert([
+        Floor::create([
         'floor' => '1st floor'
         ]);
 
-        DB::table('floors')->insert([
+        Floor::create([
          'floor' => '2nd floor'
         ]);
 
-        DB::table('floors')->insert([
+        Floor::create([
          'floor' => '3rd floor'
         ]);
 
-        DB::table('floors')->insert([
+        Floor::create([
         'floor' => '4th floor'
         ]);
 
-        DB::table('floors')->insert([
+        Floor::create([
         'floor' => '5th floor'
         ]);
 
-        DB::table('floors')->insert([
+        Floor::create([
         'floor' => '6th floor'
         ]);
          

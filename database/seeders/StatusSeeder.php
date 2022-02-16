@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\Status;
 
 class StatusSeeder extends Seeder
 {
@@ -14,27 +14,23 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('statuses')->insert([
+        Status::create([
             'status' => 'vacant'
         ]);
 
-        DB::table('statuses')->insert([
+        Status::create([
             'status' => 'occupied'
         ]);
 
-        DB::table('statuses')->insert([
+        Status::create([
             'status' => 'dirty'
         ]);
 
-        DB::table('statuses')->insert([
+        Status::create([
             'status' => 'reserved'
         ]);
 
-        DB::table('statuses')->insert([
-        'status' => 'vacant'
-        ]);
-
-        DB::table('statuses')->insert([
+        Status::create([
         'status' => 'blocked'
         ]);
     }

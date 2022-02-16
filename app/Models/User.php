@@ -44,7 +44,7 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'avatar' => 'avatars\avatar.png',
+        'avatar' => 'avatars/avatar.png',
         'role_id' => 1
     ];
 
