@@ -9,18 +9,22 @@ class Property extends Model
 {
     use HasFactory;
 
+    public $primaryKey = 'uuid';
+
+    public $incrementing = false;
+
     public function type()
     {
         return $this->belongsTo(Type::class, 'type_id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
     public function rooms()
     {
         return $this->hasMany(Property::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(UserProperty::class, 'user_id');
     }
 }

@@ -9,6 +9,8 @@ class Owner extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
+
     protected $attributes = [
         'photo_id' => 'avatars/avatar.png',
     ];

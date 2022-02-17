@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tenant;
+use App\Models\UserProperty;
 use Illuminate\Http\Request;
 
-class TenantController extends Controller
+class UserPropertyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,7 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $tenants = Tenant::paginate(10);
-
-        return view('admin.tenants.index',[
-            'tenants'=>$tenants
-        ]);
+        //
     }
 
     /**
@@ -45,21 +41,21 @@ class TenantController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tenant  $tenant
+     * @param  \App\Models\UserProperty  $userProperty
      * @return \Illuminate\Http\Response
      */
-    public function show(Tenant $tenant)
+    public function show(UserProperty $userProperty)
     {
-        return $tenant;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tenant  $tenant
+     * @param  \App\Models\UserProperty  $userProperty
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tenant $tenant)
+    public function edit(UserProperty $userProperty)
     {
         //
     }
@@ -68,10 +64,10 @@ class TenantController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tenant  $tenant
+     * @param  \App\Models\UserProperty  $userProperty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tenant $tenant)
+    public function update(Request $request, UserProperty $userProperty)
     {
         //
     }
@@ -79,10 +75,10 @@ class TenantController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tenant  $tenant
+     * @param  \App\Models\UserProperty  $userProperty
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tenant $tenant)
+    public function destroy(UserProperty $userProperty)
     {
         //
     }

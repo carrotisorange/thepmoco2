@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class OwnerFactory extends Factory
 {
@@ -15,6 +16,7 @@ class OwnerFactory extends Factory
     public function definition()
     {
         return [
+        'id' => Str::uuid(),
         'name' => $this->faker->name,
         'email' => $this->faker->unique()->safeEmail(),
         'mobile_number' => $this->faker->unique()->numerify('###########'),

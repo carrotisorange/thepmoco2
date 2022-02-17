@@ -19,7 +19,7 @@
                             <div class="basis-full">
                                 <div class="11/12">
                                     @foreach($rooms as $room)
-                                    <a href="/room/{{ $room->slug }}"><img src="/storage/{{ $room->thumbnail }}"
+                                    <a href="/room/{{ $room->id }}"><img src="/storage/{{ $room->thumbnail }}"
                                             class="p-2 bg-white border rounded max-w-sm mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
                                             alt="..." />{{ $room->room }}</a>
                                     @endforeach

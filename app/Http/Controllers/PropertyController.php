@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Models\UserProperty;
+use Auth;
 
 class PropertyController extends Controller
 {
@@ -14,7 +16,11 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+        $properties = UserProperty::where('user_id',Auth::user()->id)->get();
+
+        return view('properties.index',[
+            'properties'=>$properties
+        ]);
     }
 
     /**

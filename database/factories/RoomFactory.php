@@ -20,6 +20,7 @@ class RoomFactory extends Factory
     public function definition()
     {
        return [
+        'id' => Str::uuid(),
         'room' => $this->faker->name(),
         'price' => $this->faker->randomDigit(),
         'status_id' => rand(1,5),

@@ -57,13 +57,13 @@ class User extends Authenticatable
         return $this->hasMany(Role::class);
     }
 
-    public function properties()
-    {
-        return $this->hasMany(Property::class);
-    }
-
     public function rooms()
     {
         return $this->hasMany(Room::class);
+    }
+
+    public function properties()
+    {
+        return $this->hasMany(UserProperty::class, 'property_id');
     }
 }

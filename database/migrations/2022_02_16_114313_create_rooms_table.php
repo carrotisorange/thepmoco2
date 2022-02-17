@@ -14,7 +14,7 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->unique();
             $table->string('room');
             $table->double('price', 15, 2);
             $table->foreignId('status_id')->constrained();

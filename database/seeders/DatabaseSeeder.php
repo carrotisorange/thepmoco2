@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Reference;
 use App\Models\Representative;
+use App\Models\UserProperty;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,7 +37,8 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             OwnerSeeder::class,
             RepresentativeSeeder::class,
-            BankSeeder::class
+            BankSeeder::class,
+            UserPropertySeeder::class
         ]);
     }
 }
