@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Floor;
 use App\Models\Property;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class RoomFactory extends Factory
 {
@@ -27,6 +28,7 @@ class RoomFactory extends Factory
         'floor_id' => rand(1,6),
         'property_id' => rand(1,10),
         'user_id' => rand(1,10),
+        'slug' => Str::random(10)
        ];
     }
 }

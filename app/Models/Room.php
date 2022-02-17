@@ -12,7 +12,8 @@ class Room extends Model
     protected $attributes = [
         'dimensions' => 0.00,
         'discount' => 0.00,
-        'status_id' => 1
+        'status_id' => 1,
+        'thumbnail' => 'thumnnail\room.png',
     ];
 
     public function category()

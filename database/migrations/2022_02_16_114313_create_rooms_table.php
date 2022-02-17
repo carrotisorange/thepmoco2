@@ -25,6 +25,8 @@ class CreateRoomsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->double('discount', 15, 2);
             $table->double('dimensions', 15, 2);
+            $table->string('thumbnail');
+            $table->string('slug');
             $table->timestamps();
         });
     }
