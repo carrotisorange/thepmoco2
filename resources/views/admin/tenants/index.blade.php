@@ -1,8 +1,8 @@
 <x-app-layout>
-    @section('title', '| Rooms')
+    @section('title', '| Tenants')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Rooms') }}
+            {{ __('Tenants') }}
         </h2>
     </x-slot>
 
@@ -42,7 +42,7 @@
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
                                                             <img class="h-10 w-10 rounded-full"
-                                                                src="{{ asset($tenant->photo_id, 'brands/avatar.png') }}"
+                                                                src="/storage/{{ $tenant->photo_id }}"
                                                                 alt="">
                                                         </div>
                                                         <div class="ml-4">

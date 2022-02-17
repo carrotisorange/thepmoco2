@@ -15,11 +15,31 @@ class Tenant extends Model
 
     public function reference()
     {
-        return $this->belongsTo(Reference::class, 'reference_id');
+        return $this->hasOne(Reference::class, 'reference_id');
     }
 
     public function guardian()
     {
-        return $this->belongsTo(Guardian::class, 'guardian_id');
+        return $this->hasOne(Guardian::class, 'guardian_id');
+    }
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
 }

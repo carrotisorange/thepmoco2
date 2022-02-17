@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('/argon/assets/img/brand/favicon.ico') }}" type="image/png">
+    <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
     <title>{{ config('app.name', 'The Property Manager') }} @yield('title')</title>
 

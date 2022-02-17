@@ -22,7 +22,11 @@ class TenantFactory extends Factory
             'reference_id' => rand(1,10),
             'guardian_id' => rand(1,10),
             'gender' => 'male',
-            'type' => 'student'
+            'type' => 'student',
+            'barangay_id' => rand(1,1000),
+            'city_id' => rand(1,135),
+            'province_id' => rand(1,80),
+            'country_id' => rand(1,17)
         ];
     }
 }

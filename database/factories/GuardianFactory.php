@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 class GuardianFactory extends Factory
 {
@@ -15,7 +16,7 @@ class GuardianFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'relationship' => 'parent',
+            'relationship' => Arr::random(['parent', 'sibling', 'friend', 'child']),
             'mobile_number' => $this->faker->unique()->numerify('###########'),
         ];
     }

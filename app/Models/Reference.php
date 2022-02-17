@@ -11,6 +11,6 @@ class Reference extends Model
 
     public function tenants()
     {
-        return $this->hasMany(Tenant::class);
+        return $this->hasOne(Tenant::class);
     }
 }

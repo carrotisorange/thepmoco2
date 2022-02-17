@@ -19,14 +19,18 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('auth');
+Route::get('/', [WebsiteController::class, 'index']);
 
-Route::get('/dashboard', function () {
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    })->name('dashboard');
 
-Route::get('/rooms', [RoomController::class, 'index'])->name('room');
+    Route::get('rooms', [RoomController::class, 'index'])->name('rooms');
 
-Route::get('/tenants', [TenantController::class, 'index'])->name('tenants');
+    Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
+
+    Route::get('profile/{username:username}',[UserController::class, 'edit'])->name('profile');
+
+    Route::get('owners', [OwnerController::class, 'index'])->name('owners');
+});

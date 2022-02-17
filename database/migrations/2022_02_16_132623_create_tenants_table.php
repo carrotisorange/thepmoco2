@@ -23,6 +23,11 @@ class CreateTenantsTable extends Migration
             $table->string('photo_id');
             $table->string('gender');
 
+            $table->foreignId('country_id')->constrained()->nullable();
+            $table->foreignId('city_id')->constrained()->nullable();
+            $table->foreignId('province_id')->constrained()->nullable();
+            $table->foreignId('barangay_id')->constrained()->nullable();
+            
             $table->string('type');
             $table->string('course')->nullable();
             $table->string('year_level')->nullable();

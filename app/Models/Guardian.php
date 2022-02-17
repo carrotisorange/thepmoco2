@@ -11,6 +11,6 @@ class Guardian extends Model
 
     public function tenants()
     {
-        return $this->hasMany(Tenant::class);
+        return $this->belongsTo(Tenant::class);
     }
 }

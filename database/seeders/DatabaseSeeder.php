@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Reference;
+use App\Models\Representative;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +30,13 @@ class DatabaseSeeder extends Seeder
             GuardianSeeder::class,
             ReferenceSeeder::class,
             TenantSeeder::class,  
+            BarangaySeeder::class,
+            CitySeeder::class,
+            ProvinceSeeder::class,
+            CountrySeeder::class,
+            OwnerSeeder::class,
+            RepresentativeSeeder::class,
+            BankSeeder::class
         ]);
     }
 }
