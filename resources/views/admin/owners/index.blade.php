@@ -2,7 +2,14 @@
     @section('title', '| Owners')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Owners') }}
+            <nav class="rounded-md w-full">
+                <ol class="list-reset flex">
+                    <li><a href="#/" class="text-blue-600 hover:text-blue-700">{{ Session::get('property_name') }}</a>
+                    </li>
+                    <li><span class="text-gray-500 mx-2">/</span></li>
+                    <li class="text-gray-500">Owners</li>
+                </ol>
+            </nav>
         </h2>
     </x-slot>
 
@@ -43,7 +50,7 @@
                                                         <div class="flex-shrink-0 h-10 w-10">
                                                             <a href="owner/{{ $owner->id }}"><img
                                                                     class="h-10 w-10 rounded-full"
-                                                                    src="storage/{{ $owner->photo_id }}" alt=""></a>
+                                                                    src="/storage/{{ $owner->photo_id }}" alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{

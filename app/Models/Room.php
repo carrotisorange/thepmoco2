@@ -12,11 +12,16 @@ class Room extends Model
 
     public $incrementing = false;
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     protected $attributes = [
         'dimensions' => 0.00,
         'discount' => 0.00,
         'status_id' => 1,
-        'thumbnail' => 'thumnnail\room.png',
+        'thumbnail' => 'thumbnails/thumbnail.png',
     ];
 
     public function category()

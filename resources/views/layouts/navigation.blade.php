@@ -12,22 +12,26 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}"
+                        :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('rooms')" :active="request()->routeIs('room')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/rooms"
+                        :active="request()->routeIs('room')">
                         {{ __('Rooms') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('tenants')" :active="request()->routeIs('tenants')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
+                        :active="request()->routeIs('tenants')">
                         {{ __('Tenants') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('owners')" :active="request()->routeIs('owners')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/owners"
+                        :active="request()->routeIs('owners')">
                         {{ __('Owners') }}
                     </x-nav-link>
                 </div>
@@ -58,7 +62,9 @@
                     </x-slot>
 
                     <x-slot name="content">
-
+                        <x-dropdown-link href="/properties">
+                            {{ __('Properties') }}
+                        </x-dropdown-link>
                         <x-dropdown-link href="profile/{{ Auth::user()->username }}">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -97,16 +103,20 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}"
+                :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('rooms')">
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/rooms"
+                :active="request()->routeIs('rooms')">
                 {{ __('Rooms') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('tenants')">
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
+                :active="request()->routeIs('tenants')">
                 {{ __('Tenants') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('owners')">
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"
+                :active="request()->routeIs('owners')">
                 {{ __('Owners') }}
             </x-responsive-nav-link>
         </div>

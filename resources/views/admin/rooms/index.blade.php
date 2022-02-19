@@ -2,7 +2,13 @@
     @section('title', '| Rooms')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Rooms') }}
+            <nav class="rounded-md w-full">
+                <ol class="list-reset flex">
+                    <li><a href="#/" class="text-blue-600 hover:text-blue-700">{{ Session::get('property_name') }}</a></li>
+                    <li><span class="text-gray-500 mx-2">/</span></li>
+                    <li class="text-gray-500">Rooms</li>
+                </ol>
+            </nav>
         </h2>
     </x-slot>
 
@@ -12,7 +18,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-row">
                         <div class="basis-1/4">
-                            
+
                         </div>
                         <div class="basis-3/4">
                             Rooms

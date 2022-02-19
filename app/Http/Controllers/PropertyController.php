@@ -16,7 +16,10 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = UserProperty::where('user_id',Auth::user()->id)->get();
+        $properties = UserProperty::join('properties', 'user_properties.property_id', 'properties.uuid')
+        ->join('users', 'user_properties.user_id', 'users.id')
+        ->join('types', 'properties.type_id', 'types.id')
+        ->get();
 
         return view('properties.index',[
             'properties'=>$properties
@@ -51,8 +54,13 @@ class PropertyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Property $property)
-    {
-        //
+    {     
+        session(['property' => $property->uuid]);
+        session(['property_name' => $property->property]);
+
+        return view('properties.show',[
+            'property' => $property
+        ]);
     }
 
     /**

@@ -21,7 +21,6 @@ class PropertyFactory extends Factory
         'property' => $this->faker->name(),
         'description' => $this->faker->paragraph(),
         'type_id' => rand(1,3),
-        'thumbnail' => 'thumbnails/thumbnail.png'
        ];
     }
 }

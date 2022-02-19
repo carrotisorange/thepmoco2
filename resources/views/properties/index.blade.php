@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -9,7 +10,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
-    <title>{{ config('app.name', 'The Property Manager') }} @yield('title')</title>
+    <title>{{ config('app.name', 'The Property Manager | Properties') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -51,13 +52,16 @@
                                                     <tr>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Name</th>
+                                                            Property</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Contact</th>
+                                                            Type</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Mobile</th>
+                                                            Rooms</th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                            Tenants</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Added on</th>
@@ -81,7 +85,8 @@
                                                                     <div class="text-sm font-medium text-gray-900">{{
                                                                         $property->property }}
                                                                     </div>
-                                                                    <div class="text-sm text-gray-500">{{ $property->type_id
+                                                                    <div class="text-sm text-gray-500">{{
+                                                                        $property->type
                                                                         }}
                                                                     </div>
                                                                 </div>
@@ -90,7 +95,8 @@
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="text-sm text-gray-900">{{ $property->email }}
                                                             </div>
-                                                            <div class="text-sm text-gray-500">{{ $property->mobile_number
+                                                            <div class="text-sm text-gray-500">{{
+                                                                $property->mobile_number
                                                                 }}
                                                             </div>
                                                         </td>
@@ -119,7 +125,7 @@
 
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
