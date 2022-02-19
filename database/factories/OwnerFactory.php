@@ -17,7 +17,7 @@ class OwnerFactory extends Factory
     {
         return [
         'id' => Str::uuid(),
-        'name' => $this->faker->name,
+        'owner' => $this->faker->name,
         'email' => $this->faker->unique()->safeEmail(),
         'mobile_number' => $this->faker->unique()->numerify('###########'),
         'birthdate' =>$this->faker->date(),

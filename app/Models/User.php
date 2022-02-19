@@ -49,7 +49,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $attributes = [
         'avatar' => 'avatars/avatar.png',
-        'role_id' => 1
     ];
 
     public function roles()

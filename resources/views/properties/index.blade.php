@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -52,27 +51,29 @@
                                                     <tr>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                            #</th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Property</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Type</th>
-                                                        <th scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Rooms</th>
-                                                        <th scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Tenants</th>
+                                                            Status</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Added on</th>
+
                                                         <th scope="col" class="relative px-6 py-3">
                                                             <span class="sr-only">Edit</span>
                                                         </th>
                                                     </tr>
                                                 </thead>
+                                                <?php $ctr = 1 ?>
                                                 @foreach ($properties as $property)
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                     <tr>
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                           {{ $ctr++ }}
+                                                        </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="flex items-center">
                                                                 <div class="flex-shrink-0 h-10 w-10">
@@ -93,23 +94,18 @@
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">{{ $property->email }}
-                                                            </div>
-                                                            <div class="text-sm text-gray-500">{{
-                                                                $property->mobile_number
-                                                                }}
-                                                            </div>
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            @if($property->status === 'active')
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                                Active </span>
+                                                                {{ $property->status }}
+                                                            </span>
+                                                            @endif
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             $property->created_at->diffForHumans() }}</td>
                                                         <td
                                                             class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                            <a href="#"
+                                                            <a href="/property/{{ $property->uuid }}/edit"
                                                                 class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                         </td>
                                                     </tr>

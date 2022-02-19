@@ -12,7 +12,8 @@ class Property extends Model
     public $primaryKey = 'uuid';
 
     protected $attributes = [
-         'thumbnail' => 'thumbnails/thumbnail.png'
+         'thumbnail' => 'thumbnails/thumbnail.png',
+         'status' => 'active'
     ];
 
     public function getRouteKeyName()

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Property;
+use App\Models\Contract;
 use Illuminate\Http\Request;
-use App\Models\UserProperty;
-use Auth;
 
-class PropertyController extends Controller
+class ContractController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +14,14 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = UserProperty::join('properties', 'user_properties.property_id', 'properties.uuid')
-        ->join('users', 'user_properties.user_id', 'users.id')
-        ->join('types', 'properties.type_id', 'types.id')
-        ->where('users.id', Auth::user()->id)
-        ->get();
+         $contracts = Contract::join('rooms', 'contracts.room_uuid', 'rooms.uuid')
+        ->join('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
+        ->join('users', 'contracts.user_id', 'users.id')
+        ->where('rooms.property_uuid', session('property'))
+        ->paginate(10);
 
-        return view('properties.index',[
-            'properties'=>$properties
+        return view('contracts.index', [
+            'contracts'=> $contracts
         ]);
     }
 
@@ -51,26 +49,21 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Property  $property
+     * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property)
-    {     
-        session(['property' => $property->uuid]);
-        session(['property_name' => $property->property]);
-
-        return view('properties.show',[
-            'property' => $property
-        ]);
+    public function show(Contract $contract)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Property  $property
+     * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function edit(Property $property)
+    public function edit(Contract $contract)
     {
         //
     }
@@ -79,10 +72,10 @@ class PropertyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Property  $property
+     * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Property $property)
+    public function update(Request $request, Contract $contract)
     {
         //
     }
@@ -90,10 +83,10 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Property  $property
+     * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Property $property)
+    public function destroy(Contract $contract)
     {
         //
     }

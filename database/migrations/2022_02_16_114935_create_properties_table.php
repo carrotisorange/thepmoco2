@@ -14,9 +14,10 @@ class CreatePropertiesTable extends Migration
     public function up()
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->uuid('uuid')->primary();
+            $table->uuid('uuid')->unique();
             $table->string('property');
             $table->longText('description')->nullable();
+            $table->string('status');
             $table->string('thumbnail');
             $table->foreignId('type_id')->constrained();
             $table->timestamps();

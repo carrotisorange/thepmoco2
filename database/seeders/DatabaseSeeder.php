@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
             OwnerSeeder::class,
             RepresentativeSeeder::class,
             BankSeeder::class,
-            UserPropertySeeder::class
+            UserPropertySeeder::class,
+            ContractSeeder::class
         ]);
     }
 }

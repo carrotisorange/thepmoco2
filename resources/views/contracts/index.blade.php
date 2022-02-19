@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Tenants')
+    @section('title', '| Contracts')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <nav class="rounded-md w-full">
@@ -7,7 +7,7 @@
                     <li><a href="#/" class="text-blue-600 hover:text-blue-700">{{ Session::get('property_name') }}</a>
                     </li>
                     <li><span class="text-gray-500 mx-2">/</span></li>
-                    <li class="text-gray-500">Tenants</li>
+                    <li class="text-gray-500">Contracts</li>
                 </ol>
             </nav>
         </h2>
@@ -27,7 +27,7 @@
                                             <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Name</th>
+                                                    Tenant</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Contact</th>
@@ -42,29 +42,29 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        @foreach ($tenants as $tenant)
+                                        @foreach ($contracts as $contract)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/tenant/{{ $tenant->uuid }}">
+                                                            <a href="/tenant/{{ $contract->uuid }}">
                                                                 <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $tenant->photo_id }}" alt=""></a>
+                                                                    src="/storage/{{ $contract->photo_id }}" alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
-                                                                $tenant->name }}
+                                                                $contract->tenant }}
                                                             </div>
-                                                            <div class="text-sm text-gray-500">{{ $tenant->type }}
+                                                            <div class="text-sm text-gray-500">{{ $contract->type }}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $tenant->email }}
+                                                    <div class="text-sm text-gray-900">{{ $contract->email }}
                                                     </div>
-                                                    <div class="text-sm text-gray-500">{{ $tenant->mobile_number }}
+                                                    <div class="text-sm text-gray-500">{{ $contract->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -73,7 +73,7 @@
                                                         Active </span>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $tenant->created_at->diffForHumans() }}</td>
+                                                    $contract->created_at->diffForHumans() }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                 </td>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        {{ $tenants->links() }}
+                        {{ $contracts->links() }}
                     </div>
                 </div>
             </div>

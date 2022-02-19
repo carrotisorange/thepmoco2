@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="/">
+                    <a href="/properties">
                         <img class="h-24 w-15" src="{{ asset('/brands/full-logo.png') }}" />
                     </a>
                 </div>
@@ -18,9 +18,21 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/employees"
+                        :active="request()->routeIs('employees')">
+                        {{ __('Employees') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/rooms"
                         :active="request()->routeIs('room')">
                         {{ __('Rooms') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/contracts"
+                        :active="request()->routeIs('contract')">
+                        {{ __('Contracts') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

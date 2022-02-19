@@ -14,14 +14,14 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->uuid('id')->unique();
+            $table->uuid('uuid')->unique();
             $table->string('room');
             $table->double('price', 15, 2);
             $table->foreignId('status_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('building_id')->constrained();
             $table->foreignId('floor_id')->constrained();
-            $table->foreignId('property_id')->constrained();
+            $table->foreignId('property_uuid')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->double('discount', 15, 2);
             $table->double('dimensions', 15, 2);

@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="/">
+                    <a href="/properties">
                         <img class="h-24 w-15" src="{{ asset('/brands/full-logo.png') }}" />
                     </a>
                 </div>

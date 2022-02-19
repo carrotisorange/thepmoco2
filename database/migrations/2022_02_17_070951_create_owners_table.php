@@ -15,7 +15,7 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('name');
+            $table->string('owner');
             $table->string('email')->unique();
             $table->string('mobile_number');
             $table->date('birthdate');
