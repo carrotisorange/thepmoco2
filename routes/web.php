@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,7 +22,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [WebsiteController::class, 'index']);
 
-Route::group(['middleware'=>'auth'], function(){
+Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property:uuid}')->group(function(){
 
     Route::get('rooms', [RoomController::class, 'index'])->name('rooms');
@@ -42,12 +43,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('owner/{owner}', [OwnerController::class, 'show']);
     Route::get('employee/{user:username}', [EmployeeController::class, 'show']);
 
-});
-
-
-Route::group(['middleware'=>'auth'], function(){
     Route::get('properties', [PropertyController::class, 'index']);
-   
-});
 
- Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
+     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
+});

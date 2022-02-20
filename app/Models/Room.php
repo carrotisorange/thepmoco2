@@ -53,4 +53,9 @@ class Room extends Model
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
 }

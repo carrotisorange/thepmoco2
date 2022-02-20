@@ -17,6 +17,7 @@ class PropertyController extends Controller
     public function index()
     {
         $properties = UserProperty::join('properties', 'user_properties.property_id', 'properties.uuid')
+        ->select('*', 'properties.status as property_status')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
         ->where('users.id', Auth::user()->id)

@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'The Property Manager') }} @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -27,6 +27,9 @@
 <body>
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
+    </div>
+    <div>
+        @include('layouts.footer');
     </div>
 </body>
 

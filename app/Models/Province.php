@@ -11,11 +11,11 @@ class Province extends Model
 
     public function tenants()
     {
-        return $this->hasMany(Province::class);
+        return $this->hasMany(Tenant::class);
     }
 
     public function owners()
     {
-        return $this->hasMany(Province::class);
+        return $this->hasMany(Owner::class);
     }
 }

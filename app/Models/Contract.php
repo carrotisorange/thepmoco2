@@ -12,4 +12,19 @@ class Contract extends Model
     public $incrementing = false;
 
     protected $primaryKey = 'uuid';
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, 'tenant_uuid');
+    }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'room_uuid');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
