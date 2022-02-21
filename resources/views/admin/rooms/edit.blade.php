@@ -69,8 +69,7 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <select name="" id="">
-                                                        <option value="{{ $room->building_id }}" selected>{{
-                                                            $room->building }}</option>
+                                                        <option value="">Select one</option>
                                                         @foreach ($buildings as $building)
                                                         <option value="{{ $building->id }}">{{ $building->building }}
                                                         </option>
@@ -79,8 +78,7 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <select name="" id="">
-                                                        <option value="{{ $room->building_id }}" selected>{{
-                                                            $room->building }}</option>
+                                                        <option value="">Select one</option>
                                                         @foreach ($floors as $floor)
                                                         <option value="{{ $floor->id }}">{{ $floor->floor }}
                                                         </option>
@@ -89,8 +87,7 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <select name="" id="">
-                                                        <option value="{{ $room->building_id }}" selected>{{
-                                                            $room->building }}</option>
+                                                       <option value="">Select one</option>
                                                         @foreach ($categories as $category)
                                                         <option value="{{ $category->id }}">{{ $category->category }}
                                                         </option>

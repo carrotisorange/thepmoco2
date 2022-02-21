@@ -3,7 +3,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
-                <div class="h-3 w-2">
+                <div class="h-3">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         <nav class="rounded-md">
                             <ol class="list-reset flex">

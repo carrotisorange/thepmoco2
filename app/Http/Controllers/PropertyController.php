@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Property;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Models\UserProperty;
 use Auth;
+use DB;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PropertyController extends Controller
 {
@@ -16,11 +20,13 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = UserProperty::join('properties', 'user_properties.property_id', 'properties.uuid')
-        ->select('*', 'properties.status as property_status')
+        $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+        ->select('*', 'properties.status as property_status', 'properties.uuid as property_uuid', DB::raw('count(rooms.uuid) as rooms_count'), 'user_properties.created_at as property_created_at')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
-        ->where('users.id', Auth::user()->id)
+        ->leftJoin('rooms', 'properties.uuid', 'rooms.property_uuid')   
+        ->where('users.id', auth()->user()->id)
+        ->groupBy('user_properties.property_uuid')
         ->get();
 
         return view('properties.index',[
@@ -33,9 +39,12 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($random_str)
     {
-        //
+        return view('properties.create', [
+            'random_str' => $random_str,
+            'types' => Type::all(),
+        ]);
     }
 
     /**
@@ -46,7 +55,24 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'property' => 'required',
+            'type_id' => ['required', Rule::exists('types', 'id')],
+            'thumbnail' => 'required|image'
+        ]);
+
+        $property_uuid = Str::uuid();
+
+        $attributes['uuid']= $property_uuid;
+
+        Property::create($attributes);
+
+        UserProperty::create([
+            'property_uuid' => $property_uuid,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return redirect('/properties');
     }
 
     /**

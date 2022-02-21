@@ -15,7 +15,7 @@ class CreateUserPropertiesTable extends Migration
     {
         Schema::create('user_properties', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('property_id')->constrained();
+            $table->foreignUuid('property_uuid')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

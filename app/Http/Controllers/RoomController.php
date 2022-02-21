@@ -89,7 +89,7 @@ class RoomController extends Controller
      */
     public function edit($batch_no)
     {
-          $rooms = Room::join('categories', 'rooms.category_id','categories.id')
+        $rooms = Room::join('categories', 'rooms.category_id','categories.id')
         ->leftJoin('statuses', 'rooms.status_id', 'statuses.id')
         ->leftJoin('buildings', 'rooms.building_id', 'buildings.id')
         ->leftJoin('floors', 'rooms.floor_id', 'floors.id')

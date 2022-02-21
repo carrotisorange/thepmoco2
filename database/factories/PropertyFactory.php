@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Type;
-use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\Type;
 
 class PropertyFactory extends Factory
 {
@@ -20,7 +19,7 @@ class PropertyFactory extends Factory
         'uuid' => Str::uuid(),
         'property' => $this->faker->name(),
         'description' => $this->faker->paragraph(),
-        'type_id' => rand(1,3),
+        'type_id' => Type::all()->random()->id
        ];
     }
 }

@@ -17,7 +17,7 @@ class UserPropertyFactory extends Factory
     {
         return [
             'user_id'=> User::all()->random()->id,
-            'property_id' => Property::all()->random()->uuid,
+            'property_uuid' => Property::all()->random()->uuid,
         ];
     }
 }

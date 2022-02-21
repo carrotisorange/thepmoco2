@@ -18,6 +18,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = UserProperty::join('properties', 'user_properties.property_id', 'properties.uuid')
+        ->select('*', 'users.status as user_status')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
         ->join('roles', 'users.role_id', 'roles.id')

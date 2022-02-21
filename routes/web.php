@@ -34,6 +34,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/contracts', [ContractController::class, 'index'])->name('contracts');
 
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');
+    
     });
 
     Route::get('room/{room:uuid}', [RoomController::class, 'show']);
@@ -47,6 +48,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('employee/{user:username}', [EmployeeController::class, 'show']);
 
     Route::get('properties', [PropertyController::class, 'index']);
+    Route::get('property/{random_str}/create/', [PropertyController::class, 'create']);
+    Route::post('property/{random_str}/store', [PropertyController::class, 'store']);
 
     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
 });
