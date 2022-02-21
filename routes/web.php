@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,11 +37,16 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     Route::get('room/{room:uuid}', [RoomController::class, 'show']);
+    Route::get('room/{batch_no}/create', [RoomController::class, 'create']);
+    Route::post('room/{batch_no}/store', [RoomController::class, 'store']);
+    Route::get('room/{batch_no}/edit', [RoomController::class, 'edit']);
+    Route::delete('room/{uuid}', [RoomController::class, 'destroy']);
+
     Route::get('tenant/{tenant}', [TenantController::class, 'show']);
     Route::get('owner/{owner}', [OwnerController::class, 'show']);
     Route::get('employee/{user:username}', [EmployeeController::class, 'show']);
 
     Route::get('properties', [PropertyController::class, 'index']);
 
-     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
+    Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
 });

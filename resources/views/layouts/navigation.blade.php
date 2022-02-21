@@ -25,13 +25,13 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/rooms"
-                        :active="request()->routeIs('room')">
+                        :active="request()->routeIs('rooms')">
                         {{ __('Rooms') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/contracts"
-                        :active="request()->routeIs('contract')">
+                        :active="request()->routeIs('contracts')">
                         {{ __('Contracts') }}
                     </x-nav-link>
                 </div>
@@ -119,9 +119,17 @@
                 :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/employees"
+                :active="request()->routeIs('employees')">
+                {{ __('Employees') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/rooms"
                 :active="request()->routeIs('rooms')">
                 {{ __('Rooms') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/contracts"
+                :active="request()->routeIs('contracts')">
+                {{ __('Contracts') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
                 :active="request()->routeIs('tenants')">

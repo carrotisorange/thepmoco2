@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
-    <title>The Property Manager</title>
+    <title>The Property Manager: Simplifying Property Management</title>
 
     <!-- Icon -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/shine/assets/css/LineIcons.2.0.css') }}">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
                         <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white"
-                            href="/login">Login</a>
+                            href="/login" target="_blank">Login</a>
                     </div>
                 </nav>
             </div>

@@ -18,9 +18,12 @@ class Room extends Model
     }
 
     protected $attributes = [
+        'price'=>0.00,
         'dimensions' => 0.00,
         'discount' => 0.00,
-        'status_id' => 1,
+        'building_id' => null,
+        'status_id' => 6,
+        'category_id' => 1,
         'thumbnail' => 'thumbnails/thumbnail.png',
     ];
 

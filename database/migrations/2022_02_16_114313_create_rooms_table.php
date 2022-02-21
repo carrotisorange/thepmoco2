@@ -19,14 +19,14 @@ class CreateRoomsTable extends Migration
             $table->double('price', 15, 2);
             $table->foreignId('status_id')->constrained();
             $table->foreignId('category_id')->constrained();
-            $table->foreignId('building_id')->constrained();
-            $table->foreignId('floor_id')->constrained();
-            $table->foreignId('property_uuid')->constrained();
+            $table->foreignId('building_id')->nullable()->constrained();
+            $table->foreignId('floor_id')->nullable()->constrained();
+            $table->foreignUuid('property_uuid')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->string('batch_no');
             $table->double('discount', 15, 2);
             $table->double('dimensions', 15, 2);
             $table->string('thumbnail');
-            $table->string('slug');
             $table->timestamps();
         });
     }

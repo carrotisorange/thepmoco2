@@ -4,7 +4,8 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <nav class="rounded-md w-full">
                 <ol class="list-reset flex">
-                    <li><a href="#/" class="text-blue-600 hover:text-blue-700">{{ Session::get('property_name') }}</a>
+                    <li><a href="/property/{{ Session::get('property') }}" class="text-blue-600 hover:text-blue-700">{{
+                            Session::get('property_name') }}</a>
                     </li>
                     <li><span class="text-gray-500 mx-2">/</span></li>
                     <li class="text-gray-500">Contracts</li>

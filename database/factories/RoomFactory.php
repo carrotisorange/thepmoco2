@@ -7,6 +7,7 @@ use App\Models\Status;
 use App\Models\Category;
 use App\Models\Floor;
 use App\Models\Property;
+use App\Models\Building;
 use App\Models\User;
 use Illuminate\Support\Str;
 
@@ -23,13 +24,13 @@ class RoomFactory extends Factory
         'uuid' => Str::uuid(),
         'room' => $this->faker->name(),
         'price' => $this->faker->randomDigit(),
-        'status_id' => rand(1,5),
-        'category_id' => rand(1,2),
-        'building_id'=>rand(1,3),
-        'floor_id' => rand(1,6),
-        'property_uuid' => rand(1,10),
-        'user_id' => rand(1,10),
-        'slug' => Str::random(10)
+        'status_id' => Status::all()->random()->id,
+        'category_id' => Category::all()->random()->id,
+        'building_id'=>Building::all()->random()->id,
+        'floor_id' => Floor::all()->random()->id,
+        'batch_no' => Str::random(),
+        'property_uuid' => Property::all()->random()->uuid,
+        'user_id' => User::all()->random()->id,
        ];
     }
 }

@@ -5,6 +5,8 @@ namespace Tests\Feature\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Hash;
+
 
 class RegistrationTest extends TestCase
 {
@@ -23,6 +25,9 @@ class RegistrationTest extends TestCase
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
+            'username' => 'user',
+            'mobile_number' => '09752826318',
+            'role_id' => '1',
             'password_confirmation' => 'password',
         ]);
 

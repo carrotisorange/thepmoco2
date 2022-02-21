@@ -4,7 +4,8 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <nav class="rounded-md w-full">
                 <ol class="list-reset flex">
-                    <li><a href="#/" class="text-blue-600 hover:text-blue-700">{{ Session::get('property_name') }}</a>
+                    <li><a href="/property/{{ Session::get('property') }}" class="text-blue-600 hover:text-blue-700">{{
+                            Session::get('property_name') }}</a>
                     </li>
                     <li><span class="text-gray-500 mx-2">/</span></li>
                     <li class="text-gray-500">Employees</li>
@@ -31,7 +32,7 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Contact</th>
-                                               
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
@@ -68,9 +69,10 @@
                                                     <div class="text-sm text-gray-500">{{ $employee->mobile_number }}
                                                     </div>
                                                 </td>
-                                               <td class="px-6 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($employee->status === 'active')
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                         {{ $employee->status }}
                                                     </span>
                                                     @endif

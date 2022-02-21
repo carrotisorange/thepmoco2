@@ -37,4 +37,5 @@ class Property extends Model
     {
         return $this->hasMany(UserProperty::class, 'user_id');
     }
+
 }

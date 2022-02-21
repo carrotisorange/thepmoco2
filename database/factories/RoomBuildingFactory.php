@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Property;
+use App\Models\Building;
 
 class RoomBuildingFactory extends Factory
 {
@@ -14,8 +16,8 @@ class RoomBuildingFactory extends Factory
     public function definition()
     {
         return [
-            'property_id' => 1,
-            'building_id' => 1,
+            'property_uuid' => Property::all()->random()->uuid,
+            'building_id' => Building::all()->random()->id,
         ];
     }
 }
