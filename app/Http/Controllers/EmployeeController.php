@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserProperty;
 use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 
 
@@ -17,7 +19,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = UserProperty::join('properties', 'user_properties.property_id', 'properties.uuid')
+        $employees = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
         ->select('*', 'users.status as user_status')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
@@ -37,7 +39,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employees.create',[
+            'random_str' => Str::random(10),
+            'roles' => Role::all(),
+        ]);
     }
 
     /**

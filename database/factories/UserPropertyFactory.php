@@ -18,6 +18,7 @@ class UserPropertyFactory extends Factory
         return [
             'user_id'=> User::all()->random()->id,
             'property_uuid' => Property::all()->random()->uuid,
+            'isManager' => true
         ];
     }
 }

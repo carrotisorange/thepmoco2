@@ -51,5 +51,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('property/{random_str}/create/', [PropertyController::class, 'create']);
     Route::post('property/{random_str}/store', [PropertyController::class, 'store']);
 
+    Route::get('employee/{random_str}/create', [EmployeeController::class, 'create']);
+
     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
 });

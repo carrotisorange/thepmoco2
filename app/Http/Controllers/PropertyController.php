@@ -70,6 +70,7 @@ class PropertyController extends Controller
         UserProperty::create([
             'property_uuid' => $property_uuid,
             'user_id' => auth()->user()->id,
+            'isManager' => true
         ]);
 
         return redirect('/properties');

@@ -45,7 +45,9 @@
                         </h2>
                     </div>
                     <h5 class="flex-1 text-right">
-                        <a href="/property/{{ Str::random(10) }}/create">Create</a>
+                        @if(auth()->user()->role_id === 5)
+                            <a href="/property/{{ Str::random(10) }}/create">Create</a>
+                        @endif
                     </h5>
 
                 </div>
@@ -66,6 +68,9 @@
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                            @if (!$properties->count())
+                                                <span class="text-center text-red">No properties found!</span>
+                                            @else
                                             <table class="min-w-full divide-y divide-gray-200">
                                                 <thead class="bg-gray-50">
                                                     <tr>
@@ -157,6 +162,7 @@
                                                 </tbody>
                                                 @endforeach
                                             </table>
+                                            @endif
 
                                         </div>
 
