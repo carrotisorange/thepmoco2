@@ -46,7 +46,7 @@
                     </div>
                     <h5 class="flex-1 text-right">
                         @if(auth()->user()->role_id === 5)
-                            <a href="/property/{{ Str::random(10) }}/create">Create</a>
+                        <a href="/property/{{ Str::random(10) }}/create">Create</a>
                         @endif
                     </h5>
 
@@ -69,7 +69,7 @@
                                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                             @if (!$properties->count())
-                                                <span class="text-center text-red">No properties found!</span>
+                                            <span class="text-center text-red">No properties found!</span>
                                             @else
                                             <table class="min-w-full divide-y divide-gray-200">
                                                 <thead class="bg-gray-50">
@@ -80,6 +80,9 @@
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Property</th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                            Description</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Rooms</th>
@@ -93,9 +96,9 @@
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Created on</th>
 
-                                                        {{-- <th colspan="3" scope="col" class="relative px-6 py-3">
-                                                            <span class="sr-only">Options</span>
-                                                        </th> --}}
+                                                        <th colspan="3" scope="col" class="relative px-6 py-3">
+                                                            <span class="sr-only"></span>
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <?php $ctr = 1 ?>
@@ -125,6 +128,8 @@
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                            $property->description }}</td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             $property->rooms_count }}</td>
                                                         {{-- <td
                                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
@@ -139,23 +144,13 @@
                                                             @endif
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            $property->property_created_at }}</td>
-                                                        {{-- <td
+                                                            Carbon\Carbon::parse($property->property_created_at)->diffForHumans()
+                                                            }}</td>
+                                                         <td
                                                             class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                            <a href="/property/{{ $property->uuid }}/edit"
+                                                            <a href="/property/{{ $property->property_uuid }}/edit"
                                                                 class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                        </td>
-
-                                                        <td
-                                                            class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                            <a href="/property/{{ $property->uuid }}/edit"
-                                                                class="text-indigo-600 hover:text-indigo-900">Show</a>
-                                                        </td>
-                                                        <td
-                                                            class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                            <a href="/property/{{ $property->uuid }}/edit"
-                                                                class="text-red-600 hover:text-red-900">Archive</a>
-                                                        </td> --}}
+                                                        </td> 
                                                     </tr>
 
                                                     <!-- More people... -->

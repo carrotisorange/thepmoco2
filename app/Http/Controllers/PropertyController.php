@@ -20,13 +20,14 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-        ->select('*', 'properties.status as property_status', 'properties.uuid as property_uuid', DB::raw('count(rooms.uuid) as rooms_count'), 'user_properties.created_at as property_created_at')
+          $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+        ->select('*', 'properties.*','properties.status as property_status', 'properties.uuid as property_uuid', DB::raw('count(rooms.uuid) as rooms_count'), 'user_properties.created_at as property_created_at')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
         ->leftJoin('rooms', 'properties.uuid', 'rooms.property_uuid')   
         ->where('users.id', auth()->user()->id)
         ->groupBy('user_properties.property_uuid')
+        ->orderBy('properties.created_at', 'desc')
         ->get();
 
         return view('properties.index',[
@@ -55,15 +56,18 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        
         $attributes = request()->validate([
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
-            'thumbnail' => 'required|image'
+            'thumbnail' => 'required|image',
+            'description' => '',
         ]);
 
         $property_uuid = Str::uuid();
 
         $attributes['uuid']= $property_uuid;
+        $attributes['thumbnail'] = $request->file('thumbnail')->store('thumbnails');
 
         Property::create($attributes);
 
@@ -73,7 +77,7 @@ class PropertyController extends Controller
             'isManager' => true
         ]);
 
-        return redirect('/properties');
+        return redirect('/properties')->with('success', 'A new property is created!');
     }
 
     /**
@@ -100,7 +104,9 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        //
+        return view('properties.edit',[
+            'property' => $property
+        ]);
     }
 
     /**

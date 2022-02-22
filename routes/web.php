@@ -33,7 +33,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     Route::get('/contracts', [ContractController::class, 'index'])->name('contracts');
 
-    Route::get('/', [PropertyController::class, 'show'])->name('dashboard');
+    Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
+    Route::get('/edit', [PropertyController::class, 'edit']);
     
     });
 
