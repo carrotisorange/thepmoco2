@@ -98,7 +98,7 @@ class ContractController extends Controller
             'status_id' => 4
         ]);
 
-        return redirect('/room/'.$uuid)->with('success', 'New tenant has been added to the room');
+        return redirect('/room/'.$uuid)->with('success', 'New tenant has been added to the room.');
 
     }
 

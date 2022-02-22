@@ -23,11 +23,13 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::join('statuses', 'rooms.status_id', 'statuses.id')
-        ->join('categories', 'rooms.category_id', 'categories.id')
-        ->join('buildings', 'rooms.building_id', 'buildings.id')
-        ->join('floors', 'rooms.floor_id', 'floors.id')
-        ->where('status_id','!=' ,'6')
+        $rooms = Room::leftJoin('statuses', 'rooms.status_id', 'statuses.id')
+        ->select('*', 'rooms.*')
+        ->leftJoin('categories', 'rooms.category_id', 'categories.id')
+        ->leftJoin('buildings', 'rooms.building_id', 'buildings.id')
+        ->leftJoin('floors', 'rooms.floor_id', 'floors.id')
+        ->where('status_id', '!=', 6)
+        ->where('property_uuid', Session::get('property'))
         ->paginate(10);
 
         return view('admin.rooms.index',
@@ -139,7 +141,7 @@ class RoomController extends Controller
     {
         Room::where('batch_no', $batch_no)
         ->update([
-            'status_id' => 6
+            'status_id' => 1
         ]);
 
         $rooms = Room::where('batch_no', $batch_no)->count();
