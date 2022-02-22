@@ -11,6 +11,11 @@ class Tenant extends Model
 
     public $incrementing = false;
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     protected $attributes = [
         'photo_id' => 'avatars/avatar.png',
     ];

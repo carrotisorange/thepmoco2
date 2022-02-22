@@ -11,7 +11,7 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Rooms</li>
+                                <li class="text-gray-500">Rooms ({{ $rooms->count() }})</li>
                             </ol>
                         </nav>
                     </h2>
@@ -28,9 +28,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    @if (!$rooms->count())
+                    <span class="text-center text-red">No rooms found!</span>
+                    @else
                     <div class="flex flex-row">
                         <div class="basis-1/4">
-
+                            Filters
                         </div>
                         <div class="basis-3/4">
                             Rooms
@@ -48,6 +51,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

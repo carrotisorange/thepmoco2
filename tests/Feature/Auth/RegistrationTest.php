@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RegistrationTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     public function test_registration_screen_can_be_rendered()
     {
@@ -21,17 +21,10 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register()
     {
-        $response = $this->post('/register', [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'username' => 'user',
-            'mobile_number' => '09752826318',
-            'role_id' => '1',
-            'password_confirmation' => 'password',
-        ]);
-
+        $this->withExceptionHandling();
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
         $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
+        $response = $this->get('/properties');
     }
 }

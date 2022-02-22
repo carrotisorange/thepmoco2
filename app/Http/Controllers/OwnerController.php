@@ -14,7 +14,9 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        $owners = Owner::paginate(10);
+          $owners = Owner::join('provinces', 'owners.province_id', 'provinces.id')
+          ->join('cities', 'owners.city_id', 'cities.id')
+          ->paginate(10);
 
         return view('admin.owners.index',[
             'owners'=>$owners

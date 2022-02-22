@@ -42,6 +42,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('room/{batch_no}/store', [RoomController::class, 'store']);
     Route::get('room/{batch_no}/edit', [RoomController::class, 'edit']);
     Route::delete('room/{uuid}', [RoomController::class, 'destroy']);
+    Route::put('room/{batch_no}/update', [RoomController::class], 'update');
 
     Route::get('tenant/{tenant}', [TenantController::class, 'show']);
     Route::get('owner/{owner}', [OwnerController::class, 'show']);

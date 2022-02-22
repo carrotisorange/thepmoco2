@@ -16,7 +16,9 @@ class RoomTest extends TestCase
      */
     public function test_render_create_room_page()
     {
-        $response = $this->get('/room/'.Str::random(10).'/create');
+        $this->withExceptionHandling();
+
+        $response = $this->get('room/'.Str::random(10).'/create');
 
         $response->assertStatus(200);
     }

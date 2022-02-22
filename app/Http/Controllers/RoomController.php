@@ -111,7 +111,8 @@ class RoomController extends Controller
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,
-            'statuses' => $statuses
+            'statuses' => $statuses,
+            'batch_no' => $batch_no
         ]);
     }
 
@@ -122,9 +123,9 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Room $room)
+    public function update(Request $request, $batch_no)
     {
-        //
+        return $batch_no;
     }
 
     /**

@@ -14,7 +14,9 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $tenants = Tenant::paginate(10);
+        $tenants = Tenant::join('provinces', 'tenants.province_id', 'provinces.id')
+        ->join('cities', 'tenants.city_id', 'cities.id')
+        ->paginate(10);
 
         return view('admin.tenants.index',[
             'tenants'=>$tenants

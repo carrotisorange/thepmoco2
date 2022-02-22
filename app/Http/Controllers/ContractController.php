@@ -17,7 +17,9 @@ class ContractController extends Controller
          $contracts = Contract::join('rooms', 'contracts.room_uuid', 'rooms.uuid')
         ->join('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
         ->join('users', 'contracts.user_id', 'users.id')
+        ->join('buildings', 'rooms.building_id','buildings.id' )
         ->where('rooms.property_uuid', session('property'))
+        ->groupBy('contracts.uuid')
         ->paginate(10);
 
         return view('contracts.index', [

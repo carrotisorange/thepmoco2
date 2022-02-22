@@ -16,7 +16,7 @@ class OwnerFactory extends Factory
     public function definition()
     {
         return [
-        'id' => Str::uuid(),
+        'uuid' => Str::uuid(),
         'owner' => $this->faker->name,
         'email' => $this->faker->unique()->safeEmail(),
         'mobile_number' => $this->faker->unique()->numerify('###########'),
