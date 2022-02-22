@@ -20,9 +20,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-2 bg-white border-b border-gray-200 h-screen flex flex-col items-center 
-              justify-center border  rounded">
+            <div class="overflow-hidden sm:rounded-lg">
+                <div class="flex flex-col items-center 
+              justify-center">
                     <form method="POST" action="/room/{{ $batch_no }}/store">
                         @csrf
                         <div clas="">

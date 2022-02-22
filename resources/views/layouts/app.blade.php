@@ -14,6 +14,8 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -22,6 +24,9 @@
 
     {{-- Alpine.js --}}
     <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
+
+    {{-- Flowbite --}}
+    <script src="../path/to/flowbite/dist/flowbite.js"></script>
 </head>
 
 <body class="font-sans antialiased">
@@ -38,8 +43,10 @@
         <main>
             {{ $slot }}
         </main>
-       
+
     </div>
 </body>
+
+<script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
 
 </html>

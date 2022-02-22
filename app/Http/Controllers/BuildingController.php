@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\RoomBuilding;
 use Illuminate\Http\Request;
+use Session;
 
 class BuildingController extends Controller
 {
@@ -35,7 +37,18 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $building = request()->validate([
+            'building'=> 'required|max:255'
+        ]);
+
+        $building_id = Building::create($building)->id;
+
+        RoomBuilding::create([
+            'building_id' => $building_id,
+            'property_uuid' => Session::get('property')
+        ]);
+
+        return back();
     }
 
     /**

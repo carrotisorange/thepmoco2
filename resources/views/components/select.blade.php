@@ -2,8 +2,8 @@
 
 <select {{ $attributes->merge(['class' => 'form-select appearance-none
     block
-    w-full
-    px-3
+    
+    p-5
     py-1.5
     text-base
     font-normal

@@ -11,6 +11,7 @@ use App\Models\Status;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Str;
+use DB;
 
 class RoomController extends Controller
 {
@@ -125,7 +126,15 @@ class RoomController extends Controller
      */
     public function update(Request $request, $batch_no)
     {
-        return $batch_no;
+        DB::beginTransaction();
+            foreach ($users as $user) {
+            DB::table('rooms')
+            ->where('batch_no', $batch_no)
+            ->where('uuid', '=', $user->id)
+            ->update(['status' => $new_value // update your field(s) here
+            ]);
+            }
+        DB::commit();
     }
 
     /**
