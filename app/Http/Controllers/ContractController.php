@@ -21,10 +21,10 @@ class ContractController extends Controller
      */
     public function index()
     {
-         $contracts = Contract::join('rooms', 'contracts.room_uuid', 'rooms.uuid')
-        ->join('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
-        ->join('users', 'contracts.user_id', 'users.id')
-        ->join('buildings', 'rooms.building_id','buildings.id' )
+
+         $contracts = Contract::leftJoin('rooms', 'contracts.room_uuid', 'rooms.uuid')
+        ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
+        ->leftJoin('buildings', 'rooms.building_id','buildings.id' )
         ->where('rooms.property_uuid', session('property'))
         ->groupBy('contracts.uuid')
         ->paginate(10);

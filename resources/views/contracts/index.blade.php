@@ -18,7 +18,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                  <div class=" border-2 border-gray-200 rounded">
+                  <div class="rounded">
                     <x-input type="text" class=" py-2 w-80" placeholder="Search..."/>
                     <x-button class="px-4 text-white bg-gray-600 border-l ">
                         Search
