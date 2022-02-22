@@ -38,8 +38,8 @@ class CreateTenantsTable extends Migration
             $table->string('employer')->nullable();
             $table->string('employer_address')->nullable();
 
-            $table->foreignId('reference_id')->constrained();
-            $table->foreignId('guardian_id')->constrained();
+            $table->foreignId('reference_id')->constrained()->nullable();
+            $table->foreignId('guardian_id')->constrained()->nullable();
 
             $table->timestamps();
         });

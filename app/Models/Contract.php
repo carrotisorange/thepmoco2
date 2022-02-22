@@ -13,6 +13,10 @@ class Contract extends Model
 
     protected $primaryKey = 'uuid';
 
+    protected $attributes = [
+        'status' => 'pending'
+    ];
+
     public function tenant()
     {
         return $this->belongsTo(Tenant::class, 'tenant_uuid');

@@ -12,6 +12,8 @@ class Room extends Model
 
     public $incrementing = false;
 
+    public $primaryKey = 'uuid';
+    
     public function getRouteKeyName()
     {
         return 'uuid';

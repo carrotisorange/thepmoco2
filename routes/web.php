@@ -57,5 +57,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('employee/{random_str}/create', [EmployeeController::class, 'create']);
 
+    Route::get('room/{room}/contract/{random_str}/create', [ContractController::class, 'create']);
+    Route::post('room/{room}/contract/{random_str}/store', [ContractController::class, 'store']);
+
     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
 });

@@ -36,7 +36,7 @@
                             @enderror
 
                             <x-button class="mt-2">
-                                {{ __('Submit') }}
+                                <p class="text-right">{{ __('Submit') }}</p>
                             </x-button>
                         </div>
                     </form>

@@ -42,6 +42,9 @@
                                             <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    #</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Name</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -58,9 +61,12 @@
                                                 </th>
                                             </tr>
                                         </thead>
+                                        <?php $ctr = 1 ?>
                                         @foreach ($employees as $employee)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    $ctr++ }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">

@@ -37,6 +37,7 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
+        
         $building = request()->validate([
             'building'=> 'required|max:255'
         ]);

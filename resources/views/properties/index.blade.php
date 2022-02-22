@@ -46,7 +46,8 @@
                     </div>
                     <h5 class="flex-1 text-right">
                         @if(auth()->user()->role_id === 5)
-                        <a href="/property/{{ Str::random(10) }}/create">Create</a>
+                        <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create
+                        </x-button>
                         @endif
                     </h5>
 
@@ -128,7 +129,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            $property->description }}</td>
+                                                           substr($property->description, 0, 25) }}...</td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             $property->rooms_count }}</td>
                                                         {{-- <td
@@ -146,11 +147,11 @@
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             Carbon\Carbon::parse($property->property_created_at)->diffForHumans()
                                                             }}</td>
-                                                         <td
+                                                        <td
                                                             class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                             <a href="/property/{{ $property->property_uuid }}/edit"
                                                                 class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                        </td> 
+                                                        </td>
                                                     </tr>
 
                                                     <!-- More people... -->
@@ -172,6 +173,7 @@
             </div>
         </main>
     </div>
+    @include('layouts.notifications')
 </body>
 
 </html>

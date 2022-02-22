@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Contract;
 use Illuminate\Http\Request;
+use App\Models\Room;
+use App\Models\City;
+use App\Models\Province;
+use App\Models\Country;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+use App\Models\Tenant;
 
 class ContractController extends Controller
 {
@@ -32,9 +39,19 @@ class ContractController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Room $room)
     {
-        //
+        $cities = City::all();
+        $provinces = Province::all();
+        $countries = Country::all();
+
+        return view('contracts.create', [
+            'uuid' => $room->uuid,
+            'room' => $room,
+            'cities' => $cities,
+            'provinces' => $provinces,
+            'countries' => $countries
+        ]);
     }
 
     /**
@@ -43,9 +60,46 @@ class ContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $uuid)
     {
-        //
+        $tenant_attributes = request()->validate([
+            'tenant' => 'required',
+            'email' => 'required|email',
+            'mobile_number' => 'required',
+            'type' => 'required',
+            'gender' => 'required',
+            'civil_status' => 'required',
+            'country_id' => ['required', Rule::exists('countries', 'id')],
+            'province_id' => ['required', Rule::exists('provinces', 'id')],
+            'city_id' => ['required', Rule::exists('cities', 'id')],
+        ]);
+
+        $contract_attributes = request()->validate([
+            'start' => 'required',
+            'end' => 'required',
+            'price' => 'required',
+            'discount' => 'required',
+            'interaction' => 'required'
+        ]);
+
+        $tenant_attributes['uuid'] = Str::uuid();
+
+        $tenant = Tenant::create($tenant_attributes)->uuid;
+
+        $contract_attributes['uuid'] = Str::uuid();
+        $contract_attributes['tenant_uuid'] = $tenant;
+        $contract_attributes['room_uuid'] = $uuid;
+        $contract_attributes['user_id'] = auth()->user()->id;
+        $contract_attributes['status'] = 'pending';
+
+        Contract::create($contract_attributes);
+
+        Room::where('uuid', $uuid)->update([
+            'status_id' => 4
+        ]);
+
+        return redirect('/room/'.$uuid)->with('success', 'New tenant has been added to the room');
+
     }
 
     /**

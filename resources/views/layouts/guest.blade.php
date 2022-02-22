@@ -31,6 +31,8 @@
     <div>
         @include('layouts.footer');
     </div>
+
+    @include('layouts.notifications')
 </body>
 
 </html>

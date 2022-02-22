@@ -77,7 +77,7 @@ class PropertyController extends Controller
             'isManager' => true
         ]);
 
-        return redirect('/properties')->with('success', 'A new property is created!');
+        return redirect('/properties')->with('success', 'New property has been created.');;
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Property;
 use App\Models\Floor;
 use App\Models\Status;
+use App\Models\Contract;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Str;
@@ -22,11 +23,16 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::where('status_id', 1)->paginate(10);
+        $rooms = Room::join('statuses', 'rooms.status_id', 'statuses.id')
+        ->join('categories', 'rooms.category_id', 'categories.id')
+        ->join('buildings', 'rooms.building_id', 'buildings.id')
+        ->join('floors', 'rooms.floor_id', 'floors.id')
+        ->where('status_id','!=' ,'6')
+        ->paginate(10);
 
         return view('admin.rooms.index',
             [
-                'rooms' => $rooms
+                'rooms' => $rooms,
             ]    
         );
     }
@@ -65,8 +71,10 @@ class RoomController extends Controller
                 'batch_no' => $batch_no
             ]);
        }
+
+       $rooms = Room::where('batch_no', $batch_no)->count();
         
-        return redirect('room/'.$batch_no.'/edit');
+        return redirect('room/'.$batch_no.'/edit')->with('success', $rooms.' rooms have been created.');
     }
 
     /**
@@ -77,8 +85,11 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
+        $contracts = Room::findOrFail($room->uuid)->contracts;
+
         return view('admin.rooms.show', [
-            'room' => $room
+            'room' => $room,
+            'contracts' => $contracts,
         ]);
     }
 
@@ -126,15 +137,15 @@ class RoomController extends Controller
      */
     public function update(Request $request, $batch_no)
     {
-        DB::beginTransaction();
-            foreach ($users as $user) {
-            DB::table('rooms')
-            ->where('batch_no', $batch_no)
-            ->where('uuid', '=', $user->id)
-            ->update(['status' => $new_value // update your field(s) here
-            ]);
-            }
-        DB::commit();
+        Room::where('batch_no', $batch_no)
+        ->update([
+            'status_id' => 6
+        ]);
+
+        $rooms = Room::where('batch_no', $batch_no)->count();
+        
+        return redirect('/property/'.Session::get('property').'/rooms')->with('success', $rooms.' rooms have been
+        updated.');
     }
 
     /**
