@@ -38,4 +38,14 @@ class Property extends Model
         return $this->hasMany(UserProperty::class, 'user_id');
     }
 
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
+
+    public function particulars()
+    {
+        return $this->hasMany(Particular::class);
+    }
+
 }

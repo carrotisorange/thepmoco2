@@ -47,6 +47,12 @@
                         {{ __('Owners') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/bills"
+                        :active="request()->routeIs('bills')">
+                        {{ __('Bills') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -138,6 +144,10 @@
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"
                 :active="request()->routeIs('owners')">
                 {{ __('Owners') }}
+            </x-responsive-nav-link>
+        <x-responsive-nav-link href="/property/{{ Session::get('property') }}/bills"
+                :active="request()->routeIs('bills')">
+                {{ __('Bills') }}
             </x-responsive-nav-link>
         </div>
 
