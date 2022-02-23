@@ -49,7 +49,7 @@ class BuildingController extends Controller
             'property_uuid' => Session::get('property')
         ]);
 
-        return back();
+        return back()->with('success', 'A new building has been created.');
     }
 
     /**

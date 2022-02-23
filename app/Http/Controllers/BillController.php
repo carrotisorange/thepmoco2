@@ -6,6 +6,7 @@ use App\Models\Bill;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\Property;
+use App\Models\Particular;
 
 class BillController extends Controller
 {

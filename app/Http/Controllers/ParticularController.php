@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Particular;
+use App\Models\PropertyParticular;
 use Illuminate\Http\Request;
+use Session;
 
 class ParticularController extends Controller
 {
@@ -14,7 +16,15 @@ class ParticularController extends Controller
      */
     public function index()
     {
-        //
+        $particulars = Particular::join('property_particulars', 'particulars.id',
+        'property_particulars.particular_id')
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('particulars.id', 'desc')
+        ->paginate();
+
+        return view('particulars.index', [
+            'particulars'=> $particulars
+        ]);
     }
 
     /**
@@ -24,7 +34,9 @@ class ParticularController extends Controller
      */
     public function create()
     {
-        //
+        return view('particulars.create',[
+            'particulars' => Particular::all(),
+        ]);
     }
 
     /**
@@ -35,7 +47,14 @@ class ParticularController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $particular = request()->validate([
+         'particular'=> 'required',
+         ]);
+
+         Particular::create($particular);
+
+         return back()->with('success', 'A new particular has
+         been created.');
     }
 
     /**

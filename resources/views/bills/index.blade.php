@@ -18,6 +18,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/particulars'">Particulars</x-button>
                     <x-button onclick="window.location.href='/employee/{{ Str::random(10) }}/create'">Create</x-button>
                 </h5>
 
@@ -51,6 +52,9 @@
                                                     Particular</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Tenant</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Room</th>
                                                 <th colspan="2" scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -74,6 +78,8 @@
                                                     number_format($bill->bill,2) }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $bill->particular }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    $bill->tenant }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $bill->room }}</td>
                                                 <td colspan="2"

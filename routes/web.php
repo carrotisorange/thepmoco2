@@ -35,6 +35,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/bills', [BillController::class, 'index'])->name('bills');
 
+    Route::get('/particulars', [ParticularController::class, 'index']);
+
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
     Route::get('/edit', [PropertyController::class, 'edit']);
     
@@ -63,4 +65,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('room/{room}/contract/{random_str}/store', [ContractController::class, 'store']);
 
     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
+
+    Route::post('/particular/{random_str}/store', [ParticularController::class, 'store']);
+    Route::get('/particular/{random_str}/create', [ParticularController::class, 'create']);
+    Route::post('/property_particular/{random_str}/store', [PropertyParticularController::class, 'store']);
+
+    Route::get('/particular/{random_str}/store', [ParticularController::class, 'store']);
 });

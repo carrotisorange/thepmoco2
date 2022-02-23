@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PropertyParticular;
 use Illuminate\Http\Request;
+use Session;
 
 class PropertyParticularController extends Controller
 {
@@ -35,7 +36,19 @@ class PropertyParticularController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $particular = request()->validate([
+         'particular_id'=> 'required',
+         'minimum_charge' => 'required',
+         'due_date' => 'required',
+         'surcharge'=> 'required'
+         ]);
+
+         $particular['property_uuid'] = Session::get('property');
+
+         $particular_id = PropertyParticular::create($particular)->id;
+
+         return redirect('/property/'.Session::get('property').'/particulars')->with('success', 'A new particular has
+         been added to the property.');
     }
 
     /**
