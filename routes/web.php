@@ -37,6 +37,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/particulars', [ParticularController::class, 'index']);
 
+    Route::get('/collections', [CollectionController::class, 'index']);
+
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
     Route::get('/edit', [PropertyController::class, 'edit']);
     

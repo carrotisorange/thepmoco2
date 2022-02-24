@@ -43,6 +43,11 @@ class Property extends Model
         return $this->hasMany(Bill::class);
     }
 
+    public function collections()
+    {
+     return $this->hasMany(Collection::class);
+    }
+
     public function particulars()
     {
         return $this->hasMany(Particular::class);

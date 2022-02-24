@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             ParticularSeeder::class,
             PropertyParticularSeeder::class,
             BillSeeder::class,
+            CollectionSeeder::class
         ]);
     }
 }

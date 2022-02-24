@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Particular;
 use App\Models\Property;
 use App\Models\Room;
+use Session;
 
 class BillFactory extends Factory
 {

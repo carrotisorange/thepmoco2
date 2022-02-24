@@ -98,8 +98,16 @@ class ContractController extends Controller
             'status_id' => 4
         ]);
 
-        return redirect('/room/'.$uuid)->with('success', 'New tenant has been added to the room.');
+        Bill::create([
+            'bill' => request('price'),
+            'bill_no' => Property::find(Session::get('property'))->bills->count(),
+            'start' => request('start'),
+            'end' => request('end'),
+            'tenant_uuid' => $tenant,
+            
+        ]);
 
+        return redirect('/room/'.$uuid)->with('success', 'New tenant has been added to the room.');
     }
 
     /**
