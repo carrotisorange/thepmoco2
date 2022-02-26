@@ -47,9 +47,10 @@
                     <h5 class="flex-1 text-right">
                         <x-button onclick="window.location.href='/documentation/'">Show Documentation
                         </x-button>
-                        @if(auth()->user()->role_id === 5)
+                        @if(auth()->user()->role_id === 4)
                         <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property
                         </x-button>
+                       
                         @endif
                     </h5>
 

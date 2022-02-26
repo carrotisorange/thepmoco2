@@ -7,6 +7,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Models\UserProperty;
 use App\Models\PropertyParticular;
+use App\Models\PropertyRole;
 use Auth;
 use Session;
 use DB;
@@ -22,7 +23,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-          $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+        $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
         ->select('*', 'properties.*','properties.status as property_status', 'properties.uuid as property_uuid', DB::raw('count(rooms.uuid) as rooms_count'), 'user_properties.created_at as property_created_at')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
@@ -66,6 +67,9 @@ class PropertyController extends Controller
             'description' => '',
         ]);
 
+    try {
+        DB::beginTransaction();
+
         $property_uuid = Str::uuid();
 
         $attributes['uuid']= $property_uuid;
@@ -89,7 +93,52 @@ class PropertyController extends Controller
             ]);
         }
 
-        return redirect('/properties')->with('success', 'New property has been created.');;
+        for($i=1; $i<=4; $i++){
+            PropertyRole::create([
+                'property_uuid'=> $property_uuid,
+                'role_id'=> $i,
+            ]);
+        }
+
+            //   PropertyRole::create([
+            //   'property_uuid' => $property_uuid,
+            //   'role_id' => 1,
+            //   'hasAcessToTenant' => true,
+            //   'hasAcessToDashboard' => true,
+            //   'hasAcessToRoom' => true,
+            //   'hasAcessToContract' => true,
+            //   'hasAcessToOwner' => true,
+            //   ]);
+
+            //   PropertyRole::create([
+            //   'property_uuid' => $property_uuid,
+            //   'role_id' => 2,
+            //   'hasAcessToBill' => true,
+            //   ]);
+
+            //   PropertyRole::create([
+            //   'property_uuid' => $property_uuid,
+            //   'role_id' => 3,
+            //   'hasAcessToCollection' => true,
+            //   ]);
+
+            //   PropertyRole::create([
+            //   'property_uuid' => $property_uuid,
+            //   'role_id' => 4,
+            //   'hasAcessToTenant' => true,
+            //   'hasAcessToDashboard' => true,
+            //   'hasAcessToRoom' => true,
+            //   'hasAcessToContract' => true,
+            //   'hasAcessToOwner' => true,
+            //   ]);
+
+        DB::commit();
+
+    }catch (\Throwable $e) {
+            DB::rollback();
+        }
+
+    return redirect('/properties')->with('success', 'New property has been created.');;
     }
 
     /**
@@ -104,7 +153,8 @@ class PropertyController extends Controller
         session(['property_name' => $property->property]);
 
         return view('properties.show',[
-            'property' => $property
+            'property' => $property,
+            'roles' => PropertyRole::where('property_uuid',$property->uuid)->get(),
         ]);
     }
 

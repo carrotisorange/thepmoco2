@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             BuildingSeeder::class,
             FloorSeeder::class,
             PropertySeeder::class,
-            RoomBuildingSeeder::class,
+            PropertyBuildingSeeder::class,
             PropertySeeder::class,
             RoomSeeder::class,
             GuardianSeeder::class,
@@ -43,7 +43,8 @@ class DatabaseSeeder extends Seeder
             ParticularSeeder::class,
             PropertyParticularSeeder::class,
             BillSeeder::class,
-            CollectionSeeder::class
+            CollectionSeeder::class,
+            PropertyRoleSeeder::class,
         ]);
     }
 }

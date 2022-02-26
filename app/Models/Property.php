@@ -53,4 +53,9 @@ class Property extends Model
         return $this->hasMany(Particular::class);
     }
 
+    public function roles()
+    {
+        return $this->hasMany(Role::class);
+    }
+
 }

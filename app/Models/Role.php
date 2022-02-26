@@ -14,4 +14,8 @@ class Role extends Model
         return $this->belongsTo(User::class, 'role_id');
     }
 
+    public function property(){
+        return $this->belongsTo(Property::class, 'property_id');
+    }
+
 }

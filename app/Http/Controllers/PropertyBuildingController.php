@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Building;
 use App\Models\PropertyBuilding;
 use Illuminate\Http\Request;
-use Session;
 
-class BuildingController extends Controller
+class PropertyBuildingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,28 +35,16 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $building = request()->validate([
-            'building'=> 'required|max:255'
-        ]);
-
-        $building_id = Building::create($building)->id;
-
-        PropertyBuilding::create([
-            'building_id' => $building_id,
-            'property_uuid' => Session::get('property')
-        ]);
-
-        return back()->with('success', 'A new building has been created.');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Building  $building
+     * @param \App\Models\PropertyBuilding $propertyBuilding
      * @return \Illuminate\Http\Response
      */
-    public function show(Building $building)
+    public function show(PropertyBuilding $propertyBuilding)
     {
         //
     }
@@ -66,10 +52,10 @@ class BuildingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Building  $building
+     * @param \App\Models\PropertyBuilding $propertyBuilding
      * @return \Illuminate\Http\Response
      */
-    public function edit(Building $building)
+    public function edit(PropertyBuilding $propertyBuilding)
     {
         //
     }
@@ -78,10 +64,10 @@ class BuildingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Building  $building
+     * @param  \App\Models\PropertyBuilding  $propertyBuilding
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Building $building)
+    public function update(Request $request, PropertyBuilding $propertyBuilding)
     {
         //
     }
@@ -89,10 +75,10 @@ class BuildingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Building  $building
+     * @param \App\Models\PropertyBuilding $propertyBuilding
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Building $building)
+    public function destroy(PropertyBuilding $propertyBuilding)
     {
         //
     }

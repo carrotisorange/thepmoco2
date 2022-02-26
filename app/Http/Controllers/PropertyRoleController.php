@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RoomBuilding;
+use App\Models\PropertyRole;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
-class RoomBuildingController extends Controller
+class PropertyRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,13 @@ class RoomBuildingController extends Controller
      */
     public function index()
     {
-        //
+        $roles =  PropertyRole::join('roles', 'property_roles.role_id', 'roles.id')
+        ->where('property_uuid',Session('property'))
+        ->get();
+        
+        return view('roles.index',[
+            'roles' => $roles,
+        ]);
     }
 
     /**
@@ -41,10 +48,10 @@ class RoomBuildingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RoomBuilding  $roomBuilding
+     * @param \App\Models\PropertyRole $propertyRole
      * @return \Illuminate\Http\Response
      */
-    public function show(RoomBuilding $roomBuilding)
+    public function show(PropertyRole $propertyRole)
     {
         //
     }
@@ -52,10 +59,10 @@ class RoomBuildingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RoomBuilding  $roomBuilding
+     * @param \App\Models\PropertyRole $propertyRole
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomBuilding $roomBuilding)
+    public function edit(PropertyRole $propertyRole)
     {
         //
     }
@@ -64,10 +71,10 @@ class RoomBuildingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RoomBuilding  $roomBuilding
+     * @param \App\Models\PropertyRole $propertyRole
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoomBuilding $roomBuilding)
+    public function update(Request $request, PropertyRole $propertyRole)
     {
         //
     }
@@ -75,10 +82,10 @@ class RoomBuildingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RoomBuilding  $roomBuilding
+     * @param \App\Models\PropertyRole $propertyRole
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomBuilding $roomBuilding)
+    public function destroy(PropertyRole $propertyRole)
     {
         //
     }

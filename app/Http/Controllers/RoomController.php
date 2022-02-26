@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
-use App\Models\RoomBuilding;
+use App\Models\PropertyBuilding;
 use App\Models\Category;
 use App\Models\Property;
 use App\Models\Floor;
@@ -110,7 +110,7 @@ class RoomController extends Controller
         ->where('batch_no', $batch_no)
         ->get();
 
-        $buildings = RoomBuilding::join('buildings', 'room_buildings.building_id', 'buildings.id')
+        $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
          ->where('room_buildings.property_uuid', Session::get('property'))
          ->get();
 

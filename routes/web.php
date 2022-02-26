@@ -41,6 +41,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
     Route::get('/edit', [PropertyController::class, 'edit']);
+
+    Route::get('roles', [PropertyRoleController::class, 'index']);
     
     });
 

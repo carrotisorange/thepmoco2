@@ -27,16 +27,16 @@ class RoleSeeder extends Seeder
             'role' => 'collector'
          ]);
 
-        Role::create([
-            'role' => 'dev'
-        ]);
+        // Role::create([
+        //     'role' => 'dev'
+        // ]);
 
         Role::create([
             'role' => 'manager'
         ]);
 
-        Role::create([
-            'role' => 'owner'
-        ]);
+        // Role::create([
+        //     'role' => 'owner'
+        // ]);
     }
 }

@@ -4,9 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Property;
-use App\Models\Building;
+use App\Models\Role;
 
-class RoomBuildingFactory extends Factory
+class PropertyRoleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class RoomBuildingFactory extends Factory
     {
         return [
             'property_uuid' => Property::all()->random()->uuid,
-            'building_id' => Building::all()->random()->id,
+            'role_id' => Role::all()->random()->id
         ];
     }
 }

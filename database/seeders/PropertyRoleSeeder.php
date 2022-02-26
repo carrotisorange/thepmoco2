@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Eloquent\Model\RoomBuilding;
 
-class RoomBuildingSeeder extends Seeder
+class PropertyRoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class RoomBuildingSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\RoomBuilding::factory(10)->create();
+        \App\Models\PropertyRole::factory(10)->create();
     }
 }

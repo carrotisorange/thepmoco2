@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomBuildingsTable extends Migration
+class CreatePropertyBuildingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRoomBuildingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_buildings', function (Blueprint $table) {
+        Schema::create('property_buildings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('building_id')->constrained();
             $table->foreignUuid('property_uuid')->constrained();
