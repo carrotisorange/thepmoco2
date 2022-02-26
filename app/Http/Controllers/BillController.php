@@ -19,7 +19,6 @@ class BillController extends Controller
     {
         $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
         ->select('*', 'bills.status as bill_status')
-        ->join('owners', 'bills.owner_uuid', 'owners.uuid')
         ->join('users', 'bills.user_id', 'users.id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
         ->join('rooms', 'bills.room_uuid', 'rooms.uuid')

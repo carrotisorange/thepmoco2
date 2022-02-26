@@ -161,6 +161,6 @@ class RoomController extends Controller
         $room = Room::where('uuid', $uuid);
         $room->delete();
 
-        return back();
+        return back()->with('success', 'A room has been removed.');
     }
 }

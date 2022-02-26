@@ -19,7 +19,7 @@ class PropertyParticularFactory extends Factory
             'property_uuid' => Property::all()->random()->uuid,
             'particular_id' => Particular::all()->random()->id,
             'minimum_charge' => rand(1,100),
-            'due_date' => now(),
+            'due_date' => rand(1,31),
             'surcharge' => rand(1,100),
         ];
     }

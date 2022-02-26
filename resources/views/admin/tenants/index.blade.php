@@ -18,7 +18,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/tenant/{{ Str::random(10) }}/create'">Create</x-button>
+                    <x-button onclick="window.location.href='/tenant/{{ Str::random(10) }}/create'">Create Tenant</x-button>
                 </h5>
 
             </div>

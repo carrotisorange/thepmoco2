@@ -35,7 +35,7 @@ class ParticularController extends Controller
     public function create()
     {
         return view('particulars.create',[
-            'particulars' => Particular::all(),
+            'particulars' => Particular::orderBy('id', 'DESC')->get(),
         ]);
     }
 
@@ -47,14 +47,25 @@ class ParticularController extends Controller
      */
     public function store(Request $request)
     {
-         $particular = request()->validate([
-         'particular'=> 'required',
+         $particular_attributes = request()->validate([
+         'particular_id'=> 'required',
+         'minimum_charge' => 'required',
+         'due_date' => 'required',
+         'surcharge'=> 'required'
          ]);
 
-         Particular::create($particular);
+        $particular = Particular::create([
+            'particular' => request('particular_id')
+        ]);
 
-         return back()->with('success', 'A new particular has
-         been created.');
+         $particular_attributes['property_uuid'] = Session::get('property');
+         $particular_attributes['particular_id'] = $particular->id;
+
+         PropertyParticular::create($particular_attributes)->id;
+
+         return redirect('/property/'.Session::get('property').'/particulars')->with('success', 'A new particular has
+         been added to the property.');
+
     }
 
     /**

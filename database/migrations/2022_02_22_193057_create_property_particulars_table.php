@@ -18,7 +18,7 @@ class CreatePropertyParticularsTable extends Migration
             $table->foreignUuid('property_uuid')->constrained();
             $table->foreignid('particular_id')->constrained();
             $table->double('minimum_charge', 8, 2);
-            $table->date('due_date');
+            $table->integer('due_date');
             $table->double('surcharge', 8, 2);
             $table->timestamps();
         });

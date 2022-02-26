@@ -11,6 +11,11 @@ use App\Models\Country;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use App\Models\Tenant;
+use App\Models\Bill;
+use App\Models\Property;
+use App\Models\PropertyParticular;
+use Session;
+use DB;
 
 class ContractController extends Controller
 {
@@ -60,7 +65,7 @@ class ContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $uuid)
+    public function store(Request $request, $room_uuid)
     {
         $tenant_attributes = request()->validate([
             'tenant' => 'required',
@@ -82,32 +87,45 @@ class ContractController extends Controller
             'interaction' => 'required'
         ]);
 
-        $tenant_attributes['uuid'] = Str::uuid();
+        try {
+            DB::beginTransaction();
 
-        $tenant = Tenant::create($tenant_attributes)->uuid;
+              $tenant_attributes['uuid'] = Str::uuid();
 
-        $contract_attributes['uuid'] = Str::uuid();
-        $contract_attributes['tenant_uuid'] = $tenant;
-        $contract_attributes['room_uuid'] = $uuid;
-        $contract_attributes['user_id'] = auth()->user()->id;
-        $contract_attributes['status'] = 'pending';
+              $tenant = Tenant::create($tenant_attributes)->uuid;
 
-        Contract::create($contract_attributes);
+              $contract_attributes['uuid'] = Str::uuid();
+              $contract_attributes['tenant_uuid'] = $tenant;
+              $contract_attributes['room_uuid'] = $room_uuid;
+              $contract_attributes['user_id'] = auth()->user()->id;
+              $contract_attributes['status'] = 'pending';
 
-        Room::where('uuid', $uuid)->update([
-            'status_id' => 4
-        ]);
+              Contract::create($contract_attributes);
 
-        Bill::create([
-            'bill' => request('price'),
-            'bill_no' => Property::find(Session::get('property'))->bills->count(),
-            'start' => request('start'),
-            'end' => request('end'),
-            'tenant_uuid' => $tenant,
-            
-        ]);
+              Room::where('uuid', $room_uuid)->update([
+              'status_id' => 4
+              ]);
 
-        return redirect('/room/'.$uuid)->with('success', 'New tenant has been added to the room.');
+              Bill::create([
+              'bill' => request('price'),
+              'bill_no' => Property::find(Session::get('property'))->bills->count(),
+              'start' => request('start'),
+              'end' => request('start')->Carbon::now()->addMonth(),
+              'tenant_uuid' => $tenant,
+              'user_id' => auth()->user()->id,
+              'particular_id' => 2,
+              'property_uuid' => Session::get('property'),
+              'room_uuid'=> $room_uuid,
+              'due_date' => PropertyParticular::find(2)->due_date,
+              ]);
+
+            DB::commit();
+
+        } catch (\Throwable $e) {
+            DB::rollback();
+        }
+
+        return redirect('/room/'.$room_uuid)->with('success', 'New tenant has been added to the room.');
     }
 
     /**

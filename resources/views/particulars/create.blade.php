@@ -20,10 +20,10 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button data-modal-toggle="small-modal">
+                    {{-- <x-button data-modal-toggle="small-modal">
                         New Particular
-                    </x-button>
-                    <x-button form="create-form">Submit</x-button>
+                    </x-button> --}}
+                    <x-button form="create-form">Save Particular</x-button>
                 </h5>
 
             </div>
@@ -36,12 +36,15 @@
                     <!-- This example requires Tailwind CSS v2.0+ -->
                     <!-- Name -->
                     <div>
-                        <form action="/property_particular/{{ Str::random(10) }}/store" method="POST" id="create-form">
+                        <form action="/particular/{{ Str::random(10) }}/store" method="POST" id="create-form">
                             @csrf
                             <div>
                                 <x-label for="particular_id" :value="__('Particular')" />
 
-                                <select
+                                <x-input id="particular_id" class="block mt-1 w-full" type="text"
+                                    name="particular_id" :value="old('particular_id')" form="create-form" required
+                                    autofocus />
+                                {{-- <select
                                     class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     name="particular_id" id="particular_id" form="create-form" required>
                                     <option value="">Select one</option>
@@ -50,9 +53,9 @@
                                         'selected': 'Select one'
                                         }}>{{ $particular->particular }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
 
-                                @error('particular_id')
+                                @error('particular')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
 
@@ -72,13 +75,16 @@
 
                             <div class="mt-5">
                                 <x-label for="due_date" :value="__('Due Date')" />
-
-                                <x-input id="due_date" class="block mt-1 w-full" type="date" name="due_date"
-                                    :value="old('due_date')" form="create-form" required autofocus />
-
-                                @error('due_date')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <?php $numberFormatter = new NumberFormatter('en_US', NumberFormatter::ORDINAL);?>
+                                <select
+                                    class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    name="due_date" id="due_date" form="create-form" required>
+                                    <option value="">Select one</option>
+                                    @for ($i = 1; $i <= 31; $i++) <option value="{{ $i }}">Every <span
+                                            class="font-bold">{{ $numberFormatter->format($i)}}</span> day of the month
+                                        </option>
+                                        @endfor
+                                </select>
                             </div>
                             <div class="mt-5">
                                 <x-label for="surcharge" :value="__('Surcharge')" />

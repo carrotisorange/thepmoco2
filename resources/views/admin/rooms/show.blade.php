@@ -22,7 +22,12 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/room/{{ $room->uuid }}/contract/{{ Str::random(10) }}/create'">Create</x-button>
+                    <x-button
+                        onclick="window.location.href='/room/{{ $room->uuid }}/edit'">
+                        Edit Room</x-button>
+                    <x-button
+                        onclick="window.location.href='/room/{{ $room->uuid }}/contract/{{ Str::random(10) }}/create'">
+                        Add Contract</x-button>
                 </h5>
 
             </div>
@@ -32,26 +37,46 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex flex-row">
-                        <img src="/storage/{{ $room->thumbnail }}"
-                            class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
-                            alt="..." />
+                <div class="p-6 ">
+                    <div class="flex justify-center">
+                        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white">
 
-                    </div>
-                    <span class="font-bold">Details</span>
-                    <p class="text-left">
+                            <img src="/storage/{{ $room->thumbnail }}"
+                                class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5" alt="..." />
+                        </div>
+                        <div class="flex flex-col md:flex-row md:max-w-xl">
 
-                    <div class="mt-14">
-                        <p>Room: {{ $room->room }}</p>
-                        <p>Building: {{ $room->building }}</p>
-                        <p>Floor: {{ $room->floor }}</p>
-                        <p>Status: {{ $room->status }}</p>
-                        <p>Price: {{ number_format($room->price, 2) }}</p>
-                        <p>Discount: {{ number_format($room->discount, 2) }}</p>
-                        <p>Dimensions: {{ number_format($room->dimensions, 2) }}</p>
-                        <p>Created: {{ $room->created_at->diffForHumans() }}</p>
+                            <div class="p-6 flex flex-col justify-start">
+                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $room->room }}</h5>
+                                <hr>
+                                <p class="mt-5 text-gray-700 text-base mb-4">
+                                    Building: {{ $room->building?$room->building:'NA' }}
+                                </p>
+                                <p class="text-gray-700 text-base mb-4">
+                                    Floor: {{ $room->floor?$room->floor->floor:'NA' }}
+                                </p>
+                                <p class="text-gray-700 text-base mb-4">
+                                    Status: {{ $room->status->status }}
+                                </p>
+
+                                <p class="text-gray-700 text-base mb-4">
+                                    Price: {{ number_format($room->price, 2) }}
+                                </p>
+                                <p class="text-gray-700 text-base mb-4">
+                                    Discount: {{ number_format($room->discount, 2) }}
+                                </p>
+                                <p class="text-gray-700 text-base mb-4">
+                                    Dimensions: {{ number_format($room->dimensions, 2) }}
+                                </p>
+                                <p class="text-gray-700 text-base mb-4">
+                                    Created: {{ $room->created_at->diffForHumans() }}
+                                </p>
+
+
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-col">
@@ -106,7 +131,7 @@
                                                             <div class="text-sm font-medium text-gray-900">{{
                                                                 $contract->tenant->tenant }}
                                                             </div>
-                                                            <div class="text-sm text-gray-500">{{ $contract->room->type
+                                                            <div class="text-sm text-gray-500">{{ $contract->tenant->type
                                                                 }}
                                                             </div>
                                                         </div>
@@ -141,7 +166,8 @@
                                                         {{ $contract->status }}
                                                     </span>
                                                     @else
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                         {{ $contract->status }}
                                                     </span>
                                                     @endif

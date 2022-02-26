@@ -18,7 +18,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/room/{{ Str::random(10) }}/create'">Create</x-button>
+                    <x-button onclick="window.location.href='/room/{{ Str::random(10) }}/create'">Create Room</x-button>
                 </h5>
 
             </div>
@@ -77,8 +77,8 @@
                                 @foreach($rooms as $info)
                             <div class="mt-14">
                                 <p>Room: {{ $info->room }}</p>
-                                <p>Building: {{ $info->building }}</p>
-                                <p>Floor: {{ $info->floor }}</p>
+                                <p>Building: {{ $info->building?$info->building:'NA' }}</p>
+                                <p>Floor: {{ $info->floor?$info->floor:'NA' }}</p>
                                 <p>Status: {{ $info->status }}</p>
                                 <p>Price: {{ number_format($info->price, 2) }}</p>
                                 <p>Discount: {{ number_format($info->discount, 2) }}</p>

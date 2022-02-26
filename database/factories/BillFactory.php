@@ -28,7 +28,6 @@ class BillFactory extends Factory
             'due_date' => now()->addDays(10),
             'penalty'=> rand(10,100),
             'tenant_uuid'=> Tenant::all()->random()->uuid,
-            'owner_uuid'=> Owner::all()->random()->uuid,
             'user_id'=> User::all()->random()->id,
             'particular_id'=> Particular::all()->random()->id,
             'property_uuid'=> Property::all()->random()->uuid,

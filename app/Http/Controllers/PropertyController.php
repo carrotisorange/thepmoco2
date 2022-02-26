@@ -6,7 +6,9 @@ use App\Models\Property;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Models\UserProperty;
+use App\Models\PropertyParticular;
 use Auth;
+use Session;
 use DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -76,6 +78,16 @@ class PropertyController extends Controller
             'user_id' => auth()->user()->id,
             'isManager' => true
         ]);
+
+        for($i=1; $i<=5; $i++){
+            PropertyParticular::create([
+                'property_uuid'=> $property_uuid,
+                'particular_id'=> $i,
+                'minimum_charge' => 0.00,
+                'due_date' => 28,
+                'surcharge' => 1
+            ]);
+        }
 
         return redirect('/properties')->with('success', 'New property has been created.');;
     }

@@ -23,12 +23,12 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button data-modal-toggle="small-modal">
-                        New building
+                        Create Building
                     </x-button>
                     @if($rooms->count())
-                    <x-button form="edit-form">Submit</x-button>
+                    <x-button form="edit-form">Save Rooms</x-button>
                     @else
-                    <x-button onclick="window.location.href='/room/{{ Str::random(10) }}/create'">Create</x-button>
+                    <x-button onclick="window.location.href='/room/{{ Str::random(10) }}/create'">Create Building</x-button>
                     @endif
                 </h5>
 

@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PropertyParticular;
 use Illuminate\Http\Request;
-use Session;
 
-class PropertyParticularController extends Controller
+class DocumentationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class PropertyParticularController extends Controller
      */
     public function index()
     {
-        //
+        return view('documentations.index');
     }
 
     /**
@@ -36,16 +34,16 @@ class PropertyParticularController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PropertyParticular  $propertyParticular
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(PropertyParticular $propertyParticular)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class PropertyParticularController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PropertyParticular  $propertyParticular
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PropertyParticular $propertyParticular)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +63,10 @@ class PropertyParticularController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PropertyParticular  $propertyParticular
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PropertyParticular $propertyParticular)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class PropertyParticularController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PropertyParticular  $propertyParticular
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PropertyParticular $propertyParticular)
+    public function destroy($id)
     {
         //
     }

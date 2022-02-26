@@ -37,7 +37,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/particulars', [ParticularController::class, 'index']);
 
-    Route::get('/collections', [CollectionController::class, 'index']);
+    Route::get('/collections', [CollectionController::class, 'index'])->name('collections');
 
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
     Route::get('/edit', [PropertyController::class, 'edit']);
@@ -70,7 +70,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::post('/particular/{random_str}/store', [ParticularController::class, 'store']);
     Route::get('/particular/{random_str}/create', [ParticularController::class, 'create']);
-    Route::post('/property_particular/{random_str}/store', [PropertyParticularController::class, 'store']);
 
     Route::get('/particular/{random_str}/store', [ParticularController::class, 'store']);
+
+    Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
 });

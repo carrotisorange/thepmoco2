@@ -18,7 +18,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/particular/{{ Str::random(10) }}/create'">Create</x-button>
+                    <x-button onclick="window.location.href='/particular/{{ Str::random(10) }}/create'">Create Particular   
+                    </x-button>
                 </h5>
 
             </div>
@@ -33,10 +34,11 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                @if (!$particulars->count())
+                                <span class="text-center text-red">No particulars found!</span>
+                                @else
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                    @if (!$particulars->count())
-                                    <span class="text-center text-red">No particulars found!</span>
-                                    @else
+
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr=1; ?>
                                         <thead class="bg-gray-50">
@@ -58,7 +60,7 @@
                                                     Surcharge</th>
                                             </tr>
                                         </thead>
-
+                                        <?php $numberFormatter = new NumberFormatter('en_US', NumberFormatter::ORDINAL);?>
                                         @foreach ($particulars as $particular)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
@@ -68,8 +70,9 @@
                                                     $particular->particular }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     number_format($particular->minimum_charge, 2) }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    Carbon\Carbon::parse($particular->due_date) }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    Every {{$numberFormatter->format($particular->due_date)}} day of
+                                                    the month </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     number_format($particular->surcharge, 2) }}</td>
                                             </tr>
@@ -77,9 +80,9 @@
                                         </tbody>
                                         @endforeach
                                     </table>
-                                    @endif
-                                </div>
 
+                                </div>
+                                @endif
                             </div>
 
                         </div>
