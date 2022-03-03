@@ -57,14 +57,16 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('tenant/{tenant}', [TenantController::class, 'show']);
     Route::get('owner/{owner}', [OwnerController::class, 'show']);
-    Route::get('employee/{user:username}', [EmployeeController::class, 'show']);
-    Route::post('employee/{random_str}/store', [EmployeeController::class, 'store']);
+  
 
     Route::get('properties', [PropertyController::class, 'index']);
     Route::get('property/{random_str}/create/', [PropertyController::class, 'create']);
     Route::post('property/{random_str}/store', [PropertyController::class, 'store']);
 
     Route::get('employee/{random_str}/create', [EmployeeController::class, 'create']);
+    Route::get('employee/{user:username}/edit', [EmployeeController::class, 'edit']);
+    Route::post('employee/{random_str}/store', [EmployeeController::class, 'store']);
+    Route::patch('employee/{user:username}/update', [EmployeeController::class, 'update']);
 
     Route::get('room/{room}/contract/{random_str}/create', [ContractController::class, 'create']);
     Route::post('room/{room}/contract/{random_str}/store', [ContractController::class, 'store']);

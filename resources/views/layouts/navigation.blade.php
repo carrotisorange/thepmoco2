@@ -89,7 +89,7 @@
                         <x-dropdown-link href="/properties">
                             {{ __('Properties') }}
                         </x-dropdown-link>
-                        <x-dropdown-link href="profile/{{ Auth::user()->username }}">
+                        <x-dropdown-link href="/profile/{{ Auth::user()->username }}">
                             {{ __('Profile') }}
                         </x-dropdown-link>
                         <!-- Authentication -->

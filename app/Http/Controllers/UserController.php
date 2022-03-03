@@ -57,9 +57,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
-    {
+    {        
+        return $user;
+
         return view('users.edit', [
-            'user' => $user
+            'user' => User::find($username),
         ]);
     }
 

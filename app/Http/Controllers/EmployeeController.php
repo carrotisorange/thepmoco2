@@ -98,9 +98,12 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('employees.edit',[
+            'employee' => $user,
+            'roles' => Role::all(),
+        ]);
     }
 
     /**
@@ -110,9 +113,25 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $attributes = request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
+            'mobile_number' => ['required', Rule::unique('users', 'username')->ignore($user->id)],
+            'role_id' => ['required', Rule::exists('roles', 'id')],
+            'avatar' => 'image'
+        ]);
+
+        if(isset($attributes['avatar']))
+        {
+            $attributes['avatar'] = request()->file('avatar')->store('avatars');
+        }
+
+        $user->update($attributes);
+
+        return back()->with('success', 'User has been updated.');
     }
 
     /**
