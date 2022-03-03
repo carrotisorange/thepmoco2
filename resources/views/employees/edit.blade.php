@@ -107,7 +107,7 @@
                                 @error('role_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div>  
 
                             <div class="mt-5 flex">  
                                <div class="flex-3">

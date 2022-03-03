@@ -121,7 +121,7 @@ class EmployeeController extends Controller
             'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
             'mobile_number' => ['required', Rule::unique('users', 'username')->ignore($user->id)],
             'role_id' => ['required', Rule::exists('roles', 'id')],
-            'avatar' => 'image'
+            'avatar' => 'image',
         ]);
 
         if(isset($attributes['avatar']))
