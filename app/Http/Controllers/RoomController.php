@@ -111,7 +111,7 @@ class RoomController extends Controller
         ->get();
 
         $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
-         ->where('room_buildings.property_uuid', Session::get('property'))
+         ->where('property_buildings.property_uuid', Session::get('property'))
          ->get();
 
          $floors = Floor::all();

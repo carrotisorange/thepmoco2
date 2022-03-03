@@ -13,6 +13,7 @@ use Session;
 use DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Models\User;
 
 class PropertyController extends Controller
 {
