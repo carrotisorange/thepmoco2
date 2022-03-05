@@ -41,6 +41,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
     Route::get('/edit', [PropertyController::class, 'edit']);
+    Route::patch('/update',[PropertyController::class, 'update']);
 
     Route::get('roles', [PropertyRoleController::class, 'index']);
     
@@ -52,6 +53,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('room/{batch_no}/edit', [RoomController::class, 'edit']);
     Route::delete('room/{uuid:uuid}/delete', [RoomController::class, 'destroy']);
     Route::patch('room/{batch_no}/update', [RoomController::class, 'update']);
+
+    //edit an individual room
+
 
     Route::post('building/{random_str}/store',[BuildingController::class, 'store']);
 

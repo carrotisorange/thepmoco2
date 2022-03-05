@@ -60,7 +60,7 @@
                                     </x-label>
                                     <x-input
                                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                        id="grid-first-name" type="text" name="tenant"  value="{{ old('tenant') }}"/>
+                                        id="grid-first-name" type="text" name="tenant" value="{{ old('tenant') }}" />
 
                                     @error('tenant')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -73,7 +73,7 @@
                                     </label>
                                     <input
                                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="email" name="email" value="{{ old('email') }}">  
+                                        id="grid-last-name" type="email" name="email" value="{{ old('email') }}">
 
                                     @error('email')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -86,7 +86,8 @@
                                     </label>
                                     <input
                                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="text" name="mobile_number" value="{{ old('mobile_number') }}">
+                                        id="grid-last-name" type="text" name="mobile_number"
+                                        value="{{ old('mobile_number') }}">
 
                                     @error('mobile_number')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -107,9 +108,14 @@
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-state" name="type">
-                                        <option value="" selected>Select one</option>
-                                        <option value="studying">Studying</option>
-                                        <option value="working">Working</option>
+                                        <option value="">Select one</option>
+                                        <option value="studying" {{ old('type')=='studying' ? 'selected' : 'Select one'
+                                            }}>{{
+                                            'studying' }}</option>
+                                        <option value="working" {{ old('type')=='working' ? 'selected' : 'Select one'
+                                            }}>{{
+                                            'working' }}</option>
+
                                     </select>
 
                                     @error('type')
@@ -137,9 +143,13 @@
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-state" name="gender">
-                                        <option value="" selected>Select one</option>
-                                        <option>Female</option>
-                                        <option>Male</option>
+                                        <option value="">Select one</option>
+                                        <option value="female" {{ old('gender')=='female' ? 'selected' : 'Select one'
+                                            }}>
+                                            {{
+                                            'female' }}</option>
+                                        <option value="male" {{ old('gender')=='male' ? 'selected' : 'Select one' }}>{{
+                                            'male' }}</option>
                                     </select>
 
                                     @error('gender')
@@ -155,11 +165,21 @@
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-state" name="civil_status">
-                                        <option value="" selected>Select one</option>
-                                        <option>Single</option>
-                                        <option>Married</option>
-                                        <option>Widowed</option>
-                                        <option>Divorced</option>
+                                        <option value="">Select one</option>
+                                        <option value="single" {{ old('civil_status')=='single' ? 'selected'
+                                            : 'Select one' }}>
+                                            {{
+                                            'single' }}</option>
+                                        <option value="married" {{ old('civil_status')=='married' ? 'selected'
+                                            : 'Select one' }}>{{
+                                            'married' }}</option>
+                                        <option value="widowed" {{ old('civil_status')=='widowed' ? 'selected'
+                                            : 'Select one' }}>
+                                            {{
+                                            'widowed' }}</option>
+                                        <option value="divorced" {{ old('civil_status')=='divorced' ? 'selected'
+                                            : 'Select one' }}>{{
+                                            'divorced' }}</option>
                                     </select>
 
                                     @error('civil_status')
@@ -178,9 +198,10 @@
                                         <select
                                             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                             id="grid-state" name="country_id">
-                                            <option value="">Select one</option>
                                             @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country->country }}</option>
+                                            <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
+                                                'selected': 'Select one'
+                                                }}>{{ $country->country }}</option>
                                             @endforeach
                                         </select>
 
@@ -198,9 +219,10 @@
                                         <select
                                             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                             id="grid-state" name="province_id">
-                                            <option value="">Select one</option>
                                             @foreach ($provinces as $province)
-                                            <option value="{{ $province->id }}">{{ $province->province }}</option>
+                                            <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
+                                                'selected': 'Select one'
+                                                }}>{{ $province->province }}</option>
                                             @endforeach
                                         </select>
                                         @error('province_id')
@@ -216,9 +238,10 @@
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-state" id="city_id" name="city_id">
-                                        <option value="">Select one</option>
                                         @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->city }}</option>
+                                        <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
+                                            'selected': 'Select one'
+                                            }}>{{ $city->city }}</option>
                                         @endforeach
                                     </select>
 
@@ -241,8 +264,7 @@
                                     </label>
                                     <input
                                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="date"
-                                        value="{{ old('start') }}" name="start">
+                                        id="grid-last-name" type="date" value="{{ old('start') }}" name="start">
 
                                     @error('start')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -283,7 +305,8 @@
                                     </label>
                                     <input
                                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="number" value="{{ old('price',$room->price) }}" name="price" >
+                                        id="grid-last-name" type="number" value="{{ old('price',$room->price) }}"
+                                        name="price">
 
                                     @error('price')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -297,7 +320,8 @@
                                     </label>
                                     <input
                                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="number" value="{{ old('discount') }}" name="discount">
+                                        id="grid-last-name" type="number" value="{{ old('discount', 0) }}"
+                                        name="discount">
 
                                     @error('discount')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -311,11 +335,23 @@
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-state" name="interaction">
+
                                         <option value="">Select one</option>
-                                        <option value="ads">Ads</option>
-                                        <option value="facebook">Facebook</option>
-                                        <option value="walk in">Walk in</option>
-                                        <option value="referred">Reffered</option>
+                                        <option value="ads" {{ old('interaction')=='ads' ? 'selected' : 'Select one' }}>
+                                            {{
+                                            'ads' }}</option>
+                                        <option value="facebook" {{ old('interaction')=='facebook' ? 'selected'
+                                            : 'Select one' }}>
+                                            {{
+                                            'facebook' }}</option>
+                                        <option value="referred" {{ old('interaction')=='referred' ? 'selected'
+                                            : 'Select one' }}>
+                                            {{
+                                            'referred' }}</option>
+                                        <option value="walk-in" {{ old('interaction')=='walk-in' ? 'selected'
+                                            : 'Select one' }}>
+                                            {{
+                                            'walk-in' }}</option>
                                     </select>
 
                                     @error('interaction')

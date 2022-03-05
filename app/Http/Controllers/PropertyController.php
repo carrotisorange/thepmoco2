@@ -168,7 +168,8 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         return view('properties.edit',[
-            'property' => $property
+            'property' => $property,
+            'types' => Type::all(),
         ]);
     }
 
@@ -181,7 +182,21 @@ class PropertyController extends Controller
      */
     public function update(Request $request, Property $property)
     {
-        //
+        $attributes = request()->validate([
+        'property' => ['required', 'string', 'max:255'],
+        'description' => ['required'],
+        'type_id' => ['required', Rule::exists('types', 'id')],
+        'thumbnail' => 'image',
+        ]);
+
+        if(isset($attributes['thumbnail']))
+        {
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        }
+
+        $property->update($attributes);
+
+        return back()->with('success', 'Property has been updated.');
     }
 
     /**

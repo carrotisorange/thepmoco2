@@ -42,7 +42,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $attributes['password'] = Hash::make($request->password);
-        $attributes['role_id'] = 5;
+        $attributes['role_id'] = 4;
 
         $user = User::create($attributes);
 

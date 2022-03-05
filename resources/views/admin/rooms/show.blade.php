@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| ',$room->room)
+    @section('title', '| '.$room->room)
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -22,8 +22,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button
-                        onclick="window.location.href='/room/{{ $room->uuid }}/edit'">
+                    <x-button onclick="window.location.href='/room/{{ $room->uuid }}/edit'">
                         Edit Room</x-button>
                     <x-button
                         onclick="window.location.href='/room/{{ $room->uuid }}/contract/{{ Str::random(10) }}/create'">
@@ -85,6 +84,10 @@
                                 @if (!$contracts->count())
                                 <span class="text-center text-red">No contracts found!</span>
                                 @else
+                               <div class="mb-3">
+                                   <span class="text-center text-red">Contracts ({{ $contracts->count() }})</span>
+                               </div>
+                                
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
                                     <table class="min-w-full divide-y divide-gray-200">
@@ -131,7 +134,8 @@
                                                             <div class="text-sm font-medium text-gray-900">{{
                                                                 $contract->tenant->tenant }}
                                                             </div>
-                                                            <div class="text-sm text-gray-500">{{ $contract->tenant->type
+                                                            <div class="text-sm text-gray-500">{{
+                                                                $contract->tenant->type
                                                                 }}
                                                             </div>
                                                         </div>
