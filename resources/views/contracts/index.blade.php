@@ -58,7 +58,7 @@
                                                     Duration</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Room</th>
+                                                    Unit</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Contact</th>
@@ -108,7 +108,7 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $contract->room }}
+                                                    <div class="text-sm text-gray-900">{{ $contract->unit }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{ $contract->building }}
                                                     </div>

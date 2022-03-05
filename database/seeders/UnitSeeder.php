@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class RoomSeeder extends Seeder
+class UnitSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,6 @@ class RoomSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Room::factory(10)->create();
+        \App\Models\Unit::factory(10)->create();
     }
 }

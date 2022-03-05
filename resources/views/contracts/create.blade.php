@@ -12,12 +12,12 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/rooms"
-                                        class="text-blue-600 hover:text-blue-700">Rooms</a>
+                                <li><a href="/property/{{ Session::get('property') }}/units"
+                                        class="text-blue-600 hover:text-blue-700">Units</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/room/{{ $room->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $room->room
+                                <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
+                                        $unit->unit
                                         }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
@@ -46,7 +46,7 @@
                     <!-- Name -->
                     <div>
 
-                        <form method="POST" action="/room/{{ $uuid }}/contract/{{ Str::random(10) }}/store"
+                        <form method="POST" action="/unit/{{ $uuid }}/contract/{{ Str::random(10) }}/store"
                             class="w-full" id="create-form">
                             @csrf
                             <span class="font-bold">Tenant</span>
@@ -305,7 +305,7 @@
                                     </label>
                                     <input
                                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="number" value="{{ old('price',$room->price) }}"
+                                        id="grid-last-name" type="number" value="{{ old('price',$unit->price) }}"
                                         name="price">
 
                                     @error('price')

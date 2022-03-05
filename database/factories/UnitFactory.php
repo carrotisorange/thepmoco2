@@ -11,7 +11,7 @@ use App\Models\Building;
 use App\Models\User;
 use Illuminate\Support\Str;
 
-class RoomFactory extends Factory
+class UnitFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class RoomFactory extends Factory
     {
        return [
         'uuid' => Str::uuid(),
-        'room' => $this->faker->name(),
+        'unit' => $this->faker->name(),
         'price' => $this->faker->randomDigit(),
         'status_id' => Status::all()->random()->id,
         'category_id' => Category::all()->random()->id,

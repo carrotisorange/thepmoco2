@@ -18,7 +18,7 @@ class CollectionController extends Controller
          ->join('owners', 'collections.owner_uuid', 'owners.uuid')
          ->join('users', 'collections.user_id', 'users.id')
          
-         ->join('rooms', 'collections.room_uuid', 'rooms.uuid')
+         ->join('units', 'collections.unit_uuid', 'units.uuid')
          ->paginate(10);
 
         return view('collections.index',[

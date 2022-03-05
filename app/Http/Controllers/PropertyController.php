@@ -25,10 +25,11 @@ class PropertyController extends Controller
     public function index()
     {
         $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-        ->select('*', 'properties.*','properties.status as property_status', 'properties.uuid as property_uuid', DB::raw('count(rooms.uuid) as rooms_count'), 'user_properties.created_at as property_created_at')
+        ->select('*', 'properties.*','properties.status as property_status', 'properties.uuid as property_uuid',
+        DB::raw('count(units.uuid) as unit_count'), 'user_properties.created_at as property_created_at')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
-        ->leftJoin('rooms', 'properties.uuid', 'rooms.property_uuid')   
+        ->leftJoin('units', 'properties.uuid', 'units.property_uuid')
         ->where('users.id', auth()->user()->id)
         ->groupBy('user_properties.property_uuid')
         ->orderBy('properties.created_at', 'desc')

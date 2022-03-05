@@ -47,7 +47,7 @@
                     <h5 class="flex-1 text-right">
                         <x-button onclick="window.location.href='/documentation/'">Show Documentation
                         </x-button>
-                        @if(auth()->user()->role_id === 4)
+                        @if(auth()->user()->role_id === 5)
                         <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property
                         </x-button>
                        
@@ -90,7 +90,7 @@
                                                             Description</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Rooms</th>
+                                                            Units</th>
                                                         {{-- <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Manager</th> --}}
@@ -135,7 +135,7 @@
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             substr($property->description, 0, 25) }}...</td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            $property->rooms_count }}</td>
+                                                            $property->units_count }}</td>
                                                         {{-- <td
                                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             $property->name }}</td> --}}

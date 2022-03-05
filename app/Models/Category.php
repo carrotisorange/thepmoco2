@@ -9,8 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function rooms()
+    public function units()
     {
-        return $this->hasMany(Room::class);
+        return $this->hasMany(Unit::class);
     }
 }

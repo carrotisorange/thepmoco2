@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Room;
+use App\Models\Unit;
 use App\Models\PropertyBuilding;
 use App\Models\Category;
 use App\Models\Property;
@@ -14,7 +14,7 @@ use Session;
 use Illuminate\Support\Str;
 use DB;
 
-class RoomController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,18 +23,18 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::leftJoin('statuses', 'rooms.status_id', 'statuses.id')
-        ->select('*', 'rooms.*')
-        ->leftJoin('categories', 'rooms.category_id', 'categories.id')
-        ->leftJoin('buildings', 'rooms.building_id', 'buildings.id')
-        ->leftJoin('floors', 'rooms.floor_id', 'floors.id')
+        $units = Unit::leftJoin('statuses', 'units.status_id', 'statuses.id')
+        ->select('*', 'units.*')
+        ->leftJoin('categories', 'units.category_id', 'categories.id')
+        ->leftJoin('buildings', 'units.building_id', 'buildings.id')
+        ->leftJoin('floors', 'units.floor_id', 'floors.id')
         ->where('status_id', '!=', 6)
         ->where('property_uuid', Session::get('property'))
         ->paginate(10);
 
-        return view('admin.rooms.index',
+        return view('admin.units.index',
             [
-                'rooms' => $rooms,
+                'units' => $units,
             ]    
         );
     }
@@ -46,7 +46,7 @@ class RoomController extends Controller
      */
     public function create($batch_no)
     {
-        return view('admin.rooms.create',[
+        return view('admin.units.create',[
             'batch_no' => $batch_no
         ]);
     }
@@ -61,36 +61,36 @@ class RoomController extends Controller
     {
 
         $request->validate([
-            'number_of_rooms' => ['integer', 'required', 'min:1']
+            'number_of_units' => ['integer', 'required', 'min:1']
         ]);
 
-       for($i=1; $i<=$request->number_of_rooms; $i++){
-            Room::create([
+       for($i=1; $i<=$request->number_of_units; $i++){
+            Unit::create([
                 'uuid' => Str::uuid(),
-                'room' => 'Room '.$i,
+                'unit' => 'Unit '.$i,
                 'property_uuid' => Session::get('property'),
                 'user_id' => auth()->user()->id,
                 'batch_no' => $batch_no
             ]);
        }
 
-       $rooms = Room::where('batch_no', $batch_no)->count();
+       $units = Unit::where('batch_no', $batch_no)->count();
         
-        return redirect('room/'.$batch_no.'/edit')->with('success', $rooms.' rooms have been created.');
+        return redirect('unit/'.$batch_no.'/edit')->with('success', $units.' units have been created.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Room  $room
+     * @param \App\Models\Unit $unit
      * @return \Illuminate\Http\Response
      */
-    public function show(Room $room)
+    public function show(Unit $unit)
     {
-        $contracts = Room::findOrFail($room->uuid)->contracts;
+        $contracts = Unit::findOrFail($unit->uuid)->contracts;
 
-        return view('admin.rooms.show', [
-            'room' => $room,
+        return view('admin.units.show', [
+            'unit' => $unit,
             'contracts' => $contracts,
         ]);
     }
@@ -98,15 +98,15 @@ class RoomController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Room  $room
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
     public function edit($batch_no)
     {
-        $rooms = Room::join('categories', 'rooms.category_id','categories.id')
-        ->leftJoin('statuses', 'rooms.status_id', 'statuses.id')
-        ->leftJoin('buildings', 'rooms.building_id', 'buildings.id')
-        ->leftJoin('floors', 'rooms.floor_id', 'floors.id')
+        $units = Unit::join('categories', 'units.category_id','categories.id')
+        ->leftJoin('statuses', 'units.status_id', 'statuses.id')
+        ->leftJoin('buildings', 'units.building_id', 'buildings.id')
+        ->leftJoin('floors', 'units.floor_id', 'floors.id')
         ->where('batch_no', $batch_no)
         ->get();
 
@@ -120,8 +120,8 @@ class RoomController extends Controller
 
          $statuses = Status::all();
 
-        return view('admin.rooms.edit',[
-            'rooms' => $rooms,
+        return view('admin.units.edit',[
+            'units' => $units,
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,
@@ -134,33 +134,33 @@ class RoomController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Room  $room
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $batch_no)
     {
-        Room::where('batch_no', $batch_no)
+        Unit::where('batch_no', $batch_no)
         ->update([
             'status_id' => 1
         ]);
 
-        $rooms = Room::where('batch_no', $batch_no)->count();
+        $units = Unit::where('batch_no', $batch_no)->count();
         
-        return redirect('/property/'.Session::get('property').'/rooms')->with('success', $rooms.' rooms have been
+        return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' units have been
         updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Room  $room
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
     public function destroy($uuid)
     {
-        $room = Room::where('uuid', $uuid);
-        $room->delete();
+        $unit = Unit::where('uuid', $uuid);
+        $unit->delete();
 
-        return back()->with('success', 'A room has been removed.');
+        return back()->with('success', 'A unit has been removed.');
     }
 }

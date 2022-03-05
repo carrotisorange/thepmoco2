@@ -55,7 +55,7 @@
                                                     Tenant</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Room</th>
+                                                    Unit</th>
                                                 <th colspan="2" scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Period</th>
@@ -81,7 +81,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $bill->tenant }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $bill->room }}</td>
+                                                    $bill->unit }}</td>
                                                 <td colspan="2"
                                                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     Carbon\Carbon::parse($bill->start)->format('M d,

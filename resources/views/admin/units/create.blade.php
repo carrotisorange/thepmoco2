@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Rooms | Create')
+    @section('title', '| Units | Create')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <nav class="rounded-md w-full">
@@ -8,8 +8,8 @@
                             Session::get('property_name') }}</a>
                     </li>
                     <li><span class="text-gray-500 mx-2">/</span></li>
-                    <li><a href="/property/{{ Session::get('property') }}/rooms"
-                            class="text-blue-600 hover:text-blue-700">Rooms</a>
+                    <li><a href="/property/{{ Session::get('property') }}/units"
+                            class="text-blue-600 hover:text-blue-700">Units</a>
                     </li>
                     <li><span class="text-gray-500 mx-2">/</span></li>
                     <li class="text-gray-500">Create</li>
@@ -23,15 +23,15 @@
             <div class="overflow-hidden sm:rounded-lg">
                 <div class="flex flex-col items-center 
               justify-center">
-                    <form method="POST" action="/room/{{ $batch_no }}/store">
+                    <form method="POST" action="/unit/{{ $batch_no }}/store">
                         @csrf
                         <div clas="">
-                            <x-label for="number_of_rooms" :value="__('How many rooms you want to create?')" />
+                            <x-label for="number_of_units" :value="__('How many units you want to create?')" />
 
-                            <x-input id="number_of_rooms" class="block mt-1 w-full" type="number" min="1"
-                                name="number_of_rooms" :value="old('number_of_rooms', 1)" required autofocus />
+                            <x-input id="number_of_units" class="block mt-1 w-full" type="number" min="1"
+                                name="number_of_units" :value="old('number_of_units', 1)" required autofocus />
 
-                            @error('number_of_rooms')
+                            @error('number_of_units')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
 

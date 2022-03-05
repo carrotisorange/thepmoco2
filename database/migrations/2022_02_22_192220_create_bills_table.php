@@ -26,7 +26,7 @@ class CreateBillsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('particular_id')->constraind();
             $table->foreignUuid('property_uuid')->constrained();
-            $table->foreignUuid('room_uuid')->constrained();
+            $table->foreignUuid('unit_uuid')->constrained();
             $table->timestamps();
         });
     }

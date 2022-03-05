@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             PropertySeeder::class,
             PropertyBuildingSeeder::class,
             PropertySeeder::class,
-            RoomSeeder::class,
+            UnitSeeder::class,
             GuardianSeeder::class,
             ReferenceSeeder::class,
             TenantSeeder::class,  

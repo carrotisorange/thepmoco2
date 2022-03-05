@@ -23,7 +23,7 @@ Route::get('/', [WebsiteController::class, 'index']);
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property:uuid}')->group(function(){
 
-    Route::get('rooms', [RoomController::class, 'index'])->name('rooms');
+    Route::get('units', [UnitController::class, 'index'])->name('units');
    
     Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
     
@@ -47,14 +47,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     });
 
-    Route::get('room/{room:uuid}', [RoomController::class, 'show']);
-    Route::get('room/{batch_no}/create', [RoomController::class, 'create']);
-    Route::post('room/{batch_no}/store', [RoomController::class, 'store']);
-    Route::get('room/{batch_no}/edit', [RoomController::class, 'edit']);
-    Route::delete('room/{uuid:uuid}/delete', [RoomController::class, 'destroy']);
-    Route::patch('room/{batch_no}/update', [RoomController::class, 'update']);
+    Route::get('unit/{unit:uuid}', [UnitController::class, 'show']);
+    Route::get('unit/{batch_no}/create', [UnitController::class, 'create']);
+    Route::post('unit/{batch_no}/store', [UnitController::class, 'store']);
+    Route::get('unit/{batch_no}/edit', [UnitController::class, 'edit']);
+    Route::delete('unit/{uuid:uuid}/delete', [UnitController::class, 'destroy']);
+    Route::patch('unit/{batch_no}/update', [UnitController::class, 'update']);
 
-    //edit an individual room
+    //edit an individual unit
 
 
     Route::post('building/{random_str}/store',[BuildingController::class, 'store']);
@@ -72,8 +72,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('employee/{random_str}/store', [EmployeeController::class, 'store']);
     Route::patch('employee/{user:username}/update', [EmployeeController::class, 'update']);
 
-    Route::get('room/{room}/contract/{random_str}/create', [ContractController::class, 'create']);
-    Route::post('room/{room}/contract/{random_str}/store', [ContractController::class, 'store']);
+    Route::get('unit/{unit}/contract/{random_str}/create', [ContractController::class, 'create']);
+    Route::post('unit/{unit}/contract/{random_str}/store', [ContractController::class, 'store']);
 
     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
 

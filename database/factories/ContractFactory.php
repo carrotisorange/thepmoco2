@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use App\Models\Tenant;
-use App\Models\Room;
+use App\Models\Unit;
 use App\Models\User;
 
 class ContractFactory extends Factory
@@ -20,7 +20,7 @@ class ContractFactory extends Factory
     {
         return [
              'uuid' => Str::uuid(),
-             'room_uuid'=> Room::all()->random()->uuid,
+             'unit_uuid'=> Unit::all()->random()->uuid,
              'user_id'=> User::all()->random()->id,
              'tenant_uuid'=> Tenant::all()->random()->uuid,
              'start' => now(),

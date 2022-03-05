@@ -21,7 +21,7 @@ class BillController extends Controller
         ->select('*', 'bills.status as bill_status')
         ->join('users', 'bills.user_id', 'users.id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
-        ->join('rooms', 'bills.room_uuid', 'rooms.uuid')
+        ->join('units', 'bills.unit_uuid', 'units.uuid')
         ->paginate(10);
 
         return view('bills.index',[

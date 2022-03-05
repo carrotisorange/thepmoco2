@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contract;
 use Illuminate\Http\Request;
-use App\Models\Room;
+use App\Models\Unit;
 use App\Models\City;
 use App\Models\Province;
 use App\Models\Country;
@@ -27,10 +27,10 @@ class ContractController extends Controller
     public function index()
     {
 
-         $contracts = Contract::leftJoin('rooms', 'contracts.room_uuid', 'rooms.uuid')
+         $contracts = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
         ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
-        ->leftJoin('buildings', 'rooms.building_id','buildings.id' )
-        ->where('rooms.property_uuid', session('property'))
+        ->leftJoin('buildings', 'units.building_id','buildings.id' )
+        ->where('units.property_uuid', session('property'))
         ->groupBy('contracts.uuid')
         ->paginate(10);
 
@@ -44,15 +44,15 @@ class ContractController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Room $room)
+    public function create(Unit $unit)
     {
         $cities = City::all();
         $provinces = Province::all();
         $countries = Country::all();
 
         return view('contracts.create', [
-            'uuid' => $room->uuid,
-            'room' => $room,
+            'uuid' => $unit->uuid,
+            'unit' => $unit,
             'cities' => $cities,
             'provinces' => $provinces,
             'countries' => $countries
@@ -65,7 +65,7 @@ class ContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $room_uuid)
+    public function store(Request $request, $unit_uuid)
     {
         $tenant_attributes = request()->validate([
             'tenant' => 'required',
@@ -96,13 +96,13 @@ class ContractController extends Controller
 
               $contract_attributes['uuid'] = Str::uuid();
               $contract_attributes['tenant_uuid'] = $tenant;
-              $contract_attributes['room_uuid'] = $room_uuid;
+              $contract_attributes['unit_uuid'] = $unit_uuid;
               $contract_attributes['user_id'] = auth()->user()->id;
               $contract_attributes['status'] = 'pending';
 
               Contract::create($contract_attributes);
 
-              Room::where('uuid', $room_uuid)->update([
+              Unit::where('uuid', $unit_uuid)->update([
               'status_id' => 4
               ]);
 
@@ -115,7 +115,7 @@ class ContractController extends Controller
               'user_id' => auth()->user()->id,
               'particular_id' => 2,
               'property_uuid' => Session::get('property'),
-              'room_uuid'=> $room_uuid,
+              'unit_uuid'=> $unit_uuid,
               'due_date' => PropertyParticular::find(2)->due_date,
               ]);
 
@@ -125,7 +125,7 @@ class ContractController extends Controller
             DB::rollback();
         }
 
-        return redirect('/room/'.$room_uuid)->with('success', 'New tenant has been added to the room.');
+        return redirect('/unit/'.$unit_uuid)->with('success', 'New tenant has been added to the unit.');
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomsTable extends Migration
+class CreateUnitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->uuid('uuid')->unique();
-            $table->string('room');
+            $table->string('unit');
             $table->double('price', 15, 2);
             $table->foreignId('status_id')->constrained();
             $table->foreignId('category_id')->constrained();
@@ -38,6 +38,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('units');
     }
 }

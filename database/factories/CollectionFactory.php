@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Room;
+use App\Models\Unit;
 use App\Models\Tenant;
 use App\Models\Property;
 use App\Models\Bill;
@@ -23,7 +23,7 @@ class CollectionFactory extends Factory
         return [
              'collection'=> rand(10,1000),
              'tenant_uuid'=> Tenant::all()->random()->uuid,
-             'room_uuid'=> Room::all()->random()->uuid,
+             'unit_uuid'=> Unit::all()->random()->uuid,
              'property_uuid'=> Property::all()->random()->uuid,
              'owner_uuid'=> Owner::all()->random()->uuid,
              'collection_no' => $this->faker->unique()->numerify('###########'),

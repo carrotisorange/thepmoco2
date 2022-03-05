@@ -22,9 +22,9 @@ class Contract extends Model
         return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
 
-    public function room()
+    public function unit()
     {
-        return $this->belongsTo(Room::class, 'room_uuid');
+        return $this->belongsTo(Unit::class, 'unit_uuid');
     }
 
     public function user()

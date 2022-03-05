@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| '.$room->room)
+    @section('title', '| '.$unit->unit)
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -12,20 +12,20 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/rooms"
-                                        class="text-blue-600 hover:text-blue-700">Rooms</a>
+                                <li><a href="/property/{{ Session::get('property') }}/units"
+                                        class="text-blue-600 hover:text-blue-700">Units</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">{{ $room->room }}</li>
+                                <li class="text-gray-500">{{ $unit->unit }}</li>
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/room/{{ $room->uuid }}/edit'">
-                        Edit Room</x-button>
+                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/edit'">
+                        Edit Unit</x-button>
                     <x-button
-                        onclick="window.location.href='/room/{{ $room->uuid }}/contract/{{ Str::random(10) }}/create'">
+                        onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
                         Add Contract</x-button>
                 </h5>
 
@@ -40,35 +40,35 @@
                     <div class="flex justify-center">
                         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white">
 
-                            <img src="/storage/{{ $room->thumbnail }}"
+                            <img src="/storage/{{ $unit->thumbnail }}"
                                 class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5" alt="..." />
                         </div>
                         <div class="flex flex-col md:flex-row md:max-w-xl">
 
                             <div class="p-6 flex flex-col justify-start">
-                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $room->room }}</h5>
+                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $unit->unit }}</h5>
                                 <hr>
                                 <p class="mt-5 text-gray-700 text-base mb-4">
-                                    Building: {{ $room->building?$room->building:'NA' }}
+                                    Building: {{ $unit->building?$unit->building:'NA' }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Floor: {{ $room->floor?$room->floor->floor:'NA' }}
+                                    Floor: {{ $unit->floor?$unit->floor->floor:'NA' }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Status: {{ $room->status->status }}
+                                    Status: {{ $unit->status->status }}
                                 </p>
 
                                 <p class="text-gray-700 text-base mb-4">
-                                    Price: {{ number_format($room->price, 2) }}
+                                    Price: {{ number_format($unit->price, 2) }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Discount: {{ number_format($room->discount, 2) }}
+                                    Discount: {{ number_format($unit->discount, 2) }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Dimensions: {{ number_format($room->dimensions, 2) }}
+                                    Dimensions: {{ number_format($unit->dimensions, 2) }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Created: {{ $room->created_at->diffForHumans() }}
+                                    Created: {{ $unit->created_at->diffForHumans() }}
                                 </p>
 
 

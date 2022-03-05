@@ -28,7 +28,7 @@
                     
                     <x-button form="edit-form">Save</x-button>
                   
-                    <x-button onclick="window.location.href='/room/{{ Str::random(10) }}/create'">Create Employee
+                    <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Employee
                     </x-button>
                    
                 </h5>

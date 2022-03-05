@@ -17,7 +17,7 @@ class CreateCollectionsTable extends Migration
             $table->id();
             $table->double('collection', 8, 2);
             $table->foreignUuid('tenant_uuid')->constrained();
-            $table->foreignUuid('room_uuid')->constrained();
+            $table->foreignUuid('unit_uuid')->constrained();
             $table->foreignUuid('property_uuid')->constrained();
              $table->foreignUuid('owner_uuid')->constrained();
             $table->foreignId('user_id')->constrained();

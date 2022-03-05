@@ -28,7 +28,7 @@ class Property extends Model
         return $this->belongsTo(Type::class, 'type_id');
     }
 
-    public function rooms()
+    public function units()
     {
         return $this->hasMany(Property::class);
     }

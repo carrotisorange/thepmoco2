@@ -12,11 +12,11 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/rooms"
-                                        class="text-blue-600 hover:text-blue-700">Rooms</a>
+                                <li><a href="/property/{{ Session::get('property') }}/units"
+                                        class="text-blue-600 hover:text-blue-700">Units</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Edit ({{ $rooms->count() }})</li>
+                                <li class="text-gray-500">Edit ({{ $units->count() }})</li>
                             </ol>
                         </nav>
                     </h2>
@@ -25,10 +25,10 @@
                     <x-button data-modal-toggle="small-modal">
                         Create Building
                     </x-button>
-                    @if($rooms->count())
-                    <x-button form="edit-form">Save Rooms</x-button>
+                    @if($units->count())
+                    <x-button form="edit-form">Save Units</x-button>
                     @else
-                    <x-button onclick="window.location.href='/room/{{ Str::random(10) }}/create'">Create Building</x-button>
+                    <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Building</x-button>
                     @endif
                 </h5>
 
@@ -43,8 +43,8 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                @if (!$rooms->count())
-                                <span class="text-center text-red">No rooms found!</span>
+                                @if (!$units->count())
+                                <span class="text-center text-red">No units found!</span>
                                 @else
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -56,7 +56,7 @@
                                                     #</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Room</th>
+                                                    Unit</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Building</th>
@@ -76,22 +76,22 @@
                                             </tr>
                                         </thead>
                                         <?php $ctr=1?>
-                                        <form action="/room/{{ $batch_no }}/update" method="POST" id="edit-form">
+                                        <form action="/unit/{{ $batch_no }}/update" method="POST" id="edit-form">
                                             @csrf
                                             @method('PATCH')
                                         </form>
-                                        @foreach ($rooms as $room)
+                                        @foreach ($units as $unit)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <x-input form="edit-form" name="room" type="text"
-                                                        value="{{ $room->room }}"></x-input>
+                                                    <x-input form="edit-form" name="unit" type="text"
+                                                        value="{{ $unit->unit }}"></x-input>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <x-select form="edit-form" name="room">
+                                                    <x-select form="edit-form" name="unit">
                                                         <option value="">Select one</option>
                                                         @foreach ($buildings as $building)
                                                         <option value="{{ $building->id }}">{{ $building->building
@@ -122,10 +122,10 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <x-input form="edit-form" name="price" type="number"
-                                                        value="{{ $room->price }}"></x-input>
+                                                        value="{{ $unit->price }}"></x-input>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <form method="POST" action="/room/{{ $room->uuid }}/delete"
+                                                    <form method="POST" action="/unit/{{ $unit->uuid }}/delete"
                                                         id="delete-form">
                                                         @csrf
                                                         @method('delete')

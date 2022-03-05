@@ -8,7 +8,7 @@ use App\Models\Owner;
 use App\Models\User;
 use App\Models\Particular;
 use App\Models\Property;
-use App\Models\Room;
+use App\Models\Unit;
 use Session;
 
 class BillFactory extends Factory
@@ -31,7 +31,7 @@ class BillFactory extends Factory
             'user_id'=> User::all()->random()->id,
             'particular_id'=> Particular::all()->random()->id,
             'property_uuid'=> Property::all()->random()->uuid,
-            'room_uuid'=> Room::all()->random()->uuid,
+            'unit_uuid'=> Unit::all()->random()->uuid,
         ];
     }
 }

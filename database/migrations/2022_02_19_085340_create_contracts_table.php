@@ -15,7 +15,7 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->uuid('uuid')->unique();
-            $table->foreignUuid('room_uuid')->constrained();
+            $table->foreignUuid('unit_uuid')->constrained();
             $table->foreignUuid('tenant_uuid')->constrained();
             $table->date('start');
             $table->date('end');

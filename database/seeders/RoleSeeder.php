@@ -20,21 +20,43 @@ class RoleSeeder extends Seeder
          ]);
 
          Role::create([
-            'role' => 'biller'
+            'role' => 'billing'
          ]);
 
          Role::create([
-            'role' => 'collector'
+            'role' => 'treasury'
          ]);
+
+         Role::create([
+         'role' => 'account payable'
+         ]);
+         
+         Role::create([
+         'role' => 'account owner'
+         ]);
+
+         Role::create([
+         'role' => 'bookeeping'
+         ]);
+
+         Role::create([
+            'role' => 'unit owner'
+         ]);
+
+         // Role::create([
+         // 'role' => 'owner'
+         // ]);
+
+         //  Role::create([
+         //  'role' => 'tenant'
+         //  ]);
+
 
         // Role::create([
         //     'role' => 'dev'
         // ]);
 
-        Role::create([
-            'role' => 'manager'
-        ]);
-
+       
         // Role::create([
         //     'role' => 'owner'
         // ]);

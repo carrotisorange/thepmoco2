@@ -21,7 +21,7 @@ class CreatePropertyRolesTable extends Migration
             $table->boolean('hasAccessToProperty')->nullable();
             $table->boolean('hasAccessToDashboard')->nullable();
             $table->boolean('hasAccessToEmployee')->nullable();
-            $table->boolean('hasAccessToRoom')->nullable();
+            $table->boolean('hasAccessToUnit')->nullable();
             $table->boolean('hasAccessToContract')->nullable();
             $table->boolean('hasAccessToOwner')->nullable();
             $table->boolean('hasAccessToBill')->nullable();

@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Rooms')
+    @section('title', '| Units')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -12,13 +12,13 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Rooms ({{ $rooms->count() }})</li>
+                                <li class="text-gray-500">Units ({{ $units->count() }})</li>
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/room/{{ Str::random(10) }}/create'">Create Room</x-button>
+                    <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit</x-button>
                 </h5>
 
             </div>
@@ -29,12 +29,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if (!$rooms->count())
-                    <span class="text-center text-red">No rooms found!</span>
+                    @if (!$units->count())
+                    <span class="text-center text-red">No units found!</span>
                     @else
                     <div class="flex flex-row">
                         <div class="basis-1/4">
-                            <span class="font-bold">Filters ({{ $rooms->count() }})</span>
+                            <span class="font-bold">Filters ({{ $units->count() }})</span>
                             <div class="mt-5">
                                 <div class="flex">
                                     <div>
@@ -61,22 +61,22 @@
                             </div>
                         </div>
                         <div class="basis-1/2">
-                            <span class="font-bold">Rooms</span>
-                            @foreach($rooms as $room)
-                            <a href="/room/{{ $room->uuid }}"><img src="/storage/{{ $room->thumbnail }}"
+                            <span class="font-bold">Unit</span>
+                            @foreach($units as $unit)
+                            <a href="/unit/{{ $unit->uuid }}"><img src="/storage/{{ $unit->thumbnail }}"
                                     class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
                                     alt="..." /></a>
                             @endforeach
                             <div class="mt-3">
-                                {{ $rooms->links() }}
+                                {{ $units->links() }}
                             </div>
                         </div>
                         <div class="basis-1/4">
                             <span class="font-bold">Details</span>
                             <p class="text-left">
-                                @foreach($rooms as $info)
+                                @foreach($units as $info)
                             <div class="mt-14">
-                                <p>Room: {{ $info->room }}</p>
+                                <p>Unit: {{ $info->unit }}</p>
                                 <p>Building: {{ $info->building?$info->building:'NA' }}</p>
                                 <p>Floor: {{ $info->floor?$info->floor:'NA' }}</p>
                                 <p>Status: {{ $info->status }}</p>
