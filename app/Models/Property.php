@@ -45,7 +45,7 @@ class Property extends Model
 
     public function collections()
     {
-     return $this->hasMany(Collection::class);
+        return $this->hasMany(Collection::class);
     }
 
     public function particulars()
@@ -56,6 +56,11 @@ class Property extends Model
     public function roles()
     {
         return $this->hasMany(Role::class);
+    }
+    
+    public function concerns()
+    {
+        return $this->hasMany(Concern::class);
     }
 
 }

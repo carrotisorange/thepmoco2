@@ -28,6 +28,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
     
     Route::get('owners', [OwnerController::class, 'index'])->name('owners');
+
+     Route::get('concerns', [ConcernController::class, 'index'])->name('concerns');
     
     Route::get('team', [TeamController::class, 'index'])->name('team');
     
