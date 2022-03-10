@@ -29,21 +29,23 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     Route::get('owners', [OwnerController::class, 'index'])->name('owners');
     
-    Route::get('employees', [EmployeeController::class, 'index'])->name('employees');
+    Route::get('team', [TeamController::class, 'index'])->name('team');
     
-    Route::get('/contracts', [ContractController::class, 'index'])->name('contracts');
+    Route::get('contracts', [ContractController::class, 'index'])->name('contracts');
 
-    Route::get('/bills', [BillController::class, 'index'])->name('bills');
+    Route::get('bills', [BillController::class, 'index'])->name('bills');
 
-    Route::get('/particulars', [ParticularController::class, 'index']);
+    Route::get('particulars', [ParticularController::class, 'index']);
 
-    Route::get('/collections', [CollectionController::class, 'index'])->name('collections');
+    Route::get('collections', [CollectionController::class, 'index'])->name('collections');
 
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
-    Route::get('/edit', [PropertyController::class, 'edit']);
-    Route::patch('/update',[PropertyController::class, 'update']);
+    Route::get('edit', [PropertyController::class, 'edit']);
+    Route::patch('update',[PropertyController::class, 'update']);
 
     Route::get('roles', [PropertyRoleController::class, 'index']);
+
+    Route::get('/team/{random_str}/create', [TeamController::class, 'create']);
     
     });
 
@@ -67,10 +69,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('property/{random_str}/create/', [PropertyController::class, 'create']);
     Route::post('property/{random_str}/store', [PropertyController::class, 'store']);
 
-    Route::get('employee/{random_str}/create', [EmployeeController::class, 'create']);
-    Route::get('employee/{user:username}/edit', [EmployeeController::class, 'edit']);
-    Route::post('employee/{random_str}/store', [EmployeeController::class, 'store']);
-    Route::patch('employee/{user:username}/update', [EmployeeController::class, 'update']);
+    Route::get('team/{random_str}/create', [TeamController::class, 'create']);
+    Route::get('team/{user:username}/edit', [TeamController::class, 'edit']);
+    Route::post('team/{random_str}/store', [TeamController::class, 'store']);
+    Route::patch('team/{user:username}/update', [TeamController::class, 'update']);
 
     Route::get('unit/{unit}/contract/{random_str}/create', [ContractController::class, 'create']);
     Route::post('unit/{unit}/contract/{random_str}/store', [ContractController::class, 'store']);

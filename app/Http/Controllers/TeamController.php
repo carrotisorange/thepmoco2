@@ -13,7 +13,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 
 
-class EmployeeController extends Controller
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+        $users = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
         ->select('*', 'users.status as user_status')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
@@ -31,8 +31,8 @@ class EmployeeController extends Controller
         ->orderBy('users.created_at', 'desc')
         ->paginate(10);
 
-        return view('employees.index',[
-        'employees' => $employees
+        return view('teams.index',[
+        'users' => $users
         ]);
     }
 
@@ -43,7 +43,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create',[
+        return view('teams.create',[
             'random_str' => Str::random(10),
             'roles' => Role::all(),
         ]);
@@ -64,11 +64,16 @@ class EmployeeController extends Controller
          'username' => ['required', 'string', 'max:255', 'unique:users'],
          'mobile_number' => ['required', 'unique:users'],
          'role_id' => ['required', Rule::exists('roles', 'id')],
-         'avatar' => 'required|image',
+         'avatar' => 'image',
          ]);
 
         $attributes['password'] = Hash::make(Str::random());
-        $attributes['avatar'] = $request->file('avatar')->store('avatars');
+
+        if(isset($attributes['avatar']))
+        {
+          $attributes['avatar'] = $request->file('avatar')->store('avatars');
+        }
+      
 
         $user_id = User::create($attributes)->id;
 
@@ -78,7 +83,8 @@ class EmployeeController extends Controller
             'isManager' => false
         ]);
 
-        return redirect('/property/'.Session::get('property').'/employees')->with('success', 'A new has been created successfully.');
+        return redirect('/property/'.Session::get('property').'/team')->with('success', 'A new has been created
+        successfully.');
     }
 
     /**
@@ -100,8 +106,8 @@ class EmployeeController extends Controller
      */
     public function edit(User $user)
     {
-        return view('employees.edit',[
-            'employee' => $user,
+        return view('teams.edit',[
+            'users' => $user,
             'roles' => Role::all(),
         ]);
     }

@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Employees | Create')
+    @section('title', '| Team | Create')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -9,8 +9,8 @@
                             <ol class="list-reset flex">
                                 <li><a href="/properties/" class="text-blue-600 hover:text-blue-700">Properties</a></li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/employees"
-                                        class="text-blue-600 hover:text-blue-700">Employees</a></li>
+                                <li><a href="/property/{{ Session::get('property') }}/team"
+                                        class="text-blue-600 hover:text-blue-700">Team</a></li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Create</li>
                             </ol>
@@ -31,7 +31,7 @@
                     <!-- This example requires Tailwind CSS v2.0+ -->
                     <!-- Name -->
                     <div>
-                        <form action="/employee/{{ $random_str }}/store" method="POST" id="create-form"
+                        <form action="/team/{{ $random_str }}/store" method="POST" id="create-form"
                             enctype="multipart/form-data">
                             @csrf
                             <div>
@@ -59,8 +59,8 @@
                             <div class="mt-5">
                                 <x-label for="email" :value="__('Email')" />
 
-                                <x-input form="create-form" id="email" class="block mt-1 w-full" type="email" name="email"
-                                    :value="old('email')" required autofocus />
+                                <x-input form="create-form" id="email" class="block mt-1 w-full" type="email"
+                                    name="email" :value="old('email')" required autofocus />
 
                                 @error('email')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -86,7 +86,9 @@
                                     name="role_id" id="role_id">
                                     <option value="">Select one</option>
                                     @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->role }}</option>
+                                    <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
+                                        'selected': 'Select one'
+                                        }}>{{ $role->role }}</option>
                                     @endforeach
                                 </select>
 
@@ -99,7 +101,7 @@
                                 <x-label for="avatar" :value="__('Avatar')" />
 
                                 <x-input form="create-form" id="avatar" class="block mt-1 w-full" type="file"
-                                    name="avatar" :value="old('avatar')" required autofocus />
+                                    name="avatar" :value="old('avatar')" autofocus />
 
                                 @error('avatar')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

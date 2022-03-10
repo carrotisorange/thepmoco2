@@ -18,9 +18,9 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/employees"
-                        :active="request()->routeIs('employees')">
-                        {{ __('Employees') }}
+                    <x-nav-link href="/property/{{ Session::get('property') }}/team"
+                        :active="request()->routeIs('team')">
+                        {{ __('Team') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -131,9 +131,9 @@
                 :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/employees"
-                :active="request()->routeIs('employees')">
-                {{ __('Employees') }}
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/team"
+                :active="request()->routeIs('team')">
+                {{ __('Team') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/units"
                 :active="request()->routeIs('units')">

@@ -16,7 +16,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/roles/'">Create Team</x-button>
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/team/{{ Str::random(8) }}/create'">Create Team</x-button>
                 </h5>
 
             </div>

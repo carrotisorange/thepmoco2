@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Employee'. $employee->name)
+    @section('title', '| member'. $member->name)
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -12,12 +12,12 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/employees"
-                                        class="text-blue-600 hover:text-blue-700">Employees</a>
+                                <li><a href="/property/{{ Session::get('property') }}/team"
+                                        class="text-blue-600 hover:text-blue-700">Team</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/employees"
-                                        class="text-blue-600 hover:text-blue-700">{{ $employee->name }}</a>
+                                <li><a href="/property/{{ Session::get('property') }}/team"
+                                        class="text-blue-600 hover:text-blue-700">{{ $team->name }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Edit</li>
@@ -26,7 +26,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/employee/{{ Str::random(10) }}/create'">Create Employee
+                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create Team
                     </x-button>
                     <x-button form="edit-form">Save</x-button>
                 </h5>
@@ -42,7 +42,7 @@
                     <!-- This example requires Tailwind CSS v2.0+ -->
                     <!-- Name -->
                     <div>
-                        <form action="/employee/{{ $employee->username }}/update" method="POST" id="edit-form"
+                        <form action="/team/{{ $user->username }}/update" method="POST" id="edit-form"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
@@ -50,7 +50,7 @@
                                 <x-label for="name" :value="__('Name')" />
 
                                 <x-input form="edit-form" class="block mt-1 w-full" type="text" name="name"
-                                    value="{{old('name', $employee->name)}}" required autofocus />
+                                    value="{{old('name', $user->name)}}" required autofocus />
 
                                 @error('name')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -61,7 +61,7 @@
                                 <x-label for="username" :value="__('Username')" />
 
                                 <x-input form="edit-form" id="username" class="block mt-1 w-full" type="text"
-                                    name="username" value="{{old('username', $employee->username)}}" required
+                                    name="username" value="{{old('username', $user->username)}}" required
                                     autofocus />
 
                                 @error('username')
@@ -73,7 +73,7 @@
                                 <x-label for="email" :value="__('Email')" />
 
                                 <x-input form="edit-form" id="email" class="block mt-1 w-full" type="email"
-                                    name="email" value="{{old('email', $employee->email)}}" required autofocus />
+                                    name="email" value="{{old('email', $user->email)}}" required autofocus />
 
                                 @error('email')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -84,7 +84,7 @@
                                 <x-label for="mobile_number" :value="__('Mobile')" />
 
                                 <x-input form="edit-form" id="mobile_number" class="block mt-1 w-full" type="text"
-                                    name="mobile_number" value="{{old('mobile_number', $employee->mobile_number)}}"
+                                    name="mobile_number" value="{{old('mobile_number', $user->mobile_number)}}"
                                     required autofocus />
 
                                 @error('mobile_number')
@@ -99,7 +99,7 @@
                                     class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     name="role_id" id="role_id">
                                     @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" {{ $role->id == $employee->role_id ? 'selected' : ''
+                                    <option value="{{ $role->id }}" {{ $role->id == $user->role_id ? 'selected' : ''
                                         }}>{{ $role->role }}</option>
                                     @endforeach
                                 </select>
@@ -114,14 +114,14 @@
                                    <x-label for="avatar" :value="__('Avatar')" />
                                     
                                     <x-input form="edit-form" id="avatar" class="block mt-1 w-full" type="file" name="avatar"
-                                        value="{{old('avatar', $employee->avatar)}}" autofocus />
+                                        value="{{old('avatar', $user->avatar)}}" autofocus />
                                     
                                     @error('avatar')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                </div>
                                <div class="mt-6">
-                                   <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $employee->avatar }}" alt="">
+                                   <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $user    ->avatar }}" alt="">
                                </div>
                             </div>
 
