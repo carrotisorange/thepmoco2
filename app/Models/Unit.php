@@ -27,6 +27,7 @@ class Unit extends Model
         'status_id' => 6,
         'category_id' => 1,
         'thumbnail' => 'thumbnails/thumbnail.png',
+        'occupancy' => 1,
     ];
 
     public function category()

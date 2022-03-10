@@ -88,7 +88,7 @@
                                     @foreach ($roles as $role)
                                     <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
                                         'selected': 'Select one'
-                                        }}>{{ $role->role }}</option>
+                                        }}>{{ $role->role }} - {{ $role->description }}</option>
                                     @endforeach
                                 </select>
 

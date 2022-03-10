@@ -28,7 +28,8 @@
                     @if($units->count())
                     <x-button form="edit-form">Save Units</x-button>
                     @else
-                    <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Building</x-button>
+                    <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Building
+                    </x-button>
                     @endif
                 </h5>
 
@@ -69,6 +70,9 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Price</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Occupancy</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
@@ -120,9 +124,13 @@
                                                         @endforeach
                                                     </x-select>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <td class="px-3 py-4 whitespace-nowrap">
                                                     <x-input form="edit-form" name="price" type="number"
                                                         value="{{ $unit->price }}"></x-input>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <x-input form="edit-form" name="occupancy" type="number"
+                                                        value="{{ $unit->occupancy }}"></x-input>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <form method="POST" action="/unit/{{ $unit->uuid }}/delete"
@@ -142,7 +150,7 @@
                                         @endforeach
 
                                     </table>
-                                    
+
                                 </div>
                                 @endif
                             </div>

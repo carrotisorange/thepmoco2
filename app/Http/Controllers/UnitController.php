@@ -139,6 +139,8 @@ class UnitController extends Controller
      */
     public function update(Request $request, $batch_no)
     {
+        return $request->all();
+        
         Unit::where('batch_no', $batch_no)
         ->update([
             'status_id' => 1

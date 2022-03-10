@@ -16,31 +16,38 @@ class RoleSeeder extends Seeder
     public function run()
     {
          Role::create([
-            'role' => 'admin'
+            'role' => 'admin',
+            'description' => 'This user has access to dashboard, units, and tenants.',
          ]);
 
          Role::create([
-            'role' => 'billing'
+            'role' => 'billing',
+            'description' => 'This user has access to dashboard and bills.',
          ]);
 
          Role::create([
-            'role' => 'treasury'
+            'role' => 'treasury',
+            'description' => 'This user has access to dashboard and collections.',
          ]);
 
          Role::create([
-         'role' => 'account payable'
+         'role' => 'account payable',
+         'description' => 'This user has access to dashboard and expenses.',
          ]);
          
          Role::create([
-         'role' => 'account owner'
+         'role' => 'account owner',
+        'description' => 'This user has access to all features.',
          ]);
 
          Role::create([
-         'role' => 'bookeeping'
+         'role' => 'bookeeping',
+         'description' => 'This user has access to dashboard and books.',
          ]);
 
          Role::create([
-            'role' => 'unit owner'
+            'role' => 'unit owner',
+            'description' => 'This user has access to units.',
          ]);
 
          // Role::create([

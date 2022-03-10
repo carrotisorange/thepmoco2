@@ -45,7 +45,7 @@ class TeamController extends Controller
     {
         return view('teams.create',[
             'random_str' => Str::random(10),
-            'roles' => Role::all(),
+            'roles' => Role::orderBy('role')->where('id','!=','5')->get(),
         ]);
     }
 

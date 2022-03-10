@@ -985,6 +985,12 @@ input:checked + .toggle-bg {
 .mb-8 {
   margin-bottom: 2rem;
 }
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.ml-6 {
+  margin-left: 1.5rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -1499,10 +1505,6 @@ input:checked + .toggle-bg {
 }
 .fill-current {
   fill: currentColor;
-}
-.object-cover {
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 .p-6 {
   padding: 1.5rem;
@@ -2368,10 +2370,6 @@ input:checked + .toggle-bg {
     width: 66.666667%;
   }
 
-  .md\:w-80 {
-    width: 20rem;
-  }
-
   .md\:max-w-xl {
     max-width: 36rem;
   }
@@ -2386,10 +2384,6 @@ input:checked + .toggle-bg {
 
   .md\:justify-start {
     justify-content: flex-start;
-  }
-
-  .md\:rounded-none {
-    border-radius: 0px;
   }
 
   .md\:border-t-0 {
