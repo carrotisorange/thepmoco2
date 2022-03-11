@@ -24,9 +24,31 @@
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/edit'">
                         Edit</x-button>
-                    <x-button
+                    {{--<x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
-                        Add Contract</x-button>
+                        Add Contract</x-button> --}}
+                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown"
+                        type="button">Create <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg></x-button>
+
+                    <!-- Dropdown menu -->
+                    <div id="dropdown"
+                        class="hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                        <ul class="py-1" aria-labelledby="dropdownButton">
+                            <li>
+                                <a href="/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tenant Contract</a>
+                            </li>
+                            <li>
+                                <a href="/unit/{{ $unit->uuid }}/enrollees/{{ Str::random(10) }}/create"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Owner Enroll</a>
+                            </li>
+                           
+                        </ul>
+                    </div>
                 </h5>
 
             </div>
@@ -84,10 +106,10 @@
                                 @if (!$contracts->count())
                                 <span class="text-center text-red">No contracts found!</span>
                                 @else
-                               <div class="mb-3">
-                                   <span class="text-center text-red">Contracts ({{ $contracts->count() }})</span>
-                               </div>
-                                
+                                <div class="mb-3">
+                                    <span class="text-center text-red">Contracts ({{ $contracts->count() }})</span>
+                                </div>
+
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
                                     <table class="min-w-full divide-y divide-gray-200">

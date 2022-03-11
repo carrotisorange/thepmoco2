@@ -35,6 +35,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     Route::get('contracts', [ContractController::class, 'index'])->name('contracts');
 
+    Route::get('enrollees', [EnrolleeController::class, 'index'])->name('enrollees');
+
     Route::get('bills', [BillController::class, 'index'])->name('bills');
 
     Route::get('particulars', [ParticularController::class, 'index']);
@@ -87,6 +89,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('unit/{unit}/contract/{random_str}/create', [ContractController::class, 'create']);
     Route::post('unit/{unit}/contract/{random_str}/store', [ContractController::class, 'store']);
+
+    Route::get('unit/{unit}/enrollees/{random_str}/create', [EnrolleeController::class, 'create']);
+    Route::post('unit/{unit}/enrollees/{random_str}/store', [EnrolleeController::class, 'store']);
 
     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
 
