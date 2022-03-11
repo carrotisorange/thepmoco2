@@ -107,7 +107,7 @@ class TeamController extends Controller
     public function edit(User $user)
     {
         return view('teams.edit',[
-            'users' => $user,
+            'member' => $user,
             'roles' => Role::all(),
         ]);
     }
@@ -127,6 +127,7 @@ class TeamController extends Controller
             'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
             'mobile_number' => ['required', Rule::unique('users', 'username')->ignore($user->id)],
             'role_id' => ['required', Rule::exists('roles', 'id')],
+            'status' => 'required',
             'avatar' => 'image',
         ]);
 

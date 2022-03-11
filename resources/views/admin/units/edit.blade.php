@@ -26,7 +26,7 @@
                         Create Building
                     </x-button>
                     @if($units->count())
-                    <x-button form="edit-form">Save Units</x-button>
+                    <x-button form="edit-form">Save</x-button>
                     @else
                     <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Building
                     </x-button>
@@ -79,7 +79,16 @@
 
                                             </tr>
                                         </thead>
-                                        <?php $ctr=1?>
+                                        <?php 
+                                            $ctr = 1;
+                                            $uuid = 1;
+                                            $unit = 1;
+                                            $building_id =1;
+                                            $floor_id = 1;
+                                            $category_id =1;
+                                            $price =1;
+                                            $occupancy =1;
+                                        ?>
                                         <form action="/unit/{{ $batch_no }}/update" method="POST" id="edit-form">
                                             @csrf
                                             @method('PATCH')
@@ -91,11 +100,15 @@
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <x-input form="edit-form" name="unit" type="text"
+                                                    <x-input form="edit-form" name="unit{{ $unit++  }}" id="unit" type="text"
                                                         value="{{ $unit->unit }}"></x-input>
                                                 </td>
+
+                                                <input form="edit-form" type="hidden"
+                                                    name="uuid{{ $uuid++  }}" id="uuid" value="{{ $unit->uuid }}">
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <x-select form="edit-form" name="unit">
+                                                    <x-select form="edit-form" name="building_id{{ $building_id++  }}" >
                                                         <option value="">Select one</option>
                                                         @foreach ($buildings as $building)
                                                         <option value="{{ $building->id }}">{{ $building->building
@@ -106,7 +119,7 @@
                                                     </x-select>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <x-select form="edit-form" name="floor_id">
+                                                    <x-select form="edit-form" name="floor_id{{ $floor_id++  }}" id="floor_id">
                                                         <option value="">Select one</option>
                                                         @foreach ($floors as $floor)
                                                         <option value="{{ $floor->id }}">{{ $floor->floor }}
@@ -115,7 +128,7 @@
                                                     </x-select>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <x-select form="edit-form" name="category_id">
+                                                    <x-select form="edit-form" name="category_id{{ $category_id++  }}">
                                                         <option value="">Select one</option>
                                                         @foreach ($categories as $category)
                                                         <option value="{{ $category->id }}">{{ $category->category
@@ -125,12 +138,12 @@
                                                     </x-select>
                                                 </td>
                                                 <td class="px-3 py-4 whitespace-nowrap">
-                                                    <x-input form="edit-form" name="price" type="number"
+                                                    <x-input form="edit-form" name="price{{ $price++  }}" id="price" type="number"
                                                         value="{{ $unit->price }}"></x-input>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <x-input form="edit-form" name="occupancy" type="number"
-                                                        value="{{ $unit->occupancy }}"></x-input>
+                                                    <x-input form="edit-form" name="occupancy{{ $occupancy++  }}" id="occupancy"
+                                                        type="number" value="{{ $unit->occupancy }}"></x-input>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <form method="POST" action="/unit/{{ $unit->uuid }}/delete"
