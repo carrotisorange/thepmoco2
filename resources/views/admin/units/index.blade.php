@@ -67,9 +67,7 @@
                                     class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
                                     alt="..." /></a>
                             @endforeach
-                            <div class="mt-3">
-                                {{ $units->links() }}
-                            </div>
+
                         </div>
                         <div class="basis-1/4">
                             <span class="font-bold">Details</span>
@@ -80,9 +78,9 @@
                                 <p>Building: {{ $info->building?$info->building:'NA' }}</p>
                                 <p>Floor: {{ $info->floor?$info->floor:'NA' }}</p>
                                 <p>Status: {{ $info->status }}</p>
-                                <p>Price: {{ number_format($info->price, 2) }}</p>
+                                <p>Rent: {{ number_format($info->rent, 2) }}</p>
                                 <p>Discount: {{ number_format($info->discount, 2) }}</p>
-                                <p>Dimensions: {{ number_format($info->dimensions, 2) }}</p>
+                                <p>Dimensions: {{ $info->dimensions }}</p>
                                 <p>Created: {{ $info->created_at->diffForHumans() }}</p>
                             </div>
                             <div class="mt-20">
@@ -93,7 +91,12 @@
                         </div>
                     </div>
                     @endif
+                    <hr>
+                    <div class="mt-3">
+                        {{ $units->links() }}
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

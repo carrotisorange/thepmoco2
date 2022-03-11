@@ -23,7 +23,7 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/edit'">
-                        Edit Unit</x-button>
+                        Edit</x-button>
                     <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
                         Add Contract</x-button>
@@ -49,7 +49,7 @@
                                 <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $unit->unit }}</h5>
                                 <hr>
                                 <p class="mt-5 text-gray-700 text-base mb-4">
-                                    Building: {{ $unit->building?$unit->building:'NA' }}
+                                    Building: {{ $unit->building->building?$unit->building->building:'NA' }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Floor: {{ $unit->floor?$unit->floor->floor:'NA' }}
@@ -65,7 +65,7 @@
                                     Discount: {{ number_format($unit->discount, 2) }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Dimensions: {{ number_format($unit->dimensions, 2) }}
+                                    Dimensions: {{ $unit->dimensions }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Created: {{ $unit->created_at->diffForHumans() }}

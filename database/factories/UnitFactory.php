@@ -23,7 +23,7 @@ class UnitFactory extends Factory
        return [
         'uuid' => Str::uuid(),
         'unit' => $this->faker->name(),
-        'price' => $this->faker->randomDigit(),
+        'rent' => '0x0',
         'status_id' => Status::all()->random()->id,
         'category_id' => Category::all()->random()->id,
         'building_id'=>Building::all()->random()->id,

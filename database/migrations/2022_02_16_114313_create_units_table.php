@@ -16,7 +16,7 @@ class CreateUnitsTable extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->uuid('uuid')->unique();
             $table->string('unit');
-            $table->double('price', 15, 2);
+            $table->double('rent', 15, 2);
             $table->foreignId('status_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('building_id')->nullable()->constrained();
@@ -25,7 +25,7 @@ class CreateUnitsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('batch_no');
             $table->double('discount', 15, 2);
-            $table->double('dimensions', 15, 2);
+            $table->string('dimensions');
             $table->integer('occupancy');
             $table->string('thumbnail');
             $table->timestamps();

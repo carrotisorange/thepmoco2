@@ -27,6 +27,8 @@
 
     {{-- Flowbite --}}
     <script src="../path/to/flowbite/dist/flowbite.js"></script>
+
+    @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -45,8 +47,8 @@
         </main>
 
     </div>
-
     @include('layouts.notifications')
+    @livewireScripts
 </body>
 
 <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>

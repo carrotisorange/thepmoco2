@@ -20,8 +20,8 @@ class Unit extends Model
     }
 
     protected $attributes = [
-        'price'=>0.00,
-        'dimensions' => 0.00,
+        'rent'=>0.00,
+        'dimensions' => '0x0',
         'discount' => 0.00,
         'building_id' => null,
         'status_id' => 6,

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Str;
 use DB;
+use Illuminate\Validation\Rule;
 
 class UnitController extends Controller
 {
@@ -30,7 +31,7 @@ class UnitController extends Controller
         ->leftJoin('floors', 'units.floor_id', 'floors.id')
         ->where('status_id', '!=', 6)
         ->where('property_uuid', Session::get('property'))
-        ->paginate(10);
+        ->paginate(5);
 
         return view('admin.units.index',
             [
@@ -64,7 +65,7 @@ class UnitController extends Controller
             'number_of_units' => ['integer', 'required', 'min:1']
         ]);
 
-       for($i=1; $i<=$request->number_of_units; $i++){
+       for($i=$request->number_of_units; $i>=1; $i--){
             Unit::create([
                 'uuid' => Str::uuid(),
                 'unit' => 'Unit '.$i,
@@ -76,7 +77,7 @@ class UnitController extends Controller
 
        $units = Unit::where('batch_no', $batch_no)->count();
         
-        return redirect('unit/'.$batch_no.'/edit')->with('success', $units.' units have been created.');
+        return redirect('units/'.$batch_no.'/edit')->with('success', $units.' units have been created.');
     }
 
     /**
@@ -101,7 +102,7 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit($batch_no)
+    public function bulk_edit($batch_no)
     {
         $units = Unit::join('categories', 'units.category_id','categories.id')
         ->leftJoin('statuses', 'units.status_id', 'statuses.id')
@@ -118,16 +119,32 @@ class UnitController extends Controller
 
          $categories = Category::all();
 
-         $statuses = Status::all();
-
-        return view('admin.units.edit',[
+        return view('admin.units.bulk-edit',[
             'units' => $units,
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,
-            'statuses' => $statuses,
             'batch_no' => $batch_no
         ]);
+    }
+
+    public function edit(Unit $unit)
+    {
+        $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
+        ->where('property_buildings.property_uuid', Session::get('property'))
+        ->get();
+
+        $floors = Floor::all();
+
+        $categories = Category::all();
+
+        return view('admin.units.edit',[
+            'unit' => $unit,
+            'buildings' => $buildings,
+            'floors' => $floors,
+            'categories' => $categories
+        ]);
+
     }
 
     /**
@@ -137,18 +154,49 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $batch_no)
+    public function bulk_update(Request $request, $batch_no)
     {
+         $units = Unit::where('batch_no', $batch_no)->count();
 
-        Unit::where('batch_no', $batch_no)
-        ->update([
-            'status_id' => 1
-        ]);
-
-        $units = Unit::where('batch_no', $batch_no)->count();
+        for($i = 1; $i<=$units; $i++){ 
+            $unit=Unit::find(request('uuid'.$i));
+            $unit->unit = request('unit'.$i);
+            $unit->building_id = request('building_id'.$i);
+            $unit->floor_id = request('floor_id'.$i);
+            $unit->category_id = request('category_id'.$i);
+            $unit->dimensions = request('dimensions'.$i);
+            $unit->rent = request('rent'.$i);
+            $unit->occupancy = request('occupancy'.$i);
+            $unit->status_id = '1';
+            $unit->save();
+        }
         
         return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' units have been
         updated.');
+    }
+
+
+    public function update(Request $request, Unit $unit)
+    {
+        $attributes = request()->validate([
+        'unit' => ['required', 'string', 'max:255'],
+        'building_id' => ['required', Rule::exists('property_buildings', 'id')],
+        'floor_id' => ['required', Rule::exists('floors', 'id')],
+        'category_id' => ['required', Rule::exists('categories', 'id')],
+        'thumbnail' => 'image',
+        'dimensions' => 'required',
+        'rent' => 'required',
+        'occupancy' => 'required'
+        ]);
+
+        if(isset($attributes['thumbnail']))
+        {
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        }
+
+        $unit->update($attributes);
+
+        return back()->with('success', 'Unit has been updated.');
     }
 
     /**
