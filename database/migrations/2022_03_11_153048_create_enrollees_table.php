@@ -25,6 +25,7 @@ class CreateEnrolleesTable extends Migration
             $table->string('unenrollment_reason');
             $table->double('discount', 8, 2);
             $table->foreignId('user_id')->constrained();
+            $table->string('contract')->nullable();
             $table->timestamps();
         });
     }

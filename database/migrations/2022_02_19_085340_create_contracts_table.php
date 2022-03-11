@@ -25,6 +25,7 @@ class CreateContractsTable extends Migration
             $table->string('moveout_reason');
             $table->double('discount', 8, 2);
             $table->foreignId('user_id')->constrained();
+            $table->string('contract')->nullable();
             $table->timestamps();
         });
     }
