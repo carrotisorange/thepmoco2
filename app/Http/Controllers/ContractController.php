@@ -43,7 +43,7 @@ class ContractController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Unit $unit)
+    public function create(Unit $unit, Tenant $tenant)
     {
         $cities = City::all();
         $provinces = Province::all();
@@ -54,7 +54,8 @@ class ContractController extends Controller
             'unit' => $unit,
             'cities' => $cities,
             'provinces' => $provinces,
-            'countries' => $countries
+            'countries' => $countries,
+            'tenant' => $tenant
         ]);
     }
 
@@ -64,67 +65,46 @@ class ContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $unit_uuid)
-    {
-        $tenant_attributes = request()->validate([
-            'tenant' => 'required',
-            'email' => 'required|email',
-            'mobile_number' => 'required',
-            'type' => 'required',
-            'gender' => 'required',
-            'civil_status' => 'required',
-            'country_id' => ['required', Rule::exists('countries', 'id')],
-            'province_id' => ['required', Rule::exists('provinces', 'id')],
-            'city_id' => ['required', Rule::exists('cities', 'id')],
-        ]);
-
+    public function store(Unit $unit, Tenant $tenant)
+    {   
         $contract_attributes = request()->validate([
-            'start' => 'required',
-            'end' => 'required',
-            'price' => 'required',
+            'start' => 'required|date',
+            'end' => 'required|date|after:start',
+            'rent' => 'required',
             'discount' => 'required',
             'interaction' => 'required'
         ]);
 
+        $contract_uuid = Str::uuid();
+
         try {
             DB::beginTransaction();
 
-              $tenant_attributes['uuid'] = Str::uuid();
-
-              $tenant = Tenant::create($tenant_attributes)->uuid;
-
-              $contract_attributes['uuid'] = Str::uuid();
-              $contract_attributes['tenant_uuid'] = $tenant;
-              $contract_attributes['unit_uuid'] = $unit_uuid;
+              $contract_attributes['uuid'] = $contract_uuid;
+              $contract_attributes['tenant_uuid'] = $tenant->uuid;
+              $contract_attributes['unit_uuid'] = $unit->uuid;
               $contract_attributes['user_id'] = auth()->user()->id;
               $contract_attributes['status'] = 'pending';
 
               Contract::create($contract_attributes);
 
-              Unit::where('uuid', $unit_uuid)->update([
-              'status_id' => 4
-              ]);
-
-              Bill::create([
-              'bill' => request('price'),
-              'bill_no' => Property::find(Session::get('property'))->bills->count(),
-              'start' => request('start'),
-              'end' => request('start')->Carbon::now()->addMonth(),
-              'tenant_uuid' => $tenant,
-              'user_id' => auth()->user()->id,
-              'particular_id' => 2,
-              'property_uuid' => Session::get('property'),
-              'unit_uuid'=> $unit_uuid,
-              'due_date' => PropertyParticular::find(2)->due_date,
-              ]);
+            //   Unit::where('uuid', $unit->uuid)->update([
+            //   'status_id' => 4
+            //   ]);
 
             DB::commit();
 
+              return
+              redirect('/unit/'.$unit->uuid.'/tenant/'.$tenant->uuid.'/contract/'.$contract_uuid.'/bill/'.Str::random(8).'/create')->with('success','New
+              contract has been created.');
+
         } catch (\Throwable $e) {
             DB::rollback();
+            return back()->with('error','Cannot complete your action.');
         }
 
-        return redirect('/unit/'.$unit_uuid)->with('success', 'New tenant has been added to the unit.');
+      
+        
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\Particular;
 use App\Models\PropertyParticular;
 use Illuminate\Http\Request;
 use Session;
+use DB;
 
 class ParticularController extends Controller
 {
@@ -47,25 +48,29 @@ class ParticularController extends Controller
      */
     public function store(Request $request)
     {
-         $particular_attributes = request()->validate([
-         'particular_id'=> 'required',
-         'minimum_charge' => 'required',
-         'due_date' => 'required',
-         'surcharge'=> 'required'
-         ]);
-
-        $particular = Particular::create([
-            'particular' => request('particular_id')
+        $particular_attributes = request()->validate([
+            'particular_id'=> 'required'
         ]);
 
-         $particular_attributes['property_uuid'] = Session::get('property');
-         $particular_attributes['particular_id'] = $particular->id;
+        try {
+            DB::beginTransaction();
+            $particular = Particular::create([
+                'particular' => request('particular_id')
+            ]);
 
-         PropertyParticular::create($particular_attributes)->id;
+            $particular_attributes['property_uuid'] = Session::get('property');
+            $particular_attributes['particular_id'] = $particular->id;
 
-         return redirect('/property/'.Session::get('property').'/particulars')->with('success', 'A new particular has
-         been added to the property.');
+            PropertyParticular::create($particular_attributes);
 
+            DB::commit();
+
+            return back()->with('success', 'New particular has been created.');
+        } catch (\Throwable $e) {
+            ddd($e);
+            DB::rollback();
+            return back()->with('error','Cannot complete your action.');
+        }
     }
 
     /**

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Session;
 use App\Models\Property;
 use App\Models\Particular;
+use App\Models\Unit;
+use App\Models\Tenant;
+use App\Models\Contract;
+use Illuminate\Validation\Rule;
+use DB;
 
 class BillController extends Controller
 {
@@ -34,9 +39,26 @@ class BillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Unit $unit, Tenant $tenant, Contract $contract)
     {
-        //
+        $bills = Bill::join('units', 'bills.unit_uuid', 'units.uuid')
+        ->select('*', 'bills.status as bill_status')
+        ->join('particulars', 'bills.particular_id', 'particulars.id')
+        ->where('units.uuid', $unit->uuid)
+        ->get();
+
+        $particulars = Particular::join('property_particulars', 'particulars.id',
+        'property_particulars.particular_id')
+        ->where('property_uuid', Session::get('property'))
+        ->get();
+
+        return view('bills.create',[
+            'unit' => $unit,
+            'tenant' => $tenant,
+            'contract' => $contract,
+            'bills' => $bills,
+            'particulars' => $particulars
+        ]);
     }
 
     /**
@@ -45,9 +67,31 @@ class BillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Unit $unit, Tenant $tenant, Contract $contract)
     {
-        //
+         $attributes = request()->validate([
+         'particular_id' => ['required', Rule::exists('property_particulars', 'particular_id')],
+         'bill' =>'required',
+         'start' => 'required|date',
+         'end' => 'required|date|after:start'
+         ]);
+
+        try {
+        $attributes['tenant_uuid'] = $tenant->uuid;
+        $attributes['unit_uuid'] = $unit->uuid;
+        $attributes['property_uuid'] = Session::get('property');
+        $attributes['user_id'] = auth()->user()->id;
+        $attributes['bill_no'] = Property::find(Session::get('property'))->bills->count()+1;
+
+        Bill::create($attributes);
+        DB::commit();
+        return back()->with('success', 'Bill has been created.');
+        } catch (\Throwable $e) {
+            ddd($e);
+            DB::rollback();
+            return back()->with('error','Cannot complete your action.');
+        }   
+
     }
 
     /**
@@ -92,6 +136,9 @@ class BillController extends Controller
      */
     public function destroy(Bill $bill)
     {
-        //
+        $unit = Bill::where('id', $bill->id);
+        $unit->delete();
+
+        return back()->with('success', 'A bill has been removed.');
     }
 }

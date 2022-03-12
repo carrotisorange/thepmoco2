@@ -18,8 +18,10 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/particulars'">Show Particulars</x-button>
-                    <x-button onclick="window.location.href='/employee/{{ Str::random(10) }}/create'">Create Bill</x-button>
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/particulars'">Show
+                        Particulars</x-button>
+                    <x-button onclick="window.location.href='/employee/{{ Str::random(10) }}/create'">Create Bill
+                    </x-button>
                 </h5>
 
             </div>
@@ -34,10 +36,11 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                @if (!$bills->count())
+                                <span class="text-center text-red">No bills found!</span>
+                                @else
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                    @if (!$bills->count())
-                                    <span class="text-center text-red">No bills found!</span>
-                                    @else
+
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
                                             <tr>
@@ -109,9 +112,9 @@
                                         </tbody>
                                         @endforeach
                                     </table>
-                                    @endif
-                                </div>
 
+                                </div>
+                                @endif
                             </div>
 
                         </div>

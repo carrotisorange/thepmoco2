@@ -135,7 +135,7 @@
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             substr($property->description, 0, 25) }}...</td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            $property->units_count }}</td>
+                                                            number_format($property->units_count,0) }}</td>
                                                         {{-- <td
                                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             $property->name }}</td> --}}

@@ -16,9 +16,7 @@
                                         class="text-blue-600 hover:text-blue-700">Team</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/team"
-                                        class="text-blue-600 hover:text-blue-700">{{ $member->name }}</a>
-                                </li>
+                              <li class="text-gray-500">{{ $member->name }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Edit</li>
                             </ol>
@@ -26,7 +24,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create Team
+                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create 
                     </x-button>
                     <x-button form="edit-form">Save</x-button>
                 </h5>
@@ -99,7 +97,7 @@
                                     name="role_id" id="role_id">
                                     @foreach($roles as $role)
                                     <option value="{{ $role->id }}" {{ $role->id == $member->role_id ? 'selected' : ''
-                                        }}>{{ $role->role }}</option>
+                                        }}>{{ $role->role }} - {{ $role->description }}</option>
                                     @endforeach
                                 </select>
 

@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use App\Models\City;
+use App\Models\Province;
+use App\Models\Country;
+use App\Models\Unit;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class TenantController extends Controller
 {
@@ -28,9 +34,19 @@ class TenantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Unit $unit)
     {
-        //
+         $cities = City::all();
+         $provinces = Province::all();
+         $countries = Country::all();
+
+         return view('admin.tenants.create', [
+         'uuid' => $unit->uuid,
+         'unit' => $unit,
+         'cities' => $cities,
+         'provinces' => $provinces,
+         'countries' => $countries
+         ]);
     }
 
     /**
@@ -39,9 +55,25 @@ class TenantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $unit_uuid)
     {
-        //
+        $tenant_attributes = request()->validate([
+        'tenant' => 'required',
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'mobile_number' => 'required',
+        'type' => 'required',
+        'gender' => 'required',
+        'civil_status' => 'required',
+        'country_id' => ['required', Rule::exists('countries', 'id')],
+        'province_id' => ['required', Rule::exists('provinces', 'id')],
+        'city_id' => ['required', Rule::exists('cities', 'id')],
+        ]);
+
+        $tenant_attributes['uuid'] = Str::uuid();
+
+        $tenant = Tenant::create($tenant_attributes)->uuid;
+
+         return redirect('/unit/'.$unit_uuid.'/tenant/'.$tenant.'/contract/'.Str::random(8).'/create')->with('success', 'New tenant has been created.');
     }
 
     /**

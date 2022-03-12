@@ -18,7 +18,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button form="create-form">Submit</x-button>
+
                 </h5>
 
             </div>
@@ -30,60 +30,16 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <!-- This example requires Tailwind CSS v2.0+ -->
                     <!-- Name -->
-                    <div>
+                    <div x-data="{show:false}">
                         <form action="/team/{{ $random_str }}/store" method="POST" id="create-form"
                             enctype="multipart/form-data">
                             @csrf
                             <div>
-                                <x-label for="name" :value="__('Name')" />
-
-                                <x-input form="create-form" class="block mt-1 w-full" type="text" name="name"
-                                    :value="old('name')" required autofocus />
-
-                                @error('name')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
-                                <x-label for="username" :value="__('Username')" />
-
-                                <x-input form="create-form" id="username" class="block mt-1 w-full" type="text"
-                                    name="username" :value="old('username')" required autofocus />
-
-                                @error('username')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
-                                <x-label for="email" :value="__('Email')" />
-
-                                <x-input form="create-form" id="email" class="block mt-1 w-full" type="email"
-                                    name="email" :value="old('email')" required autofocus />
-
-                                @error('email')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
-                                <x-label for="mobile_number" :value="__('Mobile')" />
-
-                                <x-input form="create-form" id="mobile_number" class="block mt-1 w-full" type="text"
-                                    name="mobile_number" :value="old('mobile_number')" required autofocus />
-
-                                @error('mobile_number')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
                                 <x-label for="role_id" :value="__('Role')" />
 
                                 <select form="create-form"
                                     class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    name="role_id" id="role_id">
+                                    name="role_id" id="role_id" required @change="show = !show">
                                     <option value="">Select one</option>
                                     @foreach ($roles as $role)
                                     <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
@@ -96,23 +52,71 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div x-show="show">
+                                <div class="mt-5">
+                                    <x-label for="name" :value="__('Name')" />
 
-                            <div class="mt-5">
-                                <x-label for="avatar" :value="__('Avatar')" />
+                                    <x-input form="create-form" class="block mt-1 w-full" type="text" name="name"
+                                        :value="old('name')" required autofocus />
 
-                                <x-input form="create-form" id="avatar" class="block mt-1 w-full" type="file"
-                                    name="avatar" :value="old('avatar')" autofocus />
+                                    @error('name')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
 
-                                @error('avatar')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <div class="mt-5">
+                                    <x-label for="username" :value="__('Username')" />
+
+                                    <x-input form="create-form" id="username" class="block mt-1 w-full" type="text"
+                                        name="username" :value="old('username')" required autofocus />
+
+                                    @error('username')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mt-5">
+                                    <x-label for="email" :value="__('Email')" />
+
+                                    <x-input form="create-form" id="email" class="block mt-1 w-full" type="email"
+                                        name="email" :value="old('email')" required autofocus />
+
+                                    @error('email')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mt-5">
+                                    <x-label for="mobile_number" :value="__('Mobile')" />
+
+                                    <x-input form="create-form" id="mobile_number" class="block mt-1 w-full" type="text"
+                                        name="mobile_number" :value="old('mobile_number')" required autofocus />
+
+                                    @error('mobile_number')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mt-5">
+                                    <x-label for="avatar" :value="__('Avatar')" />
+
+                                    <x-input form="create-form" id="avatar" class="block mt-1 w-full" type="file"
+                                        name="avatar" :value="old('avatar')" autofocus />
+
+                                    @error('avatar')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mt-5">
+                                    <p class="text-right">
+                                        <x-button form="create-form">Submit</x-button>
+                                    </p>
+                                </div>
                             </div>
-
-
-
-
+                        </form>
                     </div>
-                    </form>
+
                 </div>
             </div>
         </div>

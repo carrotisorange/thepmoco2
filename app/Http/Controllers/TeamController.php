@@ -22,7 +22,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $users = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+        $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
         ->select('*', 'users.status as user_status')
         ->join('users', 'user_properties.user_id', 'users.id')
         ->join('types', 'properties.type_id', 'types.id')
@@ -32,7 +32,7 @@ class TeamController extends Controller
         ->paginate(10);
 
         return view('teams.index',[
-        'users' => $users
+        'members' => $members
         ]);
     }
 
@@ -80,10 +80,10 @@ class TeamController extends Controller
         UserProperty::create([
             'property_uuid' => Session::get('property'),
             'user_id' => $user_id,
-            'isManager' => false
+            'isAccountOwner' => false
         ]);
 
-        return redirect('/property/'.Session::get('property').'/team')->with('success', 'A new has been created
+        return redirect('/property/'.Session::get('property').'/team')->with('success', 'A new member has been created
         successfully.');
     }
 
@@ -108,7 +108,7 @@ class TeamController extends Controller
     {
         return view('teams.edit',[
             'member' => $user,
-            'roles' => Role::all(),
+           'roles' => Role::orderBy('role')->where('id','!=','5')->get(),
         ]);
     }
 
@@ -138,7 +138,7 @@ class TeamController extends Controller
 
         $user->update($attributes);
 
-        return back()->with('success', 'User has been updated.');
+        return back()->with('success', 'Member has been updated.');
     }
 
     /**

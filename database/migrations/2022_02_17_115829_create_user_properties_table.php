@@ -17,7 +17,7 @@ class CreateUserPropertiesTable extends Migration
             $table->id();
             $table->foreignUuid('property_uuid')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->string('isManager');
+            $table->string('isAccountOwner');
             $table->timestamps();
         });
     }

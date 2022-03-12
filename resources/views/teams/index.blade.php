@@ -12,13 +12,14 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Members ({{ $users->count() }})</li>
+                                <li class="text-gray-500">Members ({{ $members->count() }})</li>
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create member</x-button>
+                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create member
+                    </x-button>
                 </h5>
 
             </div>
@@ -33,10 +34,11 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                @if (!$members->count())
+                                <span class="text-center text-red">No members found!</span>
+                                @else
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                    @if (!$users->count())
-                                    <span class="text-center text-red">No units found!</span>
-                                    @else
+
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
                                             <tr>
@@ -62,7 +64,7 @@
                                             </tr>
                                         </thead>
                                         <?php $ctr = 1 ?>
-                                        @foreach ($users as $user)
+                                        @foreach ($members as $member)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
@@ -70,27 +72,27 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                           
-                                                                <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $user->avatar }}" alt="">
+
+                                                            <img class="h-10 w-10 rounded-full"
+                                                                src="/storage/{{ $member->avatar }}" alt="">
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
-                                                                $user->name }}
+                                                                $member->name }}
                                                             </div>
-                                                            <div class="text-sm text-gray-500">{{ $user->role }}
+                                                            <div class="text-sm text-gray-500">{{ $member->role }}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $user->email }}
+                                                    <div class="text-sm text-gray-900">{{ $member->email }}
                                                     </div>
-                                                    <div class="text-sm text-gray-500">{{ $user->mobile_number }}
+                                                    <div class="text-sm text-gray-500">{{ $member->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($user->user_status === 'active')
+                                                    @if($member->user_status === 'active')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                         {{ $user->user_status }}
@@ -98,14 +100,15 @@
                                                     @else
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $user->user_status }}
+                                                        {{ $member->user_status }}
                                                     </span>
                                                     @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $user->created_at->diffForHumans() }}</td>
+                                                    $member->created_at->diffForHumans() }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="/team/{{ $user->username }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                    <a href="/team/{{ $member->username }}/edit"
+                                                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                 </td>
                                             </tr>
 
@@ -113,14 +116,14 @@
                                         </tbody>
                                         @endforeach
                                     </table>
-                                    @endif
-                                </div>
 
+                                </div>
+                                @endif
                             </div>
 
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

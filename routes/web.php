@@ -87,9 +87,19 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('team/{random_str}/store', [TeamController::class, 'store']);
     Route::patch('team/{user:username}/update', [TeamController::class, 'update']);
 
-    Route::get('unit/{unit}/contract/{random_str}/create', [ContractController::class, 'create']);
-    Route::post('unit/{unit}/contract/{random_str}/store', [ContractController::class, 'store']);
-
+    //Creating contract
+    //1
+    Route::get('unit/{unit}/tenant/{random_str}/create', [TenantController::class, 'create']);
+    Route::post('unit/{unit}/tenant/{random_str}/store', [TenantController::class, 'store']);
+    //2
+    Route::get('unit/{unit}/tenant/{tenant}/contract/{random_str}/create', [ContractController::class, 'create']);
+    Route::post('unit/{unit}/tenant/{tenant}/contract/{random_str}/store', [ContractController::class, 'store']);
+    //3
+    Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class, 'create']);
+    Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store', [BillController::class,'store']);
+    Route::delete('bill/{bill}/delete', [BillController::class, 'destroy']);
+    //4
+ 
     Route::get('unit/{unit}/enrollees/{random_str}/create', [EnrolleeController::class, 'create']);
     Route::post('unit/{unit}/enrollees/{random_str}/store', [EnrolleeController::class, 'store']);
 

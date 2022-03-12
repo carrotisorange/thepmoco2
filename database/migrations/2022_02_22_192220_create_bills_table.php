@@ -19,8 +19,8 @@ class CreateBillsTable extends Migration
             $table->integer('bill_no');
             $table->date('start');
             $table->date('end');
-            $table->date('due_date');
-            $table->double('penalty', 8, 2);
+            $table->date('due_date')->nullable;
+            $table->double('penalty', 8, 2)->nullable();
             $table->string('status');
             $table->foreignUuid('tenant_uuid')->constrained();
             $table->foreignId('user_id')->constrained();
