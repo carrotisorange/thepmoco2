@@ -41,7 +41,6 @@ class TenantController extends Controller
          $countries = Country::all();
 
          return view('admin.tenants.create', [
-         'uuid' => $unit->uuid,
          'unit' => $unit,
          'cities' => $cities,
          'provinces' => $provinces,

@@ -22,6 +22,9 @@
 
     {{-- Alpine.js --}}
     <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
+
+    {{-- Livewire style --}}
+    @livewireStyles()
 </head>
 
 <body>
@@ -31,7 +34,7 @@
     <div>
         @include('layouts.footer');
     </div>
-
+    @livewireScripts()
     @include('layouts.notifications')
 </body>
 
