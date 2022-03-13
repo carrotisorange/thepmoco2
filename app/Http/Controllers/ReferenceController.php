@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reference;
+use App\Models\Unit;
+use App\Models\Tenant;
+
 use Illuminate\Http\Request;
 
 class ReferenceController extends Controller
@@ -22,9 +25,13 @@ class ReferenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Unit $unit, Tenant $tenant)
     {
-        //
+         return view('references.create',[
+         'unit' => $unit,
+         'tenant' => $tenant,
+         'references' => Tenant::find($tenant->uuid)->references,
+         ]);
     }
 
     /**
@@ -33,9 +40,20 @@ class ReferenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Unit $unit, Tenant $tenant)
     {
-        //
+        $reference_attributes = request()->validate([
+        'reference' => 'required',
+        'email' => ['required', 'string', 'email', 'max:255'],
+        'mobile_number' => 'required',
+        'relationship' => 'required',
+        ]);
+
+        $reference_attributes['tenant_uuid'] = $tenant->uuid;
+
+        Reference::create($reference_attributes);
+
+        return back()->with('success', 'Reference has been created.');
     }
 
     /**
@@ -78,8 +96,11 @@ class ReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reference $reference)
+    public function destroy($id)
     {
-        //
+        $reference = Reference::where('id', $id);
+        $reference->delete();
+
+        return back()->with('success', 'A reference has been removed.');
     }
 }

@@ -95,7 +95,7 @@
                                                     @if($member->user_status === 'active')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $user->user_status }}
+                                                        {{ $member->user_status }}
                                                     </span>
                                                     @else
                                                     <span

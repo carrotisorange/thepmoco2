@@ -15,9 +15,11 @@ class CreateReferencesTable extends Migration
     {
         Schema::create('references', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('reference');
             $table->string('mobile_number');
+            $table->string('email')->nullable();
             $table->string('relationship');
+            $table->foreignUuid('tenant_uuid')->constrained();
             $table->timestamps();
         });
     }

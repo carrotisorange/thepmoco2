@@ -56,10 +56,10 @@ class TenantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $unit_uuid)
-    {
+    {   
         $tenant_attributes = request()->validate([
         'tenant' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
         'mobile_number' => 'required',
         'type' => 'required',
         'gender' => 'required',
@@ -67,13 +67,15 @@ class TenantController extends Controller
         'country_id' => ['required', Rule::exists('countries', 'id')],
         'province_id' => ['required', Rule::exists('provinces', 'id')],
         'city_id' => ['required', Rule::exists('cities', 'id')],
+        'photo_id' => 'required|image',
         ]);
 
         $tenant_attributes['uuid'] = Str::uuid();
+        $tenant_attributes['photo_id'] = $request->file('photo_id')->store('tenants');
 
         $tenant = Tenant::create($tenant_attributes)->uuid;
 
-         return redirect('/unit/'.$unit_uuid.'/tenant/'.$tenant.'/contract/'.Str::random(8).'/create')->with('success', 'New tenant has been created.');
+        return redirect('/unit/'.$unit_uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success', 'New tenant has been created.');
     }
 
     /**

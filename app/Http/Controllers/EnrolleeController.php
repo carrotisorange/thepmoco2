@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enrollee;
 use Illuminate\Http\Request;
 use App\Models\Unit;
-use App\Models\City;
-use App\Models\Province;
-use App\Models\Country;
+use App\Models\Owner;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use App\Models\Tenant;
@@ -43,18 +41,11 @@ class EnrolleeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Unit $unit)
+    public function create(Unit $unit, Owner $owner)
     {
-        $cities = City::all();
-        $provinces = Province::all();
-        $countries = Country::all();
-
-        return view('enrollees.create', [
-        'uuid' => $unit->uuid,
+        return view('contracts.create', [
         'unit' => $unit,
-        'cities' => $cities,
-        'provinces' => $provinces,
-        'countries' => $countries
+        'owner' => $owner
         ]);
     }
 

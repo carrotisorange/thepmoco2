@@ -45,16 +45,8 @@ class ContractController extends Controller
      */
     public function create(Unit $unit, Tenant $tenant)
     {
-        $cities = City::all();
-        $provinces = Province::all();
-        $countries = Country::all();
-
         return view('contracts.create', [
-            'uuid' => $unit->uuid,
             'unit' => $unit,
-            'cities' => $cities,
-            'provinces' => $provinces,
-            'countries' => $countries,
             'tenant' => $tenant
         ]);
     }

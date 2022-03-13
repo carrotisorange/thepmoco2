@@ -49,7 +49,7 @@
                     <div>
 
                         <form method="POST"
-                            action="/unit/{{ $uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/store"
+                            action="/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/store"
                             class="w-full" id="create-form">
                             @csrf
                             <div class="flex flex-wrap -mx-3 mb-6">

@@ -45,6 +45,7 @@ class BillController extends Controller
         ->select('*', 'bills.status as bill_status')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
         ->where('units.uuid', $unit->uuid)
+        ->orderBy('bills.bill_no')
         ->get();
 
         $particulars = Particular::join('property_particulars', 'particulars.id',
@@ -68,9 +69,9 @@ class BillController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Unit $unit, Tenant $tenant, Contract $contract)
-    {
+    {    
          $attributes = request()->validate([
-         'particular_id' => ['required', Rule::exists('property_particulars', 'particular_id')],
+         'particular_id' => ['required', Rule::exists('particulars', 'id')],
          'bill' =>'required',
          'start' => 'required|date',
          'end' => 'required|date|after:start'
@@ -134,11 +135,12 @@ class BillController extends Controller
      * @param  \App\Models\Bill  $bill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bill $bill)
-    {
-        $unit = Bill::where('id', $bill->id);
-        $unit->delete();
-
-        return back()->with('success', 'A bill has been removed.');
+    public function destroy($id)
+    {    
+        $bill = Bill::where('id', $id);
+        if($bill->delete()){
+            return back()->with('success', 'A bill has been removed.');
+        }
+            return back()->with('error', 'Cannot complete your action.');
     }
 }

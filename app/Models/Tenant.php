@@ -22,14 +22,14 @@ class Tenant extends Model
         'photo_id' => 'avatars/avatar.png',
     ];
 
-    public function reference()
-    {
-        return $this->hasOne(Reference::class, 'reference_id');
-    }
+   public function references()
+   {
+   return $this->hasMany(Reference::class);
+   }
 
-    public function guardian()
+    public function guardians()
     {
-        return $this->hasOne(Guardian::class, 'guardian_id');
+        return $this->hasMany(Guardian::class);
     }
 
     public function barangay()

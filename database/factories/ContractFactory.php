@@ -25,7 +25,7 @@ class ContractFactory extends Factory
              'tenant_uuid'=> Tenant::all()->random()->uuid,
              'start' => now(),
              'end' =>now()->addMonth([rand(1,10)]),
-             'price' => rand(1000,10000),
+             'rent' => rand(1000,10000),
              'status' => Arr::random(['active','pending', 'inactive']),
              'interaction' => Arr::random(['facebook','walk-in', 'referral']),
              'moveout_reason' => Arr::random(['delinquent','end of contract', 'force majeure']),

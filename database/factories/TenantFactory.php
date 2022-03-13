@@ -22,8 +22,6 @@ class TenantFactory extends Factory
             'mobile_number' => $this->faker->unique()->numerify('###########'),
             'birthdate' =>$this->faker->date(),
             'civil_status' => Arr::random(['single', 'married', 'widowed', 'divorced']),
-            'reference_id' => rand(1,10),
-            'guardian_id' => rand(1,10),
             'gender' => Arr::random(['male','female']),
             'type' => Arr::random(['working','studying']),
             'barangay_id' => rand(1,1000),

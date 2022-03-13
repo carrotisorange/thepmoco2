@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guardian;
+use App\Models\Unit;
+use App\Models\Tenant;
+use Illuminate\Validation\Rule;
+
 use Illuminate\Http\Request;
 
 class GuardianController extends Controller
@@ -22,9 +26,13 @@ class GuardianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Unit $unit, Tenant $tenant)
     {
-        //
+        return view('guardians.create',[
+            'unit' => $unit,
+            'tenant' => $tenant,
+            'guardians' => Tenant::find($tenant->uuid)->guardians,
+        ]);
     }
 
     /**
@@ -33,9 +41,21 @@ class GuardianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Unit $unit, Tenant $tenant)
     {
-        //
+         $guardian_attributes = request()->validate([
+         'guardian' => 'required',
+         'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
+         'mobile_number' => 'required',
+         'relationship' => 'required',
+         ]);
+
+         $guardian_attributes['tenant_uuid'] = $tenant->uuid;
+
+         Guardian::create($guardian_attributes);
+
+        return back()->with('success', 'Guardian has been created.');
+
     }
 
     /**
@@ -78,8 +98,11 @@ class GuardianController extends Controller
      * @param  \App\Models\Guardian  $guardian
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Guardian $guardian)
+    public function destroy($id)
     {
-        //
+        $guardian = Guardian::where('id', $id);
+        $guardian->delete();
+
+        return back()->with('success', 'A guardian has been removed.');
     }
 }

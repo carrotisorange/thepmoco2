@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ReferenceFactory extends Factory
 {
@@ -14,9 +15,10 @@ class ReferenceFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'reference' => $this->faker->name(),
             'relationship' => 'parent',
             'mobile_number' => $this->faker->unique()->numerify('###########'),
+            'tenant_uuid' => Str::random(8),
         ];
     }
 }

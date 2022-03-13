@@ -26,6 +26,7 @@ class CreateCollectionsTable extends Migration
             $table->foreignId('bill_id')->constrained();
             $table->longText('note');
             $table->longText('reason_for_deletion');
+            $table->string('attachment')->nullable();
             $table->timestamps();
         });
     }

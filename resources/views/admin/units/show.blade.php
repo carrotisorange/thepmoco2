@@ -43,7 +43,7 @@
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tenant Contract</a>
                             </li>
                             <li>
-                                <a href="/unit/{{ $unit->uuid }}/enrollees/{{ Str::random(10) }}/create"
+                                <a href="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/create"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Owner Enrollment</a>
                             </li>
                            
@@ -81,7 +81,7 @@
                                 </p>
 
                                 <p class="text-gray-700 text-base mb-4">
-                                    Price: {{ number_format($unit->price, 2) }}
+                                    Rent: {{ number_format($unit->rent, 2) }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Discount: {{ number_format($unit->discount, 2) }}
@@ -131,7 +131,7 @@
                                                     Contact</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Price</th>
+                                                    Rent</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
@@ -147,7 +147,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/contract/{{ $contract->tenant->uuid }}">
+                                                            <a href="/tenant/{{ $contract->tenant->uuid }}">
                                                                 <img class="h-10 w-10 rounded-full"
                                                                     src="/storage/{{ $contract->tenant->photo_id }}"
                                                                     alt=""></a>
@@ -183,7 +183,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($contract->price, 2)}}
+                                                    {{number_format($contract->rent, 2)}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($contract->status === 'active')

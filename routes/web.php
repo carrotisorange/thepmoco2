@@ -92,16 +92,35 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('unit/{unit}/tenant/{random_str}/create', [TenantController::class, 'create']);
     Route::post('unit/{unit}/tenant/{random_str}/store', [TenantController::class, 'store']);
     //2
+    Route::get('unit/{unit}/tenant/{tenant}/guardian/{random_str}/create', [GuardianController::class, 'create']);
+    Route::post('unit/{unit}/tenant/{tenant}/guardian/{random_str}/store', [GuardianController::class, 'store']);
+    Route::delete('guardian/{id:id}/delete', [GuardianController::class, 'destroy']);
+    //3
+    Route::get('unit/{unit}/tenant/{tenant}/reference/{random_str}/create', [ReferenceController::class, 'create']);
+    Route::post('unit/{unit}/tenant/{tenant}/reference/{random_str}/store', [ReferenceController::class, 'store']);
+    Route::delete('reference/{id:id}/delete', [ReferenceController::class, 'destroy']);
+    //4
     Route::get('unit/{unit}/tenant/{tenant}/contract/{random_str}/create', [ContractController::class, 'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{random_str}/store', [ContractController::class, 'store']);
-    //3
+    //5
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class, 'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store', [BillController::class,'store']);
-    Route::delete('bill/{bill}/delete', [BillController::class, 'destroy']);
+    Route::delete('bill/{id:id}/delete', [BillController::class, 'destroy']);
     //4
  
-    Route::get('unit/{unit}/enrollees/{random_str}/create', [EnrolleeController::class, 'create']);
-    Route::post('unit/{unit}/enrollees/{random_str}/store', [EnrolleeController::class, 'store']);
+    //Creating contract
+    //1
+    Route::get('unit/{unit}/owner/{random_str}/create', [OwnerController::class, 'create']);
+    Route::post('unit/{unit}/owner/{random_str}/store', [OwnerController::class, 'store']);
+    //2
+    Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create', [EnrolleeController::class, 'create']);
+    Route::post('unit/{unit}/owner/{owner}/contract/{random_str}/store', [EnrolleeController::class, 'store']);
+    //3
+    Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class,
+    'create']);
+    Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',
+    [BillController::class,'store']);
+    Route::delete('bill/{id:id}/delete', [BillController::class, 'destroy']);
 
     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
 

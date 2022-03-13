@@ -180,7 +180,7 @@ class UnitController extends Controller
     {
         $attributes = request()->validate([
         'unit' => ['required', 'string', 'max:255'],
-        'building_id' => ['required', Rule::exists('property_buildings', 'id')],
+        'building_id' => [Rule::exists('property_buildings', 'id')],
         'floor_id' => ['required', Rule::exists('floors', 'id')],
         'category_id' => ['required', Rule::exists('categories', 'id')],
         'thumbnail' => 'image',

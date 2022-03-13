@@ -9,8 +9,8 @@ class Reference extends Model
 {
     use HasFactory;
 
-    public function tenants()
+    public function tenant()
     {
-        return $this->hasOne(Tenant::class);
+        return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
 }

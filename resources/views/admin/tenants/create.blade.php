@@ -46,8 +46,8 @@
                     <!-- Name -->
                     <div>
 
-                        <form method="POST" action="/unit/{{ $uuid }}/tenant/{{ Str::random(10) }}/store"
-                            class="w-full" id="create-form">
+                        <form method="POST" action="/unit/{{ $uuid }}/tenant/{{ Str::random(10) }}/store" class="w-full"
+                            id="create-form">
                             @csrf
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full md:w-full px-3 mb-6 md:mb-0">
@@ -250,6 +250,18 @@
                                     @enderror
                                 </div>
 
+                                <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+                                    <x-label for="photo_id"
+                                        :value="__('Photo ID (i.e., Government issues ID, school ID, employee ID)')" />
+
+                                    <input
+                                        class="appearance-none block w-full text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        id="grid-last-name" type="file" name="photo_id" value="{{ old('photo_id') }}">
+
+                                    @error('photo_id')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
 
 
                             </div>
