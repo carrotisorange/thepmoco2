@@ -227,7 +227,6 @@
                         </div>
                         <div class="mt-5">
                             <p class="text-right">
-
                                 <x-button form="create-form">
                                     <svg wire:loading wire:target="submitForm"
                                         class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

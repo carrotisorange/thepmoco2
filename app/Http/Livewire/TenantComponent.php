@@ -43,7 +43,7 @@ class TenantComponent extends Component
         return [
             'tenant' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
-            'mobile_number' => 'required',
+            'mobile_number' => 'required|integer',
             'type' => 'required',
             'gender' => 'required',
             'civil_status' => 'required',
@@ -61,7 +61,7 @@ class TenantComponent extends Component
 
     public function submitForm()
     {
-        sleep(2);
+        sleep(1);
         
         $validatedData = $this->validate();
 

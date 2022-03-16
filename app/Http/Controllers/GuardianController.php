@@ -54,7 +54,7 @@ class GuardianController extends Controller
 
          Guardian::create($guardian_attributes);
 
-        return back()->with('success', 'Guardian has been created.');
+        return redirect('/unit')->with('success', 'Guardian has been created.');
 
     }
 
