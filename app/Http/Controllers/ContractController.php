@@ -94,9 +94,6 @@ class ContractController extends Controller
             DB::rollback();
             return back()->with('error','Cannot complete your action.');
         }
-
-      
-        
     }
 
     /**

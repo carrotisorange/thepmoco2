@@ -19,9 +19,8 @@ class CreateEnrolleesTable extends Migration
             $table->foreignUuid('owner_uuid')->constrained();
             $table->date('start');
             $table->date('end');
-            $table->double('price',8,2);
+            $table->double('rent',8,2);
             $table->string('status');
-            $table->string('interaction');
             $table->string('unenrollment_reason');
             $table->double('discount', 8, 2);
             $table->foreignId('user_id')->constrained();

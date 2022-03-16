@@ -3,7 +3,7 @@
         <div class=" overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div>
-                    <form method="POST" wire:submit.prevent="submitForm"
+                    <form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data" 
                         action="/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/store"
                         class="w-full" id="create-form">
                         @csrf
@@ -45,7 +45,7 @@
                                     for="grid-last-name">
                                     Term
                                 </label>
-                                <input 
+                                <input
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="grid-last-name" value="{{ old('term') }}" type="text" name="term">
                             </div>
@@ -105,6 +105,19 @@
                                 </select>
 
                                 @error('interaction')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+                                <x-label for="photo_id"
+                                    :value="__('Contract (Please attached the signed contract here.)')" />
+
+                                <input wire:model="contract"
+                                    class="appearance-none block w-full text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="grid-last-name" type="file" name="photo_id" value="{{ old('photo_id') }}">
+
+                                @error('photo_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>

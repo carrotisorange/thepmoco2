@@ -43,7 +43,7 @@ class EnrolleeController extends Controller
      */
     public function create(Unit $unit, Owner $owner)
     {
-        return view('contracts.create', [
+        return view('enrollees.create', [
         'unit' => $unit,
         'owner' => $owner
         ]);
@@ -55,9 +55,45 @@ class EnrolleeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Unit $unit, Owner $owner)
     {
-        //
+
+         $enrollee_attributes = request()->validate([
+         'start' => 'required|date',
+         'end' => 'required|date|after:start',
+         'rent' => 'required|integer',
+         'discount' => 'required',
+         'contract' => 'required|mimes:pdf,doc,docx,image'
+         ]);
+
+        try {
+        DB::beginTransaction();
+
+         $enrollee_uuid = Str::uuid();
+
+        $enrollee_attributes['uuid'] = $enrollee_uuid;
+        $enrollee_attributes['owner_uuid'] = $owner->uuid;
+        $enrollee_attributes['unit_uuid'] = $unit->uuid;
+        $enrollee_attributes['user_id'] = auth()->user()->id;
+        $enrollee_attributes['contract'] = $request->file('contract')->store('enrollees');
+
+        Enrollee::create($enrollee_attributes);
+
+        Unit::where('uuid', $unit->uuid)->update([
+        'is_enrolled' => 1
+        ]);
+
+        DB::commit();
+
+        return
+        redirect('/unit/'.$unit->uuid.'/owner/'.$owner->uuid.'/enrollee/'.$enrollee_uuid.'/bill/'.Str::random(8).'/create')->with('success','Contract has been created.');
+
+        } catch (\Throwable $e) {
+        ddd($e);
+        DB::rollback();
+        return back()->with('error','Cannot complete your action.');
+        }
+
     }
 
     /**

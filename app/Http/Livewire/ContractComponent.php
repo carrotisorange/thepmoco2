@@ -5,11 +5,14 @@ use App\Models\Contract;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use DB;
+use Livewire\WithFileUploads;
 
 use Livewire\Component;
 
 class ContractComponent extends Component
 {
+     use WithFileUploads;
+
       public $unit;
       public $tenant;
 
@@ -24,6 +27,7 @@ class ContractComponent extends Component
       public $rent;
       public $discount;
       public $interaction;
+      public $contract;
 
       protected function rules()
       {
@@ -32,7 +36,8 @@ class ContractComponent extends Component
        'end' => 'required|date|after:start',
        'rent' => 'required',
        'discount' => 'required',
-       'interaction' => 'required'
+       'interaction' => 'required',
+       'contract' => 'required|mimes:pdf,doc,docx, image'
       ];
       }
 
@@ -49,21 +54,16 @@ class ContractComponent extends Component
 
         $validatedData = $this->validate();
 
-        $validatedData['uuid'] = $contract_uuid;
-        $validatedData['tenant_uuid'] = $this->tenant->uuid;
-        $validatedData['unit_uuid'] = $this->unit->uuid;
-        $validatedData['user_id'] = auth()->user()->id;
-
         try {
             DB::beginTransaction();
 
-            $contract_attributes['uuid'] = $contract_uuid;
-            $contract_attributes['tenant_uuid'] = $this->tenant->uuid;
-            $contract_attributes['unit_uuid'] = $this->unit->uuid;
-            $contract_attributes['user_id'] = auth()->user()->id;
-            $contract_attributes['status'] = 'pending';
+            $validatedData['uuid'] = $contract_uuid;
+            $validatedData['tenant_uuid'] = $this->tenant->uuid;
+            $validatedData['unit_uuid'] = $this->unit->uuid;
+            $validatedData['user_id'] = auth()->user()->id;
+            $validatedData['contract'] = $this->contract->store('contracts');
 
-            Contract::create($contract_attributes);
+            Contract::create($validatedData);
 
             Unit::where('uuid', $this->unit->uuid)->update([
             'status_id' => 4

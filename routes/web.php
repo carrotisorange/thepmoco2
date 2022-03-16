@@ -114,7 +114,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('unit/{unit}/owner/{random_str}/store', [OwnerController::class, 'store']);
     //2
     Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create', [EnrolleeController::class, 'create']);
-    Route::post('unit/{unit}/owner/{owner}/contract/{random_str}/store', [EnrolleeController::class, 'store']);
+    Route::post('unit/{unit}/owner/{owner}/enrollee/{random_str}/store', [EnrolleeController::class, 'store']);
     //3
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class,
     'create']);

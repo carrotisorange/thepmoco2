@@ -15,7 +15,7 @@ class RepresentativeFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'representative' => $this->faker->name,
             'relationship' => Arr::random(['parent', 'sibling', 'friend', 'child']),
             'email' => $this->faker->safeEmail(),
             'mobile_number' => $this->faker->numerify('###########')

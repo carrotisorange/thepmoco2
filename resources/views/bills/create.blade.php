@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Contracts | Create')
+    @section('title', '| Bills | Create')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -34,7 +34,11 @@
                     <x-button data-modal-toggle="small-modal">
                         Create Particular
                     </x-button>
+                   @if ($bills->count())
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Save</x-button>
+                   @else
+                   <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Skip</x-button>
+                   @endif
                 </h5>
 
             </div>

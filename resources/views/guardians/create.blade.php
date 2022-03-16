@@ -37,9 +37,15 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                   @if ($guardians->count())
                     <x-button wire:submit.prevent="submitForm"
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(8) }}/create'">
                         Save</x-button>
+                   @else
+                   <x-button wire:submit.prevent="submitForm"
+                        onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(8) }}/create'">
+                        Skip</x-button>
+                   @endif
                 </h5>
 
             </div>

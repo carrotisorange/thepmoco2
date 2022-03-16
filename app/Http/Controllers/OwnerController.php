@@ -61,9 +61,9 @@ class OwnerController extends Controller
          'owner' => 'required',
          'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
          'mobile_number' => 'required',
-         'type' => 'required',
          'gender' => 'required',
          'civil_status' => 'required',
+         'birthdate' => 'required',
          'country_id' => ['required', Rule::exists('countries', 'id')],
          'province_id' => ['required', Rule::exists('provinces', 'id')],
          'city_id' => ['required', Rule::exists('cities', 'id')],
@@ -74,7 +74,7 @@ class OwnerController extends Controller
          $owner = Owner::create($owner_attributes)->uuid;
 
          return redirect('/unit/'.$unit_uuid.'/owner/'.$owner.'/enrollee/'.Str::random(8).'/create')->with('success',
-         'New owner has been created.');
+         'Owner has been created.');
     }
 
     /**

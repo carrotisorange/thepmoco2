@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Enrollee extends Model
 {
     use HasFactory;
+
+     public $incrementing = false;
+
+     protected $primaryKey = 'uuid';
+
+     protected $attributes =[
+         'unenrollment_reason' => 'NA',
+         'status' => 'pending',
+     ];
 }

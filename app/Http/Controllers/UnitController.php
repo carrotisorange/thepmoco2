@@ -156,20 +156,21 @@ class UnitController extends Controller
      */
     public function bulk_update(Request $request, $batch_no)
     {
-     
          $units = Unit::where('batch_no', $batch_no)->count();
 
         for($i = 1; $i<=$units*2; $i++){ 
             $unit=Unit::find(request('uuid'.$i));
-            $unit->unit = request('name'.$i);
-            $unit->building_id = request('building_id'.$i);
-            $unit->floor_id = request('floor_id'.$i);
-            $unit->category_id = request('category_id'.$i);
-            $unit->dimensions = request('dimensions'.$i);
-            $unit->rent = request('rent'.$i);
-            $unit->occupancy = request('occupancy'.$i);
-            $unit->status_id = '1';
-            $unit->save();
+            if($unit){
+                $unit->unit = request('name'.$i);
+                $unit->building_id = request('building_id'.$i);
+                $unit->floor_id = request('floor_id'.$i);
+                $unit->category_id = request('category_id'.$i);
+                $unit->dimensions = request('dimensions'.$i);
+                $unit->rent = request('rent'.$i);
+                $unit->occupancy = request('occupancy'.$i);
+                $unit->status_id = '1';
+                $unit->save();
+            }
         }
         
         return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' units have been

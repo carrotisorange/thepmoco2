@@ -62,7 +62,7 @@
                 </label>
                 <input wire:model="mobile_number"
                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" type="text" name="mobile_number" value="{{ old('mobile_number') }}">
+                    id="grid-last-name" type="number" name="mobile_number" value="{{ old('mobile_number') }}">
 
                 @error('mobile_number')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

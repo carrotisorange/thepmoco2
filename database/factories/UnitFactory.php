@@ -31,6 +31,7 @@ class UnitFactory extends Factory
         'batch_no' => Str::random(),
         'property_uuid' => Property::all()->random()->uuid,
         'user_id' => User::all()->random()->id,
+        'is_enrolled' => rand(1,0),
        ];
     }
 }
