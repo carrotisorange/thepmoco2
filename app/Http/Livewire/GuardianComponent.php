@@ -29,7 +29,7 @@ class GuardianComponent extends Component
         return [
         'guardian' => 'required',
         'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
-        'mobile_number' => 'required|integer',
+        'mobile_number' => 'required|integer|min:11',
         'relationship' => 'required',
         ];
     }
@@ -51,7 +51,7 @@ class GuardianComponent extends Component
         $this->resetForm();
 
         return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/guardian/'.Str::random(8).'/create')->with('success',
-         'New tenant has been created.');
+         'Guardian has been created.');
      }
 
      public function resetForm()

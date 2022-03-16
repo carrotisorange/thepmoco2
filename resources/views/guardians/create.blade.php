@@ -37,7 +37,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button
+                    <x-button wire:submit.prevent="submitForm"
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(8) }}/create'">
                         Save</x-button>
                 </h5>
@@ -119,8 +119,4 @@
             </div>
         </div>
     </div>
-
-
-
-
 </x-app-layout>

@@ -103,6 +103,6 @@ class GuardianController extends Controller
         $guardian = Guardian::where('id', $id);
         $guardian->delete();
 
-        return back()->with('success', 'A guardian has been removed.');
+        return back()->with('success', 'Guardian has been removed.');
     }
 }

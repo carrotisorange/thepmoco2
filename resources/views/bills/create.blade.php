@@ -45,92 +45,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <!-- This example requires Tailwind CSS v2.0+ -->
-                    <!-- Name -->
-                    <div>
-
-                        <form method="POST"
-                            action="/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ $contract->uuid }}/bill/{{ Str::random(8) }}/store"
-                            class="w-full" id="create-form">
-                            @csrf
-
-                            <div class="flex flex-wrap -mx-3 mb-6">
-
-                                <div class="w-full md:w-1/4 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        Particular
-                                    </label>
-                                    <select
-                                        class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state" name="particular_id">
-                                        <option value="">Select one</option>
-                                        @foreach ($particulars as $particular)
-                                        <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->id?
-                                            'selected': 'Select one'
-                                            }}>{{ $particular->particular }}</option>
-                                        @endforeach
-                                    </select>
-
-                                    @error('particular_id')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="w-full md:w-1/4 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        Bill
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="number" value="{{ old('bill') }}" name="bill">
-
-                                    @error('bill')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="w-full md:w-1/4 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        Period covered (start)
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="date" value="{{ old('start') }}" name="start">
-
-                                    @error('start')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="w-full md:w-1/4 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        Period covered (end)
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="date" value="{{ old('end') }}" name="end">
-
-                                    @error('end')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-
-                            </div>
-                            <div class="mt-5">
-                                <p class="text-right">
-                                    <x-button form="create-form">Submit</x-button>
-                                </p>
-
-                            </div>
-                        </form>
-
-                    </div>
+                @livewire('bill-component', ['unit' => $unit, 'tenant' => $tenant, 'contract' => $contract, 'bills' => $bills, 'particulars'=> $particulars])
                     <br>
-
                     @if (!$bills->count())
                     <span class="text-center text-red">No bills found!</span>
                     @else
@@ -193,5 +109,6 @@
                 </div>
             </div>
         </div>
+    </div>
         @include('utilities.create-particular');
 </x-app-layout>

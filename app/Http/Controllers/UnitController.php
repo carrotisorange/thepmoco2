@@ -156,11 +156,12 @@ class UnitController extends Controller
      */
     public function bulk_update(Request $request, $batch_no)
     {
+     
          $units = Unit::where('batch_no', $batch_no)->count();
 
-        for($i = 1; $i<=$units; $i++){ 
+        for($i = 1; $i<=$units*2; $i++){ 
             $unit=Unit::find(request('uuid'.$i));
-            $unit->unit = request('unit'.$i);
+            $unit->unit = request('name'.$i);
             $unit->building_id = request('building_id'.$i);
             $unit->floor_id = request('floor_id'.$i);
             $unit->category_id = request('category_id'.$i);
