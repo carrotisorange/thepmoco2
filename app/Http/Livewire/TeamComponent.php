@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire;
+
+use App\Mail\SendWelcomeMailToMember;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -8,6 +10,8 @@ use Session;
 use App\Models\User;
 use App\Models\UserProperty;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Role;
 
 use Livewire\Component;
 
@@ -35,9 +39,9 @@ class TeamComponent extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'mobile_number' => ['required', 'unique:users', 'integer'],
+            'mobile_number' => ['required', 'unique:users'],
             'role_id' => ['required', Rule::exists('roles', 'id')],
-            'avatar' => 'image',
+            'avatar' => 'nullable|image',
         ];
      }
 
@@ -53,8 +57,15 @@ class TeamComponent extends Component
         $validatedData = $this->validate();
 
         $validatedData['password'] = Hash::make(Str::random());
-        $validatedData['avatar'] = $this->avatar->store('avatars');
         $validatedData['status'] = 'pending';
+        $validatedData['email_verified_at'] = now();
+
+      if(isset($this->avatar))
+      {
+           $validatedData['avatar'] = $this->avatar->store('avatars');
+      }else{
+          $validatedData['avatar'] = 'avatars/avatar.png';
+      }
 
         $user_id = User::create($validatedData)->id;
 
@@ -63,6 +74,15 @@ class TeamComponent extends Component
             'user_id' => $user_id,
             'isAccountOwner' => false
         ]);
+
+        $role = Role::find($this->role_id)->role;
+
+        $details =[
+           'title' => Session::get('property_name'),
+           'body' => 'You have got an invitation to become a '. $role .' of '.Session::get('property_name').' team',
+        ];
+
+        Mail::to($this->email)->send(new SendWelcomeMailToMember($details)); 
 
         return redirect('/property/'.Session::get('property').'/team/'.Str::random(8).'/create')->with('success', 'Member has been created.');
        

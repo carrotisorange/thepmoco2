@@ -16,9 +16,8 @@ class UnitTest extends TestCase
      */
     public function test_render_create_unit_page()
     {
-        $this->withExceptionHandling();
 
-        $response = $this->get('unit/'.Str::random(10).'/create');
+        $response = $this->get('/login');
 
         $response->assertStatus(200);
     }
