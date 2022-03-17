@@ -7,7 +7,7 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         <nav class="rounded-md w-full">
                             <ol class="list-reset flex">
-                                <li><a href="/properties" class="text-blue-600 hover:text-blue-700">Properties</a>
+                                <li><a href="/properties" class="text-blue-600 hover:text-blue-700">Properties </a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
 
@@ -22,9 +22,9 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property
+                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property <i class="fa-solid fa-check"></i>
                     </x-button>
-                    <x-button form="edit-form">Save</x-button>
+                    {{-- <x-button form="edit-form">Save</x-button> --}}
                 </h5>
 
             </div>
@@ -42,7 +42,7 @@
                             @csrf
                             @method('PATCH')
                             <div>
-                                <x-label for="property" :value="__('property')" />
+                                <x-label for="property" :value="__('Property')" />
 
                                 <x-input form="edit-form" class="block mt-1 w-full" type="text" name="property"
                                     value="{{old('property', $property->property)}}" required autofocus />
@@ -98,7 +98,14 @@
                                         alt="">
                                 </div>
                             </div>
-
+                            <div class="mt-5">
+                                <p class="text-right">
+                                    <x-button>
+                                        
+                                        Submit
+                                    </x-button>
+                                </p>
+                            </div>
 
 
                     </div>

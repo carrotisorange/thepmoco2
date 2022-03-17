@@ -1277,10 +1277,9 @@ function queueJob(job) {
   queueFlush();
 }
 function dequeueJob(job) {
-  const index = queue.indexOf(job);
-  if (index !== -1) {
+  let index = queue.indexOf(job);
+  if (index !== -1)
     queue.splice(index, 1);
-  }
 }
 function queueFlush() {
   if (!flushing && !flushPending) {
@@ -1355,8 +1354,15 @@ var onElAddeds = [];
 function onElAdded(callback) {
   onElAddeds.push(callback);
 }
-function onElRemoved(callback) {
-  onElRemoveds.push(callback);
+function onElRemoved(el, callback) {
+  if (typeof callback === "function") {
+    if (!el._x_cleanups)
+      el._x_cleanups = [];
+    el._x_cleanups.push(callback);
+  } else {
+    callback = el;
+    onElRemoveds.push(callback);
+  }
 }
 function onAttributesAdded(callback) {
   onAttributeAddeds.push(callback);
@@ -1473,6 +1479,10 @@ function onMutate(mutations) {
     if (addedNodes.includes(node))
       continue;
     onElRemoveds.forEach((i) => i(node));
+    if (node._x_cleanups) {
+      while (node._x_cleanups.length)
+        node._x_cleanups.pop()();
+    }
   }
   addedNodes.forEach((node) => {
     node._x_ignoreSelf = true;
@@ -1647,7 +1657,10 @@ function injectMagics(obj, el) {
   Object.entries(magics).forEach(([name, callback]) => {
     Object.defineProperty(obj, `$${name}`, {
       get() {
-        return callback(el, {Alpine: alpine_default, interceptor});
+        let [utilities, cleanup] = getElementBoundUtilities(el);
+        utilities = {interceptor, ...utilities};
+        onElRemoved(el, cleanup);
+        return callback(el, utilities);
       },
       enumerable: false
     });
@@ -1798,10 +1811,7 @@ function deferHandlingDirectives(callback) {
   callback(flushHandlers);
   stopDeferring();
 }
-function getDirectiveHandler(el, directive2) {
-  let noop = () => {
-  };
-  let handler3 = directiveHandlers[directive2.type] || noop;
+function getElementBoundUtilities(el) {
   let cleanups = [];
   let cleanup = (callback) => cleanups.push(callback);
   let [effect3, cleanupEffect] = elementBoundEffect(el);
@@ -1814,7 +1824,14 @@ function getDirectiveHandler(el, directive2) {
     evaluate: evaluate.bind(evaluate, el)
   };
   let doCleanup = () => cleanups.forEach((i) => i());
-  onAttributeRemoved(el, directive2.original, doCleanup);
+  return [utilities, doCleanup];
+}
+function getDirectiveHandler(el, directive2) {
+  let noop = () => {
+  };
+  let handler3 = directiveHandlers[directive2.type] || noop;
+  let [utilities, cleanup] = getElementBoundUtilities(el);
+  onAttributeRemoved(el, directive2.original, cleanup);
   let fullHandler = () => {
     if (el._x_ignore || el._x_ignoreSelf)
       return;
@@ -1822,7 +1839,7 @@ function getDirectiveHandler(el, directive2) {
     handler3 = handler3.bind(handler3, el, directive2, utilities);
     isDeferringHandlers ? directiveHandlerStacks.get(currentHandlerStackKey).push(handler3) : handler3();
   };
-  fullHandler.runCleanups = doCleanup;
+  fullHandler.runCleanups = cleanup;
   return fullHandler;
 }
 var startingWith = (subject, replacement) => ({name, value}) => {
@@ -2656,7 +2673,7 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.9.0",
+  version: "3.9.1",
   flushAndStopDeferringMutations,
   disableEffectScheduling,
   setReactivityEngine,
@@ -2697,7 +2714,7 @@ var Alpine = {
 var alpine_default = Alpine;
 
 // packages/alpinejs/src/index.js
-var import_reactivity9 = __toModule(require_reactivity());
+var import_reactivity8 = __toModule(require_reactivity());
 
 // packages/alpinejs/src/magics/$nextTick.js
 magic("nextTick", () => nextTick);
@@ -2706,11 +2723,11 @@ magic("nextTick", () => nextTick);
 magic("dispatch", (el) => dispatch.bind(dispatch, el));
 
 // packages/alpinejs/src/magics/$watch.js
-magic("watch", (el) => (key, callback) => {
-  let evaluate2 = evaluateLater(el, key);
+magic("watch", (el, {evaluateLater: evaluateLater2, effect: effect3}) => (key, callback) => {
+  let evaluate2 = evaluateLater2(key);
   let firstTime = true;
   let oldValue;
-  effect(() => evaluate2((value) => {
+  effect3(() => evaluate2((value) => {
     JSON.stringify(value);
     if (!firstTime) {
       queueMicrotask(() => {
@@ -3078,11 +3095,11 @@ directive("cloak", (el) => queueMicrotask(() => mutateDom(() => el.removeAttribu
 
 // packages/alpinejs/src/directives/x-init.js
 addInitSelector(() => `[${prefix("init")}]`);
-directive("init", skipDuringClone((el, {expression}) => {
+directive("init", skipDuringClone((el, {expression}, {evaluate: evaluate2}) => {
   if (typeof expression === "string") {
-    return !!expression.trim() && evaluate(el, expression, {}, false);
+    return !!expression.trim() && evaluate2(expression, {}, false);
   }
-  return evaluate(el, expression, {}, false);
+  return evaluate2(expression, {}, false);
 }));
 
 // packages/alpinejs/src/directives/x-text.js
@@ -3446,7 +3463,7 @@ directive("on", skipDuringClone((el, {value, modifiers, expression}, {cleanup}) 
 
 // packages/alpinejs/src/index.js
 alpine_default.setEvaluator(normalEvaluator);
-alpine_default.setReactivityEngine({reactive: import_reactivity9.reactive, effect: import_reactivity9.effect, release: import_reactivity9.stop, raw: import_reactivity9.toRaw});
+alpine_default.setReactivityEngine({reactive: import_reactivity8.reactive, effect: import_reactivity8.effect, release: import_reactivity8.stop, raw: import_reactivity8.toRaw});
 var src_default = alpine_default;
 
 // packages/alpinejs/builds/module.js
@@ -22773,9 +22790,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
   \*******************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nError: Failed to find '~@fortawesome/fontawesome-free/scss/fontawesome'\n  in [\n    C:\\Users\\hp user\\Desktop\\thepmoco2\\resources\\css\n  ]\n    at C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\postcss-import\\lib\\resolve-id.js:35:13\n    at async LazyResult.runAsync (C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\postcss\\lib\\lazy-result.js:396:11)\n    at async Object.loader (C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\postcss-loader\\dist\\index.js:97:14)\n    at processResult (C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\webpack\\lib\\NormalModule.js:753:19)\n    at C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\webpack\\lib\\NormalModule.js:855:5\n    at C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\loader-runner\\lib\\LoaderRunner.js:399:11\n    at C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\loader-runner\\lib\\LoaderRunner.js:251:18\n    at context.callback (C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\Users\\hp user\\Desktop\\thepmoco2\\node_modules\\postcss-loader\\dist\\index.js:142:7)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -23013,7 +23033,42 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -23063,13 +23118,68 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"/js/app": 0,
+/******/ 			"css/app": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	__webpack_require__("./resources/js/app.js");
-/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./resources/css/app.css");
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;

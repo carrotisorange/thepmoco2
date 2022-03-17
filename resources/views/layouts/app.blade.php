@@ -16,6 +16,8 @@
 
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
 
+    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 

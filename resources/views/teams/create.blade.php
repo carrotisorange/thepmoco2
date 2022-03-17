@@ -18,9 +18,16 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-
+                    @if ($members->count())
+                    <form method="POST" action="/team/{{ Str::random(8) }}/save">
+                        @csrf
+                        @method('patch')
+                        <x-button>Save</x-button>
+                    </form>
+                    @else
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}'">Skip</x-button>
+                    @endif
                 </h5>
-
             </div>
         </h2>
     </x-slot>
@@ -28,95 +35,98 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <!-- This example requires Tailwind CSS v2.0+ -->
-                    <!-- Name -->
-                    <div x-data="{show:false}">
-                        <form action="/team/{{ $random_str }}/store" method="POST" id="create-form"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div>
-                                <x-label for="role_id" :value="__('Role')" />
+                    @livewire('team-component', ['roles' => $roles])
+                    <br>
+                    @if (!$members->count())
+                    <span class="text-center text-red">No members found!</span>
+                    @else
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
-                                <select form="create-form"
-                                    class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    name="role_id" id="role_id" required @change="show = !show">
-                                    <option value="">Select one</option>
-                                    @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
-                                        'selected': 'Select one'
-                                        }}>{{ $role->role }} - {{ $role->description }}</option>
-                                    @endforeach
-                                </select>
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        #</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Name</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Contact</th>
 
-                                @error('role_id')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div x-show="show">
-                                <div class="mt-5">
-                                    <x-label for="name" :value="__('Name')" />
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Status</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Created on</th>
+                                    <th scope="col" class="relative px-6 py-3">
+                                        <span class="sr-only">Edit</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <?php $ctr = 1 ?>
+                            @foreach ($members as $member)
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                        $ctr++ }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
 
-                                    <x-input form="create-form" class="block mt-1 w-full" type="text" name="name"
-                                        :value="old('name')" required autofocus />
+                                                <img class="h-10 w-10 rounded-full" src="/storage/{{ $member->avatar }}"
+                                                    alt="">
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">{{
+                                                    $member->name }}
+                                                </div>
+                                                <div class="text-sm text-gray-500">{{ $member->role }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">{{ $member->email }}
+                                        </div>
+                                        <div class="text-sm text-gray-500">{{ $member->mobile_number }}
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        @if($member->user_status === 'active')
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            {{ $member->user_status }}
+                                        </span>
+                                        @else
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                            {{ $member->user_status }}
+                                        </span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                        $member->created_at->diffForHumans() }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <form method="POST" action="/team/{{ $member->id }}/delete" id="delete-form">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="text-red-600 hover:text-red-900"
+                                                form="delete-form">Remove</button>
+                                        </form>
 
-                                    @error('name')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                    </td>
+                                </tr>
 
-                                <div class="mt-5">
-                                    <x-label for="username" :value="__('Username')" />
+                                <!-- More people... -->
+                            </tbody>
+                            @endforeach
+                        </table>
 
-                                    <x-input form="create-form" id="username" class="block mt-1 w-full" type="text"
-                                        name="username" :value="old('username')" required autofocus />
-
-                                    @error('username')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-5">
-                                    <x-label for="email" :value="__('Email')" />
-
-                                    <x-input form="create-form" id="email" class="block mt-1 w-full" type="email"
-                                        name="email" :value="old('email')" required autofocus />
-
-                                    @error('email')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-5">
-                                    <x-label for="mobile_number" :value="__('Mobile')" />
-
-                                    <x-input form="create-form" id="mobile_number" class="block mt-1 w-full" type="text"
-                                        name="mobile_number" :value="old('mobile_number')" required autofocus />
-
-                                    @error('mobile_number')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-5">
-                                    <x-label for="avatar" :value="__('Avatar')" />
-
-                                    <x-input form="create-form" id="avatar" class="block mt-1 w-full" type="file"
-                                        name="avatar" :value="old('avatar')" autofocus />
-
-                                    @error('avatar')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-5">
-                                    <p class="text-right">
-                                        <x-button form="create-form">Submit</x-button>
-                                    </p>
-                                </div>
-                            </div>
-                        </form>
                     </div>
-
+                    @endif
                 </div>
             </div>
         </div>

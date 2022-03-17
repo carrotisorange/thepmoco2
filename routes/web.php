@@ -87,6 +87,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('team/{user:username}/edit', [TeamController::class, 'edit']);
     Route::post('team/{random_str}/store', [TeamController::class, 'store']);
     Route::patch('team/{user:username}/update', [TeamController::class, 'update']);
+    Route::delete('team/{id:id}/delete', [TeamController::class, 'destroy']);
+    Route::patch('team/{random_str}/save', [TeamController::class, 'save']);
 
     //Creating tenant contract
     //1

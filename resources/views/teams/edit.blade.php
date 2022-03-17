@@ -16,7 +16,7 @@
                                         class="text-blue-600 hover:text-blue-700">Team</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                              <li class="text-gray-500">{{ $member->name }}</li>
+                                <li class="text-gray-500">{{ $member->name }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Edit</li>
                             </ol>
@@ -24,9 +24,9 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create 
+                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create
                     </x-button>
-                    <x-button form="edit-form">Save</x-button>
+                    {{-- <x-button form="edit-form">Save</x-button> --}}
                 </h5>
 
             </div>
@@ -119,6 +119,8 @@
                                         }}>inactive</option>
                                     <option value="banned" {{ 'banned'==$member->status ? 'selected' : ''
                                         }}>banned</option>
+                                    <option value="pending" {{ 'pending'==$member->status ? 'selected' : ''
+                                        }}>pending</option>
                                 </select>
 
                                 @error('status')
@@ -141,9 +143,13 @@
                                     <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $member->avatar }}" alt="">
                                 </div>
                             </div>
-
-
-
+                            <div class="mt-5">
+                                <p class="text-right">
+                                    <x-button form="edit-form">
+                                        Submit
+                                    </x-button>
+                                </p>
+                            </div>
 
                     </div>
                     </form>

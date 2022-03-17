@@ -9,8 +9,8 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
+use DB;
 
 
 class TeamController extends Controller
@@ -28,6 +28,7 @@ class TeamController extends Controller
         ->join('types', 'properties.type_id', 'types.id')
         ->join('roles', 'users.role_id', 'roles.id')
         ->where('properties.uuid', Session::get('property'))
+        ->where('users.status', 'active')
         ->orderBy('users.created_at', 'desc')
         ->paginate(10);
 
@@ -43,9 +44,18 @@ class TeamController extends Controller
      */
     public function create()
     {
+         $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+         ->select('*', 'users.status as user_status')
+         ->join('users', 'user_properties.user_id', 'users.id')
+         ->join('types', 'properties.type_id', 'types.id')
+         ->join('roles', 'users.role_id', 'roles.id')
+         ->where('properties.uuid', Session::get('property'))
+         ->orderBy('users.created_at', 'desc')
+         ->paginate(10);
+
         return view('teams.create',[
-            'random_str' => Str::random(10),
             'roles' => Role::orderBy('role')->where('id','!=','5')->get(),
+            'members' => $members,
         ]);
     }
 
@@ -56,8 +66,7 @@ class TeamController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-
+    {   
          $attributes = request()->validate([
          'name' => ['required', 'string', 'max:255'],
          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -85,6 +94,19 @@ class TeamController extends Controller
 
         return redirect('/property/'.Session::get('property').'/team')->with('success', 'A new member has been created
         successfully.');
+    }
+
+    public function save($random_str)
+    {
+         UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+        ->join('users', 'user_properties.user_id', 'users.id')
+        ->where('properties.uuid', Session::get('property'))
+        ->where('users.status', 'pending')
+        ->update([
+            'users.status' => 'active'
+        ]);
+
+        return redirect('/property/'.Session::get('property'))->with('success', 'Team has been created.');
     }
 
     /**
@@ -131,6 +153,11 @@ class TeamController extends Controller
             'avatar' => 'image',
         ]);
 
+        User::where('id', $user->id)
+        ->update([
+            'email_verified_at' => null
+        ]);
+
         if(isset($attributes['avatar']))
         {
             $attributes['avatar'] = request()->file('avatar')->store('avatars');
@@ -149,6 +176,10 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $member = User::where('id', $id);
+         if($member->delete()){
+         return back()->with('success', 'A member has been removed.');
+         }
+         return back()->with('error', 'Cannot complete your action.');
     }
 }

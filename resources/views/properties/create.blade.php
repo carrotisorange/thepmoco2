@@ -22,6 +22,8 @@
 
     {{-- Alpine.js --}}
     <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
+
+    @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -46,7 +48,7 @@
                         </h2>
                     </div>
                     <h5 class="flex-1 text-right">
-                        <x-button form="create-form">Submit</x-button>
+                        {{-- <x-button form="create-form">Submit</x-button> --}}
                     </h5>
 
                 </div>
@@ -54,85 +56,12 @@
 
         </header>
 
-        <!-- Page Content -->
-        <main>
-            <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 bg-white border-b border-gray-200">
-                            <!-- This example requires Tailwind CSS v2.0+ -->
-                            <!-- Name -->
-                            <div>
-                                <form action="/property/{{ $random_str }}/store" method="POST"
-                                    enctype="multipart/form-data" id="create-form">
-                                    @csrf
-                                    <div>
-                                        <x-label for="property" :value="__('Property')" />
+    <main>
+        @livewire('property-component', ['types' => $types])
+      
+    </main>
 
-                                        <x-input id="property" class="block mt-1 w-full" type="text" name="property"
-                                            :value="old('property')" required autofocus />
-
-                                        @error('property')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mt-5">
-                                        <x-label for="type" :value="__('Description')" />
-
-                                        <textarea
-                                            class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                            name="description" id="description" cols="30"
-                                            rows="10">{{ old('description') }}</textarea>
-
-                                        @error('description')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mt-5">
-                                        <x-label for="type_id" :value="__('Type')" />
-
-                                        <select
-                                            class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                            name="type_id" id="type_id">
-                                            <option value="">Select one</option>
-                                            @foreach ($types as $type)
-                                            <option value="{{ $type->id }}" {{ old('type_id')==$type->id?
-                                                'selected': 'Select one'
-                                                }}>{{ $type->type }}</option>
-                                            @endforeach
-                                        </select>
-
-                                        @error('type_id')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mt-5">
-                                        <x-label for="thumbnail" :value="__('Thumbnail')" />
-
-                                        <x-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail"
-                                            :value="old('thumbnail')" required autofocus />
-
-                                        @error('thumbnail')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    {{-- <div class="mt-5">
-                                        <p class="text-right">
-
-                                        </p>
-                                    </div> --}}
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
+    @livewireScripts
 </body>
 
 </html>

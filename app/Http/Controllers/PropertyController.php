@@ -61,7 +61,7 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        
+        return $request->all();
         $attributes = request()->validate([
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
@@ -102,45 +102,13 @@ class PropertyController extends Controller
             ]);
         }
 
-            //   PropertyRole::create([
-            //   'property_uuid' => $property_uuid,
-            //   'role_id' => 1,
-            //   'hasAcessToTenant' => true,
-            //   'hasAcessToDashboard' => true,
-            //   'hasAcessToRoom' => true,
-            //   'hasAcessToContract' => true,
-            //   'hasAcessToOwner' => true,
-            //   ]);
-
-            //   PropertyRole::create([
-            //   'property_uuid' => $property_uuid,
-            //   'role_id' => 2,
-            //   'hasAcessToBill' => true,
-            //   ]);
-
-            //   PropertyRole::create([
-            //   'property_uuid' => $property_uuid,
-            //   'role_id' => 3,
-            //   'hasAcessToCollection' => true,
-            //   ]);
-
-            //   PropertyRole::create([
-            //   'property_uuid' => $property_uuid,
-            //   'role_id' => 4,
-            //   'hasAcessToTenant' => true,
-            //   'hasAcessToDashboard' => true,
-            //   'hasAcessToRoom' => true,
-            //   'hasAcessToContract' => true,
-            //   'hasAcessToOwner' => true,
-            //   ]);
-
         DB::commit();
 
     }catch (\Throwable $e) {
             DB::rollback();
         }
 
-    return redirect('/properties')->with('success', 'New property has been created.');;
+    return redirect('/properties')->with('success', 'New property has been created.');
     }
 
     /**
