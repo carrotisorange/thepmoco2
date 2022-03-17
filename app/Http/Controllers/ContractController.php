@@ -45,6 +45,8 @@ class ContractController extends Controller
      */
     public function create(Unit $unit, Tenant $tenant)
     {
+         Session::flash('success', 'You have skipped adding references.');
+
         return view('contracts.create', [
             'unit' => $unit,
             'tenant' => $tenant

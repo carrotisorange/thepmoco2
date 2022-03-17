@@ -6,7 +6,8 @@
     <title>Invitation</title>
 </head>
 <body>
-    <h1>{{ $details['title'] }}</h1>
+    <h1>Hi {{ $details['header'] }}! </h1>
+    <p>{{ $details['title'] }}</p>
     <p><b>{{ $details['body'] }}</b></p>
     <p>Please click this <a href="thepropertymanager.online/login">link</a> to accept the invitation. To acces your account please you current email address and
         immediately reset your password.</p>

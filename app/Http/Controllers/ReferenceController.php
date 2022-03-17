@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reference;
 use App\Models\Unit;
 use App\Models\Tenant;
+use Session;
 
 use Illuminate\Http\Request;
 
@@ -27,6 +28,8 @@ class ReferenceController extends Controller
      */
     public function create(Unit $unit, Tenant $tenant)
     {
+        Session::flash('success', 'You have skipped adding guardians.');
+
          return view('references.create',[
          'unit' => $unit,
          'tenant' => $tenant,

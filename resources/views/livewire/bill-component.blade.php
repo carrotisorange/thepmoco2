@@ -15,7 +15,7 @@
                     id="grid-state" name="particular_id">
                     <option value="">Select one</option>
                     @foreach ($particulars as $particular)
-                    <option value="{{ $particular->id }}" {{ old('particular_id')==$particular->id?
+                    <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->id?
                         'selected': 'Select one'
                         }}>{{ $particular->particular }}</option>
                     @endforeach
@@ -45,7 +45,7 @@
                 </label>
                 <input wire:model="start"
                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" type="date" value="{{ old('start') }}" name="start">
+                    id="grid-last-name" type="date" value="{{ old('start',Carbon\Carbon::parse($contract->start)->format('Y-m-d')) }}" name="start">
 
                 @error('start')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -57,7 +57,7 @@
                 </label>
                 <input wire:model="end"
                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" type="date" value="{{ old('end') }}" name="end">
+                    id="grid-last-name" type="date" value="{{ old('end',Carbon\Carbon::parse($contract->end)->format('Y-m-d')) }}" name="end">
 
                 @error('end')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

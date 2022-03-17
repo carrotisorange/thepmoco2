@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use DB;
 use Session;
 use App\Models\Property;
+use App\Models\Particular;
+use App\Models\Contract;
 
 use Livewire\Component;
 
@@ -15,15 +17,13 @@ class BillComponent extends Component
       public $unit;
       public $tenant;
       public $contract;
-      public $particulars;
       public $bills;
 
-      public function mount($unit, $tenant, $contract, $particulars, $bills)
+      public function mount($unit, $tenant, $contract, $bills)
       {
       $this->unit = $unit;
       $this->tenant = $tenant;
       $this->contract = $contract;
-      $this->particulars = $particulars;
       $this->bills = $bills;
       }
 
@@ -85,6 +85,17 @@ class BillComponent extends Component
 
       public function render()
       {
-      return view('livewire.bill-component');
+
+        $contract = Contract::find($this->contract->uuid);
+
+        $particulars = Particular::join('property_particulars', 'particulars.id',
+        'property_particulars.particular_id')
+        ->where('property_uuid', Session::get('property'))
+        ->get();
+        
+      return view('livewire.bill-component',[
+        'particulars' => $particulars,
+        'contract' => $contract
+      ]);
       }
 }

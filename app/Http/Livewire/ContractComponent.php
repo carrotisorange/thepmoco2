@@ -5,6 +5,7 @@ use App\Models\Contract;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use DB;
+use App\Models\Bill;
 use Livewire\WithFileUploads;
 
 use Livewire\Component;

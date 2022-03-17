@@ -79,6 +79,7 @@ class TeamComponent extends Component
 
         $details =[
            'title' => Session::get('property_name'),
+           'header' => $this->name,
            'body' => 'You have got an invitation to become a '. $role .' of '.Session::get('property_name').' team',
         ];
 

@@ -49,7 +49,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                @livewire('bill-component', ['unit' => $unit, 'tenant' => $tenant, 'contract' => $contract, 'bills' => $bills, 'particulars'=> $particulars])
+                @livewire('bill-component', ['unit' => $unit, 'tenant' => $tenant, 'contract' => $contract, 'bills' => $bills])
                     <br>
                     @if (!$bills->count())
                     <span class="text-center text-red">No bills found!</span>
@@ -95,11 +95,10 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $bill->particular }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/bill/{{ $bill->id }}/delete" id="delete-form">
+                                        <form method="POST" action="/bill/{{ $bill->bill_id }}/delete">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900"
-                                                form="delete-form">Remove</button>
+                                            <button class="text-red-600 hover:text-red-900">Remove</button>
                                         </form>
 
                                     </td>
