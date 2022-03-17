@@ -50,6 +50,7 @@ class TeamController extends Controller
          ->join('types', 'properties.type_id', 'types.id')
          ->join('roles', 'users.role_id', 'roles.id')
          ->where('properties.uuid', Session::get('property'))
+         ->where('users.status', 'pending')
          ->orderBy('users.created_at', 'desc')
          ->paginate(10);
 
@@ -106,7 +107,7 @@ class TeamController extends Controller
             'users.status' => 'active'
         ]);
 
-        return redirect('/property/'.Session::get('property'))->with('success', 'Team has been created.');
+        return redirect('/property/'.Session::get('property').'/teams')->with('success', 'Team has been created.');
     }
 
     /**
