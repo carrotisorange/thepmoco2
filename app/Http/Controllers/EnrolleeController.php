@@ -80,13 +80,15 @@ class EnrolleeController extends Controller
         Enrollee::create($enrollee_attributes);
 
         Unit::where('uuid', $unit->uuid)->update([
-        'is_enrolled' => 1
+        'is_enrolled' => 1,
+        'rent' => $request->rent,
+        'discount' => $request->discount
         ]);
 
         DB::commit();
 
         return
-        redirect('/unit/'.$unit->uuid.'/owner/'.$owner->uuid.'/enrollee/'.$enrollee_uuid.'/bill/'.Str::random(8).'/create')->with('success','Contract has been created.');
+        redirect('/unit/'.$unit->uuid)->with('success','Contract has been created.');
 
         } catch (\Throwable $e) {
         ddd($e);

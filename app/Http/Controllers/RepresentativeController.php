@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Representative;
 use Illuminate\Http\Request;
+use App\Models\Unit;
+use App\Models\Owner;
 
 class RepresentativeController extends Controller
 {
@@ -22,9 +24,13 @@ class RepresentativeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Unit $unit, Owner $owner)
     {
-        //
+         return view('representatives.create',[
+         'unit' => $unit,
+         'owner' => $owner,
+         'representatives' => Owner::find($owner->uuid)->representatives,
+         ]);
     }
 
     /**
@@ -78,8 +84,11 @@ class RepresentativeController extends Controller
      * @param  \App\Models\Representative  $representative
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Representative $representative)
+    public function destroy($id)
     {
-        //
+        $guardian = Representative::where('id', $id);
+        $guardian->delete();
+
+        return back()->with('success', 'Representative has been removed.');
     }
 }

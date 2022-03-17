@@ -3,8 +3,8 @@
         <div class=" overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div>
-                    <form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data" 
-                        action="/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/store"
+                    <form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data"
+                        action="/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/enrollee/{{ Str::random(8) }}/store"
                         class="w-full" id="create-form">
                         @csrf
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -16,7 +16,8 @@
                                 </label>
                                 <input wire:model="start"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="date" value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d'))) }}" name="start">
+                                    id="grid-last-name" type="date"
+                                    value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start">
 
                                 @error('start')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -29,7 +30,8 @@
                                 </label>
                                 <input wire:model="end"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="date" name="end" value="{{ old('end', Carbon\Carbon::now()->addYear()->format('Y-m-d')) }}">
+                                    id="grid-last-name" type="date" name="end"
+                                    value="{{ old('end', Carbon\Carbon::now()->addYear()->format('Y-m-d')) }}">
 
                                 @error('end')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -77,7 +79,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="w-full md:w-1/4 px-3">
+                            {{-- <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Interaction
@@ -107,17 +109,17 @@
                                 @error('interaction')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
-                                <x-label for="photo_id"
+                                <x-label for="contract"
                                     :value="__('Contract (Please attached the signed contract here.)')" />
 
                                 <input wire:model="contract"
                                     class="appearance-none block w-full text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="file" name="photo_id" value="{{ old('photo_id') }}">
+                                    id="grid-last-name" type="file" name="contract" value="{{ old('contract') }}">
 
-                                @error('photo_id')
+                                @error('contract')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>

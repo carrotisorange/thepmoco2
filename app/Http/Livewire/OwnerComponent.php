@@ -42,7 +42,7 @@ class OwnerComponent extends Component
         {
         return [
         'owner' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
         'mobile_number' => 'required|integer',
         'gender' => 'required',
         'civil_status' => 'required',
@@ -67,10 +67,10 @@ class OwnerComponent extends Component
         $validatedData['uuid'] = Str::uuid();
         $validatedData['photo_id'] = $this->photo_id->store('owners');
 
-        $tenant = Owner::create($validatedData)->uuid;
+        $owner = Owner::create($validatedData)->uuid;
 
         return
-        redirect('/unit/'.$this->unit->uuid.'/owner/'.$tenant.'/enrollee/'.Str::random(8).'/create')->with('success',
+        redirect('/unit/'.$this->unit->uuid.'/owner/'.$owner.'/representative/'.Str::random(8).'/create')->with('success',
         'Owner has been created.');
         }
 

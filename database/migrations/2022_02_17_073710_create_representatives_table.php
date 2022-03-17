@@ -19,6 +19,8 @@ class CreateRepresentativesTable extends Migration
             $table->string('relationship');
             $table->string('email');
             $table->string('mobile_number');
+
+            $table->foreignUuid('owner_uuid')->constrained();
             $table->timestamps();
         });
     }

@@ -37,10 +37,10 @@ class Owner extends Model
         return $this->belongsTo(Country::class, 'country_id');
     }
 
-    public function representative()
-    {
-        return $this->hasOne(Representative::class, 'representative_id');
-    }
+     public function representatives()
+     {
+     return $this->hasMany(Representative::class);
+     }
 
     public function bank()
     {

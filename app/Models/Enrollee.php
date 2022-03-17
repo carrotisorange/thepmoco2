@@ -17,4 +17,9 @@ class Enrollee extends Model
          'unenrollment_reason' => 'NA',
          'status' => 'pending',
      ];
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_uuid');
+    }
 }

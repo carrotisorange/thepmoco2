@@ -22,7 +22,6 @@ class CreateOwnersTable extends Migration
             $table->string('gender');
             $table->string('civil_status');
             $table->string('photo_id');
-            $table->foreignId('representative_id')->constrained();
             $table->foreignId('bank_id')->constrained();
 
             $table->string('occupation')->nullable();

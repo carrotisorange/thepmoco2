@@ -23,7 +23,6 @@ class OwnerFactory extends Factory
         'birthdate' =>$this->faker->date(),
         'civil_status' => Arr::random(['single', 'married', 'widowed', 'divorced']),
         'gender' => Arr::random(['male','female']),
-        'representative_id' => rand(1,10),
         'bank_id' => rand(1,10),
         'occupation' => $this->faker->word,
 

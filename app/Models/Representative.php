@@ -9,8 +9,8 @@ class Representative extends Model
 {
     use HasFactory;
 
-    public function owners()
+    public function owner()
     {
-        return $this->belongsTo(Owner::class);
+    return $this->belongsTo(Owner::class, 'owner_uuid');
     }
 }

@@ -41,7 +41,7 @@
                                 </label>
                                 <input wire:model="mobile_number"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="text" name="mobile_number"
+                                    id="grid-last-name" type="integer" name="mobile_number"
                                     value="{{ old('mobile_number') }}">
 
                                 @error('mobile_number')
@@ -207,7 +207,7 @@
 
                         <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
                             <x-label for="photo_id"
-                                :value="__('Contract (Please attached the signed contract here.)')" />
+                                :value="__('Photo ID (i.e., Government issues ID, school ID, employee ID)')" />
 
                             <input wire:model="photo_id"
                                 class="appearance-none block w-full text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"

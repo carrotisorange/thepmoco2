@@ -73,7 +73,7 @@
                                 <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $unit->unit }}</h5>
                                 <hr>
                                 <p class="mt-5 text-gray-700 text-base mb-4">
-                                    Building: {{ $unit->building?$unit->building:'NA' }}
+                                    Building: {{ $unit->building->building?$unit->building->building:'NA' }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Floor: {{ $unit->floor?$unit->floor->floor:'NA' }}
@@ -216,11 +216,121 @@
 
                                 </div>
                                 @endif
+                                
+                                @if (!$enrollees->count())
+                            
+                                <span class="text-center text-red mt-5">No enrollees found!</span>
+                                @else
+                                <div class="mb-3 mt-5">
+                                    <span class="text-center text-red">Enrollees ({{ $enrollees->count() }})</span>
+                                </div>
+
+                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <?php $ctr =1; ?>
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    #</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Owner</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Duration</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Contact</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Rent</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Status</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        @foreach ($enrollees as $enrollee)
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $ctr++ }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0 h-10 w-10">
+                                                            <a href="/owner/{{ $enrollee->owner_uuid }}">
+                                                                <img class="h-10 w-10 rounded-full"
+                                                                    src="/storage/{{ $enrollee->photo_id }}" alt=""></a>
+                                                        </div>
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">{{
+                                                                $enrollee->owner }}
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">{{
+                                                        Carbon\Carbon::parse($enrollee->start)->format('M d, Y').' -
+                                                        '.Carbon\Carbon::parse($enrollee->end)->format('M d, Y') }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{
+                                                        Carbon\Carbon::parse($enrollee->end)->diffForHumans($enrollee->start)
+                                                        }}
+                                                    </div>
+                                                </td>
+
+
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">{{ $enrollee->email }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{
+                                                        $enrollee->mobile_number }}
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{number_format($enrollee->rent, 2)}}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    @if($enrollee->status === 'active')
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        {{ $enrollee->status }}
+                                                    </span>
+                                                    @else
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                        {{ $enrollee->status }}
+                                                    </span>
+                                                    @endif
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <i class="fa-solid fa-down"></i>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                        @endforeach
+                                    </table>
+
+                                </div>
+                                @endif
                             </div>
 
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>

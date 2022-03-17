@@ -9,6 +9,7 @@ use App\Models\Property;
 use App\Models\Floor;
 use App\Models\Status;
 use App\Models\Contract;
+use App\Models\Enrollee;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Str;
@@ -89,10 +90,12 @@ class UnitController extends Controller
     public function show(Unit $unit)
     {
         $contracts = Unit::findOrFail($unit->uuid)->contracts;
+        $enrollees = Unit::findOrFail($unit->uuid)->enrollees;
 
         return view('admin.units.show', [
             'unit' => $unit,
             'contracts' => $contracts,
+            'enrollees' => $enrollees
         ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Models\Representative;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,7 +88,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('team/{random_str}/store', [TeamController::class, 'store']);
     Route::patch('team/{user:username}/update', [TeamController::class, 'update']);
 
-    //Creating contract
+    //Creating tenant contract
     //1
     Route::get('unit/{unit}/tenant/{random_str}/create', [TenantController::class, 'create']);
     Route::post('unit/{unit}/tenant/{random_str}/store', [TenantController::class, 'store']);
@@ -108,14 +109,19 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::delete('bill/{id:id}/delete', [BillController::class, 'destroy']);
     //4
  
-    //Creating contract
+    //Creating owner contract
     //1
     Route::get('unit/{unit}/owner/{random_str}/create', [OwnerController::class, 'create']);
     Route::post('unit/{unit}/owner/{random_str}/store', [OwnerController::class, 'store']);
-    //2
+    //3
+    Route::get('unit/{unit}/owner/{owner}/representative/{random_str}/create', [RepresentativeController::class, 'create']);
+    Route::post('unit/{unit}/owner/{owner}/representative/{random_str}/store', [RepresentativeController::class,'store']);
+    Route::delete('representative/{id:id}/delete', [RepresentativeController::class, 'destroy']);
+    //3
     Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create', [EnrolleeController::class, 'create']);
     Route::post('unit/{unit}/owner/{owner}/enrollee/{random_str}/store', [EnrolleeController::class, 'store']);
     //3
+    
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class,
     'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',
