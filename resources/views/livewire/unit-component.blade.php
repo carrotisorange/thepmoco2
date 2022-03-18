@@ -1,5 +1,5 @@
 <div class="py-12">
-    <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div class=" overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <!-- This example requires Tailwind CSS v2.0+ -->
@@ -73,37 +73,73 @@
 
                                             </td>
                                             <td class="px-3 py-4 whitespace-nowrap">
-                                                <x-input class="w-32" form=" edit-form" name="unit{{ $name++ }}"
-                                                    id="unit" type="text" value="{{ $unit->unit }}"></x-input>
+                                                <input
+                                                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                    form="edit-form" type="text" name="unit{{ $name++ }}"
+                                                    value="Unit {{ $unit_count++ }}">
+
                                             </td>
 
                                             <input form="edit-form" type="hidden" name="uuid{{ $uuid++ }}" id="uuid"
                                                 value="{{ $unit->uuid }}">
 
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <x-select class="w-32" form="edit-form"
-                                                    name="building_id{{ $building_id++  }}">
-                                                    <option value="">Select one</option>
+                                                <select class="block p-5
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding bg-no-repeat
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
+                                                    name="building_id{{ $building_id++  }}" id="building_id">
+                                                    <option value="">Select one </option>
                                                     @foreach ($buildings as $building)
                                                     <option value="{{ $building->id }}">{{ $building->building
                                                         }}
                                                     </option>
                                                     @endforeach
 
-                                                </x-select>
+                                                </select>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <x-select class="w-32" form="edit-form"
+                                                <select class="block p-5
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding bg-no-repeat
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
                                                     name="floor_id{{ $floor_id++  }}" id="floor_id">
                                                     <option value="">Select one</option>
                                                     @foreach ($floors as $floor)
                                                     <option value="{{ $floor->id }}">{{ $floor->floor }}
                                                     </option>
                                                     @endforeach
-                                                </x-select>
+                                                </select>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <x-select class="w-32" form="edit-form"
+                                                <select class="block p-5
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding bg-no-repeat
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
                                                     name="category_id{{ $category_id++  }}">
                                                     <option value="">Select one</option>
                                                     @foreach ($categories as $category)
@@ -111,23 +147,23 @@
                                                         }}
                                                     </option>
                                                     @endforeach
-                                                </x-select>
+                                                </select>
                                             </td>
                                             <td class="px-3 py-4 whitespace-nowrap">
-                                                <x-input class="w-32" form="edit-form"
+                                                <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" form="edit-form"
                                                     name="dimensions{{ $dimensions++  }}" id="dimensions" type="text"
                                                     min="1" value="{{ $unit->dimensions }}">
-                                                </x-input>
+                                                </input>
                                             </td>
                                             <td class="px-3 py-4 whitespace-nowrap">
-                                                <x-input class="w-32" form="edit-form" min="0" name="rent{{ $rent++  }}"
-                                                    id="rent" type="number" value="{{ $unit->rent }}"></x-input>
+                                                <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" form="edit-form" min="0" name="rent{{ $rent++  }}"
+                                                    id="rent" type="number" value="{{ $unit->rent }}"></input>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <x-input class="w-32" form="edit-form"
+                                                <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" form="edit-form"
                                                     name="occupancy{{ $occupancy++  }}" id="occupancy" type="number"
                                                     min="1" value="{{ $unit->occupancy }}">
-                                                </x-input>
+                                                </input>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <form method="POST" action="/unit/{{ $unit->uuid }}/delete"
@@ -141,8 +177,6 @@
                                             </td>
 
                                         </tr>
-
-                                        <!-- More people... -->
                                     </tbody>
                                     @endforeach
 

@@ -25,13 +25,14 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = Unit::leftJoin('statuses', 'units.status_id', 'statuses.id')
+       $units = Unit::leftJoin('statuses', 'units.status_id', 'statuses.id')
         ->select('*', 'units.*')
         ->leftJoin('categories', 'units.category_id', 'categories.id')
         ->leftJoin('buildings', 'units.building_id', 'buildings.id')
         ->leftJoin('floors', 'units.floor_id', 'floors.id')
-        ->where('status_id', '!=', 6)
         ->where('property_uuid', Session::get('property'))
+        ->where('status_id', '!=', 6)
+        ->orderByRaw('LENGTH(unit)', 'ASC')
         ->paginate(5);
 
         return view('admin.units.index',
@@ -49,7 +50,7 @@ class UnitController extends Controller
     public function create($batch_no)
     {
         return view('admin.units.create',[
-            'batch_no' => $batch_no
+            'batch_no' => $batch_no,
         ]);
     }
 
@@ -112,6 +113,8 @@ class UnitController extends Controller
         ->leftJoin('buildings', 'units.building_id', 'buildings.id')
         ->leftJoin('floors', 'units.floor_id', 'floors.id')
         ->where('batch_no', $batch_no)
+        ->orderByRaw('LENGTH(unit)', 'ASC')
+        ->orderBy('units.unit')
         ->get();
 
         $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
@@ -127,7 +130,8 @@ class UnitController extends Controller
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,
-            'batch_no' => $batch_no
+            'batch_no' => $batch_no,
+            'unit_count' => Unit::where('property_uuid', Session::get('property'))->where('units.status_id', '!=','6')->get()->count()+1,
         ]);
     }
 
@@ -159,21 +163,19 @@ class UnitController extends Controller
      */
     public function bulk_update(Request $request, $batch_no)
     {
-         $units = Unit::where('batch_no', $batch_no)->count();
+        $units = Unit::where('batch_no', $batch_no)->count();
 
-        for($i = 1; $i<=$units*2; $i++){ 
+        for($i = 1; $i<=$units; $i++){ 
             $unit=Unit::find(request('uuid'.$i));
-            if($unit){
-                $unit->unit = request('name'.$i);
-                $unit->building_id = request('building_id'.$i);
-                $unit->floor_id = request('floor_id'.$i);
-                $unit->category_id = request('category_id'.$i);
-                $unit->dimensions = request('dimensions'.$i);
-                $unit->rent = request('rent'.$i);
-                $unit->occupancy = request('occupancy'.$i);
-                $unit->status_id = '1';
-                $unit->save();
-            }
+            $unit->unit = request('unit'.$i);
+            $unit->building_id = request('building_id'.$i);
+            $unit->floor_id = request('floor_id'.$i);
+            $unit->category_id = request('category_id'.$i);
+            $unit->dimensions = request('dimensions'.$i);
+            $unit->rent = request('rent'.$i);
+            $unit->occupancy = request('occupancy'.$i);
+            $unit->status_id = '1';
+            $unit->save();
         }
         
         return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' units have been

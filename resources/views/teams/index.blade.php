@@ -58,6 +58,9 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Created on</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Email verified</th>
                                                 <th scope="col" class="relative px-6 py-3">
                                                     <span class="sr-only">Edit</span>
                                                 </th>
@@ -106,13 +109,13 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $member->created_at->diffForHumans() }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    Carbon\Carbon::parse($member->email_verified_at)->format('M d, Y @ h:m:s') }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <a href="/team/{{ $member->username }}/edit"
                                                         class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                 </td>
                                             </tr>
-
-                                            <!-- More people... -->
                                         </tbody>
                                         @endforeach
                                     </table>

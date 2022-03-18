@@ -1,7 +1,7 @@
 <x-guest-layout>
     @section('title', '| Verify Email')
     <x-auth-card>
-        <x-slot name="logo">
+       <x-slot name="logo">
             <a href="/">
                 <img class="h-48 w-15" src="{{ asset('/brands/full-logo.png') }}" />
             </a>

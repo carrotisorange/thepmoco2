@@ -36,7 +36,7 @@
             </div>
         </h2>
     </x-slot>
-    @livewire('unit-component', ['batch_no' => $batch_no, 'units' => $units, 'buildings' => $buildings, 'categories' => $categories, 'floors'=> $floors])
+    @livewire('unit-component', ['batch_no' => $batch_no, 'units' => $units, 'buildings' => $buildings, 'categories' => $categories, 'floors'=> $floors, 'unit_count' => $unit_count])
 
     @include('utilities.create-building');
 </x-app-layout>
