@@ -15,7 +15,7 @@
     <p>Tenant: {{ $details['tenant'] }}</p>
     <p>Unit: {{ $details['unit'] }}</p>
     <p>Duration: {{ $details['start'].' - '.$details['end']}}</p>
-    <p>Rent/month: {{ number_format($details['rent'], 2) }}</p>
+    <p>Rent/month: Php {{ number_format($details['rent'], 2) }}</p>
     <br>
     <p>Regards, <br><b>{{ auth()->user()->name }}</b>, Admin</p>
 </body>
