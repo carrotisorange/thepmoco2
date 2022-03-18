@@ -9,6 +9,7 @@ use Session;
 use App\Models\Property;
 use App\Models\Particular;
 use App\Models\Contract;
+use Carbon\Carbon;
 
 use Livewire\Component;
 
@@ -21,10 +22,12 @@ class BillComponent extends Component
 
       public function mount($unit, $tenant, $contract, $bills)
       {
-      $this->unit = $unit;
-      $this->tenant = $tenant;
-      $this->contract = $contract;
-      $this->bills = $bills;
+        $this->unit = $unit;
+        $this->tenant = $tenant;
+        $this->contract = $contract;
+        $this->bills = $bills;
+        $this->end = Carbon::now()->addYear()->format('Y-m-d');
+        $this->start = Carbon::now()->format('Y-m-d');
       }
 
       public $particular_id;

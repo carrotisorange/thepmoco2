@@ -9,6 +9,7 @@ use App\Models\Property;
 use App\Models\UserProperty;
 use App\Models\PropertyParticular;
 use App\Models\PropertyRole;
+use Session;
 
 
 use Livewire\Component;
@@ -81,10 +82,19 @@ class PropertyComponent extends Component
         }
 
         for($i=1; $i<=4; $i++){ 
-            PropertyRole::create([ 'property_uuid'=> $property_uuid,
-            'role_id'=> $i,
+            PropertyRole::create(
+            [ 
+               'property_uuid'=> $property_uuid,
+               'role_id'=> $i,
             ]);
         }
+
+        for($i = 1;$i<=5;$i++) { PropertyParticular::create(
+            [ 
+              'particular_id'=> $i, 
+              'property_uuid' => $property_uuid,
+            ]);
+         }
 
         DB::commit();
          return redirect('/properties')->with('success', 'Property has been created.');

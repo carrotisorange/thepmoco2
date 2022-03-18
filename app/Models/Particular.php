@@ -9,4 +9,5 @@ class Particular extends Model
 {
     use HasFactory;
 
+  
 }

@@ -45,7 +45,7 @@
                 </label>
                 <input wire:model="start"
                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" type="date" value="{{ old('start',Carbon\Carbon::parse($contract->start)->format('Y-m-d')) }}" name="start">
+                    id="grid-last-name" type="date" value="{{ old('start',$start) }}" name="start">
 
                 @error('start')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -57,7 +57,7 @@
                 </label>
                 <input wire:model="end"
                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" type="date" value="{{ old('end',Carbon\Carbon::parse($contract->end)->format('Y-m-d')) }}" name="end">
+                    id="grid-last-name" type="date" value="{{ old('end',$end) }}" name="end">
 
                 @error('end')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

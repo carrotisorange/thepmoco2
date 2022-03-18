@@ -24,6 +24,10 @@ class ContractComponent extends Component
       {
       $this->unit = $unit;
       $this->tenant = $tenant;
+      $this->rent = $unit->rent;
+      $this->discount = $unit->discount;
+      $this->end = Carbon::now()->addYear()->format('Y-m-d');
+      $this->start = Carbon::now()->format('Y-m-d');
       }
 
       public $start;
@@ -47,7 +51,7 @@ class ContractComponent extends Component
 
       public function updated($propertyName)
       {
-      $this->validateOnly($propertyName);
+        $this->validateOnly($propertyName);
       }
 
       public function submitForm()
@@ -73,13 +77,6 @@ class ContractComponent extends Component
             'status_id' => 4
             ]);
 
-            for($i = 1;$i<=5;$i++) { 
-              PropertyParticular::create([
-                'particular_id' => $i,
-                'property_uuid' => Session::get('property')
-              ]); 
-            }
-
             if($this->rent > 0){
                Bill::create([
                'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
@@ -91,7 +88,8 @@ class ContractComponent extends Component
                'user_id' => auth()->user()->id,
                'particular_id' => '1',
                'property_uuid' => Session::get('property'),
-               'unit_uuid' => $this->unit->uuid
+               'unit_uuid' => $this->unit->uuid,
+               'tenant_uuid' => $this->tenant->uuid,
                ]);
 
                Bill::create([
@@ -104,7 +102,8 @@ class ContractComponent extends Component
                'user_id' => auth()->user()->id,
                'particular_id' => '2 ',
                'property_uuid' => Session::get('property'),
-               'unit_uuid' => $this->unit->uuid
+               'unit_uuid' => $this->unit->uuid,
+              'tenant_uuid' => $this->tenant->uuid,
                ]);
             }
 
@@ -118,15 +117,6 @@ class ContractComponent extends Component
             DB::rollback();
             return back()->with('error','Cannot complete your action.');
         }
-      }
-
-      public function resetForm()
-      {
-      $this->start='';
-      $this->end='';
-      $this->rent='';
-      $this->interaction='';
-      $this->discount;
       }
 
       public function render()
