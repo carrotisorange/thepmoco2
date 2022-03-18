@@ -98,6 +98,7 @@ class ProvinceSeeder extends Seeder
 
          foreach($provinces as $province){
          \App\Models\Province::factory()->create([
+         'country_id' => '1',
          'province' => $province
          ]);
          }

@@ -154,6 +154,7 @@ class CitySeeder extends Seeder
 
          foreach($cities as $city){
          \App\Models\City::factory()->create([
+         'province_id' => rand(1,80),
          'city' => $city
          ]);
          }

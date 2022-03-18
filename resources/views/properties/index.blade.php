@@ -30,7 +30,7 @@
 
         <!-- Page Heading -->
         <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-12xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <div class="flex">
                     <div class="h-3">
                         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -62,7 +62,7 @@
         <!-- Page Content -->
         <main>
             <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
                     <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                         {{-- <span>You have {{ Str::plural('property', $properties->count())
                             }}.</span> --}}

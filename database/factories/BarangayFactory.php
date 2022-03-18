@@ -14,6 +14,7 @@ class BarangayFactory extends Factory
     public function definition()
     {
         return [
+            'city_id' => rand(1,135),
             'barangay' => $this->faker->word(),
         ];
     }
