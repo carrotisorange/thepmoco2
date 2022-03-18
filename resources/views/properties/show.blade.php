@@ -52,13 +52,14 @@
                                             <div class="flex-shrink pr-4">
                                                 <div class="rounded p-3 bg-green-600"><i
                                                         class="fa fa-solid fa-coins fa-2x fa-fw fa-inverse"></i>
-                                                        
+
                                                 </div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
                                                 <h5 class="font-bold uppercase text-gray-500">Total Collections</h5>
-                                                <h3 class="font-bold text-3xl">{{ $collections }} <span class="text-green-500"><i
-                                                            class="fas fa-caret-up"></i></span></h3>
+                                                <h3 class="font-bold text-3xl">{{ $collections }} <span
+                                                        class="text-green-500"><i class="fas fa-caret-up"></i></span>
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
@@ -75,8 +76,9 @@
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
                                                 <h5 class="font-bold uppercase text-gray-500">Total Tenants</h5>
-                                                <h3 class="font-bold text-3xl">{{ $tenants }} <span class="text-pink-500"><i
-                                                            class="fas fa-exchange-alt"></i></span></h3>
+                                                <h3 class="font-bold text-3xl">{{ $tenants }} <span
+                                                        class="text-pink-500"><i class="fas fa-exchange-alt"></i></span>
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
@@ -92,8 +94,9 @@
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
                                                 <h5 class="font-bold uppercase text-gray-500">Total Units</h5>
-                                                <h3 class="font-bold text-3xl">{{ $units }} <span class="text-yellow-600"><i
-                                                            class="fas fa-caret-up"></i></span></h3>
+                                                <h3 class="font-bold text-3xl">{{ $units }} <span
+                                                        class="text-yellow-600"><i class="fas fa-caret-up"></i></span>
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
@@ -313,38 +316,49 @@
                                     <!--Table Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Table</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Expiring contracts</h5>
                                         </div>
                                         <div class="p-5">
                                             <table class="w-full p-5 text-gray-700">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-left text-blue-900">Name</th>
-                                                        <th class="text-left text-blue-900">Side</th>
-                                                        <th class="text-left text-blue-900">Role</th>
+                                                        <th class="text-left text-blue-900">#</th>
+                                                        <th class="text-left text-blue-900">Tenant</th>
+                                                        <th class="text-left text-blue-900">Email</th>
+                                                        <th class="text-left text-blue-900">Mobile</th>
+                                                        <th class="text-left text-blue-900">Unit</th>
+                                                        <th class="text-left text-blue-900">Rent</th>
+                                                        <th class="text-left text-blue-900">Duration</th>
+                                                        <th class="text-left text-blue-900">Status</th>
+                                                        <th class="text-left text-blue-900">Expiration date</th>
                                                     </tr>
                                                 </thead>
 
+                                                <?php $ctr = 1; ?>
                                                 <tbody>
+                                                    @forelse($contracts as $contract)
+
                                                     <tr>
-                                                        <td>Obi Wan Kenobi</td>
-                                                        <td>Light</td>
-                                                        <td>Jedi</td>
+                                                        <td>{{ $ctr++ }}</td>
+                                                        <td>{{ $contract->tenant }}</td>
+                                                        <td>{{ $contract->email }}</td>
+                                                        <td>{{ $contract->mobile_number }}</td>
+                                                        <td>{{ $contract->unit }}</td>
+                                                        <td>{{ number_format($contract->rent, 2) }}</td>
+                                                        <td>{{ $contract->start.'-'.$contract->end }}</td>
+                                                        <td>{{ $contract->contract_status }}</td>
+                                                        <td>{{ $contract->end }} <span class="text-red">{{ Carbon\Carbon::parse($contract->end)->diffForHumans() }}</span></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Greedo</td>
-                                                        <td>South</td>
-                                                        <td>Scumbag</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Darth Vader</td>
-                                                        <td>Dark</td>
-                                                        <td>Sith</td>
-                                                    </tr>
+
+
+
+                                                    @empty
+                                                    <span>No contracts found!</span>
+                                                    @endforelse
                                                 </tbody>
                                             </table>
 
-                                            <p class="py-2"><a href="#">See More issues...</a></p>
+
 
                                         </div>
                                     </div>

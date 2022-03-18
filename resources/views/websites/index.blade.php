@@ -52,9 +52,9 @@
                             <li class="nav-item">
                                 <a class="page-scroll" href="#feature">feature</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="page-scroll" href="#team">Team</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="page-scroll" href="#testimonial">Testimonial</a>
                             </li>
@@ -87,10 +87,10 @@
                         {{-- <br class="hidden lg:block"> Built with TailwindCSS --}}
                     </h2>
                     <div class="text-center mb-10 wow fadeInUp" data-wow-delay="1.2s">
-                        <a href="/register" rel="nofollow" class="btn">Register Now</a>
+                        <a href="/register" rel="nofollow" class="btn">Register for free</a>
                     </div>
                     <div class="text-center wow fadeInUp" data-wow-delay="1.6s">
-                        <img class="img-fluid mx-auto" src="{{ asset('/shine/assets/img/hero.svg') }}" alt="">
+                        <img class="img-fluid mx-auto" src="{{ asset('/brands/undraw_remotely_2j6y.svg') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                             <i class="lni lni-cog"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Web Development</h3>
+                            <h3 class="service-title">Property Management</h3>
                             <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
                                 perspiciatis dicta labore nulla beatae quaerat quia
                                 incidunt laborum aspernatur...</p>
@@ -126,7 +126,7 @@
                             <i class="lni lni-bar-chart"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Graphic Design</h3>
+                            <h3 class="service-title">Room Management</h3>
                             <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
                                 perspiciatis dicta labore nulla beatae quaerat quia
                                 incidunt laborum aspernatur...</p>
@@ -140,7 +140,7 @@
                             <i class="lni lni-briefcase"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Business Branding</h3>
+                            <h3 class="service-title">Tenant Mangement</h3>
                             <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
                                 perspiciatis dicta labore nulla beatae quaerat quia
                                 incidunt laborum aspernatur...</p>
@@ -154,7 +154,7 @@
                             <i class="lni lni-pencil-alt"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Content Writing</h3>
+                            <h3 class="service-title">Listings and Marketing Services</h3>
                             <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
                                 perspiciatis dicta labore nulla beatae quaerat quia
                                 incidunt laborum aspernatur...</p>
@@ -163,15 +163,42 @@
                 </div>
                 <!-- Services item -->
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="0.3s">
+                        <div class="icon text-5xl">
+                            <i class="lni lni-cog"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Bulk Billing</h3>
+                            <p class="text-gray-600">Simplifies the process of billing by providing way to conveniently
+                                add, send recurring bills to tenant/owner in a few clicks, and export ready to print
+                                statements.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Services item -->
+                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="0.6s">
+                        <div class="icon text-5xl">
+                            <i class="lni lni-bar-chart"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Payment Solutions</h3>
+                            <p class="text-gray-600">Allows payments from tenants/owners through GCash, Debit Card,
+                                Credit Card, and etc.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services item -->
+                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="1.5s">
                         <div class="icon text-5xl">
                             <i class="lni lni-mobile"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">App Development</h3>
-                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                                perspiciatis dicta labore nulla beatae quaerat quia
-                                incidunt laborum aspernatur...</p>
+                            <h3 class="service-title">Tenant/Owner Portal</h3>
+                            <p class="text-gray-600">Provides login credentials to tenant/owner to view their contracts,
+                                bills, payments, and other pertinent details.</p>
                         </div>
                     </div>
                 </div>
@@ -182,10 +209,62 @@
                             <i class="lni lni-layers"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Digital Marketing</h3>
-                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                                perspiciatis dicta labore nulla beatae quaerat quia
-                                incidunt laborum aspernatur...</p>
+                            <h3 class="service-title">Tenant/Owner Concern Tracker</h3>
+                            <p class="text-gray-600">Allows tenant/owner to add, monitor, and rate a concern.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services item -->
+                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="1.5s">
+                        <div class="icon text-5xl">
+                            <i class="lni lni-mobile"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Tenant/Owner Portal</h3>
+                            <p class="text-gray-600">Provides login credentials to tenant/owner to view their contracts,
+                                bills,
+                                payments, and other pertinent details.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Services item -->
+                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="1.8s">
+                        <div class="icon text-5xl">
+                            <i class="lni lni-layers"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Tenant/Owner Concern Tracker</h3>
+                            <p class="text-gray-600">Allows tenant/owner to add, monitor, and rate a concern.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services item -->
+                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="1.5s">
+                        <div class="icon text-5xl">
+                            <i class="lni lni-mobile"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Tenant/Owner Portal</h3>
+                            <p class="text-gray-600">Provides login credentials to tenant/owner to view their contracts,
+                                bills,
+                                payments, and other pertinent details.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Services item -->
+                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="1.8s">
+                        <div class="icon text-5xl">
+                            <i class="lni lni-layers"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Tenant/Owner Concern Tracker</h3>
+                            <p class="text-gray-600">Allows tenant/owner to add, monitor, and rate a concern.</p>
                         </div>
                     </div>
                 </div>
@@ -257,7 +336,7 @@
                 </div>
                 <div class="w-full lg:w-1/2">
                     <div class="mx-3 lg:mr-0 lg:ml-3 wow fadeInRight" data-wow-delay="0.3s">
-                        <img src="{{ asset('/shine/assets/img/feature/img-1.svg') }}" alt="">
+                        <img src="{{ asset('/brands/quick.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -266,7 +345,7 @@
     <!-- Feature Section End -->
 
     <!-- Team Section Start -->
-    <section id="team" class="py-24 text-center">
+    {{-- <section id="team" class="py-24 text-center">
         <div class="container">
             <div class="text-center">
                 <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Our Team</h2>
@@ -370,34 +449,44 @@
                 <!-- Team Item Ends -->
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Team Section End -->
 
     <!-- Clients Section Start -->
     <div id="clients" class="py-16 bg-blue-100">
         <div class="container">
             <div class="text-center">
-                <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">As Seen On</h2>
+                <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Clients</h2>
             </div>
             <div class="flex flex-wrap justify-center">
                 <div class="w-1/2 md:w-1/4 lg:w-1/4">
                     <div class="m-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <img class="client-logo" src="{{ asset('/asset/assets/img/clients/img1.svg') }}" alt="">
+                        <img class="client-logo" src="{{ asset('/brands/clients/client-1.png') }}" alt="">
                     </div>
                 </div>
                 <div class="w-1/2 md:w-1/4 lg:w-1/4">
                     <div class="m-3 wow fadeInUp" data-wow-delay="0.6s">
-                        <img class="client-logo" src="{{ asset('/shine/assets/img/clients/img2.svg') }}" alt="">
+                        <img class="client-logo" src="{{ asset('/brands/clients/client-2.png') }}" alt="">
                     </div>
                 </div>
                 <div class="w-1/2 md:w-1/4 lg:w-1/4">
                     <div class="m-3 wow fadeInUp" data-wow-delay="0.9s">
-                        <img class="client-logo" src="{{ asset('/shine/assets/img/clients/img3.svg') }}" alt="">
+                        <img class="client-logo" src="{{ asset('/brands/clients/client-3.png') }}" alt="">
                     </div>
                 </div>
                 <div class="w-1/2 md:w-1/4 lg:w-1/4">
                     <div class="m-3 wow fadeInUp" data-wow-delay="1.2s">
-                        <img class="client-logo" src="{{ asset('/shine/assets/img/clients/img4.svg') }}" alt="">
+                        <img class="client-logo" src="{{ asset('/brands/clients/client-4.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/4 lg:w-1/4">
+                    <div class="m-3 wow fadeInUp" data-wow-delay="1.5s">
+                        <img class="client-logo" src="{{ asset('/brands/clients/client-5.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/4 lg:w-1/4">
+                    <div class="m-3 wow fadeInUp" data-wow-delay="1.8s">
+                        <img class="client-logo" src="{{ asset('/brands/clients/client-6.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -422,7 +511,8 @@
                                         web-readiness. </p>
                                 </div>
                                 <div class="my-3 mx-auto w-24 h-24 shadow-md rounded-full">
-                                    <img class="rounded-full p-2 w-full" src="{{ asset('/shine/assets/img/testimonial/img1.jpg') }}" alt="">
+                                    <img class="rounded-full p-2 w-full"
+                                        src="{{ asset('/shine/assets/img/testimonial/img1.jpg') }}" alt="">
                                 </div>
                                 <div class="mb-2">
                                     <h2 class="font-bold text-lg uppercase text-blue-600 mb-2">Fajar</h2>
@@ -442,7 +532,8 @@
                                         web-readiness. </p>
                                 </div>
                                 <div class="my-3 mx-auto w-24 h-24 shadow-md rounded-full">
-                                    <img class="rounded-full p-2 w-full" src="{{ asset('shine/assets/img/testimonial/img2.jpg') }}" alt="">
+                                    <img class="rounded-full p-2 w-full"
+                                        src="{{ asset('shine/assets/img/testimonial/img2.jpg') }}" alt="">
                                 </div>
                                 <div class="mb-2">
                                     <h2 class="font-bold text-lg uppercase text-blue-600 mb-2">Mila</h2>
@@ -462,7 +553,8 @@
                                         web-readiness. </p>
                                 </div>
                                 <div class="my-3 mx-auto w-24 h-24 shadow-md rounded-full">
-                                    <img class="rounded-full p-2 w-full" src="{{ asset('/shine/assets/img/testimonial/img1.jpg') }}" alt="">
+                                    <img class="rounded-full p-2 w-full"
+                                        src="{{ asset('/shine/assets/img/testimonial/img1.jpg') }}" alt="">
                                 </div>
                                 <div class="mb-2">
                                     <h2 class="font-bold text-lg uppercase text-blue-600 mb-2">Rob</h2>
@@ -487,18 +579,17 @@
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
                     <div class="pricing-box wow fadeInLeft" data-wow-delay="1.2s">
                         <div class="mb-3">
-                            <h3 class="package-name">Basic</h3>
+                            <h3 class="package-name">STARTER</h3>
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">$12.90</span>
+                                <span class="font-bold text-2xl">$19</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
                         <ul class="mb-16">
-                            <li class="text-gray-500 leading-9">Up to 5 projects </li>
-                            <li class="text-gray-500 leading-9">Up to 10 collabrators</li>
-                            <li class="text-gray-500 leading-9">2gb of storage</li>
+                            <li class="text-gray-500 leading-9">1 property </li>
+                            <li class="text-gray-500 leading-9">10 rooms</li>
                         </ul>
                         <a href="#" class="btn">Get It</a>
                     </div>
@@ -512,14 +603,14 @@
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">$49.90</span>
+                                <span class="font-bold text-2xl">$48</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
                         <ul class="mb-16">
-                            <li class="text-gray-500 leading-9">Up to 10 projects </li>
-                            <li class="text-gray-500 leading-9">Up to 20 collabrators</li>
-                            <li class="text-gray-500 leading-9">10gb of storage</li>
+                            <li class="text-gray-500 leading-9">Up to 2 properties </li>
+                            <li class="text-gray-500 leading-9">Up to 100 rooms</li>
+                            <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
                             <li class="text-gray-500 leading-9">Real-time collabration</li>
                         </ul>
                         <a href="#" class="btn">Get It</a>
@@ -530,17 +621,17 @@
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
                     <div class="pricing-box">
                         <div class="mb-3">
-                            <h3 class="package-name">EXPERT</h3>
+                            <h3 class="package-name">ENTERPRISE</h3>
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">$89.90</span>
+                                <span class="font-bold text-2xl">$N</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
                         <ul class="mb-16">
-                            <li class="text-gray-500 leading-9">unlimited projects </li>
-                            <li class="text-gray-500 leading-9">Unlimited collabrators</li>
+                            <li class="text-gray-500 leading-9">Unlimited properties </li>
+                            <li class="text-gray-500 leading-9">Unlimited rooms</li>
                             <li class="text-gray-500 leading-9">Unlimited of storage</li>
                             <li class="text-gray-500 leading-9">Real-time collabration</li>
                             <li class="text-gray-500 leading-9">24x7 Support</li>
@@ -718,9 +809,10 @@
                         <div class="footer-logo mb-3">
                             <img src="{{ asset('/brands/full-logo.png') }}" alt="">
                         </div>
-                        <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam
-                            excepturi quasi, ipsam
-                            voluptatem.</p>
+                        <p class="text-gray-300">We are property managers with about a thousand listings, we were using
+                            traditional marketing and many steps of leasing
+                            procedures, paper and pen to sign up tenant info sheets, contracts, billing statements and
+                            receipts... <a href="/about">Read more</a> </p>
                     </div>
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp" data-wow-delay="0.4s">
@@ -780,11 +872,7 @@
         <div class="container">
             <div class="flex flex-wrap">
                 <div class="w-full text-center">
-                    <p class="text-white">Designed and Developed by <a
-                            class="text-white duration-300 hover:text-blue-600" href="https://tailwindtemplates.co"
-                            rel="nofollow">TailwindTemplates</a> and <a
-                            class="text-white duration-300 hover:text-blue-600" href="https://uideck.com"
-                            rel="nofollow">UIdeck</a></p>
+                    <p class="text-white">&copy 2021 The PMO Co. </p>
                 </div>
             </div>
         </div>
@@ -797,9 +885,9 @@
     </a>
 
     <!-- Preloader -->
-    <!--     <div id="preloader">
+      <div id="preloader">
       <div class="loader" id="loader-1"></div>
-    </div> -->
+    </div> 
     <!-- End Preloader -->
 
     <!-- All js Here -->

@@ -14,6 +14,8 @@ use DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use App\Models\Contract;
+use Carbon\Carbon;
 
 class PropertyController extends Controller
 {
@@ -127,13 +129,23 @@ class PropertyController extends Controller
         $tenants = Property::find($property->uuid)->tenants->count();
         $concerns = Property::find($property->uuid)->concerns->count();
 
+        $contracts = Contract::join('tenants', 'tenant_uuid', 'tenants.uuid')
+        ->select('*', 'contracts.status as contract_status')
+        ->join('units', 'unit_uuid', 'units.uuid')
+        ->where('tenants.property_uuid', Session::get('property'))
+        ->where('end', '<=', Carbon::now()->addMonth())
+        ->orderBy('end', 'asc')
+        ->get();
+
+
         return view('properties.show',[
             'property' => $property,
             'roles' => PropertyRole::where('property_uuid',$property->uuid)->get(),
             'collections' => $collections,
             'tenants' => $tenants,
             'units' => $units,
-            'concerns' => $concerns
+            'concerns' => $concerns,
+            'contracts' => $contracts
         ]);
     }
 

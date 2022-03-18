@@ -73,7 +73,7 @@
                                 <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $unit->unit }}</h5>
                                 <hr>
                                 <p class="mt-5 text-gray-700 text-base mb-4">
-                                    Building: {{ $unit->building?$unit->building:'NA' }}
+                                    Building: {{ $unit->building->building?$unit->building->building:'NA' }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Floor: {{ $unit->floor?$unit->floor->floor:'NA' }}
@@ -105,12 +105,12 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                @if (!$contracts->count())
-                                <span class="text-center text-red">No contracts found!</span>
-                                @else
-                                <div class="mb-3">
+
+
+
+                                {{-- <div class="mb-3">
                                     <span class="text-center text-red">Contracts ({{ $contracts->count() }})</span>
-                                </div>
+                                </div> --}}
 
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -143,7 +143,7 @@
 
                                             </tr>
                                         </thead>
-                                        @foreach ($contracts as $contract)
+                                        @forelse ($contracts as $contract)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -208,22 +208,20 @@
                                                 </td>
 
                                             </tr>
+                                            @empty
+                                            <tr>
+                                                <span>No contracts found!</span>
+                                            </tr>
 
-                                            <!-- More people... -->
+                                         
                                         </tbody>
-                                        @endforeach
+                                        @endforelse
                                     </table>
 
                                 </div>
-                                @endif
-                                
-                                @if (!$enrollees->count())
+
+
                                 <br>
-                                <span class="text-center text-red mt-5">No enrollees found!</span>
-                                @else
-                                <div class="mb-3 mt-5">
-                                    <span class="text-center text-red">Enrollees ({{ $enrollees->count() }})</span>
-                                </div>
 
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -256,7 +254,7 @@
 
                                             </tr>
                                         </thead>
-                                        @foreach ($enrollees as $enrollee)
+                                        @forelse ($enrollees as $enrollee)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -319,11 +317,14 @@
                                             </tr>
 
                                         </tbody>
-                                        @endforeach
+                                        @empty
+                                        <span>No owners found!</span>
+
+                                        @endforelse
                                     </table>
 
                                 </div>
-                                @endif
+
                             </div>
 
                         </div>

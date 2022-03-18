@@ -18,7 +18,12 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/tenant/{{ Str::random(10) }}/create'">Create Tenant</x-button>
+                    <div class="rounded">
+                        <x-input type="text" class=" py-2 w-80" placeholder="Search..." />
+                        <x-button class="px-4 text-white bg-gray-600 border-l ">
+                            Search
+                        </x-button>
+                    </div>
                 </h5>
 
             </div>

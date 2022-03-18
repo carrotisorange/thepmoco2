@@ -640,7 +640,7 @@ video {
 
 .bg-blue-600{
   --bg-opacity: 1;
-  background-color: #3182ce;
+  background-color: #9431ce;
   background-color: rgba(49, 130, 206, var(--bg-opacity));
 }
 
@@ -658,7 +658,7 @@ video {
 
 .hover\:bg-blue-600:hover{
   --bg-opacity: 1;
-  background-color: #3182ce;
+  background-color: #9431ce;
   background-color: rgba(49, 130, 206, var(--bg-opacity));
 }
 
@@ -694,13 +694,13 @@ video {
 
 .border-blue-600{
   --border-opacity: 1;
-  border-color: #3182ce;
+  border-color: #9431ce;
   border-color: rgba(49, 130, 206, var(--border-opacity));
 }
 
 .focus\:border-blue-600:focus{
   --border-opacity: 1;
-  border-color: #3182ce;
+  border-color: #9431ce;
   border-color: rgba(49, 130, 206, var(--border-opacity));
 }
 
@@ -1078,7 +1078,7 @@ video {
 
 .text-blue-600{
   --text-opacity: 1;
-  color: #3182ce;
+  color: #9431ce;
   color: rgba(49, 130, 206, var(--text-opacity));
 }
 
@@ -1090,7 +1090,7 @@ video {
 
 .hover\:text-blue-600:hover{
   --text-opacity: 1;
-  color: #3182ce;
+  color: #9431ce;
   color: rgba(49, 130, 206, var(--text-opacity));
 }
 
@@ -1160,7 +1160,7 @@ p {
   color: #fff;
   color: rgba(255, 255, 255, var(--text-opacity));
   --bg-opacity: 1;
-  background-color: #3182ce;
+  background-color: #9431ce;
   background-color: rgba(49, 130, 206, var(--bg-opacity));
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -1172,7 +1172,7 @@ p {
 
 .btn:hover {
   --bg-opacity: 1;
-  background-color: #4299e1;
+  background-color: #9431ce;
   background-color: rgba(66, 153, 225, var(--bg-opacity));
 }
 
@@ -1238,7 +1238,7 @@ p {
 .page-scroll.active,
 .page-scroll:hover {
   --text-opacity: 1;
-  color: #3182ce;
+  color: #9431ce;
   color: rgba(49, 130, 206, var(--text-opacity));
 }
 
@@ -1254,7 +1254,7 @@ p {
 .icon {
   margin-bottom: 1rem;
   --text-opacity: 1;
-  color: #3182ce;
+  color: #9431ce;
   color: rgba(49, 130, 206, var(--text-opacity));
 }
 
@@ -1319,7 +1319,7 @@ p {
   width: 2.5rem;
   height: 2.5rem;
   --bg-opacity: 1;
-  background-color: #3182ce;
+  background-color: #9431ce;
   background-color: rgba(49, 130, 206, var(--bg-opacity));
   border-radius: 0.25rem;
   font-size: 1.125rem;
@@ -1400,7 +1400,7 @@ p {
 
 .package-name {
   --text-opacity: 1;
-  color: #3182ce;
+  color: #9431ce;
   color: rgba(49, 130, 206, var(--text-opacity));
   font-weight: 700;
   text-transform: uppercase;
@@ -1427,7 +1427,7 @@ p {
 
 .form-input:focus {
   --border-opacity: 1;
-  border-color: #3182ce;
+  border-color: #9431ce;
   border-color: rgba(49, 130, 206, var(--border-opacity));
 }
 
@@ -1438,7 +1438,7 @@ p {
   align-items: center;
   justify-content: center;
   --bg-opacity: 1;
-  background-color: #3182ce;
+  background-color: #9431ce;
   background-color: rgba(49, 130, 206, var(--bg-opacity));
   font-size: 1.25rem;
   --text-opacity: 1;
@@ -1457,7 +1457,7 @@ p {
 
 .footer-links:hover {
   --text-opacity: 1;
-  color: #4299e1;
+  color: #9431ce;
   color: rgba(66, 153, 225, var(--text-opacity));
 }
 

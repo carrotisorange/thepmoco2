@@ -22,7 +22,7 @@ class BillController extends Controller
      */
     public function index()
     {
-        return $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
+         $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
         ->select('*', 'bills.status as bill_status')
         ->join('users', 'bills.user_id', 'users.id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
