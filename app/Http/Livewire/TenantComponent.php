@@ -12,6 +12,7 @@ use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\Barangay;
+use Session;
 
 class TenantComponent extends Component
 {
@@ -68,6 +69,7 @@ class TenantComponent extends Component
 
         $validatedData['uuid'] = Str::uuid();
         $validatedData['photo_id'] = $this->photo_id->store('tenants');
+        $validatedData['property_uuid'] = Session::get('property');
 
        try{
             DB::beginTransaction();

@@ -52,6 +52,11 @@ class Tenant extends Model
         return $this->belongsTo(Country::class, 'country_id');
     }
 
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'property_uuid');
+    }
+
     public function contracts()
     {
         return $this->hasMany(Contract::class);

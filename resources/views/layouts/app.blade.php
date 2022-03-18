@@ -30,6 +30,8 @@
     {{-- Flowbite --}}
     <script src="../path/to/flowbite/dist/flowbite.js"></script>
 
+    @yield('styles')
+
     @livewireStyles
 </head>
 
@@ -54,5 +56,7 @@
 </body>
 
 <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+
+@yield('scripts')
 
 </html>

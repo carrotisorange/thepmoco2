@@ -30,7 +30,7 @@ class Property extends Model
 
     public function units()
     {
-        return $this->hasMany(Property::class);
+        return $this->hasMany(Unit::class);
     }
 
     public function users()
@@ -46,6 +46,11 @@ class Property extends Model
     public function collections()
     {
         return $this->hasMany(Collection::class);
+    }
+
+    public function tenants()
+    {
+    return $this->hasMany(Tenant::class);
     }
 
     public function particulars()

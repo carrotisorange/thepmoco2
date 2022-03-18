@@ -122,9 +122,18 @@ class PropertyController extends Controller
         session(['property' => $property->uuid]);
         session(['property_name' => $property->property]);
 
+        $collections = Property::find($property->uuid)->collections->sum("collection");
+        $units = Property::find($property->uuid)->units->count();
+        $tenants = Property::find($property->uuid)->tenants->count();
+        $concerns = Property::find($property->uuid)->concerns->count();
+
         return view('properties.show',[
             'property' => $property,
             'roles' => PropertyRole::where('property_uuid',$property->uuid)->get(),
+            'collections' => $collections,
+            'tenants' => $tenants,
+            'units' => $units,
+            'concerns' => $concerns
         ]);
     }
 

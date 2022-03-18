@@ -83,15 +83,18 @@
                                 <p>Dimensions: {{ $info->dimensions }}</p>
                                 <p>Created: {{ $info->created_at->diffForHumans() }}</p>
                             </div>
+
                             <div class="mt-20">
                                 <hr>
                             </div>
+
                             @endforeach
                             </p>
                         </div>
                     </div>
-                    @endif
                     <hr>
+                    @endif
+
                     <div class="mt-3">
                         {{ $units->links() }}
                     </div>

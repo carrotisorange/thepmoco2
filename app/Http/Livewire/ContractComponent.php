@@ -7,8 +7,11 @@ use Illuminate\Support\Str;
 use DB;
 use App\Models\Bill;
 use Livewire\WithFileUploads;
-
+use App\Models\PropertyParticular;
 use Livewire\Component;
+use App\Models\Property;
+use Carbon\Carbon;
+use Session;
 
 class ContractComponent extends Component
 {
@@ -70,12 +73,48 @@ class ContractComponent extends Component
             'status_id' => 4
             ]);
 
+            for($i = 1;$i<=5;$i++) { 
+              PropertyParticular::create([
+                'particular_id' => $i,
+                'property_uuid' => Session::get('property')
+              ]); 
+            }
+
+            if($this->rent > 0){
+               Bill::create([
+               'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
+               'bill' => $this->rent,
+               'start' => $this->start,
+               'end' => $this->end,
+               'due_date' => Carbon::parse($this->start)->addDays(7),
+               'status' => 'unpaid',
+               'user_id' => auth()->user()->id,
+               'particular_id' => '1',
+               'property_uuid' => Session::get('property'),
+               'unit_uuid' => $this->unit->uuid
+               ]);
+
+               Bill::create([
+               'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
+               'bill' => $this->rent,
+               'start' => $this->start,
+               'end' => $this->end,
+               'due_date' => Carbon::parse($this->start)->addDays(7),
+               'status' => 'unpaid',
+               'user_id' => auth()->user()->id,
+               'particular_id' => '2 ',
+               'property_uuid' => Session::get('property'),
+               'unit_uuid' => $this->unit->uuid
+               ]);
+            }
+
             DB::commit();
 
             return
             redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/bill/'.Str::random(8).'/create')->with('success','Contract has been created.');
 
         } catch (\Throwable $e) {
+            ddd($e);
             DB::rollback();
             return back()->with('error','Cannot complete your action.');
         }

@@ -27,6 +27,7 @@ class CreateTenantsTable extends Migration
             $table->foreignId('city_id')->nullable()->constrained();
             $table->foreignId('province_id')->nullable()->constrained();
             $table->foreignId('barangay_id')->nullable()->constrained();
+            $table->foreignUuid('property_uuid')->constrained();
             
             $table->string('type');
             $table->string('course')->nullable();
