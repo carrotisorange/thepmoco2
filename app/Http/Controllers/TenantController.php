@@ -10,6 +10,10 @@ use App\Models\Country;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Models\Bill;
+use App\Models\Barangay;
+use App\Models\Contract;
+use DB;
 
 class TenantController extends Controller
 {
@@ -36,15 +40,8 @@ class TenantController extends Controller
      */
     public function create(Unit $unit)
     {
-         $cities = City::all();
-         $provinces = Province::all();
-         $countries = Country::all();
-
          return view('admin.tenants.create', [
-         'unit' => $unit,
-         'cities' => $cities,
-         'provinces' => $provinces,
-         'countries' => $countries
+         'unit' => $unit
          ]);
     }
 
@@ -56,6 +53,7 @@ class TenantController extends Controller
      */
     public function store(Request $request, $unit_uuid)
     {   
+
         $tenant_attributes = request()->validate([
         'tenant' => 'required',
         'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
@@ -85,7 +83,23 @@ class TenantController extends Controller
      */
     public function show(Tenant $tenant)
     {
-        return $tenant;
+        $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
+         ->select('*', 'bills.status as bill_status', 'bills.id as bill_id')
+         ->join('particulars', 'bills.particular_id', 'particulars.id')
+         ->where('tenants.uuid', $tenant->uuid)
+         ->orderBy('bills.bill_no')
+         ->get();
+
+        $contracts = Contract::join('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
+         ->join('units', 'contracts.unit_uuid', 'units.uuid')
+         ->where('tenants.uuid', $tenant->uuid)
+         ->get();
+
+        return view('admin.tenants.show',[
+            'tenant' => $tenant,
+            'bills' => $bills,
+            'contracts' => $contracts
+        ]);
     }
 
     /**
@@ -96,7 +110,13 @@ class TenantController extends Controller
      */
     public function edit(Tenant $tenant)
     {
-        //
+        return view('admin.tenants.edit',[
+            'tenant' => $tenant, 
+            'barangays' => Barangay::all(),
+            'cities' => City::all(),
+            'provinces' => Province::all(),
+            'countries' => Country::all()
+        ]);
     }
 
     /**
@@ -108,7 +128,42 @@ class TenantController extends Controller
      */
     public function update(Request $request, Tenant $tenant)
     {
-        //
+        $attributes = request()->validate([
+        'tenant' => 'required',
+        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('tenants', 'email')->ignore($tenant->id, 'uuid')],
+        'mobile_number' => ['required', Rule::unique('tenants', 'mobile_number')->ignore($tenant->id, 'uuid')],
+        'birthdate' => 'required',
+        'type' => 'required',
+        'gender' => 'required',
+        'civil_status' => 'required',
+        'country_id' => ['required', Rule::exists('countries', 'id')],
+        'province_id' => ['required', Rule::exists('provinces', 'id')],
+        'city_id' => ['required', Rule::exists('cities', 'id')],
+        'barangay_id' => ['required', Rule::exists('barangays', 'id')],
+        'photo_id' => 'image'
+        ]);
+
+          if(isset($attributes['photo_id']))
+          {
+            $attributes['photo_id'] = request()->file('photo_id')->store('avatars');
+          }
+
+        try{
+    
+        
+            DB::beginTransaction();
+            $tenant->update($attributes);
+            DB::commit();
+            return back()->with('success', 'Tenant has been updated.');
+        }catch(\Exception $e){
+            //ddd($e);
+            DB::rollback();
+            return back()->with('error', 'Cannot perform your action.');
+        }
+
+        return 'asd';
+
+        
     }
 
     /**

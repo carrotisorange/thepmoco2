@@ -76,6 +76,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('building/{random_str}/store',[BuildingController::class, 'store']);
 
     Route::get('tenant/{tenant}', [TenantController::class, 'show']);
+    Route::get('tenant/{tenant}/edit', [TenantController::class, 'edit']);
+    Route::patch('tenant/{tenant}/update', [TenantController::class, 'update']);
     Route::get('owner/{owner}', [OwnerController::class, 'show']);
   
 

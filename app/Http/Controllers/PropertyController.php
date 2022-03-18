@@ -160,7 +160,7 @@ class PropertyController extends Controller
 
         if(isset($attributes['thumbnail']))
         {
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
 
         $property->update($attributes);

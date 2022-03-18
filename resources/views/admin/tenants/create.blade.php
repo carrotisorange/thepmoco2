@@ -38,6 +38,6 @@
         </h2>
     </x-slot>
 
-   @livewire('tenant-component', ['unit' => $unit, 'countries' => $countries, 'provinces' => $provinces, 'cities' => $cities])
+   @livewire('tenant-component', ['unit' => $unit])
 
 </x-app-layout>

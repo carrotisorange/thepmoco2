@@ -45,7 +45,7 @@ class TeamController extends Controller
     public function create()
     {
          $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-         ->select('*', 'users.status as user_status')
+         ->select('*', 'users.status as user_status', 'users.id as user_id')
          ->join('users', 'user_properties.user_id', 'users.id')
          ->join('types', 'properties.type_id', 'types.id')
          ->join('roles', 'users.role_id', 'roles.id')
@@ -107,7 +107,7 @@ class TeamController extends Controller
             'users.status' => 'active'
         ]);
 
-        return redirect('/property/'.Session::get('property').'/teams')->with('success', 'Team has been created.');
+        return redirect('/property/'.Session::get('property').'/team')->with('success', 'Team has been created.');
     }
 
     /**
@@ -148,7 +148,7 @@ class TeamController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
-            'mobile_number' => ['required', Rule::unique('users', 'username')->ignore($user->id)],
+            'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
             'role_id' => ['required', Rule::exists('roles', 'id')],
             'status' => 'required',
             'avatar' => 'image',

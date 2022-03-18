@@ -34,8 +34,8 @@ class PropertyComponent extends Component
         return [
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
-            'thumbnail' => 'required|image',
-            'description' => '',
+            'thumbnail' => 'nullable|image',
+            'description' => 'nullable',
         ];
      }
 
@@ -55,7 +55,11 @@ class PropertyComponent extends Component
         $property_uuid = Str::uuid();
 
         $validatedData['uuid']= $property_uuid;
-        $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
+         if($this->thumbnail){
+             $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
+         }else{
+             $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
+         }
 
         DB::beginTransaction();
 
@@ -83,11 +87,11 @@ class PropertyComponent extends Component
         }
 
         DB::commit();
-
          return redirect('/properties')->with('success', 'Property has been created.');
         }catch (\Throwable $e) {
+           ddd($e);
             DB::rollback();
-            return redirect('/properties')->with('error', 'Cannot perform your action.');
+            return back()->with('error', 'Cannot perform your action.');
         }
 
        

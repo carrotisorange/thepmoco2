@@ -110,7 +110,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $member->created_at->diffForHumans() }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/team/{{ $member->id }}/delete" id="delete-form">
+                                        <form method="POST" action="/team/{{ $member->user_id }}/delete" id="delete-form">
                                             @csrf
                                             @method('delete')
                                             <button class="text-red-600 hover:text-red-900"

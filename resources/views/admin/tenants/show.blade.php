@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| '.$unit->unit)
+    @section('title', '| '.$tenant->tenant)
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -12,17 +12,17 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/units"
-                                        class="text-blue-600 hover:text-blue-700">Units</a>
+                                <li><a href="/property/{{ Session::get('property') }}/tenants"
+                                        class="text-blue-600 hover:text-blue-700">Tenants</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">{{ $unit->unit }}</li>
+                                <li class="text-gray-500">{{ $tenant->tenant }}</li>
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/edit'">
+                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'">
                         Edit</x-button>
                     {{--<x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
@@ -35,7 +35,7 @@
                         </svg></x-button>
 
                     <!-- Dropdown menu -->
-                    <div id="dropdown"
+                    {{-- <div id="dropdown"
                         class="hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
@@ -50,7 +50,7 @@
                             </li>
 
                         </ul>
-                    </div>
+                    </div> --}}
                 </h5>
 
             </div>
@@ -64,35 +64,35 @@
                     <div class="flex justify-center">
                         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white">
 
-                            <img src="/storage/{{ $unit->thumbnail }}"
+                            <img src="/storage/{{ $tenant->photo_id }}"
                                 class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5" alt="..." />
                         </div>
                         <div class="flex flex-col md:flex-row md:max-w-xl">
 
                             <div class="p-6 flex flex-col justify-start">
-                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $unit->unit }}</h5>
+                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $tenant->tenant }}</h5>
                                 <hr>
                                 <p class="mt-5 text-gray-700 text-base mb-4">
-                                    Building: {{ $unit->building?$unit->building:'NA' }}
+                                    Email: {{ $tenant->email }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Floor: {{ $unit->floor?$unit->floor->floor:'NA' }}
+                                    Mobile: {{ $tenant->mobile_number }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Status: {{ $unit->status->status }}
+                                    Birthdate: {{ Carbon\Carbon::parse($tenant->birthdate)->format('M d, Y') }} ({{ Carbon\Carbon::now()->diffForHumans($tenant->birthdate)}})
                                 </p>
 
                                 <p class="text-gray-700 text-base mb-4">
-                                    Rent: {{ number_format($unit->rent, 2) }}
+                                    Civil status: {{ $tenant->civil_status }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Discount: {{ number_format($unit->discount, 2) }}
+                                    Gender: {{ $tenant->gender }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Dimensions: {{ $unit->dimensions }}
+                                    Tenant type: {{ $tenant->type }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Created: {{ $unit->created_at->diffForHumans() }}
+                                    Address: {{ $tenant->barangay->barangay.', '.$tenant->province->province.', '.$tenant->country->country }}
                                 </p>
 
 
@@ -152,17 +152,17 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/tenant/{{ $contract->tenant->uuid }}">
+                                                            <a href="/tenant/{{ $contract->tenant_uuid }}">
                                                                 <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $contract->tenant->photo_id }}"
+                                                                    src="/storage/{{ $contract->photo_id }}"
                                                                     alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
-                                                                $contract->tenant->tenant }}
+                                                                $contract->tenant }}
                                                             </div>
                                                             <div class="text-sm text-gray-500">{{
-                                                                $contract->tenant->type
+                                                                $contract->type
                                                                 }}
                                                             </div>
                                                         </div>
@@ -181,10 +181,10 @@
 
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $contract->tenant->email }}
+                                                    <div class="text-sm text-gray-900">{{ $contract->email }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        $contract->tenant->mobile_number }}
+                                                        $contract->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -216,13 +216,13 @@
 
                                 </div>
                                 @endif
-                                
-                                @if (!$enrollees->count())
+
+                                @if (!$bills->count())
                                 <br>
-                                <span class="text-center text-red mt-5">No enrollees found!</span>
+                                <span class="text-center text-red mt-5">No bills found!</span>
                                 @else
                                 <div class="mb-3 mt-5">
-                                    <span class="text-center text-red">Enrollees ({{ $enrollees->count() }})</span>
+                                    <span class="text-center text-red">Bills ({{ $bills->count() }})</span>
                                 </div>
 
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -256,7 +256,7 @@
 
                                             </tr>
                                         </thead>
-                                        @foreach ($enrollees as $enrollee)
+                                        @foreach ($bills as $bill)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -265,13 +265,13 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/owner/{{ $enrollee->owner_uuid }}">
+                                                            <a href="/owner/{{ $bill->owner_uuid }}">
                                                                 <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $enrollee->photo_id }}" alt=""></a>
+                                                                    src="/storage/{{ $bill->photo_id }}" alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
-                                                                $enrollee->owner }}
+                                                                $bill->owner }}
                                                             </div>
 
                                                         </div>
@@ -279,36 +279,36 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{
-                                                        Carbon\Carbon::parse($enrollee->start)->format('M d, Y').' -
-                                                        '.Carbon\Carbon::parse($enrollee->end)->format('M d, Y') }}
+                                                        Carbon\Carbon::parse($bill->start)->format('M d, Y').' -
+                                                        '.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($enrollee->end)->diffForHumans($enrollee->start)
+                                                        Carbon\Carbon::parse($bill->end)->diffForHumans($enrollee->start)
                                                         }}
                                                     </div>
                                                 </td>
 
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $enrollee->email }}
+                                                    <div class="text-sm text-gray-900">{{ $bill->email }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        $enrollee->mobile_number }}
+                                                        $bill->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($enrollee->rent, 2)}}
+                                                    {{number_format($bill->rent, 2)}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($enrollee->status === 'active')
+                                                    @if($bill->status === 'active')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $enrollee->status }}
+                                                        {{ $bill->status }}
                                                     </span>
                                                     @else
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $enrollee->status }}
+                                                        {{ $bill->status }}
                                                     </span>
                                                     @endif
                                                 </td>

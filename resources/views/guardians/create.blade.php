@@ -25,7 +25,7 @@
                                         class="text-blue-600 hover:text-blue-700">Tenants</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}"
+                                <li><a href="/tenant/{{ $tenant->uuid }}"
                                         class="text-blue-600 hover:text-blue-700">{{ $tenant->tenant }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>

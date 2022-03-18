@@ -1,28 +1,27 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use App\Models\Tenant;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
-
+use DB;
+use App\Models\Country;
+use App\Models\Province;
+use App\Models\City;
+use App\Models\Barangay;
 
 class TenantComponent extends Component
 {
     use WithFileUploads;
 
     public $unit;
-    public $countries;
-    public $cities;
-    public $provinces;
 
-    public function mount($unit, $countries, $cities, $provinces)
+    public function mount($unit)
     {
         $this->unit = $unit;
-        $this->countries = $countries;
-        $this->cities = $cities;
-        $this->provinces = $provinces;
     }
 
     public $tenant;
@@ -36,6 +35,7 @@ class TenantComponent extends Component
     public $country_id;
     public $province_id;
     public $city_id;
+    public $barangay_id;
     public $photo_id;
 
     protected function rules()
@@ -50,6 +50,7 @@ class TenantComponent extends Component
             'country_id' => ['required', Rule::exists('countries', 'id')],
             'province_id' => ['required', Rule::exists('provinces', 'id')],
             'city_id' => ['required', Rule::exists('cities', 'id')],
+            'barangay_id' => ['required', Rule::exists('barangays', 'id')],
             'photo_id' => 'required|image'
             ];
     }
@@ -68,14 +69,27 @@ class TenantComponent extends Component
         $validatedData['uuid'] = Str::uuid();
         $validatedData['photo_id'] = $this->photo_id->store('tenants');
 
-        $tenant = Tenant::create($validatedData)->uuid;
+       try{
+            DB::beginTransaction();
+            $tenant = Tenant::create($validatedData)->uuid;
+            DB::commit();
+            return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success','Tenant has been created.');
+       }catch(\Exception $e)
+       {
+            DB::rollback();
+            return redirect()->with('error','Cannot perform your action.');
+       }
 
-        return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success',
-        'Tenant has been created.');
+       
     }
 
     public function render()
     {
-        return view('livewire.tenant-component');
+        return view('livewire.tenant-component',[
+            'countries' => Country::all(),
+            'provinces' => Province::all(),
+            'cities' => City::all(),
+            'barangays' => Barangay::all()
+        ]);
     }
 }

@@ -22,7 +22,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property <i class="fa-solid fa-check"></i>
+                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property 
                     </x-button>
                     {{-- <x-button form="edit-form">Save</x-button> --}}
                 </h5>
@@ -77,7 +77,7 @@
                                     @endforeach
                                 </select>
 
-                                @error('type')
+                                @error('type_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -100,10 +100,7 @@
                             </div>
                             <div class="mt-5">
                                 <p class="text-right">
-                                    <x-button>
-                                        
-                                        Submit
-                                    </x-button>
+                                    <x-button>Save</x-button>
                                 </p>
                             </div>
 
