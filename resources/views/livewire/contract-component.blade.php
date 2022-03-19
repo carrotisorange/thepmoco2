@@ -47,7 +47,7 @@
                                 </label>
                                 <input
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" value="{{ old('term') }}" type="text" name="term">
+                                    id="grid-last-name" value="{{ old('term', (floor($term/30))) }} months" type="text" name="term">
                             </div>
 
                             <div class="w-full md:w-1/4 px-3">
