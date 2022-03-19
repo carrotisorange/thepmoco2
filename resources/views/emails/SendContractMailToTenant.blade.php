@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>h2, {{ $details['tenant'] }}! </h1>
+    <h1>Hi, {{ $details['tenant'] }}! </h1>
     <p>{{ $details['body'] }}</p>
     <hr>
     <p>Contract signed: {{ Carbon\Carbon::now()->format('M d, Y') }}</p>
