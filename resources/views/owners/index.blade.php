@@ -12,7 +12,9 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Owners ({{ $owners->count() }})</li>
+                                <li class="text-gray-500">
+                                    {{ Str::plural('Owner', $owners->count())}} ({{ $owners->count() }})
+                                </li>
                             </ol>
                         </nav>
                     </h2>

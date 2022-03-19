@@ -337,45 +337,28 @@
                                                 <?php $ctr = 1; ?>
                                                 <tbody>
                                                     @forelse($contracts as $contract)
-
                                                     <tr>
                                                         <td>{{ $ctr++ }}</td>
                                                         <td>{{ $contract->tenant }}</td>
                                                         <td>{{ $contract->email }}</td>
                                                         <td>{{ $contract->mobile_number }}</td>
-                                                        <td>{{ $contract->unit }}</td>
+                                                        <td>{{ $contract->building.' '.$contract->unit }}</td>
                                                         <td>{{ number_format($contract->rent, 2) }}</td>
-                                                        <td>{{ $contract->start.'-'.$contract->end }}</td>
+                                                        <td>{{ Carbon\Carbon::parse($contract->start)->format('M d, Y').'-'.Carbon\Carbon::parse($contract->end)->format('M d, Y') }}</td>
                                                         <td>{{ $contract->contract_status }}</td>
-                                                        <td>{{ $contract->end }} <span class="text-red">{{ Carbon\Carbon::parse($contract->end)->diffForHumans() }}</span></td>
+                                                        <td>{{ Carbon\Carbon::parse($contract->end)->format('M d, Y') }} (<span class="text-red">{{ Carbon\Carbon::parse($contract->end)->diffForHumans() }}</span>)</td>
                                                     </tr>
-
-
-
                                                     @empty
                                                     <span>No contracts found!</span>
                                                     @endforelse
                                                 </tbody>
                                             </table>
-
-
-
                                         </div>
                                     </div>
-                                    <!--/table Card-->
                                 </div>
-
-
                             </div>
-
-                            <!--/ Console Content-->
-
                         </div>
-
-
                     </div>
-                    <!--/container-->
-
                 </div>
             </div>
         </div>

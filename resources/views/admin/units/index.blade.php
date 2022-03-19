@@ -12,7 +12,9 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Units ({{ $units->count() }})</li>
+                                <li class="text-gray-500">
+                                    {{ Str::plural('Unit', $units->count())}} ({{ $units->count() }})
+                                </li>
                             </ol>
                         </nav>
                     </h2>
@@ -33,21 +35,97 @@
                     <span class="text-center text-red">No units found!</span>
                     @else
                     <div class="flex flex-row">
-                        <div class="basis-1/4">
+                        <div class="basis-1/4 ml-5">
                             <span class="font-bold">Filters ({{ $units->count() }})</span>
                             <div class="mt-5">
                                 <div class="flex">
                                     <div>
+                                        <span>Category</span>
+                                        @foreach ($categories as $category)
                                         <div class="form-check">
                                             <input
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="" id="flexCheckDefault">
+                                                type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                Default checkbox
+                                                {{ $category->category }}
                                             </label>
                                         </div>
-                                        <div class="form-check">
+                                        @endforeach
+
+                                        <div class="mt-5">
+                                            <span>Building</span>
+                                            @foreach ($buildings as $building)
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    type="checkbox" value="{{ $building->id }}" id="flexCheckDefault">
+                                                <label class="form-check-label inline-block text-gray-800"
+                                                    for="flexCheckDefault">
+                                                    {{ $building->building }}
+                                                </label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="mt-5">
+                                            <span>Floor</span>
+                                            @foreach ($floors as $floor)
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    type="checkbox" value="{{ $floor->id }}" id="flexCheckDefault">
+                                                <label class="form-check-label inline-block text-gray-800"
+                                                    for="flexCheckDefault">
+                                                    {{ $floor->floor }}
+                                                </label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="mt-5">
+                                            <span>Rent</span>
+                                            @foreach ($rents as $rent)
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    type="checkbox" value="{{ $rent->rent }}" id="flexCheckDefault">
+                                                <label class="form-check-label inline-block text-gray-800"
+                                                    for="flexCheckDefault">
+                                                    ₱ {{ number_format($rent->rent, 2) }}
+                                                </label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="mt-5">
+                                            <span>Discount</span>
+                                            @foreach ($discounts as $discount)
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    type="checkbox" value="{{ $discount->discount }}"
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label inline-block text-gray-800"
+                                                    for="flexCheckDefault">
+                                                    ₱ {{ number_format($discount->discount, 2) }}
+                                                </label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="mt-5">
+                                            <span>Dimension</span>
+                                            @foreach ($dimensions as $dimension)
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    type="checkbox" value="{{ $dimension->dimensions }}"
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label inline-block text-gray-800"
+                                                    for="flexCheckDefault">
+                                                    {{ $dimension->dimensions }}
+                                                </label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        {{-- <div class="form-check">
                                             <input
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                 type="checkbox" value="" id="flexCheckChecked" checked>
@@ -55,7 +133,7 @@
                                                 for="flexCheckChecked">
                                                 Checked checkbox
                                             </label>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

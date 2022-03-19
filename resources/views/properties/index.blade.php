@@ -37,7 +37,7 @@
                             <nav class="rounded-md">
                                 <ol class="list-reset flex">
                                     <li>
-                                        Properties ({{ $properties->count() }})
+                                         {{ Str::plural('Property', $properties->count())}} ({{ $properties->count() }})
                                     </li>
 
                                 </ol>
@@ -45,12 +45,13 @@
                         </h2>
                     </div>
                     <h5 class="flex-1 text-right">
-                        <x-button onclick="window.location.href='/documentation/'">Show Documentation
+                        <x-button onclick="window.location.href='/documentation/'">Documentation
                         </x-button>
                         @if(auth()->user()->role_id === 5)
-                        <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property
+                        <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create
+                            Property
                         </x-button>
-                       
+
                         @endif
                     </h5>
 
@@ -91,9 +92,9 @@
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Units</th>
-                                                        {{-- <th scope="col"
+                                                        <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Manager</th> --}}
+                                                            Tenants</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Status</th>
@@ -136,10 +137,8 @@
                                                             substr($property->description, 0, 25) }}...</td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             number_format($property->units_count,0) }}</td>
-                                                        {{-- <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            $property->name }}</td> --}}
-
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                            number_format($property->tenants_count,0) }}</td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             @if($property->property_status === 'active')
                                                             <span
