@@ -27,7 +27,7 @@ class BillController extends Controller
         ->join('users', 'bills.user_id', 'users.id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
         ->join('units', 'bills.unit_uuid', 'units.uuid')
-        ->orderBy('bills.created_at', 'desc')
+        ->orderBy('bills.bill_no', 'asc')
         ->paginate(10);
 
         return view('bills.index',[

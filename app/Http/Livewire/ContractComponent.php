@@ -79,10 +79,13 @@ class ContractComponent extends Component
             'status_id' => 4
             ]);
 
+            $bill_no = Property::find(Session::get('property'))->bills->count();
+
             if($this->rent > 0){
                Bill::create([
                'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
                'bill' => $this->rent,
+               'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
                'start' => $this->start,
                'end' => $this->end,
                'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -97,15 +100,16 @@ class ContractComponent extends Component
                Bill::create([
                'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
                'bill' => $this->rent,
+               'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
                'start' => $this->start,
                'end' => $this->end,
                'due_date' => Carbon::parse($this->start)->addDays(7),
                'status' => 'unpaid',
                'user_id' => auth()->user()->id,
-               'particular_id' => '2 ',
+               'particular_id' => '2',
                'property_uuid' => Session::get('property'),
                'unit_uuid' => $this->unit->uuid,
-              'tenant_uuid' => $this->tenant->uuid,
+               'tenant_uuid' => $this->tenant->uuid,
                ]);
             }
 

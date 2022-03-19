@@ -73,7 +73,7 @@
                                 <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $unit->unit }}</h5>
                                 <hr>
                                 <p class="mt-5 text-gray-700 text-base mb-4">
-                                    Building: {{ $unit->building->building?$unit->building->building:'NA' }}
+                                    Building: {{ $unit->building?$unit->building:'NA' }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Floor: {{ $unit->floor?$unit->floor->floor:'NA' }}

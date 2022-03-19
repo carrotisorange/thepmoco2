@@ -123,9 +123,15 @@
                                                     {{number_format($contract->price, 2)}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
+                                                    @if($contract->contract_status = 'active')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        Active </span>
+                                                        {{ $contract->contract_status }} </span>
+                                                    @else
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-red-800">
+                                                        {{ $contract->contract_status }} </span>
+                                                    @endif
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -150,7 +156,7 @@
                                                                 <a href="#"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Extend</a>
                                                             </li>
-                                                            
+
                                                         </ul>
                                                         <div class="py-1">
                                                             <a href="#"
@@ -158,7 +164,7 @@
                                                                 Moveout</a>
                                                         </div>
                                                     </div>
-                                                   
+
                                                 </td>
                                             </tr>
                                         </tbody>

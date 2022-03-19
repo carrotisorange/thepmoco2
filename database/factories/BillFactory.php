@@ -10,6 +10,7 @@ use App\Models\Particular;
 use App\Models\Property;
 use App\Models\Unit;
 use Session;
+use Carbon\Carbon;
 
 class BillFactory extends Factory
 {
@@ -20,13 +21,18 @@ class BillFactory extends Factory
      */
     public function definition()
     {
+        static $bill_no = 1;
+
+        static $reference_no = 1;
+
         return [
             'bill'=> rand(10,1000),
-            'bill_no' => $this->faker->unique()->numerify('###########'),
+            'bill_no' => $bill_no++,
             'start' => now(),
             'end' => now()->addMonth(),
             'due_date' => now()->addDays(10),
             'penalty'=> rand(10,100),
+            'reference_no' => Property::all()->random()->id.''.Carbon::now()->timestamp.''.$reference_no++,
             'tenant_uuid'=> Tenant::all()->random()->uuid,
             'user_id'=> User::all()->random()->id,
             'particular_id'=> Particular::all()->random()->id,

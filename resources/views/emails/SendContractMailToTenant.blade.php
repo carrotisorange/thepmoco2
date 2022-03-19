@@ -10,14 +10,15 @@
 <body>
     <h1>h2, {{ $details['tenant'] }}! </h1>
     <p>{{ $details['body'] }}</p>
-    <br>
+    <hr>
     <p>Contract signed: {{ Carbon\Carbon::now()->format('M d, Y') }}</p>
     <p>Tenant: {{ $details['tenant'] }}</p>
     <p>Unit: {{ $details['unit'] }}</p>
     <p>Duration: {{ $details['start'].' - '.$details['end']}}</p>
     <p>Rent/month: Php {{ number_format($details['rent'], 2) }}</p>
-    <br>
-    <b>Enjoy your stay!</b>
+    <p>Status: pending</p>
+    <hr>
+    <b>Please be advised to pay the movein charges within the day upon receiving this email.</b>
     <br>
     <p>Regards, <br><b>{{ auth()->user()->name }}</b>, Admin</p>
     <br>

@@ -27,6 +27,7 @@ class ContractController extends Controller
     public function index()
     {
          $contracts = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
+        // ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
         ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
         ->leftJoin('buildings', 'units.building_id','buildings.id' )
         ->where('units.property_uuid', session('property'))

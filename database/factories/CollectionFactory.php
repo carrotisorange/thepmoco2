@@ -10,6 +10,7 @@ use App\Models\Bill;
 use App\Models\Owner;
 use App\Models\User;
 use Illuminate\Support\Arr;
+use Carbon\Carbon;
 
 class CollectionFactory extends Factory
 {
@@ -20,13 +21,16 @@ class CollectionFactory extends Factory
      */
     public function definition()
     {
+        static $ar_no = 1;
+
         return [
              'collection'=> rand(10,1000),
              'tenant_uuid'=> Tenant::all()->random()->uuid,
              'unit_uuid'=> Unit::all()->random()->uuid,
              'property_uuid'=> Property::all()->random()->uuid,
              'owner_uuid'=> Owner::all()->random()->uuid,
-             'collection_no' => $this->faker->unique()->numerify('###########'),
+             'ar_no' => $ar_no++,
+             'bill_reference_no' => Bill::all()->random()->reference_no,
              'form' => Arr::random(['cash', 'bank', 'check', 'loan']),
              'user_id'=> User::all()->random()->id,
              'bill_id'=> Bill::all()->random()->id,

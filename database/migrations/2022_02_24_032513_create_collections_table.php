@@ -19,13 +19,14 @@ class CreateCollectionsTable extends Migration
             $table->foreignUuid('tenant_uuid')->constrained();
             $table->foreignUuid('unit_uuid')->constrained();
             $table->foreignUuid('property_uuid')->constrained();
-             $table->foreignUuid('owner_uuid')->constrained();
+            $table->foreignUuid('owner_uuid')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->integer('collection_no');
+            $table->integer('ar_no');
+            $table->string('bill_reference_no');
             $table->string('form');
             $table->foreignId('bill_id')->constrained();
-            $table->longText('note');
-            $table->longText('reason_for_deletion');
+            $table->longText('note')->nullable();
+            $table->longText('reason_for_deletion')->nullable();
             $table->string('attachment')->nullable();
             $table->timestamps();
         });

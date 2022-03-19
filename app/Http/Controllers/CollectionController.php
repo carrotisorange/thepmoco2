@@ -17,8 +17,8 @@ class CollectionController extends Controller
         $collections = Collection::join('tenants', 'collections.tenant_uuid', 'tenants.uuid')
          ->join('owners', 'collections.owner_uuid', 'owners.uuid')
          ->join('users', 'collections.user_id', 'users.id')
-         
          ->join('units', 'collections.unit_uuid', 'units.uuid')
+         ->orderBy('collections.created_at', 'asc')
          ->paginate(10);
 
         return view('collections.index',[

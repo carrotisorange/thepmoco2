@@ -127,7 +127,7 @@
                                                                         $property->property }}
                                                                     </div>
                                                                     <div class="text-sm text-gray-500">{{
-                                                                        $property->type
+                                                                        $property->property_type
                                                                         }}
                                                                     </div>
                                                                 </div>

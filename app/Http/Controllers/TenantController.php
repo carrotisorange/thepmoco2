@@ -26,6 +26,7 @@ class TenantController extends Controller
     {
         $tenants = Tenant::join('provinces', 'tenants.province_id', 'provinces.id')
         ->join('cities', 'tenants.city_id', 'cities.id')
+        ->orderBy('tenants.created_at', 'desc')
         ->paginate(10);
 
         return view('admin.tenants.index',[
