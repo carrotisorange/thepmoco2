@@ -22,13 +22,14 @@
 
     {{-- Alpine.js --}}
     <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
+
+    {{-- Fontawesome --}}
+    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation-properties')
-
-        <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-12xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <div class="flex">
@@ -37,9 +38,8 @@
                             <nav class="rounded-md">
                                 <ol class="list-reset flex">
                                     <li>
-                                         {{ Str::plural('Property', $properties->count())}} ({{ $properties->count() }})
+                                        {{ Str::plural('Property', $properties->count())}} ({{ $properties->count() }})
                                     </li>
-
                                 </ol>
                             </nav>
                         </h2>
@@ -51,32 +51,20 @@
                         <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create
                             Property
                         </x-button>
-
                         @endif
                     </h5>
-
                 </div>
             </div>
-
         </header>
-
-        <!-- Page Content -->
         <main>
             <div class="py-12">
                 <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
                     <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                        {{-- <span>You have {{ Str::plural('property', $properties->count())
-                            }}.</span> --}}
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <!-- This example requires Tailwind CSS v2.0+ -->
                             <div class="flex flex-col">
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                        @if (!$properties->count())
-                                        <span class="text-center text-red">No properties found!</span>
-                                        @else
                                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-
                                             <table class="min-w-full divide-y divide-gray-200">
                                                 <thead class="bg-gray-50">
                                                     <tr>
@@ -108,7 +96,7 @@
                                                     </tr>
                                                 </thead>
                                                 <?php $ctr = 1 ?>
-                                                @foreach ($properties as $property)
+                                                @forelse ($properties as $property)
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                     <tr>
                                                         <td class="px-6 py-4 whitespace-nowrap">
@@ -117,13 +105,12 @@
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="flex items-center">
                                                                 <div class="flex-shrink-0 h-10 w-10">
-                                                                    <a href="/property/{{ $property->property_uuid }}">
-                                                                        <img class="h-10 w-10 rounded-full"
-                                                                            src="/storage/{{ $property->thumbnail }}"
-                                                                            alt=""></a>
+                                                                    <img class="h-10 w-10 rounded-full"
+                                                                        src="/storage/{{ $property->thumbnail }}">
                                                                 </div>
                                                                 <div class="ml-4">
-                                                                    <div class="text-sm font-medium text-gray-900">{{
+                                                                    <div class="text-sm font-medium text-gray-900">
+                                                                        {{
                                                                         $property->property }}
                                                                     </div>
                                                                     <div class="text-sm text-gray-500">{{
@@ -152,24 +139,29 @@
                                                             }}</td>
                                                         <td
                                                             class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                            <a href="/property/{{ $property->property_uuid }}/edit"
-                                                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                            <a title="show" href="/property/{{ $property->property_uuid }}"
+                                                                class="text-indigo-600 hover:text-indigo-900"><i
+                                                                    class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;
+                                                            <a title="edit" href="/property/{{ $property->property_uuid }}/edit"
+                                                                class="text-indigo-600 hover:text-indigo-900"><i
+                                                                    class="fa-solid fa-2x fa-pen-to-square"></i></a>&nbsp;&nbsp;
+
+
+                                                            <a title="remove" href="/property/{{ $property->property_uuid }}/delete"
+                                                                class="text-red-600 hover:text-indigo-900"><i
+                                                                    class="fa-solid fa-2x fa-trash-can"></i></a>
+
                                                         </td>
                                                     </tr>
-
-                                                    <!-- More people... -->
                                                 </tbody>
-                                                @endforeach
+                                                @empty
+                                                <span>No properties found!</span>
+                                                @endforelse
                                             </table>
-
-
                                         </div>
-                                        @endif
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

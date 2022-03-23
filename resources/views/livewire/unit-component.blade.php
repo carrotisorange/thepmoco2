@@ -85,17 +85,17 @@
 
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <select class="block p-5
-    py-1.5
-    text-base
-    font-normal
-    text-gray-700
-    bg-white bg-clip-padding bg-no-repeat
-    border border-solid border-gray-300
-    rounded
-    transition
-    ease-in-out
-    m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
+                                                                py-1.5
+                                                                text-base
+                                                                font-normal
+                                                                text-gray-700
+                                                                bg-white bg-clip-padding bg-no-repeat
+                                                                border border-solid border-gray-300
+                                                                rounded
+                                                                transition
+                                                                ease-in-out
+                                                                m-0
+                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
                                                     name="building_id{{ $building_id++  }}" id="building_id">
                                                     <option value="">Select one </option>
                                                     @foreach ($buildings as $building)
@@ -108,17 +108,17 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <select class="block p-5
-    py-1.5
-    text-base
-    font-normal
-    text-gray-700
-    bg-white bg-clip-padding bg-no-repeat
-    border border-solid border-gray-300
-    rounded
-    transition
-    ease-in-out
-    m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
+                                                                py-1.5
+                                                                text-base
+                                                                font-normal
+                                                                text-gray-700
+                                                                bg-white bg-clip-padding bg-no-repeat
+                                                                border border-solid border-gray-300
+                                                                rounded
+                                                                transition
+                                                                ease-in-out
+                                                                m-0
+                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
                                                     name="floor_id{{ $floor_id++  }}" id="floor_id">
                                                     <option value="">Select one</option>
                                                     @foreach ($floors as $floor)
@@ -129,17 +129,17 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <select class="block p-5
-    py-1.5
-    text-base
-    font-normal
-    text-gray-700
-    bg-white bg-clip-padding bg-no-repeat
-    border border-solid border-gray-300
-    rounded
-    transition
-    ease-in-out
-    m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
+                                                                py-1.5
+                                                                text-base
+                                                                font-normal
+                                                                text-gray-700
+                                                                bg-white bg-clip-padding bg-no-repeat
+                                                                border border-solid border-gray-300
+                                                                rounded
+                                                                transition
+                                                                ease-in-out
+                                                                m-0
+                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" form="edit-form"
                                                     name="category_id{{ $category_id++  }}">
                                                     <option value="">Select one</option>
                                                     @foreach ($categories as $category)

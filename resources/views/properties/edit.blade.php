@@ -22,6 +22,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button onclick="window.location.href='/properties'">Back
+                    </x-button>
                     <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property 
                     </x-button>
                     {{-- <x-button form="edit-form">Save</x-button> --}}

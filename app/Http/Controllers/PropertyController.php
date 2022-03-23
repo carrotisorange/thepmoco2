@@ -198,8 +198,11 @@ class PropertyController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Property $property)
+    public function destroy($uuid)
     {
-        //
+        $property = Property::find($uuid);
+        $property->delete();
+
+        return back()->with('success','Property has been removed.');
     }
 }

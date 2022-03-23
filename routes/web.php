@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Models\Property;
 use App\Models\Representative;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
     Route::get('edit', [PropertyController::class, 'edit']);
     Route::patch('update',[PropertyController::class, 'update']);
+    Route::get('delete', [PropertyController::class, 'destroy']);
 
     Route::get('roles', [PropertyRoleController::class, 'index']);
 

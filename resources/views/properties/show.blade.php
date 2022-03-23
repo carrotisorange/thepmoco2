@@ -26,6 +26,9 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button
+                        onclick="window.location.href='/properties'">
+                        Back</x-button>
+                    <x-button
                         onclick="window.location.href='/property/{{ Session::get('property') }}/team/{{ Str::random(8) }}/create'">
                         Create Team</x-button>
                 </h5>
@@ -344,9 +347,14 @@
                                                         <td>{{ $contract->mobile_number }}</td>
                                                         <td>{{ $contract->building.' '.$contract->unit }}</td>
                                                         <td>{{ number_format($contract->rent, 2) }}</td>
-                                                        <td>{{ Carbon\Carbon::parse($contract->start)->format('M d, Y').'-'.Carbon\Carbon::parse($contract->end)->format('M d, Y') }}</td>
+                                                        <td>{{ Carbon\Carbon::parse($contract->start)->format('M d,
+                                                            Y').'-'.Carbon\Carbon::parse($contract->end)->format('M d,
+                                                            Y') }}</td>
                                                         <td>{{ $contract->contract_status }}</td>
-                                                        <td>{{ Carbon\Carbon::parse($contract->end)->format('M d, Y') }} (<span class="text-red">{{ Carbon\Carbon::parse($contract->end)->diffForHumans() }}</span>)</td>
+                                                        <td>{{ Carbon\Carbon::parse($contract->end)->format('M d, Y') }}
+                                                            (<span class="text-red">{{
+                                                                Carbon\Carbon::parse($contract->end)->diffForHumans()
+                                                                }}</span>)</td>
                                                     </tr>
                                                     @empty
                                                     <span>No contracts found!</span>

@@ -70,4 +70,11 @@ class Unit extends Model
     {
         return $this->hasMany(Enrollee::class);
     }
+
+    public function scopeSearch($term, $query)
+    {
+        $term = "%$term%";
+        $query->where('unit', 'like', $term)
+        ->orWhere('building', 'like', $term);
+    }
 }
