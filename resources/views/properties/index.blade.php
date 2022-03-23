@@ -38,7 +38,7 @@
                             <nav class="rounded-md">
                                 <ol class="list-reset flex">
                                     <li>
-                                        {{ Str::plural('Properties', $properties->count())}} ({{ $properties->count()
+                                        {{ Str::plural('Property', $properties->count())}} ({{ $properties->count()
                                         }})
                                     </li>
                                 </ol>
@@ -104,7 +104,7 @@
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                     <tr>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            {{ $ctr++ }}
+                                                           <b>{{ $ctr++ }}</b>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="flex items-center">
@@ -114,8 +114,8 @@
                                                                 </div>
                                                                 <div class="ml-4">
                                                                     <div class="text-sm font-medium text-gray-900">
-                                                                        {{
-                                                                        $property->property }}
+                                                                       <b>{{
+                                                                    $property->property }}</b>
                                                                     </div>
                                                                     <div class="text-sm text-gray-500">{{
                                                                         $property->property_type
@@ -135,8 +135,8 @@
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             @if($property->property_status === 'active')
                                                             <span
-                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                                {{ $property->property_status }}
+                                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                <i class="fa-solid fa-circle-check"></i> {{ $property->property_status }}
                                                             </span>
                                                             @endif
                                                         </td>
