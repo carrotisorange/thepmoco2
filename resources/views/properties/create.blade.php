@@ -29,8 +29,6 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation-properties')
-
-        <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <div class="flex">
@@ -48,7 +46,8 @@
                         </h2>
                     </div>
                     <h5 class="flex-1 text-right">
-                        {{-- <x-button form="create-form">Submit</x-button> --}}
+                        <x-button onclick="window.location.href='/properties'">
+                            Back</x-button>
                     </h5>
 
                 </div>
@@ -56,12 +55,11 @@
 
         </header>
 
-    <main>
-        @livewire('property-component', ['types' => $types])
-      
-    </main>
+        <main>
+            @livewire('property-component', ['types' => $types])
+        </main>
 
-    @livewireScripts
+        @livewireScripts
 </body>
 
 </html>

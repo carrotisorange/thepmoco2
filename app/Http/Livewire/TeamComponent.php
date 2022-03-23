@@ -59,6 +59,7 @@ class TeamComponent extends Component
         $validatedData['password'] = Hash::make(Str::random());
         $validatedData['status'] = 'pending';
         $validatedData['email_verified_at'] = now();
+        $validatedData['account_owner_id'] = auth()->user()->id;
 
       if(isset($this->avatar))
       {

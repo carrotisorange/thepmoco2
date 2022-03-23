@@ -69,6 +69,8 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {   
+        return 'asd';
+        
          $attributes = request()->validate([
          'name' => ['required', 'string', 'max:255'],
          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -79,12 +81,12 @@ class TeamController extends Controller
          ]);
 
         $attributes['password'] = Hash::make(Str::random());
+        $attributes['account_owner_id'] = auth()->user()->id;
 
         if(isset($attributes['avatar']))
         {
           $attributes['avatar'] = $request->file('avatar')->store('avatars');
         }
-      
 
         $user_id = User::create($attributes)->id;
 
