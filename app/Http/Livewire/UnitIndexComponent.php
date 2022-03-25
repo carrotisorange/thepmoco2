@@ -31,18 +31,21 @@ class UnitIndexComponent extends Component
           ->select('building')
           ->distinct()
           ->where('property_buildings.property_uuid', Session::get('property'))
+          ->where('buildings.building','!=','NA')
           ->get();
 
           $floors = Floor::join('units', 'floors.id', 'units.floor_id')
           ->select('floor')
           ->distinct()
           ->where('units.property_uuid', Session::get('property'))
+           ->where('floors.floor','!=','NA')
           ->get();
 
           $categories = Category::join('units', 'categories.id', 'units.category_id')
           ->select('category')
           ->distinct()
           ->where('units.property_uuid', Session::get('property'))
+           ->where('categories.category','!=','NA')
           ->get();
 
           $rents = Unit::where('units.property_uuid', Session::get('property'))
@@ -62,10 +65,11 @@ class UnitIndexComponent extends Component
           ->get();
 
         return view('livewire.unit-index-component',[
-            'units' => Unit::when($this->category, function($query){
-                $query->where('category_id', $this->category);
-            })
-            ->search(trim($this->search)),
+            // 'units' => Unit::when($this->category, function($query){
+            //     $query->where('category_id', $this->category);
+            // })
+            // ->search(trim($this->search)),
+            'units' => $units,
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,

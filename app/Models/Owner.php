@@ -46,4 +46,9 @@ class Owner extends Model
     {
         return $this->hasOne(Bank::class, 'bank_id');
     }
+
+    public function enrollees()
+    {
+        return $this->hasMany(Enrollee::class);
+    }
 }

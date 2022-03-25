@@ -16,8 +16,7 @@
                                 </label>
                                 <input wire:model="start"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="date"
-                                    value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start">
+                                    id="grid-last-name" type="date" value="{{ old('start', $start)}}" name="start">
 
                                 @error('start')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -30,8 +29,7 @@
                                 </label>
                                 <input wire:model="end"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="date" name="end"
-                                    value="{{ old('end', Carbon\Carbon::now()->addYear()->format('Y-m-d')) }}">
+                                    id="grid-last-name" type="date" name="end" value="{{ old('end', $end )}}">
 
                                 @error('end')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -49,7 +47,8 @@
                                 </label>
                                 <input
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" value="{{ old('term') }}" type="text" name="term">
+                                    id="grid-last-name" value="{{ old('term', (floor($term/30))) }} months" type="text"
+                                    name="term">
                             </div>
 
                             <div class="w-full md:w-1/4 px-3">
@@ -59,7 +58,7 @@
                                 </label>
                                 <input wire:model="rent"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="number" value="{{ old('rent',$unit->rent) }}" name="rent">
+                                    id="grid-last-name" type="number" value="{{ old('rent',$rent) }}" name="rent">
 
                                 @error('rent')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -73,13 +72,14 @@
                                 </label>
                                 <input wire:model="discount"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="number" value="{{ old('discount', 0) }}" name="discount">
+                                    id="grid-last-name" type="number" value="{{ old('discount', $discount) }}"
+                                    name="discount">
 
                                 @error('discount')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                            {{-- <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Interaction
@@ -109,7 +109,7 @@
                                 @error('interaction')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
-                            </div> --}}
+                            </div>
 
                             <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
                                 <x-label for="contract"

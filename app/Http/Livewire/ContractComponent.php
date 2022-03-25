@@ -24,13 +24,13 @@ class ContractComponent extends Component
 
       public function mount($unit, $tenant)
       {
-      $this->unit = $unit;
-      $this->tenant = $tenant;
-      $this->rent = $unit->rent;
-      $this->discount = $unit->discount;
-      $this->end = Carbon::now()->addYear()->format('Y-m-d');
-      $this->start = Carbon::now()->format('Y-m-d');
-      $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
+        $this->unit = $unit;
+        $this->tenant = $tenant;
+        $this->rent = $unit->rent;
+        $this->discount = $unit->discount;
+        $this->end = Carbon::now()->addYear()->format('Y-m-d');
+        $this->start = Carbon::now()->format('Y-m-d');
+        $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
       }
 
       public $start;

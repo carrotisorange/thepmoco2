@@ -19,15 +19,15 @@
                 </h2>
             </div>
             <h5 class="flex-1 text-right">
-                <div class="rounded">
+                {{-- <div class="rounded">
                     <x-input wire:model="search" type="text" class=" py-2 w-80"
                         placeholder="Enter name, email, mobile, or unit." />
                     <x-button class="px-4 text-white bg-gray-600 border-l ">
                         <i class="fa-solid fa-magnifying-glass"></i>&nbsp; Search
                     </x-button>
-                </div>
-                {{-- <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
-                </x-button> --}}
+                </div> --}}
+                <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
+                </x-button>
             </h5>
         </div>
     </h2>
@@ -152,8 +152,9 @@
                             @foreach($units as $info)
                         <div class="mt-14">
                             <p>Unit: {{ $info->unit }}</p>
-                            <p>Building: {{ $info->building?$info->building:'NA' }}</p>
-                            <p>Floor: {{ $info->floor?$info->floor:'NA' }}</p>
+                            <p>Category: {{ $info->category }}</p>
+                            <p>Building: {{ $info->building }}</p>
+                            <p>Floor: {{ $info->floor }}</p>
                             <p>Status: {{ $info->status }}</p>
                             <p>Rent: {{ number_format($info->rent, 2) }}</p>
                             <p>Discount: {{ number_format($info->discount, 2) }}</p>

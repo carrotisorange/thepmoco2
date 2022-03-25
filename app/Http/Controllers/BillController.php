@@ -12,6 +12,7 @@ use App\Models\Tenant;
 use App\Models\Contract;
 use Illuminate\Validation\Rule;
 use DB;
+use Carbon\Carbon;
 
 class BillController extends Controller
 {
@@ -78,7 +79,10 @@ class BillController extends Controller
          'end' => 'required|date|after:start'
          ]);
 
+        $bill_no = Property::find(Session::get('property'))->bills->count();
+
         try {
+        $attributes['reference_no'] = Carbon::now()->timestamp.''.$bill_no++;
         $attributes['tenant_uuid'] = $tenant->uuid;
         $attributes['unit_uuid'] = $unit->uuid;
         $attributes['property_uuid'] = Session::get('property');

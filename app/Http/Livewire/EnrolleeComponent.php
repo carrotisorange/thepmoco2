@@ -8,6 +8,7 @@ use App\Models\Enrollee;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use DB;
+use Carbon\Carbon;
 
 class EnrolleeComponent extends Component
 {
@@ -18,15 +19,19 @@ class EnrolleeComponent extends Component
 
     public function mount($unit, $owner)
     {
-    $this->unit = $unit;
-    $this->owner = $owner;
+        $this->unit = $unit;
+        $this->owner = $owner;
+        $this->rent = $unit->rent;
+        $this->discount = $unit->discount;
+        $this->end = Carbon::now()->addYear()->format('Y-m-d');
+        $this->start = Carbon::now()->format('Y-m-d');
+        $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
     }
 
     public $start;
     public $end;
     public $rent;
     public $discount;
-    public $interaction;
     public $contract;
 
     protected function rules()
@@ -65,7 +70,7 @@ class EnrolleeComponent extends Component
     Enrollee::create($validatedData);
 
     Unit::where('uuid', $this->unit->uuid)->update([
-    'status_id' => 4
+        'is_enrolled' => 1
     ]);
 
     DB::commit();
@@ -78,15 +83,6 @@ class EnrolleeComponent extends Component
     DB::rollback();
     return back()->with('error','Cannot complete your action.');
     }
-    }
-
-    public function resetForm()
-    {
-    $this->start='';
-    $this->end='';
-    $this->rent='';
-    $this->interaction='';
-    $this->discount;
     }
 
     public function render()

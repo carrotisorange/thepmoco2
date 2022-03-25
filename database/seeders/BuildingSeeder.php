@@ -15,15 +15,7 @@ class BuildingSeeder extends Seeder
     public function run()
     {
          Building::create([
-         'building' => 'Harvard'
-         ]);
-
-         Building::create([
-         'building' => 'Princeton'
-         ]);
-
-        Building::create([
-         'building' => 'Wharton'
+         'building' => 'NA'
          ]);
     }
 }

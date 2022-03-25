@@ -105,9 +105,7 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                @if (!$contracts->count())
-                                <span class="text-center text-red">No contracts found!</span>
-                                @else
+                                
                                 <div class="mb-3">
                                     <span class="text-center text-red">Contracts ({{ $contracts->count() }})</span>
                                 </div>
@@ -143,7 +141,7 @@
 
                                             </tr>
                                         </thead>
-                                        @foreach ($contracts as $contract)
+                                        @forelse ($contracts as $contract)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -208,19 +206,15 @@
                                                 </td>
 
                                             </tr>
-
-                                            <!-- More people... -->
                                         </tbody>
-                                        @endforeach
+                                        @empty
+                                        <span class="text-center text-red">No contracts found!</span>
+                                        @endforelse
                                     </table>
 
                                 </div>
-                                @endif
+                              
 
-                                @if (!$bills->count())
-                                <br>
-                                <span class="text-center text-red mt-5">No bills found!</span>
-                                @else
                                 <div class="mb-3 mt-5">
                                     <span class="text-center text-red">Bills ({{ $bills->count() }})</span>
                                 </div>
@@ -256,7 +250,7 @@
 
                                             </tr>
                                         </thead>
-                                        @foreach ($bills as $bill)
+                                        @forelse ($bills as $bill)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -283,7 +277,7 @@
                                                         '.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($bill->end)->diffForHumans($enrollee->start)
+                                                        Carbon\Carbon::parse($bill->end)->diffForHumans($bill->start)
                                                         }}
                                                     </div>
                                                 </td>
@@ -317,20 +311,16 @@
                                                 </td>
 
                                             </tr>
-
                                         </tbody>
-                                        @endforeach
+                                        @empty
+                                        <span class="text-center text-red mt-5">No bills found!</span>
+                                        @endforelse
                                     </table>
-
                                 </div>
-                                @endif
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

@@ -15,6 +15,10 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
+        'category' => 'NA'
+        ]);
+
+        Category::create([
         'category' => 'residential'
         ]);
 

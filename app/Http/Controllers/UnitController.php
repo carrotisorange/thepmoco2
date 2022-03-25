@@ -96,7 +96,6 @@ class UnitController extends Controller
      */
     public function store(Request $request, $batch_no)
     {
-
         $request->validate([
             'number_of_units' => ['integer', 'required', 'min:1']
         ]);
@@ -142,7 +141,7 @@ class UnitController extends Controller
      */
     public function bulk_edit($batch_no)
     {
-        $units = Unit::join('categories', 'units.category_id','categories.id')
+        $units = Unit::leftJoin('categories', 'units.category_id','categories.id')
         ->leftJoin('statuses', 'units.status_id', 'statuses.id')
         ->leftJoin('buildings', 'units.building_id', 'buildings.id')
         ->leftJoin('floors', 'units.floor_id', 'floors.id')
@@ -202,9 +201,33 @@ class UnitController extends Controller
         for($i = 1; $i<=$units; $i++){ 
             $unit=Unit::find(request('uuid'.$i));
             $unit->unit = request('unit'.$i);
-            $unit->building_id = request('building_id'.$i);
-            $unit->floor_id = request('floor_id'.$i);
-            $unit->category_id = request('category_id'.$i);
+            if(request('building_id'.$i))
+            {
+                $unit->building_id = request('building_id'.$i);
+            }
+            else
+            {
+                $unit->building_id = '1';
+            }
+           
+            if(request('floor_id'.$i))
+            {
+                $unit->floor_id = request('floor_id'.$i);
+            }
+            else
+            {
+                $unit->floor_id = '1';
+            }
+
+            if(request('category_id'.$i))
+            {
+                $unit->category_id = request('category_id'.$i);
+            }
+             else
+            {
+                $unit->category_id = '1';
+            }
+            
             $unit->dimensions = request('dimensions'.$i);
             $unit->rent = request('rent'.$i);
             $unit->occupancy = request('occupancy'.$i);

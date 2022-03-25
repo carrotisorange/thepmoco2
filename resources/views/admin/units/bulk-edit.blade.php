@@ -28,7 +28,7 @@
                     @if($units->count())
                     <x-button form="edit-form">Save</x-button>
                     @else
-                    <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Building
+                    <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                     </x-button>
                     @endif
                 </h5>

@@ -56,7 +56,10 @@ class BillComponent extends Component
 
       $validatedData = $this->validate();
 
+      $bill_no = Property::find(Session::get('property'))->bills->count();
+
       try {
+        $validatedData['reference_no'] = Carbon::now()->timestamp.''.$bill_no++;
         $validatedData['tenant_uuid'] = $this->tenant->uuid;
         $validatedData['unit_uuid'] = $this->unit->uuid;
         $validatedData['property_uuid'] = Session::get('property');

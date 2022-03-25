@@ -73,10 +73,13 @@
                                 <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $unit->unit }}</h5>
                                 <hr>
                                 <p class="mt-5 text-gray-700 text-base mb-4">
-                                    Building: {{ $unit->building->building?$unit->building->building:'NA' }}
+                                    Category: {{ $unit->category->category }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Floor: {{ $unit->floor?$unit->floor->floor:'NA' }}
+                                    Building: {{ $unit->building->building }}
+                                </p>
+                                <p class="text-gray-700 text-base mb-4">
+                                    Floor: {{ $unit->floor->floor }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Status: {{ $unit->status->status }}
@@ -105,13 +108,8 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-
-
-
-                                {{-- <div class="mb-3">
-                                    <span class="text-center text-red">Contracts ({{ $contracts->count() }})</span>
-                                </div> --}}
-
+                                <span>{{ Str::plural('Contract', $contracts->count())}} ({{ $contracts->count()
+                                    }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
                                     <table class="min-w-full divide-y divide-gray-200">
@@ -152,14 +150,12 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/tenant/{{ $contract->tenant->uuid }}">
-                                                                <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $contract->tenant->photo_id }}"
-                                                                    alt=""></a>
+                                                            <img class="h-10 w-10 rounded-full"
+                                                                src="/storage/{{ $contract->tenant->photo_id }}">
                                                         </div>
                                                         <div class="ml-4">
-                                                            <div class="text-sm font-medium text-gray-900">{{
-                                                                $contract->tenant->tenant }}
+                                                            <div class="text-sm font-medium text-gray-900"><b>{{
+                                                                    $contract->tenant->tenant }}</b>
                                                             </div>
                                                             <div class="text-sm text-gray-500">{{
                                                                 $contract->tenant->type
@@ -204,7 +200,39 @@
                                                     @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <i class="fa-solid fa-down"></i>
+                                                    <button id="dropdownDividerButton"
+                                                        data-dropdown-toggle="dropdownDivider"
+                                                        class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
+                                                        type="button">Select your action <svg class="ml-2 w-4 h-4"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                        </svg></button>
+
+                                                    <div id="dropdownDivider"
+                                                        class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                                            <li>
+                                                                <a href="contract/{{ $contract->uuid }}/export"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="contract/{{ $contract->uuid }}/extend"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Extend</a>
+                                                            </li>
+
+                                                        </ul>
+                                                        <div class="py-1">
+                                                            <a href="contract/{{ $contract->uuid }}/moveout"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                Moveout</a>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <a title="show"
+                                                        href="/unit/{{ $contract->unit_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract-> }}"
+                                                        class="text-indigo-600 hover:text-indigo-900"><i
+                                                            class="fa-solid fa-2x fa-eye"></i></a> --}}
                                                 </td>
 
                                             </tr>
@@ -212,17 +240,16 @@
                                             <tr>
                                                 <span>No contracts found!</span>
                                             </tr>
-
-                                         
                                         </tbody>
                                         @endforelse
                                     </table>
 
                                 </div>
 
-
+                                <hr>
                                 <br>
-
+                                <span>{{ Str::plural('Enrollee', $enrollees->count())}} ({{ $enrollees->count()
+                                    }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
                                     <table class="min-w-full divide-y divide-gray-200">
@@ -242,9 +269,7 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Contact</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Rent</th>
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
@@ -265,11 +290,12 @@
                                                         <div class="flex-shrink-0 h-10 w-10">
                                                             <a href="/owner/{{ $enrollee->owner_uuid }}">
                                                                 <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $enrollee->photo_id }}" alt=""></a>
+                                                                    src="/storage/{{ $enrollee->owner->photo_id }}"
+                                                                    alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
-                                                                $enrollee->owner }}
+                                                                $enrollee->owner->owner }}
                                                             </div>
 
                                                         </div>
@@ -288,15 +314,13 @@
 
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $enrollee->email }}
+                                                    <div class="text-sm text-gray-900">{{ $enrollee->owner->email }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        $enrollee->mobile_number }}
+                                                        $enrollee->owner->mobile_number }}
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($enrollee->rent, 2)}}
-                                                </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($enrollee->status === 'active')
                                                     <span

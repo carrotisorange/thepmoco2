@@ -142,4 +142,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/particular/{random_str}/store', [ParticularController::class, 'store']);
 
     Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
+
+    Route::get('/contract/{contract}/moveout', [MoveoutContractController::class, 'create']);
+
+    Route::get('/contract/{contract}/extend', [ExtendContractController::class, 'create']);
+
+    Route::get('/contract/{contract}/extend', [ExportContractController::class, 'create']);
 });

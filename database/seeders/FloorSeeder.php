@@ -15,6 +15,10 @@ class FloorSeeder extends Seeder
     public function run()
     {
         Floor::create([
+         'floor' => 'NA'
+        ]);
+
+        Floor::create([
         'floor' => '1st floor'
         ]);
 

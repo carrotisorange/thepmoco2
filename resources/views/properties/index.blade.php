@@ -78,9 +78,9 @@
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Description</th>
-                                                        <th scope="col"
+                                                        {{-- <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Team</th>
+                                                            Team</th> --}}
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Units</th>
@@ -126,8 +126,8 @@
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             substr($property->description, 0, 25) }}...</td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            number_format($property->teams_count,0) }}</td>
+                                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                            number_format($property->teams_count,0) }}</td> --}}
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             number_format($property->units_count,0) }}</td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
@@ -148,11 +148,11 @@
                                                             <a title="show"
                                                                 href="/property/{{ $property->property_uuid }}"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
-                                                                    class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;
+                                                                    class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
                                                             <a title="edit"
                                                                 href="/property/{{ $property->property_uuid }}/edit"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
-                                                                    class="fa-solid fa-2x fa-pen-to-square"></i></a>&nbsp;&nbsp;
+                                                                    class="fa-solid fa-2x fa-pen-to-square"></i></a>&nbsp;&nbsp;&nbsp;
 
 
                                                             <a title="remove"
