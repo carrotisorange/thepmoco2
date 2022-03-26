@@ -35,12 +35,12 @@
                         {{ __('Contracts') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/enrollees"
                         :active="request()->routeIs('enrollees')">
                         {{ __('Enrollees') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
                         :active="request()->routeIs('tenants')">
@@ -104,6 +104,9 @@
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        <x-dropdown-link href="/profile/{{ Auth::user()->username }}/point">
+                            {{ __('Point') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -155,10 +158,10 @@
                 :active="request()->routeIs('contracts')">
                 {{ __('Contracts') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/enrollees"
+            {{-- <x-responsive-nav-link href="/property/{{ Session::get('property') }}/enrollees"
                 :active="request()->routeIs('enrollees')">
                 {{ __('enrollees') }}
-            </x-responsive-nav-link>
+            </x-responsive-nav-link> --}}
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
                 :active="request()->routeIs('tenants')">
                 {{ __('Tenants') }}

@@ -14,6 +14,7 @@ use Livewire\Component;
 use App\Models\Property;
 use Carbon\Carbon;
 use Session;
+use App\Models\Point;
 
 class ContractComponent extends Component
 {
@@ -88,7 +89,7 @@ class ContractComponent extends Component
                'bill' => $this->rent,
                'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
                'start' => $this->start,
-               'end' => $this->end,
+               'end' => Carbon::parse($this->start)->addMonth(),
                'due_date' => Carbon::parse($this->start)->addDays(7),
                'status' => 'unpaid',
                'user_id' => auth()->user()->id,
@@ -102,8 +103,8 @@ class ContractComponent extends Component
                'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
                'bill' => $this->rent,
                'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
-               'start' => $this->start,
-               'end' => $this->end,
+               'start' => Carbon::parse($this->start)->addMonth(),
+               'end' => Carbon::parse($this->start)->addMonths(2),
                'due_date' => Carbon::parse($this->start)->addDays(7),
                'status' => 'unpaid',
                'user_id' => auth()->user()->id,
@@ -112,9 +113,45 @@ class ContractComponent extends Component
                'unit_uuid' => $this->unit->uuid,
                'tenant_uuid' => $this->tenant->uuid,
                ]);
+
+                Bill::create([
+                'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
+                'bill' => $this->rent,
+                'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
+                  'start' => $this->start,
+                  'end' => $this->end,
+                'due_date' => Carbon::parse($this->start)->addDays(7),
+                'status' => 'unpaid',
+                'user_id' => auth()->user()->id,
+                'particular_id' => '3',
+                'property_uuid' => Session::get('property'),
+                'unit_uuid' => $this->unit->uuid,
+                'tenant_uuid' => $this->tenant->uuid,
+                ]);
+
+                Bill::create([
+                'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
+                'bill' => $this->rent,
+                'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
+                'start' => $this->start,
+                'end' => $this->end,
+                'due_date' => Carbon::parse($this->start)->addDays(7),
+                'status' => 'unpaid',
+                'user_id' => auth()->user()->id,
+                'particular_id' => '4',
+                'property_uuid' => Session::get('property'),
+                'unit_uuid' => $this->unit->uuid,
+                'tenant_uuid' => $this->tenant->uuid,
+                ]);
+
             }
 
-            DB::commit();
+            Point::create([
+            'user_id' => auth()->user()->id,
+            'point' => 5,
+            'action_id' => 1,
+            'property_uuid' => Property::get('property')
+          ]);
 
              $details =[
              'property' => Session::get('property_name'),
@@ -126,8 +163,11 @@ class ContractComponent extends Component
              'unit' => $this->unit->unit,
              ];
 
-             Mail::to($this->tenant->email)->send(new SendContractMailToTenant($details));
+            Mail::to($this->tenant->email)->send(new SendContractMailToTenant($details));
 
+            DB::commit();
+
+        
             return
             redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/bill/'.Str::random(8).'/create')->with('success','Contract has been created.');
 

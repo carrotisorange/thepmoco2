@@ -28,6 +28,7 @@ class BillController extends Controller
         ->join('users', 'bills.user_id', 'users.id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
         ->join('units', 'bills.unit_uuid', 'units.uuid')
+        ->where('bills.property_uuid', Session::get('property'))
         ->orderBy('bills.bill_no', 'asc')
         ->paginate(10);
 

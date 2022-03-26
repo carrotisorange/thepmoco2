@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Province;
 use App\Models\Country;
+use App\Models\Enrollee;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -20,9 +21,13 @@ class OwnerController extends Controller
      */
     public function index()
     {
-          $owners = Owner::join('provinces', 'owners.province_id', 'provinces.id')
-          ->join('cities', 'owners.city_id', 'cities.id')
-          ->paginate(10);
+        $owners = Enrollee::leftJoin('units', 'enrollees.unit_uuid', 'units.uuid')
+        // ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
+        ->leftJoin('owners', 'enrollees.owner_uuid', 'owners.uuid')
+        ->leftJoin('buildings', 'units.building_id','buildings.id' )
+        ->where('units.property_uuid', session('property'))
+        ->groupBy('owners.uuid')
+        ->paginate(10);
 
         return view('owners.index',[
             'owners'=>$owners

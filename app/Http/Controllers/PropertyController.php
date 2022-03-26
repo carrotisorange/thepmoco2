@@ -88,7 +88,7 @@ class PropertyController extends Controller
         UserProperty::create([
             'property_uuid' => $property_uuid,
             'user_id' => auth()->user()->id,
-            'isAccountOwner' => true
+            'is_account_owner' => true
         ]);
 
         for($i=1; $i<=5; $i++){

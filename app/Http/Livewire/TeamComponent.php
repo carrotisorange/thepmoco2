@@ -73,7 +73,7 @@ class TeamComponent extends Component
         UserProperty::create([
             'property_uuid' => Session::get('property'),
             'user_id' => $user_id,
-            'isAccountOwner' => false
+            'is_account_owner' => false
         ]);
 
         $role = Role::find($this->role_id)->role;

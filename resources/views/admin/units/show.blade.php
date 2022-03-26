@@ -214,25 +214,30 @@
                                                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
                                                             <li>
-                                                                <a href="contract/{{ $contract->uuid }}/export"
+                                                                <a href="/contract/{{ $contract->uuid }}"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Show</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/contract/{{ $contract->uuid }}/export"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export</a>
                                                             </li>
                                                             <li>
-                                                                <a href="contract/{{ $contract->uuid }}/extend"
+                                                                <a href="/contract/{{ $contract->uuid }}/transfer"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Transfer</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/contract/{{ $contract->uuid }}/extend"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Extend</a>
                                                             </li>
 
                                                         </ul>
                                                         <div class="py-1">
-                                                            <a href="contract/{{ $contract->uuid }}/moveout"
+                                                            <a href="/contract/{{ $contract->uuid }}/moveout"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                                 Moveout</a>
                                                         </div>
                                                     </div>
-                                                    {{-- <a title="show"
-                                                        href="/unit/{{ $contract->unit_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract-> }}"
-                                                        class="text-indigo-600 hover:text-indigo-900"><i
-                                                            class="fa-solid fa-2x fa-eye"></i></a> --}}
+
                                                 </td>
 
                                             </tr>
@@ -246,7 +251,7 @@
 
                                 </div>
 
-                                <hr>
+
                                 <br>
                                 <span>{{ Str::plural('Enrollee', $enrollees->count())}} ({{ $enrollees->count()
                                     }})</span>
@@ -336,6 +341,87 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <i class="fa-solid fa-down"></i>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                        @empty
+                                        <span>No owners found!</span>
+
+                                        @endforelse
+                                    </table>
+
+                                </div>
+
+                                <br>
+                                <span>{{ Str::plural('Bill', $bills->count())}} ({{ $bills->count()
+                                    }})</span>
+                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <?php $ctr =1; ?>
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    #</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Tenant</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Bill No</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Reference No</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Particular</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Bill</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Status</th>
+
+                                            </tr>
+                                        </thead>
+                                        @forelse ($bills as $bill)
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $ctr++ }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $bill->tenant}}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $bill->bill_no}}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $bill->reference_no}}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $bill->particular}}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ number_format($bill->bill, 2) }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    @if($bill->bill_status === 'paid')
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        {{ $bill->bill_status }}
+                                                    </span>
+                                                    @else
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                        {{ $bill->bill_status }}
+                                                    </span>
+                                                    @endif
                                                 </td>
 
                                             </tr>

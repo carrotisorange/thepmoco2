@@ -136,6 +136,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
 
+    Route::get('/profile/{username:username}/point',[PointController::class, 'index'])->name('point');
+
     Route::post('/particular/{random_str}/store', [ParticularController::class, 'store']);
     Route::get('/particular/{random_str}/create', [ParticularController::class, 'create']);
 
@@ -148,4 +150,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/contract/{contract}/extend', [ExtendContractController::class, 'create']);
 
     Route::get('/contract/{contract}/extend', [ExportContractController::class, 'create']);
+
+    Route::get('/contract/{contract}/transfer', [TransferContractController::class, 'create']);
+
 });

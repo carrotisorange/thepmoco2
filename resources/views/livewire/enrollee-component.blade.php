@@ -79,12 +79,12 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="w-full md:w-1/4 px-3">
+                            {{-- <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Interaction
                                 </label>
-                                <select wire:model="interaction"
+                                <select 
                                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="grid-state" name="interaction">
 
@@ -109,7 +109,7 @@
                                 @error('interaction')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
                                 <x-label for="contract"

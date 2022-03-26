@@ -82,9 +82,9 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/tenant/{{ $tenant->uuid }}">
+                                                           
                                                                 <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $tenant->photo_id }}" alt=""></a>
+                                                                    src="/storage/{{ $tenant->photo_id }}" alt="">
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
@@ -112,7 +112,35 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $tenant->created_at->diffForHumans() }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                    <button id="dropdownDividerButton"
+                                                        data-dropdown-toggle="dropdownDivider"
+                                                        class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-small rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
+                                                        type="button">Select your action <svg class="ml-2 w-4 h-4"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                        </svg></button>
+
+                                                    <div id="dropdownDivider"
+                                                        class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                                            <li>
+                                                                <a href="/tenant/{{ $tenant->uuid }}/"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Show</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="contract/{{ $tenant->uuid }}/extend"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Extend</a>
+                                                            </li>
+
+                                                        </ul>
+                                                        <div class="py-1">
+                                                            <a href="contract/{{ $tenant->uuid }}/moveout"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                Moveout</a>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
 

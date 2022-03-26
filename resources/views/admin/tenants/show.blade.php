@@ -35,22 +35,17 @@
                         </svg></x-button>
 
                     <!-- Dropdown menu -->
-                    {{-- <div id="dropdown"
+                    <div id="dropdown"
                         class="hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/create"
+                                <a href="/unit/{{ $tenant->uuid }}/tenant/{{ Str::random(10) }}/create"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tenant
                                     Contract</a>
                             </li>
-                            <li>
-                                <a href="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/create"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Owner
-                                    Enrollment</a>
-                            </li>
 
                         </ul>
-                    </div> --}}
+                    </div>
                 </h5>
 
             </div>

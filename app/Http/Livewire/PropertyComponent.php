@@ -69,10 +69,10 @@ class PropertyComponent extends Component
         UserProperty::create([
         'property_uuid' => $property_uuid,
         'user_id' => auth()->user()->id,
-        'isAccountOwner' => true
+        'is_account_owner' => true
         ]);
 
-        for($i=1; $i<=5; $i++){ 
+        for($i=1; $i<=6; $i++){ 
             PropertyParticular::create([ 'property_uuid'=> $property_uuid,
             'particular_id'=> $i,
             'minimum_charge' => 0.00,
@@ -88,13 +88,6 @@ class PropertyComponent extends Component
                'role_id'=> $i,
             ]);
         }
-
-        for($i = 1;$i<=5;$i++) { PropertyParticular::create(
-            [ 
-              'particular_id'=> $i, 
-              'property_uuid' => $property_uuid,
-            ]);
-         }
 
         DB::commit();
          return redirect('/properties')->with('success', 'Property has been created.');

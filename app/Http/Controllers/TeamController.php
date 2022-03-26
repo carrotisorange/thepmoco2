@@ -91,7 +91,7 @@ class TeamController extends Controller
         UserProperty::create([
             'property_uuid' => Session::get('property'),
             'user_id' => $user_id,
-            'isAccountOwner' => false
+            'is_account_owner' => false
         ]);
 
         return redirect('/property/'.Session::get('property').'/team')->with('success', 'A new member has been created

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\SendContractMailToOwner;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Enrollee;
@@ -9,6 +10,8 @@ use App\Models\Unit;
 use Illuminate\Support\Str;
 use DB;
 use Carbon\Carbon;
+use App\Models\Point;
+use App\Models\Property;
 
 class EnrolleeComponent extends Component
 {
@@ -70,10 +73,31 @@ class EnrolleeComponent extends Component
     Enrollee::create($validatedData);
 
     Unit::where('uuid', $this->unit->uuid)->update([
-        'is_enrolled' => 1
+        'is_enrolled' => 1,
+        'rent' => $this->rent,
     ]);
 
+    Point::create([
+    'user_id' => auth()->user()->id,
+    'point' => 5,
+    'action_id' => 2,
+    'property_uuid' => Property::get('property')
+    ]);
+
+    //  $details =[
+    //  'property' => Session::get('property_name'),
+    //  'tenant' => $this->tenant->tenant,
+    //  'body' => 'Please be informed of the following details of your contract:',
+    //  'start' => Carbon::parse($this->start)->format('M d, Y'),
+    //  'end' => Carbon::parse($this->end)->format('M d, Y'),
+    //  'rent' => $this->rent,
+    //  'unit' => $this->unit->unit,
+    //  ];
+
+    //  Mail::to($this->owner->email)->send(new SendContractMailToOwner($details));
+
     DB::commit();
+
 
     return
     redirect('/unit/'.$this->unit->uuid)->with('success','Contract has been created.');

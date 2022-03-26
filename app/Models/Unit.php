@@ -71,6 +71,10 @@ class Unit extends Model
         return $this->hasMany(Enrollee::class);
     }
 
+     public function bills()
+     {
+     return $this->hasMany(Bill::class);
+     }
     // public function scopeSearch($term, $query)
     // {
     //     $term = "%$term%";

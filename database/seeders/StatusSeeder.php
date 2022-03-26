@@ -31,11 +31,8 @@ class StatusSeeder extends Seeder
         ]);
 
         Status::create([
-        'status' => 'blocked'
+        'status' => 'under maintenance'
         ]);
 
-        Status::create([
-        'status' => 'pending'
-        ]);
     }
 }

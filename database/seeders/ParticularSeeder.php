@@ -23,6 +23,14 @@ class ParticularSeeder extends Seeder
         ]);
 
         Particular::create([
+         'particular' => 'Security Deposit (Rent)',
+        ]);
+
+        Particular::create([
+          'particular' => 'Security Deposit (Utilities)',
+        ]);
+
+        Particular::create([
          'particular' => 'Water',
         ]);
 

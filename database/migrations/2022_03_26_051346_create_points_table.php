@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserPropertiesTable extends Migration
+class CreatePointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateUserPropertiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_properties', function (Blueprint $table) {
+        Schema::create('points', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('property_uuid')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->string('is_account_owner');
+            $table->foreignId('user_id');
+            $table->double('point');
+            $table->foreignId('action_id');
+            $table->foreignUuid('property_uuid');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateUserPropertiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_properties');
+        Schema::dropIfExists('points');
     }
 }
