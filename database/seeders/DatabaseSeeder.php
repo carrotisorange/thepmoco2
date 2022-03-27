@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             PropertySeeder::class,
             UnitSeeder::class,
             TenantSeeder::class,
+            RelationshipSeeder::class,
             GuardianSeeder::class,
             ReferenceSeeder::class,
             BarangaySeeder::class,
@@ -46,6 +47,7 @@ class DatabaseSeeder extends Seeder
             CollectionSeeder::class,
             PropertyRoleSeeder::class,
             ActionSeeder::class,
+           
         ]);
     }
 }

@@ -27,7 +27,7 @@
                     {{--<x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
                         Add Contract</x-button> --}}
-                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button">Create <svg
+                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button">Add <svg
                             class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -41,14 +41,14 @@
                             <li>
                                 <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/create"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tenant
-                                    Contract</a>
+                                </a>
                             </li>
                             <li>
                                 <a href="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/create"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Owner
-                                    Enrollment</a>
+                                    </a>
                             </li>
-
+                            
                         </ul>
                     </div>
                 </h5>

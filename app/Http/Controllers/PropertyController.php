@@ -161,6 +161,9 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
+         session(['property' => $property->uuid]);
+         session(['property_name' => $property->property]);
+         
         return view('properties.edit',[
             'property' => $property,
             'types' => Type::all(),
@@ -178,14 +181,26 @@ class PropertyController extends Controller
     {
         $attributes = request()->validate([
         'property' => ['required', 'string', 'max:255'],
-        'description' => ['required'],
+        'description' => ['nullable'],
         'type_id' => ['required', Rule::exists('types', 'id')],
         'thumbnail' => 'image',
+        'tenant_contract' => 'nullable|mimes:pdf',
+        'owner_contract' => 'nullable|mimes:pdf',
         ]);
 
         if(isset($attributes['thumbnail']))
         {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        }
+
+        if(isset($attributes['tenant_contract']))
+        {
+            $attributes['tenant_contract'] = request()->file('tenant_contract')->store('tenant_contracts');
+        }
+        
+        if(isset($attributes['owner_contract']))
+        {
+        $attributes['owner_contract'] = request()->file('owner_contract')->store('owner_contracts');
         }
 
         $property->update($attributes);
@@ -206,4 +221,18 @@ class PropertyController extends Controller
 
         return back()->with('success','Property has been removed.');
     }
+
+    public function show_tenant_contract($uuid)
+    {
+        return view('properties.show-tenant-contract',[
+            'property' => Property::find($uuid),
+        ]);
+    }
+
+     public function show_owner_contract($uuid)
+     {
+        return view('properties.show-owner-contract',[
+            'property' => Property::find($uuid),
+        ]);
+     }
 }

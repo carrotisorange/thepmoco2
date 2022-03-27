@@ -50,6 +50,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::patch('update',[PropertyController::class, 'update']);
     Route::get('delete', [PropertyController::class, 'destroy']);
 
+    //show contracts
+    Route::get('/tenant_contract', [PropertyController::class, 'show_tenant_contract']);
+    Route::get('/owner_contract', [PropertyController::class, 'show_owner_contract']);
+
     Route::get('roles', [PropertyRoleController::class, 'index']);
 
     Route::get('/team/{random_str}/create', [TeamController::class, 'create']);

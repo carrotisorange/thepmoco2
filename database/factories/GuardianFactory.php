@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use App\Models\Tenant;
+use App\Models\Relationship;
 
 class GuardianFactory extends Factory
 {
@@ -18,7 +17,7 @@ class GuardianFactory extends Factory
     {
         return [
             'guardian' => $this->faker->name(),
-            'relationship' => Arr::random(['parent', 'sibling', 'friend', 'child']),
+            'relationship_id' => Relationship::all()->random()->id,
             'mobile_number' => $this->faker->unique()->numerify('###########'),
             'tenant_uuid' => Tenant::all()->random()->uuid
         ];

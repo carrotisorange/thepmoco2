@@ -11,9 +11,6 @@
                                         class="text-blue-600 hover:text-blue-700">{{
                                         Session::get('property_name') }}</a>
                                 </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/units"
-                                        class="text-blue-600 hover:text-blue-700">Units</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
@@ -21,11 +18,8 @@
                                         }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/tenants"
-                                        class="text-blue-600 hover:text-blue-700">Tenants</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Create</li>
+                                <li class="text-gray-500">Tenant</li>
+                             
                             </ol>
                         </nav>
                     </h2>
@@ -38,6 +32,6 @@
         </h2>
     </x-slot>
 
-   @livewire('tenant-component', ['unit' => $unit])
+    @livewire('tenant-component', ['unit' => $unit])
 
 </x-app-layout>

@@ -24,7 +24,7 @@
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/properties'">Back
                     </x-button>
-                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property 
+                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property
                     </x-button>
                     {{-- <x-button form="edit-form">Save</x-button> --}}
                 </h5>
@@ -33,17 +33,16 @@
         </h2>
     </x-slot>
     <div class="py-12">
-        <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <!-- This example requires Tailwind CSS v2.0+ -->
-                    <!-- Name -->
+
                     <div>
                         <form action="/property/{{ $property->uuid }}/update" method="POST" id="edit-form"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
-                            <div>
+                            <div class="mx-5">
                                 <x-label for="property" :value="__('Property')" />
 
                                 <x-input form="edit-form" class="block mt-1 w-full" type="text" name="property"
@@ -54,7 +53,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mt-5">
+                            <div class="mt-5 mx-5">
                                 <x-label for="type" :value="__('Description')" />
 
                                 <textarea
@@ -67,7 +66,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mt-5">
+                            <div class="mt-5 mx-5">
                                 <x-label for="type_id" :value="__('Type')" />
 
                                 <select form="edit-form"
@@ -84,7 +83,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mt-5 flex">
+                            <div class="mt-5 flex mx-5">
                                 <div class="flex-3">
                                     <x-label for="thumbnail" :value="__('Thumbnail')" />
 
@@ -98,6 +97,50 @@
                                 <div class="mt-6">
                                     <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $property->thumbnail }}"
                                         alt="">
+                                </div>
+                            </div>
+                            <div class="mt-5 flex mx-5">
+                                <div class="flex-3">
+                                    <x-label for="tenant_contract" :value="__('Tenant Contract (Please only upload a PDF file.)')" />
+
+                                    <x-input form="edit-form" id="tenant_contract" class="block mt-1 w-full" type="file"
+                                        name="tenant_contract"
+                                        value="{{old('tenant_contract', $property->tenant_contract)}}" autofocus />
+
+                                    @error('tenant_contract')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="mt-5 mx-5">
+                                    @if($property->tenant_contract)
+                                    <a target="_blank" class="text-blue"
+                                        href="/property/{{ Session::get('property') }}/tenant_contract">Click here to
+                                        view the contract</a>
+                                    @else
+                                    <span>No contract is uploaded.</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="mt-5 flex mx-5">
+                                <div class="flex-3">
+                                    <x-label for="owner_contract" :value="__('Owner Contract (Please only upload a PDF file.)')" />
+
+                                    <x-input form="edit-form" id="owner_contract" class="block mt-1 w-full" type="file"
+                                        name="owner_contract"
+                                        value="{{old('owner_contract', $property->owner_contract)}}" autofocus />
+
+                                    @error('owner_contract')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="mt-6">
+                                    @if($property->owner_contract)
+                                    <a target="_blank" class="text-blue"
+                                        href="/property/{{ Session::get('property') }}/owner_contract">Click here to
+                                        view the contract</a>
+                                    @else
+                                    <span>No contract is uploaded.</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="mt-5">

@@ -11,9 +11,6 @@
                                         class="text-blue-600 hover:text-blue-700">{{
                                         Session::get('property_name') }}</a>
                                 </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/units"
-                                        class="text-blue-600 hover:text-blue-700">Units</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
@@ -21,31 +18,27 @@
                                         }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/tenants"
-                                        class="text-blue-600 hover:text-blue-700">Tenants</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/tenant/{{ $tenant->uuid }}"
-                                        class="text-blue-600 hover:text-blue-700">{{ $tenant->tenant }}</a>
+                                <li><a href="/tenant/{{ $tenant->uuid }}" class="text-blue-600 hover:text-blue-700">{{
+                                        $tenant->tenant
+                                        }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Guardian</li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Create</li>
+
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                   @if ($guardians->count())
+                    @if ($guardians->count())
                     <x-button wire:submit.prevent="submitForm"
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(8) }}/create'">
                         Save</x-button>
-                   @else
-                   <x-button wire:submit.prevent="submitForm"
+                    @else
+                    <x-button wire:submit.prevent="submitForm"
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(8) }}/create'">
                         Skip</x-button>
-                   @endif
+                    @endif
                 </h5>
 
             </div>
@@ -59,7 +52,7 @@
                     @livewire('guardian-component', ['unit' => $unit, 'tenant' => $tenant, 'guardians' => $guardians])
 
                     @if (!$guardians->count())
-                    <span class="text-center text-red">No guardians found!</span>
+                   
                     @else
                     <span>Guardians ({{ $guardians->count() }}) </span>
 
@@ -68,7 +61,8 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         #</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -117,10 +111,8 @@
                             </tbody>
                             @endforeach
                         </table>
-
                     </div>
                     @endif
-
                 </div>
             </div>
         </div>

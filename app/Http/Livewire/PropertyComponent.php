@@ -29,6 +29,8 @@ class PropertyComponent extends Component
      public $type_id;
      public $thumbnail;
      public $description;
+     public $tenant_contract;
+     public $owner_contract;
 
      protected function rules()
      {
@@ -36,6 +38,8 @@ class PropertyComponent extends Component
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
             'thumbnail' => 'nullable|image',
+            'tenant_contract' => 'nullable|mimes:pdf',
+            'owner_contract' => 'nullable|mimes:pdf',
             'description' => 'nullable',
         ];
      }
@@ -60,6 +64,14 @@ class PropertyComponent extends Component
              $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
          }else{
              $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
+         }
+
+         if($this->tenant_contract){
+            $validatedData['tenant_contract'] = $this->tenant_contract->store('tenant_contracts');
+         }
+
+         if($this->owner_contract){
+            $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
          }
 
         DB::beginTransaction();

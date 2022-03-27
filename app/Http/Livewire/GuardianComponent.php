@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 use App\Models\Guardian;
+use App\Models\Relationship;
 use Illuminate\Support\Str;
 
 use Livewire\Component;
@@ -30,7 +31,7 @@ class GuardianComponent extends Component
         'guardian' => 'required',
         'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
         'mobile_number' => 'required|integer|min:11',
-        'relationship' => 'required',
+        'relationship_id' => 'required',
         ];
     }
 
@@ -59,11 +60,13 @@ class GuardianComponent extends Component
          $this->guardian='';
          $this->email='';
          $this->mobile_number='';
-         $this->relationship='';
+         $this->relationship_id='';
      }
 
     public function render()
     {
-        return view('livewire.guardian-component');
+        return view('livewire.guardian-component',[
+            'relationships' => Relationship::all()
+        ]);
     }
 }

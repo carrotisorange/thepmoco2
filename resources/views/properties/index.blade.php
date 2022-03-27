@@ -75,18 +75,18 @@
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Property</th>
-                                                        <th scope="col"
+                                                        {{-- <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Description</th>
+                                                            Description</th> --}}
                                                         {{-- <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Team</th> --}}
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Units</th>
+                                                            # of Units</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Tenants</th>
+                                                            # of Tenants</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Status</th>
@@ -124,8 +124,8 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            substr($property->description, 0, 25) }}...</td>
+                                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                            substr($property->description, 0, 25) }}...</td> --}}
                                                         {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             number_format($property->teams_count,0) }}</td> --}}
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
@@ -136,7 +136,7 @@
                                                             @if($property->property_status === 'active')
                                                             <span
                                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                                <i class="fa-solid fa-circle-check"></i> {{ $property->property_status }}
+                                                                {{ $property->property_status }}
                                                             </span>
                                                             @endif
                                                         </td>

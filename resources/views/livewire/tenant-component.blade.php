@@ -2,15 +2,13 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class=" overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-                <!-- This example requires Tailwind CSS v2.0+ -->
-                <!-- Name -->
                 <div>
-
+              
                     <form method="POST" wire:submit.prevent="submitForm"
                         action="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/store" class="w-full"
                         id="create-form">
                         @csrf
-                        <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="flex flex-wrap mx-3 mb-6">
                             <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                                 <x-label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-first-name">
@@ -27,7 +25,7 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-wrap -mx-3 mb-2">
+                        <div class="flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
@@ -61,7 +59,7 @@
 
                         </div>
 
-                        <div class="mt-6 flex flex-wrap -mx-3 mb-2">
+                        <div class="mt-6 flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
@@ -148,7 +146,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-6 flex flex-wrap mt-5 -mx-3 mb-2">
+                        <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
                             <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-state">
@@ -236,7 +234,7 @@
 
                         </div>
 
-                        <div class="mt-6 flex flex-wrap mt-5 -mx-3 mb-2">
+                        <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
                             <div class="w-full px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-state">

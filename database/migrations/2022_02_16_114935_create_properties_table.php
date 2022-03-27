@@ -20,6 +20,8 @@ class CreatePropertiesTable extends Migration
             $table->string('status');
             $table->string('thumbnail');
             $table->foreignId('type_id')->constrained();
+            $table->string('tenant_contract')->nullable();
+            $table->string('owner_contract')->nullable();
             $table->timestamps();
         });
     }

@@ -52,7 +52,7 @@ class TenantComponent extends Component
             'province_id' => ['required', Rule::exists('provinces', 'id')],
             'city_id' => ['required', Rule::exists('cities', 'id')],
             'barangay_id' => ['required', Rule::exists('barangays', 'id')],
-            'photo_id' => 'required|image'
+            'photo_id' => 'nullable|image'
             ];
     }
 
@@ -68,7 +68,14 @@ class TenantComponent extends Component
         $validatedData = $this->validate();
 
         $validatedData['uuid'] = Str::uuid();
-        $validatedData['photo_id'] = $this->photo_id->store('tenants');
+        if($this->photo_id)
+        {
+            $validatedData['photo_id'] = $this->photo_id->store('tenants');
+        }else
+        {
+            $validatedData['photo_id'] = 'avatars/avatar.png';
+        }
+
         $validatedData['property_uuid'] = Session::get('property');
 
        try{

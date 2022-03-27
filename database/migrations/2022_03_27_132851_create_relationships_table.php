@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGuardiansTable extends Migration
+class CreateRelationshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateGuardiansTable extends Migration
      */
     public function up()
     {
-        Schema::create('guardians', function (Blueprint $table) {
+        Schema::create('relationships', function (Blueprint $table) {
             $table->id();
-            $table->string('guardian');
-            $table->string('mobile_number');
-            $table->string('email')->nullable();
-            $table->foreignId('relationship_id');
-            $table->foreignUuid('tenant_uuid')->constrained();
+            $table->string('relationship');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateGuardiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guardians');
+        Schema::dropIfExists('relationships');
     }
 }
