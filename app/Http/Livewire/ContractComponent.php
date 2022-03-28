@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\SendContractMailToTenant;
+use App\Mail\SendContractToTenant;
 use App\Models\Contract;
 use App\Models\Unit;
 use Illuminate\Support\Str;
@@ -15,6 +15,7 @@ use App\Models\Property;
 use Carbon\Carbon;
 use Session;
 use App\Models\Point;
+
 
 class ContractComponent extends Component
 {
@@ -154,19 +155,16 @@ class ContractComponent extends Component
           ]);
 
              $details =[
-             'property' => Session::get('property_name'),
              'tenant' => $this->tenant->tenant,
-             'body' => 'Please be informed of the following details of your contract:',
              'start' => Carbon::parse($this->start)->format('M d, Y'),
              'end' => Carbon::parse($this->end)->format('M d, Y'),
              'rent' => $this->rent,
              'unit' => $this->unit->unit,
              ];
 
-            Mail::to($this->tenant->email)->send(new SendContractMailToTenant($details));
+            Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
 
             DB::commit();
-
         
             return
             redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/bill/'.Str::random(8).'/create')->with('success','Contract has been created.');

@@ -39,16 +39,23 @@
                         class="hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/create"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tenant
+                                <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/new_create"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">New
+                                    Tenant
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/old_create"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Old
+                                    Tenant
                                 </a>
                             </li>
                             <li>
                                 <a href="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/create"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Owner
-                                    </a>
+                                </a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </h5>

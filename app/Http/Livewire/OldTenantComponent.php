@@ -2,23 +2,24 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\WelcomeMailToTenant;
+use App\Mail\WelcomeMailToNewTenant;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Tenant;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\UserProperty;
 use Livewire\WithFileUploads;
 use DB;
+use Illuminate\Validation\Rule;
 use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\Barangay;
 use Session;
 
-class TenantComponent extends Component
+class OldTenantComponent extends Component
 {
     use WithFileUploads;
 
@@ -49,14 +50,14 @@ class TenantComponent extends Component
             'tenant' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
             'mobile_number' => 'required',
-            // 'type' => 'required',
-            // 'gender' => 'required',
-            // 'civil_status' => 'required',
-            // 'country_id' => ['required', Rule::exists('countries', 'id')],
-            // 'province_id' => ['required', Rule::exists('provinces', 'id')],
-            // 'city_id' => ['required', Rule::exists('cities', 'id')],
-            // 'barangay_id' => ['required', Rule::exists('barangays', 'id')],
-            // 'photo_id' => 'nullable|image'
+            'type' => 'required',
+            'gender' => 'required',
+            'civil_status' => 'required',
+            'country_id' => ['required', Rule::exists('countries', 'id')],
+            'province_id' => ['required', Rule::exists('provinces', 'id')],
+            'city_id' => ['required', Rule::exists('cities', 'id')],
+            'barangay_id' => ['required', Rule::exists('barangays', 'id')],
+            'photo_id' => 'nullable|image'
             ];
     }
 
@@ -82,32 +83,32 @@ class TenantComponent extends Component
 
         $validatedData['property_uuid'] = Session::get('property');
 
-        $user = User::create([
-            'email' => $this->email,
-            'name' => $this->tenant,
-            'username' => Str::random(8),
-            'mobile_number' => $this->mobile_number,
-            'role_id' => '7',
-            'password' => $this->mobile_number,
-            'avatar' => 'avatars/avatar.png',
-            'account_owner_id' => auth()->user()->id,
-            'status' => 'pending',
-            'email_verified_at' => now(),
-        ]);
+        // $user = User::create([
+        //     'email' => $this->email,
+        //     'name' => $this->tenant,
+        //     'username' => Str::random(8),
+        //     'mobile_number' => $this->mobile_number,
+        //     'role_id' => '7',
+        //     'password' => Hash::make($this->mobile_number),
+        //     'avatar' => 'avatars/avatar.png',
+        //     'account_owner_id' => auth()->user()->id,
+        //     'status' => 'pending',
+        //     'email_verified_at' => now(),
+        // ]);
 
-        UserProperty::create([
-          'property_uuid' => Session::get('property'),
-          'user_id' => $user->id,
-          'is_account_owner' => false
-        ]);
+        // UserProperty::create([
+        //   'property_uuid' => Session::get('property'),
+        //   'user_id' => $user->id,
+        //   'is_account_owner' => false
+        // ]);
 
-         $details =[
-         'name' => $this->tenant,
-         'email' => $this->email,
-         'username' => $user->username
-         ];
+        //  $details =[
+        //  'name' => $this->tenant,
+        //  'email' => $this->email,
+        //  'username' => $user->username
+        //  ];
 
-         Mail::to($this->email)->send(new WelcomeMailToTenant($details));
+        //  Mail::to($this->email)->send(new WelcomeMailToNewTenant($details));
 
        try{
             DB::beginTransaction();
@@ -125,7 +126,7 @@ class TenantComponent extends Component
 
     public function render()
     {
-        return view('livewire.tenant-component',[
+        return view('livewire.old-tenant-component',[
             'countries' => Country::all(),
             'provinces' => Province::all(),
             'cities' => City::all(),

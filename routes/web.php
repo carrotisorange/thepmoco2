@@ -29,7 +29,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('units', [UnitController::class, 'index'])->name('units');
    
-    Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
+    Route::get('tenants', [NewTenantController::class, 'index'])->name('tenants');
     
     Route::get('owners', [OwnerController::class, 'index'])->name('owners');
 
@@ -102,7 +102,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Creating tenant contract
     //1
-    Route::get('unit/{unit}/tenant/{random_str}/create', [TenantController::class, 'create']);
+    Route::get('unit/{unit}/tenant/{random_str}/new_create', NewTenantController::class);
+    Route::get('unit/{unit}/tenant/{random_str}/old_create', OldTenantController::class);
     Route::post('unit/{unit}/tenant/{random_str}/store', [TenantController::class, 'store']);
     //2
     Route::get('unit/{unit}/tenant/{tenant}/guardian/{random_str}/create', [GuardianController::class, 'create']);

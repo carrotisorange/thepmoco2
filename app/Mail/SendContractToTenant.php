@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Session;
 
-class WelcomeMailToMember extends Mailable
+class SendContractToTenant extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,7 +33,7 @@ class WelcomeMailToMember extends Mailable
     {
         return $this->subject(Session::get('property_name'))
                     ->from(auth()->user()->email)
-                    ->markdown('emails.welcomemailtomember', [
+                    ->markdown('emails.sendcontracttotenant', [
                         'url' => 'https://www.thepropertymanager.online/login',
                     ]);
     }

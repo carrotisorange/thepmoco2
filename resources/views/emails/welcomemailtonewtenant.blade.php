@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hi, {{ $details['name'] }}!
+# Hi {{ $details['name'] }}!
 
 Please press the continue button below to continue with the move-in process and use the credentails found below:
 <br>

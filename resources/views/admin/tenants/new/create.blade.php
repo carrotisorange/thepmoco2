@@ -32,6 +32,6 @@
         </h2>
     </x-slot>
 
-    @livewire('tenant-component', ['unit' => $unit])
+    @livewire('new-tenant-component', ['unit' => $unit])
 
 </x-app-layout>

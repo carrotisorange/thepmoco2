@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class TenantComponentTest extends TestCase
+class NewTenantComponentTest extends TestCase
 {
     public function tenant_page_contains_tenant_livewire_component()
     {
