@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\Guardian;
 use App\Models\Relationship;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 use Livewire\Component;
 
@@ -31,7 +32,7 @@ class GuardianComponent extends Component
         'guardian' => 'required',
         'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
         'mobile_number' => 'required|integer|min:11',
-        'relationship_id' => 'required',
+        'relationship_id' => ['required', Rule::exists('relationships', 'id')],
         ];
     }
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Representative;
+use App\Models\DeedOfSale;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 use App\Models\Owner;
 
-class RepresentativeController extends Controller
+class DeedOfSaleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,18 +26,10 @@ class RepresentativeController extends Controller
      */
     public function create(Unit $unit, Owner $owner)
     {
-        $representatives = Representative::join('owners', 'representatives.owner_uuid', 'owners.uuid')
-        ->select('*', 'representatives.id as representative_id')
-        ->join('relationships', 'representatives.relationship_id', 'relationships.id')
-        ->where('owners.uuid', $owner->uuid)
-        ->groupBy('representatives.id')
-        ->get();
-    
-         return view('representatives.create',[
+        return view('sales.create',[
             'unit' => $unit,
-            'owner' => $owner,
-            'representatives' => $representatives,
-         ]);
+            'owner' => $owner
+        ]);
     }
 
     /**
@@ -54,10 +46,10 @@ class RepresentativeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Representative  $representative
+     * @param  \App\Models\DeedOfSale  $deedOfSale
      * @return \Illuminate\Http\Response
      */
-    public function show(Representative $representative)
+    public function show(DeedOfSale $deedOfSale)
     {
         //
     }
@@ -65,10 +57,10 @@ class RepresentativeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Representative  $representative
+     * @param  \App\Models\DeedOfSale  $deedOfSale
      * @return \Illuminate\Http\Response
      */
-    public function edit(Representative $representative)
+    public function edit(DeedOfSale $deedOfSale)
     {
         //
     }
@@ -77,10 +69,10 @@ class RepresentativeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Representative  $representative
+     * @param  \App\Models\DeedOfSale  $deedOfSale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Representative $representative)
+    public function update(Request $request, DeedOfSale $deedOfSale)
     {
         //
     }
@@ -88,14 +80,11 @@ class RepresentativeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Representative  $representative
+     * @param  \App\Models\DeedOfSale  $deedOfSale
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeedOfSale $deedOfSale)
     {
-        $guardian = Representative::where('id', $id);
-        $guardian->delete();
-
-        return back()->with('success', 'Representative has been removed.');
+        //
     }
 }

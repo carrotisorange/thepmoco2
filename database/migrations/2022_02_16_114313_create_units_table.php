@@ -26,7 +26,7 @@ class CreateUnitsTable extends Migration
             $table->string('batch_no');
             $table->boolean('is_enrolled');
             $table->double('discount', 15, 2);
-            $table->string('dimensions');
+            $table->double('size');
             $table->integer('occupancy');
             $table->string('thumbnail');
             $table->timestamps();

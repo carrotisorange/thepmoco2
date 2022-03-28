@@ -104,18 +104,19 @@
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                     <tr>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                           <b>{{ $ctr++ }}</b>
+                                                            <b>{{ $ctr++ }}</b>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="flex items-center">
                                                                 <div class="flex-shrink-0 h-10 w-10">
                                                                     <a href="/property/{{ $property->uuid }}">
-                                                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $property->thumbnail }}"></a>
+                                                                        <img class="h-10 w-10 rounded-full"
+                                                                            src="/storage/{{ $property->thumbnail }}"></a>
                                                                 </div>
                                                                 <div class="ml-4">
                                                                     <div class="text-sm font-medium text-gray-900">
-                                                                       <b>{{
-                                                                    $property->property }}</b>
+                                                                        <b>{{
+                                                                            $property->property }}</b>
                                                                     </div>
                                                                     <div class="text-sm text-gray-500">{{
                                                                         $property->property_type
@@ -124,9 +125,11 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                        {{-- <td
+                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             substr($property->description, 0, 25) }}...</td> --}}
-                                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                        {{-- <td
+                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             number_format($property->teams_count,0) }}</td> --}}
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             number_format($property->units_count,0) }}</td>
@@ -136,6 +139,11 @@
                                                             @if($property->property_status === 'active')
                                                             <span
                                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                {{ $property->property_status }}
+                                                            </span>
+                                                            @else
+                                                            <span
+                                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                                 {{ $property->property_status }}
                                                             </span>
                                                             @endif
@@ -153,7 +161,6 @@
                                                                 href="/property/{{ $property->property_uuid }}/edit"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
                                                                     class="fa-solid fa-2x fa-pen-to-square"></i></a>&nbsp;&nbsp;&nbsp;
-
 
                                                             <a title="remove"
                                                                 href="/property/{{ $property->property_uuid }}/delete"

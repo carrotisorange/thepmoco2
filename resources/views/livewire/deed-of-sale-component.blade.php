@@ -4,82 +4,97 @@
             <div class="p-6 bg-white border-b border-gray-200">
                 <div>
                     <form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data"
-                        action="/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/enrollee/{{ Str::random(8) }}/store"
+                        action="/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/sale/{{ Str::random(8) }}/store"
                         class="w-full" id="create-form">
                         @csrf
                         <div class="flex flex-wrap mx-3 mb-6">
 
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
-                                    Start
+                                    for="turnover_at">
+                                    Date of turnover
                                 </label>
-                                <input wire:model="start"
+                                <input wire:model="turnover_at"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="date" value="{{ old('start', $start)}}" name="start">
+                                    id="turnover_at" type="date" value="{{ old('start')}}" name="turnover_at">
 
-                                @error('start')
+                                @error('turnover_at')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
-                                    End
+                                    for="classification">
+                                    Classification
                                 </label>
-                                <input wire:model="end"
-                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="date" name="end" value="{{ old('end', $end )}}">
+                                <select wire:model="classification"
+                                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="classification" name="classification">
 
-                                @error('end')
+                                    <option value="">Select one</option>
+                                    <option value="regular" {{ old('classification')=='regular' ? 'selected'
+                                        : 'Select one' }}>
+                                        {{
+                                        'regular' }}</option>
+                                    <option value="vip" {{ old('classification')=='vip' ? 'selected' : 'Select one' }}>
+                                        {{
+                                        'vip' }}</option>
+                                    <option value="vvip" {{ old('classification')=='vvip' ? 'selected' : 'Select one'
+                                        }}>
+                                        {{
+                                        'vvip' }}</option>
+                                </select>
+
+                                @error('classification')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
 
                         </div>
 
+                        <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
+
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="price">
+                                    Price
+                                </label>
+                                <input wire:model="price"
+                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="price" value="{{ old('price') }}" type="number" step="0.001" name="price">
+
+                                @error('price')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="status">
+                                    Status
+                                </label>
+                                <select wire:model="status"
+                                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="status" name="status">
+                                    <option value="">Select one</option>
+                                    <option value="active" {{ old('status')=='active' ? 'selected' : 'Select one' }}>
+                                        {{
+                                        'active' }}</option>
+                                    <option value="inactive" {{ old('status')=='inactive' ? 'selected' : 'Select one'
+                                        }}>
+                                        {{
+                                        'inactive' }}</option>
+                                </select>
+
+                                @error('status')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+
+                        </div>
+
                         <div class="flex flex-wrap mx-3 mb-6">
-
-                            <div class="w-full md:w-1/2 px-3">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
-                                    Term
-                                </label>
-                                <input
-                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" value="{{ old('term', (floor($term/30))) }} months" type="text"
-                                    name="term">
-                            </div>
-
-                            <div class="w-full md:w-1/4 px-3">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
-                                    Rent
-                                </label>
-                                <input wire:model="rent"
-                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="number" value="{{ old('rent',$rent) }}" name="rent">
-
-                                @error('rent')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="w-full md:w-1/4 px-3">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
-                                    Discount
-                                </label>
-                                <input wire:model="discount"
-                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="number" value="{{ old('discount', $discount) }}"
-                                    name="discount">
-
-                                @error('discount')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
                             <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
                                 <x-label for="contract"
                                     :value="__('Contract (Please attached the signed contract here.)')" />
@@ -92,9 +107,8 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
-
                         </div>
+
                         <div class="mt-5">
                             <p class="text-right">
                                 <x-button form="create-form">

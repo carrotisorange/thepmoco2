@@ -9,8 +9,6 @@ use App\Models\Property;
 use App\Models\UserProperty;
 use App\Models\PropertyParticular;
 use App\Models\PropertyRole;
-use Session;
-
 
 use Livewire\Component;
 
@@ -110,14 +108,6 @@ class PropertyComponent extends Component
         }
 
        
-     }
-
-     public function resetForm()
-     {
-        $this->property='';
-        $this->type_id='';
-        $this->thumbnail='';
-        $this->description='';
      }
 
      public function render()

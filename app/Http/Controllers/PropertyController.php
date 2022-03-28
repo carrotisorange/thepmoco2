@@ -184,6 +184,7 @@ class PropertyController extends Controller
         'description' => ['nullable'],
         'type_id' => ['required', Rule::exists('types', 'id')],
         'thumbnail' => 'image',
+        'status' => 'required',
         'tenant_contract' => 'nullable|mimes:pdf',
         'owner_contract' => 'nullable|mimes:pdf',
         ]);

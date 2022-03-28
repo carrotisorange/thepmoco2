@@ -42,7 +42,7 @@ class EnrolleeComponent extends Component
     return [
     'start' => 'required|date',
     'end' => 'required|date|after:start',
-    'rent' => 'required',
+    'rent' => 'required|gt:0',
     'discount' => 'required',
     'contract' => 'required|mimes:pdf,doc,docx, image'
     ];
@@ -78,10 +78,10 @@ class EnrolleeComponent extends Component
     ]);
 
     Point::create([
-    'user_id' => auth()->user()->id,
-    'point' => 5,
-    'action_id' => 2,
-    'property_uuid' => Property::get('property')
+        'user_id' => auth()->user()->id,
+        'point' => 5,
+        'action_id' => 2,
+        'property_uuid' => Property::get('property')
     ]);
 
     //  $details =[
@@ -100,13 +100,12 @@ class EnrolleeComponent extends Component
 
 
     return
-    redirect('/unit/'.$this->unit->uuid)->with('success','Contract has been created.');
+    redirect('/unit/'.$this->unit->uuid)->with('success','Unit has been enrolled.');
 
-    } catch (\Throwable $e) {
-    ddd($e);
-    DB::rollback();
-    return back()->with('error','Cannot complete your action.');
-    }
+    }catch (\Throwable $e) {
+        DB::rollback();
+        return back()->with('error','Cannot complete your action.');
+        }   
     }
 
     public function render()

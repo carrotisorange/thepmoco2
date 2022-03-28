@@ -116,12 +116,12 @@
                             </div>
 
                             <div class="mt-5">
-                                <x-label for="dimensions" :value="__('Dimensions')" />
+                                <x-label for="size" :value="__('Size')" />
 
-                                <x-input form="edit-form" class="block mt-1 w-full" type="text" name="dimensions"
-                                    value="{{old('dimensions', $unit->dimensions)}}" required autofocus />
+                                <x-input form="edit-form" class="block mt-1 w-full" type="text" name="size"
+                                    value="{{old('size', $unit->size)}}" required autofocus />
 
-                                @error('dimensions')
+                                @error('size')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>

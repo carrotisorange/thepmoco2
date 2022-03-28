@@ -239,7 +239,7 @@ class UnitController extends Controller
                 $unit->category_id = '1';
             }
             
-            $unit->dimensions = request('dimensions'.$i);
+            $unit->size = request('size'.$i);
             $unit->rent = request('rent'.$i);
             $unit->occupancy = request('occupancy'.$i);
             $unit->status_id = '1';
@@ -259,7 +259,7 @@ class UnitController extends Controller
         'floor_id' => ['required', Rule::exists('floors', 'id')],
         'category_id' => ['required', Rule::exists('categories', 'id')],
         'thumbnail' => 'image',
-        'dimensions' => 'required',
+        'size' => 'required',
         'rent' => 'required',
         'occupancy' => 'required'
         ]);

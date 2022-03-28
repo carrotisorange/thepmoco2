@@ -34,7 +34,7 @@
                                                 Category</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Dimensions</th>
+                                                Size</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Rent</th>
@@ -54,7 +54,7 @@
                                             $building_id =1;
                                             $floor_id = 1;
                                             $category_id =1;
-                                            $dimensions = 1;
+                                            $size = 1;
                                             $rent =1;
                                             $occupancy =1;
                                     ?>
@@ -151,8 +151,8 @@
                                             </td>
                                             <td class="px-3 py-4 whitespace-nowrap">
                                                 <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" form="edit-form"
-                                                    name="dimensions{{ $dimensions++  }}" id="dimensions" type="text"
-                                                    min="1" value="{{ $unit->dimensions }}">
+                                                    name="size{{ $size++  }}" id="size" type="text"
+                                                    min="1" value="{{ $unit->size }}">
                                                 </input>
                                             </td>
                                             <td class="px-3 py-4 whitespace-nowrap">

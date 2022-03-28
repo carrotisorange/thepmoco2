@@ -21,7 +21,7 @@ class Unit extends Model
 
     protected $attributes = [
         'rent'=>0.00,
-        'dimensions' => '0x0',
+        'size' => 0.00,
         'discount' => 0.00,
         'building_id' => null,
         'status_id' => 6,

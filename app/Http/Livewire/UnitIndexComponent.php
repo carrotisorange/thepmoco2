@@ -58,9 +58,9 @@ class UnitIndexComponent extends Component
           ->distinct()
           ->get();
 
-          $dimensions = Unit::where('units.property_uuid', Session::get('property'))
-          ->whereNotNull('dimensions')
-          ->select('dimensions')
+          $sizes = Unit::where('units.property_uuid', Session::get('property'))
+          ->whereNotNull('size')
+          ->select('size')
           ->distinct()
           ->get();
 
@@ -75,7 +75,7 @@ class UnitIndexComponent extends Component
             'categories' => $categories,
             'rents' => $rents,
             'discounts' => $discounts,
-            'dimensions' => $dimensions
+            'sizes' => $sizes
         ]);
     }
 }

@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Enrollee | Create')
+    @section('title', '| Deed of Sale | Create')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -11,24 +11,25 @@
                                         class="text-blue-600 hover:text-blue-700">{{
                                         Session::get('property_name') }}</a>
                                 </li>
+
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $unit->unit }}</li>
+
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $owner->owner }}</li>
+                                </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Unit Enrollment</li>
+                                <li class="text-gray-500">Deed of Sale</li>
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button wire:submit.prevent="submitForm"
-                        onclick="window.location.href='/unit/{{ $unit->uuid }}'">
-                        Skip</x-button>
+                   
                 </h5>
 
             </div>
         </h2>
     </x-slot>
-    @livewire('enrollee-component', ['unit' => $unit, 'owner' => $owner])
+    @livewire('deed-of-sale-component', ['unit' => $unit, 'owner' => $owner])
 </x-app-layout>

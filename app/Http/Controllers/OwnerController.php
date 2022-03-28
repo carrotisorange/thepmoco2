@@ -41,16 +41,9 @@ class OwnerController extends Controller
      */
     public function create(Unit $unit)
     {
-        $cities = City::all();
-        $provinces = Province::all();
-        $countries = Country::all();
 
         return view('owners.create', [
-        'uuid' => $unit->uuid,
-        'unit' => $unit,
-        'cities' => $cities,
-        'provinces' => $provinces,
-        'countries' => $countries
+            'unit' => $unit,
         ]);
     }
 

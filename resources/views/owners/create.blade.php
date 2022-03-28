@@ -12,31 +12,22 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/units"
-                                        class="text-blue-600 hover:text-blue-700">Units</a>
-                                </li>
+                                <li class="text-gray-500">{{ $unit->unit }}</li>
+
+
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $unit->unit
-                                        }}</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/owners"
-                                        class="text-blue-600 hover:text-blue-700">Owners</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Create</li>
+                                <li class="text-gray-500">Owner</li>
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-
+                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Back
+                    </x-button>
                 </h5>
 
             </div>
         </h2>
     </x-slot>
-    @livewire('owner-component', ['unit' => $unit, 'countries' => $countries, 'provinces' => $provinces, 'cities' =>
-    $cities])
+    @livewire('owner-component', ['unit' => $unit])
 </x-app-layout>

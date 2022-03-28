@@ -12,26 +12,12 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/units"
-                                        class="text-blue-600 hover:text-blue-700">Units</a>
-                                </li>
+                                <li class="text-gray-500">{{ $unit->unit }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $unit->unit
-                                        }}</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/owners"
-                                        class="text-blue-600 hover:text-blue-700">Owners</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}"
-                                        class="text-blue-600 hover:text-blue-700">{{ $owner->owner }}</a>
-                                </li>
+                                <li class="text-gray-500">{{ $unit->unit }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Representative</li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Create</li>
+
                             </ol>
                         </nav>
                     </h2>
@@ -56,12 +42,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @livewire('representative-component', ['unit' => $unit, 'owner' => $owner, 'representatives' => $representatives])
-
+                    @livewire('representative-component', ['unit' => $unit, 'owner' => $owner, 'representatives' =>
+                    $representatives])
                     @if (!$representatives->count())
-                    <span class="text-center text-red">No representatives found!</span>
+
                     @else
-                    <span>Guardians ({{ $representatives->count() }}) </span>
+                    <span>Representatives ({{ $representatives->count() }}) </span>
 
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -105,7 +91,8 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $representative->relationship }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/representative/{{ $representative->id }}/delete"
+                                        <form method="POST"
+                                            action="/representative/{{ $representative->representative_id }}/delete"
                                             id="delete-form">
                                             @csrf
                                             @method('delete')

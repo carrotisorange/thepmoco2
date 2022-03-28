@@ -119,16 +119,16 @@
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
-                                        @forelse ($dimensions as $dimension)
+                                        @forelse ($sizes as $size)
                                         <span>Dimension</span>
                                         <div class="form-check">
                                             <input
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $dimension->dimensions }}"
+                                                type="checkbox" value="{{ $size->size }}"
                                                 id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                {{ $dimension->dimensions }}
+                                                {{ $size->size }}
                                             </label>
                                         </div>
                                         @empty
@@ -158,7 +158,7 @@
                             <p>Status: {{ $info->status }}</p>
                             <p>Rent: {{ number_format($info->rent, 2) }}</p>
                             <p>Discount: {{ number_format($info->discount, 2) }}</p>
-                            <p>Dimensions: {{ $info->dimensions }}</p>
+                            <p>Size: {{ $info->size }}</p>
                             <p>Created: {{ $info->created_at->diffForHumans() }}</p>
                         </div>
                         <div class="mt-20">

@@ -65,7 +65,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 ">
                     <div class="flex justify-center">
@@ -99,7 +99,7 @@
                                     Discount: {{ number_format($unit->discount, 2) }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Dimensions: {{ $unit->dimensions }}
+                                    Size: {{ $unit->size }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Created: {{ $unit->created_at->diffForHumans() }}
@@ -115,7 +115,7 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                <span>{{ Str::plural('Contract', $contracts->count())}} ({{ $contracts->count()
+                                <span>{{ Str::plural('Tenant', $contracts->count())}} ({{ $contracts->count()
                                     }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -260,7 +260,7 @@
 
 
                                 <br>
-                                <span>{{ Str::plural('Enrollee', $enrollees->count())}} ({{ $enrollees->count()
+                                <span>{{ Str::plural('Owner', $enrollees->count())}} ({{ $enrollees->count()
                                     }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -435,7 +435,7 @@
 
                                         </tbody>
                                         @empty
-                                        <span>No owners found!</span>
+                                        <span>No bills found!</span>
 
                                         @endforelse
                                     </table>

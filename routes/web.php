@@ -126,6 +126,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //1
     Route::get('unit/{unit}/owner/{random_str}/create', [OwnerController::class, 'create']);
     Route::post('unit/{unit}/owner/{random_str}/store', [OwnerController::class, 'store']);
+    //2
+    Route::get('unit/{unit}/owner/{owner}/sale/{random_str}/create', [DeedOfSaleController::class,'create']);
+    Route::post('unit/{unit}/owner/{owner}/sale/{random_str}/store',[DeedOfSaleController::class,'store']);
     //3
     Route::get('unit/{unit}/owner/{owner}/representative/{random_str}/create', [RepresentativeController::class, 'create']);
     Route::post('unit/{unit}/owner/{owner}/representative/{random_str}/store', [RepresentativeController::class,'store']);

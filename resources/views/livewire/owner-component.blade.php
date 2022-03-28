@@ -7,20 +7,22 @@
                         action="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/store" class="w-full"
                         id="create-form">
                         @csrf
-                        <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="flex flex-wrap mx-3">
                             <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                                 <x-label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-first-name">
                                     Full Name
                                 </x-label>
                                 <x-input wire:model="owner"
-                                    class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     id="grid-first-name" type="text" name="owner" value="{{ old('owner') }}" />
 
                                 @error('owner')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="flex flex-wrap mx-3 mb-2 mt-5">
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
@@ -49,7 +51,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="flex flex-wrap -mx-3 mb-2">
+                        <div class="flex flex-wrap mx-3 mb-2 mt-5">
                             {{-- <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
@@ -71,7 +73,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div> --}}
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Birthdate
@@ -84,7 +86,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Gender
@@ -105,7 +107,7 @@
                                 @enderror
                             </div>
 
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Civil Status
@@ -135,9 +137,8 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="flex flex-wrap -mx-3 mb-2">
-                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
+                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-state">
                                     Country
@@ -159,7 +160,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-state">
                                     Province
@@ -180,7 +181,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-city">
                                     City
@@ -201,21 +202,42 @@
                                 @enderror
                             </div>
 
+                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-city">
+                                    Barangay
+                                </label>
+                                <select wire:model="barangay_id"
+                                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="grid-state" id="barangay_id" name="barangay_id">
+                                    <option value="">Select one</option>
+                                    @foreach ($barangays as $barangay)
+                                    <option value="{{ $barangay->id }}" {{ old('barangay_id')==$barangay->id?
+                                        'selected': 'Select one'
+                                        }}>{{ $barangay->barangay }}</option>
+                                    @endforeach
+                                </select>
 
+                                @error('barangay_id')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
 
                         </div>
 
-                        <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
-                            <x-label for="photo_id"
-                                :value="__('Photo ID (i.e., Government issues ID, school ID, employee ID)')" />
+                        <div class="flex flex-wrap mx-3 mb-2">
+                            <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+                                <x-label for="photo_id"
+                                    :value="__('Photo ID (i.e., Government issues ID, school ID, employee ID)')" />
 
-                            <input wire:model="photo_id"
-                                class="appearance-none block w-full text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name" type="file" name="photo_id" value="{{ old('photo_id') }}">
+                                <input wire:model="photo_id"
+                                    class="appearance-none block w-full text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="grid-last-name" type="file" name="photo_id" value="{{ old('photo_id') }}">
 
-                            @error('photo_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                                @error('photo_id')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         <div class="mt-5">
                             <p class="text-right">

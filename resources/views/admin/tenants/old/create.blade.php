@@ -11,21 +11,23 @@
                                         class="text-blue-600 hover:text-blue-700">{{
                                         Session::get('property_name') }}</a>
                                 </li>
-                                </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
+                                <li class="text-gray-500">{{ $unit->unit }}</li>
+                                <li><span class="text-gray-500 mx-2">/</span></li>
+                                {{-- <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
                                         $unit->unit
                                         }}</a>
                                 </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Tenant</li>
+                                <li><span class="text-gray-500 mx-2">/</span></li> --}}
+                                <li class="text-gray-500">Old Tenant</li>
 
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-
+                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Back
+                    </x-button>
                 </h5>
 
             </div>

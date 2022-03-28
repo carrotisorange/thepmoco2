@@ -83,6 +83,29 @@
                                 @enderror
                             </div>
 
+                            <div class="mt-5 mx-5">
+                                <x-label for="status" :value="__('Status')" />
+
+                                <select form="edit-form"
+                                    class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    name="status" id="status">
+                                    <option value="active" {{ $property->status == 'active' ?
+                                        'selected' : ''
+                                        }}>active</option>
+                                    <option value="inactive" {{ $property->status == 'inactive' ?
+                                        'selected' : ''
+                                        }}>inactive</option>
+                                    <option value="pending" {{ $property->status == 'pending' ?
+                                        'selected' : ''
+                                        }}>pending</option>
+
+                                </select>
+
+                                @error('type_id')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
                             <div class="mt-5 flex mx-5">
                                 <div class="flex-3">
                                     <x-label for="thumbnail" :value="__('Thumbnail')" />
@@ -101,7 +124,8 @@
                             </div>
                             <div class="mt-5 flex mx-5">
                                 <div class="flex-3">
-                                    <x-label for="tenant_contract" :value="__('Tenant Contract (Please only upload a PDF file.)')" />
+                                    <x-label for="tenant_contract"
+                                        :value="__('Tenant Contract (Please only upload a PDF file.)')" />
 
                                     <x-input form="edit-form" id="tenant_contract" class="block mt-1 w-full" type="file"
                                         name="tenant_contract"
@@ -123,7 +147,8 @@
                             </div>
                             <div class="mt-5 flex mx-5">
                                 <div class="flex-3">
-                                    <x-label for="owner_contract" :value="__('Owner Contract (Please only upload a PDF file.)')" />
+                                    <x-label for="owner_contract"
+                                        :value="__('Owner Contract (Please only upload a PDF file.)')" />
 
                                     <x-input form="edit-form" id="owner_contract" class="block mt-1 w-full" type="file"
                                         name="owner_contract"
