@@ -38,7 +38,7 @@
                     @livewire('team-component', ['roles' => $roles])
                     <br>
                     @if (!$members->count())
-                    <span class="text-center text-red">No pending members found!</span>
+                   
                     @else
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 

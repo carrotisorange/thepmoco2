@@ -6,6 +6,7 @@ use App\Models\Reference;
 use App\Models\Unit;
 use App\Models\Tenant;
 use Session;
+use App\Models\References;
 
 use Illuminate\Http\Request;
 
@@ -30,6 +31,13 @@ class ReferenceController extends Controller
     {
         Session::flash('success', 'You have skipped adding guardians.');
 
+         $references = Reference::join('tenants', 'references.tenant_uuid', 'tenants.uuid')
+          ->select('*', 'references.id as reference_id')
+          ->join('relationships', 'references.relationship_id', 'relationships.id')
+          ->where('tenants.uuid', $tenant->uuid)
+          ->groupBy('relationships.id')
+          ->get();
+
          return view('references.create',[
          'unit' => $unit,
          'tenant' => $tenant,
@@ -49,7 +57,7 @@ class ReferenceController extends Controller
         'reference' => 'required',
         'email' => ['required', 'string', 'email', 'max:255'],
         'mobile_number' => 'required',
-        'relationship' => 'required',
+        'relationship_id' => 'required',
         ]);
 
         $reference_attributes['tenant_uuid'] = $tenant->uuid;

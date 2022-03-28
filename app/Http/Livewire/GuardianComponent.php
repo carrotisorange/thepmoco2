@@ -21,7 +21,7 @@ class GuardianComponent extends Component
     }
     
     public $guardian;
-    public $relationship;
+    public $relationship_id;
     public $mobile_number;
     public $email;
 

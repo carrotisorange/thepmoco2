@@ -16,7 +16,7 @@ class CreateRepresentativesTable extends Migration
         Schema::create('representatives', function (Blueprint $table) {
             $table->id();
             $table->string('representative');
-            $table->string('relationship');
+            $table->foreignId('relationship_id');
             $table->string('email');
             $table->string('mobile_number');
 

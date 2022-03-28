@@ -7,10 +7,10 @@
             <div class="w-full md:w-1/2 px-3">
                 <x-label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     for="grid-first-name">
-                    Full Name
+                    Reference
                 </x-label>
                 <x-input wire:model="reference"
-                    class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     id="grid-first-name" type="text" name="reference" value="{{ old('reference') }}" />
 
                 @error('reference')
@@ -21,26 +21,17 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                     Relationship
                 </label>
-                <select wire:model="relationship"
+                <select wire:model="relationship_id"
                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-state" name="relationship">
+                    id="grid-relationship_id" name="relationship_id">
                     <option value="">Select one</option>
-                    <option value="parent" {{ old('relationship')=='parent' ? 'selected' : 'Select one' }}>{{
-                        'parent' }}</option>
-                    <option value="spouse" {{ old('relationship')=='spouse' ? 'selected' : 'Select one' }}>{{
-                        'spouse' }}</option>
-                    <option value="sibling" {{ old('relationship')=='sibling' ? 'selected' : 'Select one' }}>{{
-                        'sibling' }}</option>
-                    <option value="friend" {{ old('relationship')=='friend' ? 'selected' : 'Select one' }}>{{
-                        'friend' }}</option>
-                    <option value="relative" {{ old('relationship')=='relative' ? 'selected' : 'Select one' }}>{{
-                        'relative' }}</option>
-                    <option value="child" {{ old('relationship')=='child' ? 'selected' : 'Select one' }}>{{
-                        'child' }}</option>
-
+                    @foreach ($relationships as $relationship)
+                    <option value="{{ $relationship->id }}" {{ old('relationship_id')==$relationship->id?
+                        'selected': 'Select one'
+                        }}>{{ $relationship->relationship }}</option>
+                    @endforeach
                 </select>
-
-                @error('relationship')
+                @error('relationship_id')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>

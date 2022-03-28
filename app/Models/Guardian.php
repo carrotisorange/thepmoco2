@@ -13,4 +13,6 @@ class Guardian extends Model
     {
         return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
+
+    
 }

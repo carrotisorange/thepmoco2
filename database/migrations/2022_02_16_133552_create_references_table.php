@@ -18,7 +18,7 @@ class CreateReferencesTable extends Migration
             $table->string('reference');
             $table->string('mobile_number');
             $table->string('email')->nullable();
-            $table->string('relationship');
+            $table->foreignId('relationship_id')->constrained();
             $table->foreignUuid('tenant_uuid')->constrained();
             $table->timestamps();
         });

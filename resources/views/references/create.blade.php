@@ -59,7 +59,7 @@
                     @livewire('reference-component', ['unit' => $unit, 'tenant' => $tenant, 'references' =>
                     $references])
                     @if (!$references->count())
-                    <span class="text-center text-red">No references found!</span>
+                  
                     @else
                     <span>References ({{ $references->count() }}) </span>
 
@@ -100,7 +100,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $reference->relationship }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/reference/{{ $reference->id }}/delete"
+                                        <form method="POST" action="/reference/{{ $reference->reference_id }}/delete"
                                             id="delete-form">
                                             @csrf
                                             @method('delete')

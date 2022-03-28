@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Models\Property;
 use App\Models\Representative;
 use Illuminate\Support\Facades\Route;
+use App\Mail\WelcomeMailToMember;
+use App\Models\Role;
 
 /*
 |--------------------------------------------------------------------------

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 use App\Models\Reference;
 use Illuminate\Support\Str;
+use App\Models\Relationship;
 
 use Livewire\Component;
 
@@ -20,7 +21,7 @@ class ReferenceComponent extends Component
      }
 
      public $reference;
-     public $relationship;
+     public $relationship_id;
      public $mobile_number;
      public $email;
 
@@ -30,7 +31,7 @@ class ReferenceComponent extends Component
      'reference' => 'required',
      'email' => ['required', 'string', 'email', 'max:255'],
      'mobile_number' => 'required|integer|min:11',
-     'relationship' => 'required',
+     'relationship_id' => 'required',
      ];
      }
 
@@ -60,11 +61,13 @@ class ReferenceComponent extends Component
      $this->reference='';
      $this->email='';
      $this->mobile_number='';
-     $this->relationship='';
+     $this->relationship_id='';
      }
 
      public function render()
      {
-     return view('livewire.reference-component');
+     return view('livewire.reference-component',[
+          'relationships' => Relationship::all(),
+     ]);
      }
 }

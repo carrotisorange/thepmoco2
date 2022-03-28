@@ -50,22 +50,10 @@ class RoleSeeder extends Seeder
             'description' => 'This user has access to units.',
          ]);
 
-         // Role::create([
-         // 'role' => 'owner'
-         // ]);
+         Role::create([
+           'role' => 'tenant',
+           'description' => 'This user has access to his contracts.',
+           ]);
 
-         //  Role::create([
-         //  'role' => 'tenant'
-         //  ]);
-
-
-        // Role::create([
-        //     'role' => 'dev'
-        // ]);
-
-       
-        // Role::create([
-        //     'role' => 'owner'
-        // ]);
     }
 }

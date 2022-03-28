@@ -28,10 +28,17 @@ class GuardianController extends Controller
      */
     public function create(Unit $unit, Tenant $tenant)
     {
+        $guardians = Guardian::join('tenants', 'guardians.tenant_uuid', 'tenants.uuid')
+        ->select('*', 'guardians.id as guardian_id')
+        ->join('relationships', 'guardians.relationship_id', 'relationships.id')
+        ->where('tenants.uuid', $tenant->uuid)
+        ->groupBy('guardians.id')
+        ->get();
+        
         return view('guardians.create',[
             'unit' => $unit,
             'tenant' => $tenant,
-            'guardians' => Tenant::find($tenant->uuid)->guardians,
+            'guardians' => $guardians,
         ]);
     }
 

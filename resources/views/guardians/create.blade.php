@@ -98,7 +98,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $guardian->relationship }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/guardian/{{ $guardian->id }}/delete"
+                                        <form method="POST" action="/guardian/{{ $guardian->guardian_id }}/delete"
                                             id="delete-form">
                                             @csrf
                                             @method('delete')

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\SendWelcomeMailToMember;
+use App\Mail\WelcomeMailToMember;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -56,7 +56,7 @@ class TeamComponent extends Component
 
         $validatedData = $this->validate();
 
-        $validatedData['password'] = Hash::make(Str::random());
+        $validatedData['password'] = Hash::make($this->mobile_number);
         $validatedData['status'] = 'pending';
         $validatedData['email_verified_at'] = now();
         $validatedData['account_owner_id'] = auth()->user()->id;
@@ -78,13 +78,24 @@ class TeamComponent extends Component
 
         $role = Role::find($this->role_id)->role;
 
-        $details =[
-           'title' => Session::get('property_name'),
-           'header' => $this->name,
-           'body' => 'You have got an invitation to become a '. $role .' of '.Session::get('property_name').' team',
-        ];
+         $details = [
+            'email' => $this->email,
+            'name' => $this->name,
+            'role' => $role,
+            'username' => $this->username,
+         ];
 
-        Mail::to($this->email)->send(new SendWelcomeMailToMember($details)); 
+         Mail::to($this->email)->send(new WelcomeMailToMember($details));
+
+         //return new WelcomeMailToMember($details);
+
+      //   $details =[
+      //      'title' => Session::get('property_name'),
+      //      'header' => $this->name,
+      //      'body' => 'You have got an invitation to become a '. $role .' of '.Session::get('property_name').' team',
+      //   ];
+
+      //   
 
         return redirect('/property/'.Session::get('property').'/team/'.Str::random(8).'/create')->with('success', 'Member has been created.');
        

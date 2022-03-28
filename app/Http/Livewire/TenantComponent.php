@@ -2,10 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\WelcomeMailToTenant;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Tenant;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use App\Models\User;
+use App\Models\UserProperty;
 use Livewire\WithFileUploads;
 use DB;
 use App\Models\Country;
@@ -44,15 +48,15 @@ class TenantComponent extends Component
         return [
             'tenant' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
-            'mobile_number' => 'required|integer',
-            'type' => 'required',
-            'gender' => 'required',
-            'civil_status' => 'required',
-            'country_id' => ['required', Rule::exists('countries', 'id')],
-            'province_id' => ['required', Rule::exists('provinces', 'id')],
-            'city_id' => ['required', Rule::exists('cities', 'id')],
-            'barangay_id' => ['required', Rule::exists('barangays', 'id')],
-            'photo_id' => 'nullable|image'
+            'mobile_number' => 'required',
+            // 'type' => 'required',
+            // 'gender' => 'required',
+            // 'civil_status' => 'required',
+            // 'country_id' => ['required', Rule::exists('countries', 'id')],
+            // 'province_id' => ['required', Rule::exists('provinces', 'id')],
+            // 'city_id' => ['required', Rule::exists('cities', 'id')],
+            // 'barangay_id' => ['required', Rule::exists('barangays', 'id')],
+            // 'photo_id' => 'nullable|image'
             ];
     }
 
@@ -77,6 +81,33 @@ class TenantComponent extends Component
         }
 
         $validatedData['property_uuid'] = Session::get('property');
+
+        $user = User::create([
+            'email' => $this->email,
+            'name' => $this->tenant,
+            'username' => Str::random(8),
+            'mobile_number' => $this->mobile_number,
+            'role_id' => '7',
+            'password' => $this->mobile_number,
+            'avatar' => 'avatars/avatar.png',
+            'account_owner_id' => auth()->user()->id,
+            'status' => 'pending',
+            'email_verified_at' => now(),
+        ]);
+
+        UserProperty::create([
+          'property_uuid' => Session::get('property'),
+          'user_id' => $user->id,
+          'is_account_owner' => false
+        ]);
+
+         $details =[
+         'name' => $this->tenant,
+         'email' => $this->email,
+         'username' => $user->username
+         ];
+
+         Mail::to($this->email)->send(new WelcomeMailToTenant($details));
 
        try{
             DB::beginTransaction();

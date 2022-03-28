@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Session;
 
-class SendWelcomeMailToMember extends Mailable
+class WelcomeMailToMember extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,7 +31,11 @@ class SendWelcomeMailToMember extends Mailable
      */
     public function build()
     {
-        return $this->subject('Invitation from '. Session::get('property_name'))
-                    ->view('emails.SendWelcomeMailToMember');
+        return $this->subject(Session::get('property_name'))
+                    ->from(auth()->user()->email)
+                    ->markdown('emails.welcomemailtomember', [
+                        'url' => 'https://www.thepropertymanager.online/login',
+                       
+                    ]);
     }
 }

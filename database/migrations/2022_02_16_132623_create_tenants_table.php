@@ -18,10 +18,10 @@ class CreateTenantsTable extends Migration
             $table->string('tenant');
             $table->string('email')->unique();
             $table->string('mobile_number');
-            $table->date('birthdate');
-            $table->string('civil_status');
-            $table->string('photo_id');
-            $table->string('gender');
+            $table->date('birthdate')->nullable();
+            $table->string('civil_status')->nullable();
+            $table->string('photo_id')->nullable();
+            $table->string('gender')->nullable();
 
             $table->foreignId('country_id')->nullable()->constrained();
             $table->foreignId('city_id')->nullable()->constrained();
@@ -29,7 +29,7 @@ class CreateTenantsTable extends Migration
             $table->foreignId('barangay_id')->nullable()->constrained();
             $table->foreignUuid('property_uuid')->constrained();
             
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->string('course')->nullable();
             $table->string('year_level')->nullable();
             $table->string('school')->nullable();
