@@ -26,13 +26,16 @@ class ContractController extends Controller
      */
     public function index()
     {
-         $contracts = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
-        // ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
-        ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
-        ->leftJoin('buildings', 'units.building_id','buildings.id' )
-        ->where('units.property_uuid', session('property'))
-        ->groupBy('contracts.uuid')
-        ->paginate(10);
+
+        $contracts = Property::findOrFail(Session::get('property'))->contracts;
+
+        //  $contracts = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
+        // // ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
+        // ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
+        // ->leftJoin('buildings', 'units.building_id','buildings.id' )
+        // ->where('units.property_uuid', session('property'))
+        // ->groupBy('contracts.uuid')
+        // ->paginate(10);
 
         return view('contracts.index', [
             'contracts'=> $contracts
@@ -107,7 +110,7 @@ class ContractController extends Controller
      */
     public function show(Contract $contract)
     {
-        //
+      
     }
 
     /**
@@ -118,7 +121,10 @@ class ContractController extends Controller
      */
     public function edit(Contract $contract)
     {
-        //
+        return view('contracts.edit',[
+          'contract' => Contract::findOrFail($contract->uuid),
+          'property' => Property::find(Session::get('property')),
+        ]);
     }
 
     /**

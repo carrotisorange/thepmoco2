@@ -60,7 +60,7 @@
                         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white">
 
                             <img src="/storage/{{ $tenant->photo_id }}"
-                                class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5" alt="..." />
+                                class="p-2 bg-white border rounded max-w-xs mt-5 mx-5 ml-5 mr-5" alt="..." />
                         </div>
                         <div class="flex flex-col md:flex-row md:max-w-xl">
 

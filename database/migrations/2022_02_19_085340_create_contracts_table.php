@@ -17,6 +17,7 @@ class CreateContractsTable extends Migration
             $table->uuid('uuid')->unique();
             $table->foreignUuid('unit_uuid')->constrained();
             $table->foreignUuid('tenant_uuid')->constrained();
+            $table->foreignUuid('property_uuid')->constrained();
             $table->date('start');
             $table->date('end');
             $table->double('rent',8,2);

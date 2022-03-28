@@ -73,6 +73,7 @@ class ContractComponent extends Component
             $validatedData['uuid'] = $contract_uuid;
             $validatedData['tenant_uuid'] = $this->tenant->uuid;
             $validatedData['unit_uuid'] = $this->unit->uuid;
+            $validatedData['property_uuid'] = Session::get('property');
             $validatedData['user_id'] = auth()->user()->id;
             $validatedData['contract'] = $this->contract->store('contracts');
 

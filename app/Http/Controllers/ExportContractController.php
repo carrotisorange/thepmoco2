@@ -1,85 +1,43 @@
 <?php
 
 namespace App\Http\Controllers;
+use Session;
+use Barryvdh\DomPDF\Facade\Pdf;
 
-use Illuminate\Http\Request;
 use App\Models\Contract;
 
 class ExportContractController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Contract $contract)
+    public function __invoke(Contract $contract)
     {
-        //
+        
+
+        $data = [
+            'tenant' => $contract->tenant->tenant ,
+            'unit' => $contract->unit->building->building.' '.$contract->unit->unit,
+            'start' => $contract->start,
+            'end' => $contract->end,
+            'rent' => $contract->rent,
+            'discount' => $contract->discount,
+            'status' => $contract->status,
+            'interaction' => $contract->interaction,
+            'moveout_reason' => $contract->moveout_reason,
+            'user' => $contract->user->name
+        ];
+
+        //return view('contracts.export', $data);
+
+         $pdf = PDF::loadView('contracts.export', $data);
+         return $pdf->download($contract->tenant->tenant.'pdf');
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

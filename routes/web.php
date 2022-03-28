@@ -29,7 +29,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('units', [UnitController::class, 'index'])->name('units');
    
-    Route::get('tenants', [NewTenantController::class, 'index'])->name('tenants');
+    Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
     
     Route::get('owners', [OwnerController::class, 'index'])->name('owners');
 
@@ -116,6 +116,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //4
     Route::get('unit/{unit}/tenant/{tenant}/contract/{random_str}/create', [ContractController::class, 'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{random_str}/store', [ContractController::class, 'store']);
+    Route::get('/contract/{contract}/edit', [ContractController::class, 'edit']);
+    Route::patch('/contract/{contract}/update', [ContractController::class, 'update']);
     //5
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class, 'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store', [BillController::class,'store']);
@@ -159,7 +161,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/contract/{contract}/extend', [ExtendContractController::class, 'create']);
 
-    Route::get('/contract/{contract}/extend', [ExportContractController::class, 'create']);
+    Route::get('/contract/{contract}/export', ExportContractController::class);
 
     Route::get('/contract/{contract}/transfer', [TransferContractController::class, 'create']);
 

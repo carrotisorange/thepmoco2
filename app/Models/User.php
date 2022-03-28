@@ -62,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Unit::class);
     }
 
-    public function properties()
+    public function z()
     {
         return $this->hasMany(UserProperty::class, 'property_uuid');
     }

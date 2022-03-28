@@ -68,4 +68,9 @@ class Property extends Model
         return $this->hasMany(Concern::class);
     }
 
+    public function contracts()
+    {
+    return $this->hasMany(Contract::class);
+    }
+
 }
