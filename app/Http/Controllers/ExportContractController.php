@@ -16,7 +16,6 @@ class ExportContractController extends Controller
      */
     public function __invoke(Contract $contract)
     {
-        
 
         $data = [
             'tenant' => $contract->tenant->tenant ,
@@ -33,8 +32,21 @@ class ExportContractController extends Controller
 
         //return view('contracts.export', $data);
 
-         $pdf = PDF::loadView('contracts.export', $data);
-         return $pdf->download($contract->tenant->tenant.'pdf');
+        //  $pdf = PDF::loadView('contracts.export', $data);
+        //  return $pdf->download($contract->tenant->tenant.'.pdf');
+
+          $pdf = PDF::loadView('contracts.export', $data)
+          ->setPaper('a5', 'portrait');
+
+          // $pdf->setPaper('L');
+          $pdf->output();
+          $canvas = $pdf->getDomPDF()->getCanvas();
+          $height = $canvas->get_height();
+          $width = $canvas->get_width();
+          $canvas->set_opacity(.1,"Multiply");
+          $canvas->page_text($width/5, $height/2, Session::get('property_name'), null,
+          28, array(0,0,0),2,2,0);
+        return $pdf->download($contract->tenant->tenant.'.pdf');
 
     }
 
