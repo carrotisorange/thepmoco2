@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contract;
+use App\Models\Tenant;
 
-class MoveoutContractController extends Controller
+class MoveoutContractBillController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -14,9 +15,11 @@ class MoveoutContractController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Contract $contract)
-    {
-        return view('contracts.moveout', [
-            'contract' => $contract
+    {    
+        return view('contracts.bills',[
+            'contract' => $contract,
+            'bills' => Tenant::find($contract->tenant->uuid)->bills,
+            'wallets' => Tenant::find($contract->tenant->uuid)->wallets,
         ]);
     }
 }

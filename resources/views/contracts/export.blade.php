@@ -90,7 +90,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{{ number_format($bill->sum('bill'), 2) }}</td>
+                    <td>{{ number_format($bills->sum('bill'), 2) }}</td>
                 </tr>
             </tbody>
         </table>

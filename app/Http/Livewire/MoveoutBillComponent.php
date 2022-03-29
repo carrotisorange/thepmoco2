@@ -13,17 +13,13 @@ use Carbon\Carbon;
 
 use Livewire\Component;
 
-class BillComponent extends Component
+class MoveoutBillComponent extends Component
 {
-      public $unit;
-      public $tenant;
       public $contract;
       public $bills;
 
-      public function mount($unit, $tenant, $contract, $bills)
+      public function mount($contract, $bills)
       {
-        $this->unit = $unit;
-        $this->tenant = $tenant;
         $this->contract = $contract;
         $this->bills = $bills;
         $this->end = Carbon::now()->addYear()->format('Y-m-d');
@@ -56,12 +52,10 @@ class BillComponent extends Component
 
       $validatedData = $this->validate();
 
-      $bill_no = Property::find(Session::get('property'))->bills->count();
-
       try {
         $validatedData['reference_no'] = Contract::find($this->contract->uuid)->bill_reference_no;
-        $validatedData['tenant_uuid'] = $this->tenant->uuid;
-        $validatedData['unit_uuid'] = $this->unit->uuid;
+        $validatedData['tenant_uuid'] = $this->contract->tenant_uuid;
+        $validatedData['unit_uuid'] = $this->contract->unit_uuid;
         $validatedData['property_uuid'] = Session::get('property');
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['bill_no'] = Property::find(Session::get('property'))->bills->count()+1;
@@ -70,13 +64,11 @@ class BillComponent extends Component
         DB::commit();
         $this->resetForm();
         return
-        redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success',
+        redirect('/contract/'.$this->contract->uuid.'/moveout/bills')->with('success',
         'Bill has been created.');
         } catch (\Throwable $e) {
         DB::rollback();
-         return
-         redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success',
-         'Cannot perform the action. Please try again.');
+         return back()->with('error', 'Cannot perform the action. Please try again.');
       }
      
       }
@@ -99,7 +91,7 @@ class BillComponent extends Component
         ->where('property_uuid', Session::get('property'))
         ->get();
         
-      return view('livewire.bill-component',[
+      return view('livewire.moveout-bill-component',[
         'particulars' => $particulars,
         'contract' => $contract
       ]);

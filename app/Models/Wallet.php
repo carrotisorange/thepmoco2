@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Particular extends Model
+class Wallet extends Model
 {
     use HasFactory;
-
-    public function bills()
+    
+    public function tenant()
     {
-        return $this->belongsTo(Bill::class);
+        return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
-
-  
 }

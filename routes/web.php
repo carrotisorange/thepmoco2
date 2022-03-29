@@ -159,14 +159,16 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
 
-    Route::get('/contract/{contract}/moveout', [MoveoutContractController::class, 'create']);
+    Route::get('/contract/{contract}/moveout', MoveoutContractController::class);
+    
+    Route::get('/contract/{contract}/moveout/bills', MoveoutContractBillController::class);
 
-    Route::get('/contract/{contract}/extend', [ExtendContractController::class, 'create']);
+   Route::get('/contract/{contract}/extend', ExtendContractController::class);
 
     Route::get('/contract/{contract}/export', ExportContractController::class);
 
     Route::get('/contract/{contract}/signed_contract', ExportSignedContractController::class);
 
-    Route::get('/contract/{contract}/transfer', [TransferContractController::class, 'create']);
+    Route::get('/contract/{contract}/transfer', TransferContractController::class);
 
 });

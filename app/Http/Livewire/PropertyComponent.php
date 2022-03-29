@@ -82,7 +82,7 @@ class PropertyComponent extends Component
         'is_account_owner' => true
         ]);
 
-        for($i=1; $i<=6; $i++){ 
+        for($i=1; $i<=8; $i++){ 
             PropertyParticular::create([ 'property_uuid'=> $property_uuid,
             'particular_id'=> $i,
             'minimum_charge' => 0.00,
@@ -91,7 +91,7 @@ class PropertyComponent extends Component
             ]);
         }
 
-        for($i=1; $i<=4; $i++){ 
+        for($i=1; $i<=9; $i++){ 
             PropertyRole::create(
             [ 
                'property_uuid'=> $property_uuid,

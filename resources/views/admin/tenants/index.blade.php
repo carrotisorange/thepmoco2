@@ -40,10 +40,11 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                @if (!$tenants->count())
+                                <span class="text-center text-red">No tenants found!</span>
+                                @else
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                    @if (!$tenants->count())
-                                    <span class="text-center text-red">No contracts found!</span>
-                                    @else
+
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr =1; ?>
                                         <thead class="bg-gray-50">
@@ -53,7 +54,7 @@
                                                     #</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Name</th>
+                                                    Tenant</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Contact</th>
@@ -82,9 +83,9 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                           
-                                                                <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $tenant->photo_id }}" alt="">
+
+                                                            <img class="h-10 w-10 rounded-full"
+                                                                src="/storage/{{ $tenant->photo_id }}" alt="">
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
@@ -103,7 +104,7 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $tenant->city.', '.$tenant->province }}</td>
+                                                    $tenant->city->city.', '.$tenant->province->province }}</td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {{Carbon\Carbon::parse($tenant->birthdate)->format('M d, Y') }}</td>
@@ -148,16 +149,14 @@
                                         </tbody>
                                         @endforeach
                                     </table>
-                                    @endif
-                                </div>
 
+                                </div>
+                                @endif
                             </div>
 
                         </div>
                     </div>
-                    <div class="mt-3">
-                        {{ $tenants->links() }}
-                    </div>
+                   
                 </div>
             </div>
         </div>

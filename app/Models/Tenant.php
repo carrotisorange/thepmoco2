@@ -66,4 +66,14 @@ class Tenant extends Model
     {
         return $this->belongsTo(Relationship::class);
     }
+
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
+
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class);
+    }
 }

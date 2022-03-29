@@ -15,6 +15,7 @@ use App\Models\Property;
 use Carbon\Carbon;
 use Session;
 use App\Models\Point;
+use App\Models\Tenant;
 
 
 class ContractComponent extends Component
@@ -70,11 +71,16 @@ class ContractComponent extends Component
         try {
             DB::beginTransaction();
 
+            $bill_no = Property::find(Session::get('property'))->bills->count()+1;
+
+            $reference_no = Carbon::now()->timestamp.''.$bill_no;
+
             $validatedData['uuid'] = $contract_uuid;
             $validatedData['tenant_uuid'] = $this->tenant->uuid;
             $validatedData['unit_uuid'] = $this->unit->uuid;
             $validatedData['property_uuid'] = Session::get('property');
             $validatedData['user_id'] = auth()->user()->id;
+            $validatedData['bill_reference_no'] = $reference_no;
             $validatedData['contract'] = $this->contract->store('contracts');
 
             Contract::create($validatedData);
@@ -82,10 +88,6 @@ class ContractComponent extends Component
             Unit::where('uuid', $this->unit->uuid)->update([
             'status_id' => 4
             ]);
-
-            $bill_no = Property::find(Session::get('property'))->bills->count()+1;
-
-            $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
             if($this->rent > 0){
                Bill::create([
@@ -153,6 +155,24 @@ class ContractComponent extends Component
                 ]);
 
             }
+
+             if($this->discount > 0){
+              Bill::create([
+              'bill_no' => $bill_no++,
+              'bill' => -($this->discount),
+              'reference_no' => $reference_no,
+              'start' => $this->start,
+              'end' => Carbon::parse($this->start)->addMonth(),
+              'due_date' => Carbon::parse($this->start)->addDays(7),
+              'status' => 'unpaid',
+              'user_id' => auth()->user()->id,
+              'particular_id' => '8',
+              'property_uuid' => Session::get('property'),
+              'unit_uuid' => $this->unit->uuid,
+              'tenant_uuid' => $this->tenant->uuid,
+              'due_date' => Carbon::parse($this->start)->addDay(),
+              ]);
+             }
 
             Point::create([
             'user_id' => auth()->user()->id,

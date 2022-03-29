@@ -20,6 +20,8 @@ class CreateContractsTable extends Migration
             $table->foreignUuid('property_uuid')->constrained();
             $table->date('start');
             $table->date('end');
+            $table->timestamp('moveout_at')->nullable();
+            $table->string('bill_reference_no')->nullable();
             $table->double('rent',8,2);
             $table->string('status');
             $table->string('interaction');

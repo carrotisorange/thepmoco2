@@ -41,5 +41,9 @@ class ParticularSeeder extends Seeder
         Particular::create([
          'particular' => 'Surcharge',
         ]);
+
+         Particular::create([
+         'particular' => 'Discount',
+         ]);
     }
 }

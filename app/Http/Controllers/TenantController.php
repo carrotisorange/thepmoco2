@@ -14,6 +14,8 @@ use App\Models\Bill;
 use App\Models\Barangay;
 use App\Models\Contract;
 use DB;
+use App\Models\Property;
+use Session;
 
 class TenantController extends Controller
 {
@@ -24,18 +26,19 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $tenants = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
-          // ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
-          ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
-          ->leftJoin('buildings', 'units.building_id','buildings.id' )
-          ->where('units.property_uuid', session('property'))
-          ->groupBy('tenants.uuid')
-          ->paginate(10);
-        // $tenants = Tenant::join('provinces', 'tenants.province_id', 'provinces.id')
-        // ->join('cities', 'tenants.city_id', 'cities.id')
-        // ->where('tenant.property_uuid')
-        // ->orderBy('tenants.created_at', 'desc')
-        // ->paginate(10);
+        $tenants = Property::find(Session::get('property'))->tenants;
+        // $tenants = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
+        //   // ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
+        //   ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
+        //   ->leftJoin('buildings', 'units.building_id','buildings.id' )
+        //   ->where('units.property_uuid', session('property'))
+        //   ->groupBy('tenants.uuid')
+        //   ->paginate(10);
+        // // $tenants = Tenant::join('provinces', 'tenants.province_id', 'provinces.id')
+        // // ->join('cities', 'tenants.city_id', 'cities.id')
+        // // ->where('tenant.property_uuid')
+        // // ->orderBy('tenants.created_at', 'desc')
+        // // ->paginate(10);
 
         return view('admin.tenants.index',[
             'tenants'=>$tenants

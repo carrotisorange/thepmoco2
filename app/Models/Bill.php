@@ -26,4 +26,9 @@ class Bill extends Model
     {
         return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }    
+
+    public function particular()
+    {
+        return $this->belongsTo(Particular::class, 'particular_id');
+    }
  }
