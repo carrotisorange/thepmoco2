@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 
 class UserController extends Controller
@@ -58,10 +60,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {        
-        return $user;
-
         return view('users.edit', [
-            'user' => User::find($username),
+            'user' => $user,
+            'roles' => Role::orderBy('role')->where('id','!=','5')->get(),
         ]);
     }
 
@@ -72,9 +73,26 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $attributes = request()->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+        'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
+        'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
+        'role_id' => ['required', Rule::exists('roles', 'id')],
+        'status' => 'required',
+        'avatar' => 'image',
+        ]);
+
+        if(isset($attributes['avatar']))
+        {
+        $attributes['avatar'] = request()->file('avatar')->store('avatars');
+        }
+
+        $user->update($attributes);
+
+        return redirect('/profile/'.$user->username.'/edit')->with('success', 'Profile has been updated.');
     }
 
     /**

@@ -146,7 +146,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     [BillController::class,'store']);
     Route::delete('bill/{id:id}/delete', [BillController::class, 'destroy']);
 
-    Route::get('/profile/{username:username}',[UserController::class, 'edit'])->name('profile');
+    Route::get('/profile/{user}/edit',[UserController::class, 'edit'])->name('profile');
+    Route::patch('/profile/{user}/update',[UserController::class, 'update']);
 
     Route::get('/profile/{username:username}/point',[PointController::class, 'index'])->name('point');
 

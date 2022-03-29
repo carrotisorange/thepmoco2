@@ -21,12 +21,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return 'username';
     }
-    
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -62,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Unit::class);
     }
 
-    public function z()
+    public function property()
     {
         return $this->hasMany(UserProperty::class, 'property_uuid');
     }
