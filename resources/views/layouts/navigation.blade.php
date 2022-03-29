@@ -49,15 +49,15 @@
                         {{ __('Enrollees') }}
                     </x-nav-link>
                 </div> --}}
-                @can('managerandadmin')
+                {{-- @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
                         :active="request()->routeIs('tenants')">
                         {{ __('Tenants') }}
                     </x-nav-link>
                 </div>
-                @endcan
-                @can('manager')
+                @endcan --}}
+                @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/owners"
                         :active="request()->routeIs('owners')">
@@ -180,13 +180,13 @@
                 :active="request()->routeIs('contracts')">
                 {{ __('Contracts') }}
             </x-responsive-nav-link>
-            @can('managerandadmin')
+            {{-- @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
                 :active="request()->routeIs('tenants')">
                 {{ __('Tenants') }}
             </x-responsive-nav-link>
-            @endcan
-            @can('manager')
+            @endcan --}}
+            @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"
                 :active="request()->routeIs('owners')">
                 {{ __('Owners') }}

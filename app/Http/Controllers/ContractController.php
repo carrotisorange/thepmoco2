@@ -129,7 +129,7 @@ class ContractController extends Controller
 
     public function preview(Contract $contract)
     {
-         Session::flash('success', 'Premove-in processed has been completed.');
+         Session::flash('success', 'Premove-in processed hasbeen completed.');
          
         return view('contracts.edit',[
         'contract' => Contract::findOrFail($contract->uuid),

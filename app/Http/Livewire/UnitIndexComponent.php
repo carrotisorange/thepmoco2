@@ -17,7 +17,7 @@ class UnitIndexComponent extends Component
 
     use WithPagination;
 
-    public $search = '6';
+    public $search = '';
 
     public $category_id = '';
     public $status_id = '';
@@ -37,7 +37,7 @@ class UnitIndexComponent extends Component
           ->where('property_uuid', Session::get('property'))
           ->orderByRaw('LENGTH(unit)', 'ASC')
           ->where('units.unit','LIKE' ,'%'.$this->search.'%')
-          ->paginate(5);
+          ->get();
 
           $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
           ->select('building')
