@@ -104,10 +104,11 @@
                                     class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     name="category_id" id="category_id">
                                     @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" {{ old('category_id', $unit->category_id) == $category->id ? 'selected' : '' }}>
+                                    <option value="{{ $category->id }}" {{ old('category_id', $unit->category_id) ==
+                                        $category->id ? 'selected' : '' }}>
                                         {{ $category->category }}
-                                        
-                                    @endforeach
+
+                                        @endforeach
                                 </select>
 
                                 @error('category_id')
@@ -133,6 +134,18 @@
                                     value="{{old('rent', $unit->rent)}}" autofocus />
 
                                 @error('rent')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+
+                            <div class="mt-5">
+                                <x-label for="discount" :value="__('Discount')" />
+
+                                <x-input form="edit-form" class="block mt-1 w-full" type="number" name="discount"
+                                    value="{{old('discount', $unit->discount)}}" autofocus />
+
+                                @error('discount')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>

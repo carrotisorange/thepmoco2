@@ -15,6 +15,8 @@ class TransferContractController extends Controller
      */
     public function __invoke(Contract $contract)
     {
-        return $contract;
+        return view('contracts.transfer',[
+            'contract_details' => $contract
+        ]);
     }
 }

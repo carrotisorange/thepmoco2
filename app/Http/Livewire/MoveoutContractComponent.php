@@ -6,13 +6,14 @@ use Livewire\Component;
 use App\Models\Contract;
 use Carbon\Carbon;
 
-class MoveoutComponent extends Component
+class MoveoutContractComponent extends Component
 {
     public $contract;
 
     public function mount($contract)
     {
-        $contract = $contract;
+        $this->contract = $contract;
+        $this->moveout_at = Carbon::now()->addYear()->format('Y-m-d');
     }
 
     public $moveout_at;
@@ -41,13 +42,13 @@ class MoveoutComponent extends Component
         $this->contract->update($validatedData);
 
         return
-        redirect('/contract/'.$this->contract->uuid.'/moveout/bill')->with('success',
+        redirect('/contract/'.$this->contract->uuid.'/preview')->with('success',
         'Contract has been terminated.');
     }
 
     
     public function render()
     {
-        return view('livewire.moveout-component');
+        return view('livewire.moveout-contract-component');
     }
 }

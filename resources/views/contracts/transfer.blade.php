@@ -13,22 +13,21 @@
                                 </li>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">{{ $contract->unit->unit }}</li>
+                                <li class="text-gray-500">{{ $contract_details->unit->unit }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">{{ $contract->tenant->tenant }}</li>
+                                <li class="text-gray-500">{{ $contract_details->tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Moveout</li>
+                                <li class="text-gray-500">Transfer</li>
 
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                   
-                    <x-button wire:submit.prevent="submitForm"
-                        onclick="window.location.href='{{ url()->previous() }}'">
+
+                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='{{ url()->previous() }}'">
                         Back</x-button>
-                  
+
                 </h5>
 
             </div>
@@ -39,7 +38,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @livewire('moveout-contract-component', ['contract' => $contract])
+                    @livewire('transfer-contract-component', ['contract_details' => $contract_details])
 
                 </div>
             </div>

@@ -24,14 +24,14 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    {{-- <x-button data-modal-toggle="small-modal">
+                    <x-button data-modal-toggle="small-modal">
                         Create Particular
                     </x-button>
                     @if ($bills->count())
-                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/preview'">Save</x-button>
-                    @else --}}
+                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/moveout'">Save</x-button>
+                    @else
                     <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/moveout'">Skip</x-button>
-                    {{-- @endif --}}
+                    @endif
                 </h5>
 
             </div>

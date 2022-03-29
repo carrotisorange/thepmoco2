@@ -126,6 +126,7 @@ class UnitController extends Controller
      */
     public function show(Unit $unit)
     {
+
         $contracts = Unit::findOrFail($unit->uuid)->contracts;
         $enrollees = Unit::findOrFail($unit->uuid)->enrollees;
         $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
@@ -265,6 +266,7 @@ class UnitController extends Controller
         'thumbnail' => 'image',
         'size' => 'required',
         'rent' => 'required',
+         'discount' => 'required',
         'occupancy' => 'required'
         ]);
 
