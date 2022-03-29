@@ -16,16 +16,11 @@
                             </li>
                         </ol>
                     </nav>
+
                 </h2>
             </div>
             <h5 class="flex-1 text-right">
-                {{-- <div class="rounded">
-                    <x-input wire:model="search" type="text" class=" py-2 w-80"
-                        placeholder="Enter name, email, mobile, or unit." />
-                    <x-button class="px-4 text-white bg-gray-600 border-l ">
-                        <i class="fa-solid fa-magnifying-glass"></i>&nbsp; Search
-                    </x-button>
-                </div> --}}
+
                 @can('manager')
                 <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                 </x-button>
@@ -35,8 +30,15 @@
     </h2>
 </x-slot>
 <div class="py-12">
+
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="rounded">
+            <x-input wire:model="search" type="text" class=" py-2 w-80"
+                placeholder="Enter unit..." />
+
+        </div>
+        <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
             <div class="p-6 bg-white border-b border-gray-200">
                 @if (!$units->count())
                 <span class="text-center text-red">No units found!</span>
@@ -47,10 +49,11 @@
                         <div class="mt-5">
                             <div class="flex">
                                 <div>
-                                    @forelse ($categories as $category)
                                     <span>Category</span>
+                                    @forelse ($categories as $category)
+
                                     <div class="form-check">
-                                        <input wire:model="category"
+                                        <input wire:model="category_id"
                                             class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                             type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
                                         <label class="form-check-label inline-block text-gray-800"
@@ -59,12 +62,30 @@
                                         </label>
                                     </div>
                                     @empty
+                                    <div class="mt-5">
+                                        <span>Status</span>
+                                        @forelse ($statuses as $status)
+
+                                        <div class="form-check">
+                                            <input wire:model="status_id"
+                                                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                type="checkbox" value="{{ $status->id }}" id="flexCheckDefault">
+                                            <label class="form-check-label inline-block text-gray-800"
+                                                for="flexCheckDefault">
+                                                {{ $status->status }}
+                                            </label>
+                                        </div>
+                                        @empty
+                                        @endforelse
+                                    </div>
+
                                     @endforelse
                                     <div class="mt-5">
-                                        @forelse ($buildings as $building)
                                         <span>Building</span>
+                                        @forelse ($buildings as $building)
+
                                         <div class="form-check">
-                                            <input
+                                            <input wire:model="status_id"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                 type="checkbox" value="{{ $building->id }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
@@ -76,10 +97,11 @@
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
-                                        @forelse ($floors as $floor)
                                         <span>Floor</span>
+                                        @forelse ($floors as $floor)
+
                                         <div class="form-check">
-                                            <input
+                                            <input wire:model="floor_id"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                 type="checkbox" value="{{ $floor->id }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
@@ -91,10 +113,11 @@
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
-                                        @forelse ($rents as $rent)
                                         <span>Rent</span>
+                                        @forelse ($rents as $rent)
+
                                         <div class="form-check">
-                                            <input
+                                            <input wire:model="rent"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                 type="checkbox" value="{{ $rent->rent }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
@@ -106,10 +129,11 @@
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
-                                        @forelse ($discounts as $discount)
                                         <span>Discount</span>
+                                        @forelse ($discounts as $discount)
+
                                         <div class="form-check">
-                                            <input
+                                            <input wire:model="discount"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                 type="checkbox" value="{{ $discount->discount }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
@@ -121,13 +145,13 @@
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
+                                        <span>Size</span>
                                         @forelse ($sizes as $size)
-                                        <span>Dimension</span>
+
                                         <div class="form-check">
-                                            <input
+                                            <input wire:model="size"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $size->size }}"
-                                                id="flexCheckDefault">
+                                                type="checkbox" value="{{ $size->size }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
                                                 {{ $size->size }}
@@ -141,7 +165,7 @@
                         </div>
                     </div>
                     <div class="basis-1/2">
-                        <span class="font-bold">Unit</span>
+                        <span class="font-bold">Units</span>
                         @foreach($units as $unit)
                         <a href="/unit/{{ $unit->uuid }}"><img src="/storage/{{ $unit->thumbnail }}"
                                 class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
@@ -172,9 +196,7 @@
                 </div>
                 <hr>
                 @endif
-                <div class="mt-3">
-                    {{ $units->links() }}
-                </div>
+
             </div>
 
         </div>

@@ -6,14 +6,26 @@ use App\Models\Unit;
 use App\Models\PropertyBuilding;
 use App\Models\Category;
 use App\Models\Floor;
+use App\Models\Status;
 use Session;
+use Livewire\WithPagination;
 
 use Livewire\Component;
 
 class UnitIndexComponent extends Component
 {
-    public $search;
-    public $category = null;
+
+    use WithPagination;
+
+    public $search = '6';
+
+    public $category_id = '';
+    public $status_id = '';
+    public $building_id = '';
+    public $floor_id = '';
+    public $rent = '';
+    public $discount = '';
+    public $size = '';
 
     public function render()
     {
@@ -23,8 +35,8 @@ class UnitIndexComponent extends Component
           ->leftJoin('buildings', 'units.building_id', 'buildings.id')
           ->leftJoin('floors', 'units.floor_id', 'floors.id')
           ->where('property_uuid', Session::get('property'))
-          ->where('status_id', '!=', 6)
           ->orderByRaw('LENGTH(unit)', 'ASC')
+          ->where('units.unit','LIKE' ,'%'.$this->search.'%')
           ->paginate(5);
 
           $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
@@ -64,18 +76,22 @@ class UnitIndexComponent extends Component
           ->distinct()
           ->get();
 
+         $statuses = Status::join('units', 'statuses.id', 'units.status_id')
+         ->select('status')
+         ->distinct()
+         ->where('units.property_uuid', Session::get('property'))
+         ->where('statuses.status','!=','NA')
+         ->get();
+
         return view('livewire.unit-index-component',[
-            // 'units' => Unit::when($this->category, function($query){
-            //     $query->where('category_id', $this->category);
-            // })
-            // ->search(trim($this->search)),
             'units' => $units,
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,
             'rents' => $rents,
             'discounts' => $discounts,
-            'sizes' => $sizes
+            'sizes' => $sizes,
+            'statuses' => $statuses
         ]);
     }
 }

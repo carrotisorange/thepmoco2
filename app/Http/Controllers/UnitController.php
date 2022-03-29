@@ -26,15 +26,6 @@ class UnitController extends Controller
      */
     public function index()
     {
-       $units = Unit::leftJoin('statuses', 'units.status_id', 'statuses.id')
-        ->select('*', 'units.*')
-        ->leftJoin('categories', 'units.category_id', 'categories.id')
-        ->leftJoin('buildings', 'units.building_id', 'buildings.id')
-        ->leftJoin('floors', 'units.floor_id', 'floors.id')
-        ->where('property_uuid', Session::get('property'))
-        ->where('status_id', '!=', 6)
-        ->orderByRaw('LENGTH(unit)', 'ASC')
-        ->paginate(5);
 
     //     $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
     //     ->select('building')
@@ -70,11 +61,7 @@ class UnitController extends Controller
     //     ->distinct()
     //     ->get();
 
-        return view('admin.units.index',
-            [
-                'units' => $units,
-            ]    
-        );
+        return view('admin.units.index');
     }
 
     /**
