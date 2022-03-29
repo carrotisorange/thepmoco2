@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Transfer | Create')
+    @section('title', '| Renew | Create')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -17,7 +17,7 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $contract_details->tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Transfer</li>
+                                <li class="text-gray-500">Renew</li>
 
                             </ol>
                         </nav>
@@ -38,7 +38,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @livewire('transfer-contract-component', ['contract_details' => $contract_details])
+                    @livewire('renew-contract-component', ['contract_details' => $contract_details])
 
                 </div>
             </div>

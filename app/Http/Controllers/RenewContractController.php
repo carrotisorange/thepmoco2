@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contract;
 
-class ExtendContractController extends Controller
+class RenewContractController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -15,6 +15,8 @@ class ExtendContractController extends Controller
      */
     public function __invoke(Contract $contract)
     {
-        return $contract;
+         return view('contracts.renew',[
+            'contract_details' => $contract
+         ]);
     }
 }

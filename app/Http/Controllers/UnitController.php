@@ -128,7 +128,9 @@ class UnitController extends Controller
     {
 
         $contracts = Unit::findOrFail($unit->uuid)->contracts;
+
         $enrollees = Unit::findOrFail($unit->uuid)->enrollees;
+
         $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
           ->select('*', 'bills.status as bill_status')
           ->join('users', 'bills.user_id', 'users.id')

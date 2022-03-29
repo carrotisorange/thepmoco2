@@ -235,12 +235,12 @@
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Transfer</a>
                                                             </li>
                                                             <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/extend"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Extend</a>
+                                                                <a href="/contract/{{ $contract->uuid }}/renew"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Renew</a>
                                                             </li>
 
                                                         </ul>
-                                                        @if($contract->status === 'active')
+                                                        @if($contract->status == 'active')
                                                         <div class="py-1">
                                                             <a href="/contract/{{ $contract->uuid }}/moveout/bills"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">

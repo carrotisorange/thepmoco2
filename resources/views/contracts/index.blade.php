@@ -64,7 +64,7 @@
                                                     Contact</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Price</th>
+                                                    Rent/mo</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
@@ -85,13 +85,15 @@
                                                         <div class="flex-shrink-0 h-10 w-10">
                                                             <a href="/contract/{{ $contract->uuid }}">
                                                                 <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $contract->tenant->photo_id }}" alt=""></a>
+                                                                    src="/storage/{{ $contract->tenant->photo_id }}"
+                                                                    alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
-                                                            <div class="text-sm font-medium text-gray-900">{{
-                                                                $contract->tenant->tenant }}
+                                                            <div class="text-sm font-medium text-gray-900"><b>{{
+                                                                    $contract->tenant->tenant }}</b>
                                                             </div>
-                                                            <div class="text-sm text-gray-500">{{ $contract->tenant->type }}
+                                                            <div class="text-sm text-gray-500">{{
+                                                                $contract->tenant->type }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,26 +112,28 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{ $contract->unit->unit }}
                                                     </div>
-                                                    <div class="text-sm text-gray-500">{{ $contract->unit->building->building }}
+                                                    <div class="text-sm text-gray-500">{{
+                                                        $contract->unit->building->building }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{ $contract->tenant->email }}
                                                     </div>
-                                                    <div class="text-sm text-gray-500">{{ $contract->tenant->mobile_number }}
+                                                    <div class="text-sm text-gray-500">{{
+                                                        $contract->tenant->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{number_format($contract->price, 2)}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($contract->status = 'active')
+                                                    @if($contract->status === 'active')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                         {{ $contract->status }} </span>
                                                     @else
                                                     <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-red-800">
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                         {{ $contract->status }} </span>
                                                     @endif
                                                 </td>
@@ -152,25 +156,24 @@
                                                                 <a href="/contract/{{ $contract->uuid }}/edit"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Show</a>
                                                             </li>
-                                                            <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/export"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export</a>
-                                                            </li>
+
                                                             <li>
                                                                 <a href="/contract/{{ $contract->uuid }}/transfer"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Transfer</a>
                                                             </li>
                                                             <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/extend"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Extend</a>
+                                                                <a href="/contract/{{ $contract->uuid }}/renew"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Renew</a>
                                                             </li>
 
                                                         </ul>
+                                                        @if($contract->status === 'active')
                                                         <div class="py-1">
                                                             <a href="/contract/{{ $contract->uuid }}/moveout/bills"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                                 Moveout</a>
                                                         </div>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>
@@ -184,7 +187,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                       
+
                     </div>
                 </div>
             </div>

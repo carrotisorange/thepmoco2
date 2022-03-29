@@ -163,7 +163,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     Route::get('/contract/{contract}/moveout/bills', MoveoutContractBillController::class);
 
-   Route::get('/contract/{contract}/extend', ExtendContractController::class);
+   Route::get('/contract/{contract}/renew', RenewContractController::class);
 
     Route::get('/contract/{contract}/export', ExportContractController::class);
 

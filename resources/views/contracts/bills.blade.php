@@ -24,6 +24,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='{{ url()->previous() }}'">
+                        Back</x-button>
                     <x-button data-modal-toggle="small-modal">
                         Create Particular
                     </x-button>
