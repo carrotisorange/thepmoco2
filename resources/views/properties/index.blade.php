@@ -46,13 +46,13 @@
                         </h2>
                     </div>
                     <h5 class="flex-1 text-right">
-                        <x-button onclick="window.location.href='/documentation/'">Documentation
-                        </x-button>
-                        @if(auth()->user()->role_id === 5)
+                        {{-- <x-button onclick="window.location.href='/documentation/'">Documentation
+                        </x-button> --}}
+                        @can('accountowner')
                         <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create
                             Property
                         </x-button>
-                        @endif
+                        @endcan
                     </h5>
                 </div>
             </div>
@@ -157,6 +157,8 @@
                                                                 href="/property/{{ $property->property_uuid }}"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
                                                                     class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
+
+                                                            @can('accountowner')
                                                             <a title="edit"
                                                                 href="/property/{{ $property->property_uuid }}/edit"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
@@ -166,6 +168,8 @@
                                                                 href="/property/{{ $property->property_uuid }}/delete"
                                                                 class="text-red-600 hover:text-indigo-900"><i
                                                                     class="fa-solid fa-2x fa-trash-can"></i></a>
+
+                                                            @endcannot
 
                                                         </td>
                                                     </tr>

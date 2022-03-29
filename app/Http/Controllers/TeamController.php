@@ -22,6 +22,8 @@ class TeamController extends Controller
      */
     public function index()
     {
+        $this->authorize('accountowner');
+        
         $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
         ->select('*', 'users.status as user_status')
         ->join('users', 'user_properties.user_id', 'users.id')

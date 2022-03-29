@@ -17,24 +17,32 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @can('accountowner')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/team"
                         :active="request()->routeIs('team')">
                         {{ __('Team') }}
                     </x-nav-link>
                 </div>
+                @endcan
+
+                @can('manager')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/units"
                         :active="request()->routeIs('units')">
                         {{ __('Units') }}
                     </x-nav-link>
                 </div>
+                @endcan
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/contracts"
                         :active="request()->routeIs('contracts')">
                         {{ __('Contracts') }}
                     </x-nav-link>
                 </div>
+
                 {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/enrollees"
                         :active="request()->routeIs('enrollees')">
@@ -47,30 +55,36 @@
                         {{ __('Tenants') }}
                     </x-nav-link>
                 </div>
+                @can('manager')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/owners"
                         :active="request()->routeIs('owners')">
                         {{ __('Owners') }}
                     </x-nav-link>
                 </div>
+                @endcan
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/concerns"
                         :active="request()->routeIs('concerns')">
                         {{ __('Concerns') }}
                     </x-nav-link>
                 </div>
+                @can('billing')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/bills"
                         :active="request()->routeIs('bills')">
                         {{ __('Bills') }}
                     </x-nav-link>
                 </div>
+                @endcan
+                @can('treasury')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/collections"
                         :active="request()->routeIs('collections')">
                         {{ __('Collections') }}
                     </x-nav-link>
                 </div>
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->
@@ -146,42 +160,51 @@
                 :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @can('accountowner')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/team"
                 :active="request()->routeIs('team')">
                 {{ __('Team') }}
             </x-responsive-nav-link>
+            @endcannot
+
+            @can('manager')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/units"
                 :active="request()->routeIs('units')">
                 {{ __('Units') }}
             </x-responsive-nav-link>
+            @endcan
+
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/contracts"
                 :active="request()->routeIs('contracts')">
                 {{ __('Contracts') }}
             </x-responsive-nav-link>
-            {{-- <x-responsive-nav-link href="/property/{{ Session::get('property') }}/enrollees"
-                :active="request()->routeIs('enrollees')">
-                {{ __('enrollees') }}
-            </x-responsive-nav-link> --}}
+
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
                 :active="request()->routeIs('tenants')">
                 {{ __('Tenants') }}
             </x-responsive-nav-link>
+            @can('manager')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"
                 :active="request()->routeIs('owners')">
                 {{ __('Owners') }}
             </x-responsive-nav-link>
+            @endcan
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/concerns"
                 :active="request()->routeIs('concerns')">
                 {{ __('Concerns') }}
             </x-responsive-nav-link>
+            @can('billing')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/bills"
                 :active="request()->routeIs('bills')">
                 {{ __('Bills') }}
             </x-responsive-nav-link>
+            @endcan
+            @can('treasury')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/collections"
                 :active="request()->routeIs('collections')">
                 {{ __('Collections') }}
             </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

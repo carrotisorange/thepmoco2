@@ -55,5 +55,10 @@ class RoleSeeder extends Seeder
            'description' => 'This user has access to his contracts.',
            ]);
 
+         Role::create([
+            'role' => 'manager',
+            'description' => 'This user has access to all features.',
+         ]);
+
     }
 }

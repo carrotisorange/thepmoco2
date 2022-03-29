@@ -2,6 +2,13 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\MustBeAccountOwner;
+use App\Http\Middleware\MustBeAccountPayable;
+use App\Http\Middleware\MustBeBilling;
+use App\Http\Middleware\MustBeManager;
+use App\Http\Middleware\MustBeTenant;
+use App\Http\Middleware\MustBeTreasury;
+use App\Http\Middleware\MustBeUnitOwner;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -55,6 +62,14 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'accountowner' => MustBeAccountOwner::class,
+        'accountpayable' => MustBeAccountPayable::class,
+        'admin' => MustBeAdmin::class,
+        'billing' => MustBeBilling::class,
+        'manager' => MustBeManager::class,
+        'tenant' => MustBeTenant::class,
+        'treasury' => MustBeTreasury::class,
+        'unitowner' => MustBeUnitOwner::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
@@ -63,5 +78,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        
     ];
 }

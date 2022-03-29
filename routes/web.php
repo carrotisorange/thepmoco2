@@ -117,6 +117,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('unit/{unit}/tenant/{tenant}/contract/{random_str}/create', [ContractController::class, 'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{random_str}/store', [ContractController::class, 'store']);
     Route::get('/contract/{contract}/edit', [ContractController::class, 'edit']);
+    Route::get('/contract/{contract}/preview', [ContractController::class, 'preview']);
     Route::patch('/contract/{contract}/update', [ContractController::class, 'update']);
     //5
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class, 'create']);
@@ -163,6 +164,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/contract/{contract}/extend', [ExtendContractController::class, 'create']);
 
     Route::get('/contract/{contract}/export', ExportContractController::class);
+
+    Route::get('/contract/{contract}/signed_contract', ExportSignedContractController::class);
 
     Route::get('/contract/{contract}/transfer', [TransferContractController::class, 'create']);
 

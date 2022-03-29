@@ -58,6 +58,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link href="/properties">
+                            {{ __('Properties') }}
+                        </x-dropdown-link>
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/edit">
                             {{ __('Profile') }}
                         </x-dropdown-link>

@@ -26,8 +26,10 @@
                         <i class="fa-solid fa-magnifying-glass"></i>&nbsp; Search
                     </x-button>
                 </div> --}}
+                @can('manager')
                 <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                 </x-button>
+                @endcan
             </h5>
         </div>
     </h2>

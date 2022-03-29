@@ -13,15 +13,9 @@
                                 </li>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $unit->unit
-                                        }}</a>
-                                </li>
+                                <li class="text-gray-500">{{ $unit->unit }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/tenant/{{ $tenant->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $tenant->tenant
-                                        }}</a>
-                                </li>
+                                <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Guardian</li>
 
@@ -52,7 +46,7 @@
                     @livewire('guardian-component', ['unit' => $unit, 'tenant' => $tenant, 'guardians' => $guardians])
 
                     @if (!$guardians->count())
-                   
+
                     @else
                     <span>Guardians ({{ $guardians->count() }}) </span>
 

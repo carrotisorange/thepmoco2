@@ -13,19 +13,12 @@
                                 </li>
 
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $unit->unit
-                                        }}</a>
-                                </li>
-
+                                <li class="text-gray-500">{{ $unit->unit }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/tenant/{{ $tenant->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $tenant->tenant }}</a>
-                                </li>
+                                <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Bill</li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Create</li>
+
                             </ol>
                         </nav>
                     </h2>
@@ -35,7 +28,7 @@
                         Create Particular
                     </x-button>
                     @if ($bills->count())
-                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Save</x-button>
+                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/preview'">Save</x-button>
                     @else
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Skip</x-button>
                     @endif

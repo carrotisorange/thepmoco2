@@ -83,13 +83,15 @@ class ContractComponent extends Component
             'status_id' => 4
             ]);
 
-            $bill_no = Property::find(Session::get('property'))->bills->count();
+            $bill_no = Property::find(Session::get('property'))->bills->count()+1;
+
+            $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
             if($this->rent > 0){
                Bill::create([
-               'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
+               'bill_no' => $bill_no++,
                'bill' => $this->rent,
-               'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
+               'reference_no' => $reference_no,
                'start' => $this->start,
                'end' => Carbon::parse($this->start)->addMonth(),
                'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -99,12 +101,13 @@ class ContractComponent extends Component
                'property_uuid' => Session::get('property'),
                'unit_uuid' => $this->unit->uuid,
                'tenant_uuid' => $this->tenant->uuid,
+               'due_date' => Carbon::parse($this->start)->addDay(),
                ]);
 
                Bill::create([
-               'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
+               'bill_no' => $bill_no++,
                'bill' => $this->rent,
-               'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
+               'reference_no' => $reference_no,
                'start' => Carbon::parse($this->start)->addMonth(),
                'end' => Carbon::parse($this->start)->addMonths(2),
                'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -114,12 +117,13 @@ class ContractComponent extends Component
                'property_uuid' => Session::get('property'),
                'unit_uuid' => $this->unit->uuid,
                'tenant_uuid' => $this->tenant->uuid,
+               'due_date' => Carbon::parse($this->start)->addDay(),
                ]);
 
                 Bill::create([
-                'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
+                'bill_no' => $bill_no++,
                 'bill' => $this->rent,
-                'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
+                'reference_no' => $reference_no,
                   'start' => $this->start,
                   'end' => $this->end,
                 'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -129,12 +133,13 @@ class ContractComponent extends Component
                 'property_uuid' => Session::get('property'),
                 'unit_uuid' => $this->unit->uuid,
                 'tenant_uuid' => $this->tenant->uuid,
+                'due_date' => Carbon::parse($this->start)->addDay(),
                 ]);
 
                 Bill::create([
-                'bill_no' => Property::find(Session::get('property'))->bills->count()+1,
+                'bill_no' => $bill_no++,
                 'bill' => $this->rent,
-                'reference_no' => Carbon::now()->timestamp.''.$bill_no++,
+                'reference_no' => $reference_no,
                 'start' => $this->start,
                 'end' => $this->end,
                 'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -144,6 +149,7 @@ class ContractComponent extends Component
                 'property_uuid' => Session::get('property'),
                 'unit_uuid' => $this->unit->uuid,
                 'tenant_uuid' => $this->tenant->uuid,
+                'due_date' => Carbon::parse($this->start)->addDay(),
                 ]);
 
             }

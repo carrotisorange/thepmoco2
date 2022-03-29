@@ -84,6 +84,8 @@ class UnitController extends Controller
      */
     public function create($batch_no)
     {
+        $this->authorize('manager');
+
         return view('admin.units.create',[
             'batch_no' => $batch_no,
         ]);
@@ -98,7 +100,7 @@ class UnitController extends Controller
     public function store(Request $request, $batch_no)
     {
         $request->validate([
-            'number_of_units' => ['integer', 'required', 'min:1']
+            'number_of_units' => ['integer', 'required', 'min:1', 'gt:0']
         ]);
 
        for($i=$request->number_of_units; $i>=1; $i--){
@@ -152,6 +154,8 @@ class UnitController extends Controller
      */
     public function bulk_edit($batch_no)
     {
+        $this->authorize('manager');
+        
         $units = Unit::leftJoin('categories', 'units.category_id','categories.id')
         ->leftJoin('statuses', 'units.status_id', 'statuses.id')
         ->leftJoin('buildings', 'units.building_id', 'buildings.id')

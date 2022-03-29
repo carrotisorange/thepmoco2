@@ -15,6 +15,8 @@ class NewTenantController extends Controller
      */
     public function __invoke(Unit $unit)
     {
+        $this->authorize('admin');
+        
         return view('admin.tenants.new.create', [
                     'unit' => $unit
         ]);

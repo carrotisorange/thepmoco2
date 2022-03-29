@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Session;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Bill;
 
 use App\Models\Contract;
 
@@ -16,6 +17,20 @@ class ExportContractController extends Controller
      */
     public function __invoke(Contract $contract)
     {
+         $reference_no = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
+        ->select('*', 'bills.status as bill_status', 'bills.id as bill_id')
+        ->join('particulars', 'bills.particular_id', 'particulars.id')
+        ->where('tenants.uuid', $contract->tenant->uuid)
+        ->orderBy('bills.bill_no')
+        ->limit(1)
+        ->get('reference_no');
+
+        $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
+        ->select('*', 'bills.status as bill_status', 'bills.id as bill_id')
+        ->join('particulars', 'bills.particular_id', 'particulars.id')
+        ->where('tenants.uuid', $contract->tenant->uuid)
+        ->orderBy('bills.bill_no')
+        ->get();
 
         $data = [
             'tenant' => $contract->tenant->tenant ,
@@ -27,26 +42,24 @@ class ExportContractController extends Controller
             'status' => $contract->status,
             'interaction' => $contract->interaction,
             'moveout_reason' => $contract->moveout_reason,
-            'user' => $contract->user->name
+            'user' => $contract->user->name,
+            'bills' => $bills,
+            'reference_no' => $reference_no
         ];
-
-        //return view('contracts.export', $data);
-
-        //  $pdf = PDF::loadView('contracts.export', $data);
-        //  return $pdf->download($contract->tenant->tenant.'.pdf');
 
           $pdf = PDF::loadView('contracts.export', $data)
           ->setPaper('a5', 'portrait');
 
-          // $pdf->setPaper('L');
+          //$pdf->setPaper('L');
           $pdf->output();
           $canvas = $pdf->getDomPDF()->getCanvas();
           $height = $canvas->get_height();
           $width = $canvas->get_width();
           $canvas->set_opacity(.1,"Multiply");
-          $canvas->page_text($width/5, $height/2, Session::get('property_name'), null,
+          $canvas->page_text($width, $height, Session::get('property_name'), null,
           28, array(0,0,0),2,2,0);
-        return $pdf->download($contract->tenant->tenant.'.pdf');
+        
+          return $pdf->download($contract->tenant->tenant.'.pdf');
 
     }
 

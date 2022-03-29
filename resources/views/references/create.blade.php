@@ -12,26 +12,12 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/units"
-                                        class="text-blue-600 hover:text-blue-700">Units</a>
-                                </li>
+                                <li class="text-gray-500">{{ $unit->unit }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $unit->unit
-                                        }}</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/tenants"
-                                        class="text-blue-600 hover:text-blue-700">Tenants</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}"
-                                        class="text-blue-600 hover:text-blue-700">{{ $tenant->tenant }}</a>
-                                </li>
+                                <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Reference</li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Create</li>
+
                             </ol>
                         </nav>
                     </h2>
@@ -59,7 +45,7 @@
                     @livewire('reference-component', ['unit' => $unit, 'tenant' => $tenant, 'references' =>
                     $references])
                     @if (!$references->count())
-                  
+
                     @else
                     <span>References ({{ $references->count() }}) </span>
 

@@ -16,6 +16,7 @@ use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Contract;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 class PropertyController extends Controller
 {
@@ -53,6 +54,8 @@ class PropertyController extends Controller
      */
     public function create($random_str)
     {
+        $this->authorize('accountowner');
+        
         return view('properties.create', [
             'random_str' => $random_str,
             'types' => Type::all(),
@@ -161,6 +164,8 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
+        $this->authorize('accountowner');
+        
          session(['property' => $property->uuid]);
          session(['property_name' => $property->property]);
          

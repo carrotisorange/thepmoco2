@@ -34,10 +34,9 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex justify-center">
                         <img src="/storage/{{ $contract->tenant->photo_id }}"
-                            class="p-2 bg-white border rounded max-w-xs mt-5 mx-5 ml-5 mr-5" alt="..." 
-                            />
+                            class="p-2 bg-white border rounded max-w-xs mt-5 mx-5 ml-5 mr-5" alt="..." />
                     </div>
-                    
+
                     <div class="bg-white shadow overflow-hidden sm:rounded-lg mt-5">
                         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white">
 
@@ -109,11 +108,12 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                             <span class="ml-2 flex-1 w-0 truncate">
-                                               {{$property->tenant_contract}} </span>
+                                            Signed Contract </span>
                                         </div>
                                         <div class="ml-4 flex-shrink-0">
-                                            <a target="_blank" href="/property/{{ Session::get('property') }}/tenant_contract" class="font-medium text-indigo-600 hover:text-indigo-500">
-                                                Download </a>
+                                            <a target="_blank" href="/contract/{{ $contract->uuid }}/signed_contract"
+                                                class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                View </a>
                                         </div>
                                     </li>
                                     <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
@@ -127,10 +127,11 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                             <span class="ml-2 flex-1 w-0 truncate">
-                                                tenant_contract.pdf </span>
+                                                Digital Contract </span>
                                         </div>
                                         <div class="ml-4 flex-shrink-0">
-                                            <a href="/contract/{{ $contract->uuid }}/export" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                            <a href="/contract/{{ $contract->uuid }}/export"
+                                                class="font-medium text-indigo-600 hover:text-indigo-500">
                                                 Download </a>
                                         </div>
                                     </li>

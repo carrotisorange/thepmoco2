@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Unit;
-use Illuminate\Http\Request;
 
-class OldTenantController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Contract;
+
+class ExportSignedContractController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -12,12 +13,10 @@ class OldTenantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Unit $unit)
+    public function __invoke(Contract $contract)
     {
-        $this->authorize('admin');
-
-         return view('admin.tenants.old.create', [
-            'unit' => $unit
+         return view('contracts.show-contract',[
+         'contract' => $contract,
          ]);
     }
 }
