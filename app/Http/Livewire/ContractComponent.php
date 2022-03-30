@@ -178,7 +178,7 @@ class ContractComponent extends Component
             'user_id' => auth()->user()->id,
             'point' => 5,
             'action_id' => 1,
-            'property_uuid' => Property::get('property')->uuid
+            'property_uuid' => Session::get('property')
           ]);
 
              $details =[

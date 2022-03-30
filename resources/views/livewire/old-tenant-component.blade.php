@@ -190,7 +190,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                            {{-- <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-city">
                                     City
@@ -230,7 +230,7 @@
                                 @error('barangay_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                         </div>
 
