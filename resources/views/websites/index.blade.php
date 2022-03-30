@@ -632,7 +632,7 @@
                         <ul class="mb-16">
                             <li class="text-gray-500 leading-9">Unlimited properties </li>
                             <li class="text-gray-500 leading-9">Unlimited rooms</li>
-                            <li class="text-gray-500 leading-9">Unlimited of storage</li>
+                           <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
                             <li class="text-gray-500 leading-9">Real-time collabration</li>
                             <li class="text-gray-500 leading-9">24x7 Support</li>
                         </ul>
@@ -788,7 +788,7 @@
     <!-- Contact Section End -->
 
     <!-- Map Section Start -->
-    <section id="google-map-area">
+    {{-- <section id="google-map-area">
         <div class="mx-6 mb-6">
             <div class="flex">
                 <div class="w-full">
@@ -797,7 +797,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Map Section End -->
 
     <!-- Footer Section Start -->
