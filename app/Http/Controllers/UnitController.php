@@ -113,7 +113,6 @@ class UnitController extends Controller
      */
     public function show(Unit $unit)
     {
-
         $contracts = Unit::findOrFail($unit->uuid)->contracts;
 
         $enrollees = Unit::findOrFail($unit->uuid)->enrollees;

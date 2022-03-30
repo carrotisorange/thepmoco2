@@ -27,15 +27,13 @@ class ContractController extends Controller
     public function index()
     {
 
-        $contracts = Property::findOrFail(Session::get('property'))->contracts;
-
-        //  $contracts = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
-        // // ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
-        // ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
-        // ->leftJoin('buildings', 'units.building_id','buildings.id' )
-        // ->where('units.property_uuid', session('property'))
-        // ->groupBy('contracts.uuid')
-        // ->paginate(10);
+        $contracts = Contract::join('units', 'contracts.unit_uuid', 'units.uuid')
+        ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
+        ->join('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
+        ->join('buildings', 'units.building_id','buildings.id' )
+        ->where('units.property_uuid', session('property'))
+        //->groupBy('contract_uuid')
+        ->paginate(10);
 
         return view('contracts.index', [
             'contracts'=> $contracts

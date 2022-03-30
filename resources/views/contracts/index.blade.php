@@ -22,7 +22,7 @@
                 <h5 class="flex-1 text-right">
                     <div class="rounded">
                         <x-input type="text" class=" py-2 w-80" placeholder="Enter name, email, mobile, or unit." />
-                      
+
                     </div>
                 </h5>
 
@@ -81,17 +81,17 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/contract/{{ $contract->uuid }}">
+                                                            <a href="/contract/{{ $contract->uuid }}/preview">
                                                                 <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $contract->tenant->photo_id }}"
+                                                                    src="/storage/{{ $contract->photo_id }}"
                                                                     alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900"><b>{{
-                                                                    $contract->tenant->tenant }}</b>
+                                                                    $contract->tenant }}</b>
                                                             </div>
                                                             <div class="text-sm text-gray-500">{{
-                                                                $contract->tenant->type }}
+                                                                $contract->type }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -108,31 +108,31 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $contract->unit->unit }}
+                                                    <div class="text-sm text-gray-900">{{ $contract->unit }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        $contract->unit->building->building }}
+                                                        $contract->building }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $contract->tenant->email }}
+                                                    <div class="text-sm text-gray-900">{{ $contract->email }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        $contract->tenant->mobile_number }}
+                                                        $contract->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{number_format($contract->price, 2)}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($contract->status === 'active')
+                                                    @if($contract->contract_status === "active")
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $contract->status }} </span>
+                                                        {{ $contract->contract_status }} </span>
                                                     @else
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $contract->status }} </span>
+                                                        {{ $contract->contract_status }} </span>
                                                     @endif
                                                 </td>
 
@@ -151,21 +151,21 @@
                                                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
                                                             <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/edit"
+                                                                <a href="/contract/{{ $contract->contract_uuid }}/edit"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Show</a>
                                                             </li>
 
                                                             <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/transfer"
+                                                                <a href="/contract/{{ $contract->contract_uuid }}/transfer"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Transfer</a>
                                                             </li>
                                                             <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/renew"
+                                                                <a href="/contract/{{ $contract->contract_uuid }}/renew"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Renew</a>
                                                             </li>
 
                                                         </ul>
-                                                        @if($contract->status === 'active')
+                                                        @if($contract->contract_status === "active")
                                                         <div class="py-1">
                                                             <a href="/contract/{{ $contract->uuid }}/moveout/bills"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
