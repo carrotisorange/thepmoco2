@@ -22,7 +22,7 @@ use App\Models\Role;
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [WebsiteController::class, 'index']);
+//Route::get('/', [WebsiteController::class, 'index']);
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property:uuid}')->group(function(){
