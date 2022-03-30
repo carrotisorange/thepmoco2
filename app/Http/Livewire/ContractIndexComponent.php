@@ -7,6 +7,8 @@ use App\Models\Contract;
 
 class ContractIndexComponent extends Component
 {
+    public $search = null;
+
     public function render()
     {
         $contracts = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')

@@ -145,29 +145,8 @@ class UnitController extends Controller
     public function bulk_edit($batch_no)
     {
         $this->authorize('manager');
-        
-        $units = Unit::leftJoin('categories', 'units.category_id','categories.id')
-        ->leftJoin('statuses', 'units.status_id', 'statuses.id')
-        ->leftJoin('buildings', 'units.building_id', 'buildings.id')
-        ->leftJoin('floors', 'units.floor_id', 'floors.id')
-        ->where('batch_no', $batch_no)
-        ->orderByRaw('LENGTH(unit)', 'ASC')
-        ->orderBy('units.unit')
-        ->get();
-
-        $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
-         ->where('property_buildings.property_uuid', Session::get('property'))
-         ->get();
-
-         $floors = Floor::all();
-
-         $categories = Category::all();
 
         return view('admin.units.bulk-edit',[
-            'units' => $units,
-            'buildings' => $buildings,
-            'floors' => $floors,
-            'categories' => $categories,
             'batch_no' => $batch_no,
             'unit_count' => Unit::where('property_uuid', Session::get('property'))->where('units.status_id', '!=','6')->get()->count()+1,
         ]);

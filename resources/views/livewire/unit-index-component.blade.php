@@ -30,7 +30,6 @@
     </h2>
 </x-slot>
 <div class="py-12">
-
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div class="rounded">
             <x-input wire:model="search" type="text" class=" py-2 w-80"
@@ -165,7 +164,7 @@
                         </div>
                     </div>
                     <div class="basis-1/2">
-                        <span class="font-bold">Units</span>
+                        <span class="font-bold">Units ({{ $units->count() }})</span>
                         @foreach($units as $unit)
                         <a href="/unit/{{ $unit->uuid }}"><img src="/storage/{{ $unit->thumbnail }}"
                                 class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
