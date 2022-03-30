@@ -27,24 +27,46 @@ class PropertyController extends Controller
      */
     public function index()
     {
-    
-        $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-        ->select('*', 'properties.*','properties.status as property_status', 'properties.uuid as property_uuid',
-        DB::raw('count(units.uuid) as units_count'),DB::raw('count(tenants.uuid) as
-        tenants_count'),'user_properties.created_at as property_created_at', 'types.type as property_type')
-        ->leftJoin('users', 'user_properties.user_id', 'users.id')
-        ->leftJoin('types', 'properties.type_id', 'types.id')
-        ->leftJoin('units', 'properties.uuid', 'units.property_uuid')
-        ->leftJoin('tenants', 'properties.uuid', 'tenants.property_uuid')
-        ->where('users.id', auth()->user()->id)
-        //->orWhere('users.account_owner_id', auth()->user()->id)
-        ->groupBy('user_properties.property_uuid')
-        ->orderBy('properties.created_at', 'desc')
-        ->get();
+        if(auth()->user()->role_id == '10')
+        {   
+            $sessions = DB::table('sessions')
+            ->where('user_id', auth()->user()->id)
+            ->whereDate('created_at', Carbon::today())
+            ->get();
 
-        return view('properties.index',[
+             $points = DB::table('points')
+         
+           ->leftJoin('users', 'points.user_id', 'users.id')
+           ->leftJoin('actions', 'points.action_id', 'actions.id')
+           ->leftJoin('properties', 'points.property_uuid', 'properties.uuid')
+           ->where('user_id', auth()->user()->id)
+           ->groupBy('points.id')
+           ->get();
+
+            return view('dev.index',[
+                'sessions' => $sessions,
+                'points' => $points,
+            ]);
+        }else
+        {
+            $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+            ->select('*', 'properties.*','properties.status as property_status', 'properties.uuid as property_uuid',
+            DB::raw('count(units.uuid) as units_count'),DB::raw('count(tenants.uuid) as
+            tenants_count'),'user_properties.created_at as property_created_at', 'types.type as property_type')
+            ->leftJoin('users', 'user_properties.user_id', 'users.id')
+            ->leftJoin('types', 'properties.type_id', 'types.id')
+            ->leftJoin('units', 'properties.uuid', 'units.property_uuid')
+            ->leftJoin('tenants', 'properties.uuid', 'tenants.property_uuid')
+            ->where('users.id', auth()->user()->id)
+            //->orWhere('users.account_owner_id', auth()->user()->id)
+            ->groupBy('user_properties.property_uuid')
+            ->orderBy('properties.created_at', 'desc')
+            ->get();
+
+            return view('properties.index',[
             'properties'=>$properties
-        ]);
+            ]);
+        }
     }
 
     /**
