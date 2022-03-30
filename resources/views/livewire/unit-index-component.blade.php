@@ -31,11 +31,13 @@
 </x-slot>
 <div class="py-12">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
+       
         <div class="rounded">
             <x-input wire:model="search" type="text" class=" py-2 w-80"
                 placeholder="Enter unit..." />
 
         </div>
+        
         <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
             <div class="p-6 bg-white border-b border-gray-200">

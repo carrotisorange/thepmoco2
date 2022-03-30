@@ -34,7 +34,8 @@
                         {{ __('Units') }}
                     </x-nav-link>
                 </div>
-                @endcan
+
+
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/contracts"
@@ -42,7 +43,7 @@
                         {{ __('Contracts') }}
                     </x-nav-link>
                 </div>
-
+                @endcan
                 {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/enrollees"
                         :active="request()->routeIs('enrollees')">

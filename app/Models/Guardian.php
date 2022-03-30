@@ -11,8 +11,11 @@ class Guardian extends Model
 
     public function tenant()
     {
-        return $this->belongsTo(Tenant::class, 'tenant_uuid');
+        return $this->belongsTo(Tenant::class,'tenant_uuid');
     }
 
-    
+    public function relationship()
+    {
+        return $this->belongsTo(Relationship::class);
+    }
 }

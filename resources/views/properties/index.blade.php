@@ -38,20 +38,24 @@
                             <nav class="rounded-md">
                                 <ol class="list-reset flex">
                                     <li>
-                                        {{ Str::plural('Property', $properties->count())}} ({{ $properties->count()
-                                        }})
+                                        <?php $name = explode(" ",auth()->user()->name) ?>
+                                        Welcome <b>{{ $name[0] }}</b>!
+                                        {{-- {{ Str::plural('Property', $properties->count())}} ({{ $properties->count()
+                                        }}) --}}
                                     </li>
                                 </ol>
                             </nav>
                         </h2>
                     </div>
                     <h5 class="flex-1 text-right">
+                        <x-button><i class="fa-solid fa-universal-access"></i> &nbsp; {{ auth()->user()->role->role }} access</x-button>
                         {{-- <x-button onclick="window.location.href='/documentation/'">Documentation
                         </x-button> --}}
                         @can('accountowner')
                         <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create
                             Property
                         </x-button>
+
                         @endcan
                     </h5>
                 </div>

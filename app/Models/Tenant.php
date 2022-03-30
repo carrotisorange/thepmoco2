@@ -24,7 +24,7 @@ class Tenant extends Model
 
    public function references()
    {
-   return $this->hasMany(Reference::class);
+        return $this->hasMany(Reference::class);
    }
 
     public function guardians()

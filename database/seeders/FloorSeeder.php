@@ -19,6 +19,22 @@ class FloorSeeder extends Seeder
         ]);
 
         Floor::create([
+         'floor' => '3rd lower ground'
+        ]);
+
+        Floor::create([
+         'floor' => '2nd lower ground'
+        ]);
+
+        Floor::create([
+         'floor' => 'lower ground'
+        ]);
+
+        Floor::create([
+         'floor' => 'upper ground'
+        ]);
+
+        Floor::create([
         'floor' => '1st floor'
         ]);
 

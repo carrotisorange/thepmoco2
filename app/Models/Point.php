@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Point extends Model
 {
     use HasFactory;
+
+    public function action()
+    {
+        return $this->belongsTo(Action::class, 'action_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

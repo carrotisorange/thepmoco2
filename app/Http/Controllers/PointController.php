@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Point;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class PointController extends Controller
 {
@@ -14,10 +15,8 @@ class PointController extends Controller
      */
     public function index()
     {
-        $points = Point::join('users', 'points.user_id', 'users.id')
-        ->join('actions', 'points.action_id', 'actions.id')
-        ->where('users.id', auth()->user()->id)
-        ->get();
+
+        $points = User::find(auth()->user()->id)->points;
 
         return view('points.index',[
             'points' => $points

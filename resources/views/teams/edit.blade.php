@@ -24,11 +24,11 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/team'">Back
+                    </x-button>
                     <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create
                     </x-button>
-                    {{-- <x-button form="edit-form">Save</x-button> --}}
                 </h5>
-
             </div>
         </h2>
     </x-slot>
@@ -37,8 +37,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <!-- This example requires Tailwind CSS v2.0+ -->
-                    <!-- Name -->
                     <div>
                         <form action="/team/{{ $member->username }}/update" method="POST" id="edit-form"
                             enctype="multipart/form-data">
@@ -54,7 +52,6 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <div class="mt-5">
                                 <x-label for="username" :value="__('Username')" />
 
@@ -65,7 +62,6 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <div class="mt-5">
                                 <x-label for="email" :value="__('Email')" />
 
@@ -76,7 +72,6 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <div class="mt-5">
                                 <x-label for="mobile_number" :value="__('Mobile')" />
 
@@ -88,7 +83,6 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <div class="mt-5">
                                 <x-label for="role_id" :value="__('Role')" />
 
@@ -100,12 +94,10 @@
                                         }}>{{ $role->role }} - {{ $role->description }}</option>
                                     @endforeach
                                 </select>
-
                                 @error('role_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <div class="mt-5">
                                 <x-label for="status" :value="__('Status')" />
 
@@ -122,12 +114,10 @@
                                     <option value="pending" {{ 'pending'==$member->status ? 'selected' : ''
                                         }}>pending</option>
                                 </select>
-
                                 @error('status')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <div class="mt-5 flex">
                                 <div class="flex-3">
                                     <x-label for="avatar" :value="__('Avatar')" />
@@ -150,7 +140,6 @@
                                     </x-button>
                                 </p>
                             </div>
-
                     </div>
                     </form>
                 </div>

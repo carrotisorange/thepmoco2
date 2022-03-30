@@ -31,12 +31,7 @@ class ReferenceController extends Controller
     {
         Session::flash('success', 'You have skipped adding guardians.');
 
-         $references = Reference::join('tenants', 'references.tenant_uuid', 'tenants.uuid')
-          ->select('*', 'references.id as reference_id')
-          ->join('relationships', 'references.relationship_id', 'relationships.id')
-          ->where('tenants.uuid', $tenant->uuid)
-          ->groupBy('relationships.id')
-          ->get();
+        $references = Tenant::find($tenant->uuid)->references;
 
          return view('references.create',[
          'unit' => $unit,

@@ -84,9 +84,9 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $reference->mobile_number }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $reference->relationship }}</td>
+                                        $reference->relationship->relationship}}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/reference/{{ $reference->reference_id }}/delete"
+                                        <form method="POST" action="/reference/{{ $reference->id }}/delete"
                                             id="delete-form">
                                             @csrf
                                             @method('delete')

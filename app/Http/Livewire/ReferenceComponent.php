@@ -30,7 +30,7 @@ class ReferenceComponent extends Component
      return [
      'reference' => 'required',
      'email' => ['required', 'string', 'email', 'max:255'],
-     'mobile_number' => 'required|integer|min:11',
+     'mobile_number' => 'required',
      'relationship_id' => 'required',
      ];
      }
