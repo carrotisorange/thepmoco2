@@ -27,6 +27,15 @@ class PropertyController extends Controller
      */
     public function index()
     {
+        DB::table('sessions')->insert(
+            [
+                'id' => DB::table('sessions')->count()+1,
+                'user_id' => auth()->user()->id,
+                'created_at' => now(),
+                'ip_address' => request()->ip(),
+            ]
+        );
+
         $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
         ->select('*', 'properties.*','properties.status as property_status', 'properties.uuid as property_uuid',
         DB::raw('count(units.uuid) as units_count'),DB::raw('count(tenants.uuid) as
