@@ -30,7 +30,7 @@ class PropertyController extends Controller
         if(auth()->user()->role_id == '10')
         {   
             $sessions = DB::table('sessions')
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id','!=' ,auth()->user()->id)
             ->whereDate('created_at', Carbon::today())
             ->get();
 
