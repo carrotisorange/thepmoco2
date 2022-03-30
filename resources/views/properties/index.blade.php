@@ -88,9 +88,9 @@
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             # of Units</th>
-                                                        <th scope="col"
+                                                        {{-- <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            # of Tenants</th>
+                                                            # of Tenants</th> --}}
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Status</th>
@@ -137,8 +137,8 @@
                                                             number_format($property->teams_count,0) }}</td> --}}
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             number_format($property->units_count,0) }}</td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            number_format($property->tenants_count,0) }}</td>
+                                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                            number_format($property->tenants_count,0) }}</td> --}}
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             @if($property->property_status === 'active')
                                                             <span
