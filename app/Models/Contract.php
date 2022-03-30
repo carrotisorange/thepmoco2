@@ -14,7 +14,7 @@ class Contract extends Model
     protected $primaryKey = 'uuid';
 
     protected $attributes = [
-        'status' => 'pending'
+        'status' => 'active'
     ];
 
     public function tenant()
