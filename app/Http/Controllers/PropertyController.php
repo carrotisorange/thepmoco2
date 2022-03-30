@@ -39,7 +39,6 @@ class PropertyController extends Controller
            ->leftJoin('users', 'points.user_id', 'users.id')
            ->leftJoin('actions', 'points.action_id', 'actions.id')
            ->leftJoin('properties', 'points.property_uuid', 'properties.uuid')
-           ->where('user_id', auth()->user()->id)
            ->groupBy('points.id')
            ->get();
 

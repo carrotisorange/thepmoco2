@@ -76,7 +76,7 @@
                                                     {{number_format($point->point, 2)}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{$point->created_at->diffForHumans() }}
+                                                    {{$point->created_at }}
                                                 </td>
                                             </tr>
                                         </tbody>
