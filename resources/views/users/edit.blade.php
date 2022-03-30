@@ -114,6 +114,7 @@
                                         @enderror
                                     </div>
 
+                                    @can('accountowner')
                                     <div class="mt-5">
                                         <x-label for="role_id" :value="__('Role')" />
 
@@ -131,6 +132,7 @@
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                     </div>
+
 
                                     <div class="mt-5">
                                         <x-label for="status" :value="__('Status')" />
@@ -153,6 +155,8 @@
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                     </div>
+
+                                    @endcan
 
                                     <div class="mt-5 flex">
                                         <div class="flex-3">

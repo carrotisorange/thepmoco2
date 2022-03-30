@@ -80,14 +80,14 @@ class UserController extends Controller
         'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
         'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
         'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
-        'role_id' => ['required', Rule::exists('roles', 'id')],
-        'status' => 'required',
+        'role_id' => ['nullable', Rule::exists('roles', 'id')],
+        'status' => 'nullable',
         'avatar' => 'image',
         ]);
 
         if(isset($attributes['avatar']))
         {
-        $attributes['avatar'] = request()->file('avatar')->store('avatars');
+            $attributes['avatar'] = request()->file('avatar')->store('avatars');
         }
 
         $user->update($attributes);
