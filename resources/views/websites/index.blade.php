@@ -572,7 +572,7 @@
     <!-- Testimonial Section End -->
 
     <!-- Pricing section Start -->
-    <section id="pricing" class="py-24">
+    {{-- <section id="pricing" class="py-24">
         <div class="container">
             <div class="flex flex-wrap justify-center md:justify-start">
                 <!-- single pricing table starts -->
@@ -642,7 +642,7 @@
                 <!-- single pricing table ends -->
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Pricing Table Section End -->
 
     <!-- carousel-area Section Start -->
@@ -759,15 +759,15 @@
                                 <div class="contact-icon">
                                     <i class="lni lni-map-marker"></i>
                                 </div>
-                                <p class="pl-3">Skopje, Macedonia</p>
+                                <p class="pl-3">Philippines</p>
                             </div>
                             <div class="flex flex-wrap mb-6 items-center">
                                 <div class="contact-icon">
                                     <i class="lni lni-envelope"></i>
                                 </div>
                                 <p class="pl-3">
-                                    <a href="#" class="block">email@gmail.com</a>
-                                    <a href="#" class="block">tomsaulnier@gmail.com</a>
+                                    <a href="#" class="block">thepropertymanager2020@gmail.com</a>
+                                    {{-- <a href="#" class="block">tomsaulnier@gmail.com</a> --}}
                                 </p>
                             </div>
                             <div class="flex flex-wrap mb-6 items-center">
@@ -775,8 +775,8 @@
                                     <i class="lni lni-phone-set"></i>
                                 </div>
                                 <p class="pl-3">
-                                    <a href="#" class="block">+42 374 5967</a>
-                                    <a href="#" class="block">+99 123 5967</a>
+                                    <a href="#" class="block">+639 7528 26318</a>
+                                    {{-- <a href="#" class="block">+99 123 5967</a> --}}
                                 </p>
                             </div>
                         </div>
