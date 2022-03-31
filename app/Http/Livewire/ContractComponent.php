@@ -86,7 +86,7 @@ class ContractComponent extends Component
             Contract::create($validatedData);
 
             Unit::where('uuid', $this->unit->uuid)->update([
-            'status_id' => 4
+            'status_id' => 2
             ]);
 
             if($this->rent > 0){
