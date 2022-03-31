@@ -49,9 +49,9 @@
                             <li class="nav-item">
                                 <a class="page-scroll" href="#services">Services</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="page-scroll" href="#feature">feature</a>
-                            </li>
+                            </li> --}}
                             {{-- <li class="nav-item">
                                 <a class="page-scroll" href="#team">Team</a>
                             </li> --}}
@@ -87,6 +87,7 @@
                         {{-- <br class="hidden lg:block"> Built with TailwindCSS --}}
                     </h2>
                     <div class="text-center mb-10 wow fadeInUp" data-wow-delay="1.2s">
+                        <a href="#feature" rel="nofollow" class="btn">How it works?</a>
                         <a href="/register" rel="nofollow" class="btn">Register for free</a>
                     </div>
                     <div class="text-center wow fadeInUp" data-wow-delay="1.6s">
@@ -113,9 +114,8 @@
                         </div>
                         <div>
                             <h3 class="service-title">Property Management</h3>
-                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                                perspiciatis dicta labore nulla beatae quaerat quia
-                                incidunt laborum aspernatur...</p>
+                            <p class="text-gray-600">Allows you to manage multiple properties and to assign team for
+                                each property.</p>
                         </div>
                     </div>
                 </div>
@@ -126,10 +126,9 @@
                             <i class="lni lni-bar-chart"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Room Management</h3>
-                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                                perspiciatis dicta labore nulla beatae quaerat quia
-                                incidunt laborum aspernatur...</p>
+                            <h3 class="service-title">Unit Management</h3>
+                            <p class="text-gray-600">Monitors status of the rooms and views up-to-date information and
+                                status for marketing.</p>
                         </div>
                     </div>
                 </div>
@@ -140,10 +139,9 @@
                             <i class="lni lni-briefcase"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Tenant Mangement</h3>
-                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                                perspiciatis dicta labore nulla beatae quaerat quia
-                                incidunt laborum aspernatur...</p>
+                            <h3 class="service-title">Tenant Management</h3>
+                            <p class="text-gray-600">Records the movein and moveout of the tenant and keep track all the
+                                previous tenants.</p>
                         </div>
                     </div>
                 </div>
@@ -155,9 +153,8 @@
                         </div>
                         <div>
                             <h3 class="service-title">Listings and Marketing Services</h3>
-                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                                perspiciatis dicta labore nulla beatae quaerat quia
-                                incidunt laborum aspernatur...</p>
+                            <p class="text-gray-600">Automatically adds vacant rooms in the listings to find possible
+                                tenants.</p>
                         </div>
                     </div>
                 </div>
@@ -222,52 +219,14 @@
                             <i class="lni lni-mobile"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Tenant/Owner Portal</h3>
+                            <h3 class="service-title">Owner Management</h3>
                             <p class="text-gray-600">Provides login credentials to tenant/owner to view their contracts,
                                 bills,
                                 payments, and other pertinent details.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Services item -->
-                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
-                    <div class="m-4 wow fadeInRight" data-wow-delay="1.8s">
-                        <div class="icon text-5xl">
-                            <i class="lni lni-layers"></i>
-                        </div>
-                        <div>
-                            <h3 class="service-title">Tenant/Owner Concern Tracker</h3>
-                            <p class="text-gray-600">Allows tenant/owner to add, monitor, and rate a concern.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Services item -->
-                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
-                    <div class="m-4 wow fadeInRight" data-wow-delay="1.5s">
-                        <div class="icon text-5xl">
-                            <i class="lni lni-mobile"></i>
-                        </div>
-                        <div>
-                            <h3 class="service-title">Tenant/Owner Portal</h3>
-                            <p class="text-gray-600">Provides login credentials to tenant/owner to view their contracts,
-                                bills,
-                                payments, and other pertinent details.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Services item -->
-                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
-                    <div class="m-4 wow fadeInRight" data-wow-delay="1.8s">
-                        <div class="icon text-5xl">
-                            <i class="lni lni-layers"></i>
-                        </div>
-                        <div>
-                            <h3 class="service-title">Tenant/Owner Concern Tracker</h3>
-                            <p class="text-gray-600">Allows tenant/owner to add, monitor, and rate a concern.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -280,7 +239,7 @@
             <div class="flex flex-wrap items-center">
                 <div class="w-full lg:w-1/2">
                     <div class="mb-5 lg:mb-0">
-                        <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Learn More About Us</h2>
+                        <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">How it works?</h2>
 
                         <div class="flex flex-wrap">
                             <div class="w-full sm:w-1/2 lg:w-1/2">
@@ -289,9 +248,8 @@
                                         <i class="lni lni-layers"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">Built with TailwindCSS</h4>
-                                        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam tempora
-                                            quidem vel sint.</p>
+                                        <h4 class="feature-title">1. Create a property.</h4>
+                                        <p>enter your property details.</p>
                                     </div>
                                 </div>
                             </div>
@@ -301,9 +259,8 @@
                                         <i class="lni lni-gift"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">Free to Use</h4>
-                                        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam tempora
-                                            quidem vel sint.</p>
+                                        <h4 class="feature-title">2. Create a team.</h4>
+                                        <p> add and assign other users such as admin, billing, treasury, and ap.</p>
                                     </div>
                                 </div>
                             </div>
@@ -313,9 +270,8 @@
                                         <i class="lni lni-laptop-phone"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">Fully Responsive</h4>
-                                        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam tempora
-                                            quidem vel sint.</p>
+                                        <h4 class="feature-title">3. Create Units </h4>
+                                        <p> add the units and their pertinent details./p>
                                     </div>
                                 </div>
                             </div>
@@ -325,9 +281,8 @@
                                         <i class="lni lni-leaf"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">Easy to Customize</h4>
-                                        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam tempora
-                                            quidem vel sint.</p>
+                                        <h4 class="feature-title">4.  Create tenants, contracts, and bills</h4>
+                                        <p>process tenant movein and assign movein charges.</p>
                                     </div>
                                 </div>
                             </div>
@@ -504,25 +459,24 @@
                         <div class="item focus:outline-none">
                             <div class="text-center py-10 px-8 md:px-10 rounded border border-gray-900">
                                 <div class="text-center">
-                                    <p class="text-gray-600 leading-loose">Holisticly empower leveraged ROI whereas
-                                        effective web-readiness. Completely enable emerging meta-services with
-                                        cross-platform web services. Quickly initiate inexpensive total linkage rather
-                                        than extensible scenarios. Holisticly empower leveraged ROI whereas effective
-                                        web-readiness. </p>
+                                    <p class="text-gray-600 leading-loose">"It makes my life less stressful because the
+                                        application provides an easy way for tenants to report concerns, and as I
+                                        resolve the concern, it provides an option for them
+                                        to monitor its status in real-time." </p>
                                 </div>
-                                <div class="my-3 mx-auto w-24 h-24 shadow-md rounded-full">
+                                {{-- <div class="my-3 mx-auto w-24 h-24 shadow-md rounded-full">
                                     <img class="rounded-full p-2 w-full"
                                         src="{{ asset('/shine/assets/img/testimonial/img1.jpg') }}" alt="">
-                                </div>
+                                </div> --}}
                                 <div class="mb-2">
-                                    <h2 class="font-bold text-lg uppercase text-blue-600 mb-2">Fajar</h2>
-                                    <h3 class="font-medium text-white text-sm">Euphoriya</h3>
+                                    <h2 class="font-bold text-lg uppercase text-blue-600 mb-2">Kate</h2>
+                                    <h3 class="font-medium text-white text-sm">Admin at North Cambridge Condominium</h3>
                                 </div>
                             </div>
                         </div>
                         <!-- testimonial item end -->
                         <!-- testimonial item start -->
-                        <div class="item focus:outline-none">
+                        {{-- <div class="item focus:outline-none">
                             <div class="text-center py-10 px-8 md:px-10 rounded border border-gray-900">
                                 <div class="text-center">
                                     <p class="text-gray-600 leading-loose">Holisticly empower leveraged ROI whereas
@@ -540,10 +494,10 @@
                                     <h3 class="font-medium text-white text-sm">PageBulb</h3>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- testimonial item end -->
                         <!-- testimonial item start -->
-                        <div class="item focus:outline-none">
+                        {{-- <div class="item focus:outline-none">
                             <div class="text-center py-10 px-8 md:px-10 rounded border border-gray-900">
                                 <div class="text-center">
                                     <p class="text-gray-600 leading-loose">Holisticly empower leveraged ROI whereas
@@ -561,7 +515,7 @@
                                     <h3 class="font-medium text-white text-sm">OnePageLove</h3>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- testimonial item end -->
 
                     </div>
@@ -572,7 +526,7 @@
     <!-- Testimonial Section End -->
 
     <!-- Pricing section Start -->
-    {{-- <section id="pricing" class="py-24">
+    <section id="pricing" class="py-24">
         <div class="container">
             <div class="flex flex-wrap justify-center md:justify-start">
                 <!-- single pricing table starts -->
@@ -588,6 +542,7 @@
                             </p>
                         </div>
                         <ul class="mb-16">
+                            <li class="text-gray-500 leading-9">1 year free </li>
                             <li class="text-gray-500 leading-9">1 property </li>
                             <li class="text-gray-500 leading-9">10 rooms</li>
                         </ul>
@@ -608,8 +563,9 @@
                             </p>
                         </div>
                         <ul class="mb-16">
-                            <li class="text-gray-500 leading-9">Up to 2 properties </li>
-                            <li class="text-gray-500 leading-9">Up to 100 rooms</li>
+                            <li class="text-gray-500 leading-9">1 year free </li>
+                            <li class="text-gray-500 leading-9">Up to 5 properties </li>
+                            <li class="text-gray-500 leading-9">Up to 1000 rooms</li>
                             <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
                             <li class="text-gray-500 leading-9">Real-time collabration</li>
                         </ul>
@@ -632,7 +588,7 @@
                         <ul class="mb-16">
                             <li class="text-gray-500 leading-9">Unlimited properties </li>
                             <li class="text-gray-500 leading-9">Unlimited rooms</li>
-                           <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
+                            <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
                             <li class="text-gray-500 leading-9">Real-time collabration</li>
                             <li class="text-gray-500 leading-9">24x7 Support</li>
                         </ul>
@@ -642,7 +598,7 @@
                 <!-- single pricing table ends -->
             </div>
         </div>
-    </section> --}}
+    </section>
     <!-- Pricing Table Section End -->
 
     <!-- carousel-area Section Start -->
@@ -885,9 +841,9 @@
     </a>
 
     <!-- Preloader -->
-      <div id="preloader">
-      <div class="loader" id="loader-1"></div>
-    </div> 
+    <div id="preloader">
+        <div class="loader" id="loader-1"></div>
+    </div>
     <!-- End Preloader -->
 
     <!-- All js Here -->
