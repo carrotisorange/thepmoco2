@@ -59,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('manager', function(User $user){
-            return (auth()->user()->role_id === 9) (auth()->user()->username ===
+            return (auth()->user()->role_id === 9) || (auth()->user()->username ===
             'landley');
         });
 
