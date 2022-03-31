@@ -31,7 +31,7 @@
                     </x-button>
                     <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                     </x-button>
-                    <x-button form="edit-form">Save</x-button>
+
                 </h5>
 
             </div>
@@ -117,6 +117,24 @@
                             </div>
 
                             <div class="mt-5">
+                                <x-label for="category_id" :value="__('Status')" />
+
+                                <select form="edit-form"
+                                    class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    name="status_id" id="status_id">
+                                    @foreach($statuses as $status)
+                                    <option value="{{ $status->id }}" {{ old('status_id', $unit->status_id) ==
+                                        $status->id ? 'selected' : '' }}>
+                                        {{ $status->status }}
+                                        @endforeach
+                                </select>
+
+                                @error('status_id')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mt-5">
                                 <x-label for="size" :value="__('Size')" />
 
                                 <x-input form="edit-form" class="block mt-1 w-full" type="text" name="size"
@@ -176,6 +194,10 @@
                                     <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $unit->thumbnail }}" alt="">
                                 </div>
                             </div>
+
+                            <h5 class="flex-1 text-right">
+                                <x-button form="edit-form">Save</x-button>
+                            </h5>
 
 
 

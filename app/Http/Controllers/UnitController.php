@@ -157,15 +157,12 @@ class UnitController extends Controller
         ->where('property_buildings.property_uuid', Session::get('property'))
         ->get();
 
-        $floors = Floor::all();
-
-        $categories = Category::all();
-
         return view('admin.units.edit',[
             'unit' => $unit,
             'buildings' => $buildings,
-            'floors' => $floors,
-            'categories' => $categories
+            'floors' => Floor::all(),
+            'categories' => Category::all(),
+            'statuses' => Status::all(),
         ]);
 
     }
@@ -229,6 +226,7 @@ class UnitController extends Controller
         'unit' => ['required', 'string', 'max:255'],
         'building_id' => [Rule::exists('property_buildings', 'id')],
         'floor_id' => ['required', Rule::exists('floors', 'id')],
+         'status_id' => ['required', Rule::exists('statuses', 'id')],
         'category_id' => ['required', Rule::exists('categories', 'id')],
         'thumbnail' => 'image',
         'size' => 'required',
