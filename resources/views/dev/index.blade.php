@@ -78,9 +78,9 @@
                                                 </div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
-                                                <h5 class="font-bold uppercase text-gray-500">Total Tenants</h5>
+                                                <h5 class="font-bold uppercase text-gray-500">Total Properties</h5>
                                                 <h3 class="font-bold text-3xl"> <span class="text-pink-500"><i
-                                                            class="fas fa-exchange-alt"></i></span>
+                                                            class="fas fa-exchange-alt"></i>{{ $properties->count() }}</span>
                                                 </h3>
                                             </div>
                                         </div>
@@ -96,9 +96,9 @@
                                                         class="fas fa-solid fa-house fa-2x fa-fw fa-inverse"></i></div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
-                                                <h5 class="font-bold uppercase text-gray-500">Total Units</h5>
+                                                <h5 class="font-bold uppercase text-gray-500">Total Users</h5>
                                                 <h3 class="font-bold text-3xl"> <span class="text-yellow-600"><i
-                                                            class="fas fa-caret-up"></i></span>
+                                                            class="fas fa-caret-up"></i>{{ $users->count() }}</span>
                                                 </h3>
                                             </div>
                                         </div>
@@ -115,8 +115,8 @@
                                                 </div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
-                                                <h5 class="font-bold uppercase text-gray-500">Server Uptime</h5>
-                                                <h3 class="font-bold text-3xl">152 days</h3>
+                                                <h5 class="font-bold uppercase text-gray-500">Total Units</h5>
+                                                <h3 class="font-bold text-3xl">{{ $units->count() }}</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -132,8 +132,8 @@
                                                 </div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
-                                                <h5 class="font-bold uppercase text-gray-500">To Do List</h5>
-                                                <h3 class="font-bold text-3xl"></h3>
+                                                <h5 class="font-bold uppercase text-gray-500">Total tenants</h5>
+                                                <h3 class="font-bold text-3xl">{{ $tenants->count() }}</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -149,9 +149,9 @@
                                                 </div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
-                                                <h5 class="font-bold uppercase text-gray-500">Issues</h5>
-                                                <h3 class="font-bold text-3xl">3 <span class="text-red-500"><i
-                                                            class="fas fa-caret-up"></i></span></h3>
+                                                <h5 class="font-bold uppercase text-gray-500">Total Contracts</h5>
+                                                <h3 class="font-bold text-3xl"><span class="text-red-500"><i
+                                                            class="fas fa-caret-up"></i></span>{{ $contracts->count() }}</h3>
                                             </div>
                                         </div>
                                     </div>

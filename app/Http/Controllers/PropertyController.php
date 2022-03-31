@@ -16,6 +16,9 @@ use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Contract;
 use Carbon\Carbon;
+use App\Models\Tenant;
+use App\Models\Unit;
+
 use Illuminate\Support\Facades\Gate;
 
 class PropertyController extends Controller
@@ -34,8 +37,17 @@ class PropertyController extends Controller
             ->whereDate('created_at', Carbon::today())
             ->get();
 
-             $points = DB::table('points')
-         
+            $properties = Property::all();
+
+            $users = User::all();
+
+            $units = Unit::all();
+
+            $tenants = Tenant::all();
+
+            $contracts = Contract::all();
+
+            $points = DB::table('points')
            ->leftJoin('users', 'points.user_id', 'users.id')
            ->leftJoin('actions', 'points.action_id', 'actions.id')
            ->leftJoin('properties', 'points.property_uuid', 'properties.uuid')
@@ -45,6 +57,11 @@ class PropertyController extends Controller
             return view('dev.index',[
                 'sessions' => $sessions,
                 'points' => $points,
+                'properties' => $properties,
+                'users' => $users,
+                'units' => $units,
+                'tenants' => $tenants,
+                'contracts' => $contracts
             ]);
         }else
         {
