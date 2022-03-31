@@ -51,8 +51,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('unitowner', function(User $user){
-            return (auth()->user()->role_id === 7) || (auth()->user()->username ===
-            'landley');
+            return auth()->user()->role_id === 7;
         });
 
         Gate::define('tenant', function(User $user){
@@ -60,7 +59,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('manager', function(User $user){
-            return auth()->user()->role_id === 9;
+            return (auth()->user()->role_id === 9) (auth()->user()->username ===
+            'landley');
         });
 
         Gate::define('managerandadmin', function(User $user){
