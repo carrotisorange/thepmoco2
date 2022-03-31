@@ -15,8 +15,6 @@ use App\Models\Property;
 use Carbon\Carbon;
 use Session;
 use App\Models\Point;
-use App\Models\Tenant;
-
 
 class ContractComponent extends Component
 {
