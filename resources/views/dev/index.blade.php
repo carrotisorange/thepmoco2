@@ -98,7 +98,7 @@
                                             <div class="flex-1 text-right md:text-center">
                                                 <h5 class="font-bold uppercase text-gray-500">Total Users</h5>
                                                 <h3 class="font-bold text-3xl"> <span class="text-yellow-600"><i
-                                                            class="fas fa-caret-up"></i>{{ $users->count() }}</span>
+                                                            class="fas fa-caret-up"></i>{{ $users->count()-2 }}</span>
                                                 </h3>
                                             </div>
                                         </div>
