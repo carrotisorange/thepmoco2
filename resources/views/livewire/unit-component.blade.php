@@ -22,6 +22,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Back
+                    </x-button>
                     <x-button data-modal-toggle="small-modal">
                         Create Building
                     </x-button>
@@ -31,7 +33,7 @@
                     <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                     </x-button>
                     @endif
-                   
+
                 </h5>
 
             </div>
@@ -108,7 +110,8 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <input
                                                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                        type="checkbox" wire:model="selectedUnits" value="{{ $unit->uuid }}" >
+                                                        type="checkbox" wire:model="selectedUnits"
+                                                        value="{{ $unit->uuid }}">
 
                                                 </td>
                                                 <td class="px-3 py-4 whitespace-nowrap">
