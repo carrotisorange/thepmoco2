@@ -79,9 +79,9 @@ return array (
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'nunito' => array(
-    'normal' => $fontDir . '/nunito_normal_a194e99e1d2940105689ddf62703f783',
-    '600' => $fontDir . '/nunito_600_603d729cd461202f887785cdddf12a90',
-    'bold' => $fontDir . '/nunito_bold_d006afa317b43f5666267b85adb86b84',
+    'normal' => $fontDir . '/nunito_normal_009ab494ba082b92d914b7f185ada8db',
+    '600' => $fontDir . '/nunito_600_b4a85f5daa357b666a14c66ed1b6e1f9',
+    'bold' => $fontDir . '/nunito_bold_b30fa3d4421a43e0930ae0eea5638dc1',
   ),
 );
 }; ?>

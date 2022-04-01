@@ -102,10 +102,7 @@ class TenantController extends Controller
          ->orderBy('bills.bill_no')
          ->get();
 
-        $contracts = Contract::join('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
-         ->join('units', 'contracts.unit_uuid', 'units.uuid')
-         ->where('tenants.uuid', $tenant->uuid)
-         ->get();
+        $contracts = Tenant::find($tenant->uuid)->contracts;
 
         return view('admin.tenants.show',[
             'tenant' => $tenant,

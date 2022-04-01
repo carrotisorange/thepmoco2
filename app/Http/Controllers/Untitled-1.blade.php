@@ -82,7 +82,6 @@ class PropertyController extends Controller
 
             return view('properties.index',[
             'properties'=>$properties,
-            
             ]);
         }
     }
@@ -172,19 +171,22 @@ class PropertyController extends Controller
         session(['property_name' => $property->property]);
 
         $collections = Property::find($property->uuid)->collections->sum("collection");
+
         $units = Property::find($property->uuid)->units->count();
+        
         $tenants = Property::find($property->uuid)->tenants->count();
+
         $concerns = Property::find($property->uuid)->concerns->count();
 
-        $contracts = Contract::join('tenants', 'tenant_uuid', 'tenants.uuid')
-          ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
+       $contracts = Contract::join('tenants', 'tenant_uuid', 'tenants.uuid')
+        ->select('*', 'contracts.status as contract_status')
         ->join('units', 'unit_uuid', 'units.uuid')
         ->where('tenants.property_uuid', Session::get('property'))
         ->where('end', '<=', Carbon::now()->addMonth())
-        ->orderBy('end', 'asc')
-        ->get();
+            ->orderBy('end', 'asc')
+            ->get();
 
-
+            
         return view('properties.show',[
             'property' => $property,
             'roles' => PropertyRole::where('property_uuid',$property->uuid)->get(),

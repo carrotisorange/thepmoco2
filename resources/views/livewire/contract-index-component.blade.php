@@ -84,9 +84,9 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
-                                                        <a href="/contract/{{ $contract->uuid }}/preview">
+                                                        
                                                             <img class="h-10 w-10 rounded-full"
-                                                                src="/storage/{{ $contract->photo_id }}" alt=""></a>
+                                                                src="/storage/{{ $contract->photo_id }}" alt="">
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900"><b>{{
@@ -124,7 +124,7 @@
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{number_format($contract->price, 2)}}
+                                                {{number_format($contract->contract_rent, 2)}}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 @if($contract->contract_status === "active")
@@ -173,6 +173,7 @@
                                                             class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                             Moveout</a>
                                                     </div>
+                                                    @else
                                                     @endif
                                                 </div>
                                             </td>

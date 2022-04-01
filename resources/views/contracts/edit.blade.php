@@ -45,13 +45,19 @@
                             <dl>
                                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">Tenant</dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{
-                                        $contract->tenant->tenant }}</dd>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                        <b><a class="text-blue-50" href="/tenant/{{ $contract->tenant->uuid }}">{{
+                                                $contract->tenant->tenant
+                                                }}</a></b>
+                                    </dd>
                                 </div>
                                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">Unit</dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{
-                                        $contract->unit->unit }}</dd>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                        <b><a class="text-blue-50" href="/unit/{{ $contract->unit->uuid }}">{{
+                                            $contract->unit->unit
+                                                }}</a></b>
+                                    </dd>
                                 </div>
                                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">Duration</dt>
@@ -108,7 +114,7 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                             <span class="ml-2 flex-1 w-0 truncate">
-                                            Signed Contract </span>
+                                                Signed Contract </span>
                                         </div>
                                         <div class="ml-4 flex-shrink-0">
                                             <a target="_blank" href="/contract/{{ $contract->uuid }}/signed_contract"

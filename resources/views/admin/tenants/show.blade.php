@@ -74,7 +74,8 @@
                                     Mobile: {{ $tenant->mobile_number }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Birthdate: {{ Carbon\Carbon::parse($tenant->birthdate)->format('M d, Y') }} ({{ Carbon\Carbon::now()->diffForHumans($tenant->birthdate)}})
+                                    Birthdate: {{ Carbon\Carbon::parse($tenant->birthdate)->format('M d, Y') }} ({{
+                                    Carbon\Carbon::now()->diffForHumans($tenant->birthdate)}})
                                 </p>
 
                                 <p class="text-gray-700 text-base mb-4">
@@ -87,7 +88,8 @@
                                     Tenant type: {{ $tenant->type }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Address: {{ $tenant->barangay->barangay.', '.$tenant->province->province.', '.$tenant->country->country }}
+                                    Address: {{ $tenant->barangay->barangay.', '.$tenant->province->province.',
+                                    '.$tenant->country->country }}
                                 </p>
 
 
@@ -100,7 +102,7 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                
+
                                 <div class="mb-3">
                                     <span class="text-center text-red">Contracts ({{ $contracts->count() }})</span>
                                 </div>
@@ -114,9 +116,11 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     #</th>
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Tenant</th>
+                                                    Unit</th>
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Duration</th>
@@ -126,13 +130,17 @@
                                                     Contact</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Rent</th>
+                                                    Rent/mo</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Moveout reason</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
+
 
                                             </tr>
                                         </thead>
@@ -143,24 +151,14 @@
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/tenant/{{ $contract->tenant_uuid }}">
-                                                                <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $contract->photo_id }}"
-                                                                    alt=""></a>
-                                                        </div>
-                                                        <div class="ml-4">
-                                                            <div class="text-sm font-medium text-gray-900">{{
-                                                                $contract->tenant }}
-                                                            </div>
-                                                            <div class="text-sm text-gray-500">{{
-                                                                $contract->type
-                                                                }}
-                                                            </div>
-                                                        </div>
+                                                    <div class="text-sm text-gray-900">{{ $contract->unit->unit }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{
+                                                        $contract->unit->building->building
+                                                        }}
                                                     </div>
                                                 </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{
                                                         Carbon\Carbon::parse($contract->start)->format('M d, Y').' -
@@ -173,11 +171,13 @@
                                                 </td>
 
 
+
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $contract->email }}
+                                                    <div class="text-sm text-gray-900">{{ $contract->tenant->email }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        $contract->mobile_number }}
+                                                        $contract->tenant->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -197,6 +197,9 @@
                                                     @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $contract->moveout_reason?$contract->moveout_reason:'NA' }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
                                                     <i class="fa-solid fa-down"></i>
                                                 </td>
 
@@ -208,7 +211,7 @@
                                     </table>
 
                                 </div>
-                              
+
 
                                 <div class="mb-3 mt-5">
                                     <span class="text-center text-red">Bills ({{ $bills->count() }})</span>
@@ -222,88 +225,68 @@
                                             <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    #</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Owner</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Duration</th>
+                                                    Bill No</th>
 
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Contact</th>
+                                                    Reference no</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Rent</th>
+                                                    Bill</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Particular</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Unit</th>
+                                                <th colspan="2" scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Period</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                </th>
+                                                    Due date</th>
 
                                             </tr>
                                         </thead>
                                         @forelse ($bills as $bill)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $ctr++ }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/owner/{{ $bill->owner_uuid }}">
-                                                                <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $bill->photo_id }}" alt=""></a>
-                                                        </div>
-                                                        <div class="ml-4">
-                                                            <div class="text-sm font-medium text-gray-900">{{
-                                                                $bill->owner }}
-                                                            </div>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    $bill->bill_no }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    $bill->reference_no}}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    number_format($bill->bill,2) }}</td>
 
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{
-                                                        Carbon\Carbon::parse($bill->start)->format('M d, Y').' -
-                                                        '.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($bill->end)->diffForHumans($bill->start)
-                                                        }}
-                                                    </div>
-                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    $bill->particular }}</td>
 
-
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $bill->email }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        $bill->mobile_number }}
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($bill->rent, 2)}}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($bill->status === 'active')
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    $bill->unit->unit }}</td>
+                                                <td colspan="2"
+                                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    Carbon\Carbon::parse($bill->start)->format('M d,
+                                                    Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    @if($bill->bill_status === 'paid')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $bill->status }}
+                                                        {{ $bill->bill_status }}
                                                     </span>
                                                     @else
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $bill->status }}
+                                                        {{ $bill->bill_status }}
                                                     </span>
                                                     @endif
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <i class="fa-solid fa-down"></i>
-                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    Carbon\Carbon::parse($bill->due_date)->format('M d,
+                                                    Y') }}</td>
 
                                             </tr>
                                         </tbody>

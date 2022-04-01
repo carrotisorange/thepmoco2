@@ -12,7 +12,7 @@ class ContractIndexComponent extends Component
     public function render()
     {
         $contracts = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
-        ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
+        ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid', 'contracts.rent as contract_rent')
         ->join('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
         ->join('buildings', 'units.building_id','buildings.id' )
         ->where('units.property_uuid', session('property'))
