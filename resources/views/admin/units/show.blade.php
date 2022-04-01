@@ -22,6 +22,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Back
+                    </x-button>
                     @can('manager')
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/edit'">
                         Edit</x-button>
