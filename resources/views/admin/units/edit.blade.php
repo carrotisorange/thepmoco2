@@ -116,6 +116,7 @@
                                 @enderror
                             </div>
 
+                          
                             <div class="mt-5">
                                 <x-label for="category_id" :value="__('Status')" />
 
@@ -133,7 +134,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
+                         
                             <div class="mt-5">
                                 <x-label for="size" :value="__('Size')" />
 

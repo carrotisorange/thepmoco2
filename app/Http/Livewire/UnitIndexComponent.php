@@ -37,7 +37,7 @@ class UnitIndexComponent extends Component
           ->where('property_uuid', Session::get('property'))
           ->orderByRaw('LENGTH(unit)', 'ASC')
           ->where('units.unit','LIKE' ,'%'.$this->search.'%')
-          ->get();
+          ->paginate(5);
 
           $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
           ->select('building')

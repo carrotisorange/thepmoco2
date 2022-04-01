@@ -12,7 +12,7 @@
                             </li>
                             <li><span class="text-gray-500 mx-2">/</span></li>
                             <li class="text-gray-500">
-                                {{ Str::plural('Unit', $units->count())}} ({{ $units->count() }})
+                                {{ Str::plural('Unit', $units->count())}}
                             </li>
                         </ol>
                     </nav>
@@ -31,13 +31,15 @@
 </x-slot>
 <div class="py-12">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-       
-        <div class="rounded">
-            <x-input wire:model="search" type="text" class=" py-2 w-80"
-                placeholder="Enter unit..." />
 
+        <div class="rounded">
+            <x-input wire:model="search" type="text" class=" py-2 w-full" placeholder="Enter unit..." />
         </div>
-        
+
+        <div class="mt-5">
+            {{ $units->links() }}
+        </div>
+
         <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
             <div class="p-6 bg-white border-b border-gray-200">
@@ -166,7 +168,7 @@
                         </div>
                     </div>
                     <div class="basis-1/2">
-                        <span class="font-bold">Units ({{ $units->count() }})</span>
+                        <span class="font-bold">Results...</span>
                         @foreach($units as $unit)
                         <a href="/unit/{{ $unit->uuid }}"><img src="/storage/{{ $unit->thumbnail }}"
                                 class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
