@@ -155,7 +155,7 @@
                                                 type="checkbox" value="{{ $size->size }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                {{ $size->size }}
+                                                {{ $size->size }} sqm
                                             </label>
                                         </div>
                                         @empty

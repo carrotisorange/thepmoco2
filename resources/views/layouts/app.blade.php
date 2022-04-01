@@ -36,7 +36,7 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
