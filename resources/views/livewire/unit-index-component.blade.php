@@ -40,7 +40,7 @@
             {{ $units->links() }}
         </div>
 
-        <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mt-5 p-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
             <div class="p-6 bg-white border-b border-gray-200">
                 @if (!$units->count())
@@ -197,11 +197,8 @@
                         </p>
                     </div>
                 </div>
-                <hr>
                 @endif
-
             </div>
-
         </div>
     </div>
 </div>

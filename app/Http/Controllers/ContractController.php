@@ -33,11 +33,9 @@ class ContractController extends Controller
         ->join('buildings', 'units.building_id','buildings.id' )
         ->where('units.property_uuid', session('property'))
         //->groupBy('contract_uuid')
-        ->paginate(10);
+        ->paginate(2);
 
-        return view('contracts.index', [
-            'contracts'=> $contracts
-        ]);
+        return view('contracts.index');
     }
 
     /**

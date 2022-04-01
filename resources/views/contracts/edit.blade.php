@@ -20,7 +20,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/unit/{{ $contract->unit->uuid }}'">
+                    <x-button onclick="window.location.href='{{ url()->previous() }}'">
                         Back</x-button>
                 </h5>
 

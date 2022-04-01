@@ -13,10 +13,11 @@ class ContractIndexComponent extends Component
     {
         $contracts = Contract::leftJoin('units', 'contracts.unit_uuid', 'units.uuid')
         ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
-        ->leftJoin('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
-        ->leftJoin('buildings', 'units.building_id','buildings.id' )
+        ->join('tenants', 'contracts.tenant_uuid', 'tenants.uuid')
+        ->join('buildings', 'units.building_id','buildings.id' )
         ->where('units.property_uuid', session('property'))
-        ->groupBy('contracts.uuid')
+        //->groupBy('contract_uuid')
+        ->where('tenant','LIKE' ,'%'.$this->search.'%')
         ->paginate(10);
 
         return view('livewire.contract-index-component', [
