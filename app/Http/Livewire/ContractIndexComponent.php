@@ -17,7 +17,7 @@ class ContractIndexComponent extends Component
         ->join('buildings', 'units.building_id','buildings.id' )
         ->where('units.property_uuid', session('property'))
         //->groupBy('contract_uuid')
-        ->where('tenant','LIKE' ,'%'.$this->search.'%')
+        ->where('tenants.tenant','LIKE' ,'%'.$this->search.'%')
         ->paginate(10);
 
         return view('livewire.contract-index-component', [
