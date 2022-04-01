@@ -185,7 +185,7 @@
                             <p>Status: {{ $info->status }}</p>
                             <p>Rent: {{ number_format($info->rent, 2) }}</p>
                             <p>Discount: {{ number_format($info->discount, 2) }}</p>
-                            <p>Size: {{ $info->size }}</p>
+                            <p>Size: {{ $info->size }} sqm</p>
                             <p>Created: {{ $info->created_at->diffForHumans() }}</p>
                         </div>
                         <div class="mt-20">
