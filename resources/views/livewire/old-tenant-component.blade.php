@@ -156,7 +156,7 @@
                                     <select wire:model="country_id"
                                         class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-state" name="country_id">
-                                        <option value="">Select one</option>
+
                                         @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
                                             'selected': 'Select one'
@@ -190,7 +190,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-city">
                                     City
@@ -216,7 +216,11 @@
                                     for="grid-city">
                                     Barangay
                                 </label>
-                                <select wire:model="barangay_id"
+                                <input wire:model="barangay_id"
+                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="barangay_id" type="text" name="barangay_id" value="{{ old('barangay_id') }}">
+
+                                {{-- <select wire:model="barangay_id"
                                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="grid-state" id="barangay_id" name="barangay_id">
                                     <option value="">Select one</option>
@@ -225,12 +229,12 @@
                                         'selected': 'Select one'
                                         }}>{{ $barangay->barangay }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
 
                                 @error('barangay_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
-                            </div> --}}
+                            </div>
 
                         </div>
 

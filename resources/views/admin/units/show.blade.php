@@ -266,7 +266,7 @@
 
 
                                 <br>
-                                <span>{{ Str::plural('Owner', $enrollees->count())}} ({{ $enrollees->count()
+                                <span>{{ Str::plural('Owner', $deed_of_sales->count())}} ({{ $deed_of_sales->count()
                                     }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -282,11 +282,14 @@
                                                     Owner</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Duration</th>
+                                                    Price</th>
 
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Contact</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Classification</th>
 
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -297,7 +300,7 @@
 
                                             </tr>
                                         </thead>
-                                        @forelse ($enrollees as $enrollee)
+                                        @forelse ($deed_of_sales as $deed_of_sale)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -306,49 +309,45 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/owner/{{ $enrollee->owner_uuid }}">
+                                                            <a href="/owner/{{ $deed_of_sale->owner_uuid }}">
                                                                 <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $enrollee->owner->photo_id }}"
+                                                                    src="/storage/{{ $deed_of_sale->owner->photo_id }}"
                                                                     alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
-                                                                $enrollee->owner->owner }}
+                                                                $deed_of_sale->owner->owner }}
                                                             </div>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{
-                                                        Carbon\Carbon::parse($enrollee->start)->format('M d, Y').' -
-                                                        '.Carbon\Carbon::parse($enrollee->end)->format('M d, Y') }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($enrollee->end)->diffForHumans($enrollee->start)
-                                                        }}
-                                                    </div>
+                                                    {{ number_format($deed_of_sale->price, 2) }}
                                                 </td>
 
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $enrollee->owner->email }}
+                                                    <div class="text-sm text-gray-900">{{ $deed_of_sale->owner->email }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        $enrollee->owner->mobile_number }}
+                                                        $deed_of_sale->owner->mobile_number }}
                                                     </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $deed_of_sale->classification }}
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($enrollee->status === 'active')
+                                                    @if($deed_of_sale->status === 'active')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $enrollee->status }}
+                                                        {{ $deed_of_sale->status }}
                                                     </span>
                                                     @else
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $enrollee->status }}
+                                                        {{ $deed_of_sale->status }}
                                                     </span>
                                                     @endif
                                                 </td>

@@ -181,6 +181,7 @@ class PropertyController extends Controller
         ->join('units', 'unit_uuid', 'units.uuid')
         ->where('tenants.property_uuid', Session::get('property'))
         ->where('end', '<=', Carbon::now()->addMonth())
+        ->where('contracts.status', 'active')
         ->orderBy('end', 'asc')
         ->get();
 

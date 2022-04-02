@@ -61,7 +61,7 @@
                                             type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
                                         <label class="form-check-label inline-block text-gray-800"
                                             for="flexCheckDefault">
-                                            {{ $category->category }}
+                                            {{ $category->category }} ({{ $category->count }})
                                         </label>
                                     </div>
                                     @empty
@@ -79,6 +79,7 @@
                                             </label>
                                         </div>
                                         @empty
+                                        <p>NA</p>
                                         @endforelse
                                     </div>
 
@@ -93,10 +94,11 @@
                                                 type="checkbox" value="{{ $building->id }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                {{ $building->building }}
+                                                {{ $building->building }} ({{ $building->count }})
                                             </label>
                                         </div>
                                         @empty
+                                        <p>NA</p>
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
@@ -109,10 +111,11 @@
                                                 type="checkbox" value="{{ $floor->id }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                {{ $floor->floor }}
+                                                {{ $floor->floor }} ({{ $floor->count }})
                                             </label>
                                         </div>
                                         @empty
+                                        <p>NA</p>
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
@@ -125,10 +128,11 @@
                                                 type="checkbox" value="{{ $rent->rent }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                ₱ {{ number_format($rent->rent, 2) }}
+                                                ₱ {{ number_format($rent->rent, 2) }} ({{ $rent->count }})
                                             </label>
                                         </div>
                                         @empty
+                                        <p>NA</p>
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
@@ -141,10 +145,11 @@
                                                 type="checkbox" value="{{ $discount->discount }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                ₱ {{ number_format($discount->discount, 2) }}
+                                                ₱ {{ number_format($discount->discount, 2) }} ({{ $discount->count }})
                                             </label>
                                         </div>
                                         @empty
+                                        <p>NA</p>
                                         @endforelse
                                     </div>
                                     <div class="mt-5">
@@ -157,10 +162,11 @@
                                                 type="checkbox" value="{{ $size->size }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                {{ $size->size }} sqm
+                                                {{ $size->size }} sqm ({{ $size->count }})
                                             </label>
                                         </div>
                                         @empty
+                                        <p>NA</p>
                                         @endforelse
                                     </div>
                                 </div>

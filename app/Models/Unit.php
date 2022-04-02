@@ -81,4 +81,9 @@ class Unit extends Model
     //     $query->where('unit', 'like', $term)
     //     ->orWhere('building', 'like', $term);
     // }
+
+    public function deed_of_sales()
+    {
+        return $this->hasMany(DeedofSale::class, 'unit_uuid');
+    }
 }

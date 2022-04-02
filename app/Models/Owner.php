@@ -51,4 +51,9 @@ class Owner extends Model
     {
         return $this->hasMany(Enrollee::class);
     }
+
+    public function deed_of_sales()
+    {
+        return $this->hasMany(DeedOfSale::class);
+    }
 }

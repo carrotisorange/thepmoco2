@@ -17,4 +17,14 @@ class DeedOfSale extends Model
     {
         return 'uuid';
     }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_uuid');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class, 'owner_uuid');
+    }
 }

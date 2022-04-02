@@ -56,7 +56,7 @@ class OldTenantComponent extends Component
             'country_id' => ['required', Rule::exists('countries', 'id')],
             'province_id' => ['required', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
-            'barangay_id' => ['nullable', Rule::exists('barangays', 'id')],
+            'barangay_id' => ['required'],
             'photo_id' => 'nullable|image'
             ];
     }

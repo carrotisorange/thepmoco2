@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use DB;
 use Illuminate\Validation\Rule;
 use App\Models\Bill;
+use App\Models\DeedOfSale;
 
 class UnitController extends Controller
 {
@@ -115,7 +116,7 @@ class UnitController extends Controller
     {
         $contracts = Unit::findOrFail($unit->uuid)->contracts;
 
-        $enrollees = Unit::findOrFail($unit->uuid)->enrollees;
+        $deed_of_sales = Unit::findOrFail($unit->uuid)->deed_of_sales;
 
         $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
           ->select('*', 'bills.status as bill_status')
@@ -130,7 +131,7 @@ class UnitController extends Controller
         return view('admin.units.show', [
             'unit' => $unit,
             'contracts' => $contracts,
-            'enrollees' => $enrollees,
+            'deed_of_sales' => $deed_of_sales,
             'bills' => $bills
         ]);
     }

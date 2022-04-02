@@ -88,11 +88,9 @@
                                     Tenant type: {{ $tenant->type }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Address: {{ $tenant->barangay->barangay.', '.$tenant->province->province.',
+                                    Address: {{ $tenant->barangay_id.', '.$tenant->province->province.',
                                     '.$tenant->country->country }}
                                 </p>
-
-
                             </div>
                         </div>
                     </div>
