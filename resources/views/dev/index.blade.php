@@ -80,7 +80,8 @@
                                             <div class="flex-1 text-right md:text-center">
                                                 <h5 class="font-bold uppercase text-gray-500">Total Properties</h5>
                                                 <h3 class="font-bold text-3xl"> <span class="text-pink-500"><i
-                                                            class="fas fa-exchange-alt"></i>{{ $properties->count() }}</span>
+                                                            class="fas fa-exchange-alt"></i>{{ $properties->count()
+                                                        }}</span>
                                                 </h3>
                                             </div>
                                         </div>
@@ -151,7 +152,8 @@
                                             <div class="flex-1 text-right md:text-center">
                                                 <h5 class="font-bold uppercase text-gray-500">Total Contracts</h5>
                                                 <h3 class="font-bold text-3xl"><span class="text-red-500"><i
-                                                            class="fas fa-caret-up"></i></span>{{ $contracts->count() }}</h3>
+                                                            class="fas fa-caret-up"></i></span>{{ $contracts->count() }}
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
@@ -337,6 +339,9 @@
                                                             Name</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                            Action</th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Point</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -355,6 +360,9 @@
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             {{ $point->name }}
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            {{ $point->action }}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             {{number_format($point->point, 2)}}
