@@ -193,7 +193,6 @@
                             @foreach($units as $info)
                         <div class="mt-14">
                             <table class="border-collapse">
-
                                 <tbody>
                                     <tr>
                                         <td class="border border-slate-300">Unit:</td>
@@ -227,18 +226,14 @@
                                         <td class="border border-slate-300">Size:</td>
                                         <td class="border border-slate-300">{{ number_format($info->suze, 2) }} sqm</td>
                                     </tr>
-                                   
+                                    {{-- <tr>
+                                        <td class="border border-slate-300">Created:</td>
+                                        <td class="border border-slate-300">{{ $info->created_at->diffForHumans() }}</td>
+                                    </tr> --}}
+
                                 </tbody>
                             </table>
-                            {{-- <p>Unit: {{ $info->unit }}</p>
-                            <p>Category: {{ $info->category }}</p>
-                            <p>Building: {{ $info->building }}</p>
-                            <p>Floor: {{ $info->floor }}</p>
-                            <p>Status: {{ $info->status }}</p>
-                            <p>Rent: {{ number_format($info->rent, 2) }}</p>
-                            <p>Discount: {{ number_format($info->discount, 2) }}</p>
-                            <p>Size: {{ $info->size }} sqm</p>
-                            <p>Created: {{ $info->created_at->diffForHumans() }}</p> --}}
+                          
                         </div>
                         <div class="mt-14">
                             <hr>
