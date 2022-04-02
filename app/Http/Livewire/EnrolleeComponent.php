@@ -85,10 +85,10 @@ class EnrolleeComponent extends Component
     ]);
 
     Point::create([
-        'user_id' => auth()->user()->id,
-        'point' => 5,
-        'action_id' => 2,
-        'property_uuid' => Property::get('property')
+    'user_id' => auth()->user()->id,
+    'point' => 5,
+    'action_id' => 2,
+    'property_uuid' => Session::get('property')
     ]);
 
     //  $details =[
