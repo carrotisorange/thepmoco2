@@ -52,7 +52,7 @@
                         <div class="mt-5">
                             <div class="flex">
                                 <div>
-                                   
+
                                     <div class="mt-5">
                                         <span>Status</span>
                                         @forelse ($statuses as $status)
@@ -75,12 +75,13 @@
                                     <div class="mt-5">
                                         <span>Category</span>
                                         @forelse ($categories as $category)
-                                        
+
                                         <div class="form-check">
                                             <input wire:model="category_id"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                 type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
-                                            <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
+                                            <label class="form-check-label inline-block text-gray-800"
+                                                for="flexCheckDefault">
                                                 {{ $category->category }} ({{ $category->count }})
                                             </label>
                                         </div>
@@ -88,7 +89,7 @@
                                         <p>NA</p>
                                         @endforelse
                                     </div>
-                            
+
                                     <div class="mt-5">
                                         <span>Building</span>
                                         @forelse ($buildings as $building)
@@ -191,7 +192,45 @@
                         <p class="text-left">
                             @foreach($units as $info)
                         <div class="mt-14">
-                            <p>Unit: {{ $info->unit }}</p>
+                            <table class="border-collapse">
+
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-slate-300">Unit:</td>
+                                        <td class="border border-slate-300">{{ $info->unit }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-300">Category:</td>
+                                        <td class="border border-slate-300">{{ $info->category }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-300">Building:</td>
+                                        <td class="border border-slate-300">{{ $info->building }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-300">Floor:</td>
+                                        <td class="border border-slate-300">{{ $info->floor }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-300">Status:</td>
+                                        <td class="border border-slate-300">{{ $info->status }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-300">Rent:</td>
+                                        <td class="border border-slate-300">{{ number_format($info->rent, 2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-300">Discount:</td>
+                                        <td class="border border-slate-300">{{ number_format($info->discount, 2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-300">Size:</td>
+                                        <td class="border border-slate-300">{{ number_format($info->suze, 2) }} sqm</td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                            {{-- <p>Unit: {{ $info->unit }}</p>
                             <p>Category: {{ $info->category }}</p>
                             <p>Building: {{ $info->building }}</p>
                             <p>Floor: {{ $info->floor }}</p>
@@ -199,7 +238,7 @@
                             <p>Rent: {{ number_format($info->rent, 2) }}</p>
                             <p>Discount: {{ number_format($info->discount, 2) }}</p>
                             <p>Size: {{ $info->size }} sqm</p>
-                            <p>Created: {{ $info->created_at->diffForHumans() }}</p>
+                            <p>Created: {{ $info->created_at->diffForHumans() }}</p> --}}
                         </div>
                         <div class="mt-14">
                             <hr>
