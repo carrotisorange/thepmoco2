@@ -30,7 +30,7 @@ class GuardianComponent extends Component
     {
         return [
         'guardian' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
+        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:guardians'],
         'mobile_number' => 'required',
         'relationship_id' => ['required', Rule::exists('relationships', 'id')],
         ];

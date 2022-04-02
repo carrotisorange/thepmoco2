@@ -49,7 +49,7 @@ class ContractComponent extends Component
        'rent' => 'required',
        'discount' => 'required',
        'interaction' => 'required',
-       'contract' => 'required|mimes:pdf,doc,docx, image'
+       'contract' => 'nullable|mimes:pdf,doc,docx, image'
       ];
       }
 
@@ -79,8 +79,16 @@ class ContractComponent extends Component
             $validatedData['property_uuid'] = Session::get('property');
             $validatedData['user_id'] = auth()->user()->id;
             $validatedData['bill_reference_no'] = $reference_no;
-            $validatedData['contract'] = $this->contract->store('contracts');
 
+             if($this->contract)
+             {
+                $validatedData['contract'] = $this->contract->store('contracts');
+             }else{
+                 $validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
+             }
+
+
+          
             Contract::create($validatedData);
 
             Unit::where('uuid', $this->unit->uuid)->update([

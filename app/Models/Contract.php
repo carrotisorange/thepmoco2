@@ -14,7 +14,8 @@ class Contract extends Model
     protected $primaryKey = 'uuid';
 
     protected $attributes = [
-        'status' => 'active'
+        'status' => 'active',
+        'moveout_reason' => 'NA'
     ];
 
     public function tenant()

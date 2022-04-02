@@ -151,6 +151,9 @@
                                                     Status</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Reason of moveout</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
 
                                             </tr>
@@ -212,6 +215,9 @@
                                                         {{ $contract->status }}
                                                     </span>
                                                     @endif
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $contract->moveout_reason }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <button id="dropdownDividerButton"
@@ -472,7 +478,7 @@
                                                     {{ $enrollee->unenrollment_reason }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                   
+
                                                 </td>
 
 

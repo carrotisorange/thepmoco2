@@ -48,15 +48,15 @@ class OldTenantComponent extends Component
     {
         return [
             'tenant' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
-            'mobile_number' => 'required',
-            'type' => 'required',
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tenants'],
+            'mobile_number' => 'nullable',
+            'type' => 'nullable',
             'gender' => 'required',
-            'civil_status' => 'required',
-            'country_id' => ['required', Rule::exists('countries', 'id')],
-            'province_id' => ['required', Rule::exists('provinces', 'id')],
+            'civil_status' => 'nullable',
+            'country_id' => ['nullable', Rule::exists('countries', 'id')],
+            'province_id' => ['nullable', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
-            'barangay_id' => ['required'],
+            'barangay_id' => ['nullable'],
             'photo_id' => 'nullable|image'
             ];
     }

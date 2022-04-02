@@ -69,7 +69,13 @@ class EnrolleeComponent extends Component
     $validatedData['owner_uuid'] = $this->owner->uuid;
     $validatedData['unit_uuid'] = $this->unit->uuid;
     $validatedData['user_id'] = auth()->user()->id;
-    $validatedData['contract'] = Property::find(Session::get('property'))->owner_contract;
+
+     if($this->contract)
+     {
+        $validatedData['contract'] = $this->contract->store('owner_contracts');
+     }else{
+        $validatedData['contract'] = Property::find(Session::get('property'))->owner_contract;
+     }
 
     Enrollee::create($validatedData);
 
@@ -104,6 +110,7 @@ class EnrolleeComponent extends Component
     redirect('/unit/'.$this->unit->uuid)->with('success','Unit has been enrolled.');
 
     }catch (\Throwable $e) {
+        ddd($e);
         DB::rollback();
         return back()->with('error','Cannot complete your action.');
         }   
