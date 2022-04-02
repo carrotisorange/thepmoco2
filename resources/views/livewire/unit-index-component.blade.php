@@ -52,19 +52,7 @@
                         <div class="mt-5">
                             <div class="flex">
                                 <div>
-                                    <span>Category</span>
-                                    @forelse ($categories as $category)
-
-                                    <div class="form-check">
-                                        <input wire:model="category_id"
-                                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                            type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
-                                        <label class="form-check-label inline-block text-gray-800"
-                                            for="flexCheckDefault">
-                                            {{ $category->category }} ({{ $category->count }})
-                                        </label>
-                                    </div>
-                                    @empty
+                                   
                                     <div class="mt-5">
                                         <span>Status</span>
                                         @forelse ($statuses as $status)
@@ -75,7 +63,7 @@
                                                 type="checkbox" value="{{ $status->id }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
-                                                {{ $status->status }}
+                                                {{ $status->status }} ({{ $status->count }})
                                             </label>
                                         </div>
                                         @empty
@@ -83,7 +71,24 @@
                                         @endforelse
                                     </div>
 
-                                    @endforelse
+
+                                    <div class="mt-5">
+                                        <span>Category</span>
+                                        @forelse ($categories as $category)
+                                        
+                                        <div class="form-check">
+                                            <input wire:model="category_id"
+                                                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
+                                            <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
+                                                {{ $category->category }} ({{ $category->count }})
+                                            </label>
+                                        </div>
+                                        @empty
+                                        <p>NA</p>
+                                        @endforelse
+                                    </div>
+                            
                                     <div class="mt-5">
                                         <span>Building</span>
                                         @forelse ($buildings as $building)
@@ -196,7 +201,7 @@
                             <p>Size: {{ $info->size }} sqm</p>
                             <p>Created: {{ $info->created_at->diffForHumans() }}</p>
                         </div>
-                        <div class="mt-20">
+                        <div class="mt-14">
                             <hr>
                         </div>
                         @endforeach
