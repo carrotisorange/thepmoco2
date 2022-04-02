@@ -15,7 +15,7 @@ class Enrollee extends Model
 
      protected $attributes =[
          'unenrollment_reason' => 'NA',
-         'status' => 'pending',
+         'status' => 'active',
      ];
 
     public function unit()

@@ -12,6 +12,7 @@ use DB;
 use Carbon\Carbon;
 use App\Models\Point;
 use App\Models\Property;
+use Session;
 
 class EnrolleeComponent extends Component
 {
@@ -44,7 +45,7 @@ class EnrolleeComponent extends Component
     'end' => 'required|date|after:start',
     'rent' => 'required|gt:0',
     'discount' => 'required',
-    'contract' => 'required|mimes:pdf,doc,docx, image'
+    'contract' => 'nullable'
     ];
     }
 
@@ -68,7 +69,7 @@ class EnrolleeComponent extends Component
     $validatedData['owner_uuid'] = $this->owner->uuid;
     $validatedData['unit_uuid'] = $this->unit->uuid;
     $validatedData['user_id'] = auth()->user()->id;
-    $validatedData['contract'] = $this->contract->store('enrollees');
+    $validatedData['contract'] = Property::find(Session::get('property'))->owner_contract;
 
     Enrollee::create($validatedData);
 

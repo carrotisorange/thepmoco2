@@ -118,6 +118,8 @@ class UnitController extends Controller
 
         $deed_of_sales = Unit::findOrFail($unit->uuid)->deed_of_sales;
 
+        $enrollees = Unit::findOrFail($unit->uuid)->enrollees;
+
         $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
           ->select('*', 'bills.status as bill_status')
           ->join('users', 'bills.user_id', 'users.id')
@@ -132,7 +134,8 @@ class UnitController extends Controller
             'unit' => $unit,
             'contracts' => $contracts,
             'deed_of_sales' => $deed_of_sales,
-            'bills' => $bills
+            'bills' => $bills,
+            'enrollees' => $enrollees
         ]);
     }
 

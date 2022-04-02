@@ -367,6 +367,127 @@
                                 </div>
 
                                 <br>
+                                <br>
+                                <span>{{ Str::plural('Leasing Enrollment History', $enrollees->count())}} ({{
+                                    $enrollees->count()
+                                    }})</span>
+                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <?php $ctr =1; ?>
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    #</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Owner</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Contact</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Contract Period</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Agreed Rent/mo</th>
+
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Status</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Reason of unenrollment</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Contract</th>
+
+                                            </tr>
+                                        </thead>
+                                        @forelse ($enrollees as $enrollee)
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $ctr++ }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0 h-10 w-10">
+                                                            <a href="/owner/{{ $enrollee->owner_uuid }}">
+                                                                <img class="h-10 w-10 rounded-full"
+                                                                    src="/storage/{{ $enrollee->owner->photo_id }}"
+                                                                    alt=""></a>
+                                                        </div>
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">{{
+                                                                $enrollee->owner->owner }}
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">{{ $enrollee->owner->email }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{
+                                                        $enrollee->owner->mobile_number }}
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">{{
+                                                        Carbon\Carbon::parse($enrollee->start)->format('M d, Y').' -
+                                                        '.Carbon\Carbon::parse($enrollee->end)->format('M d, Y') }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{
+                                                        Carbon\Carbon::parse($enrollee->end)->diffForHumans($enrollee->start)
+                                                        }}
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ number_format($enrollee->rent, 2) }}
+                                                </td>
+
+
+
+
+
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    @if($enrollee->status === 'active')
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        {{ $enrollee->status }}
+                                                    </span>
+                                                    @else
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                        {{ $enrollee->status }}
+                                                    </span>
+                                                    @endif
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $enrollee->unenrollment_reason }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                   
+                                                </td>
+
+
+                                            </tr>
+
+                                        </tbody>
+                                        @empty
+                                        <span>No owners found!</span>
+
+                                        @endforelse
+                                    </table>
+
+                                </div>
+
+                                <br>
                                 <span>{{ Str::plural('Bill', $bills->count())}} ({{ $bills->count()
                                     }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">

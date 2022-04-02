@@ -45,11 +45,11 @@ class OwnerComponent extends Component
                         'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
                         'mobile_number' => 'required|integer',
                         'gender' => 'required',
-                        'civil_status' => 'required',
-                        'country_id' => ['required', Rule::exists('countries', 'id')],
-                        'province_id' => ['required', Rule::exists('provinces', 'id')],
-                        'city_id' => ['required', Rule::exists('cities', 'id')],
-                        'barangay_id' => ['required'],
+                        'civil_status' => 'nullable',
+                        'country_id' => ['nullable', Rule::exists('countries', 'id')],
+                        'province_id' => ['nullable', Rule::exists('provinces', 'id')],
+                        'city_id' => ['nullable', Rule::exists('cities', 'id')],
+                        'barangay_id' => ['nullable'],
                         'photo_id' => 'nullable|image'
                 ];
         }
