@@ -256,7 +256,7 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <span>No contracts found!</span>
+                                                <span>No tenants found!</span>
                                             </tr>
                                         </tbody>
                                         @endforelse
