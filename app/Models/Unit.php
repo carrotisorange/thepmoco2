@@ -84,6 +84,6 @@ class Unit extends Model
 
     public function deed_of_sales()
     {
-        return $this->hasMany(DeedofSale::class, 'unit_uuid');
+        return $this->hasMany(DeedOfSale::class, 'unit_uuid');
     }
 }
