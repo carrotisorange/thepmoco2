@@ -368,7 +368,8 @@
                                                             {{number_format($point->point, 2)}}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            {{$point->created_at }}
+                                                            {{ Carbon\Carbon::parse($point->earned_at)->format('M d,
+                                                            Y @ h:m:s') }}
                                                         </td>
                                                     </tr>
                                                 </tbody>

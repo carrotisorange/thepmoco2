@@ -48,6 +48,7 @@ class PropertyController extends Controller
             $contracts = Contract::all();
 
             $points = DB::table('points')
+            ->select('*', 'points.created_at as earned_at')
            ->leftJoin('users', 'points.user_id', 'users.id')
            ->leftJoin('actions', 'points.action_id', 'actions.id')
            ->leftJoin('properties', 'points.property_uuid', 'properties.uuid')
