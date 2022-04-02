@@ -270,7 +270,7 @@
                                         <i class="lni lni-laptop-phone"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">3. Create Units </h4>
+                                        <h4 class="feature-title">3. Add your units/rooms </h4>
                                         <p> add the units and their pertinent details./p>
                                     </div>
                                 </div>
@@ -281,8 +281,8 @@
                                         <i class="lni lni-leaf"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">4.  Create tenants, contracts, and bills</h4>
-                                        <p>process tenant movein and assign movein charges.</p>
+                                        <h4 class="feature-title">4.  Add your tenants on each room</h4>
+                                        <p>process tenant movein and add their contracts, bills, payments, and eventually concerns</p>
                                     </div>
                                 </div>
                             </div>
