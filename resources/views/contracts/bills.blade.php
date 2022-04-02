@@ -17,7 +17,7 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $contract->tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Bill</li>
+                                <li class="text-gray-500">Unpaid Bills, Wallets, and Moveout Charges</li>
 
                             </ol>
                         </nav>
@@ -69,7 +69,7 @@
                                         Bill No</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Bill</th>
+                                        Amount</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Period Covered</th>
