@@ -52,7 +52,6 @@
                         <div class="mt-5">
                             <div class="flex">
                                 <div>
-
                                     <div class="mt-5">
                                         <span>Status</span>
                                         @forelse ($statuses as $status)
@@ -179,7 +178,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="basis-1/2">
+                    <div class="basis-1/4">
                         <span class="font-bold">Results ({{ $units->count() }})...</span>
                         @foreach($units as $unit)
                         <a href="/unit/{{ $unit->uuid }}"><img src="/storage/{{ $unit->thumbnail }}"
@@ -187,55 +186,56 @@
                                 alt="..." /></a>
                         @endforeach
                     </div>
-                    <div class="basis-1/4">
+                    <div class="basis-1/2 ml-16">
                         <span class="font-bold">Details</span>
                         <p class="text-left">
                             @foreach($units as $info)
-                        <div class="mt-14">
-                            <table class="border-collapse">
+                        <div class="mt-12">
+                            <table class="w-3/4 divide-y divide-gray-200">
                                 <tbody>
                                     <tr>
-                                        <td class="border border-slate-300">Unit:</td>
-                                        <td class="border border-slate-300">{{ $info->unit }}</td>
+                                        <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->unit }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border border-slate-300">Category:</td>
-                                        <td class="border border-slate-300">{{ $info->category }}</td>
+                                       <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category:</th>
+                                       <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->category }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border border-slate-300">Building:</td>
-                                        <td class="border border-slate-300">{{ $info->building }}</td>
+                                        <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Building:</th>
+                                       <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->building }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border border-slate-300">Floor:</td>
-                                        <td class="border border-slate-300">{{ $info->floor }}</td>
+                                        <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Floor:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->floor }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border border-slate-300">Status:</td>
-                                        <td class="border border-slate-300">{{ $info->status }}</td>
+                                        <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->status }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border border-slate-300">Rent:</td>
-                                        <td class="border border-slate-300">{{ number_format($info->rent, 2) }}</td>
+                                       <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rent:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ number_format($info->rent, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border border-slate-300">Discount:</td>
-                                        <td class="border border-slate-300">{{ number_format($info->discount, 2) }}</td>
+                                       <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Discount:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ number_format($info->discount, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border border-slate-300">Size:</td>
-                                        <td class="border border-slate-300">{{ number_format($info->suze, 2) }} sqm</td>
+                                       <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size:</th>
+                                       <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ number_format($info->suze, 2) }} sqm</td>
                                     </tr>
-                                    {{-- <tr>
-                                        <td class="border border-slate-300">Created:</td>
-                                        <td class="border border-slate-300">{{ $info->created_at->diffForHumans() }}</td>
-                                    </tr> --}}
+                                    <tr>
+                                      <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->created_at->diffForHumans() }}
+                                        </td>
+                                    </tr>
 
                                 </tbody>
                             </table>
-                          
+
                         </div>
-                        <div class="mt-14">
+                        <div class="mt-10">
                             <hr>
                         </div>
                         @endforeach
