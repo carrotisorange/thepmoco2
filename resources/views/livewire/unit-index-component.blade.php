@@ -180,7 +180,7 @@
                         </div>
                     </div>
                     <div class="basis-1/2">
-                        <span class="font-bold">Results...</span>
+                        <span class="font-bold">Results ({{ $units->count() }})...</span>
                         @foreach($units as $unit)
                         <a href="/unit/{{ $unit->uuid }}"><img src="/storage/{{ $unit->thumbnail }}"
                                 class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
