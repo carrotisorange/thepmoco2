@@ -537,7 +537,7 @@
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">$19</span>
+                                <span class="font-bold text-2xl">$12</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
