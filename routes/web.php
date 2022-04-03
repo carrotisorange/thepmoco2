@@ -26,6 +26,8 @@ Route::get('/', [WebsiteController::class, 'index']);
 
 Route::post('/subscribe', SubscribeController::class);
 
+Route::post('/contact', ContactController::class);
+
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property:uuid}')->group(function(){
 

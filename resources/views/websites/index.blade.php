@@ -648,7 +648,7 @@
                            
                             <input type="Email"
                                 class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none"
-                                name="email" placeholder="Email Address">
+                                name="email" placeholder="Email Address" required>
 
                                 @error('email')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -663,7 +663,7 @@
                         </div>
                     </form>
                 </div>
-                @include('layouts.notifications')
+               
             </div>
         </div>
     </section>
@@ -681,12 +681,16 @@
                 <div class="w-full md:w-1/2">
                     <div class="contact">
                         <h2 class="uppercase font-bold text-xl text-gray-700 mb-5 ml-3">Contact Form</h2>
-                        <form id="contactForm" action="{{ asset('/shine/assets/contact.php') }}">
+                        <form id="contactForm" method="post" action="/contact">
+                            @csrf
                             <div class="flex flex-wrap">
                                 <div class="w-full sm:w-1/2 md:w-full lg:w-1/2">
                                     <div class="mx-3">
                                         <input type="text" class="form-input rounded-full" id="name" name="name"
                                             placeholder="Name" required data-error="Please enter your name">
+                                            @error('name')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="w-full sm:w-1/2 md:w-full lg:w-1/2">
@@ -694,6 +698,9 @@
                                         <input type="text" placeholder="Email" id="email"
                                             class="form-input rounded-full" name="email" required
                                             data-error="Please enter your email">
+                                            @error('email')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -701,6 +708,9 @@
                                         <input type="text" placeholder="Subject" id="subject" name="subject"
                                             class="form-input rounded-full" required
                                             data-error="Please enter your subject">
+                                            @error('subject')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -708,6 +718,9 @@
                                         <textarea class="form-input rounded-lg" id="message" name="message"
                                             placeholder="Your Message" rows="5" data-error="Write your message"
                                             required></textarea>
+                                            @error('message')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -910,6 +923,8 @@
     <script src="{{ asset('/shine/assets/js/tiny-slider.js') }}"></script>
     <script src="{{ asset('/shine/assets/js/contact-form.js') }}"></script>
     <script src="{{ asset('/shine/assets/js/main.js') }}"></script>
+
+    @include('layouts.notifications')
 </body>
 
 </html>
