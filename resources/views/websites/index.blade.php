@@ -160,7 +160,7 @@
                 </div>
                 <!-- Services item -->
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
-                    <div class="m-4 wow fadeInRight" data-wow-delay="0.3s">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="1.5s">
                         <div class="icon text-5xl">
                             <i class="lni lni-cog"></i>
                         </div>
@@ -174,7 +174,7 @@
                 </div>
                 <!-- Services item -->
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
-                    <div class="m-4 wow fadeInRight" data-wow-delay="0.6s">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="1.8s">
                         <div class="icon text-5xl">
                             <i class="lni lni-bar-chart"></i>
                         </div>
@@ -188,7 +188,7 @@
 
                 <!-- Services item -->
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
-                    <div class="m-4 wow fadeInRight" data-wow-delay="1.5s">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="2.1s">
                         <div class="icon text-5xl">
                             <i class="lni lni-mobile"></i>
                         </div>
@@ -201,7 +201,7 @@
                 </div>
                 <!-- Services item -->
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
-                    <div class="m-4 wow fadeInRight" data-wow-delay="1.8s">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="2.4s">
                         <div class="icon text-5xl">
                             <i class="lni lni-layers"></i>
                         </div>
@@ -214,7 +214,7 @@
 
                 <!-- Services item -->
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
-                    <div class="m-4 wow fadeInRight" data-wow-delay="1.5s">
+                    <div class="m-4 wow fadeInRight" data-wow-delay="2.7s">
                         <div class="icon text-5xl">
                             <i class="lni lni-mobile"></i>
                         </div>
@@ -237,7 +237,7 @@
     <div id="feature" class="bg-blue-100 py-24">
         <div class="container">
             <div class="flex flex-wrap items-center">
-                <div class="w-full lg:w-1/2">
+                <div class="w-full">
                     <div class="mb-5 lg:mb-0">
                         <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">How it works?</h2>
 
@@ -271,7 +271,7 @@
                                     </div>
                                     <div class="features-content">
                                         <h4 class="feature-title">3. Add your units/rooms </h4>
-                                        <p> add the units and their pertinent details./p>
+                                        <p> add the units and their pertinent details.</p>
                                     </div>
                                 </div>
                             </div>
@@ -289,11 +289,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full lg:w-1/2">
+                {{-- <div class="w-full lg:w-1/2">
                     <div class="mx-3 lg:mr-0 lg:ml-3 wow fadeInRight" data-wow-delay="0.3s">
                         <img src="{{ asset('/brands/quick.png') }}" alt="">
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -608,23 +608,24 @@
                 <div class="w-full relative">
                     <div class="portfolio-carousel">
                         <div>
-                            <img class="w-full" src="{{ asset('/shine/assets/img/slide/img1.jpg') }}" alt="">
+                            <img class="w-full" src="{{ asset('/brands/rooms/101955390_592535334730594_9190503888714358974_n.jpg') }}" alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/shine/assets/img/slide/img2.jpg') }}" alt="">
+                            <img class="w-full" src="{{ asset('/brands/rooms/101969851_592535821397212_3825058178148258861_n.jpg') }}" alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/shine/assets/img/slide/img3.jpg') }}" alt="">
+                            <img class="w-full" src="{{ asset('/brands/rooms/101980289_592536174730510_8302611439044557749_n.jpg') }}" alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/shine/assets/img/slide/img4.jpg') }}" alt="">
+                            <img class="w-full" src="{{ asset('/brands/rooms/102567268_592535594730568_1505583604093314550_n.jpg') }}" alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/shine/assets/img/slide/img5.jpg') }}" alt="">
+                            <img class="w-full" src="{{ asset('/brands/rooms/102726019_592535324730595_2660310519687017386_n.jpg') }}" alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/shine/assets/img/slide/img6.jpg') }}" alt="">
+                            <img class="w-full" src="{{ asset('/brands/rooms/103450739_592536151397179_1483878626532432704_n.jpg') }}" alt="">
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -637,11 +638,12 @@
         <div class="container">
             <div class="flex justify-center mx-3">
                 <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
-                    <h4 class="mb-3 section-heading wow fadeInUp" data-wow-delay="0.3s">Start For Free</h4>
-                    <p class="mb-4 text-gray-600 leading-loose text-sm wow fadeInUp" data-wow-delay="0.6s">Existing
-                        customized ideas through client-based deliverables. <br> Compellingly unleash fully tested
-                        outsourcing</p>
-                    <form for="">
+                    <h4 class="mb-3 section-heading wow fadeInUp" data-wow-delay="0.3s">Subscribe to our Newsletter</h4>
+                    <p class="mb-4 text-gray-600 leading-loose text-sm wow fadeInUp" data-wow-delay="0.6s">Join our subscribers list to get the latest news, updates, and special offers delivered directly to your inbox.</p>
+                    @include('layouts.notifications')
+                    <form action="/subscribe" method="post">
+                        @csrf
+                       
                         <div class="wow fadeInDown" data-wow-delay="0.3s">
                             <input type="Email"
                                 class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none"
@@ -757,7 +759,7 @@
     <!-- Map Section End -->
 
     <!-- Footer Section Start -->
-    <footer id="footer" class="bg-gray-800 py-16">
+    <footer id="footer" class="bg-gray-800 py-10">
         <div class="container">
             <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp" data-wow-delay="0.2s">
@@ -765,13 +767,60 @@
                         <div class="footer-logo mb-3">
                             <img src="{{ asset('/brands/full-logo.png') }}" alt="">
                         </div>
-                        <p class="text-gray-300">We are property managers with about a thousand listings, we were using
+                        {{-- <p class="text-gray-300">We are property managers with about a thousand listings, we were using
                             traditional marketing and many steps of leasing
                             procedures, paper and pen to sign up tenant info sheets, contracts, billing statements and
-                            receipts... <a href="/about">Read more</a> </p>
+                            receipts... <a href="/about">Read more</a> </p> --}}
+                    </div>
+                </div>
+                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="mx-3 mb-8">
+                        {{-- <div class="footer-logo mb-3">
+                            <img src="{{ asset('/brands/full-logo.png') }}" alt="">
+                        </div> --}}
+                        <p class="text-gray-300">We are property managers with about a thousand listings, we were using traditional marketing and many steps of leasing
+                        procedures,
+                        paper and pen to sign up tenant info sheets, contracts, billing statements and receipts. We monitor transactions through
+                        spreadsheets
+                        and it takes a day to process a report. At one point, our operations are so wrapped up into administrative work that we
+                        are spending less
+                        time strengthening our customer relations. We spend so much time looking for documents and less time on satisfying
+                        customer requests.
+                        We realize that if we want to stay in this business and grow, we need to automate our processes so we can focus on the
+                        more important
+                        aspects of the business like providing good customer service experience while maintaining efficient operations and
+                        that’s how thepropertymanager.online was born. </p>
                     </div>
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="mx-3 mb-8">
+                       <h3 class="font-bold text-xl text-white mb-5">Find us on</h3>
+                        
+                        <ul class="social-icons flex justify-start">
+                            <li class="mx-2">
+                                <a href="#" class="footer-icon hover:bg-indigo-500">
+                                    <i class="lni lni-facebook-original" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#" class="footer-icon hover:bg-blue-400">
+                                    <i class="lni lni-twitter-original" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#" class="footer-icon hover:bg-red-500">
+                                    <i class="lni lni-instagram-original" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#" class="footer-icon hover:bg-indigo-600">
+                                    <i class="lni lni-linkedin-original" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {{-- <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="mx-3 mb-8">
                         <h3 class="font-bold text-xl text-white mb-5">Company</h3>
                         <ul>
@@ -818,7 +867,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </footer>

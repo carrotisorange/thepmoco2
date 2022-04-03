@@ -24,6 +24,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [WebsiteController::class, 'index']);
 
+Route::post('/subscribe', SubscribeController::class);
+
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property:uuid}')->group(function(){
 
@@ -170,5 +172,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/contract/{contract}/signed_contract', ExportSignedContractController::class);
 
     Route::get('/contract/{contract}/transfer', TransferContractController::class);
+
+   
 
 });
