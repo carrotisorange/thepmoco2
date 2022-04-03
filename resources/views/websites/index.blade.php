@@ -552,7 +552,7 @@
                 <!-- single pricing table ends -->
                 <!-- single pricing table starts -->
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
-                    <div class="pricing-box bg-blue-100 wow fadeInLeft" data-wow-delay="1.2s">
+                    <div class="pricing-box bg-blue-100 wow fadeInLeft" data-wow-delay="1.5s">
                         <div class="mb-3">
                             <h3 class="package-name">PROFESIONAL</h3>
                         </div>
@@ -640,7 +640,7 @@
                 <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
                     <h4 class="mb-3 section-heading wow fadeInUp" data-wow-delay="0.3s">Subscribe to our Newsletter</h4>
                     <p class="mb-4 text-gray-600 leading-loose text-sm wow fadeInUp" data-wow-delay="0.6s">Join our subscribers list to get the latest news, updates, and special offers delivered directly to your inbox.</p>
-                    @include('layouts.notifications')
+                   @include('layouts.notifications')
                     <form action="/subscribe" method="post">
                         @csrf
                        
@@ -648,9 +648,17 @@
                             <input type="Email"
                                 class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none"
                                 name="email" placeholder="Email Address">
+
+                                @error('email')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+
+                               
                             <button
                                 class="border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75"
                                 type="submit"><i class="lni lni-arrow-right"></i></button>
+
+                             
                         </div>
                     </form>
                 </div>
