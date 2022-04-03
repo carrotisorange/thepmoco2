@@ -645,7 +645,7 @@
                         @csrf
                        
                         <div class="wow fadeInDown" data-wow-delay="0.3s">
-                            @include('layouts.notifications')
+                           
                             <input type="Email"
                                 class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none"
                                 name="email" placeholder="Email Address">
@@ -663,6 +663,7 @@
                         </div>
                     </form>
                 </div>
+                @include('layouts.notifications')
             </div>
         </div>
     </section>
