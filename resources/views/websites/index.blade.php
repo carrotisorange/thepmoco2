@@ -640,11 +640,12 @@
                 <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
                     <h4 class="mb-3 section-heading wow fadeInUp" data-wow-delay="0.3s">Subscribe to our Newsletter</h4>
                     <p class="mb-4 text-gray-600 leading-loose text-sm wow fadeInUp" data-wow-delay="0.6s">Join our subscribers list to get the latest news, updates, and special offers delivered directly to your inbox.</p>
-                   @include('layouts.notifications')
+                 
                     <form action="/subscribe" method="post">
                         @csrf
                        
                         <div class="wow fadeInDown" data-wow-delay="0.3s">
+                            @include('layouts.notifications')
                             <input type="Email"
                                 class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none"
                                 name="email" placeholder="Email Address">
