@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('manager', function(User $user){
             return (auth()->user()->role_id === 9) || (auth()->user()->username ===
-            'landley' || (auth()->user()->username === 'nc_admin'));
+            'landley' || (auth()->user()->username === 'nc_admin') || (auth()->user()->username === 'mikee'));
         });
 
         Gate::define('managerandadmin', function(User $user){
