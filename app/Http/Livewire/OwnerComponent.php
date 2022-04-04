@@ -43,7 +43,7 @@ class OwnerComponent extends Component
                 return [
                         'owner' => 'required',
                         'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners'],
-                        'mobile_number' => 'nullable|integer',
+                        'mobile_number' => 'nullable',
                         'gender' => 'required',
                         'civil_status' => 'nullable',
                         'country_id' => ['nullable', Rule::exists('countries', 'id')],
