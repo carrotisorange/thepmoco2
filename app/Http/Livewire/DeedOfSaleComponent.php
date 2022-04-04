@@ -34,7 +34,7 @@ class DeedOfSaleComponent extends Component
     protected function rules()
     {
         return [
-            'price' => 'numeric|gt:0',
+            'price' => 'nullable|numeric|gt:0',
             'classification' => 'nullable',
             'turnover_at' => 'required',
             'contract' => 'nullable',
