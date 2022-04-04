@@ -35,10 +35,10 @@ class DeedOfSaleComponent extends Component
     {
         return [
             'price' => 'numeric|gt:0',
-            'classification' => 'required',
+            'classification' => 'nullable',
             'turnover_at' => 'required',
-            'contract' => 'required',
-            'status' => 'required'
+            'contract' => 'nullable',
+            'status' => 'nullable'
         ];
     }
 

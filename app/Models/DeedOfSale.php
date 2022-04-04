@@ -13,6 +13,11 @@ class DeedOfSale extends Model
 
     public $primaryKey = 'uuid';
 
+    protected $attributes = [
+    'status' => 'active',
+    'classification' => 'regular'
+    ];
+
     public function getRouteKeyName()
     {
         return 'uuid';
