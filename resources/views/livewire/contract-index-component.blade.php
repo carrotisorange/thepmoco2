@@ -12,7 +12,7 @@
                             </li>
                             <li><span class="text-gray-500 mx-2">/</span></li>
                             <li class="text-gray-500">
-                                {{ Str::plural('Contract', $contracts->count())}}
+                                {{ Str::plural('Tenant', $contracts->count())}}
                             </li>
                         </ol>
                     </nav>
