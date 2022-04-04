@@ -70,6 +70,32 @@
                                         @endforelse
                                     </div>
 
+                                    <div class="mt-5">
+                                        <span>Enrollment Status</span>
+                                        @forelse ($enrollment_statuses as $enrollment_status)
+
+                                        <div class="form-check">
+                                            <input wire:model="is_enrolled"
+                                                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                type="checkbox" value="{{ $enrollment_status->is_enrolled }}"
+                                                id="flexCheckDefault">
+                                            @if($enrollment_status->is_enrolled == 1)
+                                            <label class="form-check-label inline-block text-gray-800"
+                                                for="flexCheckDefault">
+                                                enrolled ({{ $enrollment_status->count }})
+                                            </label>
+                                            @else
+                                            <label class="form-check-label inline-block text-gray-800"
+                                                for="flexCheckDefault">
+                                                unenrolled ({{ $enrollment_status->count }})
+                                            </label>
+                                            @endif
+
+                                        </div>
+                                        @empty
+                                        <p>NA</p>
+                                        @endforelse
+                                    </div>
 
                                     <div class="mt-5">
                                         <span>Category</span>
@@ -194,40 +220,65 @@
                             <table class="w-3/4 divide-y divide-gray-200">
                                 <tbody>
                                     <tr>
-                                        <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit:</th>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Unit:</th>
                                         <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->unit }}</td>
                                     </tr>
                                     <tr>
-                                       <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category:</th>
-                                       <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->category }}</td>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Category:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->category }}
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Building:</th>
-                                       <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->building }}</td>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Building:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->building }}
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Floor:</th>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Floor:</th>
                                         <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->floor }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->status }}</td>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Status:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->status }}
+                                        </td>
                                     </tr>
                                     <tr>
-                                       <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rent:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ number_format($info->rent, 2) }}</td>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Rent:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                            number_format($info->rent, 2) }}</td>
                                     </tr>
                                     <tr>
-                                       <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Discount:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ number_format($info->discount, 2) }}</td>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Discount:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                            number_format($info->discount, 2) }}</td>
                                     </tr>
                                     <tr>
-                                       <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size:</th>
-                                       <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ number_format($info->suze, 2) }} sqm</td>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Size:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                            number_format($info->suze, 2) }} sqm</td>
                                     </tr>
                                     <tr>
-                                      <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->created_at->diffForHumans() }}
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Created:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                            $info->created_at->diffForHumans() }}
                                         </td>
                                     </tr>
 

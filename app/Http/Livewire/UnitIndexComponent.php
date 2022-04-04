@@ -85,10 +85,17 @@ class UnitIndexComponent extends Component
 
          $statuses = Status::join('units', 'statuses.id', 'units.status_id')
           ->select('status', DB::raw('count(*) as count'))
-      
          ->where('units.property_uuid', Session::get('property'))
          ->where('statuses.status','!=','NA')
          ->groupBy('status')
+         ->get();
+
+        $enrollment_statuses = Unit::where('units.property_uuid', Session::get('property'))
+         //->whereNotNull('size')
+         ->select('is_enrolled', DB::raw('count(*) as count'))
+         //->where('size','>',0)
+         ->groupBy('is_enrolled')
+         ->orderBy('is_enrolled', 'desc')
          ->get();
 
         return view('livewire.unit-index-component',[
@@ -99,7 +106,8 @@ class UnitIndexComponent extends Component
             'rents' => $rents,
             'discounts' => $discounts,
             'sizes' => $sizes,
-            'statuses' => $statuses
+            'statuses' => $statuses,
+            'enrollment_statuses' => $enrollment_statuses
         ]);
     }
 }
