@@ -42,8 +42,8 @@ class OwnerComponent extends Component
         {
                 return [
                         'owner' => 'required',
-                        'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
-                        'mobile_number' => 'required|integer',
+                        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners'],
+                        'mobile_number' => 'nullable|integer',
                         'gender' => 'required',
                         'civil_status' => 'nullable',
                         'country_id' => ['nullable', Rule::exists('countries', 'id')],
