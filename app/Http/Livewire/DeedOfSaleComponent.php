@@ -55,7 +55,11 @@ class DeedOfSaleComponent extends Component
         $validatedData['uuid'] = Str::uuid();
         $validatedData['unit_uuid'] = $this->unit->uuid;
         $validatedData['owner_uuid'] = $this->owner->uuid;
-        $validatedData['contract'] = $this->contract->store('deed_of_sales');
+
+          if($this->contract)
+          {
+             $validatedData['contract'] = $this->contract->store('deed_of_sales');
+          }
 
         try{
             DB::beginTransaction();
