@@ -68,7 +68,7 @@ class DeedOfSaleComponent extends Component
                 DeedOfSale::create($validatedData)->uuid;
             DB::commit();
                 return
-                redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/representative/'.Str::random(8).'/create')->with('success','Deed of sale has been created.');
+                redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale has been created.');
         }catch(\Exception $e)
         {
             ddd($e);

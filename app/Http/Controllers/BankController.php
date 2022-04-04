@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use Illuminate\Http\Request;
+use App\Models\Unit;
+use App\Models\Owner;
 
 class BankController extends Controller
 {
@@ -14,7 +16,7 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+    
     }
 
     /**
@@ -22,9 +24,15 @@ class BankController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Unit $unit, Owner $owner)
     {
-        //
+        $banks = Owner::find($owner->uuid)->banks;
+
+        return view('banks.create',[
+        'unit' => $unit,
+        'owner' => $owner,
+        'banks' => $banks,
+        ]);
     }
 
     /**
@@ -78,8 +86,11 @@ class BankController extends Controller
      * @param  \App\Models\Bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bank $bank)
+    public function destroy($id)
     {
-        //
+        $bank = Bank::where('id', $id);
+        $bank->delete();
+
+        return back()->with('success', 'Bank has been removed.');
     }
 }

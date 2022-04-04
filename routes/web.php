@@ -137,10 +137,15 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('unit/{unit}/owner/{owner}/sale/{random_str}/create', [DeedOfSaleController::class,'create']);
     Route::post('unit/{unit}/owner/{owner}/sale/{random_str}/store',[DeedOfSaleController::class,'store']);
     //3
-    Route::get('unit/{unit}/owner/{owner}/representative/{random_str}/create', [RepresentativeController::class, 'create']);
-    Route::post('unit/{unit}/owner/{owner}/representative/{random_str}/store', [RepresentativeController::class,'store']);
+    Route::get('unit/{unit}/owner/{owner}/representative/{random_str}/create', [RepresentativeController::class,'create']);
+    Route::post('unit/{unit}/owner/{owner}/representative/{random_str}/store',[RepresentativeController::class,'store']);
     Route::delete('representative/{id:id}/delete', [RepresentativeController::class, 'destroy']);
-    //3
+    ///4
+    Route::get('unit/{unit}/owner/{owner}/bank/{random_str}/create', [BankController::class, 'create']);
+    Route::post('unit/{unit}/owner/{owner}/bank/{random_str}/store', [BankController::class,'store']);
+    Route::delete('bank/{id:id}/delete', [BankController::class, 'destroy']);
+    Route::delete('bank/{id:id}/delete', [BankController::class, 'destroy']);
+    //4
     Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create', [EnrolleeController::class, 'create']);
     Route::post('unit/{unit}/owner/{owner}/enrollee/{random_str}/store', [EnrolleeController::class, 'store']);
     //3

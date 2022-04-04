@@ -486,7 +486,7 @@
 
                                         </tbody>
                                         @empty
-                                        <span>No owners found!</span>
+                                        <span>No enrollment histories found!</span>
 
                                         @endforelse
                                     </table>

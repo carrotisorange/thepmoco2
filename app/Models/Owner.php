@@ -42,9 +42,9 @@ class Owner extends Model
      return $this->hasMany(Representative::class);
      }
 
-    public function bank()
+    public function banks()
     {
-        return $this->hasOne(Bank::class, 'bank_id');
+        return $this->hasMany(Bank::class, 'owner_uuid');
     }
 
     public function enrollees()
