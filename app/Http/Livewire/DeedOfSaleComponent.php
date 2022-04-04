@@ -56,6 +56,7 @@ class DeedOfSaleComponent extends Component
         $validatedData['unit_uuid'] = $this->unit->uuid;
         $validatedData['owner_uuid'] = $this->owner->uuid;
         $validatedData['status'] = 'active';
+        $validatedData['classification'] = 'regular';
 
           if($this->contract)
           {
