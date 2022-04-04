@@ -38,9 +38,9 @@
 
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/contracts"
+                    <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
                         :active="request()->routeIs('contracts')">
-                        {{ __('Contracts') }}
+                        {{ __('Tenants') }}
                     </x-nav-link>
                 </div>
                 @endcan
@@ -177,9 +177,9 @@
             </x-responsive-nav-link>
             @endcan
 
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/contracts"
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
                 :active="request()->routeIs('contracts')">
-                {{ __('Contracts') }}
+                {{ __('Tenants') }}
             </x-responsive-nav-link>
             {{-- @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
