@@ -91,7 +91,7 @@
                                 </p>
                                 <p class="mt-5 text-gray-700 text-base mb-4">
                                     Enrolled in Leasing: 
-                                    @if($unit->is_enrolled = 1)
+                                    @if($unit->is_enrolled == 1)
                                     Enrolled
                                     @else
                                     Unenrolled

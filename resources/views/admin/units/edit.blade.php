@@ -26,6 +26,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Back
+                    </x-button>
                     <x-button data-modal-toggle="small-modal">
                         Create Building
                     </x-button>

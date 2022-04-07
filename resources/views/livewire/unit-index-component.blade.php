@@ -48,7 +48,7 @@
                 @else
                 <div class="flex flex-row">
                     <div class="basis-1/4 ml-5">
-                        <span class="font-bold">Apply Filters</span>
+                        <span class="font-bold">Filters</span>
                         <div class="mt-5">
                             <div class="flex">
                                 <div>

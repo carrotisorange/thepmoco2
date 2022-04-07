@@ -21,6 +21,7 @@ class UnitIndexComponent extends Component
     public $search = '';
 
     public $category_id = '';
+    public $is_enrolled = '';
     public $status_id = '';
     public $building_id = '';
     public $floor_id = '';
