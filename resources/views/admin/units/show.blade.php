@@ -89,6 +89,14 @@
                                 <p class="mt-5 text-gray-700 text-base mb-4">
                                     Category: {{ $unit->category->category }}
                                 </p>
+                                <p class="mt-5 text-gray-700 text-base mb-4">
+                                    Enrolled in Leasing: 
+                                    @if($unit->is_enrolled = 1)
+                                    Enrolled
+                                    @else
+                                    Unenrolled
+                                    @endif
+                                </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Building: {{ $unit->building->building }}
                                 </p>
@@ -100,13 +108,13 @@
                                 </p>
 
                                 <p class="text-gray-700 text-base mb-4">
-                                    Rent: {{ number_format($unit->rent, 2) }}
+                                    Rent: ₱{{ number_format($unit->rent, 2) }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Discount: {{ number_format($unit->discount, 2) }}
+                                    Discount: ₱{{ number_format($unit->discount, 2) }}
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
-                                    Size: {{ $unit->size }}
+                                    Size: {{ $unit->size }} sqm
                                 </p>
                                 <p class="text-gray-700 text-base mb-4">
                                     Created: {{ $unit->created_at->diffForHumans() }}

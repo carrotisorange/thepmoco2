@@ -216,7 +216,7 @@
                         <span class="font-bold">Details</span>
                         <p class="text-left">
                             @foreach($units as $info)
-                        <div class="mt-12">
+                        <div class="mt-8">
                             <table class="w-3/4 divide-y divide-gray-200">
                                 <tbody>
                                     <tr>
@@ -230,6 +230,18 @@
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Category:</th>
                                         <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->category }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Enrolled in leasing:</th>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">
+                                            @if($info->is_enrolled = 1)
+                                                Enrolled
+                                            @else
+                                                Unenrolled
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>
@@ -256,14 +268,14 @@
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Rent:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">₱{{
                                             number_format($info->rent, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Discount:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">₱{{
                                             number_format($info->discount, 2) }}</td>
                                     </tr>
                                     <tr>
@@ -286,7 +298,7 @@
                             </table>
 
                         </div>
-                        <div class="mt-10">
+                        <div class="mt-8">
                             <hr>
                         </div>
                         @endforeach
