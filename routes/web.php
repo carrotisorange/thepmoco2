@@ -93,7 +93,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('owner/{owner}', [OwnerController::class, 'show']);
   
 
-    Route::get('properties', [PropertyController::class, 'index']);
+    Route::get('properties', [PropertyController::class, 'index'])->name('properties');
     Route::get('property/{random_str}/create/', [PropertyController::class, 'create']);
     Route::post('property/{random_str}/store', [PropertyController::class, 'store']);
 
