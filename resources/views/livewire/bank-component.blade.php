@@ -10,7 +10,7 @@
                 </x-label>
                 <x-input wire:model="account_name"
                     class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                    id="account_name" type="text" name="account_name" value="{{ old('account_name') }}" />
+                    id="account_name" type="text" name="account_name" value="{{ old('account_name', $owner->owner) }}" />
 
                 @error('account_name')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
