@@ -55,7 +55,7 @@
     @include('layouts.notifications')
     @livewireScripts
     <!-- Load Facebook SDK for JavaScript -->
-    @include('layouts.chat-messenger')
+    @include('layouts.messenger-chatbot')
 </body>
 
 <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
