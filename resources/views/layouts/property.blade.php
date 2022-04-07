@@ -52,6 +52,7 @@
 
     </div>
     @include('layouts.notifications')
+    @include('layouts.messenger-chatbot')
     @livewireScripts
 </body>
 

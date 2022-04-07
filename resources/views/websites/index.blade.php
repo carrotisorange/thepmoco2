@@ -925,6 +925,7 @@
     <script src="{{ asset('/shine/assets/js/main.js') }}"></script>
 
     @include('layouts.notifications')
+    @include('layouts.messenger-chatbot')
 </body>
 
 </html>

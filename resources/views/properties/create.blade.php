@@ -60,6 +60,7 @@
         </main>
 
         @livewireScripts
+        @include('layouts.messenger-chatbot')
 </body>
 
 </html>
