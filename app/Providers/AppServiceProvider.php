@@ -31,7 +31,9 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Gate::define('admin', function(User $user){
-            return (auth()->user()->role_id === 1) || (auth()->user()->username === 'pamelatecson');
+            return (auth()->user()->role_id === 1) || (auth()->user()->username === 'pamelatecson' ||
+            (auth()->user()->username ===
+            'nc_manager'));
         });
 
         Gate::define('billing', function(User $user){
@@ -65,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('managerandadmin', function(User $user){
             return (auth()->user()->role_id === 1) || (auth()->user()->role_id === 9) || (auth()->user()->username ===
-            'landley');
+            'landley' );
         });
 
         Gate::define('dev', function(User $user){

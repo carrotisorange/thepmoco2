@@ -363,11 +363,14 @@
 
                                             </tr>
 
-                                        </tbody>
-                                        @empty
-                                        <span>No owners found!</span>
 
-                                        @endforelse
+                                            @empty
+                                            <tr>
+                                                <span>No owners found!</span>
+                                            </tr>
+
+                                            @endforelse
+                                        </tbody>
                                     </table>
 
                                 </div>
@@ -456,11 +459,6 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ number_format($enrollee->rent, 2) }}
                                                 </td>
-
-
-
-
-
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($enrollee->status === 'active')
                                                     <span
@@ -480,15 +478,14 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
 
                                                 </td>
-
-
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <span>No enrollment histories found!</span>
                                             </tr>
 
+                                            @endforelse
                                         </tbody>
-                                        @empty
-                                        <span>No enrollment histories found!</span>
-
-                                        @endforelse
                                     </table>
 
                                 </div>
@@ -565,11 +562,14 @@
 
                                             </tr>
 
-                                        </tbody>
-                                        @empty
-                                        <span>No bills found!</span>
 
-                                        @endforelse
+                                            @empty
+                                            <tr>
+                                                <span>No bills found!</span>
+                                            </tr>
+
+                                            @endforelse
+                                        </tbody>
                                     </table>
 
                                 </div>
