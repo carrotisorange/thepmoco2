@@ -1,5 +1,8 @@
 <title>{{ config('chatify.name') }}</title>
 
+<!-- Favicon -->
+<link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
+
 {{-- Meta tags --}}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="id" content="{{ $id }}">
