@@ -14,9 +14,9 @@ class BankComponent extends Component
 
    public function mount($unit, $owner, $banks)
    {
-   $this->unit = $unit;
-   $this->owner = $owner;
-   $this->banks = $banks;
+      $this->unit = $unit;
+      $this->rent = $owner->owner;
+      $this->banks = $banks;
    }
 
    public $account_name;

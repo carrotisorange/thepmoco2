@@ -12,7 +12,7 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">{{ $unit->unit }}</li>
+                                <li class="text-gray-500">{{ $owner->owner }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $unit->unit }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>

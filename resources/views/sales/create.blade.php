@@ -26,7 +26,7 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button wire:submit.prevent="submitForm"
-                        onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/representative/{{ Str::random(8) }}/create'">
+                        onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/bank/{{ Str::random(8) }}/create'">
                         Skip</x-button>
                 </h5>
 
