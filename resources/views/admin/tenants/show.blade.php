@@ -204,7 +204,7 @@
                                             </tr>
                                         </tbody>
                                         @empty
-                                        <span class="text-center text-red">No contracts found!</span>
+                                        <span class="text-center text-red">No tenants found!</span>
                                         @endforelse
                                     </table>
 
