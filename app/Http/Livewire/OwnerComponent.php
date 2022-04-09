@@ -9,7 +9,6 @@ use Livewire\WithFileUploads;
 use App\Models\City;
 use App\Models\Province;
 use App\Models\Country;
-use App\Models\Barangay;
 
 use Livewire\Component;
 
@@ -21,7 +20,7 @@ class OwnerComponent extends Component
 
         public function mount($unit)
         {
-                $this->unit = $unit;
+            $this->unit = $unit;
         }
 
         public $owner;
@@ -35,7 +34,7 @@ class OwnerComponent extends Component
         public $country_id;
         public $province_id;
         public $city_id;
-        public $barangay_id;
+        public $barangay;
         public $photo_id;
 
         protected function rules()
@@ -49,7 +48,7 @@ class OwnerComponent extends Component
                         'country_id' => ['nullable', Rule::exists('countries', 'id')],
                         'province_id' => ['nullable', Rule::exists('provinces', 'id')],
                         'city_id' => ['nullable', Rule::exists('cities', 'id')],
-                        'barangay_id' => ['nullable'],
+                        'barangay' => ['nullable'],
                         'photo_id' => 'nullable|image'
                 ];
         }
@@ -87,13 +86,13 @@ class OwnerComponent extends Component
                 $cities = City::all();
                 $provinces = Province::all();
                 $countries = Country::all();
-                $barangays = Barangay::all();
+               
 
                 return view('livewire.owner-component',[
                         'cities' => $cities,
                         'provinces' => $provinces,
                         'countries' => $countries,
-                        'barangays' => $barangays,
+                        
                 ]);
         }
 }

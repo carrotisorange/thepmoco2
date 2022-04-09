@@ -16,7 +16,6 @@ use Illuminate\Validation\Rule;
 use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
-use App\Models\Barangay;
 use Session;
 
 class OldTenantComponent extends Component
@@ -41,7 +40,7 @@ class OldTenantComponent extends Component
     public $country_id;
     public $province_id;
     public $city_id;
-    public $barangay_id;
+    public $barangay;
     public $photo_id;
 
     protected function rules()
@@ -56,7 +55,7 @@ class OldTenantComponent extends Component
             'country_id' => ['nullable', Rule::exists('countries', 'id')],
             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
-            'barangay_id' => ['nullable'],
+            'barangay' => ['nullable'],
             'photo_id' => 'nullable|image'
             ];
     }
@@ -130,7 +129,7 @@ class OldTenantComponent extends Component
             'countries' => Country::all(),
             'provinces' => Province::all(),
             'cities' => City::all(),
-            'barangays' => Barangay::all()
+            
         ]);
     }
 }

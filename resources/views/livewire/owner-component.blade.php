@@ -147,7 +147,7 @@
                                     <select wire:model="country_id"
                                         class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-state" name="country_id">
-                                        <option value="">Select one</option>
+                                        <option value="1">Philippines</option>
                                         @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
                                             'selected': 'Select one'
@@ -207,9 +207,9 @@
                                     for="barangay_id">
                                     Barangay
                                 </label>
-                                <input wire:model="barangay_id"
+                                <input wire:model="barangay"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="barangay_id" type="text" name="barangay_id" value="{{ old('barangay_id') }}">
+                                    id="barangay" type="text" name="barangay" value="{{ old('barangay') }}">
                                 {{-- <select wire:model="barangay_id"
                                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="grid-state" id="barangay_id" name="barangay_id">
@@ -221,7 +221,7 @@
                                     @endforeach
                                 </select> --}}
 
-                                @error('barangay_id')
+                                @error('barangay')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>

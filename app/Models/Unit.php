@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Session;
 
 class Unit extends Model
 {
@@ -75,15 +76,15 @@ class Unit extends Model
      {
      return $this->hasMany(Bill::class);
      }
-    // public function scopeSearch($term, $query)
-    // {
-    //     $term = "%$term%";
-    //     $query->where('unit', 'like', $term)
-    //     ->orWhere('building', 'like', $term);
-    // }
 
     public function deed_of_sales()
     {
         return $this->hasMany(DeedOfSale::class, 'unit_uuid');
+    }
+
+    public static function search($search)
+    {
+        return empty($search)? static::query()
+        : static::where('unit','like', '%'.$search.'%');
     }
 }

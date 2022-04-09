@@ -12,8 +12,7 @@ use Livewire\Component;
 class UnitComponent extends Component
 {
     public $batch_no;
-    public $unit_count;
-    
+    public $unit_count;   
 
     public function mount($batch_no, $unit_count)
     {
@@ -21,15 +20,15 @@ class UnitComponent extends Component
         $this->unit_count = $unit_count;
     }
 
-    public $selectedUnits = [];
+    public $selected = [];
 
-    public $selectAll = false;
-
-    public $bulkDisabled = true;
+    public function deleteUnits()
+    {
+        dd($this->selected);
+    }
 
     public function render()
     {
-        $this->bulkDisabled = count($this->selectedUnits) < 1;
 
         $units = Unit::leftJoin('categories', 'units.category_id','categories.id')
           ->leftJoin('statuses', 'units.status_id', 'statuses.id')
@@ -56,24 +55,4 @@ class UnitComponent extends Component
         ]);
     }
 
-    public function deletedSelected()
-    {
-        Unit::query()
-        ->whereIn('uuid', $this->selectedUnits)
-        ->delete();
-
-        $this->selectedUnits = [];
-        $this->selectAll = false;
-    }
-
-    public function updatedSelectedAll($value)
-    {
-        if($value)
-        {
-            $this->selectedUnits = Unit::pluck('uuid');
-        }else
-        {
-            $this->selectedUnits = [];
-        }
-    }
 }

@@ -22,8 +22,10 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                 
-                    <x-button data-modal-toggle="small-modal">
+                    <button id="remove-unit" wire:click="deleteUnits" class="bg-red-600">
+                        Remove
+                    </button>
+                    {{-- <x-button data-modal-toggle="small-modal">
                         Create Building
                     </x-button>
                     @if($units->count())
@@ -31,7 +33,7 @@
                     @else
                     <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                     </x-button>
-                    @endif
+                    @endif --}}
 
                 </h5>
 
@@ -56,9 +58,9 @@
                                             <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    <input
+                                                    {{-- <input
                                                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                        type="checkbox" wire:model="selectAll">
+                                                        type="checkbox"> --}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -109,7 +111,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <input
                                                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                        type="checkbox" wire:model="selectedUnits"
+                                                        type="checkbox" wire:model="selected" form="remove-unit"
                                                         value="{{ $unit->uuid }}">
 
                                                 </td>

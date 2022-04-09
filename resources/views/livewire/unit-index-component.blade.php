@@ -35,6 +35,7 @@
         <div class="rounded">
             <x-input wire:model="search" type="text" class=" py-2 w-full" placeholder="Enter unit..." />
         </div>
+        
 
         <div class="mt-5">
             {{ $units->links() }}
@@ -229,7 +230,7 @@
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Category:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->category }}
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->category->category }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -248,20 +249,20 @@
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Building:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->building }}
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->building->building }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Floor:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->floor }}</td>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->floor->floor }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Status:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->status }}
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->status->status }}
                                         </td>
                                     </tr>
                                     <tr>
