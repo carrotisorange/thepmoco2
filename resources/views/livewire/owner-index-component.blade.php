@@ -60,9 +60,9 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Contact</th>
-                                            <th scope="col"
+                                            {{-- <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Address</th>
+                                                Address</th> --}}
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Added on</th>
@@ -105,8 +105,8 @@
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                $owner->city->city.', '.$owner->province->province }}</td>
+                                            {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                $owner->city->city.', '.$owner->province->province }}</td> --}}
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                 $owner->created_at->diffForHumans() }}</td>
