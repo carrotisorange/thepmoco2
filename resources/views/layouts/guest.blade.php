@@ -20,6 +20,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    {{-- Fontawesome --}}
+    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
+
     {{-- Alpine.js --}}
     <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
 
@@ -30,10 +33,11 @@
 <body>
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
+        <div class="mt-4">
+            @include('layouts.footer');
+        </div>
     </div>
-    <div>
-        @include('layouts.footer');
-    </div>
+
     @livewireScripts()
     @include('layouts.notifications')
     @include('layouts.messenger-chatbot')
