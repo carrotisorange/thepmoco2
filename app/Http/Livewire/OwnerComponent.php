@@ -75,6 +75,21 @@ class OwnerComponent extends Component
                         $validatedData['photo_id'] = 'avatars/avatar.png';
                 }
 
+                if(!$this->country_id)
+                {
+                $validatedData['country_id'] = '18';
+                }
+
+                 if(!$this->province_id)
+                 {
+                 $validatedData['province_id'] = '81';
+                 }
+
+                  if(!$this->city_id)
+                  {
+                  $validatedData['city_id'] = '137';
+                  }
+
                 $owner = Owner::create($validatedData)->uuid;
 
                 return

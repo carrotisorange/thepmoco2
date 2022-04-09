@@ -80,6 +80,21 @@ class OldTenantComponent extends Component
             $validatedData['photo_id'] = 'avatars/avatar.png';
         }
 
+         if(!$this->country_id)
+         {
+         $validatedData['country_id'] = '18';
+         }
+
+         if(!$this->province_id)
+         {
+         $validatedData['province_id'] = '81';
+         }
+
+         if(!$this->city_id)
+         {
+         $validatedData['city_id'] = '137';
+         }
+
         $validatedData['property_uuid'] = Session::get('property');
 
         // $user = User::create([
@@ -116,6 +131,7 @@ class OldTenantComponent extends Component
             return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success','Tenant has been created.');
        }catch(\Exception $e)
        {
+            ddd($e);
             DB::rollback();
             return redirect()->with('error','Cannot perform your action.');
        }

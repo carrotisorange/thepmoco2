@@ -106,7 +106,7 @@
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                $owner->city.', '.$owner->province }}</td>
+                                                $owner->city->city.', '.$owner->province->province }}</td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                 $owner->created_at->diffForHumans() }}</td>
