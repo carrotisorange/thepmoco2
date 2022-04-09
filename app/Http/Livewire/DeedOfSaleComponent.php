@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use DB;
+use Session;
 
 use Livewire\Component;
 
@@ -57,6 +58,7 @@ class DeedOfSaleComponent extends Component
         $validatedData['owner_uuid'] = $this->owner->uuid;
         $validatedData['status'] = 'active';
         $validatedData['classification'] = 'regular';
+        $validatedData['property_uuid'] = Session::get('property');
 
           if($this->contract)
           {

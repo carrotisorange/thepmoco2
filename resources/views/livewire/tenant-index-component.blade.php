@@ -35,10 +35,10 @@
         <div class="mt-5">
             {{ $contracts->links() }}
         </div>
-        <div class="mt-5 p-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
+        <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white border-b border-gray-200">
                 <div class="flex flex-col">
-                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             @if (!$contracts->count())
                             <span class="text-center text-red">No tenants found!</span>
@@ -54,21 +54,21 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Tenant</th>
-                                            <th scope="col"
+                                            {{-- <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Duration</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Unit</th>
+                                                Unit</th> --}}
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Contact</th>
-                                            <th scope="col"
+                                            {{-- <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Rent/mo</th>
-                                            <th scope="col"
+                                                Rent/mo</th> --}}
+                                            {{-- <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Status</th>
+                                                Status</th> --}}
 
                                             <th scope="col" class="relative px-6 py-3">
                                                 <span class="sr-only">Edit</span>
@@ -98,7 +98,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            {{-- <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm text-gray-900">{{
                                                     Carbon\Carbon::parse($contract->start)->format('M d, Y').' -
                                                     '.Carbon\Carbon::parse($contract->end)->format('M d, Y') }}
@@ -107,15 +107,15 @@
                                                     Carbon\Carbon::parse($contract->end)->diffForHumans($contract->start)
                                                     }}
                                                 </div>
-                                            </td>
+                                            </td> --}}
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            {{-- <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm text-gray-900">{{ $contract->unit }}
                                                 </div>
                                                 <div class="text-sm text-gray-500">{{
                                                     $contract->building }}
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm text-gray-900">{{ $contract->email }}
                                                 </div>
@@ -123,10 +123,10 @@
                                                     $contract->mobile_number }}
                                                 </div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            {{-- <td class="px-6 py-4 whitespace-nowrap">
                                                 {{number_format($contract->contract_rent, 2)}}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            </td> --}}
+                                            {{-- <td class="px-6 py-4 whitespace-nowrap">
                                                 @if($contract->contract_status === "active")
                                                 <span
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -136,7 +136,7 @@
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                     {{ $contract->contract_status }} </span>
                                                 @endif
-                                            </td>
+                                            </td> --}}
 
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <button id="dropdownDividerButton"

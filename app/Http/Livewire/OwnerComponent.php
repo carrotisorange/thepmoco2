@@ -5,7 +5,7 @@ use App\Models\Owner;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
-
+use Session;
 use App\Models\City;
 use App\Models\Province;
 use App\Models\Country;
@@ -65,6 +65,7 @@ class OwnerComponent extends Component
                 $validatedData = $this->validate();
 
                 $validatedData['uuid'] = Str::uuid();
+                $validatedData['property_uuid'] = Session::get('property');
 
                 if($this->photo_id)
                 {
@@ -83,15 +84,13 @@ class OwnerComponent extends Component
 
         public function render()
         {
-                $cities = City::orderBy('city', 'ASC')->get();
-                $provinces = Province::orderBy('province', 'ASC')->get();
-                $countries = Country::orderBy('country', 'ASC')->get();
+             
                
 
                 return view('livewire.owner-component',[
-                        'cities' => $cities,
-                        'provinces' => $provinces,
-                        'countries' => $countries,
+                        'cities' => City::orderBy('city', 'ASC')->get(),
+                        'provinces' => Province::orderBy('province', 'ASC')->get(),
+                        'countries' => Country::orderBy('country', 'ASC')->get()
                         
                 ]);
         }

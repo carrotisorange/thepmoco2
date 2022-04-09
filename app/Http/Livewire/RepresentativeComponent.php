@@ -30,7 +30,7 @@ class RepresentativeComponent extends Component
         return [
           'representative' => 'required',
           'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
-          'mobile_number' => 'required|integer',
+          'mobile_number' => 'required',
           'relationship_id' => ['required', Rule::exists('relationships', 'id')],
         ];
       }

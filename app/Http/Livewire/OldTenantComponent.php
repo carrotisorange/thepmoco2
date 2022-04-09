@@ -126,9 +126,10 @@ class OldTenantComponent extends Component
     public function render()
     {
         return view('livewire.old-tenant-component',[
-            'countries' => Country::all(),
-            'provinces' => Province::all(),
-            'cities' => City::all(),
+             'cities' => City::orderBy('city', 'ASC')->get(),
+             'provinces' => Province::orderBy('province', 'ASC')->get(),
+             'countries' => Country::orderBy('country', 'ASC')->get()
+
             
         ]);
     }

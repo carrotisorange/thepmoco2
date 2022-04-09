@@ -69,6 +69,7 @@ class EnrolleeComponent extends Component
     $validatedData['owner_uuid'] = $this->owner->uuid;
     $validatedData['unit_uuid'] = $this->unit->uuid;
     $validatedData['user_id'] = auth()->user()->id;
+    $validatedData['property_uuid'] = Session::get('property');
 
      if($this->contract)
      {

@@ -56,4 +56,10 @@ class Owner extends Model
     {
         return $this->hasMany(DeedOfSale::class);
     }
+
+      public static function search($search)
+      {
+      return empty($search)? static::query()
+      : static::where('owner','like', '%'.$search.'%');
+      }
 }

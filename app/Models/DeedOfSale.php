@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class DeedOfSale extends Model
 {
     use HasFactory;
@@ -32,4 +33,6 @@ class DeedOfSale extends Model
     {
         return $this->belongsTo(Owner::class, 'owner_uuid');
     }
+
+  
 }

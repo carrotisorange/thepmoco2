@@ -1,3 +1,3 @@
 <x-app-layout>
-    @livewire('contract-index-component')
+    @livewire('tenant-index-component')
 </x-app-layout>

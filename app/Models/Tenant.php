@@ -76,4 +76,10 @@ class Tenant extends Model
     {
         return $this->hasMany(Wallet::class);
     }
+
+      public static function search($search)
+      {
+      return empty($search)? static::query()
+      : static::where('tenant','like', '%'.$search.'%');
+      }
 }

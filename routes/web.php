@@ -33,7 +33,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('units', [UnitController::class, 'index'])->name('units');
    
-    //Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
+    Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
     
     Route::get('owners', [OwnerController::class, 'index'])->name('owners');
 
@@ -41,7 +41,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     Route::get('team', [TeamController::class, 'index'])->name('team');
     
-    Route::get('tenants', [ContractController::class, 'index'])->name('contracts');
+    //Route::get('tenants', [ContractController::class, 'index'])->name('contracts');
 
     Route::get('enrollees', [EnrolleeController::class, 'index'])->name('enrollees');
 

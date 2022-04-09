@@ -37,4 +37,5 @@ class Contract extends Model
     {
     return $this->belongsTo(Property::class, 'property_uuid');
     }
+
 }
