@@ -38,7 +38,7 @@
         <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
                 <div class="flex flex-col">
-                   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             @if (!$contracts->count())
                             <span class="text-center text-red">No tenants found!</span>
@@ -63,6 +63,9 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Contact</th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Added on</th>
                                             {{-- <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Rent/mo</th> --}}
@@ -84,9 +87,9 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
-                                                        
-                                                            <img class="h-10 w-10 rounded-full"
-                                                                src="/storage/{{ $contract->photo_id }}" alt="">
+
+                                                        <img class="h-10 w-10 rounded-full"
+                                                            src="/storage/{{ $contract->photo_id }}" alt="">
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900"><b>{{
@@ -137,6 +140,8 @@
                                                     {{ $contract->contract_status }} </span>
                                                 @endif
                                             </td> --}}
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                $contract->created_at->diffForHumans() }}</td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <button id="dropdownDividerButton"
@@ -187,7 +192,7 @@
                         </div>
                     </div>
                 </div>
-        
+
             </div>
         </div>
     </div>
