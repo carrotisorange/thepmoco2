@@ -238,7 +238,7 @@
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Enrolled in leasing:</th>
                                         <td class="px-6 whitespace-nowrap text-md text-gray-500">
-                                            @if($info->is_enrolled = 1)
+                                            @if($info->is_enrolled === 1)
                                                 Enrolled
                                             @else
                                                 Unenrolled
