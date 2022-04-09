@@ -83,9 +83,9 @@ class OwnerComponent extends Component
 
         public function render()
         {
-                $cities = City::all();
-                $provinces = Province::all();
-                $countries = Country::all();
+                $cities = City::orderBy('city', 'ASC')->get();
+                $provinces = Province::orderBy('province', 'ASC')->get();
+                $countries = Country::orderBy('country', 'ASC')->get();
                
 
                 return view('livewire.owner-component',[
