@@ -220,22 +220,71 @@
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="barangay" type="text" name="barangay" value="{{ old('barangay') }}">
 
-                                {{-- <select wire:model="barangay_id"
-                                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state" id="barangay_id" name="barangay_id">
-                                    <option value="">Select one</option>
-                                    @foreach ($barangays as $barangay)
-                                    <option value="{{ $barangay->id }}" {{ old('barangay_id')==$barangay->id?
-                                        'selected': 'Select one'
-                                        }}>{{ $barangay->barangay }}</option>
-                                    @endforeach
-                                </select> --}}
-
                                 @error('barangay')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
 
+                        </div>
+
+                        <div class="flex flex-wrap mx-3 mb-2 mt-5">
+                            <div class="w-full md:w-1/2 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-last-name">
+                                    School
+                                </label>
+                                <input wire:model="school"
+                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="school" type="text" name="school" value="{{ old('school') }}">
+
+                                @error('school')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full md:w-1/2 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-last-name">
+                                    School Address
+                                </label>
+                                <input wire:model="school_address"
+                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="school_address" type="text" name="school_address"
+                                    value="{{ old('school_address') }}">
+
+                                @error('school_address')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap mx-3 mb-2 mt-5">
+                            <div class="w-full md:w-1/2 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-last-name">
+                                    Occupation
+                                </label>
+                                <input wire:model="occupation"
+                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="school" type="text" name="occupation" value="{{ old('occupation') }}">
+
+                                @error('occupation')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full md:w-1/2 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-last-name">
+                                    Work Address
+                                </label>
+                                <input wire:model="employer_address"
+                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="employer_address" type="text" name="employer_address"
+                                    value="{{ old('employer_address') }}">
+
+                                @error('employer_address')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">

@@ -89,6 +89,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('tenant/{tenant:uuid}', [TenantController::class, 'show']);
     Route::get('tenant/{tenant}/edit', [TenantController::class, 'edit']);
+    Route::get('tenant/{uuid}/delete', [TenantController::class, 'destroy']);
     Route::patch('tenant/{tenant}/update', [TenantController::class, 'update']);
     Route::get('owner/{owner}', [OwnerController::class, 'show']);
   

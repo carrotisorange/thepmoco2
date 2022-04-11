@@ -21,17 +21,7 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        $owners = Enrollee::leftJoin('units', 'enrollees.unit_uuid', 'units.uuid')
-        // ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
-        ->leftJoin('owners', 'enrollees.owner_uuid', 'owners.uuid')
-        ->leftJoin('buildings', 'units.building_id','buildings.id' )
-        ->where('units.property_uuid', session('property'))
-        ->groupBy('owners.uuid')
-        ->paginate(10);
-
-        return view('owners.index',[
-            'owners'=>$owners
-        ]);
+        return view('owners.index');
     }
 
     /**
@@ -84,7 +74,13 @@ class OwnerController extends Controller
      */
     public function show(Owner $owner)
     {
-        return $owner;
+        return view('owners.show',[
+            'owner' => $owner,
+            'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
+            'enrollments' => Owner::find($owner->uuid)->enrollees,
+            'representatives' => Owner::find($owner->uuid)->representatives,
+            'banks' => Owner::find($owner->uuid)->banks,
+        ]);
     }
 
     /**

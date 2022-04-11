@@ -60,9 +60,9 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Contact</th>
-                                            {{-- <th scope="col"
+                                            <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Address</th> --}}
+                                                Address</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Added on</th>
@@ -92,62 +92,34 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                           {{-- <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">{{ $owner->unit->unit }}
-                                                </div>
-                                                <div class="text-sm text-gray-500">{{ $owner->unit->building->building }}
-                                                </div>
-                                            </td> --}}
+
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm text-gray-900">{{ $owner->email }}
                                                 </div>
                                                 <div class="text-sm text-gray-500">{{ $owner->mobile_number }}
                                                 </div>
                                             </td>
-
-                                            {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                $owner->city->city.', '.$owner->province->province }}</td> --}}
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">{{ $owner->province->province.',
+                                                    '.$owner->city->city.', '.$owner->barangay }}
+                                                </div>
+                                                <div class="text-sm text-gray-500">{{
+                                                    $owner->country->country }}
+                                                </div>
+                                            </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                 $owner->created_at->diffForHumans() }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <button id="dropdownDividerButton"
-                                                    data-dropdown-toggle="dropdownDivider"
-                                                    class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                    type="button">Select your action <svg class="ml-2 w-4 h-4"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                    </svg></button>
+                                                <a title="show" href="/owner/{{ $owner->uuid }}"
+                                                    class="text-indigo-600 hover:text-indigo-900"><i
+                                                        class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
 
-                                                <div id="dropdownDivider"
-                                                    class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
-                                                        <li>
-                                                            <a href="/contract/{{ $owner->uuid }}/edit"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Show</a>
-                                                        </li>
-
-                                                        <li>
-                                                            <a href="/contract/{{ $owner->uuid }}/transfer"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Transfer</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/contract/{{ $owner->uuid }}/renew"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Renew</a>
-                                                        </li>
-
-                                                    </ul>
-                                                    @if($owner->status === "active")
-                                                    <div class="py-1">
-                                                        <a href="/contract/{{ $owner->uuid }}/moveout/bills"
-                                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                            Moveout</a>
-                                                    </div>
-                                                    @else
-                                                    @endif
-                                                </div>
+                                                @can('manager')
+                                                <a title="remove" href="/owner/{{ $owner->uuid }}/delete"
+                                                    class="text-red-600 hover:text-indigo-900"><i
+                                                        class="fa-solid fa-2x fa-trash-can"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
 

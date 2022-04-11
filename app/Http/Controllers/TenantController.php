@@ -166,8 +166,12 @@ class TenantController extends Controller
      * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tenant $tenant)
+    public function destroy($uuid)
     {
-        //
+        $tenant = Tenant::where('uuid', $uuid);
+        if($tenant->delete()){
+        return back()->with('success', 'A tenant has been removed.');
+        }
+        return back()->with('error', 'Cannot complete your action.');
     }
 }

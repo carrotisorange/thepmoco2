@@ -39,7 +39,7 @@
                                 <ol class="list-reset flex">
                                     <li>
                                         <?php $name = explode(" ",auth()->user()->name) ?>
-                                        Welcome <b>{{ $name[0] }}</b>!
+                                        Welcome <b>{{ $name[0] }}</b>! 
                                         {{-- {{ Str::plural('Property', $properties->count())}} ({{ $properties->count()
                                         }}) --}}
                                     </li>
