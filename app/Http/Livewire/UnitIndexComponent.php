@@ -31,16 +31,7 @@ class UnitIndexComponent extends Component
 
     public function render()
     {
-          // $units = Unit::leftJoin('statuses', 'units.status_id', 'statuses.id')
-          // ->select('*', 'units.*')
-          // ->leftJoin('categories', 'units.category_id', 'categories.id')
-          // ->leftJoin('buildings', 'units.building_id', 'buildings.id')
-          // ->leftJoin('floors', 'units.floor_id', 'floors.id')
-          // ->where('property_uuid', Session::get('property'))
-          // ->orderByRaw('LENGTH(unit)', 'ASC')
-          // ->where('units.unit','LIKE' ,'%'.$this->search.'%')
-          // ->where('units.status_id','!=' , '6')
-          // ->paginate(5);
+  
 
           $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
           ->select('building', DB::raw('count(*) as count'))
@@ -101,8 +92,8 @@ class UnitIndexComponent extends Component
 
         return view('livewire.unit-index-component',[
             'units' => Unit::search($this->search)
-                    ->where('property_uuid', Session::get('property'))
                     ->orderBy('unit', 'desc')
+                    ->where('property_uuid', Session::get('property'))
                     ->simplePaginate(5),
             'buildings' => $buildings,
             'floors' => $floors,

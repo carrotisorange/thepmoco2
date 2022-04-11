@@ -18,6 +18,7 @@ use App\Models\Contract;
 use Carbon\Carbon;
 use App\Models\Tenant;
 use App\Models\Unit;
+use App\Models\Point;
 
 use Illuminate\Support\Facades\Gate;
 
@@ -47,13 +48,18 @@ class PropertyController extends Controller
 
             $contracts = Contract::all();
 
-            $points = DB::table('points')
-            ->select('*', 'points.created_at as earned_at')
-           ->leftJoin('users', 'points.user_id', 'users.id')
-           ->leftJoin('actions', 'points.action_id', 'actions.id')
-           ->leftJoin('properties', 'points.property_uuid', 'properties.uuid')
-           ->groupBy('points.id')
-           ->get();
+            $points = Point::orderBy('total', 'desc')
+            ->selectRaw('sum(point) as total, users.name as name')
+            ->leftJoin('users', 'points.user_id', 'users.id')
+            ->groupBy('user_id')
+            ->get();
+        //     $points = DB::table('points')
+        //     ->select('*', 'points.created_at as earned_at')
+        //    ->leftJoin('users', 'points.user_id', 'users.id')
+        //    ->leftJoin('actions', 'points.action_id', 'actions.id')
+        //    ->leftJoin('properties', 'points.property_uuid', 'properties.uuid')
+        //    ->groupBy('points.id')
+        //    ->get();
 
             return view('dev.index',[
                 'sessions' => $sessions,
@@ -66,24 +72,9 @@ class PropertyController extends Controller
             ]);
         }else
         {
-             $properties = User::find(Auth::user()->id)->user_properties;
-            // $properties = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-            // ->select('*', 'properties.*','properties.status as property_status', 'properties.uuid as property_uuid',
-            // DB::raw('count(units.uuid) as units_count'),DB::raw('count(tenants.uuid) as
-            // tenants_count'),'user_properties.created_at as property_created_at', 'types.type as property_type')
-            // ->leftJoin('users', 'user_properties.user_id', 'users.id')
-            // ->leftJoin('types', 'properties.type_id', 'types.id')
-            // ->leftJoin('units', 'properties.uuid', 'units.property_uuid')
-            // ->leftJoin('tenants', 'properties.uuid', 'tenants.property_uuid')
-            // ->where('users.id', auth()->user()->id)
-            // //->orWhere('users.account_owner_id', auth()->user()->id)
-            // ->groupBy('user_properties.property_uuid')
-            // ->orderBy('properties.created_at', 'desc')
-            // ->get();
-
 
             return view('properties.index',[
-            'properties'=>$properties,
+            'properties'=>User::find(Auth::user()->id)->user_properties
             
             ]);
         }

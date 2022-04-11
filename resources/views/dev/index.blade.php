@@ -316,67 +316,75 @@
                                     </div>
                                     <!--/Template Card-->
                                 </div>
+                             
+                                <div class="py-12">
+                                    <h1>Points Leader</h1>
+                                    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                                        <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+                                            <div class="p-6 bg-white border-b border-gray-200">
+                                                <!-- This example requires Tailwind CSS v2.0+ -->
+                                                <div class="flex flex-col">
+                                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                                        <div
+                                                            class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                                            @if (!$points->count())
+                                                            <span class="text-center text-red">No points found!</span>
+                                                            @else
+                                                            <div
+                                                                class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
-                                <div class="w-full p-3">
-                                    <!--Table Card-->
-                                    <div class="bg-white border rounded shadow">
-                                        <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Points Leader</h5>
-                                        </div>
-                                        <div class="p-5">
-                                            <table class="min-w-full divide-y divide-gray-200">
-                                                <?php $ctr =1; ?>
-                                                <thead class="bg-gray-50">
-                                                    <tr>
-                                                        <th scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            #</th>
-                                                        <th scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Property</th>
-                                                        <th scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Name</th>
-                                                        <th scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Action</th>
-                                                        <th scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Point</th>
-                                                        <th scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Earned</th>
+                                                                <table class="min-w-full divide-y divide-gray-200">
+                                                                    <thead class="bg-gray-50">
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                                #</th>
 
-                                                    </tr>
-                                                </thead>
-                                                @foreach ($points as $point)
-                                                <tbody class="bg-white divide-y divide-gray-200">
-                                                    <tr>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            {{ $ctr++ }}
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            {{ $point->property }}
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            {{ $point->name }}
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            {{ $point->action }}
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            {{number_format($point->point, 2)}}
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            {{ Carbon\Carbon::parse($point->earned_at)->format('M d,
-                                                            Y @ h:m:s') }}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                                @endforeach
-                                            </table>
+                                                                            <th scope="col"
+                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                                User</th>
+                                                                            <th scope="col"
+                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                                Points</th>
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <?php $ctr = 1; ?>
+                                                                    @foreach ($points as $point)
+                                                                    <tbody class="bg-white divide-y divide-gray-200">
+                                                                        <tr>
+                                                                            <th
+                                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                                {{
+                                                                                $ctr++ }}</th>
+                                                                            <td
+                                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                                {{
+                                                                                $point->name}}</td>
+                                                                            <td
+                                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                                {{
+                                                                                $point->total}}</td>
+
+                                                                        </tr>
+
+                                                                        <!-- More people... -->
+                                                                    </tbody>
+                                                                    @endforeach
+                                                                </table>
+
+                                                            </div>
+                                                            @endif
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
