@@ -10,7 +10,6 @@ use App\Models\Country;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use App\Models\Bill;
 use DB;
 use App\Models\Property;
 use Session;
@@ -81,19 +80,20 @@ class TenantController extends Controller
      */
     public function show(Tenant $tenant)
     {
-        $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
-         ->select('*', 'bills.status as bill_status', 'bills.id as bill_id')
-         ->join('particulars', 'bills.particular_id', 'particulars.id')
-         ->where('tenants.uuid', $tenant->uuid)
-         ->orderBy('bills.bill_no')
-         ->get();
+        $bills = Tenant::find($tenant->uuid)->bills;
 
         $contracts = Tenant::find($tenant->uuid)->contracts;
+
+        $references = Tenant::find($tenant->uuid)->references;
+
+        $guardians = Tenant::find($tenant->uuid)->guardians;
 
         return view('admin.tenants.show',[
             'tenant' => $tenant,
             'bills' => $bills,
-            'contracts' => $contracts
+            'contracts' => $contracts,
+            'references' => $references,
+            'guardians' => $guardians
         ]);
     }
 

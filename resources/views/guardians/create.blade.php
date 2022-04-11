@@ -96,8 +96,8 @@
                                             id="delete-form">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900"
-                                                form="delete-form">Remove</button>
+                                            <button title="Remove" class="text-red-600 hover:text-red-900"
+                                                form="delete-form"><i class="fa-solid fa-2x fa-trash-can"></i></button>
                                         </form>
 
                                     </td>

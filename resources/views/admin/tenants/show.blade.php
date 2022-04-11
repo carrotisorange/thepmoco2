@@ -43,22 +43,18 @@
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tenant
                                     Contract</a>
                             </li>
-
                         </ul>
                     </div>
                 </h5>
-
             </div>
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 ">
                     <div class="flex justify-center">
                         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white">
-
                             <img src="/storage/{{ $tenant->photo_id }}"
                                 class="p-2 bg-white border rounded max-w-xs mt-5 mx-5 ml-5 mr-5" alt="..." />
                         </div>
@@ -77,7 +73,6 @@
                                     Birthdate: {{ Carbon\Carbon::parse($tenant->birthdate)->format('M d, Y') }} ({{
                                     Carbon\Carbon::now()->diffForHumans($tenant->birthdate)}})
                                 </p>
-
                                 <p class="text-gray-700 text-base mb-4">
                                     Civil status: {{ $tenant->civil_status }}
                                 </p>
@@ -94,19 +89,16 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-
                                 <div class="mb-3">
-                                    <span class="text-center text-red">Contracts ({{ $contracts->count() }})</span>
+                                    <span class="text-center text-red">{{ Str::plural('Contract', $contracts->count())}}
+                                        ({{ $contracts->count() }})</span>
                                 </div>
-
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr =1; ?>
                                         <thead class="bg-gray-50">
@@ -114,18 +106,12 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     #</th>
-
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Unit</th>
-
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Duration</th>
-
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Contact</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Rent/mo</th>
@@ -138,8 +124,6 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
-
-
                                             </tr>
                                         </thead>
                                         @forelse ($contracts as $contract)
@@ -156,7 +140,6 @@
                                                         }}
                                                     </div>
                                                 </td>
-
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{
                                                         Carbon\Carbon::parse($contract->start)->format('M d, Y').' -
@@ -165,17 +148,6 @@
                                                     <div class="text-sm text-gray-500">{{
                                                         Carbon\Carbon::parse($contract->end)->diffForHumans($contract->start)
                                                         }}
-                                                    </div>
-                                                </td>
-
-
-
-
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $contract->tenant->email }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        $contract->tenant->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -204,23 +176,124 @@
                                             </tr>
                                         </tbody>
                                         @empty
-                                        <span class="text-center text-red">No tenants found!</span>
+                                        <span class="text-center text-red">No contracts found!</span>
                                         @endforelse
                                     </table>
-
                                 </div>
-
-
                                 <div class="mb-3 mt-5">
-                                    <span class="text-center text-red">Bills ({{ $bills->count() }})</span>
+                                    <span class="text-center text-red">{{ Str::plural('Guardian', $guardians->count())}}
+                                        ({{ $guardians->count() }})</span>
                                 </div>
-
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr =1; ?>
                                         <thead class="bg-gray-50">
                                             <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    #</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Name</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Relatiosnhip</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Email</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Mobile</th>
+                                            </tr>
+                                        </thead>
+                                        @forelse ($references as $reference)
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $ctr++ }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $reference->reference }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $reference->relationship->relationship }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $reference->email }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $reference->mobile_number }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        @empty
+                                        <span class="text-center text-red">No references found!</span>
+                                        @endforelse
+                                    </table>
+                                </div>
+                                <div class="mb-3 mt-5">
+                                    <span class="text-center text-red">{{ Str::plural('Reference', $references->count())}}
+                                        ({{ $references->count() }})</span>
+                                </div>
+                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <?php $ctr =1; ?>
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    #</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Name</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Relatiosnhip</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Email</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Mobile</th>
+                                            </tr>
+                                        </thead>
+                                        @forelse ($guardians as $guardian)
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $ctr++ }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $guardian->guardian }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $guardian->relationship->relationship }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $guardian->email }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $guardian->mobile_number }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        @empty
+                                        <span class="text-center text-red">No guardians found!</span>
+                                        @endforelse
+                                    </table>
+                                </div>
+                                <div class="mb-3 mt-5">
+                                    <span class="text-center text-red">{{ Str::plural('Bill', $bills->count())}} ({{
+                                        $bills->count() }})</span>
+                                </div>
+                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <?php $ctr =1; ?>
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    #</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Bill No</th>
@@ -233,58 +306,58 @@
                                                     Bill</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Particular</th>
-
+                                                    Unit</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Unit</th>
+                                                    Particular</th>
                                                 <th colspan="2" scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Period</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
-                                                <th scope="col"
+                                                {{-- <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Due date</th>
-
+                                                    Due date</th> --}}
                                             </tr>
                                         </thead>
                                         @forelse ($bills as $bill)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
+                                                <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    $ctr++ }}</th>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $bill->bill_no }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $bill->reference_no}}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     number_format($bill->bill,2) }}</td>
-
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $bill->particular }}</td>
-
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $bill->unit->unit }}</td>
+
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    $bill->particular->particular }}</td>
+
                                                 <td colspan="2"
                                                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     Carbon\Carbon::parse($bill->start)->format('M d,
                                                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    @if($bill->bill_status === 'paid')
+                                                    @if($bill->status === 'paid')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $bill->bill_status }}
+                                                        {{ $bill->status }}
                                                     </span>
                                                     @else
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $bill->bill_status }}
+                                                        {{ $bill->status }}
                                                     </span>
                                                     @endif
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     Carbon\Carbon::parse($bill->due_date)->format('M d,
-                                                    Y') }}</td>
+                                                    Y') }}</td> --}}
 
                                             </tr>
                                         </tbody>

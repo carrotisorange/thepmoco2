@@ -103,7 +103,7 @@
                                         <form method="POST" action="/bill/{{ $bill->bill_id }}/delete">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900">Remove</button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fa-solid fa-2x fa-trash-can"></i></button>
                                         </form>
 
                                     </td>

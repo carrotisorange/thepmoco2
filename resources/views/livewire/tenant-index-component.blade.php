@@ -12,7 +12,7 @@
                             </li>
                             <li><span class="text-gray-500 mx-2">/</span></li>
                             <li class="text-gray-500">
-                                {{ Str::plural('Tenant', $contracts->count())}}
+                                {{ Str::plural('Tenant', $tenants->count())}}
                             </li>
                         </ol>
                     </nav>
@@ -33,14 +33,14 @@
         </div>
 
         <div class="mt-5">
-            {{ $contracts->links() }}
+            {{ $tenants->links() }}
         </div>
         <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                            @if (!$contracts->count())
+                            @if (!$tenants->count())
                             <span class="text-center text-red">No tenants found!</span>
                             @else
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -78,7 +78,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    @foreach ($contracts as $contract)
+                                    @foreach ($tenants as $tenant)
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap">
@@ -89,14 +89,14 @@
                                                     <div class="flex-shrink-0 h-10 w-10">
 
                                                         <img class="h-10 w-10 rounded-full"
-                                                            src="/storage/{{ $contract->photo_id }}" alt="">
+                                                            src="/storage/{{ $tenant->photo_id }}" alt="">
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900"><b>{{
-                                                                $contract->tenant }}</b>
+                                                                $tenant->tenant }}</b>
                                                         </div>
                                                         <div class="text-sm text-gray-500">{{
-                                                            $contract->type }}
+                                                            $tenant->type }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -120,10 +120,10 @@
                                                 </div>
                                             </td> --}}
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">{{ $contract->email }}
+                                                <div class="text-sm text-gray-900">{{ $tenant->email }}
                                                 </div>
                                                 <div class="text-sm text-gray-500">{{
-                                                    $contract->mobile_number }}
+                                                    $tenant->mobile_number }}
                                                 </div>
                                             </td>
                                             {{-- <td class="px-6 py-4 whitespace-nowrap">
@@ -141,46 +141,13 @@
                                                 @endif
                                             </td> --}}
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                $contract->created_at->diffForHumans() }}</td>
+                                                $tenant->created_at->diffForHumans() }}</td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <button id="dropdownDividerButton"
-                                                    data-dropdown-toggle="dropdownDivider"
-                                                    class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                    type="button">Select your action <svg class="ml-2 w-4 h-4"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                    </svg></button>
-
-                                                <div id="dropdownDivider"
-                                                    class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
-                                                        <li>
-                                                            <a href="/tenant/{{ $contract->uuid }}"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Show</a>
-                                                        </li>
-
-                                                        {{-- <li>
-                                                            <a href="/contract/{{ $contract->contract_uuid }}/transfer"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Transfer</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/contract/{{ $contract->contract_uuid }}/renew"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Renew</a>
-                                                        </li> --}}
-
-                                                    </ul>
-                                                    {{-- @if($contract->contract_status === "active")
-                                                    <div class="py-1">
-                                                        <a href="/contract/{{ $contract->contract_uuid }}/moveout/bills"
-                                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                            Moveout</a>
-                                                    </div>
-                                                    @else
-                                                    @endif --}}
-                                                </div>
+                                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                              <a title="show" href="/tenant/{{ $tenant->uuid }}" class="text-indigo-600 hover:text-indigo-900"><i
+                                                        class="fa-solid fa-2x fa-eye"></i></a>
+                                              
+                                            
                                             </td>
                                         </tr>
                                     </tbody>
