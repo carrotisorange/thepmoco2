@@ -59,7 +59,7 @@ return [
             'strict' => true,
             'engine' => null,
             'dump' => [
-            'dump_binary_path' => 'C:/wamp64/bin/mysql/mysql5.7.28/bin', 
+            'dump_binary_path' => env('DB_DUMP_COMMAND_PATH', 'C:\wamp64\bin\mysql\mysql5.7.28\bin'),
             'use_single_transaction',
             'timeout' => 60 * 5, // 5 minute timeout
             ],
