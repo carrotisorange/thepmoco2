@@ -158,28 +158,28 @@
                                                     class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                     <ul class="py-1" aria-labelledby="dropdownDividerButton">
                                                         <li>
-                                                            <a href="/contract/{{ $contract->contract_uuid }}/edit"
+                                                            <a href="/tenant/{{ $contract->uuid }}"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Show</a>
                                                         </li>
 
-                                                        <li>
+                                                        {{-- <li>
                                                             <a href="/contract/{{ $contract->contract_uuid }}/transfer"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Transfer</a>
                                                         </li>
                                                         <li>
                                                             <a href="/contract/{{ $contract->contract_uuid }}/renew"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Renew</a>
-                                                        </li>
+                                                        </li> --}}
 
                                                     </ul>
-                                                    @if($contract->contract_status === "active")
+                                                    {{-- @if($contract->contract_status === "active")
                                                     <div class="py-1">
                                                         <a href="/contract/{{ $contract->contract_uuid }}/moveout/bills"
                                                             class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                             Moveout</a>
                                                     </div>
                                                     @else
-                                                    @endif
+                                                    @endif --}}
                                                 </div>
                                             </td>
                                         </tr>
