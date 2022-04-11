@@ -11,8 +11,6 @@ use App\Models\Unit;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\Bill;
-use App\Models\Barangay;
-use App\Models\Contract;
 use DB;
 use App\Models\Property;
 use Session;
@@ -109,7 +107,6 @@ class TenantController extends Controller
     {
         return view('admin.tenants.edit',[
             'tenant' => $tenant, 
-            'barangays' => Barangay::all(),
             'cities' => City::all(),
             'provinces' => Province::all(),
             'countries' => Country::all()
@@ -136,7 +133,7 @@ class TenantController extends Controller
         'country_id' => ['required', Rule::exists('countries', 'id')],
         'province_id' => ['required', Rule::exists('provinces', 'id')],
         'city_id' => ['required', Rule::exists('cities', 'id')],
-        'barangay_id' => ['required', Rule::exists('barangays', 'id')],
+        'barangay' => 'nullable',
         'photo_id' => 'image'
         ]);
 

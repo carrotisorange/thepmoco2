@@ -271,19 +271,11 @@
                                         for="grid-city">
                                         Barangay
                                     </label>
-                                    <select
-                                        class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state" id="barangay_id" name="barangay_id">
-                                        <option value="">Select one</option>
-                                        @foreach($barangays as $barangay)
-                                        <option value="{{ $barangay->id }}" {{ old('barangay_id', $tenant->
-                                            barangay_id) == $barangay->id ? 'selected' : '' }}>
-                                            {{ $barangay->barangay }}
-                                            @endforeach
-                                        </option>
-                                    </select>
+                                   <input wire:model="barangay"
+                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        id="barangay" type="text" name="barangay" value="{{ old('barangay') }}">
 
-                                    @error('barangay_id')
+                                    @error('barangay')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
