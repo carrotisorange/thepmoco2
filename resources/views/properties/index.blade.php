@@ -82,15 +82,15 @@
                                                         {{-- <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Description</th> --}}
-                                                        {{-- <th scope="col"
+                                                        <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Team</th> --}}
+                                                            # of members</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             # of Units</th>
-                                                        {{-- <th scope="col"
+                                                        <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            # of Tenants</th> --}}
+                                                            # of Tenants</th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Status</th>
@@ -115,15 +115,15 @@
                                                                 <div class="flex-shrink-0 h-10 w-10">
                                                                     <a href="/property/{{ $property->uuid }}">
                                                                         <img class="h-10 w-10 rounded-full"
-                                                                            src="/storage/{{ $property->thumbnail }}"></a>
+                                                                            src="/storage/{{ $property->property->thumbnail }}"></a>
                                                                 </div>
                                                                 <div class="ml-4">
                                                                     <div class="text-sm font-medium text-gray-900">
                                                                         <b>{{
-                                                                            $property->property }}</b>
+                                                                            $property->property->property }}</b>
                                                                     </div>
                                                                     <div class="text-sm text-gray-500">{{
-                                                                        $property->property_type
+                                                                        $property->property->type->type
                                                                         }}
                                                                     </div>
                                                                 </div>
@@ -132,44 +132,43 @@
                                                         {{-- <td
                                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             substr($property->description, 0, 25) }}...</td> --}}
-                                                        {{-- <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            number_format($property->teams_count,0) }}</td> --}}
+                                                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                        number_format($property->property->users->count(),0) }}</td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            number_format($property->units_count,0) }}</td>
-                                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            number_format($property->tenants_count,0) }}</td> --}}
+                                                            number_format($property->property->units->count(),0) }}</td>
+                                                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                        number_format($property->property->tenants->count(),0) }}</td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            @if($property->property_status === 'active')
+                                                            @if($property->property->status === 'active')
                                                             <span
                                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                                {{ $property->property_status }}
+                                                                {{ $property->property->status }}
                                                             </span>
                                                             @else
                                                             <span
                                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                                {{ $property->property_status }}
+                                                             {{ $property->property->status }}
                                                             </span>
                                                             @endif
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            Carbon\Carbon::parse($property->property_created_at)->diffForHumans()
+                                                            Carbon\Carbon::parse($property->property->created_at)->diffForHumans()
                                                             }}</td>
                                                         <td
                                                             class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                             <a title="show"
-                                                                href="/property/{{ $property->property_uuid }}"
+                                                                href="/property/{{ $property->property->uuid }}"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
                                                                     class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
 
                                                             @can('accountowner')
                                                             <a title="edit"
-                                                                href="/property/{{ $property->property_uuid }}/edit"
+                                                                href="/property/{{ $property->property->uuid }}/edit"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
                                                                     class="fa-solid fa-2x fa-pen-to-square"></i></a>&nbsp;&nbsp;&nbsp;
 
                                                             <a title="remove"
-                                                                href="/property/{{ $property->property_uuid }}/delete"
+                                                                href="/property/{{ $property->property->uuid }}/delete"
                                                                 class="text-red-600 hover:text-indigo-900"><i
                                                                     class="fa-solid fa-2x fa-trash-can"></i></a>
 
