@@ -19,15 +19,19 @@
                 </h2>
             </div>
             <h5 class="flex-1 text-right">
+
             </h5>
+
         </div>
     </h2>
 </x-slot>
+
 <div class="py-12">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div class="rounded">
             <x-input wire:model="search" type="text" class=" py-2 w-full" placeholder="Enter tenant..." />
         </div>
+
         <div class="mt-5">
             {{ $tenants->links() }}
         </div>
@@ -50,15 +54,18 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Name </th>
+
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Contact</th>
+
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Address</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Added</th>
+
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Options</th>
@@ -111,8 +118,7 @@
                                                         class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
 
                                                 @can('manager')
-                                                <a wire:click.prevent="confirmRemoval({{ $tenant->uuid }})"
-                                                title="remove" href=""
+                                                <a title="remove" href="/tenant/{{ $tenant->uuid }}/delete"
                                                     class="text-red-600 hover:text-indigo-900"><i
                                                         class="fa-solid fa-2x fa-trash-can"></i></a>
                                                 @endcan
@@ -121,11 +127,13 @@
                                     </tbody>
                                     @endforeach
                                 </table>
+
                             </div>
                             @endif
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
