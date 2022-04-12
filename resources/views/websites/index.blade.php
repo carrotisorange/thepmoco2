@@ -821,25 +821,25 @@
                         
                         <ul class="social-icons flex justify-start">
                             <li class="mx-2">
-                                <a href="#" class="footer-icon hover:bg-indigo-500">
+                                <a target="_blank" href="https://www.facebook.com/onlinepropertymanager" class="footer-icon hover:bg-indigo-500">
                                     <i class="lni lni-facebook-original" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li class="mx-2">
+                            {{-- <li class="mx-2">
                                 <a href="#" class="footer-icon hover:bg-blue-400">
                                     <i class="lni lni-twitter-original" aria-hidden="true"></i>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="mx-2">
-                                <a href="#" class="footer-icon hover:bg-red-500">
+                                <a target="_blank" href="https://www.instagram.com/onlinepropertymanager/" class="footer-icon hover:bg-red-500">
                                     <i class="lni lni-instagram-original" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li class="mx-2">
+                            {{-- <li class="mx-2">
                                 <a href="#" class="footer-icon hover:bg-indigo-600">
                                     <i class="lni lni-linkedin-original" aria-hidden="true"></i>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>

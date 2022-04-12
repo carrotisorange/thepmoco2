@@ -23,6 +23,7 @@
             </li> --}}
         </ul>
  
-        <a class="text-gray-600 font-semibold" href="#/">© 2022 Copyright</a>
+        <a class="text-gray-600 font-semibold" href="#/">© 2021 Copyright</a>
     </div>
 </footer>
+
