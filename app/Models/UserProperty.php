@@ -14,9 +14,9 @@ class UserProperty extends Model
         return $this->belongsTo(Property::class);
     }
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class, 'user_id');
     }
 
 

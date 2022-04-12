@@ -26,7 +26,6 @@
 
     </div>
     @include('layouts.notifications')
-    @livewireScripts
     <!-- Load Facebook SDK for JavaScript -->
     @include('layouts.messenger-chatbot')
 </body>

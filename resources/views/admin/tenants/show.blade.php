@@ -206,28 +206,28 @@
                                                     Mobile</th>
                                             </tr>
                                         </thead>
-                                        @forelse ($references as $reference)
+                                        @forelse ($guardians as $guardian)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $reference->reference }}
+                                                    {{ $guardian->guardian }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $reference->relationship->relationship }}
+                                                    {{ $guardian->relationship->relationship }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $reference->email }}
+                                                    {{ $guardian->email }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $reference->mobile_number }}
+                                                    {{ $guardian->mobile_number }}
                                                 </td>
                                             </tr>
                                         </tbody>
                                         @empty
-                                        <span class="text-center text-red">No references found!</span>
+                                        <span class="text-center text-red">No guardians found!</span>
                                         @endforelse
                                     </table>
                                 </div>
@@ -257,28 +257,28 @@
                                                     Mobile</th>
                                             </tr>
                                         </thead>
-                                        @forelse ($guardians as $guardian)
+                                        @forelse ($references as $reference)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $guardian->guardian }}
+                                                    {{ $reference->reference }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $guardian->relationship->relationship }}
+                                                    {{ $reference->relationship->relationship }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $guardian->email }}
+                                                    {{ $reference->email }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $guardian->mobile_number }}
+                                                    {{ $reference->mobile_number }}
                                                 </td>
                                             </tr>
                                         </tbody>
                                         @empty
-                                        <span class="text-center text-red">No guardians found!</span>
+                                        <span class="text-center text-red">No references found!</span>
                                         @endforelse
                                     </table>
                                 </div>

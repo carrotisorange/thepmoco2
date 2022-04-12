@@ -17,18 +17,17 @@
                                 <li class="text-gray-500">{{ $unit->unit }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Bank</li>
-
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
                     @if ($banks->count())
-                    <x-button wire:submit.prevent="submitForm"
+                    <x-button 
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/representative/{{ Str::random(8) }}/create'">
                         Save</x-button>
                     @else
-                    <x-button wire:submit.prevent="submitForm"
+                    <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/representative/{{ Str::random(8) }}/create'">
                         Skip</x-button>
                     @endif

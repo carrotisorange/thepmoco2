@@ -53,13 +53,6 @@ class PropertyController extends Controller
             ->leftJoin('users', 'points.user_id', 'users.id')
             ->groupBy('user_id')
             ->get();
-        //     $points = DB::table('points')
-        //     ->select('*', 'points.created_at as earned_at')
-        //    ->leftJoin('users', 'points.user_id', 'users.id')
-        //    ->leftJoin('actions', 'points.action_id', 'actions.id')
-        //    ->leftJoin('properties', 'points.property_uuid', 'properties.uuid')
-        //    ->groupBy('points.id')
-        //    ->get();
 
             return view('dev.index',[
                 'sessions' => $sessions,
@@ -72,7 +65,6 @@ class PropertyController extends Controller
             ]);
         }else
         {
-
             return view('properties.index',[
             'properties'=>User::find(Auth::user()->id)->user_properties
             

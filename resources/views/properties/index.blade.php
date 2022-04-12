@@ -47,7 +47,7 @@
             <div class="py-12">
                 <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
                     <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 bg-white border-b border-gray-200">
+                        <div class="bg-white border-b border-gray-200">
                             <div class="flex flex-col">
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -115,21 +115,21 @@
                                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             substr($property->description, 0, 25) }}...</td> --}}
                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                        number_format($property->property->users->count(),0) }}</td>
+                                                        $property->property->users->count() }}</td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                            number_format($property->property->units->count(),0) }}</td>
+                                                            $property->property->units->count()}}</td>
                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                        number_format($property->property->tenants->count(),0) }}</td>
+                                                            $property->property->tenants->count() }}</td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             @if($property->property->status === 'active')
                                                             <span
                                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                                {{ $property->property->status }}
+                                                                <i class="fa-solid fa-circle-check"></i> {{ $property->property->status }}
                                                             </span>
                                                             @else
                                                             <span
                                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                             {{ $property->property->status }}
+                                                             <i class="fa-solid fa-circle-xmark"></i> {{ $property->property->status }}
                                                             </span>
                                                             @endif
                                                         </td>
@@ -138,7 +138,7 @@
                                                             }}</td>
                                                         <td
                                                             class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                            <a title="show"
+                                                            <a title="view"
                                                                 href="/property/{{ $property->property->uuid }}"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
                                                                     class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
