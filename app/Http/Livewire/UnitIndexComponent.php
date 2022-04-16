@@ -7,6 +7,7 @@ use App\Models\PropertyBuilding;
 use App\Models\Category;
 use App\Models\Floor;
 use App\Models\Status;
+use App\Models\Property;
 use Session;
 use Livewire\WithPagination;
 use DB;
@@ -120,7 +121,8 @@ class UnitIndexComponent extends Component
             'discounts' => $discounts,
             'sizes' => $sizes,
             'statuses' => $statuses,
-            'enrollment_statuses' => $enrollment_statuses
+            'enrollment_statuses' => $enrollment_statuses,
+            'units_count' => Property::find(Session::get('property'))->units->count()
         ]);
     }
 }

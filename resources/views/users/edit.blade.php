@@ -170,8 +170,14 @@
                                             @enderror
                                         </div>
                                         <div class="mt-6">
+                                            @if(auth()->user()->avatar)
                                             <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $user->avatar }}"
                                                 alt="">
+                                            @else
+                                            <img class="h-10 w-10 rounded-xl ml-6" src="{{ auth()->user()->avatarUrl() }}"
+                                                alt="">
+                                            @endif
+
                                         </div>
                                     </div>
                                     <div class="mt-5">

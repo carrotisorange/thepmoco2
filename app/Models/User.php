@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $attributes = [
-        'avatar' => 'avatars/avatar.png',
+        //'avatar' => 'avatars/avatar.png',
         'status' => 'active',
     ];
 
@@ -84,5 +84,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function user_properties()
     {
         return $this->hasMany(UserProperty::class, 'user_id');
+    }
+
+    public function avatarUrl()
+    {
+        return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
     }
 }

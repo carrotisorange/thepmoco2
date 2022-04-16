@@ -97,8 +97,13 @@
                         <button
                             class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div class="flex -space-x-1 overflow-hidden">
+                                @if(auth()->user()->avatar)
                                 <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
-                                    src="{{ asset('/storage/avatars/avatar.png') }}" alt="">
+                                    src="/storage/{{ auth()->user()->avatar }}" alt="Profile Photo">
+                                @else
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                                    src="{{ auth()->user()->avatarUrl() }}" alt="Profile Photo">
+                                @endif
 
                             </div>
                             <div class="ml-2">{{ Auth::user()->username }}</div>
@@ -213,7 +218,7 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-           <div class="pt-2 pb-3 space-y-1">
+            <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link href="/properties" :active="request()->routeIs('properties')">
                     {{ __('Properties') }}
                 </x-responsive-nav-link>
@@ -224,7 +229,8 @@
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link href="/profile/{{ Auth::user()->username }}/edit" :active="request()->routeIs('profile')">
+                <x-responsive-nav-link href="/profile/{{ Auth::user()->username }}/edit"
+                    :active="request()->routeIs('profile')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
             </div>

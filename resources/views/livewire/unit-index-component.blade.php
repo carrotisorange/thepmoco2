@@ -52,13 +52,13 @@
                     <div class="basis-1/4 ml-5">
                         <span class="font-bold">Filters</span>
 
-                        {{-- @if($units->count()) --}}
+                        @if($status_id || $is_enrolled || $category_id || $building_id || $floor_id ||  $rent || $discount || $size)
                         <div class="mt-5">
                             <span> <a class="text-red-600" href="/property/{{ Session::get('property') }}/units"><i class="fa-solid fa-circle-xmark"></i> Reset
                                 filters</a></span>
                 
                         </div>
-                        {{-- @endif --}}
+                        @endif
                         <div class="">
                             <div class="flex">
                                 <div>
