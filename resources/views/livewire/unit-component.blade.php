@@ -22,10 +22,10 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <button id="remove-unit" wire:click="deleteUnits" class="bg-red-600">
+                    {{-- <button id="remove-unit" wire:click="deleteUnits" class="bg-red-600">
                         Remove
-                    </button>
-                    {{-- <x-button data-modal-toggle="small-modal">
+                    </button> --}}
+                    <x-button data-modal-toggle="small-modal">
                         Create Building
                     </x-button>
                     @if($units->count())
@@ -33,7 +33,7 @@
                     @else
                     <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                     </x-button>
-                    @endif --}}
+                    @endif
 
                 </h5>
 
