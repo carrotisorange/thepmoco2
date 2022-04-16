@@ -9,74 +9,54 @@
                         <img class="h-24 w-15" src="{{ asset('/brands/full-logo.png') }}" />
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}"
                         :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        <i class="fa-solid fa-chart-line"></i>&nbspDashboard
                     </x-nav-link>
                 </div>
-
                 @can('accountowner')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/team"
                         :active="request()->routeIs('team')">
-                        {{ __('Team') }}
+                        <i class="fa-solid fa-user-gear"></i>&nbspTeam
                     </x-nav-link>
                 </div>
                 @endcan
-
                 @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/units"
                         :active="request()->routeIs('units')">
-                        {{ __('Units') }}
+                        <i class="fa-solid fa-house"></i>&nbspUnits
                     </x-nav-link>
                 </div>
-
-
-
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
                         :active="request()->routeIs('tenants')">
-                        {{ __('Tenants') }}
+                        <i class="fa-solid fa-user"></i>&nbspTenants
                     </x-nav-link>
                 </div>
                 @endcan
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/enrollees"
-                        :active="request()->routeIs('enrollees')">
-                        {{ __('Enrollees') }}
-                    </x-nav-link>
-                </div> --}}
-                {{-- @can('managerandadmin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
-                        :active="request()->routeIs('tenants')">
-                        {{ __('Tenants') }}
-                    </x-nav-link>
-                </div>
-                @endcan --}}
                 @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/owners"
                         :active="request()->routeIs('owners')">
-                        {{ __('Owners') }}
+                        <i class="fa-solid fa-user-tie"></i>&nbspOwners
                     </x-nav-link>
                 </div>
                 @endcan
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/concerns"
                         :active="request()->routeIs('concerns')">
-                        {{ __('Concerns') }}
+                        <i class="fa-solid fa-screwdriver-wrench"></i>&nbspConcerns
                     </x-nav-link>
                 </div>
                 @can('billing')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/bills"
                         :active="request()->routeIs('bills')">
-                        {{ __('Bills') }}
+                       <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
                     </x-nav-link>
                 </div>
                 @endcan
@@ -84,7 +64,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/collections"
                         :active="request()->routeIs('collections')">
-                        {{ __('Collections') }}
+                        <i class="fa-solid fa-coins"></i>&nbspCollections
                     </x-nav-link>
                 </div>
                 @endcan
@@ -166,25 +146,25 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}"
                 :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                <i class="fa-solid fa-chart-line"></i>&nbspDashboard
             </x-responsive-nav-link>
             @can('accountowner')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/team"
                 :active="request()->routeIs('team')">
-                {{ __('Team') }}
+                <i class="fa-solid fa-user-gear"></i>&nbspTeam
             </x-responsive-nav-link>
             @endcannot
 
             @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/units"
                 :active="request()->routeIs('units')">
-                {{ __('Units') }}
+                <i class="fa-solid fa-house"></i>&nbspUnits
             </x-responsive-nav-link>
             @endcan
 
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
                 :active="request()->routeIs('tenants')">
-                {{ __('Tenants') }}
+                <i class="fa-solid fa-user"></i>&nbspTenants
             </x-responsive-nav-link>
             {{-- @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
@@ -195,23 +175,23 @@
             @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"
                 :active="request()->routeIs('owners')">
-                {{ __('Owners') }}
+                <i class="fa-solid fa-user-tie"></i>&nbspOwners
             </x-responsive-nav-link>
             @endcan
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/concerns"
                 :active="request()->routeIs('concerns')">
-                {{ __('Concerns') }}
+                <i class="fa-solid fa-screwdriver-wrench"></i>&nbspConcerns
             </x-responsive-nav-link>
             @can('billing')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/bills"
                 :active="request()->routeIs('bills')">
-                {{ __('Bills') }}
+                <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
             </x-responsive-nav-link>
             @endcan
             @can('treasury')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/collections"
                 :active="request()->routeIs('collections')">
-                {{ __('Collections') }}
+               <i class="fa-solid fa-coins"></i>&nbspCollections
             </x-responsive-nav-link>
             @endcan
         </div>
