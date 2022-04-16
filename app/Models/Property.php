@@ -77,5 +77,6 @@ class Property extends Model
     {
         return $query->where('unit', '%like%','10');
     }
+    
 
 }

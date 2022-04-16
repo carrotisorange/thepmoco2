@@ -31,6 +31,7 @@
                     </div>
                     <h5 class="flex-1 text-right">
                         <x-button><i class="fa-solid fa-universal-access"></i> &nbsp; {{ auth()->user()->role->role }} access</x-button>
+                        
                         {{-- <x-button onclick="window.location.href='/documentation/'">Documentation
                         </x-button> --}}
                         @can('accountowner')
@@ -64,9 +65,9 @@
                                                         {{-- <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Description</th> --}}
-                                                        <th scope="col"
+                                                        {{-- <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            # of members</th>
+                                                            # of members</th> --}}
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             # of Units</th>
@@ -114,8 +115,8 @@
                                                         {{-- <td
                                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             substr($property->description, 0, 25) }}...</td> --}}
-                                                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                        $property->property->users->count() }}</td>
+                                                       {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                        $property->property->count() }}</td> --}}
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                             $property->property->units->count()}}</td>
                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
