@@ -26,42 +26,7 @@ class UnitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
-    //     $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
-    //     ->select('building')
-    //     ->distinct()
-    //     ->where('property_buildings.property_uuid', Session::get('property'))
-    //     ->get();
-
-    //     $floors = Floor::join('units', 'floors.id', 'units.floor_id')
-    //     ->select('floor')
-    //     ->distinct()
-    //     ->where('units.property_uuid', Session::get('property'))
-    //     ->get();
-
-    //     $categories = Category::join('units', 'categories.id', 'units.category_id')
-    //     ->select('category')
-    //     ->distinct()
-    //     ->where('units.property_uuid', Session::get('property'))
-    //     ->get();
-
-    //     $rents = Unit::where('units.property_uuid', Session::get('property'))
-    //     ->select('rent')
-    //     ->distinct()
-    //     ->get();
-
-    //     $discounts = Unit::where('units.property_uuid', Session::get('property'))
-    //      ->select('discount')
-    //      ->distinct()
-    //      ->get();
-
-    //     $dimensions = Unit::where('units.property_uuid', Session::get('property'))
-    //     ->whereNotNull('dimensions')
-    //     ->select('dimensions')
-    //     ->distinct()
-    //     ->get();
-
+    {   
         return view('admin.units.index');
     }
 

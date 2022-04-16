@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use App\Models\Tenant;
 use App\Models\Unit;
 use App\Models\Point;
+use App\Models\Status;
 
 use Illuminate\Support\Facades\Gate;
 

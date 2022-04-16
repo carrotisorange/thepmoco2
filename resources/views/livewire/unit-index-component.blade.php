@@ -35,17 +35,18 @@
         <div class="rounded">
             <x-input wire:model="search" type="text" class=" py-2 w-full" placeholder="Enter unit..." />
         </div>
-        
 
-        <div class="mt-5">
+
+        {{-- <div class="mt-5">
             {{ $units->links() }}
-        </div>
+        </div> --}}
 
         <div class="mt-5 p-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
             <div class="p-6 bg-white border-b border-gray-200">
                 @if (!$units->count())
-                <span class="text-center text-red">No units found!</span>
+                <span class="text-center text-red">No units found! <a class="text-blue-600"
+                        href="/property/{{ Session::get('property') }}/units">Reset filters</a> </span>
                 @else
                 <div class="flex flex-row">
                     <div class="basis-1/4 ml-5">
@@ -56,19 +57,18 @@
                                     <div class="mt-5">
                                         <span>Status</span>
                                         @forelse ($statuses as $status)
-
                                         <div class="form-check">
                                             <input wire:model="status_id"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $status->id }}" id="flexCheckDefault">
-                                            <label class="form-check-label inline-block text-gray-800"
-                                                for="flexCheckDefault">
+                                                type="radio" value="{{ $status->status_id }}">
+                                            <label class="form-check-label inline-block text-gray-800" for="status_id">
                                                 {{ $status->status }} ({{ $status->count }})
                                             </label>
                                         </div>
                                         @empty
                                         <p>NA</p>
                                         @endforelse
+                                    
                                     </div>
 
                                     <div class="mt-5">
@@ -78,7 +78,7 @@
                                         <div class="form-check">
                                             <input wire:model="is_enrolled"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $enrollment_status->is_enrolled }}"
+                                                type="radio" value="{{ $enrollment_status->is_enrolled }}"
                                                 id="flexCheckDefault">
                                             @if($enrollment_status->is_enrolled == 1)
                                             <label class="form-check-label inline-block text-gray-800"
@@ -105,9 +105,9 @@
                                         <div class="form-check">
                                             <input wire:model="category_id"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
+                                                type="radio" value="{{ $category->category }}" id="categoryid">
                                             <label class="form-check-label inline-block text-gray-800"
-                                                for="flexCheckDefault">
+                                                for="category_id">
                                                 {{ $category->category }} ({{ $category->count }})
                                             </label>
                                         </div>
@@ -121,11 +121,11 @@
                                         @forelse ($buildings as $building)
 
                                         <div class="form-check">
-                                            <input wire:model="status_id"
+                                            <input wire:model="building_id"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $building->id }}" id="flexCheckDefault">
+                                                type="radio" value="{{ $building->building_id }}" id="building_id">
                                             <label class="form-check-label inline-block text-gray-800"
-                                                for="flexCheckDefault">
+                                                for="building_id">
                                                 {{ $building->building }} ({{ $building->count }})
                                             </label>
                                         </div>
@@ -133,6 +133,7 @@
                                         <p>NA</p>
                                         @endforelse
                                     </div>
+
                                     <div class="mt-5">
                                         <span>Floor</span>
                                         @forelse ($floors as $floor)
@@ -140,9 +141,9 @@
                                         <div class="form-check">
                                             <input wire:model="floor_id"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $floor->id }}" id="flexCheckDefault">
+                                                type="radio" value="{{ $floor->floor_id }}" id="floor_id">
                                             <label class="form-check-label inline-block text-gray-800"
-                                                for="flexCheckDefault">
+                                                for="floor_id">
                                                 {{ $floor->floor }} ({{ $floor->count }})
                                             </label>
                                         </div>
@@ -150,6 +151,7 @@
                                         <p>NA</p>
                                         @endforelse
                                     </div>
+
                                     <div class="mt-5">
                                         <span>Rent</span>
                                         @forelse ($rents as $rent)
@@ -157,7 +159,7 @@
                                         <div class="form-check">
                                             <input wire:model="rent"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $rent->rent }}" id="flexCheckDefault">
+                                                type="radio" value="{{ $rent->rent }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
                                                 ₱ {{ number_format($rent->rent, 2) }} ({{ $rent->count }})
@@ -174,7 +176,7 @@
                                         <div class="form-check">
                                             <input wire:model="discount"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $discount->discount }}" id="flexCheckDefault">
+                                                type="radio" value="{{ $discount->discount }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
                                                 ₱ {{ number_format($discount->discount, 2) }} ({{ $discount->count }})
@@ -191,7 +193,7 @@
                                         <div class="form-check">
                                             <input wire:model="size"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                type="checkbox" value="{{ $size->size }}" id="flexCheckDefault">
+                                                type="radio" value="{{ $size->size }}" id="flexCheckDefault">
                                             <label class="form-check-label inline-block text-gray-800"
                                                 for="flexCheckDefault">
                                                 {{ $size->size }} sqm ({{ $size->count }})
@@ -230,7 +232,8 @@
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Category:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->category->category }}
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                            $info->category->category }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -239,9 +242,9 @@
                                             Enrolled in leasing:</th>
                                         <td class="px-6 whitespace-nowrap text-md text-gray-500">
                                             @if($info->is_enrolled === 1)
-                                                Enrolled
+                                            Enrolled
                                             @else
-                                                Unenrolled
+                                            Unenrolled
                                             @endif
                                         </td>
                                     </tr>
@@ -249,20 +252,23 @@
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Building:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->building->building }}
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                            $info->building->building }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Floor:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->floor->floor }}</td>
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->floor->floor
+                                            }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="col"
                                             class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Status:</th>
-                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{ $info->status->status }}
+                                        <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
+                                            $info->status->status }}
                                         </td>
                                     </tr>
                                     <tr>
