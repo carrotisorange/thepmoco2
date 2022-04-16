@@ -112,7 +112,7 @@ class UnitIndexComponent extends Component
                       ->when($this->size, function($query){
                       $query->where('size', '=', $this->size);
                       })
-                    ->get(),
+                    ->paginate(10),
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,

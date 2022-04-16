@@ -37,21 +37,29 @@
         </div>
 
 
-        {{-- <div class="mt-5">
+        <div class="mt-5">
             {{ $units->links() }}
-        </div> --}}
+        </div>
 
         <div class="mt-5 p-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
             <div class="p-6 bg-white border-b border-gray-200">
-                @if (!$units->count())
+                {{-- @if (!$units->count())
                 <span class="text-center text-red">No units found! <a class="text-blue-600"
                         href="/property/{{ Session::get('property') }}/units">Reset filters</a> </span>
-                @else
+                @else --}}
                 <div class="flex flex-row">
                     <div class="basis-1/4 ml-5">
                         <span class="font-bold">Filters</span>
+
+                        {{-- @if($units->count()) --}}
                         <div class="mt-5">
+                            <span> <a class="text-red-600" href="/property/{{ Session::get('property') }}/units"><i class="fa-solid fa-circle-xmark"></i> Reset
+                                filters</a></span>
+                
+                        </div>
+                        {{-- @endif --}}
+                        <div class="">
                             <div class="flex">
                                 <div>
                                     <div class="mt-5">
@@ -68,7 +76,7 @@
                                         @empty
                                         <p>NA</p>
                                         @endforelse
-                                    
+
                                     </div>
 
                                     <div class="mt-5">
@@ -142,8 +150,7 @@
                                             <input wire:model="floor_id"
                                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                 type="radio" value="{{ $floor->floor_id }}" id="floor_id">
-                                            <label class="form-check-label inline-block text-gray-800"
-                                                for="floor_id">
+                                            <label class="form-check-label inline-block text-gray-800" for="floor_id">
                                                 {{ $floor->floor }} ({{ $floor->count }})
                                             </label>
                                         </div>
@@ -312,7 +319,7 @@
                         </p>
                     </div>
                 </div>
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
     </div>
