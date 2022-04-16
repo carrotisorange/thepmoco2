@@ -8,6 +8,9 @@ use App\Models\Representative;
 use Illuminate\Support\Facades\Route;
 use App\Mail\WelcomeMailToMember;
 use App\Models\Role;
+use Analytics;
+use Spatie\Analytics\Period;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -181,6 +184,23 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/contract/{contract}/transfer', TransferContractController::class);
 
-   
+   Route::get('data', function(){
+        //retrieve visitors and pageview data for the current day and the last seven days
+        //$analyticsData = Analytics::fetchVisitorsAndPageViews(Period::months(2));
+
+        //retrieve visitors and pageviews since the 6 months ago
+        //$analyticsData = Analytics::fetchVisitorsAndPageViews(Period::months(6));
+
+        //retrieve sessions and pageviews with yearMonth dimension since 1 year ago
+        $analyticsData = Analytics::performQuery(
+        Period::years(1),
+        'ga:sessions',
+        [
+        'metrics' => 'ga:sessions, ga:pageviews',
+        'dimensions' => 'ga:yearMonth'
+        ]
+        );
+        dd($analyticsData);
+   });
 
 });

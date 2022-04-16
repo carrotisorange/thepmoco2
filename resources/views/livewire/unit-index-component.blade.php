@@ -215,7 +215,11 @@
                         </div>
                     </div>
                     <div class="basis-1/4">
+                        @if($units->count())
                         <span class="font-bold">Results ({{ $units->count() }})...</span>
+                        @else
+                        <p class="text-center text-red-600">No units found!</p>
+                        @endif
                         @foreach($units as $unit)
                         <a href="/unit/{{ $unit->uuid }}"><img src="/storage/{{ $unit->thumbnail }}"
                                 class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5 hover:bg-purple-600"
@@ -223,7 +227,9 @@
                         @endforeach
                     </div>
                     <div class="basis-1/2 ml-16">
+                        @if($units->count())
                         <span class="font-bold">Details</span>
+                        @endif
                         <p class="text-left">
                             @foreach($units as $info)
                         <div class="mt-8">
