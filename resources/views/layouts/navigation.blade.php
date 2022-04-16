@@ -224,7 +224,7 @@
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link href="/chatify" :active="request()->routeIs('chatify')">
+                <x-responsive-nav-link target="_blank" href="/chatify" :active="request()->routeIs('chatify')">
                     {{ __('Chatify') }}
                 </x-responsive-nav-link>
             </div>
