@@ -44,13 +44,8 @@ class BillController extends Controller
      */
     public function create(Unit $unit, Tenant $tenant, Contract $contract)
     {
-        $bills = Bill::join('units', 'bills.unit_uuid', 'units.uuid')
-        ->select('*', 'bills.status as bill_status', 'bills.id as bill_id')
-        ->join('particulars', 'bills.particular_id', 'particulars.id')
-        ->where('units.uuid', $unit->uuid)
-        ->orderBy('bills.bill_no')
-        ->get();
-
+         $bills = Tenant::find($tenant->uuid)->bills;
+       
         $particulars = Particular::join('property_particulars', 'particulars.id',
         'property_particulars.particular_id')
         ->where('property_uuid', Session::get('property'))

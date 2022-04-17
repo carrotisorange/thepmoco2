@@ -98,7 +98,7 @@
                                         Y') }}</td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $bill->particular }}</td>
+                                        $bill->particular->particular }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form method="POST" action="/bill/{{ $bill->bill_id }}/delete">
                                             @csrf
