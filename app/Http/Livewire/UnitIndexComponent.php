@@ -104,6 +104,9 @@ class UnitIndexComponent extends Component
                     ->when($this->floor_id, function($query){
                     $query->where('floor_id', '=', $this->floor_id);
                     })
+                    ->when($this->category_id, function($query){
+                    $query->where('category_id', '=', $this->category_id);
+                    })
                     ->when($this->rent, function($query){
                     $query->where('rent', '=', $this->rent);
                     })

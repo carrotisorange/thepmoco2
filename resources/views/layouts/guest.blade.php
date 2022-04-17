@@ -20,5 +20,5 @@
     @include('layouts.notifications')
     @include('layouts.messenger-chatbot')
 </body>
-
+@include('layouts.script')
 </html>
