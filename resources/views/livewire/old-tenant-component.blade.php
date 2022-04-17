@@ -4,20 +4,19 @@
             <div class="p-6 bg-white border-b border-gray-200">
                 <div>
 
-                    <form method="POST" wire:submit.prevent="submitForm"
-                        action="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/store" class="w-full"
+                    <form method="POST" wire:submit.prevent="submitForm" class="w-full"
                         id="create-form">
                         @csrf
                         <div class="flex flex-wrap mx-3 mb-6">
                             <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                                 <x-label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-first-name">
+                                    for="tenant">
                                     Full Name
                                 </x-label>
 
                                 <x-input wire:model="tenant"
                                     class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    id="grid-first-name" type="text" name="tenant" value="{{ old('tenant') }}" />
+                                    id="tenant" type="text" name="tenant" value="{{ old('tenant') }}" />
 
                                 @error('tenant')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -28,12 +27,12 @@
                         <div class="flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
+                                    for="email">
                                     Email
                                 </label>
                                 <input wire:model="email"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="email" name="email" value="{{ old('email') }}">
+                                    id="email" type="email" name="email" value="{{ old('email') }}">
 
                                 @error('email')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -41,12 +40,12 @@
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
+                                    for="mobile_number">
                                     Mobile
                                 </label>
                                 <input wire:model="mobile_number"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="text" name="mobile_number"
+                                    id="mobile_number" type="text" name="mobile_number"
                                     value="{{ old('mobile_number') }}">
 
                                 @error('mobile_number')
@@ -62,12 +61,12 @@
                         <div class="mt-6 flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
+                                    for="type">
                                     Type
                                 </label>
                                 <select wire:model="type"
                                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state" name="type">
+                                    id="type" name="type">
                                     <option value="">Select one</option>
                                     <option value="studying" {{ old('type')=='studying' ? 'selected' : 'Select one' }}>
                                         {{
@@ -83,12 +82,12 @@
                             </div>
                             <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
+                                    for="birthdate">
                                     Birthdate
                                 </label>
                                 <input wire:model="birthdate"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="date" name="birthdate" value="{{ old('birthdate') }}">
+                                    id="birthdate" type="date" name="birthdate" value="{{ old('birthdate') }}">
 
                                 @error('birthdate')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -96,12 +95,12 @@
                             </div>
                             <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
+                                    for="gender">
                                     Gender
                                 </label>
                                 <select wire:model="gender"
                                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state" name="gender">
+                                    id="gender" name="gender">
                                     <option value="">Select one</option>
                                     <option value="female" {{ old('gender')=='female' ? 'selected' : 'Select one' }}>
                                         {{
@@ -117,12 +116,12 @@
 
                             <div class="w-full md:w-1/4 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
+                                    for="civil_status">
                                     Civil Status
                                 </label>
                                 <select wire:model="civil_status"
                                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state" name="civil_status">
+                                    id="civil_status" name="civil_status">
                                     <option value="">Select one</option>
                                     <option value="single" {{ old('civil_status')=='single' ? 'selected' : 'Select one'
                                         }}>
@@ -149,13 +148,13 @@
                         <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
                             <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-state">
+                                    for="country_id">
                                     Country
                                 </label>
                                 <div class="relative">
                                     <select wire:model="country_id"
                                         class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state" name="country_id">
+                                        id="country_id" name="country_id">
 
                                         @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
@@ -171,13 +170,13 @@
                             </div>
                             <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-state">
+                                    for="province_id">
                                     Province
                                 </label>
                                 <div class="relative">
                                     <select wire:model="province_id"
                                         class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state" name="province_id">
+                                        id="province_id" name="province_id">
                                         <option value="">Select one</option>
                                         @foreach ($provinces as $province)
                                         <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
@@ -192,12 +191,12 @@
                             </div>
                             <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-city">
+                                    for="city_id">
                                     City
                                 </label>
                                 <select wire:model="city_id"
                                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state" id="city_id" name="city_id">
+                                    id="city_id" id="city_id" name="city_id">
                                     <option value="">Select one</option>
                                     @foreach ($cities as $city)
                                     <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
@@ -213,7 +212,7 @@
 
                             <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-city">
+                                    for="barangay">
                                     Barangay
                                 </label>
                                 <input wire:model="barangay"
@@ -243,7 +242,7 @@
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
+                                    for="school_address">
                                     School Address
                                 </label>
                                 <input wire:model="school_address"
@@ -258,20 +257,33 @@
                         </div>
 
                         <div class="flex flex-wrap mx-3 mb-2 mt-5">
-                            <div class="w-full md:w-1/2 px-3">
+                            <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
+                                    for="occupation">
                                     Occupation
                                 </label>
                                 <input wire:model="occupation"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="school" type="text" name="occupation" value="{{ old('occupation') }}">
+                                    id="occupation" type="text" name="occupation" value="{{ old('occupation') }}">
 
                                 @error('occupation')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="w-full md:w-1/2 px-3">
+                            <div class="w-full md:w-1/3 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="employer">
+                                    Employer
+                                </label>
+                                <input wire:model="employer"
+                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="employer" type="text" name="employer" value="{{ old('employer') }}">
+
+                                @error('employer')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Work Address

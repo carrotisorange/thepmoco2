@@ -46,6 +46,7 @@ class OldTenantComponent extends Component
     public $school_address;
     public $occupation;
     public $employer_address;
+    public $employer;
 
 
     protected function rules()
@@ -66,6 +67,7 @@ class OldTenantComponent extends Component
             'school_address' => 'nullable',
             'occupation' => 'nullable',
             'employer_address' => 'nullable',
+            'employer' => 'nullable',
             ];
     }
 
