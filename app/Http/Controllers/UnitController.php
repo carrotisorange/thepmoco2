@@ -85,15 +85,17 @@ class UnitController extends Controller
 
         $enrollees = Unit::findOrFail($unit->uuid)->enrollees;
 
-        $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
-          ->select('*', 'bills.status as bill_status')
-          ->join('users', 'bills.user_id', 'users.id')
-          ->join('particulars', 'bills.particular_id', 'particulars.id')
-          ->join('units', 'bills.unit_uuid', 'units.uuid')
-          ->where('bills.property_uuid', Session::get('property'))
-          ->where('bills.unit_uuid', $unit->uuid)
-          ->orderBy('bills.bill_no', 'asc')
-          ->paginate(10);
+        $bills = Unit::find($unit->uuid)->bills;
+
+        // $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
+        //   ->select('*', 'bills.status as bill_status')
+        //   ->join('users', 'bills.user_id', 'users.id')
+        //   ->join('particulars', 'bills.particular_id', 'particulars.id')
+        //   ->join('units', 'bills.unit_uuid', 'units.uuid')
+        //   ->where('bills.property_uuid', Session::get('property'))
+        //   ->where('bills.unit_uuid', $unit->uuid)
+        //   ->orderBy('bills.bill_no', 'asc')
+        //   ->paginate(10);
 
         return view('admin.units.show', [
             'unit' => $unit,

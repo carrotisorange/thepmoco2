@@ -526,7 +526,7 @@
 
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Bill</th>
+                                                    Amount</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
@@ -540,7 +540,7 @@
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $bill->tenant}}
+                                                    {{ $bill->tenant->tenant}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $bill->bill_no}}
@@ -549,21 +549,21 @@
                                                     {{ $bill->reference_no}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $bill->particular}}
+                                                    {{ $bill->particular->particular}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ number_format($bill->bill, 2) }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($bill->bill_status === 'paid')
+                                                    @if($bill->status === 'paid')
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $bill->bill_status }}
+                                                        {{ $bill->status }}
                                                     </span>
                                                     @else
                                                     <span
                                                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $bill->bill_status }}
+                                                        {{ $bill->status }}
                                                     </span>
                                                     @endif
                                                 </td>
