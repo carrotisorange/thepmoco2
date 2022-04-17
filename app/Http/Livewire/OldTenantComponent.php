@@ -38,7 +38,7 @@ class OldTenantComponent extends Component
     public $gender;
     public $civil_status;
     public $country_id;
-    public $province_id;
+    public $province_id = 31;
     public $city_id;
     public $barangay;
     public $photo_id;

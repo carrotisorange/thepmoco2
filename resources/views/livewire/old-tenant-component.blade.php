@@ -155,7 +155,7 @@
                                     <select wire:model="country_id"
                                         class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="country_id" name="country_id">
-
+                                        <option value="{{ $country_id }}">Philippines</option>
                                         @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
                                             'selected': 'Select one'
