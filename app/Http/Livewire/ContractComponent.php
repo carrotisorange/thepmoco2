@@ -195,7 +195,7 @@ class ContractComponent extends Component
              'unit' => $this->unit->unit,
              ];
 
-            Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
+            // Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
 
             DB::commit();
         
