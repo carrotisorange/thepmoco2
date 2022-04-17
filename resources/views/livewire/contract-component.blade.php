@@ -51,7 +51,7 @@
                                     name="term">
                             </div> --}}
 
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Rent
@@ -65,7 +65,7 @@
                                 @enderror
                             </div>
 
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Discount
@@ -79,7 +79,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Interaction
