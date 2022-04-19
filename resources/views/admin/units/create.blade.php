@@ -20,7 +20,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Back
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp Back
                     </x-button>
                    
                 </h5>

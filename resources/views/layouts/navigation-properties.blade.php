@@ -64,13 +64,13 @@
 
                     <x-slot name="content">
                         <x-dropdown-link href="/properties">
-                            {{ __('Properties') }}
+                           <i class="fa-regular fa-building"></i> {{ __('Properties') }}
                         </x-dropdown-link>
                         <x-dropdown-link target="_blank" href="/chatify">
-                            {{ __('Chatify') }}
+                            <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
                         </x-dropdown-link>
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/edit">
-                            {{ __('Profile') }}
+                            <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                         </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -78,7 +78,7 @@
 
                             <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                <i class="fa-regular fa-face-sad-tear"></i> {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
 

@@ -60,6 +60,8 @@ class UnitController extends Controller
             Unit::create([
                 'uuid' => Str::uuid(),
                 'unit' => 'Unit '.$i,
+                'building_id' => '1',
+                'floor_id' => '1',
                 'property_uuid' => Session::get('property'),
                 'user_id' => auth()->user()->id,
                 'batch_no' => $batch_no

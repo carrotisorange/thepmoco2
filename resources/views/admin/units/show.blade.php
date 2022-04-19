@@ -12,9 +12,7 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/units"
-                                        class="text-blue-600 hover:text-blue-700">Units</a>
-                                </li>
+                                <li><span class="text-gray-500 mx-2">Unit</span></li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $unit->unit }}</li>
                             </ol>
@@ -22,16 +20,16 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Back
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'"><i class="fa-regular fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
                     @can('manager')
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/edit'">
-                        Edit</x-button>
+                       <i class="fa-regular fa-pen-to-square"></i>&nbsp Edit</x-button>
                     @endcan
                     {{--<x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
                         Add Contract</x-button> --}}
-                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button">Add <svg
+                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button"> <i class="fa-solid fa-circle-plus"></i>&nbsp Add <svg
                             class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -89,8 +87,8 @@
                                 <p class="mt-5 text-gray-700 text-base mb-4">
                                     Category: {{ $unit->category->category }}
                                 </p>
-                               <p class="text-gray-700 text-base mb-4">
-                                    Enrolled in Leasing: 
+                                <p class="text-gray-700 text-base mb-4">
+                                    Enrolled in Leasing:
                                     @if($unit->is_enrolled === 1)
                                     Enrolled
                                     @else
@@ -159,7 +157,7 @@
                                                     Status</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Reason for moveout</th>
+                                                    Interaction</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
@@ -214,18 +212,18 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($contract->status === 'active')
                                                     <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $contract->status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $contract->status }}
-                                                    </span>
-                                                    @endif
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{ $contract->status }}
+                                                        @else
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $contract->status }}
+                                                        </span>
+                                                        @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $contract->moveout_reason }}
+                                                    {{ $contract->interaction }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <button id="dropdownDividerButton"

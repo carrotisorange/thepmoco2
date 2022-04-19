@@ -56,7 +56,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/bills"
                         :active="request()->routeIs('bills')">
-                       <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
+                        <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
                     </x-nav-link>
                 </div>
                 @endcan
@@ -101,13 +101,16 @@
 
                     <x-slot name="content">
                         <x-dropdown-link href="/properties">
-                            {{ __('Properties') }}
+                            <i class="fa-regular fa-building"></i> {{ __('Properties') }}
                         </x-dropdown-link>
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/edit">
-                            {{ __('Profile') }}
+                            <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="/chatify">
+                            <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
                         </x-dropdown-link>
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/point">
-                            {{ __('Point') }}
+                            <i class="fas fa-coins"></i> {{ __('My Points') }}
                         </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -115,7 +118,7 @@
 
                             <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                <i class="fa-regular fa-face-sad-tear"></i> {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
 
@@ -191,7 +194,7 @@
             @can('treasury')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/collections"
                 :active="request()->routeIs('collections')">
-               <i class="fa-solid fa-coins"></i>&nbspCollections
+                <i class="fa-solid fa-coins"></i>&nbspCollections
             </x-responsive-nav-link>
             @endcan
         </div>
@@ -200,18 +203,23 @@
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link href="/properties" :active="request()->routeIs('properties')">
-                    {{ __('Properties') }}
+                    <i class="fa-regular fa-building"></i> {{ __('Properties') }}
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link target="_blank" href="/chatify" :active="request()->routeIs('chatify')">
-                    {{ __('Chatify') }}
+                    <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
+                </x-responsive-nav-link>
+            </div>
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link target="_blank" href="/points">
+                   <i class="fas fa-coins"></i> {{ __('My Points') }}
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link href="/profile/{{ Auth::user()->username }}/edit"
                     :active="request()->routeIs('profile')">
-                    {{ __('Profile') }}
+                   <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                 </x-responsive-nav-link>
             </div>
 
@@ -222,7 +230,7 @@
 
                     <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        <i class="fa-regular fa-face-sad-tear"></i> {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

@@ -12,11 +12,9 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/units"
-                                        class="text-blue-600 hover:text-blue-700">Units</a>
-                                </li>
+                                <li><span class="text-gray-500 mx-2">Units</span></li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Edit ({{ $units->count() }})</li>
+                                <li class="text-gray-500">Bulk Edit ({{ $units->count() }})</li>
                             </ol>
                         </nav>
                     </h2>
@@ -25,11 +23,12 @@
                     {{-- <button id="remove-unit" wire:click="deleteUnits" class="bg-red-600">
                         Remove
                     </button> --}}
-                    <x-button data-modal-toggle="small-modal">
-                        Create Building
+                    <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Add
+                        Building
                     </x-button>
+
                     @if($units->count())
-                    <x-button form="edit-form">Save</x-button>
+                    <x-button form="edit-form"><i class="fas fa-check-circle"></i>&nbsp Save</x-button>
                     @else
                     <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                     </x-button>
@@ -51,95 +50,98 @@
                                 @if (!$units->count())
                                 <span class="text-center text-red">No units found!</span>
                                 @else
-                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-
-                                    <table class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-50">
+                                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                        <thead
+                                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                             <tr>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{-- <input
-                                                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                        type="checkbox"> --}}
+                                                <th scope="col" class="p-4">
+                                                    <div class="flex items-center">
+                                                        <input id="checkbox-all-search" type="checkbox"
+                                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <label for="checkbox-all-search"
+                                                            class="sr-only">checkbox</label>
+                                                    </div>
                                                 </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Unit</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Building</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Floor</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Category</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Size</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Rent</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Occupancy</th>
-                                                {{-- <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <th scope="col" class="px-6 py-3">
+                                                    Unit
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Building
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Floor
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Category
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Size
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Rent
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Occupancy
+                                                </th>
+                                                {{-- <th scope="col" class="px-6 py-3">
+                                                    <span class="sr-only">Edit</span>
                                                 </th> --}}
-
                                             </tr>
                                         </thead>
                                         <?php 
-                                                $ctr = 1;
-                                                $uuid = 1;
-                                                $name = 1;
-                                                $building_id =1;
-                                                $floor_id = 1;
-                                                $category_id =1;
-                                                $size = 1;
-                                                $rent =1;
-                                                $occupancy =1;
+                                            $ctr = 1;
+                                            $uuid = 1;
+                                            $name = 1;
+                                            $building_id =1;
+                                            $floor_id = 1;
+                                            $category_id =1;
+                                            $size = 1;
+                                            $rent =1;
+                                            $occupancy =1;
                                         ?>
-
                                         <form action="/units/{{ $batch_no }}/update" method="POST" id="edit-form">
                                             @csrf
                                             @method('PATCH')
                                         </form>
                                         @foreach ($units as $unit)
-                                        <tbody class="bg-white divide-y divide-gray-200">
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <input
-                                                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                        type="checkbox" wire:model="selected" form="remove-unit"
-                                                        value="{{ $unit->uuid }}">
-
+                                        <tbody>
+                                            <tr
+                                                class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                                                <td class="w-4 p-4">
+                                                    <div class="flex items-center">
+                                                        <input id="checkbox-table-search-1" type="checkbox"
+                                                            wire:model="selected" form="remove-unit"
+                                                            value="{{ $unit->uuid }}"
+                                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <label for="checkbox-table-search-1"
+                                                            class="sr-only">checkbox</label>
+                                                    </div>
                                                 </td>
-                                                <td class="px-3 py-4 whitespace-nowrap">
+
+                                                <td class="px-6 py-4">
                                                     <input
                                                         class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                                         form="edit-form" type="text" name="unit{{ $name++ }}"
                                                         value="Unit {{ $unit_count++ }}">
-
                                                 </td>
 
                                                 <input form="edit-form" type="hidden" name="uuid{{ $uuid++ }}" id="uuid"
                                                     value="{{ $unit->uuid }}">
-
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4">
                                                     <select
                                                         class="block p-5
-                                                                    py-1.5
-                                                                    text-base
-                                                                    font-normal
-                                                                    text-gray-700
-                                                                    bg-white bg-clip-padding bg-no-repeat
-                                                                    border border-solid border-gray-300
-                                                                    rounded
-                                                                    transition
-                                                                    ease-in-out
-                                                                    m-0
-                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                    py-1.5
+                                                                                                                    text-base
+                                                                                                                    font-normal
+                                                                                                                    text-gray-700
+                                                                                                                    bg-white bg-clip-padding bg-no-repeat
+                                                                                                                    border border-solid border-gray-300
+                                                                                                                    rounded
+                                                                                                                    transition
+                                                                                                                    ease-in-out
+                                                                                                                    m-0
+                                                                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                         form="edit-form" name="building_id{{ $building_id++  }}"
                                                         id="building_id">
                                                         <option value="">Select one </option>
@@ -151,20 +153,20 @@
 
                                                     </select>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4">
                                                     <select
                                                         class="block p-5
-                                                                    py-1.5
-                                                                    text-base
-                                                                    font-normal
-                                                                    text-gray-700
-                                                                    bg-white bg-clip-padding bg-no-repeat
-                                                                    border border-solid border-gray-300
-                                                                    rounded
-                                                                    transition
-                                                                    ease-in-out
-                                                                    m-0
-                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                    py-1.5
+                                                                                                                    text-base
+                                                                                                                    font-normal
+                                                                                                                    text-gray-700
+                                                                                                                    bg-white bg-clip-padding bg-no-repeat
+                                                                                                                    border border-solid border-gray-300
+                                                                                                                    rounded
+                                                                                                                    transition
+                                                                                                                    ease-in-out
+                                                                                                                    m-0
+                                                                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                         form="edit-form" name="floor_id{{ $floor_id++  }}"
                                                         id="floor_id">
                                                         <option value="">Select one</option>
@@ -174,20 +176,20 @@
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4">
                                                     <select
                                                         class="block p-5
-                                                                    py-1.5
-                                                                    text-base
-                                                                    font-normal
-                                                                    text-gray-700
-                                                                    bg-white bg-clip-padding bg-no-repeat
-                                                                    border border-solid border-gray-300
-                                                                    rounded
-                                                                    transition
-                                                                    ease-in-out
-                                                                    m-0
-                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                    py-1.5
+                                                                                                                    text-base
+                                                                                                                    font-normal
+                                                                                                                    text-gray-700
+                                                                                                                    bg-white bg-clip-padding bg-no-repeat
+                                                                                                                    border border-solid border-gray-300
+                                                                                                                    rounded
+                                                                                                                    transition
+                                                                                                                    ease-in-out
+                                                                                                                    m-0
+                                                                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                         form="edit-form" name="category_id{{ $category_id++  }}">
                                                         <option value="">Select one</option>
                                                         @foreach ($categories as $category)
@@ -197,20 +199,20 @@
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td class="px-3 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4">
                                                     <input
                                                         class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                                         form="edit-form" name="size{{ $size++  }}" id="size" type="text"
                                                         min="1" value="{{ $unit->size }}">
                                                     </input>
                                                 </td>
-                                                <td class="px-3 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4">
                                                     <input
                                                         class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                                         form="edit-form" min="0" name="rent{{ $rent++  }}" id="rent"
                                                         type="number" value="{{ $unit->rent }}"></input>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4">
                                                     <input
                                                         class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                                         form="edit-form" name="occupancy{{ $occupancy++  }}"
@@ -218,24 +220,12 @@
                                                         value="{{ $unit->occupancy }}">
                                                     </input>
                                                 </td>
-                                                {{-- <td
-                                                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <form method="POST" action="/unit/{{ $unit->uuid }}/delete"
-                                                        id="delete-form">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="text-red-600 hover:text-red-900"
-                                                            form="delete-form">Remove</button>
-                                                    </form>
-
-                                                </td> --}}
 
                                             </tr>
+
                                         </tbody>
                                         @endforeach
-
                                     </table>
-
                                 </div>
                                 @endif
                             </div>

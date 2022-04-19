@@ -26,7 +26,7 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/properties'">
-                        Back</x-button>
+                        <i class="fas fa-arrow-alt-circle-left"></i>&nbsp Back</x-button>
 
                     @can('accountowner')
                     <x-button
