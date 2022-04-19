@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Mail;
 use DB;
 use App\Models\Bill;
 
-class TransferContractComponent extends Component
+class NewContractComponent extends Component
 {
        use WithFileUploads;
 
-       public $contract_details;
+       public $tenant;
 
         public $selectedUnit = null;
         public $rent = 0.00;
@@ -35,15 +35,12 @@ class TransferContractComponent extends Component
         {
             $this->rent = Unit::find($unit_uuid)->rent;
             $this->discount = Unit::find($unit_uuid)->discount;
-            $this->start = Carbon::parse($this->contract_details->start)->format('Y-m-d');
-            $this->end = Carbon::parse($this->contract_details->end)->format('Y-m-d');
-            $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
         }
 
 
-       public function mount($contract_details)
+       public function mount($tenant)
        {
-            $this->contract_details = $contract_details;
+            $this->tenant = $tenant;
        }
 
        protected function rules()
@@ -78,54 +75,44 @@ class TransferContractComponent extends Component
        $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
        $validatedData['uuid'] = $contract_uuid;
-       $validatedData['tenant_uuid'] = $this->contract_details->tenant_uuid;
+       $validatedData['tenant_uuid'] = $this->tenant->uuid;
        $validatedData['unit_uuid'] = $this->selectedUnit;
        $validatedData['property_uuid'] = Session::get('property');
        $validatedData['user_id'] = auth()->user()->id;
        $validatedData['bill_reference_no'] = $reference_no;
-
        $validatedData['status'] = 'active';
-       $validatedData['interaction'] = 'transferred';
+       $validatedData['interaction'] = 'in-house';
 
-        if($this->contract)
-        {
-        $validatedData['contract'] = $this->contract->store('contracts');
-        }else{
-        $validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
-        }
+       if($this->contract)
+       {
+       $validatedData['contract'] = $this->contract->store('contracts');
+       }else{
+       $validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
+       }
 
        Contract::create($validatedData);
-
-       Contract::where('uuid', $this->contract_details->uuid)
-       ->update([
-            'status' => 'inactive'
-       ]);  
 
        Unit::where('uuid', $this->selectedUnit)->update([
         'status_id' => 4
        ]);
 
-       Bill::where('tenant_uuid', $this->contract_details->tenant_uuid)
-       ->where('unit_uuid', $this->contract_details->unit_uuid)
-       ->update([
-            'unit_uuid' => $this->selectedUnit
-       ]);
-
        $details =[
-       'tenant' => $this->contract_details->tenant->tenant,
+       'tenant' => $this->tenant->tenant,
        'start' => Carbon::parse($this->start)->format('M d, Y'),
        'end' => Carbon::parse($this->end)->format('M d, Y'),
-       'rent' => $this->contract_details->rent,
-       'unit' => $this->contract_details->unit->unit,
+       'rent' => $this->rent,
+       'unit' => $this->selectedUnit,
        ];
 
-       Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
+       Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
 
        DB::commit();
 
        return
-       redirect('/contract/'.$contract_uuid.'/preview/')->with('success','Contract
-       has been transfered.');
+        redirect('/contract/'.$contract_uuid.'/preview/')->with('success','Contract
+        // has been transfered.');
+    //    redirect('/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/bills/')->with('success','Contract
+    //    has been transfered.');
 
        } catch (\Throwable $e) {
        ddd($e);
@@ -136,7 +123,7 @@ class TransferContractComponent extends Component
     
     public function render()
     {
-        return view('livewire.transfer-contract-component', [
+        return view('livewire.new-contract-component', [
             'units' => Property::find(Session::get('property'))->units,
         ]);
     }

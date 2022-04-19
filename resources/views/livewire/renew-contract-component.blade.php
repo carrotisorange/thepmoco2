@@ -1,7 +1,7 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
+        <div class="overflow-hidden">
+            <div class="bg-white">
                 <div>
                     <form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data"
                         action="/unit/{{ $contract_details->unit->uuid }}/tenant/{{ $contract_details->tenant->uuid }}/contract/{{ Str::random(8) }}/store"
@@ -42,7 +42,7 @@
 
                         <div class="flex flex-wrap mx-3 mb-6">
 
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Term
@@ -53,7 +53,7 @@
                                     name="term">
                             </div>
 
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Rent
@@ -68,7 +68,7 @@
                                 @enderror
                             </div>
 
-                            <div class="w-full md:w-1/4 px-3">
+                            <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
                                     Discount

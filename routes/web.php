@@ -184,6 +184,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/contract/{contract}/transfer', TransferContractController::class);
 
+    Route::get('/tenant/{tenant}/new_contract', NewContractController::class);
+
    Route::get('data', function(){
         //retrieve visitors and pageview data for the current day and the last seven days
         //$analyticsData = Analytics::fetchVisitorsAndPageViews(Period::months(2));

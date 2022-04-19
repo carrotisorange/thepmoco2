@@ -27,7 +27,7 @@
                     {{--<x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
                         Add Contract</x-button> --}}
-                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button">Create <svg
+                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button">Add <svg
                             class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -39,8 +39,8 @@
                         class="hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="/unit/{{ $tenant->uuid }}/tenant/{{ Str::random(10) }}/create"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tenant
+                                <a href="/tenant/{{ $tenant->uuid }}/new_contract"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                     Contract</a>
                             </li>
                         </ul>
@@ -120,6 +120,9 @@
                                                     Status</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Interaction</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Moveout reason</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -165,6 +168,9 @@
                                                         {{ $contract->status }}
                                                     </span>
                                                     @endif
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $contract->interaction }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $contract->moveout_reason?$contract->moveout_reason:'NA' }}
@@ -232,7 +238,8 @@
                                     </table>
                                 </div>
                                 <div class="mb-3 mt-5">
-                                    <span class="text-center text-red">{{ Str::plural('Reference', $references->count())}}
+                                    <span class="text-center text-red">{{ Str::plural('Reference',
+                                        $references->count())}}
                                         ({{ $references->count() }})</span>
                                 </div>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">

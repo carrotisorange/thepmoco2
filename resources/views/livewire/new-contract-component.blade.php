@@ -4,7 +4,6 @@
             <div class="p-6 bg-white">
                 <div>
                     <form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data"
-                        action="/unit/{{ $contract_details->unit->uuid }}/tenant/{{ $contract_details->tenant->uuid }}/contract/{{ Str::random(8) }}/store"
                         class="w-full" id="create-form">
                         @csrf
                         <div class="flex flex-wrap mx-3 mb-6">
@@ -78,7 +77,8 @@
                                 </label>
                                 <input wire:model="rent"
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name" type="number" value="{{ old('rent',$rent) }}" name="rent" readonly>
+                                    id="grid-last-name" type="number" value="{{ old('rent',$rent) }}" name="rent"
+                                    readonly>
 
                                 @error('rent')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -99,7 +99,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                 
+
 
                         </div>
                         <div class="flex flex-wrap mx-3 mb-6">
