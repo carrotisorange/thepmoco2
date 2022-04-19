@@ -1,4 +1,4 @@
-<div class="grid grid-cols-6 gap-1 text-center sm:grid-cols-1 gap-1">
+<div class="grid grid-cols-6 gap-1 text-center">
     @foreach ($units as $unit)
 
     <div class="mt-5">
