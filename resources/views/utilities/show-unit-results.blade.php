@@ -3,7 +3,7 @@
 
     <div class="mt-5">
         <x-button title="{{ $unit->unit }}" style="width: 85px; height: 60px;"
-            href="/unit/{{ $unit->uuid }}" class="text-indigo-600">
+            onclick="window.location.href='/unit/{{ $unit->uuid }}'" class="text-indigo-600">
             <i class="fas fa-home fa-2x"></i>
             
             <small> {{ $unit->unit }}</small>
