@@ -62,7 +62,7 @@ class NewTenantComponent extends Component
                 'name' => $this->tenant,
                 'username' => Str::random(8),
                 'mobile_number' => $this->mobile_number,
-                'role_id' => '7',
+                'role_id' => '8',
                 'password' => Hash::make($this->mobile_number),
                 'avatar' => 'avatars/avatar.png',
                 'account_owner_id' => auth()->user()->id,
@@ -73,13 +73,15 @@ class NewTenantComponent extends Component
             UserProperty::create([
                 'property_uuid' => Session::get('property'),
                 'user_id' => $user->id,
-                'is_account_owner' => false
+                'is_account_owner' => false,
+              
             ]);
 
             $details =[
                 'name' => $this->tenant,
                 'email' => $this->email,
-                'username' => $user->username
+                'username' => $user->username,
+                'password' => $this->mobile_number
             ];
 
             Mail::to($this->email)->send(new WelcomeMailToNewTenant($details));

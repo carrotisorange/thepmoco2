@@ -10,7 +10,7 @@ Email: {{ $details['email'] }}
 <br>
 Username: {{ $details['username'] }}
 <br>
-Password: Your mobile number (e.g., 09786543112).
+Password: {{ $details['password'] }}
 <br>
 
 @component('mail::button', ['url' => $url])
