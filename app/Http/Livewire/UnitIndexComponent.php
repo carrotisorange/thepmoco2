@@ -30,6 +30,19 @@ class UnitIndexComponent extends Component
     public $discount = [];
     public $size = [];
 
+    public function resetFilters()
+    {
+       $this->search = '';
+        $this->status_id = [];
+      $this->category_id = [];
+        $this->is_enrolled = [];
+        $this->building_id = [];
+        $this->floor_id = [];
+       $this->rent = [];
+        $this->discount = [];
+        $this->size = [];
+    }
+
     public function render()
     {
 
@@ -41,7 +54,8 @@ class UnitIndexComponent extends Component
       ->get();
 
           $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
-          ->select('building','buildings.id as building_id', DB::raw('count(*) as count'))
+          ->join('units', 'buildings.id', 'units.building_id')
+          ->select('building','buildings.id as building_id', DB::raw('count(unit) as count'))
           ->distinct()
           ->where('property_buildings.property_uuid', Session::get('property'))
           ->where('buildings.building','!=','NA')

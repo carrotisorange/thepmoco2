@@ -44,21 +44,25 @@
         <div class="mt-5 p-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
             <div class="p-6 bg-white border-b border-gray-200">
-                {{-- @if (!$units->count())
-                <span class="text-center text-red">No units found! <a class="text-blue-600"
-                        href="/property/{{ Session::get('property') }}/units">Reset filters</a> </span>
-                @else --}}
+
                 <div class="flex flex-row">
                     <div class="basis-1/4 ml-5">
-                        <span class="font-bold">Filters</span>
 
-                        @if($status_id || $is_enrolled || $category_id || $building_id || $floor_id ||  $rent || $discount || $size)
-                        <div class="mt-5">
-                            <span> <a class="text-red-600" href="/property/{{ Session::get('property') }}/units"><i class="fa-solid fa-circle-xmark"></i> Reset
-                                filters</a></span>
-                
+                        <div class="">
+                            @if($status_id || $is_enrolled || $category_id || $building_id || $floor_id || $rent ||
+                            $discount || $size)
+
+                            <span> <a class="text-red-600 cursor-pointer" wire:click="resetFilters"><i
+                                        class="fa-solid fa-circle-xmark"></i> Reset
+                                    filters</a></span>
+
+                            @else
+                            <span class="font-bold">Filters</span>
+
+
+
+                            @endif
                         </div>
-                        @endif
                         <div class="">
                             <div class="flex">
                                 <div>
