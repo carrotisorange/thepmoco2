@@ -7,7 +7,7 @@
 
             <div class="w-full md:w-1/2 px-3">
                 <x-label for="start">
-                    Start <span class="text-red-600">*</span> 
+                    Start <span class="text-red-600">*</span>
                 </x-label>
                 <x-form-input wire:model="start" id="start" type="date" value="{{ old('start', $start)}}"
                     name="start" />
@@ -31,21 +31,11 @@
 
         <div class="flex flex-wrap mx-3 mb-6">
 
-            {{-- <div class="w-full md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                    Term
-                </label>
-                <input
-                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" value="{{ old('term', (floor($term/30))) }} months" type="text" name="term">
-            </div> --}}
-
             <div class="w-full md:w-1/3 px-3">
                 <x-label for="rent">
                     Rent <span class="text-red-600">*</span>
                     </x-lab>
-                    <x-form-input wire:model="rent" id="rent" type="number" value="{{ $rent }}"
-                        name="rent" readonly/>
+                    <x-form-input wire:model="rent" id="rent" type="number" value="{{ $rent }}" name="rent" readonly />
 
                     @error('rent')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -65,21 +55,22 @@
             </div>
             <div class="w-full md:w-1/3 px-3">
                 <x-label for="interaction">
-                    Interaction<span class="text-red-600">*</span> (<span class="text-indigo-600">For marketing purposes</span>)
+                    Interaction<span class="text-red-600">*</span> (<span class="text-indigo-600">For marketing
+                        purposes</span>)
                 </x-label>
-                <x-form-select wire:model="interaction" id="interaction" name="interaction">
+                <x-form-select x-data="{ open: false }"  wire:model="interaction" id="interaction" name="interaction">
 
                     <option value="">Select one</option>
-                    <option value="ads" {{ old('interaction')=='ads' ? 'selected' : 'Select one' }}>
+                    <option x-data="{ open: false }" value="ads" {{ old('interaction')=='ads' ? 'selected' : 'Select one' }}>
                         {{
                         'ads' }}</option>
-                    <option value="facebook" {{ old('interaction')=='facebook' ? 'selected' : 'Select one' }}>
+                    <option x-data="{ open: false }" value="facebook" {{ old('interaction')=='facebook' ? 'selected' : 'Select one' }}>
                         {{
                         'facebook' }}</option>
-                    <option value="referred" {{ old('interaction')=='referred' ? 'selected' : 'Select one' }}>
+                    <option x-data="{ open: true }" value="referred" {{ old('interaction')=='referred' ? 'selected' : 'Select one' }}>
                         {{
                         'referred' }}</option>
-                    <option value="walk-in" {{ old('interaction')=='walk-in' ? 'selected' : 'Select one' }}>
+                    <option x-data="{ open: false }" value="walk-in" {{ old('interaction')=='walk-in' ? 'selected' : 'Select one' }}>
                         {{
                         'walk-in' }}</option>
                 </x-form-select>
@@ -90,14 +81,32 @@
             </div>
 
         </div>
+
+        <div x-show="false" class="flex flex-wrap mx-3 mb-6">
+            <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+                <x-label for="contract">
+                   Name of the referral
+                </x-label>
+
+                <x-form-input wire:model="referral" id="referral" type="text" name="referral"
+                    value="{{ old('referral') }}" />
+
+                @error('referral')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
+
+        </div>
+
         <div class="flex flex-wrap mx-3 mb-6">
             <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="contract">
                     Contract (Please attached the signed contract here.)
                 </x-label>
 
-                <x-form-input wire:model="contract"
-                    id="contract" type="file" name="contract" value="{{ old('contract') }}" />
+                <x-form-input wire:model="contract" id="contract" type="file" name="contract"
+                    value="{{ old('contract') }}" />
 
                 @error('contract')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

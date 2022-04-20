@@ -15,6 +15,7 @@ use App\Models\Property;
 use Carbon\Carbon;
 use Session;
 use App\Models\Point;
+use App\Models\Referral;
 
 class ContractComponent extends Component
 {
@@ -40,6 +41,7 @@ class ContractComponent extends Component
       public $discount;
       public $interaction;
       public $contract;
+      public $referral;
 
       protected function rules()
       {
@@ -88,6 +90,15 @@ class ContractComponent extends Component
              }
 
             Contract::create($validatedData);
+
+             if($this->referral)
+             {
+                 Referral::create([
+                 'referral' => $this->referral,
+                 'contract_uuid' => $contract_uuid
+                 ]);
+             }
+             
 
             Unit::where('uuid', $this->unit->uuid)->update([
             'status_id' => 2

@@ -1,26 +1,26 @@
 @component('mail::message')
 # Hi {{ $details['tenant'] }}!
 
-Welcome! We're thrilled you've selected <b>{{ Session::get('property_name') }}</b> as your new home.
+We're thrilled you've selected <b>{{ Session::get('property_name') }}</b> as your new home.
 <br><br>
-We've attacched some useful information to help get you ready for your move on {{ $details['start'] }}. Should you have any 
+We've attached some useful information to help get you ready for your move-in on {{ $details['start'] }}. Should you have any 
 questions, please feel free to contact us at {{ auth()->user()->mobile_number }}.
 <br>
 <br>
-Furthermore, the details of your contract are as follows:
+Furthermore, the details of your contract are summarized below.
 <br>
 @component('mail::panel')
-    Contract signed: {{ Carbon\Carbon::now()->format('M d, Y') }}
-    <br>
-    Tenant: {{ $details['tenant'] }}
-    <br>
-    Unit: {{ $details['unit'] }}
-    <br>
-    Duration: {{ $details['start'].' - '.$details['end']}}
-    <br>
-    Rent/month: Php {{ number_format($details['rent'], 2) }}
-    <br>
-    Status: pending
+Contract signed: {{ Carbon\Carbon::now()->format('M d, Y') }}
+<br>
+Tenant: {{ $details['tenant'] }}
+<br>
+Unit: {{ $details['unit'] }}
+<br>
+Duration: {{ $details['start'].' - '.$details['end']}}
+<br>
+Rent/month: Php {{ number_format($details['rent'], 2) }}
+<br>
+Status: pending
 @endcomponent
 <br>
 I hope this information helps you settle in and feel right at home.
