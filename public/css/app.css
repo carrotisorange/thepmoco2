@@ -2682,6 +2682,10 @@ input:checked + .toggle-bg {
     margin-left: 3rem;
   }
 
+  .md\:hidden {
+    display: none;
+  }
+
   .md\:h-full {
     height: 100%;
   }
