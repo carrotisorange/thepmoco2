@@ -28,7 +28,7 @@
             <x-label for="bill">
                 Amount
             </x-label>
-            <x-form-input wire:model="bill"
+            <x-form-input x-mask:function="$money($input)" wire:model="bill"
                 id="bill" type="number" value="{{ old('bill') }}" name="bill" min="0" />
 
             @error('bill')

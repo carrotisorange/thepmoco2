@@ -24,15 +24,15 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='{{ url()->previous() }}'">
-                        Back</x-button>
-                    <x-button data-modal-toggle="small-modal">
-                        Create Particular
+                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='/unit/{{ $contract->unit->uuid }}'">
+                        <i class="fa-solid fa-circle-left"></i>&nbspBack</x-button>
+                    <x-button data-modal-toggle="create-particular-modal">
+                        <i class="fa-solid fa-circle-plus"></i>&nbspParticular
                     </x-button>
                     @if ($bills->count())
-                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/moveout'">Save</x-button>
+                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/moveout'"><i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                     @else
-                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/moveout'">Skip</x-button>
+                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/moveout'"><i class="fa-solid fa-forward"></i>&nbspSkip</x-button>
                     @endif
                 </h5>
 
@@ -43,13 +43,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+                <div class="p-12 bg-white border-b border-gray-200">
                     @livewire('moveout-bill-component', ['contract' => $contract, 'bills'
                     => $bills])
                     <br>
-                    @if (!$bills->count())
-                    <span class="text-center text-red">No bills found!</span>
-                    @else
+                    @if ($bills->count())
+                  
                     <span>Total: {{ number_format($bills->sum('bill'), 2) }}</span>
 
 
@@ -102,10 +101,10 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $bill->particular->particular }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/bill/{{ $bill->bill_id }}/delete">
+                                        <form method="POST" action="/bill/{{ $bill->id }}/delete">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900">Remove</button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fa-2x fa-solid fa-trash-can"></i></button>
                                         </form>
 
                                     </td>
@@ -120,5 +119,5 @@
             </div>
         </div>
     </div>
-    @include('utilities.create-particular');
+    @include('utilities.create-particular-modal');
 </x-app-layout>

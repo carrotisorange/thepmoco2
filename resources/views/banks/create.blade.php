@@ -23,13 +23,15 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     @if ($banks->count())
-                    <x-button 
+                    <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/representative/{{ Str::random(8) }}/create'">
-                        Save</x-button>
+                        <i class="fa-solid fa-circle-check"></i>&nbspSave
+                    </x-button>
                     @else
                     <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/representative/{{ Str::random(8) }}/create'">
-                        Skip</x-button>
+                        <i class="fa-solid fa-forward"></i>&nbspSkip
+                    </x-button>
                     @endif
                 </h5>
 
@@ -39,8 +41,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-12 bg-white border-b border-gray-200">
                     @livewire('bank-component', ['unit' => $unit, 'owner' => $owner, 'banks' =>
                     $banks])
                     @if (!$banks->count())
@@ -82,15 +84,13 @@
                                         $bank->bank_name }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $bank->account_number }}</td>
-                                    
+
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST"
-                                            action="/bank/{{ $bank->id }}/delete"
-                                            id="delete-form">
+                                        <form method="POST" action="/bank/{{ $bank->id }}/delete" id="delete-form">
                                             @csrf
                                             @method('delete')
                                             <button class="text-red-600 hover:text-red-900"
-                                                fform="delete-form">Remove</button>
+                                                form="delete-form"><i class="fa-2x fa-solid fa-trash-can"></i></button>
                                         </form>
 
                                     </td>

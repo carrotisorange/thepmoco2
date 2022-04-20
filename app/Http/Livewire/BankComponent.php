@@ -12,17 +12,20 @@ class BankComponent extends Component
    public $owner;
    public $banks;
 
-   public function mount($unit, $owner, $banks)
-   {
-      $this->unit = $unit;
-      $this->rent = $owner->owner;
-      $this->banks = $banks;
-   }
 
    public $account_name;
    public $bank_name;
    public $account_number;
 
+
+   public function mount($unit, $owner, $banks)
+   {
+      $this->unit = $unit;
+      $this->account_name = $owner->owner;
+      $this->banks = $banks;
+   }
+
+   
    protected function rules()
    {
    return [

@@ -12,8 +12,7 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/tenants"
-                                        class="text-blue-600 hover:text-blue-700">Tenants</a>
+                                <li><span class="text-gray-500 mx-2">Tenant</span></li>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $tenant->tenant }}</li>
@@ -23,11 +22,11 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'">
-                        Edit</x-button>
+                        <i class="fa-solid fa-pen-to-square"></i>&nbspEdit</x-button>
                     {{--<x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
                         Add Contract</x-button> --}}
-                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button">Add <svg
+                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button"><i class="fa-solid fa-circle-plus"></i>&nbspAdd <svg
                             class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -41,7 +40,7 @@
                             <li>
                                 <a href="/tenant/{{ $tenant->uuid }}/new_contract"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                    Contract</a>
+                                    <i class="fa-solid fa-file-contract"></i>&nbspContract</a>
                             </li>
                         </ul>
                     </div>
@@ -123,18 +122,16 @@
                                                     Interaction</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Moveout reason</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
+
                                             </tr>
                                         </thead>
                                         @forelse ($contracts as $contract)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <th class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
-                                                </td>
+                                                </th>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{ $contract->unit->unit }}
                                                     </div>
@@ -159,25 +156,67 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($contract->status === 'active')
                                                     <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $contract->status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $contract->status }}
-                                                    </span>
-                                                    @endif
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{
+                                                        $contract->status }}
+                                                        @else
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $contract->status }}
+                                                        </span>
+                                                        @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $contract->interaction }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $contract->moveout_reason?$contract->moveout_reason:'NA' }}
+                                                    <button id="dropdownDividerButton"
+                                                        data-dropdown-toggle="dropdownDivider"
+                                                        class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
+                                                        type="button">Select your action <svg class="ml-2 w-4 h-4"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                        </svg></button>
+
+                                                    <div id="dropdownDivider"
+                                                        class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                                            <li>
+                                                                <a href="/contract/{{ $contract->uuid }}/edit"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-eye"></i>&nbspShow
+                                                                    Contract</a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="/contract/{{ $contract->uuid }}/transfer"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
+                                                                    Contract</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/contract/{{ $contract->uuid }}/renew"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
+                                                                    Contract</a>
+                                                            </li>
+
+                                                        </ul>
+                                                        @if($contract->status === 'active')
+                                                        <div class="py-1">
+                                                            <a href="/contract/{{ $contract->uuid }}/moveout/bills"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                <i
+                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
+                                                        </div>
+                                                        @endif
+                                                    </div>
+
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <i class="fa-solid fa-down"></i>
-                                                </td>
+
 
                                             </tr>
                                         </tbody>

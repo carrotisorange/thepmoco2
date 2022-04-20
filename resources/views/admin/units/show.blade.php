@@ -20,18 +20,20 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'"><i class="fa-regular fa-circle-arrow-left"></i>&nbsp Back
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'"><i
+                            class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
                     @can('manager')
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/edit'">
-                       <i class="fa-regular fa-pen-to-square"></i>&nbsp Edit</x-button>
+                        <i class="fa-regular fa-pen-to-square"></i>&nbsp Edit
+                    </x-button>
                     @endcan
                     {{--<x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/contract/{{ Str::random(10) }}/create'">
                         Add Contract</x-button> --}}
-                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button"> <i class="fa-solid fa-circle-plus"></i>&nbsp Add <svg
-                            class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
+                    <x-button id="dropdownButton" data-dropdown-toggle="dropdown" type="button"> <i
+                            class="fa-solid fa-circle-plus"></i>&nbsp Add <svg class="ml-2 w-4 h-4" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg></x-button>
@@ -145,13 +147,9 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Duration</th>
-
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Contact</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Rent</th>
+                                                    Rent/Mo</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
@@ -197,15 +195,6 @@
                                                         }}
                                                     </div>
                                                 </td>
-
-
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $contract->tenant->email }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        $contract->tenant->mobile_number }}
-                                                    </div>
-                                                </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{number_format($contract->rent, 2)}}
                                                 </td>
@@ -216,7 +205,7 @@
                                                         <i class="fa-solid fa-circle-check"></i> {{ $contract->status }}
                                                         @else
                                                         <span
-                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                                                             <i class="fa-solid fa-clock"></i> {{
                                                             $contract->status }}
                                                         </span>
@@ -240,17 +229,25 @@
                                                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
                                                             <li>
+                                                                <a href="/tenant/{{ $contract->tenant->uuid }}/"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-eye"></i>&nbspShow Tenant</a>
+                                                            </li>
+                                                            <li>
                                                                 <a href="/contract/{{ $contract->uuid }}/edit"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Show</a>
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-eye"></i>&nbspShow Contract</a>
                                                             </li>
 
                                                             <li>
                                                                 <a href="/contract/{{ $contract->uuid }}/transfer"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Transfer</a>
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer Contract</a>
                                                             </li>
                                                             <li>
                                                                 <a href="/contract/{{ $contract->uuid }}/renew"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Renew</a>
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew Contract</a>
                                                             </li>
 
                                                         </ul>
@@ -258,13 +255,12 @@
                                                         <div class="py-1">
                                                             <a href="/contract/{{ $contract->uuid }}/moveout/bills"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                Moveout</a>
+                                                                <i
+                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
                                                         </div>
                                                         @endif
                                                     </div>
-
                                                 </td>
-
                                             </tr>
                                             @empty
                                             <tr>
@@ -294,6 +290,9 @@
                                                     Owner</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Date of turnover</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Price</th>
 
                                                 <th scope="col"
@@ -318,7 +317,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <th class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
                                                             <a href="/owner/{{ $deed_of_sale->owner_uuid }}">
@@ -333,6 +332,10 @@
 
                                                         </div>
                                                     </div>
+                                                </th>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ Carbon\Carbon::parse($deed_of_sale->turnover_at)->format('M d,
+                                                    Y') }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ number_format($deed_of_sale->price, 2) }}
@@ -351,17 +354,16 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($deed_of_sale->status === 'active')
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $deed_of_sale->status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $deed_of_sale->status }}
-                                                    </span>
-                                                    @endif
+                                                   @if($deed_of_sale->status === 'active')
+                                                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{
+                                                        $deed_of_sale->status }}
+                                                        @else
+                                                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $deed_of_sale->status }}
+                                                        </span>
+                                                        @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <i class="fa-solid fa-down"></i>
@@ -381,7 +383,7 @@
 
                                 </div>
 
-                                <br>
+
                                 <br>
                                 <span>{{ Str::plural('Leasing Enrollment History', $enrollees->count())}} ({{
                                     $enrollees->count()
@@ -413,9 +415,7 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Reason for unenrollment</th>
+
 
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -468,19 +468,18 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($enrollee->status === 'active')
                                                     <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $enrollee->status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $enrollee->status }}
-                                                    </span>
-                                                    @endif
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{
+                                                        $enrollee->status }}
+                                                        @else
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $enrollee->status }}
+                                                        </span>
+                                                        @endif
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $enrollee->unenrollment_reason }}
-                                                </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
 
                                                 </td>

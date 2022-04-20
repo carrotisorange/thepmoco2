@@ -21,7 +21,7 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/unit/{{ $contract->unit_uuid }}'">
-                        Back</x-button>
+                        <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack</x-button>
                 </h5>
 
             </div>

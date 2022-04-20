@@ -40,20 +40,15 @@ class TransferContractComponent extends Component
             $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
         }
 
-
-       public function mount($contract_details)
-       {
-            $this->contract_details = $contract_details;
-       }
-
        protected function rules()
        {
             return [
-            'start' => 'required|date',
-            'end' => 'required|date|after:start',
-            'rent' => 'required',
-            'discount' => 'required',
-            'contract' => 'nullable|mimes:pdf'
+   
+               'start' => 'required|date',
+               'end' => 'required|date|after:start',
+               'rent' => 'required',
+               'discount' => 'required',
+               'contract' => 'nullable|mimes:pdf'
             ];
        }
 
@@ -119,13 +114,13 @@ class TransferContractComponent extends Component
        'unit' => $this->contract_details->unit->unit,
        ];
 
-       Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
+          Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
 
        DB::commit();
 
        return
        redirect('/contract/'.$contract_uuid.'/preview/')->with('success','Contract
-       has been transfered.');
+       has been transferred.');
 
        } catch (\Throwable $e) {
        ddd($e);

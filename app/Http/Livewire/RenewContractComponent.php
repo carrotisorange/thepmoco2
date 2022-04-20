@@ -45,7 +45,7 @@ class RenewContractComponent extends Component
             'end' => 'required|date|after:start',
             'rent' => 'required',
             'discount' => 'required',
-            'contract' => 'required|mimes:pdf'
+            'contract' => 'nullable|mimes:pdf'
             ];
        }
 
@@ -75,9 +75,15 @@ class RenewContractComponent extends Component
        $validatedData['property_uuid'] = Session::get('property');
        $validatedData['user_id'] = auth()->user()->id;
        $validatedData['bill_reference_no'] = $reference_no;
-       $validatedData['contract'] = $this->contract->store('contracts');
        $validatedData['status'] = 'active';
        $validatedData['interaction'] = 'renewed';
+
+       if($this->contract)
+       {
+          $validatedData['contract'] = $this->contract->store('contracts');
+       }else{
+          $validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
+       }
 
        Contract::create($validatedData);
 

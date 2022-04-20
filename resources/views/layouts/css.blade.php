@@ -18,7 +18,7 @@
 <script src="{{ asset('js/app.js') }}" defer></script>
 
 {{-- Alpine.js --}}
-<script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
+<script defer src="https://unpkg.com/alpinejs@3.10.1/dist/cdn.min.js"></script>
 
 {{-- Flowbite --}}
 <script src="../path/to/flowbite/dist/flowbite.js"></script>

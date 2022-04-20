@@ -6,19 +6,18 @@
         <div class="flex flex-wrap -mx-3 mb-6">
 
             <div class="w-full md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                <x-label for="particular_id">
                     Particular
-                </label>
-                <select wire:model="particular_id"
-                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-state" name="particular_id">
+                </x-label>
+                <x-form-select wire:model="particular_id"
+                  id="particular_id" name="particular_id">
                     <option value="">Select one</option>
                     @foreach ($particulars as $particular)
                     <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->id?
                         'selected': 'Select one'
                         }}>{{ $particular->particular }}</option>
                     @endforeach
-                </select>
+                </x-form-select>
 
                 @error('particular_id')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -26,12 +25,11 @@
             </div>
 
             <div class="w-full md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                <x-label for="bill">
                     Amount
-                </label>
-                <input wire:model="bill"
-                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" type="number" value="{{ old('bill') }}" name="bill" min="0">
+                </x-label>
+                <x-form-input wire:model="bill"
+                    id="grid-last-name" type="number" value="{{ old('bill') }}" name="bill" min="0" />
 
                 @error('bill')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -39,24 +37,22 @@
             </div>
 
             <div class="w-full md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                <x-label for="start">
                     Period covered (start)
-                </label>
-                <input wire:model="start"
-                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" type="date" value="{{ old('start',$start) }}" name="start">
+                </x-label>
+                <x-form-input wire:model="start"
+                   id="grid-last-name" type="date" value="{{ old('start',$start) }}" name="start" />
 
                 @error('start')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
             <div class="w-full md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                <x-label for="end">
                     Period covered (end)
-                </label>
-                <input wire:model="end"
-                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-last-name" type="date" value="{{ old('end',$end) }}" name="end">
+                </x-label>
+                <x-form-input wire:model="end"
+                    id="grid-last-name" type="date" value="{{ old('end',$end) }}" name="end" />
 
                 @error('end')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -76,7 +72,7 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    Submit
+                    <i class="fa-solid fa-circle-check"></i>&nbspSubmit
                 </x-button>
             </p>
         </div>

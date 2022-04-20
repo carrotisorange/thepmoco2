@@ -10,7 +10,7 @@ class Bill extends Model
     use HasFactory;
 
     protected $attributes = [
-        'status' => 'unpaid'
+        'status' => 'unpaid',
     ];
 
     public function property()

@@ -65,6 +65,7 @@ class BillComponent extends Component
         $validatedData['property_uuid'] = Session::get('property');
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['bill_no'] = Property::find(Session::get('property'))->bills->count()+1;
+        $validatedData['due_date'] = Carbon::now()->addDays(7);
 
         Bill::create($validatedData);
         DB::commit();
@@ -74,6 +75,7 @@ class BillComponent extends Component
         'Bill has been created.');
         } catch (\Throwable $e) {
         DB::rollback();
+        ddd($e);
          return
          redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success',
          'Cannot perform the action. Please try again.');

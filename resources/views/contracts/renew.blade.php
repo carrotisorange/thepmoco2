@@ -17,7 +17,7 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $contract_details->tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Renew</li>
+                                <li class="text-gray-500">Renew Contract</li>
 
                             </ol>
                         </nav>
@@ -26,7 +26,8 @@
                 <h5 class="flex-1 text-right">
 
                     <x-button wire:submit.prevent="submitForm" onclick="window.location.href='{{ url()->previous() }}'">
-                        Back</x-button>
+                        <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack
+                    </x-button>
 
                 </h5>
 

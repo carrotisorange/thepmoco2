@@ -59,6 +59,7 @@ class MoveoutBillComponent extends Component
         $validatedData['property_uuid'] = Session::get('property');
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['bill_no'] = Property::find(Session::get('property'))->bills->count()+1;
+        $validatedData['due_date'] = Carbon::now()->addDays(7);
 
         Bill::create($validatedData);
         DB::commit();

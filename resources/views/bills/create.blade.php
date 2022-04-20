@@ -24,9 +24,9 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    {{-- <x-button data-modal-toggle="create-particular-modal">
+                    <x-button data-modal-toggle="create-particular-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
-                    </x-button> --}}
+                    </x-button>
                     @if ($bills->count())
                     <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/preview'"><i
                             class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
@@ -101,7 +101,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $bill->particular->particular }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/bill/{{ $bill->bill_id }}/delete">
+                                        <form method="POST" action="/bill/{{ $bill->id }}/delete">
                                             @csrf
                                             @method('delete')
                                             <button class="text-red-600 hover:text-red-900"><i

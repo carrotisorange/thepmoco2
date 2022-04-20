@@ -309,7 +309,7 @@
                                 <p class="text-right">
                                     <x-button>
 
-                                        Save
+                                        <i class="fa-solid fa-circle-check"></i>&nbspSave
                                     </x-button>
                                 </p>
                             </div>

@@ -87,8 +87,6 @@ class ContractComponent extends Component
                  $validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
              }
 
-
-          
             Contract::create($validatedData);
 
             Unit::where('uuid', $this->unit->uuid)->update([
@@ -195,7 +193,7 @@ class ContractComponent extends Component
              'unit' => $this->unit->unit,
              ];
 
-            // Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
+           Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
 
             DB::commit();
         
