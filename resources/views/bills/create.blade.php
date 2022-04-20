@@ -24,13 +24,15 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button data-modal-toggle="small-modal">
-                        Create Particular
-                    </x-button>
+                    {{-- <x-button data-modal-toggle="create-particular-modal">
+                        <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
+                    </x-button> --}}
                     @if ($bills->count())
-                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/preview'">Save</x-button>
+                    <x-button onclick="window.location.href='/contract/{{ $contract->uuid }}/preview'"><i
+                            class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                     @else
-                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Skip</x-button>
+                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'"><i
+                            class="fa-solid fa-forward"></i>&nbspSkip</x-button>
                     @endif
                 </h5>
 
@@ -45,9 +47,8 @@
                     @livewire('bill-component', ['unit' => $unit, 'tenant' => $tenant, 'contract' => $contract, 'bills'
                     => $bills])
                     <br>
-                    @if (!$bills->count())
-                    <span class="text-center text-red">No bills found!</span>
-                    @else
+                    @if ($bills->count())
+
                     <span>Total: {{ number_format($bills->sum('bill'), 2) }}</span>
 
 
@@ -103,7 +104,8 @@
                                         <form method="POST" action="/bill/{{ $bill->bill_id }}/delete">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900"><i class="fa-solid fa-2x fa-trash-can"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i
+                                                    class="fa-solid fa-2x fa-trash-can"></i></button>
                                         </form>
 
                                     </td>
@@ -118,5 +120,5 @@
             </div>
         </div>
     </div>
-    @include('utilities.create-particular');
+    @include('utilities.create-particular-modal');
 </x-app-layout>

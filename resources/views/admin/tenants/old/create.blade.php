@@ -26,7 +26,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'">Back
+                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp Back
                     </x-button>
                 </h5>
 

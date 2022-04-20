@@ -16,7 +16,7 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Reference</li>
+                                <li class="text-gray-500">References</li>
 
                             </ol>
                         </nav>
@@ -26,11 +26,11 @@
                     @if($references->count())
                     <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'">
-                        Save</x-button>
+                        <i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                     @else
                     <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'">
-                        Skip</x-button>
+                        <i class="fa-solid fa-forward"></i>&nbspSkip</x-button>
                     @endif
                 </h5>
 
@@ -93,13 +93,11 @@
                                             <button class="text-red-600 hover:text-red-900"
                                                 form="delete-form"><i class="fa-solid fa-2x fa-trash-can"></i></button>
                                         </form>
-
                                     </td>
                                 </tr>
                             </tbody>
                             @endforeach
                         </table>
-
                     </div>
                     @endif
                 </div>

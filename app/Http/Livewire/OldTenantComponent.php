@@ -156,8 +156,6 @@ class OldTenantComponent extends Component
              'cities' => City::orderBy('city', 'ASC')->get(),
              'provinces' => Province::orderBy('province', 'ASC')->get(),
              'countries' => Country::orderBy('country', 'ASC')->get()
-
-            
         ]);
     }
 }

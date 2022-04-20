@@ -17,7 +17,7 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Guardian</li>
+                                <li class="text-gray-500">Guardians</li>
 
                             </ol>
                         </nav>
@@ -27,11 +27,11 @@
                     @if ($guardians->count())
                     <x-button wire:submit.prevent="submitForm"
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(8) }}/create'">
-                        Save</x-button>
+                        <i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                     @else
                     <x-button wire:submit.prevent="submitForm"
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(8) }}/create'">
-                        Skip</x-button>
+                        <i class="fa-solid fa-forward"></i>&nbspSkip</x-button>
                     @endif
                 </h5>
 
@@ -41,7 +41,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @livewire('guardian-component', ['unit' => $unit, 'tenant' => $tenant, 'guardians' => $guardians])
 
