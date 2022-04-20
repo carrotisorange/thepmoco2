@@ -27,7 +27,7 @@
                     type="button">
                     Toggle modal
                 </button> --}}
-                <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Add Unit
+                <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
                 </x-button>
                 @endcan
             </h5>

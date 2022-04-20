@@ -87,9 +87,9 @@
                                     @foreach ($owners as $owner)
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                $ctr++ }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                $ctr++ }}</th>
+                                            <th class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
                                                         <a href="owner/{{ $owner->uuid }}"><img
@@ -104,7 +104,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </td>
+                                            </th>
 
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm text-gray-900">{{ $owner->email }}
