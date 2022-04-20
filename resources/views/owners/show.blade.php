@@ -107,22 +107,26 @@
                                                     #</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Unit</th>
+                                                    Owner</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Duration</th>
+                                                    Date of turnover</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Rent/mo</th>
+                                                    Price</th>
+
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Classification</th>
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Moveout reason</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
+
                                             </tr>
                                         </thead>
                                         @forelse ($deed_of_sales as $deed_of_sale)
@@ -131,62 +135,71 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
                                                 </td>
+                                                <th class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0 h-10 w-10">
+                                                            <a href="/owner/{{ $deed_of_sale->owner_uuid }}">
+                                                                <img class="h-10 w-10 rounded-full"
+                                                                    src="/storage/{{ $deed_of_sale->owner->photo_id }}"
+                                                                    alt=""></a>
+                                                        </div>
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">{{
+                                                                $deed_of_sale->owner->owner }}
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </th>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $deed_of_sale->unit->unit }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        $deed_of_sale->unit->building->building
-                                                        }}
-                                                    </div>
+                                                    {{ Carbon\Carbon::parse($deed_of_sale->turnover_at)->format('M d,
+                                                    Y') }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{
-                                                        Carbon\Carbon::parse($deed_of_sale->start)->format('M d, Y').' -
-                                                        '.Carbon\Carbon::parse($deed_of_sale->end)->format('M d, Y') }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($deed_of_sale->end)->diffForHumans($deed_of_sale->start)
-                                                        }}
-                                                    </div>
+                                                    {{ number_format($deed_of_sale->price, 2) }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($deed_of_sale->rent, 2)}}
+                                                    {{ $deed_of_sale->classification }}
                                                 </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($deed_of_sale->status === 'active')
                                                     <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $deed_of_sale->status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $deed_of_sale->status }}
-                                                    </span>
-                                                    @endif
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $deed_of_sale->moveout_reason?$deed_of_sale->moveout_reason:'NA'
-                                                    }}
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{
+                                                        $deed_of_sale->status }}
+                                                        @else
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $deed_of_sale->status }}
+                                                        </span>
+                                                        @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <i class="fa-solid fa-down"></i>
                                                 </td>
 
                                             </tr>
+
+
+                                            @empty
+                                            <tr>
+                                                <span>No units found!</span>
+                                            </tr>
+
+                                            @endforelse
                                         </tbody>
-                                        @empty
-                                        <span class="text-center text-red">No Deed of sales found!</span>
-                                        @endforelse
                                     </table>
                                 </div>
 
                                 <div class="mb-3 mt-5">
-                                    <span class="text-center text-red">{{ Str::plural('Leasing Enrollment Histories',
+                                    <span class="text-center text-red">{{ Str::plural('Leasing',
                                         $enrollments->count())}}
                                         ({{ $enrollments->count() }})</span>
                                 </div>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                   
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr =1; ?>
                                         <thead class="bg-gray-50">
@@ -196,77 +209,90 @@
                                                     #</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Unit</th>
+                                                    Owner</th>
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Duration</th>
+                                                    Contract Period</th>
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Rent/mo</th>
+                                                    Agreed Rent/mo</th>
+
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status</th>
+
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Moveout reason</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                </th>
+                                                    Contract</th>
+
                                             </tr>
                                         </thead>
-                                        @forelse ($enrollments as $enrollment)
+                                        @forelse ($enrollments as $enrollee)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $enrollment->unit->unit }}
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0 h-10 w-10">
+                                                            <a href="/owner/{{ $enrollee->owner_uuid }}">
+                                                                <img class="h-10 w-10 rounded-full"
+                                                                    src="/storage/{{ $enrollee->owner->photo_id }}"
+                                                                    alt=""></a>
+                                                        </div>
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">{{
+                                                                $enrollee->owner->owner }}
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        $enrollment->unit->building->building
-                                                        }}
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{
-                                                        Carbon\Carbon::parse($enrollment->start)->format('M d, Y').' -
-                                                        '.Carbon\Carbon::parse($enrollment->end)->format('M d, Y') }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($enrollment->end)->diffForHumans($enrollment->start)
-                                                        }}
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($enrollment->rent, 2)}}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($enrollment->status === 'active')
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $enrollment->status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $enrollment->status }}
-                                                    </span>
-                                                    @endif
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $enrollment->moveout_reason?$enrollment->moveout_reason:'NA'
-                                                    }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <i class="fa-solid fa-down"></i>
                                                 </td>
 
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">{{
+                                                        Carbon\Carbon::parse($enrollee->start)->format('M d, Y').' -
+                                                        '.Carbon\Carbon::parse($enrollee->end)->format('M d, Y') }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{
+                                                        Carbon\Carbon::parse($enrollee->end)->diffForHumans($enrollee->start)
+                                                        }}
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ number_format($enrollee->rent, 2) }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    @if($enrollee->status === 'active')
+                                                    <span
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{
+                                                        $enrollee->status }}
+                                                        @else
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $enrollee->status }}
+                                                        </span>
+                                                        @endif
+                                                </td>
+
+                                                <td class="px-6 py-4 whitespace-nowrap">
+
+                                                </td>
                                             </tr>
+                                            @empty
+                                            <tr>
+                                                <span>No enrollment histories found!</span>
+                                            </tr>
+
+                                            @endforelse
                                         </tbody>
-                                        @empty
-                                        <span class="text-center text-red">No Leasing Enrollment Histories found!</span>
-                                        @endforelse
                                     </table>
                                 </div>
 
@@ -345,7 +371,7 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Email</th>
-                                              
+
                                             </tr>
                                         </thead>
                                         @forelse ($banks as $bank)
@@ -363,11 +389,11 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $bank->account_number }}
                                                 </td>
-                                               
+
                                             </tr>
                                         </tbody>
                                         @empty
-                                        <span class="text-center text-red">No representatives found!</span>
+                                        <span class="text-center text-red">No banks found!</span>
                                         @endforelse
                                     </table>
                                 </div>
