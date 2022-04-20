@@ -88,10 +88,10 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $representative->mobile_number }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $representative->relationship }}</td>
+                                        $representative->relationship->relationship }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form method="POST"
-                                            action="/representative/{{ $representative->representative_id }}/delete"
+                                            action="/representative/{{ $representative->id }}/delete"
                                             id="delete-form">
                                             @csrf
                                             @method('delete')

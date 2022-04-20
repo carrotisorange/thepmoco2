@@ -30,7 +30,7 @@
                         </h2>
                     </div>
                     <h5 class="flex-1 text-right">
-                        <x-button><i class="fa-solid fa-universal-access"></i> &nbsp; {{ auth()->user()->role->role }} access</x-button>
+                        <x-button data-modal-toggle="role-access-modal"><i class="fa-solid fa-universal-access"></i> &nbsp; {{ auth()->user()->role->role }} access</x-button>
                         
                         {{-- <x-button onclick="window.location.href='/documentation/'">Documentation
                         </x-button> --}}
@@ -177,7 +177,7 @@
     </div>
     @include('layouts.notifications')
     @include('layouts.messenger-chatbot')
-
+    @include('utilities.role-access-modal')
     @include('layouts.script')
 </body>
 

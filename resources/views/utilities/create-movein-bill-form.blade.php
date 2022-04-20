@@ -7,7 +7,7 @@
 
         <div class="w-full md:w-1/4 px-3">
             <x-label for="particular_id">
-                Particular
+                Particular <span class="text-red-600">*</span>
             </x-label>
             <x-form-select wire:model="particular_id"
                 id="particular_id" name="particular_id">
@@ -26,7 +26,7 @@
 
         <div class="w-full md:w-1/4 px-3">
             <x-label for="bill">
-                Amount
+                Amount <span class="text-red-600">*</span>
             </x-label>
             <x-form-input x-mask:function="$money($input)" wire:model="bill"
                 id="bill" type="number" value="{{ old('bill') }}" name="bill" min="0" />
@@ -38,7 +38,7 @@
 
         <div class="w-full md:w-1/4 px-3">
             <x-label for="start">
-                Period covered (start)
+                Period covered (start) <span class="text-red-600">*</span>
             </x-label>
             <x-form-input wire:model="start"
                 id="grid-last-name" type="date" value="{{ old('start',$start) }}" name="start" />
@@ -49,7 +49,7 @@
         </div>
         <div class="w-full md:w-1/4 px-3">
             <x-label for="end">
-                Period covered (end)
+                Period covered (end) <span class="text-red-600">*</span>
             </x-label>
             <x-form-input wire:model="end"
                 id="end" type="date" value="{{ old('end',$end) }}" name="end" />

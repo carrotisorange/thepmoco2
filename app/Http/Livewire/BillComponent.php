@@ -56,7 +56,7 @@ class BillComponent extends Component
 
       $validatedData = $this->validate();
 
-      $bill_no = Property::find(Session::get('property'))->bills->count();
+      $bill_no = Property::find(Session::get('property'))->bills->max('bill_no');
 
       try {
         $validatedData['reference_no'] = Contract::find($this->contract->uuid)->bill_reference_no;
@@ -64,7 +64,7 @@ class BillComponent extends Component
         $validatedData['unit_uuid'] = $this->unit->uuid;
         $validatedData['property_uuid'] = Session::get('property');
         $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['bill_no'] = Property::find(Session::get('property'))->bills->count()+1;
+        $validatedData['bill_no'] = $bill_no+1;
         $validatedData['due_date'] = Carbon::now()->addDays(7);
 
         Bill::create($validatedData);

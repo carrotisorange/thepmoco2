@@ -21,7 +21,8 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/unit/{{ $contract->unit_uuid }}'">
-                        <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack</x-button>
+                        <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack
+                    </x-button>
                 </h5>
 
             </div>
@@ -55,7 +56,7 @@
                                     <dt class="text-sm font-medium text-gray-500">Unit</dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                         <b><a class="" href="/unit/{{ $contract->unit->uuid }}">{{
-                                            $contract->unit->unit
+                                                $contract->unit->unit
                                                 }}</a></b>
                                     </dd>
                                 </div>
@@ -117,9 +118,13 @@
                                                 Signed Contract </span>
                                         </div>
                                         <div class="ml-4 flex-shrink-0">
+                                            @if($contract->contract)
                                             <a target="_blank" href="/contract/{{ $contract->uuid }}/signed_contract"
                                                 class="font-medium text-indigo-600 hover:text-indigo-500">
                                                 View </a>
+                                            @else
+                                                <span>No contract was uploaded.</span>
+                                            @endif
                                         </div>
                                     </li>
                                     <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">

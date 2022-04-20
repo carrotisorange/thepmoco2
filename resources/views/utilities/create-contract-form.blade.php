@@ -7,7 +7,7 @@
 
             <div class="w-full md:w-1/2 px-3">
                 <x-label for="start">
-                    Start
+                    Start <span class="text-red-600">*</span> 
                 </x-label>
                 <x-form-input wire:model="start" id="start" type="date" value="{{ old('start', $start)}}"
                     name="start" />
@@ -18,7 +18,7 @@
             </div>
             <div class="w-full md:w-1/2 px-3">
                 <x-label for="end">
-                    End
+                    End <span class="text-red-600">*</span>
                 </x-label>
                 <x-form-input wire:model="end" id="end" type="date" name="end" value="{{ old('end', $end )}}" />
 
@@ -42,10 +42,10 @@
 
             <div class="w-full md:w-1/3 px-3">
                 <x-label for="rent">
-                    Rent
+                    Rent <span class="text-red-600">*</span>
                     </x-lab>
-                    <x-form-input wire:model="rent" id="rent" type="number" value="{{ old('rent',$rent) }}"
-                        name="rent" />
+                    <x-form-input wire:model="rent" id="rent" type="number" value="{{ $rent }}"
+                        name="rent" readonly/>
 
                     @error('rent')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -65,7 +65,7 @@
             </div>
             <div class="w-full md:w-1/3 px-3">
                 <x-label for="interaction">
-                    Interaction
+                    Interaction<span class="text-red-600">*</span> (<span class="text-indigo-600">For marketing purposes</span>)
                 </x-label>
                 <x-form-select wire:model="interaction" id="interaction" name="interaction">
 

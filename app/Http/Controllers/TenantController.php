@@ -124,8 +124,8 @@ class TenantController extends Controller
     {
         $attributes = request()->validate([
         'tenant' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('tenants', 'email')->ignore($tenant->id, 'uuid')],
-        'mobile_number' => ['required', Rule::unique('tenants', 'mobile_number')->ignore($tenant->id, 'uuid')],
+        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('tenants', 'email')->ignore($tenant->uuid, 'uuid')],
+        'mobile_number' => ['required', Rule::unique('tenants', 'mobile_number')->ignore($tenant->uuid, 'uuid')],
         'birthdate' => 'required',
         'type' => 'required',
         'gender' => 'required',
@@ -134,7 +134,12 @@ class TenantController extends Controller
         'province_id' => ['required', Rule::exists('provinces', 'id')],
         'city_id' => ['required', Rule::exists('cities', 'id')],
         'barangay' => 'nullable',
-        'photo_id' => 'image'
+        'photo_id' => 'image',
+        'school' => 'nullable',
+        'school_address' => 'nullable',
+        'occupation' => 'nullable',
+        'employer_address' => 'nullable',
+        'employer' => 'nullable',
         ]);
 
           if(isset($attributes['photo_id']))

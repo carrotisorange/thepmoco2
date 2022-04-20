@@ -236,18 +236,21 @@
                                                             <li>
                                                                 <a href="/contract/{{ $contract->uuid }}/edit"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-eye"></i>&nbspShow Contract</a>
+                                                                        class="fa-solid fa-eye"></i>&nbspShow
+                                                                    Contract</a>
                                                             </li>
 
                                                             <li>
                                                                 <a href="/contract/{{ $contract->uuid }}/transfer"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer Contract</a>
+                                                                        class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
+                                                                    Contract</a>
                                                             </li>
                                                             <li>
                                                                 <a href="/contract/{{ $contract->uuid }}/renew"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew Contract</a>
+                                                                        class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
+                                                                    Contract</a>
                                                             </li>
 
                                                         </ul>
@@ -295,9 +298,7 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Price</th>
 
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Contact</th>
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Classification</th>
@@ -340,26 +341,19 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ number_format($deed_of_sale->price, 2) }}
                                                 </td>
-
-
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $deed_of_sale->owner->email }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        $deed_of_sale->owner->mobile_number }}
-                                                    </div>
-                                                </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $deed_of_sale->classification }}
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                   @if($deed_of_sale->status === 'active')
-                                                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    @if($deed_of_sale->status === 'active')
+                                                    <span
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                         <i class="fa-solid fa-circle-check"></i> {{
                                                         $deed_of_sale->status }}
                                                         @else
-                                                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                                                             <i class="fa-solid fa-clock"></i> {{
                                                             $deed_of_sale->status }}
                                                         </span>
@@ -385,7 +379,7 @@
 
 
                                 <br>
-                                <span>{{ Str::plural('Leasing Enrollment History', $enrollees->count())}} ({{
+                                <span>{{ Str::plural('Leasing', $enrollees->count())}} ({{
                                     $enrollees->count()
                                     }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -400,9 +394,7 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Owner</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Contact</th>
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Contract Period</th>
@@ -445,13 +437,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $enrollee->owner->email }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        $enrollee->owner->mobile_number }}
-                                                    </div>
-                                                </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{
                                                         Carbon\Carbon::parse($enrollee->start)->format('M d, Y').' -
@@ -509,13 +495,14 @@
                                                     #</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Tenant</th>
+                                                    Reference No</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Payee</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Bill No</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Reference No</th>
+
 
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -537,14 +524,19 @@
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $bill->tenant->tenant}}
+                                                    {{ $bill->reference_no}}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    @if($bill->tenant_uuid)
+                                                    {{ $bill->tenant->tenant}} (<span>T</span>)
+                                                    @else
+                                                    {{ $bill->owner->owner}}
+                                                    @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $bill->bill_no}}
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $bill->reference_no}}
-                                                </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $bill->particular->particular}}
                                                 </td>
@@ -554,19 +546,18 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     @if($bill->status === 'paid')
                                                     <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $bill->status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $bill->status }}
-                                                    </span>
-                                                    @endif
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{
+                                                        $bill->status }}
+                                                        @else
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $bill->status }}
+                                                        </span>
+                                                        @endif
                                                 </td>
-
                                             </tr>
-
 
                                             @empty
                                             <tr>

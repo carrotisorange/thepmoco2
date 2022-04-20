@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hi, {{ $details['name'] }}!
 
-You've got an invitation to be a part of the team to manage <b>{{ Session::get('property_name') }}</b> with the role <b>{{ $details['role'] }}</b>.
+You've got an invitation to be a part of the team to manage <b>{{ Session::get('property_name') }}</b> with the role of <b>{{ $details['role'] }}</b>.
 <br>
 
 Please press the continue button below to accept the invitation and use the credentails found below: 

@@ -33,6 +33,7 @@ class TeamComponent extends Component
     public $mobile_number;
     public $avatar;
 
+
      protected function rules()
      {
         return [
@@ -83,6 +84,7 @@ class TeamComponent extends Component
             'name' => $this->name,
             'role' => $role,
             'username' => $this->username,
+            'password'=>$this->mobile_number
          ];
 
          Mail::to($this->email)->send(new WelcomeMailToMember($details));

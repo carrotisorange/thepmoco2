@@ -5,7 +5,7 @@
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3">
             <x-label for="reference">
-                Reference
+                Reference <span class="text-red-600">*</span>
             </x-label>
             <x-form-input wire:model="reference"
                 id="reference" type="text" name="reference" value="{{ old('reference') }}" />
@@ -16,7 +16,7 @@
         </div>
         <div class="w-full md:w-1/2 px-3">
             <x-label form="relationship">
-                Relationship
+                Relationship <span class="text-red-600">*</span>
             </x-label>
             <x-form-select wire:model="relationship_id"
                 id="grid-relationship_id" name="relationship_id">
@@ -44,7 +44,7 @@
         </div>
         <div class="mt-6 w-full md:w-1/2 px-3">
            <x-label for="mobile_number">
-               Mobile
+               Mobile <span class="text-red-600">*</span>
            </x-label>
             <x-form-input wire:model="mobile_number"
                 id="grid-last-name" type="number" name="mobile_number" value="{{ old('mobile_number') }}" />

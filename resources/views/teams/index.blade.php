@@ -21,7 +21,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'">Create member
+                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'"><i class="fa-solid fa-circle-plus"></i>&nbspMember
                     </x-button>
                 </h5>
 

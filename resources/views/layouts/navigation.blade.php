@@ -106,7 +106,7 @@
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/edit">
                             <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                         </x-dropdown-link>
-                        <x-dropdown-link href="/chatify">
+                        <x-dropdown-link target="_blank" href="/chatify">
                             <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
                         </x-dropdown-link>
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/point">

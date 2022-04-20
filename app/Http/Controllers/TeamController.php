@@ -58,7 +58,7 @@ class TeamController extends Controller
          ->paginate(10);
 
         return view('teams.create',[
-            'roles' => Role::orderBy('role')->where('id','!=','5')->get(),
+            'roles' => Role::orderBy('role')->where('id','!=','10')->get(),
             'members' => $members,
         ]);
     }

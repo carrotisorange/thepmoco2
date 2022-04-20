@@ -41,65 +41,52 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
-                            <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
                                 <div class="w-full md:w-full px-3 mb-6 md:mb-0">
-                                    <x-label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-first-name">
-                                        Full Name
+                                    <x-label for="tenant">
+                                        Full Name <span class="text-red-600">*</span>
                                     </x-label>
-
-                                    <x-input
-                                        class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                        id="grid-first-name" type="text" name="tenant"
+                                    <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
                                         value="{{ old('tenant', $tenant->tenant) }}" />
 
                                     @error('tenant')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap mx-3 mb-2">
                                 <div class="w-full md:w-1/2 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
+                                    <x-label for="email">
                                         Email
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="email" name="email"
-                                        value="{{ old('email', $tenant->email) }}">
+                                    </x-label>
+                                    <x-form-input wire:model="email" id="email" type="email" name="email"
+                                        value="{{ old('email', $tenant->email) }}" />
 
                                     @error('email')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
+                                    <x-label for="mobile_number">
                                         Mobile
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="text" name="mobile_number"
-                                        value="{{ old('mobile_number', $tenant->mobile_number) }}">
+                                    </x-label>
+                                    <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
+                                        name="mobile_number"
+                                        value="{{ old('mobile_number', $tenant->mobile_number) }}" />
 
                                     @error('mobile_number')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
-
-
-
-
                             </div>
 
-                            <div class="flex flex-wrap -mx-3 mb-2">
+                            <div class="mt-6 flex flex-wrap mx-3 mb-2">
                                 <div class="w-full md:w-1/4 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
+                                    <x-label for="type">
                                         Type
-                                    </label>
-                                    <select
-                                        class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state" name="type">
+                                    </x-label>
+                                    <x-form-select wire:model="type" id="type" name="type">
                                         <option value="">Select one</option>
 
                                         <option value="studying" {{ old('type', $tenant->
@@ -111,34 +98,28 @@
                                             type) == 'working' ? 'selected' : '' }}>
                                             working
                                         </option>
-                                    </select>
+                                    </x-form-select>
 
                                     @error('type')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="w-full md:w-1/4 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
+                                    <x-label for="birthdate">
                                         Birthdate
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name" type="date" name="birthdate"
-                                        value="{{ old('birthdate', $tenant->birthdate) }}">
+                                    </x-label>
+                                    <x-form-input wire:model="birthdate" id="birthdate" type="date" name="birthdate"
+                                        value="{{ old('birthdate', $tenant->birthdate) }}" />
 
                                     @error('birthdate')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="w-full md:w-1/4 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        Gender
-                                    </label>
-                                    <select
-                                        class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state" name="gender">
+                                    <x-label for="gender">
+                                        Gender <span class="text-red-600">*</span>
+                                    </x-label>
+                                    <x-form-select wire:model="gender" id="gender" name="gender">
                                         <option value="">Select one</option>
 
                                         <option value="female" {{ old('gender', $tenant->
@@ -150,9 +131,7 @@
                                             gender) == 'male' ? 'selected' : '' }}>
                                             male
                                         </option>
-
-
-                                    </select>
+                                    </x-form-select>
 
                                     @error('gender')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -160,13 +139,10 @@
                                 </div>
 
                                 <div class="w-full md:w-1/4 px-3">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
+                                    <x-label for="civil_status">
                                         Civil Status
-                                    </label>
-                                    <select
-                                        class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state" name="civil_status">
+                                    </x-label>
+                                    <x-form-select wire:model="civil_status" id="civil_status" name="civil_status">
                                         <option value="">Select one</option>
 
                                         <option value="single" {{ old('civil_status', $tenant->
@@ -188,9 +164,7 @@
                                             civil_status) == 'divorced' ? 'selected' : '' }}>
                                             divorced
                                         </option>
-
-
-                                    </select>
+                                    </x-form-select>
 
                                     @error('civil_status')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -198,16 +172,14 @@
                                 </div>
                             </div>
 
-                            <div class="mt-6 flex flex-wrap -mx-3 mb-2">
+                            <div class="mt-6 flex flex-wrap mx-3 mb-2">
                                 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-state">
+                                    <x-label for="country_id">
                                         Country
-                                    </label>
+                                    </x-label>
                                     <div class="relative">
-                                        <select
-                                            class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-state" name="country_id">
+                                        <x-form-select wire:model="country_id" id="country_id" name="country_id">
+
                                             <option value="">Select one</option>
                                             @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ old('country_id', $tenant->
@@ -215,7 +187,7 @@
                                                 {{ $country->country }}
                                             </option>
                                             @endforeach
-                                        </select>
+                                        </x-form-select>
 
                                         @error('country_id')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -223,14 +195,12 @@
                                     </div>
                                 </div>
                                 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-state">
+                                    <x-label for="province_id">
                                         Province
-                                    </label>
+                                    </x-label>
                                     <div class="relative">
-                                        <select
-                                            class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-state" name="province_id">
+                                        <x-form-select wire:model="province_id" id="province_id" id="province_id"
+                                            name="province_id">
                                             <option value="">Select one</option>
                                             @foreach($provinces as $province)
                                             <option value="{{ $province->id }}" {{ old('province_id', $tenant->
@@ -238,20 +208,17 @@
                                                 {{ $province->province }}
                                                 @endforeach
                                             </option>
-                                        </select>
+                                        </x-form-select>
                                         @error('province_id')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-city">
+                                    <x-label for="city_id">
                                         City
-                                    </label>
-                                    <select
-                                        class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state" id="city_id" name="city_id">
+                                    </x-label>
+                                    <x-form-select wire:model="city_id" id="city_id" id="city_id" name="city_id">
                                         <option value="">Select one</option>
                                         @foreach($cities as $city)
                                         <option value="{{ $city->id }}" {{ old('city_id', $tenant->
@@ -259,7 +226,7 @@
                                             {{ $city->city }}
                                             @endforeach
                                         </option>
-                                    </select>
+                                    </x-form-select>
 
                                     @error('city_id')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -267,32 +234,92 @@
                                 </div>
 
                                 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-city">
+                                    <x-label for="barangay">
                                         Barangay
-                                    </label>
-                                   <input wire:model="barangay"
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="barangay" type="text" name="barangay" value="{{ old('barangay') }}">
+                                        </x-lab>
+                                        <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
+                                            value="{{ old('barangay', $tenant->barangay) }}" />
 
-                                    @error('barangay')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                        @error('barangay')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                 </div>
 
                             </div>
+                            <div class="mt-6 flex flex-wrap mx-3 mb-2">
+                                <div class="w-full md:w-1/2 px-3">
+                                    <x-label for="school">
+                                        School
+                                    </x-label>
+                                    <x-form-input wire:model="school" id="school" type="text" name="school"
+                                        value="{{ old('school', $tenant->school) }}" />
 
-                            <div class="flex flex-wrap -mx-3 mb-2">
+                                    @error('school')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="w-full md:w-1/2 px-3">
+                                    <x-label for="school_address">
+                                        School Address
+                                    </x-label>
+                                    <x-form-input wire:model="school_address" id="school_address" type="text"
+                                        name="school_address"
+                                        value="{{ old('school_address', $tenant->school_address) }}" />
+
+                                    @error('school_address')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap mx-3 mb-2">
+                                <div class="w-full md:w-1/3 px-3">
+                                    <x-label for="occupation">
+                                        Occupation
+                                    </x-label>
+                                    <x-form-input wire:model="occupation" id="occupation" type="text" name="occupation"
+                                        value="{{ old('occupation', $tenant->occupation) }}" />
+
+                                    @error('occupation')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="w-full md:w-1/3 px-3">
+                                    <x-label for="employer">
+                                        Employer
+                                    </x-label>
+                                    <x-form-input wire:model="employer" id="employer" type="text" name="employer"
+                                        value="{{ old('employer', $tenant->employer) }}" />
+
+                                    @error('employer')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="w-full md:w-1/3 px-3">
+                                    <x-label for="employer_address">
+                                        Employer Address
+                                    </x-label>
+                                    <x-form-input wire:model="employer_address" id="employer_address" type="text"
+                                        name="employer_address"
+                                        value="{{ old('employer_address', $tenant->employer_address) }}" />
+
+                                    @error('employer_address')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap mx-3 mb-2">
                                 <div class="w-full px-3 mb-6 md:mb-0 mt-5 flex">
                                     <div class="flex-3">
-                                        <label
-                                            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                            for="grid-city">
+                                        <x-label
+                                           
+                                            for="photo_id">
                                             Photo ID (i.e., Government issues ID, school ID, employee ID)
-                                        </label>
+                                        </x-label>
 
-                                        <x-input  id="photo_id" class="block mt-1 w-full" type="file"
-                                            name="photo_id" value="{{old('photo_id', $tenant->photo_id)}}" autofocus />
+                                        <x-form-input id="photo_id" type="file" name="photo_id"
+                                            value="{{old('photo_id', $tenant->photo_id)}}" autofocus />
 
                                         @error('photo_id')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -303,21 +330,32 @@
                                             alt="">
                                     </div>
                                 </div>
+
                             </div>
 
-                            <div class="mt-5">
-                                <p class="text-right">
-                                    <x-button>
-
-                                        <i class="fa-solid fa-circle-check"></i>&nbspSave
-                                    </x-button>
-                                </p>
-                            </div>
-                        </form>
 
                     </div>
+                    <div class="mt-6 mx-3 mb-2">
+                        <p class="text-right">
+                            <x-button>
+                                <svg wire:loading wire:target="submitForm"
+                                    class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                <i class="fa-solid fa-circle-right"></i>&nbspSubmit
+                            </x-button>
+                        </p>
+                    </div>
+                    </form>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>

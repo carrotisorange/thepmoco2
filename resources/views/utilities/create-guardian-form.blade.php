@@ -3,7 +3,7 @@
     <div class="mt-6 flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3">
             <x-label for="guardian">
-                Guardian
+                Guardian <span class="text-red-600">*</span>
             </x-label>
             <x-form-input wire:model="guardian" id="grid-first-name" type="text" name="guardian"
                 value="{{ old('guardian') }}" />
@@ -14,7 +14,7 @@
         </div>
         <div class="w-full md:w-1/2 px-3">
             <x-label for="relationship_id">
-                Relationship
+                Relationship <span class="text-red-600">*</span>
             </x-label>
             <x-form-select wire:model="relationship_id" id="grid-state" name="relationship_id">
                 <option value="">Select one</option>
@@ -40,7 +40,7 @@
         </div>
         <div class="mt-6 w-full md:w-1/2 px-3">
             <x-label for="mobile_number">
-                Mobile
+                Mobile <span class="text-red-600">*</span>
             </x-label>
             <x-form-input wire:model="mobile_number" id="grid-last-name" type="text" name="mobile_number"
                 value="{{ old('mobile_number') }}" />

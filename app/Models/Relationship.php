@@ -13,4 +13,9 @@ class Relationship extends Model
     {
         return $this->belongsTo(Guardian::class, 'relationship_id');
     }
+
+        public function representative()
+        {
+        return $this->belongsTo(Representative::class, 'relationship_id');
+        }
 }

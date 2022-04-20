@@ -13,4 +13,9 @@ class Representative extends Model
     {
     return $this->belongsTo(Owner::class, 'owner_uuid');
     }
+
+    public function relationship()
+    {
+        return $this->belongsTo(Relationship::class);
+    }
 }
