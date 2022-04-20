@@ -20,9 +20,13 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    {{-- <button id="remove-unit" wire:click="deleteUnits" class="bg-red-600">
+                   {{-- <x-button wire:click="deleteUnits()" data-modal-toggle="popup-modal"><i class="fa-solid fa-trash"></i>&nbsp
                         Remove
-                    </button> --}}
+                    </x-button> --}}
+
+                    <x-button wire:click="deleteUnits()"><i class="fa-solid fa-trash"></i>&nbsp
+                        Remove
+                    </x-button>
                     <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Add
                         Building
                     </x-button>
@@ -39,7 +43,9 @@
             </div>
         </h2>
     </x-slot>
+         Selected countries =  ({{ var_export($selectedUnits) }})
     <div class="py-12">
+  
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -57,10 +63,9 @@
                                             <tr>
                                                 <th scope="col" class="p-4">
                                                     <div class="flex items-center">
-                                                        <input id="checkbox-all-search" type="checkbox"
+                                                        <input id="" type="checkbox"
                                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                        <label for="checkbox-all-search"
-                                                            class="sr-only">checkbox</label>
+                                                        
                                                     </div>
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
@@ -79,14 +84,12 @@
                                                     Size
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
-                                                    Rent
+                                                    Rent/Mo
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
                                                     Occupancy
                                                 </th>
-                                                {{-- <th scope="col" class="px-6 py-3">
-                                                    <span class="sr-only">Edit</span>
-                                                </th> --}}
+                                              
                                             </tr>
                                         </thead>
                                         <?php 
@@ -108,40 +111,28 @@
                                         <tbody>
                                             <tr
                                                 class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                                <td class="w-4 p-4">
+                                                <td class="p-4">
                                                     <div class="flex items-center">
-                                                        <input id="checkbox-table-search-1" type="checkbox"
-                                                            wire:model="selected" form="remove-unit"
+                                                        <input type="checkbox"
+                                                            wire:model="selectedUnits" 
                                                             value="{{ $unit->uuid }}"
                                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                        <label for="checkbox-table-search-1"
-                                                            class="sr-only">checkbox</label>
+                                                       
                                                     </div>
                                                 </td>
 
-                                                <td class="px-6 py-4">
+                                                <td class="px-4 py-4">
                                                     <input
-                                                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required /"
                                                         form="edit-form" type="text" name="unit{{ $name++ }}"
                                                         value="Unit {{ $unit_count++ }}">
                                                 </td>
 
                                                 <input form="edit-form" type="hidden" name="uuid{{ $uuid++ }}" id="uuid"
                                                     value="{{ $unit->uuid }}">
-                                                <td class="px-6 py-4">
+                                                <td class="px-4 py-4">
                                                     <select
-                                                        class="block p-5
-                                                                                                                    py-1.5
-                                                                                                                    text-base
-                                                                                                                    font-normal
-                                                                                                                    text-gray-700
-                                                                                                                    bg-white bg-clip-padding bg-no-repeat
-                                                                                                                    border border-solid border-gray-300
-                                                                                                                    rounded
-                                                                                                                    transition
-                                                                                                                    ease-in-out
-                                                                                                                    m-0
-                                                                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /
                                                         form="edit-form" name="building_id{{ $building_id++  }}"
                                                         id="building_id">
                                                         <option value="">Select one </option>
@@ -153,20 +144,9 @@
 
                                                     </select>
                                                 </td>
-                                                <td class="px-6 py-4">
+                                                <td class="px-4 py-4">
                                                     <select
-                                                        class="block p-5
-                                                                                                                    py-1.5
-                                                                                                                    text-base
-                                                                                                                    font-normal
-                                                                                                                    text-gray-700
-                                                                                                                    bg-white bg-clip-padding bg-no-repeat
-                                                                                                                    border border-solid border-gray-300
-                                                                                                                    rounded
-                                                                                                                    transition
-                                                                                                                    ease-in-out
-                                                                                                                    m-0
-                                                                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /
                                                         form="edit-form" name="floor_id{{ $floor_id++  }}"
                                                         id="floor_id">
                                                         <option value="">Select one</option>
@@ -176,20 +156,9 @@
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td class="px-6 py-4">
+                                                <td class="px-4 py-4">
                                                     <select
-                                                        class="block p-5
-                                                                                                                    py-1.5
-                                                                                                                    text-base
-                                                                                                                    font-normal
-                                                                                                                    text-gray-700
-                                                                                                                    bg-white bg-clip-padding bg-no-repeat
-                                                                                                                    border border-solid border-gray-300
-                                                                                                                    rounded
-                                                                                                                    transition
-                                                                                                                    ease-in-out
-                                                                                                                    m-0
-                                                                                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /
                                                         form="edit-form" name="category_id{{ $category_id++  }}">
                                                         <option value="">Select one</option>
                                                         @foreach ($categories as $category)
@@ -199,22 +168,22 @@
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td class="px-6 py-4">
+                                                <td class="px-4 py-4">
                                                     <input
-                                                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required /"
                                                         form="edit-form" name="size{{ $size++  }}" id="size" type="text"
                                                         min="1" value="{{ $unit->size }}">
                                                     </input>
                                                 </td>
-                                                <td class="px-6 py-4">
+                                                <td class="px-4 py-4">
                                                     <input
-                                                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /"
                                                         form="edit-form" min="0" name="rent{{ $rent++  }}" id="rent"
                                                         type="number" value="{{ $unit->rent }}"></input>
                                                 </td>
-                                                <td class="px-6 py-4">
+                                                <td class="px-4 py-4">
                                                     <input
-                                                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /"
                                                         form="edit-form" name="occupancy{{ $occupancy++  }}"
                                                         id="occupancy" type="number" min="1"
                                                         value="{{ $unit->occupancy }}">
@@ -239,4 +208,5 @@
     </div>
 
     @include('utilities.create-building');
+   @include('utilities.delete-unit-modal')
 </x-app-layout>

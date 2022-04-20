@@ -14,17 +14,12 @@ class UnitComponent extends Component
     public $batch_no;
     public $unit_count;   
 
+    public $selectedUnits = [];
+
     public function mount($batch_no, $unit_count)
     {
         $this->batch_no = $batch_no;
         $this->unit_count = $unit_count;
-    }
-
-    public $selected = [];
-
-    public function deleteUnits()
-    {
-        dd($this->selected);
     }
 
     public function render()
