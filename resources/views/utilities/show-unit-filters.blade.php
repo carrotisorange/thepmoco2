@@ -22,7 +22,7 @@
                 <div class="form-check">
                     <input wire:model="status_id"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="radio" value="{{ $status->status_id }}">
+                        type="checkbox" value="{{ $status->status_id }}">
                     <label class="form-check-label inline-block text-gray-800" for="status_id">
                         {{ $status->status }} ({{ $status->count }})
                     </label>
@@ -40,7 +40,7 @@
                 <div class="form-check">
                     <input wire:model="is_enrolled"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="radio" value="{{ $enrollment_status->is_enrolled }}" id="flexCheckDefault">
+                        type="checkbox" value="{{ $enrollment_status->is_enrolled }}" id="flexCheckDefault">
                     @if($enrollment_status->is_enrolled == 1)
                     <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
                         enrolled ({{ $enrollment_status->count }})
@@ -64,7 +64,7 @@
                 <div class="form-check">
                     <input wire:model="category_id"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="radio" value="{{ $category->category_id }}" id="category_id">
+                        type="checkbox" value="{{ $category->category_id }}" id="category_id">
                     <label class="form-check-label inline-block text-gray-800" for="category_id">
                         {{ $category->category }} ({{ $category->count }})
                     </label>
@@ -81,7 +81,7 @@
                 <div class="form-check">
                     <input wire:model="building_id"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="radio" value="{{ $building->building_id }}" id="building_id">
+                        type="checkbox" value="{{ $building->building_id }}" id="building_id">
                     <label class="form-check-label inline-block text-gray-800" for="building_id">
                         {{ $building->building }} ({{ $building->count }})
                     </label>
@@ -98,7 +98,7 @@
                 <div class="form-check">
                     <input wire:model="floor_id"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="radio" value="{{ $floor->floor_id }}" id="floor_id">
+                        type="checkbox" value="{{ $floor->floor_id }}" id="floor_id">
                     <label class="form-check-label inline-block text-gray-800" for="floor_id">
                         {{ $floor->floor }} ({{ $floor->count }})
                     </label>
@@ -115,7 +115,7 @@
                 <div class="form-check">
                     <input wire:model="rent"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="radio" value="{{ $rent->rent }}" id="flexCheckDefault">
+                        type="checkbox" value="{{ $rent->rent }}" id="flexCheckDefault">
                     <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
                         ₱ {{ number_format($rent->rent, 2) }} ({{ $rent->count }})
                     </label>
@@ -131,7 +131,7 @@
                 <div class="form-check">
                     <input wire:model="discount"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="radio" value="{{ $discount->discount }}" id="flexCheckDefault">
+                        type="checkbox" value="{{ $discount->discount }}" id="flexCheckDefault">
                     <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
                         ₱ {{ number_format($discount->discount, 2) }} ({{ $discount->count }})
                     </label>
@@ -147,7 +147,7 @@
                 <div class="form-check">
                     <input wire:model="size"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="radio" value="{{ $size->size }}" id="flexCheckDefault">
+                        type="checkbox" value="{{ $size->size }}" id="flexCheckDefault">
                     <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
                         {{ $size->size }} sqm ({{ $size->count }})
                     </label>

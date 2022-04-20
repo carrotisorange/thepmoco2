@@ -66,9 +66,9 @@
                     <div class="basis-1/8">
                         @include('utilities.show-unit-filters')
                     </div>
-                    <div class="basis-3/4 ml-8">
+                    <div class="basis-3/4 ml-12">
                         @if($units->count())
-                        <span class="font-bold">Results ({{ $units->count() }})...</span>
+                        <span class="font-bold tex-center">Results ({{ $units->count() }})...</span>
                         @else
                         <p class="text-center text-red-600">No units found!</p>
                         @endif
