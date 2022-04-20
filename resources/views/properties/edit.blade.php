@@ -22,9 +22,9 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/properties'">Back
+                    <x-button onclick="window.location.href='/properties'"><i class="fa-solid fa-circle-arrow-left"></i>&nbspBack
                     </x-button>
-                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create Property
+                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'"><i class="fa-solid fa-circle-arrow-left"></i>&nbspProperty
                     </x-button>
                     {{-- <x-button form="edit-form">Save</x-button> --}}
                 </h5>
@@ -170,7 +170,7 @@
                             </div>
                             <div class="mt-5">
                                 <p class="text-right">
-                                    <x-button>Save</x-button>
+                                    <x-button><i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                                 </p>
                             </div>
 
