@@ -47,7 +47,7 @@
                     </div>
                     <h5 class="flex-1 text-right">
                         <x-button onclick="window.location.href='/properties'">
-                            Back</x-button>
+                           <i class="fa-solid fa-circle-arrow-left"></i>&nbsp Back</x-button>
                     </h5>
 
                 </div>
