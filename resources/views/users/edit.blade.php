@@ -46,12 +46,9 @@
                         </h2>
                     </div>
                     <h5 class="flex-1 text-right">
-
                         <x-button onclick="window.location.href='{{ url()->previous() }}'">
-                            Back
-
+                            <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack
                         </x-button>
-
                     </h5>
                 </div>
             </div>
@@ -59,10 +56,9 @@
         <main>
             <div class="py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 bg-white border-b border-gray-200">
-                            <!-- This example requires Tailwind CSS v2.0+ -->
-                            <!-- Name -->
+                    <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-12 bg-white border-b border-gray-200">
+
                             <div>
                                 <form action="/profile/{{ $user->username }}/update" method="POST" id="edit-form"
                                     enctype="multipart/form-data">
@@ -183,7 +179,7 @@
                                     <div class="mt-5">
                                         <p class="text-right">
                                             <x-button form="edit-form">
-                                                Submit
+                                               <i class="fa-solid fa-circle-check"></i>&nbspSubmit
                                             </x-button>
                                         </p>
                                     </div>
