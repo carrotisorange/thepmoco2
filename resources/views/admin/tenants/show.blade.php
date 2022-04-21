@@ -175,8 +175,7 @@
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $contract->uuid }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspSelect
-                                                        your action <svg class="ml-2 w-4 h-4" fill="none"
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions <svg class="ml-2 w-4 h-4" fill="none"
                                                             stroke="currentColor" viewBox="0 0 24 24"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -284,8 +283,7 @@
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $guardian->id }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspSelect
-                                                        your action <svg class="ml-2 w-4 h-4" fill="none"
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions<svg class="ml-2 w-4 h-4" fill="none"
                                                             stroke="currentColor" viewBox="0 0 24 24"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -379,8 +377,8 @@
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $reference->id }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspSelect
-                                                        your action <svg class="ml-2 w-4 h-4" fill="none"
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
+                                                         <svg class="ml-2 w-4 h-4" fill="none"
                                                             stroke="currentColor" viewBox="0 0 24 24"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
