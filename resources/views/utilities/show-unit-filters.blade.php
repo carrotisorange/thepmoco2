@@ -2,12 +2,13 @@
     @if($status_id || $is_enrolled || $category_id || $building_id || $floor_id || $rent ||
     $discount || $size)
 
-    <span> <a class="text-red-600 cursor-pointer" wire:click="resetFilters"><i class="fa-solid fa-circle-xmark"></i>
-            Reset
-            filters</a></span>
+    <span>
+        <x-button class="text-red-600 cursor-pointer" wire:click="resetFilters"><i class="fa-solid fa-circle-xmark"></i>&nbsp
+            Clear filters</x-button>
+    </span>
 
     @else
-    <span class="font-bold">Filters</span>
+    <span class="font-bold">Apply Filters</span>
 
 
 

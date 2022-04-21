@@ -74,58 +74,7 @@
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 ">
-                    <div class="flex justify-center">
-                        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white">
-
-                            <img src="/storage/{{ $unit->thumbnail }}"
-                                class="p-2 bg-white border rounded max-w-md mt-5 mx-5 ml-5 mr-5" alt="..." />
-                        </div>
-                        <div class="flex flex-col md:flex-row md:max-w-xl">
-
-                            <div class="p-6 flex flex-col justify-start">
-                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $unit->unit }}</h5>
-                                <hr>
-                                <p class="mt-5 text-gray-700 text-base mb-4">
-                                    Category: {{ $unit->category->category }}
-                                </p>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Enrolled in Leasing:
-                                    @if($unit->is_enrolled === 1)
-                                    Enrolled
-                                    @else
-                                    Unenrolled
-                                    @endif
-                                </p>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Building: {{ $unit->building->building }}
-                                </p>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Floor: {{ $unit->floor->floor }}
-                                </p>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Status: {{ $unit->status->status }}
-                                </p>
-
-                                <p class="text-gray-700 text-base mb-4">
-                                    Rent: ₱{{ number_format($unit->rent, 2) }}
-                                </p>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Discount: ₱{{ number_format($unit->discount, 2) }}
-                                </p>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Size: {{ $unit->size }} sqm
-                                </p>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Created: {{ $unit->created_at->diffForHumans() }}
-                                </p>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+               @include('utilities.show-unit-info')
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
