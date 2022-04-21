@@ -985,11 +985,14 @@ input:checked + .toggle-bg {
 .mt-6 {
   margin-top: 1.5rem;
 }
-.mb-16 {
-  margin-bottom: 4rem;
-}
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+.ml-6 {
+  margin-left: 1.5rem;
+}
+.mb-16 {
+  margin-bottom: 4rem;
 }
 .mb-3 {
   margin-bottom: 0.75rem;
@@ -1011,9 +1014,6 @@ input:checked + .toggle-bg {
 }
 .mb-8 {
   margin-bottom: 2rem;
-}
-.ml-6 {
-  margin-left: 1.5rem;
 }
 .mt-10 {
   margin-top: 2.5rem;
@@ -1707,13 +1707,13 @@ input:checked + .toggle-bg {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 .px-8 {
   padding-left: 2rem;

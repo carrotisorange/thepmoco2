@@ -5,7 +5,7 @@
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3">
             <x-label for="reference">
-                Reference <span class="text-red-600">*</span>
+                Full Name <span class="text-red-600">*</span>
             </x-label>
             <x-form-input wire:model="reference"
                 id="reference" type="text" name="reference" value="{{ old('reference') }}" />

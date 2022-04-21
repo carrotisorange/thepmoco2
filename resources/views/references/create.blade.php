@@ -26,11 +26,13 @@
                     @if($references->count())
                     <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'">
-                        <i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
+                        <i class="fa-solid fa-circle-check"></i>&nbspSave
+                    </x-button>
                     @else
                     <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'">
-                        <i class="fa-solid fa-forward"></i>&nbspSkip</x-button>
+                        <i class="fa-solid fa-forward"></i>&nbspSkip
+                    </x-button>
                     @endif
                 </h5>
 
@@ -54,9 +56,10 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
+                                    <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Reference</th>
+                                        Full Name</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Email</th>
@@ -73,10 +76,12 @@
                                     </th>
                                 </tr>
                             </thead>
-
+                            <?php $ctr = 1; ?>
                             @foreach ($references as $reference)
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
+                                    <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                        $ctr++}}</th>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $reference->reference }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
@@ -90,8 +95,8 @@
                                             id="delete-form">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900"
-                                                form="delete-form"><i class="fa-solid fa-2x fa-trash-can"></i></button>
+                                            <button class="text-red-600 hover:text-red-900" form="delete-form"><i
+                                                    class="fa-solid fa-2x fa-trash-can"></i></button>
                                         </form>
                                     </td>
                                 </tr>

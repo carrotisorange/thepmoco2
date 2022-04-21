@@ -83,6 +83,7 @@ class OldTenantComponent extends Component
         $validatedData = $this->validate();
 
         $validatedData['uuid'] = Str::uuid();
+
         if($this->photo_id)
         {
             $validatedData['photo_id'] = $this->photo_id->store('tenants');
@@ -108,33 +109,6 @@ class OldTenantComponent extends Component
 
         $validatedData['property_uuid'] = Session::get('property');
 
-        // $user = User::create([
-        //     'email' => $this->email,
-        //     'name' => $this->tenant,
-        //     'username' => Str::random(8),
-        //     'mobile_number' => $this->mobile_number,
-        //     'role_id' => '7',
-        //     'password' => Hash::make($this->mobile_number),
-        //     'avatar' => 'avatars/avatar.png',
-        //     'account_owner_id' => auth()->user()->id,
-        //     'status' => 'pending',
-        //     'email_verified_at' => now(),
-        // ]);
-
-        // UserProperty::create([
-        //   'property_uuid' => Session::get('property'),
-        //   'user_id' => $user->id,
-        //   'is_account_owner' => false
-        // ]);
-
-        //  $details =[
-        //  'name' => $this->tenant,
-        //  'email' => $this->email,
-        //  'username' => $user->username
-        //  ];
-
-        //  Mail::to($this->email)->send(new WelcomeMailToNewTenant($details));
-
        try{
             DB::beginTransaction();
             $tenant = Tenant::create($validatedData)->uuid;
@@ -147,7 +121,6 @@ class OldTenantComponent extends Component
             return redirect()->with('error','Cannot perform your action.');
        }
 
-       
     }
 
     public function render()

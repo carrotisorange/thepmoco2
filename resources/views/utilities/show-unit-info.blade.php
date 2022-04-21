@@ -9,7 +9,7 @@
     <!-- Options -->
     <div class="mt-4 lg:mt-0 lg:row-span-3">
         <h2 class="sr-only">Product information</h2>
-        <p class="text-3xl text-gray-900">Php {{ number_format($unit->price,2) }}/month</p>
+        <p class="text-3xl text-gray-900">Php {{ number_format($unit->rent,2) }}/month</p>
 
         <div class="mt-10">
             <h3 class="text-sm font-medium text-gray-900">Description</h3>

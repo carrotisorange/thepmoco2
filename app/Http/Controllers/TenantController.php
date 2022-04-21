@@ -106,10 +106,7 @@ class TenantController extends Controller
     public function edit(Tenant $tenant)
     {
         return view('admin.tenants.edit',[
-            'tenant' => $tenant, 
-            'cities' => City::all(),
-            'provinces' => Province::all(),
-            'countries' => Country::all()
+            'tenant_details' => $tenant,
         ]);
     }
 
@@ -122,19 +119,22 @@ class TenantController extends Controller
      */
     public function update(Request $request, Tenant $tenant)
     {
+        return 'asdas';
+
         $attributes = request()->validate([
         'tenant' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('tenants', 'email')->ignore($tenant->uuid, 'uuid')],
-        'mobile_number' => ['required', Rule::unique('tenants', 'mobile_number')->ignore($tenant->uuid, 'uuid')],
-        'birthdate' => 'required',
-        'type' => 'required',
+        'email' => ['nullable', 'string', 'email', 'max:255', Rule::unique('tenants', 'email')->ignore($tenant->uuid,
+        'uuid')],
+        'mobile_number' => ['nullable', Rule::unique('tenants', 'mobile_number')->ignore($tenant->uuid, 'uuid')],
+        'birthdate' => 'nullable',
+        'type' => 'nullable',
         'gender' => 'required',
-        'civil_status' => 'required',
-        'country_id' => ['required', Rule::exists('countries', 'id')],
-        'province_id' => ['required', Rule::exists('provinces', 'id')],
-        'city_id' => ['required', Rule::exists('cities', 'id')],
+        'civil_status' => 'nullable',
+        'country_id' => ['nullable', Rule::exists('countries', 'id')],
+        'province_id' => ['nullable', Rule::exists('provinces', 'id')],
+        'city_id' => ['nullable', Rule::exists('cities', 'id')],
         'barangay' => 'nullable',
-        'photo_id' => 'image',
+        'photo_id' => 'nullable|image',
         'school' => 'nullable',
         'school_address' => 'nullable',
         'occupation' => 'nullable',
@@ -159,9 +159,6 @@ class TenantController extends Controller
             DB::rollback();
             return back()->with('error', 'Cannot perform your action.');
         }
-
-        return 'asd';
-
         
     }
 

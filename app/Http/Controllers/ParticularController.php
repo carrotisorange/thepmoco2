@@ -48,6 +48,7 @@ class ParticularController extends Controller
      */
     public function store(Request $request)
     {
+
         $particular_attributes = request()->validate([
             'particular_id'=> 'required'
         ]);

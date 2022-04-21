@@ -68,14 +68,15 @@
                                         Bill No</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Particular</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Bill</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Period Covered</th>
 
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Particular</th>
+
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Edit</span>
                                     </th>
@@ -92,14 +93,16 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         $bill->bill_no }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                        $bill->particular->particular }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                         number_format($bill->bill,2) }}</td>
+
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {{
                                         Carbon\Carbon::parse($bill->start)->format('M d,
                                         Y') }}- {{ Carbon\Carbon::parse($bill->end)->format('M d,
                                         Y') }}</td>
 
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $bill->particular->particular }}</td>
+
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form method="POST" action="/bill/{{ $bill->id }}/delete">
                                             @csrf

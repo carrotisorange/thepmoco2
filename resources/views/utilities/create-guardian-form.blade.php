@@ -3,7 +3,7 @@
     <div class="mt-6 flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3">
             <x-label for="guardian">
-                Guardian <span class="text-red-600">*</span>
+                Full Name <span class="text-red-600">*</span>
             </x-label>
             <x-form-input wire:model="guardian" id="grid-first-name" type="text" name="guardian"
                 value="{{ old('guardian') }}" />
