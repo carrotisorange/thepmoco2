@@ -36,7 +36,14 @@ class RenewContractComponent extends Component
             $this->end = Carbon::parse($this->contract_details->start)->addYear()->format('Y-m-d');
             $this->rent = $contract_details->rent;
             $this->discount = $contract_details->discount;
+           $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
        }
+
+
+        public function hydrateTerm()
+        {
+           $this->term = Carbon::parse($this->start)->diffInMonths(Carbon::parse($this->start)).' months';
+        }
 
        protected function rules()
        {
@@ -102,7 +109,7 @@ class RenewContractComponent extends Component
        'start' => Carbon::parse($this->start)->format('M d, Y'),
        'end' => Carbon::parse($this->end)->format('M d, Y'),
        'rent' => $this->contract_details->rent,
-       'unit' => $this->contract_details->unit->unit,
+       'unit' => $this->contract_details->unit_uuid,
        ];
 
        Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
@@ -110,12 +117,11 @@ class RenewContractComponent extends Component
        DB::commit();
 
        return
-       redirect('/contract/'.$contract_uuid.'/preview/')->with('success','Contract
-       has been transfered.');
-
+        redirect('/tenant/'.$this->contract_details->tenant_uuid)->with('success','Contract
+        has been renewed.');
        } catch (\Throwable $e) {
-       ddd($e);
        DB::rollback();
+       ddd($e);
        return back()->with('error','Cannot complete your action.');
        }
        }

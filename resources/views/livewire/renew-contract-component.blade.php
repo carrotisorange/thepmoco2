@@ -38,8 +38,8 @@
                                 <x-label for="term">
                                     Term
                                 </x-label>
-                                <x-form-input id="term" value="{{ old('term', (floor($term/30))) }} months" type="text"
-                                    name="term" />
+                                <x-form-input wire:model="term" id="term" value="{{ old('term', $term)}} " type="text"
+                                    name="term" readonly />
                             </div>
 
                             <div class="w-full md:w-1/3 px-3">
@@ -76,9 +76,9 @@
                                 <x-form-input wire:model="contract" id="contract" type="file" name="contract"
                                     value="{{ old('contract') }}" />
 
-                                    @error('contract')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                @error('contract')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
                             </div>
 
 

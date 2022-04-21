@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Transfer | Create')
+    @section('title', '| New | Create')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -25,7 +25,7 @@
                 <h5 class="flex-1 text-right">
 
                     <x-button wire:submit.prevent="submitForm" onclick="window.location.href='{{ url()->previous() }}'">
-                        Back</x-button>
+                        <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack</x-button>
 
                 </h5>
 

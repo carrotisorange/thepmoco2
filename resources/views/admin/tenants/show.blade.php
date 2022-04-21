@@ -192,6 +192,12 @@
                                                                         class="fa-solid fa-eye"></i>&nbspShow
                                                                     Contract</a>
                                                             </li>
+                                                            <li>
+                                                                <a href="/unit/{{ $contract->unit_uuid }}"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-house"></i>&nbspShow
+                                                                    Unit</a>
+                                                            </li>
 
                                                             <li>
                                                                 <a href="/contract/{{ $contract->uuid }}/transfer"

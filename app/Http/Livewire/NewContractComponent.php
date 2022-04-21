@@ -21,31 +21,38 @@ class NewContractComponent extends Component
 
        public $tenant;
 
-        public $selectedUnit = null;
-        public $rent = 0.00;
+        public $unit_uuid;
+        public $rent;
         public $start;
         public $end;
 
-        public $discount= 0;
+        public $discount;
         public $contract;
         public $term;
 
+         public function mount($tenant)
+         {
+            $this->tenant = $tenant;
+            $this->start = Carbon::now()->format('Y-m-d');
+            $this->end = Carbon::now()->addYear()->format('Y-m-d');
+            $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
+         }
 
-        public function updatedSelectedUnit($unit_uuid)
+         public function hydrateTerm()
+         {
+            $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
+         }
+
+        public function updatedUnitUuid($unit_uuid)
         {
             $this->rent = Unit::find($unit_uuid)->rent;
             $this->discount = Unit::find($unit_uuid)->discount;
         }
 
-
-       public function mount($tenant)
-       {
-            $this->tenant = $tenant;
-       }
-
        protected function rules()
        {
             return [
+            'unit_uuid' => 'required',
             'start' => 'required|date',
             'end' => 'required|date|after:start',
             'rent' => 'required',
@@ -76,7 +83,7 @@ class NewContractComponent extends Component
 
        $validatedData['uuid'] = $contract_uuid;
        $validatedData['tenant_uuid'] = $this->tenant->uuid;
-       $validatedData['unit_uuid'] = $this->selectedUnit;
+       $validatedData['unit_uuid'] = $this->unit_uuid;
        $validatedData['property_uuid'] = Session::get('property');
        $validatedData['user_id'] = auth()->user()->id;
        $validatedData['bill_reference_no'] = $reference_no;
@@ -92,7 +99,7 @@ class NewContractComponent extends Component
 
        Contract::create($validatedData);
 
-       Unit::where('uuid', $this->selectedUnit)->update([
+       Unit::where('uuid', $this->unit_uuid)->update([
         'status_id' => 4
        ]);
 
@@ -101,7 +108,7 @@ class NewContractComponent extends Component
        'start' => Carbon::parse($this->start)->format('M d, Y'),
        'end' => Carbon::parse($this->end)->format('M d, Y'),
        'rent' => $this->rent,
-       'unit' => $this->selectedUnit,
+       'unit' => $this->unit_uuid,
        ];
 
        Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
@@ -109,7 +116,7 @@ class NewContractComponent extends Component
        DB::commit();
 
        return
-        redirect('/contract/'.$contract_uuid.'/preview/')->with('success','Contract
+        redirect('/tenant/'.$this->tenant->uuid)->with('success','Contract
         // has been transfered.');
     //    redirect('/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/bills/')->with('success','Contract
     //    has been transfered.');
