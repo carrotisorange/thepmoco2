@@ -115,7 +115,7 @@
             </x-label>
             <div class="relative">
                 <x-form-select wire:model="country_id" id="country_id" name="country_id">
-                    <option value="{{ $country_id }}">Philippines</option>
+                    <option value="">Select one</option>
                     @foreach ($countries as $country)
                     <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
                         'selected': 'Select one'
@@ -166,7 +166,7 @@
 
         <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <x-label for="barangay">
-                Barangay
+                Address
                 </x-lab>
                 <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
                     value="{{ old('barangay') }}" />

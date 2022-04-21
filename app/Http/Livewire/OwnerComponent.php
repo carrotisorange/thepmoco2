@@ -77,17 +77,17 @@ class OwnerComponent extends Component
 
                 if(!$this->country_id)
                 {
-                $validatedData['country_id'] = '18';
+                $validatedData['country_id'] = '247';
                 }
 
                  if(!$this->province_id)
                  {
-                 $validatedData['province_id'] = '81';
+                 $validatedData['province_id'] = '4121';
                  }
 
                   if(!$this->city_id)
                   {
-                  $validatedData['city_id'] = '137';
+                  $validatedData['city_id'] = '48315';
                   }
 
                 $owner = Owner::create($validatedData)->uuid;
@@ -103,10 +103,9 @@ class OwnerComponent extends Component
                
 
                 return view('livewire.owner-component',[
-                        'cities' => City::orderBy('city', 'ASC')->get(),
-                        'provinces' => Province::orderBy('province', 'ASC')->get(),
+                        'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
+                        'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
                         'countries' => Country::orderBy('country', 'ASC')->get()
-                        
                 ]);
         }
 }
