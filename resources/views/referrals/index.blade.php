@@ -13,7 +13,7 @@
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">
-                                    {{ Str::plural('Point', $points->count())}} ({{ $points->count() }})
+                                    {{ Str::plural('Referral', $referrals->count())}} ({{ $referrals->count() }})
                                 </li>
                             </ol>
                         </nav>
@@ -39,10 +39,10 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                @if (!$points->count())
-                                <span class="text-center text-red">No points found!</span>
+                                @if (!$referrals->count())
+                                <span class="text-center text-red">No referrals found!</span>
                                 @else
-                                <span class="text-center text-red">Total points: {{ $points->sum('point') }}</span>
+
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr =1; ?>
@@ -53,30 +53,41 @@
                                                     #</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Action</th>
+                                                    Name</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Point</th>
+                                                    Contract</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Admin</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Earned</th>
-                                              
+
                                             </tr>
                                         </thead>
-                                        @foreach ($points as $point)
+                                        @foreach ($referrals as $referral)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $point->action }}
+                                                    {{ $referral->referral }}
                                                 </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($point->point, 2)}}
+                                                    {{$referral->contract->tenant->tenant.' in
+                                                    '.$referral->contract->unit->unit }}
                                                 </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ Carbon\Carbon::parse($point->created_at)->format('M d, Y') }}
+                                                    {{ $referral->contract->user->user }}
+                                                </td>
+
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ Carbon\Carbon::parse($referral->created_at)->format('M d, Y') }}
                                                 </td>
                                             </tr>
                                         </tbody>

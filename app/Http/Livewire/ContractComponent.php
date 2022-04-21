@@ -95,7 +95,8 @@ class ContractComponent extends Component
              {
                  Referral::create([
                  'referral' => $this->referral,
-                 'contract_uuid' => $contract_uuid
+                 'contract_uuid' => $contract_uuid,
+                 'property_uuid' => Session::get('property')
                  ]);
              }
              

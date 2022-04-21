@@ -26,6 +26,12 @@
                 @endcan
                 @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/referrals"
+                        :active="request()->routeIs('referrals')">
+                      <i class="fa-solid fa-user-group"></i>&nbspReferrals
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/units"
                         :active="request()->routeIs('units')">
                         <i class="fa-solid fa-house"></i>&nbspUnits
@@ -159,6 +165,13 @@
             @endcannot
 
             @can('managerandadmin')
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/referrals"
+                :active="request()->routeIs('referrals')">
+                <i class="fa-solid fa-user-group"></i>&nbspReferrals
+            </x-responsive-nav-link>
+            @endcan
+
+            @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/units"
                 :active="request()->routeIs('units')">
                 <i class="fa-solid fa-house"></i>&nbspUnits
@@ -213,13 +226,13 @@
             </div>
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link target="_blank" href="/points">
-                   <i class="fas fa-coins"></i> {{ __('My Points') }}
+                    <i class="fas fa-coins"></i> {{ __('My Points') }}
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link href="/profile/{{ Auth::user()->username }}/edit"
                     :active="request()->routeIs('profile')">
-                   <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
+                    <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                 </x-responsive-nav-link>
             </div>
 

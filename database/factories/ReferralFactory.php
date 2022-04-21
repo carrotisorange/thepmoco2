@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ReferralsFactory extends Factory
+class ReferralFactory extends Factory
 {
     /**
      * Define the model's default state.

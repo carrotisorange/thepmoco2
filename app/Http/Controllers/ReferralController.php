@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Referrals;
+use App\Models\Referral;
 use Illuminate\Http\Request;
+use App\Models\Property;
+use Session;
 
-class ReferralsController extends Controller
+class ReferralController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class ReferralsController extends Controller
      */
     public function index()
     {
-        //
+        return view('referrals.index',[
+            'referrals' => Property::find(Session::get('property'))->referrals
+        ]);
     }
 
     /**
@@ -41,10 +45,10 @@ class ReferralsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Referrals  $referrals
+     * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function show(Referrals $referrals)
+    public function show(Referral $referral)
     {
         //
     }
@@ -52,10 +56,10 @@ class ReferralsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Referrals  $referrals
+     * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function edit(Referrals $referrals)
+    public function edit(Referral $referral)
     {
         //
     }
@@ -64,10 +68,10 @@ class ReferralsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Referrals  $referrals
+     * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Referrals $referrals)
+    public function update(Request $request, Referral $referral)
     {
         //
     }
@@ -75,10 +79,10 @@ class ReferralsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Referrals  $referrals
+     * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Referrals $referrals)
+    public function destroy(Referral $referral)
     {
         //
     }

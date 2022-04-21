@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Referral;
 
 class Contract extends Model
 {
@@ -37,5 +38,10 @@ class Contract extends Model
     {
     return $this->belongsTo(Property::class, 'property_uuid');
     }
+
+     public function referral()
+     {
+     return $this->belongsTo(Referral::class, 'contract_uuid');
+     }
 
 }

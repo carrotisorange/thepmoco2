@@ -43,6 +43,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
      Route::get('concerns', [ConcernController::class, 'index'])->name('concerns');
     
     Route::get('team', [TeamController::class, 'index'])->name('team');
+
+    Route::get('referrals', [ReferralController::class, 'index'])->name('referrals');
     
     //Route::get('tenants', [ContractController::class, 'index'])->name('contracts');
 

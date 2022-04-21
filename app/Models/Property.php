@@ -73,6 +73,11 @@ class Property extends Model
     return $this->hasMany(Contract::class);
     }
 
+    public function referrals()
+        {
+        return $this->hasMany(Referral::class);
+        }
+
     public function scopeFilter($query)
     {
         return $query->where('unit', '%like%','10');
