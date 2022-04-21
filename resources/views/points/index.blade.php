@@ -74,7 +74,7 @@
                                                     {{ $point->action }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($point->point, 2)}}
+                                                    {{$point->point}} points
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ Carbon\Carbon::parse($point->created_at)->format('M d, Y') }}
