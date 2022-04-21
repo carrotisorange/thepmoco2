@@ -167,14 +167,16 @@ class PropertyController extends Controller
         $tenants = Property::find($property->uuid)->tenants->count();
         $concerns = Property::find($property->uuid)->concerns->count();
 
-        $contracts = Contract::join('tenants', 'tenant_uuid', 'tenants.uuid')
-          ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
-        ->join('units', 'unit_uuid', 'units.uuid')
-        ->where('tenants.property_uuid', Session::get('property'))
-        ->where('end', '<=', Carbon::now()->addMonth())
-        ->where('contracts.status', 'active')
-        ->orderBy('end', 'asc')
-        ->get();
+        // $contracts = Contract::join('tenants', 'tenant_uuid', 'tenants.uuid')
+        //   ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
+        // ->join('units', 'unit_uuid', 'units.uuid')
+        // ->where('tenants.property_uuid', Session::get('property'))
+        // ->where('end', '<=', Carbon::now()->addMonth())
+        // ->where('contracts.status', 'active')
+        // ->orderBy('end', 'asc')
+        // ->get();
+
+        $contracts = Contract::search(Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->get();
 
 
         return view('properties.show',[

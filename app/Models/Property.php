@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Property extends Model
 {
@@ -82,6 +83,7 @@ class Property extends Model
     {
         return $query->where('unit', '%like%','10');
     }
-    
+
+
 
 }

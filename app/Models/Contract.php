@@ -44,4 +44,9 @@ class Contract extends Model
      return $this->belongsTo(Referral::class, 'contract_uuid');
      }
 
+         public static function search($search)
+         {
+         return empty($search)? static::query()
+         : static::where('end','<=', $search); }
+
 }

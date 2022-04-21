@@ -83,7 +83,7 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $referral->contract->user->user }}
+                                                    {{ $referral->contract->user->name }}
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
