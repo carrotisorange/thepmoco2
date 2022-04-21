@@ -79,10 +79,8 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Added on</th>
-                                            <th scope="col" class="relative px-6 py-3">
-                                                <span class="sr-only">Edit</span>
-                                            </th>
-                                        </tr>
+                                           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                </th>
                                     </thead>
                                     @foreach ($owners as $owner)
                                     <tbody class="bg-white divide-y divide-gray-200">
@@ -123,7 +121,47 @@
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                 $owner->created_at->diffForHumans() }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <button id="dropdownDividerButton"
+                                                    data-dropdown-toggle="dropdownDivider.{{ $owner->uuid }}"
+                                                    class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
+                                                    type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
+                                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg></button>
+
+                                                <div id="dropdownDivider.{{ $owner->uuid }}"
+                                                    class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                                        <li>
+                                                            <a href="/owner/{{ $owner->uuid }}"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                    class="fa-solid fa-edit"></i>&nbspShow</a>
+                                                        </li>
+
+
+
+
+
+                                                    </ul>
+
+                                                    <div class="py-1">
+                                                        <li>
+                                                            <a href="/owner/{{ $owner->uuid }}/delete"
+                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                    class="fa-solid fa-trash-alt"></i>&nbspRemove
+                                                            </a>
+                                                        </li>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </td>
+                                            {{-- <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a title="show" href="/owner/{{ $owner->uuid }}"
                                                     class="text-indigo-600 hover:text-indigo-900"><i
                                                         class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
@@ -133,7 +171,7 @@
                                                     class="text-red-600 hover:text-indigo-900"><i
                                                         class="fa-solid fa-2x fa-trash-can"></i></a>
                                                 @endcan
-                                            </td>
+                                            </td> --}}
                                         </tr>
 
                                         <!-- More people... -->
