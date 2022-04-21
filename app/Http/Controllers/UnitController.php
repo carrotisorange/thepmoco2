@@ -81,7 +81,7 @@ class UnitController extends Controller
      */
     public function show(Unit $unit)
     {
-        $contracts = Unit::findOrFail($unit->uuid)->contracts;
+        $tenants = Unit::findOrFail($unit->uuid)->contracts;
 
         $deed_of_sales = Unit::findOrFail($unit->uuid)->deed_of_sales;
 
@@ -101,7 +101,7 @@ class UnitController extends Controller
 
         return view('admin.units.show', [
             'unit' => $unit,
-            'contracts' => $contracts,
+            'tenants' => $tenants,
             'deed_of_sales' => $deed_of_sales,
             'bills' => $bills,
             'enrollees' => $enrollees

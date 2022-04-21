@@ -34,7 +34,8 @@
                 <x-label for="term">
                     Term
                 </x-label>
-                <x-form-input id="term" value="{{ old('term', (floor($term/30))) }} months" type="text" name="term" />
+                <x-form-input wire:model="term" id="term" value="{{ old('term', $term)}} " type="text" name="term"
+                    readonly />
             </div>
 
             <div class="w-full md:w-1/4 px-3">

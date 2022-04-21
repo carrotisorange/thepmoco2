@@ -74,12 +74,12 @@
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-               @include('utilities.show-unit-info')
+                @include('utilities.show-unit-info')
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                <span>{{ Str::plural('Tenant', $contracts->count())}} ({{ $contracts->count()
+                                <span>{{ Str::plural('Tenant', $tenants->count())}} ({{ $tenants->count()
                                     }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -111,7 +111,7 @@
 
                                             </tr>
                                         </thead>
-                                        @forelse ($contracts as $contract)
+                                        @forelse ($tenants as $tenant)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -121,14 +121,14 @@
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
                                                             <img class="h-10 w-10 rounded-full"
-                                                                src="/storage/{{ $contract->tenant->photo_id }}">
+                                                                src="/storage/{{ $tenant->tenant->photo_id }}">
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900"><b>{{
-                                                                    $contract->tenant->tenant }}</b>
+                                                                    $tenant->tenant->tenant }}</b>
                                                             </div>
                                                             <div class="text-sm text-gray-500">{{
-                                                                $contract->tenant->type
+                                                                $tenant->tenant->type
                                                                 }}
                                                             </div>
                                                         </div>
@@ -136,77 +136,79 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{
-                                                        Carbon\Carbon::parse($contract->start)->format('M d, Y').' -
-                                                        '.Carbon\Carbon::parse($contract->end)->format('M d, Y') }}
+                                                        Carbon\Carbon::parse($tenant->start)->format('M d, Y').' -
+                                                        '.Carbon\Carbon::parse($tenant->end)->format('M d, Y') }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($contract->end)->diffForHumans($contract->start)
+                                                        Carbon\Carbon::parse($tenant->end)->diffForHumans($tenant->start)
                                                         }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{number_format($contract->rent, 2)}}
+                                                    {{number_format($tenant->rent, 2)}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($contract->status === 'active')
+                                                    @if($tenant->status === 'active')
                                                     <span
                                                         class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        <i class="fa-solid fa-circle-check"></i> {{ $contract->status }}
+                                                        <i class="fa-solid fa-circle-check"></i> {{ $tenant->status }}
                                                         @else
                                                         <span
                                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                            <i class="fa-solid fa-clock"></i> {{
-                                                            $contract->status }}
+                                                            <i class="fa-solid fa-circle-xmark"></i> {{
+                                                            $tenant->status }}
                                                         </span>
                                                         @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $contract->interaction }}
+                                                    {{ $tenant->interaction }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <button id="dropdownDividerButton"
-                                                        data-dropdown-toggle="dropdownDivider.{{ $contract->uuid }}"
+                                                        data-dropdown-toggle="dropdownDivider.{{ $tenant->uuid }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspSelect your action <svg class="ml-2 w-4 h-4"
-                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspSelect
+                                                        your action <svg class="ml-2 w-4 h-4" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                         </svg></button>
 
-                                                    <div id="dropdownDivider.{{ $contract->uuid }}"
+                                                    <div id="dropdownDivider.{{ $tenant->uuid }}"
                                                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
                                                             <li>
-                                                                <a href="/tenant/{{ $contract->tenant->uuid }}/"
+                                                                <a href="/tenant/{{ $tenant->tenant->uuid }}/"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-eye"></i>&nbspShow Tenant</a>
+                                                                        class="fa-solid fa-user"></i>&nbspShow
+                                                                    Tenant</a>
                                                             </li>
                                                             <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/edit"
+                                                                <a href="/contract/{{ $tenant->uuid }}/edit"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-eye"></i>&nbspShow
+                                                                        class="fa-solid fa-file-contract"></i>&nbspShow
                                                                     Contract</a>
                                                             </li>
 
                                                             <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/transfer"
+                                                                <a href="/contract/{{ $tenant->uuid }}/transfer"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                         class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
                                                                     Contract</a>
                                                             </li>
                                                             <li>
-                                                                <a href="/contract/{{ $contract->uuid }}/renew"
+                                                                <a href="/contract/{{ $tenant->uuid }}/renew"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                         class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
                                                                     Contract</a>
                                                             </li>
 
                                                         </ul>
-                                                        @if($contract->status == 'active')
+                                                        @if($tenant->status == 'active')
                                                         <div class="py-1">
-                                                            <a href="/contract/{{ $contract->uuid }}/moveout/bills"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                            <a href="/contract/{{ $tenant->uuid }}/moveout/bills"
+                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                                 <i
                                                                     class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
                                                         </div>
@@ -309,7 +311,30 @@
                                                         @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <i class="fa-solid fa-down"></i>
+                                                    <button id="dropdownDividerButton"
+                                                        data-dropdown-toggle="dropdownDivider.{{ $deed_of_sale->uuid }}"
+                                                        class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspSelect
+                                                        your action <svg class="ml-2 w-4 h-4" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                        </svg></button>
+
+                                                    <div id="dropdownDivider.{{ $deed_of_sale->uuid }}"
+                                                        class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                                            <li>
+                                                                <a href="/owner/{{ $deed_of_sale->owner->uuid }}/"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-user"></i>&nbspShow
+                                                                    Owner</a>
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
                                                 </td>
 
                                             </tr>
@@ -328,7 +353,7 @@
 
 
                                 <br>
-                                <span>{{ Str::plural('Leasing', $enrollees->count())}} ({{
+                                <span>{{ Str::plural('Leasing Contract', $enrollees->count())}} ({{
                                     $enrollees->count()
                                     }})</span>
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -362,6 +387,9 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Contract</th>
 
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Contract</th>
                                             </tr>
                                         </thead>
                                         @forelse ($enrollees as $enrollee)
@@ -416,7 +444,51 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
+                                                    <button id="dropdownDividerButton"
+                                                        data-dropdown-toggle="dropdownDivider.{{ $enrollee->uuid }}"
+                                                        class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspSelect
+                                                        your action <svg class="ml-2 w-4 h-4" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                        </svg></button>
 
+                                                    <div id="dropdownDivider.{{ $enrollee->uuid }}"
+                                                        class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                                           
+                                                            <li>
+                                                                <a href="/contract/{{ $enrollee->uuid }}/edit"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-file-contract"></i>&nbspShow
+                                                                    Contract</a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="/contract/{{ $enrollee->uuid }}/transfer"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
+                                                                    Contract</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/contract/{{ $enrollee->uuid }}/renew"
+                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                        class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
+                                                                    Contract</a>
+                                                            </li>
+
+                                                        </ul>
+                                                        @if($enrollee->status == 'active')
+                                                        <div class="py-1">
+                                                            <a href="/contract/{{ $enrollee->uuid }}/moveout/bills"
+                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                <i
+                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspUnenroll</a>
+                                                        </div>
+                                                        @endif
+                                                    </div>
                                                 </td>
                                             </tr>
                                             @empty

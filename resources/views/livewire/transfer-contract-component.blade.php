@@ -57,7 +57,7 @@
 
             <div class="w-full md:w-1/3 px-3">
                 <x-label for="rent">
-                    Rent
+                    Rent/mo
                 </x-label>
                 <x-form-input wire:model="rent" id="rent" type="number" value="{{ old('rent',$rent) }}" name="rent"
                     readonly />

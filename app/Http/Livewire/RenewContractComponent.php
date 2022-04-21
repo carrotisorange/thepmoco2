@@ -42,7 +42,7 @@ class RenewContractComponent extends Component
 
         public function hydrateTerm()
         {
-           $this->term = Carbon::parse($this->start)->diffInMonths(Carbon::parse($this->start)).' months';
+           $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
         }
 
        protected function rules()

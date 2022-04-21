@@ -64,7 +64,7 @@
                             <div class="w-full md:w-1/3 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-last-name">
-                                    Rent
+                                    Rent/mo
                                 </label>
                                 <x-form-input wire:model="rent" id="rent" type="number" value="{{ old('rent',$rent) }}"
                                     name="rent" readonly />

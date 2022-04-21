@@ -29,8 +29,14 @@ class EnrolleeComponent extends Component
         $this->discount = $unit->discount;
         $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
-        $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
+        $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
     }
+
+    public function hydrateTerm()
+    {
+        $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
+    }
+
 
     public $start;
     public $end;
