@@ -78,8 +78,7 @@
             </div>
         </main>
     </div>
-    @include('layouts.notifications')
-    @include('layouts.messenger-chatbot')
+ 
 </body>
 
 </html>

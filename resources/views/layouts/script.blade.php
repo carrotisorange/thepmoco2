@@ -4,3 +4,7 @@
 
 @livewireScripts()
 
+@include('layouts.messenger-chatbot')
+
+@include('layouts.notifications')
+

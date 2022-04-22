@@ -9,6 +9,9 @@ use App\Models\Property;
 use App\Models\UserProperty;
 use App\Models\PropertyParticular;
 use App\Models\PropertyRole;
+use App\Models\Country;
+use App\Models\Province;
+use App\Models\City;
 
 use Livewire\Component;
 
@@ -29,6 +32,10 @@ class PropertyComponent extends Component
      public $description;
      public $tenant_contract;
      public $owner_contract;
+   public $country_id;
+    public $province_id;
+         public $city_id;
+         public $barangay;
 
      protected function rules()
      {
@@ -39,6 +46,10 @@ class PropertyComponent extends Component
             'tenant_contract' => 'nullable|mimes:pdf',
             'owner_contract' => 'nullable|mimes:pdf',
             'description' => 'nullable',
+             'country_id' => ['nullable', Rule::exists('countries', 'id')],
+             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
+             'city_id' => ['nullable', Rule::exists('cities', 'id')],
+             'barangay' => ['nullable'],
         ];
      }
 
@@ -50,6 +61,22 @@ class PropertyComponent extends Component
      public function createForm()
      {
         sleep(1);
+
+          if(!$this->country_id)
+          {
+          $validatedData['country_id'] = '247';
+          }
+
+          if(!$this->province_id)
+          {
+          $validatedData['province_id'] = '4121';
+          }
+
+          if(!$this->city_id)
+          {
+          $validatedData['city_id'] = '48315';
+          }
+
 
         $validatedData = $this->validate();
 
@@ -112,6 +139,11 @@ class PropertyComponent extends Component
 
      public function render()
      {
-        return view('livewire.property-component');
+        return view('livewire.property-component',[
+        'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
+        'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->where('id','!=',
+        '247')->get(),
+        'countries' => Country::orderBy('country', 'ASC')->get()
+        ]);
      }
 }

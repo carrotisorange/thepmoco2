@@ -25,9 +25,6 @@
         </main>
 
     </div>
-    @include('layouts.notifications')
-    <!-- Load Facebook SDK for JavaScript -->
-    @include('layouts.messenger-chatbot')
     
 </body>
 

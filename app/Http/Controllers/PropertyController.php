@@ -85,7 +85,7 @@ class PropertyController extends Controller
      */
     public function create($random_str)
     {
-        $this->authorize('accountowner');
+        $this->authorize('manager');
         
         return view('properties.create', [
             'random_str' => $random_str,

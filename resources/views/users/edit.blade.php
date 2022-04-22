@@ -1,35 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Favicon -->
-    <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
-
-    <title>The Property Manager | Properties</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    {{-- Alpine.js --}}
-    <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
-
-    {{-- Fontawesome --}}
-    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
-</head>
-
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation-properties')
+<x-property-base>
+    <x-slot name="header">
         <header class="bg-white shadow">
             <div class="max-w-12xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <div class="flex">
@@ -53,142 +23,137 @@
                 </div>
             </div>
         </header>
-        <main>
-            <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-12 bg-white border-b border-gray-200">
+    </x-slot>
+    <x-slot name="body">
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-12 bg-white border-b border-gray-200">
 
-                            <div>
-                                <form action="/profile/{{ $user->username }}/update" method="POST" id="edit-form"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PATCH')
-                                    <div>
-                                        <x-label for="name" :value="__('Name')" />
+                        <div>
+                            <form action="/profile/{{ $user->username }}/update" method="POST" id="edit-form"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PATCH')
+                                <div>
+                                    <x-label for="name" :value="__('Name')" />
 
-                                        <x-form-input form="edit-form" type="text" name="name"
-                                            value="{{old('name', $user->name)}}" required autofocus />
+                                    <x-form-input form="edit-form" type="text" name="name"
+                                        value="{{old('name', $user->name)}}" required autofocus />
 
-                                        @error('name')
+                                    @error('name')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mt-5">
+                                    <x-label for="username" :value="__('Username')" />
+
+                                    <x-form-input form="edit-form" id="username" type="text" name="username"
+                                        value="{{old('username', $user->username)}}" required autofocus />
+
+                                    @error('username')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mt-5">
+                                    <x-label for="email" :value="__('Email')" />
+
+                                    <x-form-input form="edit-form" id="email" type="email" name="email"
+                                        value="{{old('email', $user->email)}}" required autofocus />
+
+                                    @error('email')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mt-5">
+                                    <x-label for="mobile_number" :value="__('Mobile')" />
+
+                                    <x-form-input form="edit-form" id="mobile_number" type="text" name="mobile_number"
+                                        value="{{old('mobile_number', $user->mobile_number)}}" required autofocus />
+
+                                    @error('mobile_number')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                @can('accountowner')
+                                <div class="mt-5">
+                                    <x-label for="role_id" :value="__('Role')" />
+
+                                    <x-form-select form="edit-form" name="role_id" id="role_id">
+                                        @foreach($roles as $role)
+                                        <option value="{{ $role->id }}" {{ $role->id == $user->role_id ? 'selected'
+                                            : ''
+                                            }}>{{ $role->role }} - {{ $role->description }}</option>
+                                        @endforeach
+                                    </x-form-select>
+
+                                    @error('role_id')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+
+                                <div class="mt-5">
+                                    <x-label for="status" :value="__('Status')" />
+
+                                    <x-form-select form="edit-form" name="status" id="status">
+
+                                        <option value="active" {{ 'active'==$user->status ? 'selected' : ''
+                                            }}>active</option>
+                                        <option value="inactive" {{ 'inactive'==$user->status ? 'selected' : ''
+                                            }}>inactive</option>
+                                        <option value="banned" {{ 'banned'==$user->status ? 'selected' : ''
+                                            }}>banned</option>
+                                        <option value="pending" {{ 'pending'==$user->status ? 'selected' : ''
+                                            }}>pending</option>
+                                    </x-form-select>
+
+                                    @error('status')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                @endcan
+
+                                <div class="mt-5 flex">
+                                    <div class="flex-3">
+                                        <x-label for="avatar" :value="__('Avatar')" />
+
+                                        <x-form-input form="edit-form" id="avatar" type="file" name="avatar"
+                                            value="{{old('avatar', $user->avatar)}}" autofocus />
+
+                                        @error('avatar')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                     </div>
+                                    <div class="mt-6">
+                                        @if(auth()->user()->avatar)
+                                        <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $user->avatar }}"
+                                            alt="">
+                                        @else
+                                        <img class="h-10 w-10 rounded-xl ml-6" src="{{ auth()->user()->avatarUrl() }}"
+                                            alt="">
+                                        @endif
 
-                                    <div class="mt-5">
-                                        <x-label for="username" :value="__('Username')" />
-
-                                        <x-form-input form="edit-form" id="username" type="text" name="username"
-                                            value="{{old('username', $user->username)}}" required autofocus />
-
-                                        @error('username')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
                                     </div>
+                                </div>
+                                <div class="mt-5">
+                                    <p class="text-right">
+                                        <x-button form="edit-form">
+                                            <i class="fa-solid fa-circle-check"></i>&nbspSubmit
+                                        </x-button>
+                                    </p>
+                                </div>
 
-                                    <div class="mt-5">
-                                        <x-label for="email" :value="__('Email')" />
-
-                                        <x-form-input form="edit-form" id="email" type="email" name="email"
-                                            value="{{old('email', $user->email)}}" required autofocus />
-
-                                        @error('email')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mt-5">
-                                        <x-label for="mobile_number" :value="__('Mobile')" />
-
-                                        <x-form-input form="edit-form" id="mobile_number" type="text"
-                                            name="mobile_number" value="{{old('mobile_number', $user->mobile_number)}}"
-                                            required autofocus />
-
-                                        @error('mobile_number')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    @can('accountowner')
-                                    <div class="mt-5">
-                                        <x-label for="role_id" :value="__('Role')" />
-
-                                        <x-form-select form="edit-form" name="role_id" id="role_id">
-                                            @foreach($roles as $role)
-                                            <option value="{{ $role->id }}" {{ $role->id == $user->role_id ? 'selected'
-                                                : ''
-                                                }}>{{ $role->role }} - {{ $role->description }}</option>
-                                            @endforeach
-                                        </x-form-select>
-
-                                        @error('role_id')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-
-                                    <div class="mt-5">
-                                        <x-label for="status" :value="__('Status')" />
-
-                                        <x-form-select form="edit-form" name="status" id="status">
-
-                                            <option value="active" {{ 'active'==$user->status ? 'selected' : ''
-                                                }}>active</option>
-                                            <option value="inactive" {{ 'inactive'==$user->status ? 'selected' : ''
-                                                }}>inactive</option>
-                                            <option value="banned" {{ 'banned'==$user->status ? 'selected' : ''
-                                                }}>banned</option>
-                                            <option value="pending" {{ 'pending'==$user->status ? 'selected' : ''
-                                                }}>pending</option>
-                                        </x-form-select>
-
-                                        @error('status')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    @endcan
-
-                                    <div class="mt-5 flex">
-                                        <div class="flex-3">
-                                            <x-label for="avatar" :value="__('Avatar')" />
-
-                                            <x-form-input form="edit-form" id="avatar" type="file" name="avatar"
-                                                value="{{old('avatar', $user->avatar)}}" autofocus />
-
-                                            @error('avatar')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="mt-6">
-                                            @if(auth()->user()->avatar)
-                                            <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $user->avatar }}"
-                                                alt="">
-                                            @else
-                                            <img class="h-10 w-10 rounded-xl ml-6"
-                                                src="{{ auth()->user()->avatarUrl() }}" alt="">
-                                            @endif
-
-                                        </div>
-                                    </div>
-                                    <div class="mt-5">
-                                        <p class="text-right">
-                                            <x-button form="edit-form">
-                                                <i class="fa-solid fa-circle-check"></i>&nbspSubmit
-                                            </x-button>
-                                        </p>
-                                    </div>
-
-                            </div>
-                            </form>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
-    @include('layouts.notifications')
-    @include('layouts.messenger-chatbot')
-</body>
-
-</html>
+        </div>
+    </x-slot>
+</x-property-base>
