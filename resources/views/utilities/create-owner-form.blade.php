@@ -111,7 +111,7 @@
             </div>
             <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                 <x-label for="province_id">
-                    Province
+                    Region
                 </x-label>
                 <div class="relative">
                     <x-form-select wire:model="province_id" id="province_id" name="province_id">
