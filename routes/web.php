@@ -46,7 +46,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('referrals', [ReferralController::class, 'index'])->name('referrals');
 
-   Route::get('timestamps', TimestampController::class)->name('timestamps');
+   Route::get('timestamps/{date}', TimestampController::class)->name('timestamps');
     
     //Route::get('tenants', [ContractController::class, 'index'])->name('contracts');
 

@@ -27,7 +27,7 @@
 
                 @can('accountownerandmanager')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/timestamps" :active="request()->routeIs('timestamps')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}" :active="request()->routeIs('timestamps')">
                         <i class="fa-solid fa-user-clock"></i>&nbspTimestamps
                     </x-nav-link>
                 </div>

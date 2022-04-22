@@ -33,17 +33,15 @@
     </x-slot>
 
     <div class="py-12">
+        
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+            <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today()->subDay(1) }}'" ><i class="fa-solid fa-circle-arrow-left"></i>&nbspprevious</x-button>
+            <div class=" overflow-hidden shadow-sm sm:rounded-lg mt-5">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <span class="text-center text-red">{{ Carbon\Carbon::parse(Session::get('date'))->format('M d, Y') }}</span>
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                {{-- @if (!$timestamps->count())
-                                <span class="text-center text-red">No timestamps found!</span>
-                                @else --}}
-                                {{-- <span class="text-center text-red">Total points: {{ $timestamps->sum('point')
-                                    }}</span> --}}
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr =1; ?>
@@ -90,13 +88,11 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{
-                                                    Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('M
-                                                    d, Y @ H:i') }}
+                                                    Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('H:i') }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{
-                                                    Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('M
-                                                    d, Y @ H:i') }}
+                                                    Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('H:i') }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $timestamp->ip_address }}
