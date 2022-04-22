@@ -13,6 +13,7 @@ class CreateReferralsTable extends Migration
      */
     public function up()
     {
+         if(!Schema::hasTable('referrals')){
         Schema::create('referrals', function (Blueprint $table) {
             $table->id();
             $table->string('referral');
@@ -20,6 +21,7 @@ class CreateReferralsTable extends Migration
             $table->foreignUuid('property_uuid')->constrained();
             $table->timestamps();
         });
+    }
     }
 
     /**
