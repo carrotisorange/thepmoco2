@@ -20,14 +20,17 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                   {{-- <x-button wire:click="deleteUnits()" data-modal-toggle="popup-modal"><i class="fa-solid fa-trash"></i>&nbsp
+                    {{-- <x-button wire:click="deleteUnits()" data-modal-toggle="popup-modal"><i
+                            class="fa-solid fa-trash"></i>&nbsp
                         Remove
                     </x-button> --}}
 
                     <x-button wire:click="deleteUnits()"><i class="fa-solid fa-trash"></i>&nbsp
                         Remove
                     </x-button>
-                    <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Add
+                    <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
+                    </x-button>
+                    <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp
                         Building
                     </x-button>
 
@@ -43,9 +46,9 @@
             </div>
         </h2>
     </x-slot>
-         Selected countries =  ({{ var_export($selectedUnits) }})
+    @include('utilities.create-unit')
     <div class="py-12">
-  
+
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -65,7 +68,7 @@
                                                     <div class="flex items-center">
                                                         <input id="" type="checkbox"
                                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                        
+
                                                     </div>
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
@@ -89,7 +92,7 @@
                                                 <th scope="col" class="px-6 py-3">
                                                     Occupancy
                                                 </th>
-                                              
+
                                             </tr>
                                         </thead>
                                         <?php 
@@ -113,28 +116,27 @@
                                                 class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                                 <td class="p-4">
                                                     <div class="flex items-center">
-                                                        <input type="checkbox"
-                                                            wire:model="selectedUnits" 
+                                                        <input type="checkbox" wire:model="selectedUnits"
                                                             value="{{ $unit->uuid }}"
                                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                       
+
                                                     </div>
                                                 </td>
 
                                                 <td class="px-4 py-4">
                                                     <input
-                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required /"
-                                                        form="edit-form" type="text" name="unit{{ $name++ }}"
-                                                        value="Unit {{ $unit_count++ }}">
+                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                        required /" form="edit-form" type="text"
+                                                        name="unit{{ $name++ }}" value="Unit {{ $unit_count++ }}">
                                                 </td>
 
                                                 <input form="edit-form" type="hidden" name="uuid{{ $uuid++ }}" id="uuid"
                                                     value="{{ $unit->uuid }}">
                                                 <td class="px-4 py-4">
                                                     <select
-                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /
-                                                        form="edit-form" name="building_id{{ $building_id++  }}"
-                                                        id="building_id">
+                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                        placeholder=" " / form="edit-form"
+                                                        name="building_id{{ $building_id++  }}" id="building_id">
                                                         <option value="">Select one </option>
                                                         @foreach ($buildings as $building)
                                                         <option value="{{ $building->id }}">{{ $building->building
@@ -146,9 +148,9 @@
                                                 </td>
                                                 <td class="px-4 py-4">
                                                     <select
-                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /
-                                                        form="edit-form" name="floor_id{{ $floor_id++  }}"
-                                                        id="floor_id">
+                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                        placeholder=" " / form="edit-form"
+                                                        name="floor_id{{ $floor_id++  }}" id="floor_id">
                                                         <option value="">Select one</option>
                                                         @foreach ($floors as $floor)
                                                         <option value="{{ $floor->id }}">{{ $floor->floor }}
@@ -158,8 +160,9 @@
                                                 </td>
                                                 <td class="px-4 py-4">
                                                     <select
-                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /
-                                                        form="edit-form" name="category_id{{ $category_id++  }}">
+                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                        placeholder=" " / form="edit-form"
+                                                        name="category_id{{ $category_id++  }}">
                                                         <option value="">Select one</option>
                                                         @foreach ($categories as $category)
                                                         <option value="{{ $category->id }}">{{ $category->category
@@ -170,23 +173,25 @@
                                                 </td>
                                                 <td class="px-4 py-4">
                                                     <input
-                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required /"
-                                                        form="edit-form" name="size{{ $size++  }}" id="size" type="text"
-                                                        min="1" value="{{ $unit->size }}">
+                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                        placeholder=" " required /" form="edit-form"
+                                                        name="size{{ $size++  }}" id="size" type="text" min="1"
+                                                        value="{{ $unit->size }}">
                                                     </input>
                                                 </td>
                                                 <td class="px-4 py-4">
                                                     <input
-                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /"
-                                                        form="edit-form" min="0" name="rent{{ $rent++  }}" id="rent"
-                                                        type="number" value="{{ $unit->rent }}"></input>
+                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                        placeholder=" " /" form="edit-form" min="0"
+                                                        name="rent{{ $rent++  }}" id="rent" type="number"
+                                                        value="{{ $unit->rent }}"></input>
                                                 </td>
                                                 <td class="px-4 py-4">
                                                     <input
-                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /"
-                                                        form="edit-form" name="occupancy{{ $occupancy++  }}"
-                                                        id="occupancy" type="number" min="1"
-                                                        value="{{ $unit->occupancy }}">
+                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                        placeholder=" " /" form="edit-form"
+                                                        name="occupancy{{ $occupancy++  }}" id="occupancy" type="number"
+                                                        min="1" value="{{ $unit->occupancy }}">
                                                     </input>
                                                 </td>
 
@@ -208,5 +213,5 @@
     </div>
 
     @include('utilities.create-building');
-   @include('utilities.delete-unit-modal')
+    @include('utilities.delete-unit-modal')
 </x-app-layout>

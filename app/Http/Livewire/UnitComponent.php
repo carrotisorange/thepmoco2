@@ -29,7 +29,9 @@ class UnitComponent extends Component
           ->leftJoin('statuses', 'units.status_id', 'statuses.id')
           ->leftJoin('buildings', 'units.building_id', 'buildings.id')
           ->leftJoin('floors', 'units.floor_id', 'floors.id')
-          ->where('batch_no', $this->batch_no)
+         
+          ->where('status_id', 6)
+          ->where('units.property_uuid', Session::get('property'))
           ->orderByRaw('LENGTH(unit)', 'ASC')
           ->orderBy('units.unit')
           ->get();
