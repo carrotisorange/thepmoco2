@@ -176,7 +176,6 @@ class PropertyController extends Controller
 
             if($timestamps<=0) { DB::table('timestamps')->insert(
                 [
-                'id' => DB::table('sessions')->count()+1,
                 'user_id' => auth()->user()->id,
                 'property_uuid' => $property->uuid,
                 'created_at' => now(),
