@@ -14,11 +14,11 @@ class CreateReferralsTable extends Migration
     public function up()
     {
         Schema::create('referrals', function (Blueprint $table) {
-                 $table->id();
-                 $table->string('referral');
-                 $table->foreignUuid('contract_uuid')->contstrained();
-                 $table->foreignUuid('property_uuid')->constrained();
-                 $table->timestamps();
+           $table->id();
+           $table->string('referral');
+           $table->foreignUuid('contract_uuid')->contstrained();
+           $table->foreignUuid('property_uuid')->constrained();
+           $table->timestamps();
         });
     }
 

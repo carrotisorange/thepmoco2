@@ -14,11 +14,11 @@ class CreateTimestampsTable extends Migration
     public function up()
     {
         Schema::create('timestamps', function (Blueprint $table) {
-            $table->id();
-            $table->string('ip_address', 45)->nullable();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignUuid('property_uuid')->constrained();
-            $table->timestamps();
+             $table->id();
+             $table->string('ip_address', 45)->nullable();
+             $table->foreignId('user_id')->constrained();
+             $table->foreignUuid('property_uuid')->constrained();
+             $table->timestamps();
         });
     }
 
