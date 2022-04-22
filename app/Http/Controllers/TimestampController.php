@@ -18,7 +18,7 @@ class TimestampController extends Controller
     {
             
         return view('timestamps.index',[
-            'timestamps' => Timestamp::where('property_uuid',Session::get('property'))->get()
+            'timestamps' => Timestamp::where('property_uuid',Session::get('property'))->where('user_id', '!=', '5')->get()
         ]);
     }
 }
