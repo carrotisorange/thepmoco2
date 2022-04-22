@@ -67,9 +67,9 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Time out</th>
 
-                                                <th scope="col"
+                                                {{-- <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Ip Address</th>
+                                                    Ip Address</th> --}}
 
                                             </tr>
                                         </thead>
@@ -94,9 +94,9 @@
                                                     {{
                                                     Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('H:i') }}
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                {{-- <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $timestamp->ip_address }}
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         </tbody>
                                         @endforeach
