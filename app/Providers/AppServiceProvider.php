@@ -37,15 +37,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('billing', function(User $user){
-            return auth()->user()->role_id === 2;
+            return (auth()->user()->role_id === 2 || auth()->user()->role_id === 5 );
         });
 
         Gate::define('treasury', function(User $user){
-            return auth()->user()->role_id === 3;
+            return (auth()->user()->role_id === 3 || auth()->user()->role_id === 5 );
         });
 
         Gate::define('accountpayable', function(User $user){
-            return auth()->user()->role_id === 4;
+            return (auth()->user()->role_id === 4 || auth()->user()->role_id === 5 );
         });
 
         Gate::define('accountowner', function(User $user){
@@ -62,7 +62,8 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('manager', function(User $user){
             return (auth()->user()->role_id === 9) || (auth()->user()->username ===
-            'landley' || (auth()->user()->username === 'nc_admin') || (auth()->user()->username === 'mikee'));
+            'landley' || (auth()->user()->username === 'nc_admin') || (auth()->user()->username === 'mikee') ||
+            auth()->user()->role_id === 5 );
         });
 
         Gate::define('managerandadmin', function(User $user){
