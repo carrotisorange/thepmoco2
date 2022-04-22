@@ -23,7 +23,7 @@
 
                         {{-- <x-button onclick="window.location.href='/documentation/'">Documentation
                         </x-button> --}}
-                        @can('accountowner')
+                        @can('manager')
                         <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">
                             <i class="fa-solid fa-circle-plus"></i>&nbspProperty
                         </x-button>
