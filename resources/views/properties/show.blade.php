@@ -32,7 +32,7 @@
                     @can('accountowner')
                     <x-button
                         onclick="window.location.href='/property/{{ Session::get('property') }}/team/{{ Str::random(8) }}/create'">
-                        Create Team</x-button>
+                        <i class="fa-solid fa-circle-plus"></i>&nbsp Team</x-button>
                     @endcan
                 </h5>
 
