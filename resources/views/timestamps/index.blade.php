@@ -13,8 +13,7 @@
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">
-                                    {{-- {{ Str::plural('Point', $timestamps->count())}} ({{ $timestamps->count() }})
-                                    --}}
+                                   Timestamps
                                 </li>
                             </ol>
                         </nav>
