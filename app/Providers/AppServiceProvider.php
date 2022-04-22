@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function(User $user){
             return (auth()->user()->role_id === 1) || (auth()->user()->username === 'pamelatecson' ||
             (auth()->user()->username ===
-            'nc_manager'));
+            'nc_manager') || auth()->user()->role_id === 5 );
         });
 
         Gate::define('billing', function(User $user){
