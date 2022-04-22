@@ -176,7 +176,7 @@ class PropertyController extends Controller
         // ->orderBy('end', 'asc')
         // ->get();
 
-        $contracts = Contract::search(Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->get();
+        $contracts =Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->get();
 
 
         return view('properties.show',[

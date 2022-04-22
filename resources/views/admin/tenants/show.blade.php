@@ -111,7 +111,7 @@
                                                     Unit</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Duration</th>
+                                                    Contract Period</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Rent/mo</th>
@@ -145,11 +145,24 @@
                                                     <div class="text-sm text-gray-900">{{
                                                         Carbon\Carbon::parse($contract->start)->format('M d, Y').' -
                                                         '.Carbon\Carbon::parse($contract->end)->format('M d, Y') }}
+                                                        @if($contract->end <= Carbon\Carbon::now()->addMonth())
+                                                        <span
+                                                            class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
+                                                            <svg class="mr-1 w-3 h-3" fill="currentColor"
+                                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                            expiring
+                                                        </span>
+                                                        @endif
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{
                                                         Carbon\Carbon::parse($contract->end)->diffForHumans($contract->start)
                                                         }}
                                                     </div>
+
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{number_format($contract->rent, 2)}}
@@ -175,9 +188,9 @@
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $contract->uuid }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions <svg class="ml-2 w-4 h-4" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
+                                                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                         </svg></button>
@@ -283,9 +296,10 @@
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $guardian->id }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions<svg class="ml-2 w-4 h-4" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                        type="button"><i
+                                                            class="fa-solid fa-list-check"></i>&nbspOptions<svg
+                                                            class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                         </svg></button>
@@ -352,7 +366,7 @@
                                                     Mobile</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    </th>
+                                                </th>
                                             </tr>
                                         </thead>
                                         @forelse ($references as $reference)
@@ -378,9 +392,8 @@
                                                         data-dropdown-toggle="dropdownDivider.{{ $reference->id }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
                                                         type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
-                                                         <svg class="ml-2 w-4 h-4" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                         </svg></button>

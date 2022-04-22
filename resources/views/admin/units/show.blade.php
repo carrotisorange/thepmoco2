@@ -51,15 +51,21 @@
                             </li> --}}
                             <li>
                                 <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/old_create"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Old
-                                    Tenant
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                   <i class="fa-solid fa-user"></i>&nbsp Old Tenant
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/inventory/{{ $unit->uuid }}/create"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="fa-solid fa-list-check"></i>&nbspInventory
+                                    
                                 </a>
                             </li>
                             @endcan
                             @can('manager')
                             <li>
                                 <a href="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/create"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Owner
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="fa-solid fa-user-tie"></i>&nbspOwner
                                 </a>
                             </li>
                             @endcan
@@ -139,6 +145,17 @@
                                                         Carbon\Carbon::parse($tenant->start)->format('M d, Y').' -
                                                         '.Carbon\Carbon::parse($tenant->end)->format('M d, Y') }}
                                                     </div>
+                                                    @if($tenant->end <= Carbon\Carbon::now()->addMonth())
+                                                        <span
+                                                            class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
+                                                            <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                            expiring
+                                                        </span>
+                                                        @endif
                                                     <div class="text-sm text-gray-500">{{
                                                         Carbon\Carbon::parse($tenant->end)->diffForHumans($tenant->start)
                                                         }}
@@ -167,9 +184,10 @@
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $tenant->uuid }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions<svg class="ml-2 w-4 h-4" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                        type="button"><i
+                                                            class="fa-solid fa-list-check"></i>&nbspOptions<svg
+                                                            class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                         </svg></button>
@@ -313,9 +331,9 @@
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $deed_of_sale->uuid }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions <svg class="ml-2 w-4 h-4" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
+                                                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                         </svg></button>
@@ -445,9 +463,9 @@
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $enrollee->uuid }}"
                                                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions <svg class="ml-2 w-4 h-4" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
+                                                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                         </svg></button>
@@ -455,7 +473,7 @@
                                                     <div id="dropdownDivider.{{ $enrollee->uuid }}"
                                                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
-                                                           
+
                                                             <li>
                                                                 <a href="/contract/{{ $enrollee->uuid }}/edit"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
