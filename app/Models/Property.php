@@ -78,6 +78,11 @@ class Property extends Model
         {
         return $this->hasMany(Referral::class);
         }
+        
+    public function timestamps()
+    {
+        return $this->hasMany(Timestamp::class);
+    }
 
     public function scopeFilter($query)
     {

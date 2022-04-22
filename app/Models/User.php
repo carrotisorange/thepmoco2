@@ -81,6 +81,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Point::class, 'user_id');
     }
 
+      public function timestamps()
+      {
+      return $this->hasMany(Timestamp::class, 'user_id');
+      }
+
+
     public function user_properties()
     {
         return $this->hasMany(UserProperty::class, 'user_id');

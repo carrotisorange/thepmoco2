@@ -70,6 +70,11 @@ class AppServiceProvider extends ServiceProvider
             'landley' );
         });
 
+          Gate::define('accountownerandmanager', function(User $user){
+          return (auth()->user()->role_id === 5) || (auth()->user()->role_id === 9) || (auth()->user()->username ===
+          'landley' );
+          });
+
         Gate::define('dev', function(User $user){
             return (auth()->user()->role_id === 10);
         });

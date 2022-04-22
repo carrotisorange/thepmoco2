@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Points')
+    @section('title', '| Timestamps')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -13,7 +13,8 @@
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">
-                                    {{ Str::plural('Referral', $referrals->count())}} ({{ $referrals->count() }})
+                                    {{-- {{ Str::plural('Point', $timestamps->count())}} ({{ $timestamps->count() }})
+                                    --}}
                                 </li>
                             </ol>
                         </nav>
@@ -39,10 +40,11 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                @if (!$referrals->count())
-                                <span class="text-center text-red">No referrals found!</span>
-                                @else
-
+                                {{-- @if (!$timestamps->count())
+                                <span class="text-center text-red">No timestamps found!</span>
+                                @else --}}
+                                {{-- <span class="text-center text-red">Total points: {{ $timestamps->sum('point')
+                                    }}</span> --}}
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr =1; ?>
@@ -54,42 +56,51 @@
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Name</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Contract</th>
 
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Admin</th>
+                                                    Role</th>
+
+
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Earned</th>
+                                                    Time in</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Time out</th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Ip Address</th>
 
                                             </tr>
                                         </thead>
-                                        @foreach ($referrals as $referral)
+                                        @foreach ($timestamps as $timestamp)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{ $ctr++ }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $referral->referral }}
+                                                    {{ $timestamp->user->name }}
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{$referral->contract->tenant->tenant.' in
-                                                    '.$referral->contract->unit->unit }}
+                                                    {{ $timestamp->user->role->role }}
                                                 </td>
-
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $referral->contract->user->name }}
-                                                </td>
-
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{
-                                                    Carbon\Carbon::parse($referral->updated_at)->timezone('Asia/Manila')->format('M
+                                                    Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('M
                                                     d, Y @ H:i') }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{
+                                                    Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('M
+                                                    d, Y @ H:i') }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $timestamp->ip_address }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -97,7 +108,7 @@
                                     </table>
 
                                 </div>
-                                @endif
+                                {{-- @endif --}}
                             </div>
                         </div>
                     </div>

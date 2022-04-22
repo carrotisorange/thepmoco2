@@ -20,7 +20,7 @@ use App\Models\Tenant;
 use App\Models\Unit;
 use App\Models\Point;
 use App\Models\Status;
-
+use App\Models\Timestamp;
 use Illuminate\Support\Facades\Gate;
 
 class PropertyController extends Controller
@@ -167,14 +167,23 @@ class PropertyController extends Controller
         $tenants = Property::find($property->uuid)->tenants->count();
         $concerns = Property::find($property->uuid)->concerns->count();
 
-        // $contracts = Contract::join('tenants', 'tenant_uuid', 'tenants.uuid')
-        //   ->select('*', 'contracts.status as contract_status', 'contracts.uuid as contract_uuid')
-        // ->join('units', 'unit_uuid', 'units.uuid')
-        // ->where('tenants.property_uuid', Session::get('property'))
-        // ->where('end', '<=', Carbon::now()->addMonth())
-        // ->where('contracts.status', 'active')
-        // ->orderBy('end', 'asc')
-        // ->get();
+
+            $timestamps = DB::table('timestamps')
+            ->where('user_id', auth()->user()->id)
+            ->where('property_uuid', $property->uuid)
+            ->whereDate('created_at', Carbon::today())
+            ->count();
+
+            if($timestamps<=0) { DB::table('timestamps')->insert(
+                [
+                'id' => DB::table('sessions')->count()+1,
+                'user_id' => auth()->user()->id,
+                'property_uuid' => $property->uuid,
+                'created_at' => now(),
+                'ip_address' => request()->ip(),
+                ]
+                );
+                }
 
         $contracts =Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->get();
 

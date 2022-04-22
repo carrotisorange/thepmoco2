@@ -24,11 +24,20 @@
                     </x-nav-link>
                 </div>
                 @endcan
+
+                @can('accountownerandmanager')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/timestamps" :active="request()->routeIs('timestamps')">
+                        <i class="fa-solid fa-user-clock"></i>&nbspTimestamps
+                    </x-nav-link>
+                </div>
+                @endcan
+          
                 @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/referrals"
                         :active="request()->routeIs('referrals')">
-                      <i class="fa-solid fa-user-group"></i>&nbspReferrals
+                        <i class="fa-solid fa-user-group"></i>&nbspReferrals
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -43,15 +52,13 @@
                         <i class="fa-solid fa-user"></i>&nbspTenants
                     </x-nav-link>
                 </div>
-                @endcan
-                @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/owners"
-                        :active="request()->routeIs('owners')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/owners" :active="request()->routeIs('owners')">
                         <i class="fa-solid fa-user-tie"></i>&nbspOwners
                     </x-nav-link>
                 </div>
                 @endcan
+         
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/concerns"
                         :active="request()->routeIs('concerns')">
@@ -168,6 +175,13 @@
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/referrals"
                 :active="request()->routeIs('referrals')">
                 <i class="fa-solid fa-user-group"></i>&nbspReferrals
+            </x-responsive-nav-link>
+            @endcan
+
+            @can('accountownerandmanager')
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/timestaps"
+                :active="request()->routeIs('timestaps')">
+                <i class="fa-solid fa-user-clock"></i>&nbspTimestamps
             </x-responsive-nav-link>
             @endcan
 
