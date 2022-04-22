@@ -14,7 +14,7 @@ class OldTenantController extends Controller
      */
     public function __invoke(Unit $unit)
     {
-        $this->authorize('admin');
+        $this->authorize('managerandadmin');
 
          return view('admin.tenants.old.create', [
             'unit' => $unit
