@@ -1,7 +1,7 @@
 <div class="py-12">
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-6">
         <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
+            <div class="p-12 bg-white border-b border-gray-200">
                 <div>
                     <form method="POST" wire:submit.prevent="createForm" action="/property/{{ Str::random(8) }}/store"
                         enctype="multipart/form-data">
@@ -9,7 +9,7 @@
                         <div>
                             <x-label for="property" :value="__('Property')" />
 
-                            <x-input wire:model="property" id="property" class="block mt-1 w-full" type="text"
+                            <x-form-input wire:model="property" id="property" type="text"
                                 name="property" :value="old('property')" autofocus />
 
                             @error('property')
@@ -20,10 +20,8 @@
                         <div class="mt-5">
                             <x-label for="type" :value="__('Description')" />
 
-                            <textarea wire:model="description"
-                                class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                name="description" id="description" cols="30"
-                                rows="10">{{ old('description') }}</textarea>
+                            <x-form-textarea wire:model="description" name="description" id="description" cols="30"
+                                rows="10">{{ old('description') }} </x-form-textarea>
 
                             @error('description')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -33,16 +31,15 @@
                         <div class="mt-5">
                             <x-label for="type_id" :value="__('Type')" />
 
-                            <select wire:model="type_id"
-                                class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                name="type_id" id="type_id">
+                            <x-form-select wire:model="type_id"
+                              name="type_id" id="type_id">
                                 <option value="">Select one</option>
                                 @foreach ($types as $type)
                                 <option value="{{ $type->id }}" {{ old('type_id')==$type->id?
                                     'selected': 'Select one'
                                     }}>{{ $type->type }}</option>
                                 @endforeach
-                            </select>
+                            </x-form-select>
 
                             @error('type_id')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -52,7 +49,7 @@
                         <div class="mt-5">
                             <x-label for="thumbnail" :value="__('Thumbnail')" />
 
-                            <x-input wire:model="thumbnail" id="thumbnail" class="block mt-1 w-full" type="file"
+                            <x-form-input wire:model="thumbnail" id="thumbnail" type="file"
                                 name="thumbnail" :value="old('thumbnail')" autofocus />
 
                             @error('thumbnail')
@@ -61,10 +58,11 @@
                         </div>
 
                         <div class="mt-5">
-                            <x-label for="tenant_contract" :value="__('Tenant Contract (Please only upload a PDF file.)')" />
+                            <x-label for="tenant_contract"
+                                :value="__('Tenant Contract (Please only upload a PDF file.)')" />
 
-                            <x-input wire:model="tenant_contract" id="tenant_contract" class="block mt-1 w-full" type="file"
-                                name="tenant_contract" :value="old('tenant_contract')" autofocus />
+                            <x-form-input wire:model="tenant_contract" id="tenant_contract" 
+                                type="file" name="tenant_contract" :value="old('tenant_contract')" autofocus />
 
                             @error('tenant_contract')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -72,10 +70,11 @@
                         </div>
 
                         <div class="mt-5">
-                            <x-label for="owner_contract" :value="__('Owner Contract (Please only upload a PDF file.)')" />
+                            <x-label for="owner_contract"
+                                :value="__('Owner Contract (Please only upload a PDF file.)')" />
 
-                            <x-input wire:model="owner_contract" id="owner_contract" class="block mt-1 w-full" type="file"
-                                name="owner_contract" :value="old('owner_contract')" autofocus />
+                            <x-form-input wire:model="owner_contract" id="owner_contract" 
+                                type="file" name="owner_contract" :value="old('owner_contract')" autofocus />
 
                             @error('owner_contract')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
