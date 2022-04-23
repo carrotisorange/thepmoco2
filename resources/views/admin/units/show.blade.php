@@ -52,20 +52,22 @@
                             <li>
                                 <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/old_create"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                   <i class="fa-solid fa-user"></i>&nbsp Old Tenant
+                                    <i class="fa-solid fa-user"></i>&nbsp Old Tenant
                                 </a>
                             </li>
                             <li>
                                 <a href="/inventory/{{ $unit->uuid }}/create"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="fa-solid fa-list-check"></i>&nbspInventory
-                                    
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-list-check"></i>&nbspInventory
+
                                 </a>
                             </li>
                             @endcan
                             @can('manager')
                             <li>
                                 <a href="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/create"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="fa-solid fa-user-tie"></i>&nbspOwner
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-user-tie"></i>&nbspOwner
                                 </a>
                             </li>
                             @endcan
@@ -145,10 +147,16 @@
                                                         Carbon\Carbon::parse($tenant->start)->format('M d, Y').' -
                                                         '.Carbon\Carbon::parse($tenant->end)->format('M d, Y') }}
                                                     </div>
+
+                                                    <div class="text-sm text-gray-500">{{
+                                                        Carbon\Carbon::parse($tenant->end)->diffInMonths($tenant->start)
+                                                        }} months
+                                                    </div>
                                                     @if($tenant->end <= Carbon\Carbon::now()->addMonth())
                                                         <span
                                                             class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
-                                                            <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <svg class="mr-1 w-3 h-3" fill="currentColor"
+                                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                                 <path fill-rule="evenodd"
                                                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
                                                                     clip-rule="evenodd"></path>
@@ -156,10 +164,6 @@
                                                             expiring
                                                         </span>
                                                         @endif
-                                                    <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($tenant->end)->diffForHumans($tenant->start)
-                                                        }}
-                                                    </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     {{number_format($tenant->rent, 2)}}

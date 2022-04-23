@@ -15,6 +15,7 @@
                         :active="request()->routeIs('dashboard')">
                         <i class="fa-solid fa-chart-line"></i>&nbspDashboard
                     </x-nav-link>
+                    
                 </div>
                 @can('accountowner')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -196,12 +197,7 @@
                 :active="request()->routeIs('tenants')">
                 <i class="fa-solid fa-user"></i>&nbspTenants
             </x-responsive-nav-link>
-            {{-- @can('managerandadmin')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
-                :active="request()->routeIs('tenants')">
-                {{ __('Tenants') }}
-            </x-responsive-nav-link>
-            @endcan --}}
+
             @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"
                 :active="request()->routeIs('owners')">
