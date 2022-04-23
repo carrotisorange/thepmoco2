@@ -184,7 +184,7 @@
                                                         @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $contract->interaction->interaction }}
+                                                    {{ $contract->interaction }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <button id="dropdownDividerButton"
