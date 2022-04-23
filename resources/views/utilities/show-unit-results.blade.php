@@ -5,12 +5,6 @@
             <i class="fas fa-home fa-2x"></i> &nbsp
             <small> {{ $unit->unit }}</small>
         </x-button>
-
-        {{-- <x-button class="lg:hidden" title="{{ $unit->unit }}" onclick="window.location.href='/unit/{{ $unit->uuid }}'">
-            
-            <small> {{ $unit->unit }}</small>
-        </x-button> --}}
-
     </div>
     @endforeach
 </div>

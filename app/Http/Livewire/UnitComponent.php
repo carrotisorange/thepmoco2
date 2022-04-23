@@ -5,6 +5,7 @@ use App\Models\PropertyBuilding;
 use App\Models\Category;
 use App\Models\Floor;
 use App\Models\Unit;
+use App\Models\Property;
 use Session;
 
 use Livewire\Component;
@@ -25,16 +26,22 @@ class UnitComponent extends Component
     public function render()
     {
 
-        $units = Unit::leftJoin('categories', 'units.category_id','categories.id')
-          ->leftJoin('statuses', 'units.status_id', 'statuses.id')
-          ->leftJoin('buildings', 'units.building_id', 'buildings.id')
-          ->leftJoin('floors', 'units.floor_id', 'floors.id')
+        // $units = Unit::leftJoin('categories', 'units.category_id','categories.id')
+        //   ->leftJoin('statuses', 'units.status_id', 'statuses.id')
+        //   ->leftJoin('buildings', 'units.building_id', 'buildings.id')
+        //   ->leftJoin('floors', 'units.floor_id', 'floors.id')
          
-          ->where('status_id', 6)
-          ->where('units.property_uuid', Session::get('property'))
-          ->orderByRaw('LENGTH(unit)', 'ASC')
-          ->orderBy('units.unit')
-          ->get();
+        //   ->where('status_id', 6)
+        //   ->where('units.property_uuid', Session::get('property'))
+        //   ->orderByRaw('LENGTH(unit)', 'ASC')
+        //   ->orderBy('units.unit')
+        //   ->get();
+
+        $units = Unit::
+                orderBy('unit', 'desc')
+                ->where('property_uuid', Session::get('property'))
+                ->where('status_id', 6)
+                ->get();
 
         $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
         ->where('property_buildings.property_uuid', Session::get('property'))
