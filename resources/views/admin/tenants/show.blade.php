@@ -145,7 +145,14 @@
                                                     <div class="text-sm text-gray-900">{{
                                                         Carbon\Carbon::parse($contract->start)->format('M d, Y').' -
                                                         '.Carbon\Carbon::parse($contract->end)->format('M d, Y') }}
-                                                        @if($contract->end <= Carbon\Carbon::now()->addMonth())
+
+
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{
+                                                        Carbon\Carbon::parse($contract->end)->diffInMonths($contract->start)
+                                                        }}
+                                                    </div>
+                                                    @if($contract->end <= Carbon\Carbon::now()->addMonth())
                                                         <span
                                                             class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
                                                             <svg class="mr-1 w-3 h-3" fill="currentColor"
@@ -157,11 +164,6 @@
                                                             expiring
                                                         </span>
                                                         @endif
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">{{
-                                                        Carbon\Carbon::parse($contract->end)->diffForHumans($contract->start)
-                                                        }}
-                                                    </div>
 
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
