@@ -48,7 +48,7 @@
     </x-slot>
     @include('utilities.create-unit')
     <div class="py-12">
-
+        {{-- Units: {{ var_export($selectedUnits) }} --}}
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -66,9 +66,7 @@
                                             <tr>
                                                 <th scope="col" class="p-4">
                                                     <div class="flex items-center">
-                                                        <input id="" type="checkbox"
-                                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-
+                                                        <x-input id="" wire:model="selectAll" type="checkbox" />
                                                     </div>
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
@@ -84,7 +82,7 @@
                                                     Category
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
-                                                    Size
+                                                    Size (sqm)
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
                                                     Rent/Mo
@@ -116,10 +114,8 @@
                                                 class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                                 <td class="p-4">
                                                     <div class="flex items-center">
-                                                        <input type="checkbox" wire:model="selectedUnits"
-                                                            value="{{ $unit->uuid }}"
-                                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-
+                                                        <x-input type="checkbox" wire:model="selectedUnits"
+                                                            value="{{ $unit->uuid }}" />
                                                     </div>
                                                 </td>
 

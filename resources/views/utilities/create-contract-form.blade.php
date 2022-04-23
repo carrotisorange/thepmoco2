@@ -54,28 +54,20 @@
                 @enderror
             </div>
             <div class="w-full md:w-1/3 px-3">
-                <x-label for="interaction">
+                <x-label for="interaction_id">
                     Interaction<span class="text-red-600">*</span> (<span class="text-indigo-600">For marketing
                         purposes</span>)
                 </x-label>
-                <x-form-select x-data="{ open: false }"  wire:model="interaction" id="interaction" name="interaction">
-
+                <x-form-select wire:model="interaction_id" id="interaction_id" name="interaction_id">
                     <option value="">Select one</option>
-                    <option x-data="{ open: false }" value="ads" {{ old('interaction')=='ads' ? 'selected' : 'Select one' }}>
-                        {{
-                        'ads' }}</option>
-                    <option x-data="{ open: false }" value="facebook" {{ old('interaction')=='facebook' ? 'selected' : 'Select one' }}>
-                        {{
-                        'facebook' }}</option>
-                    <option x-data="{ open: true }" value="referred" {{ old('interaction')=='referred' ? 'selected' : 'Select one' }}>
-                        {{
-                        'referred' }}</option>
-                    <option x-data="{ open: false }" value="walk-in" {{ old('interaction')=='walk-in' ? 'selected' : 'Select one' }}>
-                        {{
-                        'walk-in' }}</option>
+                    @foreach ($interactions as $interaction)
+                    <option value="{{ $interaction->id }}" {{ old('interactionid')==$interaction->id?
+                        'selected': 'Select one'
+                        }}>{{ $interaction->interaction }}</option>
+                    @endforeach
                 </x-form-select>
 
-                @error('interaction')
+                @error('interaction_id')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
@@ -85,7 +77,7 @@
         <div x-show="false" class="flex flex-wrap mx-3 mb-6">
             <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="contract">
-                   Name of the referral
+                    Name of the referral
                 </x-label>
 
                 <x-form-input wire:model="referral" id="referral" type="text" name="referral"

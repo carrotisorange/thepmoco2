@@ -15,7 +15,8 @@ class UnitComponent extends Component
     public $batch_no;
     public $unit_count;   
 
-    public $selectedUnits = [];
+    public $selectedUnits =[];
+    public $selectAll = false;
 
     public function mount($batch_no, $unit_count)
     {
@@ -25,31 +26,18 @@ class UnitComponent extends Component
 
     public function render()
     {
-
-        // $units = Unit::leftJoin('categories', 'units.category_id','categories.id')
-        //   ->leftJoin('statuses', 'units.status_id', 'statuses.id')
-        //   ->leftJoin('buildings', 'units.building_id', 'buildings.id')
-        //   ->leftJoin('floors', 'units.floor_id', 'floors.id')
-         
-        //   ->where('status_id', 6)
-        //   ->where('units.property_uuid', Session::get('property'))
-        //   ->orderByRaw('LENGTH(unit)', 'ASC')
-        //   ->orderBy('units.unit')
-        //   ->get();
-
-        $units = Unit::
-                orderBy('unit', 'desc')
-                ->where('property_uuid', Session::get('property'))
-                ->where('status_id', 6)
-                ->get();
+        $units = Unit::orderBy('unit', 'desc')
+            ->where('property_uuid', Session::get('property'))
+            ->where('status_id', 6)
+            ->get();
 
         $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
         ->where('property_buildings.property_uuid', Session::get('property'))
         ->get();
 
-        $floors = Floor::all();
+        $floors = Floor::where('id', '!=', 1)->get();
 
-        $categories = Category::all();
+        $categories = Category::where('id', '!=', 1)->get();
 
         return view('livewire.unit-component',[
             'buildings' => $buildings,

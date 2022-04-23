@@ -15,6 +15,7 @@ use App\Models\Property;
 use Carbon\Carbon;
 use Session;
 use App\Models\Point;
+use App\Models\Interaction;
 use App\Models\Referral;
 
 class ContractComponent extends Component
@@ -39,7 +40,7 @@ class ContractComponent extends Component
       public $end;
       public $rent;
       public $discount;
-      public $interaction;
+      public $interaction_id;
       public $contract;
       public $referral;
 
@@ -50,7 +51,7 @@ class ContractComponent extends Component
        'end' => 'required|date|after:start',
        'rent' => 'required',
        'discount' => 'required',
-       'interaction' => 'required',
+       'interaction_id' => 'required',
        'contract' => 'nullable|mimes:pdf,doc,docx, image'
       ];
       }
@@ -102,7 +103,7 @@ class ContractComponent extends Component
              
 
             Unit::where('uuid', $this->unit->uuid)->update([
-            'status_id' => 2
+              'status_id' => 2
             ]);
 
             if($this->rent > 0){
@@ -119,7 +120,7 @@ class ContractComponent extends Component
                'property_uuid' => Session::get('property'),
                'unit_uuid' => $this->unit->uuid,
                'tenant_uuid' => $this->tenant->uuid,
-               'due_date' => Carbon::parse($this->start)->addDay(),
+            
                ]);
 
                Bill::create([
@@ -135,7 +136,7 @@ class ContractComponent extends Component
                'property_uuid' => Session::get('property'),
                'unit_uuid' => $this->unit->uuid,
                'tenant_uuid' => $this->tenant->uuid,
-               'due_date' => Carbon::parse($this->start)->addDay(),
+             
                ]);
 
                 Bill::create([
@@ -151,7 +152,7 @@ class ContractComponent extends Component
                 'property_uuid' => Session::get('property'),
                 'unit_uuid' => $this->unit->uuid,
                 'tenant_uuid' => $this->tenant->uuid,
-                'due_date' => Carbon::parse($this->start)->addDay(),
+            
                 ]);
 
                 Bill::create([
@@ -167,7 +168,7 @@ class ContractComponent extends Component
                 'property_uuid' => Session::get('property'),
                 'unit_uuid' => $this->unit->uuid,
                 'tenant_uuid' => $this->tenant->uuid,
-                'due_date' => Carbon::parse($this->start)->addDay(),
+           
                 ]);
 
             }
@@ -221,6 +222,8 @@ class ContractComponent extends Component
 
       public function render()
       {
-      return view('livewire.contract-component');
+      return view('livewire.contract-component',[
+        'interactions' => Interaction::all()
+      ]);
       }
 }

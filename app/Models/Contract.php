@@ -43,4 +43,10 @@ class Contract extends Model
      {
      return $this->belongsTo(Referral::class, 'contract_uuid');
      }
+
+    public function interaction()
+         {
+         return $this->belongsTo(Interaction::class, 'interaction_id');
+         }
+
 }
