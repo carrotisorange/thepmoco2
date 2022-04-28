@@ -20,11 +20,6 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    {{-- <x-button wire:click="deleteUnits()" data-modal-toggle="popup-modal"><i
-                            class="fa-solid fa-trash"></i>&nbsp
-                        Remove
-                    </x-button> --}}
-
                     <x-button wire:click="deleteUnits()"><i class="fa-solid fa-trash"></i>&nbsp
                         Remove
                     </x-button>
@@ -40,9 +35,7 @@
                     <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'">Create Unit
                     </x-button>
                     @endif
-
                 </h5>
-
             </div>
         </h2>
     </x-slot>
@@ -120,18 +113,14 @@
                                                 </td>
 
                                                 <td class="px-4 py-4">
-                                                    <input
-                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                        required /" form="edit-form" type="text"
-                                                        name="unit{{ $name++ }}" value="Unit {{ $unit_count++ }}">
+                                                    <x-table-input form="edit-form" type="text" name="unit{{ $name++ }}"
+                                                        value="Unit {{ $unit_count++ }}" />
                                                 </td>
 
                                                 <input form="edit-form" type="hidden" name="uuid{{ $uuid++ }}" id="uuid"
                                                     value="{{ $unit->uuid }}">
                                                 <td class="px-4 py-4">
-                                                    <select
-                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                        placeholder=" " / form="edit-form"
+                                                    <x-table-select form="edit-form"
                                                         name="building_id{{ $building_id++  }}" id="building_id">
                                                         <option value="">Select one </option>
                                                         @foreach ($buildings as $building)
@@ -140,24 +129,20 @@
                                                         </option>
                                                         @endforeach
 
-                                                    </select>
+                                                    </x-table-select>
                                                 </td>
                                                 <td class="px-4 py-4">
-                                                    <select
-                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                        placeholder=" " / form="edit-form"
-                                                        name="floor_id{{ $floor_id++  }}" id="floor_id">
+                                                    <x-table-select form="edit-form" name="floor_id{{ $floor_id++  }}"
+                                                        id="floor_id">
                                                         <option value="">Select one</option>
                                                         @foreach ($floors as $floor)
                                                         <option value="{{ $floor->id }}">{{ $floor->floor }}
                                                         </option>
                                                         @endforeach
-                                                    </select>
+                                                    </x-table-select>
                                                 </td>
                                                 <td class="px-4 py-4">
-                                                    <select
-                                                        class="w-32 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                        placeholder=" " / form="edit-form"
+                                                    <x-table-select form="edit-form"
                                                         name="category_id{{ $category_id++  }}">
                                                         <option value="">Select one</option>
                                                         @foreach ($categories as $category)
@@ -165,34 +150,22 @@
                                                             }}
                                                         </option>
                                                         @endforeach
-                                                    </select>
+                                                    </x-table-select>
                                                 </td>
                                                 <td class="px-4 py-4">
-                                                    <input
-                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                        placeholder=" " required /" form="edit-form"
-                                                        name="size{{ $size++  }}" id="size" type="text" min="1"
-                                                        value="{{ $unit->size }}">
-                                                    </input>
+                                                    <x-table-input form="edit-form" name="size{{ $size++  }}" id="size"
+                                                        type="text" min="1" value="{{ $unit->size }}" />
                                                 </td>
                                                 <td class="px-4 py-4">
-                                                    <input
-                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                        placeholder=" " /" form="edit-form" min="0"
-                                                        name="rent{{ $rent++  }}" id="rent" type="number"
-                                                        value="{{ $unit->rent }}"></input>
+                                                    <x-table-input form="edit-form" min="0" name="rent{{ $rent++  }}"
+                                                        id="rent" type="number" value="{{ $unit->rent }}" />
                                                 </td>
                                                 <td class="px-4 py-4">
-                                                    <input
-                                                        class="w-24 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                        placeholder=" " /" form="edit-form"
-                                                        name="occupancy{{ $occupancy++  }}" id="occupancy" type="number"
-                                                        min="1" value="{{ $unit->occupancy }}">
-                                                    </input>
+                                                    <x-table-input form="edit-form" name="occupancy{{ $occupancy++  }}"
+                                                        id="occupancy" type="number" min="1"
+                                                        value="{{ $unit->occupancy }}" />
                                                 </td>
-
                                             </tr>
-
                                         </tbody>
                                         @endforeach
                                     </table>
@@ -207,7 +180,6 @@
             </div>
         </div>
     </div>
-
     @include('utilities.create-building');
     @include('utilities.delete-unit-modal')
 </x-app-layout>
