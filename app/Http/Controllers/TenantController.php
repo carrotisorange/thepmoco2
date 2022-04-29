@@ -80,20 +80,12 @@ class TenantController extends Controller
      */
     public function show(Tenant $tenant)
     {
-        $bills = Tenant::find($tenant->uuid)->bills;
-
-        $contracts = Tenant::find($tenant->uuid)->contracts;
-
-        $references = Tenant::find($tenant->uuid)->references;
-
-        $guardians = Tenant::find($tenant->uuid)->guardians;
-
         return view('admin.tenants.show',[
             'tenant' => $tenant,
-            'bills' => $bills,
-            'contracts' => $contracts,
-            'references' => $references,
-            'guardians' => $guardians
+            'bills' => Tenant::find($tenant->uuid)->bills,
+            'contracts' => Tenant::find($tenant->uuid)->contracts,
+            'references' => Tenant::find($tenant->uuid)->references,
+            'guardians' => Tenant::find($tenant->uuid)->guardians
         ]);
     }
 

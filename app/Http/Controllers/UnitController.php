@@ -81,30 +81,12 @@ class UnitController extends Controller
      */
     public function show(Unit $unit)
     {
-        $tenants = Unit::findOrFail($unit->uuid)->contracts;
-
-        $deed_of_sales = Unit::findOrFail($unit->uuid)->deed_of_sales;
-
-        $enrollees = Unit::findOrFail($unit->uuid)->enrollees;
-
-        $bills = Unit::find($unit->uuid)->bills;
-
-        // $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
-        //   ->select('*', 'bills.status as bill_status')
-        //   ->join('users', 'bills.user_id', 'users.id')
-        //   ->join('particulars', 'bills.particular_id', 'particulars.id')
-        //   ->join('units', 'bills.unit_uuid', 'units.uuid')
-        //   ->where('bills.property_uuid', Session::get('property'))
-        //   ->where('bills.unit_uuid', $unit->uuid)
-        //   ->orderBy('bills.bill_no', 'asc')
-        //   ->paginate(10);
-
         return view('admin.units.show', [
-            'unit' => $unit,
-            'tenants' => $tenants,
-            'deed_of_sales' => $deed_of_sales,
-            'bills' => $bills,
-            'enrollees' => $enrollees
+            'unit' => Unit::findOrFail($unit->uuid),
+            'contracts' => Unit::findOrFail($unit->uuid)->contracts,
+            'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales,
+            'bills' => Unit::findOrFail($unit->uuid)->bills,
+            'enrollees' => Unit::findOrFail($unit->uuid)->enrollees
         ]);
     }
 
