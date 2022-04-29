@@ -17,7 +17,7 @@
                             @enderror
                         </div>
 
-                        <div class="mt-5">
+                        {{-- <div class="mt-5">
                             <x-label for="type" :value="__('Description')" />
 
                             <x-form-textarea wire:model="description" name="description" id="description" cols="30"
@@ -26,7 +26,7 @@
                             @error('description')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="mt-5">
                             <x-label for="type_id" :value="__('Type')" />
