@@ -8,7 +8,7 @@
         integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
     @endsection
 
-    @section('title', '| '.$property->property)
+    @section('title', '| Dashboard')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">

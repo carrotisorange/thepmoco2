@@ -32,6 +32,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
+        Session::forget('property_name');
+
         if(auth()->user()->role_id == '10')
         {   
             $sessions = DB::table('sessions')
