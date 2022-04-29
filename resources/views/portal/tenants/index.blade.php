@@ -148,7 +148,7 @@
                                                                 class="text-indigo-600 hover:text-indigo-900"><i
                                                                     class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
 
-                                                            @can('accountowner')
+                                                            @can('manager')
                                                             <a title="edit"
                                                                 href="/property/{{ $property->property->uuid }}/edit"
                                                                 class="text-indigo-600 hover:text-indigo-900"><i

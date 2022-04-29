@@ -81,9 +81,9 @@
                                                     <td class="px-6 py-4 whitespace-nowrap">
                                                         <div class="flex items-center">
                                                             <div class="flex-shrink-0 h-10 w-10">
-                                                                <a href="/property/{{ $property->uuid }}">
-                                                                    <img class="h-10 w-10 rounded-full"
-                                                                        src="/storage/{{ $property->property->thumbnail }}"></a>
+
+                                                                <img class="h-10 w-10 rounded-full"
+                                                                    src="/storage/{{ $property->property->thumbnail }}">
                                                             </div>
                                                             <div class="ml-4">
                                                                 <div class="text-sm font-medium text-gray-900">
@@ -119,14 +119,40 @@
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                         Carbon\Carbon::parse($property->property->created_at)->diffForHumans()
                                                         }}</td>
-                                                    <td
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <button id="dropdownDividerButton"
+                                                            data-dropdown-toggle="dropdownDivider.{{ $property->property->uuid }}"
+                                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
+                                                            type="button"><i
+                                                                class="fa-solid fa-list-check"></i>&nbspOptions
+                                                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
+                                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                            </svg></button>
+
+                                                        <div id="dropdownDivider.{{ $property->property->uuid }}"
+                                                            class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                                            <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                                                <li>
+                                                                    <a href="/property/{{ $property->property->uuid }}/"
+                                                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                            class="fa-solid fa-eye"></i>&nbspShow
+                                                                        </a>
+                                                                </li>
+
+                                                            </ul>
+
+                                                        </div>
+                                                    </td>
+                                                    {{-- <td
                                                         class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                         <a title="view" href="/property/{{ $property->property->uuid }}"
                                                             class="text-indigo-600 hover:text-indigo-900"><i
                                                                 class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
 
-                                                        @can('accountowner')
-                                                        <a title="edit"
+                                                        @can('manager')
+                                                        {{-- <a title="edit"
                                                             href="/property/{{ $property->property->uuid }}/edit"
                                                             class="text-indigo-600 hover:text-indigo-900"><i
                                                                 class="fa-solid fa-2x fa-pen-to-square"></i></a>&nbsp;&nbsp;&nbsp;
@@ -138,7 +164,7 @@
 
                                                         @endcannot
 
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                                 @empty
                                                 <span>No properties found!</span>

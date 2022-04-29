@@ -32,10 +32,10 @@ class PropertyComponent extends Component
      public $description;
      public $tenant_contract;
      public $owner_contract;
-   public $country_id;
-    public $province_id;
-         public $city_id;
-         public $barangay;
+     public $country_id;
+     public $province_id;
+     public $city_id;
+     public $barangay;
 
      protected function rules()
      {

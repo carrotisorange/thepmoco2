@@ -206,13 +206,13 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        $this->authorize('accountowner');
+        $this->authorize('manager');
         
          session(['property' => $property->uuid]);
          session(['property_name' => $property->property]);
          
         return view('properties.edit',[
-            'property' => $property,
+            'property_details' => $property,
             'types' => Type::all(),
         ]);
     }
