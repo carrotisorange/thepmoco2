@@ -13,7 +13,7 @@
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">
-                                   Timestamps
+                                    Timestamps
                                 </li>
                             </ol>
                         </nav>
@@ -33,12 +33,15 @@
     </x-slot>
 
     <div class="py-12">
-        
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today()->subDay(1) }}'" ><i class="fa-solid fa-circle-arrow-left"></i>&nbspprevious</x-button>
+            <x-button
+                onclick="window.location.href='/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today()->subDay(1) }}'">
+                <i class="fa-solid fa-circle-arrow-left"></i>&nbspprevious
+            </x-button>
             <div class=" overflow-hidden shadow-sm sm:rounded-lg mt-5">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <span class="text-center text-red">{{ Carbon\Carbon::parse(Session::get('date'))->format('M d, Y') }}</span>
+                <div class="p-12 bg-white border-b border-gray-200">
+                    <span class="text-center text-red">{{ Carbon\Carbon::parse(Session::get('date'))->format('M d, Y')
+                        }}</span>
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -47,67 +50,31 @@
                                         <?php $ctr =1; ?>
                                         <thead class="bg-gray-50">
                                             <tr>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    #</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Name</th>
-
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Role</th>
-
-
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Time in</th>
-
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Time out</th>
-
-                                                {{-- <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Ip Address</th> --}}
-
+                                                <x-th>#</x-th>
+                                                <x-th>Name</x-th>
+                                                <x-th>Role</x-th>
+                                                <x-th>Time in</x-th>
+                                                <x-th>Time out</x-th>
                                             </tr>
                                         </thead>
-                                        @foreach ($timestamps as $timestamp)
+                                        @forelse ($timestamps as $timestamp)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $ctr++ }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $timestamp->user->name }}
-                                                </td>
-
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $timestamp->user->role->role }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{
-                                                    Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('H:i') }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{
-                                                    Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('H:i') }}
-                                                </td>
-                                                {{-- <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $timestamp->ip_address }}
-                                                </td> --}}
+                                                <x-td>{{ $ctr++ }}</x-td>
+                                                <x-td>{{ $timestamp->user->name }}</x-td>
+                                                <x-td>{{ $timestamp->user->role->role }}</x-td>
+                                                <x-td>{{ Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('H:i')}}</x-td>
+                                                <x-td>{{ Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('H:i')}}</x-td>
+                                                @empty
+                                                <x-td>No data found!</x-td>
                                             </tr>
                                         </tbody>
-                                        @endforeach
+                                        @endforelse
                                     </table>
-
                                 </div>
-                                {{-- @endif --}}
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
