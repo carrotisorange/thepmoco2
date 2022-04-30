@@ -14,7 +14,7 @@ class TenantContractController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Tenant $tenant)
-    {
+{
         return view('tenants.contracts.index',[
             'tenant' => Tenant::find($tenant->uuid),
             'contracts' => Tenant::find($tenant->uuid)->contracts,
