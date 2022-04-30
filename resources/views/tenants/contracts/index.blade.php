@@ -38,14 +38,14 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                
+
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <?php $ctr =1; ?>
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <x-th>#</x-th>
-                                                <x-th>Tenant</x-th>
+                                                <x-th>Unit</x-th>
                                                 <x-th>Duration</x-th>
                                                 <x-th>Rent/Mo</x-th>
                                                 <x-th>Status</x-th>
@@ -58,21 +58,13 @@
                                             <tr>
                                                 <x-td>{{ $ctr++ }}</x-td>
                                                 <x-td>
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0 h-10 w-10">
-                                                            <img class="h-10 w-10 rounded-full"
-                                                                src="/storage/{{ $item->tenant->photo_id }}">
-                                                        </div>
-                                                        <div class="ml-4">
-                                                            <div class="text-sm font-medium text-gray-900"><b>{{
-                                                                    $item->tenant->tenant }}</b>
-                                                            </div>
-                                                            <div class="text-sm text-gray-500">{{
-                                                                $item->tenant->type
-                                                                }}
-                                                            </div>
-                                                        </div>
+                                                    <div class="text-sm text-gray-900">{{ $item->unit->unit }}
                                                     </div>
+
+                                                    <div class="text-sm text-gray-500">{{
+                                                        $item->unit->building->building}}
+                                                    </div>
+
                                                 </x-td>
                                                 <x-td>
                                                     <div class="text-sm text-gray-900">{{
@@ -84,18 +76,7 @@
                                                         Carbon\Carbon::parse($item->end)->diffInMonths($item->start)
                                                         }} months
                                                     </div>
-                                                    @if($item->end <= Carbon\Carbon::now()->addMonth())
-                                                        <span
-                                                            class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
-                                                            <svg class="mr-1 w-3 h-3" fill="currentColor"
-                                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd"
-                                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                                                    clip-rule="evenodd"></path>
-                                                            </svg>
-                                                            expiring
-                                                        </span>
-                                                        @endif
+
                                                 </x-td>
                                                 <x-td>{{number_format($item->rent, 2)}}</x-td>
                                                 <x-td>
@@ -103,11 +84,20 @@
                                                     <span
                                                         class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                         <i class="fa-solid fa-circle-check"></i> {{ $item->status }}
-                                                        @else
+                                                    </span>
+                                                    @else
+
+                                                    <span class="px-2 text-sm leading-5 font-semibold rounded-full
+                                                        bg-orange-100 text-orange-800">
+                                                        <i class="fa-solid fa-circle-xmark"></i> {{
+                                                        $item->status }}
+                                                    </span>
+                                                    @endif
+                                                    @if($item->end <= Carbon\Carbon::now()->addMonth())
                                                         <span
-                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                            <i class="fa-solid fa-circle-xmark"></i> {{
-                                                            $item->status }}
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full
+                                                                                                                bg-orange-100 text-orange-800">
+                                                            <i class="fa-solid fa-clock"></i> expiring
                                                         </span>
                                                         @endif
                                                 </x-td>
