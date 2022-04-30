@@ -14,4 +14,10 @@ class Concern extends Model
     return $this->belongsTo(Property::class);
     }
 
+        public function tenant()
+        {
+        return $this->belongsTo(Tenant::class);
+        }
+
+
 }

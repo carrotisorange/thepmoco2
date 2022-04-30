@@ -195,12 +195,10 @@
                 </x-lab>
                 <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
                     value="{{ old('barangay', $tenant_details->barangay) }}" />
-
                 @error('barangay')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
         </div>
-
     </div>
     <div class="mt-6 flex flex-wrap mx-3 mb-2">
         <div class="w-full md:w-1/2 px-3">
@@ -269,7 +267,6 @@
                 <x-label for="photo_id">
                     Photo ID (i.e., Government issues ID, school ID, employee ID)
                 </x-label>
-
                 <x-form-input wire:model="photo_id" id="photo_id" type="file" name="photo_id"
                     value="{{old('photo_id', $tenant_details->photo_id)}}" autofocus />
 
@@ -281,22 +278,11 @@
                 <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $tenant_details->photo_id }}" alt="">
             </div>
         </div>
-
     </div>
-
     </div>
     <div class="mt-6 mx-3 mb-2">
         <p class="text-right">
-            <x-button>
-                <svg wire:loading wire:target="updateForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                    </path>
-                </svg>
-                <i class="fa-solid fa-circle-right"></i>&nbspSave
-            </x-button>
+            <x-form-button></x-form-button>
         </p>
     </div>
 </form>

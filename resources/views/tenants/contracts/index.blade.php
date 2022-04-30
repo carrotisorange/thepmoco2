@@ -12,9 +12,11 @@
                                         Session::get('property_name') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><span class="text-gray-500 mx-2">Unit</span></li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
+
                                 <li class="text-gray-500">{{ $tenant->tenant }}</li>
+                                <li><span class="text-gray-500 mx-2">/</span></li>
+
+                                <li class="text-gray-500">Contracts</li>
                             </ol>
                         </nav>
                     </h2>
@@ -32,9 +34,8 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white border-b border-gray-200">
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -93,7 +94,8 @@
                                                         $item->status }}
                                                     </span>
                                                     @endif
-                                                    @if($item->end <= Carbon\Carbon::now()->addMonth())
+                                                    @if($item->end <= Carbon\Carbon::now()->addMonth() && $item->status
+                                                        == 'active')
                                                         <span
                                                             class="px-2 text-sm leading-5 font-semibold rounded-full
                                                                                                                 bg-orange-100 text-orange-800">
@@ -118,30 +120,25 @@
                                                     <div id="dropdownDivider.{{ $item->uuid }}"
                                                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
-                                                            <li>
-                                                                <a href="/tenant/{{ $item->tenant->uuid }}/"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-user"></i>&nbspShow
-                                                                    Tenant</a>
-                                                            </li>
+
                                                             <li>
                                                                 <a href="/contract/{{ $item->uuid }}/edit"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                         class="fa-solid fa-file-contract"></i>&nbspShow
-                                                                    Contract</a>
+                                                                </a>
                                                             </li>
 
                                                             <li>
                                                                 <a href="/contract/{{ $item->uuid }}/transfer"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                         class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
-                                                                    Contract</a>
+                                                                </a>
                                                             </li>
                                                             <li>
                                                                 <a href="/contract/{{ $item->uuid }}/renew"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                         class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
-                                                                    Contract</a>
+                                                                </a>
                                                             </li>
 
                                                         </ul>

@@ -102,7 +102,7 @@
                                                     <ul class="py-1" aria-labelledby="dropdownDividerButton">
                                                         @can('managerandadmin')
                                                         <li>
-                                                            <a href="/tenant/{{ $tenant->uuid }}"
+                                                            <a href="/tenant/{{ $tenant->uuid }}/edit"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                     class="fa-solid fa-edit"></i>&nbspShow Tenant</a>
                                                         </li>
@@ -111,6 +111,12 @@
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                     class="fas fa-file-signature"></i>&nbspShow
                                                                 Contracts</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/tenant/{{ $tenant->uuid }}/concerns"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                    class="fa-solid fa-screwdriver-wrench"></i>&nbspShow
+                                                                Concerns</a>
                                                         </li>
                                                         @endcan
                                                         @can('billing')
@@ -125,7 +131,8 @@
                                                         <li>
                                                             <a href="/tenant/{{ $tenant->uuid }}/collections"
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                <i class="fa-solid fa-coins"></i>&nbspShow Collections</a>
+                                                                <i class="fa-solid fa-coins"></i>&nbspShow
+                                                                Collections</a>
                                                         </li>
                                                         @endcan
                                                     </ul>

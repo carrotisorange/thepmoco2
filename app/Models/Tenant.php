@@ -62,6 +62,16 @@ class Tenant extends Model
         return $this->hasMany(Contract::class);
     }
 
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
+
+    public function concerns()
+    {
+        return $this->hasMany(Concern::class);
+    }
+
     public function relationship()
     {
         return $this->belongsTo(Relationship::class);

@@ -59,13 +59,13 @@
                     </x-nav-link>
                 </div>
                 @endcan
-         
+{{--          
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/concerns"
                         :active="request()->routeIs('concerns')">
                         <i class="fa-solid fa-screwdriver-wrench"></i>&nbspConcerns
                     </x-nav-link>
-                </div>
+                </div> --}}
             
             </div>
 
@@ -189,11 +189,11 @@
                 <i class="fa-solid fa-user-tie"></i>&nbspOwners
             </x-responsive-nav-link>
             @endcan
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/concerns"
+            {{-- <x-responsive-nav-link href="/property/{{ Session::get('property') }}/concerns"
                 :active="request()->routeIs('concerns')">
                 <i class="fa-solid fa-screwdriver-wrench"></i>&nbspConcerns
             </x-responsive-nav-link>
-           
+            --}}
         </div>
 
         <!-- Responsive Settings Options -->

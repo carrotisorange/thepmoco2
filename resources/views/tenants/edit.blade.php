@@ -11,14 +11,10 @@
                                         class="text-blue-600 hover:text-blue-700">{{
                                         Session::get('property_name')}}</a>
                                 </li>
+
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session('property') }}/tenants"
-                                        class="text-blue-600 hover:text-blue-700">Tenants</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/tenant/{{ $tenant_details->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $tenant_details->tenant }}</a>
-                                </li>
+                                <li><span class="text-gray-500 mx-2">{{
+                                        $tenant_details->tenant }}</span></li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Edit</li>
                             </ol>
@@ -26,9 +22,10 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'"><i
+                            class="fa-solid fa-circle-arrow-left"></i>&nbspBack
+                    </x-button>
                 </h5>
-
             </div>
         </h2>
     </x-slot>
@@ -37,7 +34,7 @@
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div>
-                       @livewire('tenant-edit-component', ['tenant_details' => $tenant_details])
+                        @livewire('tenant-edit-component', ['tenant_details' => $tenant_details])
                     </div>
                 </div>
             </div>

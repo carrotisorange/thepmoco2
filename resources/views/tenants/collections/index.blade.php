@@ -16,7 +16,7 @@
                                 <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
 
-                                <li class="text-gray-500">Contracts</li>
+                                <li class="text-gray-500">Collections</li>
                             </ol>
                         </nav>
                     </h2>
@@ -25,10 +25,7 @@
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
-
-
                 </h5>
-
             </div>
         </h2>
     </x-slot>
@@ -39,52 +36,42 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
-                                        <?php $ctr =1; ?>
                                         <thead class="bg-gray-50">
                                             <tr>
-                                                <x-th>#</x-th>
-                                                <x-th>Bill No</x-th>
-                                                <x-th>Reference no</x-th>
+                                                <x-th>AR No</x-th>
+                                                <x-th>Bill Reference No</x-th>
                                                 <x-th>Amount</x-th>
+                                                <x-th>Form</x-th>
                                                 <x-th>Unit</x-th>
-                                                <x-th>Particular</x-th>
-                                                <x-th>Period</x-th>
-                                                <x-th>Status</x-th>
+                                                <x-th>Period Covered</x-th>
+                                                <x-th>Payment made</x-th>
+                                                <x-th></x-th>
                                             </tr>
                                         </thead>
-                                        @forelse ($bills as $item)
+
+                                        @forelse ($collections as $collection)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
-                                                <x-td>{{ $ctr++ }}</x-td>
-                                                <x-td>{{ $item->bill_no }}</x-td>
-                                                <x-td>{{ $item->reference_no}}</x-td>
-                                                <x-td>{{number_format($item->bill,2) }}</x-td>
-                                                <x-td>{{$item->unit->unit }}</x-td>
-                                                <x-td>{{$item->particular->particular }}</x-td>
-                                                <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
-                                                    Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
-                                                <x-td>
-                                                    @if($item->status === 'paid')
-                                                    <span
-                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        <i class="fa-solid fa-circle-check"></i> {{
-                                                        $item->status }}
-                                                        @else
-                                                        <span
-                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                            <i class="fa-solid fa-clock"></i> {{
-                                                            $item->status }}
-                                                        </span>
-                                                        @endif
+                                                <x-td>{{ $collection->ar_no }}</x-td>
+                                                <x-td>{{ $collection->bill_reference_no }}</x-td>
+                                                <x-td>{{ number_format($collection->collection,2) }}</x-td>
+                                                <x-td>{{ $collection->form }}</x-td>
+                                                <x-td>{{ $collection->tenant }}</x-td>
+                                                <x-td>{{ $collection->unit }}</x-td>
+                                                <x-td>{{ Carbon\Carbon::parse($collection->start)->format('M d,
+                                                    Y').'-'.Carbon\Carbon::parse($collection->end)->format('M d, Y') }}
                                                 </x-td>
-
+                                                <x-td>{{ Carbon\Carbon::parse($collection->created_at)->format('M d, Y')
+                                                    }}</x-td>
+                                                <x-td></x-td>
                                                 @empty
                                                 <x-td>No data found!</x-td>
-                                                @endforelse
                                             </tr>
                                         </tbody>
+                                        @endforelse
                                     </table>
                                 </div>
                             </div>
