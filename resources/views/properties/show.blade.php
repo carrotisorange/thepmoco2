@@ -32,7 +32,8 @@
                     @can('accountowner')
                     <x-button
                         onclick="window.location.href='/property/{{ Session::get('property') }}/team/{{ Str::random(8) }}/create'">
-                        <i class="fa-solid fa-circle-plus"></i>&nbsp Team</x-button>
+                        <i class="fa-solid fa-circle-plus"></i>&nbsp Team
+                    </x-button>
                     @endcan
                 </h5>
 
@@ -331,36 +332,19 @@
                                                     <?php $ctr =1; ?>
                                                     <thead class="bg-gray-50">
                                                         <tr>
-                                                            <th scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                #</th>
-                                                            <th scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                Tenant</th>
-                                                            <th scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                Unit</th>
-                                                            <th scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                Status</th>
-                                                            <th scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                Moveout date</th>
-
-
-
-                                                            <th scope="col" class="relative px-6 py-3">
-                                                                <span class="sr-only">Edit</span>
-                                                            </th>
+                                                            <x-th>#</x-th>
+                                                            <x-th>Tenant</x-th>
+                                                            <x-th>Unit</x-th>
+                                                            <x-th>Status</x-th>
+                                                            <x-th>Moveout date</x-th>
+                                                            <x-th></x-th>
                                                         </tr>
                                                     </thead>
                                                     @foreach ($contracts as $contract)
                                                     <tbody class="bg-white divide-y divide-gray-200">
                                                         <tr>
-                                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                                {{ $ctr++ }}
-                                                            </td>
-                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                            <x-td>{{ $ctr++ }}</x-td>
+                                                            <x-td>
                                                                 <div class="flex items-center">
                                                                     <div class="flex-shrink-0 h-10 w-10">
 
@@ -378,17 +362,16 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </td>
-                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                            </x-td>
+                                                            <x-td>
                                                                 <div class="text-sm text-gray-900">
                                                                     {{ $contract->unit->unit }}
                                                                 </div>
                                                                 <div class="text-sm text-gray-500">
                                                                     {{ $contract->unit->bulding }}
                                                                 </div>
-                                                            </td>
-
-                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                            </x-td>
+                                                            <x-td>
                                                                 @if($contract->status === 'active')
                                                                 <span
                                                                     class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -401,13 +384,15 @@
                                                                         $contract->status }}
                                                                     </span>
                                                                     @endif
-                                                            </td>
-                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                            </x-td>
+                                                            <x-td>
                                                                 {{ Carbon\Carbon::parse($contract->end)->format('M d,
                                                                 Y') }}
                                                                 <span
                                                                     class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
-                                                                    <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                    <svg class="mr-1 w-3 h-3" fill="currentColor"
+                                                                        viewBox="0 0 20 20"
+                                                                        xmlns="http://www.w3.org/2000/svg">
                                                                         <path fill-rule="evenodd"
                                                                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
                                                                             clip-rule="evenodd"></path>
@@ -416,9 +401,9 @@
                                                                     Carbon\Carbon::parse($contract->end)->diffForHumans()
                                                                     }}
                                                                 </span>
-                                                                
-                                                            </td>
-                                                            <td class="px-6 py-4 whitespace-nowrap">
+
+                                                            </x-td>
+                                                            <x-td>
                                                                 <button id="dropdownDividerButton"
                                                                     data-dropdown-toggle="dropdownDivider.{{ $contract->uuid }}"
                                                                     class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
@@ -472,8 +457,7 @@
                                                                     </div>
                                                                     @endif
                                                                 </div>
-
-                                                            </td>
+                                                            </x-td>
                                                         </tr>
                                                     </tbody>
                                                     @endforeach
