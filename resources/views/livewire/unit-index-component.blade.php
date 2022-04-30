@@ -49,34 +49,29 @@
                     </svg>
                 </div>
                 <input wire:model="search" type="text" id="table-search"
-                    class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for units">
             </div>
         </div>
-
         <div class="mt-5">
-            {{ $units->links() }}
+
         </div>
-
         <div class="mt-5 p-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
             <div class="p-6 bg-white border-b border-gray-200">
-
                 <div class="flex flex-row">
                     <div class="basis-1/8">
                         @include('utilities.show-unit-filters')
                     </div>
                     <div class="basis-3/4 ml-12">
-                        @if($units->count())
-                        <span class="font-bold tex-center">Results ({{ $units->count() }})...</span>
-                        @else
-                        <p class="text-center text-red-600">No units found!</p>
+                        <p class="text-center">
+                            @if($units->count())
+                            {{ $units->links() }}
+                            @else
+                            No units found!
+                        </p>
                         @endif
                         @include('utilities.show-unit-results')
                     </div>
-                    {{-- <div class="basis-1/2 ml-16">
-                        @include('utilities.show-unit-details')
-                    </div> --}}
                 </div>
             </div>
         </div>
