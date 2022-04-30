@@ -48,10 +48,7 @@
                     => $bills])
                     <br>
                     @if ($bills->count())
-
                     <span>Total: {{ number_format($bills->sum('bill'), 2) }}</span>
-
-
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
                         <table class="min-w-full divide-y divide-gray-200">

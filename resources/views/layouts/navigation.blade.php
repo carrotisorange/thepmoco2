@@ -66,22 +66,7 @@
                         <i class="fa-solid fa-screwdriver-wrench"></i>&nbspConcerns
                     </x-nav-link>
                 </div>
-                @can('billing')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/bills"
-                        :active="request()->routeIs('bills')">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
-                    </x-nav-link>
-                </div>
-                @endcan
-                @can('treasury')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/collections"
-                        :active="request()->routeIs('collections')">
-                        <i class="fa-solid fa-coins"></i>&nbspCollections
-                    </x-nav-link>
-                </div>
-                @endcan
+            
             </div>
 
             <!-- Settings Dropdown -->
@@ -208,18 +193,7 @@
                 :active="request()->routeIs('concerns')">
                 <i class="fa-solid fa-screwdriver-wrench"></i>&nbspConcerns
             </x-responsive-nav-link>
-            @can('billing')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/bills"
-                :active="request()->routeIs('bills')">
-                <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
-            </x-responsive-nav-link>
-            @endcan
-            @can('treasury')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/collections"
-                :active="request()->routeIs('collections')">
-                <i class="fa-solid fa-coins"></i>&nbspCollections
-            </x-responsive-nav-link>
-            @endcan
+           
         </div>
 
         <!-- Responsive Settings Options -->

@@ -120,7 +120,6 @@
                         @endif
                     </div>
                 </x-td>
-
                 @empty
                 <x-td>No data found!</x-td>
             </tr>

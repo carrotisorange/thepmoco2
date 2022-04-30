@@ -52,11 +52,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('enrollees', [EnrolleeController::class, 'index'])->name('enrollees');
 
-    Route::get('bills', [BillController::class, 'index'])->name('bills');
-
     Route::get('particulars', [ParticularController::class, 'index']);
-
-    Route::get('collections', [CollectionController::class, 'index'])->name('collections');
 
     Route::get('/', [PropertyController::class, 'show'])->name('dashboard');    
     Route::get('edit', [PropertyController::class, 'edit']);
@@ -95,6 +91,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('building/{random_str}/store',[BuildingController::class, 'store']);
 
     Route::get('tenant/{tenant:uuid}', [TenantController::class, 'show']);
+    Route::get('tenant/{tenant}/contracts', TenantContractController::class);
     Route::get('tenant/{tenant}/edit', [TenantController::class, 'edit']);
     Route::get('tenant/{uuid}/delete', [TenantController::class, 'destroy']);
     Route::patch('tenant/{tenant}/update', [TenantController::class, 'update']);

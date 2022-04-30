@@ -23,18 +23,7 @@ class BillController extends Controller
      */
     public function index()
     {
-         $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
-        ->select('*', 'bills.status as bill_status')
-        ->join('users', 'bills.user_id', 'users.id')
-        ->join('particulars', 'bills.particular_id', 'particulars.id')
-        ->join('units', 'bills.unit_uuid', 'units.uuid')
-        ->where('bills.property_uuid', Session::get('property'))
-        ->orderBy('bills.bill_no', 'asc')
-        ->paginate(10);
-
-        return view('bills.index',[
-            'bills' => $bills,
-        ]);
+        return view('bills.index');
     }
 
     /**

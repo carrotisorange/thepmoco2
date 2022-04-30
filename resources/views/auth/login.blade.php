@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @section('title', '| Login')
+    @section('title', 'Login')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">

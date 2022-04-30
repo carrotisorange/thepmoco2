@@ -10,12 +10,6 @@ class TenantIndexComponent extends Component
 {
     public $search = null;
 
-
-    public function confirmRemoval($tenant_uuid)
-    {
-        ddd('asdasd');
-    }
-
     public function render()
     {
         return view('livewire.tenant-index-component', [
