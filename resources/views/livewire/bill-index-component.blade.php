@@ -45,13 +45,13 @@
 
                                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                         <table class="min-w-full divide-y divide-gray-200">
-                                            <?php $ctr =1; ?>
+
                                             <thead class="bg-gray-50">
                                                 <tr>
-                                                    <x-th>#</x-th>
+                                                    <x-th>Bill no</x-th>
                                                     <x-th>Reference No</x-th>
                                                     {{-- <x-th>Payee</x-th> --}}
-                                                    <x-th>Bill No</x-th>
+
                                                     <x-th>Particular</x-th>
                                                     <x-th>Amount</x-th>
                                                     <x-th>Status</x-th>
@@ -60,10 +60,10 @@
                                             @forelse ($bills as $item)
                                             <tbody class="bg-white divide-y divide-gray-200">
                                                 <tr>
-                                                    <x-td>{{ $ctr++ }}</x-td>
+                                                    <x-td>{{ $item->bill_no}}</x-td>
                                                     <x-td>{{ $item->reference_no}}</x-td>
                                                     {{-- <x-td>{{ $item->tenant->uuid }}</x-td> --}}
-                                                    <x-td>{{ $item->bill_no}}</x-td>
+
                                                     <x-td>{{ $item->particular->particular}}</x-td>
                                                     <x-td>{{ number_format($item->bill, 2) }}</x-td>
                                                     <x-td>@if($item->status === 'paid')
