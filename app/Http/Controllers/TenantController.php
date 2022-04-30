@@ -25,7 +25,7 @@ class TenantController extends Controller
     {
         $tenants = Property::find(Session::get('property'))->tenants;
 
-        return view('admin.tenants.index',[
+        return view('tenants.index',[
             'tenants'=>$tenants
         ]);
     }
@@ -37,7 +37,7 @@ class TenantController extends Controller
      */
     public function create(Unit $unit)
     {
-         return view('admin.tenants.create', [
+         return view('tenants.create', [
          'unit' => $unit
          ]);
     }
@@ -80,7 +80,7 @@ class TenantController extends Controller
      */
     public function show(Tenant $tenant)
     {
-        return view('admin.tenants.show',[
+        return view('tenants.show',[
             'tenant' => $tenant,
             'bills' => Tenant::find($tenant->uuid)->bills,
             'contracts' => Tenant::find($tenant->uuid)->contracts,
@@ -97,7 +97,7 @@ class TenantController extends Controller
      */
     public function edit(Tenant $tenant)
     {
-        return view('admin.tenants.edit',[
+        return view('tenants.edit',[
             'tenant_details' => $tenant,
         ]);
     }

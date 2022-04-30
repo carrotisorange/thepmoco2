@@ -16,38 +16,34 @@
                 <x-th>Status</x-th>
             </tr>
         </thead>
-        @forelse ($bills as $bill)
+        @forelse ($bills as $item)
         <tbody class="bg-white divide-y divide-gray-200">
             <tr>
                 <x-td>{{ $ctr++ }}</x-td>
-                <x-td>{{ $bill->reference_no}}</x-td>
-                <x-td>@if($bill->tenant_uuid)
-                    {{ $bill->tenant->tenant}} (<span>T</span>)
+                <x-td>{{ $item->reference_no}}</x-td>
+                <x-td>@if($item->tenant_uuid)
+                    {{ $item->tenant->tenant}} (<span>T</span>)
                     @else
-                    {{ $bill->owner->owner}}
+                    {{ $item->owner->owner}}
                     @endif</x-td>
-                <x-td>{{ $bill->bill_no}}</x-td>
-                <x-td>{{ $bill->particular->particular}}</x-td>
-                <x-td>{{ number_format($bill->bill, 2) }}</x-td>
-                <x-td>@if($bill->status === 'paid')
+                <x-td>{{ $item->bill_no}}</x-td>
+                <x-td>{{ $item->particular->particular}}</x-td>
+                <x-td>{{ number_format($item->bill, 2) }}</x-td>
+                <x-td>@if($item->status === 'paid')
                     <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                         <i class="fa-solid fa-circle-check"></i> {{
-                        $bill->status }}
+                        $item->status }}
                         @else
                         <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                             <i class="fa-solid fa-clock"></i> {{
-                            $bill->status }}
+                            $item->status }}
                         </span>
                         @endif
                 </x-td>
+                @empty
+                <x-td>No data found!</x-td>
+                @endforelse
             </tr>
-
-            @empty
-            <tr>
-                <span>No bills found!</span>
-            </tr>
-
-            @endforelse
         </tbody>
     </table>
 

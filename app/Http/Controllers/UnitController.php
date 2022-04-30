@@ -27,7 +27,7 @@ class UnitController extends Controller
      */
     public function index()
     {   
-        return view('admin.units.index');
+        return view('units.index');
     }
 
     /**
@@ -39,7 +39,7 @@ class UnitController extends Controller
     {
         $this->authorize('manager');
 
-        return view('admin.units.create',[
+        return view('units.create',[
             'batch_no' => $batch_no,
         ]);
     }
@@ -81,7 +81,7 @@ class UnitController extends Controller
      */
     public function show(Unit $unit)
     {
-        return view('admin.units.show', [
+        return view('units.show', [
             'unit' => Unit::findOrFail($unit->uuid),
             'contracts' => Unit::findOrFail($unit->uuid)->contracts,
             'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales,
@@ -100,7 +100,7 @@ class UnitController extends Controller
     {
         $this->authorize('manager');
 
-        return view('admin.units.bulk-edit',[
+        return view('units.bulk-edit',[
             'batch_no' => $batch_no,
             'unit_count' => Unit::where('property_uuid', Session::get('property'))->where('units.status_id', '!=','6')->get()->count()+1,
         ]);
@@ -112,7 +112,7 @@ class UnitController extends Controller
         ->where('property_buildings.property_uuid', Session::get('property'))
         ->get();
 
-        return view('admin.units.edit',[
+        return view('units.edit',[
             'unit' => $unit,
             'buildings' => $buildings,
             'floors' => Floor::all(),

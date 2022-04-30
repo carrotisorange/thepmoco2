@@ -2,8 +2,14 @@
     @foreach ($units as $unit)
     <div class="mt-5">
         <x-button title="{{ $unit->unit }}" onclick="window.location.href='/unit/{{ $unit->uuid }}'">
-            <i class="fas fa-home fa-2x"></i> &nbsp
-            <small> {{ $unit->unit }}</small>
+            <div>
+                <div>
+                    <img src="/storage/{{ $unit->thumbnail }}" />
+                </div>
+                <div>
+                    <small> {{ $unit->unit }}</small>
+                </div>
+            </div>
         </x-button>
     </div>
     @endforeach

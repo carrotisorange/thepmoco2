@@ -76,8 +76,8 @@ class OwnerController extends Controller
     {
         return view('owners.show',[
             'owner' => $owner,
-            'units' => Owner::find($owner->uuid)->deed_of_sales,
-            'leasings' => Owner::find($owner->uuid)->enrollees,
+            'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
+            'enrollees' => Owner::find($owner->uuid)->enrollees,
             'representatives' => Owner::find($owner->uuid)->representatives,
             'banks' => Owner::find($owner->uuid)->banks,
         ]);

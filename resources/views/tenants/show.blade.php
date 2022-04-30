@@ -94,10 +94,10 @@
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                @include('admin.tenants.contracts.index')
-                                @include('admin.tenants.guardians.index')
-                                @include('admin.tenants.references.index')
-                                @include('admin.tenants.bills.index')
+                                @include('tenants.contracts.index')
+                                @include('tenants.guardians.index')
+                                @include('tenants.references.index')
+                                @include('tenants.bills.index')
                             </div>
                         </div>
                     </div>

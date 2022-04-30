@@ -26,7 +26,7 @@ class ContractController extends Controller
      */
     public function index()
     {
-        return view('admin.tenants.index');
+        return view('tenants.index');
     }
 
     /**

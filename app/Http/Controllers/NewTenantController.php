@@ -17,7 +17,7 @@ class NewTenantController extends Controller
     {
         $this->authorize('admin');
         
-        return view('admin.tenants.new.create', [
+        return view('tenants.new.create', [
                     'unit' => $unit
         ]);
     }

@@ -1,72 +1,52 @@
 <div class="mb-3">
     <span class="text-center text-red">{{ Str::plural('Units',
-        $units->count())}}
-        ({{ $units->count() }})</span>
+        $deed_of_sales->count())}}
+        ({{ $deed_of_sales->count() }})</span>
 </div>
 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
     <table class="min-w-full divide-y divide-gray-200">
         <?php $ctr =1; ?>
         <thead class="bg-gray-50">
             <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    #</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Unit</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Date of turnover</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Price</th>
-
-
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Classification</th>
-
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                </th>
-
+                <x-th>#</x-th>
+                <x-th>Unit</x-th>
+                <x-th>Date of turnover</x-th>
+                <x-th>Price</x-th>
+                <x-th>Classification</x-th>
+                <x-th>Status</x-th>
+                <x-th></x-th>
             </tr>
         </thead>
-        @forelse ($units as $unit)
+        @forelse ($deed_of_sales as $item)
         <tbody class="bg-white divide-y divide-gray-200">
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    {{ $ctr++ }}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <x-td>{{ $ctr++ }}</x-td>
+                <x-td>
                     <div class="text-sm text-gray-900">{{
-                        $unit->unit->unit}}
+                        $item->unit->unit}}
                     </div>
                     <div class="text-sm text-gray-500">{{
-                        $unit->unit->building->building}}
+                        $item->unit->building->building}}
                     </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    {{ Carbon\Carbon::parse($unit->turnover_at)->format('M d,
-                    Y') }}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    {{ number_format($unit->price, 2) }}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    {{ $unit->classification }}
-                </td>
+                </x-td>
 
-                <td class="px-6 py-4 whitespace-nowrap">
-                    @if($unit->status === 'active')
+                <x-td>{{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}</x-td>
+                <x-td>{{ number_format($item->price, 2) }}</x-td>
+                <x-td>{{ $item->classification }}</x-td>
+                <x-td>
+                    @if($item->status === 'active')
                     <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                         <i class="fa-solid fa-circle-check"></i> {{
-                        $unit->status }}
+                        $item->status }}
                         @else
                         <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                             <i class="fa-solid fa-clock"></i> {{
-                            $unit->status }}
+                            $item->status }}
                         </span>
                         @endif
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $unit->uuid }}"
+                </x-td>
+                <x-td>
+                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
                         class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
                         type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -75,11 +55,11 @@
                             </path>
                         </svg></button>
 
-                    <div id="dropdownDivider.{{ $unit->uuid }}"
+                    <div id="dropdownDivider.{{ $item->uuid }}"
                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
                             <li>
-                                <a href="/unit/{{ $unit->unit->uuid }}/"
+                                <a href="/unit/{{ $item->unit->uuid }}/"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                         class="fa-solid fa-house"></i>&nbspShow
                                     Unit</a>
@@ -88,17 +68,11 @@
                         </ul>
 
                     </div>
-                </td>
-
+                </x-td>
+                @empty
+                <x-td>No data found</x-td>
+                @endforelse
             </tr>
-
-
-            @empty
-            <tr>
-                <span>No units found!</span>
-            </tr>
-
-            @endforelse
         </tbody>
     </table>
 </div>
