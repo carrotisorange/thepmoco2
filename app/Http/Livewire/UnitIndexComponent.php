@@ -32,7 +32,6 @@ class UnitIndexComponent extends Component
 
     public function resetFilters()
     {
-       $this->search = '';
         $this->status_id = [];
       $this->category_id = [];
         $this->is_enrolled = [];

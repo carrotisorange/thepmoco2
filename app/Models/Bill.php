@@ -31,4 +31,10 @@ class Bill extends Model
     {
         return $this->belongsTo(Particular::class, 'particular_id');
     }
+
+    public static function search($search)
+    {
+      return empty($search)? static::query()
+      : static::where('reference_no','like', '%'.$search.'%');
+    }
  }

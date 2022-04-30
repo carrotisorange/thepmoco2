@@ -15,7 +15,7 @@
                         :active="request()->routeIs('dashboard')">
                         <i class="fa-solid fa-chart-line"></i>&nbspDashboard
                     </x-nav-link>
-                    
+
                 </div>
                 @can('accountowner')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -28,12 +28,13 @@
 
                 @can('accountownerandmanager')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}" :active="request()->routeIs('timestamps')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}"
+                        :active="request()->routeIs('timestamps')">
                         <i class="fa-solid fa-user-clock"></i>&nbspTimestamps
                     </x-nav-link>
                 </div>
                 @endcan
-          
+
                 @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/referrals"
@@ -54,19 +55,22 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/owners" :active="request()->routeIs('owners')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/owners"
+                        :active="request()->routeIs('owners')">
                         <i class="fa-solid fa-user-tie"></i>&nbspOwners
                     </x-nav-link>
                 </div>
                 @endcan
-{{--          
+
+                @can('billing')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/concerns"
-                        :active="request()->routeIs('concerns')">
-                        <i class="fa-solid fa-screwdriver-wrench"></i>&nbspConcerns
+                    <x-nav-link href="/property/{{ Session::get('property') }}/bills"
+                        :active="request()->routeIs('bills')">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
                     </x-nav-link>
-                </div> --}}
-            
+                </div>
+                @endcan
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -189,11 +193,13 @@
                 <i class="fa-solid fa-user-tie"></i>&nbspOwners
             </x-responsive-nav-link>
             @endcan
-            {{-- <x-responsive-nav-link href="/property/{{ Session::get('property') }}/concerns"
-                :active="request()->routeIs('concerns')">
-                <i class="fa-solid fa-screwdriver-wrench"></i>&nbspConcerns
+
+            @can('billing')
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/bills"
+                :active="request()->routeIs('bills')">
+                <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
             </x-responsive-nav-link>
-            --}}
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

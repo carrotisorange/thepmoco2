@@ -1,2 +1,1 @@
-
-    @livewire('bill-index-component')
+@livewire('bill-index-component')
