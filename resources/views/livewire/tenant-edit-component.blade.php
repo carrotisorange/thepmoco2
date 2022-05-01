@@ -282,9 +282,9 @@
         </div>
     </div>
     </div>
-    <div class="mt-6 mx-3 mb-2">
+    {{-- <div class="mt-6 mx-3 mb-2">
         <p class="text-right">
             <x-form-button></x-form-button>
         </p>
-    </div>
+    </div> --}}
 </form>
