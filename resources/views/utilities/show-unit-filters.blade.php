@@ -55,7 +55,7 @@
             </div>
 
             <div class="mt-5">
-                <span>Category</span>
+                <b>Category</b>
                 @forelse ($categories as $category)
 
                 <div class="form-check">
