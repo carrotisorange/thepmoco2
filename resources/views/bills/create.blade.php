@@ -28,7 +28,7 @@
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
                     </x-button>
                     @if ($bills->count())
-                    <x-button onclick="window.location.href='/tenant/{{ $contract->tenant_uuid }}'"><i
+                    <x-button onclick="window.location.href='/unit/{{ $contract->unit_uuid }}'"><i
                             class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                     @else
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'"><i

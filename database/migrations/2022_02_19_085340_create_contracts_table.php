@@ -24,7 +24,6 @@ class CreateContractsTable extends Migration
             $table->string('bill_reference_no')->nullable();
             $table->double('rent',8,2);
             $table->string('status');
-            $table->string('interaction');
             $table->string('moveout_reason');
             $table->double('discount', 8, 2);
             $table->foreignId('user_id')->constrained();

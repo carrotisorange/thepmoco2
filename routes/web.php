@@ -71,7 +71,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     });
 
-    Route::get('unit/{unit:uuid}', [UnitController::class, 'show']);
+    Route::get('unit/{unit}', [UnitController::class, 'show']);
+    Route::get('unit/{unit}/contracts', UnitContractController::class);
+    Route::get('unit/{unit}/deed_of_sales', UnitDeedOfSalesController::class);
+    Route::get('unit/{unit}/bills', UnitBillController::class);
     Route::get('unit/{batch_no}/create', [UnitController::class, 'create']);
     Route::post('unit/{batch_no}/store', [UnitController::class, 'store']);
     //edit multiple units
