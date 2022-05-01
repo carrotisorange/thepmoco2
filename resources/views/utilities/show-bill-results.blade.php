@@ -10,11 +10,12 @@
                             <x-th>Bill #</x-th>
                             <x-th>Ref #</x-th>
                             <x-th>Posted on</x-th>
+                            <x-th>Period Covered</x-th>
                             {{-- <x-th>Payee</x-th> --}}
 
                             <x-th>Particular</x-th>
                             <x-th>Amount</x-th>
-                            <x-th>Status</x-th>
+                            {{-- <x-th>Status</x-th> --}}
                         </tr>
                     </thead>
                     @forelse ($bills as $item)
@@ -23,11 +24,11 @@
                             <x-td>{{ $item->bill_no}}</x-td>
                             <x-td>{{ $item->reference_no}}</x-td>
                             <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
-                            {{-- <x-td>{{ $item->tenant->uuid }}</x-td> --}}
-
+                            {{-- <x-td>{{ $item->unit }}</x-td> --}}
+                            <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
                             <x-td>{{ $item->particular->particular}}</x-td>
                             <x-td>{{ number_format($item->bill, 2) }}</x-td>
-                            <x-td>@if($item->status === 'paid')
+                            {{-- <x-td>@if($item->status === 'paid')
                                 <span
                                     class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     <i class="fa-solid fa-circle-check"></i> {{
@@ -39,7 +40,7 @@
                                         $item->status }}
                                     </span>
                                     @endif
-                            </x-td>
+                            </x-td> --}}
                             @empty
                             <x-td>No data found!</x-td>
                             @endforelse
