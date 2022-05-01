@@ -27,7 +27,6 @@ class OwnerComponent extends Component
         public $email;
         public $mobile_number;
         public $status;
-        public $type;
         public $birthdate;
         public $gender;
         public $civil_status;
@@ -39,7 +38,8 @@ class OwnerComponent extends Component
 
         protected function rules()
         {
-                return [
+                return 
+                [
                         'owner' => 'required',
                         'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners'],
                         'mobile_number' => 'nullable',

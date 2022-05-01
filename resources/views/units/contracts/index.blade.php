@@ -170,9 +170,7 @@
                                         @endforelse
                                     </table>
                                 </div>
-                                {{-- @include('units.deed_of_sales.index')
-                                @include('units.enrollees.index')
-                                @include('units.bills.index') --}}
+                                
                             </div>
                         </div>
                     </div>

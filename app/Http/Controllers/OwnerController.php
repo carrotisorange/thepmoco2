@@ -91,7 +91,9 @@ class OwnerController extends Controller
      */
     public function edit(Owner $owner)
     {
-        //
+        return view('owners.edit',[
+            'owner_details' => $owner
+        ]);
     }
 
     /**

@@ -162,8 +162,9 @@
                     <option value="{{ $province->id }}" {{ old('province_id', $tenant_details->
                         province_id) == $province->id ? 'selected' : '' }}>
                         {{ $province->province }}
+                        </option>
                         @endforeach
-                    </option>
+              
                 </x-form-select>
                 @error('province_id')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -180,8 +181,9 @@
                 <option value="{{ $city->id }}" {{ old('city_id', $tenant_details->
                     city_id) == $city->id ? 'selected' : '' }}>
                     {{ $city->city }}
+                    </option>
                     @endforeach
-                </option>
+               
             </x-form-select>
 
             @error('city_id')

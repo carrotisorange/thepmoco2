@@ -11,8 +11,7 @@
                                         class="text-blue-600 hover:text-blue-700">{{
                                         Session::get('property_name') }}</a>
                                 </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><span class="text-gray-500 mx-2">Unit</span></li>
+
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $unit->unit }}</li>
                             </ol>

@@ -16,7 +16,7 @@
                                 <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
 
-                                <li class="text-gray-500">Contracts</li>
+                                <li class="text-gray-500">Bills</li>
                             </ol>
                         </nav>
                     </h2>

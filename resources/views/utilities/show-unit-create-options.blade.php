@@ -22,19 +22,20 @@
                 <i class="fa-solid fa-user"></i>&nbsp Tenant
             </a>
         </li>
-        <li>
-            <a href="/inventory/{{ $unit->uuid }}/create"
-                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                    class="fa-solid fa-list-check"></i>&nbspInventory
 
-            </a>
-        </li>
         @endcan
         @can('manager')
         <li>
             <a href="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/create"
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                     class="fa-solid fa-user-tie"></i>&nbspOwner
+            </a>
+        </li>
+        <li>
+            <a href="/inventory/{{ $unit->uuid }}/create"
+                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                    class="fa-solid fa-list-check"></i>&nbspInventory
+
             </a>
         </li>
         @endcan

@@ -103,7 +103,7 @@
                                                         </span>
                                                         @endif
                                                 </x-td>
-                                                <x-td>{{ $item->interaction }}</x-td>
+                                                <x-td>{{ $item->interaction->interaction }}</x-td>
                                                 <x-td>
                                                     <button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
