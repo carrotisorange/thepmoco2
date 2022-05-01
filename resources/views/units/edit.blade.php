@@ -15,23 +15,23 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li>{{$unit->unit }}</a>
                                 </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Edit</li>
+                              
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'"><i
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbspBack
                     </x-button>
                     <x-button data-modal-toggle="add-building-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbspBuilding
                     </x-button>
-                    <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'"><i
+                    {{-- <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'"><i
                             class="fa-solid fa-circle-plus"></i>&nbspUnit
-                    </x-button>
-
+                    </x-button> --}}
+                    @include('utilities.show-unit-show-options')
+                    @include('utilities.show-unit-create-options')
                 </h5>
 
             </div>

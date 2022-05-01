@@ -19,7 +19,7 @@
                                         }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li> --}}
-                                <li class="text-gray-500">Old Tenant</li>
+                                <li class="text-gray-500">Tenant</li>
 
                             </ol>
                         </nav>

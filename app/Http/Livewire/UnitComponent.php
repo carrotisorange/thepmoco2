@@ -16,12 +16,30 @@ class UnitComponent extends Component
     public $unit_count;   
 
     public $selectedUnits =[];
-    public $selectAll = false;
+    public $selectedAll = false;
 
     public function mount($batch_no, $unit_count)
     {
         $this->batch_no = $batch_no;
         $this->unit_count = $unit_count;
+    }
+
+    public function updatedSelectedAll($value)
+    {   
+        if($value)
+        {
+            $this->selectedUnits = Unit::where('property_uuid', Session::get('property'))->where('status_id',6)->pluck('uuid');
+        }else
+        {
+            $this->selectedUnits = [];
+        }
+    }
+
+    public function deleteUnits()
+    {
+        Unit::destroy($this->selectedUnits);
+        
+        session()->flash('success', 'Units Successfully Deleted!');
     }
 
     public function render()

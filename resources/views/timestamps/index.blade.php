@@ -38,11 +38,13 @@
                 onclick="window.location.href='/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today()->subDay(1) }}'">
                 <i class="fa-solid fa-circle-arrow-left"></i>&nbspprevious
             </x-button>
-            <div class=" overflow-hidden shadow-sm sm:rounded-lg mt-5">
-                <div class="p-12 bg-white border-b border-gray-200">
-                    <span class="text-center text-red">{{ Carbon\Carbon::parse(Session::get('date'))->format('M d, Y')
-                        }}</span>
+            <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white border-b border-gray-200">
+                  
+
                     <div class="flex flex-col">
+                        <span class="text-center text-red">{{ Carbon\Carbon::parse(Session::get('date'))->format('M d, Y')
+                            }}</span>
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -63,8 +65,12 @@
                                                 <x-td>{{ $ctr++ }}</x-td>
                                                 <x-td>{{ $timestamp->user->name }}</x-td>
                                                 <x-td>{{ $timestamp->user->role->role }}</x-td>
-                                                <x-td>{{ Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('H:i')}}</x-td>
-                                                <x-td>{{ Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('H:i')}}</x-td>
+                                                <x-td>{{
+                                                    Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('H:i')}}
+                                                </x-td>
+                                                <x-td>{{
+                                                    Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('H:i')}}
+                                                </x-td>
                                                 @empty
                                                 <x-td>No data found!</x-td>
                                             </tr>

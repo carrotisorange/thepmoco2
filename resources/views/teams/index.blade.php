@@ -21,7 +21,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'"><i class="fa-solid fa-circle-plus"></i>&nbspMember
+                    <x-button onclick="window.location.href='/team/{{ Str::random(10) }}/create'"><i
+                            class="fa-solid fa-circle-plus"></i>&nbspMember
                     </x-button>
                 </h5>
 
@@ -31,9 +32,10 @@
 
     <div class="py-12">
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <!-- This example requires Tailwind CSS v2.0+ -->
+            <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white border-b border-gray-200">
+
+
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -70,7 +72,7 @@
                                             </tr>
                                         </thead>
                                         <?php $ctr = 1 ?>
-                                        @foreach ($members as $member)
+                                        @foreach ($members as $item)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
@@ -80,43 +82,44 @@
                                                         <div class="flex-shrink-0 h-10 w-10">
 
                                                             <img class="h-10 w-10 rounded-full"
-                                                                src="/storage/{{ $member->avatar }}" alt="">
+                                                                src="/storage/{{ $item->avatar }}" alt="">
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
-                                                                $member->name }}
+                                                                $item->name }}
                                                             </div>
-                                                            <div class="text-sm text-gray-500">{{ $member->role }}
+                                                            <div class="text-sm text-gray-500">{{ $item->role }}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">{{ $member->email }}
+                                                    <div class="text-sm text-gray-900">{{ $item->email }}
                                                     </div>
-                                                    <div class="text-sm text-gray-500">{{ $member->mobile_number }}
+                                                    <div class="text-sm text-gray-500">{{ $item->mobile_number }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($member->user_status === 'active')
+                                                    @if($item->status === 'active')
                                                     <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $member->user_status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $member->user_status }}
-                                                    </span>
-                                                    @endif
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{
+                                                        $item->status }}
+                                                        @else
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $item->status }}
+                                                        </span>
+                                                        @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $member->created_at->diffForHumans() }}</td>
+                                                    $item->created_at->diffForHumans() }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    Carbon\Carbon::parse($member->email_verified_at)->format('M d, Y @
+                                                    Carbon\Carbon::parse($item->email_verified_at)->format('M d, Y @
                                                     h:m:s') }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a title="show" href="/team/{{ $member->username }}/edit"
+                                                    <a title="show" href="/team/{{ $item->username }}/edit"
                                                         class="text-indigo-600 hover:text-indigo-900"><i
                                                             class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
                                                 </td>
