@@ -2,11 +2,11 @@
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div>
             @if($selectedUnits)
-            <x-button wire:click="deleteUnits()"><i class="fa-solid fa-trash"></i>&nbsp
+            <x-button onclick="myFunction()" wire:click="deleteUnits()"><i class="fa-solid fa-trash"></i>&nbsp
                 Remove ({{ count($selectedUnits) }})
             </x-button>
-            <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-file-pen"></i>&nbsp Update ({{ count($selectedUnits) }})
-            </x-button>
+            {{-- <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-file-pen"></i>&nbsp Update ({{ count($selectedUnits) }})
+            </x-button> --}}
 
             @endif
             <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
@@ -154,3 +154,9 @@
         </div>
     </div>
 </div>
+
+<script>
+        function myFunction() {
+      alert("I am an alert box!");
+    }
+    </script>

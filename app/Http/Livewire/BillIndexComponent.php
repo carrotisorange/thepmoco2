@@ -12,6 +12,8 @@ class BillIndexComponent extends Component
 {
       public $search = null;
 
+      public $selectedBills = [];
+
       public $status = [];
       public $start = [];
       public $end = [];
@@ -25,6 +27,15 @@ class BillIndexComponent extends Component
         $this->end = [];
         $this->particular_id = [];
         $this->created_at = [];
+      }
+
+      public function deleteBills()
+      {
+         Bill::destroy($this->selectedBills);
+
+         $this->selectedBills = [];
+
+      session()->flash('success', 'Units Successfully Deleted!');
       }
 
     public function render()

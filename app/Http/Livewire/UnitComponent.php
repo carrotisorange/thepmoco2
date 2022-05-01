@@ -24,9 +24,9 @@ class UnitComponent extends Component
         $this->unit_count = $unit_count;
     }
 
-    public function updatedSelectedAll($value)
+    public function updatedSelectedAll($selectedAll)
     {   
-        if($value)
+        if($selectedAll)
         {
             $this->selectedUnits = Unit::where('property_uuid', Session::get('property'))->where('status_id',6)->pluck('uuid');
         }else
@@ -38,6 +38,8 @@ class UnitComponent extends Component
     public function deleteUnits()
     {
         Unit::destroy($this->selectedUnits);
+
+        $this->selectedUnits = [];
         
         session()->flash('success', 'Units Successfully Deleted!');
     }

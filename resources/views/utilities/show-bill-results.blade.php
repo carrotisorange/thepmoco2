@@ -2,13 +2,14 @@
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg" >
+                <table class="table-auto">
 
                     <thead class="bg-gray-50">
                         <tr>
+                            <x-th></x-th>
                             <x-th>Bill #</x-th>
-                            <x-th>Ref #</x-th>
+                            {{-- <x-th>Ref #</x-th> --}}
                             <x-th>Posted on</x-th>
                             <x-th>Period Covered</x-th>
                             {{-- <x-th>Payee</x-th> --}}
@@ -21,8 +22,13 @@
                     @forelse ($bills as $item)
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
+                            <td class="p-4">
+                                <div class="flex items-center">
+                                    <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->uuid }}" />
+                                </div>
+                            </td>
                             <x-td>{{ $item->bill_no}}</x-td>
-                            <x-td>{{ $item->reference_no}}</x-td>
+                            {{-- <x-td>{{ $item->reference_no}}</x-td> --}}
                             <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
                             {{-- <x-td>{{ $item->unit }}</x-td> --}}
                             <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
@@ -47,7 +53,6 @@
                         </tr>
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
