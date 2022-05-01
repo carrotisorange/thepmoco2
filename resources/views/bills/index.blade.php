@@ -22,7 +22,7 @@
                     <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Bill </x-button>
                     @endcan
                 </h5>
-                @include('utilities.create-unit')
+                @include('utilities.create-bill')
             </div>
         </h2>
     </x-slot>

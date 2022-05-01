@@ -6,7 +6,7 @@
             Clear filters</x-button>
     </span>
     @else
-    <span class="font-bold">Apply Filters</span>    
+    <span class="font-bold">Apply Filters</span>
     @endif
 </div>
 <div class="">
@@ -28,24 +28,27 @@
             </div>
 
             <div class="mt-5">
-                <b>Period Covered (Start)</b>
-                <div class="form-check">
-                    <x-input wire:model="start" type="date" value="" />
-                    <label class="form-check-label inline-block text-gray-800" for="start">
+                <b>Period Covered</b>
+                <div class="mt-2">
+                    <span>Start</span>
+                    <div class="form-check">
+                        <x-input wire:model="start" type="date" value="" />
+                        <label class="form-check-label inline-block text-gray-800" for="start">
 
-                    </label>
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <span>End</span>
+                    <div class="form-check">
+                        <x-input wire:model="start" type="date" value="" />
+                        <label class="form-check-label inline-block text-gray-800" for="start">
+
+                        </label>
+                    </div>
                 </div>
             </div>
 
-            <div class="mt-5">
-                <b>Period Covered (End)</b>
-                <div class="form-check">
-                    <x-input wire:model="start" type="date" value="" />
-                    <label class="form-check-label inline-block text-gray-800" for="start">
-
-                    </label>
-                </div>
-            </div>
 
             <div class="mt-5">
                 <b>Particular</b>
