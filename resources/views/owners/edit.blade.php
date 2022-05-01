@@ -28,5 +28,21 @@
             </div>
         </h2>
     </x-slot>
-    @livewire('owner-edit-component', ['owner_details' => $owner_details])
+    <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-12 bg-white border-b border-gray-200">
+                        <div>
+                           @livewire('owner-edit-component', ['owner_details' => $owner_details])
+                            <br>
+                            @include('owners.representatives.index')
+        
+                            @include('owners.banks.index')
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+
 </x-app-layout>

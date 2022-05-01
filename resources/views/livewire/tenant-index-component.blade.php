@@ -44,9 +44,11 @@
                                         <tr>
                                             <x-th>#</x-th>
                                             <x-th>Name</x-th>
+                                            <x-th>Gender</x-th>
+                                            <x-th>Civil status</x-th>
                                             <x-th>Contact</x-th>
                                             <x-th>Address</x-th>
-                                            <x-th>Created</x-th>
+                                  
                                             <x-th></x-th>
                                         </tr>
                                     </thead>
@@ -71,6 +73,8 @@
                                                     </div>
                                                 </div>
                                             </x-td>
+                                            <x-td>{{ $tenant->gender }}</x-td>
+                                            <x-td>{{ $tenant->civil_status?$tenant->civil_status:'NA' }}</x-td>
                                             <x-td>
                                                 <div class="text-sm text-gray-900">{{ $tenant->email }}
                                                 </div>
@@ -86,7 +90,7 @@
                                                     $tenant->country->country }}
                                                 </div>
                                             </x-td>
-                                            <x-td>{{$tenant->created_at->diffForHumans() }}</x-td>
+                                           
                                             <x-td>
                                                 <button id="dropdownDividerButton"
                                                     data-dropdown-toggle="dropdownDivider.{{ $tenant->uuid }}"

@@ -99,6 +99,8 @@ class TenantController extends Controller
     {
         return view('tenants.edit',[
             'tenant_details' => $tenant,
+             'references' => Tenant::find($tenant->uuid)->references,
+             'guardians' => Tenant::find($tenant->uuid)->guardians
         ]);
     }
 

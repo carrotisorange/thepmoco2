@@ -46,6 +46,8 @@
                                         <tr>
                                             <x-th>#</x-th>
                                             <x-th>Name</x-th>
+                                            <x-th>Gender</x-th>
+                                            <x-th>Occupation</x-th>
                                             <x-th>Contact</x-th>
                                             <x-th>Address</x-th>
                                             <x-th></x-th>
@@ -70,6 +72,8 @@
                                                     </div>
                                                 </div>
                                             </x-td>
+                                            <x-td>{{ $owner->gender }}</x-td>
+                                            <x-td>{{ $owner->occupation?$owner->occupation:'NA' }}</x-td>
                                             <x-td>
                                                 <div class="text-sm text-gray-900">{{ $owner->email }}
                                                 </div>
@@ -103,6 +107,30 @@
                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                     class="fa-solid fa-edit"></i>&nbspShow Owner</a>
                                                         </li>
+                                                        <li>
+                                                            <a href="/owner/{{ $owner->uuid }}/deed_of_sales"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                    class="fa-solid fa-home"></i>&nbspShow Units</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/owner/{{ $owner->uuid }}/enrollees"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                    class="fa-solid fa-house-user"></i>&nbspShow
+                                                                Leasing</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/owner/{{ $owner->uuid }}/bills"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                    class="fa-solid fa-file-invoice-dollar"></i>&nbspShow
+                                                                Bills</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/owner/{{ $owner->uuid }}/collections"
+                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                    class="fa-solid fa-coins"></i>&nbspShow
+                                                                Collections</a>
+                                                        </li>
+
                                                     </ul>
                                                     <div class="py-1">
                                                         <li>

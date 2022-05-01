@@ -92,7 +92,9 @@ class OwnerController extends Controller
     public function edit(Owner $owner)
     {
         return view('owners.edit',[
-            'owner_details' => $owner
+            'owner_details' => $owner,
+             'representatives' => Owner::find($owner->uuid)->representatives,
+             'banks' => Owner::find($owner->uuid)->banks,
         ]);
     }
 

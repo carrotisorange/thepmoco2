@@ -104,6 +104,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('tenant/{uuid}/delete', [TenantController::class, 'destroy']);
     Route::patch('tenant/{tenant}/update', [TenantController::class, 'update']);
     Route::get('owner/{owner}', [OwnerController::class, 'show']);
+    Route::get('owner/{owner}/deed_of_sales', OwnerDeedOfSalesController::class);
+    Route::get('owner/{owner}/enrollees', OwnerEnrolleeController::class);
+    Route::get('owner/{owner}/bills', OwnerBillController::class);
+    Route::get('owner/{owner}/collections', OwnerCollectionController::class);
     Route::get('owner/{owner}/edit', [OwnerController::class, 'edit']);
   
 

@@ -41,6 +41,7 @@
                         @livewire('tenant-edit-component', ['tenant_details' => $tenant_details])
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
