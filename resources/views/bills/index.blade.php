@@ -18,18 +18,17 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'"><i
-                            class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
-                    </x-button>
+                    @can('billing')
+                    <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Bill </x-button>
+                    @endcan
                 </h5>
+                @include('utilities.create-unit')
             </div>
         </h2>
     </x-slot>
     <div class="py-12">
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-           @livewire('bill-index-component')
+            @livewire('bill-index-component')
         </div>
     </div>
 </x-app-layout>
-
-

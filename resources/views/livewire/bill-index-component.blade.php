@@ -12,9 +12,12 @@
                 @include('utilities.show-bill-filters')
             </div>
             <div class="basis-3/4 ml-12">
-                <p class="text-center">
+                <p class="">
                     @if($bills->count())
-                    {{ $bills->links() }}
+                    {{-- {{ $bills->links() }} --}}
+                    Total Unpaid Bills: <b> {{ number_format($bills->where('status', 'unpaid')->sum('bill'), 2)}}</b>
+                    <br>
+                    Total Paid Bills: <b> {{ number_format($bills->where('status', 'paid')->sum('bill'), 2)}}</b>
                     @else
                     No bills found!
                 </p>
