@@ -426,13 +426,13 @@
                                                                     <ul class="py-1"
                                                                         aria-labelledby="dropdownDividerButton">
                                                                         <li>
-                                                                            <a href="/tenant/{{ $contract->tenant_uuid }}"
+                                                                            <a href="/tenant/{{ $contract->tenant_uuid }}/edit"
                                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                                     class="fa-solid fa-file-contract"></i>&nbspShow
                                                                                 Tenant</a>
                                                                         </li>
                                                                         <li>
-                                                                            <a href="/unit/{{ $contract->unit_uuid }}"
+                                                                            <a href="/unit/{{ $contract->unit_uuid }}/edit"
                                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                                     class="fa-solid fa-house"></i>&nbspShow
                                                                                 Unit</a>
