@@ -60,7 +60,7 @@
                                                     <x-th># of Tenants</x-th>
                                                     <x-th>Status</x-th>
                                                     <x-th>Created</x-th>
-                                                    <x-th></x-th>
+                                                 
                                                 </tr>
                                             </thead>
                                             <?php $ctr = 1 ?>
@@ -71,9 +71,10 @@
                                                     <x-td>
                                                         <div class="flex items-center">
                                                             <div class="flex-shrink-0 h-10 w-10">
-
+                                                                <a href="/property/{{ property->uuid }}">
                                                                 <img class="h-10 w-10 rounded-full"
                                                                     src="/storage/{{ $property->property->thumbnail }}">
+                                                                    </a>
                                                             </div>
                                                             <div class="ml-4">
                                                                 <div class="text-sm font-medium text-gray-900">
@@ -107,7 +108,7 @@
                                                     <x-td>{{
                                                         Carbon\Carbon::parse($property->property->created_at)->diffForHumans()
                                                         }}</x-td>
-                                                    <x-td>
+                                                    {{-- <x-td>
                                                         <button id="dropdownDividerButton"
                                                             data-dropdown-toggle="dropdownDivider.{{ $property->property->uuid }}"
                                                             class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
@@ -132,12 +133,12 @@
                                                                     <a href="/property/{{ $property->property->uuid }}/edit"
                                                                         class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="fa-solid fa-pen-to-square"></i>&nbspEdit
                                                                     </a>
-                                                                </li> --}}
+                                                                </li> 
 
                                                             </ul>
 
                                                         </div>
-                                                    </x-td>
+                                                    </x-td> --}}
 
                                                 </tr>
                                                 @empty
