@@ -91,7 +91,7 @@ class TransferContractComponent extends Component
        $validatedData['bill_reference_no'] = $reference_no;
 
        $validatedData['status'] = 'active';
-       $validatedData['interaction'] = 'transferred';
+       $validatedData['interaction_id'] = '9';
 
         if($this->contract)
         {
@@ -130,7 +130,7 @@ class TransferContractComponent extends Component
        DB::commit();
 
        return
-       redirect('/tenant/'.$this->contract_details->tenant_uuid)->with('success','Contract
+       redirect('/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
        has been transferred.');
 
        } catch (\Throwable $e) {

@@ -23,7 +23,11 @@ class BillController extends Controller
      */
     public function index()
     {
-        return view('bills.index');
+        return view('bills.index',[
+            'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->count(),
+            'active_tenants' =>  Contract::where('property_uuid', Session::get('property'))->where('status','active')->groupBy('tenant_uuid')->count()
+            
+        ]);
     }
 
     /**

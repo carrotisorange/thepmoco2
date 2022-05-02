@@ -83,7 +83,7 @@ class RenewContractComponent extends Component
        $validatedData['user_id'] = auth()->user()->id;
        $validatedData['bill_reference_no'] = $reference_no;
        $validatedData['status'] = 'active';
-       $validatedData['interaction'] = 'renewed';
+       $validatedData['interaction_id'] = '8';
 
        if($this->contract)
        {
@@ -117,7 +117,7 @@ class RenewContractComponent extends Component
        DB::commit();
 
        return
-        redirect('/tenant/'.$this->contract_details->tenant_uuid)->with('success','Contract
+        redirect('/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
         has been renewed.');
        } catch (\Throwable $e) {
        DB::rollback();

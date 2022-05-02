@@ -1,6 +1,6 @@
 <div id="authentication-modal" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
-    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+    <div class="relative p-4 w-full max-w-xl h-full md:h-auto">
 
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div class="flex justify-end p-2">
@@ -15,15 +15,12 @@
                 </button>
             </div>
             <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST"
-                action="/bill/{{ Str::random(8) }}/store">
+                action="/bill/{{ Session::get('property') }}/store/{{ $active_contracts }}">
                 @csrf
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">How many units you want to add?</h3>
-                <div>
-
-                    <input type="number" min="1" name="number_of_units" value="1"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        placeholder="name@company.com" required="">
-                </div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">You're about to create <b>{{ $active_contracts }}</b> for  bills for <b>{{ $active_tenants }}</b> active tenants .</h3>
+               
+                   <h6>You may still modify these bills before posting.</h6>
+           
 
                 <x-button class="w-full items-center">
                     <svg wire:loading wire:target="createForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

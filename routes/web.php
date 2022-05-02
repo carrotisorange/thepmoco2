@@ -145,6 +145,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class, 'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store', [BillController::class,'store']);
     Route::delete('bill/{id:id}/delete', [BillController::class, 'destroy']);
+
+    Route::post('bill/{uuid:uuid}/store/{bill_count}', BillPropertyController::class);
+    
     //4
  
     //Creating owner contract
