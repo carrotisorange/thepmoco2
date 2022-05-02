@@ -34,13 +34,16 @@
 
                     <x-form-select wire:model="particular_id" name="particular_id" id="particular_id">
                         <option value="">Select one</option>
-                        @foreach ($particulars as $particular)
+                        <option value="1" {{ old('particular_id')==1?
+                            'selected': 'Select one'
+                            }}>Rent </option>
+                        {{-- @foreach ($particulars as $particular)
                         @if($particular->id == 1)
                         <option value="{{ $particular->id }}" {{ old('particular_id')==$particular->id?
                             'selected': 'Select one'
                             }}>{{ $particular->particular }}</option>
                         @endif
-                        @endforeach
+                        @endforeach --}}
 
                     </x-form-select>
 
@@ -88,7 +91,7 @@
                     @enderror
 
                 </div>
-{{-- 
+                {{--
                 <div class="mt-5">
                     <x-label for="due_date">
                         Amount<span class="text-red-600">*</span>

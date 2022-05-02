@@ -48,8 +48,6 @@
                                             <x-th>Civil status</x-th>
                                             <x-th>Contact</x-th>
                                             <x-th>Address</x-th>
-                                  
-                                            <x-th></x-th>
                                         </tr>
                                     </thead>
                                     @forelse ($tenants as $tenant)
@@ -59,9 +57,10 @@
                                             <x-td>
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
-
+                                                        <a href="/tenant/{{ $tenant->uuid }}/edit">
                                                         <img class="h-10 w-10 rounded-full"
                                                             src="/storage/{{ $tenant->photo_id }}" alt="">
+                                                        </a>
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900"><b>{{
@@ -88,66 +87,6 @@
                                                 </div>
                                                 <div class="text-sm text-gray-500">{{
                                                     $tenant->country->country }}
-                                                </div>
-                                            </x-td>
-                                           
-                                            <x-td>
-                                                <button id="dropdownDividerButton"
-                                                    data-dropdown-toggle="dropdownDivider.{{ $tenant->uuid }}"
-                                                    class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                    type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
-                                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                    </svg></button>
-                                                <div id="dropdownDivider.{{ $tenant->uuid }}"
-                                                    class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
-                                                        @can('managerandadmin')
-                                                        <li>
-                                                            <a href="/tenant/{{ $tenant->uuid }}/edit"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-edit"></i>&nbspShow Tenant</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/tenant/{{ $tenant->uuid }}/contracts"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fas fa-file-signature"></i>&nbspShow
-                                                                Contracts</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/tenant/{{ $tenant->uuid }}/concerns"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-screwdriver-wrench"></i>&nbspShow
-                                                                Concerns</a>
-                                                        </li>
-                                                        @endcan
-                                                        @can('billing')
-                                                        <li>
-                                                            <a href="/tenant/{{ $tenant->uuid }}/bills"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-file-invoice-dollar"></i>&nbspShow
-                                                                Bills</a>
-                                                        </li>
-                                                        @endcan
-                                                        @can('treasury')
-                                                        <li>
-                                                            <a href="/tenant/{{ $tenant->uuid }}/collections"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                <i class="fa-solid fa-coins"></i>&nbspShow
-                                                                Collections</a>
-                                                        </li>
-                                                        @endcan
-                                                    </ul>
-                                                    <div class="py-1">
-                                                        <li>
-                                                            <a href="/tenant/{{ $tenant->uuid }}/delete"
-                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-trash-alt"></i>&nbspRemove
-                                                            </a>
-                                                        </li>
-                                                    </div>
                                                 </div>
                                             </x-td>
                                             @empty
