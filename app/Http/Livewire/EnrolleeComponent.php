@@ -114,7 +114,7 @@ class EnrolleeComponent extends Component
 
 
     return
-    redirect('/unit/'.$this->unit->uuid)->with('success','Unit has been enrolled.');
+    redirect('/unit/'.$this->unit->uuid.'/deed_of_sales')->with('success','Unit has been enrolled.');
 
     }catch (\Throwable $e) {
         ddd($e);

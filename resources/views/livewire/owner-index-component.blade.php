@@ -19,6 +19,7 @@
                 </h2>
             </div>
             <h5 class="flex-1 text-right">
+              
             </h5>
         </div>
     </h2>
@@ -50,7 +51,7 @@
                                             <x-th>Occupation</x-th>
                                             <x-th>Contact</x-th>
                                             <x-th>Address</x-th>
-                                            <x-th></x-th>
+
                                     </thead>
                                     @foreach ($owners as $owner)
                                     <tbody class="bg-white divide-y divide-gray-200">
@@ -59,7 +60,7 @@
                                             <x-td>
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
-                                                        <a href="owner/{{ $owner->uuid }}"><img
+                                                        <a href="/owner/{{ $owner->uuid }}/edit"><img
                                                                 class="h-10 w-10 rounded-full"
                                                                 src="/storage/{{ $owner->photo_id }}" alt=""></a>
                                                     </div>
@@ -86,60 +87,6 @@
                                                 </div>
                                                 <div class="text-sm text-gray-500">{{
                                                     $owner->country->country }}
-                                                </div>
-                                            </x-td>
-                                            <x-td>
-                                                <button id="dropdownDividerButton"
-                                                    data-dropdown-toggle="dropdownDivider.{{ $owner->uuid }}"
-                                                    class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                    type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
-                                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                    </svg></button>
-
-                                                <div id="dropdownDivider.{{ $owner->uuid }}"
-                                                    class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
-                                                        <li>
-                                                            <a href="/owner/{{ $owner->uuid }}/edit"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-edit"></i>&nbspShow Owner</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/owner/{{ $owner->uuid }}/deed_of_sales"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-home"></i>&nbspShow Units</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/owner/{{ $owner->uuid }}/enrollees"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-house-user"></i>&nbspShow
-                                                                Leasing</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/owner/{{ $owner->uuid }}/bills"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-file-invoice-dollar"></i>&nbspShow
-                                                                Bills</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/owner/{{ $owner->uuid }}/collections"
-                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-coins"></i>&nbspShow
-                                                                Collections</a>
-                                                        </li>
-
-                                                    </ul>
-                                                    <div class="py-1">
-                                                        <li>
-                                                            <a href="/owner/{{ $owner->uuid }}/delete"
-                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                    class="fa-solid fa-trash-alt"></i>&nbspRemove
-                                                            </a>
-                                                        </li>
-                                                    </div>
                                                 </div>
                                             </x-td>
                                         </tr>
