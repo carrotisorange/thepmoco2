@@ -21,13 +21,25 @@ class BillPropertyController extends Controller
      */
     public function __invoke(Request $request, $property_uuid, $bill_count)
     {
-        $attributes = request()->validate([
-            'particular_id' => ['required', Rule::exists('particulars', 'id')],
-            'start' => 'required|date',
-            'end' => 'required|date|after:start',
-            'due_date' => 'nullable|date|after:start',
-            'bill' => 'required|numeric|min:1'
-        ]);
+      if($request->particular_id == 1)
+      {
+       $attributes = request()->validate([
+       'particular_id' => ['required', Rule::exists('particulars', 'id')],
+       'start' => 'required|date',
+       'end' => 'required|date|after:start',
+       'due_date' => 'nullable|date|after:start',
+       ]);
+      }else{
+           $attributes = request()->validate([
+           'particular_id' => ['required', Rule::exists('particulars', 'id')],
+           'start' => 'required|date',
+           'end' => 'required|date|after:start',
+           'due_date' => 'nullable|date|after:start',
+           'bill' => 'required|numeric|min:1'
+           ]);
+      }
+
+       
 
         $tenant_uuid = Contract::where('property_uuid', Session::get('property'))
           ->where('contracts.status','active')
@@ -43,8 +55,17 @@ class BillPropertyController extends Controller
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('unit_uuid');
 
+                $rent = Contract::where('property_uuid', Session::get('property'))
+                  ->where('contracts.status','active')
+                  ->where('tenant_uuid', $tenant_uuid[$i])
+                  ->pluck('rent');
+
                   $attributes['unit_uuid']= $unit_uuid[0];
                   $attributes['tenant_uuid'] = $tenant_uuid[$i];
+                if($request->particular_id == 1)
+                {
+                    $attributes['bill'] = $rent[0];
+                }
                   $attributes['bill_no'] = $bill_no++;
                   $attributes['reference_no'] = Carbon::now()->timestamp.''.$i;
                   $attributes['user_id'] = auth()->user()->id;
