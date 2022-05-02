@@ -6,7 +6,7 @@
             </x-th>
             <x-th>Bill #</x-th>
             <x-th>Ref #</x-th>
-            <x-th>Posted on</x-th>
+            <x-th>Date posted</x-th>
             <x-th>Period Covered</x-th>
             {{-- <x-th>Payee</x-th> --}}
             <x-th>Particular</x-th>
