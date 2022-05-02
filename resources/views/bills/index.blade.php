@@ -26,7 +26,5 @@
             </div>
         </h2>
     </x-slot>
-   
             @livewire('bill-index-component')
-
 </x-app-layout>

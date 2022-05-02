@@ -156,9 +156,7 @@
                                     </tbody>
                                     @endforelse
                                 </table>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
