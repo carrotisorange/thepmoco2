@@ -33,7 +33,7 @@ class BillIndexComponent extends Component
                  $query->whereDate('start', $this->start);
                  })
                  ->when($this->end, function($query){
-                 $query->whereDate('start', $this->end);
+                 $query->whereDate('end', $this->end);
                  })
                  ->when($this->particular_id, function($query){
                  $query->where('particular_id', $this->particular_id);
