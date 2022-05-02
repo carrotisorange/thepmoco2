@@ -31,7 +31,7 @@
                                             'paid')->sum('bill'),
                                             2)}}</b>
                                         @else
-                                        No bills found!
+                                      
                                     </p>
                                     @endif
                                     @include('utilities.show-bill-results')
@@ -45,3 +45,4 @@
         </div>
     </div>
 </div>
+@include('utilities.create-particular-modal');

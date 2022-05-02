@@ -18,13 +18,17 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button data-modal-toggle="create-particular-modal">
+                        <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
+                    </x-button>
                     @can('billing')
-                    <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Bill </x-button>
+                    <x-button data-modal-toggle="create-bill-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Bill
+                    </x-button>
                     @endcan
                 </h5>
                 @include('utilities.create-bill')
             </div>
         </h2>
     </x-slot>
-            @livewire('bill-index-component')
+    @livewire('bill-index-component')
 </x-app-layout>

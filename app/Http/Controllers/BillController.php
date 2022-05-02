@@ -24,9 +24,15 @@ class BillController extends Controller
     public function index()
     {
 
+        $particulars = Particular::join('property_particulars', 'particulars.id',
+        'property_particulars.particular_id')
+        ->where('property_uuid', Session::get('property'))
+        ->get();
+
         return view('bills.index',[
             'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->get(),
-            'active_tenants' => Contract::where('property_uuid', Session::get('property'))->where('contracts.status','active')->distinct()->get()
+            'active_tenants' => Contract::where('property_uuid', Session::get('property'))->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
+            'particulars' => $particulars
         ]);
     }
 

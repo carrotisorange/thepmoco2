@@ -72,7 +72,7 @@ class ContractComponent extends Component
         try {
             DB::beginTransaction();
 
-            $bill_no = Property::find(Session::get('property'))->bills->count()+1;
+            $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1;
 
             $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
