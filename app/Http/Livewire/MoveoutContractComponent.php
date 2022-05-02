@@ -42,7 +42,7 @@ class MoveoutContractComponent extends Component
         $this->contract->update($validatedData);
 
         return
-        redirect('/tenant/'.$this->contract->tenant_uuid)->with('success',
+        redirect('/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success',
         'Contract has been moveout.');
     }
 
