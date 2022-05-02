@@ -13,12 +13,24 @@ class BillIndexComponent extends Component
       public $search = null;
 
       public $selectedBills = [];
+      public $selectAll = false;
 
       public $status = [];
       public $start = [];
       public $end = [];
       public $particular_id = [];
       public $created_at = [];
+
+       public function updatedSelectAll($value)
+       {
+         if($value)
+         {
+            $this->selectedBills = Bill::where('property_uuid', Session::get('property'))->pluck('id');
+         }else
+         {
+            $this->selectedBills = [];
+         }
+       }
 
       public function resetFilters()
       {

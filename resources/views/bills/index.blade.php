@@ -26,9 +26,7 @@
             </div>
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
+   
             @livewire('bill-index-component')
-        </div>
-    </div>
+
 </x-app-layout>

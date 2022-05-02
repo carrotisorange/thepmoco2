@@ -2,12 +2,14 @@
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg" >
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="table-auto">
 
                     <thead class="bg-gray-50">
                         <tr>
-                            <x-th></x-th>
+                            <x-th>
+                                <x-input id="" wire:model="selectAll" type="checkbox" />
+                            </x-th>
                             <x-th>Bill #</x-th>
                             <x-th>Ref #</x-th>
                             <x-th>Posted on</x-th>
@@ -17,8 +19,8 @@
                             <x-th>Particular</x-th>
                             <x-th>Amount</x-th>
                             {{-- <x-th>Status</x-th> --}}
-                            
-                           
+
+
                         </tr>
                     </thead>
                     @forelse ($bills as $item)
@@ -26,14 +28,15 @@
                         <tr>
                             <x-td>
                                 <div class="flex items-center">
-                                    <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->uuid }}" />
+                                    <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
                                 </div>
                             </x-td>
                             <x-td>{{ $item->bill_no}}</x-td>
                             <x-td>{{ $item->reference_no}}</x-td>
                             <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
                             {{-- <x-td>{{ $item->unit }}</x-td> --}}
-                            <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
+                            <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
+                                Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
                             <x-td>{{ $item->particular->particular}}</x-td>
                             <x-td>{{ number_format($item->bill, 2) }}</x-td>
                             {{-- <x-td>@if($item->status === 'paid')

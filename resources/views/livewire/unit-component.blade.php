@@ -5,7 +5,8 @@
             <x-button onclick="myFunction()" wire:click="deleteUnits()"><i class="fa-solid fa-trash"></i>&nbsp
                 Remove ({{ count($selectedUnits) }})
             </x-button>
-            {{-- <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-file-pen"></i>&nbsp Update ({{ count($selectedUnits) }})
+            {{-- <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-file-pen"></i>&nbsp Update ({{
+                count($selectedUnits) }})
             </x-button> --}}
 
             @endif
@@ -34,7 +35,7 @@
                                         <tr>
                                             <th scope="col" class="p-4">
                                                 <div class="flex items-center">
-                                                    <x-input id="" wire:click="selectedAll" type="checkbox" />
+                                                    <x-input id="" wire:model="selectedAll" type="checkbox" />
                                                 </div>
                                             </th>
                                             <th scope="col" class="px-6 py-3">
@@ -154,9 +155,9 @@
         </div>
     </div>
 </div>
-
+@include('utilities.create-unit')
 <script>
-        function myFunction() {
-      alert("I am an alert box!");
+    function myFunction() {
+      alert("Are you sure you want to perform this action?");
     }
-    </script>
+</script>

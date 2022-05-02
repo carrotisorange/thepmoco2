@@ -23,6 +23,8 @@ class BillController extends Controller
      */
     public function index()
     {
+        // return Unit::where('property_uuid', Session::get('property'))->where('status_id',6)->get('uuid');
+
         return view('bills.index',[
             'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->count(),
             'active_tenants' =>  Contract::where('property_uuid', Session::get('property'))->where('status','active')->groupBy('tenant_uuid')->count()

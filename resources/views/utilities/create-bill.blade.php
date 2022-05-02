@@ -17,7 +17,7 @@
             <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST"
                 action="/bill/{{ Session::get('property') }}/store/{{ $active_contracts }}">
                 @csrf
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">You're about to create <b>{{ $active_contracts }}</b> for  bills for <b>{{ $active_tenants }}</b> active tenants .</h3>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">You're about to create <b>{{ $active_contracts }}</b> bills for <b>{{ $active_tenants }}</b> active tenants .</h3>
                
                    <h6>You may still modify these bills before posting.</h6>
            
@@ -31,7 +31,7 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    <i class="fas fa-arrow-right"></i>&nbsp Proceed
+                    <i class="fas fa-arrow-right"></i>&nbsp Confirm
                 </x-button>
 
             </form>
