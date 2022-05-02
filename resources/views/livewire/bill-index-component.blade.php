@@ -2,8 +2,10 @@
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div class="">
             <x-search placeholder="search for reference no"></x-search>
+           
         </div>
         <div class="mt-5">
+            <p class="text-center text-sm">Showing <b>{{ $bills->count() }}</b> bills...</p>
             @if($selectedBills)
             <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
                 Remove ({{ count($selectedBills) }})
@@ -20,6 +22,7 @@
                                     @include('utilities.show-bill-filters')
                                 </div>
                                 <div class="basis-full ml-12">
+                                    
                                     <p class="">
                                         @if($bills->count())
                                         {{-- {{ $bills->links() }} --}}

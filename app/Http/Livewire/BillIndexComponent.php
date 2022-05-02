@@ -25,7 +25,10 @@ class BillIndexComponent extends Component
        {
          if($value)
          {
-            $this->selectedBills = Bill::where('property_uuid', Session::get('property'))
+            $this->selectedBills = Bill::search($this->search)
+
+            ->where('property_uuid', Session::get('property'))
+                
                  ->when($this->status, function($query){
                  $query->where('status', $this->status);
                  })
