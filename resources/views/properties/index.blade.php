@@ -10,19 +10,23 @@
                                     <li>
                                         <?php $name = explode(" ",auth()->user()->name) ?>
                                         Welcome <b>{{ $name[0] }}</b>!
-                                   
-                        
-                                       
+
+
+
                                         {{-- {{ Str::plural('Property', $properties->count())}} ({{ $properties->count()
                                         }}) --}}
                                     </li>
                                 </ol>
                             </nav>
                         </h2>
-                       <a class="text-blue-600" href="profile/{{ auth()->user()->username }}/point"><p class="text-sm">Total redeemable points: {{ App\Models\User::find(auth()->user()->id)->points->sum('point') }}</p></a>
+                        <a class="text-blue-600" href="profile/{{ auth()->user()->username }}/point">
+                            <p class="text-sm">Total redeemable points: {{
+                                App\Models\User::find(auth()->user()->id)->points->sum('point') }}</p>
+                        </a>
                     </div>
                     <h5 class="flex-1 text-right">
-                        {{-- <x-button data-modal-toggle="role-access-modal"><i class="fa-solid fa-universal-access"></i>
+                        {{-- <x-button data-modal-toggle="role-access-modal"><i
+                                class="fa-solid fa-universal-access"></i>
                             &nbsp; {{ auth()->user()->role->role }} access</x-button> --}}
 
                         {{-- <x-button onclick="window.location.href='/documentation/'">Documentation
@@ -50,39 +54,21 @@
                                         <table class="min-w-full divide-y divide-gray-200">
                                             <thead class="bg-gray-50">
                                                 <tr>
-                                                    <th scope="col"
-                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        #</th>
-                                                    <th scope="col"
-                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        Property</th>
-
-                                                    <th scope="col"
-                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        # of Units</th>
-                                                    <th scope="col"
-                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        # of Tenants</th>
-                                                    <th scope="col"
-                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        Status</th>
-                                                    <th scope="col"
-                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        Created</th>
-
-                                                    <th colspan="3" scope="col" class="relative px-6 py-3">
-                                                        <span class="sr-only"></span>
-                                                    </th>
+                                                    <x-th>#</x-th>
+                                                    <x-th>Property</x-th>
+                                                    <x-th># of Units</x-th>
+                                                    <x-th># of Tenants</x-th>
+                                                    <x-th>Status</x-th>
+                                                    <x-th>Created</x-th>
+                                                    <x-th></x-th>
                                                 </tr>
                                             </thead>
                                             <?php $ctr = 1 ?>
                                             @forelse ($properties as $property)
                                             <tbody class="bg-white divide-y divide-gray-200">
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
-                                                        <b>{{ $ctr++ }}</b>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                    <x-td>{{ $ctr++ }}</x-td>
+                                                    <x-td>
                                                         <div class="flex items-center">
                                                             <div class="flex-shrink-0 h-10 w-10">
 
@@ -100,12 +86,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                        $property->property->units->count()}}</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                        $property->property->tenants->count() }}</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                    </x-td>
+                                                    <x-td>{{ $property->property->units->count()}}</x-td>
+                                                    <x-td>{{ $property->property->tenants->count() }}</x-td>
+                                                    <x-td>
                                                         @if($property->property->status === 'active')
                                                         <span
                                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -119,11 +103,11 @@
                                                             $property->property->status }}
                                                         </span>
                                                         @endif
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                                    </x-td>
+                                                    <x-td>{{
                                                         Carbon\Carbon::parse($property->property->created_at)->diffForHumans()
-                                                        }}</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        }}</x-td>
+                                                    <x-td>
                                                         <button id="dropdownDividerButton"
                                                             data-dropdown-toggle="dropdownDivider.{{ $property->property->uuid }}"
                                                             class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
@@ -142,33 +126,19 @@
                                                                     <a href="/property/{{ $property->property->uuid }}/"
                                                                         class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                             class="fa-solid fa-eye"></i>&nbspShow
-                                                                        </a>
+                                                                    </a>
                                                                 </li>
+                                                                {{-- <li>
+                                                                    <a href="/property/{{ $property->property->uuid }}/edit"
+                                                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="fa-solid fa-pen-to-square"></i>&nbspEdit
+                                                                    </a>
+                                                                </li> --}}
 
                                                             </ul>
 
                                                         </div>
-                                                    </td>
-                                                    {{-- <td
-                                                        class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                        <a title="view" href="/property/{{ $property->property->uuid }}"
-                                                            class="text-indigo-600 hover:text-indigo-900"><i
-                                                                class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
+                                                    </x-td>
 
-                                                        @can('manager')
-                                                        {{-- <a title="edit"
-                                                            href="/property/{{ $property->property->uuid }}/edit"
-                                                            class="text-indigo-600 hover:text-indigo-900"><i
-                                                                class="fa-solid fa-2x fa-pen-to-square"></i></a>&nbsp;&nbsp;&nbsp;
-
-                                                        <a title="remove"
-                                                            href="/property/{{ $property->property->uuid }}/delete"
-                                                            class="text-red-600 hover:text-indigo-900"><i
-                                                                class="fa-solid fa-2x fa-trash-can"></i></a>
-
-                                                        @endcannot
-
-                                                    </td> --}}
                                                 </tr>
                                                 @empty
                                                 <span>No properties found!</span>

@@ -215,7 +215,6 @@ class PropertyController extends Controller
          
         return view('properties.edit',[
             'property_details' => $property,
-            'types' => Type::all(),
         ]);
     }
 

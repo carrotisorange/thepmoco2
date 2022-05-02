@@ -12,6 +12,7 @@ use App\Models\PropertyRole;
 use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
+use App\Models\Type;
 
 use Livewire\Component;
 
@@ -19,13 +20,21 @@ class PropertyEditComponent extends Component
 {
     use WithFileUploads;
 
-    public $types;
     public $property_details;
 
     public function mount($types, $property_details)
     {
         $this->types = $types;
-        $this->property_details = $property_details;
+        $this->property = $property_details->property;
+        $this->type_id = $property_details->type_id;
+        $this->thumbnai = $property_details->thumbnai;
+        $this->description = $property_details->description;
+        $this->tenant_contract = $property_details->tenant_contract;
+        $this->owner_contract = $property_details->owner_contract;
+        $this->country_id = $property_details->country_id;
+        $this->province_id = $property_details->province_id;
+        $this->city_id = $property_details->city_id;
+        $this->barangay = $property_details->barangay;
     }
 
     public $property;
@@ -41,6 +50,8 @@ class PropertyEditComponent extends Component
     
     public function render()
     {
-        return view('livewire.property-edit-component');
+        return view('livewire.property-edit-component',[
+            'types' => Type::all(),
+        ]);
     }
 }

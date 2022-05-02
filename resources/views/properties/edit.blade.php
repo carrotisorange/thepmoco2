@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| '.$property->property.' | Edit',)
+    @section('title', '| '.$property_details->property.' | Edit',)
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -11,9 +11,9 @@
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
 
-                                <li><a href="/property/{{ $property->uuid }}"
+                                <li><a href="/property/{{ $property_details->uuid }}"
                                         class="text-blue-600 hover:text-blue-700">{{
-                                        $property->property }}</a>
+                                        $property_details->property }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Edit</li>
@@ -39,7 +39,7 @@
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-12 bg-white border-b border-gray-200">
                     <div>
-                        @livewire('property-edit-component', ['types' => $types, 'property_details' => $property_details])
+                        @livewire('property-edit-component', 'property_details' => $property_details)
                     </div>
                     </form>
                 </div>
