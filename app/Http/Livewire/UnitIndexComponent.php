@@ -20,6 +20,7 @@ class UnitIndexComponent extends Component
     use WithPagination;
 
     public $search = '';
+    public $selectedUnits = [];
 
     public $status_id = [];
     public $category_id = [];

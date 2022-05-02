@@ -25,7 +25,24 @@ class BillIndexComponent extends Component
        {
          if($value)
          {
-            $this->selectedBills = Bill::where('property_uuid', Session::get('property'))->pluck('id');
+            $this->selectedBills = Bill::where('property_uuid', Session::get('property'))
+                 ->when($this->status, function($query){
+                 $query->where('status', $this->status);
+                 })
+                 ->when($this->start, function($query){
+                 $query->whereDate('start', $this->start);
+                 })
+                 ->when($this->end, function($query){
+                 $query->whereDate('start', $this->end);
+                 })
+                 ->when($this->particular_id, function($query){
+                 $query->where('particular_id', $this->particular_id);
+                 })
+                 ->when($this->created_at, function($query){
+                 $query->whereDate('created_at', $this->created_at);
+                 })
+            
+            ->pluck('id');
          }else
          {
             $this->selectedBills = [];
