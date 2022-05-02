@@ -28,7 +28,7 @@
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
                     </x-button>
                     @if ($bills->count())
-                    <x-button onclick="window.location.href='/unit/{{ $contract->unit_uuid }}'"><i
+                    <x-button onclick="window.location.href='/unit/{{ $contract->unit_uuid }}/contracts'"><i
                             class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                     @else
                     <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'"><i
@@ -54,61 +54,34 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        #</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Reference No</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Bill No</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Particular</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Bill</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Period Covered</th>
-
-
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Edit</span>
-                                    </th>
+                                    <x-th>#</x-th>
+                                    <x-th>Reference #</x-th>
+                                    <x-th>Bill #</x-th>
+                                    <x-th>Particular</x-th>
+                                    <x-th>Amount</x-th>
+                                    <x-th>Period Covered</x-th>
+                                    <x-th></x-th>
                                 </tr>
                             </thead>
                             <?php $ctr = 1; ?>
                             @foreach ($bills as $bill)
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><b>{{
-                                            $ctr++ }}</b></td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $bill->reference_no }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $bill->bill_no }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $bill->particular->particular }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        number_format($bill->bill,2) }}</td>
-
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {{
-                                        Carbon\Carbon::parse($bill->start)->format('M d,
-                                        Y') }}- {{ Carbon\Carbon::parse($bill->end)->format('M d,
-                                        Y') }}</td>
-
-
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <x-td>{{ $ctr++ }}</x-td>
+                                    <x-td>{{ $bill->reference_no }}</x-td>
+                                    <x-td>{{ $bill->bill_no }}</x-td>
+                                    <x-td>{{ $bill->particular->particular }}</x-td>
+                                    <x-td>{{ number_format($bill->bill,2) }}</x-td>
+                                    <x-td>{{ Carbon\Carbon::parse($bill->start)->format('M d, Y') }}- {{
+                                        Carbon\Carbon::parse($bill->end)->format('M d, Y') }}</x-td>
+                                    <x-td>
                                         <form method="POST" action="/bill/{{ $bill->id }}/delete">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900"><i
-                                                    class="fa-solid fa-2x fa-trash-can"></i></button>
+                                            <x-button class=" " onclick="confirmMessage()"><i
+                                                    class="fa-solid fa-trash-can"></i></x-button>
                                         </form>
-
-                                    </td>
+                                    </x-td>
                                 </tr>
                             </tbody>
                             @endforeach

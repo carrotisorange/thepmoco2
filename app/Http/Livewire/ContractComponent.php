@@ -114,7 +114,7 @@ class ContractComponent extends Component
                'start' => $this->start,
                'end' => Carbon::parse($this->start)->addMonth(),
                'due_date' => Carbon::parse($this->start)->addDays(7),
-               'status' => 'unpaid',
+      
                'user_id' => auth()->user()->id,
                'particular_id' => '1',
                'property_uuid' => Session::get('property'),
@@ -130,7 +130,7 @@ class ContractComponent extends Component
                'start' => Carbon::parse($this->start)->addMonth(),
                'end' => Carbon::parse($this->start)->addMonths(2),
                'due_date' => Carbon::parse($this->start)->addDays(7),
-               'status' => 'unpaid',
+        
                'user_id' => auth()->user()->id,
                'particular_id' => '2',
                'property_uuid' => Session::get('property'),
@@ -146,7 +146,7 @@ class ContractComponent extends Component
                   'start' => $this->start,
                   'end' => $this->end,
                 'due_date' => Carbon::parse($this->start)->addDays(7),
-                'status' => 'unpaid',
+        
                 'user_id' => auth()->user()->id,
                 'particular_id' => '3',
                 'property_uuid' => Session::get('property'),
@@ -162,7 +162,7 @@ class ContractComponent extends Component
                 'start' => $this->start,
                 'end' => $this->end,
                 'due_date' => Carbon::parse($this->start)->addDays(7),
-                'status' => 'unpaid',
+      
                 'user_id' => auth()->user()->id,
                 'particular_id' => '4',
                 'property_uuid' => Session::get('property'),
@@ -181,7 +181,7 @@ class ContractComponent extends Component
               'start' => $this->start,
               'end' => Carbon::parse($this->start)->addMonth(),
               'due_date' => Carbon::parse($this->start)->addDays(7),
-              'status' => 'unpaid',
+    
               'user_id' => auth()->user()->id,
               'particular_id' => '8',
               'property_uuid' => Session::get('property'),

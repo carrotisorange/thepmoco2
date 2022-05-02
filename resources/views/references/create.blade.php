@@ -56,49 +56,32 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Full Name</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Email</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Mobile</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Relationship</th>
-
-
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Edit</span>
-                                    </th>
+                                    <x-th>#</x-th>
+                                    <x-th>Full Name</x-th>
+                                    <x-th>Email</x-th>
+                                    <x-th>Mobile</x-th>
+                                    <x-th>Relationship</x-th>
+                                    <x-th></x-th>
                                 </tr>
                             </thead>
                             <?php $ctr = 1; ?>
-                            @foreach ($references as $reference)
+                            @foreach ($references as $item)
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $ctr++}}</th>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $reference->reference }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $reference->email }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $reference->mobile_number }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $reference->relationship->relationship}}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/reference/{{ $reference->id }}/delete"
+                                    <x-td>{{ $ctr++}}</x-td>
+                                    <x-td>{{ $item->reference }}</x-td>
+                                    <x-td>{{ $item->email }}</x-td>
+                                    <x-td>{{ $item->mobile_number }}</x-td>
+                                    <x-td>{{ $item->relationship->relationship }}</x-td>
+                                    <x-td>
+                                        <form method="POST" action="/reference/{{ $item->id }}/delete"
                                             id="delete-form">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900" form="delete-form"><i
-                                                    class="fa-solid fa-2x fa-trash-can"></i></button>
+                                            <x-button class=" " onclick="confirmMessage()"><i
+                                                    class="fa-solid fa-trash-can"></i></x-button>
                                         </form>
-                                    </td>
+                                    </x-td>
                                 </tr>
                             </tbody>
                             @endforeach
