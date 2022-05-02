@@ -5,7 +5,7 @@
         </div>
         <div class="mt-5">
             @if($selectedBills)
-            <x-button onclick="myFunction()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
+            <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
                 Remove ({{ count($selectedBills) }})
             </x-button>
             @endif
@@ -38,8 +38,3 @@
         </div>
     </div>
 </div>
-<script>
-    function myFunction() {
-      alert("Are you sure you want to perform this action?");
-    }
-</script>

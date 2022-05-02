@@ -25,7 +25,8 @@
                         <x-button>Save</x-button>
                     </form>
                     @else
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}'"><i class="fa-solid fa-forward"></i>&nbspSkip</x-button>
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}'"><i
+                            class="fa-solid fa-forward"></i>&nbspSkip</x-button>
                     @endif
                 </h5>
             </div>
@@ -38,41 +39,27 @@
                     @livewire('team-component', ['roles' => $roles])
                     <br>
                     @if (!$members->count())
-                   
+
                     @else
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        #</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Name</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Contact</th>
-
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Created on</th>
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Edit</span>
-                                    </th>
+                                    <x-th>#</x-th>
+                                    <x-th>Name</x-th>
+                                    <x-th>Contact</x-th>
+                                    <x-th>Status</x-th>
+                                    <x-th>Created on</x-th>
+                                    <x-th></x-th>
                                 </tr>
                             </thead>
                             <?php $ctr = 1 ?>
                             @foreach ($members as $member)
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $ctr++ }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    <x-td>{{ $ctr++ }}</x-td>
+                                    <x-td>
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-10 w-10">
 
@@ -87,14 +74,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    </x-td>
+                                    <x-td>
                                         <div class="text-sm text-gray-900">{{ $member->email }}
                                         </div>
                                         <div class="text-sm text-gray-500">{{ $member->mobile_number }}
                                         </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    </x-td>
+                                    <x-td>
                                         @if($member->user_status === 'active')
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -106,21 +93,17 @@
                                             {{ $member->user_status }}
                                         </span>
                                         @endif
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                        $member->created_at->diffForHumans() }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/team/{{ $member->user_id }}/delete" id="delete-form">
+                                    </x-td>
+                                    <x-td>{{ $member->created_at->diffForHumans() }}</x-td>
+                                    <x-td>
+                                        <form method="POST" action="/team/{{ $member->user_id }}/delete"
+                                            id="delete-form">
                                             @csrf
                                             @method('delete')
-                                            <button class="text-red-600 hover:text-red-900"
-                                                form="delete-form">Remove</button>
+                                            <x-button onclick="confirmMessage()" class="text-red-600 hover:text-red-900"
+                                                form="delete-form"><i class="fa-solid fa-trash-can"></i></x-button>
                                         </form>
-
-                                    </td>
-                                </tr>
-
-                                <!-- More people... -->
+                                    </x-td>
                             </tbody>
                             @endforeach
                         </table>

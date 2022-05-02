@@ -8,3 +8,9 @@
 
 @include('layouts.notifications')
 
+<script>
+    function confirmMessage() {
+      alert("Are you sure you want to perform this action?");
+    }
+</script>
+

@@ -156,8 +156,3 @@
     </div>
 </div>
 @include('utilities.create-unit')
-<script>
-    function myFunction() {
-      alert("Are you sure you want to perform this action?");
-    }
-</script>
