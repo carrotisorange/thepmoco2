@@ -46,21 +46,25 @@
                 Remove ({{ count($selectedUnits) }})
             </x-button>
             @endif
-        
-        
+
+
         </div>
         <div class="mt-5 p-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div class="flex flex-row">
-                    <div class="basis-1/8">
+                    <div class="basis-1/4">
                         @include('utilities.show-unit-filters')
                     </div>
-                    <div class="basis-3/4 ml-12">
+                    <div class="basis-full">
                         <p class="text-center">
                             @if($units->count())
                             {{ $units->links() }}
                             @else
-                            No units found!
+                            <div class="text-center mt-12">
+                                <span>No results found!</span>
+                                <img class="" src="{{ asset('/brands/no_results.png') }}" />
+                              
+                            </div>
                         </p>
                         @endif
                         @include('utilities.show-unit-results')
