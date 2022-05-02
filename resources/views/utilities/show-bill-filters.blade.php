@@ -13,6 +13,15 @@
     <div class="flex">
         <div>
             <div class="mt-5">
+                <b>Date posted ({{ $bills->count() }})</b>
+                <div class="form-check">
+                    <x-input wire:model="created_at" type="date" value="" />
+                    <label class="form-check-label inline-block text-gray-800" for="created_at">
+
+                    </label>
+                </div>
+            </div>
+            <div class="mt-5">
                 <b>Status</b>
                 @forelse ($statuses as $status)
                 <div class="form-check">
@@ -66,15 +75,7 @@
                 @endforelse
             </div>
 
-            <div class="mt-5">
-                <b>Date posted ({{ $bills->count() }})</b>
-                <div class="form-check">
-                    <x-input wire:model="created_at" type="date" value="" />
-                    <label class="form-check-label inline-block text-gray-800" for="created_at">
 
-                    </label>
-                </div>
-            </div>
         </div>
     </div>
 </div>
