@@ -69,6 +69,9 @@
                         <x-dropdown-link target="_blank" href="/chatify">
                             <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
                         </x-dropdown-link>
+                        <x-dropdown-link target="_blank" href="/profile/{{ Auth::user()->username }}/point">
+                            <i class="fas fa-coins"></i> {{ __('My points') }}
+                        </x-dropdown-link>
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/edit">
                             <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                         </x-dropdown-link>
@@ -114,6 +117,11 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link target="_blank" href="/chatify" :active="request()->routeIs('chatify')">
                 {{ __('Chatify') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link target="_blank" href="/profile/{{ Auth::user()->username }}/point">
+                <i class="fas fa-coins"></i> {{ __('My Points') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">

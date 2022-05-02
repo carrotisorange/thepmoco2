@@ -10,12 +10,16 @@
                                     <li>
                                         <?php $name = explode(" ",auth()->user()->name) ?>
                                         Welcome <b>{{ $name[0] }}</b>!
+                                   
+                        
+                                       
                                         {{-- {{ Str::plural('Property', $properties->count())}} ({{ $properties->count()
                                         }}) --}}
                                     </li>
                                 </ol>
                             </nav>
                         </h2>
+                       <a class="text-blue-600" href="profile/{{ auth()->user()->username }}/point"><p class="text-sm">Total redeemable points: {{ App\Models\User::find(auth()->user()->id)->points->sum('point') }}</p></a>
                     </div>
                     <h5 class="flex-1 text-right">
                         {{-- <x-button data-modal-toggle="role-access-modal"><i class="fa-solid fa-universal-access"></i>

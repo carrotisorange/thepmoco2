@@ -16,14 +16,7 @@ class PointController extends Controller
      */
     public function index()
     {
-
-         $points = DB::table('points')
-          ->leftJoin('users', 'points.user_id', 'users.id')
-          ->leftJoin('actions', 'points.action_id', 'actions.id')
-          ->leftJoin('properties', 'points.property_uuid', 'properties.uuid')
-          ->where('user_id', auth()->user()->id)
-          ->groupBy('points.id')
-          ->get();
+        $points = User::find(auth()->user()->id)->points;
 
         return view('points.index',[
             'points' => $points

@@ -27,9 +27,9 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
                             <x-td>
-                                <div class="flex items-center">
+                        
                                     <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
-                                </div>
+                           
                             </x-td>
                             <x-td>{{ $item->bill_no}}</x-td>
                             <x-td>{{ $item->reference_no}}</x-td>

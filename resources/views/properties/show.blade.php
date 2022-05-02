@@ -20,10 +20,14 @@
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Dashboard</li>
+                                
                             </ol>
                         </nav>
                     </h2>
+                    <a class="text-blue-600" href="/profile/{{ auth()->user()->username }}/point"><p class="text-sm">Total redeemable points: {{ App\Models\User::find(auth()->user()->id)->points->sum('point') }}</p></a>
                 </div>
+           
+                
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/properties'">
                         <i class="fas fa-arrow-alt-circle-left"></i>&nbsp Back

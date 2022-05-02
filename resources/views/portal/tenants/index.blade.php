@@ -22,8 +22,7 @@
                                     <li>
                                         <?php $name = explode(" ",auth()->user()->name) ?>
                                         Welcome <b>{{ $name[0] }}</b>!
-                                        {{-- {{ Str::plural('Property', $properties->count())}} ({{ $properties->count()
-                                        }}) --}}
+                                  
                                     </li>
                                 </ol>
                             </nav>

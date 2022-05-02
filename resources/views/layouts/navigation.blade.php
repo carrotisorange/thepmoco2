@@ -215,7 +215,7 @@
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link target="_blank" href="/points">
+                <x-responsive-nav-link target="_blank" href="/profile/{{ Auth::user()->username }}/point">
                     <i class="fas fa-coins"></i> {{ __('My Points') }}
                 </x-responsive-nav-link>
             </div>
