@@ -75,14 +75,16 @@ class BillPropertyController extends Controller
                   Bill::create($attributes);
             }
 
-            if($request->particular_id == 1)
-            {
-                 return back()->with('success', $i.' bills have been posted.');
-            }
-            else
-            {
-                return redirect('/property/'.Session::get('property').'/customized/bills');
-            }
+            return back()->with('success', $i.' bills have been posted.');
+            
+            // if($request->particular_id == 1)
+            // {
+            //      return back()->with('success', $i.' bills have been posted.');
+            // }
+            // else
+            // {
+            //     return redirect('/property/'.Session::get('property').'/customized/bills');
+            // }
             
         }catch(\Exception $e)
         {
