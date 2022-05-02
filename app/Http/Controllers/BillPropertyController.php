@@ -48,6 +48,7 @@ class BillPropertyController extends Controller
                   $attributes['bill_no'] = $bill_no++;
                   $attributes['reference_no'] = Carbon::now()->timestamp.''.$i;
                   $attributes['user_id'] = auth()->user()->id;
+                  $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
                   $attributes['property_uuid'] = Session::get('property');
 
                   Bill::create($attributes);
