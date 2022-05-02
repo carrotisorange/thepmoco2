@@ -7,9 +7,10 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         <nav class="rounded-md">
                             <ol class="list-reset flex">
-                                
+
                                 <li class="text-gray-500">
-                                   <span class="text-center text-red">Total Redeemable Points: {{ $points->sum('point') }}</span>
+                                    <span class="text-center text-red">Total Redeemable Points: {{ $points->sum('point')
+                                        }}</span>
                                 </li>
                             </ol>
                         </nav>
@@ -30,6 +31,18 @@
 
     <div class="py-12">
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
+            <div class="features-content">
+                <h4 class="feature-title">1. What are points?</h4>
+                <p class="text-sm" >Points are earned through specific actions, and one single point is equivalent to 1 PHP.</p>
+            </div>
+            <div class="features-content">
+                <h4 class="feature-title">2. How can I increase my points?</h4>
+                <p class="text-sm">It is simple to enroll a unit to lease or close a tenant contract.</p>
+            </div>
+            <div class="features-content">
+                <h4 class="feature-title">3.How to redeem my points?</h4>
+                <p class="text-sm">At the top right portion of the system, where your username is located, click the dropdown and click the chatify messenger. Once you're on it, search for "Landley Bernardo" and express your desire to redeem your points.</p>
+            </div>
             <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white border-b border-gray-200">
                     <div class="flex flex-col">
@@ -81,7 +94,7 @@
                                     </table>
 
                                 </div>
-                             
+
                             </div>
                         </div>
                     </div>
