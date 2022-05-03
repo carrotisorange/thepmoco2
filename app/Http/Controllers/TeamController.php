@@ -30,7 +30,7 @@ class TeamController extends Controller
         ->join('types', 'properties.type_id', 'types.id')
         ->join('roles', 'users.role_id', 'roles.id')
         ->where('properties.uuid', Session::get('property'))
-        ->where('users.id','!=',auth()->user()->id)
+        //->where('users.id','!=',auth()->user()->id)
         ->where('users.status', 'active')
         ->orderBy('users.created_at', 'desc')
         ->paginate(10);

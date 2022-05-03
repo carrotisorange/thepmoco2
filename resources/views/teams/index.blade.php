@@ -47,7 +47,7 @@
                                                 <x-th>Name</x-th>
                                                 <x-th>Contact</x-th>
                                                 <x-th>Status</x-th>
-                                                <x-th>Created on</x-th>
+                                                <x-th>Created</x-th>
                                                 <x-th>Email verified</x-th>
                                                 <x-th></x-th>
 
