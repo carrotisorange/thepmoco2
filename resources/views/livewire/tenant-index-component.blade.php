@@ -27,7 +27,7 @@
 <div class="py-12">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div class="">
-            <x-search placeholder="search for tenants"></x-search>
+            <x-search placeholder="search for name, mobile, or email"></x-search>
         </div>
         <div class="mt-5">
             {{ $tenants->links() }}

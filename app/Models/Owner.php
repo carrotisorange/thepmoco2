@@ -72,6 +72,8 @@ class Owner extends Model
       public static function search($search)
       {
       return empty($search)? static::query()
-      : static::where('owner','like', '%'.$search.'%');
+      : static::where('owner','like', '%'.$search.'%')
+      ->orWhere('mobile_number','like', '%'.$search.'%')
+      ->orWhere('email','like', '%'.$search.'%');
       }
 }
