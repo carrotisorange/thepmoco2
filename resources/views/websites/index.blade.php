@@ -901,7 +901,7 @@
         <div class="container">
             <div class="flex flex-wrap">
                 <div class="w-full text-center">
-                    <p class="text-white">&copy 2021 The PMO Co. </p>
+                    <p class="text-white">The PMO Co &copy 2021  </p>
                 </div>
             </div>
         </div>
