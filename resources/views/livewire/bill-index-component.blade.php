@@ -22,7 +22,6 @@
                                     @include('utilities.show-bill-filters')
                                 </div>
                                 <div class="basis-full ml-12">
-                                    
                                     <p class="">
                                         @if($bills->count())
                                         {{-- {{ $bills->links() }} --}}
