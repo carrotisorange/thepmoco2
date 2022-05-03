@@ -20,7 +20,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'"><i
+                    <x-button onclick="window.location.href='{{ url()->previous() }}'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
 
