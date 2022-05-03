@@ -757,7 +757,7 @@
                                     <i class="lni lni-phone-set"></i>
                                 </div>
                                 <p class="pl-3">
-                                    <a href="#" class="block">+639 7528 26318</a>
+                                    <a href="#" class="block">+639 7528 26318/+639 1677 99750</a>
                                     {{-- <a href="#" class="block">+99 123 5967</a> --}}
                                 </p>
                             </div>
