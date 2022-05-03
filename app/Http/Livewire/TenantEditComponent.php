@@ -46,7 +46,7 @@ class TenantEditComponent extends Component
     {
         $this->tenant_details = $tenant_details;
         $this->tenant = $tenant_details->tenant;
-        $this->emai = $tenant_details->emai;
+        $this->email = $tenant_details->email;
         $this->mobile_number = $tenant_details->mobile_number;
         $this->status = $tenant_details->status;
         $this->type = $tenant_details->type;
@@ -110,12 +110,15 @@ class TenantEditComponent extends Component
        
         $this->tenant_details->update($validatedData);
 
+          return back()->with('success', 'Tenant has been updated.');
+
         DB::commit();
-        return back()->with('success', 'Tenant has been updated.');
+            
+          
+
         }catch(\Exception $e){
-        ddd($e);
         DB::rollback();
-        return back()->with('error', 'Cannot perform your action.');
+            return back()->with('error', 'Cannot perform your action.');
         }
     }
 

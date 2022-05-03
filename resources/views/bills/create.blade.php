@@ -17,7 +17,7 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Bill</li>
+                                <li class="text-gray-500">Movein Charges</li>
 
                             </ol>
                         </nav>
@@ -48,18 +48,20 @@
                     => $bills])
                     <br>
                     @if ($bills->count())
-                    <span>Total: {{ number_format($bills->sum('bill'), 2) }}</span>
+                    <span>Total bills: <b>{{ number_format($bills->sum('bill'), 2) }}</b></span>
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <x-th>#</x-th>
+                                    <x-th>Unit</x-th>
                                     <x-th>Reference #</x-th>
                                     <x-th>Bill #</x-th>
                                     <x-th>Particular</x-th>
-                                    <x-th>Amount</x-th>
                                     <x-th>Period Covered</x-th>
+                                    <x-th>Amount</x-th>
+
                                     <x-th></x-th>
                                 </tr>
                             </thead>
@@ -68,12 +70,14 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
                                     <x-td>{{ $ctr++ }}</x-td>
+                                    <x-td>{{ $bill->unit->unit }}</x-td>
                                     <x-td>{{ $bill->reference_no }}</x-td>
                                     <x-td>{{ $bill->bill_no }}</x-td>
                                     <x-td>{{ $bill->particular->particular }}</x-td>
-                                    <x-td>{{ number_format($bill->bill,2) }}</x-td>
+
                                     <x-td>{{ Carbon\Carbon::parse($bill->start)->format('M d, Y') }}- {{
                                         Carbon\Carbon::parse($bill->end)->format('M d, Y') }}</x-td>
+                                    <x-td>{{ number_format($bill->bill,2) }}</x-td>
                                     <x-td>
                                         <form method="POST" action="/bill/{{ $bill->id }}/delete">
                                             @csrf

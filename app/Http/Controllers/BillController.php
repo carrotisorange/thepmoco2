@@ -43,7 +43,7 @@ class BillController extends Controller
      */
     public function create(Unit $unit, Tenant $tenant, Contract $contract)
     {
-         $bills = Tenant::find($tenant->uuid)->bills;
+        $bills = Tenant::find($tenant->uuid)->bills;
        
         $particulars = Particular::join('property_particulars', 'particulars.id',
         'property_particulars.particular_id')
