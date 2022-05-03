@@ -71,7 +71,7 @@
             </div>
 
             <div class="mt-5">
-                <span>Building</span>
+                <b>Building</b>
                 @forelse ($buildings as $building)
                 <div class="form-check">
                     <x-input wire:model="building_id" type="checkbox" value="{{ $building->building_id }}"
