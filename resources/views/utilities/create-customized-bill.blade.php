@@ -35,7 +35,7 @@
                     <x-form-select wire:model="particular_id" name="particular_id" id="particular_id">
                         <option value="">Select one</option>
                         @foreach ($particulars as $particular)
-                        <option value="{{ $particular->id }}" {{ old('particular_id')==$particular->id?
+                        <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->particular_id?
                             'selected': 'Select one'
                             }}>{{ $particular->particular }}</option>
                         @endforeach
