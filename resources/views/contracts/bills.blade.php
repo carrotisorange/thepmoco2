@@ -17,14 +17,14 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $contract->tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Unpaid Bills, Wallets, and Moveout Charges</li>
+                                <li class="text-gray-500">Moveout Charges</li>
 
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='/unit/{{ $contract->unit->uuid }}'">
+                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='/tenant/{{ $contract->tenant_uuid }}/contracts'">
                         <i class="fa-solid fa-circle-left"></i>&nbspBack</x-button>
                     <x-button data-modal-toggle="create-particular-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbspParticular

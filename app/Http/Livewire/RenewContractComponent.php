@@ -27,6 +27,7 @@ class RenewContractComponent extends Component
         public $discount= 0;
         public $contract;
         public $term;
+        public $sendContract;
 
 
        public function mount($contract_details)
@@ -37,6 +38,8 @@ class RenewContractComponent extends Component
             $this->rent = $contract_details->rent;
             $this->discount = $contract_details->discount;
            $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
+           $this->sendContract = false;
+
        }
 
 
@@ -112,7 +115,12 @@ class RenewContractComponent extends Component
        'unit' => $this->contract_details->unit_uuid,
        ];
 
-       Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
+         if($this->sendContract)
+         {
+            Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
+         }
+
+      
 
        DB::commit();
 
