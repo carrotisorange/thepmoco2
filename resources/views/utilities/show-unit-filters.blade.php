@@ -33,7 +33,7 @@
 
             </div>
             <div class="mt-5">
-                <b>Enrollment Status</b>
+                <b>Leasing</b>
                 @forelse ($enrollment_statuses as $enrollment_status)
                 <div class="form-check">
                     <x-input wire:model="is_enrolled" type="checkbox" value="{{ $enrollment_status->is_enrolled }}"
