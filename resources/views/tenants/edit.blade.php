@@ -41,13 +41,13 @@
                             <li>
                                 <a href="/tenant/{{ $tenant_details->uuid }}/contracts"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                        class="fas fa-file-signature"></i>&nbspShow
+                                        class="fas fa-file-signature"></i>&nbsp
                                     Contracts</a>
                             </li>
                             <li>
                                 <a href="/tenant/{{ $tenant_details->uuid }}/concerns"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                        class="fa-solid fa-screwdriver-wrench"></i>&nbspShow
+                                        class="fa-solid fa-screwdriver-wrench"></i>&nbsp
                                     Concerns</a>
                             </li>
                             @endcan
@@ -55,7 +55,7 @@
                             <li>
                                 <a href="/tenant/{{ $tenant_details->uuid }}/bills"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                        class="fa-solid fa-file-invoice-dollar"></i>&nbspShow
+                                        class="fa-solid fa-file-invoice-dollar"></i>&nbsp
                                     Bills</a>
                             </li>
                             @endcan
@@ -63,7 +63,7 @@
                             <li>
                                 <a href="/tenant/{{ $tenant_details->uuid }}/collections"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                    <i class="fa-solid fa-coins"></i>&nbspShow
+                                    <i class="fa-solid fa-coins"></i>&nbsp
                                     Collections</a>
                             </li>
                             @endcan
