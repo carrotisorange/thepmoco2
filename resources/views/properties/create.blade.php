@@ -18,7 +18,7 @@
                     </div>
                     <h5 class="flex-1 text-right">
                         <x-button onclick="window.location.href='/properties'">
-                            <i class="fa-solid fa-circle-left"></i> Back
+                            <i class="fa-solid fa-circle-left"></i>&nbspBack
                         </x-button>
                     </h5>
 

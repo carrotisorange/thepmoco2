@@ -7,7 +7,9 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div>
-                            <x-label for="property" :value="__('Property')" />
+                            <x-label for="property">
+                                What is the name of your property? <span class="text-red-600">*</span>
+                            </x-label>
 
                             <x-form-input wire:model="property" id="property" type="text" name="property"
                                 :value="old('property')" autofocus />
@@ -29,7 +31,9 @@
                         </div> --}}
 
                         <div class="mt-5">
-                            <x-label for="type_id" :value="__('Type')" />
+                            <x-label for="type_id">
+                                Which type of property you have? <span class="text-red-600">*</span>
+                            </x-label>
 
                             <x-form-select wire:model="type_id" name="type_id" id="type_id">
                                 <option value="">Select one</option>
@@ -49,7 +53,7 @@
                             <div class="mt-6 flex flex-wrap mb-2">
                                 <div class="w-full md:w-1/4 mb-6 md:mb-0">
                                     <x-label for="country_id">
-                                        Country
+                                        Country <span class="text-red-600">*</span>
                                     </x-label>
                                     <div class="relative">
                                         <x-form-select wire:model="country_id" id="country_id" name="country_id">
@@ -68,7 +72,7 @@
                                 </div>
                                 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                     <x-label for="province_id">
-                                        Region
+                                        Region <span class="text-red-600">*</span>
                                     </x-label>
                                     <div class="relative">
                                         <x-form-select wire:model="province_id" id="province_id" id="province_id"
@@ -105,7 +109,7 @@
 
                                 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                                     <x-label for="barangay">
-                                        Address
+                                        Address <span class="text-red-600">*</span>
                                         </x-lab>
                                         <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
                                             value="{{ old('barangay') }}" />
@@ -119,7 +123,12 @@
                         </div>
 
                         <div class="mt-5">
-                            <x-label for="thumbnail" :value="__('Thumbnail')" />
+                            <x-label for="thumbnail">
+                                Thumbnail (Please upload an image of your property.) <span
+                                    class="text-blue-600">(optional)</span>
+                            </x-label>
+
+
 
                             <x-form-input wire:model="thumbnail" id="thumbnail" type="file" name="thumbnail"
                                 :value="old('thumbnail')" autofocus />
@@ -130,8 +139,10 @@
                         </div>
 
                         <div class="mt-5">
-                            <x-label for="tenant_contract"
-                                :value="__('Tenant Contract (Please only upload a PDF file.)')" />
+                            <x-label for="tenant_contract">
+                                Tenant Contract (Applicable if you're accepting tenants to your property. Please only
+                                upload a PDF file.) <span class="text-blue-600">(optional)</span>
+                            </x-label>
 
                             <x-form-input wire:model="tenant_contract" id="tenant_contract" type="file"
                                 name="tenant_contract" :value="old('tenant_contract')" autofocus />
@@ -142,8 +153,11 @@
                         </div>
 
                         <div class="mt-5">
-                            <x-label for="owner_contract"
-                                :value="__('Owner Contract (Please only upload a PDF file.)')" />
+                            <x-label for="owner_contract">
+                                Owner Contract (Applicable if the units on your property have different owners and they want their units to be rented out. Please only
+                                upload a PDF file.) <span class="text-blue-600">(optional)</span>
+                            </x-label>
+
 
                             <x-form-input wire:model="owner_contract" id="owner_contract" type="file"
                                 name="owner_contract" :value="old('owner_contract')" autofocus />

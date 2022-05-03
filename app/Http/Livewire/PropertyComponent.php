@@ -46,10 +46,10 @@ class PropertyComponent extends Component
             'tenant_contract' => 'nullable|mimes:pdf',
             'owner_contract' => 'nullable|mimes:pdf',
             'description' => 'nullable',
-             'country_id' => ['nullable', Rule::exists('countries', 'id')],
-             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
+             'country_id' => ['required', Rule::exists('countries', 'id')],
+             'province_id' => ['required', Rule::exists('provinces', 'id')],
              'city_id' => ['nullable', Rule::exists('cities', 'id')],
-             'barangay' => ['nullable'],
+             'barangay' => ['required'],
         ];
      }
 

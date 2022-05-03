@@ -19,7 +19,7 @@
                 </h2>
             </div>
             <h5 class="flex-1 text-right">
-              
+
             </h5>
         </div>
     </h2>
@@ -37,9 +37,7 @@
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                            @if (!$owners->count())
-                            <span class="text-center text-red">No owners found!</span>
-                            @else
+
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <?php $ctr =1; ?>
@@ -53,7 +51,7 @@
                                             <x-th>Address</x-th>
 
                                     </thead>
-                                    @foreach ($owners as $owner)
+                                    @forelse ($owners as $owner)
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         <tr>
                                             <x-td>{{ $ctr++ }}</x-td>
@@ -89,12 +87,16 @@
                                                     $owner->country->country }}
                                                 </div>
                                             </x-td>
+                                            @empty
+                                            <x-td>
+                                                No data found!
+                                            </x-td>
                                         </tr>
                                     </tbody>
-                                    @endforeach
+                                    @endforelse
                                 </table>
                             </div>
-                            @endif
+
                         </div>
                     </div>
                 </div>

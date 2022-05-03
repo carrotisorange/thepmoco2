@@ -32,6 +32,11 @@ class PropertyController extends Controller
      */
     public function index()
     {
+        if(!User::find(Auth::user()->id)->user_properties->count())
+        {
+            return redirect('/property/'.Str::random(8).'/create');
+        }
+
         Session::forget('property_name');
 
         if(auth()->user()->role_id == '10')

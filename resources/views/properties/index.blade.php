@@ -60,7 +60,7 @@
                                                     <x-th># of Tenants</x-th>
                                                     <x-th>Status</x-th>
                                                     <x-th>Created</x-th>
-                                                 
+
                                                 </tr>
                                             </thead>
                                             <?php $ctr = 1 ?>
@@ -72,9 +72,9 @@
                                                         <div class="flex items-center">
                                                             <div class="flex-shrink-0 h-10 w-10">
                                                                 <a href="/property/{{ $property->property->uuid }}">
-                                                                <img class="h-10 w-10 rounded-full"
-                                                                    src="/storage/{{ $property->property->thumbnail }}">
-                                                                    </a>
+                                                                    <img class="h-10 w-10 rounded-full"
+                                                                        src="/storage/{{ $property->property->thumbnail }}">
+                                                                </a>
                                                             </div>
                                                             <div class="ml-4">
                                                                 <div class="text-sm font-medium text-gray-900">
@@ -108,6 +108,8 @@
                                                     <x-td>{{
                                                         Carbon\Carbon::parse($property->property->created_at)->diffForHumans()
                                                         }}</x-td>
+                                                    @empty
+                                                    <x-td>No properties found!</x-td>
                                                     {{-- <x-td>
                                                         <button id="dropdownDividerButton"
                                                             data-dropdown-toggle="dropdownDivider.{{ $property->property->uuid }}"
@@ -131,9 +133,10 @@
                                                                 </li>
                                                                 {{-- <li>
                                                                     <a href="/property/{{ $property->property->uuid }}/edit"
-                                                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="fa-solid fa-pen-to-square"></i>&nbspEdit
+                                                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                                                            class="fa-solid fa-pen-to-square"></i>&nbspEdit
                                                                     </a>
-                                                                </li> 
+                                                                </li>
 
                                                             </ul>
 
@@ -141,8 +144,7 @@
                                                     </x-td> --}}
 
                                                 </tr>
-                                                @empty
-                                                <span>No properties found!</span>
+
                                             </tbody>
 
                                             @endforelse

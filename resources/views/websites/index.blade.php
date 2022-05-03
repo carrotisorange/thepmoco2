@@ -64,6 +64,7 @@
                             <li class="nav-item">
                                 <a class="page-scroll" href="#contact">Contact</a>
                             </li>
+                            
                         </ul>
                     </div>
                     <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
