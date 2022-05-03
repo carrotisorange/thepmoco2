@@ -107,6 +107,25 @@
 
 
         </div>
+
+        @if($tenant->email)
+        <div class="flex flex-wrap mx-3 mb-6">
+            <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+                <div>
+                    <div class="form-check">
+                        <input wire:model="sendContract"
+                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                            type="checkbox" value="{{ old('sendContract'), $sendContract }}" name="sendContract"
+                            id="flexCheckChecked">
+                        <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
+                            Send contract details to tenant through e-mail.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <div class="mt-5">
             <p class="text-right">
                 <x-button form="create-form">

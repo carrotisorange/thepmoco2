@@ -25,6 +25,15 @@ class ContractComponent extends Component
       public $unit;
       public $tenant;
 
+      public $start;
+      public $end;
+      public $rent;
+      public $discount;
+      public $interaction_id;
+      public $contract;
+      public $referral;
+      public $sendContract;
+
       public function mount($unit, $tenant)
       {
         $this->unit = $unit;
@@ -34,15 +43,8 @@ class ContractComponent extends Component
         $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
         $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
+        $this->sendContract = false;
       }
-
-      public $start;
-      public $end;
-      public $rent;
-      public $discount;
-      public $interaction_id;
-      public $contract;
-      public $referral;
 
       protected function rules()
       {
@@ -52,7 +54,7 @@ class ContractComponent extends Component
        'rent' => 'required',
        'discount' => 'required',
        'interaction_id' => 'required',
-       'contract' => 'nullable|mimes:pdf,doc,docx, image'
+       'contract' => 'nullable|mimes:pdf,doc,docx, image',
       ];
       }
 
@@ -206,8 +208,11 @@ class ContractComponent extends Component
              'unit' => $this->unit->unit,
              ];
 
-           Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
-
+             if($this->sendContract)
+             {
+                Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
+             }
+          
             DB::commit();
         
             return
@@ -223,7 +228,7 @@ class ContractComponent extends Component
       public function render()
       {
       return view('livewire.contract-component',[
-        'interactions' => Interaction::all()
+        'interactions' => Interaction::whereNotIn('id', ['8','9'])->get()
       ]);
       }
 }
