@@ -186,7 +186,7 @@ class PropertyController extends Controller
                 );
                 }
 
-        $contracts =Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->get();
+        $contracts =Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->get();
 
 
         return view('properties.show',[

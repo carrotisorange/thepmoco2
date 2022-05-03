@@ -47,7 +47,9 @@ class TeamController extends Controller
      */
     public function create()
     {
-         $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
+            
+        
+        $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
          ->select('*', 'users.status as user_status', 'users.id as user_id')
          ->join('users', 'user_properties.user_id', 'users.id')
          ->join('types', 'properties.type_id', 'types.id')
@@ -58,7 +60,7 @@ class TeamController extends Controller
          ->paginate(10);
 
         return view('teams.create',[
-            'roles' => Role::orderBy('role')->where('id','!=','10')->get(),
+            'roles' => Role::orderBy('role')->whereIn('id',['1','2', '3', '9'])->get(),
             'members' => $members,
         ]);
     }

@@ -49,7 +49,7 @@
                                                 <x-th>Status</x-th>
                                                 <x-th>Created</x-th>
                                                 <x-th>Email verified</x-th>
-                                                <x-th></x-th>
+                                                {{-- <x-th></x-th> --}}
 
                                             </tr>
                                         </thead>
@@ -61,9 +61,9 @@
                                                 <x-td>
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-
-                                                            <img class="h-10 w-10 rounded-full"
-                                                                src="/storage/{{ $item->avatar }}" alt="">
+                                                            <a href="/team/{{ $item->username }}/edit">
+                                                                <img class="h-10 w-10 rounded-full"
+                                                                    src="/storage/{{ $item->avatar }}" alt=""></a>
                                                         </div>
                                                         <div class="ml-4">
                                                             <div class="text-sm font-medium text-gray-900">{{
@@ -99,12 +99,12 @@
                                                 <x-td>{{ Carbon\Carbon::parse($item->email_verified_at)->format('M d, Y
                                                     @
                                                     h:m:s') }}</x-td>
-                                                <x-td><a title="show" href="/team/{{ $item->username }}/edit"
+                                                {{-- <x-td><a title="show" href="/team/{{ $item->username }}/edit"
                                                         class="text-indigo-600 hover:text-indigo-900"><i
                                                             class="fa-solid fa-2x fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
-                                                </x-td>
-                                               @empty
-                                               <x-td>No data found!</x-td>
+                                                </x-td> --}}
+                                                @empty
+                                                <x-td>No data found!</x-td>
                                             </tr>
                                         </tbody>
                                         @endforelse
