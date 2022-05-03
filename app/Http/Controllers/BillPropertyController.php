@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Validation\Rule;
 use App\Models\Contract;
+use App\Models\Tenant;
 
 class BillPropertyController extends Controller
 {
@@ -55,6 +56,8 @@ class BillPropertyController extends Controller
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('unit_uuid');
 
+                $reference_no = Tenant::find($tenant_uuid[$i]);
+
                 $rent = Contract::where('property_uuid', Session::get('property'))
                   ->where('contracts.status','active')
                   ->where('tenant_uuid', $tenant_uuid[$i])
@@ -67,7 +70,7 @@ class BillPropertyController extends Controller
                     $attributes['bill'] = $rent[0];
                 }
                   $attributes['bill_no'] = $bill_no++;
-                  $attributes['reference_no'] = Carbon::now()->timestamp.''.$i;
+                  $attributes['reference_no'] = $reference_no->bill_reference_no;
                   $attributes['user_id'] = auth()->user()->id;
                   $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
                   $attributes['property_uuid'] = Session::get('property');

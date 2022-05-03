@@ -17,6 +17,8 @@ use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
 use Session;
+use App\Models\Property;
+use Carbon\Carbon;
 
 class OldTenantComponent extends Component
 {
@@ -107,7 +109,12 @@ class OldTenantComponent extends Component
             $validatedData['city_id'] = '48315';
          }
 
+        $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1;
+
+        $reference_no = Carbon::now()->timestamp.''.$bill_no;
+
         $validatedData['property_uuid'] = Session::get('property');
+        $validatedData['bill_reference_no'] = $reference_no;
 
        try{
             DB::beginTransaction();

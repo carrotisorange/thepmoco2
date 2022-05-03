@@ -10,6 +10,7 @@ use App\Models\Property;
 use App\Models\Particular;
 use App\Models\Contract;
 use Carbon\Carbon;
+use App\Models\Tenant;
 
 use Livewire\Component;
 
@@ -59,7 +60,7 @@ class BillComponent extends Component
       $bill_no = Property::find(Session::get('property'))->bills->max('bill_no');
 
       try {
-        $validatedData['reference_no'] = Contract::find($this->contract->uuid)->bill_reference_no;
+        $validatedData['reference_no'] = Tenant::find($this->tenant->uuid)->bill_reference_no;
         $validatedData['tenant_uuid'] = $this->tenant->uuid;
         $validatedData['unit_uuid'] = $this->unit->uuid;
         $validatedData['property_uuid'] = Session::get('property');

@@ -76,14 +76,12 @@ class ContractComponent extends Component
 
             $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1;
 
-            $reference_no = Carbon::now()->timestamp.''.$bill_no;
-
             $validatedData['uuid'] = $contract_uuid;
             $validatedData['tenant_uuid'] = $this->tenant->uuid;
             $validatedData['unit_uuid'] = $this->unit->uuid;
             $validatedData['property_uuid'] = Session::get('property');
             $validatedData['user_id'] = auth()->user()->id;
-            $validatedData['bill_reference_no'] = $reference_no;
+
 
              if($this->contract)
              {
@@ -112,7 +110,7 @@ class ContractComponent extends Component
                Bill::create([
                'bill_no' => $bill_no++,
                'bill' => $this->rent,
-               'reference_no' => $reference_no,
+               'reference_no' => $this->tenant->bill_reference_no,
                'start' => $this->start,
                'end' => Carbon::parse($this->start)->addMonth(),
                'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -128,7 +126,7 @@ class ContractComponent extends Component
                Bill::create([
                'bill_no' => $bill_no++,
                'bill' => $this->rent,
-               'reference_no' => $reference_no,
+             'reference_no' => $this->tenant->bill_reference_no,
                'start' => Carbon::parse($this->start)->addMonth(),
                'end' => Carbon::parse($this->start)->addMonths(2),
                'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -144,7 +142,7 @@ class ContractComponent extends Component
                 Bill::create([
                 'bill_no' => $bill_no++,
                 'bill' => $this->rent,
-                'reference_no' => $reference_no,
+            'reference_no' => $this->tenant->bill_reference_no,
                   'start' => $this->start,
                   'end' => $this->end,
                 'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -160,7 +158,7 @@ class ContractComponent extends Component
                 Bill::create([
                 'bill_no' => $bill_no++,
                 'bill' => $this->rent,
-                'reference_no' => $reference_no,
+   'reference_no' => $this->tenant->bill_reference_no,
                 'start' => $this->start,
                 'end' => $this->end,
                 'due_date' => Carbon::parse($this->start)->addDays(7),
@@ -179,7 +177,7 @@ class ContractComponent extends Component
               Bill::create([
               'bill_no' => $bill_no++,
               'bill' => -($this->discount),
-              'reference_no' => $reference_no,
+             'reference_no' => $this->tenant->bill_reference_no,
               'start' => $this->start,
               'end' => Carbon::parse($this->start)->addMonth(),
               'due_date' => Carbon::parse($this->start)->addDays(7),
