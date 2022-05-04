@@ -11,6 +11,7 @@ use DB;
 use App\Models\Bill;
 use App\Models\Property;
 use Carbon\Carbon;
+use LivewireUI\Modal\ModalComponent;
 
 class TenantBillController extends Controller
 {

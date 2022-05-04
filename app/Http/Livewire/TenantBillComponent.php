@@ -3,11 +3,12 @@
 namespace App\Http\Livewire;
 use App\Models\Tenant;
 use App\Models\Bill;
+use Livewire\WithPagination;
+use LivewireUI\Modal\ModalComponent;
 
-use Livewire\Component;
-
-class TenantBillComponent extends Component
+class TenantBillComponent extends ModalComponent
 {
+     use WithPagination;
 
     public $tenant;
 
@@ -44,7 +45,7 @@ class TenantBillComponent extends Component
     public function render()
     {
         return view('livewire.tenant-bill-component',[
-            'bills' => Tenant::find($this->tenant->uuid)->bills,
+            'bills' => Tenant::find($this->tenant->uuid)->bills()->paginate(10),
         ]);
     }
 }

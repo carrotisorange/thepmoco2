@@ -13,12 +13,14 @@
             Remove ({{ count($selectedBills) }})
         </x-button>
 
-        {{-- <x-button onclick="window.location.href='/bill/{{ $reference_no }}'"><i
-                class="fa-solid fa-cash-register"></i>&nbsp
+        <x-button wire:click="$emit('create-collection-modal', 'edit-user')" ><i class="fa-solid fa-cash-register"></i>&nbsp
             Pay ({{ count($selectedBills) }})
-        </x-button> --}}
+        </x-button>
+
+
         @endif
     </div>
+    {{ $bills->links() }}
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">
@@ -90,3 +92,4 @@
         </div>
     </div>
 </div>
+@include('utilities.create-collection-modal')

@@ -4,6 +4,8 @@
 
 @livewireScripts()
 
+@livewire('livewire-ui-modal')
+
 @include('layouts.messenger-chatbot')
 
 @include('layouts.notifications')
