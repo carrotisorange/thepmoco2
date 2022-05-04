@@ -96,12 +96,18 @@ class TenantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Tenant $tenant)
-    {
-        return view('tenants.edit',[
-            'tenant_details' => $tenant,
+    {   
+         if(auth()->user()->role->id == 3 || auth()->user()->role->id == 2)
+         {
+            return redirect('/tenant/'.$tenant->uuid.'/bills');
+         }
+         else{
+             return view('tenants.edit',[
+             'tenant_details' => $tenant,
              'references' => Tenant::find($tenant->uuid)->references,
              'guardians' => Tenant::find($tenant->uuid)->guardians
-        ]);
+             ]);
+         } 
     }
 
     /**

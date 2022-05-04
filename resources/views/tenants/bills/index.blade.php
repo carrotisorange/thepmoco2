@@ -25,10 +25,10 @@
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
+                    @can('billing')
                     <x-button data-modal-toggle="create-particular-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
                     </x-button>
-                    @can('billing')
                     <x-button data-modal-toggle="create-bill-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
                     </x-button>
@@ -44,7 +44,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
-       @livewire('tenant-bill-component', ['tenant'=> $tenant]);
+        @livewire('tenant-bill-component', ['tenant'=> $tenant]);
     </div>
 </x-app-layout>
 @include('utilities.create-bill-modal')
