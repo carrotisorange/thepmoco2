@@ -27,11 +27,11 @@
                     type="button">
                     Toggle modal
                 </button> --}}
-                <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
+                <x-button data-modal-toggle="create-unit-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
                 </x-button>
                 @endcan
             </h5>
-            @include('utilities.create-unit')
+            @include('utilities.create-unit-modal')
         </div>
     </h2>
 </x-slot>

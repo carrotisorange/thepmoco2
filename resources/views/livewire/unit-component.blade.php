@@ -5,19 +5,15 @@
             <x-button onclick="myFunction()" wire:click="deleteUnits()"><i class="fa-solid fa-trash"></i>&nbsp
                 Remove ({{ count($selectedUnits) }})
             </x-button>
-            {{-- <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-file-pen"></i>&nbsp Update ({{
-                count($selectedUnits) }})
-            </x-button> --}}
-
             @endif
-            <x-button data-modal-toggle="authentication-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
+            <x-button data-modal-toggle="create-unit-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
             </x-button>
             <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp
                 Building
             </x-button>
 
             @if($units->count())
-            <x-button form="edit-form"><i class="fas fa-check-circle"></i>&nbsp Save</x-button>
+            <x-button form="edit-form"><i class="fas fa-check-circle"></i>&nbsp Save ({{ $units->count() }})</x-button>
             @endif
         </div>
         <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -155,4 +151,3 @@
         </div>
     </div>
 </div>
-@include('utilities.create-unit')

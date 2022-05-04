@@ -195,5 +195,4 @@
             </div>
         </div>
     </div>
-    @include('utilities.create-building');
 </x-app-layout>

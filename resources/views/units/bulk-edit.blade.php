@@ -26,8 +26,7 @@
             </div>
         </h2>
     </x-slot>
-    @include('utilities.create-unit')
+    @include('utilities.create-unit-modal')
     @livewire('unit-component', ['batch_no' => $batch_no, 'unit_count' => $unit_count])
-    @include('utilities.create-building');
-    @include('utilities.delete-unit-modal')
+    @include('utilities.create-building-modal');
 </x-app-layout>
