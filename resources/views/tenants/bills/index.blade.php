@@ -25,6 +25,9 @@
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
+                    <x-button data-modal-toggle="create-particular-modal">
+                        <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
+                    </x-button>
                     @can('billing')
                     <x-button data-modal-toggle="create-bill-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
@@ -129,3 +132,4 @@
 </x-app-layout>
 @include('utilities.create-bill-modal')
 @include('utilities.create-collection-modal')
+@include('utilities.create-particular-modal');

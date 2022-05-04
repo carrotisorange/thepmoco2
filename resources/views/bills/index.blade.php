@@ -18,7 +18,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button data-modal-toggle="authentication-particular-modal">
+                    <x-button data-modal-toggle="create-particular-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
                     </x-button>
                     @can('billing')
