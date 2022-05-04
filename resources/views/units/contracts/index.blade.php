@@ -82,7 +82,7 @@
                                                         Carbon\Carbon::parse($item->end)->diffInMonths($item->start)
                                                         }} months
                                                     </div>
-                                                  
+
                                                 </x-td>
                                                 <x-td>{{number_format($item->rent, 2)}}</x-td>
                                                 <x-td>
@@ -90,24 +90,20 @@
                                                     <span
                                                         class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                         <i class="fa-solid fa-circle-check"></i> {{ $item->status }}
-                                                        @else
+                                                    </span>
+                                                    @else
+                                                    <span
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                        <i class="fa-solid fa-circle-xmark"></i> {{
+                                                        $item->status }}
+                                                    </span>
+                                                    @endif
+                                                    @if($item->end <= Carbon\Carbon::now()->addMonth())
                                                         <span
                                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                            <i class="fa-solid fa-circle-xmark"></i> {{
-                                                            $item->status }}
+                                                            <i class="fa-solid fa-circle-xmark"></i> expiring
                                                         </span>
-                                                        @endif
-                                                        @if($item->end <= Carbon\Carbon::now()->addMonth())
-                                                            <span
-                                                                class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
-                                                                <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path fill-rule="evenodd"
-                                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                                                        clip-rule="evenodd"></path>
-                                                                </svg>
-                                                                expiring
-                                                            </span>
-                                                            @endif
+                                                    @endif
                                                 </x-td>
                                                 <x-td>{{ $item->interaction->interaction }}</x-td>
                                                 <x-td>
@@ -170,7 +166,7 @@
                                         @endforelse
                                     </table>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
