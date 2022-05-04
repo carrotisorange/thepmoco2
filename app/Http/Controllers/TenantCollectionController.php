@@ -8,6 +8,7 @@ use App\Models\Collection;
 use App\Models\Property;
 use Session;
 use DB;
+use App\Models\Bill;
 
 class TenantCollectionController extends Controller
 {
@@ -33,6 +34,18 @@ class TenantCollectionController extends Controller
          ]);
 
          try {
+
+            $unpaid_bills_count = Bill::where('reference_no', $tenant->bill_reference_no)->where('status','unpaid')->pluck('id');
+
+            $unpaid_bills_sum = Bill::where('reference_no', $tenant->bill_reference_no)->where('status','unpaid')->sum('bill');
+
+            for($i=0; $i<$unpaid_bills_count->count(); $i++)
+            {
+                if($request->collection)
+                {
+                    
+                }
+            }
 
         $ar_no = Property::find(Session::get('property'))->collections->max('ar_no');
 

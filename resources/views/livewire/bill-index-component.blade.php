@@ -35,7 +35,7 @@
                                         Total Unpaid Bills: <b> {{ number_format($bills->where('status',
                                             'unpaid')->sum('bill'),
                                             2)}}</b>
-                                        <br>
+                                        ,
                                         Total Paid Bills: <b> {{ number_format($bills->where('status',
                                             'paid')->sum('bill'),
                                             2)}}</b>

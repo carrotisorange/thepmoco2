@@ -67,10 +67,10 @@ class BillController extends Controller
     public function store(Request $request, Unit $unit, Tenant $tenant, Contract $contract)
     {    
          $attributes = request()->validate([
-         'particular_id' => ['required', Rule::exists('particulars', 'id')],
-         'bill' =>'required',
-         'start' => 'required|date',
-         'end' => 'required|date|after:start'
+            'particular_id' => ['required', Rule::exists('particulars', 'id')],
+            'bill' =>'required',
+            'start' => 'required|date',
+            'end' => 'required|date|after:start'
          ]);
 
         $bill_no = Property::find(Session::get('property'))->bills->count();

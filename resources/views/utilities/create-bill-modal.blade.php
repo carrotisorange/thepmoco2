@@ -19,99 +19,107 @@
                 @csrf
                 {{--
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">What do you want to see?</h3> --}}
-                    <div>
+                <div>
 
 
 
-                        <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="flex flex-wrap -mx-3 mb-6">
 
-                            <div class="w-full md:w-full px-3">
-                                <x-label for="particular_id">
-                                    Particular
-                                </x-label>
-                                <x-form-select wire:model="particular_id" id="particular_id" name="particular_id">
-                                    <option value="">Select one</option>
-                                    @foreach ($particulars as $particular)
-                                    <option value="{{ $particular->particular_id }}" {{
-                                        old('particular_id')==$particular->id?
-                                        'selected': 'Select one'
-                                        }}>{{ $particular->particular }}</option>
-                                    @endforeach
-                                </x-form-select>
+                        <div class="w-full md:w-full px-3">
+                            <x-label for="particular_id">
+                                Select a particular
+                            </x-label>
+                            <x-form-select wire:model="particular_id" id="particular_id" name="particular_id">
+                                <option value="">Select one</option>
+                                @foreach ($particulars as $particular)
+                                <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->
+                                    id?
+                                    'selected': 'Select one'
+                                    }}>{{ $particular->particular }}</option>
+                                @endforeach
+                            </x-form-select>
 
-                                @error('particular_id')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
+                            @error('particular_id')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
-                        <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
-                            <div class="w-full md:w-1/4 px-3">
-                                <x-label for="particular_id">
-                                    Unit
-                                </x-label>
-                                <x-form-select wire:model="unit_uuid" id="unit_uuid" name="unit_uuid">
-                                    <option value="">Select one</option>
-                                    @foreach ($units as $unit)
-                                    <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
-                                        'selected': 'Select one'
-                                        }}>{{ $unit->unit->building->building.' '.$unit->unit->unit }}</option>
-                                    @endforeach
-                                </x-form-select>
+                    </div>
+                    <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
-                                @error('particular_id')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
+                        <div class="w-full md:w-1/4 px-3">
+                            <x-label for="particular_id">
+                                Unit
+                            </x-label>
+                            <x-form-select wire:model="unit_uuid" id="unit_uuid" name="unit_uuid">
 
-                            <div class="w-full md:w-1/4 px-3">
-                                <x-label for="bill">
-                                    Amount
-                                </x-label>
-                                <x-form-input wire:model="bill" id="grid-last-name" type="number"
-                                    value="{{ old('bill') }}" name="bill" min="0" />
+                                @foreach ($units as $unit)
+                                @if($units->count() == 1)
+                               <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
+                                'selected': 'Select one'
+                                }}>{{ $unit->unit->building->building.' '.$unit->unit->unit }}</option>
+                                @else
+                                <option value="">Select one</option>
+                                <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
+                                    'selected': 'Select one'
+                                    }}>{{ $unit->unit->building->building.' '.$unit->unit->unit }}</option>
+                                @endif
 
-                                @error('bill')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
+                                @endforeach
+                            </x-form-select>
 
-                            <div class="w-full md:w-1/4 px-3">
-                                <x-label for="start">
-                                    Period covered (start)
-                                </x-label>
-                                <x-form-input wire:model="start" id="grid-last-name" type="date"
-                                    value="{{ old('start') }}" name="start" />
-
-                                @error('start')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="w-full md:w-1/4 px-3">
-                                <x-label for="end">
-                                    Period covered (end)
-                                </x-label>
-                                <x-form-input wire:model="end" id="grid-last-name" type="date" value="{{ old('end') }}"
-                                    name="end" />
-
-                                @error('end')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-
+                            @error('particular_id')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
-                        <div class="mt-5">
-                            <p class="text-right">
-                                <x-form-button></x-form-button>
-                            </p>
+
+                        <div class="w-full md:w-1/4 px-3">
+                            <x-label for="bill">
+                                Amount
+                            </x-label>
+                            <x-form-input wire:model="bill" id="grid-last-name" type="number" step="0.001"
+                                value="{{ old('bill') }}" name="bill" min="0" />
+
+                            @error('bill')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
+
+                        <div class="w-full md:w-1/4 px-3">
+                            <x-label for="start">
+                                Period covered (start)
+                            </x-label>
+                            <x-form-input wire:model="start" id="grid-last-name" type="date" value="{{ old('start') }}"
+                                name="start" />
+
+                            @error('start')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="w-full md:w-1/4 px-3">
+                            <x-label for="end">
+                                Period covered (end)
+                            </x-label>
+                            <x-form-input wire:model="end" id="grid-last-name" type="date" value="{{ old('end') }}"
+                                name="end" />
+
+                            @error('end')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
+                    </div>
+                    <div class="mt-5">
+                        <p class="text-right">
+                            <x-form-button></x-form-button>
+                        </p>
+                    </div>
             </form>
 
         </div>
-    </form>
+        </form>
 
-</div>
+    </div>
 </div>
 </div>
