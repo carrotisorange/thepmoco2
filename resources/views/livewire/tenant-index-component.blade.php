@@ -114,4 +114,6 @@
         </div>
     </div>
 </div>
+@if($tenants->count())
 @include('utilities.tenant-show-modal')
+@endif
