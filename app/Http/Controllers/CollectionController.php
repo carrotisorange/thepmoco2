@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use Illuminate\Http\Request;
+use Session;
 
 class CollectionController extends Controller
 {
@@ -14,12 +15,13 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = Collection::join('tenants', 'collections.tenant_uuid', 'tenants.uuid')
-         ->join('owners', 'collections.owner_uuid', 'owners.uuid')
-         ->join('users', 'collections.user_id', 'users.id')
-         ->join('units', 'collections.unit_uuid', 'units.uuid')
-         ->orderBy('collections.created_at', 'asc')
-         ->paginate(10);
+        $collections = Collection::where('property_uuid', Session::get('property'))->get();
+        // $collections = Collection::join('tenants', 'collections.tenant_uuid', 'tenants.uuid')
+        //  ->join('owners', 'collections.owner_uuid', 'owners.uuid')
+        //  ->join('users', 'collections.user_id', 'users.id')
+        //  ->join('units', 'collections.unit_uuid', 'units.uuid')
+        //  ->orderBy('collections.created_at', 'asc')
+        //  ->paginate(10);
 
         return view('collections.index',[
             'collections'=> $collections,
@@ -31,9 +33,9 @@ class CollectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($bills)
     {
-        //
+        return $bills;
     }
 
     /**

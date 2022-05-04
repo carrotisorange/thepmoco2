@@ -34,7 +34,13 @@ class Bill extends Model
 
     public static function search($search)
     {
-      return empty($search)? static::query()
-      : static::where('reference_no','like', '%'.$search.'%');
+    //   $tenant = Tenant::where('tenant','like', '%'.$search.'%')->pluck('bill_reference_no');
+    //     if(!$tenant){
+    //         return empty($search)? static::query()
+    //         : static::where('reference_no','like', '%'.$tenant[0].'%');
+    //     }else{
+         return empty($search)? static::query()
+         : static::where('reference_no','like', '%'.$search.'%');
+        // }
     }
  }

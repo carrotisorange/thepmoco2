@@ -18,15 +18,12 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button data-modal-toggle="create-particular-modal">
+                    <x-button data-modal-toggle="authentication-particular-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
                     </x-button>
                     @can('billing')
-                    <x-button><i class="fa-solid fa-circle-plus"></i>&nbsp Bill
-                    </x-button>
-                    @endcan
                     <x-button id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button"> <i
-                            class="fa-solid fa-circle-plus"></i>&nbsp Add <svg class="ml-2 w-4 h-4" fill="none"
+                            class="fa-solid fa-circle-plus"></i>&nbsp Bill <svg class="ml-2 w-4 h-4" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
@@ -46,7 +43,7 @@
                             <li>
                                 <a href="#/" data-modal-toggle="create-customized-bill-modal"
                                     class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                   <i class="fa-solid fa-file-pen"></i>&nbsp Customized Bill
+                                    <i class="fa-solid fa-file-pen"></i>&nbsp Customized Bill
                                 </a>
                             </li>
 
@@ -54,6 +51,7 @@
 
                         </ul>
                     </div>
+                    @endcan
                 </h5>
                 @include('utilities.create-express-bill')
                 @include('utilities.create-customized-bill')

@@ -23,7 +23,6 @@ class BillController extends Controller
      */
     public function index()
     {
-
         $particulars = Particular::join('property_particulars', 'particulars.id',
         'property_particulars.particular_id')
         ->where('property_uuid', Session::get('property'))

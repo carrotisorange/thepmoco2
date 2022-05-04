@@ -76,7 +76,6 @@ class BillComponent extends Component
         'Bill has been created.');
         } catch (\Throwable $e) {
         DB::rollback();
-        ddd($e);
          return
          redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success',
          'Cannot perform the action. Please try again.');

@@ -1,0 +1,117 @@
+<div id="create-bill-modal" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
+    <div class="relative p-4 w-full max-xl h-full md:h-auto">
+
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="flex justify-end p-2">
+                <button type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                    data-modal-toggle="create-bill-modal">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/tenant/{{ $tenant->uuid }}/bill/create">
+                @csrf
+                {{--
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">What do you want to see?</h3> --}}
+                    <div>
+
+
+
+                        <div class="flex flex-wrap -mx-3 mb-6">
+
+                            <div class="w-full md:w-full px-3">
+                                <x-label for="particular_id">
+                                    Particular
+                                </x-label>
+                                <x-form-select wire:model="particular_id" id="particular_id" name="particular_id">
+                                    <option value="">Select one</option>
+                                    @foreach ($particulars as $particular)
+                                    <option value="{{ $particular->particular_id }}" {{
+                                        old('particular_id')==$particular->id?
+                                        'selected': 'Select one'
+                                        }}>{{ $particular->particular }}</option>
+                                    @endforeach
+                                </x-form-select>
+
+                                @error('particular_id')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <div class="mt-5 flex flex-wrap -mx-3 mb-6">
+
+                            <div class="w-full md:w-1/4 px-3">
+                                <x-label for="particular_id">
+                                    Unit
+                                </x-label>
+                                <x-form-select wire:model="unit_uuid" id="unit_uuid" name="unit_uuid">
+                                    <option value="">Select one</option>
+                                    @foreach ($units as $unit)
+                                    <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
+                                        'selected': 'Select one'
+                                        }}>{{ $unit->unit->building->building.' '.$unit->unit->unit }}</option>
+                                    @endforeach
+                                </x-form-select>
+
+                                @error('particular_id')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="w-full md:w-1/4 px-3">
+                                <x-label for="bill">
+                                    Amount
+                                </x-label>
+                                <x-form-input wire:model="bill" id="grid-last-name" type="number"
+                                    value="{{ old('bill') }}" name="bill" min="0" />
+
+                                @error('bill')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="w-full md:w-1/4 px-3">
+                                <x-label for="start">
+                                    Period covered (start)
+                                </x-label>
+                                <x-form-input wire:model="start" id="grid-last-name" type="date"
+                                    value="{{ old('start') }}" name="start" />
+
+                                @error('start')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full md:w-1/4 px-3">
+                                <x-label for="end">
+                                    Period covered (end)
+                                </x-label>
+                                <x-form-input wire:model="end" id="grid-last-name" type="date" value="{{ old('end') }}"
+                                    name="end" />
+
+                                @error('end')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+
+                        </div>
+                        <div class="mt-5">
+                            <p class="text-right">
+                                <x-form-button></x-form-button>
+                            </p>
+                        </div>
+            </form>
+
+        </div>
+    </form>
+
+</div>
+</div>
+</div>

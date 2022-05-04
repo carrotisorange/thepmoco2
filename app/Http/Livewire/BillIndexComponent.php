@@ -21,6 +21,13 @@ class BillIndexComponent extends Component
       public $particular_id = [];
       public $created_at = [];
 
+      // public $reference_no;
+
+      // public function mount($reference_no)
+      // {
+      //    $this->reference_no = $reference_no;
+      // }
+
        public function updatedSelectAll($value)
        {
          if($value)
@@ -102,7 +109,7 @@ class BillIndexComponent extends Component
             ->when($this->created_at, function($query){
                 $query->whereDate('created_at', $this->created_at);
             })
-            ->get(),
+            ->paginate(10),
             'statuses' => $statuses,
             'particulars' => $particulars
         ]);

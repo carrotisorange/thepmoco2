@@ -26,7 +26,7 @@
                 </div>
                 @endcan
 
-                @can('accountownerandmanager')
+                {{-- @can('accountownerandmanager')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}"
                         :active="request()->routeIs('timestamps')">
@@ -35,13 +35,15 @@
                 </div>
                 @endcan
 
-                @can('managerandadmin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/referrals"
                         :active="request()->routeIs('referrals')">
                         <i class="fa-solid fa-user-group"></i>&nbspReferrals
                     </x-nav-link>
-                </div>
+                </div> --}}
+
+                @can('managerandadmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/units"
                         :active="request()->routeIs('units')">
@@ -67,6 +69,15 @@
                     <x-nav-link href="/property/{{ Session::get('property') }}/bills"
                         :active="request()->routeIs('bills')">
                         <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
+                    </x-nav-link>
+                </div>
+                @endcan
+
+                @can('billing')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/collections"
+                        :active="request()->routeIs('collections')">
+                        <i class="fa-solid fa-cash-register"></i>&nbspCollections
                     </x-nav-link>
                 </div>
                 @endcan
@@ -108,6 +119,12 @@
                         </x-dropdown-link>
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/edit">
                             <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/referrals">
+                            <i class="fa-solid fa-user-group"></i> {{ __('Referrals') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}">
+                            <i class="fa-solid fa-user-clock"></i> {{ __('Timestamps') }}
                         </x-dropdown-link>
                         <x-dropdown-link target="_blank" href="/chatify">
                             <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
@@ -161,7 +178,7 @@
             </x-responsive-nav-link>
             @endcannot
 
-            @can('managerandadmin')
+            {{-- @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/referrals"
                 :active="request()->routeIs('referrals')">
                 <i class="fa-solid fa-user-group"></i>&nbspReferrals
@@ -173,7 +190,7 @@
                 :active="request()->routeIs('timestaps')">
                 <i class="fa-solid fa-user-clock"></i>&nbspTimestamps
             </x-responsive-nav-link>
-            @endcan
+            @endcan --}}
 
             @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/units"

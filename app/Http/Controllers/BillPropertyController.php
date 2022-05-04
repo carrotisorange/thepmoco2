@@ -79,15 +79,7 @@ class BillPropertyController extends Controller
             }
 
             return back()->with('success', $i.' bills have been posted.');
-            
-            // if($request->particular_id == 1)
-            // {
-            //      return back()->with('success', $i.' bills have been posted.');
-            // }
-            // else
-            // {
-            //     return redirect('/property/'.Session::get('property').'/customized/bills');
-            // }
+          
             
         }catch(\Exception $e)
         {
