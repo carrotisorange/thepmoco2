@@ -30,7 +30,10 @@
     </x-slot>
 
     <div class="py-12">
+
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
+            Total Collections: <b> {{ number_format($collections->sum('collection'),
+                2)}}</b>
             <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white border-b border-gray-200">
                     <div class="flex flex-col">
@@ -44,10 +47,10 @@
                                                 <x-th>Tenant</x-th>
                                                 <x-th>Date collected</x-th>
                                                 <x-th>Ref #</x-th>
-                                                  <x-th>Form</x-th>
+                                                <x-th>Form</x-th>
                                                 <x-th>Period Covered</x-th>
-                                              
-                                               
+
+
                                                 {{-- <x-th>Unit</x-th> --}}
                                                 <x-th>Amount</x-th>
                                             </tr>
@@ -64,7 +67,7 @@
                                                 <x-td>{{ Carbon\Carbon::parse($collection->start)->format('M d,
                                                     Y').'-'.Carbon\Carbon::parse($collection->end)->format('M d, Y') }}
                                                 </x-td>
-                                               
+
                                                 {{-- <x-td>{{ $collection->unit }}</x-td> --}}
                                                 <x-td>{{ number_format($collection->collection,2) }}</x-td>
                                                 @empty
