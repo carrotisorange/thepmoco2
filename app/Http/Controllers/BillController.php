@@ -138,7 +138,7 @@ class BillController extends Controller
     {    
         $bill = Bill::where('id', $id);
         if($bill->delete()){
-            return back()->with('success', 'A bill has been removed.');
+            return back()->with('success', 'Bill has been removed.');
         }
             return back()->with('error', 'Cannot complete your action.');
     }

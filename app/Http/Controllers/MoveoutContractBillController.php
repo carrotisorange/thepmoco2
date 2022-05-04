@@ -18,7 +18,7 @@ class MoveoutContractBillController extends Controller
     {    
         return view('contracts.bills',[
             'contract' => $contract,
-            'bills' => Tenant::find($contract->tenant->uuid)->bills,
+            'bills' => Tenant::find($contract->tenant->uuid)->bills()->orderBy('bill_no')->get(),
             'wallets' => Tenant::find($contract->tenant->uuid)->wallets,
         ]);
     }

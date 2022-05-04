@@ -9,6 +9,7 @@ use Carbon\Carbon;
 class MoveoutContractComponent extends Component
 {
     public $contract;
+    public $sendContract;
 
     public function mount($contract)
     {

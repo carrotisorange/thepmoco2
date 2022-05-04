@@ -26,7 +26,7 @@
                 <h5 class="flex-1 text-right">
                    
                     <x-button wire:submit.prevent="submitForm"
-                        onclick="window.location.href='{{ url()->previous() }}'">
+                        onclick="window.location.href='/contract/{{ $contract->uuid }}/moveout/bills'">
                        <i class="fa-solid fa-circle-left"></i>&nbspBack</x-button>
                   
                 </h5>
