@@ -41,7 +41,9 @@ return [
              'enable-local-file-access' => true,
              'keep-relative-links' => true,
         ],
-        'env'     => [],
+        'env'     => [
+            env('WKHTML_IMG_BINARY', '"C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage"'),
+        ],
     ],
     
     'image' => [
@@ -49,7 +51,9 @@ return [
         'binary' => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
         'timeout' => false,
         'options' => [],
-        'env'     => [],
+        'env'     => [
+             env('WKHTML_IMG_BINARY', '"C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage"'),
+        ],
     ],
 
 ];
