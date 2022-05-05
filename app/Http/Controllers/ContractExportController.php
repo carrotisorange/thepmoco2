@@ -46,19 +46,34 @@ class ContractExportController extends Controller
             'reference_no' => $reference_no
         ];
 
-          $pdf = PDF::loadView('contracts.export', $data)
-          ->setPaper('a5', 'portrait');
+          $pdf = \PDF::loadView('contracts.export', $data);
+          $pdf->setOptions([
+          'header-right' => '[date]',
+          'header-left' => 'Contract | [page]',
+          'footer-right' => Session::get('property_name')
+          ]);
 
-          //$pdf->setPaper('L');
-          $pdf->output();
-          $canvas = $pdf->getDomPDF()->getCanvas();
-          $height = $canvas->get_height();
-          $width = $canvas->get_width();
-          $canvas->set_opacity(.1,"Multiply");
-          $canvas->page_text($width, $height, Session::get('property_name'), null,
-          28, array(0,0,0),2,2,0);
+         try
+         {
+             return $pdf->stream($contract->tenant->tenant.'.pdf');
+         }catch(\Exception $e)
+         {
+            ddd($e);
+         }
+
+        //   $pdf = \PDF::loadView('contracts.export', $data)
+        //   ->setPaper('a5', 'portrait');
+
+        //   //$pdf->setPaper('L');
+        //   $pdf->output();
+        //   $canvas = $pdf->getDomPDF()->getCanvas();
+        //   $height = $canvas->get_height();
+        //   $width = $canvas->get_width();
+        //   $canvas->set_opacity(.1,"Multiply");
+        //   $canvas->page_text($width, $height, Session::get('property_name'), null,
+        //   28, array(0,0,0),2,2,0);
         
-          return $pdf->download($contract->tenant->tenant.'.pdf');
+        //   return $pdf->download($contract->tenant->tenant.'.pdf');
 
     }
 

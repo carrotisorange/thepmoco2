@@ -36,10 +36,8 @@
 </head>
 
 <body>
-    <p class="text-left">{{ Session::get('property_name') }}</p>
     <div class="text-sm">
-        <p class="text-center">Contract Information</p>
-        <br>
+       <br>
         <p>Tenant: {{ $tenant }}</p>
         <p>Unit: {{ $unit }}</p>
         <p>Duration: {{ Carbon\Carbon::parse($start)->format('M d, Y').' -
@@ -48,7 +46,7 @@
             number_format($rent, 2) }}</p>
         <p>Discount: {{number_format($discount, 2) }}</p>
         <p>Status: {{ $status }}</p>
-        <p>Interaction: {{ $interaction }}</p>
+        <p>Interaction: {{ $interaction->interaction }}</p>
         <p>Reason for moving out: {{ $moveout_reason }}</p>
         <p>Assisted by: {{ $user }}</p>
         <br>
