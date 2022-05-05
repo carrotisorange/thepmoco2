@@ -4,9 +4,9 @@ namespace App\Http\Livewire;
 use App\Models\Tenant;
 use App\Models\Bill;
 use Livewire\WithPagination;
-use LivewireUI\Modal\ModalComponent;
+use Livewire\Component;
 
-class TenantBillComponent extends ModalComponent
+class TenantBillComponent extends Component
 {
      use WithPagination;
 

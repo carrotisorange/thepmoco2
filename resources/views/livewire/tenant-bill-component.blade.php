@@ -13,11 +13,11 @@
             Remove ({{ count($selectedBills) }})
         </x-button>
 
-        <x-button wire:click="$emit('create-collection-modal', 'edit-user')" ><i class="fa-solid fa-cash-register"></i>&nbsp
+
+        {{-- <x-button wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant_uuid' => $tenant->uuid, 'reference_no' => $tenant->bill_reference_no]) }})" ><i class="fa-solid fa-cash-register"></i>&nbsp
             Pay ({{ count($selectedBills) }})
-        </x-button>
-
-
+        </x-button> --}}
+        <button wire:click="$emit('openModal', 'collection-modal-component')">Open Modal</button>
         @endif
     </div>
     {{ $bills->links() }}

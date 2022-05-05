@@ -29,7 +29,7 @@ class TenantBillController extends Controller
         ->get();
 
         return view('tenants.bills.index',[
-            'tenant' => Tenant::find($tenant->uuid),  
+            'tenant' => $tenant,  
             'bills' => Tenant::find($tenant->uuid)->bills,
             'particulars' => $particulars,
             'units' => Tenant::find($tenant->uuid)->contracts

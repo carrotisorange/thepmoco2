@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 use Session;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Bill;
 
 use App\Models\Contract;
 
-class ExportContractController extends Controller
+class ContractExportController extends Controller
 {
     /**
      * Handle the incoming request.

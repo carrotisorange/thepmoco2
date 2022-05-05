@@ -2,8 +2,6 @@
 
 @yield('scripts')
 
-@livewireScripts()
-
 @livewire('livewire-ui-modal')
 
 @include('layouts.messenger-chatbot')
@@ -15,4 +13,6 @@
       alert("Are you sure you want to perform this action?");
     }
 </script>
+
+@livewireScripts()
 

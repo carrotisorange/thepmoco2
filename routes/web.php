@@ -131,7 +131,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Creating tenant contract
     //1
     Route::get('unit/{unit}/tenant/{random_str}/new_create', NewTenantController::class);
-    Route::get('unit/{unit}/tenant/{random_str}/old_create', OldTenantController::class);
+    Route::get('unit/{unit}/tenant/{random_str}/old_create', [OldTenantController::class, 'index']);
+    Route::get('tenant_sheet/export', [OldTenantController::class, 'export']);
     Route::post('unit/{unit}/tenant/{random_str}/store', [TenantController::class, 'store']);
     //2
     Route::get('unit/{unit}/tenant/{tenant}/guardian/{random_str}/create', [GuardianController::class, 'create']);
@@ -201,7 +202,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
    Route::get('/contract/{contract}/renew', RenewContractController::class);
 
-    Route::get('/contract/{contract}/export', ExportContractController::class);
+    Route::get('/contract/{contract}/export', ContractExportController::class);
 
     Route::get('/contract/{contract}/signed_contract', ExportSignedContractController::class);
 
