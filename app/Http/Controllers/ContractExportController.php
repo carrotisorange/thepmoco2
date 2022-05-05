@@ -55,7 +55,7 @@ class ContractExportController extends Controller
 
          try
          {
-             return $pdf->stream($contract->tenant->tenant.'.pdf');
+             return $pdf->download($contract->tenant->tenant.'.pdf');
          }catch(\Exception $e)
          {
             ddd($e);

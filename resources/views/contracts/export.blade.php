@@ -1,105 +1,115 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Favicon -->
-    <link rel="icon" href="{{ storage_path('/brands/favicon.ico') }}" type="image/png">
-
-    <title>{{ config('app.name', 'The Property Manager') }} @yield('title')</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
-
-    {{-- Fontawesome --}}
-    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ storage_path('css/app.css') }}">
-
-    <!-- Scripts -->
-    <script src="{{ storage_path('js/app.js') }}" defer></script>
-
-    {{-- Alpine.js --}}
-    <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
-
-    {{-- Flowbite --}}
-    <script src="../path/to/flowbite/dist/flowbite.js"></script>
-
-    @yield('styles')
-
-    @livewireStyles
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="text-sm">
-       <br>
-        <p>Tenant: {{ $tenant }}</p>
-        <p>Unit: {{ $unit }}</p>
-        <p>Duration: {{ Carbon\Carbon::parse($start)->format('M d, Y').' -
-            '.Carbon\Carbon::parse($end)->format('M d, Y') }}</p>
-        <p>Rent/month: {{
-            number_format($rent, 2) }}</p>
-        <p>Discount: {{number_format($discount, 2) }}</p>
-        <p>Status: {{ $status }}</p>
-        <p>Interaction: {{ $interaction->interaction }}</p>
-        <p>Reason for moving out: {{ $moveout_reason }}</p>
-        <p>Assisted by: {{ $user }}</p>
-        <br>
-        <hr>    
-        <br>
-        <p class="text-center">Move-in charges</p>
-        <br>
-        @foreach ($reference_no as $reference_no)
-        <p>Referece No: {{ $reference_no->reference_no }}</p>
-        @endforeach
-        <?php $ctr=1; ?>
-        <table class="table-auto">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Bill No</th>
-                    <th>Particular</th>
-                    <th>Period Covered</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($bills as $bill)
+    <div class="py-6">
+        <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
+            <div class="">
+                <div class="">
+                    <div class="mt-5">
+                        <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
+                            <x-label for="tenant">
+                                Tenant <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                                value="{{ $tenant }}" />
+                            <br>
+                            <x-label for="tenant">
+                                Unit <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                                value="{{ $unit }}" />
+                            <br>
+                            <x-label for="tenant">
+                                Duration <span class="text-red-600">*</span>
+                            </x-label>
 
-                <tr>
-                    <td>{{ $ctr++ }}</td>
-                    <td>{{ $bill->bill_no }}</td>
-                    <td>{{ $bill->particular }}</td>
-                    <td>
-                        {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').' -
-                        '.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
-                    </td>
-                    <td>{{ number_format($bill->bill, 2) }}</td>
-                </tr>
+                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                                value="{{ Carbon\Carbon::parse($start)->format('M d, Y').'-'.Carbon\Carbon::parse($end)->format('M d, Y') }}" />
+                            <br>
+                            <x-label for="tenant">
+                                Rent/month <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant" value="{{
+                                number_format($rent, 2) }}" />
+                            <br>
+                            <x-label for="tenant">
+                                Discount <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                                value="{{number_format($discount, 2) }}" />
+                            <br>
+                            <x-label for="tenant">
+                                Status <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                                value="{{ $status }}" />
+                            <br>
+                            <x-label for="tenant">
+                                Interaction <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                                value="{{ $interaction->interaction }}" />
+                            <br>
+                            <x-label for="tenant">
+                                Assisted by: <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                                value="{{ $user }}" />
+                            <br>
 
-                @endforeach
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{ number_format($bills->sum('bill'), 2) }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <hr>
-        <h6 class="text-center">Generated by the ThePMO Co.</h6>
+                            <b>Move-in Charges</b>
+                            <div class="flex flex-col">
+                                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                            <table class="min-w-full divide-y divide-gray-200">
+                                                <?php $ctr =1; ?>
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <x-th>#</x-th>
+                                                        <x-th>Bill #</x-th>
+                                                        <x-th>Particular</x-th>
+                                                        <x-th>Period Covered</x-th>
+                                                        <x-th>Amount</x-th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="bg-white divide-y divide-gray-200">
+                                                    @forelse ($bills as $bill)
+
+                                                    <tr>
+                                                        <x-td>{{ $ctr++ }}</x-td>
+                                                        <x-td>{{ $bill->bill_no }}</x-td>
+                                                        <x-td>{{ $bill->particular }}</x-td>
+                                                        <x-td>
+                                                            {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').' -
+                                                            '.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
+                                                        </x-td>
+                                                        <x-td>{{ number_format($bill->bill, 2) }}</x-td>
+                                                    </tr>
+                                                    @empty
+                                                    <x-td>No data found!</x-td>
+                                                    </tr>
+
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
 </body>
-
-<script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
-
-@yield('scripts')
 
 </html>
