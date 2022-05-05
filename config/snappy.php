@@ -40,17 +40,19 @@ return [
         'options' => [
             'enable-local-file-access' => true,
         ],
-        'env'     => [],
+        'env'     => [
+            env('WKHTML_PDF_BINARY', "'/usr/local/bin/wkhtmltopdf'")
+        ],
     ],
     
     'image' => [
         'enabled' => true,
         'binary' => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage"',
         'timeout' => false,
-        'options' => [
-             'enable-local-file-access' => true,
+        'options' => [],
+        'env'     => [
+            env('WKHTML_PDF_IMAGE', "'/usr/local/bin/wkhtmltoimage'")
         ],
-        'env'     => [],
     ],
 
 ];
