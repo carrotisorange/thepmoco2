@@ -1,12 +1,14 @@
 <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" wire:submit.prevent="submitForm">
     @csrf
     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Enter Collection Information</h3> 
+    <br>
+    <h4>Amount to be paid: {{ number_format($total, 2) }}</h4>
     <div>
         <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
             <div class="w-full md:w-1/2 px-3">
                 <x-label for="particular_id">
-                    Mode of payment {{ $form }}
+                    Mode of payment
                 </x-label>
                 <x-form-select wire:model="form" id="form" name="form" required>
                     <option value="bank" {{ old('form')=='bank' ? 'selected' : 'Select one' }}>bank</option>

@@ -13,15 +13,28 @@ class CollectionModalComponent extends ModalComponent
 {
     public $selectedBills;
     public $tenant;
+    public $total;
 
     public $collection;
     public $form;
 
-    public function mount($selectedBills)
+    public function mount($selectedBills, $total)
     {
         $this->selectedBills = $selectedBills;
         $this->form = 'bank';
+        $this->total = $total;
+        $this->collection = 0;
     }
+
+    public function hydrateTotal()
+    {
+        $this->total = $this->total-$this->collection;
+    }
+
+    //   public function updatedTotal($total)
+    //   {
+    //   $this->total = $total-$this->collection;
+    //   }
 
     protected function rules()
     {
@@ -43,7 +56,10 @@ class CollectionModalComponent extends ModalComponent
 
             if($this->collection<Bill::whereIn('id', $this->selectedBills)->sum('bill'))
             {
+                $this->dispatchBrowserEvent('collection-modal-component');
+
                 return back()->with('error','The collection is less than the bill.');
+
             }
 
             //$validatedData = $this->validate();

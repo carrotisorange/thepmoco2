@@ -20,7 +20,7 @@
         @can('treasury')
         @if($bills->where('status', 'unpaid')->count())
         <x-button
-            wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills]) }})">
+            wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
             <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})</x-button>
         {{-- <x-button wire:click="$emit('openModal', 'collection-modal-component')">
             <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})
