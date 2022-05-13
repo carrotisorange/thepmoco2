@@ -48,14 +48,14 @@ class CollectionModalComponent extends ModalComponent
 
             //$validatedData = $this->validate();
 
-            $ar_no = Property::find(Session::get('property'))->collections->max('ar_no');
+            $ar_no = Property::find(Session::get('property'))->collections->max('ar_no')+1;
 
             for($i=0; $i<count($this->selectedBills); $i++)
             {
                 $validatedData['tenant_uuid']= $this->tenant;
                 $validatedData['property_uuid'] = Session::get('property');
                 $validatedData['user_id'] = auth()->user()->id;
-                $validatedData['ar_no'] = $ar_no+1;
+                $validatedData['ar_no'] = $ar_no++;
                 $validatedData['bill_id'] = $this->selectedBills[$i];
                 $validatedData['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
                 $validatedData['form'] = $this->form;
