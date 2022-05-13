@@ -22,7 +22,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'"><i
+                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
                 </h5>

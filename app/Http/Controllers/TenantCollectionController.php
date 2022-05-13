@@ -30,45 +30,62 @@ class TenantCollectionController extends Controller
     {
          $attributes = request()->validate([
             'collection' => 'required|integer|min:1',
-            ''
          ]);
 
          try {
 
-            $unpaid_bills_count = Bill::where('reference_no', $tenant->bill_reference_no)->where('status','unpaid')->pluck('id');
+            DB::beginTransaction();
 
-            $unpaid_bills_sum = Bill::where('reference_no', $tenant->bill_reference_no)->where('status','unpaid')->sum('bill');
+            $collection = $request->collection;
+            
+            $unpaid_bills_id = Bill::where('reference_no', $tenant->bill_reference_no)
+            ->where('status','unpaid')
+            ->orderBy('bill_no')
+            ->pluck('id');
 
-            for($i=0; $i<$unpaid_bills_count->count(); $i++)
+            $unpaid_bills_bill = Bill::where('reference_no', $tenant->bill_reference_no)
+            ->where('status','unpaid')
+            ->orderBy('bill_no')
+            ->pluck('bill');
+
+            if($collection>=$unpaid_bills_bill[0])
             {
-                if($request->collection)
-                {
-                    
+                for($i=0; $i<$unpaid_bills_id->count(); $i++)
+                { 
+                   do{
+                        $bill = Bill::find($unpaid_bills_id[$i]);
+                        $bill->status = 'paid';
+                        $bill->save();
+                
+                        $ar_no = Property::find(Session::get('property'))->collections->max('ar_no');
+
+                        $attributes['tenant_uuid']= $tenant->uuid;
+                        $attributes['property_uuid'] = Session::get('property');
+                        $attributes['user_id'] = auth()->user()->id;
+                        $attributes['ar_no'] = $ar_no+1;
+                        $attributes['bill_id'] = $unpaid_bills_id[$i];
+                        $attributes['bill_reference_no']= $tenant->bill_reference_no;
+                        $attributes['form']= $request->form;
+
+                        Collection::create($attributes);
+
+                        $collection -= $unpaid_bills_bill[$i];
+
+                   }while($collection>=$unpaid_bills_bill[$i]);
                 }
+
+                DB::commit();
+
+                return back()->with('success','Collections has been saved.');
             }
 
-        $ar_no = Property::find(Session::get('property'))->collections->max('ar_no');
+            return back()->with('error','The collection is less than the bill.');
 
-         DB::beginTransaction();
-
-
-         $attributes['tenant_uuid']= $tenant->uuid;
-         $attributes['property_uuid'] = Session::get('property');
-         $attributes['user_id'] = auth()->user()->id;
-         $attributes['ar_no'] = $ar_no+1;
-         $attributes['bill_reference_no']= $tenant->bill_reference_no;
-         $attributes['form']= $request->form;
-
-         Collection::create($attributes);
-
-         DB::commit();
-
-         return back()->with('success','Collections has been added.');
          }
          catch(\Exception $e)
          {
-         ddd($e);
-         return back()->with('error','Cannot perform the action. Please try again.');
+             ddd($e);
+            return back()->with('error','Cannot perform the action. Please try again.');
          }
     }
 }

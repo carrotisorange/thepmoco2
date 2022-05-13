@@ -22,7 +22,8 @@ class TenantBillController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Tenant $tenant)
-    {
+    {        
+
         $particulars = Particular::join('property_particulars', 'particulars.id',
         'property_particulars.particular_id')
         ->where('property_uuid', Session::get('property'))
@@ -30,7 +31,7 @@ class TenantBillController extends Controller
 
         return view('tenants.bills.index',[
             'tenant' => $tenant,  
-            'bills' => Tenant::find($tenant->uuid)->bills,
+            'bills' => Tenant::find($tenant->uuid)->bills()->orderBy('bill_no','desc')->get(),
             'particulars' => $particulars,
             'units' => Tenant::find($tenant->uuid)->contracts
         ]);

@@ -13,11 +13,21 @@
             Remove ({{ count($selectedBills) }})
         </x-button>
 
-
-        {{-- <x-button wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant_uuid' => $tenant->uuid, 'reference_no' => $tenant->bill_reference_no]) }})" ><i class="fa-solid fa-cash-register"></i>&nbsp
-            Pay ({{ count($selectedBills) }})
+        {{-- <x-button><i class="fa-solid fa-download"></i>&nbsp
+            Export ({{ count($selectedBills) }})
         </x-button> --}}
-        <button wire:click="$emit('openModal', 'collection-modal-component')">Open Modal</button>
+
+        @can('treasury')
+        @if($bills->where('status', 'unpaid')->count())
+        <x-button
+            wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills]) }})">
+            <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})</x-button>
+        {{-- <x-button wire:click="$emit('openModal', 'collection-modal-component')">
+            <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})
+        </x-button> --}}
+        @endif
+        @endcan
+        {{-- <button wire:click="$emit('openModal', 'collection-modal-component')">Open Modal</button> --}}
         @endif
     </div>
     {{ $bills->links() }}
@@ -92,4 +102,3 @@
         </div>
     </div>
 </div>
-@include('utilities.create-collection-modal')

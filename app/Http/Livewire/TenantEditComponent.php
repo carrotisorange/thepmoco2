@@ -96,28 +96,26 @@ class TenantEditComponent extends Component
 
     public function updateForm()
     {
-        sleep(1);
-
-        $validatedData = $this->validate();
-
         try{
-          DB::beginTransaction();
+            sleep(1);
 
-        if(request()->photo_id)
-        {
-            $validatedData['photo_id'] = $this->photo_id->store('avatars');
-        }
-       
-        $this->tenant_details->update($validatedData);
-
-          return back()->with('success', 'Tenant has been updated.');
-
-        DB::commit();
+            $validatedData = $this->validate();
             
-          
+            DB::beginTransaction();
+
+            if(request()->photo_id)
+            {
+                $validatedData['photo_id'] = $this->photo_id->store('avatars');
+            }
+        
+            $this->tenant_details->update($validatedData);
+
+            DB::commit();
+                
+            return back()->with('success', 'Tenant has been updated.');
 
         }catch(\Exception $e){
-        DB::rollback();
+            DB::rollback();
             return back()->with('error', 'Cannot perform your action.');
         }
     }

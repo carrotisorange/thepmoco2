@@ -1,7 +1,7 @@
 <div class="">
     @if($status || $end || $start || $particular_id || $created_at)
     <span>
-        <x-button class="text-red-600 cursor-pointer" wire:click="resetFilters"><i
+        <x-button class="text-black-600 cursor-pointer" wire:click="resetFilters"><i
                 class="fa-solid fa-circle-xmark"></i>&nbsp
             Clear filters</x-button>
     </span>

@@ -6,7 +6,7 @@ use App\Models\Guardian;
 use App\Models\Unit;
 use App\Models\Tenant;
 use Illuminate\Validation\Rule;
-
+use DB;
 use Illuminate\Http\Request;
 
 class GuardianController extends Controller
@@ -50,20 +50,31 @@ class GuardianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Unit $unit, Tenant $tenant)
+    public function store(Request $request, Tenant $tenant)
     {
-         $guardian_attributes = request()->validate([
-         'guardian' => 'required',
-         'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
-         'mobile_number' => 'required',
-         'relationship' => 'required',
-         ]);
+         try{
+            $attributes = request()->validate([
+             'guardian' => 'required',
+             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:guardians'],
+             'mobile_number' => 'required',
+             'relationship_id' => ['required', Rule::exists('relationships', 'id')],
+            ]);
 
-         $guardian_attributes['tenant_uuid'] = $tenant->uuid;
+            $attributes['tenant_uuid'] = $tenant->uuid;
 
-         Guardian::create($guardian_attributes);
+            DB::beginTransaction();
 
-        return redirect('/unit')->with('success', 'Guardian has been created.');
+            Guardian::create($attributes);
+
+            DB::commit();
+
+            return back()->with('success', 'Guardian has been created.');
+
+         }catch(\Exception $e)
+         {
+            DB::rollback();
+            return back()->with('error','Cannot complete your action.');
+         }
 
     }
 

@@ -56,15 +56,16 @@
                         @include('utilities.show-unit-filters')
                     </div>
                     <div class="basis-full">
+                        @if($units->count())
                         <p class="text-center">
-                            @if($units->count())
+
                             {{ $units->links() }}
                             @else
-                            <div class="text-center mt-12">
-                                <span>No results found!</span>
-                                <img class="" src="{{ asset('/brands/no_results.png') }}" />
-                              
-                            </div>
+                        <div class="text-center mt-12">
+                            <span>No results found!</span>
+                            <img class="" src="{{ asset('/brands/no_results.png') }}" />
+
+                        </div>
                         </p>
                         @endif
                         @include('utilities.show-unit-results')

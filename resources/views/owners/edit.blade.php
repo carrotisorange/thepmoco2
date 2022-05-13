@@ -23,71 +23,71 @@
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/owners'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbspBack
                     </x-button>
-                      <x-button id="dropdownButton" data-dropdown-toggle="unitShowDropdown" type="button"> <i
-                        class="fa-solid fa-eye"></i>&nbsp Show <svg class="ml-2 w-4 h-4" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                        </path>
-                    </svg></x-button>
+                    <x-button id="dropdownButton" data-dropdown-toggle="unitShowDropdown" type="button"> <i
+                            class="fa-solid fa-eye"></i>&nbsp Show <svg class="ml-2 w-4 h-4" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg></x-button>
 
-                <!-- Dropdown menu -->
-                <div id="unitShowDropdown"
-                    class="hidden z-10 w-30 text-base text-left list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
-                       
-                        <li>
-                            <a href="/owner/{{ $owner_details->uuid }}/deed_of_sales"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                    class="fa-solid fa-home"></i>&nbspShow Units</a>
-                        </li>
-                        <li>
-                            <a href="/owner/{{ $owner_details->uuid }}/enrollees"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                    class="fa-solid fa-house-user"></i>&nbspShow
-                                Leasing</a>
-                        </li>
-                        <li>
-                            <a href="/owner/{{ $owner_details->uuid }}/bills"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                    class="fa-solid fa-file-invoice-dollar"></i>&nbspShow
-                                Bills</a>
-                        </li>
-                        <li>
-                            <a href="/owner/{{ $owner_details->uuid }}/collections"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                    class="fa-solid fa-coins"></i>&nbspShow
-                                Collections</a>
-                        </li>
-                    </ul>
-                    {{-- <div class="py-1">
-                        <li>
-                            <a href="/tenant/{{ $tenant_details->uuid }}/delete"
-                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                    class="fa-solid fa-trash-alt"></i>&nbspRemove
-                            </a>
-                        </li>
-                    </div> --}}
-                </div>
+                    <!-- Dropdown menu -->
+                    <div id="unitShowDropdown"
+                        class="hidden z-10 w-30 text-base text-left list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+
+                            <li>
+                                <a href="/owner/{{ $owner_details->uuid }}/deed_of_sales"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-home"></i>&nbspUnits</a>
+                            </li>
+                            <li>
+                                <a href="/owner/{{ $owner_details->uuid }}/enrollees"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-house-user"></i>&nbsp
+                                    Leasing</a>
+                            </li>
+                            <li>
+                                <a href="/owner/{{ $owner_details->uuid }}/bills"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-file-invoice-dollar"></i>&nbsp
+                                    Bills</a>
+                            </li>
+                            <li>
+                                <a href="/owner/{{ $owner_details->uuid }}/collections"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-coins"></i>&nbsp
+                                    Collections</a>
+                            </li>
+                        </ul>
+                        {{-- <div class="py-1">
+                            <li>
+                                <a href="/tenant/{{ $tenant_details->uuid }}/delete"
+                                    class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-trash-alt"></i>&nbspRemove
+                                </a>
+                            </li>
+                        </div> --}}
+                    </div>
                 </h5>
 
             </div>
         </h2>
     </x-slot>
     <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-12 bg-white border-b border-gray-200">
-                        <div>
-                           @livewire('owner-edit-component', ['owner_details' => $owner_details])
-                            <br>
-                            @include('owners.representatives.index')
-        
-                            @include('owners.banks.index')
-                        </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-12 bg-white border-b border-gray-200">
+                    <div>
+                        @livewire('owner-edit-component', ['owner_details' => $owner_details])
+                        <br>
+                        @include('owners.representatives.index')
+
+                        @include('owners.banks.index')
                     </div>
-        
                 </div>
+
             </div>
         </div>
+    </div>
 
 </x-app-layout>

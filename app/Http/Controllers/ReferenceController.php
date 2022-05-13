@@ -7,6 +7,9 @@ use App\Models\Unit;
 use App\Models\Tenant;
 use Session;
 use App\Models\References;
+use Illuminate\Validation\Rule;
+use DB;
+use App\Models\Relationship;
 
 use Illuminate\Http\Request;
 
@@ -48,18 +51,29 @@ class ReferenceController extends Controller
      */
     public function store(Request $request, Unit $unit, Tenant $tenant)
     {
-        $reference_attributes = request()->validate([
-        'reference' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255'],
-        'mobile_number' => 'required',
-        'relationship_id' => 'required',
-        ]);
+           try{
+           $attributes = request()->validate([
+           'reference' => 'required',
+           'email' => ['nullable', 'string', 'email', 'max:255', 'unique:references'],
+           'mobile_number' => 'required',
+           'relationship_id' => ['required', Rule::exists('relationships', 'id')],
+           ]);
 
-        $reference_attributes['tenant_uuid'] = $tenant->uuid;
+           $attributes['tenant_uuid'] = $tenant->uuid;
 
-        Reference::create($reference_attributes);
+           DB::beginTransaction();
 
-        return back()->with('success', 'Reference has been created.');
+           Reference::create($attributes);
+
+           DB::commit();
+
+           return back()->with('success', 'Reference has been created.');
+
+           }catch(\Exception $e)
+           {
+           DB::rollback();
+           return back()->with('error','Cannot complete your action.');
+           }
     }
 
     /**

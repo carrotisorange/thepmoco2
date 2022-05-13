@@ -19,5 +19,4 @@ class Collection extends Model
         return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
 
-
 }

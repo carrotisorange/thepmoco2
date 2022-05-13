@@ -22,7 +22,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'"><i
+                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
                     @can('billing')
@@ -33,11 +33,13 @@
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
                     </x-button>
                     @endcan
-                    @can('treasury')
-                    <x-button data-modal-toggle="create-collection-modal">
-                        <i class="fa-solid fa-circle-plus"></i>&nbsp Collection
-                    </x-button>
-                    @endcan
+                    {{-- @can('treasury')
+                    @if($bills->where('status', 'unpaid')->count())
+                        <x-button data-modal-toggle="create-collection-modal">
+                            <i class="fa-solid fa-circle-plus"></i>&nbsp Collection
+                        </x-button>
+                    @endif
+                    @endcan --}}
                 </h5>
 
             </div>

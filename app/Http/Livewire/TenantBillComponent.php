@@ -13,8 +13,8 @@ class TenantBillComponent extends Component
     public $tenant;
 
      public $selectedBills = [];
-     public $selectAll = false;
-
+     public $selectAll = false;  
+    
     public function mount($tenant)
     {
         $this->tenant = $tenant;
@@ -35,6 +35,7 @@ class TenantBillComponent extends Component
          {
             $this->selectedBills = Bill::where('tenant_uuid', $this->tenant->uuid)            
             ->pluck('id');
+          
          }else
          {
             $this->selectedBills = [];
@@ -45,7 +46,8 @@ class TenantBillComponent extends Component
     public function render()
     {
         return view('livewire.tenant-bill-component',[
-            'bills' => Tenant::find($this->tenant->uuid)->bills()->paginate(10),
+            'bills' => Tenant::find($this->tenant->uuid)->bills()->orderBy('bill_no','asc')->paginate(10),
+             'total' => Bill::whereIn('id', $this->selectedBills)->sum('bill'),
         ]);
     }
 }

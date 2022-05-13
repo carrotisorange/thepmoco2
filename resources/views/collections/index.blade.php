@@ -44,6 +44,7 @@
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <x-th>AR #</x-th>
+                                                <x-th>Bill ID</x-th>
                                                 <x-th>Tenant</x-th>
                                                 <x-th>Date collected</x-th>
                                                 <x-th>Ref #</x-th>
@@ -59,6 +60,7 @@
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <x-td>{{ $collection->ar_no }}</x-td>
+                                                <x-td>{{ $collection->bill_id }}</x-td>
                                                 <x-td>{{ $collection->tenant->tenant }}</x-td>
                                                 <x-td>{{ Carbon\Carbon::parse($collection->created_at)->format('M d,
                                                     Y') }}</x-td>

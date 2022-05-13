@@ -27,11 +27,10 @@
                             <x-label for="particular_id">
                                 Mode of payment
                             </x-label>
-                            <x-form-select wire:model="form" id="form" name="form">
-                                <option value="">Select one</option>
-                                <option value="bank" {{ old('form')=='bank' ? 'selected' : 'Select one' }}>bank</option>
-                                <option value="cash" {{ old('form')=='cash' ? 'selected' : 'Select one' }}>cash</option>
-                                <option value="cheque" {{ old('form')=='cash' ? 'selected' : 'Select one' }}>cheque</option>
+                            <x-form-select wire:model="form" id="form" name="form" required>
+                                <option value="bank" {{ old('form')=='bank' ? 'selected' : 'Select one' }} >bank</option>
+                                <option value="cash" {{ old('form')=='cash' ? 'selected' : 'Select one' }} selected>cash</option>
+                                <option value="cheque" {{ old('form')=='cheque' ? 'selected' : 'Select one' }}>cheque</option>
                             </x-form-select>
 
                             @error('form')

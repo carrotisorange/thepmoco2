@@ -136,12 +136,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('unit/{unit}/tenant/{random_str}/store', [TenantController::class, 'store']);
     //2
     Route::get('unit/{unit}/tenant/{tenant}/guardian/{random_str}/create', [GuardianController::class, 'create']);
-    Route::post('unit/{unit}/tenant/{tenant}/guardian/{random_str}/store', [GuardianController::class, 'store']);
+    Route::post('tenant/{tenant}/guardian/store', [GuardianController::class, 'store']);
     Route::delete('guardian/{id:id}/delete', [GuardianController::class, 'destroy']);
+     Route::get('guardian/{id:id}/delete', [GuardianController::class, 'destroy']);
     //3
     Route::get('unit/{unit}/tenant/{tenant}/reference/{random_str}/create', [ReferenceController::class, 'create']);
-    Route::post('unit/{unit}/tenant/{tenant}/reference/{random_str}/store', [ReferenceController::class, 'store']);
+    Route::post('tenant/{tenant}/reference/store', [ReferenceController::class, 'store']);
     Route::delete('reference/{id:id}/delete', [ReferenceController::class, 'destroy']);
+    Route::get('reference/{id:id}/delete', [ReferenceController::class, 'destroy']);
     //4
     Route::get('unit/{unit}/tenant/{tenant}/contract/{random_str}/create', [ContractController::class, 'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{random_str}/store', [ContractController::class, 'store']);

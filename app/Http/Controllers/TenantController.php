@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 use DB;
 use App\Models\Property;
 use Session;
+use App\Models\Relationship;
 
 class TenantController extends Controller
 {
@@ -105,7 +106,8 @@ class TenantController extends Controller
              return view('tenants.edit',[
              'tenant_details' => $tenant,
              'references' => Tenant::find($tenant->uuid)->references,
-             'guardians' => Tenant::find($tenant->uuid)->guardians
+             'guardians' => Tenant::find($tenant->uuid)->guardians,
+             'relationships' => Relationship::all()
              ]);
          } 
     }

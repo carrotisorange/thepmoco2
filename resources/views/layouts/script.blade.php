@@ -2,8 +2,6 @@
 
 @yield('scripts')
 
-@livewire('livewire-ui-modal')
-
 @include('layouts.messenger-chatbot')
 
 @include('layouts.notifications')
@@ -15,4 +13,6 @@
 </script>
 
 @livewireScripts()
+
+@livewire('livewire-ui-modal')
 

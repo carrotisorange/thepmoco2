@@ -47,8 +47,6 @@ class TeamController extends Controller
      */
     public function create()
     {
-            
-        
         $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
          ->select('*', 'users.status as user_status', 'users.id as user_id')
          ->join('users', 'user_properties.user_id', 'users.id')

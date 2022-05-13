@@ -5,7 +5,7 @@
 
         </div>
         <div class="mt-5">
-            @if($bills->count() < 10)
+            @if($bills->count())
             <p class="text-center text-sm">Showing <b>{{ $bills->count() }}</b> bills...</p>
             @endif
 
@@ -14,7 +14,10 @@
                 Remove ({{ count($selectedBills) }})
             </x-button>
 
-            {{-- <x-button onclick="window.location.href='/bill/{{ $reference_no }}'"><i class="fa-solid fa-cash-register"></i>&nbsp
+            
+
+            {{-- <x-button onclick="window.location.href='/bill/{{ $reference_no }}'"><i
+                    class="fa-solid fa-cash-register"></i>&nbsp
                 Pay ({{ count($selectedBills) }})
             </x-button> --}}
             @endif
@@ -29,21 +32,20 @@
                                     @include('utilities.show-bill-filters')
                                 </div>
                                 <div class="basis-full ml-12">
-                                    <p class="">
-                                        @if($bills->count())
-                                        {{ $bills->links() }}
-                                        Total Unpaid Bills: <b> {{ number_format($bills->where('status',
-                                            'unpaid')->sum('bill'),
-                                            2)}}</b>
-                                        ,
-                                        Total Paid Bills: <b> {{ number_format($bills->where('status',
-                                            'paid')->sum('bill'),
-                                            2)}}</b>
-                                        @else
+                                    @if($bills->count())
+                                    @include('utilities.show-bill-results')
+                                    <p class="text-center">
 
+                                        {{ $bills->links() }}
+                                        @else
+                                    <div class="text-center mt-12">
+                                        <span>No results found!</span>
+                                        <img class="" src="{{ asset('/brands/no_results.png') }}" />
+
+                                    </div>
                                     </p>
                                     @endif
-                                    @include('utilities.show-bill-results')
+
                                 </div>
                             </div>
                         </div>

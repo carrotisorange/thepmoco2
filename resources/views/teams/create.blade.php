@@ -39,7 +39,6 @@
                     @livewire('team-component', ['roles' => $roles])
                     <br>
                     @if (!$members->count())
-
                     @else
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -100,14 +99,13 @@
                                             id="delete-form">
                                             @csrf
                                             @method('delete')
-                                            <x-button onclick="confirmMessage()" class="text-red-600 hover:text-red-900"
+                                            <x-button onclick="confirmMessage()" class="text-black-600 hover:text-black-900"
                                                 form="delete-form"><i class="fa-solid fa-trash-can"></i></x-button>
                                         </form>
                                     </x-td>
                             </tbody>
                             @endforeach
                         </table>
-
                     </div>
                     @endif
                 </div>

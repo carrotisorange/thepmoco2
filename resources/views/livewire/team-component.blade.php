@@ -2,7 +2,7 @@
     <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
         <div class=" overflow-hidden shadow-sm sm:rounded-lg">
             <div class="">
-                <div x-data="{show:false}">
+                <div>
                     <form wire:submit.prevent="submitForm" enctype="multipart/form-data"
                         action="/team/{{ Str::random(8) }}/store" method="POST" id="create-form"
                         enctype="multipart/form-data">
@@ -10,8 +10,7 @@
                         <div>
                             <x-label for="role_id" :value="__('Select a role for the member.')" />
 
-                            <x-form-select wire:model="role_id" form="create-form" name="role_id" id="role_id"
-                                @change="show = !show">
+                            <x-form-select wire:model="role_id" form="create-form" name="role_id" id="role_id">
                                 <option value="">Select one</option>
                                 @foreach ($roles as $role)
                                 <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
@@ -24,7 +23,8 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div x-show="show">
+                        @if($role_id)
+                        <div>
                             <div class="mt-5">
                                 <x-label for="name" :value="__('Name')" />
 
@@ -98,6 +98,7 @@
                                 </p>
                             </div>
                         </div>
+                        @endif
                     </form>
                 </div>
 

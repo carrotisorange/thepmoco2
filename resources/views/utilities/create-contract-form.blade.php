@@ -34,7 +34,7 @@
             <div class="w-full md:w-1/3 px-3">
                 <x-label for="rent">
                     Rent <span class="text-red-600">*</span>
-                    </x-lab>
+                    </x-label>
                     <x-form-input wire:model="rent" id="rent" type="number" value="{{ $rent }}" name="rent" readonly />
 
                     @error('rent')
@@ -74,10 +74,11 @@
 
         </div>
 
-        <div x-show="false" class="flex flex-wrap mx-3 mb-6">
+        @if($interaction_id == 10)
+        <div class="flex flex-wrap mx-3 mb-6">
             <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="contract">
-                    Name of the referral
+                    Name of the referral <span class="text-red-600">*</span>
                 </x-label>
 
                 <x-form-input wire:model="referral" id="referral" type="text" name="referral"
@@ -87,9 +88,8 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-
-
         </div>
+        @endif
 
         <div class="flex flex-wrap mx-3 mb-6">
             <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
