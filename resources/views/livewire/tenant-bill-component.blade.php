@@ -27,12 +27,13 @@
         <x-button onclick="confirmMessage()" wire:click="unpaidBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
             Mark as Unpaid ({{ $total_count }})
         </x-button>
+
+        <x-button><i class="fa-solid fa-download"></i>&nbsp
+            Export ({{ count($selectedBills) }})
+        </x-button>
         @endif
 
 
-        {{-- <x-button><i class="fa-solid fa-download"></i>&nbsp
-            Export ({{ count($selectedBills) }})
-        </x-button> --}}
 
         @can('treasury')
         @if($total_unpaid_bills && $total)
