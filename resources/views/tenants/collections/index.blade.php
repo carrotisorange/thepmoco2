@@ -31,6 +31,8 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+            Total Collections: <b> {{ number_format($collections->sum('collection'),
+                2)}}</b>
             <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white border-b border-gray-200">
                     <div class="flex flex-col">
@@ -42,15 +44,13 @@
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <x-th>AR #</x-th>
-                                                <x-th>Date collected</x-th>
-                                    
-                                                <x-th>Ref #</x-th>
-                                                <x-th>Bill ID</x-th>
-                                             
                                                 <x-th>Unit</x-th>
-                                    
-                                    
-                                                <x-th>Form</x-th>
+
+                                                <x-th>Date collected</x-th>
+
+                                                {{-- <x-th>Bill ID</x-th> --}}
+
+                                                <x-th>Mode of payment</x-th>
                                                 <x-th>Period Covered</x-th>
                                                 <x-th>Amount</x-th>
                                             </tr>
@@ -59,15 +59,20 @@
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <x-td>{{ $item->ar_no }}</x-td>
-                                                <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d,
-                                                    Y') }}</x-td>
-                                    
-                                                <x-td>{{ $item->bill_reference_no }}</x-td>
-                                                <x-td>{{ $item->bill_id }}</x-td>
-                                              
-                                                <x-td>{{$item->unit->unit }}</x-td>
-                                    
-                                    
+                                                <x-td>
+
+                                                    <div class="text-sm text-gray-900">{{
+                                                        $item->unit->unit}}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{
+                                                        $item->unit->building->building}}
+                                                    </div>
+                                                </x-td>
+
+                                                <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y')
+                                                    }}</x-td>
+                                                {{-- <x-td>{{ $item->bill_id }}</x-td> --}}
+
                                                 <x-td>{{ $item->form }}</x-td>
                                                 <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                                                     Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}

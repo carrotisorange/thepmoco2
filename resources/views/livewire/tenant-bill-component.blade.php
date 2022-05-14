@@ -1,12 +1,7 @@
 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
     Reference # : <b> {{ $tenant->bill_reference_no }}</b>,
-    Total Unpaid Bills: <b> {{ number_format($bills->where('status',
-        'unpaid')->sum('bill'),
-        2)}}</b>,
-    Total Paid Bills: <b> {{ number_format($bills->where('status',
-        'paid')->sum('bill'),
-        2)}}</b>
-
+    Total Unpaid Bills: <b> {{ number_format($total_unpaid_bills,2)}}</b>,
+    Total Paid Bills: <b> {{ number_format($total_paid_bills,2)}}</b>
     <div class="mt-5">
         @if($bills)
         <x-form-select class="w-24" wire:model="status">\
@@ -28,9 +23,9 @@
         <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
             Remove ({{ count($selectedBills) }})
         </x-button>
-        @if($bills->where('status', 'paid')->sum('bill'))
+        @if($total_count)
         <x-button onclick="confirmMessage()" wire:click="unpaidBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
-            Mark as Unpaid ({{ count($selectedBills) }})
+            Mark as Unpaid ({{ $total_count }})
         </x-button>
         @endif
 
@@ -40,7 +35,7 @@
         </x-button> --}}
 
         @can('treasury')
-        @if($bills->where('status', 'unpaid')->count())
+        @if($total_unpaid_bills && $total)
         <x-button
             wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
             <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})

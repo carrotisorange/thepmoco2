@@ -52,7 +52,7 @@
         <div class="mt-5 flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-full px-3">
                 <x-label for="attachment">
-                    Attachment
+                    Attachment <span class="text-red-600">*</span>
                 </x-label>
                 <x-form-input wire:model="attachment" id="attachment" type="file"
                     value="{{ old('attachment', $attachment) }}" name="attachment" />

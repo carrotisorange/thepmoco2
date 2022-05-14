@@ -56,7 +56,9 @@ class PropertyBillCustomizedController extends Controller
                 $attributes['tenant_uuid'] = $tenant_uuid[$i];
                 if($request->particular_id == 1)
                 {
-                $attributes['bill'] = $rent[0];
+                    $attributes['bill'] = $rent[0];
+                }elseif($request->particular_id == 8){
+                    $attributes['bill'] = -($request->bill);
                 }
                 $attributes['bill_no'] = $bill_no++;
                 $attributes['reference_no'] = $reference_no->bill_reference_no;
