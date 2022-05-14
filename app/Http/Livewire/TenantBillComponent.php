@@ -51,9 +51,11 @@ class TenantBillComponent extends Component
        {
          if($value)
          {
-            $this->selectedBills = Bill::where('tenant_uuid', $this->tenant->uuid)            
+            $this->selectedBills = Bill::where('tenant_uuid', $this->tenant->uuid)
+             ->when($this->status, function($query){
+             $query->where('status', $this->status);
+             })
             ->pluck('id');
-          
          }else
          {
             $this->selectedBills = [];
