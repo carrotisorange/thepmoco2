@@ -5,6 +5,13 @@
 
         </div>
         <div class="mt-5">
+            
+            Total Unpaid Bills: <b> {{ number_format($bills->where('status',
+                'unpaid')->sum('bill'),
+                2)}}</b>,
+            Total Paid Bills: <b> {{ number_format($bills->where('status',
+                'paid')->sum('bill'),
+                2)}}</b>
             @if($bills->count())
             <p class="text-center text-sm">Showing <b>{{ $bills->count() }}</b> bills...</p>
             @endif
@@ -14,7 +21,7 @@
                 Remove ({{ count($selectedBills) }})
             </x-button>
 
-            
+
 
             {{-- <x-button onclick="window.location.href='/bill/{{ $reference_no }}'"><i
                     class="fa-solid fa-cash-register"></i>&nbsp

@@ -155,8 +155,13 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store', [BillController::class,'store']);
     Route::delete('bill/{id:id}/delete', [BillController::class, 'destroy']);
 
-    Route::post('bill/{uuid:uuid}/store/{bill_count}', BillPropertyController::class);
-    
+    Route::post('bill/{uuid:uuid}/store/{bill_count}/express', PropertyBillExpressController::class);
+     
+    Route::post('bill/{uuid:uuid}/store/{bill_count}/customized', [PropertyBillCustomizedController::class, 'store']);
+
+    Route::get('bill/{uuid:uuid}/customized/batch/{batch_no}', [PropertyBillCustomizedController::class, 'edit']);
+
+    Route::patch('bill/{uuid:uuid}/customized/batch/{batch_no}', [PropertyBillCustomizedController::class, 'update']);
     //4
  
     //Creating owner contract

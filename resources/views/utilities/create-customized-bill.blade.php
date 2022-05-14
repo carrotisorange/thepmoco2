@@ -15,7 +15,7 @@
                 </button>
             </div>
             <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST"
-                action="/bill/{{ Session::get('property') }}/store/{{ $active_contracts->count() }}">
+                action="/bill/{{ Session::get('property') }}/store/{{ $active_contracts->count() }}/customized">
                 @csrf
 
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">Configure your customized bills</h3>
@@ -49,29 +49,36 @@
 
 
                 <div class="mt-5">
-                    <x-label for="barangay">
+                    <x-label for="">
                         Period Covered<span class="text-red-600">*</span>
                     </x-label>
+                    <div class="flex flex-wrap mb-6">
 
-                    <x-label for="barangay">
-                        Start
-                    </x-label>
-                    <x-form-input wire:model="start" id="start" type="date" name="start"
-                        value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" />
+                        <div class="w-full md:w-1/2">
+                            <x-label for="start">
+                                Start <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="start" id="start" type="date"
+                                value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start" />
 
-                    @error('start')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                    <br>
-                    <x-label for="end">
-                        End
-                    </x-label>
-                    <x-form-input wire:model="end" id="end" type="date" name="end"
-                        value="{{ old('end', Carbon\Carbon::now()->addMonth()->format('Y-m-d')) }}" />
+                            @error('start')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <x-label for="end">
+                                End <span class="text-red-600">*</span>
+                            </x-label>
+                            <x-form-input wire:model="end" id="end" type="date" name="end"
+                                value="{{ old('end', Carbon\Carbon::now()->addMonth()->format('Y-m-d')) }}" />
 
-                    @error('end')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                            @error('end')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                    </div>
+          
                 </div>
 
                 <div class="mt-5">
