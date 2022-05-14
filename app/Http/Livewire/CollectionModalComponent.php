@@ -7,13 +7,20 @@ use App\Models\Bill;
 use App\Models\Property;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
 class CollectionModalComponent extends ModalComponent
 {
+
+    use WithFileUploads;
+    
     public $selectedBills;
     public $tenant;
+    public $bank;
+    public $check_no;
     public $total;
+    public $attachment;
 
     public $collection;
     public $form;
@@ -21,15 +28,15 @@ class CollectionModalComponent extends ModalComponent
     public function mount($selectedBills, $total)
     {
         $this->selectedBills = $selectedBills;
-        $this->form = 'bank';
+        $this->form = 'cash';
         $this->total = $total;
-        $this->collection = 0;
+        $this->collection = $total;
     }
 
-    public function hydrateTotal()
-    {
-        $this->total = $this->total-$this->collection;
-    }
+    // public function hydrateTotal()
+    // {
+    //     $this->total = $this->total-$this->collection;
+    // }
 
     //   public function updatedTotal($total)
     //   {
@@ -40,6 +47,9 @@ class CollectionModalComponent extends ModalComponent
     {
         return [
             'collection' => 'required|integer|min:1',
+            'bank' => 'nullable',
+            'check_no' => 'nullable',
+            'attachment' => 'nullable'
       ];
     }
 
@@ -62,13 +72,14 @@ class CollectionModalComponent extends ModalComponent
 
             }
 
-            //$validatedData = $this->validate();
+            $validatedData = $this->validate();
 
             $ar_no = Property::find(Session::get('property'))->collections->max('ar_no')+1;
 
             for($i=0; $i<count($this->selectedBills); $i++)
             {
                 $validatedData['tenant_uuid']= $this->tenant;
+                $validatedData['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
                 $validatedData['property_uuid'] = Session::get('property');
                 $validatedData['user_id'] = auth()->user()->id;
                 $validatedData['ar_no'] = $ar_no++;
@@ -76,6 +87,11 @@ class CollectionModalComponent extends ModalComponent
                 $validatedData['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
                 $validatedData['form'] = $this->form;
                 $validatedData['collection'] = Bill::find($this->selectedBills[$i])->bill;
+
+                if($this->attachment)
+                {
+                    $validatedData['attachment'] = $this->attachment->store('attachments');
+                }
 
                 Collection::create($validatedData);
 

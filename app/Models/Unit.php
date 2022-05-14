@@ -77,6 +77,12 @@ class Unit extends Model
      return $this->hasMany(Bill::class);
      }
 
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
+
+
     public function deed_of_sales()
     {
         return $this->hasMany(DeedOfSale::class, 'unit_uuid');

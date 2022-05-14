@@ -5,6 +5,7 @@ use App\Models\Tenant;
 use App\Models\Bill;
 use Livewire\WithPagination;
 use Livewire\Component;
+use App\Models\Collection;
 
 class TenantBillComponent extends Component
 {
@@ -13,6 +14,7 @@ class TenantBillComponent extends Component
     public $tenant;
 
      public $selectedBills = [];
+     public $status;
      public $selectAll = false;  
     
     public function mount($tenant)
@@ -27,6 +29,20 @@ class TenantBillComponent extends Component
         $this->selectedBills = [];
 
         session()->flash('success', 'Bills Successfully Deleted!');
+     }
+
+     public function unpaidBills()
+     {
+         Bill::whereIn('id', $this->selectedBills)
+         ->update([
+            'status' => 'unpaid'
+         ]);
+
+         Collection::whereIn('bill_id', $this->selectedBills)
+           ->delete();
+
+         session()->flash('success', 'Bills Successfully Updated!');
+        
      }
 
     public function updatedSelectAll($value)
@@ -46,8 +62,17 @@ class TenantBillComponent extends Component
     public function render()
     {
         return view('livewire.tenant-bill-component',[
-            'bills' => Tenant::find($this->tenant->uuid)->bills()->orderBy('bill_no','asc')->paginate(10),
-             'total' => Bill::whereIn('id', $this->selectedBills)->sum('bill'),
+            'bills' => Tenant::find($this->tenant->uuid)
+            ->bills()
+            ->orderBy('bill_no','asc')
+            ->when($this->status, function($query){
+              $query->where('status', $this->status);
+              })
+            ->paginate(10),
+            'total' => Bill::whereIn('id', $this->selectedBills)
+            ->when($this->status, function($query){
+            $query->where('status', $this->status);
+            })->sum('bill'),
         ]);
     }
 }

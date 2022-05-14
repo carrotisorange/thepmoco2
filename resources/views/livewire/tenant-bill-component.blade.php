@@ -8,10 +8,32 @@
         2)}}</b>
 
     <div class="mt-5">
+        @if($bills)
+        <x-form-select class="w-24" wire:model="status">\
+            <option value="" {{ $status=="" ? 'selected' : 'Select one' }}>
+                {{
+                'Show All bills' }}</option>
+            <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'Select one' }}>
+                {{
+                'Show Unpaid Bills' }}</option>
+            <option value="paid" {{ $status=='paid' ? 'selected' : 'Select one' }}>
+                {{
+                'Show Paid Bills' }}</option>
+        </x-form-select>
+        @endif
+
+        <br>
+
         @if($selectedBills)
         <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
             Remove ({{ count($selectedBills) }})
         </x-button>
+        @if($bills->where('status', 'paid')->sum('bill'))
+        <x-button onclick="confirmMessage()" wire:click="unpaidBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
+            Mark as Unpaid ({{ count($selectedBills) }})
+        </x-button>
+        @endif
+
 
         {{-- <x-button><i class="fa-solid fa-download"></i>&nbsp
             Export ({{ count($selectedBills) }})
@@ -21,7 +43,8 @@
         @if($bills->where('status', 'unpaid')->count())
         <x-button
             wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-            <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})</x-button>
+            <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})
+        </x-button>
         {{-- <x-button wire:click="$emit('openModal', 'collection-modal-component')">
             <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})
         </x-button> --}}

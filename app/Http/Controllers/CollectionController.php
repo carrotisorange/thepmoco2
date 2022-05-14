@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Property;
 use Illuminate\Http\Request;
 use Session;
 
@@ -15,7 +16,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = Collection::where('property_uuid', Session::get('property'))->get();
+        $collections = Property::find(Session::get('property'))->collections;
         // $collections = Collection::join('tenants', 'collections.tenant_uuid', 'tenants.uuid')
         //  ->join('owners', 'collections.owner_uuid', 'owners.uuid')
         //  ->join('users', 'collections.user_id', 'users.id')

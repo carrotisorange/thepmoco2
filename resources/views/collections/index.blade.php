@@ -44,34 +44,37 @@
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <x-th>AR #</x-th>
+                                                <x-th>Date collected</x-th>
+                                           
+                                                <x-th>Ref #</x-th>
                                                 <x-th>Bill ID</x-th>
                                                 <x-th>Tenant</x-th>
-                                                <x-th>Date collected</x-th>
-                                                <x-th>Ref #</x-th>
+                                                <x-th>Unit</x-th>
+
+
                                                 <x-th>Form</x-th>
                                                 <x-th>Period Covered</x-th>
-
-
-                                                {{-- <x-th>Unit</x-th> --}}
                                                 <x-th>Amount</x-th>
                                             </tr>
                                         </thead>
-                                        @forelse ($collections as $collection)
+                                        @forelse ($collections as $item)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
-                                                <x-td>{{ $collection->ar_no }}</x-td>
-                                                <x-td>{{ $collection->bill_id }}</x-td>
-                                                <x-td>{{ $collection->tenant->tenant }}</x-td>
-                                                <x-td>{{ Carbon\Carbon::parse($collection->created_at)->format('M d,
+                                                <x-td>{{ $item->ar_no }}</x-td>
+                                                <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d,
                                                     Y') }}</x-td>
-                                                <x-td>{{ $collection->bill_reference_no }}</x-td>
-                                                <x-td>{{ $collection->form }}</x-td>
-                                                <x-td>{{ Carbon\Carbon::parse($collection->start)->format('M d,
-                                                    Y').'-'.Carbon\Carbon::parse($collection->end)->format('M d, Y') }}
-                                                </x-td>
+                                            
+                                                <x-td>{{ $item->bill_reference_no }}</x-td>
+                                                <x-td>{{ $item->bill_id }}</x-td>
+                                                <x-td>{{ $item->tenant->tenant }}</x-td>
+                                                <x-td>{{$item->unit->unit }}</x-td>
 
-                                                {{-- <x-td>{{ $collection->unit }}</x-td> --}}
-                                                <x-td>{{ number_format($collection->collection,2) }}</x-td>
+
+                                                <x-td>{{ $item->form }}</x-td>
+                                                <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
+                                                    Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
+                                                </x-td>
+                                                <x-td>{{ number_format($item->collection,2) }}</x-td>
                                                 @empty
                                                 <x-td>No data found!</x-td>
                                             </tr>
