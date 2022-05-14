@@ -99,16 +99,24 @@ class CollectionModalComponent extends ModalComponent
                 ->update([
                     'status' => 'paid'
                 ]);
+
+               
             }
-
-            $this->dispatchBrowserEvent('collection-modal-component');
-
+            
+            $this->resetForm();
+        
             return back()->with('success','Collections have been recorded.');
        }catch(\Exception $e)
        {
             ddd($e);
             return back()->with('error','Cannot perform your action.');
        }
+    }
+
+    public function resetForm()
+    {
+        $this->collection='';
+        $this->dispatchBrowserEvent('collection-modal-component');
     }
     public function render()
     {

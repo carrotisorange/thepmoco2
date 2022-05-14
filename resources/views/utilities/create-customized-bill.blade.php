@@ -22,7 +22,7 @@
 
                 <p class="text-sm font-medium text-gray-900 dark:text-white">You're about to create <b>{{
                         $active_contracts->count() }}</b> bills for <b>{{ $active_tenants->count('tenant_uuid') }}</b>
-                    active tenants. You may still modify these bills when you click continue.`
+                    active tenants. You may still modify these bills when you click <b>CONFIRM</b>.`
                 </p>
 
 
@@ -35,7 +35,8 @@
                     <x-form-select wire:model="particular_id" name="particular_id" id="particular_id">
                         <option value="">Select one</option>
                         @foreach ($particulars as $particular)
-                        <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->particular_id?
+                        <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->
+                            particular_id?
                             'selected': 'Select one'
                             }}>{{ $particular->particular }}</option>
                         @endforeach
@@ -98,17 +99,11 @@
 
                 </div>
 
-                <x-button class="w-full items-center">
-                    <svg wire:loading wire:target="createForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                        </circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    <i class="fas fa-arrow-right"></i>&nbsp Confirm
-                </x-button>
+                <p class="text-right">
+                    <x-button>
+                        <i class="fa-solid fa-circle-check"></i>&nbsp Confirm
+                    </x-button>
+                </p>
 
             </form>
         </div>

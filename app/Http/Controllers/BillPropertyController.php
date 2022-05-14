@@ -40,8 +40,6 @@ class BillPropertyController extends Controller
            ]);
       }
 
-       
-
         $tenant_uuid = Contract::where('property_uuid', Session::get('property'))
           ->where('contracts.status','active')
           ->pluck('tenant_uuid');
@@ -84,6 +82,8 @@ class BillPropertyController extends Controller
         }catch(\Exception $e)
         {
             ddd($e);
+
+            return back('error')->with('success', 'Cannot perform your action.');
         }
     }
 }
