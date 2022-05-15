@@ -1,168 +1,152 @@
-<!DOCTYPE html>
+<html>
 
 <head>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /** Define the margins of your page **/
+        @page {
+            margin: 100px 25px;
+        }
+
+        header {
+            position: fixed;
+            top: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+
+            /** Extra personal styles **/
+            background-color: ;
+            color: black;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+
+            /** Extra personal styles **/
+            background-color: #;
+            color: black;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        p {
+            margin-right: 80px;
+            margin-left: 80px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="">
-                <div class="">
-                    <div>
-                        <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
-                            <div class="w-full md:w-full px-3 mb-6 md:mb-0">
-                                <x-label for="tenant">
-                                    Full Name <span class="text-red-600">*</span>
-                                </x-label>
-                                <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
-                                    value="{{ old('tenant') }}" />
-                            </div>
-                        </div>
+    <!-- Define header and footer blocks before your content -->
+    <header>
+        Tenant Information Sheet
+    </header>
 
-                        <div class="mt-6 flex flex-wrap mx-3 mb-2">
-                            <div class="w-full md:w-1/2 px-3">
-                                <x-label for="email">
-                                    Email
-                                </x-label>
-                                <x-form-input wire:model="email" id="email" type="email" name="email"
-                                    value="{{ old('email') }}" />
-                            </div>
-                            <div class="w-full md:w-1/2 px-3">
-                                <x-label for="mobile_number">
-                                    Mobile
-                                </x-label>
-                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
-                                    name="mobile_number" value="{{ old('mobile_number') }}" />
+    <footer>
+        {{ Session::get('property_name') }} Copyright &copy;
+        <?php echo date("Y");?>
+    </footer>
 
-                            </div>
-                        </div>
+    <!-- Wrap the content of your PDF inside a main tag -->
+    <main>
+        <p>
+            Full Name: ______________________________________________________
+        </p>
+        <p>
+            Email: _______________________ &nbsp; Mobile: ________________________
+        </p>
+        <p>
+            Status: <input type="checkbox" /> studying <input type="checkbox" /> working &nbsp;&nbsp; Gender: <input
+                type="checkbox" /> male <input type="checkbox" /> female
+        </p>
+        <p>
+            Civil Status: <input type="checkbox" /> married <input type="checkbox" /> single <input type="checkbox" />
+            divorced <input type="checkbox" /> widowed
+        </p>
+        <p>
+            Birthdate: _______________________________________________________
+        </p>
+        <p>
+            Country: _____________ &nbsp; Region: ______________ &nbsp; City: ______________
+        </p>
+        <p>
+            Address: _______________________________________________________
+        </p>
+        <p>
+            <label for=""><b>For students</b></label><br>
+            Course: ______________________ &nbsp; Year Level: _______________________
 
-                        <div class="mt-6 flex flex-wrap mx-3 mb-2">
-                            <div class="w-full md:w-1/4 px-3">
-                                <x-label for="type">
-                                    Type
-                                </x-label>
-                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
-                                    name="mobile_number" value="{{ old('mobile_number') }}" />
-                            </div>
-                            <div class="w-full md:w-1/4 px-3">
-                                <x-label for="birthdate">
-                                    Birthdate
-                                </x-label>
-                                <x-form-input wire:model="birthdate" id="birthdate" type="text" name="birthdate"
-                                    value="{{ old('birthdate') }}" />
+        </p>
+        <p>
+            School: _______________________ &nbsp; Address: ________________________
+        </p>
+        <p>
+            <label for=""><b>For non-students</b></label><br>
+           Occupation: _________________________________________________________
 
-                                @error('birthdate')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="w-full md:w-1/4 px-3">
-                                <x-label for="gender">
-                                    Gender <span class="text-red-600">*</span>
-                                </x-label>
-                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
-                                    name="mobile_number" value="{{ old('mobile_number') }}" />
-                            </div>
+        </p>
+        <p>
+            Employer: _____________________ &nbsp; Address: _______________________
+        </p>
 
-                            <div class="w-full md:w-1/4 px-3">
-                                <x-label for="civil_status">
-                                    Civil Status
-                                </x-label>
-                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
-                                    name="mobile_number" value="{{ old('mobile_number') }}" />
+        <p>
+            <label for=""><b>Guardians</b></label><br>
+           1. Name: _____________________ &nbsp; Relationship: ______________________
+        </p>
+        <p>
+  
+            Email: ______________________ &nbsp; Mobile: __________________________
+        </p>
 
+        <p>
+          
+            2. Name: _____________________ &nbsp; Relationship: ______________________
+        </p>
+        <p>
+        
+            Email: ______________________ &nbsp; Mobile: __________________________
+        </p>
 
-                            </div>
-                        </div>
+        <p>
+            <label for=""><b>References</b></label><br>
+            1. Name: _____________________ &nbsp; Relationship: ______________________
+        </p>
+        <p>
+        
+            Email: ______________________ &nbsp; Mobile: __________________________
+        </p>
+        
+        <p>
+        
+            2. Name: _____________________ &nbsp; Relationship: ______________________
+        </p>
+        <p>
+        
+            Email: ______________________ &nbsp; Mobile: __________________________
+        </p>
+        <br>
+        <br>
+        <p>
+            Signature: ______________________ &nbsp; Date: __________________________
+        </p>
 
-                        <div class="mt-5 flex flex-wrap mx-3 mb-2">
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                <x-label for="country_id">
-                                    Country
-                                </x-label>
-                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
-                                    name="mobile_number" value="{{ old('mobile_number') }}" />
-                            </div>
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                <x-label for="province_id">
-                                    Region
-                                </x-label>
-                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
-                                    name="mobile_number" value="{{ old('mobile_number') }}" />
-                            </div>
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                <x-label for="city_id">
-                                    City
-                                </x-label>
-                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
-                                    name="mobile_number" value="{{ old('mobile_number') }}" />
-                            </div>
+        <p>
+            Assisted by: ______________________ 
+        </p>
 
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                <x-label for="barangay">
-                                    Address
-                                    </x-lab>
-                                    <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
-                                        value="{{ old('barangay') }}" />
-                            </div>
-
-                        </div>
-                        <div class="mt-5 flex flex-wrap mx-3 mb-2">
-                            <div class="w-full md:w-1/2 px-3">
-                                <x-label for="school">
-                                    School
-                                </x-label>
-                                <x-form-input wire:model="school" id="school" type="text" name="school"
-                                    value="{{ old('school') }}" />
-
-                            </div>
-                            <div class="w-full md:w-1/2 px-3">
-                                <x-label for="school_address">
-                                    School Address
-                                </x-label>
-                                <x-form-input wire:model="school_address" id="school_address" type="text"
-                                    name="school_address" value="{{ old('school_address') }}" />
-
-                            </div>
-                        </div>
-
-                        <div class="mt-5 flex flex-wrap mx-3 mb-2">
-                            <div class="w-full md:w-1/3 px-3">
-                                <x-label for="occupation">
-                                    Occupation
-                                </x-label>
-                                <x-form-input wire:model="occupation" id="occupation" type="text" name="occupation"
-                                    value="{{ old('occupation') }}" />
-
-
-                            </div>
-                            <div class="w-full md:w-1/3 px-3">
-                                <x-label for="employer">
-                                    Employer
-                                </x-label>
-                                <x-form-input wire:model="employer" id="employer" type="text" name="employer"
-                                    value="{{ old('employer') }}" />
-
-
-                            </div>
-                            <div class="w-full md:w-1/3 px-3">
-                                <x-label for="employer_address">
-                                    Employer Address
-                                </x-label>
-                                <x-form-input wire:model="employer_address" id="employer_address" type="text"
-                                    name="employer_address" value="{{ old('employer_address') }}" />
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+        {{-- <p style="page-break-after: always;">
+            Content Page 1
+        </p>
+        <p style="page-break-after: never;">
+            Content Page 2
+        </p> --}}
+    </main>
 </body>
 
 </html>

@@ -6,6 +6,7 @@ use App\Models\Bill;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Collection;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class TenantBillComponent extends Component
 {
@@ -29,6 +30,13 @@ class TenantBillComponent extends Component
         $this->selectedBills = [];
 
         session()->flash('success', 'Bills Successfully Deleted!');
+     }
+
+     public function exportBills()
+     {
+         $bills = Bill::whereIn('id', $this->selectedBills)->get();
+         $pdf = PDF::loadView('tenants.bills.export', compact('bills'));
+         return $pdf->stream();
      }
 
      public function unpaidBills()

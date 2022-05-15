@@ -44,6 +44,8 @@ class OldTenantComponent extends Component
     public $city_id;
     public $barangay;
     public $photo_id;
+    public $course;
+    public $year_level;
     public $school;
     public $school_address;
     public $occupation;
@@ -65,6 +67,8 @@ class OldTenantComponent extends Component
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
             'barangay' => ['nullable'],
             'photo_id' => 'nullable|image',
+            'year_level' => 'nullable',
+            'course' => 'nullable',
             'school' => 'nullable',
             'school_address' => 'nullable',
             'occupation' => 'nullable',

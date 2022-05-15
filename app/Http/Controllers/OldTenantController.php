@@ -5,6 +5,7 @@ use App\Models\Unit;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
 use Session;
+use \PDF;
 
 class OldTenantController extends Controller
 {
@@ -25,13 +26,21 @@ class OldTenantController extends Controller
 
     public function export()
     {
-        $pdf = \PDF::loadView('tenants.tenant_sheet');
+        $pdf = PDF::loadView('tenants.tenant_sheet');
         $pdf->setOptions([
-            'header-right' => '[date]',
-            'header-left' => 'Tenant Sheet | [page]',
-            'footer-right' =>  Session::get('property_name')
-        ]);
-        return $pdf->download('tenant_sheet.pdf');
+          'header-right' => '[date]',
+          'header-left' => 'Tenant Sheet | [page]',
+          'footer-right' => Session::get('property_name')
+          ]);
+        return $pdf->stream('tenant_sheet.pdf');
+
+        // $pdf = \PDF::loadView('tenants.tenant_sheet');
+        // $pdf->setOptions([
+        //     'header-right' => '[date]',
+        //     'header-left' => 'Tenant Sheet | [page]',
+        //     'footer-right' =>  Session::get('property_name')
+        // ]);
+        // return $pdf->download('tenant_sheet.pdf');
          //return view('tenants.tenant_sheet');
 
         // $pdf = PDF::loadView('tenants.tenant_sheet')

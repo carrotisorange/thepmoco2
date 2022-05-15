@@ -10,8 +10,8 @@ use App\Mail\WelcomeMailToMember;
 use App\Models\Role;
 use Analytics;
 use Spatie\Analytics\Period;
-
-
+use \PDF;
+use App\Models\Bill;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +26,12 @@ use Spatie\Analytics\Period;
 require __DIR__.'/auth.php';
 
 Route::get('/', [WebsiteController::class, 'index']);
+
+Route::get('/export-pdf', function(){
+     $bills = Bill::whereIn('id', ['10'])->get();
+     $pdf = PDF::loadView('tenants.bills.export', compact('bills'));
+     return $pdf->stream();
+});
 
 Route::post('/subscribe', SubscribeController::class);
 
