@@ -129,7 +129,7 @@ class CollectionModalComponent extends ModalComponent
     {
         $this->collection='';
         $this->bank='';
-        $this->cheque_no='';
+        $this->check_no='';
         $this->attachment='';
         $this->date_deposited ='';
         $this->form = '';
