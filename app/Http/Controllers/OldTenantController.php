@@ -32,7 +32,7 @@ class OldTenantController extends Controller
           'header-left' => 'Tenant Sheet | [page]',
           'footer-right' => Session::get('property_name')
           ]);
-        return $pdf->stream('tenant_sheet.pdf');
+        return $pdf->download('tenant_sheet.pdf');
 
         // $pdf = \PDF::loadView('tenants.tenant_sheet');
         // $pdf->setOptions([
