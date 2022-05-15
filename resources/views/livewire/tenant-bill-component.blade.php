@@ -21,16 +21,16 @@
 
         @if($selectedBills)
 
-        <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
+        <x-button onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
             Remove ({{ count($selectedBills) }})
         </x-button>
 
-        <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
+        {{-- <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
             Export ({{ count($selectedBills) }})
-        </x-button>
+        </x-button> --}}
 
         @if($total_count)
-        <x-button onclick="confirmMessage()" wire:click="unpaidBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
+        <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
             Mark as Unpaid ({{ $total_count }})
         </x-button>
 

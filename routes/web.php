@@ -27,12 +27,6 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [WebsiteController::class, 'index']);
 
-Route::get('/export-pdf', function(){
-     $bills = Bill::whereIn('id', ['10'])->get();
-     $pdf = PDF::loadView('tenants.bills.export', compact('bills'));
-     return $pdf->stream();
-});
-
 Route::post('/subscribe', SubscribeController::class);
 
 Route::post('/contact', ContactController::class);
@@ -111,6 +105,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
      Route::get('tenant/{tenant}/bill/create', [TenantBillController::class, 'store']);
     Route::get('tenant/{tenant}/collections', [TenantCollectionController::class, 'index']);
     Route::get('tenant/{tenant}/collection/store', [TenantCollectionController::class, 'store']);
+    Route::get('tenant/{tenant}/ar/{ar}/export', [TenantCollectionController::class, 'export']);
     Route::get('tenant/{tenant}/concerns', TenantConcernController::class);
     Route::get('tenant/{tenant}/edit', [TenantController::class, 'edit']);
     Route::get('tenant/{uuid}/delete', [TenantController::class, 'destroy']);

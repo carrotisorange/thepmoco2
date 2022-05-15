@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire;
+
+use App\Models\AcknowledgementReceipt;
 use App\Models\Tenant;
 use App\Models\Bill;
 use Livewire\WithPagination;
@@ -23,7 +25,7 @@ class TenantBillComponent extends Component
         $this->tenant = $tenant;
     }
 
-     public function deleteBills()
+     public function removeBills()
      {
         Bill::destroy($this->selectedBills);
 
@@ -34,17 +36,19 @@ class TenantBillComponent extends Component
 
      public function exportBills()
      {
-         $bills = Bill::whereIn('id', $this->selectedBills)->get();
-         $pdf = PDF::loadView('tenants.bills.export', compact('bills'));
-         return $pdf->stream();
+         return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills successfully marked as unpaid.');
      }
 
-     public function unpaidBills()
+     public function unpayBills()
      {
          Bill::whereIn('id', $this->selectedBills)
          ->update([
             'status' => 'unpaid'
          ]);
+
+         $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
+
+         AcknowledgementReceipt::where('collection_batch_no', $collection_batch_no)->delete();
 
          Collection::whereIn('bill_id', $this->selectedBills)
            ->delete();

@@ -37,13 +37,24 @@
         </div>
         @if($form === 'bank')
         <div class="mt-5 flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-full px-3">
+            <div class="w-full md:w-1/2 px-3">
                 <x-label for="bank">
                     Bank
                 </x-label>
                 <x-form-input wire:model="bank" id="bank" type="text" value="{{ old('bank', $bank) }}" name="bank" />
 
                 @error('bank')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="w-full md:w-1/2 px-3">
+                <x-label for="date_deposited">
+                    Date Deposited
+                </x-label>
+                <x-form-input wire:model="date_deposited" id="date_deposited" type="date" value="{{ old('date_deposited', $date_deposited) }}" name="date_deposited" />
+            
+                @error('date_deposited')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire;
+
+use App\Models\AcknowledgementReceipt;
 use Session;
 use App\Models\Collection;
 use App\Models\Bill;
@@ -20,6 +22,7 @@ class CollectionModalComponent extends ModalComponent
     public $tenant;
     public $bank;
     public $check_no;
+    public $date_deposited;
     public $total;
     public $attachment;
 
@@ -75,7 +78,7 @@ class CollectionModalComponent extends ModalComponent
                 $validatedData['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
                 $validatedData['property_uuid'] = Session::get('property');
                 $validatedData['user_id'] = auth()->user()->id;
-                $validatedData['ar_no'] = $ar_no++;
+                // $validatedData['ar_no'] = $ar_no++;
                 $validatedData['bill_id'] = $this->selectedBills[$i];
                 $validatedData['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
                 $validatedData['form'] = $this->form;
@@ -93,12 +96,28 @@ class CollectionModalComponent extends ModalComponent
                 ->update([
                     'status' => 'paid'
                 ]);
-
-               
+       
             }
+
+                $ar = AcknowledgementReceipt::create([
+                    'tenant_uuid' => $this->tenant,
+                    'amount' => $this->collection,
+                    'property_uuid' => Session::get('property'),
+                    'user_id' => auth()->user()->id,
+                    'ar_no' => $ar_no,
+                    'mode_of_payment' => $this->form,
+                    'collection_batch_no' => $batch_no,
+                    'cheque_no' => $this->check_no,
+                    'bank' => $this->bank,
+                    'date_deposited' => $this->date_deposited,
             
+                ]);
+            
+            $this->resetForm();
+
+            return redirect('/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Collections have been recorded.');
         
-            return redirect('/tenant/'.$this->tenant.'/bills')->with('success','Collections have been recorded.');
+            // return redirect('/tenant/'.$this->tenant.'/bills')->with('success','Collections have been recorded.');
        }catch(\Exception $e)
        {
             ddd($e);

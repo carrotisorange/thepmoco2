@@ -45,7 +45,7 @@
 <body>
     <!-- Define header and footer blocks before your content -->
     <header>
-        Tenant Information Sheet
+       {{ Session::get('property_name') }} | Tenant Information Sheet
     </header>
 
     <footer>

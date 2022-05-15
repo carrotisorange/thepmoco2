@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcknowledgementReceipt;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
 use App\Models\Collection;
 use App\Models\Property;
+use App\Models\User;
 use Session;
 use DB;
 use App\Models\Bill;
+use \PDF;
 
 class TenantCollectionController extends Controller
 {
@@ -88,4 +91,27 @@ class TenantCollectionController extends Controller
             return back()->with('error','Cannot perform the action. Please try again.');
          }
     }
+
+     public function export(Tenant $tenant, AcknowledgementReceipt $ar)
+     {
+        //return Collection::whereIn('batch_no',[$ar->colllection_batch_no])->get();
+        
+         $data = [
+            'tenant' => Tenant::find($ar->tenant_uuid)->tenant,
+            'mode_of_payment' => $ar->mode_of_payment,
+            'user' => User::find($ar->user_id)->name,
+            'ar_no' => $ar->ar_no,
+            'amount' => $ar->amount,
+            'collections' => Collection::where('batch_no', $ar->colllection_batch_no)->first(),
+            'cheque_no' => $ar->cheque_no,
+            'bank' => $ar->bank,
+            'date_deposited' => $ar->date_deposited,
+         ];
+
+        $pdf = PDF::loadView('tenants.collections.export', $data);
+        return $pdf->download($tenant->tenant.'ar.pdf');
+
+           //return redirect('/tenant/'.$tenant->uuid.'/bills')->with('success','Collections have been recorded.');
+     }
 }
+
