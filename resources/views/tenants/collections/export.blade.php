@@ -52,7 +52,7 @@
 <body>
     <!-- Define header and footer blocks before your content -->
     <header>
-        {{ Session::get('property_name') }} | Acknowledgment Receipt
+       {{ Session::get('property_name') }} | Acknowledgment Receipt
     </header>
 
     <footer>

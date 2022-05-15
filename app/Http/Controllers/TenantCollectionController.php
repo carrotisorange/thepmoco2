@@ -94,6 +94,7 @@ class TenantCollectionController extends Controller
 
      public function export(Tenant $tenant, AcknowledgementReceipt $ar)
      {   
+   
          $data = [
             'tenant' => Tenant::find($ar->tenant_uuid)->tenant,
             'mode_of_payment' => $ar->mode_of_payment,
@@ -101,12 +102,11 @@ class TenantCollectionController extends Controller
             'role' => User::find($ar->user_id)->role->role,
             'ar_no' => $ar->ar_no,
             'amount' => $ar->amount,
-            'collections' => Collection::where('batch_no', $ar->colllection_batch_no)->first(),
             'cheque_no' => $ar->cheque_no,
             'bank' => $ar->bank,
             'date_deposited' => $ar->date_deposited,
             'collections' => Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no',
-            $ar->collection_batch_no)->get(),
+            $ar->collection_batch_no)->whereDate('created_at',$ar->created_at)->get(),
             'remaining_balance' => Tenant::find($tenant->uuid)
             ->bills()
             ->where('status', 'unpaid')
