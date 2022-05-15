@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Bill extends Model
 {
@@ -11,6 +12,7 @@ class Bill extends Model
 
     protected $attributes = [
         'status' => 'unpaid',
+        'due_date' => Carbon::now()->addDays(7)
     ];
 
     public function property()
