@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Bill;
 use App\Models\Particular;
+use App\Models\Collection;
 use Session;
 use DB;
 
@@ -77,6 +78,22 @@ class BillIndexComponent extends Component
       session()->flash('success', 'Units Successfully Deleted!');
       }
 
+      public function unpaidBills()
+     {
+         Bill::whereIn('id', $this->selectedBills)
+         ->update([
+            'status' => 'unpaid'
+         ]);
+
+         Collection::whereIn('bill_id', $this->selectedBills)
+           ->delete();
+
+          $this->selectedBills = [];
+
+         session()->flash('success', 'Bills Successfully Updated!');
+        
+     }
+
     public function render()
     {
         $statuses = Bill::where('bills.property_uuid', Session::get('property'))
@@ -90,8 +107,11 @@ class BillIndexComponent extends Component
         ->groupBy('particulars.id')
         ->get();
 
-        return view('livewire.bill-index-component', [
-            'bills' => Bill::search($this->search)
+              $total_count = Bill::whereIn('id', $this->selectedBills)
+              ->where('status', 'paid')
+              ->count();
+
+            $bills =  Bill::search($this->search)
             ->orderBy('bill_no', 'asc')
             ->where('property_uuid', Session::get('property'))
             ->when($this->status, function($query){
@@ -109,9 +129,15 @@ class BillIndexComponent extends Component
             ->when($this->created_at, function($query){
                 $query->whereDate('created_at', $this->created_at);
             })
-            ->paginate(10),
+            ->get();
+
+        return view('livewire.bill-index-component', [
+            'bills' => $bills,
             'statuses' => $statuses,
-            'particulars' => $particulars
+            'particulars' => $particulars,
+            'total_count' => $total_count,
+             'total_paid_bills' => $bills->where('status', 'paid')->sum('bill'),
+             'total_unpaid_bills' => $bills->where('status', 'unpaid')->sum('bill'),
         ]);
     }
 }

@@ -21,12 +21,12 @@
                 Remove ({{ count($selectedBills) }})
             </x-button>
 
+            @if($total_count)
+            <x-button onclick="confirmMessage()" wire:click="unpaidBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
+                Mark as Unpaid ({{ $total_count }})
+            </x-button>
+            @endif
 
-
-            {{-- <x-button onclick="window.location.href='/bill/{{ $reference_no }}'"><i
-                    class="fa-solid fa-cash-register"></i>&nbsp
-                Pay ({{ count($selectedBills) }})
-            </x-button> --}}
             @endif
         </div>
         <div class="mt-5 p-3 bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -43,7 +43,7 @@
                                     @include('utilities.show-bill-results')
                                     <p class="text-center">
 
-                                        {{ $bills->links() }}
+                                        {{-- {{ $bills->links() }} --}}
                                         @else
                                     <div class="text-center mt-12">
                                         <span>No results found!</span>

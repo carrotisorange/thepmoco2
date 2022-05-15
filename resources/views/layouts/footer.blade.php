@@ -31,7 +31,7 @@
             </li> --}}
         </ul>
 
-        <a class="text-gray-600 font-semibold" href="#/">© 2021 Copyright</a>
+        <a class="text-gray-600 font-semibold" href="#/">© The PMO Co. 2021</a>
     </div>
 
 

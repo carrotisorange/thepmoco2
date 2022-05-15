@@ -17,6 +17,8 @@ class CollectionController extends Controller
     public function index()
     {
         $collections = Property::find(Session::get('property'))->collections;
+
+          //$collections = Property::find(Session::get('property'))->collections()->get()->groupBy('batch_no');
         // $collections = Collection::join('tenants', 'collections.tenant_uuid', 'tenants.uuid')
         //  ->join('owners', 'collections.owner_uuid', 'owners.uuid')
         //  ->join('users', 'collections.user_id', 'users.id')

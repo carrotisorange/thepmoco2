@@ -9,6 +9,7 @@ use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
+use Carbon\Carbon;
 
 class CollectionModalComponent extends ModalComponent
 {
@@ -76,6 +77,8 @@ class CollectionModalComponent extends ModalComponent
 
             $ar_no = Property::find(Session::get('property'))->collections->max('ar_no')+1;
 
+            $batch_no = Carbon::now()->timestamp.''.$ar_no;
+
             for($i=0; $i<count($this->selectedBills); $i++)
             {
                 $validatedData['tenant_uuid']= $this->tenant;
@@ -87,6 +90,7 @@ class CollectionModalComponent extends ModalComponent
                 $validatedData['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
                 $validatedData['form'] = $this->form;
                 $validatedData['collection'] = Bill::find($this->selectedBills[$i])->bill;
+                $validatedData['batch_no'] = $batch_no;
 
                 if($this->attachment)
                 {

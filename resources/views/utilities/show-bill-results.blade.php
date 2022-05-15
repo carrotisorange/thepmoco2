@@ -13,6 +13,7 @@
            
             <x-th>Particular</x-th>
             <x-th>Amount</x-th>
+            <x-th>Status</x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -36,6 +37,18 @@
                 Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
             <x-td>{{ $item->particular->particular}}</x-td>
             <x-td>{{ number_format($item->bill, 2) }}</x-td>
+            <x-td>
+                @if($item->status === 'paid')
+                <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <i class="fa-solid fa-circle-check"></i> {{
+                    $item->status }}
+                    @else
+                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                        <i class="fa-solid fa-clock"></i> {{
+                        $item->status }}
+                    </span>
+                    @endif
+            </x-td>
         </tr>
         @empty
         <tr>
