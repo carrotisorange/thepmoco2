@@ -12,7 +12,7 @@ class Bill extends Model
 
     protected $attributes = [
         'status' => 'unpaid',
-        'due_date' => Carbon::now()->addDays(7)
+        'due_date' => null
     ];
 
     public function property()
