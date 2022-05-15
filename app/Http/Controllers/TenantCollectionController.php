@@ -93,23 +93,28 @@ class TenantCollectionController extends Controller
     }
 
      public function export(Tenant $tenant, AcknowledgementReceipt $ar)
-     {
-        //return Collection::whereIn('batch_no',[$ar->colllection_batch_no])->get();
-        
+     {   
          $data = [
             'tenant' => Tenant::find($ar->tenant_uuid)->tenant,
             'mode_of_payment' => $ar->mode_of_payment,
             'user' => User::find($ar->user_id)->name,
+            'role' => User::find($ar->user_id)->role->role,
             'ar_no' => $ar->ar_no,
             'amount' => $ar->amount,
             'collections' => Collection::where('batch_no', $ar->colllection_batch_no)->first(),
             'cheque_no' => $ar->cheque_no,
             'bank' => $ar->bank,
             'date_deposited' => $ar->date_deposited,
+            'collections' => Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no',
+            $ar->collection_batch_no)->get(),
+            'remaining_balance' => Tenant::find($tenant->uuid)
+            ->bills()
+            ->where('status', 'unpaid')
+            ->sum('bill'),
          ];
 
         $pdf = PDF::loadView('tenants.collections.export', $data);
-        return $pdf->download($tenant->tenant.'ar.pdf');
+        return $pdf->download($tenant->tenant.'-ar.pdf');
 
            //return redirect('/tenant/'.$tenant->uuid.'/bills')->with('success','Collections have been recorded.');
      }

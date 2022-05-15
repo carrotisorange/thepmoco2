@@ -22,6 +22,11 @@ class Bill extends Model
         return $this->belongsTo(Unit::class, 'unit_uuid');
     }
 
+     public function collection(){
+        return $this->belongsTo(Collection::class, 'bill_id');
+     }
+
+
     public function tenant()
     {
         return $this->belongsTo(Tenant::class, 'tenant_uuid');

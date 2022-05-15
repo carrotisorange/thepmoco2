@@ -17,6 +17,10 @@ class Collection extends Model
     public function unit(){
         return $this->belongsTo(Unit::class, 'unit_uuid');
     }
+
+    public function bill(){
+        return $this->belongsTo(Bill::class, 'bill_id');
+    }
     
 
     public function tenant()

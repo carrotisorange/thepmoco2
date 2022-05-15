@@ -52,8 +52,9 @@
                 <x-label for="date_deposited">
                     Date Deposited
                 </x-label>
-                <x-form-input wire:model="date_deposited" id="date_deposited" type="date" value="{{ old('date_deposited', $date_deposited) }}" name="date_deposited" />
-            
+                <x-form-input wire:model="date_deposited" id="date_deposited" type="date"
+                    value="{{ old('date_deposited', $date_deposited) }}" name="date_deposited" />
+
                 @error('date_deposited')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -81,7 +82,8 @@
                 <x-label for="check_no">
                     Check No
                 </x-label>
-                <x-form-input wire:model="check_no" id="check_no" type="text" value="{{ old('check_no', $check_no) }}" name="check_no" />
+                <x-form-input wire:model="check_no" id="check_no" type="text" value="{{ old('check_no', $check_no) }}"
+                    name="check_no" />
 
                 @error('check_no')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -103,9 +105,11 @@
             </div>
         </div>
         @endif
+        @if($collection)
         <div class="mt-5">
             <p class="text-right">
                 <x-form-button></x-form-button>
             </p>
         </div>
+        @endif
 </form>

@@ -35,9 +35,16 @@
             line-height: 35px;
         }
 
-        p {
+        p,
+        table {
             margin-right: 80px;
             margin-left: 80px;
+        }
+
+        th,
+        td {
+            padding: 10px";
+
         }
     </style>
 </head>
@@ -72,6 +79,8 @@
             Mode of Payment: {{ $mode_of_payment }}
         </p>
 
+
+
         @if($mode_of_payment === 'cheque')
         <p>
             Cheque #: {{ $cheque_no }}
@@ -88,8 +97,48 @@
         </p>
         @endif
 
+      
         <p>
-            Received by: {{ $user }}
+            Unpaid Bills: {{ number_format($remaining_balance, 2) }}
+        </p>
+
+        <p>
+            <b>Payment Breakdown</b>
+        </p>
+        <p>
+        <table class="">
+            <thead class="bg-gray-50">
+                <tr>
+
+                    <th>Bill #</th>
+                    <th>Date Posted</th>
+                    <th>Unit</th>
+                    <th>Particular</th>
+                    <th>Period Covered</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            @foreach($collections as $item)
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <td>{{ $item->bill->bill_no }}</td>
+
+                    <td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</td>
+                    <td>{{ $item->unit->unit }}</td>
+                    <td>{{ $item->bill->particular->particular }}</td>
+                    <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
+                        Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
+                    <td>{{ number_format($item->collection,2) }}</td>
+
+
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
+        </p>
+        <br>
+        <p>
+            Received by: {{ $user }}, {{ $role }}
         </p>
 
     </main>
