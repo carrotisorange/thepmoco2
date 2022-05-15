@@ -107,9 +107,8 @@
         </p>
         <p>
         <table class="">
-            <thead class="bg-gray-50">
+           
                 <tr>
-
                     <th>Bill #</th>
                     <th>Date Posted</th>
                     <th>Unit</th>
@@ -117,9 +116,9 @@
                     <th>Period Covered</th>
                     <th>Amount</th>
                 </tr>
-            </thead>
+           
             @foreach($collections as $item)
-            <tbody class="bg-white divide-y divide-gray-200">
+         
                 <tr>
                     <td>{{ $item->bill->bill_no }}</td>
 
@@ -132,7 +131,7 @@
 
 
                 </tr>
-            </tbody>
+         
             @endforeach
         </table>
         </p>

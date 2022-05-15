@@ -128,6 +128,11 @@ class CollectionModalComponent extends ModalComponent
     public function resetForm()
     {
         $this->collection='';
+        $this->bank='';
+        $this->cheque_no='';
+        $this->attachment='';
+        $this->date_deposited ='';
+        $this->form = '';
         $this->dispatchBrowserEvent('collection-modal-component');
     }
     public function render()
