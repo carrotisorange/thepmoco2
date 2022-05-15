@@ -75,7 +75,7 @@ class BillIndexComponent extends Component
 
          $this->selectedBills = [];
 
-      session()->flash('success', 'Units Successfully Deleted!');
+        return redirect('/property/'.Session::get('property').'/bills')->with('success','Bills successfully removed.');
       }
 
       public function unpaidBills()
@@ -90,7 +90,7 @@ class BillIndexComponent extends Component
 
           $this->selectedBills = [];
 
-         session()->flash('success', 'Bills Successfully Updated!');
+      return redirect('/property/'.Session::get('property').'/bills')->with('success','Bills successfully marked as unpaid.');
         
      }
 

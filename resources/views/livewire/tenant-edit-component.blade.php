@@ -202,8 +202,31 @@
                 @enderror
         </div>
     </div>
+    @if($type === 'studying')
     <div class="mt-6 flex flex-wrap mx-3 mb-2">
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/4 px-3">
+            <x-label for="course">
+                Course
+            </x-label>
+            <x-form-input wire:model="course" id="course" type="text" name="course"
+                value="{{ old('course', $tenant_details->course) }}" />
+
+            @error('course')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="w-full md:w-1/4 px-3">
+            <x-label for="year_level">
+                Year Level
+            </x-label>
+            <x-form-input wire:model="year_level" id="year_level" type="text" name="year_level"
+                value="{{ old('year_level', $tenant_details->year_level) }}" />
+
+            @error('school')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="w-full md:w-1/4 px-3">
             <x-label for="school">
                 School
             </x-label>
@@ -214,7 +237,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/4 px-3">
             <x-label for="school_address">
                 School Address
             </x-label>
@@ -226,7 +249,9 @@
             @enderror
         </div>
     </div>
+    @endif
 
+    @if($type==='working')
     <div class="mt-6 flex flex-wrap mx-3 mb-2">
         <div class="w-full md:w-1/3 px-3">
             <x-label for="occupation">
@@ -262,6 +287,7 @@
             @enderror
         </div>
     </div>
+    @endif
 
     <div class="mt-6 flex flex-wrap mx-3 mb-2">
         <div class="w-full px-3 mb-6 md:mb-0 mt-5 flex">

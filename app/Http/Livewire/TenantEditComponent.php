@@ -36,6 +36,8 @@ class TenantEditComponent extends Component
     public $city_id;
     public $barangay;
     public $photo_id;
+    public $course;
+    public $year_level;
     public $school;
     public $school_address;
     public $occupation;
@@ -58,6 +60,8 @@ class TenantEditComponent extends Component
         $this->city_id = $tenant_details->city_id;
         $this->barangay = $tenant_details->barangay;
         $this->photo_id = $tenant_details->photo_id;
+        $this->course = $tenant_details->course;
+        $this->year_level = $tenant_details->year_level;
         $this->school = $tenant_details->school;
         $this->school_address = $tenant_details->school_address;
         $this->occupation = $tenant_details->occupation;
@@ -80,7 +84,9 @@ class TenantEditComponent extends Component
             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
             'barangay' => ['nullable'],
-              'photo_id' => 'nullable',
+            'photo_id' => 'nullable',
+            'course' => 'nullable',
+            'year_level' => 'nullable',
             'school' => 'nullable',
             'school_address' => 'nullable',
             'occupation' => 'nullable',
@@ -112,7 +118,7 @@ class TenantEditComponent extends Component
 
             DB::commit();
                 
-            return back()->with('success', 'Tenant has been updated.');
+            return redirect('/tenant/'.$this->tenant_details->uuid.'/edit')->with('success', 'Tenant has been updated.');
 
         }catch(\Exception $e){
             DB::rollback();

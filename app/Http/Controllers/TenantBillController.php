@@ -55,6 +55,10 @@ class TenantBillController extends Controller
             $bill_no = Property::find(Session::get('property'))->bills->max('bill_no');
 
             $attributes['bill_no']= $bill_no+1;
+             if($request->particular_id == 8)
+             {
+              $attributes['bill'] = -($request->bill);
+             }
             $attributes['reference_no']= $tenant->bill_reference_no;
             $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
             $attributes['user_id'] = auth()->user()->id;

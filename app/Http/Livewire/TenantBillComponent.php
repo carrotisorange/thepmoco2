@@ -29,7 +29,7 @@ class TenantBillComponent extends Component
 
         $this->selectedBills = [];
 
-        session()->flash('success', 'Bills Successfully Deleted!');
+          return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills Successfully removed.');
      }
 
      public function exportBills()
@@ -51,7 +51,7 @@ class TenantBillComponent extends Component
 
           $this->selectedBills = [];
 
-         session()->flash('success', 'Bills Successfully Updated!');
+          return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills successfully marked as unpaid.');
         
      }
 

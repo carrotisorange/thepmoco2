@@ -34,16 +34,6 @@ class CollectionModalComponent extends ModalComponent
         $this->collection = $total;
     }
 
-    // public function hydrateTotal()
-    // {
-    //     $this->total = $this->total-$this->collection;
-    // }
-
-    //   public function updatedTotal($total)
-    //   {
-    //   $this->total = $total-$this->collection;
-    //   }
-
     protected function rules()
     {
         return [
@@ -107,9 +97,8 @@ class CollectionModalComponent extends ModalComponent
                
             }
             
-            $this->resetForm();
         
-            return back()->with('success','Collections have been recorded.');
+            return redirect('/tenant/'.$this->tenant.'/bills')->with('success','Collections have been recorded.');
        }catch(\Exception $e)
        {
             ddd($e);
