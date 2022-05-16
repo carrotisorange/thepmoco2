@@ -37,14 +37,17 @@
         }
 
         p,
-         {
+            {
             margin-right: 50px;
             margin-left: 50px;
         }
 
-        table {
-        margin-right: 80px;
-        margin-left: 50px;
+        table,
+        th,
+        td {
+            margin-right: 80px;
+            margin-left: 50px;
+            border: 1px solid black;
         }
 
         th,
@@ -68,7 +71,7 @@
     </header>
 
     <footer>
-        <h5 >
+        <h5>
             Prepared by: {{ $user }}, {{ $role }}, {{ auth()->user()->mobile_number }}
         </h5>
         {{ Session::get('property_name') }} Copyright &copy;
@@ -77,9 +80,10 @@
 
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
-        <br><br><br>
+        <hr>
+
         <p>
-            Date #: {{ Carbon\Carbon::now() }}
+            Date: {{ Carbon\Carbon::now() }}
         </p>
 
         <p>
@@ -119,8 +123,8 @@
             @endforeach
         </table>
         </p>
-    
-   
+
+
 
     </main>
 </body>
