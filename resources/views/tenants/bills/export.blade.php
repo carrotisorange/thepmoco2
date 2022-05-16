@@ -7,7 +7,8 @@
             margin: 100px 25px;
         }
 
-        header {
+        header,
+        h5 {
             position: fixed;
             top: -60px;
             left: 0px;
@@ -36,9 +37,14 @@
         }
 
         p,
+         {
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+
         table {
-            margin-right: 80px;
-            margin-left: 80px;
+        margin-right: 80px;
+        margin-left: 50px;
         }
 
         th,
@@ -53,15 +59,25 @@
     <!-- Define header and footer blocks before your content -->
     <header>
         {{ Session::get('property_name') }} | Statements of Account
+        <br>
+        <h5>{{ App\Models\Property::find(Session::get('property'))->country->country }},
+            {{ App\Models\Property::find(Session::get('property'))->province->province }},
+            {{ App\Models\Property::find(Session::get('property'))->city->city }},
+            {{ App\Models\Property::find(Session::get('property'))->address }}
+        </h5>
     </header>
 
     <footer>
+        <h5 >
+            Prepared by: {{ $user }}, {{ $role }}, {{ auth()->user()->mobile_number }}
+        </h5>
         {{ Session::get('property_name') }} Copyright &copy;
         <?php echo date("Y");?>
     </footer>
 
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
+        <br><br><br>
         <p>
             Date #: {{ Carbon\Carbon::now() }}
         </p>
@@ -72,6 +88,7 @@
         <p>
             Total Bills: {{ number_format($bills->sum('bill'), 2) }}
         </p>
+        <br>
         <p>
             <b>Bills Breakdown</b>
         </p>
@@ -102,10 +119,8 @@
             @endforeach
         </table>
         </p>
-        <br>
-        <p>
-            Prepared by: {{ $user }}, {{ $role }}
-        </p>
+    
+   
 
     </main>
 </body>

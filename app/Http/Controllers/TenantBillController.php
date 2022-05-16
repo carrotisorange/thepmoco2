@@ -101,6 +101,6 @@ class TenantBillController extends Controller
          ];
 
         $pdf = PDF::loadView('tenants.bills.export', $data);
-        return $pdf->download($tenant->tenant.'-soa.pdf');
+        return $pdf->stream($tenant->tenant.'-soa.pdf');
     }
 }
