@@ -144,7 +144,7 @@
                                 <div class="mt-5">
                                     <p class="text-right">
                                         <x-button form="edit-form">
-                                            <i class="fa-solid fa-circle-check"></i>&nbspSubmit
+                                            <i class="fa-solid fa-circle-check"></i>&nbspSave
                                         </x-button>
                                     </p>
                                 </div>

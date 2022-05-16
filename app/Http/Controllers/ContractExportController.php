@@ -50,7 +50,7 @@ class ContractExportController extends Controller
         ];
 
           $pdf = \PDF::loadView('contracts.export', $data);
-          return $pdf->stream($contract->tenant->tenant.'.pdf');
+          return $pdf->download($contract->tenant->tenant.'-contract.pdf');
      
 
         //   $pdf = \PDF::loadView('contracts.export', $data)
