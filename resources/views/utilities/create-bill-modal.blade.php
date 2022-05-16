@@ -68,7 +68,7 @@
                                 @endforeach
                             </x-form-select>
 
-                            @error('particular_id')
+                            @error('unit_uuid')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>

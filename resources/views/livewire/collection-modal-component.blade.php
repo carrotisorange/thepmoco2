@@ -28,7 +28,7 @@
                     Amount
                 </x-label>
                 <x-form-input wire:model="collection" id="collection" type="number"
-                    value="{{ old('collection', $total) }}" name="collection" min="0" />
+                    value="{{ old('collection', $total) }}" name="collection" min="1" step="0.001"/>
 
                 @error('collection')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

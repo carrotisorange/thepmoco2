@@ -40,7 +40,7 @@ class CollectionModalComponent extends ModalComponent
     protected function rules()
     {
         return [
-            'collection' => 'required|integer|min:1',
+            'collection' => 'required|numeric|min:1',
             'bank' => 'nullable',
             'check_no' => 'nullable',
             'attachment' => 'nullable'

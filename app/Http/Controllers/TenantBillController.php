@@ -41,7 +41,7 @@ class TenantBillController extends Controller
     {
 
          $attributes = request()->validate([
-            'bill' => 'required|integer|min:1',
+            'bill' => 'required|numeric|min:1',
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'start' => 'required|date',
