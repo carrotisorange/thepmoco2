@@ -102,7 +102,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('tenant/{tenant:uuid}', [TenantController::class, 'show']);
     Route::get('tenant/{tenant}/contracts', TenantContractController::class);
     Route::get('tenant/{tenant}/bills', [TenantBillController::class, 'index']);
-     Route::get('tenant/{tenant}/bill/create', [TenantBillController::class, 'store']);
+    Route::get('tenant/{tenant}/bill/create', [TenantBillController::class, 'store']);
+    Route::get('tenant/{tenant}/bill/export', [TenantBillController::class, 'export']);
     Route::get('tenant/{tenant}/collections', [TenantCollectionController::class, 'index']);
     Route::get('tenant/{tenant}/collection/store', [TenantCollectionController::class, 'store']);
     Route::get('tenant/{tenant}/ar/{ar}/export', [TenantCollectionController::class, 'export']);

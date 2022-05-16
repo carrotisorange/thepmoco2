@@ -36,7 +36,7 @@ class TenantBillComponent extends Component
 
      public function exportBills()
      {
-         return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills successfully marked as unpaid.');
+         return redirect('/tenant/'.$this->tenant->uuid.'/bill/export')->with('success','Bills successfully marked as unpaid.');
      }
 
      public function unpayBills()
@@ -99,7 +99,7 @@ class TenantBillComponent extends Component
             'total' => $total,
             'total_count' => $total_count,
             'total_paid_bills' => $bills->where('status', 'paid')->sum('bill'),
-            'total_unpaid_bills' => $bills->where('status', 'unpaid')->sum('bill'),
+            'total_unpaid_bills' => $bills->where('status', 'unpaid'),
         ]);
     }
 }

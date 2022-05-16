@@ -1,6 +1,6 @@
 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
     Reference # : <b> {{ $tenant->bill_reference_no }}</b>,
-    Total Unpaid Bills: <b> {{ number_format($total_unpaid_bills,2)}}</b>,
+    Total Unpaid Bills: <b> {{ number_format($total_unpaid_bills->sum('bill'),2)}}</b>,
     Total Paid Bills: <b> {{ number_format($total_paid_bills,2)}}</b>
     <div class="mt-5">
         @if($bills)
@@ -18,16 +18,17 @@
         @endif
 
         <br>
-
+        `@if($total_unpaid_bills->count())
+            <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
+                Export ({{ $total_unpaid_bills->count() }})
+            </x-button>
+        @endif
         @if($selectedBills)
 
         <x-button onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
             Remove ({{ count($selectedBills) }})
         </x-button>
 
-        {{-- <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
-            Export ({{ count($selectedBills) }})
-        </x-button> --}}
 
         @if($total_count)
         <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
@@ -40,7 +41,7 @@
 
 
         @can('treasury')
-        @if($total_unpaid_bills && $total)
+        @if($total_unpaid_bills->sum('bill') && $total)
         <x-button
             wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
             <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})

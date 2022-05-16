@@ -10,8 +10,10 @@ use Illuminate\Validation\Rule;
 use DB;
 use App\Models\Bill;
 use App\Models\Property;
+use App\Models\User;
 use Carbon\Carbon;
 use LivewireUI\Modal\ModalComponent;
+use \PDF;
 
 class TenantBillController extends Controller
 {
@@ -76,5 +78,29 @@ class TenantBillController extends Controller
             ddd($e);
              return back()->with('error','Cannot perform the action. Please try again.');
         }
+    }
+
+    public function export(Tenant $tenant)
+    {
+        $data = [
+            'tenant' => $tenant->tenant,
+            // 'mode_of_payment' => $ar->mode_of_payment,
+            'user' => User::find(auth()->user()->id)->name,
+            'role' => User::find(auth()->user()->id)->role->role,
+            // 'ar_no' => $ar->ar_no,
+            // 'amount' => $ar->amount,
+            // 'cheque_no' => $ar->cheque_no,
+            // 'bank' => $ar->bank,
+            // 'date_deposited' => $ar->date_deposited,
+            // 'collections' => Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no',
+            // $ar->collection_batch_no)->whereDate('created_at',$ar->created_at)->get(),
+            'bills' => Tenant::find($tenant->uuid)
+            ->bills()
+            ->where('status', 'unpaid')
+            ->get(),
+         ];
+
+        $pdf = PDF::loadView('tenants.bills.export', $data);
+        return $pdf->download($tenant->tenant.'-soa.pdf');
     }
 }
