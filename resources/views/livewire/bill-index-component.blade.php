@@ -22,7 +22,7 @@
             </x-button>
 
             @if($total_count)
-            <x-button onclick="confirmMessage()" wire:click="unpaidBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
+            <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
                 Mark as Unpaid ({{ $total_count }})
             </x-button>
             @endif

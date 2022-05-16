@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Bill;
 use App\Models\Particular;
 use App\Models\Collection;
+use App\Models\AcknowledgementReceipt; 
 use Session;
 use DB;
 
@@ -78,12 +79,16 @@ class BillIndexComponent extends Component
         return redirect('/property/'.Session::get('property').'/bills')->with('success','Bills successfully removed.');
       }
 
-      public function unpaidBills()
+      public function unpayBills()
      {
          Bill::whereIn('id', $this->selectedBills)
          ->update([
             'status' => 'unpaid'
          ]);
+
+          $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
+
+          AcknowledgementReceipt::where('collection_batch_no', $collection_batch_no)->delete();
 
          Collection::whereIn('bill_id', $this->selectedBills)
            ->delete();
