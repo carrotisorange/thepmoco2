@@ -15,7 +15,7 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li>{{$unit->unit }}</a>
                                 </li>
-                              
+
                             </ol>
                         </nav>
                     </h2>
@@ -96,8 +96,8 @@
                                     <option value="{{ $category->id }}" {{ old('category_id', $unit->category_id) ==
                                         $category->id ? 'selected' : '' }}>
                                         {{ $category->category }}
-
-                                        @endforeach
+                                    </option>
+                                    @endforeach
                                 </x-form-select>
 
                                 @error('category_id')

@@ -118,8 +118,12 @@
                                                     name="category_id{{ $category_id++  }}">
                                                     <option value="">Select one</option>
                                                     @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->category
+                                                    {{-- <option value="{{ $category->id }}">{{ $category->category
                                                         }}
+                                                    </option> --}}
+                                                    <option value="{{ $category->id }}" {{ old('category_id', $category->id) ==
+                                                        2 ? 'selected' : '' }}>
+                                                        {{ $category->category }}
                                                     </option>
                                                     @endforeach
                                                 </x-table-select>
