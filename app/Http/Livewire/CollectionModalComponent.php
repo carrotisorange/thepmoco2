@@ -65,7 +65,7 @@ class CollectionModalComponent extends ModalComponent
             {
                 $this->dispatchBrowserEvent('collection-modal-component');
 
-                return back()->with('error','The collection is less than the bill.');
+                return redirect('/tenant/'.$this->tenant.'/bills')->with('error','The collection is less than the bill.');
 
             }
 
