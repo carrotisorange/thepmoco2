@@ -66,7 +66,7 @@
         <h5>{{ App\Models\Property::find(Session::get('property'))->country->country }},
             {{ App\Models\Property::find(Session::get('property'))->province->province }},
             {{ App\Models\Property::find(Session::get('property'))->city->city }},
-            {{ App\Models\Property::find(Session::get('property'))->address }}
+            {{ App\Models\Property::find(Session::get('property'))->barangay }}
         </h5>
     </header>
 
