@@ -89,7 +89,7 @@
             Date: {{ Carbon\Carbon::now() }}
         </p>
         <p>
-            Amount: {{ number_format($amount, 2) }}
+            Amount Paid: {{ number_format($amount, 2) }}
         </p>
         <p>
             Tenant: {{ $tenant }}
