@@ -39,7 +39,7 @@
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-12 bg-white border-b border-gray-200">
                     <div>
-                        @livewire('property-edit-component', 'property_details' => $property_details)
+                        @livewire('property-edit-component', ['property_details' => $property_details])
                     </div>
                     </form>
                 </div>

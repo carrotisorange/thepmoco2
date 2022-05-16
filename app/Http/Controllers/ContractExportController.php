@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Session;
 use App\Models\Bill;
+use App\Models\Tenant;
 
 use App\Models\Contract;
 
@@ -43,23 +44,14 @@ class ContractExportController extends Controller
             'moveout_reason' => $contract->moveout_reason,
             'user' => $contract->user->name,
             'bills' => $bills,
-            'reference_no' => $reference_no
+            'reference_no' => $reference_no,
+            'guardians' => Tenant::find($contract->tenant_uuid)->guardians,
+            'references' => Tenant::find($contract->tenant_uuid)->references,
         ];
 
           $pdf = \PDF::loadView('contracts.export', $data);
-          $pdf->setOptions([
-          'header-right' => '[date]',
-          'header-left' => 'Contract | [page]',
-          'footer-right' => Session::get('property_name')
-          ]);
-
-         try
-         {
-             return $pdf->download($contract->tenant->tenant.'.pdf');
-         }catch(\Exception $e)
-         {
-            ddd($e);
-         }
+          return $pdf->stream($contract->tenant->tenant.'.pdf');
+     
 
         //   $pdf = \PDF::loadView('contracts.export', $data)
         //   ->setPaper('a5', 'portrait');

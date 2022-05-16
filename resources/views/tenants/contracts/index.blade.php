@@ -121,9 +121,9 @@
                                                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
 
                                                             <li>
-                                                                <a href="/contract/{{ $item->uuid }}/edit"
+                                                                <a href="/contract/{{ $item->uuid }}/export"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-file-contract"></i>&nbspShow
+                                                                        class="fa-solid fa-file-contract"></i>&nbspExport
                                                                 </a>
                                                             </li>
 

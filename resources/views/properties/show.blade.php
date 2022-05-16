@@ -36,6 +36,10 @@
                         <i class="fas fa-arrow-alt-circle-left"></i>&nbsp Back
                     </x-button>
 
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/edit'">
+                        <i class="fas fa-edit"></i>&nbsp Property
+                    </x-button>
+
                     @can('accountowner')
                     <x-button
                         onclick="window.location.href='/property/{{ Session::get('property') }}/team/{{ Str::random(8) }}/create'">
@@ -405,7 +409,8 @@
                                                                                         @else
                                                                                         <span
                                                                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                                                           <i class="fa-solid fa-circle-xmark"></i>
+                                                                                            <i
+                                                                                                class="fa-solid fa-circle-xmark"></i>
                                                                                             {{
                                                                                             $contract->status }}
                                                                                         </span>

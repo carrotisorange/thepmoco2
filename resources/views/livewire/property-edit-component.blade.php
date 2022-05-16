@@ -38,7 +38,7 @@
         @enderror
     </div>
 
-    <div class="mt-5">
+    {{-- <div class="mt-5">
         <x-label for="type_id" :value="__('Type')" />
 
         <x-form-select wire:model="type_id" name="type_id" id="type_id">
@@ -53,7 +53,7 @@
         @error('type_id')
         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
         @enderror
-    </div>
+    </div> --}}
 
     <div class="mt-5">
         <div class="mt-6 flex flex-wrap mb-2">

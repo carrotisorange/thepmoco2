@@ -1,115 +1,205 @@
-<!DOCTYPE html>
+<html>
 
 <head>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /** Define the margins of your page **/
+        @page {
+            margin: 100px 25px;
+        }
+
+        header,
+        h5 {
+            position: fixed;
+            top: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+
+            /** Extra personal styles **/
+            background-color: ;
+            color: black;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+
+            /** Extra personal styles **/
+            background-color: #;
+            color: black;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        p,
+            {
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+
+        table,
+        th,
+        td {
+            margin-right: 80px;
+            margin-left: 50px;
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px";
+
+        }
+    </style>
 </head>
 
 <body>
-    <div class="py-6">
-        <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <div class="">
-                <div class="">
-                    <div class="mt-5">
-                        <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
-                            <x-label for="tenant">
-                                Tenant <span class="text-red-600">*</span>
-                            </x-label>
-                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
-                                value="{{ $tenant }}" />
-                            <br>
-                            <x-label for="tenant">
-                                Unit <span class="text-red-600">*</span>
-                            </x-label>
-                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
-                                value="{{ $unit }}" />
-                            <br>
-                            <x-label for="tenant">
-                                Duration <span class="text-red-600">*</span>
-                            </x-label>
+    <!-- Define header and footer blocks before your content -->
+    <header>
+        {{ Session::get('property_name') }} | Tenant Contract
+        <br>
+        <h5>{{ App\Models\Property::find(Session::get('property'))->country->country }},
+            {{ App\Models\Property::find(Session::get('property'))->province->province }},
+            {{ App\Models\Property::find(Session::get('property'))->city->city }},
+            {{ App\Models\Property::find(Session::get('property'))->address }}
+        </h5>
+    </header>
 
-                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
-                                value="{{ Carbon\Carbon::parse($start)->format('M d, Y').'-'.Carbon\Carbon::parse($end)->format('M d, Y') }}" />
-                            <br>
-                            <x-label for="tenant">
-                                Rent/month <span class="text-red-600">*</span>
-                            </x-label>
-                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant" value="{{
-                                number_format($rent, 2) }}" />
-                            <br>
-                            <x-label for="tenant">
-                                Discount <span class="text-red-600">*</span>
-                            </x-label>
-                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
-                                value="{{number_format($discount, 2) }}" />
-                            <br>
-                            <x-label for="tenant">
-                                Status <span class="text-red-600">*</span>
-                            </x-label>
-                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
-                                value="{{ $status }}" />
-                            <br>
-                            <x-label for="tenant">
-                                Interaction <span class="text-red-600">*</span>
-                            </x-label>
-                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
-                                value="{{ $interaction->interaction }}" />
-                            <br>
-                            <x-label for="tenant">
-                                Assisted by: <span class="text-red-600">*</span>
-                            </x-label>
-                            <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
-                                value="{{ $user }}" />
-                            <br>
+    <footer>
+        <h5>
+            Prepared by: {{ auth()->user()->name }}, {{ auth()->user()->role->role}}, {{ auth()->user()->mobile_number
+            }}
+        </h5>
+        {{ Session::get('property_name') }} Copyright &copy;
+        <?php echo date("Y");?>
+    </footer>
 
-                            <b>Move-in Charges</b>
-                            <div class="flex flex-col">
-                                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                            <table class="min-w-full divide-y divide-gray-200">
-                                                <?php $ctr =1; ?>
-                                                <thead class="bg-gray-50">
-                                                    <tr>
-                                                        <x-th>#</x-th>
-                                                        <x-th>Bill #</x-th>
-                                                        <x-th>Particular</x-th>
-                                                        <x-th>Period Covered</x-th>
-                                                        <x-th>Amount</x-th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="bg-white divide-y divide-gray-200">
-                                                    @forelse ($bills as $bill)
+    <!-- Wrap the content of your PDF inside a main tag -->
+    <main>
+        <hr>
 
-                                                    <tr>
-                                                        <x-td>{{ $ctr++ }}</x-td>
-                                                        <x-td>{{ $bill->bill_no }}</x-td>
-                                                        <x-td>{{ $bill->particular }}</x-td>
-                                                        <x-td>
-                                                            {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').' -
-                                                            '.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
-                                                        </x-td>
-                                                        <x-td>{{ number_format($bill->bill, 2) }}</x-td>
-                                                    </tr>
-                                                    @empty
-                                                    <x-td>No data found!</x-td>
-                                                    </tr>
+        <p>
+            Date: {{ Carbon\Carbon::now() }}
+        </p>
 
-                                                    @endforelse
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <p>
+            Tenant: {{ $tenant }}
+        </p>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
+        <p>
+            Unit: {{ $unit }}
+        </p>
+        <p>
+            Duration: {{ Carbon\Carbon::parse($start)->format('M d, Y').'-'.Carbon\Carbon::parse($end)->format('M d, Y')
+            }}
+        </p>
+        <p>
+            Rent/mo: {{ number_format($rent, 2) }}
+        </p>
+        <p>
+            Status: {{ $status }}
+        </p>
+        <p>
+            Source of awareness: {{ $interaction->interaction }}
+        </p>
+
+        <p>
+            <b>Bills Breakdown</b>
+        </p>
+        <p>
+        <table class="">
+
+            <tr>
+                <th>Bill #</th>
+                <th>Date Posted</th>
+                <th>Unit</th>
+                <th>Particular</th>
+                <th>Period Covered</th>
+                <th>Amount</th>
+            </tr>
+
+            @forelse($bills as $item)
+
+            <tr>
+                <td>{{ $item->bill_no }}</td>
+
+                <td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</td>
+                <td>{{ $item->unit->unit }}</td>
+                <td>{{ $item->particular->particular }}</td>
+                <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
+                    Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
+                <td>{{ number_format($item->bill,2) }}</td>
+                @empty
+                <td>No data found!</td>
+
+            </tr>
+
+            @endforelse
+        </table>
+        </p>
+
+        <p>
+            <b>Guardians</b>
+        </p>
+        <p>
+        <table class="">
+
+            <tr>
+                <th>Name</th>
+                <th>Relationship</th>
+                <th>Email</th>
+                <th>Mobile</th>
+
+                @forelse($guardians as $item)
+            </tr>
+            <tr>
+                <td>{{ $item->guardian }}</td>
+                <td>{{ $item->relationship->relationship }}</td>
+                <td>{{ $item->email }}</td>
+                <td>{{ $item->mobile_number }}</td>
+                @empty
+                <td>No data found!</td>
+            </tr>
+
+            @endforelse
+        </table>
+        </p>
+
+        <p>
+            <b>References</b>
+        </p>
+        <p>
+        <table class="">
+
+            <tr>
+                <th>Name</th>
+                <th>Relationship</th>
+                <th>Email</th>
+                <th>Mobile</th>
+            </tr>
+            @forelse($references as $item)
+
+            <tr>
+                <td>{{ $item->reference }}</td>
+                <td>{{ $item->relationship->relationship }}</td>
+                <td>{{ $item->email }}</td>
+                <td>{{ $item->mobile_number }}</td>
+                @empty
+                <td>No data found!</td>
+            </tr>
+
+            @endforelse
+        </table>
+        </p>
+
+
+
+    </main>
 </body>
 
 </html>
