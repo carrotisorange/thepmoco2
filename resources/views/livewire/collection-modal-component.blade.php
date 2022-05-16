@@ -6,6 +6,21 @@
     <div>
         <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
+            <div class="w-full md:w-full px-3">
+                <x-label for="created_at">
+                    Payment made
+                </x-label>
+                <x-form-input wire:model="created_at" id="created_at" type="date"
+                    value="{{ old('created_at', $total) }}" name="created_at"/>
+
+                @error('created_at')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
+        <div class="mt-5 flex flex-wrap -mx-3 mb-6">
+
             <div class="w-full md:w-1/2 px-3">
                 <x-label for="particular_id">
                     Mode of payment
@@ -28,7 +43,7 @@
                     Amount
                 </x-label>
                 <x-form-input wire:model="collection" id="collection" type="number"
-                    value="{{ old('collection', $total) }}" name="collection" min="1" step="0.001"/>
+                    value="{{ old('collection', $total) }}" name="collection" min="1" step="0.001" />
 
                 @error('collection')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

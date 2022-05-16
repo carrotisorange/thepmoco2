@@ -22,6 +22,7 @@ class CollectionModalComponent extends ModalComponent
     public $tenant;
     public $bank;
     public $check_no;
+    public $created_at;
     public $date_deposited;
     public $total;
     public $attachment;
@@ -35,6 +36,7 @@ class CollectionModalComponent extends ModalComponent
         $this->form = 'cash';
         $this->total = $total;
         $this->collection = $total;
+        $this->created_at = Carbon::now()->format('Y-m-d');
     }
 
     protected function rules()
@@ -43,7 +45,8 @@ class CollectionModalComponent extends ModalComponent
             'collection' => 'required|numeric|min:1',
             'bank' => 'nullable',
             'check_no' => 'nullable',
-            'attachment' => 'nullable'
+            'attachment' => 'nullable',
+            'created_at' => 'required',
       ];
     }
 
@@ -110,14 +113,14 @@ class CollectionModalComponent extends ModalComponent
                     'cheque_no' => $this->check_no,
                     'bank' => $this->bank,
                     'date_deposited' => $this->date_deposited,
+                    'created_at' => $this->created_at,
             
                 ]);
             
             $this->resetForm();
 
             return redirect('/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Collections have been recorded.');
-        
-            // return redirect('/tenant/'.$this->tenant.'/bills')->with('success','Collections have been recorded.');
+    
        }catch(\Exception $e)
        {
             ddd($e);

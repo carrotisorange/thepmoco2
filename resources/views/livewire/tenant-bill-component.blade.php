@@ -54,7 +54,7 @@
         {{-- <button wire:click="$emit('openModal', 'collection-modal-component')">Open Modal</button> --}}
         @endif
     </div>
-    {{ $bills->links() }}
+
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">

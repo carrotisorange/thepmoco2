@@ -86,7 +86,7 @@
             AR #: {{ $ar_no }}
         </p>
         <p>
-            Date: {{ Carbon\Carbon::now() }}
+            Payment Made: {{ Carbon\Carbon::parse($created_at)->format('M d, Y') }}
         </p>
         <p>
             Amount Paid: {{ number_format($amount, 2) }}
