@@ -61,14 +61,14 @@ class CollectionModalComponent extends ModalComponent
        try{
             sleep(1);
 
-            $ar_no = Property::find(Session::get('property'))->collections->max('ar_no')+1;
+            $ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
 
             $batch_no = Carbon::now()->timestamp.''.$ar_no;
 
             $totalSelectedBills = Bill::whereIn('id',$this->selectedBills)->where('status', 'unpaid')->sum('bill');
 
-            //full payment 
-            if(count($this->selectedBills) > 1 && $totalSelectedBills <= $this->collection) {
+            //full payment /count($this->selectedBills) > 1 &&
+            if($totalSelectedBills <= $this->collection) {
             
                 //check if the payment is sufficient to pay the selected bills
                 if($this->collection<$totalSelectedBills)

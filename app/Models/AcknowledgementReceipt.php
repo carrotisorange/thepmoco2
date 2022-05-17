@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class AcknowledgementReceipt extends Model
 {
     use HasFactory;
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'property_uuid');
+    }
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, 'tenant_uuid');
+    }
+
 }

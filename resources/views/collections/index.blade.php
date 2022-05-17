@@ -32,7 +32,7 @@
     <div class="py-12">
 
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            Total Collections: <b> {{ number_format($collections->sum('collection'),
+            Total Collections: <b> {{ number_format($collections->sum('amount'),
                 2)}}</b>
             <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white border-b border-gray-200">
@@ -63,9 +63,9 @@
                                                 <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
                                                 {{-- <x-td>{{ $item->bill_id }}</x-td> --}}
                                              
-                                                <x-td>{{ $item->form }}</x-td>
+                                                <x-td>{{ $item->mode_of_payment }}</x-td>
                                                 <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}  </x-td>
-                                                <x-td>{{ number_format($item->collection,2) }}</x-td>
+                                                <x-td>{{ number_format($item->amount,2) }}</x-td>
                                                 @empty
                                                 <x-td>No data found!</x-td>
                                             </tr>

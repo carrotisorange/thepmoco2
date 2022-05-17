@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcknowledgementReceipt;
 use App\Models\Collection;
 use App\Models\Property;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = Property::find(Session::get('property'))->collections;
+        $collections = Property::find(Session::get('property'))->acknowledgementreceipts;
 
           //$collections = Property::find(Session::get('property'))->collections()->get()->groupBy('batch_no');
         // $collections = Collection::join('tenants', 'collections.tenant_uuid', 'tenants.uuid')
