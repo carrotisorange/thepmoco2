@@ -1,5 +1,5 @@
 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-    Reference # : <b> {{ $tenant->bill_reference_no }}</b>,
+    Reference # : <b> {{ $tenant->bill_reference_no }}</b>
     Total Unpaid Bills: <b> {{ number_format($total_unpaid_bills->sum('bill'),2)}}</b>,
     Total Paid Bills: <b> {{ number_format($total_paid_bills,2)}}</b>
     <div class="mt-5">
