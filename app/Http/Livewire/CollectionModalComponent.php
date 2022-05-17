@@ -68,7 +68,7 @@ class CollectionModalComponent extends ModalComponent
             $totalSelectedBills = Bill::whereIn('id',$this->selectedBills)->where('status', 'unpaid')->sum('bill');
 
             //full payment /count($this->selectedBills) > 1 &&
-            if($totalSelectedBills <= $this->collection) {
+            // if($totalSelectedBills <= $this->collection) {
             
                 //check if the payment is sufficient to pay the selected bills
                 if($this->collection<$totalSelectedBills)
@@ -110,41 +110,41 @@ class CollectionModalComponent extends ModalComponent
                       
 
             //partial payment
-            }else{  
+            // }else{  
 
-                $bill = Bill::find($this->selectedBills[0]);
-                $new_bill= $bill->replicate();
-                $new_bill->bill_no = $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1; 
-                $new_bill->bill = Bill::find($this->selectedBills[0])->bill - $this->collection;
-                $new_bill->status= 'unpaid';
-                $new_bill->save();
+            //     $bill = Bill::find($this->selectedBills[0]);
+            //     $new_bill= $bill->replicate();
+            //     $new_bill->bill_no = $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1; 
+            //     $new_bill->bill = Bill::find($this->selectedBills[0])->bill - $this->collection;
+            //     $new_bill->status= 'unpaid';
+            //     $new_bill->save();
 
-                Bill::where('id', $this->selectedBills[0])
-                ->update([
-                    'bill' => $this->collection,
-                    'status' => 'paid'
-                ]);
+            //     Bill::where('id', $this->selectedBills[0])
+            //     ->update([
+            //         'bill' => $this->collection,
+            //         'status' => 'paid'
+            //     ]);
 
-                 $validatedData['tenant_uuid']= $this->tenant;
-                 $validatedData['unit_uuid']= Bill::find($this->selectedBills[0])->unit_uuid;
-                 $validatedData['property_uuid'] = Session::get('property');
-                 $validatedData['user_id'] = auth()->user()->id;
-                 // $validatedData['ar_no'] = $ar_no++;
-                 $validatedData['bill_id'] = $this->selectedBills[0];
-                 $validatedData['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
-                 $validatedData['form'] = $this->form;
-                 $validatedData['collection'] = Bill::find($this->selectedBills[0])->bill;
-                 $validatedData['batch_no'] = $batch_no;
+            //      $validatedData['tenant_uuid']= $this->tenant;
+            //      $validatedData['unit_uuid']= Bill::find($this->selectedBills[0])->unit_uuid;
+            //      $validatedData['property_uuid'] = Session::get('property');
+            //      $validatedData['user_id'] = auth()->user()->id;
+            //      // $validatedData['ar_no'] = $ar_no++;
+            //      $validatedData['bill_id'] = $this->selectedBills[0];
+            //      $validatedData['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
+            //      $validatedData['form'] = $this->form;
+            //      $validatedData['collection'] = Bill::find($this->selectedBills[0])->bill;
+            //      $validatedData['batch_no'] = $batch_no;
 
-                 if($this->attachment)
-                 {
-                    $validatedData['attachment'] = $this->attachment->store('attachments');
-                 }
+            //      if($this->attachment)
+            //      {
+            //         $validatedData['attachment'] = $this->attachment->store('attachments');
+            //      }
 
-                 //save the payment
-                 Collection::create($validatedData);
+            //      //save the payment
+            //      Collection::create($validatedData);
                 
-            }
+            // }
             $ar = AcknowledgementReceipt::create([
             'tenant_uuid' => $this->tenant,
             'amount' => $this->collection,
