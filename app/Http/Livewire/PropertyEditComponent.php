@@ -24,11 +24,11 @@ class PropertyEditComponent extends Component
     public $property;
     public $type_id;
     public $thumbnail;
+    public $description;
     public $tenant_contract;
     public $owner_contract;
     public $country_id;
     public $province_id;
-    public $status;
     public $city_id;
     public $barangay;
 
@@ -36,7 +36,7 @@ class PropertyEditComponent extends Component
     {
         $this->property = $property_details->property;
         $this->type_id = $property_details->type_id;
-        $this->thumbnai = $property_details->thumbnai;
+        $this->thumbnail = $property_details->thumbnail;
 
         $this->tenant_contract = $property_details->tenant_contract;
         $this->owner_contract = $property_details->owner_contract;
@@ -50,16 +50,16 @@ class PropertyEditComponent extends Component
     protected function rules()
     {
         return [
-            'property' => ['required', 'string', 'max:255'],
-            'type_id' => ['required', Rule::exists('types', 'id')],
-            'thumbnail' => 'nullable|image',
-            'status' => 'required',
-            'tenant_contract' => 'nullable|mimes:pdf',
-            'owner_contract' => 'nullable|mimes:pdf',
-            'country_id' => ['nullable', Rule::exists('countries', 'id')],
-            'province_id' => ['nullable', Rule::exists('provinces', 'id')],
-            'city_id' => ['nullable', Rule::exists('cities', 'id')],
-            'barangay' => ['nullable'],
+           'property' => 'required',
+           'type_id' => ['required', Rule::exists('types', 'id')],
+           'thumbnail' => 'nullable',
+           'tenant_contract' => 'nullable|mimes:pdf',
+           'owner_contract' => 'nullable|mimes:pdf',
+           'description' => 'nullable',
+           'country_id' => ['required', Rule::exists('countries', 'id')],
+           'province_id' => ['required', Rule::exists('provinces', 'id')],
+           'city_id' => ['nullable', Rule::exists('cities', 'id')],
+           'barangay' => ['required'],
         ];
     }
 
@@ -71,25 +71,40 @@ class PropertyEditComponent extends Component
     public function updateForm()
     {
         sleep(1);
+
+        if(!$this->country_id)
+        {
+            $validatedData['country_id'] = '247';
+        }
+
+        if(!$this->province_id)
+        {
+            $validatedData['province_id'] = '4121';
+        }
+
+        if(!$this->city_id)
+        {
+            $validatedData['city_id'] = '48315';
+        }
+
+        if(!$this->thumbnail){
+            $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
+        }else{
+            $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
+        }
+
+        if($this->tenant_contract){
+            $validatedData['tenant_contract'] = $this->tenant_contract->store('tenant_contracts');
+        }
+
+        if($this->owner_contract){
+            $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
+        }
         
         try{
             DB::beginTransaction();
+
             $validatedData = $this->validate();
-
-            if($this->thumbnail)
-            {
-                $validatedData['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
-            }
-
-            if($this->tenant_contract)
-            {
-                $validatedData['tenant_contract'] = request()->file('tenant_contract')->store('tenant_contracts');
-            }
-
-            if($this->owner_contract)
-            {
-                $validatedData['owner_contract'] = request()->file('owner_contract')->store('owner_contracts');
-            }
 
             $this->property_details->update($validatedData);
 
@@ -110,7 +125,7 @@ class PropertyEditComponent extends Component
             'types' => Type::all(),
             'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
             'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
-            'countries' => Country::orderBy('country', 'ASC')->get(),
+            'countries' => Country::orderBy('country', 'ASC')->where('id', '!=', 247)->get(),
         ]);
     }
 }

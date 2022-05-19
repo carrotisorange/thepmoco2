@@ -135,9 +135,8 @@ class PropertyComponent extends Component
      {
         return view('livewire.property-component',[
          'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
-         'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->where('id','!=',
-         '247')->get(),
-         'countries' => Country::orderBy('country', 'ASC')->get(),
+         'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
+          'countries' => Country::orderBy('country', 'ASC')->where('id', '!=', 247)->get(),
          'types' => Type::all(),
         ]);
      }

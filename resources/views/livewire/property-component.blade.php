@@ -154,8 +154,10 @@
 
                         <div class="mt-5">
                             <x-label for="owner_contract">
-                                Owner Contract (Applicable if the units on your property have different owners and they want their units to be rented out. Please only
-                                upload a PDF file.) <span class="text-blue-600">(optional)</span>
+                                Owner Contract (Applicable if the units on your property have different owners and they
+                                want their units to be rented
+                                out. Please only
+                                upload a PDF file.)
                             </x-label>
 
 

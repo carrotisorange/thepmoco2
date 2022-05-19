@@ -28,7 +28,7 @@
 
         <x-form-select wire:model="type_id" form="edit-form">
             @foreach($types as $type)
-            <option value="{{ $type->id }}" {{ $type->id == $property_details->type_id ? 'selected' : ''
+            <option value="{{ $type->id }}" {{ old('type_id', $property_details->type_id) == $type->id ? 'selected' : ''
                 }}>{{ $type->type }}</option>
             @endforeach
         </x-form-select>
@@ -45,12 +45,11 @@
                     Country
                 </x-label>
                 <div class="relative">
-                    <x-form-select wire:model="country_id" id="country_id" name="country_id" form="edit-form">
+                    <x-form-select wire:model="country_id" form="edit-form">
                         <option value="">Select one</option>
                         @foreach ($countries as $country)
-                        <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
-                            'selected': 'Select one'
-                            }}>{{ $country->country }}</option>
+                        <option value="{{ $country->id }}" {{ old('country_id', $country_id)==$country->id?'selected':
+                            'Select one' }}>{{ $country->country }}</option>
                         @endforeach
                     </x-form-select>
 
@@ -64,11 +63,10 @@
                     Region
                 </x-label>
                 <div class="relative">
-                    <x-form-select wire:model="province_id" id="province_id" id="province_id" name="province_id"
-                        form="edit-form">
+                    <x-form-select wire:model="province_id" form="edit-form">
                         <option value="">Select one</option>
                         @foreach ($provinces as $province)
-                        <option value="{{ $province->id }}" {{ old('province_id')==$province->
+                        <option value="{{ $province->id }}" {{ old('province_id')===$province->
                             id?
                             'selected': 'Select one'
                             }}>{{ $province->province }}</option>
@@ -83,10 +81,10 @@
                 <x-label for="city_id">
                     City
                 </x-label>
-                <x-form-select wire:model="city_id" id="city_id" id="city_id" name="city_id" form="edit-form">
+                <x-form-select wire:model="city_id" form="edit-form">
                     <option value="">Select one</option>
                     @foreach ($cities as $city)
-                    <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
+                    <option value="{{ $city->id }}" {{ old('city_id'. $city_id)===$city->id?
                         'selected': 'Select one'
                         }}>{{ $city->city }}</option>
                     @endforeach
@@ -101,8 +99,7 @@
                 <x-label for="barangay">
                     Address
                     </x-lab>
-                    <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
-                        value="{{ old('barangay') }}" form="edit-form" />
+                    <x-form-input wire:model="barangay" type="text" value="{{ old('barangay') }}" form="edit-form" />
 
                     @error('barangay')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -116,13 +113,15 @@
         <x-label for="status" :value="__('Status')" />
 
         <x-form-select form="edit-form" wire:model="status">
-            <option value="active" {{ $property_details->status=='active' ? 'selected' : '' }}>active</option>
-            <option value="inactive" {{ $property_details->status=='inactive' ? 'selected' : '' }}>inactive</option>
-            <option value="pending" {{ $property_details->status=='pending' ? 'selected' : '' }}>pending</option>
-
+            <option value="active" {{ old('status', $property_details->status) == 'active' ? 'selected' : '' }}> active
+            </option>
+            <option value="inactive" {{ old('status', $property_details->status) == 'inactive' ? 'selected' : '' }}>
+                inactive</option>
+            <option value="pending" {{ old('status', $property_details->status) == 'pending' ? 'selected' : '' }}>
+                pending</option>
         </x-form-select>
 
-        @error('type_id')
+        @error('status')
         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
         @enderror
     </div>
@@ -131,8 +130,8 @@
         <div class="flex-3">
             <x-label for="thumbnail" :value="__('Thumbnail')" />
 
-            <x-form-input form="edit-form" id="thumbnail" type="file" wire:model="thumbnail"
-                value="{{old('thumbnail', $thumbnail)}}" autofocus />
+            <x-form-input form="edit-form" type="file" wire:model="thumbnail" value="{{old('thumbnail', $thumbnail)}}"
+                autofocus />
 
             @error('thumbnail')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -144,9 +143,12 @@
     </div>
     <div class="mt-5 flex mx-5">
         <div class="flex-3">
-            <x-label for="tenant_contract" :value="__('Tenant Contract (Please only upload a PDF file.)')" />
+            <x-label for="tenant_contract">
+                Tenant Contract (Applicable if you're accepting tenants to your property. Please only
+                upload a PDF file.)
+            </x-label>
 
-            <x-form-input form="edit-form" id="tenant_contract" type="file" wire:model="tenant_contract"
+            <x-form-input form="edit-form" type="file" wire:model="tenant_contract"
                 value="{{old('tenant_contract', $tenant_contract)}}" autofocus />
 
             @error('tenant_contract')
@@ -165,7 +167,13 @@
     </div>
     <div class="mt-5 flex mx-5">
         <div class="flex-3">
-            <x-label for="owner_contract" :value="__('Owner Contract (Please only upload a PDF file.)')" />
+            <x-label for="owner_contract">
+                Owner Contract (Applicable if the units on your property have different owners and they want their units
+                to be rented
+                out. Please only
+                upload a PDF file.)
+            </x-label>
+
 
             <x-form-input form="edit-form" type="file" wire:model="owner_contract"
                 value="{{old('owner_contract', $owner_contract)}}" autofocus />
