@@ -24,9 +24,12 @@
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbspBack
                     </x-button>
-                    <x-button data-modal-toggle="add-building-modal">
-                        <i class="fa-solid fa-circle-plus"></i>&nbspBuilding
+                    <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp
+                        Building
                     </x-button>
+                    {{-- <x-button data-modal-toggle="add-building-modal">
+                        <i class="fa-solid fa-circle-plus"></i>&nbspBuilding
+                    </x-button> --}}
                     {{-- <x-button onclick="window.location.href='/unit/{{ Str::random(10) }}/create'"><i
                             class="fa-solid fa-circle-plus"></i>&nbspUnit
                     </x-button> --}}
@@ -195,4 +198,5 @@
             </div>
         </div>
     </div>
+    @include('utilities.create-building-modal');
 </x-app-layout>

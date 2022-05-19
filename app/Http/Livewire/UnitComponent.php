@@ -35,13 +35,13 @@ class UnitComponent extends Component
         }
     }
 
-    public function deleteUnits()
+    public function removeUnits()
     {
         Unit::destroy($this->selectedUnits);
 
         $this->selectedUnits = [];
         
-        session()->flash('success', 'Units Successfully Deleted!');
+        return redirect('units/'.$this->batch_no.'/edit')->with('success','Units succesfully removed.');
     }
 
     public function render()

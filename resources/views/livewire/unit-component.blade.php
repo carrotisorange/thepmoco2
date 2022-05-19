@@ -2,7 +2,7 @@
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div>
             @if($selectedUnits)
-            <x-button onclick="myFunction()" wire:click="deleteUnits()"><i class="fa-solid fa-trash"></i>&nbsp
+            <x-button onclick="confirmMessage()" wire:click="removeUnits()"><i class="fa-solid fa-trash"></i>&nbsp
                 Remove ({{ count($selectedUnits) }})
             </x-button>
             @endif
