@@ -18,12 +18,46 @@
             <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/particular/{{ Str::random(10) }}/store""
                 method=" POST" id="add-particular-form">
                 @csrf
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Name the new particular.</h3>
-                <div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Particular Information</h3>
+                <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
-                    <x-form-input form="add-particular-form" id="particular" type="text" name="particular_id"
-                        required />
+                    <div class="w-full md:w-full px-3">
+                        <x-label>Name of the new particular</x-label>
+
+                        <x-form-input form="add-particular-form" id="particular" type="text" name="particular_id"
+                            required />
+
+                        @error('particular_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
+
+                <div class="mt-5 flex flex-wrap -mx-3 mb-6">
+
+                    <div class="w-full md:w-full px-3">
+                        <x-label>Minimum Charge</x-label>
+                        <x-form-input form="add-particular-form" id="minimum_charge" type="number" step="0.001" min="0"
+                            name="minimum_charge" required />
+
+                        @error('minimum_charge')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+{{-- 
+                <div class="mt-5 flex flex-wrap -mx-3 mb-6">
+
+                    <div class="w-full md:w-full px-3">
+                        <x-label>Minimum Charge</x-label>
+                        <x-form-input form="add-particular-form" id="minimum_charge" type="number" step="0.001" min="0"
+                            name="minimum_charge" required />
+
+                        @error('minimum_charge')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div> --}}
 
                 <div class="mt-5">
                     <p class="text-right">
