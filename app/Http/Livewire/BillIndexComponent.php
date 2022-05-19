@@ -9,6 +9,7 @@ use App\Models\Collection;
 use App\Models\AcknowledgementReceipt; 
 use Session;
 use DB;
+use Carbon\Carbon;
 
 class BillIndexComponent extends Component
 {
@@ -23,12 +24,11 @@ class BillIndexComponent extends Component
       public $particular_id = [];
       public $created_at = [];
 
-      // public $reference_no;
-
-      // public function mount($reference_no)
-      // {
-      //    $this->reference_no = $reference_no;
-      // }
+      public function mount()
+      {
+         $this->created_at = Carbon::now()->startOfMonth()->format('Y-m-d');
+         //$this->end = Carbon::now()->lastOfMonth()->format('Y-m-d');
+      }
 
        public function updatedSelectAll($value)
        {
@@ -76,7 +76,27 @@ class BillIndexComponent extends Component
 
          $this->selectedBills = [];
 
-        return redirect('/property/'.Session::get('property').'/bills')->with('success','Bills successfully removed.');
+         $this->bills = Bill::search($this->search)
+         ->orderBy('bill_no', 'asc')
+         ->where('property_uuid', Session::get('property'))
+         ->when($this->status, function($query){
+         $query->where('status', $this->status);
+         })
+         ->when($this->start, function($query){
+         $query->whereDate('start', $this->start);
+         })
+         ->when($this->end, function($query){
+         $query->whereDate('end', $this->end);
+         })
+         ->when($this->particular_id, function($query){
+         $query->where('particular_id', $this->particular_id);
+         })
+         ->when($this->created_at, function($query){
+         $query->whereDate('created_at', $this->created_at);
+         })
+         ->get();
+
+         //return redirect('/property/'.Session::get('property').'/bills')->with('success','Bills successfully removed.');
       }
 
       public function unpayBills()

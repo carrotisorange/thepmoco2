@@ -79,7 +79,7 @@
                                 Start
                             </x-label>
                             <x-form-input wire:model="start" id="grid-last-name" type="date"
-                                value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start" />
+                                value="{{ old('start', Carbon\Carbon::now()->startOfMonth()->format('Y-m-d')) }}" name="start" />
 
                             @error('start')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -90,7 +90,7 @@
                                 End
                             </x-label>
                             <x-form-input wire:model="end" id="grid-last-name" type="date"
-                                value="{{ old('end', Carbon\Carbon::now()->addMonth()->format('Y-m-d')) }}"
+                                value="{{ old('end', Carbon\Carbon::now()->addMonth()->endOfMonth()->format('Y-m-d')) }}"
                                 name="end" />
 
                             @error('end')
