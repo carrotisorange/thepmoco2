@@ -141,7 +141,7 @@
             <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $thumbnail }}" alt="">
         </div>
     </div>
-    <div class="mt-5 flex mx-5">
+    {{-- <div class="mt-5 flex mx-5">
         <div class="flex-3">
             <x-label for="tenant_contract">
                 Tenant Contract (Applicable if you're accepting tenants to your property. Please only
@@ -191,7 +191,7 @@
             <span>No contract is uploaded.</span>
             @endif
         </div>
-    </div>
+    </div> --}}
     <div class="mt-5">
         <p class="text-right">
             <x-form-button></x-form-button>

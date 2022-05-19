@@ -25,8 +25,7 @@ class PropertyEditComponent extends Component
     public $type_id;
     public $thumbnail;
     public $description;
-    public $tenant_contract;
-    public $owner_contract;
+
     public $country_id;
     public $province_id;
     public $city_id;
@@ -37,9 +36,6 @@ class PropertyEditComponent extends Component
         $this->property = $property_details->property;
         $this->type_id = $property_details->type_id;
         $this->thumbnail = $property_details->thumbnail;
-
-        $this->tenant_contract = $property_details->tenant_contract;
-        $this->owner_contract = $property_details->owner_contract;
         $this->country_id = $property_details->country_id;
         $this->province_id = $property_details->province_id;
         $this->city_id = $property_details->city_id;
@@ -53,13 +49,12 @@ class PropertyEditComponent extends Component
            'property' => 'required',
            'type_id' => ['required', Rule::exists('types', 'id')],
            'thumbnail' => 'nullable',
-           'tenant_contract' => 'nullable|mimes:pdf',
-           'owner_contract' => 'nullable|mimes:pdf',
            'description' => 'nullable',
            'country_id' => ['required', Rule::exists('countries', 'id')],
            'province_id' => ['required', Rule::exists('provinces', 'id')],
            'city_id' => ['nullable', Rule::exists('cities', 'id')],
-           'barangay' => ['required'],
+           'barangay' => ['nullable'],
+           'status' => ['required']
         ];
     }
 
@@ -93,19 +88,20 @@ class PropertyEditComponent extends Component
             $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
         }
 
-        if($this->tenant_contract){
-            $validatedData['tenant_contract'] = $this->tenant_contract->store('tenant_contracts');
-        }
+        // if($this->tenant_contract){
+        //     $validatedData['tenant_contract'] = $this->tenant_contract->store('tenant_contracts');
+        // }
 
-        if($this->owner_contract){
-            $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
-        }
+        // if($this->owner_contract){
+        //     $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
+        // }
         
         try{
             DB::beginTransaction();
 
             $validatedData = $this->validate();
 
+            
             $this->property_details->update($validatedData);
 
             DB::commit();
