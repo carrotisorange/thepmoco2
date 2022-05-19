@@ -107,7 +107,7 @@ class TenantCollectionController extends Controller
             'bank' => $ar->bank,
             'date_deposited' => $ar->date_deposited,
             'collections' => Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no',
-            $ar->collection_batch_no)->whereDate('created_at',$ar->created_at)->get(),
+            $ar->collection_batch_no)->get(),
             'remaining_balance' => Tenant::find($tenant->uuid)
             ->bills()
             ->where('status', 'unpaid')

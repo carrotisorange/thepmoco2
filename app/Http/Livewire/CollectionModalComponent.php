@@ -83,7 +83,7 @@ class CollectionModalComponent extends ModalComponent
                     return redirect('/tenant/'.$this->tenant.'/bills')->with('error','The collection is less than the bill.');
                 }
 
-                    for($i=0; $i<Bill::whereIn('id',$this->selectedBills)->where('status', 'unpaid')->count(); $i++)
+                    for($i=0; $i<Bill::whereIn('id',$this->selectedBills)->where('status', 'unpaid')->max('id'); $i++)
                     {
                         $validatedData['tenant_uuid']= $this->tenant;
                         $validatedData['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
