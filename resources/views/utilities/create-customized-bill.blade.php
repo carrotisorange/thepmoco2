@@ -56,7 +56,7 @@
 
                         <div class="w-full md:w-1/2">
                             <x-label for="start">
-                                Start <span class="text-red-600">*</span>
+                                Start 
                             </x-label>
                             <x-form-input wire:model="start" id="start" type="date"
                                 value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start" />
@@ -67,7 +67,7 @@
                         </div>
                         <div class="w-full md:w-1/2 px-3">
                             <x-label for="end">
-                                End <span class="text-red-600">*</span>
+                                End 
                             </x-label>
                             <x-form-input wire:model="end" id="end" type="date" name="end"
                                 value="{{ old('end', Carbon\Carbon::now()->addMonth()->format('Y-m-d')) }}" />
@@ -83,7 +83,7 @@
 
                 <div class="mt-5">
                     <x-label for="due_date">
-                        Due Date <span class="text-blue-600">(optional)</span>
+                        Due Date 
                     </x-label>
                     <x-form-input wire:model="due_date" id="start" type="date" name="due_date"
                         value="{{ old('due_date') }}" />

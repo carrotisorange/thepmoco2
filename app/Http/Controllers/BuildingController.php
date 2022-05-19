@@ -38,18 +38,47 @@ class BuildingController extends Controller
     public function store(Request $request)
     {
         
-        $building = request()->validate([
+        $attributes = request()->validate([
             'building'=> 'required|max:255'
         ]);
 
-        $building_id = Building::create($building)->id;
 
-        PropertyBuilding::create([
+        $building = Building::
+          where('building', strtolower($request->building))
+          ->pluck('id')
+          ->first();
+
+       $property_building = PropertyBuilding::
+        where('building_id', $building)
+       ->pluck('id')
+       ->first();
+
+      if($property_building)
+      {
+        return back()->with('error', 'Building already exists.');
+      }
+
+
+       if($building){
+
+            PropertyBuilding::create([
+            'building_id' => $property_building,
+            'property_uuid' => Session::get('property')
+            ]);
+
+            return back()->with('success', 'New building successfully created.');
+        }
+        else{
+            
+            $building_id = Building::create($attributes)->id;
+
+            PropertyBuilding::create([
             'building_id' => $building_id,
             'property_uuid' => Session::get('property')
-        ]);
+            ]);
 
-        return back()->with('success', 'A new building has been created.');
+            return back()->with('success', 'New building successfully created.');
+        }
     }
 
     /**
