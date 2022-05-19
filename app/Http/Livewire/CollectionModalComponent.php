@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Carbon\Carbon;
+use DB;
 
 class CollectionModalComponent extends ModalComponent
 {
@@ -59,6 +60,9 @@ class CollectionModalComponent extends ModalComponent
     public function submitForm()
     {
        try{
+
+            DB::beginTransaction();
+
             sleep(1);
 
             $ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
@@ -79,7 +83,7 @@ class CollectionModalComponent extends ModalComponent
                     return redirect('/tenant/'.$this->tenant.'/bills')->with('error','The collection is less than the bill.');
                 }
 
-                    for($i=0; $i<count($this->selectedBills); $i++)
+                    for($i=0; $i<Bill::whereIn('id',$this->selectedBills)->where('status', 'unpaid')->count(); $i++)
                     {
                         $validatedData['tenant_uuid']= $this->tenant;
                         $validatedData['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
@@ -92,10 +96,7 @@ class CollectionModalComponent extends ModalComponent
                         $validatedData['collection'] = Bill::find($this->selectedBills[$i])->bill;
                         $validatedData['batch_no'] = $batch_no;
 
-                        if($this->attachment)
-                        {
-                            $validatedData['attachment'] = $this->attachment->store('attachments');
-                        }
+
 
                         //save the payment
                         Collection::create($validatedData);
@@ -103,7 +104,7 @@ class CollectionModalComponent extends ModalComponent
                         //change the status of the selected bills to paid
                         Bill::where('id', $this->selectedBills[$i])
                         ->update([
-                        'status' => 'paid'
+                            'status' => 'paid'
                         ]);
                     }
 
@@ -146,19 +147,29 @@ class CollectionModalComponent extends ModalComponent
                 
             // }
             $ar = AcknowledgementReceipt::create([
-            'tenant_uuid' => $this->tenant,
-            'amount' => $this->collection,
-            'property_uuid' => Session::get('property'),
-            'user_id' => auth()->user()->id,
-            'ar_no' => $ar_no,
-            'mode_of_payment' => $this->form,
-            'collection_batch_no' => $batch_no,
-            'cheque_no' => $this->check_no,
-            'bank' => $this->bank,
-            'date_deposited' => $this->date_deposited,
-            'created_at' => $this->created_at,
+                'tenant_uuid' => $this->tenant,
+                'amount' => $this->collection,
+                'property_uuid' => Session::get('property'),
+                'user_id' => auth()->user()->id,
+                'ar_no' => $ar_no,
+                'mode_of_payment' => $this->form,
+                'collection_batch_no' => $batch_no,
+                'cheque_no' => $this->check_no,
+                'bank' => $this->bank,
+                'date_deposited' => $this->date_deposited,
+                'created_at' => $this->created_at,
             ]);
 
+            if($this->attachment)
+            {
+                AcknowledgementReceipt::find($ar->id)
+                ->update([
+                    'attachment' => $this->attachment->store('attachments')
+                ]);
+            }
+
+            DB::commit();
+            
             $this->resetForm();
 
             return redirect('/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Collections
@@ -180,7 +191,7 @@ class CollectionModalComponent extends ModalComponent
         $this->attachment='';
         $this->date_deposited ='';
         $this->form = '';
-        $this->dispatchBrowserEvent('collection-modal-component');
+        $this->dispatchBrowserEvent('closeModal', 'collection-modal-component');
     }
     public function render()
     {

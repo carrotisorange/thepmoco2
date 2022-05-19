@@ -18,7 +18,7 @@
             <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/particular/{{ Str::random(10) }}/store""
                 method=" POST" id="add-particular-form">
                 @csrf
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">What's the name of the particular?</h3>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Name the new particular.</h3>
                 <div>
 
                     <x-form-input form="add-particular-form" id="particular" type="text" name="particular_id"

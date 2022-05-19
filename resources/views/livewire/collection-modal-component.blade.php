@@ -1,6 +1,6 @@
 <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" wire:submit.prevent="submitForm">
     @csrf
-    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Enter Collection Information</h3>
+    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Payment Information</h3>
     {{-- <br>
     <h4>Amount to be paid: {{ number_format($total, 2) }}</h4> --}}
     <div>
@@ -8,7 +8,7 @@
 
             <div class="w-full md:w-full px-3">
                 <x-label for="created_at">
-                    Payment made
+                    Date
                 </x-label>
                 <x-form-input wire:model="created_at" id="created_at" type="date"
                     value="{{ old('created_at', $total) }}" name="created_at"/>
@@ -95,7 +95,7 @@
         <div class="mt-5 flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-full px-3">
                 <x-label for="check_no">
-                    Check No
+                    Cheque #
                 </x-label>
                 <x-form-input wire:model="check_no" id="check_no" type="text" value="{{ old('check_no', $check_no) }}"
                     name="check_no" />

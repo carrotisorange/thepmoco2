@@ -113,7 +113,7 @@
         </p>
 
         <p>
-            Date Deposited #: {{ Carbon\Carbon::parse($date_deposited)->format('M d, Y') }}
+            Date Deposited: {{ Carbon\Carbon::parse($date_deposited)->format('M d, Y') }}
         </p>
         @endif
 

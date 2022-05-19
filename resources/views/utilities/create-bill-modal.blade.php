@@ -1,6 +1,6 @@
 <div id="create-bill-modal" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
-    <div class="relative p-4 w-full max-xl h-full md:h-auto">
+    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
 
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div class="flex justify-end p-2">
@@ -17,13 +17,10 @@
 
             <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/tenant/{{ $tenant->uuid }}/bill/create">
                 @csrf
-                {{--
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">What do you want to see?</h3> --}}
+                
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Bill Information</h3>
                 <div>
-
-
-
-                    <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
                         <div class="w-full md:w-full px-3">
                             <x-label for="particular_id">
@@ -33,7 +30,7 @@
                                 <option value="">Select one</option>
                                 @foreach ($particulars as $particular)
                                 <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->
-                                    id?
+                                    particular_id?
                                     'selected': 'Select one'
                                     }}>{{ $particular->particular }}</option>
                                 @endforeach
@@ -43,11 +40,11 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-
                     </div>
+
                     <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
-                        <div class="w-full md:w-1/4 px-3">
+                        <div class="w-full md:w-full px-3">
                             <x-label for="particular_id">
                                 Unit
                             </x-label>
@@ -55,9 +52,9 @@
 
                                 @foreach ($units as $unit)
                                 @if($units->count() == 1)
-                               <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
-                                'selected': 'Select one'
-                                }}>{{ $unit->unit->building->building.' '.$unit->unit->unit }}</option>
+                                <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
+                                    'selected': 'Select one'
+                                    }}>{{ $unit->unit->building->building.' '.$unit->unit->unit }}</option>
                                 @else
                                 <option value="">Select one</option>
                                 <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
@@ -72,8 +69,41 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
+                    </div>
 
-                        <div class="w-full md:w-1/4 px-3">
+                    <x-label>Period Covered</x-label>
+                    <div class="mt-5 flex flex-wrap -mx-3 mb-6">
+
+                        <div class="w-full md:w-1/2 px-3">
+                            <x-label for="start">
+                                Start
+                            </x-label>
+                            <x-form-input wire:model="start" id="grid-last-name" type="date"
+                                value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start" />
+
+                            @error('start')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <x-label for="end">
+                                End
+                            </x-label>
+                            <x-form-input wire:model="end" id="grid-last-name" type="date"
+                                value="{{ old('end', Carbon\Carbon::now()->addMonth()->format('Y-m-d')) }}"
+                                name="end" />
+
+                            @error('end')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
+                    </div>
+
+                    <div class="mt-5 flex flex-wrap -mx-3 mb-6">
+
+                        <div class="w-full md:w-full px-3">
                             <x-label for="bill">
                                 Amount
                             </x-label>
@@ -84,31 +114,6 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-
-                        <div class="w-full md:w-1/4 px-3">
-                            <x-label for="start">
-                                Period covered (start)
-                            </x-label>
-                            <x-form-input wire:model="start" id="grid-last-name" type="date" value="{{ old('start') }}"
-                                name="start" />
-
-                            @error('start')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="w-full md:w-1/4 px-3">
-                            <x-label for="end">
-                                Period covered (end)
-                            </x-label>
-                            <x-form-input wire:model="end" id="grid-last-name" type="date" value="{{ old('end') }}"
-                                name="end" />
-
-                            @error('end')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-
                     </div>
                     <div class="mt-5">
                         <p class="text-right">

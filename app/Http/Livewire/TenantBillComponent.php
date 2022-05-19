@@ -34,6 +34,23 @@ class TenantBillComponent extends Component
           return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills Successfully removed.');
      }
 
+     public function postBills()
+     {
+         try{
+            
+            sleep(1);
+
+            DB::beginTransaction();
+            
+            DB::commit();
+
+         }catch(\Exception $e)
+         { 
+            ddd($e);
+            return back()->with('error','Cannot perform your action.');
+         }
+     }
+
      public function exportBills()
      {
          return redirect('/tenant/'.$this->tenant->uuid.'/bill/export')->with('success','Bills successfully marked as unpaid.');

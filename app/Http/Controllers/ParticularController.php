@@ -50,27 +50,64 @@ class ParticularController extends Controller
     {
 
         $particular_attributes = request()->validate([
-            'particular_id'=> 'required'
+          'particular_id'=> 'required'
         ]);
 
-        try {
-            DB::beginTransaction();
-            $particular = Particular::create([
-                'particular' => request('particular_id')
-            ]);
+      
+        $particular = Particular::
+        where('particular', strtolower($request->particular_id))
+        ->pluck('id')
+        ->first();
 
-            $particular_attributes['property_uuid'] = Session::get('property');
-            $particular_attributes['particular_id'] = $particular->id;
+        $property_particular = PropertyParticular::
+          where('particular_id', $particular)
+          ->pluck('id')
+          ->first();
 
-            PropertyParticular::create($particular_attributes);
+        if($property_particular)
+        {
+            return back()->with('error', 'Particular already exists.');
+        }
 
-            DB::commit();
+        if($particular){
+             try {
+                DB::beginTransaction();
 
-            return back()->with('success', 'Particular has been created.');
-        } catch (\Throwable $e) {
-            ddd($e);
-            DB::rollback();
-            return back()->with('error','Cannot complete your action.');
+                $particular_attributes['property_uuid'] = Session::get('property');
+                $particular_attributes['particular_id'] = $particular;
+
+                PropertyParticular::create($particular_attributes);
+
+                DB::commit();
+
+                return back()->with('success', 'Particular created successfully.');
+             } catch (\Throwable $e) {
+        
+                DB::rollback();
+                return back()->with('error','Cannot complete your action.');
+             }
+        }
+        else{
+             try {
+                DB::beginTransaction();
+
+                $particular = Particular::create([
+                    'particular' => request('particular_id')
+                ]);
+
+                $particular_attributes['property_uuid'] = Session::get('property');
+                $particular_attributes['particular_id'] = $particular->id;
+
+                PropertyParticular::create($particular_attributes);
+
+                DB::commit();
+
+                return back()->with('success', 'New Particular created successfully.');
+             } catch (\Throwable $e) {
+          
+                DB::rollback();
+                return back()->with('error','Cannot complete your action.');
+             }
         }
     }
 
