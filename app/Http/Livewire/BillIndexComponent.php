@@ -26,7 +26,7 @@ class BillIndexComponent extends Component
 
       public function mount()
       {
-         $this->created_at = Carbon::now()->startOfMonth()->format('Y-m-d');
+         //$this->created_at = Carbon::now()->startOfMonth()->format('Y-m-d');
          //$this->end = Carbon::now()->lastOfMonth()->format('Y-m-d');
       }
 
