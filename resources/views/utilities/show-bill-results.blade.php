@@ -6,7 +6,7 @@
             </x-th>
             <x-th>#</x-th>
             <x-th>Ref #</x-th>
-          
+
 
             {{-- <x-th>Tenant</x-th> --}}
             <x-th>Date posted</x-th>
@@ -48,12 +48,18 @@
                 <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                     <i class="fa-solid fa-circle-check"></i> {{
                     $item->status }}
-                    @else
-                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                        <i class="fa-solid fa-clock"></i> {{
-                        $item->status }}
-                    </span>
-                    @endif
+                </span>
+                @elseif($item->status === 'partially_paid')
+                <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                    <i class="fa-solid fa-clock"></i> {{
+                    $item->status }}
+                </span>
+                @else
+                <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                    <i class="fa-solid fa-circle-xmark"></i> {{
+                    $item->status }}
+                </span>
+                @endif
             </x-td>
         </tr>
         @empty
