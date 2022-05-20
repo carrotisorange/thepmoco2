@@ -123,7 +123,8 @@
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/referrals">
                             <i class="fa-solid fa-user-group"></i> {{ __('Referrals') }}
                         </x-dropdown-link>
-                        <x-dropdown-link href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}">
+                        <x-dropdown-link
+                            href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}">
                             <i class="fa-solid fa-user-clock"></i> {{ __('Timestamps') }}
                         </x-dropdown-link>
                         <x-dropdown-link target="_blank" href="/chatify">
@@ -217,6 +218,15 @@
                 <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
             </x-responsive-nav-link>
             @endcan
+
+
+            @can('treasury')
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/collections"
+                :active="request()->routeIs('collections')">
+                <i class="fa-solid fa-cash-register"></i>&nbspCollections
+            </x-responsive-nav-link>
+            @endcan
+
         </div>
 
         <!-- Responsive Settings Options -->
