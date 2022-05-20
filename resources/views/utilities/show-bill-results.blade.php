@@ -1,17 +1,11 @@
 <table class="min-w-full divide-y divide-gray-200">
     <thead class="bg-gray-50">
         <tr>
-            <x-th>
-                <x-input id="" wire:model="selectAll" type="checkbox" />
-            </x-th>
+            <x-th> <x-input id="" wire:model="selectAll" type="checkbox" /></x-th>
             <x-th>#</x-th>
             <x-th>Ref #</x-th>
-
-
-            {{-- <x-th>Tenant</x-th> --}}
             <x-th>Date posted</x-th>
             <x-th>Period Covered</x-th>
-
             <x-th>Particular</x-th>
             <x-th>Amount</x-th>
             <x-th>Status</x-th>
@@ -24,7 +18,6 @@
                 <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
             </x-td>
             <x-td>{{ $item->bill_no}}</x-td>
-
             <x-td><a href="/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{
                         $item->reference_no}}</b></a>
 
