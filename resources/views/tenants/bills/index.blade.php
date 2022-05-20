@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', $tenant->tenant)
+    @section('title',' | '.$tenant->tenant)
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">

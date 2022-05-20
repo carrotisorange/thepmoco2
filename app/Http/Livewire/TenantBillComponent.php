@@ -17,13 +17,9 @@ class TenantBillComponent extends Component
     public $tenant;
 
      public $selectedBills = [];
-     public $status;
      public $selectAll = false;  
-    
-    public function mount($tenant)
-    {
-        $this->tenant = $tenant;
-    }
+     public $status;
+   
 
      public function removeBills()
      {
@@ -60,7 +56,8 @@ class TenantBillComponent extends Component
      {
          Bill::whereIn('id', $this->selectedBills)
          ->update([
-            'status' => 'unpaid'
+            'status' => 'unpaid',
+            'initial_payment' => 0
          ]);
 
          $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
@@ -103,20 +100,43 @@ class TenantBillComponent extends Component
        })
        ->get();
 
-       $total = Bill::whereIn('id', $this->selectedBills)
-       ->where('status', 'unpaid')
-       ->sum('bill');
+                $unpaid_bills = Tenant::find($this->tenant->uuid)
+                ->bills()
+                ->where('status', 'unpaid')
+                ->whereIn('id', $this->selectedBills)
+                ->sum('bill');
 
-         $total_count = Bill::whereIn('id', $this->selectedBills)
-         ->where('status', 'paid')
+                $partially_paid_bills = Tenant::find($this->tenant->uuid)
+                ->bills()
+                ->where('status', 'partially_paid')
+                  ->whereIn('id', $this->selectedBills)
+                ->sum('bill') - Tenant::find($this->tenant->uuid)
+                ->bills()
+                ->where('status', 'partially_paid')
+                        ->whereIn('id', $this->selectedBills)
+                ->sum('initial_payment');
+
+                $paid_bills = Tenant::find($this->tenant->uuid)
+                ->bills()
+                ->where('status', 'paid')
+                        ->whereIn('id', $this->selectedBills)
+                ->sum('bill');
+
+      $balance = ($unpaid_bills + $partially_paid_bills) - $paid_bills;
+
+      $total_count = Bill::whereIn('id', $this->selectedBills)
+        ->whereIn('status', ['paid', 'partially_paid'])
          ->count();
+
+      $total_bills = Tenant::find($this->tenant->uuid)->bills->sum('bill');
 
         return view('livewire.tenant-bill-component',[
             'bills' => $bills,
-            'total' => $total,
+             'total' => $balance,
             'total_count' => $total_count,
-            'total_paid_bills' => $bills->where('status', 'paid')->sum('bill'),
-            'total_unpaid_bills' => $bills->where('status', 'unpaid'),
+            'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+            'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+            'total_bills' => $bills,
         ]);
     }
 }

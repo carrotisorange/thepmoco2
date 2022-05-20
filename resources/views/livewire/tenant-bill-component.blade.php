@@ -1,27 +1,33 @@
 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-    Reference # : <b> {{ $tenant->bill_reference_no }}</b>
-    Total Unpaid Bills: <b> {{ number_format($total_unpaid_bills->sum('bill'),2)}}</b>,
-    Total Paid Bills: <b> {{ number_format($total_paid_bills,2)}}</b>
+    Reference # : <b> {{ $tenant->bill_reference_no }}</b>,
+  Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
+    Total Unpaid Bills: <b> {{ number_format(($total_unpaid_bills->sum('bill') - $total_unpaid_bills->sum('initial_payment')),2)}}</b>,
+    Total Paid Bills: <b> {{ number_format($total_paid_bills->sum('initial_payment'),2)}}</b>
     <div class="mt-5">
         @if($bills)
         <x-form-select class="w-24" wire:model="status">\
             <option value="" {{ $status=="" ? 'selected' : 'Select one' }}>
                 {{
                 'Show All bills' }}</option>
-            <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'Select one' }}>
+            <option value="unpaid" {{ $status==='unpaid' ? 'selected' : 'Select one' }}>
                 {{
                 'Show Unpaid Bills' }}</option>
-            <option value="paid" {{ $status=='paid' ? 'selected' : 'Select one' }}>
+            <option value="paid" {{ $status==='paid' ? 'selected' : 'Select one' }}>
                 {{
                 'Show Paid Bills' }}</option>
+
+            <option value="partially_paid" {{ $status==='partially_paid' ? 'selected' : 'Select one' }}>
+                {{
+                'Show Partially Paid Bills' }}</option>
+
         </x-form-select>
         @endif
 
         <br>
         `@if($total_unpaid_bills->count())
-            <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
-                SOA ({{ $total_unpaid_bills->count() }})
-            </x-button>
+        <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
+            SOA ({{ $total_unpaid_bills->count() }})
+        </x-button>
         @endif
         @if($selectedBills)
 
@@ -41,11 +47,15 @@
 
 
         @can('treasury')
-        @if($total_unpaid_bills->sum('bill') && $total)
+        @if($total_unpaid_bills->sum('bill'))
         <x-button
             wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
             <i class="fa-solid fa-circle-plus"></i>&nbsp Payment ({{ number_format($total, 2) }})
         </x-button>
+        {{-- <x-button
+            wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
+            <i class="fa-solid fa-circle-plus"></i>&nbsp Payment ({{ number_format($total, 2) }})
+        </x-button> --}}
         {{-- <x-button wire:click="$emit('openModal', 'collection-modal-component')">
             <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})
         </x-button> --}}
@@ -68,12 +78,14 @@
                                         <x-th>
                                             <x-input id="" wire:model="selectAll" type="checkbox" />
                                         </x-th>
-                                        <x-th>Bill #</x-th>
+                                        <x-th> #</x-th>
                                         <x-th>Unit</x-th>
                                         <x-th>Particular</x-th>
                                         <x-th>Period</x-th>
                                         <x-th>Amount</x-th>
                                         <x-th>Status</x-th>
+                                        <x-th>Initial Payment</x-th>
+                                        <x-th>Balance</x-th>
                                         {{-- <x-th></x-th> --}}
                                     </tr>
                                 </thead>
@@ -96,14 +108,23 @@
                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                 <i class="fa-solid fa-circle-check"></i> {{
                                                 $item->status }}
-                                                @else
-                                                <span
-                                                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                    <i class="fa-solid fa-clock"></i> {{
-                                                    $item->status }}
-                                                </span>
-                                                @endif
+                                            </span>
+                                            @elseif($item->status === 'partially_paid')
+                                            <span
+                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                <i class="fa-solid fa-clock"></i> {{
+                                                $item->status }}
+                                            </span>
+                                            @else
+                                            <span
+                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                <i class="fa-solid fa-circle-xmark"></i> {{
+                                                $item->status }}
+                                            </span>
+                                            @endif
                                         </x-td>
+                                        <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
+                                        <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
                                         {{-- <x-td>
                                             <form method="POST" action="/bill/{{ $item->id }}/delete">
                                                 @csrf

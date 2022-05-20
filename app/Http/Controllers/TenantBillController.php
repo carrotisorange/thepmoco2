@@ -96,11 +96,11 @@ class TenantBillController extends Controller
             // $ar->collection_batch_no)->whereDate('created_at',$ar->created_at)->get(),
             'bills' => Tenant::find($tenant->uuid)
             ->bills()
-            ->where('status', 'unpaid')
+            ->whereIn('status', ['unpaid', 'partially_paid'])
             ->get(),
          ];
 
         $pdf = PDF::loadView('tenants.bills.export', $data);
-        return $pdf->download($tenant->tenant.'-soa.pdf');
+        return $pdf->stream($tenant->tenant.'-soa.pdf');
     }
 }

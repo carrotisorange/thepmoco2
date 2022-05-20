@@ -90,7 +90,7 @@
             Tenant: {{ $tenant }}
         </p>
         <p>
-            Total Bills: {{ number_format($bills->sum('bill'), 2) }}
+            Total Bills: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}
         </p>
         <br>
         <p>
@@ -100,7 +100,7 @@
         <table class="">
 
             <tr>
-                <th>Bill #</th>
+                <th>#</th>
                 <th>Date Posted</th>
                 <th>Unit</th>
                 <th>Particular</th>
@@ -118,7 +118,7 @@
                 <td>{{ $item->particular->particular }}</td>
                 <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
-                <td>{{ number_format($item->bill,2) }}</td>
+                <td>{{ number_format(($item->bill-$item->initial_payment),2) }}</td>
             </tr>
             @endforeach
         </table>
