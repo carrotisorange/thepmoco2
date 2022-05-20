@@ -116,7 +116,7 @@ class TenantCollectionController extends Controller
          ];
 
         $pdf = PDF::loadView('tenants.collections.export', $data);
-        return $pdf->stream($tenant->tenant.'-ar.pdf');
+        return $pdf->download($tenant->tenant.'-ar.pdf');
 
            //return redirect('/tenant/'.$tenant->uuid.'/bills')->with('success','Collections have been recorded.');
      }
