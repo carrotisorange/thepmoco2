@@ -10,7 +10,7 @@
             <x-th>Period Covered</x-th>
             <x-th>Particular</x-th>
             <x-th>Amount</x-th>
-            <x-th>Status</x-th>
+            {{-- <x-th>Status</x-th> --}}
             <x-th>Initial Payment</x-th>
             <x-th>Balance</x-th>
         </tr>
@@ -39,8 +39,7 @@
             <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                 y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}</x-td>
             <x-td>{{ $item->particular->particular}}</x-td>
-            <x-td>{{ number_format($item->bill, 2) }}</x-td>
-            <x-td>
+            <x-td>{{ number_format($item->bill, 2) }}
                 @if($item->status === 'paid')
                 <span title="paid"
                     class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -57,6 +56,9 @@
                 </span>
                 @endif
             </x-td>
+            {{-- <x-td>
+
+            </x-td> --}}
             <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
             <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
         </tr>
