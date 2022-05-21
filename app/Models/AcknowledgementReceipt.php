@@ -19,4 +19,9 @@ class AcknowledgementReceipt extends Model
         return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
 
+    public function unit(){
+        return $this->belongsTo(Unit::class, 'unit_uuid');
+    }
+
+
 }

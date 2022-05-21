@@ -136,6 +136,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('unit/{unit}/tenant/{random_str}/old_create', [OldTenantController::class, 'index']);
     Route::get('tenant_sheet/export', [OldTenantController::class, 'export']);
     Route::post('unit/{unit}/tenant/{random_str}/store', [TenantController::class, 'store']);
+
     //2
     Route::get('unit/{unit}/tenant/{tenant}/guardian/{random_str}/create', [GuardianController::class, 'create']);
     Route::post('tenant/{tenant}/guardian/store', [GuardianController::class, 'store']);

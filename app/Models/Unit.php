@@ -82,6 +82,12 @@ class Unit extends Model
         return $this->hasMany(Collection::class);
     }
 
+    public function acknowledgementreceipts()
+    {
+        return $this->hasMany(AcknowledgementReceipt::class);
+    }
+
+
 
     public function deed_of_sales()
     {

@@ -31,7 +31,7 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            Total Collections: <b> {{ number_format($collections->sum('collection'),
+            Total Collections: <b> {{ number_format($collections->sum('amount'),
                 2)}}</b>
             <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white border-b border-gray-200">
@@ -44,7 +44,7 @@
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <x-th>AR #</x-th>
-                                                <x-th>Unit</x-th>
+                                                {{-- <x-th>Unit</x-th> --}}
 
                                                 <x-th>Date collected</x-th>
 
@@ -53,13 +53,14 @@
                                                 <x-th>Mode of payment</x-th>
                                                 <x-th>Period Covered</x-th>
                                                 <x-th>Amount</x-th>
+                                                <x-th></x-th>
                                             </tr>
                                         </thead>
                                         @forelse ($collections as $item)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <x-td>{{ $item->ar_no }}</x-td>
-                                                <x-td>
+                                                {{-- <x-td>
 
                                                     <div class="text-sm text-gray-900">{{
                                                         $item->unit->unit}}
@@ -67,17 +68,23 @@
                                                     <div class="text-sm text-gray-500">{{
                                                         $item->unit->building->building}}
                                                     </div>
-                                                </x-td>
+                                                </x-td> --}}
 
                                                 <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y')
                                                     }}</x-td>
                                                 {{-- <x-td>{{ $item->bill_id }}</x-td> --}}
 
-                                                <x-td>{{ $item->form }}</x-td>
+                                                <x-td>{{ $item->mode_of_payment }}</x-td>
                                                 <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                                                     Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
                                                 </x-td>
-                                                <x-td>{{ number_format($item->collection,2) }}</x-td>
+                                                <x-td>{{ number_format($item->amount,2) }}</x-td>
+                                                <x-td>
+                                                    <x-button
+                                                        onclick="window.location.href='/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export'">
+                                                        <i class="fa-solid fa-download"></i>&nbspExport
+                                                    </x-button>
+                                                </x-td>
                                                 @empty
                                                 <x-td>No data found!</x-td>
                                             </tr>

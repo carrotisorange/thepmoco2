@@ -24,8 +24,8 @@ class TenantCollectionController extends Controller
     public function index(Tenant $tenant)
     {
         return view('tenants.collections.index',[
-        'tenant' => Tenant::find($tenant->uuid),
-        'collections' => Tenant::find($tenant->uuid)->collections
+         'tenant' => Tenant::find($tenant->uuid),
+         'collections' => Tenant::find($tenant->uuid)->acknowledgementreceipts
         ]);
     }
 
@@ -117,8 +117,6 @@ class TenantCollectionController extends Controller
 
         $pdf = PDF::loadView('tenants.collections.export', $data);
         return $pdf->download($tenant->tenant.'-ar.pdf');
-
-           //return redirect('/tenant/'.$tenant->uuid.'/bills')->with('success','Collections have been recorded.');
      }
 }
 
