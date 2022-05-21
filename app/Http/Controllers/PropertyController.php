@@ -22,6 +22,7 @@ use App\Models\Point;
 use App\Models\Status;
 use App\Models\Timestamp;
 use Illuminate\Support\Facades\Gate;
+use App\Models\UnitStats;
 
 class PropertyController extends Controller
 {
@@ -32,6 +33,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
+
         if(!User::find(Auth::user()->id)->user_properties->count())
         {
             return redirect('/property/'.Str::random(8).'/create');
@@ -166,8 +168,13 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {     
+
         session(['property' => $property->uuid]);
         session(['property_name' => $property->property]);
+
+        UnitStats::where('property_uuid', Session::get('property'))->groupBy()->get();
+
+        //$this->occupancy_rate();
 
         $collections = Property::find($property->uuid)->collections->sum("collection");
         $units = Property::find($property->uuid)->units->count();
@@ -202,6 +209,34 @@ class PropertyController extends Controller
             'units' => $units,
             'concerns' => $concerns,
             'contracts' => $contracts
+        ]);
+    }
+
+    public function occupancy_rate()
+    {
+        $total_units = Property::find(Session::get('property'))->units;
+
+        $vacant_units = $total_units->where('status_id','1')->count();
+
+        $occupied_units = $total_units->where('status_id','2')->count();
+
+        $dirty_units = $total_units->where('status_id','3')->count();
+
+        $reserved_units = $total_units->where('status_id','4')->count();
+
+        $undermaintenance_units = $total_units->where('status_id','5')->count();
+
+        $pending_units = $total_units->where('status_id','6')->count();
+
+        UnitStats::create([
+            'total' => $total_units->count(),
+            'vacant' => $vacant_units,
+            'occupied' => $occupied_units,
+            'dirty' => $dirty_units,
+            'reserved' => $reserved_units,
+            'under_maintenance' => $undermaintenance_units,
+            'pending' => $pending_units,
+            'property_uuid' => Session::get('property')
         ]);
     }
 

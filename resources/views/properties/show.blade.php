@@ -184,28 +184,30 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Occupancy Rate</h5>
                                         </div>
                                         <div class="p-5">
-                                            <canvas id="chartjs-7" class="chartjs" width="undefined"
+                                            <canvas id="occupancy_rate" class="chartjs" width="undefined"
                                                 height="undefined"></canvas>
                                             <script>
-                                                new Chart(document.getElementById("chartjs-7"), {
+                                                new Chart(document.getElementById("occupancy_rate"), {
                                                         "type": "bar",
                                                         "data": {
                                                             "labels": ["January", "February", "March", "April"],
                                                             "datasets": [{
-                                                                "label": "Page Impressions",
+                                                                "label": "Occupancy Rate",
                                                                 "data": [10, 20, 30, 40],
-                                                                "borderColor": "rgb(255, 99, 132)",
-                                                                "backgroundColor": "rgba(255, 99, 132, 0.2)"
-                                                            }, {
-                                                                "label": "Adsense Clicks",
-                                                                "data": [5, 15, 10, 30],
-                                                                "type": "line",
-                                                                "fill": false,
-                                                                "borderColor": "rgb(54, 162, 235)"
-                                                            }]
+                                                                "borderColor": "rgb(148,0,211)",
+                                                                "backgroundColor": "rgba(148,0,211)"
+                                                            }
+                                                            // , {
+                                                            //     "label": "Adsense Clicks",
+                                                            //     "data": [5, 15, 10, 30],
+                                                            //     "type": "line",
+                                                            //     "fill": false,
+                                                            //     "borderColor": "rgb(54, 162, 235)"
+                                                            // }
+                                                        ]
                                                         },
                                                         "options": {
                                                             "scales": {

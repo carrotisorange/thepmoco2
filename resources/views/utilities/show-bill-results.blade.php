@@ -1,7 +1,9 @@
 <table class="min-w-full divide-y divide-gray-200">
     <thead class="bg-gray-50">
         <tr>
-            <x-th> <x-input id="" wire:model="selectAll" type="checkbox" /></x-th>
+            <x-th>
+                <x-input id="" wire:model="selectAll" type="checkbox" />
+            </x-th>
             <x-th>#</x-th>
             <x-th>Ref #</x-th>
             <x-th>Date posted</x-th>
@@ -9,6 +11,8 @@
             <x-th>Particular</x-th>
             <x-th>Amount</x-th>
             <x-th>Status</x-th>
+            <x-th>Initial Payment</x-th>
+            <x-th>Balance</x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -54,6 +58,8 @@
                 </span>
                 @endif
             </x-td>
+            <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
+            <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
         </tr>
         @empty
         <tr>
