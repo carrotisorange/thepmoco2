@@ -103,7 +103,8 @@ class BillIndexComponent extends Component
      {
          Bill::whereIn('id', $this->selectedBills)
          ->update([
-            'status' => 'unpaid'
+            'status' => 'unpaid',
+            'initial_payment' => 0
          ]);
 
           $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
@@ -133,7 +134,7 @@ class BillIndexComponent extends Component
         ->get();
 
               $total_count = Bill::whereIn('id', $this->selectedBills)
-              ->where('status', 'paid')
+              ->whereIn('status', ['paid', 'partially_paid'])
               ->count();
 
             $bills =  Bill::search($this->search)
