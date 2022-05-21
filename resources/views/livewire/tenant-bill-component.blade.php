@@ -1,7 +1,8 @@
 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
     Reference # : <b> {{ $tenant->bill_reference_no }}</b>,
-  Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
-    Total Unpaid Bills: <b> {{ number_format(($total_unpaid_bills->sum('bill') - $total_unpaid_bills->sum('initial_payment')),2)}}</b>,
+    Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
+    Total Unpaid Bills: <b> {{ number_format(($total_unpaid_bills->sum('bill') -
+        $total_unpaid_bills->sum('initial_payment')),2)}}</b>,
     Total Paid Bills: <b> {{ number_format($total_paid_bills->sum('initial_payment'),2)}}</b>
     <div class="mt-5">
         @if($bills)
@@ -106,20 +107,17 @@
                                             @if($item->status === 'paid')
                                             <span
                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                <i class="fa-solid fa-circle-check"></i> {{
-                                                $item->status }}
+                                                <i class="fa-solid fa-circle-check"></i>
                                             </span>
                                             @elseif($item->status === 'partially_paid')
                                             <span
                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                <i class="fa-solid fa-clock"></i> {{
-                                                $item->status }}
+                                                <i class="fa-solid fa-clock"></i>
                                             </span>
                                             @else
                                             <span
                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                <i class="fa-solid fa-circle-xmark"></i> {{
-                                                $item->status }}
+                                                <i class="fa-solid fa-circle-xmark"></i>    
                                             </span>
                                             @endif
                                         </x-td>
