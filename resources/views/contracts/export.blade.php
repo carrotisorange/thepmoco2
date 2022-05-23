@@ -47,7 +47,7 @@
         td {
             margin-right: 80px;
             margin-left: 50px;
-            border: 1px solid black;
+            border: black;
         }
 
         th,

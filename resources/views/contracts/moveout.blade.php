@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Moveout | Create')
+    @section('title', '| Moveout')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">

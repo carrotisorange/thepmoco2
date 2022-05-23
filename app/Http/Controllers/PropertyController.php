@@ -14,9 +14,11 @@ use DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use App\Models\Bill;
 use App\Models\Contract;
 use Carbon\Carbon;
 use App\Models\Tenant;
+use App\Models\AcknowledgementReceipt;
 use App\Models\Unit;
 use App\Models\Point;
 use App\Models\Status;
@@ -191,7 +193,16 @@ class PropertyController extends Controller
 
         $this->occupancy_rate();
 
-        $collections = Property::find($property->uuid)->collections->sum("collection");
+        $collections = AcknowledgementReceipt::where('property_uuid',$property->uuid)
+        ->whereMonth('created_at',date('m'))
+        ->sum("amount");
+
+        $bills = Bill::where('property_uuid',$property->uuid)
+        ->whereMonth('created_at',date('m'))
+        ->sum("bill");
+
+        $contracts = Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->count();
+
         $units = Property::find($property->uuid)->units->count();
         $tenants = Property::find($property->uuid)->tenants->count();
         $concerns = Property::find($property->uuid)->concerns->count();
@@ -213,7 +224,7 @@ class PropertyController extends Controller
                 );
                 }
 
-        $contracts =Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->get();
+        $expiring_contracts =Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->paginate(5);
 
 
         return view('properties.show',[
@@ -226,7 +237,10 @@ class PropertyController extends Controller
             'contracts' => $contracts,
             'occupancy_rate' => $occupancy_rate,
             'date' => $date,
-            'current_occupancy_rate' => $current_occupancy_rate
+            'current_occupancy_rate' => $current_occupancy_rate,
+            'bills' => $bills,
+            'contracts' => $contracts,
+            'expiring_contracts' => $expiring_contracts
         ]);
     }
 

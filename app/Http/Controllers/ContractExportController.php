@@ -17,7 +17,7 @@ class ContractExportController extends Controller
      */
     public function __invoke(Contract $contract)
     {
-         $reference_no = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
+        $reference_no = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
         ->select('*', 'bills.status as bill_status', 'bills.id as bill_id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
         ->where('tenants.uuid', $contract->tenant->uuid)
@@ -50,7 +50,7 @@ class ContractExportController extends Controller
         ];
 
           $pdf = \PDF::loadView('contracts.export', $data);
-          return $pdf->download($contract->tenant->tenant.'-contract.pdf');
+          return $pdf->stream($contract->tenant->tenant.'-contract.pdf');
      
 
         //   $pdf = \PDF::loadView('contracts.export', $data)
