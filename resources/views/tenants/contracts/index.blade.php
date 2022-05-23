@@ -26,6 +26,10 @@
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
 
+                    <x-button data-modal-toggle="create-tenant-contract-modal"><i
+                            class="fa-solid fa-circle-plus"></i>&nbsp Add
+                    </x-button>
+
 
                 </h5>
 
@@ -165,4 +169,5 @@
             </div>
         </div>
     </div>
+    @include('tenants.contracts.create')
 </x-app-layout>

@@ -1,3 +1,4 @@
+
 <form method="POST" wire:submit.prevent="submitForm" class="w-full" id="create-form">
     @csrf
     <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">

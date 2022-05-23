@@ -191,7 +191,7 @@ class PropertyController extends Controller
         ->where('property_uuid', Session::get('property'))
         ->get()->last();
 
-        $this->occupancy_rate();
+        //$this->occupancy_rate();
 
         $collections = AcknowledgementReceipt::where('property_uuid',$property->uuid)
         ->whereMonth('created_at',date('m'))

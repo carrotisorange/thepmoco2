@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use Illuminate\Http\Request;
 use DB;
 use App\Models\Property;
 use App\Models\UserProperty;
@@ -63,45 +64,38 @@ class PropertyEditComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function updateForm()
-    {
-        sleep(1);
-
-        if(!$this->country_id)
-        {
-            $validatedData['country_id'] = '247';
-        }
-
-        if(!$this->province_id)
-        {
-            $validatedData['province_id'] = '4121';
-        }
-
-        if(!$this->city_id)
-        {
-            $validatedData['city_id'] = '48315';
-        }
-
-        if(!$this->thumbnail){
-            $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
-        }else{
-            $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
-        }
-
-        // if($this->tenant_contract){
-        //     $validatedData['tenant_contract'] = $this->tenant_contract->store('tenant_contracts');
-        // }
-
-        // if($this->owner_contract){
-        //     $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
-        // }
-        
+    public function updateForm(Request $request)
+    {   
         try{
             DB::beginTransaction();
 
+            sleep(1);
+
+            if(!$this->country_id)
+            {
+                $validatedData['country_id'] = '247';
+            }
+
+            if(!$this->province_id)
+            {
+                $validatedData['province_id'] = '4121';
+            }
+
+            if(!$this->city_id)
+            {
+                $validatedData['city_id'] = '48315';
+            }
+
+            if($this->thumbnail)
+            {
+                $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
+            }else
+            {
+                $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
+            }
+
             $validatedData = $this->validate();
 
-            
             $this->property_details->update($validatedData);
 
             DB::commit();

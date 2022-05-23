@@ -24,13 +24,8 @@ class ContractExportController extends Controller
         ->orderBy('bills.bill_no')
         ->limit(1)
         ->get('reference_no');
-
-        $bills = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
-        ->select('*', 'bills.status as bill_status', 'bills.id as bill_id')
-        ->join('particulars', 'bills.particular_id', 'particulars.id')
-        ->where('tenants.uuid', $contract->tenant->uuid)
-        ->orderBy('bills.bill_no')
-        ->get();
+        
+        $bills = Tenant::find($contract->tenant_uuid)->bills;
 
         $data = [
             'tenant' => $contract->tenant->tenant ,
@@ -50,25 +45,8 @@ class ContractExportController extends Controller
         ];
 
           $pdf = \PDF::loadView('contracts.export', $data);
-          return $pdf->stream($contract->tenant->tenant.'-contract.pdf');
-     
-
-        //   $pdf = \PDF::loadView('contracts.export', $data)
-        //   ->setPaper('a5', 'portrait');
-
-        //   //$pdf->setPaper('L');
-        //   $pdf->output();
-        //   $canvas = $pdf->getDomPDF()->getCanvas();
-        //   $height = $canvas->get_height();
-        //   $width = $canvas->get_width();
-        //   $canvas->set_opacity(.1,"Multiply");
-        //   $canvas->page_text($width, $height, Session::get('property_name'), null,
-        //   28, array(0,0,0),2,2,0);
-        
-        //   return $pdf->download($contract->tenant->tenant.'.pdf');
+          return $pdf->download($contract->tenant->tenant.'-contract.pdf');
 
     }
-
-
 
 }

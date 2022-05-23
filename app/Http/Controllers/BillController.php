@@ -55,7 +55,8 @@ class BillController extends Controller
             'tenant' => $tenant,
             'contract' => $contract,
             'bills' => $bills,
-            'particulars' => $particulars
+            'particulars' => $particulars,
+            'units' => Tenant::find($tenant->uuid)->contracts
         ]);
     }
 

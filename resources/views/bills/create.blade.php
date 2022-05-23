@@ -27,15 +27,11 @@
                     <x-button data-modal-toggle="create-particular-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
                     </x-button>
-                    @if ($bills->count())
-                    <x-button onclick="window.location.href='/unit/{{ $contract->unit_uuid }}/contracts'"><i
-                            class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
-                    @else
-                    <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}'"><i
-                            class="fa-solid fa-forward"></i>&nbspSkip</x-button>
-                    @endif
+                    <x-button data-modal-toggle="create-bill-modal">
+                        <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
+                    </x-button>
+                    <x-button data-modal-toggle="save-contract-modal"><i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                 </h5>
-
             </div>
         </h2>
     </x-slot>
@@ -44,9 +40,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-12 bg-white border-b border-gray-200">
-                    @livewire('bill-component', ['unit' => $unit, 'tenant' => $tenant, 'contract' => $contract, 'bills'
-                    => $bills])
-                    <br>
+                    {{-- @livewire('bill-component', ['unit' => $unit, 'tenant' => $tenant, 'contract' => $contract,
+                    'bills'
+                    => $bills]) --}}
+
                     @if ($bills->count())
                     <span>Total bills: <b>{{ number_format($bills->sum('bill'), 2) }}</b></span>
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -57,7 +54,7 @@
                                     <x-th>#</x-th>
                                     <x-th>Unit</x-th>
                                     <x-th>Reference #</x-th>
-                                    <x-th>Bill #</x-th>
+
                                     <x-th>Particular</x-th>
                                     <x-th>Period Covered</x-th>
                                     <x-th>Amount</x-th>
@@ -69,10 +66,10 @@
                             @foreach ($bills as $bill)
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <x-td>{{ $ctr++ }}</x-td>
+                                    <x-td>{{ $bill->bill_no }}</x-td>
                                     <x-td>{{ $bill->unit->unit }}</x-td>
                                     <x-td>{{ $bill->reference_no }}</x-td>
-                                    <x-td>{{ $bill->bill_no }}</x-td>
+
                                     <x-td>{{ $bill->particular->particular }}</x-td>
 
                                     <x-td>{{ Carbon\Carbon::parse($bill->start)->format('M d, Y') }}- {{
@@ -98,4 +95,6 @@
         </div>
     </div>
     @include('utilities.create-particular-modal');
+    @include('utilities.create-bill-modal');
+   @include('utilities.save-contract-modal');
 </x-app-layout>

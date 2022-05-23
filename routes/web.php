@@ -100,7 +100,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('building/{random_str}/store',[BuildingController::class, 'store']);
 
     Route::get('tenant/{tenant:uuid}', [TenantController::class, 'show']);
-    Route::get('tenant/{tenant}/contracts', TenantContractController::class);
+    Route::get('tenant/{tenant}/contracts', [TenantContractController::class, 'index']);
+    //'Route::get('tenant/{tenant}/unit/{unit}/contract/units', [TenantContractController::class, 'units']);
+    Route::get('tenant/{tenant}/unit/{unit}/edit', [TenantContractController::class, 'create']);
+//     Route::get('tenant/{tenant}/unit/{unit}/contract/create', [TenantContractController::class, 'create']);
     Route::get('tenant/{tenant}/bills', [TenantBillController::class, 'index']);
     Route::get('tenant/{tenant}/bill/create', [TenantBillController::class, 'store']);
     Route::get('tenant/{tenant}/bill/export', [TenantBillController::class, 'export']);
