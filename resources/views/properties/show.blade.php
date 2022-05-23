@@ -181,6 +181,7 @@
                                 </div>
                             </div>
 
+                            @if($expiring_contracts->count())
                             <div class="w-full p-3">
                                 <!--Table Card-->
                                 <div class="bg-white border rounded shadow">
@@ -209,7 +210,7 @@
                                                                             <x-th></x-th>
                                                                         </tr>
                                                                     </thead>
-                                                                    @forelse ($expiring_contracts as $contract)
+                                                                    @foreach ($expiring_contracts as $contract)
                                                                     <tbody class="bg-white divide-y divide-gray-200">
                                                                         <tr>
                                                                             <x-td>{{ $ctr++ }}</x-td>
@@ -348,11 +349,10 @@
                                                                                     @endif
                                                                                 </div>
                                                                             </x-td>
-                                                                            @empty
-                                                                            <x-td>No data found!</x-td>
+                                                                          
                                                                         </tr>
                                                                     </tbody>
-                                                                    @endforelse
+                                                                    @endforeach
                                                                 </table>
                                                                 {{ $expiring_contracts->links() }}
                                                             </div>
@@ -365,6 +365,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @endif
 
                             <!--Divider-->
                             {{--
