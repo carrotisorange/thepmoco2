@@ -184,29 +184,24 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Occupancy Rate</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Current Occupancy Rate ({{ number_format($current_occupancy_rate->occupancy_rate, 2) }}%)</h5>
                                         </div>
                                         <div class="p-5">
                                             <canvas id="occupancy_rate" class="chartjs" width="undefined"
                                                 height="undefined"></canvas>
                                             <script>
                                                 new Chart(document.getElementById("occupancy_rate"), {
-                                                        "type": "bar",
+                                                        "type": "line",
                                                         "data": {
-                                                            "labels": ["January", "February", "March", "April"],
+                                                            "labels": {!!$date!!},
                                                             "datasets": [{
-                                                                "label": "Occupancy Rate",
-                                                                "data": [10, 20, 30, 40],
-                                                                "borderColor": "rgb(148,0,211)",
-                                                                "backgroundColor": "rgba(148,0,211)"
+                                                               label: 'Occupancy Rate',
+                                                                data: {!!$occupancy_rate!!},
+                                                                //lineTension: 0.1,
+                                                                fill: false,
+                                                                backgroundColor: 'rgba(148,0,211)',
+                                        
                                                             }
-                                                            // , {
-                                                            //     "label": "Adsense Clicks",
-                                                            //     "data": [5, 15, 10, 30],
-                                                            //     "type": "line",
-                                                            //     "fill": false,
-                                                            //     "borderColor": "rgb(54, 162, 235)"
-                                                            // }
                                                         ]
                                                         },
                                                         "options": {
@@ -229,7 +224,7 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Collection Rate</h5>
                                         </div>
                                         <div class="p-5">
                                             <canvas id="chartjs-0" class="chartjs" width="undefined"
@@ -247,6 +242,7 @@
                                                                 "lineTension": 0.1
                                                             }]
                                                         },
+                                                       
                                                         "options": {}
                                                     });
                                             </script>

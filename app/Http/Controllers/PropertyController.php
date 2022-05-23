@@ -172,9 +172,24 @@ class PropertyController extends Controller
         session(['property' => $property->uuid]);
         session(['property_name' => $property->property]);
 
-        UnitStats::where('property_uuid', Session::get('property'))->groupBy()->get();
+        $occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'))
+        ->where('property_uuid',$property->uuid)
+        ->groupBy(DB::raw('Date(created_at)'))
+        ->limit(10)
+        ->pluck('occupancy_rate');
 
-        //$this->occupancy_rate();
+        $date = UnitStats::select('created_at', DB::raw('DATE_FORMAT(created_at, "%M %d") as date'),
+        DB::raw('MAX(occupied)'))
+        ->where('property_uuid',$property->uuid)
+        ->groupBy(DB::raw('Date(created_at)'))
+        ->limit(10)
+        ->pluck('date');
+
+        $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'))
+        ->where('property_uuid', Session::get('property'))
+        ->get()->last();
+
+        $this->occupancy_rate();
 
         $collections = Property::find($property->uuid)->collections->sum("collection");
         $units = Property::find($property->uuid)->units->count();
@@ -208,7 +223,10 @@ class PropertyController extends Controller
             'tenants' => $tenants,
             'units' => $units,
             'concerns' => $concerns,
-            'contracts' => $contracts
+            'contracts' => $contracts,
+            'occupancy_rate' => $occupancy_rate,
+            'date' => $date,
+            'current_occupancy_rate' => $current_occupancy_rate
         ]);
     }
 
@@ -238,6 +256,7 @@ class PropertyController extends Controller
             'pending' => $pending_units,
             'property_uuid' => Session::get('property')
         ]);
+
     }
 
     /**
