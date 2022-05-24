@@ -410,7 +410,7 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Collection Rate</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Current Collections ({{ number_format($current_collection_rate->total_amount, 2) }})</h5>
                                         </div>
                                         <div class="p-5">
                                             <canvas id="collection_rate" class="chartjs" width="undefined"
@@ -421,7 +421,7 @@
                                                         "data": {
                                                             "labels": {!!$collection_rate_date!!},
                                                             "datasets": [{
-                                                                "label": "Collection",
+                                                                "label": "Collections",
                                                                  data: {!!$collection_rate!!},
                                                                 "fill": false,
                                                                 "borderColor": "rgba(148,0,211)",

@@ -203,6 +203,11 @@ class PropertyController extends Controller
         ->groupBy(DB::raw('Date(created_at)'))
         ->pluck('total_amount');
 
+        $current_collection_rate = AcknowledgementReceipt::select(DB::raw('sum(amount) as total_amount'))
+        ->where('property_uuid', $property->uuid)
+         ->groupBy(DB::raw('Date(created_at)'))
+        ->get()
+        ->last();
 
         //$this->occupancy_rate();
 
@@ -218,7 +223,7 @@ class PropertyController extends Controller
 
         $units = Property::find($property->uuid)->units->count();
         $tenants = Property::find($property->uuid)->tenants->count();
-        $concerns = Property::find($property->uuid)->concerns->count();
+        $concerns = Property::find($property->uuid)->concerns->where('status', 'pending')->count();
 
 
             $timestamps = DB::table('timestamps')
@@ -255,7 +260,8 @@ class PropertyController extends Controller
             'contracts' => $contracts,
             'expiring_contracts' => $expiring_contracts,
             'collection_rate_date' => $collection_rate_date,
-            'collection_rate' => $collection_rate
+            'collection_rate' => $collection_rate,
+            'current_collection_rate' => $current_collection_rate
         ]);
     }
 
