@@ -180,18 +180,31 @@ class PropertyController extends Controller
         ->limit(10)
         ->pluck('occupancy_rate');
 
-        $date = UnitStats::select('created_at', DB::raw('DATE_FORMAT(created_at, "%M %d") as date'),
+        $occupancy_rate_date = UnitStats::select('created_at', DB::raw('DATE_FORMAT(created_at, "%M %d") as date'),
         DB::raw('MAX(occupied)'))
         ->where('property_uuid',$property->uuid)
         ->groupBy(DB::raw('Date(created_at)'))
         ->limit(10)
         ->pluck('date');
 
-        $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'))
+        $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+        DB::raw('MAX(occupied)'))
         ->where('property_uuid', Session::get('property'))
-        ->get()->last();
+        ->get()
+        ->last();
 
-        $this->occupancy_rate();
+        $collection_rate_date = AcknowledgementReceipt::select('created_at', DB::raw('DATE_FORMAT(created_at, "%M %d") as date'))->where('property_uuid',
+        $property->uuid)
+        ->groupBy(DB::raw('date'))
+        ->pluck('date');
+
+        $collection_rate = AcknowledgementReceipt::select(DB::raw('sum(amount) as total_amount'))->where('property_uuid',
+        $property->uuid)
+        ->groupBy(DB::raw('Date(created_at)'))
+        ->pluck('total_amount');
+
+
+        //$this->occupancy_rate();
 
         $collections = AcknowledgementReceipt::where('property_uuid',$property->uuid)
         ->whereMonth('created_at',date('m'))
@@ -236,11 +249,13 @@ class PropertyController extends Controller
             'concerns' => $concerns,
             'contracts' => $contracts,
             'occupancy_rate' => $occupancy_rate,
-            'date' => $date,
+            'occupancy_rate_date' => $occupancy_rate_date,
             'current_occupancy_rate' => $current_occupancy_rate,
             'bills' => $bills,
             'contracts' => $contracts,
-            'expiring_contracts' => $expiring_contracts
+            'expiring_contracts' => $expiring_contracts,
+            'collection_rate_date' => $collection_rate_date,
+            'collection_rate' => $collection_rate
         ]);
     }
 

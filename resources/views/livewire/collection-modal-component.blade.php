@@ -10,8 +10,7 @@
                 <x-label for="created_at">
                     Date
                 </x-label>
-                <x-form-input wire:model="created_at" 
-                 type="date" />
+                <x-form-input wire:model="created_at" type="date" />
 
                 @error('created_at')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -35,10 +34,14 @@
                     <tr>
                         <x-td>{{ $item->bill_no }}</x-td>
                         <x-td>{{$item->particular->particular }}</x-td>
-                        <x-td>{{Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
+                        <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
+                            Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
                         <x-td>{{number_format($item->bill,2) }}</x-td>
-                        <x-td><x-table-input form="create-form" wire:model="bill.{{ $index }}" type="number" min="1" step="0.001" required /></x-td>
-                @endforeach
+                        <x-td>
+                            <x-table-input form="create-form" wire:model="bill.{{ $index }}" type="number" min="1"
+                                step="0.001" required />
+                        </x-td>
+                        @endforeach
                     </tr>
                 </tbody>
             </table>
@@ -74,6 +77,20 @@
                 @enderror
             </div> --}}
         </div>
+
+        <div class="flex flex-wrap mx-3 mb-6">
+            <div class="w-full md:w-full px-3">
+                <div class="form-check">
+                    <input wire:model="exportCollection"
+                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        type="checkbox" value="{{ old('exportCollection'), $exportCollection }}" id="flexCheckChecked">
+                    <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
+                        Export Payment
+                    </label>
+                </div>
+            </div>
+        </div>
+
         @if($form === 'bank')
         <div class="mt-5 flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3">
@@ -91,7 +108,7 @@
                 <x-label for="date_deposited">
                     Date Deposited
                 </x-label>
-                <x-form-input wire:model="date_deposited" type="date"/>
+                <x-form-input wire:model="date_deposited" type="date" />
 
                 @error('date_deposited')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -104,7 +121,7 @@
                 <x-label for="attachment">
                     Attachment <span class="text-red-600">*</span>
                 </x-label>
-                <x-form-input wire:model="attachment" type="file"/>
+                <x-form-input wire:model="attachment" type="file" />
 
                 @error('attachment')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -119,7 +136,7 @@
                 <x-label for="check_no">
                     Cheque #
                 </x-label>
-                <x-form-input wire:model="check_no" type="text"/>
+                <x-form-input wire:model="check_no" type="text" />
 
                 @error('check_no')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -132,7 +149,7 @@
                 <x-label for="attachment">
                     Attachment
                 </x-label>
-                <x-form-input wire:model="attachment" type="file"/>
+                <x-form-input wire:model="attachment" type="file" />
 
                 @error('attachment')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

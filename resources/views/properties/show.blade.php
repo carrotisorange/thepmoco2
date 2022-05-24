@@ -90,7 +90,7 @@
                                         <div class="flex flex-row items-center">
                                             <div class="flex-shrink pr-4">
                                                 <div class="rounded p-3 bg-pink-600"><i
-                                                        class="fa-2x fa-fw fa-solid fa-file-invoice-dollar"></i>
+                                                        class="fa-2x fa-fw fa-solid fa-inversef fa-file-invoice-dollar"></i>
 
                                                 </div>
                                             </div>
@@ -167,12 +167,12 @@
                                         <div class="flex flex-row items-center">
                                             <div class="flex-shrink pr-4">
                                                 <div class="rounded p-3 bg-red-600"><i
-                                                        class="fas fa-inbox fa-2x fa-fw fa-inverse"></i>
+                                                        class="fas fa-screwdriver-wrench fa-2x fa-fw fa-inverse"></i>
                                                 </div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
-                                                <h5 class="font-bold uppercase text-gray-500">Issues</h5>
-                                                <h3 class="font-bold text-3xl">3 <span class="text-red-500"><i
+                                                <h5 class="font-bold uppercase text-gray-500">Pending Concerns</h5>
+                                                <h3 class="font-bold text-3xl">{{ $concerns }} <span class="text-red-500"><i
                                                             class="fas fa-caret-up"></i></span></h3>
                                             </div>
                                         </div>
@@ -388,26 +388,17 @@
                                                 new Chart(document.getElementById("occupancy_rate"), {
                                                         "type": "line",
                                                         "data": {
-                                                            "labels": {!!$date!!},
+                                                            "labels": {!!$occupancy_rate_date!!},
                                                             "datasets": [{
-                                                               label: 'Occupancy Rate',
-                                                                data: {!!$occupancy_rate!!},
-                                                                //lineTension: 0.1,
-                                                                fill: false,
-                                                                backgroundColor: 'rgba(148,0,211)',
-                                        
-                                                            }
-                                                        ]
+                                                                "label": "Occupancy Rate",
+                                                                 data: {!!$occupancy_rate!!},
+                                                                "fill": false,
+                                                                "borderColor": "rgba(148,0,211)",
+                                                                "lineTension": 0.1
+                                                            }]
                                                         },
-                                                        "options": {
-                                                            "scales": {
-                                                                "yAxes": [{
-                                                                    "ticks": {
-                                                                        "beginAtZero": true
-                                                                    }
-                                                                }]
-                                                            }
-                                                        }
+                                                       
+                                                        "options": {}
                                                     });
                                             </script>
                                         </div>
@@ -422,18 +413,18 @@
                                             <h5 class="font-bold uppercase text-gray-600">Collection Rate</h5>
                                         </div>
                                         <div class="p-5">
-                                            <canvas id="chartjs-0" class="chartjs" width="undefined"
+                                            <canvas id="collection_rate" class="chartjs" width="undefined"
                                                 height="undefined"></canvas>
                                             <script>
-                                                new Chart(document.getElementById("chartjs-0"), {
+                                                new Chart(document.getElementById("collection_rate"), {
                                                         "type": "line",
                                                         "data": {
-                                                            "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                                            "labels": {!!$collection_rate_date!!},
                                                             "datasets": [{
-                                                                "label": "Views",
-                                                                "data": [65, 59, 80, 81, 56, 55, 40],
+                                                                "label": "Collection",
+                                                                 data: {!!$collection_rate!!},
                                                                 "fill": false,
-                                                                "borderColor": "rgb(75, 192, 192)",
+                                                                "borderColor": "rgba(148,0,211)",
                                                                 "lineTension": 0.1
                                                             }]
                                                         },

@@ -31,6 +31,8 @@ class CollectionModalComponent extends ModalComponent
     public $form;
     public $bill;
 
+    public $exportCollection;
+
     public function mount($selectedBills, $total, $tenant)
     {
         $this->selectedBills = $selectedBills;
@@ -42,6 +44,7 @@ class CollectionModalComponent extends ModalComponent
         $this->collection = $total;
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->tenant = $tenant;
+        $this->exportCollection = true;
     }
 
     protected function rules()
@@ -138,8 +141,17 @@ class CollectionModalComponent extends ModalComponent
             
             $this->resetForm();
 
-            return redirect('/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Collections
-            have been recorded.');
+            if($this->exportCollection)
+            {
+               return redirect('/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Collections
+               have been recorded.');
+            }
+            else{
+                return redirect('/tenant/'.$this->tenant.'/bills')->with('success','Collections
+                successfully recorded.');
+            }
+
+           
           
     
        }catch(\Exception $e)

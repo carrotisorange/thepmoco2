@@ -123,12 +123,11 @@
         </p>
         <br><br><br>
         <p>
-            <b>Payment Breakdown</b>
+            <b>Payments Breakdown</b>
         </p>
 
         <p>
         <table class="">
-
             <tr>
                 <th>Bill #</th>
                 <th>Date Posted</th>
