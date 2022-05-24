@@ -222,14 +222,18 @@ class PropertyController extends Controller
              ->pluck('total_bill');
 
 
-        $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
-             '%M')) as month_year"))
-                   ->where('property_uuid', Session::get('property'))
-             ->orderBy('created_at')
-             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-             ->limit(6)
-               ->get()
-               ->last();
+        $current_collection_rate = 
+        AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->pluck('total_amount')
+        ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
+        ->orderBy('created_at')
+        ->where('property_uuid', Session::get('property'))
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->pluck('total_bill')
+        ->last() * 100;
     
 
         $tenant_type_label = Tenant::
@@ -262,6 +266,19 @@ class PropertyController extends Controller
           ->groupBy(DB::raw("DATE_FORMAT(moveout_at, '%m-%Y')"))
           ->limit(7)
           ->pluck('month_year');
+
+
+        $reasons_for_moveout_label = Contract::select('moveout_reason')
+        ->where('property_uuid', Session::get('property'))
+        ->where('moveout_reason','!=', "NA")
+        ->groupBy('moveout_reason')
+        ->pluck('moveout_reason');
+
+        $reasons_for_moveout_value = Contract::select(DB::raw('count(*) as count'))
+         ->where('property_uuid', Session::get('property'))
+         ->where('moveout_reason','!=', "NA")
+         ->groupBy('moveout_reason')
+         ->pluck('count');
 
         //return $tenant_background  = Tenant::select(DB::raw('count(type)'))->where('property_uuid',$property->uuid)->groupBy('type')->get();
 
@@ -323,8 +340,10 @@ class PropertyController extends Controller
             'tenant_type_value' => $tenant_type_value,
             'tenant_movein_value' => $tenant_movein_value,
             'tenant_movein_label' => $tenant_movein_label,
-            'tenant_moveout_value' => $tenant_moveout_value
-        ]);
+            'tenant_moveout_value' => $tenant_moveout_value,
+            'reasons_for_moveout_label' => $reasons_for_moveout_label,
+            'reasons_for_moveout_value' => $reasons_for_moveout_value
+        ]); 
     }
 
     public function occupancy_rate()

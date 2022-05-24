@@ -414,7 +414,7 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Current Collections ({{ number_format($current_collection_rate->total_amount, 2) }})</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Current Collection Rate ({{ number_format($current_collection_rate, 2) }}%)</h5>
                                         </div>
                                         <div class="p-5">
                                             <canvas id="collection_rate" class="chartjs" width="undefined"
@@ -509,11 +509,48 @@
                                     <!--/Graph Card-->
                                 </div>
 
+                                
                                 <div class="w-full md:w-1/2 xl:w-1/3 p-3">
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Tenant Background</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Reasons for moveout</h5>
+                                        </div>
+                                        <div class="p-5">
+                                            <canvas id="moveout_reason" class="chartjs" width="undefined"
+                                                height="undefined"></canvas>
+                                            <script>
+                                                new Chart(document.getElementById("moveout_reason"), {
+                                                        "type": "bar",
+                                                        "data": {
+                                                            "labels": {!!$reasons_for_moveout_label!!},
+                                                            "datasets": [{
+                                                                
+                                                                "data": {!!$reasons_for_moveout_value!!},
+                                                                "fill": true,
+                                                                "backgroundColor": ["rgba(255, 159, 64)"],
+                                                                "borderColor": ["rgb(255, 159, 64)"],
+                                                                "borderWidth": 1
+                                                            }
+                                                        ]
+                                                        },
+                                                        "options": {
+                                                            legend: {
+                                                            display: false
+                                                            },
+                                                        }
+                                                    });
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <!--/Graph Card-->
+                                </div>
+
+                                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                                    <!--Graph Card-->
+                                    <div class="bg-white border rounded shadow">
+                                        <div class="border-b p-3">
+                                            <h5 class="font-bold uppercase text-gray-600">Tenant Type</h5>
                                         </div>
                                         <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined"
                                                 height="undefined"></canvas>
