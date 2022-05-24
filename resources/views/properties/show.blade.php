@@ -391,14 +391,18 @@
                                                             "labels": {!!$occupancy_rate_date!!},
                                                             "datasets": [{
                                                                 "label": "Occupancy Rate",
-                                                                 data: {!!$occupancy_rate!!},
+                                                                 data: {!!$occupancy_rate_value!!},
                                                                 "fill": false,
                                                                 "borderColor": "rgba(148,0,211)",
                                                                 "lineTension": 0.1
                                                             }]
                                                         },
                                                        
-                                                        "options": {}
+                                                        "options": {
+                                                            legend: {
+                                                            display: false
+                                                            },
+                                                        }
                                                     });
                                             </script>
                                         </div>
@@ -417,19 +421,40 @@
                                                 height="undefined"></canvas>
                                             <script>
                                                 new Chart(document.getElementById("collection_rate"), {
-                                                        "type": "line",
+                                                        "type": "bar",
                                                         "data": {
                                                             "labels": {!!$collection_rate_date!!},
                                                             "datasets": [{
                                                                 "label": "Collections",
-                                                                 data: {!!$collection_rate!!},
-                                                                "fill": false,
-                                                                "borderColor": "rgba(148,0,211)",
+                                                                 data: {!!$collection_rate_value!!},
+                                                                "fill": true,
+                                                                "borderColor": "rgba(255, 99, 132, 0.2)",
+                                                                "backgroundColor": "rgba(255, 99, 132, 0.2)",
                                                                 "lineTension": 0.1
-                                                            }]
+                                                            }, {
+                                                            "label": "Bills",
+                                                            "data": {!!$bill_rate_value!!},
+                                                            "type": "bar",
+                                                            "fill": true,
+                                                            "borderColor": "rgb(255, 159, 64, 0.2)",
+                                                            "backgroundColor": "rgb(255, 159, 64, 0.2)"
+                                                            }
+                                                            , {
+                                                            "label": "Collections Overtime",
+                                                            "data": {!!$collection_rate_value!!},
+                                                            "type": "line",
+                                                            "fill": false,
+                                                            "borderColor": "rgb(148,0,211)",
+                                                            "backgroundColor": "rgba(148,0,211)",
+                                                            }
+                                                        ]
                                                         },
                                                        
-                                                        "options": {}
+                                                        "options": {
+                                                            // legend: {
+                                                            // display: false
+                                                            // },
+                                                        }
                                                     });
                                             </script>
                                         </div>
@@ -441,7 +466,7 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Tenant Moveins/Moveouts</h5>
                                         </div>
                                         <div class="p-5">
                                             <canvas id="chartjs-1" class="chartjs" width="undefined"
@@ -450,21 +475,29 @@
                                                 new Chart(document.getElementById("chartjs-1"), {
                                                         "type": "bar",
                                                         "data": {
-                                                            "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                                            "labels": {!!$tenant_movein_label!!},
                                                             "datasets": [{
-                                                                "label": "Likes",
-                                                                "data": [65, 59, 80, 81, 56, 55, 40],
-                                                                "fill": false,
-                                                                "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                                                                "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                                                                "label": "No of Moveins",
+                                                                "data": {!!$tenant_movein_value!!},
+                                                                "fill": true,
+                                                                "backgroundColor": ["rgba(255, 159, 64)"],
+                                                                "borderColor": ["rgb(255, 159, 64)"],
                                                                 "borderWidth": 1
-                                                            }]
+                                                            },{
+                                                                "label": "No of Moveouts",
+                                                                "data": {!!$tenant_moveout_value!!},
+                                                                "fill": true,
+                                                                "backgroundColor": ["rgba(255, 159, 64, 0.2)"],
+                                                                "borderColor": ["rgb(255, 159, 64, 0.2)"],
+                                                                "borderWidth": 1
+                                                            }
+                                                        ]
                                                         },
                                                         "options": {
                                                             "scales": {
                                                                 "yAxes": [{
                                                                     "ticks": {
-                                                                        "beginAtZero": true
+                                                                        "beginAtZero": false
                                                                     }
                                                                 }]
                                                             }
@@ -480,7 +513,7 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Tenant Background</h5>
                                         </div>
                                         <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined"
                                                 height="undefined"></canvas>
@@ -488,11 +521,11 @@
                                                 new Chart(document.getElementById("chartjs-4"), {
                                                         "type": "doughnut",
                                                         "data": {
-                                                            "labels": ["P1", "P2", "P3"],
+                                                            "labels": {!!$tenant_type_label!!},
                                                             "datasets": [{
                                                                 "label": "Issues",
-                                                                "data": [300, 50, 100],
-                                                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                                                                "data": {!!$tenant_type_value!!},
+                                                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)"]
                                                             }]
                                                         }
                                                     });
