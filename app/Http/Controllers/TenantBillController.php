@@ -14,6 +14,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use LivewireUI\Modal\ModalComponent;
 use \PDF;
+use App\Models\Point;
 
 class TenantBillController extends Controller
 {
@@ -68,6 +69,13 @@ class TenantBillController extends Controller
             $attributes['tenant_uuid'] = $tenant->uuid;
 
             Bill::create($attributes);
+
+            Point::create([
+            'user_id' => auth()->user()->id,
+            'point' => 1,
+            'action_id' => 3,
+            'property_uuid' => Session::get('property')
+          ]);
 
             DB::commit();
 

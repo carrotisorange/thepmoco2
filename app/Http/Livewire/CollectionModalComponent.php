@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Carbon\Carbon;
+use App\Models\Point;
 use DB;
 
 class CollectionModalComponent extends ModalComponent
@@ -113,6 +114,14 @@ class CollectionModalComponent extends ModalComponent
                         Collection::create($validatedData);
 
                     }
+
+                     Point::create([
+                     'user_id' => auth()->user()->id,
+                     'point' => count($this->selectedBills),
+                     'action_id' => 4,
+                     'property_uuid' => Session::get('property')
+                     ]);
+
  
             $ar = AcknowledgementReceipt::create([
                 'tenant_uuid' => $this->tenant,

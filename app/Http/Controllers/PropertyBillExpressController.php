@@ -11,6 +11,7 @@ use Session;
 use Illuminate\Validation\Rule;
 use App\Models\Contract;
 use App\Models\Tenant;
+use App\Models\Point;
 
 class PropertyBillExpressController extends Controller
 {
@@ -61,7 +62,15 @@ class PropertyBillExpressController extends Controller
                 $attributes['property_uuid'] = Session::get('property');
 
                 Bill::create($attributes);
+
                 }
+
+                 Point::create([
+                 'user_id' => auth()->user()->id,
+                 'point' => $bill_count,
+                 'action_id' => 3,
+                 'property_uuid' => Session::get('property')
+                 ]);
 
                 return back()->with('success', $i.' bills have been posted.');
 
