@@ -140,7 +140,7 @@
 
                         <div class="mt-5">
                             <x-label for="tenant_contract">
-                                Tenant Contract (Applicable if you're accepting tenants to your property. Please only
+                                Tenant Contract (Applicable if the property is accepting tenants. Please only
                                 upload a PDF file.) <span class="text-blue-600">(optional)</span>
                             </x-label>
 
@@ -154,9 +154,8 @@
 
                         <div class="mt-5">
                             <x-label for="owner_contract">
-                                Owner Contract (Applicable if the units on your property have different owners and they
-                                want their units to be rented
-                                out. Please only
+                                Owner Contract (Applicable if the units on the property have different owners and they
+                                want their units to be rented out. Please only
                                 upload a PDF file.)
                             </x-label>
 

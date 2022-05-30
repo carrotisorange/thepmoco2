@@ -532,13 +532,13 @@
             <div class="flex flex-wrap justify-center md:justify-start">
                 <!-- single pricing table starts -->
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
-                    <div class="pricing-box wow fadeInLeft" data-wow-delay="1.2s">
+                    <div class="pricing-box">
                         <div class="mb-3">
                             <h3 class="package-name">STARTER</h3>
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">$12</span>
+                                <span class="font-bold text-2xl">₱600</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
@@ -553,13 +553,13 @@
                 <!-- single pricing table ends -->
                 <!-- single pricing table starts -->
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
-                    <div class="pricing-box bg-blue-100 wow fadeInLeft" data-wow-delay="1.5s">
+                    <div class="pricing-box bg-blue-100 wow fadeInLeft" data-wow-delay="1.2s">
                         <div class="mb-3">
                             <h3 class="package-name">PROFESIONAL</h3>
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">$48</span>
+                                <span class="font-bold text-2xl">₱2,500</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
@@ -576,13 +576,13 @@
                 <!-- single pricing table ends -->
                 <!-- single pricing table starts -->
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
-                    <div class="pricing-box">
+                    <div class="pricing-box wow fadeInLeft" data-wow-delay="1.5s"">
                         <div class="mb-3">
                             <h3 class="package-name">ENTERPRISE</h3>
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">$N</span>
+                                <span class="font-bold text-2xl">₱N</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
@@ -603,7 +603,7 @@
     <!-- Pricing Table Section End -->
 
     <!-- carousel-area Section Start -->
-    <section class="carousel-area bg-gray-800 py-32">
+    {{-- <section class="carousel-area bg-gray-800 py-32">
         <div class="container">
             <div class="flex">
                 <div class="w-full relative">
@@ -631,7 +631,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- carousel-area Section End -->
 
     <!-- Subscribe Section Start -->
@@ -831,11 +831,11 @@
                                     <i class="lni lni-twitter-original" aria-hidden="true"></i>
                                 </a>
                             </li> --}}
-                            <li class="mx-2">
+                            {{-- <li class="mx-2">
                                 <a target="_blank" href="https://www.instagram.com/onlinepropertymanager/" class="footer-icon hover:bg-red-500">
                                     <i class="lni lni-instagram-original" aria-hidden="true"></i>
                                 </a>
-                            </li>
+                            </li> --}}
                             {{-- <li class="mx-2">
                                 <a href="#" class="footer-icon hover:bg-indigo-600">
                                     <i class="lni lni-linkedin-original" aria-hidden="true"></i>
