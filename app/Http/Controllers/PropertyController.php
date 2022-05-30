@@ -221,7 +221,7 @@ class PropertyController extends Controller
              ->limit(6)
              ->pluck('total_bill');
 
-        if(AcknowledgementReceipt::where('property_uuid', Session::get('property'))->count())
+        if(Bill::where('property_uuid', Session::get('property'))->count())
         {
              $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
              DB::raw("(DATE_FORMAT(created_at,
