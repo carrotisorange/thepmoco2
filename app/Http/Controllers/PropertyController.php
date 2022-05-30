@@ -221,19 +221,27 @@ class PropertyController extends Controller
              ->limit(6)
              ->pluck('total_bill');
 
+        if(AcknowledgementReceipt::where('property_uuid', Session::get('property'))->count())
+        {
+             $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
+             DB::raw("(DATE_FORMAT(created_at,
+             '%M')) as month_year"))
+             ->where('property_uuid', Session::get('property'))
+             ->orderBy('created_at')
+             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+             ->pluck('total_amount')
+             ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as
+             month_year"))
+             ->orderBy('created_at')
+             ->where('property_uuid', Session::get('property'))
+             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+             ->pluck('total_bill')
+             ->last() * 100;
+        }else{
+                $current_collection_rate = 0;
+        }
 
-        $current_collection_rate = 
-        AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
-        ->where('property_uuid', Session::get('property'))
-        ->orderBy('created_at')
-        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->pluck('total_amount')
-        ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
-        ->orderBy('created_at')
-        ->where('property_uuid', Session::get('property'))
-        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->pluck('total_bill')
-        ->last() * 100;
+        
     
 
         $tenant_type_label = Tenant::

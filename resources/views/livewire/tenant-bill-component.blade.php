@@ -26,9 +26,13 @@
 
         <br>
         `@if($total_unpaid_bills->count())
-        <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
+        <x-button data-modal-toggle="export-bill-modal">
+            <i class="fa-solid fa-download"></i>&nbsp
             SOA ({{ $total_unpaid_bills->count() }})
         </x-button>
+        {{-- <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
+            SOA ({{ $total_unpaid_bills->count() }})
+        </x-button> --}}
         @endif
         @if($selectedBills)
 
