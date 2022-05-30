@@ -14,9 +14,9 @@
         <div>
             
             <div class="mt-5">
-                <b>Period Covered</b>
+                <b>Date collected</b>
                 <div class="">
-                    <span>Start ({{ $collections->count() }})</span>
+                    <span>From ({{ $collections->count() }})</span>
                     <div class="form-check">
                         <x-input wire:model="start" type="date" value="" />
                         <label class="form-check-label inline-block text-gray-800" for="start">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="">
-                    <span>End ({{ $collections->count() }})</span>
+                    <span>To ({{ $collections->count() }})</span>
                     <div class="form-check">
                         <x-input wire:model="end" type="date" value="" />
                         <label class="form-check-label inline-block text-gray-800" for="start">

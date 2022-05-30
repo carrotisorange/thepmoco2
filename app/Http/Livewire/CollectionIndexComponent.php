@@ -30,7 +30,7 @@ class CollectionIndexComponent extends Component
         $query->whereDate('created_at', $this->start);
         })
         ->when($this->end, function($query){
-        $query->whereDate('created_at', $this->end);
+        $query->orWhereDate('created_at', $this->end);
         })
         ->get();
 
