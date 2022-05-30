@@ -80,20 +80,14 @@ class TenantBillController extends Controller
         }
     }
 
-    public function export(Tenant $tenant)
+    public function export(Request $request, Tenant $tenant)
     {
         $data = [
             'tenant' => $tenant->tenant,
-            // 'mode_of_payment' => $ar->mode_of_payment,
+            'due_date' => $request->due_date,
+            'penalty' => $request->penalty,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            // 'ar_no' => $ar->ar_no,
-            // 'amount' => $ar->amount,
-            // 'cheque_no' => $ar->cheque_no,
-            // 'bank' => $ar->bank,
-            // 'date_deposited' => $ar->date_deposited,
-            // 'collections' => Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no',
-            // $ar->collection_batch_no)->whereDate('created_at',$ar->created_at)->get(),
             'bills' => Tenant::find($tenant->uuid)
             ->bills()
             ->whereIn('status', ['unpaid', 'partially_paid'])

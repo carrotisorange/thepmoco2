@@ -83,14 +83,19 @@
         <hr>
 
         <p>
-            Date: {{ Carbon\Carbon::now() }}
+            Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
         </p>
-
+        <p>
+            <b>Due Date: {{ Carbon\Carbon::parse($due_date)->format('M d, Y') }}</b>
+        </p>
         <p>
             Tenant: {{ $tenant }}
         </p>
         <p>
             Total Bills: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}
+        </p>
+        <p>
+            <b>Total Bills After Due Date: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment') + $penalty), 2) }}</b>
         </p>
         <br>
         <p>
