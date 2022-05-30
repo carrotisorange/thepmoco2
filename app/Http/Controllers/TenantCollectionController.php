@@ -116,7 +116,7 @@ class TenantCollectionController extends Controller
          ];
 
         $pdf = PDF::loadView('tenants.collections.export', $data);
-        return $pdf->download($tenant->tenant.'-ar.pdf');
+        return $pdf->stream($tenant->tenant.'-ar.pdf');
      }
 }
 
