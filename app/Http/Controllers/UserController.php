@@ -64,7 +64,7 @@ class UserController extends Controller
     {        
         return view('users.edit', [
             'user' => $user,
-            'roles' => Role::orderBy('role')->where('id','!=','5')->get(),
+            'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
         ]);
     }
 
@@ -83,7 +83,7 @@ class UserController extends Controller
         'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
         'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
         'password' => ['nullable'],
-        //  'role_id' => ['nullable', Rule::exists('roles', 'id')],
+        'role_id' => ['nullable', Rule::exists('roles', 'id')],
         'status' => 'nullable',
         'avatar' => 'image',
         ]);
