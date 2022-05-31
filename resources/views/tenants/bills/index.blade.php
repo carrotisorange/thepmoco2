@@ -33,13 +33,11 @@
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
                     </x-button>
                     @endcan
-                    {{-- @can('treasury')
-                    @if($bills->where('status', 'unpaid')->count())
-                        <x-button data-modal-toggle="create-collection-modal">
-                            <i class="fa-solid fa-circle-plus"></i>&nbsp Collection
-                        </x-button>
-                    @endif
-                    @endcan --}}
+                    @can('treasury')
+                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/collections'"><i
+                            class="fa-solid fa-cash-register"></i>&nbsp Payments
+                    </x-button>
+                    @endcan
                 </h5>
 
             </div>

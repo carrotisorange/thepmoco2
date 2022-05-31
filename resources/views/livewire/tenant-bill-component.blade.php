@@ -23,51 +23,42 @@
 
         </x-form-select>
         @endif
+    </div>
 
-        <br>
-        `@if($total_unpaid_bills->count())
-        <x-button data-modal-toggle="export-bill-modal">
-            <i class="fa-solid fa-download"></i>&nbsp
-            SOA ({{ $total_unpaid_bills->count() }})
-        </x-button>
-        {{-- <x-button wire:click="exportBills()"><i class="fa-solid fa-download"></i>&nbsp
-            SOA ({{ $total_unpaid_bills->count() }})
-        </x-button> --}}
-        @endif
-        @if($selectedBills)
+    <div class="mt-5">
+        <div class="flex flex-row">
+            <div class="basis-1/2">
+                @if($total_unpaid_bills->count())
+                <x-button data-modal-toggle="export-bill-modal">
+                    <i class="fa-solid fa-download"></i>&nbsp
+                    SOA ({{ $total_unpaid_bills->count() }})
+                </x-button>
+                @endif
 
-        <x-button onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
-            Remove ({{ count($selectedBills) }})
-        </x-button>
+                @if($total_count)
+                <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
+                        class="fa-solid fa-rotate-right"></i>&nbsp
+                    Mark as Unpaid ({{ $total_count }})
+                </x-button>
+                @endif
 
-
-        @if($total_count)
-        <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
-            Mark as Unpaid ({{ $total_count }})
-        </x-button>
-
-
-        @endif
-
-
-
-        @can('treasury')
-        @if($total_unpaid_bills->sum('bill'))
-        <x-button
-            wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-            <i class="fa-solid fa-circle-plus"></i>&nbsp Payment ({{ number_format($total, 2) }})
-        </x-button>
-        {{-- <x-button
-            wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-            <i class="fa-solid fa-circle-plus"></i>&nbsp Payment ({{ number_format($total, 2) }})
-        </x-button> --}}
-        {{-- <x-button wire:click="$emit('openModal', 'collection-modal-component')">
-            <i class="fa-solid fa-circle-plus"></i>&nbsp Collection ({{ number_format($total, 2) }})
-        </x-button> --}}
-        @endif
-        @endcan
-        {{-- <button wire:click="$emit('openModal', 'collection-modal-component')">Open Modal</button> --}}
-        @endif
+                @can('treasury')
+                @if($total_unpaid_bills->sum('bill') && $selectedBills)
+                <x-button
+                    wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
+                    <i class="fa-solid fa-circle-plus"></i>&nbsp Payment ({{ number_format($total, 2) }})
+                </x-button>
+                @endif
+                @endcan
+            </div>
+            <div class="basis-1/2 ml-12 text-right">
+                @if($selectedBills)
+                <x-button onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
+                    Remove ({{ count($selectedBills) }})
+                </x-button>
+                @endif
+            </div>
+        </div>
     </div>
 
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">

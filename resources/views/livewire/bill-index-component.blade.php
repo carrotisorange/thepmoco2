@@ -10,22 +10,39 @@
             Total Paid Bills: <b> {{ number_format($bills->where('status',
                 'paid')->sum('bill'),
                 2)}}</b>
-            @if($bills->count())
-            <p class="text-center text-sm">Showing <b>{{ $bills->count() }}</b> bills...</p>
-            @endif
+        </div>
+        <div class="mt-5">
+            <div class="flex flex-row">
+                <div class="basis-1/2">
 
-            @if($selectedBills)
-            <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
-                Remove ({{ count($selectedBills) }})
-            </x-button>
+                    {{-- @if($bills->count())
+                    <p class="text-center text-sm">Showing <b>{{ $bills->count() }}</b> bills...</p>
+                    @endif --}}
 
-            @if($total_count)
-            <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
-                Mark as Unpaid ({{ $total_count }})
-            </x-button>
-            @endif
+                    @if($selectedBills)
+                    {{-- <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i
+                            class="fa-solid fa-trash"></i>&nbsp
+                        Remove ({{ count($selectedBills) }})
+                    </x-button> --}}
 
-            @endif
+                    @if($total_count)
+                    <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
+                            class="fa-solid fa-rotate-right"></i>&nbsp
+                        Mark as Unpaid ({{ $total_count }})
+                    </x-button>
+                    @endif
+
+                    @endif
+                </div>
+                <div class="basis-1/2 ml-12 text-right">
+                    @if($selectedBills)
+                    <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i
+                            class="fa-solid fa-trash"></i>&nbsp
+                        Remove ({{ count($selectedBills) }})
+                    </x-button>
+                    @endif
+                </div>
+            </div>
         </div>
         <div class="mt-5 p-3 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">

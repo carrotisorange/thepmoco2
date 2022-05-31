@@ -17,6 +17,7 @@ use DB;
 use Illuminate\Validation\Rule;
 use App\Models\Bill;
 use App\Models\DeedOfSale;
+use App\Models\Point;
 
 class UnitController extends Controller
 {
@@ -169,6 +170,13 @@ class UnitController extends Controller
             $unit->status_id = '1';
             $unit->save();
         }
+
+          Point::create([
+          'user_id' => auth()->user()->id,
+          'point' => $units,
+          'action_id' => 5,
+          'property_uuid' => Session::get('property')
+          ]);
         
         return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' units have been
         updated.');
