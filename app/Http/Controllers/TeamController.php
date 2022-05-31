@@ -169,7 +169,9 @@ class TeamController extends Controller
 
         $user->update($attributes);
 
-        return back()->with('success', 'Member has been updated.');
+        return redirect('/profile/'.$user->username.'/edit')->with('success', 'Profile has been updated.');
+
+        //return back()->with('success', 'Member has been updated.');
     }
 
     /**

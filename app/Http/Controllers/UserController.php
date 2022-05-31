@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 
 class UserController extends Controller
@@ -80,8 +82,8 @@ class UserController extends Controller
         'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
         'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
         'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
-        // 'mobile_number' => ['required'],
-        'role_id' => ['nullable', Rule::exists('roles', 'id')],
+        'password' => ['nullable'],
+        //  'role_id' => ['nullable', Rule::exists('roles', 'id')],
         'status' => 'nullable',
         'avatar' => 'image',
         ]);
@@ -91,6 +93,11 @@ class UserController extends Controller
             $attributes['avatar'] = request()->file('avatar')->store('avatars');
         }
 
+        if(isset($attributes['password']))
+        {
+           $attributes['password'] = Hash::make($request->password);
+           $attributes['email_verified_at'] = Carbon::now();
+        }
         $user->update($attributes);
 
         return redirect('/profile/'.$user->username.'/edit')->with('success', 'Profile has been updated.');

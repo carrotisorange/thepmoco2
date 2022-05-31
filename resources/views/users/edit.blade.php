@@ -79,7 +79,18 @@
                                     @enderror
                                 </div>
 
-                                @can('accountowner')
+                                <div class="mt-5">
+                                    <x-label for="password" :value="__('Password')" />
+
+                                    <x-form-input form="edit-form" id="password" type="password" name="password"
+                                        autofocus />
+
+                                    @error('password')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                @if(auth()->user()->role_id === 5)
                                 <div class="mt-5">
                                     <x-label for="role_id" :value="__('Role')" />
 
