@@ -61,7 +61,7 @@
                                                 <x-td>
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0 h-10 w-10">
-                                                            <a href="/team/{{ $item->username }}/edit">
+                                                            <a href="/profile/{{ $item->username }}/edit">
                                                                 <img class="h-10 w-10 rounded-full"
                                                                     src="/storage/{{ $item->avatar }}" alt=""></a>
                                                         </div>
