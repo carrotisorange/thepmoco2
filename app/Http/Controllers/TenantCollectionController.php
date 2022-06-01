@@ -95,8 +95,7 @@ class TenantCollectionController extends Controller
     }
 
      public function export(Tenant $tenant, AcknowledgementReceipt $ar)
-     {   
-
+     {  
          $balance = Bill::where('tenant_uuid', $ar->tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid']);
    
          $data = [

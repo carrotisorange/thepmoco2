@@ -190,13 +190,15 @@ class PropertyController extends Controller
            ->limit(6)
            ->pluck('occupancy_rate');
 
-        $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
-        DB::raw('MAX(occupied)'))
-        ->where('property_uuid', Session::get('property'))
-        ->get()
-        ->last();
+           $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+           DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M')) as month_year"))
+           ->where('property_uuid', Session::get('property'))
+           ->orderBy('created_at')
+           ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+           ->get()
+           ->last();
 
-        $collection_rate_date = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
+           $collection_rate_date = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
              '%M')) as month_year"))
                    ->where('property_uuid', Session::get('property'))
              ->orderBy('created_at')

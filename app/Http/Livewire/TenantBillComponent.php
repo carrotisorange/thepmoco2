@@ -27,7 +27,7 @@ class TenantBillComponent extends Component
 
         $this->selectedBills = [];
 
-          return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills Successfully removed.');
+        return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills Successfully removed.');
      }
 
      public function postBills()
