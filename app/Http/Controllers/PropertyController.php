@@ -290,7 +290,7 @@ class PropertyController extends Controller
 
         //return $tenant_background  = Tenant::select(DB::raw('count(type)'))->where('property_uuid',$property->uuid)->groupBy('type')->get();
 
-        //$this->occupancy_rate();
+        $this->occupancy_rate();
 
         $collections = AcknowledgementReceipt::where('property_uuid',$property->uuid)
         ->whereMonth('created_at',date('m'))
