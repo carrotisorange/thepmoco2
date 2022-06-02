@@ -77,7 +77,7 @@
     <footer>
         <h5>
             For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
-            {{ App\Models\Property::find(Session::get('property'))->mobile }},
+            {{ App\Models\Property::find(Session::get('property'))->mobile }}
         </h5>
         {{ Session::get('property_name') }} Copyright &copy;
         <?php echo date("Y");?>
@@ -134,9 +134,11 @@
             @endforeach
         </table>
         </p>
+        @if($note_to_bill)
         <p class="text-center">
             <b>"{{ $note_to_bill }}"</b>
         </p>
+        @endif
         <p>
             Prepared by: {{ $user }},<br> {{ $role }}
         </p>

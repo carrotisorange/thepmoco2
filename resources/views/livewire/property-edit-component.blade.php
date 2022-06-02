@@ -40,6 +40,36 @@
 
     <div class="mt-5 mx-5">
         <div class="mt-6 flex flex-wrap mb-2">
+            <div class="w-full md:w-1/2 mb-6 md:mb-0">
+                <x-label for="country_id">
+                    Email
+                </x-label>
+                <div class="relative">
+                   <x-form-input form="edit-form" type="email" wire:model="email" value="{{old('email', $email)}}" required
+                        autofocus />
+
+                    @error('email')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <x-label for="province_id">
+                    Mobile
+                </x-label>
+                <div class="relative">
+                  <x-form-input form="edit-form" type="text" wire:model="mobile" value="{{old('mobile', $mobile)}}" required
+                    autofocus />
+                    @error('mobile')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 mx-5">
+        <div class="mt-6 flex flex-wrap mb-2">
             <div class="w-full md:w-1/4 mb-6 md:mb-0">
                 <x-label for="country_id">
                     Country

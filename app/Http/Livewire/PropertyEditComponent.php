@@ -32,6 +32,9 @@ class PropertyEditComponent extends Component
     public $city_id;
     public $barangay;
 
+    public $email;
+    public $mobile;
+
     public function mount($property_details)
     {
         $this->property = $property_details->property;
@@ -42,6 +45,8 @@ class PropertyEditComponent extends Component
         $this->city_id = $property_details->city_id;
         $this->barangay = $property_details->barangay;
         $this->status = $property_details->status;
+        $this->email = $property_details->email;
+        $this->mobile = $property_details->mobile;
     }
 
     protected function rules()
@@ -55,7 +60,9 @@ class PropertyEditComponent extends Component
            'province_id' => ['required', Rule::exists('provinces', 'id')],
            'city_id' => ['nullable', Rule::exists('cities', 'id')],
            'barangay' => ['nullable'],
-           'status' => ['required']
+           'status' => ['required'],
+            'email' => ['nullable'],
+            'mobile' => ['nullable']
         ];
     }
 
@@ -86,13 +93,13 @@ class PropertyEditComponent extends Component
                 $validatedData['city_id'] = '48315';
             }
 
-            if($this->thumbnail)
-            {
-                $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
-            }else
-            {
-                $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
-            }
+            // if($this->thumbnail)
+            // {
+            //     $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
+            // }else
+            // {
+            //     $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
+            // }
 
             $validatedData = $this->validate();
 
