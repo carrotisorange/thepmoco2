@@ -78,9 +78,9 @@
                                         <x-th>Unit</x-th>
                                         <x-th>Particular</x-th>
                                         <x-th>Period</x-th>
-                                        <x-th>Amount</x-th>
+                                        <x-th>Amount Due</x-th>
 
-                                        <x-th>Initial Payment</x-th>
+                                        <x-th>Amount Paid</x-th>
                                         <x-th>Balance</x-th>
                                         {{-- <x-th></x-th> --}}
                                     </tr>

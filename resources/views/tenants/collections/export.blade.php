@@ -145,8 +145,8 @@
                 <td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</td>
                 <td>{{ $item->unit->unit }}</td>
                 <td>{{ $item->bill->particular->particular }}</td>
-                <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
-                    Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
+                <td>{{ Carbon\Carbon::parse($item->bill->start)->format('M d,
+                    Y').'-'.Carbon\Carbon::parse($item->bill->end)->format('M d, Y') }} </td>
                 <td>{{ number_format($item->collection,2) }}</td>
 
 

@@ -51,7 +51,7 @@
                                                 {{-- <x-th>Bill ID</x-th> --}}
 
                                                 <x-th>Mode of payment</x-th>
-                                                <x-th>Period Covered</x-th>
+                                                {{-- <x-th>Period Covered</x-th> --}}
                                                 <x-th>Amount</x-th>
                                                 <x-th></x-th>
                                             </tr>
@@ -75,9 +75,9 @@
                                                 {{-- <x-td>{{ $item->bill_id }}</x-td> --}}
 
                                                 <x-td>{{ $item->mode_of_payment }}</x-td>
-                                                <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
+                                                {{-- <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                                                     Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
-                                                </x-td>
+                                                </x-td> --}}
                                                 <x-td>{{ number_format($item->amount,2) }}</x-td>
                                                 <x-td>
                                                     <x-button

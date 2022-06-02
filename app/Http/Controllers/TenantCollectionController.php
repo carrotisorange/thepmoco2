@@ -95,7 +95,7 @@ class TenantCollectionController extends Controller
     }
 
      public function export(Tenant $tenant, AcknowledgementReceipt $ar)
-     {  
+     {          
          $balance = Bill::where('tenant_uuid', $ar->tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid']);
    
          $data = [
@@ -115,7 +115,7 @@ class TenantCollectionController extends Controller
          ];
 
         $pdf = PDF::loadView('tenants.collections.export', $data);
-        return $pdf->download($tenant->tenant.'-ar.pdf');
+        return $pdf->stream($tenant->tenant.'-ar.pdf');
      }
 }
 
