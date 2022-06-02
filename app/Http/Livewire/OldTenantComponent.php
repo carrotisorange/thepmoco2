@@ -59,7 +59,7 @@ class OldTenantComponent extends Component
             'tenant' => 'required',
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tenants'],
             'mobile_number' => 'nullable',
-            'type' => 'nullable',
+            'type' => 'required',
             'gender' => 'required',
             'civil_status' => 'nullable',
             'country_id' => ['nullable', Rule::exists('countries', 'id')],

@@ -155,7 +155,7 @@ class BillIndexComponent extends Component
             ->when($this->created_at, function($query){
                 $query->whereDate('created_at', $this->created_at);
             })
-            ->get();
+            ->paginate(10);
          
 
         return view('livewire.bill-index-component', [

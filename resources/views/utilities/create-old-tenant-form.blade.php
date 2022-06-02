@@ -41,7 +41,7 @@
     <div class="mt-6 flex flex-wrap mx-3 mb-2">
         <div class="w-full md:w-1/4 px-3">
             <x-label for="type">
-                Type
+                Type <span class="text-red-600">*</span>
             </x-label>
             <x-form-select wire:model="type" id="type" name="type">
                 <option value="">Select one</option>
