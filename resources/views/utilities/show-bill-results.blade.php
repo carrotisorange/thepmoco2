@@ -5,7 +5,7 @@
                 <x-input id="" wire:model="selectAll" type="checkbox" />
             </x-th>
             <x-th>#</x-th>
-            <x-th>Ref #</x-th>
+            <x-th>Reference #</x-th>
             <x-th>Date posted</x-th>
             <x-th>Period Covered</x-th>
             <x-th>Particular</x-th>

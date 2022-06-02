@@ -35,8 +35,13 @@ class TenantBillController extends Controller
         return view('tenants.bills.index',[
             'tenant' => $tenant,  
             'bills' => Tenant::find($tenant->uuid)->bills()->orderBy('bill_no','desc')->get(),
+            'unpaid_bills' => Tenant::find($tenant->uuid)
+            ->bills()
+            ->whereIn('status', ['unpaid', 'partially_paid'])
+            ->get(),
             'particulars' => $particulars,
-            'units' => Tenant::find($tenant->uuid)->contracts
+            'units' => Tenant::find($tenant->uuid)->contracts,
+            'note_to_bill' => Property::find(Session::get('property'))->note_to_bill
         ]);
     }
 
@@ -90,6 +95,11 @@ class TenantBillController extends Controller
 
     public function export(Request $request, Tenant $tenant)
     {
+
+        Property::where('uuid',Session::get('property'))->update([
+            'note_to_bill' => $request->note_to_bill,
+        ]);
+
         $data = [
             'tenant' => $tenant->tenant,
             'due_date' => $request->due_date,
@@ -100,9 +110,11 @@ class TenantBillController extends Controller
             ->bills()
             ->whereIn('status', ['unpaid', 'partially_paid'])
             ->get(),
+            'note_to_bill' => $request->note_to_bill,
+      
          ];
 
         $pdf = PDF::loadView('tenants.bills.export', $data);
-        return $pdf->download($tenant->tenant.'-soa.pdf');
+        return $pdf->stream($tenant->tenant.'-soa.pdf');
     }
 }

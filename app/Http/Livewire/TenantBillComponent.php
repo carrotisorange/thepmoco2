@@ -47,11 +47,6 @@ class TenantBillComponent extends Component
          }
      }
 
-     public function exportBills()
-     {
-         return redirect('/tenant/'.$this->tenant->uuid.'/bill/export')->with('success','Bills successfully marked as unpaid.');
-     }
-
      public function unpayBills()
      {
          Bill::whereIn('id', $this->selectedBills)

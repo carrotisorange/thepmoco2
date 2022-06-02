@@ -212,7 +212,7 @@
         </div>
         <div class="w-full md:w-1/4 px-3">
             <x-label for="school_address">
-                School Address
+                Address
             </x-label>
             <x-form-input wire:model="school_address" id="school_address" type="text" name="school_address"
                 value="{{ old('school_address') }}" />

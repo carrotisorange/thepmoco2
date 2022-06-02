@@ -28,7 +28,7 @@ class CreatePropertiesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
+     *e
      * @return void
      */
     public function down()

@@ -78,7 +78,7 @@
             </div> --}}
         </div>
 
-        <div class="flex flex-wrap mx-3 mb-6">
+        <div class="mt-5 flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-full px-3">
                 <div class="form-check">
                     <input wire:model="exportCollection"

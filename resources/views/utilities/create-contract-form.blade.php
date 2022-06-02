@@ -55,8 +55,7 @@
             </div>
             <div class="w-full md:w-1/3 px-3">
                 <x-label for="interaction_id">
-                    Interaction<span class="text-red-600">*</span> (<span class="text-indigo-600">For marketing
-                        purposes</span>)
+                    Interaction<span class="text-red-600">*</span> 
                 </x-label>
                 <x-form-select wire:model="interaction_id" id="interaction_id" name="interaction_id">
                     <option value="">Select one</option>

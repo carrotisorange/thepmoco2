@@ -24,7 +24,8 @@
                         <x-label for="due_date">
                             Due Date
                         </x-label>
-                        <x-form-input id="due_date" type="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" name="due_date" />
+                        <x-form-input id="due_date" type="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                            name="due_date" />
 
                         @error('due_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -34,10 +35,34 @@
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-full px-3">
                         <x-label for="due_date">
+                            Total Unpaid Bills
+                        </x-label>
+                      {{ number_format($unpaid_bills->sum('bill'), 2) }} ({{ $unpaid_bills->count() }} bills) 
+                       
+                    </div>
+                </div>
+                <div class="mt-5 flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-full px-3">
+                        <x-label for="due_date">
                             Penalty After Due Date
                         </x-label>
-                        <x-form-input id="penalty" type="number" value="{{ old('penalty', 0) }}" name="penalty" min="0" />
+                        <x-form-input id="penalty" type="number" value="{{ old('penalty', ($unpaid_bills->sum('bill')*.1)) }}" name="penalty"
+                            min="0" />
                         @error('penalty')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="mt-5 flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-full px-3">
+                        <x-label for="note_to_bill">
+                           Note
+                        </x-label>
+                        <textarea class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
+appearance-none
+dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
+peer" placeholder="Please send your payment to 123 123 123 and send the receipt to youremail@gmail.com." name="note_to_bill">{{ $note_to_bill }}</textarea>
+                        @error('note_to_bill')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>

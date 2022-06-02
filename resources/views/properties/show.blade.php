@@ -114,7 +114,7 @@
                                                         class="fas fa-solid fa-house fa-2x fa-fw fa-inverse"></i></div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
-                                                <h5 class="font-bold uppercase text-gray-500">Total Units</h5>
+                                                <h5 class="font-bold uppercase text-gray-500">Units</h5>
                                                 <h3 class="font-bold text-3xl">{{ $units }}
                                                     {{-- <span class="text-yellow-600"><i
                                                             class="fas fa-caret-up"></i></span> --}}
@@ -136,7 +136,7 @@
                                                 </div>
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
-                                                <h5 class="font-bold uppercase text-gray-500">Total Tenants</h5>
+                                                <h5 class="font-bold uppercase text-gray-500">Tenants</h5>
                                                 <h3 class="font-bold text-3xl">{{ $tenants }}</h3>
                                             </div>
                                         </div>

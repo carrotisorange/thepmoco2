@@ -67,12 +67,17 @@
             {{ App\Models\Property::find(Session::get('property'))->province->province }},
             {{ App\Models\Property::find(Session::get('property'))->city->city }},
             {{ App\Models\Property::find(Session::get('property'))->barangay }}
+  
+           
         </h5>
+
+
     </header>
 
     <footer>
         <h5>
-            Prepared by: {{ $user }}, {{ $role }}, {{ auth()->user()->mobile_number }}
+            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
+            {{ App\Models\Property::find(Session::get('property'))->mobile }},
         </h5>
         {{ Session::get('property_name') }} Copyright &copy;
         <?php echo date("Y");?>
@@ -95,7 +100,8 @@
             Total Bills: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}
         </p>
         <p>
-            <b>Total Bills After Due Date: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment') + $penalty), 2) }}</b>
+            <b>Total Bills After Due Date: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment') +
+                $penalty), 2) }}</b>
         </p>
         <br>
         <p>
@@ -127,6 +133,12 @@
             </tr>
             @endforeach
         </table>
+        </p>
+        <p class="text-center">
+            <b>"{{ $note_to_bill }}"</b>
+        </p>
+        <p>
+            Prepared by: {{ $user }},<br> {{ $role }}
         </p>
 
 
