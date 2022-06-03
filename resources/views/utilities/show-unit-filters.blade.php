@@ -42,6 +42,10 @@
                     <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
                         enrolled ({{ $enrollment_status->count }})
                     </label>
+                    @elseif($enrollment_status->is_enrolled == 2)
+                    <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
+                        pulled out ({{ $enrollment_status->count }})
+                    </label>
                     @else
                     <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
                         unenrolled ({{ $enrollment_status->count }})

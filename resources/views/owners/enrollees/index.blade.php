@@ -104,7 +104,7 @@
                                                         @endif
                                                 </x-td>
                                                 <x-td>
-                                                    {{-- <x-button id="dropdownDividerButton"
+                                                    <x-button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
                                                         type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
                                                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
@@ -112,41 +112,29 @@
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7">
                                                             </path>
-                                                        </svg></x-button>
+                                                        </svg>
+                                                    </x-button>
 
                                                     <div id="dropdownDivider.{{ $item->uuid }}"
                                                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
-
                                                             <li>
-                                                                <a href="/leasing/{{ $item->uuid }}/edit"
+                                                                <a href="/leasing/{{ $item->uuid }}/extend"
                                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-file-contract"></i>&nbspShow
-                                                                    Contract</a>
-                                                            </li>
-
-                                                            <li>
-                                                                <a href="/leasing/{{ $item->uuid }}/transfer"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
-                                                                    Contract</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="/leasing/{{ $item->uuid }}/renew"
-                                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                        class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
-                                                                    Contract</a>
+                                                                        class="fa-solid fa-arrow-rotate-right"></i>&nbspExtend
+                                                                </a>
                                                             </li>
                                                         </ul>
-                                                        @if($item->status == 'active')
+                                                        {{-- @if($item->status == 'active') --}}
                                                         <div class="py-1">
-                                                            <a href="/leasing/{{ $item->uuid }}/moveout/bills"
+                                                            <a href="#/" data-modal-toggle="pullout-unit-modal.{{ $item->uuid }}"
                                                                 class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                                 <i
-                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspUnenroll</a>
+                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspPull
+                                                                out</a>
                                                         </div>
-                                                        @endif
-                                                    </div> --}}
+                                                        {{-- @endif --}}
+                                                    </div>
                                                 </x-td>
                                                 @empty
                                                 <x-td>No data found!</x-td>
@@ -163,4 +151,5 @@
             </div>
         </div>
     </div>
+    @include('utilities.pullout-unit-modal')
 </x-app-layout>

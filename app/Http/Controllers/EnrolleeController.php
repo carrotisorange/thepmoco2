@@ -129,7 +129,18 @@ class EnrolleeController extends Controller
      */
     public function update(Request $request, Enrollee $enrollee)
     {
-        //
+        $enrollee->update([
+            'updated_at' => $request->updated_at,
+            'unenrollment_reason' => $request->unenrollment_reason,
+            'status' => 'pulled out'
+        ]);
+
+        Unit::find($enrollee->unit_uuid)
+        ->update([
+            'is_enrolled' => '2'
+        ]);
+
+        return back()->with('success', 'Unit is successfully pulled out from leasing');
     }
 
     /**

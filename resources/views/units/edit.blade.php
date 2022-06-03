@@ -126,6 +126,17 @@
                             </div>
 
                             <div class="mt-5">
+                                <x-label for="" :value="__('Leasing')" />
+                                @if($unit->is_enrolled == 0)
+                                <p>Unerolled</p>
+                                @elseif($unit->is_enrolled == 1)
+                                <p>Enrolled</p>
+                                @else
+                                <p>Pulled out</p>
+                                @endif
+                            </div>
+
+                            <div class="mt-5">
                                 <x-label for="size" :value="__('Size')" />
 
                                 <x-form-input form="edit-form" type="text" name="size"
