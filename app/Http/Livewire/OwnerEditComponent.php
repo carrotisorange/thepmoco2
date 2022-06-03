@@ -7,6 +7,7 @@ use App\Models\Country;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use App\Models\Owner;
+use App\Models\Role;
 
 use Livewire\Component;
 
@@ -53,7 +54,7 @@ class OwnerEditComponent extends Component
         return 
         [
             'owner' => 'required',
-            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners'],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tenants'],
             'mobile_number' => 'nullable',
             'gender' => 'required',
             'civil_status' => 'nullable',
@@ -61,7 +62,6 @@ class OwnerEditComponent extends Component
             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
             'barangay' => ['nullable'],
-            'photo_id' => 'nullable'
         ];
     }
 
@@ -74,11 +74,11 @@ class OwnerEditComponent extends Component
     {
         sleep(1);
 
-        
+              $validatedData = $this->validate();
 
         try
         {
-            $validatedData = $this->validate();
+      
 
             if(!$this->country_id)
             {
@@ -96,9 +96,10 @@ class OwnerEditComponent extends Component
             }
             
             $this->owner_details->update($validatedData);
-            return back()->with('success','Owner has been created.');
+
+            return redirect('/owner/'.$this->owner_details->uuid.'/edit/')->with('success','Owner is updated successfully.');
         }catch(\Exception $e)
-        {
+        {  
             ddd($e);
         }
 

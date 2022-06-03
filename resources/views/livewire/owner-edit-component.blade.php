@@ -168,9 +168,9 @@
             @enderror
         </div>
     </div>
-    {{-- <div class="mt-5">
+    <div class="mt-5">
         <p class="text-right">
             <x-form-button></x-form-button>
         </p>
-    </div> --}}
+    </div>
 </form>

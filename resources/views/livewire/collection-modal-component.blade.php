@@ -38,7 +38,7 @@
                             Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
                         <x-td>{{number_format($item->bill,2) }}</x-td>
                         <x-td>
-                            <x-table-input form="create-form" wire:model="bill.{{ $index }}" type="number" min="1"
+                            <x-table-input form="create-form" wire:model="bill.{{ $index }}" type="number" 
                                 step="0.001" required />
                         </x-td>
                         @endforeach
