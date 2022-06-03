@@ -84,7 +84,7 @@
         <hr>
 
         <p>
-            Date: {{ Carbon\Carbon::now() }}
+            Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
         </p>
 
         <p>
