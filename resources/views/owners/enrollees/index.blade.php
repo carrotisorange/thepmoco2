@@ -125,7 +125,7 @@
                                                                 </a>
                                                             </li>
                                                         </ul>
-                                                        {{-- @if($item->status == 'active') --}}
+                                                        @if($item->status == 'active')
                                                         <div class="py-1">
                                                             <a href="#/" data-modal-toggle="pullout-unit-modal.{{ $item->uuid }}"
                                                                 class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
@@ -133,7 +133,7 @@
                                                                     class="fa-solid fa-arrow-right-to-bracket"></i>&nbspPull
                                                                 out</a>
                                                         </div>
-                                                        {{-- @endif --}}
+                                                        @endif
                                                     </div>
                                                 </x-td>
                                                 @empty
