@@ -374,7 +374,7 @@ class PropertyController extends Controller
 
         $pending_units = $total_units->where('status_id','6')->count();
 
-        UnitStats::create([
+        UnitStats::firstOrCreate([
             'total' => $total_units->count(),
             'vacant' => $vacant_units,
             'occupied' => $occupied_units,
