@@ -107,7 +107,7 @@ class PropertyEditComponent extends Component
 
             DB::commit();
 
-            return redirect('/property/'.$this->property_details->uuid.'/edit')->with('success', 'Property successfully updated.');
+            return redirect('/property/'.$this->property_details->uuid.'/edit')->with('success', 'Property is successfully updated.');
 
         }catch(\Exception $e){
             DB::rollback();

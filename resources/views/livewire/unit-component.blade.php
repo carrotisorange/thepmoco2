@@ -1,21 +1,33 @@
 <div class="py-12">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-        <div>
-            @if($selectedUnits)
-            <x-button onclick="confirmMessage()" wire:click="removeUnits()"><i class="fa-solid fa-trash"></i>&nbsp
-                Remove ({{ count($selectedUnits) }})
-            </x-button>
-            @endif
-            <x-button data-modal-toggle="create-unit-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
-            </x-button>
-            <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp
-                Building
-            </x-button>
+        <div class="mt-5">
+            <div class="flex flex-row">
+                <div class="basis-1/2">
+                    <x-button data-modal-toggle="create-unit-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
+                    </x-button>
+                    <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp
+                        Building
+                    </x-button>
 
-            @if($units->count())
-            <x-button form="edit-form"><i class="fas fa-check-circle"></i>&nbsp Save ({{ $units->count() }})</x-button>
-            @endif
+                    @if($units->count())
+                    <x-button form="edit-form"><i class="fas fa-check-circle"></i>&nbsp Save ({{ $units->count() }})
+                    </x-button>
+                    @endif
+                </div>
+                <div class="basis-1/2 ml-12 text-right">
+                    @if($selectedUnits)
+                    <x-button onclick="confirmMessage()" wire:click="removeUnits()"><i
+                            class="fa-solid fa-trash"></i>&nbsp
+                        Remove ({{ count($selectedUnits) }})
+                    </x-button>
+                    @endif
+                </div>
+            </div>
         </div>
+        {{-- <div>
+
+
+        </div> --}}
         <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
                 <div class="flex flex-col">
@@ -121,7 +133,8 @@
                                                     {{-- <option value="{{ $category->id }}">{{ $category->category
                                                         }}
                                                     </option> --}}
-                                                    <option value="{{ $category->id }}" {{ old('category_id', $category->id) ==
+                                                    <option value="{{ $category->id }}" {{ old('category_id',
+                                                        $category->id) ==
                                                         2 ? 'selected' : '' }}>
                                                         {{ $category->category }}
                                                     </option>

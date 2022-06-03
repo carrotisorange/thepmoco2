@@ -6,7 +6,7 @@
                     <form method="POST" wire:submit.prevent="createForm" action="/property/{{ Str::random(8) }}/store"
                         enctype="multipart/form-data">
                         @csrf
-                        <div>
+                        <div class="mx-5">
                             <x-label for="property">
                                 What is the name of your property? <span class="text-red-600">*</span>
                             </x-label>
@@ -30,7 +30,7 @@
                             @enderror
                         </div> --}}
 
-                        <div class="mt-5">
+                        <div class="mt-5 mx-5">
                             <x-label for="type_id">
                                 Which type of property you have? <span class="text-red-600">*</span>
                             </x-label>
@@ -49,7 +49,37 @@
                             @enderror
                         </div>
 
-                        <div class="mt-5">
+                        <div class="mt-5 mx-5">
+                                <div class="mt-6 flex flex-wrap mb-2">
+                                    <div class="w-full md:w-1/2 mb-6 md:mb-0">
+                                        <x-label for="country_id">
+                                            Email
+                                        </x-label>
+                                        <div class="relative">
+                                            <x-form-input type="email" wire:model="email" value="{{old('email', $email)}}" required
+                                                autofocus />
+                            
+                                            @error('email')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                        <x-label for="province_id">
+                                            Mobile
+                                        </x-label>
+                                        <div class="relative">
+                                            <x-form-input type="text" wire:model="mobile" value="{{old('mobile', $mobile)}}"
+                                                required autofocus />
+                                            @error('mobile')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="mt-5 mx-5">
                             <div class="mt-6 flex flex-wrap mb-2">
                                 <div class="w-full md:w-1/4 mb-6 md:mb-0">
                                     <x-label for="country_id">
@@ -122,7 +152,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-5">
+                        {{-- <div class="mt-5 mx-5">
                             <x-label for="thumbnail">
                                 Thumbnail (Please upload an image of your property.) <span
                                     class="text-blue-600">(optional)</span>
@@ -138,7 +168,7 @@
                             @enderror
                         </div>
 
-                        <div class="mt-5">
+                        <div class="mt-5 mx-5">
                             <x-label for="tenant_contract">
                                 Tenant Contract (Applicable if the property is accepting tenants. Please only
                                 upload a PDF file.) <span class="text-blue-600">(optional)</span>
@@ -152,7 +182,7 @@
                             @enderror
                         </div>
 
-                        <div class="mt-5">
+                        <div class="mt-5 mx-5">
                             <x-label for="owner_contract">
                                 Owner Contract (Applicable if the units on the property have different owners and they
                                 want their units to be rented out. Please only
@@ -166,9 +196,9 @@
                             @error('owner_contract')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
 
-                        <div class="mt-5">
+                        <div class="mt-5 mx-5">
                             <p class="text-right">
                                 <x-button>
                                     <svg wire:loading wire:target="createForm"

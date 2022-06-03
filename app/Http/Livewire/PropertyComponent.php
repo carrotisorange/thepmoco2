@@ -13,8 +13,9 @@ use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\Type;
-
+use App\Models\UnitStats;
 use Livewire\Component;
+use Session;
 
 class PropertyComponent extends Component
 {
@@ -30,6 +31,13 @@ class PropertyComponent extends Component
      public $province_id;
      public $city_id;
      public $barangay;
+     public $email;
+     public $mobile;
+
+     public function mount(){
+        $this->mobile = auth()->user()->mobile_number;
+        $this->email = auth()->user()->email;
+     }
 
      protected function rules()
      {
@@ -44,6 +52,8 @@ class PropertyComponent extends Component
              'province_id' => ['required', Rule::exists('provinces', 'id')],
              'city_id' => ['nullable', Rule::exists('cities', 'id')],
              'barangay' => ['required'],
+             'email' => ['required'],
+             'mobile' => ['required'],
         ];
      }
 
@@ -120,8 +130,20 @@ class PropertyComponent extends Component
             ]);
         }
 
+         // UnitStats::create([
+         //    'total' => 0,
+         //    'vacant' => 0,
+         //    'occupied' => 0,
+         //    'dirty' => 0,
+         //    'reserved' => 0,
+         //    'under_maintenance' => 0,
+         //    'pending' => 0,
+         //    'property_uuid' => Session::get('property')
+         // ]);
+
+
         DB::commit();
-         return redirect('/properties')->with('success', 'Property has been created.');
+         return redirect('/property/'.$property_uuid)->with('success', 'Property is successfully created.');
         }catch (\Throwable $e) {
            ddd($e);
             DB::rollback();

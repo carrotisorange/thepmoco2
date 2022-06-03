@@ -175,6 +175,9 @@ class PropertyController extends Controller
         session(['property_name' => $property->property]);
 
 
+        $this->occupancy_rate();
+
+
         $occupancy_rate_date = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M')) as month_year"))
           ->where('property_uuid', Session::get('property'))
           ->orderBy('created_at')
@@ -190,7 +193,7 @@ class PropertyController extends Controller
            ->limit(6)
            ->pluck('occupancy_rate');
 
-           $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+         $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
            DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M')) as month_year"))
            ->where('property_uuid', Session::get('property'))
            ->orderBy('created_at')
@@ -292,7 +295,6 @@ class PropertyController extends Controller
 
         //return $tenant_background  = Tenant::select(DB::raw('count(type)'))->where('property_uuid',$property->uuid)->groupBy('type')->get();
 
-        $this->occupancy_rate();
 
         $collections = AcknowledgementReceipt::where('property_uuid',$property->uuid)
         ->whereMonth('created_at',date('m'))

@@ -41,7 +41,7 @@ class UnitComponent extends Component
 
         $this->selectedUnits = [];
         
-        return redirect('units/'.$this->batch_no.'/edit')->with('success','Units succesfully removed.');
+        return redirect('units/'.$this->batch_no.'/edit')->with('success','Units are succesfully removed.');
     }
 
     public function render()
