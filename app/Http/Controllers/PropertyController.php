@@ -178,7 +178,7 @@ class PropertyController extends Controller
         $this->occupancy_rate();
 
 
-        $occupancy_rate_date = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M')) as month_year"))
+        $occupancy_rate_date = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
           ->where('property_uuid', Session::get('property'))
           ->orderBy('created_at')
           ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -186,7 +186,7 @@ class PropertyController extends Controller
           ->pluck('month_year');
 
         $occupancy_rate_value = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
-           DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M')) as month_year"))
+           DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
            ->where('property_uuid', Session::get('property'))
            ->orderBy('created_at')
            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -194,7 +194,7 @@ class PropertyController extends Controller
            ->pluck('occupancy_rate');
 
          $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
-           DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M')) as month_year"))
+           DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
            ->where('property_uuid', Session::get('property'))
            ->orderBy('created_at')
            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -202,7 +202,7 @@ class PropertyController extends Controller
            ->last();
 
            $collection_rate_date = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
-             '%M')) as month_year"))
+             '%M %Y')) as month_year"))
                    ->where('property_uuid', Session::get('property'))
              ->orderBy('created_at')
              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -211,7 +211,7 @@ class PropertyController extends Controller
 
 
         $collection_rate_value = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
-             '%M')) as month_year"))
+             '%M %Y')) as month_year"))
                    ->where('property_uuid', Session::get('property'))
              ->orderBy('created_at')
              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
