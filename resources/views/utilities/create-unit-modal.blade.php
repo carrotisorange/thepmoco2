@@ -27,7 +27,7 @@
 
                 <div>
                     <p class="text-right">
-                        <x-form-button></x-form-button>
+                        <x-form-button>Confirm</x-form-button>
                     </p>
                 </div>
 

@@ -2,7 +2,7 @@
     <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
         <div class="w-full md:w-full px-3 mb-6 md:mb-0">
             <x-label for="tenant">
-                Full Name <span class="text-red-600">*</span>
+                Tenant <span class="text-red-600">*</span>
             </x-label>
             <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
                 value="{{ old('tenant', $tenant_details->tenant) }}" />
@@ -309,7 +309,7 @@
     </div>
 
     <p class="text-right">
-        <x-form-button></x-form-button>
+        <x-form-button>Save</x-form-button>
     </p>
     </div>
 </form>

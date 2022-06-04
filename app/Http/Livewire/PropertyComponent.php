@@ -33,6 +33,7 @@ class PropertyComponent extends Component
      public $barangay;
      public $email;
      public $mobile;
+     public $ownership;
 
      public function mount(){
         $this->mobile = auth()->user()->mobile_number;
@@ -54,6 +55,7 @@ class PropertyComponent extends Component
              'barangay' => ['required'],
              'email' => ['required'],
              'mobile' => ['required'],
+             'ownership' => ['required']
         ];
      }
 
@@ -130,18 +132,6 @@ class PropertyComponent extends Component
             ]);
         }
 
-         // UnitStats::create([
-         //    'total' => 0,
-         //    'vacant' => 0,
-         //    'occupied' => 0,
-         //    'dirty' => 0,
-         //    'reserved' => 0,
-         //    'under_maintenance' => 0,
-         //    'pending' => 0,
-         //    'property_uuid' => Session::get('property')
-         // ]);
-
-
         DB::commit();
          return redirect('/property/'.$property_uuid)->with('success', 'Property is successfully created.');
         }catch (\Throwable $e) {
@@ -150,7 +140,6 @@ class PropertyComponent extends Component
             return back()->with('error', 'Cannot perform your action.');
         }
 
-       
      }
 
      public function render()

@@ -63,7 +63,6 @@
                         class="hidden z-10 w-30 text-base text-left list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
                             @can('managerandadmin')
-
                             <li>
                                 <a href="/tenant/{{ $tenant_details->uuid }}/contracts"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
@@ -93,6 +92,12 @@
                                     Collections</a>
                             </li>
                             @endcan
+                            <li>
+                                <a href="/tenant/{{ $tenant_details->uuid }}/ledger"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                   <i class="fa-solid fa-file-invoice"></i>&nbsp
+                                    Ledger</a>
+                            </li>
                         </ul>
                         {{-- <div class="py-1">
                             <li>

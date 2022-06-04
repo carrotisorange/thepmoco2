@@ -2,7 +2,7 @@
     @csrf
     @method('PATCH')
     <div class="mx-5">
-        <x-label for="property" :value="__('Property')" />
+        <x-label for="property" :value="__('Property')" /> 
 
         <x-form-input form="edit-form" type="text" wire:model="property" value="{{old('property', $property)}}" required
             autofocus />
@@ -11,17 +11,6 @@
         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
         @enderror
     </div>
-
-    {{-- <div class="mt-5 mx-5">
-        <x-label for="type" :value="__('Description')" />
-
-        <x-form-textarea name="description" id="description" cols="30" rows="10">{{
-            old('description', $property->description) }}</x-form-textarea>
-
-        @error('description')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
-    </div> --}}
 
     <div class="mt-5 mx-5">
         <x-label for="type_id" :value="__('Type')" />
@@ -39,6 +28,24 @@
     </div>
 
     <div class="mt-5 mx-5">
+            <x-label for="ownership">
+               Ownership <span class="text-red-600">*</span>
+            </x-label>
+        
+            <x-form-select wire:model="ownership" name="ownership" id="ownership">
+                <option value="">Select one</option>
+                <option value="Single owned" {{ old('ownership')=='Single owned' ? 'selected' : 'Select one' }}>Single
+                    owned</option>
+                <option value="Multiple owned" {{ old('ownership')=='Multiple owned' ? 'selected' : 'Select one' }}>Multiple
+                    owned</option>
+            </x-form-select>
+        
+            @error('ownership')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+    <div class="mt-5 mx-5">
         <div class="mt-6 flex flex-wrap mb-2">
             <div class="w-full md:w-1/2 mb-6 md:mb-0">
                 <x-label for="country_id">
@@ -53,7 +60,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-1/2 mb-6 md:mb-0">
                 <x-label for="province_id">
                     Mobile
                 </x-label>
@@ -88,7 +95,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-1/4 mb-6 md:mb-0">
                 <x-label for="province_id">
                     Region
                 </x-label>
@@ -107,7 +114,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-1/4 mb-6 md:mb-0">
                 <x-label for="city_id">
                     City
                 </x-label>
@@ -125,7 +132,7 @@
                 @enderror
             </div>
 
-            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-1/4 mb-6 md:mb-0">
                 <x-label for="barangay">
                     Address
                     </x-lab>
@@ -156,7 +163,7 @@
         @enderror
     </div>
 
-    <div class="mt-5 flex mx-5">
+    {{-- <div class="mt-5 flex mx-5">
         <div class="flex-3">
             <x-label for="thumbnail" :value="__('Thumbnail')" />
 
@@ -170,7 +177,7 @@
         <div class="mt-6">
             <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $thumbnail }}" alt="">
         </div>
-    </div>
+    </div> --}}
     {{-- <div class="mt-5 flex mx-5">
         <div class="flex-3">
             <x-label for="tenant_contract">
@@ -224,6 +231,6 @@
     </div> --}}
     <div class="mt-5">
         <p class="text-right">
-            <x-form-button></x-form-button>
+            <x-form-button>Save</x-form-button>
         </p>
     </div>

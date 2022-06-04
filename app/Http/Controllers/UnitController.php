@@ -178,7 +178,7 @@ class UnitController extends Controller
           'property_uuid' => Session::get('property')
           ]);
         
-        return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' units have been
+        return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' Units are successfully 
         updated.');
     }
 
@@ -205,7 +205,7 @@ class UnitController extends Controller
 
         $unit->update($attributes);
 
-        return back()->with('success', 'Unit has been updated.');
+        return back()->with('success', 'Unit is successfully updated.');
     }
 
     /**

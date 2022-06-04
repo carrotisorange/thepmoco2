@@ -1031,12 +1031,6 @@ input:checked + .toggle-bg {
 .mb-1 {
   margin-bottom: 0.25rem;
 }
-.-ml-10 {
-  margin-left: -2.5rem;
-}
-.mt-16 {
-  margin-top: 4rem;
-}
 .block {
   display: block;
 }
@@ -1202,9 +1196,6 @@ input:checked + .toggle-bg {
 .flex-1 {
   flex: 1 1 0%;
 }
-.flex-auto {
-  flex: 1 1 auto;
-}
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -1217,11 +1208,11 @@ input:checked + .toggle-bg {
 .flex-grow {
   flex-grow: 1;
 }
-.basis-1\/4 {
-  flex-basis: 25%;
-}
 .basis-1\/2 {
   flex-basis: 50%;
+}
+.basis-1\/4 {
+  flex-basis: 25%;
 }
 .basis-full {
   flex-basis: 100%;
@@ -1340,9 +1331,6 @@ input:checked + .toggle-bg {
 }
 .flex-row {
   flex-direction: row;
-}
-.flex-row-reverse {
-  flex-direction: row-reverse;
 }
 .flex-col {
   flex-direction: column;
@@ -1498,9 +1486,6 @@ input:checked + .toggle-bg {
 .border-0 {
   border-width: 0px;
 }
-.border-2 {
-  border-width: 2px;
-}
 .border-b {
   border-bottom-width: 1px;
 }
@@ -1510,11 +1495,11 @@ input:checked + .toggle-bg {
 .border-r {
   border-right-width: 1px;
 }
-.border-l-4 {
-  border-left-width: 4px;
-}
 .border-b-2 {
   border-bottom-width: 2px;
+}
+.border-l-4 {
+  border-left-width: 4px;
 }
 .border-t-2 {
   border-top-width: 2px;
@@ -1574,14 +1559,6 @@ input:checked + .toggle-bg {
 .border-blue-700 {
   --tw-border-opacity: 1;
   border-color: rgb(26 86 219 / var(--tw-border-opacity));
-}
-.border-teal-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(4 116 129 / var(--tw-border-opacity));
-}
-.border-gray-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1685,14 +1662,6 @@ input:checked + .toggle-bg {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
-.bg-teal-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(4 116 129 / var(--tw-bg-opacity));
-}
-.bg-teal-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(213 245 246 / var(--tw-bg-opacity));
-}
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -1745,6 +1714,9 @@ input:checked + .toggle-bg {
 }
 .p-3 {
   padding: 0.75rem;
+}
+.p-24 {
+  padding: 6rem;
 }
 .p-8 {
   padding: 2rem;
@@ -1817,6 +1789,10 @@ input:checked + .toggle-bg {
   padding-left: 3rem;
   padding-right: 3rem;
 }
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
@@ -1837,21 +1813,17 @@ input:checked + .toggle-bg {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
-.py-32 {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
 .py-20 {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
-}
-.px-0 {
-  padding-left: 0px;
-  padding-right: 0px;
 }
 .py-8 {
   padding-top: 2rem;
@@ -2026,9 +1998,6 @@ input:checked + .toggle-bg {
 .leading-6 {
   line-height: 1.5rem;
 }
-.leading-8 {
-  line-height: 2rem;
-}
 .tracking-wider {
   letter-spacing: 0.05em;
 }
@@ -2128,18 +2097,6 @@ input:checked + .toggle-bg {
 .text-green-600 {
   --tw-text-opacity: 1;
   color: rgb(5 122 85 / var(--tw-text-opacity));
-}
-.text-teal-600 {
-  --tw-text-opacity: 1;
-  color: rgb(4 116 129 / var(--tw-text-opacity));
-}
-.text-teal-100 {
-  --tw-text-opacity: 1;
-  color: rgb(213 245 246 / var(--tw-text-opacity));
-}
-.text-teal-700 {
-  --tw-text-opacity: 1;
-  color: rgb(3 102 114 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -2253,9 +2210,6 @@ input:checked + .toggle-bg {
 .duration-300 {
   transition-duration: 300ms;
 }
-.duration-500 {
-  transition-duration: 500ms;
-}
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2280,11 +2234,6 @@ input:checked + .toggle-bg {
 .checked\:bg-blue-600:checked {
   --tw-bg-opacity: 1;
   background-color: rgb(28 100 242 / var(--tw-bg-opacity));
-}
-.hover\:scale-110:hover {
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
@@ -2322,10 +2271,6 @@ input:checked + .toggle-bg {
   --tw-bg-opacity: 1;
   background-color: rgb(104 117 245 / var(--tw-bg-opacity));
 }
-.hover\:bg-red-500:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(240 82 82 / var(--tw-bg-opacity));
-}
 .hover\:bg-blue-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(118 169 250 / var(--tw-bg-opacity));
@@ -2333,6 +2278,10 @@ input:checked + .toggle-bg {
 .hover\:bg-purple-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(108 43 217 / var(--tw-bg-opacity));
+}
+.hover\:bg-red-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 82 82 / var(--tw-bg-opacity));
 }
 .hover\:bg-red-800:hover {
   --tw-bg-opacity: 1;
@@ -2345,14 +2294,6 @@ input:checked + .toggle-bg {
 .hover\:bg-indigo-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(88 80 236 / var(--tw-bg-opacity));
-}
-.hover\:bg-teal-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(4 116 129 / var(--tw-bg-opacity));
-}
-.hover\:bg-teal-200:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(175 236 239 / var(--tw-bg-opacity));
 }
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
@@ -2416,6 +2357,10 @@ input:checked + .toggle-bg {
   --tw-border-opacity: 1;
   border-color: rgb(180 198 252 / var(--tw-border-opacity));
 }
+.focus\:border-blue-600:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(28 100 242 / var(--tw-border-opacity));
+}
 .focus\:border-indigo-700:focus {
   --tw-border-opacity: 1;
   border-color: rgb(81 69 205 / var(--tw-border-opacity));
@@ -2427,10 +2372,6 @@ input:checked + .toggle-bg {
 .focus\:border-gray-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
-.focus\:border-blue-600:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(28 100 242 / var(--tw-border-opacity));
 }
 .focus\:border-purple-900:focus {
   --tw-border-opacity: 1;

@@ -19,16 +19,25 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="mt-5">
-                            <x-label for="type" :value="__('Description')" />
+                        <div class="mt-5 mx-5">
+                            <x-label for="ownership">
+                                Which type of ownership your property belongs to? <span class="text-red-600">*</span>
+                            </x-label>
 
-                            <x-form-textarea wire:model="description" name="description" id="description" cols="30"
-                                rows="10">{{ old('description') }} </x-form-textarea>
+                            <x-form-select wire:model="ownership" name="ownership" id="ownership">
+                                <option value="">Select one</option>
+                                <option value="Single owned" {{ old('ownership')=='Single owned' ? 'selected'
+                                    : 'Select one' }}>Single
+                                    owned</option>
+                                <option value="Multiple owned" {{ old('ownership')=='Multiple owned' ? 'selected'
+                                    : 'Select one' }}>Multiple
+                                    owned</option>
+                            </x-form-select>
 
-                            @error('description')
+                            @error('ownership')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         <div class="mt-5 mx-5">
                             <x-label for="type_id">
@@ -50,34 +59,34 @@
                         </div>
 
                         <div class="mt-5 mx-5">
-                                <div class="mt-6 flex flex-wrap mb-2">
-                                    <div class="w-full md:w-1/2 mb-6 md:mb-0">
-                                        <x-label for="country_id">
-                                            Email
-                                        </x-label>
-                                        <div class="relative">
-                                            <x-form-input type="email" wire:model="email" value="{{old('email', $email)}}" required
-                                                autofocus />
-                            
-                                            @error('email')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                            <div class="mt-6 flex flex-wrap mb-2">
+                                <div class="w-full md:w-1/2 mb-6 md:mb-0">
+                                    <x-label for="country_id">
+                                        Email
+                                    </x-label>
+                                    <div class="relative">
+                                        <x-form-input type="email" wire:model="email" value="{{old('email', $email)}}"
+                                            required autofocus />
+
+                                        @error('email')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                     </div>
-                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <x-label for="province_id">
-                                            Mobile
-                                        </x-label>
-                                        <div class="relative">
-                                            <x-form-input type="text" wire:model="mobile" value="{{old('mobile', $mobile)}}"
-                                                required autofocus />
-                                            @error('mobile')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                </div>
+                                <div class="w-full md:w-1/2 mb-6 md:mb-0">
+                                    <x-label for="province_id">
+                                        Mobile
+                                    </x-label>
+                                    <div class="relative">
+                                        <x-form-input type="text" wire:model="mobile" value="{{old('mobile', $mobile)}}"
+                                            required autofocus />
+                                        @error('mobile')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                         <div class="mt-5 mx-5">
                             <div class="mt-6 flex flex-wrap mb-2">
@@ -100,7 +109,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                                <div class="w-full md:w-1/4 mb-6 md:mb-0">
                                     <x-label for="province_id">
                                         Region <span class="text-red-600">*</span>
                                     </x-label>
@@ -119,7 +128,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                               <div class="w-full md:w-1/4 mb-6 md:mb-0">
                                     <x-label for="city_id">
                                         City
                                     </x-label>
@@ -137,7 +146,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                                <div class="w-full md:w-1/4 mb-6 md:mb-0">
                                     <x-label for="barangay">
                                         Address <span class="text-red-600">*</span>
                                         </x-lab>

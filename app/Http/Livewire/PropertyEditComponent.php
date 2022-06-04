@@ -34,6 +34,7 @@ class PropertyEditComponent extends Component
 
     public $email;
     public $mobile;
+    public $ownership;
 
     public function mount($property_details)
     {
@@ -47,6 +48,7 @@ class PropertyEditComponent extends Component
         $this->status = $property_details->status;
         $this->email = $property_details->email;
         $this->mobile = $property_details->mobile;
+        $this->ownership = $property_details->ownership;
     }
 
     protected function rules()
@@ -62,7 +64,8 @@ class PropertyEditComponent extends Component
            'barangay' => ['nullable'],
            'status' => ['required'],
             'email' => ['nullable'],
-            'mobile' => ['nullable']
+            'mobile' => ['nullable'],
+            'ownership' => ['nullable']
         ];
     }
 

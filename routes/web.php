@@ -76,18 +76,18 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('bill/{bills}', [CollectionController::class, 'create']);
 
     Route::get('unit/{unit}', [UnitController::class, 'show']);
-    Route::get('unit/{unit}/contracts', UnitContractController::class);
+    Route::get('unit/{unit}/contracts', UnitContractController::class)->name('units')->name('units');
     Route::get('unit/{unit}/deed_of_sales', UnitDeedOfSalesController::class);
     Route::get('unit/{unit}/bills', UnitBillController::class);
-    Route::get('unit/{batch_no}/create', [UnitController::class, 'create']);
+    Route::get('unit/{batch_no}/create', [UnitController::class, 'create'])->name('units');
     Route::post('unit/{batch_no}/store', [UnitController::class, 'store']);
     //edit multiple units
-    Route::get('units/{batch_no}/edit', [UnitController::class, 'bulk_edit']);
+    Route::get('units/{batch_no}/edit', [UnitController::class, 'bulk_edit'])->name('units');
     //update multiple units
     Route::patch('units/{batch_no}/update', [UnitController::class, 'bulk_update']);
 
     //edit single unit
-    Route::get('unit/{unit}/edit', [UnitController::class, 'edit']);
+    Route::get('unit/{unit}/edit', [UnitController::class, 'edit'])->name('units');
     //update single unit
     Route::patch('unit/{unit}/update', [UnitController::class, 'update']);
 
@@ -99,8 +99,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::post('building/{random_str}/store',[BuildingController::class, 'store']);
 
-    Route::get('tenant/{tenant:uuid}', [TenantController::class, 'show']);
-    Route::get('tenant/{tenant}/contracts', [TenantContractController::class, 'index']);
+    Route::get('tenant/{tenant:uuid}', [TenantController::class, 'show'])->name('tenants');
+    Route::get('tenant/{tenant}/contracts', [TenantContractController::class, 'index'])->name('tenants');
     //'Route::get('tenant/{tenant}/unit/{unit}/contract/units', [TenantContractController::class, 'units']);
     Route::get('tenant/{tenant}/unit/{unit}/edit', [TenantContractController::class, 'create']);
 //     Route::get('tenant/{tenant}/unit/{unit}/contract/create', [TenantContractController::class, 'create']);
@@ -111,8 +111,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('tenant/{tenant}/collections', [TenantCollectionController::class, 'index']);
     Route::get('tenant/{tenant}/collection/store', [TenantCollectionController::class, 'store']);
     Route::get('tenant/{tenant}/ar/{ar}/export', [TenantCollectionController::class, 'export']);
-    Route::get('tenant/{tenant}/concerns', TenantConcernController::class);
-    Route::get('tenant/{tenant}/edit', [TenantController::class, 'edit']);
+    Route::get('tenant/{tenant}/concerns', TenantConcernController::class)->name('tenants');
+    Route::get('tenant/{tenant}/ledger', TenantLedgerController::class)->name('tenants');
+    Route::get('tenant/{tenant}/edit', [TenantController::class, 'edit'])->name('tenants');
     Route::get('tenant/{uuid}/delete', [TenantController::class, 'destroy']);
     Route::patch('tenant/{tenant}/update', [TenantController::class, 'update']);
     Route::get('owner/{owner}', [OwnerController::class, 'show']);
@@ -136,7 +137,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Creating tenant contract
     //1
-    Route::get('unit/{unit}/tenant/{random_str}/new_create', NewTenantController::class);
+    Route::get('unit/{unit}/tenant/{random_str}/new_create', NewTenantController::class)->name('tenants');
     Route::get('unit/{unit}/tenant/{random_str}/old_create', [OldTenantController::class, 'index']);
     Route::get('tenant_sheet/export', [OldTenantController::class, 'export']);
     Route::post('unit/{unit}/tenant/{random_str}/store', [TenantController::class, 'store']);
@@ -210,19 +211,19 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
 
-    Route::get('/contract/{contract}/moveout', MoveoutContractController::class);
+    Route::get('/contract/{contract}/moveout', MoveoutContractController::class)->name('tenants');
     
-    Route::get('/contract/{contract}/moveout/bills', MoveoutContractBillController::class);
+    Route::get('/contract/{contract}/moveout/bills', MoveoutContractBillController::class)->name('tenants');
 
-   Route::get('/contract/{contract}/renew', RenewContractController::class);
+   Route::get('/contract/{contract}/renew', RenewContractController::class)->name('tenants');
 
     Route::get('/contract/{contract}/export', ContractExportController::class);
 
     Route::get('/contract/{contract}/signed_contract', ExportSignedContractController::class);
 
-    Route::get('/contract/{contract}/transfer', TransferContractController::class);
+    Route::get('/contract/{contract}/transfer', TransferContractController::class)->name('tenants');
 
-    Route::get('/tenant/{tenant}/new_contract', NewContractController::class);
+    Route::get('/tenant/{tenant}/new_contract', NewContractController::class)->name('tenants');
 
     Route::get('/leasing/{enrollee}/pullout', [EnrolleeController::class, 'update']);
 

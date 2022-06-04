@@ -180,7 +180,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-
+{{-- 
                             <div class="mt-5 flex">
                                 <div class="flex-3">
                                     <x-label for="thumbnail" :value="__('Thumbnail')" />
@@ -195,11 +195,13 @@
                                 <div class="mt-6">
                                     <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $unit->thumbnail }}" alt="">
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <h5 class="flex-1 text-right">
-                                <x-button form="edit-form"><i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
-                            </h5>
+                           <div class="mt-5">
+                               <h5 class="flex-1 text-right">
+                                    <x-button form="edit-form"><i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
+                                </h5>
+                           </div>
 
 
 
