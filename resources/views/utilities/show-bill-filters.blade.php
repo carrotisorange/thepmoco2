@@ -33,7 +33,7 @@
                 @forelse ($statuses as $status)
                 <div class="form-check">
                     <x-input wire:model="status" type="checkbox" value="{{ $status->status }}" />
-                    <label class="form-check-label inline-block text-gray-800" for="status">
+                    <label class="form-check-label inline-block text-gray-800" for="{{ $status->status }}">
                         {{ $status->status }} ({{ $status->count }})
                     </label>
                 </div>

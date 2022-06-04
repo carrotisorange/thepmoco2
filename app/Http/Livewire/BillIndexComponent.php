@@ -18,7 +18,7 @@ class BillIndexComponent extends Component
       public $selectedBills = [];
       public $selectAll = false;
 
-      public $status = [];
+      public $status = ['unpaid'];
       public $start = [];
       public $end = [];
       public $particular_id = [];
@@ -26,6 +26,7 @@ class BillIndexComponent extends Component
 
       public function mount()
       {
+         //$this->status = 'unpaid';
          //$this->created_at = Carbon::now()->startOfMonth()->format('Y-m-d');
          //$this->end = Carbon::now()->lastOfMonth()->format('Y-m-d');
       }
