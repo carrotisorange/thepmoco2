@@ -18,7 +18,7 @@ class TenantBillComponent extends Component
 
      public $selectedBills = [];
      public $selectAll = false;  
-     public $status = 'unpaid';
+     public $status = ['unpaid', 'partially_paid'];
 
      public function removeBills()
      {

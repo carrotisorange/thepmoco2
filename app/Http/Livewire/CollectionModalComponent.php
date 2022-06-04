@@ -109,6 +109,7 @@ class CollectionModalComponent extends ModalComponent
                             $validatedData['form'] = $this->form;
                             $validatedData['collection'] = $this->bill[$i];
                             $validatedData['batch_no'] = $batch_no;
+                            $validatedData['ar_no'] = $ar_no;
 
                         //save the payment
                         Collection::create($validatedData);
