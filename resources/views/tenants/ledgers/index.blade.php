@@ -74,7 +74,7 @@
                                             </tr>
                                         </thead>
 
-                                        @forelse ($bills as $item)
+                                        @foreach ($bills as $item)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
@@ -103,13 +103,12 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {{ number_format(($item->bill-$item->initial_payment), 2) }}
                                                 </td>
-                                                @empty
-                                                <x-td>No data found!</x-td>
+                                              
                                             </tr>
                                         </tbody>
-                                        @endforelse
+                                        @endforeach
 
-                                        @forelse ($collections as $item)
+                                        @foreach ($collections as $item)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
@@ -132,11 +131,10 @@
                                                     {{ number_format($item->collection, 2)}}
                                                 </td>
 
-                                                @empty
-                                                <x-td>No data found!</x-td>
+                                            
                                             </tr>
                                         </tbody>
-                                        @endforelse
+                                        @endforeach
 
                                     </table>
                                 </div>
