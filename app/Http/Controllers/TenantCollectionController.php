@@ -98,6 +98,8 @@ class TenantCollectionController extends Controller
      {          
          $balance = Bill::where('tenant_uuid', $ar->tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid']);
    
+         $property = Property::find(Session::get('property'));
+
          $data = [
             'created_at' => $ar->created_at,
             'tenant' => Tenant::find($ar->tenant_uuid)->tenant,
@@ -110,11 +112,25 @@ class TenantCollectionController extends Controller
             'bank' => $ar->bank,
             'date_deposited' => $ar->date_deposited,
             'collections' => Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no',
-            $ar->collection_batch_no)->get(),
+            $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
             'balance' => $balance
          ];
 
         $pdf = PDF::loadView('tenants.collections.export', $data);
+
+               $pdf->output();
+               $canvas = $pdf->getDomPDF()->getCanvas();
+
+               $height = $canvas->get_height();
+               $width = $canvas->get_width();
+
+               $canvas->set_opacity(.2,"Multiply");
+
+               $canvas->set_opacity(.2);
+
+               $canvas->page_text($width/5, $height/2, $property->property, null,
+               55, array(0,0,0),2,2,-30);
+
         return $pdf->download($tenant->tenant.'-ar.pdf');
      }
 }

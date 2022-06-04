@@ -47,7 +47,7 @@
         td {
             margin-right: 80px;
             margin-left: 50px;
-            border: 1px solid black;
+            border: 1px black;
         }
 
         th,
@@ -86,6 +86,9 @@
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
         <hr>
+        <p>
+            Reference #: {{ $reference_no }}
+        </p>
 
         <p>
             Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
@@ -111,7 +114,7 @@
         <table class="">
 
             <tr>
-                <th>#</th>
+                <th>Bill #</th>
                 <th>Date Posted</th>
                 <th>Unit</th>
                 <th>Particular</th>

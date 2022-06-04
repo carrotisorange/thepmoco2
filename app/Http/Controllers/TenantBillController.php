@@ -102,8 +102,11 @@ class TenantBillController extends Controller
             'note_to_bill' => $request->note_to_bill,
         ]);
 
+        $property = Property::find(Session::get('property'));
+
         $data = [
             'tenant' => $tenant->tenant,
+            'reference_no' => $tenant->bill_reference_no,
             'due_date' => $request->due_date,
             'penalty' => $request->penalty,
             'user' => User::find(auth()->user()->id)->name,
@@ -117,6 +120,19 @@ class TenantBillController extends Controller
          ];
 
         $pdf = PDF::loadView('tenants.bills.export', $data);
+       $pdf->output();
+       $canvas = $pdf->getDomPDF()->getCanvas();
+
+       $height = $canvas->get_height();
+       $width = $canvas->get_width();
+
+       $canvas->set_opacity(.2,"Multiply");
+
+       $canvas->set_opacity(.2);
+
+       $canvas->page_text($width/5, $height/2, $property->property, null,
+       55, array(0,0,0),2,2,-30);
+
         return $pdf->download($tenant->tenant.'-soa.pdf');
     }
 

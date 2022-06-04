@@ -72,8 +72,8 @@
 
     <footer>
         <h5>
-            Prepared by: {{ auth()->user()->name }}, {{ auth()->user()->role->role}}, {{ auth()->user()->mobile_number
-            }}
+            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
+            {{ App\Models\Property::find(Session::get('property'))->mobile }}
         </h5>
         {{ Session::get('property_name') }} Copyright &copy;
         <?php echo date("Y");?>
@@ -107,13 +107,15 @@
         <p>
             Source of awareness: {{ $interaction->interaction }}
         </p>
-
+        <p>
+            Assisted by: {{ $user }}
+        </p>
+        <br>
         <p>
             <b>Bills Breakdown</b>
         </p>
         <p>
         <table class="">
-
             <tr>
                 <th>Bill #</th>
                 <th>Date Posted</th>
@@ -124,10 +126,8 @@
             </tr>
 
             @forelse($bills as $item)
-
             <tr>
                 <td>{{ $item->bill_no }}</td>
-
                 <td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</td>
                 <td>{{ $item->unit->unit }}</td>
                 <td>{{ $item->particular->particular }}</td>
@@ -136,9 +136,7 @@
                 <td>{{ number_format($item->bill,2) }}</td>
                 @empty
                 <td>No data found!</td>
-
             </tr>
-
             @endforelse
         </table>
         </p>
@@ -148,15 +146,13 @@
         </p>
         <p>
         <table class="">
-
             <tr>
                 <th>Name</th>
                 <th>Relationship</th>
                 <th>Email</th>
                 <th>Mobile</th>
-
-                @forelse($guardians as $item)
             </tr>
+            @forelse($guardians as $item)
             <tr>
                 <td>{{ $item->guardian }}</td>
                 <td>{{ $item->relationship->relationship }}</td>
@@ -165,7 +161,6 @@
                 @empty
                 <td>No data found!</td>
             </tr>
-
             @endforelse
         </table>
         </p>
@@ -183,7 +178,6 @@
                 <th>Mobile</th>
             </tr>
             @forelse($references as $item)
-
             <tr>
                 <td>{{ $item->reference }}</td>
                 <td>{{ $item->relationship->relationship }}</td>
@@ -196,9 +190,6 @@
             @endforelse
         </table>
         </p>
-
-
-
     </main>
 </body>
 

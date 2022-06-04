@@ -48,7 +48,7 @@
         td {
             margin-right: 80px;
             margin-left: 50px;
-            border: 1px solid black;
+            border: 1px  black;
         }
 
         th,
@@ -73,7 +73,7 @@
 
     <footer>
         <h5>
-            Prepared by: {{ $user }}, {{ $role }} | {{ auth()->user()->mobile_number }}
+            {{-- Prepared by: {{ $user }}, {{ $role }} | {{ auth()->user()->mobile_number }} --}}
         </h5>
         {{ Session::get('property_name') }} Copyright &copy;
         <?php echo date("Y");?>
@@ -121,7 +121,7 @@
         <p>
             Unpaid Bills: {{ number_format(($balance->sum('bill') - $balance->sum('initial_payment')),2)}}
         </p>
-        <br><br><br>
+        <br>
         <p>
             <b>Payments Breakdown</b>
         </p>
@@ -155,7 +155,9 @@
             @endforeach
         </table>
         </p>
-
+        <p>
+            Prepared by: {{ $user }},<br> {{ $role }}
+        </p>
 
 
     </main>
