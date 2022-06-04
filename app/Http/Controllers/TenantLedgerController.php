@@ -31,10 +31,13 @@ class TenantLedgerController extends Controller
         ->collections()
         ->get();
 
+        $ledgers = $bills->merge( $collections);
+
         return view('tenants.ledgers.index', [
             'tenant' => $tenant,
             'bills'=> $bills,
             'collections'=> $collections,
+            'ledgers' => $ledgers
         ]);
     }
 }
