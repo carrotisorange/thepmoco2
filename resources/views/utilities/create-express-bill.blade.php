@@ -22,7 +22,7 @@
 
                 <p class="text-sm font-medium text-gray-900 dark:text-white">You're about to create <b>{{
                         $active_contracts->count() }}</b> bills for <b>{{ $active_tenants->count('tenant_uuid') }}</b>
-                    active tenants.
+                    active tenants. The period covered 
                 </p>
 
 
