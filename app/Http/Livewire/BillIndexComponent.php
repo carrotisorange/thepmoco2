@@ -18,7 +18,7 @@ class BillIndexComponent extends Component
       public $selectedBills = [];
       public $selectAll = false;
 
-      public $status = ['unpaid'];
+      public $status = ['unpaid', 'partially_paid'];
       public $start = [];
       public $end = [];
       public $particular_id = [];
