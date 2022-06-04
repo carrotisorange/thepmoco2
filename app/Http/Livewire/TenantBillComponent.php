@@ -19,7 +19,6 @@ class TenantBillComponent extends Component
      public $selectedBills = [];
      public $selectAll = false;  
      public $status;
-   
 
      public function removeBills()
      {

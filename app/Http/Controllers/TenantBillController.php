@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendBillToTenant;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
 use App\Models\Particular;
@@ -15,6 +16,7 @@ use Carbon\Carbon;
 use LivewireUI\Modal\ModalComponent;
 use \PDF;
 use App\Models\Point;
+use Illuminate\Support\Facades\Mail;
 
 class TenantBillController extends Controller
 {
@@ -116,5 +118,28 @@ class TenantBillController extends Controller
 
         $pdf = PDF::loadView('tenants.bills.export', $data);
         return $pdf->download($tenant->tenant.'-soa.pdf');
+    }
+
+    public function send(Request $request, Tenant $tenant)
+    {
+         Property::where('uuid',Session::get('property'))->update([
+         'note_to_bill' => $request->note_to_bill,
+         ]);
+
+         $details = [
+         'tenant' => $tenant->tenant,
+         'due_date' => $request->due_date,
+         'penalty' => $request->penalty,
+         'user' => User::find(auth()->user()->id)->name,
+         'role' => User::find(auth()->user()->id)->role->role,
+         'bills' => Tenant::find($tenant->uuid)
+         ->bills()
+         ->whereIn('status', ['unpaid', 'partially_paid'])
+         ->get(),
+         'note_to_bill' => $request->note_to_bill,
+
+         ];
+
+         Mail::to('landleydgreat@gmail.com')->send(new SendBillToTenant($details));
     }
 }

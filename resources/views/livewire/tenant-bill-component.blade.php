@@ -27,12 +27,17 @@
 
     <div class="mt-5">
         <div class="flex flex-row">
-            <div class="basis-1/2">
+            <div class="basis-3/4">
                 @if($total_unpaid_bills->count())
-                <x-button data-modal-toggle="export-bill-modal">
+                <x-button title="export unpaid bills" data-modal-toggle="export-bill-modal">
                     <i class="fa-solid fa-download"></i>&nbsp
-                    SOA ({{ $total_unpaid_bills->count() }})
+                    Bills ({{ $total_unpaid_bills->count() }})
                 </x-button>
+
+                {{-- <x-button title="send unpaid bills" data-modal-toggle="send-bill-modal">
+                 <i class="fa-solid fa-paper-plane"></i>&nbsp
+                    Bills ({{ $total_unpaid_bills->count() }})
+                </x-button> --}}
                 @endif
 
                 @if($total_count)
@@ -51,9 +56,9 @@
                 @endif
                 @endcan
             </div>
-            <div class="basis-1/2 ml-12 text-right">
+            <div class="basis-1/4 ml-12 text-right">
                 @if($selectedBills)
-                <x-button onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
+                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
                     Remove ({{ count($selectedBills) }})
                 </x-button>
                 @endif

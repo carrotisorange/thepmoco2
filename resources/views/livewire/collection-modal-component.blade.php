@@ -160,7 +160,7 @@
         @if($collection)
         <div class="mt-5">
             <p class="text-right">
-                <x-form-button form="create-form"></x-form-button>
+                <x-form-button form="create-form">Pay</x-form-button>
             </p>
         </div>
         @endif

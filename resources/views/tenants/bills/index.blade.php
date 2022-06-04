@@ -49,5 +49,6 @@
 </x-app-layout>
 @include('utilities.create-bill-modal')
 @include('utilities.export-bill-modal')
+@include('utilities.send-bill-modal')
 @include('utilities.create-collection-modal')
 @include('utilities.create-particular-modal');
