@@ -112,6 +112,12 @@
                                                 <i class="fa-solid fa-circle-xmark"></i>
                                             </span>
                                             @endif
+
+                                            @if($item->description === 'movein charges')
+                                            <span title="urgent" class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                               <i class="fa-solid fa-bolt"></i>
+                                            </span>
+                                            @endif
                                         </x-td>
                                         <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
                                         <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>

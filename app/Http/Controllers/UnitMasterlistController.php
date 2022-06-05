@@ -18,6 +18,7 @@ class UnitMasterlistController extends Controller
     {
         $units = Property::find(Session::get('property'))
         ->contracts()
+        ->where('status', '!=' ,'inactive')
         ->paginate(10);
 
         return view('units.masterlist.index', [

@@ -14,6 +14,8 @@ use LivewireUI\Modal\ModalComponent;
 use Carbon\Carbon;
 use App\Models\Point;
 use DB;
+use App\Models\Unit;
+use App\Models\Contract;
 
 class CollectionModalComponent extends ModalComponent
 {
@@ -112,7 +114,34 @@ class CollectionModalComponent extends ModalComponent
                             $validatedData['ar_no'] = $ar_no;
 
                         //save the payment
-                        Collection::create($validatedData);
+                       Collection::create($validatedData)->unit_uuid;
+
+                        if(Tenant::find($this->tenant)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->where('description', 'movein charges')->sum('bill') <= 0){ 
+                      
+                            Unit::where('uuid',Bill::find($this->selectedBills[$i])->unit_uuid)
+                              ->where('status_id', '4')
+                                ->update([
+                                    'status_id' => '2'
+                                ]);
+
+                            Contract::where('unit_uuid', Bill::find($this->selectedBills[$i])->unit_uuid)
+                            ->where('status', 'pending')
+                            ->update([
+                                'status' => 'active'
+                            ]);
+                        }else{
+                            Unit::where('uuid',Bill::find($this->selectedBills[$i])->unit_uuid)
+                            ->where('status_id', '2')
+                            ->update([
+                                'status_id' => '4'
+                            ]);
+
+                            Contract::where('unit_uuid', Bill::find($this->selectedBills[$i])->unit_uuid)
+                            ->where('status', 'active')
+                            ->update([
+                            'status' => 'pending'
+                            ]);
+                        }
 
                     }
 

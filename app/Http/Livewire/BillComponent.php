@@ -67,13 +67,14 @@ class BillComponent extends Component
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['bill_no'] = $bill_no+1;
         $validatedData['due_date'] = Carbon::now()->addDays(7);
+ 
 
         Bill::create($validatedData);
         DB::commit();
         $this->resetForm();
         return
         redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success',
-        'Bill has been created.');
+        'Bill is successfully posted.');
         } catch (\Throwable $e) {
         DB::rollback();
          return

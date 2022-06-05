@@ -103,66 +103,65 @@ class ContractComponent extends Component
              
 
             Unit::where('uuid', $this->unit->uuid)->update([
-              'status_id' => 2
+              'status_id' => 4
             ]);
 
             if($this->rent > 0){
                Bill::create([
-               'bill_no' => $bill_no++,
-               'bill' => $this->rent,
-               'reference_no' => $this->tenant->bill_reference_no,
-               'start' => $this->start,
-               'end' => Carbon::parse($this->start)->addMonth(),
-               'due_date' => Carbon::parse($this->start)->addDays(7),
-      
-               'user_id' => auth()->user()->id,
-               'particular_id' => '1',
-               'property_uuid' => Session::get('property'),
-               'unit_uuid' => $this->unit->uuid,
-               'tenant_uuid' => $this->tenant->uuid,
-            
-               ]);
-
-               Bill::create([
-               'bill_no' => $bill_no++,
-               'bill' => $this->rent,
-             'reference_no' => $this->tenant->bill_reference_no,
-               'start' => Carbon::parse($this->start)->addMonth(),
-               'end' => Carbon::parse($this->start)->addMonths(2),
-               'due_date' => Carbon::parse($this->start)->addDays(7),
-        
-               'user_id' => auth()->user()->id,
-               'particular_id' => '2',
-               'property_uuid' => Session::get('property'),
-               'unit_uuid' => $this->unit->uuid,
-               'tenant_uuid' => $this->tenant->uuid,
-             
-               ]);
-
-                Bill::create([
                 'bill_no' => $bill_no++,
                 'bill' => $this->rent,
-            'reference_no' => $this->tenant->bill_reference_no,
-                  'start' => $this->start,
-                  'end' => $this->end,
+                'reference_no' => $this->tenant->bill_reference_no,
+                'start' => $this->start,
+                'end' => Carbon::parse($this->start)->addMonth(),
                 'due_date' => Carbon::parse($this->start)->addDays(7),
-        
+                'description' => 'movein charges',
                 'user_id' => auth()->user()->id,
-                'particular_id' => '3',
+                'particular_id' => '1',
                 'property_uuid' => Session::get('property'),
                 'unit_uuid' => $this->unit->uuid,
                 'tenant_uuid' => $this->tenant->uuid,
             
+               ]);
+
+               Bill::create([
+                'bill_no' => $bill_no++,
+                'bill' => $this->rent,
+                'reference_no' => $this->tenant->bill_reference_no,
+                'start' => Carbon::parse($this->start)->addMonth(),
+                'end' => Carbon::parse($this->start)->addMonths(2),
+                'due_date' => Carbon::parse($this->start)->addDays(7),
+                'description' => 'movein charges',
+                'user_id' => auth()->user()->id,
+                'particular_id' => '2',
+                'property_uuid' => Session::get('property'),
+                'unit_uuid' => $this->unit->uuid,
+                'tenant_uuid' => $this->tenant->uuid,
+             
+               ]);
+
+                Bill::create([
+                  'bill_no' => $bill_no++,
+                  'bill' => $this->rent,
+                  'reference_no' => $this->tenant->bill_reference_no,
+                  'start' => $this->start,
+                  'end' => $this->end,
+                  'due_date' => Carbon::parse($this->start)->addDays(7),
+                  'description' => 'movein charges',
+                  'user_id' => auth()->user()->id,
+                  'particular_id' => '3',
+                  'property_uuid' => Session::get('property'),
+                  'unit_uuid' => $this->unit->uuid,
+                  'tenant_uuid' => $this->tenant->uuid,
                 ]);
 
                 Bill::create([
                 'bill_no' => $bill_no++,
                 'bill' => $this->rent,
-   'reference_no' => $this->tenant->bill_reference_no,
+                'reference_no' => $this->tenant->bill_reference_no,
                 'start' => $this->start,
                 'end' => $this->end,
                 'due_date' => Carbon::parse($this->start)->addDays(7),
-      
+                'description' => 'movein charges',
                 'user_id' => auth()->user()->id,
                 'particular_id' => '4',
                 'property_uuid' => Session::get('property'),
@@ -177,11 +176,11 @@ class ContractComponent extends Component
               Bill::create([
               'bill_no' => $bill_no++,
               'bill' => -($this->discount),
-             'reference_no' => $this->tenant->bill_reference_no,
+              'reference_no' => $this->tenant->bill_reference_no,
               'start' => $this->start,
               'end' => Carbon::parse($this->start)->addMonth(),
               'due_date' => Carbon::parse($this->start)->addDays(7),
-    
+              'description' => 'movein charges',
               'user_id' => auth()->user()->id,
               'particular_id' => '8',
               'property_uuid' => Session::get('property'),

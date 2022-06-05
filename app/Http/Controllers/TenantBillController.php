@@ -74,6 +74,7 @@ class TenantBillController extends Controller
             $attributes['user_id'] = auth()->user()->id;
             $attributes['property_uuid'] = Session::get('property');
             $attributes['tenant_uuid'] = $tenant->uuid;
+            $attributes['description'] = 'movein charges';
 
             Bill::create($attributes);
 
@@ -86,7 +87,7 @@ class TenantBillController extends Controller
 
             DB::commit();
 
-            return back()->with('success','Bill has been posted.');
+            return back()->with('success','Bill is successfully posted.');
         }
         catch(\Exception $e)
         {

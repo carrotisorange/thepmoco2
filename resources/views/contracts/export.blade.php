@@ -67,7 +67,10 @@
             {{ App\Models\Property::find(Session::get('property'))->province->province }},
             {{ App\Models\Property::find(Session::get('property'))->city->city }},
             {{ App\Models\Property::find(Session::get('property'))->barangay }}
+            <hr>
+            
         </h5>
+        
     </header>
 
     <footer>
@@ -81,7 +84,7 @@
 
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
-        <hr>
+
 
         <p>
             Date: {{ Carbon\Carbon::now()->format('M d, Y') }}

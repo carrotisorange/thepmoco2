@@ -84,6 +84,7 @@ class BillController extends Controller
         $attributes['property_uuid'] = Session::get('property');
         $attributes['user_id'] = auth()->user()->id;
         $attributes['bill_no'] = Property::find(Session::get('property'))->bills->count()+1;
+        $attributes['description'] = 'movein charges';
 
         Bill::create($attributes);
         DB::commit();

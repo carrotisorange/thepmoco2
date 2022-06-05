@@ -67,10 +67,9 @@
             {{ App\Models\Property::find(Session::get('property'))->province->province }},
             {{ App\Models\Property::find(Session::get('property'))->city->city }},
             {{ App\Models\Property::find(Session::get('property'))->barangay }}
-  <hr>
+
      <br>      
         </h5>
-
 
     </header>
 
