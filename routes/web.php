@@ -35,6 +35,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property:uuid}')->group(function(){
 
     Route::get('units', [UnitController::class, 'index'])->name('units');
+
+    Route::get('units/masterlist', UnitMasterlistController::class)->name('units');
    
     Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
     

@@ -22,12 +22,9 @@
             <h5 class="flex-1 text-right">
 
                 @can('admin')
-                {{-- <button
-                    class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button">
-                    Toggle modal
-                </button> --}}
-                <x-button data-modal-toggle="create-unit-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
+                <x-button title="view in table form" onclick="window.location.href='/property/{{ Session::get('property') }}/units/masterlist'"><i class="fa-solid fa-list"></i>&nbsp Unit
+                </x-button>
+                <x-button title="add new units" data-modal-toggle="create-unit-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
                 </x-button>
                 @endcan
             </h5>
