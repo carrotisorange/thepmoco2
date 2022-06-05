@@ -142,7 +142,7 @@ class BillIndexComponent extends Component
             ->orderBy('bill_no', 'asc')
             ->where('property_uuid', Session::get('property'))
             ->when($this->status, function($query){
-               $query->where('status', $this->status);
+               $query->whereIn('status', $this->status);
             })
             ->when($this->start, function($query){
                $query->whereDate('start', $this->start);

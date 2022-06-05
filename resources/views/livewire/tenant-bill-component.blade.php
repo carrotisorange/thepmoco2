@@ -6,21 +6,14 @@
     Total Paid Bills: <b> {{ number_format($total_paid_bills->sum('initial_payment'),2)}}</b>
     <div class="mt-5">
         @if($bills)
-        <x-form-select class="w-24" wire:model="status">\
-            <option value="" {{ $status=="" ? 'selected' : 'Select one' }}>
-                {{
-                'Show All bills' }}</option>
-            <option value="unpaid" {{ $status==='unpaid' ? 'selected' : 'Select one' }}>
-                {{
-                'Show Unpaid Bills' }}</option>
-            <option value="paid" {{ $status==='paid' ? 'selected' : 'Select one' }}>
-                {{
-                'Show Paid Bills' }}</option>
-
-            <option value="partially_paid" {{ $status==='partially_paid' ? 'selected' : 'Select one' }}>
-                {{
-                'Show Partially Paid Bills' }}</option>
-
+        <x-form-select class="w-24" wire:model="status">
+            <option value="" {{ $status=="" ? 'selected' : 'Select one' }}>show all bills</option>
+            @foreach ($statuses as $item)
+               <option value="{{ $item->status }}" {{ $status == $item->status ? 'selected' : 'selected' }}> show {{ $item->status }} bills
+                </option>
+            @endforeach
+          
+        
         </x-form-select>
         @endif
     </div>

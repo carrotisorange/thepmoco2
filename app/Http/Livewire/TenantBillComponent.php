@@ -9,6 +9,8 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Collection;
 use Barryvdh\DomPDF\Facade\PDF;
+use DB;
+use Session;
 
 class TenantBillComponent extends Component
 {
@@ -18,7 +20,7 @@ class TenantBillComponent extends Component
 
      public $selectedBills = [];
      public $selectAll = false;  
-     public $status = ['unpaid', 'partially_paid'];
+     public $status = ['unpaid'];
 
      public function removeBills()
      {
@@ -94,6 +96,11 @@ class TenantBillComponent extends Component
        })
        ->get();
 
+         $statuses = Bill::where('bills.property_uuid', Session::get('property'))
+         ->select('status', DB::raw('count(*) as count'))
+         ->groupBy('status')
+         ->get();
+
                 $unpaid_bills = Tenant::find($this->tenant->uuid)
                 ->bills()
                 ->where('status', 'unpaid')
@@ -131,6 +138,7 @@ class TenantBillComponent extends Component
             'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
             'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
             'total_bills' => $bills,
+            'statuses' => $statuses
         ]);
     }
 }
