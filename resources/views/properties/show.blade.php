@@ -182,7 +182,7 @@
                                     <!--/Metric Card-->
                                 </div>
                             </div>
-
+                           
                             @if($expiring_contracts->count())
                             <div class="w-full p-3">
                                 <!--Table Card-->
@@ -292,6 +292,7 @@
 
                                                                             </x-td>
                                                                             <x-td>
+                                                                                @can('admin')
                                                                                 <x-button id="dropdownDividerButton"
                                                                                     data-dropdown-toggle="dropdownDivider.{{ $contract->uuid }}"
                                                                                     type="button"><i
@@ -350,6 +351,7 @@
                                                                                     </div>
                                                                                     @endif
                                                                                 </div>
+                                                                                @endcan
                                                                             </x-td>
                                                                           
                                                                         </tr>
