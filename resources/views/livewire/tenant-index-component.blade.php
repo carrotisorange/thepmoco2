@@ -44,7 +44,9 @@
                                         <tr>
                                             <x-th>#</x-th>
                                             <x-th>Name</x-th>
-                                            <x-th>Gender</x-th>
+                                          
+                                            <x-th>Unpaid Bills</x-th>
+
                                             {{-- <x-th>Civil status</x-th> --}}
                                             <x-th>Contact</x-th>
                                             <x-th>Address</x-th>
@@ -62,7 +64,7 @@
                                                         <a data-modal-toggle="tenant-show-modal">
                                                             <img class="h-10 w-10 rounded-full"
                                                                 src="/storage/{{ $tenant->photo_id }}" alt="">
-                                                        </a> 
+                                                        </a>
                                                         @endcan --}}
                                                         {{-- @cannot('treasury') --}}
                                                         <a href="/tenant/{{ $tenant->uuid }}/edit">
@@ -71,9 +73,24 @@
                                                         </a>
                                                         {{-- @endcan --}}
                                                     </div>
+                                                    <?php
+                                                        $unpaid_bills = App\Models\Tenant::find($tenant->uuid)->bills->where('status', '!=', 'paid');
+                                                        $contract_status = App\Models\Tenant::find($tenant->uuid)->bills->where('status', '!=', 'paid')
+                                                        ->where('description','movein charges');
+                                                    ?>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900"><b>{{
-                                                                $tenant->tenant }}</b>
+                                                                $tenant->tenant }} </b>
+                                                                @if($contract_status->count()<=0) <span title="active"
+                                                                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                    <i class="fa-solid fa-circle-check"></i> 
+                                                                    </span>
+                                                                    @else
+                                                                    <span title="pending"
+                                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                                        <i class="fa-solid fa-clock"></i> 
+                                                                    </span>
+                                                                    @endif
                                                         </div>
                                                         <div class="text-sm text-gray-500">{{
                                                             $tenant->type }}
@@ -81,8 +98,22 @@
                                                     </div>
                                                 </div>
                                             </x-td>
-                                            <x-td>{{ $tenant->gender }}</x-td>
-                                            {{-- <x-td>{{ $tenant->civil_status?$tenant->civil_status:'NA' }}</x-td> --}}
+
+                                           
+                                            <x-td>
+                                                @if($unpaid_bills->count()<=0) <span title="updated"
+                                                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    <i class="fa-solid fa-circle-check"></i> Updated
+                                                    </span>
+                                                    @else
+                                                    {{
+                                                    number_format($unpaid_bills->sum('bill')-$unpaid_bills->sum('initial_payment'),
+                                                    2) }} ({{ $unpaid_bills->count() }})
+                                                    @endif
+                                            </x-td>
+
+                                            {{-- <x-td>{{ $tenant->civil_status?$tenant->civil_status:'NA' }}</x-td>
+                                            --}}
                                             <x-td>
                                                 <div class="text-sm text-gray-900">{{ $tenant->email }}
                                                 </div>

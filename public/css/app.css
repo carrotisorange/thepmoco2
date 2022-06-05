@@ -1115,6 +1115,9 @@ input:checked + .toggle-bg {
 .w-4 {
   width: 1rem;
 }
+.w-44 {
+  width: 11rem;
+}
 .w-48 {
   width: 12rem;
 }
@@ -1129,9 +1132,6 @@ input:checked + .toggle-bg {
 }
 .w-80 {
   width: 20rem;
-}
-.w-44 {
-  width: 11rem;
 }
 .w-3 {
   width: 0.75rem;
@@ -1426,6 +1426,12 @@ input:checked + .toggle-bg {
 }
 .overflow-x-hidden {
   overflow-x: hidden;
+}
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 .truncate {
   overflow: hidden;
@@ -2054,6 +2060,10 @@ input:checked + .toggle-bg {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(200 30 30 / var(--tw-text-opacity));
+}
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
@@ -2073,10 +2083,6 @@ input:checked + .toggle-bg {
 .text-indigo-600 {
   --tw-text-opacity: 1;
   color: rgb(88 80 236 / var(--tw-text-opacity));
-}
-.text-red-700 {
-  --tw-text-opacity: 1;
-  color: rgb(200 30 30 / var(--tw-text-opacity));
 }
 .text-indigo-700 {
   --tw-text-opacity: 1;

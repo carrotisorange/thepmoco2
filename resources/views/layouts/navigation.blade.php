@@ -43,7 +43,7 @@
                     </x-nav-link>
                 </div> --}}
 
-                @can('managerandadmin')
+                @can('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/units"
                         :active="request()->routeIs('units')">
@@ -57,14 +57,14 @@
                     </x-nav-link>
                 </div>
                 @endcan
-
-                @can('treasury')
+{{-- 
+                @can('treasury') --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/tenants" :active="request()->routeIs('tenants')">
                         <i class="fa-solid fa-user"></i>&nbspTenants
                     </x-nav-link>
                 </div>
-                @endcan
+                {{-- @endcan --}}
 
                 @can('billing')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -202,11 +202,11 @@
             </x-responsive-nav-link>
             @endcan
 
-            @can('treasury')
+            {{-- @can('treasury') --}}
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants" :active="request()->routeIs('tenants')">
                 <i class="fa-solid fa-user"></i>&nbspTenants
             </x-responsive-nav-link>
-            @endcan
+            {{-- @endcan --}}
 
             @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"

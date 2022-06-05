@@ -28,12 +28,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg></x-button>
-
+                    @endcan
                     <!-- Dropdown menu -->
                     <div id="unitCreateDropdown"
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
-                            @can('managerandadmin')
+
                             <li>
                                 <a href="#/" data-modal-toggle="create-express-bill-modal"
                                     class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
@@ -47,11 +47,11 @@
                                 </a>
                             </li>
 
-                            @endcan
+                        
 
                         </ul>
                     </div>
-                    @endcan
+
                 </h5>
                 @include('utilities.create-express-bill')
                 @include('utilities.create-customized-bill')

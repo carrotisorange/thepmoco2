@@ -43,7 +43,7 @@ class ContractComponent extends Component
         $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
         $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
-        $this->sendContract = false;
+        $this->sendContract = true;
       }
 
       protected function rules()

@@ -5,7 +5,9 @@
                 <x-input id="" wire:model="selectAll" type="checkbox" />
             </x-th>
             <x-th>#</x-th>
-            <x-th>Reference #</x-th>
+            {{-- <x-th>Reference #</x-th> --}}
+            <x-th>Tenant</x-th>
+            <x-th>Unit</x-th>
             <x-th>Date posted</x-th>
             <x-th>Period Covered</x-th>
             <x-th>Particular</x-th>
@@ -22,8 +24,14 @@
                 <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
             </x-td>
             <x-td>{{ $item->bill_no}}</x-td>
-            <x-td><a href="/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{
-                        $item->reference_no}}</b></a>
+            <?php
+                $tenant = App\Models\Tenant::find($item->tenant_uuid)->tenant;
+                $unit = App\Models\Unit::find($item->unit_uuid)->unit
+            ?>
+            <x-td>{{ $tenant }}</x-td>
+            <x-td>{{ $unit }}</x-td>
+            {{-- <x-td><a href="/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{
+                        $item->reference_no}}</b></a> --}}
 
                 {{-- <div x-data="{ hover: false }">
                     <span x-on:mouseover="hover = true" x-on:mouseout="hover = false" class="text-blue-600">More
@@ -31,7 +39,7 @@
                     <span x-show="hover">{{ $item->tenant->tenant }} - {{ $item->unit->unit? $item->unit->unit: 'NA'
                         }}</span>
                 </div> --}}
-            </x-td>
+        
             {{-- <x-td>{{ $item->tenant->tenant}}</x-td> --}}
 
             <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>

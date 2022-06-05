@@ -127,7 +127,6 @@ class OldTenantComponent extends Component
             return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success','Tenant has been created.');
        }catch(\Exception $e)
        {
-            ddd($e);
             DB::rollback();
             return redirect()->with('error','Cannot perform your action.');
        }
