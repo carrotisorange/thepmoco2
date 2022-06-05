@@ -114,6 +114,7 @@ class TenantBillController extends Controller
             'bills' => Tenant::find($tenant->uuid)
             ->bills()
             ->whereIn('status', ['unpaid', 'partially_paid'])
+            ->orderBy('bill_no')
             ->get(),
             'note_to_bill' => $request->note_to_bill,
       
