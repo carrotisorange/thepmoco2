@@ -51,15 +51,17 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
-                        :active="request()->routeIs('tenants')">
-                        <i class="fa-solid fa-user"></i>&nbspTenants
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/owners"
                         :active="request()->routeIs('owners')">
                         <i class="fa-solid fa-user-tie"></i>&nbspOwners
+                    </x-nav-link>
+                </div>
+                @endcan
+
+                @can('treasury')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/tenants" :active="request()->routeIs('tenants')">
+                        <i class="fa-solid fa-user"></i>&nbspTenants
                     </x-nav-link>
                 </div>
                 @endcan
@@ -200,10 +202,11 @@
             </x-responsive-nav-link>
             @endcan
 
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
-                :active="request()->routeIs('tenants')">
+            @can('treasury')
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants" :active="request()->routeIs('tenants')">
                 <i class="fa-solid fa-user"></i>&nbspTenants
             </x-responsive-nav-link>
+            @endcan
 
             @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"

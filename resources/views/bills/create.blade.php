@@ -27,9 +27,9 @@
                     <x-button data-modal-toggle="create-particular-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
                     </x-button>
-                    <x-button data-modal-toggle="create-bill-modal">
+                    {{-- <x-button data-modal-toggle="create-bill-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
-                    </x-button>
+                    </x-button> --}}
                     <x-button data-modal-toggle="save-contract-modal"><i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
                 </h5>
             </div>
@@ -40,9 +40,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-12 bg-white border-b border-gray-200">
-                    {{-- @livewire('bill-component', ['unit' => $unit, 'tenant' => $tenant, 'contract' => $contract,
+                    @livewire('bill-component', ['unit' => $unit, 'tenant' => $tenant, 'contract' => $contract,
                     'bills'
-                    => $bills]) --}}
+                    => $bills])
 
                     @if ($bills->count())
                     <span>Total bills: <b>{{ number_format($bills->sum('bill'), 2) }}</b></span>

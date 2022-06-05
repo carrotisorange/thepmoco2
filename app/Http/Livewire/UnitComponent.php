@@ -54,7 +54,7 @@ class UnitComponent extends Component
         $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
         ->where('property_buildings.property_uuid', Session::get('property'))
         ->get();
-
+        
         $floors = Floor::where('id', '!=', 1)->get();
 
         $categories = Category::where('id', '!=', 1)->get();

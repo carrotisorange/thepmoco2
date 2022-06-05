@@ -71,7 +71,7 @@ class UnitController extends Controller
 
        $units = Unit::where('batch_no', $batch_no)->count();
         
-        return redirect('units/'.$batch_no.'/edit')->with('success', $units.' units have been created.');
+        return redirect('units/'.$batch_no.'/edit')->with('success', $units.' units are successully created.');
     }
 
     /**
@@ -99,7 +99,7 @@ class UnitController extends Controller
      */
     public function bulk_edit($batch_no)
     {
-        $this->authorize('manager');
+        $this->authorize('admin');
 
         return view('units.bulk-edit',[
             'batch_no' => $batch_no,

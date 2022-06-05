@@ -67,7 +67,7 @@ class BillComponent extends Component
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['bill_no'] = $bill_no+1;
         $validatedData['due_date'] = Carbon::now()->addDays(7);
- 
+        $validatedData['description'] = 'movein charges';
 
         Bill::create($validatedData);
         DB::commit();

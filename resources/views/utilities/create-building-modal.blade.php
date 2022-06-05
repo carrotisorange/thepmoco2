@@ -26,7 +26,7 @@
                 </div>
 
             <p class="text-right">
-                <x-form-button></x-form-button>
+                <x-form-button>Save</x-form-button>
             </p>
                 
             </form>

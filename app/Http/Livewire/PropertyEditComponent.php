@@ -60,7 +60,7 @@ class PropertyEditComponent extends Component
            'description' => 'nullable',
            'country_id' => ['required', Rule::exists('countries', 'id')],
            'province_id' => ['required', Rule::exists('provinces', 'id')],
-           'city_id' => ['nullable', Rule::exists('cities', 'id')],
+           'city_id' => ['required', Rule::exists('cities', 'id')],
            'barangay' => ['nullable'],
            'status' => ['required'],
             'email' => ['nullable'],

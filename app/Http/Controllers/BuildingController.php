@@ -53,32 +53,31 @@ class BuildingController extends Controller
        ->pluck('id')
        ->first();
 
-      if($property_building)
-      {
-        return back()->with('error', 'Building already exists.');
-      }
+    //   if($property_building)
+    //   {
+    //     return back()->with('error', 'Building already exists.');
+    //   }
 
+    //    if($building){
 
-       if($building){
+    //         PropertyBuilding::create([
+    //         'building_id' => $property_building,
+    //         'property_uuid' => Session::get('property')
+    //         ]);
 
-            PropertyBuilding::create([
-            'building_id' => $property_building,
-            'property_uuid' => Session::get('property')
-            ]);
-
-            return back()->with('success', 'New building successfully created.');
-        }
-        else{
+    //         return back()->with('success', 'New building is successfully created.');
+    //     }
+    //     else{
             
             $building_id = Building::create($attributes)->id;
 
             PropertyBuilding::create([
-            'building_id' => $building_id,
-            'property_uuid' => Session::get('property')
+                'building_id' => $building_id,
+                'property_uuid' => Session::get('property')
             ]);
 
-            return back()->with('success', 'New building successfully created.');
-        }
+            return back()->with('success', 'Building is successfully created.');
+        // }
     }
 
     /**

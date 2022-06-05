@@ -212,9 +212,16 @@ class ContractComponent extends Component
           
             DB::commit();
         
-            return
-            redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/bill/'.Str::random(8).'/create')->with('success','Contract has been created.');
 
+             if(auth()->user()->role_id === 1)
+             {
+               return redirect('/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Contract is successfully created.');
+
+             }else{
+              return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/bill/'.Str::random(8).'/create')->with('success','Contract
+              is successfully created.');
+             }
+            
         } catch (\Throwable $e) {
             ddd($e);
             DB::rollback();

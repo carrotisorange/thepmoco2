@@ -58,7 +58,7 @@
                                                 
                                             </tr>
                                         </thead>
-                                        @foreach ($units as $index => $unit)
+                                        @forelse ($units as $index => $unit)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <x-td>{{ $index  }}</x-td>
@@ -152,9 +152,13 @@
                                                         @endif
                                                     </div>
                                                 </x-td>
+                                                @empty
+                                                <x-td>
+                                                    No data found!
+                                                </x-td>
                                             </tr>
                                         </tbody>
-                                        @endforeach
+                                        @endforelse
                                     </table>
                                 </div>
                             </div>

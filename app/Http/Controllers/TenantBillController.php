@@ -74,7 +74,7 @@ class TenantBillController extends Controller
             $attributes['user_id'] = auth()->user()->id;
             $attributes['property_uuid'] = Session::get('property');
             $attributes['tenant_uuid'] = $tenant->uuid;
-            $attributes['description'] = 'movein charges';
+            //$attributes['description'] = 'movein charges';
 
             Bill::create($attributes);
 

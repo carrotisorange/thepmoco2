@@ -23,7 +23,7 @@
             <div class="basis-3/4">
                 
                 @if($total_unpaid_bills->count())
-                @can('billing   ')
+                @can('billing')
                 <x-button title="export unpaid bills" data-modal-toggle="export-bill-modal">
                     <i class="fa-solid fa-download"></i>&nbsp
                     Bills ({{ $total_unpaid_bills->count() }})
