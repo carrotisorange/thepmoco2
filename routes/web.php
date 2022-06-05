@@ -106,7 +106,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //'Route::get('tenant/{tenant}/unit/{unit}/contract/units', [TenantContractController::class, 'units']);
     Route::get('tenant/{tenant}/unit/{unit}/edit', [TenantContractController::class, 'create']);
 //     Route::get('tenant/{tenant}/unit/{unit}/contract/create', [TenantContractController::class, 'create']);
-    Route::get('tenant/{tenant}/bills', [TenantBillController::class, 'index']);
+    Route::get('tenant/{tenant}/bills', [TenantBillController::class, 'index'])->name('tenants');
     Route::get('tenant/{tenant}/bill/create', [TenantBillController::class, 'store']);
     Route::get('tenant/{tenant}/bill/export', [TenantBillController::class, 'export']);
     Route::get('tenant/{tenant}/bill/send', [TenantBillController::class, 'send']);
@@ -118,12 +118,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('tenant/{tenant}/edit', [TenantController::class, 'edit'])->name('tenants');
     Route::get('tenant/{uuid}/delete', [TenantController::class, 'destroy']);
     Route::patch('tenant/{tenant}/update', [TenantController::class, 'update']);
-    Route::get('owner/{owner}', [OwnerController::class, 'show']);
+    Route::get('owner/{owner}', [OwnerController::class, 'show'])->name('owners');
     Route::get('owner/{owner}/deed_of_sales', OwnerDeedOfSalesController::class);
     Route::get('owner/{owner}/enrollees', OwnerEnrolleeController::class);
     Route::get('owner/{owner}/bills', OwnerBillController::class);
     Route::get('owner/{owner}/collections', OwnerCollectionController::class);
-    Route::get('owner/{owner}/edit', [OwnerController::class, 'edit']);
+    Route::get('owner/{owner}/edit', [OwnerController::class, 'edit'])->name('owners');
   
 
     Route::get('properties', [PropertyController::class, 'index'])->name('properties');

@@ -24,6 +24,8 @@ class BillController extends Controller
     public function index()
     {
 
+        $this->authorize('billing');
+
         $particulars = Particular::join('property_particulars', 'particulars.id',
         'property_particulars.particular_id')
         ->where('property_uuid', Session::get('property'))
@@ -139,6 +141,8 @@ class BillController extends Controller
      */
     public function destroy($id)
     {    
+        $this->authorize('manager');
+
         $bill = Bill::where('id', $id);
         if($bill->delete()){
             return back()->with('success', 'Bill has been removed.');

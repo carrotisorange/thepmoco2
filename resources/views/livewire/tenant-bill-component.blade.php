@@ -21,12 +21,14 @@
     <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
+                
                 @if($total_unpaid_bills->count())
+                @can('billing   ')
                 <x-button title="export unpaid bills" data-modal-toggle="export-bill-modal">
                     <i class="fa-solid fa-download"></i>&nbsp
                     Bills ({{ $total_unpaid_bills->count() }})
                 </x-button>
-
+                @endcan
                 {{-- <x-button title="send unpaid bills" data-modal-toggle="send-bill-modal">
                  <i class="fa-solid fa-paper-plane"></i>&nbsp
                     Bills ({{ $total_unpaid_bills->count() }})
@@ -34,10 +36,12 @@
                 @endif
 
                 @if($total_count)
+                @can('manager')
                 <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
                         class="fa-solid fa-rotate-right"></i>&nbsp
                     Mark as Unpaid ({{ $total_count }})
                 </x-button>
+                @endcan
                 @endif
 
                 @can('treasury')
@@ -50,11 +54,15 @@
                 @endcan
             </div>
             <div class="basis-1/4 ml-12 text-right">
+                @can('billing')
                 @if($selectedBills)
+                
                 <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
                     Remove ({{ count($selectedBills) }})
                 </x-button>
+              
                 @endif
+                @endcan
             </div>
         </div>
     </div>
