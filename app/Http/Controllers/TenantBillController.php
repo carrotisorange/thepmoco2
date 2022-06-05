@@ -134,7 +134,7 @@ class TenantBillController extends Controller
        $canvas->page_text($width/5, $height/2, $property->property, null,
        55, array(0,0,0),2,2,-30);
 
-        return $pdf->download($tenant->tenant.'-soa.pdf');
+        return $pdf->stream($tenant->tenant.'-soa.pdf');
     }
 
     public function send(Request $request, Tenant $tenant)

@@ -48,7 +48,7 @@
         td {
             margin-right: 80px;
             margin-left: 50px;
-            border: 1px  black;
+            border: 1px black;
         }
 
         th,
@@ -67,13 +67,16 @@
             {{ App\Models\Property::find(Session::get('property'))->province->province }},
             {{ App\Models\Property::find(Session::get('property'))->city->city }},
             {{ App\Models\Property::find(Session::get('property'))->barangay }}
+            <hr>
+            <br>
         </h5>
 
     </header>
 
     <footer>
         <h5>
-            {{-- Prepared by: {{ $user }}, {{ $role }} | {{ auth()->user()->mobile_number }} --}}
+            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
+            {{ App\Models\Property::find(Session::get('property'))->mobile }}
         </h5>
         {{ Session::get('property_name') }} Copyright &copy;
         <?php echo date("Y");?>
@@ -81,7 +84,7 @@
 
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
-        <hr>
+
         <p>
             AR #: {{ $ar_no }}
         </p>
