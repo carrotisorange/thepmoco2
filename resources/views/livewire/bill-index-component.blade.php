@@ -12,6 +12,7 @@
                 2)}}</b>
         </div>
         <div class="mt-5">
+            {{ $bills->links() }}
             <div class="flex flex-row">
                 <div class="basis-1/2">
 
@@ -55,6 +56,7 @@
                                 </div>
                                 <div class="basis-full ml-12">
                                     @if($bills->count())
+                                    
                                     @include('utilities.show-bill-results')
                                     <p class="text-center">
                                         @else
