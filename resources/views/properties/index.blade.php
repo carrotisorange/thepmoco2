@@ -56,6 +56,7 @@
                                                 <tr>
                                                     <x-th>#</x-th>
                                                     <x-th>Property</x-th>
+                                                    <x-th># of Employees</x-th>
                                                     <x-th># of Units</x-th>
                                                     <x-th># of Tenants</x-th>
                                                     <x-th>Status</x-th>
@@ -88,6 +89,10 @@
                                                             </div>
                                                         </div>
                                                     </x-td>
+                                                    <?php
+                                                        $users = App\Models\UserProperty::where('property_uuid', $property->property->uuid)->count();
+                                                    ?>
+                                                    <x-td>{{ $users }}</x-td>
                                                     <x-td>{{ $property->property->units->count()}}</x-td>
                                                     <x-td>{{ $property->property->tenants->count() }}</x-td>
                                                     <x-td>
