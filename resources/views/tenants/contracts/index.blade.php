@@ -145,12 +145,23 @@
                                                             </li>
 
                                                         </ul>
+                                                        <?php
+                                                            $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
+                                                        ?>
                                                         @if($item->status == 'active')
                                                         <div class="py-1">
-                                                            <a href="/contract/{{ $item->uuid }}/moveout/bills"
+                                                            @if($unpaid_bills->count()<=0)
+                                                                <a href="/contract/{{ $item->uuid }}/moveout"
                                                                 class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                                 <i
                                                                     class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
+                                                            @else
+                                                                <a data-modal-toggle="moveout-error-modal" href="#/"
+                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                <i
+                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
+                                                            @endif
+                                                          
                                                         </div>
                                                         @endif
                                                     </div>
@@ -170,4 +181,5 @@
         </div>
     </div>
     @include('tenants.contracts.create')
+    @include('utilities.moveout-error-modal')
 </x-app-layout>
