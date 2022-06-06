@@ -430,7 +430,7 @@
                                                             "labels": {!!$collection_rate_date!!},
                                                             "datasets": [{
                                                                 "label": "Collections",
-                                                                 data: {!!$collection_rate_value!!},
+                                                                 "data": {!!$collection_rate_value!!},
                                                                 "fill": true,
                                                                 "borderColor": "rgba(255, 99, 132, 0.2)",
                                                                 "backgroundColor": "rgba(255, 99, 132, 0.2)",
@@ -444,8 +444,16 @@
                                                             "backgroundColor": "rgb(255, 159, 64, 0.2)"
                                                             }
                                                             , {
-                                                            "label": "Collections Overtime",
+                                                            //"label": "Collections Overtime",
                                                             "data": {!!$collection_rate_value!!},
+                                                            "type": "line",
+                                                            "fill": false,
+                                                            "borderColor": "rgb(148,0,211)",
+                                                            "backgroundColor": "rgba(148,0,211)",
+                                                            }
+                                                                , {
+                                                            //"label": "Collections Overtime",
+                                                            "data": {!!$bill_rate_value!!},
                                                             "type": "line",
                                                             "fill": false,
                                                             "borderColor": "rgb(148,0,211)",
@@ -455,9 +463,9 @@
                                                         },
                                                        
                                                         "options": {
-                                                            // legend: {
-                                                            // display: false
-                                                            // },
+                                                            legend: {
+                                                            display: false
+                                                            },
                                                         }
                                                     });
                                             </script>
