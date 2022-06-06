@@ -36,11 +36,12 @@
                         <i class="fas fa-arrow-alt-circle-left"></i>&nbsp Back
                     </x-button>
 
+                    @can('manager')
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/edit'">
                         <i class="fas fa-edit"></i>&nbsp Property
                     </x-button>
 
-                    @can('accountowner')
+                
                     <x-button
                         onclick="window.location.href='/property/{{ Session::get('property') }}/team/{{ Str::random(8) }}/create'">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Team
