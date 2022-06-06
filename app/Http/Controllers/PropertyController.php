@@ -289,13 +289,13 @@ class PropertyController extends Controller
 
         $reasons_for_moveout_label = Contract::select('moveout_reason')
         ->where('property_uuid', Session::get('property'))
-        //->where('moveout_reason','!=', "NA")
+        ->where('moveout_reason','!=', "NA")
         ->groupBy('moveout_reason')
         ->pluck('moveout_reason');
 
         $reasons_for_moveout_value = Contract::select(DB::raw('count(*) as count'))
          ->where('property_uuid', Session::get('property'))
-         //->where('moveout_reason','!=', "NA")
+         ->where('moveout_reason','!=', "NA")
            ->where('status', 'inactive')
          ->groupBy('moveout_reason')
          ->pluck('count');
