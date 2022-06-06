@@ -262,12 +262,14 @@ class PropertyController extends Controller
          $tenant_movein_value = Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
         '%M')) as month_year"))
           ->orderBy('start')
+           ->where('property_uuid', Session::get('property'))
           ->groupBy(DB::raw("DATE_FORMAT(start, '%m-%Y')"))
           ->limit(7)
           ->pluck('count');
 
          $tenant_movein_label = Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
           '%M')) as month_year"))
+           ->where('property_uuid', Session::get('property'))
           ->orderBy('start')
           ->groupBy(DB::raw("DATE_FORMAT(start, '%m-%Y')"))
                ->limit(7)
@@ -275,6 +277,7 @@ class PropertyController extends Controller
 
         $tenant_moveout_value = Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(moveout_at,
           '%M')) as month_year"))
+           ->where('property_uuid', Session::get('property'))
           ->orderBy('moveout_at')
           ->groupBy(DB::raw("DATE_FORMAT(moveout_at, '%m-%Y')"))
           ->limit(7)
