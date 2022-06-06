@@ -39,12 +39,14 @@
                     @endif
                 </div>
                 <div class="basis-1/2 ml-12 text-right">
+                    @can('manager')
                     @if($selectedBills)
                     <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i
                             class="fa-solid fa-trash"></i>&nbsp
                         Remove ({{ count($selectedBills) }})
                     </x-button>
                     @endif
+                    @endcan
                 </div>
             </div>
         </div>

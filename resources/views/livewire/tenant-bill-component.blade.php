@@ -54,9 +54,8 @@
                 @endcan
             </div>
             <div class="basis-1/4 ml-12 text-right">
-                @can('billing')
+                @can('manager')
                 @if($selectedBills)
-                
                 <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
                     Remove ({{ count($selectedBills) }})
                 </x-button>
