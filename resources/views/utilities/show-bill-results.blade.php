@@ -28,7 +28,7 @@
                 $tenant = App\Models\Tenant::find($item->tenant_uuid)->tenant;
                 $unit = App\Models\Unit::find($item->unit_uuid)->unit
             ?>
-            <x-td>{{ $tenant }}</x-td>
+          <x-td><a href="/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{ $tenant }}</b></a></x-td>
             <x-td>{{ $unit }}</x-td>
             {{-- <x-td><a href="/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{
                         $item->reference_no}}</b></a> --}}

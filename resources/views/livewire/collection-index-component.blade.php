@@ -7,6 +7,9 @@
             Total Collections: <b> {{ number_format($collections->sum('amount'),
                 2)}}</b>
         </div>
+        <div class="mt-5">
+            {{ $collections->links() }}
+        </div>
         <div class="mt-5 p-3 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
