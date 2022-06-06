@@ -263,23 +263,26 @@ class PropertyController extends Controller
         '%M')) as month_year"))
           ->orderBy('start')
            ->where('property_uuid', Session::get('property'))
-          ->groupBy(DB::raw("DATE_FORMAT(start, '%m-%Y')"))
+           ->where('status', 'active')
+          ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
           ->limit(7)
           ->pluck('count');
 
          $tenant_movein_label = Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
-          '%M')) as month_year"))
+          '%M %Y')) as month_year"))
            ->where('property_uuid', Session::get('property'))
           ->orderBy('start')
-          ->groupBy(DB::raw("DATE_FORMAT(start, '%m-%Y')"))
+           ->where('status', 'active')
+          ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
                ->limit(7)
           ->pluck('month_year');
 
         $tenant_moveout_value = Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(moveout_at,
           '%M')) as month_year"))
            ->where('property_uuid', Session::get('property'))
+            ->where('status', 'inactive')
           ->orderBy('moveout_at')
-          ->groupBy(DB::raw("DATE_FORMAT(moveout_at, '%m-%Y')"))
+          ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
           ->limit(7)
           ->pluck('month_year');
 
