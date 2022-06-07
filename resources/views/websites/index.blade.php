@@ -64,7 +64,7 @@
                             <li class="nav-item">
                                 <a class="page-scroll" href="#contact">Contact</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                     <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
@@ -111,12 +111,16 @@
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="0.3s">
                         <div class="icon text-5xl">
-                            <i class="lni lni-cog"></i>
+                            <i class="lni lni-ticket-alt"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Property Management</h3>
+                            <h3 class="service-title">Bulk Billing</h3>
+                            <p class="text-gray-600">Simplifies the process of billing by providing way to conveniently
+                            add, send recurring bills to tenant/owner in a few clicks, and export ready to print
+                            statements.</p>
+                            {{-- <h3 class="service-title">Bulk Management</h3>
                             <p class="text-gray-600">Allows you to manage multiple properties and to assign team for
-                                each property.</p>
+                                each property.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -124,12 +128,15 @@
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="0.6s">
                         <div class="icon text-5xl">
-                            <i class="lni lni-bar-chart"></i>
+                            <i class="lni lni-coin"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Unit Management</h3>
-                            <p class="text-gray-600">Monitors status of the rooms and views up-to-date information and
-                                status for marketing.</p>
+
+                            <h3 class="service-title">Payment Solutions </h3>
+                            <p class="text-gray-600">Receives payments from the tenants and sends remittance to unit owners.</p>
+                            {{-- <h3 class="service-title">Unit Management</h3>
+                            <p class="text-gray-600">Monitors status of the units and views up-to-date information and
+                                status for marketing.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -137,12 +144,14 @@
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="0.9s">
                         <div class="icon text-5xl">
-                            <i class="lni lni-briefcase"></i>
+                            <i class="lni lni-users"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Tenant Management</h3>
+                            <h3 class="service-title">Team Monitoring</h3>
+                            <p class="text-gray-600">Assigns a role to each employee and manages them virtually.</p>
+                            {{-- <h3 class="service-title">Tenant Management</h3>
                             <p class="text-gray-600">Records the movein and moveout of the tenant and keep track all the
-                                previous tenants.</p>
+                                previous tenants.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -150,12 +159,11 @@
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="1.2s">
                         <div class="icon text-5xl">
-                            <i class="lni lni-pencil-alt"></i>
+                            <i class="lni lni-laptop-phone"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Listings and Marketing Services</h3>
-                            <p class="text-gray-600">Automatically adds vacant rooms in the listings to find possible
-                                tenants.</p>
+                            <h3 class="service-title">Tenant/Owner Portal</h3>
+                            <p class="text-gray-600">Provides convenient access to both tenants and owners to view their contracts, bills, payments, and file concerns.</p>
                         </div>
                     </div>
                 </div>
@@ -163,13 +171,11 @@
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="1.5s">
                         <div class="icon text-5xl">
-                            <i class="lni lni-cog"></i>
+                            <i class="lni lni-bar-chart"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Bulk Billing</h3>
-                            <p class="text-gray-600">Simplifies the process of billing by providing way to conveniently
-                                add, send recurring bills to tenant/owner in a few clicks, and export ready to print
-                                statements.</p>
+                            <h3 class="service-title">Real-time statistics and reports</h3>
+                            <p class="text-gray-600">Offers a hassle free way to monitor property performance through different charts and visuals and downloadable reports. </p>
                         </div>
                     </div>
                 </div>
@@ -177,16 +183,16 @@
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="1.8s">
                         <div class="icon text-5xl">
-                            <i class="lni lni-bar-chart"></i>
+                            <i class="lni lni-headphone"></i>
                         </div>
                         <div>
-                            <h3 class="service-title">Payment Solutions</h3>
-                            <p class="text-gray-600">Allows payments from tenants/owners through GCash, Debit Card,
-                                Credit Card, and etc.</p>
+                            <h3 class="service-title">24x7 Customer Support</h3>
+                            <p class="text-gray-600">Assigns a dedicated team to assist customers in boarding and set up their property.</p>
                         </div>
                     </div>
                 </div>
 
+                {{--
                 <!-- Services item -->
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="2.1s">
@@ -199,9 +205,9 @@
                                 bills, payments, and other pertinent details.</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Services item -->
-                <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
+                {{-- <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3">
                     <div class="m-4 wow fadeInRight" data-wow-delay="2.4s">
                         <div class="icon text-5xl">
                             <i class="lni lni-layers"></i>
@@ -226,7 +232,7 @@
                                 payments, and other pertinent details.</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
@@ -246,47 +252,74 @@
                             <div class="w-full sm:w-1/2 lg:w-1/2">
                                 <div class="m-3">
                                     <div class="icon text-4xl">
-                                        <i class="lni lni-layers"></i>
+                                        <i class="lni lni-apartment"></i>
                                     </div>
                                     <div class="features-content">
                                         <h4 class="feature-title">1. Create a property.</h4>
-                                        <p>enter your property details.</p>
+                                        <p>Input the details of your property. </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full sm:w-1/2 lg:w-1/2">
                                 <div class="m-3">
                                     <div class="icon text-4xl">
-                                        <i class="lni lni-gift"></i>
+                                        <i class="lni lni-users"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">2. Create a team.</h4>
-                                        <p> add and assign other users such as admin, billing, treasury, and ap.</p>
+                                        <h4 class="feature-title">2. Form a team.</h4>
+                                        <p> Add and assign a role to your employees, including manager, admin, billing,
+                                            and
+                                            treasury to manage the created property.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full sm:w-1/2 lg:w-1/2">
                                 <div class="m-3">
                                     <div class="icon text-4xl">
-                                        <i class="lni lni-laptop-phone"></i>
+                                        <i class="lni lni-home"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">3. Add your units/rooms </h4>
-                                        <p> add the units and their pertinent details.</p>
+                                        <h4 class="feature-title">3. Add the units. </h4>
+                                        <p>Add the units of the property that are for lease.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full sm:w-1/2 lg:w-1/2">
                                 <div class="m-3">
                                     <div class="icon text-4xl">
-                                        <i class="lni lni-leaf"></i>
+                                        <i class="lni lni-user"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h4 class="feature-title">4.  Add your tenants on each room</h4>
-                                        <p>process tenant movein and add their contracts, bills, payments, and eventually concerns</p>
+                                        <h4 class="feature-title">4. Process tenant movein.</h4>
+                                        <p>Process the movein of the tenants to their respective units.</p>
                                     </div>
                                 </div>
                             </div>
+                            <div class="w-full sm:w-1/2 lg:w-1/2">
+                                <div class="m-3">
+                                    <div class="icon text-4xl">
+                                        <i class="lni lni-ticket-alt"></i>
+                                    </div>
+                                    <div class="features-content">
+                                        <h4 class="feature-title">5. Post bills. </h4>
+                                        <p> Post the recurring bills of the tenant in bulk or individually and
+                                            automatically send them a copy of their statement of accounts in mail. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full sm:w-1/2 lg:w-1/2">
+                                <div class="m-3">
+                                    <div class="icon text-4xl">
+                                        <i class="lni lni-coin"></i>
+                                    </div>
+                                    <div class="features-content">
+                                        <h4 class="feature-title">6. Record payments</h4>
+                                        <p>Record payments made by the tenants and them and automatically send them an
+                                            acknowledgement receipts.</p>
+                                    </div>
+                                </div>
+                            </div>
+                     
                         </div>
                     </div>
                 </div>
@@ -577,28 +610,28 @@
                 <!-- single pricing table starts -->
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
                     <div class="pricing-box wow fadeInLeft" data-wow-delay="1.5s"">
-                        <div class="mb-3">
-                            <h3 class="package-name">Premium</h3>
-                        </div>
-                        <div class="mb-5">
-                            <p class="text-gray-700">
-                                <span class="font-bold text-2xl">₱2,400</span>
-                                <span class="font-medium text-sm">/ Month</span>
-                            </p>
-                        </div>
-                        <ul class="mb-16">
-                            <li class="text-gray-500 leading-9">1 year free </li>
-                            <li class="text-gray-500 leading-9">Up to 10 properties </li>
-                            <li class="text-gray-500 leading-9">Up to 100 units</li>
-                            <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
-                            <li class="text-gray-500 leading-9">Real-time collabration</li>
-                            <li class="text-gray-500 leading-9">24x7 Support</li>             
-                        </ul>
-                        <a href="#" class="btn">Get It</a>
+                        <div class=" mb-3">
+                        <h3 class="package-name">Premium</h3>
                     </div>
+                    <div class="mb-5">
+                        <p class="text-gray-700">
+                            <span class="font-bold text-2xl">₱2,400</span>
+                            <span class="font-medium text-sm">/ Month</span>
+                        </p>
+                    </div>
+                    <ul class="mb-16">
+                        <li class="text-gray-500 leading-9">1 year free </li>
+                        <li class="text-gray-500 leading-9">Up to 10 properties </li>
+                        <li class="text-gray-500 leading-9">Up to 100 units</li>
+                        <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
+                        <li class="text-gray-500 leading-9">Real-time collabration</li>
+                        <li class="text-gray-500 leading-9">24x7 Support</li>
+                    </ul>
+                    <a href="#" class="btn">Get It</a>
                 </div>
-                <!-- single pricing table ends -->
             </div>
+            <!-- single pricing table ends -->
+        </div>
         </div>
     </section>
     <!-- Pricing Table Section End -->
@@ -610,24 +643,36 @@
                 <div class="w-full relative">
                     <div class="portfolio-carousel">
                         <div>
-                            <img class="w-full" src="{{ asset('/brands/rooms/101955390_592535334730594_9190503888714358974_n.jpg') }}" alt="">
+                            <img class="w-full"
+                                src="{{ asset('/brands/rooms/101955390_592535334730594_9190503888714358974_n.jpg') }}"
+                                alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/brands/rooms/101969851_592535821397212_3825058178148258861_n.jpg') }}" alt="">
+                            <img class="w-full"
+                                src="{{ asset('/brands/rooms/101969851_592535821397212_3825058178148258861_n.jpg') }}"
+                                alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/brands/rooms/101980289_592536174730510_8302611439044557749_n.jpg') }}" alt="">
+                            <img class="w-full"
+                                src="{{ asset('/brands/rooms/101980289_592536174730510_8302611439044557749_n.jpg') }}"
+                                alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/brands/rooms/102567268_592535594730568_1505583604093314550_n.jpg') }}" alt="">
+                            <img class="w-full"
+                                src="{{ asset('/brands/rooms/102567268_592535594730568_1505583604093314550_n.jpg') }}"
+                                alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/brands/rooms/102726019_592535324730595_2660310519687017386_n.jpg') }}" alt="">
+                            <img class="w-full"
+                                src="{{ asset('/brands/rooms/102726019_592535324730595_2660310519687017386_n.jpg') }}"
+                                alt="">
                         </div>
                         <div>
-                            <img class="w-full" src="{{ asset('/brands/rooms/103450739_592536151397179_1483878626532432704_n.jpg') }}" alt="">
+                            <img class="w-full"
+                                src="{{ asset('/brands/rooms/103450739_592536151397179_1483878626532432704_n.jpg') }}"
+                                alt="">
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -641,31 +686,33 @@
             <div class="flex justify-center mx-3">
                 <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
                     <h4 class="mb-3 section-heading wow fadeInUp" data-wow-delay="0.3s">Subscribe to our Newsletter</h4>
-                    <p class="mb-4 text-gray-600 leading-loose text-sm wow fadeInUp" data-wow-delay="0.6s">Join our subscribers list to get the latest news, updates, and special offers delivered directly to your inbox.</p>
-                 
+                    <p class="mb-4 text-gray-600 leading-loose text-sm wow fadeInUp" data-wow-delay="0.6s">Join our
+                        subscribers list to get the latest news, updates, and special offers delivered directly to your
+                        inbox.</p>
+
                     <form action="/subscribe" method="post">
                         @csrf
-                       
+
                         <div class="wow fadeInDown" data-wow-delay="0.3s">
-                           
+
                             <input type="Email"
                                 class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none"
                                 name="email" placeholder="Email Address" required>
 
-                                @error('email')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                            @error('email')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
 
-                               
+
                             <button
                                 class="border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75"
                                 type="submit"><i class="lni lni-arrow-right"></i></button>
 
-                             
+
                         </div>
                     </form>
                 </div>
-               
+
             </div>
         </div>
     </section>
@@ -690,9 +737,9 @@
                                     <div class="mx-3">
                                         <input type="text" class="form-input rounded-full" id="name" name="name"
                                             placeholder="Name" required data-error="Please enter your name">
-                                            @error('name')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                        @error('name')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="w-full sm:w-1/2 md:w-full lg:w-1/2">
@@ -700,9 +747,9 @@
                                         <input type="text" placeholder="Email" id="email"
                                             class="form-input rounded-full" name="email" required
                                             data-error="Please enter your email">
-                                            @error('email')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                        @error('email')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -710,9 +757,9 @@
                                         <input type="text" placeholder="Subject" id="subject" name="subject"
                                             class="form-input rounded-full" required
                                             data-error="Please enter your subject">
-                                            @error('subject')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                        @error('subject')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -720,9 +767,9 @@
                                         <textarea class="form-input rounded-lg" id="message" name="message"
                                             placeholder="Your Message" rows="5" data-error="Write your message"
                                             required></textarea>
-                                            @error('message')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                        @error('message')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -792,7 +839,8 @@
                         <div class="footer-logo mb-3">
                             <img src="{{ asset('/brands/full-logo.png') }}" alt="">
                         </div>
-                        {{-- <p class="text-gray-300">We are property managers with about a thousand listings, we were using
+                        {{-- <p class="text-gray-300">We are property managers with about a thousand listings, we were
+                            using
                             traditional marketing and many steps of leasing
                             procedures, paper and pen to sign up tenant info sheets, contracts, billing statements and
                             receipts... <a href="/about">Read more</a> </p> --}}
@@ -803,27 +851,34 @@
                         {{-- <div class="footer-logo mb-3">
                             <img src="{{ asset('/brands/full-logo.png') }}" alt="">
                         </div> --}}
-                        <p class="text-gray-300">We are property managers with about a thousand listings, we were using traditional marketing and many steps of leasing
-                        procedures,
-                        paper and pen to sign up tenant info sheets, contracts, billing statements and receipts. We monitor transactions through
-                        spreadsheets
-                        and it takes a day to process a report. At one point, our operations are so wrapped up into administrative work that we
-                        are spending less
-                        time strengthening our customer relations. We spend so much time looking for documents and less time on satisfying
-                        customer requests.
-                        We realize that if we want to stay in this business and grow, we need to automate our processes so we can focus on the
-                        more important
-                        aspects of the business like providing good customer service experience while maintaining efficient operations and
-                        that’s how thepropertymanager.online was born. </p>
+                        <p class="text-gray-300">We are property managers with about a thousand listings, we were using
+                            traditional marketing and many steps of leasing
+                            procedures,
+                            paper and pen to sign up tenant info sheets, contracts, billing statements and receipts. We
+                            monitor transactions through
+                            spreadsheets
+                            and it takes a day to process a report. At one point, our operations are so wrapped up into
+                            administrative work that we
+                            are spending less
+                            time strengthening our customer relations. We spend so much time looking for documents and
+                            less time on satisfying
+                            customer requests.
+                            We realize that if we want to stay in this business and grow, we need to automate our
+                            processes so we can focus on the
+                            more important
+                            aspects of the business like providing good customer service experience while maintaining
+                            efficient operations and
+                            that’s how thepropertymanager.online was born. </p>
                     </div>
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="mx-3 mb-8">
-                       <h3 class="font-bold text-xl text-white mb-5">Find us on</h3>
-                        
+                        <h3 class="font-bold text-xl text-white mb-5">Find us on</h3>
+
                         <ul class="social-icons flex justify-start">
                             <li class="mx-2">
-                                <a target="_blank" href="https://www.facebook.com/onlinepropertymanager" class="footer-icon hover:bg-indigo-500">
+                                <a target="_blank" href="https://www.facebook.com/onlinepropertymanager"
+                                    class="footer-icon hover:bg-indigo-500">
                                     <i class="lni lni-facebook-original" aria-hidden="true"></i>
                                 </a>
                             </li>
@@ -833,7 +888,8 @@
                                 </a>
                             </li> --}}
                             {{-- <li class="mx-2">
-                                <a target="_blank" href="https://www.instagram.com/onlinepropertymanager/" class="footer-icon hover:bg-red-500">
+                                <a target="_blank" href="https://www.instagram.com/onlinepropertymanager/"
+                                    class="footer-icon hover:bg-red-500">
                                     <i class="lni lni-instagram-original" aria-hidden="true"></i>
                                 </a>
                             </li> --}}
@@ -902,7 +958,7 @@
         <div class="container">
             <div class="flex flex-wrap">
                 <div class="w-full text-center">
-                    <p class="text-white">The PMO Co &copy 2021  </p>
+                    <p class="text-white">The PMO Co &copy 2021 </p>
                 </div>
             </div>
         </div>
