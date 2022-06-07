@@ -26,13 +26,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='{{ url()->previous() }}'"><i
-                            class="fas fa-arrow-alt-circle-left"></i>&nbsp Back
-                    </x-button>
-                    <x-button onclick="window.location.href='/tenant_sheet/export'"><i
-                            class="fa-solid fa-download"></i>&nbsp
-                        Tenant Sheet
-                    </x-button>
+                    
                 </h5>
 
             </div>

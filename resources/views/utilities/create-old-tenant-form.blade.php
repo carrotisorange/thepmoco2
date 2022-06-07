@@ -1,8 +1,7 @@
-
 <form method="POST" wire:submit.prevent="submitForm" class="w-full" id="create-form">
     @csrf
-    <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
-        <div class="w-full md:w-full px-3 mb-6 md:mb-0">
+    <div class="mt-2 flex flex-wrap mt-5 mx-3 mb-2">
+        <div class="w-full md:w-full px-3 mb-3 md:mb-0">
             <x-label for="tenant">
                 Full Name <span class="text-red-600">*</span>
             </x-label>
@@ -14,8 +13,8 @@
         </div>
     </div>
 
-    <div class="mt-6 flex flex-wrap mx-3 mb-2">
-        <div class="w-full md:w-1/2 px-3">
+    <div class="mt-2 flex flex-wrap mx-3 mb-2">
+        <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
             <x-label for="email">
                 Email
             </x-label>
@@ -25,7 +24,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
             <x-label for="mobile_number">
                 Mobile
             </x-label>
@@ -38,8 +37,8 @@
         </div>
     </div>
 
-    <div class="mt-6 flex flex-wrap mx-3 mb-2">
-        <div class="w-full md:w-1/4 px-3">
+    <div class="mt-2 flex flex-wrap mx-3 mb-2">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="type">
                 Type <span class="text-red-600">*</span>
             </x-label>
@@ -56,7 +55,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/4 px-3">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="birthdate">
                 Birthdate
             </x-label>
@@ -67,7 +66,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/4 px-3">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="gender">
                 Gender <span class="text-red-600">*</span>
             </x-label>
@@ -85,7 +84,7 @@
             @enderror
         </div>
 
-        <div class="w-full md:w-1/4 px-3">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="civil_status">
                 Civil Status
             </x-label>
@@ -109,8 +108,8 @@
         </div>
     </div>
 
-    <div class="mt-6 flex flex-wrap mx-3 mb-2">
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+    <div class="mt-2 flex flex-wrap mx-3 mb-2">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="country_id">
                 Country
             </x-label>
@@ -129,7 +128,7 @@
                 @enderror
             </div>
         </div>
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="province_id">
                 Region
             </x-label>
@@ -147,7 +146,7 @@
                 @enderror
             </div>
         </div>
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="city_id">
                 City
             </x-label>
@@ -165,7 +164,7 @@
             @enderror
         </div>
 
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="barangay">
                 Address
                 </x-lab>
@@ -179,8 +178,8 @@
 
     </div>
     @if($type === 'studying')
-    <div class="mt-6 flex flex-wrap mx-3 mb-2">
-        <div class="w-full md:w-1/4 px-3">
+    <div class="mt-2 flex flex-wrap mx-3 mb-2">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="course">
                 Course
             </x-label>
@@ -190,17 +189,18 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/4 px-3">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="year_level">
                 Year Level
             </x-label>
-            <x-form-input wire:model="year_level" id="year_level" type="text" name="year_level" value="{{ old('year_level') }}" />
+            <x-form-input wire:model="year_level" id="year_level" type="text" name="year_level"
+                value="{{ old('year_level') }}" />
 
             @error('year_level')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/4 px-3">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="school">
                 School
             </x-label>
@@ -210,7 +210,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/4 px-3">
+        <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
             <x-label for="school_address">
                 Address
             </x-label>
@@ -225,8 +225,8 @@
     @endif
 
     @if($type === 'working')
-    <div class="mt-6 flex flex-wrap mx-3 mb-2">
-        <div class="w-full md:w-1/3 px-3">
+    <div class="mt-2 flex flex-wrap mx-3 mb-2">
+        <div class="w-full md:w-1/3 px-3 mb-3 md:mb-0">
             <x-label for="occupation">
                 Occupation
             </x-label>
@@ -237,7 +237,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/3 px-3">
+        <div class="w-full md:w-1/3 px-3 mb-3 md:mb-0">
             <x-label for="employer">
                 Employer
             </x-label>
@@ -248,7 +248,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="w-full md:w-1/3 px-3">
+        <div class="w-full md:w-1/3 px-3 mb-3 md:mb-0">
             <x-label for="employer_address">
                 Employer Address
             </x-label>
@@ -262,8 +262,8 @@
     </div>
     @endif
 
-    <div class="mt-6 flex flex-wrap mx-3 mb-2">
-        <div class="w-full px-3 mb-6 md:mb-0">
+    <div class="mt-2 flex flex-wrap mx-3 mb-2">
+        <div class="w-full md:w-full px-3 mb-3 md:mb-0">
             <x-label for="photo_id">
                 Photo ID (i.e., Government issues ID, school ID, employee ID)
             </x-label>
@@ -281,7 +281,7 @@
 
 
     </div>
-    <div class="mt-6 mx-3 mb-2">
+    <div class="mt-4 mx-3 mb-2">
         <p class="text-right">
             <x-button form="create-form">
                 <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

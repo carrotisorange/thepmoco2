@@ -1,6 +1,6 @@
 <form method="POST" wire:submit.prevent="submitForm" class="w-full" id="create-form">
     @csrf
-    <div class="mt-6 flex flex-wrap -mx-3 mb-6">
+    <div class="mt-2 flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3">
             <x-label for="guardian">
                 Full Name <span class="text-red-600">*</span>
@@ -28,7 +28,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="mt-6 w-full md:w-1/2 px-3">
+        <div class="mt-2 w-full md:w-1/2 px-3">
             <x-label for="email">
                 Email
             </x-label>
@@ -38,7 +38,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="mt-6 w-full md:w-1/2 px-3">
+        <div class="mt-2 w-full md:w-1/2 px-3">
             <x-label for="mobile_number">
                 Mobile <span class="text-red-600">*</span>
             </x-label>
@@ -50,7 +50,7 @@
             @enderror
         </div>
     </div>
-    <div class="mt-5">
+    <div class="mt-4">
         <p class="text-right">
             <x-button form="create-form">
                 <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

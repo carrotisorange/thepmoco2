@@ -22,13 +22,14 @@
             <h5 class="flex-1 text-right">
 
                 @can('admin')
+                <x-button title="configure contract" data-modal-toggle="configure-contract-modal"><i class="fa-solid fa-edit"></i>&nbsp Contract
+                </x-button>
                 <x-button title="view in table form" onclick="window.location.href='/property/{{ Session::get('property') }}/units/masterlist'"><i class="fa-solid fa-list"></i>&nbsp Unit
                 </x-button>
                 <x-button title="add new units" data-modal-toggle="create-unit-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
                 </x-button>
                 @endcan
             </h5>
-            @include('utilities.create-unit-modal')
         </div>
     </h2>
 </x-slot>
@@ -72,3 +73,5 @@
         </div>
     </div>
 </div>
+@include('utilities.create-unit-modal')
+@include('utilities.configure-contract-modal')

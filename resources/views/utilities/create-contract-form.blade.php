@@ -75,7 +75,7 @@
 
         @if($interaction_id == 10)
         <div class="flex flex-wrap mx-3 mb-6">
-            <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+            <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="contract">
                     Name of the referral <span class="text-red-600">*</span>
                 </x-label>
@@ -91,7 +91,7 @@
         @endif
 
         <div class="flex flex-wrap mx-3 mb-6">
-            <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+            <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="contract">
                     Contract (Please attached the signed contract here.)
                 </x-label>
@@ -109,7 +109,7 @@
 
         @if($tenant->email)
         <div class="flex flex-wrap mx-3 mb-6">
-            <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+            <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <div>
                     <div class="form-check">
                         <input wire:model="sendContract"
@@ -125,7 +125,7 @@
         </div>
         @endif
 
-        <div class="mt-5">
+        <div class="mt-4">
             <p class="text-right">
                 <x-button form="create-form">
                     <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

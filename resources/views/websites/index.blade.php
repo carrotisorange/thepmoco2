@@ -534,18 +534,18 @@
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
                     <div class="pricing-box">
                         <div class="mb-3">
-                            <h3 class="package-name">STARTER</h3>
+                            <h3 class="package-name">BASIC</h3>
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">₱600</span>
+                                <span class="font-bold text-2xl">950</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
                         <ul class="mb-16">
                             <li class="text-gray-500 leading-9">1 year free </li>
                             <li class="text-gray-500 leading-9">1 property </li>
-                            <li class="text-gray-500 leading-9">10 rooms</li>
+                            <li class="text-gray-500 leading-9">1-20 units</li>
                         </ul>
                         <a href="#" class="btn">Get It</a>
                     </div>
@@ -555,18 +555,18 @@
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
                     <div class="pricing-box bg-blue-100 wow fadeInLeft" data-wow-delay="1.2s">
                         <div class="mb-3">
-                            <h3 class="package-name">PROFESIONAL</h3>
+                            <h3 class="package-name">ADVANCED</h3>
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">₱2,500</span>
+                                <span class="font-bold text-2xl">₱1,800</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
                         <ul class="mb-16">
                             <li class="text-gray-500 leading-9">1 year free </li>
                             <li class="text-gray-500 leading-9">Up to 5 properties </li>
-                            <li class="text-gray-500 leading-9">Up to 1000 rooms</li>
+                            <li class="text-gray-500 leading-9">21-50 units</li>
                             <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
                             <li class="text-gray-500 leading-9">Real-time collabration</li>
                         </ul>
@@ -578,20 +578,21 @@
                 <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3">
                     <div class="pricing-box wow fadeInLeft" data-wow-delay="1.5s"">
                         <div class="mb-3">
-                            <h3 class="package-name">ENTERPRISE</h3>
+                            <h3 class="package-name">Premium</h3>
                         </div>
                         <div class="mb-5">
                             <p class="text-gray-700">
-                                <span class="font-bold text-2xl">₱N</span>
+                                <span class="font-bold text-2xl">₱2,400</span>
                                 <span class="font-medium text-sm">/ Month</span>
                             </p>
                         </div>
                         <ul class="mb-16">
-                            <li class="text-gray-500 leading-9">Unlimited properties </li>
-                            <li class="text-gray-500 leading-9">Unlimited rooms</li>
+                            <li class="text-gray-500 leading-9">1 year free </li>
+                            <li class="text-gray-500 leading-9">Up to 10 properties </li>
+                            <li class="text-gray-500 leading-9">Up to 100 units</li>
                             <li class="text-gray-500 leading-9">Access to tenant/owner portal</li>
                             <li class="text-gray-500 leading-9">Real-time collabration</li>
-                            <li class="text-gray-500 leading-9">24x7 Support</li>
+                            <li class="text-gray-500 leading-9">24x7 Support</li>             
                         </ul>
                         <a href="#" class="btn">Get It</a>
                     </div>

@@ -23,7 +23,19 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    @if($references->count())
+                    
+                </h5>
+
+            </div>
+        </h2>
+    </x-slot>
+
+    <div class="py-3">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-12 bg-white border-b border-gray-200">
+                    <p class="text-right">
+                        @if($references->count())
                     <x-button
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'">
                         <i class="fa-solid fa-circle-check"></i>&nbspSave
@@ -34,16 +46,7 @@
                         <i class="fa-solid fa-forward"></i>&nbspSkip
                     </x-button>
                     @endif
-                </h5>
-
-            </div>
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-12 bg-white border-b border-gray-200">
+                    </p>
                     @livewire('reference-component', ['unit' => $unit, 'tenant' => $tenant, 'references' =>
                     $references])
                     @if (!$references->count())
