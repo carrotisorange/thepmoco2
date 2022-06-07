@@ -44,12 +44,14 @@
                 @endif
 
                 @if($total_count)
-                @can('manager')
+                @if(auth()->user()->username == 'landley')
+                {{-- @can('manager') --}}
                 <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
                         class="fa-solid fa-rotate-right"></i>&nbsp
                     Mark as Unpaid ({{ $total_count }})
                 </x-button>
-                @endcan
+                @endif
+                {{-- @endcan --}}
                 @endif
 
                 @can('treasury')
