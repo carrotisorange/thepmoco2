@@ -73,10 +73,8 @@ class TenantEditComponent extends Component
     {
         return [
             'tenant' => 'required',
-            'email' => ['nullable', 'string', 'email', 'max:255', Rule::unique('tenants',
-            'email')->ignore($this->tenant_details->uuid, 'uuid')],
-            'mobile_number' => ['nullable', Rule::unique('tenants',
-            'mobile_number')->ignore($this->tenant_details->uuid, 'uuid')],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('tenants','email')->ignore($this->tenant_details->uuid, 'uuid')],
+            'mobile_number' => ['nullable', Rule::unique('tenants', 'mobile_number')->ignore($this->tenant_details->uuid, 'uuid')],
             'type' => 'nullable',
             'gender' => 'required',
             'civil_status' => 'nullable',
