@@ -102,6 +102,7 @@ class TenantCollectionController extends Controller
 
          $data = [
             'created_at' => $ar->created_at,
+            'reference_no' => $tenant->bill_reference_no,
             'tenant' => Tenant::find($ar->tenant_uuid)->tenant,
             'mode_of_payment' => $ar->mode_of_payment,
             'user' => User::find($ar->user_id)->name,

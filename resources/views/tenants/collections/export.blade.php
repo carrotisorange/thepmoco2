@@ -84,7 +84,9 @@
 
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
-
+        <p>
+            Reference #: {{ $reference_no }}
+        </p>
         <p>
             AR #: {{ $ar_no }}
         </p>
