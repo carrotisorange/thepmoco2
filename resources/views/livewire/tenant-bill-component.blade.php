@@ -1,19 +1,27 @@
 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-    Reference # : <b> {{ $tenant->bill_reference_no }}</b>,
-    Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
-    Total Unpaid Bills: <b> {{ number_format(($total_unpaid_bills->sum('bill') -
-        $total_unpaid_bills->sum('initial_payment')),2)}}</b>,
-    Total Paid Bills: <b> {{ number_format($total_paid_bills->sum('initial_payment'),2)}}</b>
+    <div class="">
+        Reference # : <b> {{ $tenant->bill_reference_no }}</b>
+    </div>
+    <div class="mt-1">
+        Deposits: <b> {{ number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit', '1')->sum('collection'), 2) }}</b>
+    </div>
+    <div class="mt-1">
+        Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
+        Total Unpaid Bills: <b> {{ number_format(($total_unpaid_bills->sum('bill') -
+            $total_unpaid_bills->sum('initial_payment')),2)}}</b>,
+        Total Paid Bills: <b> {{ number_format($total_paid_bills->sum('initial_payment'),2)}}</b>
+    </div>
     <div class="mt-5">
         @if($bills)
         <x-form-select class="w-24" wire:model="status">
             <option value="" {{ $status=="" ? 'selected' : 'Select one' }}>show all bills</option>
             @foreach ($statuses as $item)
-               <option value="{{ $item->status }}" {{ $status == $item->status ? 'selected' : 'selected' }}> show {{ $item->status }} bills
-                </option>
+            <option value="{{ $item->status }}" {{ $status==$item->status ? 'selected' : 'selected' }}> show {{
+                $item->status }} bills
+            </option>
             @endforeach
-          
-        
+
+
         </x-form-select>
         @endif
     </div>
@@ -21,7 +29,7 @@
     <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
-                
+
                 @if($total_unpaid_bills->count())
                 @can('billing')
                 <x-button title="export unpaid bills" data-modal-toggle="export-bill-modal">
@@ -30,7 +38,7 @@
                 </x-button>
                 @endcan
                 {{-- <x-button title="send unpaid bills" data-modal-toggle="send-bill-modal">
-                 <i class="fa-solid fa-paper-plane"></i>&nbsp
+                    <i class="fa-solid fa-paper-plane"></i>&nbsp
                     Bills ({{ $total_unpaid_bills->count() }})
                 </x-button> --}}
                 @endif
@@ -56,10 +64,11 @@
             <div class="basis-1/4 ml-12 text-right">
                 @can('manager')
                 @if($selectedBills)
-                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()"><i class="fa-solid fa-trash"></i>&nbsp
+                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()"><i
+                        class="fa-solid fa-trash"></i>&nbsp
                     Remove ({{ count($selectedBills) }})
                 </x-button>
-              
+
                 @endif
                 @endcan
             </div>
@@ -121,8 +130,9 @@
                                             @endif
 
                                             @if($item->description === 'movein charges')
-                                            <span title="urgent" class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                               <i class="fa-solid fa-bolt"></i>
+                                            <span title="urgent"
+                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                <i class="fa-solid fa-bolt"></i>
                                             </span>
                                             @endif
                                         </x-td>

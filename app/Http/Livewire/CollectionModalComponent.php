@@ -113,6 +113,13 @@ class CollectionModalComponent extends ModalComponent
                             $validatedData['batch_no'] = $batch_no;
                             $validatedData['ar_no'] = $ar_no;
 
+                            $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
+
+                            if($particular_id === 3 || $particular_id === 4)
+                            {
+                                $validatedData['is_deposit'] = '1';
+                            }
+
                         //save the payment
                        Collection::create($validatedData)->unit_uuid;
 

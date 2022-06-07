@@ -98,6 +98,7 @@ class TenantBillController extends Controller
 
     public function export(Request $request, Tenant $tenant)
     {
+       
 
         Property::where('uuid',Session::get('property'))->update([
             'note_to_bill' => $request->note_to_bill,
@@ -120,6 +121,11 @@ class TenantBillController extends Controller
             'note_to_bill' => $request->note_to_bill,
       
          ];
+
+        if($request->sendBills)
+        {
+            Mail::to($tenant->email)->send(new SendBillToTenant($data));
+        }
 
         $pdf = PDF::loadView('tenants.bills.export', $data);
        $pdf->output();
@@ -158,6 +164,6 @@ class TenantBillController extends Controller
 
          ];
 
-         Mail::to('landleydgreat@gmail.com')->send(new SendBillToTenant($details));
+        
     }
 }

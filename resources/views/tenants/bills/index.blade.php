@@ -38,16 +38,13 @@
                             class="fa-solid fa-cash-register"></i>&nbsp Payments
                     </x-button>
                     @endcan
-                    @can('admin')
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/contracts'"><i class="fa-solid fa-right-from-bracket"></i>&nbsp Moveout
-                    </x-button>
-                    @endcan
+                   
                 </h5>
 
             </div>
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="py-2">
         @livewire('tenant-bill-component', ['tenant'=> $tenant]);
     </div>
 </x-app-layout>

@@ -12,16 +12,16 @@ class SendBillToTenant extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $details;
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -31,7 +31,10 @@ class SendBillToTenant extends Mailable
      */
     public function build()
     {
-          return $this->subject('Bills - '. Session::get('property_name'))
-          ->view('emails.sendbilltotenant');
+          return $this->subject('Statements of Account - '. Session::get('property_name'))
+        
+          ->markdown('emails.sendbilltotenant', [
+         
+          ]);
     }
 }
