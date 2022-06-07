@@ -64,10 +64,10 @@ class ContractComponent extends Component
         $this->validateOnly($propertyName);
       }
 
-      public function hydrateTerm()
-      {
-        $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
-      }
+      // public function hydrateTerm()
+      // {
+      //   $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
+      // }
 
 
       public function submitForm()
