@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-        @forelse ($bills as $item)
+        @foreach ($bills as $item)
         <tr>
             <x-td>
                 <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
@@ -28,7 +28,8 @@
                 $tenant = App\Models\Tenant::find($item->tenant_uuid)->tenant;
                 $unit = App\Models\Unit::find($item->unit_uuid)->unit
             ?>
-          <x-td><a href="/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{ $tenant }}</b></a></x-td>
+            <x-td><a href="/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{ $tenant }}</b></a>
+            </x-td>
             <x-td>{{ $unit }}</x-td>
             {{-- <x-td><a href="/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{
                         $item->reference_no}}</b></a> --}}
@@ -39,50 +40,59 @@
                     <span x-show="hover">{{ $item->tenant->tenant }} - {{ $item->unit->unit? $item->unit->unit: 'NA'
                         }}</span>
                 </div> --}}
-        
-            {{-- <x-td>{{ $item->tenant->tenant}}</x-td> --}}
 
-            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
-            {{-- <x-td>{{ $item->unit }}</x-td> --}}
-            <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
-                y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}</x-td>
-            <x-td>{{ $item->particular->particular}}</x-td>
-            <x-td>{{ number_format($item->bill, 2) }}
+                {{-- <x-td>{{ $item->tenant->tenant}}</x-td> --}}
 
-                @if($item->status === 'paid')
-                <span title="paid"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    <i class="fa-solid fa-circle-check"></i>
-                </span>
-                @elseif($item->status === 'partially_paid')
-                <span title="partially_paid"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                    <i class="fa-solid fa-clock"></i>
-                </span>
-                @else
-                <span title="unpaid" class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                </span>
-                @endif
-                
-                @if($item->description === 'movein charges')
-                <span title="urgent"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                    <i class="fa-solid fa-bolt"></i>
-                </span>
-                @endif
+                <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
+                {{-- <x-td>{{ $item->unit }}</x-td> --}}
+                <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
+                    y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}</x-td>
+                <x-td>{{ $item->particular->particular}}</x-td>
+                <x-td>{{ number_format($item->bill, 2) }}
 
-            </x-td>
-            {{-- <x-td>
+                    @if($item->status === 'paid')
+                    <span title="paid"
+                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </span>
+                    @elseif($item->status === 'partially_paid')
+                    <span title="partially_paid"
+                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                        <i class="fa-solid fa-clock"></i>
+                    </span>
+                    @else
+                    <span title="unpaid"
+                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </span>
+                    @endif
 
-            </x-td> --}}
-            <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
-            <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
+                    @if($item->description === 'movein charges')
+                    <span title="urgent"
+                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                        <i class="fa-solid fa-bolt"></i>
+                    </span>
+                    @endif
+
+                </x-td>
+                {{-- <x-td>
+
+                </x-td> --}}
+                <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
+                <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
         </tr>
-        @empty
+        @endforeach
         <tr>
-            <x-td>No data found!</x-td>
+            <x-td></x-td>
+            <x-td>Total</x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td>{{ number_format($bills->sum('bill'), 2) }}</x-td>
+            <x-td>{{ number_format($bills->sum('initial_payment'), 2) }}</x-td>
+            <x-td>{{ number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}</x-td>
         </tr>
-        @endforelse
     </tbody>
 </table>

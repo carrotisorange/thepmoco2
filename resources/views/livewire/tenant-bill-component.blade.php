@@ -1,16 +1,15 @@
 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
     <div class="">
-        Reference # : <b> {{ $tenant->bill_reference_no }}</b>
+        Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Deposits: <b> {{ number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit',
+            '1')->sum('collection'), 2) }}</b>
     </div>
-    <div class="mt-1">
-        Deposits: <b> {{ number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit', '1')->sum('collection'), 2) }}</b>
-    </div>
-    <div class="mt-1">
+  
+    {{-- <div class="mt-1">
         Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
         Total Unpaid Bills: <b> {{ number_format(($total_unpaid_bills->sum('bill') -
             $total_unpaid_bills->sum('initial_payment')),2)}}</b>,
         Total Paid Bills: <b> {{ number_format($total_paid_bills->sum('initial_payment'),2)}}</b>
-    </div>
+    </div> --}}
     <div class="mt-5">
         @if($bills)
         <x-form-select class="w-24" wire:model="status">
@@ -29,12 +28,15 @@
     <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
-
+                <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"><i
+                        class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
+                </x-button>
                 @if($total_unpaid_bills->count())
                 @can('billing')
                 <x-button title="export unpaid bills" data-modal-toggle="export-bill-modal">
                     <i class="fa-solid fa-download"></i>&nbsp
-                    Bills ({{ $total_unpaid_bills->count() }})
+                    Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=', 'paid')->count()
+                    }})
                 </x-button>
                 @endcan
                 {{-- <x-button title="send unpaid bills" data-modal-toggle="send-bill-modal">
@@ -60,18 +62,34 @@
                     wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
                     <i class="fa-solid fa-circle-plus"></i>&nbsp Payment ({{ number_format($total, 2) }})
                 </x-button>
+                @else
+          
                 @endif
+                @endcan
+                
+                @can('billing')
+                <x-button data-modal-toggle="create-particular-modal">
+                    <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
+                </x-button>
+                <x-button data-modal-toggle="create-bill-modal">
+                    <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
+                </x-button>
+                @endcan
+                
+                @can('treasury')
+                <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/collections'"><i
+                        class="fa-solid fa-cash-register"></i>&nbsp Payments
+                </x-button>
                 @endcan
             </div>
             <div class="basis-1/4 ml-12 text-right">
                 @can('manager')
-                @if($selectedBills)
-                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()"><i
-                        class="fa-solid fa-trash"></i>&nbsp
-                    Remove ({{ count($selectedBills) }})
-                </x-button>
-
-                @endif
+                    @if($selectedBills)
+                    <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()"><i
+                            class="fa-solid fa-trash"></i>&nbsp
+                        Remove ({{ count($selectedBills) }})
+                    </x-button>
+                    @endif
                 @endcan
             </div>
         </div>
@@ -149,9 +167,22 @@
                                             </form>
                                         </x-td> --}}
 
-                                        @empty
-                                        <x-td>No data found!</x-td>
-                                        @endforelse
+
+                                    </tr>
+
+                                    @empty
+                                    <tr>No data found!</tr>
+                                    @endforelse
+                                    <tr>
+                                        <x-td>Total</x-td>
+                                        <x-td></x-td>
+                                        <x-td></x-td>
+                                        <x-td></x-td>
+                                        <x-td></x-td>
+                                        <x-td>{{number_format($bills->sum('bill'),2) }}</x-td>
+                                        <x-td>{{number_format($bills->sum('initial_payment'),2) }}</x-td>
+                                        <x-td>{{number_format($bills->sum('bill') - $bills->sum('initial_payment') ,2)
+                                            }}</x-td>
                                     </tr>
                                 </tbody>
                             </table>

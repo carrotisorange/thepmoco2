@@ -22,22 +22,7 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"><i
-                            class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
-                    </x-button>
-                    @can('billing')
-                    <x-button data-modal-toggle="create-particular-modal">
-                        <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
-                    </x-button>
-                    <x-button data-modal-toggle="create-bill-modal">
-                        <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
-                    </x-button>
-                    @endcan
-                    @can('treasury')
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/collections'"><i
-                            class="fa-solid fa-cash-register"></i>&nbsp Payments
-                    </x-button>
-                    @endcan
+                   
                    
                 </h5>
 

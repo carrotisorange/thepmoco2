@@ -1,83 +1,123 @@
-<div class="py-12">
+<div class="py-2">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-        <div class="">
-            <x-search placeholder="search for reference no"></x-search>
+        <div class="mt-1">
+            @if($status || $end || $start || $particular_id || $created_at)
+            <span>
+                <x-button class="text-black-600 cursor-pointer" wire:click="resetFilters"><i
+                        class="fa-solid fa-circle-xmark"></i>&nbsp
+                    Clear filters</x-button>
+            </span>
+
+            @endif
+
+            @if($selectedBills)
+            {{-- <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
+                Remove ({{ count($selectedBills) }})
+            </x-button> --}}
+            
+            @if($total_count)
+            <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
+                Mark as Unpaid ({{ $total_count }})
+            </x-button>
+            @endif
+            
+            @endif
+            
+            <x-button data-modal-toggle="create-particular-modal">
+                <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
+            </x-button>
+            @can('billing')
+            <x-button id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button"> <i
+                    class="fa-solid fa-circle-plus"></i>&nbsp Bill <svg class="ml-2 w-4 h-4" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                    </path>
+                </svg></x-button>
+            @endcan
+            <!-- Dropdown menu -->
+            <div id="unitCreateDropdown"
+                class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                <ul class="py-1" aria-labelledby="dropdownButton">
+
+                    <li>
+                        <a href="#/" data-modal-toggle="create-express-bill-modal"
+                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            <i class="fa-solid fa-truck-fast"></i>&nbsp Express Bill
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/" data-modal-toggle="create-customized-bill-modal"
+                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            <i class="fa-solid fa-file-pen"></i>&nbsp Customized Bill
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
         </div>
-        <div class="mt-5">
-            Total Unpaid Bills: <b> {{ number_format($bills->where('status',
-                'unpaid')->sum('bill'),
-                2)}}</b>,
-            Total Paid Bills: <b> {{ number_format($bills->where('status',
-                'paid')->sum('bill'),
-                2)}}</b>
-        </div>
-        <div class="mt-5">
-            {{ $bills->links() }}
-        </div>
-        <div class="mt-5">
-      
+        <div class="mt-2">
+
             <div class="flex flex-row">
-                <div class="basis-1/2">
+                <div class="basis-full">
 
                     {{-- @if($bills->count())
                     <p class="text-center text-sm">Showing <b>{{ $bills->count() }}</b> bills...</p>
                     @endif --}}
 
-                    @if($selectedBills)
-                    {{-- <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i
-                            class="fa-solid fa-trash"></i>&nbsp
-                        Remove ({{ count($selectedBills) }})
-                    </x-button> --}}
-
-                    @if($total_count)
-                    <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
-                            class="fa-solid fa-rotate-right"></i>&nbsp
-                        Mark as Unpaid ({{ $total_count }})
-                    </x-button>
-                    @endif
-
-                    @endif
+                  
                 </div>
-                <div class="basis-1/2 ml-12 text-right">
-                    @can('manager')
-                    @if($selectedBills)
-                    <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i
-                            class="fa-solid fa-trash"></i>&nbsp
-                        Remove ({{ count($selectedBills) }})
-                    </x-button>
-                    @endif
-                    @endcan
-                </div>
+                {{-- <div class="basis-1/8 ml-12 text-right">
+
+                </div> --}}
             </div>
         </div>
-        <div class="mt-5 p-3 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
+        <div class="mt-5 p-1 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white border-b border-gray-200">
                 <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="overflow-hidden sm:rounded-lg">
-                            <div class="flex flex-row">
-                                <div class="basis-1/7">
-                                    @include('utilities.show-bill-filters')
-                                </div>
-                                <div class="basis-full">
-                                    @if($bills->count())
-                                    
+                            <div class="px-10 mt-1">
+                                @include('utilities.show-bill-filters')
+                            </div>
+                            <div class="mt-3 ml-10 px-2">
+                                <x-search placeholder="search for reference no"></x-search>
+
+                            </div>
+                            <div class="mt-2 px-10">
+                                {{ $bills->links() }}
+                            </div>
+
+                            <div class="px-10 mt-4 mb-5">
+                                <div class="mt-1">
                                     @include('utilities.show-bill-results')
-                                    <p class="text-center">
-                                        @else
-                                    <div class="text-center mt-12">
-                                        <span>No results found!</span>
-                                        <img class="" src="{{ asset('/brands/no_results.png') }}" />
-                                    </div>
-                                    </p>
-                                    @endif
                                 </div>
+
+                                {{-- <div class="flex flex-row">
+                                    <div class="basis-1/7">
+                                        @include('utilities.show-bill-filters')
+                                    </div>
+                                    <div class="basis-full">
+                                        @if($bills->count())
+
+                                        @include('utilities.show-bill-results')
+                                        <p class="text-center">
+                                            @else
+                                        <div class="text-center mt-12">
+                                            <span>No results found!</span>
+                                            <img class="" src="{{ asset('/brands/no_results.png') }}" />
+                                        </div>
+                                        </p>
+                                        @endif
+                                    </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
-                </div>
-            {{-- </div> --}}
+                    {{--
+                </div> --}}
+            </div>
         </div>
     </div>
-</div>
-@include('utilities.create-particular-modal');
+    @include('utilities.create-particular-modal');
