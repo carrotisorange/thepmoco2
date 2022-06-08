@@ -36,7 +36,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('units', [UnitController::class, 'index'])->name('units');
 
-    Route::get('tenant/{tenant}/units/', [TenantContractController::class, 'create']);
+    Route::get('tenant/{tenant}/units/', [TenantContractController::class, 'create'])->name('tenants');
 
     Route::get('units/masterlist', UnitMasterlistController::class)->name('units');
    
