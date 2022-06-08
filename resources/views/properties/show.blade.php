@@ -221,10 +221,8 @@
                                                                                 <div class="flex items-center">
                                                                                     <div
                                                                                         class="flex-shrink-0 h-10 w-10">
-
-                                                                                        <img class="h-10 w-10 rounded-full"
-                                                                                            src="/storage/{{ $contract->tenant->photo_id }}"
-                                                                                            alt="">
+                                                                                        <a href="/tenant/{{ $contract->tenant_uuid }}/contracts">
+                                                                                        <img class="h-10 w-10 rounded-full" src="/storage/{{ $contract->tenant->photo_id }}" alt=""></a>
                                                                                     </div>
                                                                                     <div class="ml-4">
                                                                                         <div
@@ -315,12 +313,12 @@
                                                                                     class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                                                     <ul class="py-1"
                                                                                         aria-labelledby="dropdownDividerButton">
-                                                                                        <li>
+                                                                                        {{-- <li>
                                                                                             <a href="/tenant/{{ $contract->tenant_uuid }}/edit"
                                                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                                                     class="fa-solid fa-file-contract"></i>&nbspShow
                                                                                                 Tenant</a>
-                                                                                        </li>
+                                                                                        </li> --}}
                                                                                         <li>
                                                                                             <a href="/unit/{{ $contract->unit_uuid }}/edit"
                                                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i

@@ -175,7 +175,7 @@ class PropertyController extends Controller
         session(['property_name' => $property->property]);
 
 
-        $this->occupancy_rate();
+        $this->save_unit_stats();
 
 
         $occupancy_rate_date = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
@@ -365,7 +365,7 @@ class PropertyController extends Controller
         ]); 
     }
 
-    public function occupancy_rate()
+    public function save_unit_stats()
     {
         $total_units = Property::find(Session::get('property'))->units;
 

@@ -24,8 +24,10 @@
                 @can('admin')
                 <x-button title="configure contract" data-modal-toggle="configure-contract-modal"><i class="fa-solid fa-edit"></i>&nbsp Contract
                 </x-button>
+                @if(!Session::get('tenant_uuid'))
                 <x-button title="view in table form" onclick="window.location.href='/property/{{ Session::get('property') }}/units/masterlist'"><i class="fa-solid fa-list"></i>&nbsp Unit
                 </x-button>
+                @endif
                 <x-button title="add new units" data-modal-toggle="create-unit-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp Unit
                 </x-button>
                 @endcan

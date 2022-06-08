@@ -45,16 +45,16 @@
                 </x-button> --}}
                 @endif
 
-                @if($total_count)
-                @if(auth()->user()->username == 'landley')
-                {{-- @can('manager') --}}
-                <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
-                        class="fa-solid fa-rotate-right"></i>&nbsp
-                    Mark as Unpaid ({{ $total_count }})
-                </x-button>
-                @endif
-                {{-- @endcan --}}
-                @endif
+                {{-- @if($total_count)
+                    @if(auth()->user()->username == 'landley')
+                 @can('manager') 
+                    <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
+                            class="fa-solid fa-rotate-right"></i>&nbsp
+                        Mark as Unpaid ({{ $total_count }})
+                    </x-button>
+                    @endif
+                 @endcan 
+                @endif --}}
 
                 @can('treasury')
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
@@ -167,11 +167,11 @@
                                             </form>
                                         </x-td> --}}
 
-
-                                    </tr>
-
                                     @empty
-                                    <tr>No data found!</tr>
+                                    <x-td>
+                                        No data found!
+                                    </x-td>
+                                    </tr>            
                                     @endforelse
                                     <tr>
                                         <x-td>Total</x-td>

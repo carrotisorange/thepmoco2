@@ -32,7 +32,6 @@ class SendBillToTenant extends Mailable
     public function build()
     {
           return $this->subject('Statements of Account - '. Session::get('property_name'))
-        
           ->markdown('emails.sendbilltotenant', [
          
           ]);

@@ -57,10 +57,10 @@
                 <x-label for="interaction_id">
                     Interaction<span class="text-red-600">*</span> 
                 </x-label>
-                <x-form-select wire:model="interaction_id" id="interaction_id" name="interaction_id">
+                <x-form-select wire:model="interaction_id">
                     <option value="">Select one</option>
                     @foreach ($interactions as $interaction)
-                    <option value="{{ $interaction->id }}" {{ old('interactionid')==$interaction->id?
+                    <option value="{{ $interaction->id }}" {{ old('interaction_id')==$interaction->id?
                         'selected': 'Select one'
                         }}>{{ $interaction->interaction }}</option>
                     @endforeach

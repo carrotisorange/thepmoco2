@@ -28,6 +28,8 @@ class UnitController extends Controller
      */
     public function index()
     {   
+        Session::forget('tenant_uuid');
+
         return view('units.index');
     }
 

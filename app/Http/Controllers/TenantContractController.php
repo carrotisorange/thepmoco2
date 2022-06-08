@@ -30,12 +30,11 @@ class TenantContractController extends Controller
         return redirect('/tenant/'.$tenant->uuid.'/unit/'.$unit->uuid.'/contract/create');
     }
 
-    public function create(Request $request, Tenant $tenant, Unit $unit)
+    public function create(Property $property, Tenant $tenant)
     {
-    return view('contracts.create', [
-            'unit' => $unit,
-            'tenant' => $tenant
-        ]);
+        Session::put('tenant_uuid', $tenant->uuid);
+         
+        return view('units.index');
     }
 
 

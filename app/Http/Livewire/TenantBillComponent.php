@@ -28,7 +28,7 @@ class TenantBillComponent extends Component
 
         $this->selectedBills = [];
 
-        return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills Successfully removed.');
+        return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bill is successfully removed.');
      }
 
      public function postBills()
@@ -75,7 +75,7 @@ class TenantBillComponent extends Component
          {
             $this->selectedBills = Bill::where('tenant_uuid', $this->tenant->uuid)
              ->when($this->status, function($query){
-             $query->where('status', $this->status);
+             $query->whereIn('status', $this->status);
              })
             ->pluck('id');
          }else
@@ -92,7 +92,7 @@ class TenantBillComponent extends Component
        ->bills()
        ->orderBy('bill_no','asc')
        ->when($this->status, function($query){
-       $query->where('status', $this->status);
+       $query->whereIn('status', $this->status);
        })
        ->get();
 

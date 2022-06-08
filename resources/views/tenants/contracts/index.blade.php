@@ -26,9 +26,13 @@
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
                     </x-button>
 
-                    <x-button data-modal-toggle="create-tenant-contract-modal"><i
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/units'"><i
                             class="fa-solid fa-circle-plus"></i>&nbsp Contract
                     </x-button>
+
+                    {{-- <x-button data-modal-toggle="create-tenant-contract-modal"><i
+                            class="fa-solid fa-circle-plus"></i>&nbsp Contract
+                    </x-button> --}}
 
 
                 </h5>
@@ -150,18 +154,18 @@
                                                         ?>
                                                         @if($item->status == 'active')
                                                         <div class="py-1">
-                                                            @if($unpaid_bills->count()<=0)
-                                                                <a href="/contract/{{ $item->uuid }}/moveout"
+                                                            @if($unpaid_bills->count()<=0) <a
+                                                                href="/contract/{{ $item->uuid }}/moveout"
                                                                 class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                                 <i
                                                                     class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
-                                                            @else
+                                                                @else
                                                                 <a data-modal-toggle="moveout-error-modal" href="#/"
-                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                <i
-                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
-                                                            @endif
-                                                          
+                                                                    class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                    <i
+                                                                        class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
+                                                                @endif
+
                                                         </div>
                                                         @endif
                                                     </div>
