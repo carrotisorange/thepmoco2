@@ -45,7 +45,10 @@
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
-            <x-td>{{ number_format($collections->sum('amount'), 2) }}</x-td>
+            <?php
+                $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property'))->count();
+            ?>
+            <x-td>{{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})</x-td>
             <x-td></x-td>
 
         </tr>
