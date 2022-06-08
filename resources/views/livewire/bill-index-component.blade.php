@@ -1,6 +1,7 @@
 <div class="py-2">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div class="mt-1">
+            @if(App\Models\Bill::where('property_uuid',Session::get('property'))->count())
             @if($status || $end || $start || $particular_id || $created_at)
             <span>
                 <x-button class="text-black-600 cursor-pointer" wire:click="resetFilters"><i
@@ -9,20 +10,21 @@
             </span>
 
             @endif
+            @endif
 
             @if($selectedBills)
             {{-- <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
                 Remove ({{ count($selectedBills) }})
             </x-button> --}}
-            
+
             @if($total_count)
             <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
                 Mark as Unpaid ({{ $total_count }})
             </x-button>
             @endif
-            
+
             @endif
-            
+
             <x-button data-modal-toggle="create-particular-modal">
                 <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
             </x-button>
@@ -57,67 +59,28 @@
                 </ul>
             </div>
         </div>
-        <div class="mt-2">
-
-            <div class="flex flex-row">
-                <div class="basis-full">
-
-                    {{-- @if($bills->count())
-                    <p class="text-center text-sm">Showing <b>{{ $bills->count() }}</b> bills...</p>
-                    @endif --}}
-
-                  
-                </div>
-                {{-- <div class="basis-1/8 ml-12 text-right">
-
-                </div> --}}
-            </div>
-        </div>
+        
         <div class="mt-5 p-1 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
                 <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        @if(App\Models\Bill::where('property_uuid',Session::get('property'))->count())
                         <div class="overflow-hidden sm:rounded-lg">
                             <div class="px-10 mt-1">
                                 @include('utilities.show-bill-filters')
                             </div>
-                            <div class="mt-3 ml-10 px-2">
-                                <x-search placeholder="search for reference no"></x-search>
-
-                            </div>
-                            <div class="mt-2 px-10">
-                                {{ $bills->links() }}
-                            </div>
-
                             <div class="px-10 mt-4 mb-5">
                                 <div class="mt-1">
+                                    <div class="mt-2 mb-4">
+                                        {{ $bills->links() }}
+                                    </div>
                                     @include('utilities.show-bill-results')
                                 </div>
-
-                                {{-- <div class="flex flex-row">
-                                    <div class="basis-1/7">
-                                        @include('utilities.show-bill-filters')
-                                    </div>
-                                    <div class="basis-full">
-                                        @if($bills->count())
-
-                                        @include('utilities.show-bill-results')
-                                        <p class="text-center">
-                                            @else
-                                        <div class="text-center mt-12">
-                                            <span>No results found!</span>
-                                            <img class="" src="{{ asset('/brands/no_results.png') }}" />
-                                        </div>
-                                        </p>
-                                        @endif
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
+                        @endif
                     </div>
-                    {{--
-                </div> --}}
+                </div>
             </div>
         </div>
-    </div>
-    @include('utilities.create-particular-modal');
+        @include('utilities.create-particular-modal')

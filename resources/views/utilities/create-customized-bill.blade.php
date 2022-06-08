@@ -81,7 +81,7 @@
           
                 </div>
 
-                <div class="mt-5">
+                {{-- <div class="mt-5">
                     <x-label for="due_date">
                         Due Date 
                     </x-label>
@@ -92,7 +92,7 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
 
-                </div>
+                </div> --}}
 
                 <div class="mt-5">
                     <x-label for="due_date">

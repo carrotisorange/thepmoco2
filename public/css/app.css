@@ -1025,6 +1025,9 @@ input:checked + .toggle-bg {
 .mt-12 {
   margin-top: 3rem;
 }
+.ml-10 {
+  margin-left: 2.5rem;
+}
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -1219,6 +1222,9 @@ input:checked + .toggle-bg {
 }
 .basis-3\/4 {
   flex-basis: 75%;
+}
+.basis-2\/3 {
+  flex-basis: 66.666667%;
 }
 .table-auto {
   table-layout: auto;
