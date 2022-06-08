@@ -1,7 +1,3 @@
-<div class="mb-3 w-1/4">
-    <x-search placeholder="search for reference no"></x-search>
-</div>
-
 <div class="flex flex-row">
     {{-- <div class="basis-full">
         <b>Search</b>
@@ -48,36 +44,48 @@
     </div>
     <div class="basis-full">
         <div class="mt-1">
-            <b>Date posted </b>
-            <div class="mt-3">
-                <div class="form-check">
-                    <x-input wire:model="created_at" type="date" value="" />
-                    <label class="form-check-label inline-block text-gray-800" for="created_at">
-
-                    </label>
-                </div>
+            <b>Date posted</b>
+            <div class="mt-3 p-2">
+                <x-form-select wire:model="created_at">
+                    <option value="">Select one</option>
+                    @foreach ($dates_posted as $created_at)
+                    <option value="{{ $created_at->created_at }}" {{ $created_at==$created_at->created_at ? 'selected':
+                        ''}}>{{ Carbon\Carbon::parse($created_at->created_at)->format('M d, Y') }}</option>
+                    @endforeach
+                </x-form-select>
             </div>
         </div>
     </div>
     <div class="basis-full">
         <div class="mt-1">
             <b>Period Covered</b>
-            <div class="mt-4">
+            <div class="mt-3 p-2">
+                <x-form-select wire:model="start">
+                    <option value="">Select one</option>
+                    @foreach ($period_covered_starts as $period_covered_start)
+                    <option value="{{ $period_covered_start->start }}" {{ $start==$period_covered_start->start ?
+                        'selected':
+                        ''}}>{{ Carbon\Carbon::parse($period_covered_start->start)->format('M d, Y') }}</option>
+                    @endforeach
+                </x-form-select>
 
-                <div class="form-check">
-                    <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
-                        Start
-                    </label>
-                    <x-input wire:model="start" type="date" value="" />
-
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
-                        End
-                    </label>
-                    <x-input wire:model="end" type="date" value="" />
-                </div>
+                <x-form-select wire:model="end">
+                    <option value="">Select one</option>
+                    @foreach ($period_covered_ends as $period_covered_end)
+                    <option value="{{ $period_covered_end->end }}" {{ $end==$period_covered_end->end ?
+                        'selected':
+                        ''}}>{{ Carbon\Carbon::parse($period_covered_end->end)->format('M d, Y') }}</option>
+                    @endforeach
+                </x-form-select>
             </div>
         </div>
     </div>
+    {{-- <div class="basis-full">
+        <div class="mt-1">
+            <b></b>
+            <div class="mt-3 p-2">
+
+            </div>
+        </div>
+    </div> --}}
 </div>

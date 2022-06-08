@@ -59,28 +59,33 @@
                 </ul>
             </div>
         </div>
-        
-        <div class="mt-5 p-1 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mt-3 mb-3">
+            <x-search placeholder="search for reference no"></x-search>
+        </div>
+        <div class="mt-3 p-6">
+            @include('utilities.show-bill-filters')
+
+        </div>
+
+        <div class="mt-2 mb-2">
+            {{ $bills->links() }}
+        </div>
+
+        <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
-                <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        @if(App\Models\Bill::where('property_uuid',Session::get('property'))->count())
                         <div class="overflow-hidden sm:rounded-lg">
-                            <div class="px-10 mt-1">
-                                @include('utilities.show-bill-filters')
+                            @if(App\Models\Bill::where('property_uuid',Session::get('property'))->count())
+                            <div class="overflow-hidden sm:rounded-lg">
+                                @include('utilities.show-bill-results') 
                             </div>
-                            <div class="px-10 mt-4 mb-5">
-                                <div class="mt-1">
-                                    <div class="mt-2 mb-4">
-                                        {{ $bills->links() }}
-                                    </div>
-                                    @include('utilities.show-bill-results')
-                                </div>
-                            </div>
+                            @endif
                         </div>
-                        @endif
+
                     </div>
                 </div>
             </div>
         </div>
-        @include('utilities.create-particular-modal')
+    </div>
+    @include('utilities.create-particular-modal')

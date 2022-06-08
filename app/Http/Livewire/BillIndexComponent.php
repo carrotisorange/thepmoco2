@@ -17,17 +17,17 @@ class BillIndexComponent extends Component
 {
 
    use WithPagination;
-   
+
       public $search = null;
 
       public $selectedBills = [];
       public $selectAll = false;
 
       public $status = ['unpaid', 'partially_paid'];
-      public $start = [];
-      public $end = [];
+      public $start;
+      public $end;
       public $particular_id = [];
-      public $created_at = [];
+      public $created_at;
 
       public function mount()
       {
@@ -47,12 +47,12 @@ class BillIndexComponent extends Component
                  ->when($this->status, function($query){
                  $query->where('status', $this->status);
                  })
-                 ->when($this->start, function($query){
-                 $query->whereDate('start', $this->start);
-                 })
-                 ->when($this->end, function($query){
-                 $query->whereDate('end', $this->end);
-                 })
+                  ->when($this->start, function($query){
+                  $query->whereBetween('start', [$this->start, $this->end]);
+                  })
+                ->when($this->end, function($query){
+                $query->whereBetween('end', [$this->start, $this->end]);
+                })
                  ->when($this->particular_id, function($query){
                  $query->where('particular_id', $this->particular_id);
                  })
@@ -70,10 +70,10 @@ class BillIndexComponent extends Component
       public function resetFilters()
       {
         $this->status = [];
-        $this->start = [];
-        $this->end = [];
+        $this->start = '';
+        $this->end = '';
         $this->particular_id = [];
-        $this->created_at = [];
+        $this->created_at = '';
       }
 
       public function deleteBills()
@@ -86,13 +86,13 @@ class BillIndexComponent extends Component
          ->orderBy('bill_no', 'asc')
          ->where('property_uuid', Session::get('property'))
          ->when($this->status, function($query){
-         $query->where('status', $this->status);
+         $query->whereIn('status', $this->status);
          })
          ->when($this->start, function($query){
-         $query->whereDate('start', $this->start);
+         $query->whereBetween('start', [$this->start, $this->end]);
          })
          ->when($this->end, function($query){
-         $query->whereDate('end', $this->end);
+         $query->whereBetween('end', [$this->start, $this->end]);
          })
          ->when($this->particular_id, function($query){
          $query->where('particular_id', $this->particular_id);
@@ -139,9 +139,28 @@ class BillIndexComponent extends Component
         ->groupBy('particulars.id')
         ->get();
 
-              $total_count = Bill::whereIn('id', $this->selectedBills)
-              ->whereIn('status', ['paid', 'partially_paid'])
-              ->count();
+         $dates_posted = Bill::where('property_uuid', Session::get('property'))
+         ->select('*',DB::raw("(DATE_FORMAT(created_at,'%M %d, %Y')) as date_posted"), DB::raw('count(*) as count'))
+         ->groupBy('date_posted')
+         ->orderBy('created_at')
+         ->get();
+
+         $period_covered_starts = Bill::where('property_uuid', Session::get('property'))
+          ->select('*',DB::raw("(DATE_FORMAT(start,'%M %d, %Y')) as period_covered_start"), DB::raw('count(*) as count'))
+          ->groupBy('period_covered_start')
+          ->orderBy('start')
+          ->get();
+
+         $period_covered_ends = Bill::where('property_uuid', Session::get('property'))
+            ->select('*',DB::raw("(DATE_FORMAT(end,'%M %d, %Y')) as period_covered_end"), DB::raw('count(*) as
+            count'))
+            ->groupBy('period_covered_end')
+            ->orderBy('end')
+            ->get();
+
+         $total_count = Bill::whereIn('id', $this->selectedBills)
+         ->whereIn('status', ['paid', 'partially_paid'])
+         ->count();
 
             $bills =  Bill::search($this->search)
             ->orderBy('bill_no', 'asc')
@@ -150,11 +169,11 @@ class BillIndexComponent extends Component
                $query->whereIn('status', $this->status);
             })
             ->when($this->start, function($query){
-               $query->whereDate('start', $this->start);
+               $query->whereBetween('start', [$this->start, $this->end]); 
             })
-            ->when($this->end, function($query){
-               $query->whereDate('end', $this->end);
-            })
+             ->when($this->end, function($query){
+             $query->whereBetween('end', [$this->start, $this->end]);
+             })
             ->when($this->particular_id, function($query){
                $query->whereIn('particular_id', $this->particular_id);
             })
@@ -163,7 +182,6 @@ class BillIndexComponent extends Component
             })
             ->paginate(10);
          
-
         return view('livewire.bill-index-component', [
             'bills' => $bills,
             'statuses' => $statuses,
@@ -171,6 +189,9 @@ class BillIndexComponent extends Component
             'total_count' => $total_count,
              'total_paid_bills' => $bills->where('status', 'paid')->sum('bill'),
              'total_unpaid_bills' => $bills->where('status', 'unpaid')->sum('bill'),
+             'dates_posted' => $dates_posted,
+             'period_covered_starts' => $period_covered_starts,
+             'period_covered_ends' => $period_covered_ends
         ]);
     }
 }
