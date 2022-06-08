@@ -11,8 +11,13 @@ use Session;
 use DB;
 use Carbon\Carbon;
 
+use Livewire\WithPagination;
+
 class BillIndexComponent extends Component
 {
+
+   use WithPagination;
+   
       public $search = null;
 
       public $selectedBills = [];
