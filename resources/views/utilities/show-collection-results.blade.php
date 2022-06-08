@@ -45,7 +45,7 @@
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
-            <x-td>{{ number_format($collections->sum('collection'), 2) }}</x-td>
+            <x-td>{{ number_format($collections->sum('amount'), 2) }}</x-td>
             <x-td></x-td>
 
         </tr>
