@@ -1,15 +1,4 @@
 <div class="">
-    @if($start || $end)
-    <span>
-        <x-button class="text-black-600 cursor-pointer" wire:click="resetFilters"><i
-                class="fa-solid fa-circle-xmark"></i>&nbsp
-            Clear filters</x-button>
-    </span>
-    @else
-    <span class="font-bold">Apply Filters</span>
-    @endif
-</div>
-<div class="">
     <div class="flex">
         <div>
             

@@ -6,9 +6,10 @@
             </x-th>
             <x-th>#</x-th>
             {{-- <x-th>Reference #</x-th> --}}
+            <x-th>Date posted</x-th>
             <x-th>Tenant</x-th>
             <x-th>Unit</x-th>
-            <x-th>Date posted</x-th>
+          
             <x-th>Period Covered</x-th>
             <x-th>Particular</x-th>
             <x-th>Amount Due</x-th>
@@ -24,6 +25,7 @@
                 <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
             </x-td>
             <x-td>{{ $item->bill_no}}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
             <?php
                 $tenant = App\Models\Tenant::find($item->tenant_uuid)->tenant;
                 $unit = App\Models\Unit::find($item->unit_uuid)->unit
@@ -43,7 +45,7 @@
 
                 {{-- <x-td>{{ $item->tenant->tenant}}</x-td> --}}
 
-                <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
+               
                 {{-- <x-td>{{ $item->unit }}</x-td> --}}
                 <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                     y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}</x-td>

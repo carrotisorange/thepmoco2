@@ -151,7 +151,7 @@ class BillIndexComponent extends Component
                $query->whereDate('end', $this->end);
             })
             ->when($this->particular_id, function($query){
-               $query->where('particular_id', $this->particular_id);
+               $query->whereIn('particular_id', $this->particular_id);
             })
             ->when($this->created_at, function($query){
                 $query->whereDate('created_at', $this->created_at);
