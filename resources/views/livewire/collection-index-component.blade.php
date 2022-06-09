@@ -21,14 +21,7 @@
                             {{-- @include('utilities.show-collection-filters') --}}
                             @if($collections->count())
                             @include('utilities.show-collection-results')
-                            @else
-                            <div class="text-center mt-12">
-                                <span>No results found!</span>
-                                <img class="" src="{{ asset('/brands/no_results.png') }}" />
-                            </div>
-
                             @endif
-
                         </div>
                     </div>
                 </div>
