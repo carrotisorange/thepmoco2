@@ -52,31 +52,39 @@ class DeedOfSaleComponent extends Component
     {
         sleep(1);
 
-        $validatedData = $this->validate();
-        $validatedData['uuid'] = Str::uuid();
-        $validatedData['unit_uuid'] = $this->unit->uuid;
-        $validatedData['owner_uuid'] = $this->owner->uuid;
-        $validatedData['status'] = 'active';
-        $validatedData['classification'] = 'regular';
-        $validatedData['property_uuid'] = Session::get('property');
-
-          if($this->contract)
-          {
-             $validatedData['contract'] = $this->contract->store('deed_of_sales');
-          }
-
         try{
             DB::beginTransaction();
-                DeedOfSale::create($validatedData)->uuid;
+
+            $validated_data = $this->validate();
+
+            $this->store_deed_of_sale($validated_data);
+
             DB::commit();
-                return
-                redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale has been created.');
+            
+            return redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale has been created.');
         }catch(\Exception $e)
         {
-            ddd($e);
             DB::rollback();
             return redirect()->with('error','Cannot perform your action.');
         }
+    }
+
+    public function store_deed_of_sale($validated_data)
+    {
+        $validated_data = $this->validate();
+        $validated_data['uuid'] = Str::uuid();
+        $validated_data['unit_uuid'] = $this->unit->uuid;
+        $validated_data['owner_uuid'] = $this->owner->uuid;
+        $validated_data['status'] = 'active';
+        $validated_data['classification'] = 'regular';
+        $validated_data['property_uuid'] = Session::get('property');
+
+        if($this->contract)
+        {
+            $validated_data['contract'] = $this->contract->store('deed_of_sales');
+        }
+
+        DeedOfSale::create($validated_data)->uuid;
     }
 
     public function render()

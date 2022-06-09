@@ -23,12 +23,12 @@ class PropertyBillExpressController extends Controller
      */
     public function __invoke(Request $request, $property_uuid, $bill_count)
     {
-            $attributes = request()->validate([
+        $attributes = request()->validate([
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
             'start' => 'required|date',
             'end' => 'required|date|after:start',
             'due_date' => 'nullable|date|after:start',
-            ]);
+        ]);
     
         $tenant_uuid = Contract::where('property_uuid', Session::get('property'))
         ->where('contracts.status','active')
@@ -37,7 +37,12 @@ class PropertyBillExpressController extends Controller
         $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1;
 
         try{
-            for($i=0; $i<$bill_count; $i++){ $unit_uuid=Contract::where('property_uuid', Session::get('property')) ->
+
+            DB::beginTransaction();
+            
+            for($i=0; $i<$bill_count; $i++)
+            { 
+                $unit_uuid=Contract::where('property_uuid', Session::get('property')) ->
                 where('contracts.status','active')
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('unit_uuid');
@@ -53,7 +58,7 @@ class PropertyBillExpressController extends Controller
                 $attributes['tenant_uuid'] = $tenant_uuid[$i];
                 if($request->particular_id == 1)
                 {
-                $attributes['bill'] = $rent[0];
+                    $attributes['bill'] = $rent[0];
                 }
                 $attributes['bill_no'] = $bill_no++;
                 $attributes['reference_no'] = $reference_no->bill_reference_no;
@@ -65,20 +70,15 @@ class PropertyBillExpressController extends Controller
 
                 }
 
-                 Point::create([
-                 'user_id' => auth()->user()->id,
-                 'point' => $bill_count,
-                 'action_id' => 3,
-                 'property_uuid' => Session::get('property')
-                 ]);
+                app('App\Http\Controllers\PointController')->store(Session::get('property'), $bill_count, 3);
+
+                DB::commit();
 
                 return back()->with('success', $i.' bills have been posted.');
 
-
             }catch(\Exception $e)
-            {
-                ddd($e);
-
+            {   
+                DB::rollback();
                 return back('error')->with('success', 'Cannot perform your action.');
             }
     }

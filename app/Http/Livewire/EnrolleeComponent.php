@@ -21,6 +21,12 @@ class EnrolleeComponent extends Component
     public $unit;
     public $owner;
 
+    public $start;
+    public $end;
+    public $rent;
+    public $discount;
+    public $contract;
+
     public function mount($unit, $owner)
     {
         $this->unit = $unit;
@@ -37,94 +43,76 @@ class EnrolleeComponent extends Component
         $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
     }
 
-
-    public $start;
-    public $end;
-    public $rent;
-    public $discount;
-    public $contract;
-
     protected function rules()
     {
-    return [
-    'start' => 'required|date',
-    'end' => 'required|date|after:start',
-    'rent' => 'required|gt:0',
-    'discount' => 'required',
-    'contract' => 'nullable'
-    ];
+        return [
+            'start' => 'required|date',
+            'end' => 'required|date|after:start',
+            'rent' => 'required',
+            'discount' => 'required',
+            'contract' => 'nullable'
+        ];
     }
 
     public function updated($propertyName)
     {
-    $this->validateOnly($propertyName);
+        $this->validateOnly($propertyName);
     }
 
     public function submitForm()
     {
-    sleep(1);
+        sleep(1);
 
-    $contract_uuid = Str::uuid();
+        try {
+            DB::beginTransaction();
 
-    $validatedData = $this->validate();
+            $validated_data = $this->validate();
 
-    try {
-    DB::beginTransaction();
+            $this->store_enrollee($validated_data);
 
-    $validatedData['uuid'] = $contract_uuid;
-    $validatedData['owner_uuid'] = $this->owner->uuid;
-    $validatedData['unit_uuid'] = $this->unit->uuid;
-    $validatedData['user_id'] = auth()->user()->id;
-    $validatedData['property_uuid'] = Session::get('property');
+            $this->update_unit();
 
-     if($this->contract)
-     {
-        $validatedData['contract'] = $this->contract->store('owner_contracts');
-     }else{
-        $validatedData['contract'] = Property::find(Session::get('property'))->owner_contract;
-     }
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), 5, 2);
 
-    Enrollee::create($validatedData);
+            DB::commit();
+        
+            return redirect('/unit/'.$this->unit->uuid.'/deed_of_sales')->with('success','Unit has been enrolled.');
 
-    Unit::where('uuid', $this->unit->uuid)->update([
-        'is_enrolled' => 1,
-        'rent' => $this->rent,
-    ]);
-
-    Point::create([
-    'user_id' => auth()->user()->id,
-    'point' => 5,
-    'action_id' => 2,
-    'property_uuid' => Session::get('property')
-    ]);
-
-    //  $details =[
-    //  'property' => Session::get('property_name'),
-    //  'tenant' => $this->tenant->tenant,
-    //  'body' => 'Please be informed of the following details of your contract:',
-    //  'start' => Carbon::parse($this->start)->format('M d, Y'),
-    //  'end' => Carbon::parse($this->end)->format('M d, Y'),
-    //  'rent' => $this->rent,
-    //  'unit' => $this->unit->unit,
-    //  ];
-
-    //  Mail::to($this->owner->email)->send(new SendContractMailToOwner($details));
-
-    DB::commit();
-
-
-    return
-    redirect('/unit/'.$this->unit->uuid.'/deed_of_sales')->with('success','Unit has been enrolled.');
-
-    }catch (\Throwable $e) {
-        ddd($e);
-        DB::rollback();
-        return back()->with('error','Cannot complete your action.');
+        }catch (\Throwable $e) 
+        {
+            DB::rollback();
+            return back()->with('error','Cannot complete your action.');
         }   
+    }
+    
+    public function store_enrollee($validated_data)
+    {
+        $validated_data['uuid'] = Str::uuid();
+        $validated_data['owner_uuid'] = $this->owner->uuid;
+        $validated_data['unit_uuid'] = $this->unit->uuid;
+        $validated_data['user_id'] = auth()->user()->id;
+        $validated_data['property_uuid'] = Session::get('property');
+
+        if($this->contract)
+        {
+            $validated_data['contract'] = $this->contract->store('owner_contracts');
+        }else{
+            $validated_data['contract'] = Property::find(Session::get('property'))->owner_contract;
+        }
+
+        Enrollee::create($validated_data);
+    }
+
+    public function update_unit()
+    {
+        Unit::where('uuid', $this->unit->uuid)->update([
+            'is_enrolled' => 1,
+            'rent' => $this->rent,
+        ]);
     }
 
     public function render()
     {
-    return view('livewire.enrollee-component');
+        return view('livewire.enrollee-component');
     }
 }

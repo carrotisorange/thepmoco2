@@ -15,183 +15,174 @@ use Livewire\WithPagination;
 
 class BillIndexComponent extends Component
 {
-
    use WithPagination;
 
-      public $search = null;
+   public $search = null;
 
-      public $selectedBills = [];
-      public $selectAll = false;
+   public $selectedBills = [];
+   public $selectAll = false;
 
-      public $status = ['unpaid', 'partially_paid'];
-      public $start;
-      public $end;
-      public $particular_id = [];
-      public $created_at;
+   public $status = ['unpaid', 'partially_paid'];
+   public $start;
+   public $end;
+   public $particular_id = [];
+   public $created_at;
 
-      public function mount()
+   public function updatedSelectAll($value)
+   {
+      if($value)
       {
-         //$this->status = 'unpaid';
-         //$this->created_at = Carbon::now()->startOfMonth()->format('Y-m-d');
-         //$this->end = Carbon::now()->lastOfMonth()->format('Y-m-d');
-      }
-
-       public function updatedSelectAll($value)
-       {
-         if($value)
-         {
-            $this->selectedBills = Bill::search($this->search)
-
-            ->where('property_uuid', Session::get('property'))
-                
-                 ->when($this->status, function($query){
-                 $query->where('status', $this->status);
-                 })
-                  ->when($this->start, function($query){
-                  $query->whereBetween('start', [$this->start, $this->end]);
-                  })
-                ->when($this->end, function($query){
-                $query->whereBetween('end', [$this->start, $this->end]);
-                })
-                 ->when($this->particular_id, function($query){
-                 $query->where('particular_id', $this->particular_id);
-                 })
-                 ->when($this->created_at, function($query){
-                 $query->whereDate('created_at', $this->created_at);
-                 })
-            
-            ->pluck('id');
-         }else
+         $this->selectedBills = Bill::search($this->search)
+         ->where('property_uuid', Session::get('property'))
+         ->when($this->status, function($query){
+            $query->where('status', $this->status);
+         })
+         ->when($this->start, function($query){
+            $query->whereBetween('start', [$this->start, $this->end]);
+         })
+         ->when($this->end, function($query){
+            $query->whereBetween('end', [$this->start, $this->end]);
+         })
+         ->when($this->particular_id, function($query){
+            $query->where('particular_id', $this->particular_id);
+         })
+         ->when($this->created_at, function($query){
+            $query->whereDate('created_at', $this->created_at);
+         })->pluck('id');
+         }
+         else
          {
             $this->selectedBills = [];
          }
        }
 
-      public function resetFilters()
-      {
-        $this->status = [];
-        $this->start = '';
-        $this->end = '';
-        $this->particular_id = [];
-        $this->created_at = '';
-      }
+   public function resetFilters()
+   {
+      $this->status = [];
+      $this->start = '';
+      $this->end = '';
+      $this->particular_id = [];
+      $this->created_at = '';
+   }
 
-      public function deleteBills()
-      {
-         Bill::destroy($this->selectedBills);
+   public function deleteBills()
+   {
+      Bill::destroy($this->selectedBills);
 
-         $this->selectedBills = [];
+      $this->selectedBills = [];
 
-         $this->bills = Bill::search($this->search)
-         ->orderBy('bill_no', 'asc')
-         ->where('property_uuid', Session::get('property'))
-         ->when($this->status, function($query){
-         $query->whereIn('status', $this->status);
-         })
+      $this->bills = $this->get_bills();
+   }
+
+   public function get_bills()
+   {
+      return Bill::search($this->search)
+      ->orderBy('bill_no', 'asc')
+      ->where('property_uuid', Session::get('property'))
+      ->when($this->status, function($query){
+      $query->whereIn('status', $this->status);
+      })
          ->when($this->start, function($query){
-         $query->whereBetween('start', [$this->start, $this->end]);
-         })
+      $query->whereBetween('start', [$this->start, $this->end]);
+      })
          ->when($this->end, function($query){
-         $query->whereBetween('end', [$this->start, $this->end]);
-         })
+      $query->whereBetween('end', [$this->start, $this->end]);
+      })
          ->when($this->particular_id, function($query){
-         $query->where('particular_id', $this->particular_id);
-         })
+      $query->whereIn('particular_id', $this->particular_id);
+      })
          ->when($this->created_at, function($query){
-         $query->whereDate('created_at', $this->created_at);
-         })
-         ->get();
+      $query->whereDate('created_at', $this->created_at);
+      })->paginate(10);
+   }
 
-         //return redirect('/property/'.Session::get('property').'/bills')->with('success','Bills successfully removed.');
-      }
+   public function unpayBills()
+   {
+      $this->update_bill();
 
-      public function unpayBills()
-     {
-         Bill::whereIn('id', $this->selectedBills)
-         ->update([
-            'status' => 'unpaid',
-            'initial_payment' => 0
-         ]);
+      $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
 
-          $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
+      app('App\Http\Controllers\AcknowledgementReceiptController')->store($collection_batch_no);
 
-          AcknowledgementReceipt::where('collection_batch_no', $collection_batch_no)->delete();
+      $this->delete_collection();
 
-         Collection::whereIn('bill_id', $this->selectedBills)
-           ->delete();
-
-          $this->selectedBills = [];
+      $this->selectedBills = [];
 
       return redirect('/property/'.Session::get('property').'/bills')->with('success','Bills successfully marked as unpaid.');
         
-     }
+   }
 
-    public function render()
-    {
-        $statuses = Bill::where('bills.property_uuid', Session::get('property'))
-         ->select('status', DB::raw('count(*) as count'))
-         ->groupBy('status')
-         ->get();
+   public function delete_collection()
+   {
+      Collection::whereIn('bill_id', $this->selectedBills)->delete();
+   }
 
-        $particulars = Particular::join('bills', 'particulars.id', 'bills.particular_id')
-        ->select('particular','particulars.id as particular_id', DB::raw('count(*) as count'))
-        ->where('bills.property_uuid', Session::get('property'))
-        ->groupBy('particulars.id')
-        ->get();
+   public function update_bill()
+   {
+      Bill::whereIn('id', $this->selectedBills)
+      ->update([
+      'status' => 'unpaid',
+      'initial_payment' => 0
+      ]);
+   }
 
-         $dates_posted = Bill::where('property_uuid', Session::get('property'))
-         ->select('*',DB::raw("(DATE_FORMAT(created_at,'%M %d, %Y')) as date_posted"), DB::raw('count(*) as count'))
-         ->groupBy('date_posted')
-         ->orderBy('created_at')
-         ->get();
+   public function render()
+   {
+      $statuses = $this->get_statuses();
 
-         $period_covered_starts = Bill::where('property_uuid', Session::get('property'))
-          ->select('*',DB::raw("(DATE_FORMAT(start,'%M %d, %Y')) as period_covered_start"), DB::raw('count(*) as count'))
-          ->groupBy('period_covered_start')
-          ->orderBy('start')
-          ->get();
+      $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
 
-         $period_covered_ends = Bill::where('property_uuid', Session::get('property'))
-            ->select('*',DB::raw("(DATE_FORMAT(end,'%M %d, %Y')) as period_covered_end"), DB::raw('count(*) as
-            count'))
-            ->groupBy('period_covered_end')
-            ->orderBy('end')
-            ->get();
+      $dates_posted = $this->get_posted_dates(); 
 
-         $total_count = Bill::whereIn('id', $this->selectedBills)
-         ->whereIn('status', ['paid', 'partially_paid'])
-         ->count();
+      $period_covered_starts = $this->get_period_covered_starts();
 
-            $bills =  Bill::search($this->search)
-            ->orderBy('bill_no', 'asc')
-            ->where('property_uuid', Session::get('property'))
-            ->when($this->status, function($query){
-               $query->whereIn('status', $this->status);
-            })
-            ->when($this->start, function($query){
-               $query->whereBetween('start', [$this->start, $this->end]); 
-            })
-             ->when($this->end, function($query){
-             $query->whereBetween('end', [$this->start, $this->end]);
-             })
-            ->when($this->particular_id, function($query){
-               $query->whereIn('particular_id', $this->particular_id);
-            })
-            ->when($this->created_at, function($query){
-                $query->whereDate('created_at', $this->created_at);
-            })
-            ->paginate(10);
+      $period_covered_ends = $this->get_period_covered_ends();
+
+      $bills = $this->get_bills();
          
-        return view('livewire.bill-index-component', [
-            'bills' => $bills,
-            'statuses' => $statuses,
-            'particulars' => $particulars,
-            'total_count' => $total_count,
-             'total_paid_bills' => $bills->where('status', 'paid')->sum('bill'),
-             'total_unpaid_bills' => $bills->where('status', 'unpaid')->sum('bill'),
-             'dates_posted' => $dates_posted,
-             'period_covered_starts' => $period_covered_starts,
-             'period_covered_ends' => $period_covered_ends
+      return view('livewire.bill-index-component', [
+         'bills' => $bills,
+         'statuses' => $statuses,
+         'particulars' => $particulars,
+         'dates_posted' => $dates_posted,
+         'period_covered_starts' => $period_covered_starts,
+         'period_covered_ends' => $period_covered_ends
         ]);
-    }
+   }
+
+   public function get_statuses()
+   {
+      return Bill::where('bills.property_uuid', Session::get('property'))
+      ->select('status', DB::raw('count(*) as count'))
+      ->groupBy('status')
+      ->get();
+   }
+
+   public function get_posted_dates()
+   {
+      return Bill::where('property_uuid', Session::get('property'))
+      ->select('*',DB::raw("(DATE_FORMAT(created_at,'%M %d, %Y')) as date_posted"), DB::raw('count(*) as count'))
+      ->groupBy('date_posted')
+      ->orderBy('created_at')
+      ->get();
+   }
+
+   public function get_period_covered_starts()
+   {
+      return Bill::where('property_uuid', Session::get('property'))
+      ->select('*',DB::raw("(DATE_FORMAT(start,'%M %d, %Y')) as period_covered_start"), DB::raw('count(*) as count'))
+      ->groupBy('period_covered_start')
+      ->orderBy('start')
+      ->get();
+   }
+
+   public function get_period_covered_ends()
+   {
+      return Bill::where('property_uuid', Session::get('property'))
+      ->select('*',DB::raw("(DATE_FORMAT(end,'%M %d, %Y')) as period_covered_end"), DB::raw('count(*) as count'))
+      ->groupBy('period_covered_end')
+      ->orderBy('end')
+      ->get();
+   }
+
 }

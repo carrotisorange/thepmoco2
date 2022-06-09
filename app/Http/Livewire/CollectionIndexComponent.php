@@ -9,11 +9,8 @@ use Session;
 class CollectionIndexComponent extends Component
 {
     public $search = null;
-    
     public $start = [];
-
     public $end = [];
-
 
     public function resetFilters()
     {
@@ -23,19 +20,23 @@ class CollectionIndexComponent extends Component
 
     public function render()
     {
-        $collections = AcknowledgementReceipt::search($this->search)
+        $ars = $this->get_ars();
+
+        return view('livewire.collection-index-component',[
+            'ars' => $ars
+        ]);
+    }
+
+    public function get_ars()
+    {
+        return AcknowledgementReceipt::search($this->search)
         ->orderBy('ar_no', 'asc')
         ->where('property_uuid', Session::get('property'))
         ->when($this->start, function($query){
-        $query->whereDate('created_at', $this->start);
+            $query->whereDate('created_at', $this->start);
         })
         ->when($this->end, function($query){
-        $query->orWhereDate('created_at', $this->end);
-        })
-        ->paginate(10);
-
-        return view('livewire.collection-index-component',[
-            'collections' => $collections
-        ]);
+            $query->orWhereDate('created_at', $this->end);
+        })->paginate(10);
     }
 }

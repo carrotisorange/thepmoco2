@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PropertyParticular;
 use Illuminate\Http\Request;
 use Session;
+use App\Models\Particular;
+use DB;
 
 class PropertyParticularController extends Controller
 {
@@ -13,9 +15,13 @@ class PropertyParticularController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($property)
     {
-        //
+        return Particular::join('bills', 'particulars.id', 'bills.particular_id')
+        ->select('particular','particulars.id as particular_id', DB::raw('count(*) as count'))
+        ->where('bills.property_uuid', $property)
+        ->groupBy('particulars.id')
+        ->get();
     }
 
     /**

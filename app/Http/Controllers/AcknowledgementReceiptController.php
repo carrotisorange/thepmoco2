@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\AcknowledgementReceipt;
 use Illuminate\Http\Request;
+use App\Models\Property;
+use Session;
 
 class AcknowledgementReceiptController extends Controller
 {
@@ -14,7 +16,11 @@ class AcknowledgementReceiptController extends Controller
      */
     public function index()
     {
-        //
+        $collections = Property::find(Session::get('property'))->acknowledgementreceipts;
+
+        return view('collections.index',[
+           'collections'=> $collections,
+        ]);
     }
 
     /**
@@ -78,8 +84,8 @@ class AcknowledgementReceiptController extends Controller
      * @param  \App\Models\AcknowledgementReceipt  $acknowledgementReceipt
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AcknowledgementReceipt $acknowledgementReceipt)
+    public function destroy($collection_batch_no)
     {
-        //
+        AcknowledgementReceipt::where('collection_batch_no', $collection_batch_no)->delete();
     }
 }

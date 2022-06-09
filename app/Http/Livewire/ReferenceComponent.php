@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\Reference;
 use Illuminate\Support\Str;
 use App\Models\Relationship;
+use DB;
 
 use Livewire\Component;
 
@@ -13,55 +14,74 @@ class ReferenceComponent extends Component
      public $tenant;
      public $references;
 
-     public function mount($unit, $tenant, $references)
-     {
-     $this->unit = $unit;
-     $this->tenant = $tenant;
-     $this->references = $references;
-     }
-
      public $reference;
      public $relationship_id;
      public $mobile_number;
      public $email;
 
+     public function mount($unit, $tenant, $references)
+     {
+          $this->unit = $unit;
+          $this->tenant = $tenant;
+          $this->references = $references;
+     }
+
      protected function rules()
      {
-     return [
-     'reference' => 'required',
-     'email' => ['nullable', 'string', 'email', 'max:255'],
-     'mobile_number' => 'required',
-     'relationship_id' => 'required',
-     ];
+          return [
+               'reference' => 'required',
+               'email' => ['nullable', 'string', 'email', 'max:255'],
+               'mobile_number' => 'required',
+               'relationship_id' => 'required',
+          ];
      }
 
      public function updated($propertyName)
      {
-     $this->validateOnly($propertyName);
+          $this->validateOnly($propertyName);
      }
 
      public function submitForm()
      {
-     sleep(1);
+          sleep(1);
 
-     $validatedData = $this->validate();
+          $validated_data = $this->validate();
 
-     $validatedData['tenant_uuid'] = $this->tenant->uuid;
-     Reference::create($validatedData);
+          $validated_data = $this->store_reference($validated_data);
 
-     $this->resetForm();
+          try{
+               DB::beginTransaction();
+              
+               Reference::create($validated_data);
 
-     return
-     redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/reference/'.Str::random(8).'/create')->with('success',
-     'Reference has been created.');
+               $this->resetForm();
+
+               return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/reference/'.Str::random(8).'/create')->with('success', 'Reference is successfully created.');
+
+               DB::commit();
+          }
+          catch(\Exception $e)
+          {
+               DB::rollback();
+
+               app('App\Http\Controllers\ErrorController')->show();
+          }
+     }
+
+     public function store_reference($validated_data)
+     {
+          $validated_data['tenant_uuid'] = $this->tenant->uuid;
+          
+          return $validated_data;
+
      }
 
      public function resetForm()
      {
-     $this->reference='';
-     $this->email='';
-     $this->mobile_number='';
-     $this->relationship_id='';
+          $this->reference='';
+          $this->email='';
+          $this->mobile_number='';
+          $this->relationship_id='';
      }
 
      public function render()

@@ -86,51 +86,64 @@ class OldTenantComponent extends Component
     {
         sleep(1);
         
-        $validatedData = $this->validate();
+        $validated_data = $this->validate();
 
-        $validatedData['uuid'] = Str::uuid();
+        $validated_data = $this->store_tenant($validated_data);
+
+       try{
+            DB::beginTransaction();
+
+            $tenant = Tenant::create($validated_data)->uuid;
+
+            DB::commit();
+
+            return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success','Tenant has been created.');
+
+       }catch(\Exception $e)
+       {
+            DB::rollback();
+
+            app('App\Http\Controllers\ErrorController')->show();
+       }
+
+    }
+
+    public function store_tenant($validated_data)
+    {
+        $validated_data['uuid'] = Str::uuid();
 
         if($this->photo_id)
         {
-            $validatedData['photo_id'] = $this->photo_id->store('tenants');
+            $validated_data['photo_id'] = $this->photo_id->store('tenants');
         }else
         {
-            $validatedData['photo_id'] = 'avatars/avatar.png';
+            $validated_data['photo_id'] = 'avatars/avatar.png';
         }
 
-         if(!$this->country_id)
-         {
-            $validatedData['country_id'] = '247';
-         }
+        if(!$this->country_id)
+        {
+            $validated_data['country_id'] = '247';
+        }
 
-         if(!$this->province_id)
-         {
-            $validatedData['province_id'] = '4121';
-         }
+        if(!$this->province_id)
+        {
+            $validated_data['province_id'] = '4121';
+        }
 
-         if(!$this->city_id)
-         {
-            $validatedData['city_id'] = '48315';
-         }
+        if(!$this->city_id)
+        {
+            $validated_data['city_id'] = '48315';
+        }
 
         $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1;
 
         $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
-        $validatedData['property_uuid'] = Session::get('property');
-        $validatedData['bill_reference_no'] = $reference_no;
+        $validated_data['property_uuid'] = Session::get('property');
+        
+        $validated_data['bill_reference_no'] = $reference_no;
 
-       try{
-            DB::beginTransaction();
-            $tenant = Tenant::create($validatedData)->uuid;
-            DB::commit();
-            return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success','Tenant has been created.');
-       }catch(\Exception $e)
-       {
-            DB::rollback();
-            return redirect()->with('error','Cannot perform your action.');
-       }
-
+        return $validated_data;
     }
 
     public function render()

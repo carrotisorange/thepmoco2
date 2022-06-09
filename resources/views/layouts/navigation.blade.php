@@ -77,9 +77,9 @@
 
                 @can('treasury')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/collections"
-                        :active="request()->routeIs('collections')">
-                        <i class="fa-solid fa-cash-register"></i>&nbspCollections
+                    <x-nav-link href="/property/{{ Session::get('property') }}/payments"
+                        :active="request()->routeIs('payments')">
+                        <i class="fa-solid fa-cash-register"></i>&nbspPayments
                     </x-nav-link>
                 </div>
                 @endcan
@@ -224,9 +224,9 @@
 
 
             @can('treasury')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/collections"
-                :active="request()->routeIs('collections')">
-                <i class="fa-solid fa-cash-register"></i>&nbspCollections
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/payments"
+                :active="request()->routeIs('payments')">
+                <i class="fa-solid fa-cash-register"></i>&nbspPayments
             </x-responsive-nav-link>
             @endcan
 

@@ -46,7 +46,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
      Route::get('bills', [BillController::class, 'index'])->name('bills');
 
-     Route::get('collections', [CollectionController::class, 'index'])->name('collections');
+     Route::get('payments', [AcknowledgementReceiptController::class, 'index'])->name('payments');
 
      Route::get('concerns', [ConcernController::class, 'index'])->name('concerns');
     

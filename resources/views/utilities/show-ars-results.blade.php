@@ -12,27 +12,27 @@
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-        @forelse ($collections as $item)
+        @forelse ($ars as $ar)
         <tr>
-            <x-td>{{ $item->ar_no }}</x-td>
-            {{-- <x-td><a href="/tenant/{{ $item->tenant->uuid }}/collections"><b class="text-blue-600">{{
-                        $item->tenant->bill_reference_no}}</b></a></x-td> --}}
+            <x-td>{{ $ar->ar_no }}</x-td>
+            {{-- <x-td><a href="/tenant/{{ $ar->tenant->uuid }}/ars"><b class="text-blue-600">{{
+                        $ar->tenant->bill_reference_no}}</b></a></x-td> --}}
             <?php
-                $tenant = App\Models\Tenant::find($item->tenant_uuid)->tenant;
-                //$unit = App\Models\Unit::find($item->unit_uuid)->unit
+                $tenant = App\Models\Tenant::find($ar->tenant_uuid)->tenant;
+                //$unit = App\Models\Unit::find($ar->unit_uuid)->unit
             ?>
-            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
-            <x-td><a href="/tenant/{{ $item->tenant->uuid }}/collections"><b class="text-blue-600">{{ $tenant }}</b></a>
+            <x-td>{{ Carbon\Carbon::parse($ar->created_at)->format('M d, Y') }}
+            <x-td><a href="/tenant/{{ $ar->tenant->uuid }}/ars"><b class="text-blue-600">{{ $tenant }}</b></a>
             </x-td>
            
             </x-td>
-            <x-td>{{ $item->mode_of_payment }}</x-td>
+            <x-td>{{ $ar->mode_of_payment }}</x-td>
             <?php
-                $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->count();
+                $collections_count = App\Models\Collection::where('batch_no', $ar->collection_batch_no)->count();
             ?>
-            <x-td>{{ number_format($item->amount,2) }} ({{ $collections_count }})</x-td>
+            <x-td>{{ number_format($ar->amount,2) }} ({{ $collections_count }})</x-td>
             <x-td>
-                <x-button onclick="window.location.href='/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export'">
+                <x-button onclick="window.location.href='/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/export'">
                     <i class="fa-solid fa-download"></i>&nbspExport
                 </x-button>
             </x-td>
@@ -48,7 +48,7 @@
             <?php
                 $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property'))->count();
             ?>
-            <x-td>{{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})</x-td>
+            <x-td>{{ number_format($ars->sum('amount'), 2) }} ({{ $property_collections_count }})</x-td>
             <x-td></x-td>
 
         </tr>

@@ -21,21 +21,20 @@ class BillComponent extends Component
       public $contract;
       public $bills;
 
-      public function mount($unit, $tenant, $contract, $bills)
-      {
-        $this->unit = $unit;
-        $this->tenant = $tenant;
-        $this->contract = $contract;
-        $this->bills = $bills;
-        $this->end = Carbon::now()->addYear()->format('Y-m-d');
-        $this->start = Carbon::now()->format('Y-m-d');
-      }
-
       public $particular_id;
       public $bill;
       public $start;
       public $end;
 
+    public function mount($unit, $tenant, $contract, $bills)
+    {
+      $this->unit = $unit;
+      $this->tenant = $tenant;
+      $this->contract = $contract;
+      $this->bills = $bills;
+      $this->end = Carbon::now()->addYear()->format('Y-m-d');
+      $this->start = Carbon::now()->format('Y-m-d');
+    }
     protected function rules()
     {
         return [
@@ -46,65 +45,68 @@ class BillComponent extends Component
             ];
     }
 
-      public function updated($propertyName)
-      {
-        $this->validateOnly($propertyName);
-      }
+    public function updated($propertyName)
+    {
+      $this->validateOnly($propertyName);
+    }
 
-      public function submitForm()
-      {
+    public function submitForm()
+    {
       sleep(1);
 
-      $validatedData = $this->validate();
+      $validated_data = $this->validate();
 
       $bill_no = Property::find(Session::get('property'))->bills->max('bill_no');
 
-      try {
-        $validatedData['reference_no'] = Tenant::find($this->tenant->uuid)->bill_reference_no;
-        $validatedData['tenant_uuid'] = $this->tenant->uuid;
-        $validatedData['unit_uuid'] = $this->unit->uuid;
-        $validatedData['property_uuid'] = Session::get('property');
-        $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['bill_no'] = $bill_no+1;
-        $validatedData['due_date'] = Carbon::now()->addDays(7);
-        $validatedData['description'] = 'movein charges';
-
-        Bill::create($validatedData);
-        DB::commit();
-        $this->resetForm();
-        return
-        redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success',
-        'Bill is successfully posted.');
-        } catch (\Throwable $e) {
-        DB::rollback();
-         return
-         redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success',
-         'Cannot perform the action. Please try again.');
-      }
-     
-      }
-
-      public function resetForm()
+      try
       {
+        $this->store_bill($validated_data, $bill_no);
+
+        DB::commit();
+
+        $this->resetForm();
+
+        return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Bill is successfully posted.');
+      } 
+      catch (\Throwable $e) {
+        DB::rollback();
+        return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Cannot perform the action. Please try again.');
+      }
+    }
+
+    public function resetForm()
+    {
       $this->particular_id='';
       $this->bill='';
       $this->start='';
       $this->end='';
-      }
+    }
 
-      public function render()
-      {
+    public function store_bill($validated_data, $bill_no)
+    {
+      $validated_data['reference_no'] = Tenant::find($this->tenant->uuid)->bill_reference_no;
+      $validated_data['tenant_uuid'] = $this->tenant->uuid;
+      $validated_data['unit_uuid'] = $this->unit->uuid;
+      $validated_data['property_uuid'] = Session::get('property');
+      $validated_data['user_id'] = auth()->user()->id;
+      $validated_data['bill_no'] = $bill_no+1;
+      $validated_data['due_date'] = Carbon::now()->addDays(7);
+      $validated_data['description'] = 'movein charges';
 
-        $contract = Contract::find($this->contract->uuid);
+      Bill::create($validated_data);
+    }
 
-        $particulars = Particular::join('property_particulars', 'particulars.id',
-        'property_particulars.particular_id')
-        ->where('property_uuid', Session::get('property'))
-        ->get();
+    public function render()
+    {
+      $contract = Contract::find($this->contract->uuid);
+
+      $particulars = Particular::join('property_particulars', 'particulars.id','property_particulars.particular_id')
+      ->where('property_uuid', Session::get('property'))
+      ->get();
         
       return view('livewire.bill-component',[
         'particulars' => $particulars,
         'contract' => $contract
       ]);
-      }
+    }
 }

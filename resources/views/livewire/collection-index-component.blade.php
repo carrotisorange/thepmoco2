@@ -11,16 +11,16 @@
             @endif
         </div>
         <div class="mt-5">
-            {{ $collections->links() }}
+            {{ $ars->links() }}
         </div>
         <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
                 <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="overflow-hidden sm:rounded-lg">
-                            {{-- @include('utilities.show-collection-filters') --}}
-                            @if($collections->count())
-                            @include('utilities.show-collection-results')
+                            {{-- @include('utilities.show-ars-filters') --}}
+                            @if($ars->count())
+                            @include('utilities.show-ars-results')
                             @endif
                         </div>
                     </div>
