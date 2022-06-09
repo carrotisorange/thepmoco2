@@ -45,7 +45,7 @@ class CollectionModalComponent extends ModalComponent
         $this->collection = $total;
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->tenant = $tenant;
-        $this->exportCollection = true;
+        $this->exportCollection = false;
     }
 
     protected function rules()
