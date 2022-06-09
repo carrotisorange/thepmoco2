@@ -61,7 +61,7 @@
                         <div class="mt-5 mx-5">
                             <div class="mt-6 flex flex-wrap mb-2">
                                 <div class="w-full md:w-1/2 mb-6 md:mb-0">
-                                    <x-label for="country_id">
+                                    <x-label for="email">
                                         Email
                                     </x-label>
                                     <div class="relative">
@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
                                 <div class="w-full md:w-1/2 mb-6 md:mb-0">
-                                    <x-label for="province_id">
+                                    <x-label for="mobile">
                                         Mobile
                                     </x-label>
                                     <div class="relative">

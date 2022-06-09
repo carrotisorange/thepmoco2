@@ -78,7 +78,7 @@ class CollectionModalComponent extends ModalComponent
 
             $this->store_collection($validatedData, $collection_ar_no, $collection_batch_no);
 
-            app('App\Http\Controllers\PointController')->store(count($this->selectedBills), 4);
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), count($this->selectedBills), 4);
 
             $ar = $this->store_ar($collection_ar_no, $collection_batch_no);
 

@@ -49,8 +49,7 @@ class PropertyComponent extends Component
             'tenant_contract' => 'nullable|mimes:pdf',
             'owner_contract' => 'nullable|mimes:pdf',
             'description' => 'nullable',
-             'country_
-             id' => ['required', Rule::exists('countries', 'id')],
+             'country_id' => ['required', Rule::exists('countries', 'id')],
              'province_id' => ['required', Rule::exists('provinces', 'id')],
              'city_id' => ['required', Rule::exists('cities', 'id')],
              'barangay' => ['required'],
@@ -132,6 +131,8 @@ class PropertyComponent extends Component
                'role_id'=> $i,
             ]);
         }
+
+         app('App\Http\Controllers\PointController')->store($property_uuid, 50, 6);
 
         DB::commit();
          return redirect('/property/'.$property_uuid)->with('success', 'Property is successfully created.');

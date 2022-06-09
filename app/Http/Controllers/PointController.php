@@ -40,13 +40,13 @@ class PointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($point, $action_id)
+    public function store($property_uuid, $point, $action_id)
     {
           Point::create([
           'user_id' => auth()->user()->id,
           'point' => $point,
           'action_id' => $action_id,
-          'property_uuid' => Session::get('property')
+          'property_uuid' => $property_uuid
           ]);
     }
 

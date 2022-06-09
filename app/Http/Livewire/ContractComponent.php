@@ -82,7 +82,7 @@ class ContractComponent extends Component
 
             $this->store_bill();
 
-            app('App\Http\Controllers\PointController')->store(5, 1);
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), 5, 1);
 
             $this->send_mail_to_tenant();
 
