@@ -78,7 +78,7 @@ class CollectionModalComponent extends ModalComponent
 
             $this->store_collection($validatedData, $collection_ar_no, $collection_batch_no);
 
-            $this->store_point();
+            app('App\Http\Controllers\PointController')->store(count($this->selectedBills), 4);
 
             $ar = $this->store_ar($collection_ar_no, $collection_batch_no);
 
@@ -86,12 +86,12 @@ class CollectionModalComponent extends ModalComponent
             
             $this->resetForm();
 
-           $this->export_ar($ar);
+            $this->export_ar($ar);
     
        }catch(\Exception $e)
        {    
            DB::rollback();
-            return back()->with('error','Cannot perform your action.');
+           return back()->with('error','Cannot perform your action.');
        }
     }
 
@@ -133,16 +133,6 @@ class CollectionModalComponent extends ModalComponent
         }
 
         return $ar;
-    }
-
-    public function store_point()
-    {
-        Point::create([
-            'user_id' => auth()->user()->id,
-            'point' => count($this->selectedBills),
-            'action_id' => 4,
-            'property_uuid' => Session::get('property')
-        ]);
     }
 
     public function store_collection($validatedData, $collection_ar_no , $collection_batch_no)

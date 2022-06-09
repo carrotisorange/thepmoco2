@@ -72,15 +72,17 @@ class ContractComponent extends Component
         try {
             DB::beginTransaction();
 
-            $this->store_contract($validatedData);
+            $contract_uuid = Str::uuid();
 
-            $this->store_referral();
+            $this->store_contract($validatedData, $contract_uuid);
 
-            $this->update_unit();
+            $this->store_referral($contract_uuid);
+
+            $this->update_unit(4);
 
             $this->store_bill();
 
-            $this->add_points();
+            app('App\Http\Controllers\PointController')->store(5, 1);
 
             $this->send_mail_to_tenant();
 
@@ -106,22 +108,9 @@ class ContractComponent extends Component
 
         if($this->rent > 0)
         {
-          Bill::create([
-            'bill_no' => $bill_no++,
-            'bill' => $this->rent,
-            'reference_no' => $this->tenant->bill_reference_no,
-            'start' => $this->start,
-            'end' => Carbon::parse($this->start)->addMonth(),
-            'due_date' => Carbon::parse($this->start)->addDays(7),
-            'description' => 'movein charges',
-            'user_id' => auth()->user()->id,
-            'particular_id' => '1',
-            'property_uuid' => Session::get('property'),
-            'unit_uuid' => $this->unit->uuid,
-            'tenant_uuid' => $this->tenant->uuid,
-          ]);
-
-          Bill::create([
+          for($i=1; $i<=2; $i++)
+          {
+            Bill::create([
             'bill_no' => $bill_no++,
             'bill' => $this->rent,
             'reference_no' => $this->tenant->bill_reference_no,
@@ -130,13 +119,16 @@ class ContractComponent extends Component
             'due_date' => Carbon::parse($this->start)->addDays(7),
             'description' => 'movein charges',
             'user_id' => auth()->user()->id,
-            'particular_id' => '2',
+            'particular_id' => $i,
             'property_uuid' => Session::get('property'),
             'unit_uuid' => $this->unit->uuid,
             'tenant_uuid' => $this->tenant->uuid,
-          ]);
+            ]);
+          }
 
-          Bill::create([
+          for($i=3; $i<=4; $i++)
+          {
+            Bill::create([
             'bill_no' => $bill_no++,
             'bill' => $this->rent,
             'reference_no' => $this->tenant->bill_reference_no,
@@ -145,26 +137,12 @@ class ContractComponent extends Component
             'due_date' => Carbon::parse($this->start)->addDays(7),
             'description' => 'movein charges',
             'user_id' => auth()->user()->id,
-            'particular_id' => '3',
+            'particular_id' => $i,
             'property_uuid' => Session::get('property'),
             'unit_uuid' => $this->unit->uuid,
             'tenant_uuid' => $this->tenant->uuid,
-          ]);
-
-          Bill::create([
-            'bill_no' => $bill_no++,
-            'bill' => $this->rent,
-            'reference_no' => $this->tenant->bill_reference_no,
-            'start' => $this->start,
-            'end' => $this->end,
-            'due_date' => Carbon::parse($this->start)->addDays(7),
-            'description' => 'movein charges',
-            'user_id' => auth()->user()->id,
-            'particular_id' => '4',
-            'property_uuid' => Session::get('property'),
-            'unit_uuid' => $this->unit->uuid,
-            'tenant_uuid' => $this->tenant->uuid,
-          ]);
+            ]);
+          }
         }
 
         if($this->discount > 0){
@@ -186,17 +164,7 @@ class ContractComponent extends Component
       }
     }
 
-      public function add_points()
-      {
-        Point::create([
-        'user_id' => auth()->user()->id,
-        'point' => 5,
-        'action_id' => 1,
-        'property_uuid' => Session::get('property')
-        ]);
-      }
-
-      public function store_referral()
+      public function store_referral($contract_uuid)
       {
         if($this->referral)
         {
@@ -208,9 +176,9 @@ class ContractComponent extends Component
         }
       }
 
-      public function store_contract($validatedData)
+      public function store_contract($validatedData, $contract_uuid)
       {
-         $validatedData['uuid'] = Str::uuid();
+         $validatedData['uuid'] = $contract_uuid;
          $validatedData['tenant_uuid'] = $this->tenant->uuid;
          $validatedData['unit_uuid'] = $this->unit->uuid;
          $validatedData['property_uuid'] = Session::get('property');
@@ -227,11 +195,11 @@ class ContractComponent extends Component
          Contract::create($validatedData);
       }
 
-      public function update_unit()
+      public function update_unit($status_id)
       {
         Unit::where('uuid', $this->unit->uuid)
         ->update([
-           'status_id' => 4
+           'status_id' => $status_id
         ]);
       }
 

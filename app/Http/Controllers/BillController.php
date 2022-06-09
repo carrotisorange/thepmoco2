@@ -89,6 +89,7 @@ class BillController extends Controller
      
 
         Bill::create($attributes);
+        
         DB::commit();
         return back()->with('success', 'Bill has been created.');
         } catch (\Throwable $e) {

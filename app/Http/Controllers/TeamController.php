@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use DB;
 
-
 class TeamController extends Controller
 {
     /**

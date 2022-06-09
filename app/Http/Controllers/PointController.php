@@ -6,6 +6,7 @@ use App\Models\Point;
 use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
+use Session;
 
 class PointController extends Controller
 {
@@ -39,9 +40,14 @@ class PointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($point, $action_id)
     {
-        //
+          Point::create([
+          'user_id' => auth()->user()->id,
+          'point' => $point,
+          'action_id' => $action_id,
+          'property_uuid' => Session::get('property')
+          ]);
     }
 
     /**
