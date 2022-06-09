@@ -62,11 +62,12 @@
         <div class="mt-3 mb-3">
             <x-search placeholder="search for reference no"></x-search>
         </div>
+        @if(App\Models\Bill::where('property_uuid',Session::get('property'))->count())
         <div class="mt-3 p-6">
             @include('utilities.show-bill-filters')
 
         </div>
-
+        @endif
         <div class="mt-2 mb-2">
             {{ $bills->links() }}
         </div>
