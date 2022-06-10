@@ -2,7 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>
-                <x-input id="" wire:model="selectAll" type="checkbox" />
+                <x-input id="" wire:model="selectAllBills" type="checkbox" />
             </x-th>
             <x-th>#</x-th>
             {{-- <x-th>Reference #</x-th> --}}

@@ -11,6 +11,7 @@ use Session;
 use Illuminate\Validation\Rule;
 use App\Models\Contract;
 use App\Models\Tenant;
+use DB;
 use App\Models\Point;
 
 class PropertyBillExpressController extends Controller

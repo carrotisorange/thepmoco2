@@ -5,9 +5,7 @@
         </div>
         <div class="mt-1">
             @if($start || $end)
-            <x-button class="text-black-600 cursor-pointer" wire:click="resetFilters"><i
-                    class="fa-solid fa-circle-xmark"></i>&nbsp
-                Clear filters</x-button>
+            <x-button class="text-black-600 cursor-pointer" wire:click="resetFilters"><i class="fa-solid fa-circle-xmark"></i>&nbsp Clear filters</x-button>
             @endif
         </div>
         <div class="mt-5">

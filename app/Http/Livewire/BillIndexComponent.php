@@ -20,7 +20,7 @@ class BillIndexComponent extends Component
    public $search = null;
 
    public $selectedBills = [];
-   public $selectAll = false;
+   public $selectAllBills = false;
 
    public $status = ['unpaid', 'partially_paid'];
    public $start;
@@ -28,33 +28,17 @@ class BillIndexComponent extends Component
    public $particular_id = [];
    public $created_at;
 
-   public function updatedSelectAll($value)
+   public function updatedSelectAllBills($value)
    {
       if($value)
       {
-         $this->selectedBills = Bill::search($this->search)
-         ->where('property_uuid', Session::get('property'))
-         ->when($this->status, function($query){
-            $query->where('status', $this->status);
-         })
-         ->when($this->start, function($query){
-            $query->whereBetween('start', [$this->start, $this->end]);
-         })
-         ->when($this->end, function($query){
-            $query->whereBetween('end', [$this->start, $this->end]);
-         })
-         ->when($this->particular_id, function($query){
-            $query->where('particular_id', $this->particular_id);
-         })
-         ->when($this->created_at, function($query){
-            $query->whereDate('created_at', $this->created_at);
-         })->pluck('id');
-         }
-         else
-         {
-            $this->selectedBills = [];
-         }
-       }
+         $this->selectedBills = $this->get_bills()->pluck('id');
+      }
+      else
+      {
+         $this->selectedBills = [];
+      }
+   }
 
    public function resetFilters()
    {
@@ -77,7 +61,7 @@ class BillIndexComponent extends Component
    public function get_bills()
    {
       return Bill::search($this->search)
-      ->orderBy('bill_no', 'asc')
+      ->orderBy('bill_no', 'desc')
       ->where('property_uuid', Session::get('property'))
       ->when($this->status, function($query){
       $query->whereIn('status', $this->status);
@@ -102,13 +86,13 @@ class BillIndexComponent extends Component
 
       $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
 
-      app('App\Http\Controllers\AcknowledgementReceiptController')->store($collection_batch_no);
+      app('App\Http\Controllers\AcknowledgementReceiptController')->destroy($collection_batch_no);
 
       $this->delete_collection();
 
       $this->selectedBills = [];
 
-      return redirect('/property/'.Session::get('property').'/bills')->with('success','Bills successfully marked as unpaid.');
+      return redirect('/property/'.Session::get('property').'/bills')->with('success','Bill is successfully marked as unpaid.');
         
    }
 

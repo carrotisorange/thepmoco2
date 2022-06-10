@@ -17,9 +17,13 @@
                 Remove ({{ count($selectedBills) }})
             </x-button> --}}
 
-            @if($total_count)
+            <?php
+                $paid_bills = App\Models\Bill::whereIn('id', $selectedBills)->where('status', 'paid')->orWhere('status', 'partially_paid')->count()
+            ?>
+
+            @if($paid_bills)
             <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i class="fa-solid fa-rotate-right"></i>&nbsp
-                Mark as Unpaid ({{ $total_count }})
+                Mark as Unpaid ({{$paid_bills }})
             </x-button>
             @endif
 
