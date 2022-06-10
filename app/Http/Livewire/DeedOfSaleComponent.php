@@ -59,6 +59,8 @@ class DeedOfSaleComponent extends Component
 
             $this->store_deed_of_sale($validated_data);
 
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), 5, 7);
+
             DB::commit();
             
             return redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale has been created.');
