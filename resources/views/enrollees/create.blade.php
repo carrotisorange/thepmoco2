@@ -23,7 +23,7 @@
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button wire:submit.prevent="submitForm"
-                        onclick="window.location.href='/unit/{{ $unit->uuid }}/deed_of_sales'">
+                        onclick="window.location.href='/owner/{{ $owner->uuid }}/deed_of_sales'">
                         <i class="fa-solid fa-forward"></i>&nbspSkip</x-button>
                 </h5>
 
