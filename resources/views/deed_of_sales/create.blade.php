@@ -25,9 +25,9 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button wire:submit.prevent="submitForm"
+                    {{-- <x-button wire:submit.prevent="submitForm"
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/bank/{{ Str::random(8) }}/create'">
-                        <i class="fa-solid fa-forward"></i>&nbspSkip</x-button>
+                        <i class="fa-solid fa-forward"></i>&nbspSkip</x-button> --}}
                 </h5>
 
             </div>

@@ -26,7 +26,7 @@ class DeedOfSaleController extends Controller
      */
     public function create(Unit $unit, Owner $owner)
     {
-        return view('sales.create',[
+        return view('deed_of_sales.create',[
             'unit' => $unit,
             'owner' => $owner
         ]);

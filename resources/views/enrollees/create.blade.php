@@ -16,14 +16,14 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $owner->owner }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">Unit Enrollment</li>
+                                <li class="text-gray-500">Leasing</li>
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
                     <x-button wire:submit.prevent="submitForm"
-                        onclick="window.location.href='/unit/{{ $unit->uuid }}'">
+                        onclick="window.location.href='/unit/{{ $unit->uuid }}/deed_of_sales'">
                         <i class="fa-solid fa-forward"></i>&nbspSkip</x-button>
                 </h5>
 
