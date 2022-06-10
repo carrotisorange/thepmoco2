@@ -162,6 +162,208 @@ class PropertyController extends Controller
     return redirect('/properties')->with('success', 'New property has been created.');
     }
 
+    public function get_occupancy_rate_dates()
+    {
+        return UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'),
+        DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('month_year');
+    }
+
+    public function get_occupancy_rate_values()
+    {
+        return UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+        DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('occupancy_rate');
+    }
+
+    public function get_current_occupancy_rate()
+    {
+        return UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+        DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->get()
+        ->last();
+    }
+
+    public function get_collection_rate_dates()
+    {
+        return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
+        '%M %Y')) as month_year"))
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('month_year');
+    }
+
+    public function get_collection_rate_values()
+    {
+        return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
+        DB::raw("(DATE_FORMAT(created_at,
+        '%M %Y')) as month_year"))
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('total_amount');
+    }
+
+    public function get_bill_rate_values()
+    {
+        return Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as
+        month_year"))
+        ->orderBy('created_at')
+        ->where('property_uuid', Session::get('property'))
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('total_bill');
+    }
+
+    public function get_current_collection_rate()
+    {
+        $current_collection_rate = 0;
+
+        if(Bill::where('property_uuid', Session::get('property'))->count())
+        {
+            $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
+            DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
+            ->where('property_uuid', Session::get('property'))
+            ->orderBy('created_at')
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+            ->pluck('total_amount')
+            ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
+            ->orderBy('created_at')
+            ->where('property_uuid', Session::get('property'))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+            ->pluck('total_bill')
+            ->last() * 100;
+         }else{
+            $current_collection_rate = 0;
+         }
+
+         return $current_collection_rate;
+    }
+
+    public function get_tenant_type_labels()
+    {
+        return Tenant::
+        where('property_uuid', Session::get('property'))
+        ->groupBy('type')
+        ->pluck('type');
+    }
+
+    public function get_tenant_type_values()
+    {
+        return Tenant::select(DB::raw('count(*) as count'))
+        ->where('property_uuid', Session::get('property'))
+        ->groupBy('type')
+        ->pluck('count');
+    }
+
+    public function get_expiring_contracts()
+    {
+        return Contract::where('end','<=',Carbon::now()->
+            addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->paginate(5);
+    }
+
+    public function get_tenant_movein_values()
+    {
+        return Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
+        '%M')) as month_year"))
+        ->orderBy('start')
+        ->where('property_uuid', Session::get('property'))
+        ->where('status', 'active')
+        ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
+        ->limit(7)
+        ->pluck('count');
+    }
+
+    public function get_tenant_movein_labels()
+    {
+        return Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
+        '%M %Y')) as month_year"))
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('start')
+        ->where('status', 'active')
+        ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
+        ->limit(7)
+        ->pluck('month_year');
+    }
+
+    public function get_tenant_moveout_values()
+    {
+        return Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(moveout_at,
+        '%M')) as month_year"))
+        ->where('property_uuid', Session::get('property'))
+        ->where('status', 'inactive')
+        ->orderBy('moveout_at')
+        ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
+        ->limit(7)
+        ->pluck('month_year');
+    }
+
+    public function get_reasons_for_moveout_values()
+    {
+        return Contract::select('moveout_reason')
+        ->where('property_uuid', Session::get('property'))
+        ->where('moveout_reason','!=', "NA")
+        ->groupBy('moveout_reason')
+        ->pluck('moveout_reason');
+    }
+
+    public function get_reasons_for_moveout_labels()
+    {
+        return Contract::select(DB::raw('count(*) as count'))
+        ->where('property_uuid', Session::get('property'))
+        ->where('moveout_reason','!=', "NA")
+        ->where('status', 'inactive')
+        ->groupBy('moveout_reason')
+        ->pluck('count');
+    }
+
+    public function get_collections($property_uuid)
+    {
+        return AcknowledgementReceipt::where('property_uuid',$property_uuid)
+        ->whereMonth('created_at',date('m'))
+        ->sum("amount");
+    }
+
+    public function get_bills($property_uuid)
+    {
+        return Bill::where('property_uuid',$property_uuid)
+        ->whereMonth('created_at',date('m'))
+        ->sum("bill");
+    }
+
+
+    public function store_timestamps($property_uuid)
+    {
+        $timestamps = DB::table('timestamps')
+        ->where('user_id', auth()->user()->id)
+        ->where('property_uuid', $property_uuid)
+        ->whereDate('created_at', Carbon::today())
+        ->count();
+
+        if($timestamps<=0){ 
+            DB::table('timestamps')
+              ->insert([
+                'user_id' => auth()->user()->id,
+                'property_uuid' => $property_uuid,
+                'created_at' => now(),
+                'ip_address' => request()->ip(),
+            ]);
+        }
+    }
     /**
      * Display the specified resource.
      *
@@ -170,172 +372,54 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {     
-
         session(['property' => $property->uuid]);
         session(['property_name' => $property->property]);
 
-
         $this->save_unit_stats();
 
+        $occupancy_rate_date = $this->get_occupancy_rate_dates();
 
-        $occupancy_rate_date = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-          ->where('property_uuid', Session::get('property'))
-          ->orderBy('created_at')
-          ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-          ->limit(6)
-          ->pluck('month_year');
+        $occupancy_rate_value = $this->get_occupancy_rate_values();
 
-        $occupancy_rate_value = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
-           DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-           ->where('property_uuid', Session::get('property'))
-           ->orderBy('created_at')
-           ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-           ->limit(6)
-           ->pluck('occupancy_rate');
+        $current_occupancy_rate = $this->get_current_occupancy_rate();
 
-         $current_occupancy_rate = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
-           DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-           ->where('property_uuid', Session::get('property'))
-           ->orderBy('created_at')
-           ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-           ->get()
-           ->last();
+        $collection_rate_date = $this->get_collection_rate_dates();
 
-           $collection_rate_date = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
-             '%M %Y')) as month_year"))
-                   ->where('property_uuid', Session::get('property'))
-             ->orderBy('created_at')
-             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-             ->limit(6)
-             ->pluck('month_year');
+        $collection_rate_value = $this->get_collection_rate_values();
 
+        $bill_rate_value = $this->get_bill_rate_values();
 
-        $collection_rate_value = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
-             '%M %Y')) as month_year"))
-                   ->where('property_uuid', Session::get('property'))
-             ->orderBy('created_at')
-             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-             ->limit(6)
-             ->pluck('total_amount');
+        $current_collection_rate = $this->get_current_collection_rate();
 
+        $tenant_type_label = $this->get_tenant_type_labels();
 
-        $bill_rate_value = Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
-             ->orderBy('created_at')
-                   ->where('property_uuid', Session::get('property'))
-             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-             ->limit(6)
-             ->pluck('total_bill');
+        $tenant_type_value = $this->get_tenant_type_values();
 
-        if(Bill::where('property_uuid', Session::get('property'))->count())
-        {
-             $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
-             DB::raw("(DATE_FORMAT(created_at,
-             '%M')) as month_year"))
-             ->where('property_uuid', Session::get('property'))
-             ->orderBy('created_at')
-             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-             ->pluck('total_amount')
-             ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as
-             month_year"))
-             ->orderBy('created_at')
-             ->where('property_uuid', Session::get('property'))
-             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-             ->pluck('total_bill')
-             ->last() * 100;
-        }else{
-                $current_collection_rate = 0;
-        }
+        $tenant_movein_value = $this->get_tenant_movein_values();
 
-        
-    
+        $tenant_movein_label = $this->get_tenant_movein_labels();
 
-        $tenant_type_label = Tenant::
-         where('property_uuid', Session::get('property'))
-         ->groupBy('type')
-         ->pluck('type');
+        $tenant_moveout_value = $this->get_tenant_moveout_values();
 
-         $tenant_type_value = Tenant::select(DB::raw('count(*) as count'))
-         ->where('property_uuid', Session::get('property'))
-         ->groupBy('type')
-         ->pluck('count');
+        $reasons_for_moveout_label = $this->get_reasons_for_moveout_labels();
 
-         $tenant_movein_value = Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
-        '%M')) as month_year"))
-          ->orderBy('start')
-           ->where('property_uuid', Session::get('property'))
-           ->where('status', 'active')
-          ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
-          ->limit(7)
-          ->pluck('count');
+        $reasons_for_moveout_value = $this->get_reasons_for_moveout_values();
 
-         $tenant_movein_label = Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
-          '%M %Y')) as month_year"))
-           ->where('property_uuid', Session::get('property'))
-          ->orderBy('start')
-           ->where('status', 'active')
-          ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
-               ->limit(7)
-          ->pluck('month_year');
+        $collections = $this->get_collections(Session::get('property'));
 
-        $tenant_moveout_value = Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(moveout_at,
-          '%M')) as month_year"))
-           ->where('property_uuid', Session::get('property'))
-            ->where('status', 'inactive')
-          ->orderBy('moveout_at')
-          ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
-          ->limit(7)
-          ->pluck('month_year');
+        $bills = $this->get_bills(Session::get('property'));
 
-
-        $reasons_for_moveout_label = Contract::select('moveout_reason')
-        ->where('property_uuid', Session::get('property'))
-        ->where('moveout_reason','!=', "NA")
-        ->groupBy('moveout_reason')
-        ->pluck('moveout_reason');
-
-        $reasons_for_moveout_value = Contract::select(DB::raw('count(*) as count'))
-         ->where('property_uuid', Session::get('property'))
-         ->where('moveout_reason','!=', "NA")
-           ->where('status', 'inactive')
-         ->groupBy('moveout_reason')
-         ->pluck('count');
-
-        //return $tenant_background  = Tenant::select(DB::raw('count(type)'))->where('property_uuid',$property->uuid)->groupBy('type')->get();
-
-
-        $collections = AcknowledgementReceipt::where('property_uuid',$property->uuid)
-        ->whereMonth('created_at',date('m'))
-        ->sum("amount");
-
-        $bills = Bill::where('property_uuid',$property->uuid)
-        ->whereMonth('created_at',date('m'))
-        ->sum("bill");
-
-        $contracts = Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->count();
+        $contracts = app('App\Http\Controllers\ContractController')->index(Session::get('property'))->count();
 
         $units = Property::find($property->uuid)->units->count();
+
         $tenants = Property::find($property->uuid)->tenants->count();
+        
         $concerns = Property::find($property->uuid)->concerns->where('status', 'pending')->count();
 
+        $timestamps = $this->store_timestamps(Session::get('property'));
 
-            $timestamps = DB::table('timestamps')
-            ->where('user_id', auth()->user()->id)
-            ->where('property_uuid', $property->uuid)
-            ->whereDate('created_at', Carbon::today())
-            ->count();
-
-            if($timestamps<=0) { DB::table('timestamps')->insert(
-                [
-                'user_id' => auth()->user()->id,
-                'property_uuid' => $property->uuid,
-                'created_at' => now(),
-                'ip_address' => request()->ip(),
-                ]
-                );
-                }
-
-        $expiring_contracts =Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->paginate(5);
-
+        $expiring_contracts = $this->get_expiring_contracts();
 
         return view('properties.show',[
             'property' => $property,

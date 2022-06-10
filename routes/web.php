@@ -38,6 +38,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('tenant/{tenant}/units/', [TenantContractController::class, 'create'])->name('tenants');
 
+    Route::get('owner/{owner}/units/', [OwnerDeedOfSalesController::class, 'create'])->name('owners');
+
     Route::get('units/masterlist', UnitMasterlistController::class)->name('units');
    
     Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
@@ -121,7 +123,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('tenant/{uuid}/delete', [TenantController::class, 'destroy']);
     Route::patch('tenant/{tenant}/update', [TenantController::class, 'update']);
     Route::get('owner/{owner}', [OwnerController::class, 'show'])->name('owners');
-    Route::get('owner/{owner}/deed_of_sales', OwnerDeedOfSalesController::class);
+    Route::get('owner/{owner}/deed_of_sales', [OwnerDeedOfSalesController::class, 'index'])->name('owners');
     Route::get('owner/{owner}/enrollees', OwnerEnrolleeController::class);
     Route::get('owner/{owner}/bills', OwnerBillController::class);
     Route::get('owner/{owner}/collections', OwnerCollectionController::class);
@@ -181,8 +183,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('unit/{unit}/owner/{random_str}/create', [OwnerController::class, 'create'])->name('units');
     Route::post('unit/{unit}/owner/{random_str}/store', [OwnerController::class, 'store']);
     //2
-    Route::get('unit/{unit}/owner/{owner}/sale/{random_str}/create', [DeedOfSaleController::class,'create'])->name('units');
-    Route::post('unit/{unit}/owner/{owner}/sale/{random_str}/store',[DeedOfSaleController::class,'store']);
+    Route::get('unit/{unit}/owner/{owner}/deed_of_sale/{random_str}/create', [DeedOfSaleController::class,'create'])->name('units');
+    Route::post('unit/{unit}/owner/{owner}/deed_of_sale/{random_str}/store',[DeedOfSaleController::class,'store']);
     //3
     Route::get('unit/{unit}/owner/{owner}/representative/{random_str}/create', [RepresentativeController::class,'create'])->name('units');
     Route::post('unit/{unit}/owner/{owner}/representative/{random_str}/store',[RepresentativeController::class,'store']);

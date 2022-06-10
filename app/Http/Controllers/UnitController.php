@@ -30,6 +30,8 @@ class UnitController extends Controller
     {   
         Session::forget('tenant_uuid');
 
+        Session::forget('owner_uuid');
+
         return view('units.index');
     }
 

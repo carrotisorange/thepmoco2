@@ -93,7 +93,7 @@ class OwnerComponent extends Component
                 $owner = Owner::create($validatedData)->uuid;
 
                 return
-                redirect('/unit/'.$this->unit->uuid.'/owner/'.$owner.'/sale/'.Str::random(8).'/create')->with('success',
+                redirect('/unit/'.$this->unit->uuid.'/owner/'.$owner.'/deed_of_sale/'.Str::random(8).'/create')->with('success',
                 'Owner has been created.');
         }
 

@@ -24,9 +24,9 @@ class ContractController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($property)
     {
-        return view('tenants.index');
+        return Contract::where('property_uuid', $property)->where('status', 'active')->get();
     }
 
     /**

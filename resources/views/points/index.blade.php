@@ -40,10 +40,14 @@
                 <h4 class="feature-title">3.How to redeem my points?</h4>
                 <p class="text-sm">At the top right portion of the system, where your username is located, click the dropdown and click the chatify messenger. Once you're on it, search for "Landley Bernardo" and express your desire to redeem your points.</p>
             </div>
+            <div class="mt-1">
+                {{ $points->links() }}
+            </div>
             <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white border-b border-gray-200">
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                         
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">

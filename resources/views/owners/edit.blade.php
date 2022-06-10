@@ -23,6 +23,33 @@
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/owners'"><i
                             class="fa-solid fa-circle-arrow-left"></i>&nbspBack
                     </x-button>
+
+                    {{-- <x-button id="dropdownButton" data-dropdown-toggle="unitAddDropdown" type="button"> <i
+                            class="fa-solid fa-circle-plus"></i>&nbsp Add <svg class="ml-2 w-4 h-4" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg></x-button>
+                    <!-- Dropdown menu -->
+                    <div id="unitAddDropdown"
+                        class="hidden z-10 w-30 text-base text-left list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                            @can('managerandadmin')
+                            <li>
+                                <a data-modal-toggle="create-guardian-modal" href="#/"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-user-group"></i>&nbsp
+                                    Guardian</a>
+                            </li>
+                            <li>
+                                <a data-modal-toggle="create-reference-modal" href="#/"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
+                                        class="fa-solid fa-people-arrows-left-right"></i></i>&nbsp
+                                    Reference</a>
+                            </li>
+                            @endcan
+                        </ul>
+                    </div> --}}
                     <x-button id="dropdownButton" data-dropdown-toggle="unitShowDropdown" type="button"> <i
                             class="fa-solid fa-eye"></i>&nbsp Show <svg class="ml-2 w-4 h-4" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

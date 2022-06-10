@@ -25,6 +25,9 @@
                             class="fa-solid fa-circle-arrow-left"></i>&nbsp
                         Back
                     </x-button>
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/units'"><i
+                            class="fa-solid fa-circle-plus"></i>&nbsp Unit
+                    </x-button>
                 </h5>
             </div>
         </h2>

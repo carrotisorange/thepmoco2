@@ -14,6 +14,19 @@
                 </div>
             </div>
         </x-button>
+        @elseif(Session::get('owner_uuid'))
+        <x-button title="{{ $unit->unit }}"
+            onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/{{ Str::random(8) }}/create'">
+
+            <div>
+                <div>
+                    <img src="/storage/{{ $unit->thumbnail }}" />
+                </div>
+                <div>
+                    <small> {{ $unit->unit }}</small>
+                </div>
+            </div>
+        </x-button>
         @else
         <x-button title="{{ $unit->unit }}" onclick="window.location.href='/unit/{{ $unit->uuid }}/edit'">
             {{-- --}}
