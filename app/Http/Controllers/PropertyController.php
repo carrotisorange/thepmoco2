@@ -64,7 +64,7 @@ class PropertyController extends Controller
             ->selectRaw('sum(point) as total, users.name as name')
             ->leftJoin('users', 'points.user_id', 'users.id')
             ->groupBy('user_id')
-            ->get();
+            ->paginate(10);
 
             return view('dev.index',[
                 'sessions' => $sessions,
