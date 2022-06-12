@@ -15,19 +15,19 @@
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li><span class="text-gray-500 mx-2">{{
                                         $tenant_details->tenant }}</span></li>
-                            
-                             
+
+
                             </ol>
                         </nav>
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'"><i
-                            class="fa-solid fa-circle-arrow-left"></i>&nbspBack
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenants'">Go back
+                        to tenants
                     </x-button>
-                    <x-button id="dropdownButton" data-dropdown-toggle="unitAddDropdown" type="button"> <i
-                            class="fa-solid fa-circle-plus"></i>&nbsp Add <svg class="ml-2 w-4 h-4" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <x-button id="dropdownButton" data-dropdown-toggle="unitAddDropdown" type="button"> Create <svg
+                            class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg></x-button>
@@ -51,9 +51,9 @@
                             @endcan
                         </ul>
                     </div>
-                    <x-button id="dropdownButton" data-dropdown-toggle="unitShowDropdown" type="button"> <i
-                            class="fa-solid fa-eye"></i>&nbsp Show <svg class="ml-2 w-4 h-4" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <x-button id="dropdownButton" data-dropdown-toggle="unitShowDropdown" type="button">View <svg
+                            class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg></x-button>
@@ -95,7 +95,7 @@
                             <li>
                                 <a href="/tenant/{{ $tenant_details->uuid }}/ledger"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                   <i class="fa-solid fa-file-invoice"></i>&nbsp
+                                    <i class="fa-solid fa-file-invoice"></i>&nbsp
                                     Ledger</a>
                             </li>
                         </ul>
@@ -112,22 +112,44 @@
             </div>
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="p-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-12 bg-white border-b border-gray-200">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <h1 class="font-bold">Tenant</h1>
                     <div>
                         @livewire('tenant-edit-component', ['tenant_details' => $tenant_details])
-                        <br>
-                        @include('tenants.guardians.index')
 
-                        @include('tenants.references.index')
                     </div>
                 </div>
 
             </div>
         </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-4 bg-white border-b border-gray-200">
+                    <h1 class="font-bold">Guardians</h1>
+                    <div>
+                        @include('tenants.guardians.index')
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-3">
+            <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-4 bg-white border-b border-gray-200">
+                    <h1 class="font-bold">References</h1>
+                    <div>
+                        @include('tenants.references.index')
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </x-app-layout>
 @include('utilities.create-guardian-modal')
 @include('utilities.create-reference-modal')

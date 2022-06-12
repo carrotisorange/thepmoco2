@@ -35,6 +35,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
+        Session::forget('property');
+        Session::forget('property_name');
 
         if(!User::find(Auth::user()->id)->user_properties->count())
         {

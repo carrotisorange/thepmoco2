@@ -21,11 +21,10 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'"><i
-                            class="fa-solid fa-circle-arrow-left"></i>&nbspBack
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Go back to
+                        units
                     </x-button>
-                    <x-button data-modal-toggle="add-building-modal"><i class="fa-solid fa-circle-plus"></i>&nbsp
-                        Building
+                    <x-button data-modal-toggle="add-building-modal">Create a building
                     </x-button>
                     {{-- <x-button data-modal-toggle="add-building-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbspBuilding
@@ -38,12 +37,11 @@
                 </h5>
 
             </div>
-        </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="py-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-24 bg-white border-b border-gray-200">
+                <div class="p-12 bg-white border-b border-gray-200">
                     <div>
                         <form action="/unit/{{ $unit->uuid }}/update" method="POST" id="edit-form"
                             enctype="multipart/form-data">
@@ -180,7 +178,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-{{-- 
+                            {{--
                             <div class="mt-5 flex">
                                 <div class="flex-3">
                                     <x-label for="thumbnail" :value="__('Thumbnail')" />
@@ -197,14 +195,11 @@
                                 </div>
                             </div> --}}
 
-                           <div class="mt-5">
-                               <h5 class="flex-1 text-right">
-                                    <x-button form="edit-form"><i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
+                            <div class="mt-5">
+                                <h5 class="flex-1 text-right">
+                                    <x-button form="edit-form">Save</x-button>
                                 </h5>
-                           </div>
-
-
-
+                            </div>
                     </div>
                     </form>
                 </div>

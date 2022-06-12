@@ -24,11 +24,11 @@ class PropertyBillCustomizedController extends Controller
     public function store(Request $request, $property_uuid, $bill_count)
     {
         $attributes = request()->validate([
-        'particular_id' => ['required', Rule::exists('particulars', 'id')],
-        'start' => 'required|date',
-        'end' => 'required|date|after:start',
-        'due_date' => 'nullable|date|after:start',
-        'bill' => 'required|numeric|min:1'
+            'particular_id' => ['required', Rule::exists('particulars', 'id')],
+            'start' => 'required|date',
+            'end' => 'required|date|after:start',
+            'due_date' => 'nullable|date|after:start',
+            'bill' => 'nullable|numeric'
         ]);
 
         $tenant_uuid = Contract::where('property_uuid', Session::get('property'))
@@ -69,7 +69,7 @@ class PropertyBillCustomizedController extends Controller
 
                 Bill::create($attributes);
                 }
-                return redirect('/bill/'.Session::get('property').'/customized/batch/'.$batch_no)->with('success', $i.' bills have been posted.');
+                return redirect('/bill/'.Session::get('property').'/customized/batch/'.$batch_no)->with('success', $i.' bills are succesffully created.');
 
             }catch(\Exception $e)
             {

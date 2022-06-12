@@ -70,13 +70,13 @@ class CollectionModalComponent extends ModalComponent
         try{
             DB::beginTransaction();
 
-            $validatedData = $this->validate();
+            $validated_data = $this->validate();
 
             $collection_ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
 
             $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
 
-            $this->store_collection($validatedData, $collection_ar_no, $collection_batch_no);
+            $this->store_collection($validated_data, $collection_ar_no, $collection_batch_no);
 
             app('App\Http\Controllers\PointController')->store(Session::get('property'), count($this->selectedBills), 4);
 
@@ -91,6 +91,7 @@ class CollectionModalComponent extends ModalComponent
        }catch(\Exception $e)
        {    
            DB::rollback();
+           
            return back()->with('error','Cannot perform your action.');
        }
     }
@@ -135,7 +136,7 @@ class CollectionModalComponent extends ModalComponent
         return $ar;
     }
 
-    public function store_collection($validatedData, $collection_ar_no , $collection_batch_no)
+    public function store_collection($validated_data, $collection_ar_no , $collection_batch_no)
     {
         for($i=0; $i<count($this->selectedBills); $i++)
         {
@@ -158,26 +159,26 @@ class CollectionModalComponent extends ModalComponent
                 Bill::find($this->selectedBills[$i])->increment('initial_payment', $this->bill[$i]);
             }
                        
-                $validatedData['tenant_uuid']= $this->tenant;
-                $validatedData['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
-                $validatedData['property_uuid'] = Session::get('property');
-                $validatedData['user_id'] = auth()->user()->id;
-                $validatedData['bill_id'] = $this->selectedBills[$i];
-                $validatedData['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
-                $validatedData['form'] = $this->form;
-                $validatedData['collection'] = $this->bill[$i];
-                $validatedData['batch_no'] = $collection_batch_no;
-                $validatedData['ar_no'] = $collection_ar_no;
+                $validated_data['tenant_uuid']= $this->tenant;
+                $validated_data['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
+                $validated_data['property_uuid'] = Session::get('property');
+                $validated_data['user_id'] = auth()->user()->id;
+                $validated_data['bill_id'] = $this->selectedBills[$i];
+                $validated_data['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
+                $validated_data['form'] = $this->form;
+                $validated_data['collection'] = $this->bill[$i];
+                $validated_data['batch_no'] = $collection_batch_no;
+                $validated_data['ar_no'] = $collection_ar_no;
 
                 $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
 
                 if($particular_id === 3 || $particular_id === 4)
                 {
-                    $validatedData['is_deposit'] = '1';
+                    $validated_data['is_deposit'] = '1';
                 }
 
                 //save the payment
-                Collection::create($validatedData)->unit_uuid;
+                Collection::create($validated_data)->unit_uuid;
 
                 if(Tenant::find($this->tenant)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->where('description', 'movein charges')->sum('bill') <= 0)
                 {   

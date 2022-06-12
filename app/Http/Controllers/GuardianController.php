@@ -34,13 +34,10 @@ class GuardianController extends Controller
         // ->where('tenants.uuid', $tenant->uuid)
         // ->groupBy('guardians.id')
         // ->get();
-
-        $guardians = Tenant::find($tenant->uuid)->guardians;
         
         return view('guardians.create',[
             'unit' => $unit,
             'tenant' => $tenant,
-            'guardians' => $guardians,
         ]);
     }
 

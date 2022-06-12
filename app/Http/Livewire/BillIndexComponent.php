@@ -19,6 +19,10 @@ class BillIndexComponent extends Component
 
    public $search = null;
 
+   public $active_contracts;
+
+   public $active_tenants;
+
    public $selectedBills = [];
    public $selectAllBills = false;
 
@@ -98,7 +102,7 @@ class BillIndexComponent extends Component
 
    public function delete_collection()
    {
-      Collection::whereIn('bill_id', $this->selectedBills)->delete();
+      Collection::destroy('bill_id', $this->selectedBills);
    }
 
    public function update_bill()

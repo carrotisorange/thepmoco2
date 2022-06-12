@@ -6,6 +6,7 @@ use App\Models\Relationship;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use DB;
+use App\Models\Tenant;
 
 use Livewire\Component;
 
@@ -20,11 +21,25 @@ class GuardianComponent extends Component
     public $mobile_number;
     public $email;
 
-     public function mount($unit, $tenant, $guardians)
+     public function mount($unit, $tenant)
      {
         $this->unit = $unit;
         $this->tenant = $tenant;
-        $this->guardians = $guardians;
+        $this->guardians = $this->get_guardians();
+     }
+
+     public function get_guardians()
+     {
+         return Tenant::find($this->tenant->uuid)->guardians;
+     }
+
+     public function removeGuardian($id)
+     {
+        Guardian::destroy($id);
+
+        $this->guardians = $this->get_guardians();
+
+        return back()->with('success', 'Guardian is successfully removed');
      }
 
     protected function rules()
@@ -58,13 +73,15 @@ class GuardianComponent extends Component
 
             $this->resetForm();
 
-            return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/guardian/'.Str::random(8).'/create')->with('success', 'Guardian is successfully created.');
+            $this->guardians = $this->get_guardians();
+
+            return back()->with('success', 'Guardian is successfully created.');
         }
         catch(\Exception $e)
         {
             DB::rollback();
             
-            app('App\Http\Controllers\ErrorController')->show();
+            return back()->with('error');
         }
      
     }

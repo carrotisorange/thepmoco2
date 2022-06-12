@@ -32,19 +32,19 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py">
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <x-button
+            {{-- <x-button
                 onclick="window.location.href='/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today()->subDay(1) }}'">
                 <i class="fa-solid fa-circle-arrow-left"></i>&nbspprevious
-            </x-button>
+            </x-button> --}}
             <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white border-b border-gray-200">
                   
 
                     <div class="flex flex-col">
-                        <span class="text-center text-red">{{ Carbon\Carbon::parse(Session::get('date'))->format('M d, Y')
-                            }}</span>
+                        {{-- <span class="text-center text-red">{{ Carbon\Carbon::parse(Session::get('date'))->format('M d, Y')
+                            }}</span> --}}
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -53,23 +53,29 @@
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <x-th>#</x-th>
+                                                <x-th>Date</x-th>
                                                 <x-th>Name</x-th>
                                                 <x-th>Role</x-th>
                                                 <x-th>Time in</x-th>
                                                 <x-th>Time out</x-th>
+                                                <x-th>Work hours</x-th>
                                             </tr>
                                         </thead>
                                         @forelse ($timestamps as $timestamp)
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <x-td>{{ $ctr++ }}</x-td>
+                                                <x-td>{{ Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('M d, Y')}}</x-td>
                                                 <x-td>{{ $timestamp->user->name }}</x-td>
                                                 <x-td>{{ $timestamp->user->role->role }}</x-td>
                                                 <x-td>{{
-                                                    Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('H:i')}}
+                                                    Carbon\Carbon::parse($timestamp->created_at)->timezone('Asia/Manila')->format('g:i A')}}
                                                 </x-td>
                                                 <x-td>{{
-                                                    Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('H:i')}}
+                                                    Carbon\Carbon::parse($timestamp->updated_at)->timezone('Asia/Manila')->format('g:i A')}}
+                                                </x-td>
+                                                <x-td>
+                                                    {{ Carbon\Carbon::parse($timestamp->updated_at)->diffForHumans(Carbon\Carbon::parse($timestamp->created_at)) }}
                                                 </x-td>
                                                 @empty
                                                 <x-td>No data found!</x-td>

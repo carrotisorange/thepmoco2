@@ -33,19 +33,15 @@
 
                 <h5 class="flex-1 text-right">
                     <x-button onclick="window.location.href='/properties'">
-                        <i class="fas fa-arrow-alt-circle-left"></i>&nbsp Back
+                         Select another property
                     </x-button>
 
                     @can('manager')
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/edit'">
-                        <i class="fas fa-edit"></i>&nbsp Property
+                        Edit your property
                     </x-button>
 
-                
-                    <x-button
-                        onclick="window.location.href='/property/{{ Session::get('property') }}/team/{{ Str::random(8) }}/create'">
-                        <i class="fa-solid fa-circle-plus"></i>&nbsp Team
-                    </x-button>
+
                     @endcan
                 </h5>
 
@@ -173,17 +169,17 @@
                                             </div>
                                             <div class="flex-1 text-right md:text-center">
                                                 <h5 class="font-bold uppercase text-gray-500">Pending Concerns</h5>
-                                                <h3 class="font-bold text-3xl">{{ $concerns }} 
+                                                <h3 class="font-bold text-3xl">{{ $concerns }}
                                                     {{-- <span class="text-red-500"><i
                                                             class="fas fa-caret-up"></i></span> --}}
-                                                        </h3>
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
                                     <!--/Metric Card-->
                                 </div>
                             </div>
-                           
+
                             @if($expiring_contracts->count())
                             <div class="w-full p-3">
                                 <!--Table Card-->
@@ -221,8 +217,11 @@
                                                                                 <div class="flex items-center">
                                                                                     <div
                                                                                         class="flex-shrink-0 h-10 w-10">
-                                                                                        <a href="/tenant/{{ $contract->tenant_uuid }}/contracts">
-                                                                                        <img class="h-10 w-10 rounded-full" src="/storage/{{ $contract->tenant->photo_id }}" alt=""></a>
+                                                                                        <a
+                                                                                            href="/tenant/{{ $contract->tenant_uuid }}/contracts">
+                                                                                            <img class="h-10 w-10 rounded-full"
+                                                                                                src="/storage/{{ $contract->tenant->photo_id }}"
+                                                                                                alt=""></a>
                                                                                     </div>
                                                                                     <div class="ml-4">
                                                                                         <div
@@ -294,8 +293,7 @@
                                                                                 @can('admin')
                                                                                 <x-button id="dropdownDividerButton"
                                                                                     data-dropdown-toggle="dropdownDivider.{{ $contract->uuid }}"
-                                                                                    type="button"><i
-                                                                                        class="fa-solid fa-list-check"></i>&nbspOptions
+                                                                                    type="button">Actions
                                                                                     <svg class="ml-2 w-4 h-4"
                                                                                         fill="none"
                                                                                         stroke="currentColor"
@@ -352,7 +350,7 @@
                                                                                 </div>
                                                                                 @endcan
                                                                             </x-td>
-                                                                          
+
                                                                         </tr>
                                                                     </tbody>
                                                                     @endforeach
@@ -417,7 +415,8 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Current Collection Rate ({{ number_format($current_collection_rate, 2) }}%)</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Current Collection Rate ({{
+                                                number_format($current_collection_rate, 2) }}%)</h5>
                                         </div>
                                         <div class="p-5">
                                             <canvas id="collection_rate" class="chartjs" width="undefined"
@@ -520,7 +519,7 @@
                                     <!--/Graph Card-->
                                 </div>
 
-                                
+
                                 <div class="w-full md:w-1/2 xl:w-1/3 p-3">
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">

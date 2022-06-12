@@ -16,7 +16,7 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -26,7 +26,7 @@ class BuildingController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

@@ -1,9 +1,10 @@
 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
     <div class="">
-        Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Deposits: <b> {{ number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit',
+        Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Deposits: <b> {{
+            number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit',
             '1')->sum('collection'), 2) }}</b>
     </div>
-  
+
     {{-- <div class="mt-1">
         Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
         Total Unpaid Bills: <b> {{ number_format(($total_unpaid_bills->sum('bill') -
@@ -28,14 +29,11 @@
     <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
-                <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"><i
-                        class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
-                </x-button>
+
                 @if($total_unpaid_bills->count())
                 @can('billing')
                 <x-button title="export unpaid bills" data-modal-toggle="export-bill-modal">
-                    <i class="fa-solid fa-download"></i>&nbsp
-                    Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=', 'paid')->count()
+                   Download Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=', 'paid')->count()
                     }})
                 </x-button>
                 @endcan
@@ -46,50 +44,45 @@
                 @endif
 
                 {{-- @if($total_count)
-                    @if(auth()->user()->username == 'landley')
-                 @can('manager') 
-                    <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
-                            class="fa-solid fa-rotate-right"></i>&nbsp
-                        Mark as Unpaid ({{ $total_count }})
-                    </x-button>
-                    @endif
-                 @endcan 
+                @if(auth()->user()->username == 'landley')
+                @can('manager')
+                <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
+                        class="fa-solid fa-rotate-right"></i>&nbsp
+                    Mark as Unpaid ({{ $total_count }})
+                </x-button>
+                @endif
+                @endcan
                 @endif --}}
 
                 @can('treasury')
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
                 <x-button
                     wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-                    <i class="fa-solid fa-circle-plus"></i>&nbsp Payment ({{ number_format($total, 2) }})
+                   Create a payment
                 </x-button>
+                {{-- ({{ number_format($total, 2) }}) --}}
                 @else
-          
+
                 @endif
                 @endcan
-                
+
                 @can('billing')
                 <x-button data-modal-toggle="create-particular-modal">
-                    <i class="fa-solid fa-circle-plus"></i>&nbsp Particular
+                   Create a Particular
                 </x-button>
                 <x-button data-modal-toggle="create-bill-modal">
-                    <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
+                    Create a Bill
                 </x-button>
                 @endcan
-                
-                @can('treasury')
-                <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/collections'"><i
-                        class="fa-solid fa-cash-register"></i>&nbsp Payments
-                </x-button>
-                @endcan
+
+
             </div>
             <div class="basis-1/4 ml-12 text-right">
                 @can('accountowner')
-                    @if($selectedBills)
-                    <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()"><i
-                            class="fa-solid fa-trash"></i>&nbsp
-                        Remove ({{ count($selectedBills) }})
-                    </x-button>
-                    @endif
+                @if($selectedBills)
+                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">Remove bills ({{ count($selectedBills) }})
+                </x-button>
+                @endif
                 @endcan
             </div>
         </div>
@@ -167,11 +160,11 @@
                                             </form>
                                         </x-td> --}}
 
-                                    @empty
-                                    <x-td>
-                                        No data found!
-                                    </x-td>
-                                    </tr>            
+                                        @empty
+                                        <x-td>
+                                            No data found!
+                                        </x-td>
+                                    </tr>
                                     @endforelse
                                     <tr>
                                         <x-td>Total</x-td>

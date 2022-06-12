@@ -12,7 +12,8 @@ class Bill extends Model
 
     protected $attributes = [
         'status' => 'unpaid',
-        'due_date' => null
+        'due_date' => null,
+        'bill' => 0
     ];
 
     public function property()

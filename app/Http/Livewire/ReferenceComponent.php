@@ -5,89 +5,107 @@ use App\Models\Reference;
 use Illuminate\Support\Str;
 use App\Models\Relationship;
 use DB;
+use App\Models\Tenant;
 
 use Livewire\Component;
 
 class ReferenceComponent extends Component
 {
-     public $unit;
-     public $tenant;
-     public $references;
+    public $unit;
+    public $tenant;
+    public $references;
+    
+    public $reference;
+    public $relationship_id;
+    public $mobile_number;
+    public $email;
 
-     public $reference;
-     public $relationship_id;
-     public $mobile_number;
-     public $email;
-
-     public function mount($unit, $tenant, $references)
+     public function mount($unit, $tenant)
      {
-          $this->unit = $unit;
-          $this->tenant = $tenant;
-          $this->references = $references;
+        $this->unit = $unit;
+        $this->tenant = $tenant;
+        $this->guardians = $this->get_references();
      }
 
-     protected function rules()
+     public function get_references()
      {
-          return [
-               'reference' => 'required',
-               'email' => ['nullable', 'string', 'email', 'max:255'],
-               'mobile_number' => 'required',
-               'relationship_id' => 'required',
-          ];
+         return Tenant::find($this->tenant->uuid)->guardians;
      }
 
-     public function updated($propertyName)
+     public function removeReference($id)
      {
-          $this->validateOnly($propertyName);
+        Reference::destroy($id);
+
+        $this->references = $this->get_references();
+
+        return back()->with('success', 'Reference is successfully removed');
      }
 
-     public function submitForm()
-     {
-          sleep(1);
+    protected function rules()
+    {
+        return [
+        'reference' => 'required',
+        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:references'],
+        'mobile_number' => 'required',
+        'relationship_id' => ['required', Rule::exists('relationships', 'id')],
+        ];
+    }
 
-          $validated_data = $this->validate();
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
-          $validated_data = $this->store_reference($validated_data);
+    public function submitForm()
+    {
+        sleep(1);
 
-          try{
-               DB::beginTransaction();
-              
-               Reference::create($validated_data);
+        $validated_data = $this->validate();
 
-               $this->resetForm();
+        $validated_data = $this->store_reference($validated_data);
 
-               return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/reference/'.Str::random(8).'/create')->with('success', 'Reference is successfully created.');
+        try
+        {
+            DB::beginTransaction();
+            
+            Guardian::create($validated_data);
 
-               DB::commit();
-          }
-          catch(\Exception $e)
-          {
-               DB::rollback();
+            $this->resetForm();
 
-               app('App\Http\Controllers\ErrorController')->show();
-          }
-     }
+            $this->guardians = $this->get_references();
 
-     public function store_reference($validated_data)
-     {
-          $validated_data['tenant_uuid'] = $this->tenant->uuid;
-          
-          return $validated_data;
+            return back()->with('success', 'Reference is successfully created.');
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+            
+           return back()->with('error');
+        }
+     
+    }
 
-     }
+    public function store_reference($validated_data)
+    {
+        $validated_data = $this->validate();
 
-     public function resetForm()
-     {
-          $this->reference='';
-          $this->email='';
-          $this->mobile_number='';
-          $this->relationship_id='';
-     }
+        $validated_data['tenant_uuid'] = $this->tenant->uuid;
+      
+        return $validated_data;
+    }
 
-     public function render()
-     {
-     return view('livewire.reference-component',[
-          'relationships' => Relationship::all(),
-     ]);
-     }
+    public function resetForm()
+    {
+        $this->reference='';
+        $this->email='';
+        $this->mobile_number='';
+        $this->relationship_id='';
+    }
+
+    public function render()
+    {
+        return view('livewire.reference-component',[
+            'relationships' => Relationship::all()
+        ]);
+    }
 }

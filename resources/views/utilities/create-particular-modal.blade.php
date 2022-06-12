@@ -61,7 +61,7 @@
 
                 <div class="mt-5">
                     <p class="text-right">
-                        <x-form-button></x-form-button>
+                        <x-form-button>Create</x-form-button>
                     </p>
                 </div>
 

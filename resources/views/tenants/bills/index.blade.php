@@ -22,8 +22,12 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                   
-                   
+                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'">Go back to tenant
+                    </x-button>
+                    @can('treasury')
+                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/collections'">View Payments
+                    </x-button>
+                    @endcan
                 </h5>
 
             </div>

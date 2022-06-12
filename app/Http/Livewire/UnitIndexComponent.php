@@ -30,6 +30,7 @@ class UnitIndexComponent extends Component
     public $rent = [];
     public $discount = [];
     public $size = [];
+    public $occupancy = [];
 
     public function resetFilters()
     {
@@ -95,6 +96,13 @@ class UnitIndexComponent extends Component
           ->groupBy('size')
           ->get();
 
+           $occupancies = Unit::where('units.property_uuid', Session::get('property'))
+           ->whereNotNull('occupancy')
+           ->select('occupancy', DB::raw('count(*) as count'))
+           ->where('occupancy','>',0)
+           ->groupBy('occupancy')
+           ->get();
+
 
         $enrollment_statuses = Unit::where('units.property_uuid', Session::get('property'))
          ->select('is_enrolled', DB::raw('count(*) as count'))
@@ -107,29 +115,32 @@ class UnitIndexComponent extends Component
                     ->orderBy('unit', 'desc')
                     ->where('property_uuid', Session::get('property'))
                     ->when($this->status_id, function($query){
-                    $query->where('status_id', '=', $this->status_id);
+                    $query->whereIn('status_id', $this->status_id);
                     })
                     ->when($this->building_id, function($query){
-                    $query->where('building_id', '=', $this->building_id);
+                    $query->whereIn('building_id', $this->building_id);
                     })
                     ->when($this->is_enrolled, function($query){
-                    $query->where('is_enrolled', '=', $this->is_enrolled);
+                    $query->whereIn('is_enrolled', $this->is_enrolled);
                     })
                     ->when($this->floor_id, function($query){
-                    $query->where('floor_id', '=', $this->floor_id);
+                    $query->whereIn('floor_id', $this->floor_id);
                     })
                     ->when($this->category_id, function($query){
-                    $query->where('category_id', '=', $this->category_id);
+                    $query->whereIn('category_id', $this->category_id);
                     })
                     ->when($this->rent, function($query){
-                    $query->where('rent', '=', $this->rent);
+                    $query->whereIn('rent', $this->rent);
                     })
                      ->when($this->discount, function($query){
-                     $query->where('discount', '=', $this->discount);
+                     $query->whereIn('discount', $this->discount);
                      })
                       ->when($this->size, function($query){
-                      $query->where('size', '=', $this->size);
+                      $query->where('size', $this->size);
                       })
+                       ->when($this->occupancy, function($query){
+                       $query->where('occupancy', $this->occupancy);
+                       })
                     ->paginate(30),
             'buildings' => $buildings,
             'floors' => $floors,
@@ -138,6 +149,7 @@ class UnitIndexComponent extends Component
             'discounts' => $discounts,
             'sizes' => $sizes,
             'statuses' => $statuses,
+            'occupancies' => $occupancies,
             'enrollment_statuses' => $enrollment_statuses,
             'units_count' => Property::find(Session::get('property'))->units->count()
         ]);

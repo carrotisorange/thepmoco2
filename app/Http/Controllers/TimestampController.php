@@ -18,16 +18,14 @@ class TimestampController extends Controller
      */
     public function __invoke($property_uuid, $date)
     {
+        //Session::flash('success', 'Showing all timestamps on'.Carbon::parse($date)->format('M d, Y'));
 
-        Session::flash('success', 'Showing all timestamps on'.Carbon::parse($date)->format('M d, Y'));
-
-        session(['date' => $date]);
-
+        //session(['date' => $date]);
+        
         return view('timestamps.index',[
             'timestamps' => Timestamp::where('property_uuid',Session::get('property'))
-            ->where('user_id', '!=', '5')
-            ->whereDate('created_at', $date)
-            ->get()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
         ]);
 
       

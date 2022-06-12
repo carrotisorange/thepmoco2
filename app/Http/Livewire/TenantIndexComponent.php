@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Tenant;
 use Session;
+use Livewire\WithPagination;
 
 class TenantIndexComponent extends Component
 {
+    use WithPagination;
+
     public $search = null;
 
     public function render()

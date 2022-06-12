@@ -75,7 +75,7 @@ class UnitController extends Controller
 
        $units = Unit::where('batch_no', $batch_no)->count();
         
-        return redirect('units/'.$batch_no.'/edit')->with('success', $units.' units are successully created.');
+        return redirect('units/'.$batch_no.'/edit')->with('success', $units.' unit is successully created.');
     }
 
     /**
@@ -107,7 +107,6 @@ class UnitController extends Controller
 
         return view('units.bulk-edit',[
             'batch_no' => $batch_no,
-            'unit_count' => Unit::where('property_uuid', Session::get('property'))->where('units.status_id', '!=','6')->get()->count()+1,
         ]);
     }
 
@@ -136,6 +135,7 @@ class UnitController extends Controller
      */
     public function bulk_update(Request $request, $batch_no)
     {
+        return $request->all();
         $units = Unit::where('status_id', 6)->count();
 
         for($i = 1; $i<=$units; $i++){ 
@@ -182,8 +182,8 @@ class UnitController extends Controller
           'property_uuid' => Session::get('property')
           ]);
         
-        return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' Units are successfully 
-        updated.');
+        return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' unit is successfully 
+        created.');
     }
 
 

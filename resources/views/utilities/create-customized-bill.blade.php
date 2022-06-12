@@ -40,6 +40,7 @@
                             'selected': 'Select one'
                             }}>{{ $particular->particular }}</option>
                         @endforeach
+                       
                     </x-form-select>
 
                     @error('particular_id')
@@ -98,7 +99,7 @@
                     <x-label for="due_date">
                         Amount<span class="text-red-600">*</span>
                     </x-label>
-                    <x-form-input wire:model="bill" id="bill" type="number" name="bill" value="{{ old('bill') }}" />
+                    <x-form-input wire:model="bill" id="bill" type="number" name="bill" value="{{ old('bill', 0) }}"  required/>
 
                     @error('bill')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -108,7 +109,7 @@
 
                 <p class="text-right">
                     <x-button>
-                        <i class="fa-solid fa-circle-check"></i>&nbsp Confirm
+                        Create
                     </x-button>
                 </p>
 

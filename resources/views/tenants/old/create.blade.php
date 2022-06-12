@@ -26,7 +26,11 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    
+                    <x-button onclick="window.location.href='{{ url()->previous() }}'">
+                        Go back to unit
+                    </x-button>
+                    <x-button onclick="window.location.href='/tenant_sheet/export'">Download Tenant Sheet
+                    </x-button>
                 </h5>
 
             </div>

@@ -1,5 +1,5 @@
 <div class="">
-    @if($status_id || $is_enrolled || $category_id || $building_id || $floor_id || $rent ||
+    @if($status_id || $is_enrolled || $category_id || $building_id || $floor_id || $rent || $occupancy ||
     $discount || $size)
 
     <span>
@@ -117,6 +117,22 @@
                 <p>NA</p>
                 @endforelse
             </div>
+
+            <div class="mt-5">
+                <b>Occupancy</b>
+                @forelse ($occupancies as $occupancy)
+            
+                <div class="form-check">
+                    <x-input wire:model="occupancy" type="checkbox" value="{{ $occupancy->occupancy }}" id="flexCheckDefault" />
+                    <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
+                       {{ $occupancy->occupancy }} pax ({{ $occupancy->count }}) 
+                    </label>
+                </div>
+                @empty
+                <p>NA</p>
+                @endforelse
+            </div>
+
             <div class="mt-5">
                 <b>Discount</b>
                 @forelse ($discounts as $discount)

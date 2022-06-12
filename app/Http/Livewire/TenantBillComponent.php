@@ -20,7 +20,7 @@ class TenantBillComponent extends Component
 
      public $selectedBills = [];
      public $selectAll = false;  
-     public $status = ['unpaid', 'partially_paid'];
+     public $status ='unpaid';
 
      public function removeBills()
      {
@@ -65,24 +65,23 @@ class TenantBillComponent extends Component
 
           $this->selectedBills = [];
 
-          return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bills successfully marked as unpaid.');
+          return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bill is successfully marked as unpaid.');
         
      }
 
-    public function updatedSelectAll($value)
-       {
-         if($value)
-         {
-            $this->selectedBills = Bill::where('tenant_uuid', $this->tenant->uuid)
-             ->when($this->status, function($query){
-             $query->whereIn('status', $this->status);
-             })
-            ->pluck('id');
-         }else
-         {
-            $this->selectedBills = [];
-         }
-       }
+   public function updatedSelectAll($value)
+   {
+      if($value)
+      {
+         $this->selectedBills = Bill::where('tenant_uuid', $this->tenant->uuid)
+            ->when($this->status, function($query){
+            $query->where('status', $this->status);
+         })->pluck('id');
+      }else
+      {
+         $this->selectedBills = [];
+      }
+   }
 
 
     public function render()
@@ -92,7 +91,7 @@ class TenantBillComponent extends Component
        ->bills()
        ->orderBy('bill_no','asc')
        ->when($this->status, function($query){
-       $query->whereIn('status', $this->status);
+       $query->where('status', $this->status);
        })
        ->get();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PropertyBuilding;
 use Illuminate\Http\Request;
+use Session;
 
 class PropertyBuildingController extends Controller
 {
@@ -14,7 +15,9 @@ class PropertyBuildingController extends Controller
      */
     public function index()
     {
-        //
+        return PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
+        ->where('property_buildings.property_uuid', Session::get('property'))
+        ->get();
     }
 
     /**

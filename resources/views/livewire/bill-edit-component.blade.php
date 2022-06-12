@@ -1,24 +1,23 @@
-<div class="py-12">
+<div class="py-2">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-        <div class="">
-            Bills Count: <b> {{ $bills->count('bill')}}</b>, Bills Total: <b> {{
-                number_format($bills->sum('bill'),2)}}</b>
-
-
-        </div>
         <div class="mt-5">
-            @if($selectedBills)
-            <x-button onclick="confirmMessage()" wire:click="deleteBills()"><i class="fa-solid fa-trash"></i>&nbsp
-                Remove ({{ count($selectedBills) }})
-            </x-button>
-        
+            <div class="flex flex-row">
+                <div class="basis-1/2">
+                    @if($selectedBills)
+                    <x-button wire:click="submitForm()">Post Bills ({{ count($selectedBills) }})
+                    </x-button>
+                    @endif
+                </div>
+                <div class="basis-1/2 ml-12 text-right">
+                    @if($selectedBills)
+                    <x-button onclick="confirmMessage()" wire:click="removeBills()">
+                        Remove Bills ({{ count($selectedBills) }})
+                    </x-button>
 
-       
-            <x-button form="edit-form"><i class="fas fa-check-circle"></i>&nbsp Post ({{ $bills->count() }})</x-button>
-            @endif
-
+                    @endif
+                </div>
+            </div>
         </div>
-
         <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
                 <div class="flex flex-col">
@@ -30,98 +29,83 @@
                                     <thead
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
-                                            <th scope="col" class="p-4">
+                                            <x-th>
                                                 <div class="flex items-center">
                                                     <x-input id="" wire:model="selectAll" type="checkbox" />
                                                 </div>
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                #
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Ref #
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Date Posted
-                                            </th>
-                                            <th colspan="2" scope="col" class="px-6 py-3">
-                                                Period Covered (start-end)
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Particular
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Amount
-                                            </th>
-
+                                            </x-th>
+                                            <x-th>#</x-th>
+                                            <x-th>Tenant</x-th>
+                                            <x-th>Date Posted</x-th>
+                                            <x-th>Start</x-th>
+                                            <x-th>End</x-th>
+                                            <x-th>Particular</x-th>
+                                            <x-th>Amount</x-th>
                                         </tr>
                                     </thead>
-                                    <?php 
-                                        $ctr = 1;
-                                        $id = 1;
-                                        $amount = 1;
-                                        $particular_id =1;
-                                        $start = 1;
-                                        $end =1;
-                                        $created_at = 1;                     
-                                    ?>
-                                    <form action="/bill/{{ Session::get('property') }}/customized/batch/{{ $batch_no }}"
-                                        method="POST" id="edit-form">
-                                        @csrf
-                                        @method('PATCH')
+
+                                    <form wire:submit.prevent="submitForm">
+                                        <tbody>
+                                            @forelse ($bills as $index => $bill)
+                                            <div wire:key="bill-field-{{ $bill->id }}">
+                                                <tr>
+                                                    <x-td>
+                                                        <div class="flex items-center">
+                                                            <x-input type="checkbox"
+                                                                wire:model="selectedBills.{{ $bill->id }}" />
+                                                        </div>
+                                                    </x-td>
+                                                    <x-td>{{ $bill->bill_no }}</x-td>
+                                                    <?php
+                                                    $tenant = App\Models\Tenant::find($bill->tenant_uuid)->tenant;
+                                                    $unit = App\Models\Unit::find($bill->unit_uuid)->unit
+                                            ?>
+                                                    <x-td><a href="/tenant/{{ $bill->tenant->uuid }}/bills"><b
+                                                                class="text-blue-600">{{ $tenant }}</b></a></x-td>
+                                                    <x-td>
+                                                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.created_at"/>
+                                                        @error('bills.{{ $index }}.created_at')
+                                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                        @enderror
+                                                    </x-td>
+
+                                                    <x-td>
+                                                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.start"/>
+                                                        @error('bills.{{ $index }}.start')
+                                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                        @enderror
+                                                    </x-td>
+                                                    <x-td>
+                                                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.end"/>
+                                                        @error('bills.{{ $index }}.end')
+                                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                        @enderror
+                                                    </x-td>
+                                                    <x-td>
+                                                        <x-table-select form="edit-form">
+                                                            <option value="{{ $bill->particular_id }}" {{
+                                                                old('particular_id')==$bill->particular_id ? 'selected'
+                                                                :
+                                                                'Select one' }} selected>{{
+                                                                $bill->particular->particular }}
+                                                            </option>
+                                                        </x-table-select>
+                                                    </x-td>
+                                                    <x-td>
+                                                        <x-table-input form="edit-form" type="number" wire:model="bills.{{ $index }}.bill"/>
+                                                        @error('bills.{{ $index }}.bill')
+                                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                        @enderror
+                                                    </x-td>
+                                                </tr>
+                                                @empty
+                                                <tr>
+                                                    <x-td>No data found.</x-td>
+                                                </tr>
+
+                                                @endforelse
+                                        </tbody>
                                     </form>
-                                    @foreach ($bills as $bill)
-                                    <tbody>
-                                        <tr
-                                            class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                            <td class="p-4">
-                                                <div class="flex items-center">
-                                                    <x-input type="checkbox" wire:model="selectedBills"
-                                                        value="{{ $bill->id }}" />
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                {{ $bill->bill_no }}
-                                            </td>
-
-                                            <td class="px-4 py-4">
-                                                {{ $bill->reference_no }}
-                                            </td>
-
-                                            <td class="px-4 py-4">
-                                                <x-table-input form="edit-form" type="date"
-                                                    name="created_at{{ $created_at++ }}" id="created_at"
-                                                    value="{{ $bill->created_at }}" readonly />
-                                            </td>
-
-                                            <input form="edit-form" type="hidden" name="id{{ $id++ }}" id="id"
-                                                value="{{ $bill->id }}">
-
-                                            <td class="px-4 py-4">
-                                                <x-table-input form="edit-form" name="start{{ $start++  }}" id="start"
-                                                    type="date" value="{{ $bill->start }}" />
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <x-table-input form="edit-form" name="end{{ $end++  }}" id="end"
-                                                    type="date" value="{{ $bill->end }}" />
-                                            </td>
-
-                                            <td class="px-4 py-4">
-                                                <x-table-select form="edit-form"
-                                                    name="particular_id{{ $particular_id++  }}" id="particular_id">
-                                                    <option value="{{ $bill->particular_id }}" {{
-                                                        old('particular_id')==$bill->particular_id ? 'selected' :
-                                                        'Select one' }} selected>{{ $bill->particular->particular }}
-                                                    </option>
-                                                </x-table-select>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <x-table-input form="edit-form" name="amount{{ $amount++  }}" id="bill"
-                                                    type="number" value="{{ $bill->bill }}" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    @endforeach
                                 </table>
                             </div>
 
@@ -132,4 +116,5 @@
             </div>
         </div>
     </div>
+    @include('layouts.notifications')
 </div>

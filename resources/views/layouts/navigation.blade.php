@@ -1,6 +1,8 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
+
     <div class="max-w-12xl mx-auto px-4 sm:px-6 lg:px-8">
+        @if (Session::has('property'))
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -26,23 +28,6 @@
                 </div>
                 @endcan
 
-                {{-- @can('accountownerandmanager')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}"
-                        :active="request()->routeIs('timestamps')">
-                        <i class="fa-solid fa-user-clock"></i>&nbspTimestamps
-                    </x-nav-link>
-                </div>
-                @endcan
-
-
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/referrals"
-                        :active="request()->routeIs('referrals')">
-                        <i class="fa-solid fa-user-group"></i>&nbspReferrals
-                    </x-nav-link>
-                </div> --}}
-
                 @can('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/property/{{ Session::get('property') }}/units"
@@ -57,10 +42,11 @@
                     </x-nav-link>
                 </div>
                 @endcan
-{{-- 
+                {{--
                 @can('treasury') --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/tenants" :active="request()->routeIs('tenants')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
+                        :active="request()->routeIs('tenants')">
                         <i class="fa-solid fa-user"></i>&nbspTenants
                     </x-nav-link>
                 </div>
@@ -181,20 +167,6 @@
             </x-responsive-nav-link>
             @endcannot
 
-            {{-- @can('managerandadmin')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/referrals"
-                :active="request()->routeIs('referrals')">
-                <i class="fa-solid fa-user-group"></i>&nbspReferrals
-            </x-responsive-nav-link>
-            @endcan
-
-            @can('accountownerandmanager')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/timestaps"
-                :active="request()->routeIs('timestaps')">
-                <i class="fa-solid fa-user-clock"></i>&nbspTimestamps
-            </x-responsive-nav-link>
-            @endcan --}}
-
             @can('managerandadmin')
             <x-responsive-nav-link href="/property/{{ Session::get('property') }}/units"
                 :active="request()->routeIs('units')">
@@ -203,7 +175,8 @@
             @endcan
 
             {{-- @can('treasury') --}}
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants" :active="request()->routeIs('tenants')">
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
+                :active="request()->routeIs('tenants')">
                 <i class="fa-solid fa-user"></i>&nbspTenants
             </x-responsive-nav-link>
             {{-- @endcan --}}
@@ -268,5 +241,7 @@
                 </form>
             </div>
         </div>
+        @endif
     </div>
+
 </nav>

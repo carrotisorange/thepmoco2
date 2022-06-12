@@ -173,7 +173,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
      
     Route::post('bill/{uuid:uuid}/store/{bill_count}/customized', [PropertyBillCustomizedController::class, 'store']);
 
-    Route::get('bill/{uuid:uuid}/customized/batch/{batch_no}', [PropertyBillCustomizedController::class, 'edit']);
+    Route::get('bill/{uuid:uuid}/customized/batch/{batch_no}', [PropertyBillCustomizedController::class, 'edit'])->name('bills');
 
     Route::patch('bill/{uuid:uuid}/customized/batch/{batch_no}', [PropertyBillCustomizedController::class, 'update']);
     //4

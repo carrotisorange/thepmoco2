@@ -32,14 +32,9 @@ class ReferenceController extends Controller
      */
     public function create(Unit $unit, Tenant $tenant)
     {
-        Session::flash('success', 'You have skipped adding guardians.');
-
-        $references = Tenant::find($tenant->uuid)->references;
-
          return view('references.create',[
          'unit' => $unit,
          'tenant' => $tenant,
-         'references' => Tenant::find($tenant->uuid)->references,
          ]);
     }
 

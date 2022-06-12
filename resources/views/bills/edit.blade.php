@@ -20,7 +20,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/bills/'">Go back to bills
+                    </x-button>
                 </h5>
             </div>
         </h2>

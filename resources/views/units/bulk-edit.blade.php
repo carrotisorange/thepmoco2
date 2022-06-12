@@ -21,12 +21,17 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button data-modal-toggle="create-unit-modal">Add more units
+                    </x-button>
+                    <x-button data-modal-toggle="add-building-modal">Create a building
+                    </x-button>
 
+                  
                 </h5>
             </div>
         </h2>
     </x-slot>
     @include('utilities.create-unit-modal')
-    @livewire('unit-component', ['batch_no' => $batch_no, 'unit_count' => $unit_count])
+    @livewire('unit-component', ['batch_no' => $batch_no])
     @include('utilities.create-building-modal');
 </x-app-layout>

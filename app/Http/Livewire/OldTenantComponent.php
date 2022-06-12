@@ -97,13 +97,13 @@ class OldTenantComponent extends Component
 
             DB::commit();
 
-            return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success','Tenant has been created.');
+            return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success','Tenant is succesfully created.');
 
        }catch(\Exception $e)
        {
             DB::rollback();
 
-            app('App\Http\Controllers\ErrorController')->show();
+            return back()->with('error');
        }
 
     }
