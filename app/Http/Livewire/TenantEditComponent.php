@@ -16,6 +16,10 @@ use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
 use Session;
+use App\Models\Relationship;
+use App\Models\AcknowledgementReceipt;
+use App\Models\Bill;
+use App\Models\Contract;
 
 class TenantEditComponent extends Component
 {
@@ -44,6 +48,22 @@ class TenantEditComponent extends Component
     public $employer_address;
     public $employer;
 
+    public $guardians;
+    public $references;
+    public $contracts;
+    public $bills;
+    public $ars;
+
+    public $guardian;
+    public $guardian_relationship_id;
+    public $guardian_mobile_number;
+    public $guardian_email;
+
+    public $reference;
+    public $reference_relationship_id;
+    public $reference_mobile_number;
+    public $reference_email;
+
     public function mount($tenant_details)
     {
         $this->tenant_details = $tenant_details;
@@ -67,6 +87,11 @@ class TenantEditComponent extends Component
         $this->occupation = $tenant_details->occupation;
         $this->employer_address = $tenant_details->employer_address;
         $this->employer = $tenant_details->employer;
+        $this->guardians = $this->get_guardians();
+        $this->references = $this->get_references();
+        $this->contracts = $this->get_contracts();
+        $this->bills = $this->get_bills();
+        $this->ars = $this->get_ars();
     }
 
     protected function rules()
@@ -74,7 +99,7 @@ class TenantEditComponent extends Component
         return [
             'tenant' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('tenants','email')->ignore($this->tenant_details->uuid, 'uuid')],
-            'mobile_number' => ['nullable', Rule::unique('tenants', 'mobile_number')->ignore($this->tenant_details->uuid, 'uuid')],
+            'mobile_number' => ['nullable'],
             'type' => 'nullable',
             'gender' => 'required',
             'civil_status' => 'nullable',
@@ -100,36 +125,69 @@ class TenantEditComponent extends Component
 
     public function updateForm()
     {
+         
         try{
             sleep(1);
-
-            $validatedData = $this->validate();
             
-            DB::beginTransaction();
+            $validatedData = $this->validate();
 
             if(request()->photo_id)
             {
-                $validatedData['photo_id'] = $this->photo_id->store('avatars');
+            $validatedData['photo_id'] = $this->photo_id->store('avatars');
             }
+
+            
+            DB::beginTransaction();
         
             $this->tenant_details->update($validatedData);
 
+            return back()->with('success', 'Tenant details is successfully updated.');
+
             DB::commit();
                 
-            return redirect('/tenant/'.$this->tenant_details->uuid.'/edit')->with('success', 'Tenant has been updated.');
-
+            
         }catch(\Exception $e){
             DB::rollback();
-            return back()->with('error', 'Cannot perform your action.');
+
+            return back()->with('error');
         }
     }
 
+
     public function render()
     {
-         return view('livewire.tenant-edit-component',[
-         'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
-         'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
-         'countries' => Country::orderBy('country', 'ASC')->get(),
+            return view('livewire.tenant-edit-component',[
+            'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
+            'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
+            'countries' => Country::orderBy('country', 'ASC')->get(),
+            'relationships' => Relationship::all()
          ]);
     }
+
+    public function get_references()
+    {
+        return Tenant::find($this->tenant_details->uuid)->references;
+    }
+
+    public function get_guardians()
+    {
+        return Tenant::find($this->tenant_details->uuid)->guardians;
+    }
+
+    public function get_contracts()
+
+    {
+        return Contract::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('start','desc')->limit(5)->get();
+    }
+
+    public function get_bills()
+    {
+        return Bill::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('bill_no','desc')->limit(5)->get();
+    }
+
+    public function get_ars()
+    {
+        return AcknowledgementReceipt::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('ar_no','desc')->limit(5)->get();
+    }
+
 }

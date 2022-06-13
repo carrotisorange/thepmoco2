@@ -22,11 +22,9 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}'"><i
-                            class="fa-solid fa-circle-arrow-left"></i>&nbspBack
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}'">Go back to Dashboard
                     </x-button>
-                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'"><i
-                            class="fa-solid fa-circle-plus"></i>&nbspProperty
+                    <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">Create a new property
                     </x-button>
                     {{-- <x-button form="edit-form">Save</x-button> --}}
                 </h5>

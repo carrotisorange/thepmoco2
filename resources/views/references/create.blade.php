@@ -24,13 +24,20 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    @if($unit->unit)
                     <x-button wire:submit.prevent="submitForm"
                         onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'">
                         Next
+                    </x-button> 
+                    @else
+                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'">
+                        Go back to tenant
                     </x-button>
+                    @endif
+                   
             </div>
         </h2>
     </x-slot>
 
-    @livewire('guardian-component', ['unit' => $unit, 'tenant' => $tenant])
+    @livewire('reference-component', ['unit' => $unit, 'tenant' => $tenant])
 </x-app-layout>

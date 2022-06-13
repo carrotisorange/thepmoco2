@@ -22,12 +22,12 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"><i
-                            class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
+                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"> Go back to tenant
                     </x-button>
 
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/units'"><i
-                            class="fa-solid fa-circle-plus"></i>&nbsp Contract
+                    <x-button
+                        onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/units'">
+                        Create a new contract
                     </x-button>
 
                     {{-- <x-button data-modal-toggle="create-tenant-contract-modal"><i
@@ -115,10 +115,9 @@
                                                 <x-td>
                                                     <x-button id="dropdownDividerButton"
                                                         data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
-                                                        type="button"><i
-                                                            class="fa-solid fa-list-check"></i>&nbspOptions<svg
-                                                            class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
-                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        type="button">Actions<svg class="ml-2 w-4 h-4" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2" d="M19 9l-7 7-7-7">
                                                             </path>

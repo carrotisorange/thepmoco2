@@ -22,8 +22,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"><i
-                            class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
+                    <x-button onclick="window.location.href='{{ url()->previous() }}'">
+                            Go back to tenant
                     </x-button>
                 </h5>
             </div>
@@ -82,7 +82,7 @@
                                                 <x-td>
                                                     <x-button
                                                         onclick="window.location.href='/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export'">
-                                                        <i class="fa-solid fa-download"></i>&nbspExport
+                                                        Download
                                                     </x-button>
                                                 </x-td>
                                                 @empty

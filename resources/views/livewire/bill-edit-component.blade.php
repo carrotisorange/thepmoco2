@@ -36,7 +36,8 @@
                                             </x-th>
                                             <x-th>#</x-th>
                                             <x-th>Tenant</x-th>
-                                            <x-th>Date Posted</x-th>
+                                            <x-th>Unit</x-th>
+                                            {{-- <x-th>Date Posted</x-th> --}}
                                             <x-th>Start</x-th>
                                             <x-th>End</x-th>
                                             <x-th>Particular</x-th>
@@ -60,23 +61,27 @@
                                                     $tenant = App\Models\Tenant::find($bill->tenant_uuid)->tenant;
                                                     $unit = App\Models\Unit::find($bill->unit_uuid)->unit
                                             ?>
-                                                    <x-td><a href="/tenant/{{ $bill->tenant->uuid }}/bills"><b
+                                                    <x-td><a href="/tenant/{{ $bill->tenant_uuid }}/bills"><b
                                                                 class="text-blue-600">{{ $tenant }}</b></a></x-td>
-                                                    <x-td>
-                                                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.created_at"/>
+                                                    {{-- <x-td>
+                                                        <x-table-input form="edit-form" type="date"
+                                                            wire:model="bills.{{ $index }}.created_at" />
                                                         @error('bills.{{ $index }}.created_at')
                                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                         @enderror
-                                                    </x-td>
-
+                                                    </x-td> --}}
+                                                    <x-td><a href="/unit/{{ $bill->unit_uuid }}/bills"><b
+                                                                class="text-blue-600">{{ $unit }}</b></a></x-td>
                                                     <x-td>
-                                                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.start"/>
+                                                        <x-table-input form="edit-form" type="date"
+                                                            wire:model="bills.{{ $index }}.start" />
                                                         @error('bills.{{ $index }}.start')
                                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                         @enderror
                                                     </x-td>
                                                     <x-td>
-                                                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.end"/>
+                                                        <x-table-input form="edit-form" type="date"
+                                                            wire:model="bills.{{ $index }}.end" />
                                                         @error('bills.{{ $index }}.end')
                                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                         @enderror
@@ -92,7 +97,8 @@
                                                         </x-table-select>
                                                     </x-td>
                                                     <x-td>
-                                                        <x-table-input form="edit-form" type="number" wire:model="bills.{{ $index }}.bill"/>
+                                                        <x-table-input form="edit-form" type="number"
+                                                            wire:model="bills.{{ $index }}.bill" />
                                                         @error('bills.{{ $index }}.bill')
                                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                         @enderror

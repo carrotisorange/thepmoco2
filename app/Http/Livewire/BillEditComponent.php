@@ -23,7 +23,7 @@ class BillEditComponent extends Component
     protected function rules()
     {
         return [
-            'bills.*.created_at' => 'required',
+          
             'bills.*.start' => 'required',
             'bills.*.end' => 'required',
             'bills.*.bill' => 'required'
@@ -44,6 +44,7 @@ class BillEditComponent extends Component
         {
             $this->selectedBills = [];
         }
+        
      }
 
     public function removeBills()

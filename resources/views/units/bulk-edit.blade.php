@@ -21,12 +21,15 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Go back to
+                        units
+                    </x-button>
                     <x-button data-modal-toggle="create-unit-modal">Add more units
                     </x-button>
                     <x-button data-modal-toggle="add-building-modal">Create a building
                     </x-button>
 
-                  
+
                 </h5>
             </div>
         </h2>

@@ -94,8 +94,7 @@
                            <x-td>{{ $item->mobile_number }}</x-td>
                            <x-td>{{ $item->relationship->relationship }}</x-td>
                            <x-td>
-                              <x-button wire:click="removeGuardian({{ $item->id }})" onclick="confirmMessage()"><i
-                                    class="fa-solid fa-trash-can"></i>
+                              <x-button wire:click="removeGuardian({{ $item->id }})" onclick="confirmMessage()">Remove
                               </x-button>
                            </x-td>
                         </tr>

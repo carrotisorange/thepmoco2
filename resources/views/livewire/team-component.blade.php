@@ -1,108 +1,172 @@
-<div class="py-12">
-    <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
-        <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="">
-                <div>
-                    <form wire:submit.prevent="submitForm" enctype="multipart/form-data"
-                        action="/team/{{ Str::random(8) }}/store" method="POST" id="create-form"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div>
-                            <x-label for="role_id" :value="__('Select a role for the member.')" />
+<div>
+    @can('manager')
+    <div class="p-8 px-12 bg-white border-b border-gray-200">
+        <form wire:submit.prevent="submitForm" enctype="multipart/form-data">
+            <div class="flex flex-row">
+                <div class="basis-full">
+                    <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
+                        <x-label for="role_id" :value="__('Role')" />
 
-                            <x-form-select wire:model="role_id" form="create-form" name="role_id" id="role_id">
-                                <option value="">Select one</option>
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
-                                    'selected': 'Select one'
-                                    }}>{{ $role->role }} - {{ $role->description }}</option>
-                                @endforeach
-                            </x-form-select>
+                        <x-form-select wire:model="role_id" form="create-form" name="role_id" id="role_id">
+                            <option value="">Select one</option>
+                            @foreach ($roles as $role)
+                            <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
+                                'selected': 'Select one'
+                                }}>{{ $role->role }} </option>
+                            @endforeach
+                        </x-form-select>
 
-                            @error('role_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        @if($role_id)
-                        <div>
-                            <div class="mt-5">
-                                <x-label for="name" :value="__('Name')" />
-
-                                <x-form-input wire:model="name" form="create-form" type="text" name="name"
-                                    :value="old('name')" autofocus />
-
-                                @error('name')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
-                                <x-label for="username" :value="__('Username')" />
-
-                                <x-form-input wire:model="username" form="create-form" id="username" type="text"
-                                    name="username" :value="old('username', $username)" autofocus />
-
-                                @error('username')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
-                                <x-label for="email" :value="__('Email')" />
-
-                                <x-form-input wire:model="email" form="create-form" id="email" type="email" name="email"
-                                    :value="old('email')" autofocus />
-
-                                @error('email')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
-                                <x-label for="mobile_number" :value="__('Mobile')" />
-
-                                <x-form-input wire:model="mobile_number" form="create-form" id="mobile_number"
-                                    type="text" name="mobile_number" :value="old('mobile_number')" autofocus />
-
-                                @error('mobile_number')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
-                                <x-label for="avatar" :value="__('Avatar')" />
-
-                                <x-form-input wire:model="avatar" form="create-form" id="avatar" type="file"
-                                    name="avatar" :value="old('avatar')" autofocus />
-
-                                @error('avatar')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5">
-                                <p class="text-right">
-                                    <x-button form="create-form">
-                                        <svg wire:loading wire:target="submitForm"
-                                            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                                stroke-width="4">
-                                            </circle>
-                                            <path class="opacity-75" fill="currentColor"
-                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                            </path>
-                                        </svg>
-                                        <i class="fa-solid fa-circle-check"></i>&nbspSubmit
-                                    </x-button>
-                                </p>
-                            </div>
-                        </div>
-                        @endif
-                    </form>
+                        @error('role_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
+                <div class="basis-full">
+                    <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
+                        <x-label for="name" :value="__('Name')" />
 
+                        <x-form-input wire:model="name" form="create-form" type="text" name="name" :value="old('name')"
+                            autofocus />
+
+                        @error('name')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="basis-full">
+                    <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
+                        <x-label for="username" :value="__('Username')" />
+
+                        <x-form-input wire:model="username" form="create-form" id="username" type="text" name="username"
+                            :value="old('username', $username)" autofocus />
+
+                        @error('username')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="basis-full">
+                    <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
+                        <x-label for="email" :value="__('Email')" />
+
+                        <x-form-input wire:model="email" form="create-form" id="email" type="email" name="email"
+                            :value="old('email')" autofocus />
+
+                        @error('email')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="basis-full">
+                    <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
+                        <x-label for="mobile_number" :value="__('Mobile')" />
+
+                        <x-form-input wire:model="mobile_number" form="create-form" id="mobile_number" type="text"
+                            name="mobile_number" :value="old('mobile_number')" autofocus />
+
+                        @error('mobile_number')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="basis-full">
+                    <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
+                        <x-label for="mobile_number" :value="__('Password')" />
+
+                        <x-form-input wire:model="password" type="text" autofocus />
+
+                        @error('password')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="basis-full">
+                    <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
+                        <x-form-button>Create</x-form-button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
-</div>
+    @endcan
+
+    <div class="mt-2 mb-2">
+        {{ $teams->links() }}
+    </div>
+    <div class="p-2 mt-5 bg-white border-b border-gray-200">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+            {{-- <x-search placeholder="Search for units..."></x-search> --}}
+           
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <x-th>#</x-th>
+                        <x-th>Name</x-th>
+                        <x-th>Contact</x-th>
+                        <x-th>Status</x-th>
+                        <x-th>Created</x-th>
+                        <x-th>Email verified at</x-th>
+                        <x-th></x-th>
+                    </tr>
+                </thead>
+                @forelse ($teams as $index => $item)
+                <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr>
+                        <x-td>{{ $index }}</x-td>
+                        <x-td>
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10">
+                                    <a href="/profile/{{ $item->username }}/edit">
+                                        <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->avatar }}"
+                                            alt=""></a>
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">{{
+                                        $item->name }}
+                                    </div>
+                                    <div class="text-sm text-gray-500">{{ $item->role }}
+                                    </div>
+                                </div>
+                            </div>
+                        </x-td>
+                        <x-td>
+                            <div class="text-sm text-gray-900">{{ $item->email }}
+                            </div>
+                            <div class="text-sm text-gray-500">{{ $item->mobile_number }}
+                            </div>
+                        </x-td>
+                        <x-td>
+                            @if($item->status === 'active')
+                            <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                <i class="fa-solid fa-circle-check"></i> {{
+                                $item->status }}
+                                @else
+                                <span
+                                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                    <i class="fa-solid fa-clock"></i> {{
+                                    $item->status }}
+                                </span>
+                                @endif
+                        </x-td>
+                        <x-td>{{ $item->created_at->diffForHumans() }}</x-td>
+                        <x-td>
+                            @if($item->status==='active')
+                            {{ Carbon\Carbon::parse($item->email_verified_at)->timezone('Asia/Manila')->format('M d, Y @ g:i
+                            A')}}
+
+                            @endif
+                        </x-td>
+                        <x-td>
+                            <x-button onclick="confirmMessage()" wire:click='removeUser({{ $item->user_id }})'>remove</x-button>
+                        </x-td>
+                        @empty
+                        <x-td>No data found!</x-td>
+                    </tr>
+                </tbody>
+                @endforelse
+            </table>
+        </div>
+        @include('layouts.notifications')
+    </div>
+</div>  

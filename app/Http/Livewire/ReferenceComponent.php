@@ -5,6 +5,7 @@ use App\Models\Reference;
 use Illuminate\Support\Str;
 use App\Models\Relationship;
 use DB;
+use Illuminate\Validation\Rule;
 use App\Models\Tenant;
 
 use Livewire\Component;
@@ -24,12 +25,12 @@ class ReferenceComponent extends Component
      {
         $this->unit = $unit;
         $this->tenant = $tenant;
-        $this->guardians = $this->get_references();
+        $this->references = $this->get_references();
      }
 
      public function get_references()
      {
-         return Tenant::find($this->tenant->uuid)->guardians;
+         return Tenant::find($this->tenant->uuid)->references;
      }
 
      public function removeReference($id)
@@ -68,11 +69,11 @@ class ReferenceComponent extends Component
         {
             DB::beginTransaction();
             
-            Guardian::create($validated_data);
+            Reference::create($validated_data);
 
             $this->resetForm();
 
-            $this->guardians = $this->get_references();
+            $this->references = $this->get_references();
 
             return back()->with('success', 'Reference is successfully created.');
         }

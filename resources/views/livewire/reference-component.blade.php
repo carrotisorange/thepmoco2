@@ -37,7 +37,7 @@
                                     <x-td>{{ $item->relationship->relationship }}</x-td>
                                     <x-td>
                                         <x-button wire:click="removeReference({{ $item->id }})"
-                                            onclick="confirmMessage()"><i class="fa-solid fa-trash-can"></i>
+                                            onclick="confirmMessage()">Remove
                                         </x-button>
                                     </x-td>
                                 </tr>

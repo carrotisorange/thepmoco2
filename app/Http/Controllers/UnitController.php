@@ -117,11 +117,16 @@ class UnitController extends Controller
         ->get();
 
         return view('units.edit',[
+            
             'unit' => $unit,
             'buildings' => $buildings,
             'floors' => Floor::all(),
             'categories' => Category::all(),
             'statuses' => Status::all(),
+             'contracts' => Unit::findOrFail($unit->uuid)->contracts()->paginate(5),
+             'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales()->paginate(5),
+             'bills' => Unit::findOrFail($unit->uuid)->bills()->paginate(5),
+             'enrollees' => Unit::findOrFail($unit->uuid)->enrollees()->paginate(5)
         ]);
 
     }
