@@ -70,14 +70,14 @@ class UnitComponent extends Component
         foreach($this->selectedUnits as $unit=>$val){
             if(Contract::where('unit_uuid', $unit)->count() || Enrollee::where('unit_uuid', $unit)->count() || DeedOfSale::where('unit_uuid', $unit)->count())
             {
-               session()->flash('error', 'unit cannot be removed');
+               session()->flash('error', 'Unit cannot be removed.');
             }
             else{
                 Unit::destroy($unit);
                 
                 $this->units = $this->get_units();
 
-               session()->flash('success', count($this->selectedUnits).' unit is successfully removed.');
+               session()->flash('success', count($this->selectedUnits).' Unit is successfully removed.');
             }
         }
          $this->selectedUnits = [];
