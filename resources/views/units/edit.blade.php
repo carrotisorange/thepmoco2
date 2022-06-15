@@ -15,7 +15,7 @@
     </x-slot>
 
     <div class="p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Unit</h1>
+        <h1 class="font-bold">Unit Details</h1>
         <div>
             <form action="/unit/{{ $unit->uuid }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
                 @csrf
@@ -193,7 +193,6 @@
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
         <h1 class="font-bold">Contracts</h1>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <?php $ctr =1; ?>
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>#</x-th>
@@ -205,11 +204,25 @@
                     <x-th></x-th>
                 </tr>
             </thead>
-            @forelse ($contracts as $item)
+            @forelse ($contracts as $index => $item)
             <tbody class="bg-white divide-y divide-gray-200">
                 <tr>
-                    <x-td>{{ $ctr++ }}</x-td>
-                    <x-td>{{ $item->tenant->tenant }}</x-td>
+                    <x-td>{{ $index +1 }}</x-td>
+                    <x-td>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10">
+                                <a href="/tenant/{{ $item->tenant_uuid }}/edit">
+                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->tenant->photo_id }}"
+                                        alt=""></a>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">{{
+                                    $item->tenant->tenant }}
+                                </div>
+
+                            </div>
+                        </div>
+                    </x-td>
                     <x-td>
                         <div class="text-sm text-gray-900">{{
                             Carbon\Carbon::parse($item->start)->format('M d, Y').' -
@@ -324,12 +337,12 @@
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>#</x-th>
-                    <x-th>name</x-th>
+                    <x-th>Name</x-th>
                     <x-th>Date of turnover</x-th>
                     <x-th>Price</x-th>
                     <x-th>Classification</x-th>
                     <x-th>Status</x-th>
-                    <x-th></x-th>
+
                 </tr>
             </thead>
             @forelse ($deed_of_sales as $item)
@@ -339,7 +352,7 @@
                     <x-td>
                         <div class="flex items-center">
                             <div class="flex-shrink-0 h-10 w-10">
-                                <a href="/owner/{{ $item->owner_uuid }}">
+                                <a href="/owner/{{ $item->owner_uuid }}/edit">
                                     <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->owner->photo_id }}"
                                         alt=""></a>
                             </div>
@@ -369,28 +382,7 @@
                             </span>
                             @endif
                     </x-td>
-                    <x-td>
-                        <x-button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
-                            type="button">Actions
-                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7">
-                                </path>
-                            </svg>
-                        </x-button>
-                        <div id="dropdownDivider.{{ $item->uuid }}"
-                            class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-1" aria-labelledby="dropdownDividerButton">
-                                <li>
-                                    <a href="/owner/{{ $item->owner->uuid }}/"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                            class="fa-solid fa-user"></i>&nbspShow
-                                        Owner</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </x-td>
+
                     @empty
                     <x-td>No data found!</x-td>
                     @endforelse

@@ -385,7 +385,7 @@
             <tr>
                 <x-td>{{ $ctr++ }}</x-td>
                 <x-td>
-                    <div class="text-sm text-gray-900">{{ $item->unit->unit }}
+                    <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold" href="/unit/{{ $item->unit->uuid }}/edit">{{ $item->unit->unit }}</a>
                     </div>
 
                     <div class="text-sm text-gray-500">{{
