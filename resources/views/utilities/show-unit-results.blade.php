@@ -1,4 +1,4 @@
-<div class="grid grid-cols-6 gap-1 md:grid:cols-1 sm:grid:cols-1">
+<div class="overflow-hidden grid grid-cols-10 gap-1 md:grid:cols-1 sm:grid:cols-1">
     @foreach ($units as $unit)
     <div class="mt-5">
         @if(Session::get('tenant_uuid'))

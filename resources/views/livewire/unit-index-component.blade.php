@@ -4,7 +4,7 @@
     <div class="mt-2">
         {{ $units->links() }}
     </div>
-    <div class="p-6 bg-white border rounded shadow">
+    <div class="p-6 mt-3 overflow-x-auto bg-white border rounded shadow">
         <div class="flex flex-row">
             <div class="basis-1/4 mt-10 ml-10">
                 @include('utilities.show-unit-filters')
