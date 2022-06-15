@@ -490,12 +490,7 @@ class PropertyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Property $property)
-    {
-        $this->authorize('manager');
-        
-         session(['property' => $property->uuid]);
-         session(['property_name' => $property->property]);
-         
+    { 
         return view('properties.edit',[
             'property_details' => $property,
         ]);
