@@ -543,10 +543,36 @@
                     <x-td>{{ $ctr++ }}</x-td>
 
                     <x-td>@if($item->tenant_uuid)
-                        {{ $item->tenant->tenant}} (<span>T</span>)
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10">
+                                <a href="/tenant/{{ $item->tenant_uuid }}/edit">
+                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->tenant->photo_id }}"
+                                        alt=""></a>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">{{
+                                    $item->tenant->tenant }}
+                                </div>
+
+                            </div>
+                        </div>
+
                         @else
-                        {{ $item->owner->owner}}
-                        @endif</x-td>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10">
+                                <a href="/tenant/{{ $item->owner_uuid }}/edit">
+                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->owner->photo_id }}"
+                                        alt=""></a>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">{{
+                                    $item->owner->owner }}
+                                </div>
+
+                            </div>
+                        </div>
+                        @endif
+                    </x-td>
                     <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.
                         Carbon\Carbon::parse($item->end)->format('M d, Y')}}</x-td>
                     <x-td>{{ $item->particular->particular}}</x-td>
