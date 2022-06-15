@@ -59,4 +59,5 @@
     @include('layouts.footer')
 </body>
 @include('layouts.script')
+@include('utilities.popup-error-modal')
 </html>

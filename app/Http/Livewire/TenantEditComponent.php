@@ -20,6 +20,8 @@ use App\Models\Relationship;
 use App\Models\AcknowledgementReceipt;
 use App\Models\Bill;
 use App\Models\Contract;
+use App\Models\Guardian;
+use App\Models\Reference;
 
 class TenantEditComponent extends Component
 {
@@ -166,12 +168,12 @@ class TenantEditComponent extends Component
 
     public function get_references()
     {
-        return Tenant::find($this->tenant_details->uuid)->references;
+        return Reference::where('tenant_uuid',$this->tenant_details->uuid)->limit(5)->get();
     }
 
     public function get_guardians()
     {
-        return Tenant::find($this->tenant_details->uuid)->guardians;
+        return Guardian::where('tenant_uuid',$this->tenant_details->uuid)->limit(5)->get();
     }
 
     public function get_contracts()

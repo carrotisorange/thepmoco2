@@ -6,8 +6,10 @@ use App\Models\Province;
 use App\Models\Country;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use App\Models\DeedOfSale;
 use App\Models\Owner;
 use App\Models\Role;
+use DB;
 
 use Livewire\Component;
 
@@ -74,42 +76,53 @@ class OwnerEditComponent extends Component
     {
         sleep(1);
 
-              $validatedData = $this->validate();
-
+        $validatedData = $this->validate();
+        
         try
         {
-      
+            DB::beginTransaction();
 
-            if(!$this->country_id)
-            {
-            $validatedData['country_id'] = '247';
-            }
+            $this->update_owner($validatedData);
 
-            if(!$this->province_id)
-            {
-            $validatedData['province_id'] = '4121';
-            }
+            DB::commit();
 
-            if(!$this->city_id)
-            {
-            $validatedData['city_id'] = '48315';
-            }
-            
-            $this->owner_details->update($validatedData);
+            session()->flash('success','Owner is successfully updated.');
 
-            return redirect('/owner/'.$this->owner_details->uuid.'/edit/')->with('success','Owner is updated successfully.');
         }catch(\Exception $e)
         {  
-            ddd($e);
+            DB::rollback();
+
+            session()->flash('error');
         }
 
     }
+
+    public function update_owner($validatedData)
+    {
+         if(!$this->country_id)
+         {
+            $validatedData['country_id'] = '247';
+         }
+
+         if(!$this->province_id)
+         {
+            $validatedData['province_id'] = '4121';
+         }
+
+         if(!$this->city_id)
+         {
+            $validatedData['city_id'] = '48315';
+         }
+
+         $this->owner_details->update($validatedData);
+    }
+
     public function render()
     {
         return view('livewire.owner-edit-component',[
             'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
             'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
-            'countries' => Country::orderBy('country', 'ASC')->get()
+            'countries' => Country::orderBy('country', 'ASC')->get(),
         ]);
     }
 }

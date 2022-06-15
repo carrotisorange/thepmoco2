@@ -26,17 +26,9 @@ class RepresentativeController extends Controller
      */
     public function create(Unit $unit, Owner $owner)
     {
-        // $representatives = Representative::join('owners', 'representatives.owner_uuid', 'owners.uuid')
-        // ->select('*', 'representatives.id as representative_id')
-        // ->join('relationships', 'representatives.relationship_id', 'relationships.id')
-        // ->where('owners.uuid', $owner->uuid)
-        // ->groupBy('representatives.id')
-        // ->get();
-    
          return view('representatives.create',[
             'unit' => $unit,
             'owner' => $owner,
-            'representatives' => Owner::find($owner->uuid)->representatives,
          ]);
     }
 

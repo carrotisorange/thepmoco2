@@ -44,8 +44,8 @@ class EnrolleeController extends Controller
     public function create(Unit $unit, Owner $owner)
     {
         return view('enrollees.create', [
-        'unit' => $unit,
-        'owner' => $owner
+            'unit' => $unit,
+            'owner' => $owner
         ]);
     }
 

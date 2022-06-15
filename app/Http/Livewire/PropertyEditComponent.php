@@ -61,11 +61,11 @@ class PropertyEditComponent extends Component
            'country_id' => ['required', Rule::exists('countries', 'id')],
            'province_id' => ['required', Rule::exists('provinces', 'id')],
            'city_id' => ['required', Rule::exists('cities', 'id')],
-           'barangay' => ['nullable'],
+           'barangay' => ['required'],
            'status' => ['required'],
-            'email' => ['nullable'],
-            'mobile' => ['nullable'],
-            'ownership' => ['nullable']
+            'email' => ['required'],
+            'mobile' => ['required'],
+            'ownership' => ['required']
         ];
     }
 
@@ -76,25 +76,27 @@ class PropertyEditComponent extends Component
 
     public function updateForm(Request $request)
     {   
+        sleep(1);
+
+        $validatedData = $this->validate();
+
+        //  if(!$this->country_id)
+        //  {
+        //  $validatedData['country_id'] = '247';
+        //  }
+
+        //  if(!$this->province_id)
+        //  {
+        //  $validatedData['province_id'] = '4121';
+        //  }
+
+        //  if(!$this->city_id)
+        //  {
+        //  $validatedData['city_id'] = '48315';
+        //  }
+        
         try{
             DB::beginTransaction();
-
-            sleep(1);
-
-            if(!$this->country_id)
-            {
-                $validatedData['country_id'] = '247';
-            }
-
-            if(!$this->province_id)
-            {
-                $validatedData['province_id'] = '4121';
-            }
-
-            if(!$this->city_id)
-            {
-                $validatedData['city_id'] = '48315';
-            }
 
             // if($this->thumbnail)
             // {
@@ -104,17 +106,15 @@ class PropertyEditComponent extends Component
             //     $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
             // }
 
-            $validatedData = $this->validate();
-
             $this->property_details->update($validatedData);
 
             DB::commit();
 
-            return redirect('/property/'.$this->property_details->uuid.'/edit')->with('success', 'Property is successfully updated.');
+            return back()->with('success', 'Property is successfully updated.');
 
         }catch(\Exception $e){
             DB::rollback();
-            dd($e);
+          
             return back()->with('error', 'Cannot perform your action.');
         }
     }

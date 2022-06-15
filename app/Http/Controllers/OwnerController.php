@@ -95,6 +95,9 @@ class OwnerController extends Controller
             'owner_details' => $owner,
              'representatives' => Owner::find($owner->uuid)->representatives,
              'banks' => Owner::find($owner->uuid)->banks,
+              'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
+              'enrollees' => Owner::find($owner->uuid)->enrollees,
+             
         ]);
     }
 

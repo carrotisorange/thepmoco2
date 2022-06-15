@@ -4,12 +4,14 @@
     <div class="mt-2">
         {{ $units->links() }}
     </div>
-    <div class="flex flex-row">
-        <div class="basis-1/4 mt-10 ml-10">
-            @include('utilities.show-unit-filters')
-        </div>
-        <div class="basis-full">
-            @include('utilities.show-unit-results')
+    <div class="p-6 bg-white border rounded shadow">
+        <div class="flex flex-row">
+            <div class="basis-1/4 mt-10 ml-10">
+                @include('utilities.show-unit-filters')
+            </div>
+            <div class="basis-full">
+                @include('utilities.show-unit-results')
+            </div>
         </div>
     </div>
 </div>

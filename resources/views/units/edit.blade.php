@@ -15,7 +15,7 @@
     </x-slot>
 
     <div class="p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Unit Details</h1>
+        <h1 class="font-bold">Unit</h1>
         <div>
             <form action="/unit/{{ $unit->uuid }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
                 @csrf
@@ -181,7 +181,7 @@
                 <div class="">
                     <div class="mt-5">
                         <p class="text-right">
-                            <x-button form="edit-form">Save</x-button>
+                            <x-button form="edit-form">Update Unit Info</x-button>
                         </p>
                     </div>
                 </div>
@@ -288,7 +288,7 @@
                                     class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                     <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
                                     @else
-                                    <a data-modal-toggle="moveout-error-modal" href="#/"
+                                    <a data-modal-toggle="popup-error-modal" href="#/"
                                         class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                         <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
                                     @endif
@@ -400,8 +400,7 @@
         <div class="mt-5">
             <span>Showing the last 5 deed of sales</span>
             <p class="text-right">
-                <x-button
-                    onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ Str::random(8) }}/create'">
+                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ Str::random(8) }}/create'">
                     Create a deed of sale
                 </x-button>
                 <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/deed_of_sales/'">See more deed of sales

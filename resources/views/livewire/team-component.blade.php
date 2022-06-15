@@ -7,7 +7,7 @@
                     <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                         <x-label for="role_id" :value="__('Role')" />
 
-                        <x-form-select wire:model="role_id" form="create-form" name="role_id" id="role_id">
+                        <x-form-select wire:model="role_id" form="create-form" name="role_id" id="role_id" autofocus>
                             <option value="">Select one</option>
                             @foreach ($roles as $role)
                             <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
@@ -25,8 +25,8 @@
                     <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                         <x-label for="name" :value="__('Name')" />
 
-                        <x-form-input wire:model="name" form="create-form" type="text" name="name" :value="old('name')"
-                            autofocus />
+                        <x-form-input wire:model="name" form="create-form" type="text" name="name"
+                            :value="old('name')" />
 
                         @error('name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -82,7 +82,12 @@
                 </div>
                 <div class="basis-full">
                     <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
-                        <x-form-button>Create</x-form-button>
+                        <x-button wire:loading.remove wire:click="submitForm">
+                            Create
+                        </x-button>
+                        <div wire:loading wire:target="submitForm">
+                            Processing...
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,7 +102,7 @@
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
             {{-- <x-search placeholder="Search for units..."></x-search> --}}
-           
+
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="bg-gray-50">
                     <tr>
@@ -152,13 +157,20 @@
                         <x-td>{{ $item->created_at->diffForHumans() }}</x-td>
                         <x-td>
                             @if($item->status==='active')
-                            {{ Carbon\Carbon::parse($item->email_verified_at)->timezone('Asia/Manila')->format('M d, Y @ g:i
+                            {{ Carbon\Carbon::parse($item->email_verified_at)->timezone('Asia/Manila')->format('M d, Y @
+                            g:i
                             A')}}
 
                             @endif
                         </x-td>
                         <x-td>
-                            <x-button onclick="confirmMessage()" wire:click='removeUser({{ $item->user_id }})'>remove</x-button>
+                            <x-button onclick="confirmMessage()" wire:loading.remove
+                                wire:click='removeUser({{ $item->user_id }})'
+                                class="bg-purple-800 hover:bg-purple-700 active:bg-purple-900 focus:border-purple-900">
+                                Remove</x-button>
+                            <div wire:loading wire:target="removeUser">
+                                Processing...
+                            </div>
                         </x-td>
                         @empty
                         <x-td>No data found!</x-td>
@@ -169,4 +181,4 @@
         </div>
         @include('layouts.notifications')
     </div>
-</div>  
+</div>

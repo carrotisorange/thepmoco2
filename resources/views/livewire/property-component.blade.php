@@ -6,7 +6,7 @@
                 @csrf
                 <div class="mx-5">
                     <x-label for="property">
-                        What is the name of your property? <span class="text-red-600">*</span>
+                        Property <span class="text-red-600">*</span>
                     </x-label>
 
                     <x-form-input wire:model="property" id="property" type="text" name="property"
@@ -19,7 +19,7 @@
 
                 <div class="mt-5 mx-5">
                     <x-label for="ownership">
-                        Which type of ownership your property belongs to? <span class="text-red-600">*</span>
+                        Ownership <span class="text-red-600">*</span>
                     </x-label>
 
                     <x-form-select wire:model="ownership" name="ownership" id="ownership">
@@ -39,7 +39,7 @@
 
                 <div class="mt-5 mx-5">
                     <x-label for="type_id">
-                        Which type of property you have? <span class="text-red-600">*</span>
+                        Type <span class="text-red-600">*</span>
                     </x-label>
 
                     <x-form-select wire:model="type_id" name="type_id" id="type_id">

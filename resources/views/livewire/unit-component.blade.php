@@ -1,26 +1,65 @@
 <div class="py-2">
+        <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <div class="flex">
+                <div class="h-3">
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                        <nav class="rounded-md w-full">
+                            <ol class="list-reset flex">
+                                <li><a href="/property/{{ Session::get('property') }}"
+                                        class="text-blue-600 hover:text-blue-700">{{
+                                        Session::get('property_name') }}</a>
+                                </li>
+                                <li><span class="text-gray-500 mx-2">/</span></li>
+                                <li><span class="text-gray-500 mx-2">Units</span></li>
+                                <li><span class="text-gray-500 mx-2">/</span></li>
+                                <li class="text-gray-500">Edit
+                                <li>
+                            </ol>
+                        </nav>
+                    </h2>
+                </div>
+                <h5 class="flex-1 text-right">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Go back to
+                        units
+                    </x-button>
+                    <x-button data-modal-toggle="create-unit-modal">Add a unit
+                    </x-button>
+                    <x-button data-modal-toggle="add-building-modal">Create a building
+                    </x-button>
+                </h5>
+            </div>
+        </h2>
+    </x-slot>
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
         <div class="mt-5">
             <div class="flex flex-row">
                 <div class="basis-1/2">
-                    @if($selectedUnits)
-                    <x-button wire:click="submitForm()">Save Units ({{ count($selectedUnits) }})
+                    {{-- @if($selectedUnits) --}}
+                    <x-button wire:loading.remove wire:click="updateForm()">
+                        Save Units ({{ $units->count() }})
                     </x-button>
-                    @endif
+                    {{-- @endif --}}
+                    <div wire:loading wire:target="updateForm">
+                        Processing...
+                    </div>
                 </div>
                 <div class="basis-1/2 ml-12 text-right">
                     @if($selectedUnits)
-                    <x-button class="bg-red-800" onclick="confirmMessage()" wire:click="removeUnits()">
+                    <x-button wire:loading.remove class="bg-red-800" onclick="confirmMessage()" wire:click="removeUnits()">
                         Remove Units ({{ count($selectedUnits) }})
                     </x-button>
                     @endif
+                    <div wire:loading wire:target="removeUnits">
+                        Processing...
+                    </div>
                 </div>
             </div>
         </div>
         <div class="mt-5">
             {{-- {{ $units->links() }} --}}
         </div>
-        <form class="sm:pb-6 xl:pb-8" id="edit-form" wire:submit.prevent="submitForm">
+        <form class="sm:pb-6 xl:pb-8" id="edit-form" wire:submit.prevent="updateForm()">
             <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white border-b border-gray-200">
                     <div class="flex flex-col">
@@ -31,9 +70,9 @@
                                         <tr>
                                             <x-th>#</x-th>
                                             <x-th>
-                                                <div class="flex items-center">
+                                                {{-- <div class="flex items-center">
                                                     <x-input wire:model="selectedAllUnits" type="checkbox" />
-                                                </div>
+                                                </div> --}}
                                             </x-th>
                                             <x-th>Unit</x-th>
                                             <x-th>Building</x-th>

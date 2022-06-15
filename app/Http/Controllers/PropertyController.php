@@ -277,6 +277,7 @@ class PropertyController extends Controller
         return Contract::where('end','<=',Carbon::now()->
             addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->paginate(5);
     }
+    
 
     public function get_tenant_movein_values()
     {
@@ -422,6 +423,8 @@ class PropertyController extends Controller
         $timestamps = $this->store_timestamps(Session::get('property'));
 
         $expiring_contracts = $this->get_expiring_contracts();
+
+    
 
         return view('properties.show',[
             'property' => $property,

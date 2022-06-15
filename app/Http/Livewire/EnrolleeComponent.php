@@ -76,7 +76,7 @@ class EnrolleeComponent extends Component
 
             DB::commit();
         
-            return redirect('/owner/'.$this->owner->uuid.'/deed_of_sales')->with('success','Unit is successfully added to leasing.');
+            return redirect('/owner/'.$this->owner->uuid.'/edit')->with('success','Unit is successfully added to leasing.');
 
         }catch (\Throwable $e) 
         {

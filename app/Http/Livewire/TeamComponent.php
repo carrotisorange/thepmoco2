@@ -60,63 +60,85 @@ class TeamComponent extends Component
      {
         sleep(1);
 
-        $validatedData = $this->validate();
+         $validatedData = $this->validate();
 
-            try{
-               DB::beginTransaction();
+         try{
+            DB::beginTransaction();
 
-               $validatedData['password'] = Hash::make($this->password);
-               $validatedData['status'] = 'active';
-               $validatedData['email_verified_at'] = now();
-               $validatedData['account_owner_id'] = auth()->user()->id;
+            $user_id = $this->store_team($validatedData);
 
-               if(isset($this->avatar))
-               {
-               $validatedData['avatar'] = $this->avatar->store('avatars');
-               }else{
-               $validatedData['avatar'] = 'avatars/avatar.png';
-               }
+            $this->store_user_property($user_id);
 
-               $user_id = User::create($validatedData)->id;
+            DB::commit();       
+            
+            $this->send_invite();
 
-               UserProperty::create([
-               'property_uuid' => Session::get('property'),
-               'user_id' => $user_id,
-               'is_account_owner' => false
-               ]);
+            $this->resetForm();
 
-               $role = Role::find($this->role_id)->role;
+            $this->teams = $this->get_teams();
 
-               $details = [
-               'email' => $this->email,
-               'name' => $this->name,
-               'role' => $role,
-               'username' => $this->username,
-               'password'=>$this->password
-               ];
+            return back()->with('success', 'Member is successfully created.');
 
-               DB::commit();
+         }catch(\Exception $e)
+         {
+            DB::rollback();
 
-               Mail::to($this->email)->send(new WelcomeMailToMember($details));
-
-               $this->teams = $this->get_teams();
-
-               $this->resetForm();
-
-               return back()->with('success', 'Member is successfully created.');
-
-            }catch(\Exception $e)
-            {
-               DB::rollback();
-
-               return back()->with('error');
-            }
+            return back()->with('error');
+         }
        
+     }
+
+     public function store_team($validatedData)
+     {
+         $validatedData['password'] = Hash::make($this->password);
+         $validatedData['status'] = 'active';
+         $validatedData['email_verified_at'] = now();
+         $validatedData['account_owner_id'] = auth()->user()->id;
+
+         if(isset($this->avatar))
+         {
+            $validatedData['avatar'] = $this->avatar->store('avatars');
+         }else{
+            $validatedData['avatar'] = 'avatars/avatar.png';
+         }
+
+         $user_id = User::create($validatedData)->id;
+
+         return $user_id;
+     }
+
+     public function store_user_property($user_id)
+     {
+         UserProperty::create([
+         'property_uuid' => Session::get('property'),
+         'user_id' => $user_id,
+         'is_account_owner' => false
+         ]);
+     }
+
+     public function send_invite()
+     {
+         $details = [
+         'email' => $this->email,
+         'name' => $this->name,
+         'role' => Role::find($this->role_id)->role,
+         'username' => $this->username,
+         'password'=>$this->password
+         ];
+
+         //Mail::to($this->email)->send(new WelcomeMailToMember($details));
      }
 
      public function resetForm()
      {
-       $this->reset(['role_id', 'isActive', 'username', 'email', 'mobile_number', 'avatar', 'password']);
+       $this->role_id='';
+       $this->isActive='';
+       $this->name='';
+       $this->username='';
+       $this->email='';
+       $this->mobile_number='';
+       $this->avatar='';
+       $this->password='';
      }
 
      public function render()
@@ -129,6 +151,8 @@ class TeamComponent extends Component
 
      public function removeUser($id)
      {   
+         sleep(1);
+
          User::destroy($id);
 
          UserProperty::where('user_id', $id)->delete();
@@ -145,6 +169,7 @@ class TeamComponent extends Component
          ->join('users', 'user_properties.user_id', 'users.id')
          ->join('types', 'properties.type_id', 'types.id')
          ->join('roles', 'users.role_id', 'roles.id')
+         ->where('user_id','!=' , auth()->user()->id)
          ->where('properties.uuid', Session::get('property'))
          ->orderBy('users.created_at', 'desc')
          ->paginate(5);

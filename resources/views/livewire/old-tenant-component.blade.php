@@ -3,31 +3,33 @@
         <div class="overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-12 bg-white border-b border-gray-200">
                 <p class="text-right">
-                
+
                 </p>
                 <div>
-                    <form method="POST" wire:submit.prevent="submitForm" class="w-full" id="create-form">
+                    <form wire:submit.prevent="submitForm()" class="w-full">
                         @csrf
                         <div class="mt-2 flex flex-wrap mt-5 mx-3 mb-2">
                             <div class="w-full md:w-full px-3 mb-3 md:mb-0">
                                 <x-label for="tenant">
                                     Full Name <span class="text-red-600">*</span>
                                 </x-label>
-                                <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant" value="{{ old('tenant') }}" />
-                    
+                                <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                                    value="{{ old('tenant') }}" />
+
                                 @error('tenant')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                    
+
                         <div class="mt-2 flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
                                 <x-label for="email">
                                     Email
                                 </x-label>
-                                <x-form-input wire:model="email" id="email" type="email" name="email" value="{{ old('email') }}" />
-                    
+                                <x-form-input wire:model="email" id="email" type="email" name="email"
+                                    value="{{ old('email') }}" />
+
                                 @error('email')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -36,15 +38,15 @@
                                 <x-label for="mobile_number">
                                     Mobile
                                 </x-label>
-                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text" name="mobile_number"
-                                    value="{{ old('mobile_number') }}" />
-                    
+                                <x-form-input wire:model="mobile_number" id="mobile_number" type="text"
+                                    name="mobile_number" value="{{ old('mobile_number') }}" />
+
                                 @error('mobile_number')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                    
+
                         <div class="mt-2 flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
                                 <x-label for="type">
@@ -58,7 +60,7 @@
                                     <option value="working" {{ old('type')=='working' ? 'selected' : 'Select one' }}>{{
                                         'working' }}</option>
                                 </x-form-select>
-                    
+
                                 @error('type')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -69,7 +71,7 @@
                                 </x-label>
                                 <x-form-input wire:model="birthdate" id="birthdate" type="date" name="birthdate"
                                     value="{{ old('birthdate') }}" />
-                    
+
                                 @error('birthdate')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -86,36 +88,40 @@
                                     <option value="male" {{ old('gender')=='male' ? 'selected' : 'Select one' }}>{{
                                         'male' }}</option>
                                 </x-form-select>
-                    
+
                                 @error('gender')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                    
+
                             <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
                                 <x-label for="civil_status">
                                     Civil Status
                                 </x-label>
                                 <x-form-select wire:model="civil_status" id="civil_status" name="civil_status">
                                     <option value="">Select one</option>
-                                    <option value="single" {{ old('civil_status')=='single' ? 'selected' : 'Select one' }}>
+                                    <option value="single" {{ old('civil_status')=='single' ? 'selected' : 'Select one'
+                                        }}>
                                         {{
                                         'single' }}</option>
-                                    <option value="married" {{ old('civil_status')=='married' ? 'selected' : 'Select one' }}>{{
+                                    <option value="married" {{ old('civil_status')=='married' ? 'selected'
+                                        : 'Select one' }}>{{
                                         'married' }}</option>
-                                    <option value="widowed" {{ old('civil_status')=='widowed' ? 'selected' : 'Select one' }}>
+                                    <option value="widowed" {{ old('civil_status')=='widowed' ? 'selected'
+                                        : 'Select one' }}>
                                         {{
                                         'widowed' }}</option>
-                                    <option value="divorced" {{ old('civil_status')=='divorced' ? 'selected' : 'Select one' }}>{{
+                                    <option value="divorced" {{ old('civil_status')=='divorced' ? 'selected'
+                                        : 'Select one' }}>{{
                                         'divorced' }}</option>
                                 </x-form-select>
-                    
+
                                 @error('civil_status')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                    
+
                         <div class="mt-2 flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
                                 <x-label for="country_id">
@@ -130,7 +136,7 @@
                                             }}>{{ $country->country }}</option>
                                         @endforeach
                                     </x-form-select>
-                    
+
                                     @error('country_id')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
@@ -141,7 +147,8 @@
                                     Region
                                 </x-label>
                                 <div class="relative">
-                                    <x-form-select wire:model="province_id" id="province_id" id="province_id" name="province_id">
+                                    <x-form-select wire:model="province_id" id="province_id" id="province_id"
+                                        name="province_id">
                                         <option value="">Select one</option>
                                         @foreach ($provinces as $province)
                                         <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
@@ -166,24 +173,24 @@
                                         }}>{{ $city->city }}</option>
                                     @endforeach
                                 </x-form-select>
-                    
+
                                 @error('city_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                    
+
                             <div class="w-full md:w-1/4 px-3 mb-3 md:mb-0">
                                 <x-label for="barangay">
                                     Address
                                     </x-lab>
                                     <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
                                         value="{{ old('barangay') }}" />
-                    
+
                                     @error('barangay')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                             </div>
-                    
+
                         </div>
                         @if($type === 'studying')
                         <div class="mt-2 flex flex-wrap mx-3 mb-2">
@@ -191,8 +198,9 @@
                                 <x-label for="course">
                                     Course
                                 </x-label>
-                                <x-form-input wire:model="course" id="course" type="text" name="course" value="{{ old('course') }}" />
-                    
+                                <x-form-input wire:model="course" id="course" type="text" name="course"
+                                    value="{{ old('course') }}" />
+
                                 @error('course')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -203,7 +211,7 @@
                                 </x-label>
                                 <x-form-input wire:model="year_level" id="year_level" type="text" name="year_level"
                                     value="{{ old('year_level') }}" />
-                    
+
                                 @error('year_level')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -212,8 +220,9 @@
                                 <x-label for="school">
                                     School
                                 </x-label>
-                                <x-form-input wire:model="school" id="school" type="text" name="school" value="{{ old('school') }}" />
-                    
+                                <x-form-input wire:model="school" id="school" type="text" name="school"
+                                    value="{{ old('school') }}" />
+
                                 @error('school')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -222,16 +231,16 @@
                                 <x-label for="school_address">
                                     Address
                                 </x-label>
-                                <x-form-input wire:model="school_address" id="school_address" type="text" name="school_address"
-                                    value="{{ old('school_address') }}" />
-                    
+                                <x-form-input wire:model="school_address" id="school_address" type="text"
+                                    name="school_address" value="{{ old('school_address') }}" />
+
                                 @error('school_address')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
                         @endif
-                    
+
                         @if($type === 'working')
                         <div class="mt-2 flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-1/3 px-3 mb-3 md:mb-0">
@@ -240,7 +249,7 @@
                                 </x-label>
                                 <x-form-input wire:model="occupation" id="occupation" type="text" name="occupation"
                                     value="{{ old('occupation') }}" />
-                    
+
                                 @error('occupation')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -251,7 +260,7 @@
                                 </x-label>
                                 <x-form-input wire:model="employer" id="employer" type="text" name="employer"
                                     value="{{ old('employer') }}" />
-                    
+
                                 @error('employer')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -260,45 +269,51 @@
                                 <x-label for="employer_address">
                                     Employer Address
                                 </x-label>
-                                <x-form-input wire:model="employer_address" id="employer_address" type="text" name="employer_address"
-                                    value="{{ old('employer_address') }}" />
-                    
+                                <x-form-input wire:model="employer_address" id="employer_address" type="text"
+                                    name="employer_address" value="{{ old('employer_address') }}" />
+
                                 @error('employer_address')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
                         @endif
-                    
+
                         <div class="mt-2 flex flex-wrap mx-3 mb-2">
                             <div class="w-full md:w-full px-3 mb-3 md:mb-0">
                                 <x-label for="photo_id">
                                     Photo ID (i.e., Government issues ID, school ID, employee ID)
                                 </x-label>
-                    
-                    
+
+
                                 <x-form-input wire:model="photo_id" id="grid-last-name" type="file" name="photo_id"
                                     value="{{ old('photo_id') }}" />
-                    
+
                                 @error('photo_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                    
+
                         </div>
-                    
-                    
-                        </div>
-                        <div class="mt-4 mx-3 mb-2">
-                            <p class="text-right">
-                                <x-form-button>Create</x-form-button>
-                            </p>
-                        </div>
-                    </form>
-                    @include('layouts.notifications')
+
+
                 </div>
+                <div class="mt-4 mx-3 mb-2">
+                    <p class="text-right">
+                        <x-button wire:loading.remove class="bg-red-800" wire:click="submitForm()">
+                            Create
+                        </x-button>
+                        
+                        <x-button wire:loading wire:target="submitForm()">
+                            Processing...
+                        </x-button>
+                    </p>
+                </div>
+                </form>
+                @include('layouts.notifications')
             </div>
         </div>
     </div>
- 
+</div>
+
 </div>

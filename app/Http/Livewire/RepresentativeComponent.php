@@ -4,20 +4,21 @@ namespace App\Http\Livewire;
 use App\Models\Representative;
 use Illuminate\Support\Str;
 use App\Models\Relationship;
+use App\Models\Owner;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use DB;
 
 class RepresentativeComponent extends Component
 {
       public $unit;
       public $tenant;
-      public $representatives;
 
-      public function mount($unit, $owner, $representatives)
+      public function mount($unit, $owner)
       {
-      $this->unit = $unit;
-      $this->owner = $owner;
-      $this->representatives = $representatives;
+        $this->unit = $unit;
+        $this->owner = $owner;
+        $this->representatives = $this->get_representatives();
       }
 
       public $representative;
@@ -35,6 +36,20 @@ class RepresentativeComponent extends Component
         ];
       }
 
+      public function get_representatives()
+      {
+        return Owner::find($this->owner->uuid)->representatives;
+      }
+
+      public function removeRepresentative($id)
+      {
+        Representative::destroy($id);
+
+        $this->representatives = $this->get_representatives();
+
+        return back()->with('success', 'Representative is successfully removed');
+      }
+
       public function updated($propertyName)
       {
         $this->validateOnly($propertyName);
@@ -46,14 +61,34 @@ class RepresentativeComponent extends Component
 
         $validatedData = $this->validate();
 
-        $validatedData['owner_uuid'] = $this->owner->uuid;
-        Representative::create($validatedData);
+       try{
 
-      $this->resetForm();
+        DB::beginTransaction();
+         
+        $this->store_representative($validatedData);
 
-        return
-        redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/representative/'.Str::random(8).'/create')->with('success',
-        'Representative has been created.');
+        DB::commit();
+
+        $this->resetForm();
+
+        $this->representatives = $this->get_representatives();
+
+        session()->flash('success', 'Representative is successfully created.');
+
+       }catch(\Exception $e)
+       {
+          DB::rollback();
+
+          session()->flash('error');
+       }
+        
+      }
+
+      public function store_representative($validatedData)
+      {
+          $validatedData['owner_uuid'] = $this->owner->uuid;
+
+          Representative::create($validatedData);
       }
 
       public function resetForm()
@@ -68,6 +103,7 @@ class RepresentativeComponent extends Component
       {
       return view('livewire.representative-component',[
         'relationships' => Relationship::all(),
+        'representatives' => Owner::find($this->owner->uuid)->representatives,
       ]);
       }
 }

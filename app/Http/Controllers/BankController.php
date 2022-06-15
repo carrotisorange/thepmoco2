@@ -26,12 +26,10 @@ class BankController extends Controller
      */
     public function create(Unit $unit, Owner $owner)
     {
-        $banks = Owner::find($owner->uuid)->banks;
 
         return view('banks.create',[
         'unit' => $unit,
         'owner' => $owner,
-        'banks' => $banks,
         ]);
     }
 

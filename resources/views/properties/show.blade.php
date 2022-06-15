@@ -148,111 +148,121 @@
                 </div>
             </div>
 
-            @if($expiring_contracts->count())
+
+            @if($expiring_contracts->count() > 0)
             <div class="w-full p-3">
                 <!--Table Card-->
                 <div class="bg-white border rounded shadow">
-                    <div class="border-b p-3">
-                        <h5 class="font-bold uppercase text-gray-600">Expiring contracts</h5>
-                    </div>
-                    <div class="p-5">
 
-                        <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-5">
+                        <h1 class="font-bold">Expiring Contracts ({{ $expiring_contracts->count() }})</h1>
+                        <div class="mt-5 bg-white text-sm overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="bg-white border-b border-gray-200">
                                 <div class="flex flex-col">
                                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                                 <table class="min-w-full divide-y divide-gray-200">
-                                                    <?php $ctr =1; ?>
+
                                                     <thead class="bg-gray-50">
                                                         <tr>
                                                             <x-th>#</x-th>
                                                             <x-th>Tenant</x-th>
+                                                            <x-th>Duration</x-th>
                                                             <x-th>Unit</x-th>
                                                             <x-th>Status</x-th>
                                                             <x-th>Moveout date</x-th>
                                                             <x-th></x-th>
+
                                                         </tr>
                                                     </thead>
-                                                    @foreach ($expiring_contracts as $contract)
+                                                    @foreach ($expiring_contracts as $index => $item)
                                                     <tbody class="bg-white divide-y divide-gray-200">
                                                         <tr>
-                                                            <x-td>{{ $ctr++ }}</x-td>
+                                                            <x-td>{{ $index + $expiring_contracts->firstItem() }}</x-td>
                                                             <x-td>
                                                                 <div class="flex items-center">
                                                                     <div class="flex-shrink-0 h-10 w-10">
                                                                         <a
-                                                                            href="/tenant/{{ $contract->tenant_uuid }}/contracts">
+                                                                            href="/tenant/{{ $item->tenant_uuid }}/contracts">
                                                                             <img class="h-10 w-10 rounded-full"
-                                                                                src="/storage/{{ $contract->tenant->photo_id }}"
+                                                                                src="/storage/{{ $item->tenant->photo_id }}"
                                                                                 alt=""></a>
                                                                     </div>
                                                                     <div class="ml-4">
                                                                         <div class="text-sm font-medium text-gray-900">
                                                                             <b>{{
-                                                                                $contract->tenant->tenant
+                                                                                $item->tenant->tenant
                                                                                 }}</b>
                                                                         </div>
                                                                         <div class="text-sm text-gray-500">
                                                                             {{
-                                                                            $contract->tenant->type
+                                                                            $item->tenant->type
                                                                             }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </x-td>
                                                             <x-td>
+                                                                <div class="text-sm text-gray-500">
+                                                                    {{ Carbon\Carbon::parse($item->start)->format('M d,
+                                                                    Y') }} - {{
+                                                                    Carbon\Carbon::parse($item->end)->format('M d,
+                                                                    Y') }}
+                                                                </div>
+                                                                <div class="text-sm text-gray-500">
+                                                                    <span
+                                                                        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-blue-700 dark:text-blue-300">
+                                                                        {{
+                                                                        Carbon\Carbon::parse($item->end)->diffForHumans($item->start)
+                                                                        }}
+                                                                    </span>
+                                                                </div>
+                                                            </x-td>
+                                                            <x-td>
                                                                 <div class="text-sm text-gray-900">{{
-                                                                    $contract->unit->unit }}
+                                                                    $item->unit->unit }}
                                                                 </div>
 
                                                                 <div class="text-sm text-gray-500">{{
-                                                                    $contract->unit->building->building}}
+                                                                    $item->unit->building->building}}
                                                                 </div>
 
                                                             </x-td>
                                                             <x-td>
-                                                                @if($contract->status === 'active')
+                                                                @if($item->status === 'active')
                                                                 <span
-                                                                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                                    <i class="fa-solid fa-circle-check"></i>
+                                                                    class="px-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+
                                                                     {{
-                                                                    $contract->status }}
+                                                                    $item->status }}
                                                                     @else
                                                                     <span
-                                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                                        <i class="fa-solid fa-circle-xmark"></i>
+                                                                        class="px-2 text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+
                                                                         {{
-                                                                        $contract->status }}
+                                                                        $item->status }}
                                                                     </span>
                                                                     @endif
                                                             </x-td>
                                                             <x-td>
-                                                                {{
-                                                                Carbon\Carbon::parse($contract->end)->format('M
-                                                                d,
-                                                                Y') }}
-                                                                <span
-                                                                    class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
-                                                                    <svg class="mr-1 w-3 h-3" fill="currentColor"
-                                                                        viewBox="0 0 20 20"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path fill-rule="evenodd"
-                                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                                                            clip-rule="evenodd">
-                                                                        </path>
-                                                                    </svg>
-                                                                    {{
-                                                                    Carbon\Carbon::parse($contract->end)->diffForHumans()
-                                                                    }}
-                                                                </span>
-
+                                                                <div class="text-sm text-gray-900">{{
+                                                                    Carbon\Carbon::parse($item->end)->format('M d,
+                                                                    Y') }}
+                                                                </div>
+                                                                <div class="text-sm text-gray-500">
+                                                                    <span
+                                                                        class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
+                                                                        {{
+                                                                        Carbon\Carbon::parse($item->end)->diffForHumans()
+                                                                        }}
+                                                                    </span>
+                                                                </div>
                                                             </x-td>
                                                             <x-td>
                                                                 @can('admin')
                                                                 <x-button id="dropdownDividerButton"
-                                                                    data-dropdown-toggle="dropdownDivider.{{ $contract->uuid }}"
+                                                                    data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
                                                                     type="button">Actions
                                                                     <svg class="ml-2 w-4 h-4" fill="none"
                                                                         stroke="currentColor" viewBox="0 0 24 24"
@@ -264,44 +274,37 @@
                                                                     </svg>
                                                                 </x-button>
 
-                                                                <div id="dropdownDivider.{{ $contract->uuid }}"
+                                                                <div id="dropdownDivider.{{ $item->uuid }}"
                                                                     class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                                     <ul class="py-1"
                                                                         aria-labelledby="dropdownDividerButton">
-                                                                        {{-- <li>
-                                                                            <a href="/tenant/{{ $contract->tenant_uuid }}/edit"
-                                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                                    class="fa-solid fa-file-contract"></i>&nbspShow
-                                                                                Tenant</a>
-                                                                        </li> --}}
-                                                                        <li>
-                                                                            <a href="/unit/{{ $contract->unit_uuid }}/edit"
-                                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                                    class="fa-solid fa-house"></i>&nbspShow
-                                                                                Unit</a>
-                                                                        </li>
 
                                                                         <li>
-                                                                            <a href="/contract/{{ $contract->uuid }}/transfer"
-                                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                                    class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
-                                                                                Contract</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/contract/{{ $contract->uuid }}/renew"
+                                                                            <a href="/contract/{{ $item->uuid }}/renew"
                                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                                     class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
-                                                                                Contract</a>
+                                                                            </a>
                                                                         </li>
 
                                                                     </ul>
-                                                                    @if($contract->status ===
+                                                                    @if($item->status ===
                                                                     'active')
                                                                     <div class="py-1">
-                                                                        <a href="/contract/{{ $contract->uuid }}/moveout/bills"
+                                                                        <?php
+                                                                                                                                                                                    $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
+                                                                                                                                                                                ?>
+                                                                        @if($unpaid_bills->count()<=0) <a
+                                                                            href="/contract/{{ $item->uuid }}/moveout"
                                                                             class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                                             <i
                                                                                 class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
+                                                                            @else
+                                                                            <a data-modal-toggle="popup-error-modal"
+                                                                                href="#/"
+                                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                                <i
+                                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
+                                                                            @endif
                                                                     </div>
                                                                     @endif
                                                                 </div>
@@ -317,15 +320,140 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             @endif
 
+
+            @if($expiring_contracts->count() > 0)
+            <div class="w-full p-3">
+                <!--Table Card-->
+                <div class="bg-white border rounded shadow">
+
+                    <div class="p-5">
+                        <h1 class="font-bold">Delinquents</h1>
+                        <div class="mt-5 bg-white text-sm overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="bg-white border-b border-gray-200">
+                                <div class="flex flex-col">
+                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                                <table class="min-w-full divide-y divide-gray-200">
+
+                                                    <thead class="bg-gray-50">
+                                                        <tr>
+                                                            <x-th>#</x-th>
+                                                            <x-th>Tenant</x-th>
+                                                            <x-th>Duration</x-th>
+                                                            <x-th>Unit</x-th>
+                                                            <x-th>Status</x-th>
+                                                            <x-th>Moveout date</x-th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    @foreach ($expiring_contracts as $index => $item)
+                                                    <tbody class="bg-white divide-y divide-gray-200">
+                                                        <tr>
+                                                            <x-td>{{ $index + $expiring_contracts->firstItem() }}</x-td>
+                                                            <x-td>
+                                                                <div class="flex items-center">
+                                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                                        <a
+                                                                            href="/tenant/{{ $item->tenant_uuid }}/contracts">
+                                                                            <img class="h-10 w-10 rounded-full"
+                                                                                src="/storage/{{ $item->tenant->photo_id }}"
+                                                                                alt=""></a>
+                                                                    </div>
+                                                                    <div class="ml-4">
+                                                                        <div class="text-sm font-medium text-gray-900">
+                                                                            <b>{{
+                                                                                $item->tenant->tenant
+                                                                                }}</b>
+                                                                        </div>
+                                                                        <div class="text-sm text-gray-500">
+                                                                            {{
+                                                                            $item->tenant->type
+                                                                            }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </x-td>
+                                                            <x-td>
+                                                                <div class="text-sm text-gray-500">
+                                                                    {{ Carbon\Carbon::parse($item->start)->format('M d,
+                                                                    Y') }} - {{
+                                                                    Carbon\Carbon::parse($item->end)->format('M d,
+                                                                    Y') }}
+                                                                </div>
+                                                                <div class="text-sm text-gray-500">
+                                                                    <span
+                                                                        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-blue-700 dark:text-blue-300">
+                                                                        {{
+                                                                        Carbon\Carbon::parse($item->end)->diffForHumans($item->start)
+                                                                        }}
+                                                                    </span>
+                                                                </div>
+                                                            </x-td>
+                                                            <x-td>
+                                                                <div class="text-sm text-gray-900">{{
+                                                                    $item->unit->unit }}
+                                                                </div>
+
+                                                                <div class="text-sm text-gray-500">{{
+                                                                    $item->unit->building->building}}
+                                                                </div>
+
+                                                            </x-td>
+                                                            <x-td>
+                                                                @if($item->status === 'active')
+                                                                <span
+                                                                    class="px-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+
+                                                                    {{
+                                                                    $item->status }}
+                                                                    @else
+                                                                    <span
+                                                                        class="px-2 text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+
+                                                                        {{
+                                                                        $item->status }}
+                                                                    </span>
+                                                                    @endif
+                                                            </x-td>
+                                                            <x-td>
+                                                                <div class="text-sm text-gray-900">{{
+                                                                    Carbon\Carbon::parse($item->end)->format('M d,
+                                                                    Y') }}
+                                                                </div>
+                                                                <div class="text-sm text-gray-500">
+                                                                    <span
+                                                                        class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
+                                                                        {{
+                                                                        Carbon\Carbon::parse($item->end)->diffForHumans()
+                                                                        }}
+                                                                    </span>
+                                                                </div>
+                                                            </x-td>
+
+
+                                                        </tr>
+                                                    </tbody>
+                                                    @endforeach
+                                                </table>
+                                                {{ $expiring_contracts->links() }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             <!--Divider-->
             {{--
             <hr class="border-b-2 border-gray-400 my-8 mx-4"> --}}

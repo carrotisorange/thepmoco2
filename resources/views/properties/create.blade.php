@@ -1,11 +1,11 @@
 <x-index-layout>
     @section('title', '| Properties')
     <x-slot name="labels">
-        Create a new property
+        Create
     </x-slot>
     <x-slot name="options">
-        <x-button onclick="window.location.href='/properties'">
-            Go back to main
+        <x-button onclick="window.location.href='{{ url()->previous() }}'">
+            Go back
         </x-button>
     </x-slot>
     @livewire('property-component', ['types' => $types])

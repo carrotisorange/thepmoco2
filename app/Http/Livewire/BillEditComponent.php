@@ -53,26 +53,33 @@ class BillEditComponent extends Component
             Bill::destroy($bill);
         }
         
+        $this->selectedBills = [];
+
         $this->bills = $this->get_bills();
 
          session()->flash('success', count($this->selectedBills). ' bill is successfully removed.');
 
     }
 
-    public function submitForm()
+    public function updateForm()
     {
         sleep(1);
 
+        $validatedData = $this->validate();
+
         try{
             DB::beginTransaction();
-
+            
             foreach ($this->bills as $bill) {
                 $bill->save();
             }
 
             DB::commit();
 
-            session()->flash('success', count($this->selectedBills). ' bill is successfully updated.');
+            $this->selectedBills = [];
+
+
+            session()->flash('success', count($this->bills). ' bill is successfully updated.');
 
         }catch(\Exception $e){
             DB::rollback();

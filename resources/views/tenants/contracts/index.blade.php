@@ -159,7 +159,7 @@
                                                                 <i
                                                                     class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
                                                                 @else
-                                                                <a data-modal-toggle="moveout-error-modal" href="#/"
+                                                                <a data-modal-toggle="popup-error-modal" href="#/"
                                                                     class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                                     <i
                                                                         class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
@@ -184,5 +184,5 @@
         </div>
     </div>
     @include('tenants.contracts.create')
-    @include('utilities.moveout-error-modal')
+    @include('utilities.popup-error-modal')
 </x-app-layout>

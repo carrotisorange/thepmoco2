@@ -62,12 +62,18 @@ class DeedOfSaleComponent extends Component
             app('App\Http\Controllers\PointController')->store(Session::get('property'), 5, 7);
 
             DB::commit();
+
+            if(Session::forget('owner_uuid')){
+                return redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
+            }else{
+                return
+                redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/enrollee/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
+            }
             
-            return redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale has been created.');
         }catch(\Exception $e)
         {
             DB::rollback();
-            return redirect()->with('error','Cannot perform your action.');
+            return back()->with('error','Cannot perform your action.');
         }
     }
 

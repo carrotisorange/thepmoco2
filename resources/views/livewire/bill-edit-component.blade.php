@@ -4,16 +4,22 @@
             <div class="flex flex-row">
                 <div class="basis-1/2">
                     @if($selectedBills)
-                    <x-button wire:click="submitForm()">Post Bills ({{ count($selectedBills) }})
+                    <x-button wire:loading.remove wire:click="updateForm()">Post Bills ({{ count($selectedBills) }})
                     </x-button>
+
+                    <div wire:loading wire:target="updateForm">
+                        Processing...
+                    </div>
                     @endif
                 </div>
                 <div class="basis-1/2 ml-12 text-right">
                     @if($selectedBills)
-                    <x-button onclick="confirmMessage()" wire:click="removeBills()">
+                    <x-button wire:loading.remove onclick="confirmMessage()" wire:click="removeBills()">
                         Remove Bills ({{ count($selectedBills) }})
                     </x-button>
-
+                    <div wire:loading wire:target="removeBills">
+                        Processing...
+                    </div>
                     @endif
                 </div>
             </div>
@@ -45,7 +51,7 @@
                                         </tr>
                                     </thead>
 
-                                    <form wire:submit.prevent="submitForm">
+                                    <form wire:submit.prevent="updateForm()">
                                         <tbody>
                                             @forelse ($bills as $index => $bill)
                                             <div wire:key="bill-field-{{ $bill->id }}">

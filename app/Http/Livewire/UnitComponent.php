@@ -11,7 +11,8 @@ use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use App\Models\Contract;
-use App\Models\Tenant;
+use App\Models\DeedOfSale;
+use App\Models\Enrollee;
 
 use Livewire\Component;
 
@@ -23,6 +24,7 @@ class UnitComponent extends Component
     public $units;
 
     public $selectedUnits =[];
+
     public $selectedAllUnits = false;
 
     public function mount($batch_no)
@@ -34,7 +36,7 @@ class UnitComponent extends Component
     protected function rules()
     {
         return [
-            'units.*.unit' => 'required',
+            'units.*.unit' => 'required|max:10',
             'units.*.building_id' => ['nullable', Rule::exists('buildings', 'id')],
             'units.*.floor_id' => ['nullable', Rule::exists('floors', 'id')],
             'units.*.category_id' => ['nullable', Rule::exists('categories', 'id')],
@@ -54,6 +56,7 @@ class UnitComponent extends Component
         if($selectedAllUnits)
         {
             $this->selectedUnits = $this->get_units()->pluck('uuid');
+
         }else
         {
             $this->selectedUnits = [];
@@ -62,20 +65,29 @@ class UnitComponent extends Component
 
     public function removeUnits()
     {
-        foreach($this->selectedUnits as $unit=>$val ){
-            Unit::destroy($unit);
+        sleep(2);
+
+        foreach($this->selectedUnits as $unit=>$val){
+            if(Contract::where('unit_uuid', $unit)->count() || Enrollee::where('unit_uuid', $unit)->count() || DeedOfSale::where('unit_uuid', $unit)->count())
+            {
+               session()->flash('error', 'unit cannot be removed');
+            }
+            else{
+                Unit::destroy($unit);
+                
+                $this->units = $this->get_units();
+
+               session()->flash('success', count($this->selectedUnits).' unit is successfully removed.');
+            }
         }
-
-        // $this->selectedUnits = [];
-
-        $this->units = $this->get_units();
-
-        session()->flash('success', count($this->selectedUnits). ' unit is successfully removed.');
+         $this->selectedUnits = [];
     }
 
-    public function submitForm()
+    public function updateForm()
     {
-        sleep(1);
+        sleep(2);
+
+        $this->validate();
 
         try{
             DB::beginTransaction();
@@ -86,7 +98,7 @@ class UnitComponent extends Component
 
             DB::commit();
 
-            session()->flash('success', count($this->selectedUnits). ' unit is successfully updated.');
+            session()->flash('success', count($this->units). ' unit is successfully updated.');
 
         }catch(\Exception $e){
             DB::rollback();
@@ -119,6 +131,11 @@ class UnitComponent extends Component
         ->units()
         ->orderBy('created_at', 'desc')
         ->get();
+    }
+
+    public function filterBuilding()
+    {
+        ddd('success');
     }
 
 }

@@ -21,22 +21,34 @@
             <ul class="py-1" aria-labelledby="dropdownButton">
 
                 <li>
+                    @if($active_contracts->count()>0)
                     <a href="#/" data-modal-toggle="create-express-bill-modal"
                         class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                         <i class="fa-solid fa-truck-fast"></i>&nbsp Express Bill
                     </a>
+                    @else
+                    <a href="#/" data-modal-toggle="popup-error-modal"
+                        class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        <i class="fa-solid fa-truck-fast"></i>&nbsp Express Bill
+                    </a>
+                    @endif
                 </li>
                 <li>
+                    @if($active_contracts->count()>0)
                     <a href="#/" data-modal-toggle="create-customized-bill-modal"
                         class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                         <i class="fa-solid fa-file-pen"></i>&nbsp Customized Bill
                     </a>
+                    @else
+                    <a href="#/" data-modal-toggle="popup-error-modal"
+                        class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        <i class="fa-solid fa-file-pen"></i>&nbsp Customized Bill
+                    </a>
+                    @endif
                 </li>
-
-
-
             </ul>
         </div>
+
     </x-slot>
     @livewire('bill-index-component', ['active_contracts' => $active_contracts, 'active_tenants' => $active_tenants])
     @include('utilities.create-particular-modal')
