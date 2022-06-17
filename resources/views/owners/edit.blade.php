@@ -183,13 +183,13 @@
             </tbody>
         </table>
         <div class="mt-5">
-            <span>Showing the last 5 leasing contracts</span>
+            <span>Showing the last 5 management agreements</span>
             <p class="text-right">
                 {{-- <x-button onclick="window.location.href='/owner/{{ $owner_details->uuid }}/enrollee/{{ Str::random(8) }}/create'">
                     Add to lease
                 </x-button> --}}
                 <x-button onclick="window.location.href='/owner/{{ $owner_details->uuid }}/enrollees/'">
-                    See more Leasing
+                    See more management agreements
                 </x-button>
 
             </p>

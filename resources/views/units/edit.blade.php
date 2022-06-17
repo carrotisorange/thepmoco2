@@ -512,9 +512,9 @@
             </tbody>
         </table>
         <div class="mt-5">
-            <span>Showing the last 5 leasing contracts</span>
+            <span>Showing the last 5 management agreements</span>
             <p class="text-right">
-                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/enrollees/'">See more leasing contracts
+                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/enrollees/'">See more management agreements
                 </x-button>
             </p>
         </div>
