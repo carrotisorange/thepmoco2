@@ -165,7 +165,7 @@ class TeamComponent extends Component
      public function get_teams()
      {
          return $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-         ->select('*', 'users.status as user_status', 'users.id as user_id')
+         ->select('*', 'users.status as user_status', 'users.id as user_id', 'users.created_at as user_created')
          ->join('users', 'user_properties.user_id', 'users.id')
          ->join('types', 'properties.type_id', 'types.id')
          ->join('roles', 'users.role_id', 'roles.id')

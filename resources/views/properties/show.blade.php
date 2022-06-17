@@ -348,6 +348,7 @@
                                                             <x-th>Tenant</x-th>
                                                             <x-th># of contracts</x-th>
                                                             <x-th>Unpaid Bills</x-th>
+                                                            <x-th>Last Payment</x-th>
                                                             <x-th></x-th>
 
 
@@ -380,14 +381,17 @@
                                                                     </div>
                                                                 </div>
                                                             </x-td>
-                                                            <x-th>
+                                                            <x-td>
                                                                 ({{ $item->tenant->contracts->count() }})
                                                                 @foreach($item->tenant->contracts as $unit)
                                                                 {{ $unit->unit->unit }},
                                                                 @endforeach
-                                                            </x-th>
-
-
+                                                            </x-td>
+                                                            <?php
+                                                                $last_payment = App\Models\AcknowledgementReceipt::where('tenant_uuid', $item->tenant_uuid)
+                                                                ->orderBy('ar_no', 'desc')->limit(1)->pluck('amount');
+                                                            ?>
+                                                            <x-td>{{ $last_payment }}</x-td>
 
                                                             <x-td>{{ number_format($item->balance, 2) }}</x-td>
                                                             <x-td>
