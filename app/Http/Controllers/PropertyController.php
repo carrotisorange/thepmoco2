@@ -277,6 +277,13 @@ class PropertyController extends Controller
         return Contract::where('end','<=',Carbon::now()->
             addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->paginate(5);
     }
+
+    public function get_delinquents()
+    {
+        return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
+        ->groupBy('tenant_uuid')
+        ->paginate(5);
+    }
     
 
     public function get_tenant_movein_values()
@@ -424,7 +431,7 @@ class PropertyController extends Controller
 
         $expiring_contracts = $this->get_expiring_contracts();
 
-    
+        $delinquents = $this->get_delinquents();
 
         return view('properties.show',[
             'property' => $property,
@@ -450,7 +457,8 @@ class PropertyController extends Controller
             'tenant_movein_label' => $tenant_movein_label,
             'tenant_moveout_value' => $tenant_moveout_value,
             'reasons_for_moveout_label' => $reasons_for_moveout_label,
-            'reasons_for_moveout_value' => $reasons_for_moveout_value
+            'reasons_for_moveout_value' => $reasons_for_moveout_value,
+            'delinquents' => $delinquents
         ]); 
     }
 

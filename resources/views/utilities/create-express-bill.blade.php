@@ -110,9 +110,7 @@
                 </div> --}}
 
                 <p class="text-right">
-                    <x-button>
-                        <i class="fa-solid fa-circle-check"></i>&nbsp Post
-                    </x-button>
+                    <x-form-button>Create</x-form-button>
                 </p>
             </form>
         </div>

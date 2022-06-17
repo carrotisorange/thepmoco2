@@ -126,7 +126,7 @@ class RenewContractComponent extends Component
 
        return
         redirect('/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
-        has been renewed.');
+        is successfully renewed.');
        } catch (\Throwable $e) {
        DB::rollback();
        ddd($e);
