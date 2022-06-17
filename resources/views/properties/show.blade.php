@@ -327,7 +327,7 @@
             @endif
 
 
-            @if($expiring_contracts->count() > 0)
+            @if($delinquents->count() > 0)
             <div class="w-full p-3">
                 <!--Table Card-->
                 <div class="bg-white border rounded shadow">
