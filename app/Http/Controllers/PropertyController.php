@@ -281,8 +281,9 @@ class PropertyController extends Controller
     public function get_delinquents()
     {
         return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
+          ->where('property_uuid', Session::get('property'))
         ->groupBy('tenant_uuid')
-        ->paginate(5);
+        ->paginate(3);
     }
     
 

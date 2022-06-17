@@ -326,14 +326,13 @@
             </div>
             @endif
 
-
             @if($delinquents->count() > 0)
             <div class="w-full p-3">
                 <!--Table Card-->
                 <div class="bg-white border rounded shadow">
 
                     <div class="p-5">
-                        <h1 class="font-bold">Delinquents</h1>
+                        <h1 class="font-bold">Delinquents ({{ $delinquents->count() }})</h1>
                         <div class="mt-5 bg-white text-sm overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="bg-white border-b border-gray-200">
                                 <div class="flex flex-col">
@@ -347,8 +346,9 @@
                                                             <x-th>#</x-th>
                                                             <x-th>Tenant</x-th>
                                                             <x-th># of contracts</x-th>
-                                                            <x-th>Unpaid Bills</x-th>
                                                             <x-th>Last Payment</x-th>
+                                                            <x-th>Unpaid Bills</x-th>
+
                                                             <x-th></x-th>
 
 
@@ -357,7 +357,7 @@
                                                     @foreach ($delinquents as $index => $item)
                                                     <tbody class="bg-white divide-y divide-gray-200">
                                                         <tr>
-                                                            <x-td>{{ $index + $expiring_contracts->firstItem() }}</x-td>
+                                                            <x-td>{{ $index + $delinquents->firstItem() }}</x-td>
                                                             <x-td>
                                                                 <div class="flex items-center">
                                                                     <div class="flex-shrink-0 h-10 w-10">
@@ -388,7 +388,7 @@
                                                                 @endforeach
                                                             </x-td>
                                                             <?php
-                                                                $last_payment = App\Models\AcknowledgementReceipt::where('tenant_uuid', $item->tenant_uuid)
+                                                                $last_payment = App\Models\AcknowledgementReceipt::where('property_uuid', Session::get('property_uuid'))->where('tenant_uuid', $item->tenant_uuid)
                                                                 ->orderBy('ar_no', 'desc')->limit(1)->pluck('amount');
                                                             ?>
                                                             <x-td>{{ $last_payment }}</x-td>
