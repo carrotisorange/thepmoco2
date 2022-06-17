@@ -112,7 +112,7 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Leasing</h1>
+        <h1 class="font-bold">Management Agreements</h1>
         <table class="min-w-full divide-y divide-gray-200">
             <?php $ctr =1; ?>
             <thead class="bg-gray-50">

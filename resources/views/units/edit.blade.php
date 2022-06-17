@@ -404,7 +404,7 @@
 
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Leasing</h1>
+        <h1 class="font-bold">Management Agreements</h1>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <?php $ctr =1; ?>
             <thead class="bg-gray-50">
