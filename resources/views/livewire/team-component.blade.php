@@ -155,8 +155,8 @@
                                 @endif
                         </x-td>
                         <x-td>{{ Carbon\Carbon::parse($item->user_created)->timezone('Asia/Manila')->format('M d, Y @
-                        g:i
-                        A')}}</x-td>
+                            g:i
+                            A')}}</x-td>
                         <x-td>
                             @if($item->status==='active')
                             {{ Carbon\Carbon::parse($item->email_verified_at)->timezone('Asia/Manila')->format('M d, Y @

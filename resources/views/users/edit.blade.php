@@ -1,7 +1,7 @@
 <x-index-layout>
     @section('title', '| Profile')
     <x-slot name="labels">
-        Profile / {{ $user->username }}
+        Profile
     </x-slot>
 
     <x-slot name="options">
@@ -10,8 +10,7 @@
         </x-button>
     </x-slot>
 
-    <div class="mt-5 p-6 bg-white border-b border-gray-200">
-
+    <div class="p-8 px-12 bg-white border-b border-gray-200">
         <form action="/profile/{{ $user->username }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
@@ -136,9 +135,7 @@
                     </x-button>
                 </p>
             </div>
-
     </div>
     </form>
     </div>
-
 </x-index-layout>

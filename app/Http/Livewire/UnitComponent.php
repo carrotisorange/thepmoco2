@@ -74,6 +74,8 @@ class UnitComponent extends Component
             }
             else{
                 Unit::destroy($unit);
+
+                app('App\Http\Controllers\PointController')->store(Session::get('property'), -1, 5);
                 
                 $this->units = $this->get_units();
 

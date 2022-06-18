@@ -40,7 +40,6 @@ class PropertyEditComponent extends Component
     {
         $this->property = $property_details->property;
         $this->type_id = $property_details->type_id;
-        $this->thumbnail = $property_details->thumbnail;
         $this->country_id = $property_details->country_id;
         $this->province_id = $property_details->province_id;
         $this->city_id = $property_details->city_id;
@@ -79,44 +78,34 @@ class PropertyEditComponent extends Component
         sleep(1);
 
         $validatedData = $this->validate();
-
-        //  if(!$this->country_id)
-        //  {
-        //  $validatedData['country_id'] = '247';
-        //  }
-
-        //  if(!$this->province_id)
-        //  {
-        //  $validatedData['province_id'] = '4121';
-        //  }
-
-        //  if(!$this->city_id)
-        //  {
-        //  $validatedData['city_id'] = '48315';
-        //  }
         
         try{
             DB::beginTransaction();
 
-            // if($this->thumbnail)
-            // {
-            //     $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
-            // }else
-            // {
-            //     $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
-            // }
-
-            $this->property_details->update($validatedData);
+            $this->update_property($validatedData, $request);
 
             DB::commit();
 
-            return back()->with('success', 'Property is successfully updated.');
+            return session()->flash('success', 'Property is successfully updated.');
 
         }catch(\Exception $e){
             DB::rollback();
           
-            return back()->with('error', 'Cannot perform your action.');
+            return session()->flash('error');
         }
+    }
+
+    public function update_property($validatedData, $request)
+    {
+         if($this->thumbnail)
+         {
+            $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
+         }else
+         {
+            $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
+         }
+
+         $this->property_details->update($validatedData);
     }
     
     public function render()

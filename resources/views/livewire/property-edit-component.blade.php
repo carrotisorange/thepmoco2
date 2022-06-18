@@ -1,9 +1,9 @@
-<div class=" overflow-hidden shadow-sm sm:rounded-lg">
-    <div class="p-12 bg-white border-b border-gray-200">
+<div>
+    @include('layouts.notifications')
+    <div class="p-8 px-12 bg-white border-b border-gray-200">
         <form wire:submit.prevent="updateForm" method="POST" id="edit-form" enctype="multipart/form-data">
-            @csrf
             @method('PATCH')
-            <div class="mx-5">
+            <div class="">
                 <x-label for="property" :value="__('Property')" />
 
                 <x-form-input form="edit-form" type="text" wire:model="property" value="{{old('property', $property)}}"
@@ -14,7 +14,7 @@
                 @enderror
             </div>
 
-            <div class="mt-5 mx-5">
+            <div class="mt-5 ">
                 <x-label for="type_id" :value="__('Type')" />
 
                 <x-form-select wire:model="type_id" form="edit-form">
@@ -30,7 +30,7 @@
                 @enderror
             </div>
 
-            <div class="mt-5 mx-5">
+            <div class="mt-5 ">
                 <x-label for="ownership">
                     Ownership <span class="text-red-600">*</span>
                 </x-label>
@@ -50,7 +50,7 @@
                 @enderror
             </div>
 
-            <div class="mt-5 mx-5">
+            <div class="mt-5 ">
                 <div class="mt-6 flex flex-wrap mb-2">
                     <div class="w-full md:w-1/2 mb-6 md:mb-0">
                         <x-label for="country_id">
@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <div class="mt-5 mx-5">
+            <div class="mt-5 ">
                 <div class="mt-6 flex flex-wrap mb-2">
                     <div class="w-full md:w-1/4 mb-6 md:mb-0">
                         <x-label for="country_id">
@@ -154,7 +154,7 @@
             </div>
 
             @can('manager')
-            <div class="mt-5 mx-5">
+            <div class="mt-5 ">
                 <x-label for="status" :value="__('Status')" />
 
                 <x-form-select form="edit-form" wire:model="status">
@@ -174,7 +174,7 @@
                 @enderror
             </div>
             @endcan
-            {{-- <div class="mt-5 flex mx-5">
+            <div class="mt-5 flex ">
                 <div class="flex-3">
                     <x-label for="thumbnail" :value="__('Thumbnail')" />
 
@@ -188,8 +188,8 @@
                 <div class="mt-6">
                     <img class="h-10 w-10 rounded-xl ml-6" src="/storage/{{ $thumbnail }}" alt="">
                 </div>
-            </div> --}}
-            {{-- <div class="mt-5 flex mx-5">
+            </div>
+            {{-- <div class="mt-5 flex ">
                 <div class="flex-3">
                     <x-label for="tenant_contract">
                         Tenant Contract (Applicable if you're accepting tenants to your property. Please only
@@ -203,7 +203,7 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="mt-5 mx-5">
+                <div class="mt-5 ">
                     @if($tenant_contract)
                     <a target="_blank" class="text-blue"
                         href="/property/{{ Session::get('property') }}/tenant_contract">Click
@@ -214,7 +214,7 @@
                     @endif
                 </div>
             </div>
-            <div class="mt-5 flex mx-5">
+            <div class="mt-5 flex ">
                 <div class="flex-3">
                     <x-label for="owner_contract">
                         Owner Contract (Applicable if the units on your property have different owners and they want
@@ -250,5 +250,4 @@
             </div>
         </form>
     </div>
-    @include('layouts.notifications')
 </div>

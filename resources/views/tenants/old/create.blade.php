@@ -1,42 +1,14 @@
-<x-app-layout>
-    @section('title', '| Tenant | Create')
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <div class="flex">
-                <div class="h-3">
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        <nav class="rounded-md">
-                            <ol class="list-reset flex">
-                                <li><a href="/property/{{ Session::get('property') }}"
-                                        class="text-blue-600 hover:text-blue-700">{{
-                                        Session::get('property_name') }}</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li class="text-gray-500">{{ $unit->unit }}</li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-                                {{-- <li><a href="/unit/{{ $unit->uuid }}" class="text-blue-600 hover:text-blue-700">{{
-                                        $unit->unit
-                                        }}</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li> --}}
-                                <li class="text-gray-500">Tenant</li>
-
-                            </ol>
-                        </nav>
-                    </h2>
-                </div>
-                <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='{{ url()->previous() }}'">
-                        Go back to unit
-                    </x-button>
-                    <x-button onclick="window.location.href='/tenant_sheet/export'">Download Tenant Sheet
-                    </x-button>
-                </h5>
-
-            </div>
-        </h2>
+<x-index-layout>
+    @section('title', '|'. $unit->unit)
+    <x-slot name="labels">
+        Create
     </x-slot>
-
+    <x-slot name="options">
+        <x-button onclick="window.location.href='{{ url()->previous() }}'">
+            Go back to unit
+        </x-button>
+        <x-button onclick="window.location.href='/tenant_sheet/export'">Download Tenant Sheet
+        </x-button>
+    </x-slot>
     @livewire('old-tenant-component', ['unit' => $unit])
-
-</x-app-layout>
+</x-index-layout>

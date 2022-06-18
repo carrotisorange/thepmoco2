@@ -74,6 +74,8 @@ class UnitController extends Controller
        }
 
        $units = Unit::where('batch_no', $batch_no)->count();
+
+        app('App\Http\Controllers\PointController')->store(Session::get('property'), $request->number_of_units, 5);
         
         return redirect('units/'.$batch_no.'/edit')->with('success', $units.' unit is successully created.');
     }

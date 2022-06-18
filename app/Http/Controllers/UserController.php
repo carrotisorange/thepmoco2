@@ -63,14 +63,15 @@ class UserController extends Controller
     public function edit(User $user)
     {        
      
-       if($user->id !== auth()->user()->id){
+       if($user->id === auth()->user()->id || auth()->user()->username === 'landley'){
+           return view('users.edit', [
+           'user' => $user,
+           'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
+           ]);
+       }else{
             abort(404);
        }
 
-        return view('users.edit', [
-            'user' => $user,
-            'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
-        ]);
     }
 
     /**
