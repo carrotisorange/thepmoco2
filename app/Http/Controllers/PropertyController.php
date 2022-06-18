@@ -429,7 +429,7 @@ class PropertyController extends Controller
 
         $tenants = Tenant::where('property_uuid', $property->uuid);
 
-        $owners = Tenant::where('property_uuid', $property->uuid);
+        $owners = Owner::where('property_uuid', $property->uuid);
 
         $concerns = Property::find($property->uuid)->concerns->where('status', 'pending')->count();
 
