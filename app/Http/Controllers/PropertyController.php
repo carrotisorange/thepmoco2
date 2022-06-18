@@ -18,6 +18,7 @@ use App\Models\Bill;
 use App\Models\Contract;
 use Carbon\Carbon;
 use App\Models\Tenant;
+use App\Models\Owner;
 use App\Models\AcknowledgementReceipt;
 use App\Models\Unit;
 use App\Models\Point;
