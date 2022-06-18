@@ -191,7 +191,7 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Contracts</h1>
+        <h1 class="font-bold">Tenants</h1>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-50">
                 <tr>
@@ -317,13 +317,13 @@
             @endforelse
         </table>
         <div class="mt-5">
-            <span>Showing the last 5 contracts</span>
+            <span>Showing the last 5 tenants</span>
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/old_create'">
-                    Create a contract
+                    Create a tenant
                 </x-button>
-                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/contracts/'">See more contracts
+                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/contracts/'">See more tenants
                 </x-button>
             </p>
         </div>

@@ -21,6 +21,7 @@ use App\Models\Tenant;
 use App\Models\AcknowledgementReceipt;
 use App\Models\Unit;
 use App\Models\Point;
+use App\Models\PropertyBuilding;
 use App\Models\Status;
 use App\Models\Timestamp;
 use Illuminate\Support\Facades\Gate;
@@ -422,10 +423,14 @@ class PropertyController extends Controller
 
         $contracts = app('App\Http\Controllers\ContractController')->index(Session::get('property'))->count();
 
-        $units = Property::find($property->uuid)->units->count();
+        $units = Unit::where('property_uuid', $property->uuid)->count();
 
-        $tenants = Property::find($property->uuid)->tenants->count();
-        
+        $buildings = PropertyBuilding::where('property_uuid', $property->uuid)->count();
+
+        $tenants = Tenant::where('property_uuid', $property->uuid);
+
+        $owners = Tenant::where('property_uuid', $property->uuid);
+
         $concerns = Property::find($property->uuid)->concerns->where('status', 'pending')->count();
 
         $timestamps = $this->store_timestamps(Session::get('property'));
@@ -459,7 +464,9 @@ class PropertyController extends Controller
             'tenant_moveout_value' => $tenant_moveout_value,
             'reasons_for_moveout_label' => $reasons_for_moveout_label,
             'reasons_for_moveout_value' => $reasons_for_moveout_value,
-            'delinquents' => $delinquents
+            'delinquents' => $delinquents,
+            'owners' => $owners,
+            'buildings' => $buildings
         ]); 
     }
 
