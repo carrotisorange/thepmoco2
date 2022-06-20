@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='{{ url()->previous() }}'">Go back to units
+        <x-button onclick="window.location.href='{{ url()->previous() }}'">Go back 
         </x-button>
     </x-slot>
 

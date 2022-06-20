@@ -81,7 +81,6 @@ class TenantEditComponent extends Component
         $this->province_id = $tenant_details->province_id;
         $this->city_id = $tenant_details->city_id;
         $this->barangay = $tenant_details->barangay;
-        $this->photo_id = $tenant_details->photo_id;
         $this->course = $tenant_details->course;
         $this->year_level = $tenant_details->year_level;
         $this->school = $tenant_details->school;
@@ -109,7 +108,7 @@ class TenantEditComponent extends Component
             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
             'barangay' => ['nullable'],
-            'photo_id' => 'nullable',
+            'photo_id' => ['nullable'],
             'course' => 'nullable',
             'year_level' => 'nullable',
             'school' => 'nullable',
@@ -127,34 +126,32 @@ class TenantEditComponent extends Component
 
     public function updateForm()
     {
+        sleep(1);
+
+       
+        $validatedData = $this->validate();
          
         try{
-            sleep(1);
-            
-            $validatedData = $this->validate();
 
-            if(request()->photo_id)
-            {
-            $validatedData['photo_id'] = $this->photo_id->store('avatars');
-            }
+             if($this->photo_id)
+             {
+                $validatedData['photo_id'] = $this->photo_id->store('avatars');
+             }
 
-            
             DB::beginTransaction();
         
             $this->tenant_details->update($validatedData);
 
-            return back()->with('success', 'Tenant details is successfully updated.');
-
             DB::commit();
-                
+
+            session()->flash('success', 'Tenant details is successfully updated.');    
             
         }catch(\Exception $e){
             DB::rollback();
 
-            return back()->with('error');
+            session()->flash('error');
         }
     }
-
 
     public function render()
     {

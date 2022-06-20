@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| '.$tenant_details->tenant)
+    @section('title', ' | '.$tenant_details->tenant)
     <x-slot name="labels">
         {{ $tenant_details->tenant}}
     </x-slot>

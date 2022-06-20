@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '|'. $unit->unit)
+    @section('title', ' | '. $unit->unit)
     <x-slot name="labels">
         Create
     </x-slot>
