@@ -98,89 +98,83 @@
     <div class="mt-2 mb-2">
         {{ $teams->links() }}
     </div>
-    <div class="p-2 mt-5 bg-white border-b border-gray-200">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-
-            {{-- <x-search placeholder="Search for units..."></x-search> --}}
-
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <x-th>#</x-th>
-                        <x-th>Name</x-th>
-                        <x-th>Contact</x-th>
-                        <x-th>Status</x-th>
-                        <x-th>Created</x-th>
-                        <x-th>Email verified at</x-th>
-                        <x-th></x-th>
-                    </tr>
-                </thead>
-                @forelse ($teams as $index => $item)
-                <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <tr>
-                        <x-td>{{ $index }}</x-td>
-                        <x-td>
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10">
-                                    <a href="/profile/{{ $item->username }}/edit">
-                                        <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->avatar }}"
-                                            alt=""></a>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="bg-gray-50">
+                <tr>
+                    <x-th>#</x-th>
+                    <x-th>Name</x-th>
+                    <x-th>Contact</x-th>
+                    <x-th>Status</x-th>
+                    <x-th>Created</x-th>
+                    <x-th>Email verified at</x-th>
+                    <x-th></x-th>
+                </tr>
+            </thead>
+            @forelse ($teams as $index => $item)
+            <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr>
+                    <x-td>{{ $index }}</x-td>
+                    <x-td>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10">
+                                <a href="/profile/{{ $item->username }}/edit">
+                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->avatar }}" alt=""></a>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">{{
+                                    $item->name }}
                                 </div>
-                                <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">{{
-                                        $item->name }}
-                                    </div>
-                                    <div class="text-sm text-gray-500">{{ $item->role }}
-                                    </div>
+                                <div class="text-sm text-gray-500">{{ $item->role }}
                                 </div>
                             </div>
-                        </x-td>
-                        <x-td>
-                            <div class="text-sm text-gray-900">{{ $item->email }}
-                            </div>
-                            <div class="text-sm text-gray-500">{{ $item->mobile_number }}
-                            </div>
-                        </x-td>
-                        <x-td>
-                            @if($item->status === 'active')
-                            <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                <i class="fa-solid fa-circle-check"></i> {{
+                        </div>
+                    </x-td>
+                    <x-td>
+                        <div class="text-sm text-gray-900">{{ $item->email }}
+                        </div>
+                        <div class="text-sm text-gray-500">{{ $item->mobile_number }}
+                        </div>
+                    </x-td>
+                    <x-td>
+                        @if($item->status === 'active')
+                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            <i class="fa-solid fa-circle-check"></i> {{
+                            $item->status }}
+                            @else
+                            <span
+                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                <i class="fa-solid fa-clock"></i> {{
                                 $item->status }}
-                                @else
-                                <span
-                                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                    <i class="fa-solid fa-clock"></i> {{
-                                    $item->status }}
-                                </span>
-                                @endif
-                        </x-td>
-                        <x-td>{{ Carbon\Carbon::parse($item->user_created)->timezone('Asia/Manila')->format('M d, Y @
-                            g:i
-                            A')}}</x-td>
-                        <x-td>
-                            @if($item->status==='active')
-                            {{ Carbon\Carbon::parse($item->email_verified_at)->timezone('Asia/Manila')->format('M d, Y @
-                            g:i
-                            A')}}
-
+                            </span>
                             @endif
-                        </x-td>
-                        <x-td>
-                            <x-button onclick="confirmMessage()" wire:loading.remove
-                                wire:click='removeUser({{ $item->user_id }})'
-                                class="bg-purple-800 hover:bg-purple-700 active:bg-purple-900 focus:border-purple-900">
-                                Remove</x-button>
-                            <div wire:loading wire:target="removeUser">
-                                Processing...
-                            </div>
-                        </x-td>
-                        @empty
-                        <x-td>No data found!</x-td>
-                    </tr>
-                </tbody>
-                @endforelse
-            </table>
-        </div>
-        @include('layouts.notifications')
+                    </x-td>
+                    <x-td>{{ Carbon\Carbon::parse($item->user_created)->timezone('Asia/Manila')->format('M d, Y @
+                        g:i
+                        A')}}</x-td>
+                    <x-td>
+                        @if($item->status==='active')
+                        {{ Carbon\Carbon::parse($item->email_verified_at)->timezone('Asia/Manila')->format('M d, Y @
+                        g:i
+                        A')}}
+
+                        @endif
+                    </x-td>
+                    <x-td>
+                        <x-button onclick="confirmMessage()" wire:loading.remove
+                            wire:click='removeUser({{ $item->user_id }})'
+                            class="bg-purple-800 hover:bg-purple-700 active:bg-purple-900 focus:border-purple-900">
+                            Remove</x-button>
+                        <div wire:loading wire:target="removeUser">
+                            Processing...
+                        </div>
+                    </x-td>
+                    @empty
+                    <x-td>No data found!</x-td>
+                </tr>
+            </tbody>
+            @endforelse
+        </table>
     </div>
+    @include('layouts.notifications')
 </div>

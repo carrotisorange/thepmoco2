@@ -33,32 +33,24 @@ Route::post('/contact', ContactController::class);
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property:uuid}')->group(function(){
-
+    
     Route::get('units', [UnitController::class, 'index'])->name('units');
-
-    Route::get('tenant/{tenant}/units/', [TenantContractController::class, 'create'])->name('tenants');
-
-    Route::get('owner/{owner}/units/', [OwnerDeedOfSalesController::class, 'create'])->name('owners');
-
-    Route::get('units/masterlist', UnitMasterlistController::class)->name('units');
    
     Route::get('tenants', [TenantController::class, 'index'])->name('tenants');
     
     Route::get('owners', [OwnerController::class, 'index'])->name('owners');
 
-     Route::get('bills', [BillController::class, 'index'])->name('bills');
+    Route::get('bills', [BillController::class, 'index'])->name('bills');
 
-     Route::get('payments', [AcknowledgementReceiptController::class, 'index'])->name('payments');
+    Route::get('payments', [AcknowledgementReceiptController::class, 'index'])->name('payments');
 
-     Route::get('concerns', [ConcernController::class, 'index'])->name('concerns');
+    Route::get('concerns', [ConcernController::class, 'index'])->name('concerns');
     
     Route::get('team', [TeamController::class, 'index'])->name('team');
 
     Route::get('referrals', [ReferralController::class, 'index'])->name('referrals');
 
-   Route::get('timestamps/{date}', TimestampController::class)->name('timestamps');
-    
-    //Route::get('tenants', [ContractController::class, 'index'])->name('contracts');
+    Route::get('timestamps/{date}', TimestampController::class)->name('timestamps');
 
     Route::get('enrollees', [EnrolleeController::class, 'index'])->name('enrollees');
 
@@ -76,8 +68,17 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('roles', [PropertyRoleController::class, 'index']);
 
     Route::get('/team/{random_str}/create', [TeamController::class, 'create']);
-    
+
+    Route::get('tenant/{tenant}/units/', [TenantContractController::class, 'create'])->name('tenants');
+
+    Route::get('owner/{owner}/units/', [OwnerDeedOfSalesController::class, 'create'])->name('owners');
+
+    Route::get('units/masterlist', UnitMasterlistController::class)->name('units'); 
     });
+
+
+
+
 
     Route::get('bill/{bills}', [CollectionController::class, 'create']);
 

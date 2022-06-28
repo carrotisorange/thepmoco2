@@ -321,7 +321,7 @@
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/old_create'">
-                    Create a tenant
+                    Add a tenant
                 </x-button>
                 <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/contracts/'">See more tenants
                 </x-button>
@@ -331,7 +331,7 @@
 
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Deed of sales</h1>
+        <h1 class="font-bold">Property Documents</h1>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <?php $ctr =1; ?>
             <thead class="bg-gray-50">
@@ -390,12 +390,12 @@
             </tbody>
         </table>
         <div class="mt-5">
-            <span>Showing the last 5 deed of sales</span>
+            <span>Showing the last 5 property documents</span>
             <p class="text-right">
                 <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ Str::random(8) }}/create'">
-                    Create a deed of sale
+                    Add a property document
                 </x-button>
-                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/deed_of_sales/'">See more deed of sales
+                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/deed_of_sales/'">See more property documents
                 </x-button>
             </p>
         </div>

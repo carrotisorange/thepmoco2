@@ -1,7 +1,7 @@
 <x-index-layout>
     @section('title', '| Deed of Sale')
     <x-slot name="labels">
-        {{ $unit->unit }} / {{ $owner->owner }} / Deed of Sale
+        {{ $unit->unit }} / {{ $owner->owner }} / Property Documents
     </x-slot>
 
     <x-slot name="options">

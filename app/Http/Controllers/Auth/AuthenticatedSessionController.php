@@ -29,8 +29,7 @@ class AuthenticatedSessionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(LoginRequest $request)
-    {
-       
+    {   
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -40,15 +39,15 @@ class AuthenticatedSessionController extends Controller
          ->whereDate('created_at', Carbon::today())
          ->count();
 
-         if($sessions<=0) { DB::table('sessions')->insert(
-             [
+        if($sessions<=0) 
+        { 
+            DB::table('sessions')->insert([
              'id' => DB::table('sessions')->count()+1,
              'user_id' => auth()->user()->id,
              'created_at' => now(),
              'ip_address' => request()->ip(),
-             ]
-             );
-             }
+            ]);
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -76,14 +75,11 @@ class AuthenticatedSessionController extends Controller
            'updated_at' => now()
            ]);
 
-
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
-      
 
         return redirect('/login');
     }

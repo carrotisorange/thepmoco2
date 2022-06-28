@@ -15,14 +15,14 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Representatives</h1>
+        <h1 class="font-bold">Owner's representatives</h1>
         @include('owners.representatives.index')
         <div class="mt-5">
             <span>Showing the last 5 representatives</span>
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/owner/{{ $owner_details->uuid }}/representative/{{ Str::random(8) }}/create'">
-                    Create a representative
+                    Add owner's representative
                 </x-button>
 
             </p>
@@ -30,14 +30,14 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Banks</h1>
+        <h1 class="font-bold">Bank Details</h1>
         @include('owners.banks.index')
         <div class="mt-5">
-            <span>Showing the last 5 Banks</span>
+            <span>Showing the last 5 Bank details</span>
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/owner/{{ $owner_details->uuid }}/bank/{{ Str::random(8) }}/create'">
-                    Create a bank
+                    Add bank details
                 </x-button>
 
             </p>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Deed Of Sales</h1>
+        <h1 class="font-bold">Property Documents</h1>
         <table class="text-sm min-w-full divide-y divide-gray-200">
             <?php $ctr =1; ?>
             <thead class="bg-gray-50">
@@ -97,14 +97,14 @@
             </tbody>
         </table>
         <div class="mt-5">
-            <span>Showing the last 5 Deed of sales</span>
+            <span>Showing the last 5 property documents</span>
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/units'">
-                    Create a Deed of sale
+                   Add Property Documents
                 </x-button>
                 <x-button onclick="window.location.href='/owner/{{ $owner_details->uuid }}/deed_of_sales/'">
-                    See more Deed of sale
+                   See more property documents
                 </x-button>
 
             </p>

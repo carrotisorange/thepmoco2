@@ -1,7 +1,7 @@
 <x-index-layout>
     @section('title', '| Leasing')
     <x-slot name="labels">
-        {{ $unit->unit }} / {{ $owner->owner }} / Leasing
+        {{ $unit->unit }} / {{ $owner->owner }} / Management Agreement
     </x-slot>
 
     <x-slot name="options">
