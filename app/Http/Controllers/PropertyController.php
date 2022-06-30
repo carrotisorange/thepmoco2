@@ -126,9 +126,10 @@ class PropertyController extends Controller
         return Property::select(DB::raw("(count(*)) as total_property"),
         DB::raw("(DATE_FORMAT(created_at,
         '%M %Y')) as month_year"))
-        ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(31)
+               ->latest()
+        ->take(31)
+
         ->pluck('month_year');
     }
 
@@ -137,9 +138,10 @@ class PropertyController extends Controller
     {
         return User::select(DB::raw("(count(*)) as total_user"),
         DB::raw("(DATE_FORMAT(created_at, '%M %Y')) as month_year"))
-        ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(31)
+               ->latest()
+        ->take(31)
+
         ->pluck('total_user');
     }
 
@@ -148,9 +150,8 @@ class PropertyController extends Controller
         return Property::select(DB::raw("(count(*)) as total_property"),
         DB::raw("(DATE_FORMAT(created_at,
         '%M %Y')) as month_year"))
-        ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(31)
+        ->limit(10)
         ->pluck('total_property');
     }
 
