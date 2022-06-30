@@ -224,7 +224,7 @@
                                                         "data": {
                                                             "labels": {!!$properties_count_labels!!},
                                                             "datasets": [{
-                                                                "label": "Sign Up",
+                                                                "label": "Sessions",
                                                                 "data": {!!$sessions_count_values!!},
                                                                 "fill": false,
                                                                 "borderColor": "rgb(75, 192, 192)",
