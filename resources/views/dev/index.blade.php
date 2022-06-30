@@ -222,7 +222,7 @@
                                                 new Chart(document.getElementById("chartjs-0"), {
                                                         "type": "line",
                                                         "data": {
-                                                            "labels": {!!$properties_count_labels!!},
+                                                            "labels": {!!$get_session_rate_labels!!},
                                                             "datasets": [{
                                                                 "label": "Sessions",
                                                                 "data": {!!$sessions_count_values!!},

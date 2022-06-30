@@ -78,6 +78,8 @@ class PropertyController extends Controller
 
             $sessions_count_values = $this->get_session_rate_values();
 
+            $get_session_rate_labels = $this->get_session_rate_labels();
+
             $get_property_type_labels = $this->get_property_type_labels();
 
             $get_property_type_values = $this->get_property_type_values();
@@ -102,7 +104,8 @@ class PropertyController extends Controller
                 'get_property_type_labels' => $get_property_type_labels,
                 'get_property_type_values' => $get_property_type_values,
                 'get_property_tenant_type_values' => $get_property_tenant_type_values,
-                'get_property_tenant_type_labels' => $get_property_tenant_type_labels
+                'get_property_tenant_type_labels' => $get_property_tenant_type_labels,
+                'get_session_rate_labels' => $get_session_rate_labels
             ]);
         }elseif(auth()->user()->role_id == '8'){
             return view('portal.tenants.index',[
@@ -125,7 +128,7 @@ class PropertyController extends Controller
         '%M %Y')) as month_year"))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
+        ->limit(31)
         ->pluck('month_year');
     }
 
@@ -136,7 +139,7 @@ class PropertyController extends Controller
         DB::raw("(DATE_FORMAT(created_at, '%M %Y')) as month_year"))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
+        ->limit(31)
         ->pluck('total_user');
     }
 
@@ -147,18 +150,29 @@ class PropertyController extends Controller
         '%M %Y')) as month_year"))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
+        ->limit(31)
         ->pluck('total_property');
+    }
+
+    public function get_session_rate_labels()
+    {
+        return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
+        DB::raw("(DATE_FORMAT(created_at,
+        '%M %D')) as date_year"))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d-%Y')"))
+        ->limit(31)
+        ->pluck('date_year');
     }
 
     public function get_session_rate_values()
     {
         return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
         DB::raw("(DATE_FORMAT(created_at,
-        '%M %Y')) as month_year"))
+        '%d %Y')) as date_year"))
         ->orderBy('created_at')
-        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d-%Y')"))
+        ->limit(31)
         ->pluck('total_session');
     }
     
