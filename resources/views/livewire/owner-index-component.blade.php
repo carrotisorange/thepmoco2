@@ -10,7 +10,7 @@
                     <x-th>#</x-th>
                     <x-th>Name</x-th>
 
-                    <x-th>Occupation</x-th>
+                    {{-- <x-th>Occupation</x-th> --}}
                     <x-th>Contact</x-th>
                     <x-th>Address</x-th>
                 </tr>
@@ -35,7 +35,7 @@
                         </div>
                     </x-td>
 
-                    <x-td>{{ $owner->occupation?$owner->occupation:'Not specified' }}</x-td>
+                    {{-- <x-td>{{ $owner->occupation?$owner->occupation:'Not specified' }}</x-td> --}}
                     <x-td>
                         <div class="text-sm text-gray-900">{{ $owner->email }}
                         </div>

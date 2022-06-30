@@ -70,6 +70,22 @@ class PropertyController extends Controller
             ->groupBy('user_id')
             ->paginate(10);
 
+            $properties_count_labels = $this->get_property_rate_dates();
+
+            $users_count_values = $this->get_user_rate_values();
+
+            $properties_count_values = $this->get_property_rate_values();
+
+            $sessions_count_values = $this->get_session_rate_values();
+
+            $get_property_type_labels = $this->get_property_type_labels();
+
+            $get_property_type_values = $this->get_property_type_values();
+
+            $get_property_tenant_type_values = $this->get_property_tenant_type_values();
+
+            $get_property_tenant_type_labels = $this->get_property_tenant_type_labels();
+
             return view('dev.index',[
                 'sessions' => $sessions,
                 'points' => $points,
@@ -77,7 +93,16 @@ class PropertyController extends Controller
                 'users' => $users,
                 'units' => $units,
                 'tenants' => $tenants,
-                'contracts' => $contracts
+                'contracts' => $contracts,
+      
+                'users_count_values' => $users_count_values,
+                'properties_count_labels' => $properties_count_labels,
+                'properties_count_values' => $properties_count_values,
+                'sessions_count_values' => $sessions_count_values,
+                'get_property_type_labels' => $get_property_type_labels,
+                'get_property_type_values' => $get_property_type_values,
+                'get_property_tenant_type_values' => $get_property_tenant_type_values,
+                'get_property_tenant_type_labels' => $get_property_tenant_type_labels
             ]);
         }elseif(auth()->user()->role_id == '8'){
             return view('portal.tenants.index',[
@@ -92,6 +117,80 @@ class PropertyController extends Controller
             ]);
         }
     }
+
+    public function get_property_rate_dates()
+    {
+        return Property::select(DB::raw("(count(*)) as total_property"),
+        DB::raw("(DATE_FORMAT(created_at,
+        '%M %Y')) as month_year"))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('month_year');
+    }
+
+
+    public function get_user_rate_values()
+    {
+        return User::select(DB::raw("(count(*)) as total_user"),
+        DB::raw("(DATE_FORMAT(created_at, '%M %Y')) as month_year"))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('total_user');
+    }
+
+    public function get_property_rate_values()
+    {
+        return Property::select(DB::raw("(count(*)) as total_property"),
+        DB::raw("(DATE_FORMAT(created_at,
+        '%M %Y')) as month_year"))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('total_property');
+    }
+
+    public function get_session_rate_values()
+    {
+        return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
+        DB::raw("(DATE_FORMAT(created_at,
+        '%M %Y')) as month_year"))
+        ->orderBy('created_at')
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+        ->limit(6)
+        ->pluck('total_session');
+    }
+    
+    public function get_property_type_labels()
+    {
+        return Property::
+        leftJoin('types', 'properties.type_id', 'types.id')
+        ->groupBy('type_id')
+        ->pluck('type');
+    }
+
+     public function get_property_type_values()
+     {
+       return Property::select(DB::raw('count(*) as count'))
+       ->groupBy('type_id')
+       ->pluck('count');
+     }
+
+         public function get_property_tenant_type_labels()
+         {
+         return Tenant
+         ::groupBy('type')
+         ->pluck('type');
+         }
+
+    public function get_property_tenant_type_values()
+         {
+         return Tenant::select(DB::raw('count(*) as count'))
+         ->groupBy('type')
+         ->pluck('count');
+    }
+
 
     /**
      * Show the form for creating a new resource.

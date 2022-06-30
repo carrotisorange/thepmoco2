@@ -170,7 +170,7 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Sign Up</h5>
                                         </div>
                                         <div class="p-5">
                                             <canvas id="chartjs-7" class="chartjs" width="undefined"
@@ -179,15 +179,15 @@
                                                 new Chart(document.getElementById("chartjs-7"), {
                                                         "type": "bar",
                                                         "data": {
-                                                            "labels": ["January", "February", "March", "April"],
+                                                            "labels": {!!$properties_count_labels!!},
                                                             "datasets": [{
-                                                                "label": "Page Impressions",
-                                                                "data": [10, 20, 30, 40],
+                                                                "label": "Property Count",
+                                                                "data": {!!$properties_count_values!!},
                                                                 "borderColor": "rgb(255, 99, 132)",
                                                                 "backgroundColor": "rgba(255, 99, 132, 0.2)"
                                                             }, {
-                                                                "label": "Adsense Clicks",
-                                                                "data": [5, 15, 10, 30],
+                                                                "label": "User Count",
+                                                                "data": {!!$users_count_values!!},
                                                                 "type": "line",
                                                                 "fill": false,
                                                                 "borderColor": "rgb(54, 162, 235)"
@@ -213,7 +213,7 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Sessions</h5>
                                         </div>
                                         <div class="p-5">
                                             <canvas id="chartjs-0" class="chartjs" width="undefined"
@@ -222,16 +222,20 @@
                                                 new Chart(document.getElementById("chartjs-0"), {
                                                         "type": "line",
                                                         "data": {
-                                                            "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                                            "labels": {!!$properties_count_labels!!},
                                                             "datasets": [{
-                                                                "label": "Views",
-                                                                "data": [65, 59, 80, 81, 56, 55, 40],
+                                                                "label": "Sign Up",
+                                                                "data": {!!$sessions_count_values!!},
                                                                 "fill": false,
                                                                 "borderColor": "rgb(75, 192, 192)",
                                                                 "lineTension": 0.1
                                                             }]
                                                         },
-                                                        "options": {}
+                                                        "options": {
+                                                        legend: {
+                                                        display: false
+                                                        },
+                                                        }
                                                     });
                                             </script>
                                         </div>
@@ -282,18 +286,18 @@
                                     <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Property Type</h5>
                                         </div>
-                                        <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined"
+                                        <div class="p-5"><canvas id="property-type" class="chartjs" width="undefined"
                                                 height="undefined"></canvas>
                                             <script>
-                                                new Chart(document.getElementById("chartjs-4"), {
+                                                new Chart(document.getElementById("property-type"), {
                                                         "type": "doughnut",
                                                         "data": {
-                                                            "labels": ["P1", "P2", "P3"],
+                                                            "labels": {!!$get_property_type_labels!!},
                                                             "datasets": [{
                                                                 "label": "Issues",
-                                                                "data": [300, 50, 100],
+                                                                "data": {!!$get_property_type_values!!},
                                                                 "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
                                                             }]
                                                         }
@@ -304,100 +308,88 @@
                                     <!--/Graph Card-->
                                 </div>
 
-                                <div class="w-full md:w-full xl:w-1/3 p-3">
-                                    <!--Template Card-->
+
+
+                                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                                    <!--Graph Card-->
                                     <div class="bg-white border rounded shadow">
                                         <div class="border-b p-3">
-                                            <h5 class="font-bold uppercase text-gray-600">Template</h5>
+                                            <h5 class="font-bold uppercase text-gray-600">Tenant Type</h5>
                                         </div>
-                                        <div class="p-5">
-
+                                        <div class="p-5"><canvas id="tenant-type" class="chartjs" width="undefined"
+                                                height="undefined"></canvas>
+                                            <script>
+                                                new Chart(document.getElementById("tenant-type"), {
+                                                        "type": "doughnut",
+                                                        "data": {
+                                                            "labels": {!!$get_property_tenant_type_labels!!},
+                                                            "datasets": [{
+                                                                "label": "Issues",
+                                                                "data": {!!$get_property_tenant_type_values!!},
+                                                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                                                            }]
+                                                        }
+                                                    });
+                                            </script>
                                         </div>
                                     </div>
-                                    <!--/Template Card-->
+                                    <!--/Graph Card-->
                                 </div>
 
-                                <div class="py-12">
+                                <div class="w-full md:w-1/2 p-3">
                                     <h1>Points Leader</h1>
                                     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                                         <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                                            <div class="p-6 bg-white border-b border-gray-200">
-                                                <!-- This example requires Tailwind CSS v2.0+ -->
-                                                <div class="flex flex-col">
-                                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+
+                                            <div class="flex flex-col">
+                                                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                                    <div
+                                                        class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                                        @if (!$points->count())
+                                                        <span class="text-center text-red">No points found!</span>
+                                                        @else
                                                         <div
-                                                            class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                                            @if (!$points->count())
-                                                            <span class="text-center text-red">No points found!</span>
-                                                            @else
-                                                            <div
-                                                                class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                                            class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
-                                                                <table class="min-w-full divide-y divide-gray-200">
-                                                                    <thead class="bg-gray-50">
-                                                                        <tr>
-                                                                            <th scope="col"
-                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                                #</th>
-
-                                                                            <th scope="col"
-                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                                User</th>
-                                                                            <th scope="col"
-                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                                Points</th>
-
-
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <?php $ctr = 1; ?>
-                                                                    @foreach ($points as $point)
-                                                                    <tbody class="bg-white divide-y divide-gray-200">
-                                                                        <tr>
-                                                                            <th
-                                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                                                {{
-                                                                                $ctr++ }}</th>
-                                                                            <td
-                                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                                                {{
-                                                                                $point->name}}</td>
-                                                                            <td
-                                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                                                {{
-                                                                                $point->total}}</td>
-
-                                                                        </tr>
-
-                                                                        <!-- More people... -->
-                                                                    </tbody>
-                                                                    @endforeach
-                                                                </table>
-
-                                                            </div>
-                                                            @endif
-
+                                                            <table class="min-w-full divide-y divide-gray-200">
+                                                                <thead class="bg-gray-50">
+                                                                    <tr>
+                                                                        <x-th>#</x-th>
+                                                                        <x-th>User</x-th>
+                                                                        <x-th>Points</x-th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <?php $ctr = 1; ?>
+                                                                @foreach ($points as $point)
+                                                                <tbody class="bg-white divide-y divide-gray-200">
+                                                                    <tr>
+                                                                        <x-td>{{ $ctr++ }}</x-td>
+                                                                        <x-td>{{ $point->name }}</x-td>
+                                                                        <x-td>{{ $point->total }}</x-td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                @endforeach
+                                                            </table>
                                                         </div>
-                                                        {{ $points->links() }}
+                                                        @endif
                                                     </div>
+                                                    {{ $points->links() }}
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    @section('scripts')
-    <script>
-        /*Toggle dropdown list*/
+        @section('scripts')
+        <script>
+            /*Toggle dropdown list*/
     /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
 
     var userMenuDiv = document.getElementById("userMenu");
@@ -448,6 +440,6 @@
         }
         return false;
     }
-    </script>
-    @endsection
+        </script>
+        @endsection
 </x-app-layout>
