@@ -18,7 +18,7 @@ class DashboardSalesController extends Controller
     public function show($id)
     {
         return view('dashboard.sales.show',[
-            'properties'=>User::find(auth()->user()->id)->user_properties,
+            'properties'=>User::find($id)->user_properties,
             'user' => User::find($id)
         ]);
     }
