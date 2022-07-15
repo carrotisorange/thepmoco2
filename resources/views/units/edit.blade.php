@@ -151,7 +151,7 @@
                     </div>
                     <div class="basis-full">
                         <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
-                            <x-label for="occupancy" :value="__('Occupancy')" />
+                            <x-label for="occupancy" :value="__('No of Beds')" />
 
                             <x-form-input form="edit-form" type="number" name="occupancy"
                                 value="{{old('occupancy', $unit->occupancy)}}" autofocus />

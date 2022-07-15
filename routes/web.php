@@ -25,6 +25,10 @@ use App\Models\Bill;
 
 require __DIR__.'/auth.php';
 
+Route::get('/select-a-plan', [CheckoutController::class, 'create'])->middleware('auth');
+
+Route::get('/checkout', [CheckoutController::class, 'submit'])->middleware('auth');
+
 Route::get('/', [WebsiteController::class, 'index']);
 
 Route::post('/subscribe', SubscribeController::class);
@@ -172,7 +176,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store', [BillController::class,'store']);
     Route::delete('bill/{id:id}/delete', [BillController::class, 'destroy']);
 
-    Route::post('bill/{uuid:uuid}/store/{bill_count}/express', PropertyBillExpressController::class);
+    Route::post('bill/{uuid:uuid}/store/{bill_count}/express',[ PropertyBillExpressController::class, 'store']);
+
+    Route::get('bill/{uuid:uuid}/express/batch/{batch_no}', [PropertyBillExpressController::class], 'index');
      
     Route::post('bill/{uuid:uuid}/store/{bill_count}/customized', [PropertyBillCustomizedController::class, 'store']);
 

@@ -103,7 +103,7 @@
                                                         </x-table-select>
                                                     </x-td>
                                                     <x-td>
-                                                        <x-table-input form="edit-form" type="number"
+                                                        <x-table-input min="1" form="edit-form" type="number"
                                                             wire:model="bills.{{ $index }}.bill" />
                                                         @error('bills.{{ $index }}.bill')
                                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

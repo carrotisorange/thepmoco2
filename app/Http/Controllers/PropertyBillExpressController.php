@@ -22,7 +22,13 @@ class PropertyBillExpressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, $property_uuid, $bill_count)
+
+    public function index($property_uuid, $batch_no)
+    {
+        return $batch_no;
+    }
+
+    public function store(Request $request, $property_uuid, $bill_count)
     {
         $attributes = request()->validate([
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
@@ -36,6 +42,8 @@ class PropertyBillExpressController extends Controller
         ->pluck('tenant_uuid');
 
         $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1;
+
+        $batch_no = Carbon::now()->timestamp.''.$bill_no;
 
         try{
 
@@ -66,21 +74,22 @@ class PropertyBillExpressController extends Controller
                 $attributes['user_id'] = auth()->user()->id;
                 $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
                 $attributes['property_uuid'] = Session::get('property');
+                $attributes['batch_no'] = $batch_no;
 
                 Bill::create($attributes);
 
-                }
-
-                app('App\Http\Controllers\PointController')->store(Session::get('property'), $bill_count, 3);
-
-                DB::commit();
-
-                return back()->with('success', $i.' bills have been posted.');
-
-            }catch(\Exception $e)
-            {   
-                DB::rollback();
-                return back('error')->with('success', 'Cannot perform your action.');
             }
+
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), $bill_count, 3);
+
+            DB::commit();
+
+            return redirect('/bill/'.Session::get('property').'/express/batch/'.$batch_no)->with('success', $bill_count.' bill is succesffully created.');
+
+        }catch(\Exception $e)
+        {   
+            DB::rollback();
+            return back('error')->with('success', 'Cannot perform your action.');
+        }
     }
 }

@@ -15,7 +15,7 @@
             onclick="window.location.href='/property/{{ Session::get('property') }}/units/masterlist'"> Masterlist
         </x-button>
         @endif
-        <x-button onclick="window.location.href='/units/{{ Str::random(8) }}/edit'">Edit Units
+        <x-button onclick="window.location.href='/units/{{ Str::random(8) }}/edit'">Create/Edit Units
         </x-button>
         {{-- <x-button title="add new units" data-modal-toggle="create-unit-modal">Create a unit
         </x-button> --}}

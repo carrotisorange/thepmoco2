@@ -16,6 +16,8 @@ use App\Models\Type;
 use App\Models\UnitStats;
 use Livewire\Component;
 use Session;
+use App\Models\User;
+use Carbon\Carbon;
 
 class PropertyComponent extends Component
 {
@@ -90,7 +92,9 @@ class PropertyComponent extends Component
 
         $property_uuid = Str::uuid();
 
-        $validatedData['uuid']= $property_uuid;
+        $validatedData['uuid'] = $property_uuid;
+        //$validatedData['status'] = 'pending';
+
          if($this->thumbnail){
              $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
          }else{
@@ -133,6 +137,11 @@ class PropertyComponent extends Component
         }
 
          app('App\Http\Controllers\PointController')->store($property_uuid, 50, 6);
+
+         User::where('id', auth()->user()->id)
+          ->update([
+            'trial_ends_at' => Carbon::now()->addMonth(),
+         ]);
 
         DB::commit();
          return redirect('/property/'.$property_uuid)->with('success', 'Property is successfully created.');

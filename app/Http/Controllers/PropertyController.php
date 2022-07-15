@@ -497,8 +497,21 @@ class PropertyController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
+
+    public function is_trial_expire()
+    {
+        if(auth()->user()->trial_ends_at < Carbon::now()){
+           return true;
+        }else{
+            return false;
+        }
+    }
     public function show(Property $property)
     {     
+         if($this->is_trial_expire()){
+            return redirect('/select-a-plan');
+         }
+
         session(['property' => $property->uuid]);
         session(['property_name' => $property->property]);
 
@@ -674,10 +687,11 @@ class PropertyController extends Controller
      */
     public function destroy($uuid)
     {
-        $property = Property::find($uuid);
-        $property->delete();
+        Unit::where('property_uuid', $uuid)->delete();
 
-        return back()->with('success','Property has been removed.');
+        // Property::where('uuid', $uuid)->delete();
+
+        return back()->with('success','Property is successfully deleted.');
     }
 
     public function show_tenant_contract($uuid)

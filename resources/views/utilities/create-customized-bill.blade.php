@@ -97,7 +97,7 @@
 
                 <div class="mt-5">
                     <x-label for="due_date">
-                        Amount<span class="text-red-600">*</span>
+                        Amount<span class="text-sm">(Optional)</span>
                     </x-label>
                     <x-form-input wire:model="bill" id="bill" type="number" name="bill" value="{{ old('bill', 0) }}"  required/>
 

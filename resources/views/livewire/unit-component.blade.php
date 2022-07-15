@@ -23,7 +23,7 @@
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Go back to
                         units
                     </x-button>
-                    <x-button data-modal-toggle="create-unit-modal">Add a unit
+                    <x-button data-modal-toggle="create-unit-modal">Create a unit
                     </x-button>
                     <x-button data-modal-toggle="add-building-modal">Create a building
                     </x-button>
@@ -80,7 +80,7 @@
                                             <x-th>Category</x-th>
                                             <x-th>Size (sqm)</x-th>
                                             <x-th>Rent/Mo</x-th>
-                                            <x-th>Occupancy</x-th>
+                                            <x-th>No of Beds</x-th>
                                         </tr>
                                     </thead>
                                     <?php $ctr=1; ?>

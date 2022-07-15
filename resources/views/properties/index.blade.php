@@ -5,7 +5,7 @@
     </x-slot>
     <x-slot name="options">
         <x-button onclick="window.location.href='/chatify'">
-           Chat other users
+            Chat other users
         </x-button>
         @can('manager')
         <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">
@@ -24,7 +24,7 @@
                 <x-th># of Tenants</x-th>
                 <x-th>Status</x-th>
                 <x-th>Created</x-th>
-
+                <x-th></x-th>
             </tr>
         </thead>
         <?php $ctr = 1 ?>
@@ -59,13 +59,13 @@
                 <x-td>{{ $property->property->tenants->count() }}</x-td>
                 <x-td>
                     @if($property->property->status === 'active')
-                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
                         <i class="fa-solid fa-circle-check"></i> {{
                         $property->property->status }}
                     </span>
                     @else
-                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                        <i class="fa-solid fa-circle-xmark"></i> {{
+                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-sm text-orange-800">
+                        <i class="fa-solid fa-clock"></i> {{
                         $property->property->status }}
                     </span>
                     @endif
@@ -73,6 +73,12 @@
                 <x-td>{{
                     Carbon\Carbon::parse($property->property->created_at)->diffForHumans()
                     }}</x-td>
+                <x-td>
+                    <form action="/property/{{ $property->property->uuid }}/delete">
+                        <x-delete-button title="remove this property"><i class="fa-solid fa-circle-xmark"></i>
+                        </x-delete-button>
+                    </form>
+                </x-td>
                 @empty
                 <x-td>No properties found!</x-td>
                 {{-- <x-td>
