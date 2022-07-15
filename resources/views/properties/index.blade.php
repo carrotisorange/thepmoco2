@@ -74,10 +74,10 @@
                     Carbon\Carbon::parse($property->property->created_at)->diffForHumans()
                     }}</x-td>
                 <x-td>
-                    <form action="/property/{{ $property->property->uuid }}/delete">
+                    {{-- <form action="/property/{{ $property->property->uuid }}/delete">
                         <x-delete-button title="remove this property"><i class="fa-solid fa-circle-xmark"></i>
                         </x-delete-button>
-                    </form>
+                    </form> --}}
                 </x-td>
                 @empty
                 <x-td>No properties found!</x-td>
