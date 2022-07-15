@@ -21,10 +21,10 @@
                     <tr>
                         <x-th>ID</x-th>
                         <x-th>Account Created</x-th>
-                        <x-th>Email verified</x-th>
+                        <x-th>Is verified?</x-th>
                         <x-th>Name</x-th>
                         <x-th>Contact</x-th>
-
+                        <x-th># of Property/Unit</x-th>
                         <x-th>Plan</x-th>
                         <x-th>Trial ends</x-th>
                     </tr>
@@ -34,7 +34,7 @@
                     <tr>
                         <x-td>{{ $user->id }}</x-td>
                         <x-td>{{ Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</x-td>
-                        <x-td>{{ $user->email_verified_at?$user->email_verified_at:'N/A' }}</x-td>
+                        <x-td>{{ $user->email_verified_at?'verified':'unverified' }}</x-td>
                         <x-td>{{ $user->name }}</x-td>
                         <x-td>
                             <div class="text-sm text-gray-900">{{ $user->email }}
@@ -43,6 +43,16 @@
                                 $user->mobile_number }}
                             </div>
                         </x-td>
+                        <?php
+                           $property_count = App\Models\UserProperty::where('user_id', $user->id)->count();
+                           
+                           $unit_count = App\Models\UserProperty::join('users', 'user_properties.user_id', 'users.id')
+                           ->join('properties', 'user_properties.property_uuid', 'properties.uuid')
+                           ->join('units', 'user_properties.property_uuid', 'units.property_uuid')
+                           ->where('user_properties.user_id', $user->id)
+                           ->count();
+                        ?>
+                        <x-td><a class="text-blue-600" href="user/{{ $user->username }}/properties">{{ $property_count }}/{{ $unit_count }}</a></x-td>
                         <x-td>{{ $user->external_id?$user->external_id:'N/A' }}</x-td>
                         <x-td>{{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}</x-td>
                     </tr>

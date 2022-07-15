@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
 
         $attributes['password'] = Hash::make($request->password);
         $attributes['role_id'] = 5;
+        $attributes['trial_ends_at'] = Carbon::now()->addMonth();
 
         $user = User::create($attributes);
 
