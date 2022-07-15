@@ -29,7 +29,9 @@ Route::get('/select-a-plan', [CheckoutController::class, 'create'])->middleware(
 
 Route::get('/checkout', [CheckoutController::class, 'submit'])->middleware('auth');
 
-Route::get('/', [WebsiteController::class, 'index']);
+Route::get('/', function(){
+    return view('auth.login');
+});
 
 Route::post('/subscribe', SubscribeController::class);
 
