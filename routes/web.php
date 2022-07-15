@@ -33,6 +33,13 @@ Route::get('/', function(){
     return view('auth.login');
 });
 
+//routes for sales
+Route::group(['middleware'=>['auth', 'verified']], function(){
+     Route::prefix('/dashboard')->group(function(){ 
+        Route::get('sales', [DashboardSalesController::class, 'index']);
+    });
+});
+
 Route::post('/subscribe', SubscribeController::class);
 
 Route::post('/contact', ContactController::class);

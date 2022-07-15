@@ -36,17 +36,34 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function destroy_property_session()
     {
         Session::forget('property');
         Session::forget('property_name');
+    }
 
-        if(!User::find(Auth::user()->id)->user_properties->count())
-        {
+    public function is_user_new()
+    {
+        if(!User::find(Auth::user()->id)->user_properties->count()){
+            return true; 
+        }else{ 
+            return false; 
+        } 
+    }
+
+    public function index()
+    {
+        $this->destroy_property_session();
+
+        if($this->is_user_new()){
             return redirect('/property/'.Str::random(8).'/create');
         }
 
-        Session::forget('property_name');
+        if(auth()->user()->role_id == '12')
+        {
+            return redirect('/dashboard/sales');
+        }
 
         if(auth()->user()->role_id == '10')
         {   
@@ -89,7 +106,7 @@ class PropertyController extends Controller
 
             $get_property_tenant_type_labels = $this->get_property_tenant_type_labels();
 
-            return view('dev.index',[
+            return view('dashboard.dev.index',[
                 'sessions' => $sessions,
                 'points' => $points,
                 'properties' => $properties,
