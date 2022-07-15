@@ -27,6 +27,7 @@ use App\Models\Status;
 use App\Models\Timestamp;
 use Illuminate\Support\Facades\Gate;
 use App\Models\UnitStats;
+use App\Models\Collection;
 
 class PropertyController extends Controller
 {
@@ -687,11 +688,22 @@ class PropertyController extends Controller
      */
     public function destroy($uuid)
     {
-        Unit::where('property_uuid', $uuid)->delete();
-
-        // Property::where('uuid', $uuid)->delete();
-
-        return back()->with('success','Property is successfully deleted.');
+        if(!auth()->user()->role_id == '5')
+        {
+            abort(403);
+        }else{
+            Unit::where('property_uuid', $uuid)->delete();
+            Tenant::where('property_uuid', $uuid)->delete();
+            Bill::where('property_uuid', $uuid)->delete();
+            Collection::where('property_uuid', $uuid)->delete();
+            AcknowledgementReceipt::where('property_uuid', $uuid)->delete();
+            Contract::where('property_uuid', $uuid)->delete();
+            Property::where('uuid', $uuid)->delete();
+            UserProperty::where('property_uuid')->delete();
+        
+             return redirect('/properties')->with('success','Property is successfully deleted.');
+        }
+       
     }
 
     public function show_tenant_contract($uuid)
