@@ -508,10 +508,10 @@ class PropertyController extends Controller
         }
     }
     public function show(Property $property)
-    {     
-         if($this->is_trial_expire()){
+    {  
+        if($this->is_trial_expire()){
             return redirect('/select-a-plan');
-         }
+        }
 
         session(['property' => $property->uuid]);
         session(['property_name' => $property->property]);
