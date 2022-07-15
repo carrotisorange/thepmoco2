@@ -59,7 +59,10 @@
                             ->count();
                         ?>
                         <x-td><a class="text-blue-600" href="user/{{ $user->id }}/properties">{{ $property_count }} properties, {{ $unit_count }} units, {{ $tenant_count }} tenants </a></x-td>
-                        <x-td>{{ $user->external_id?$user->external_id:'N/A' }}</x-td>
+                        <?php
+                            $plan = App\Models\Plan::find($user->external_id)->plan;
+                        ?>
+                        <x-td>{{ $plan }}</x-td>
                         <x-td>{{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}</x-td>
                     </tr>
                 </tbody>
