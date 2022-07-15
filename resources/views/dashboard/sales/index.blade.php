@@ -43,7 +43,7 @@
                                 $user->mobile_number }}
                             </div>
                         </x-td>
-                        <x-td>{{ $user->external_id }}</x-td>
+                        <x-td>{{ $user->external_id?$user->external_id:'N/A' }}</x-td>
                         <x-td>{{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}</x-td>
                     </tr>
                 </tbody>
