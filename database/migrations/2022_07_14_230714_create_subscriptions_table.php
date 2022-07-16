@@ -21,7 +21,6 @@ class CreateSubscriptionsTable extends Migration
             $table->double('price');
             $table->integer('quantity');
             $table->timestamp('trial_ends_at');
-            $table->timestamp('ends_at');
             $table->timestamps();
         });
     }

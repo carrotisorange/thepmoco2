@@ -10,7 +10,7 @@ class CheckoutController extends Controller
 {
     private $token = 'xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ';
 
-    public function create()
+    public function create($plan_id=1)
     {
         return view('checkout.create');
     }
