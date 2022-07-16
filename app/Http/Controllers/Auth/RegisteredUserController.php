@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'mobile_number' => ['required', 'unique:users'],
             //'email_verified_at' => Carbon::now(),
+            'status' => 'pending',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],    
         ]);
 

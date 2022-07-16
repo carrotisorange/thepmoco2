@@ -43,7 +43,16 @@ class PropertyController extends Controller
         Session::forget('property_name');
     }
 
-    public function is_user_new()
+    public function is_user_pending()
+    {
+        if(auth()->user()->status == 'pending'){
+            return true; 
+        }else{ 
+            return false; 
+        } 
+    }
+
+    public function is_property_exist()
     {
         if(!User::find(auth()->user()->id)->user_properties->count()){
             return true; 
@@ -56,9 +65,12 @@ class PropertyController extends Controller
     {
         $this->destroy_property_session();
 
-        if($this->is_user_new()){
-            // return redirect('/property/'.Str::random(8).'/create');
+        if($this->is_user_pending()){
             return redirect('/select-a-plan');
+        }
+
+        if($this->is_property_exist()){
+           return redirect('/property/'.Str::random(8).'/create');  
         }
         
         elseif(auth()->user()->role_id == '12')
