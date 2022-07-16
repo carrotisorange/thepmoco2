@@ -11,7 +11,7 @@ class DashboardSalesController extends Controller
     {
 
         return view('dashboard.sales.index',[
-            'users' => User::where('role_id', '5')->orderBy('id')->get()
+            'users' => User::where('role_id', '5')->orderBy('id', 'desc')->get()
         ]);
     }
 
