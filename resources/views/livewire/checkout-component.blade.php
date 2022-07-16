@@ -47,7 +47,7 @@
                         <div class="w-full lg:w-1/2 ">
                             <label for="postcode" class="block mb-3 text-sm font-semibold text-gray-500">
                                 Zip Code</label>
-                            <input wire:model="zip_code" type="text" placeholder="Post Code"
+                            <input wire:model="zip_code" type="number"  min="1" placeholder="Post Code"
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                             @error('zip_code')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

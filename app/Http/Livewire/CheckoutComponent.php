@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Plan;
 use App\Models\Subscription;
 use DB;
+use Xendit\Xendit;
+use Str;
 
 class CheckoutComponent extends Component
 {
@@ -14,6 +16,8 @@ class CheckoutComponent extends Component
     public $address;
     public $city;
     public $zip_code;
+
+    private $token = 'xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ';
     
 
     public function submitForm()
@@ -21,24 +25,46 @@ class CheckoutComponent extends Component
         sleep(1);
 
         $validatedData = $this->validate();
+
+        $external_id = Plan::find($this->plan_id)->plan.'_'.auth()->user()->id.'_'.Str::random(8);
         try{
             DB::beginTransaction();
 
-            $this->update_user(auth()->user()->id);
+            $this->update_user(auth()->user()->id, $this->plan_id);
 
-            $this->store_subscription(auth()->user()->id, $this->plan_id);
+            $this->store_subscription(auth()->user()->id, $this->plan_id, $external_id);
+
+            $this->charge_user_account($this->token, auth()->user()->id, $this->plan_id, $external_id);
 
             DB::commit();
+
         }
         catch(\Exception $e)
         {   
             DB::rollback();
-            
+            ddd($e);
+
             return back()->with('error','Cannot complete your action.');
         }
-       
-        ddd('success');
     }
+
+    public function charge_user_account($token, $user_id, $plan_id, $external_id)
+    {
+         Xendit::setApiKey($this->token);
+
+         $params = [
+            'external_id' => $external_id,
+            'payer_email' => auth()->user()->email,
+            'description' => Plan::find($plan_id)->plan,
+            'amount' => Plan::find($plan_id)->price,
+            'interval' => 'MONTH',
+            'interval_count' => 1,
+         ];
+
+        $createRecurring = \Xendit\Recurring::create($params);
+         
+    }
+
 
     protected function rules()
     {
@@ -49,26 +75,28 @@ class CheckoutComponent extends Component
         ];
     }
 
-    public function update_user($user_id)
+    public function update_user($user_id, $plan_id)
     {
         User::where('id', $user_id)
          ->update([
             'address' => $this->address,
             'city' => $this->city,
             'zip_code' => $this->zip_code,
-            'status' => 'active'
+            'status' => 'active',
+            'external_id' => $plan_id,
          ]);
     }
 
-    public function store_subscription($user_id, $plan_id)
+    public function store_subscription($user_id, $plan_id, $external_id)
     {
-        Subscription::create([
+        Subscription::firstOrCreate([
             'user_id' => $user_id,
             'plan_id' => $plan_id,
             'status' => 'active',
             'price' => Plan::find($this->plan_id)->price,
             'quantity' => 1,
             'trial_ends_at' => User::find($user_id)->trial_ends_at,
+            'external_id' => $external_id
         ]);
     }
 
