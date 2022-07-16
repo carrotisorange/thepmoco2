@@ -37,8 +37,10 @@ Route::get('/', function(){
 Route::group(['middleware'=>['auth', 'verified']], function(){
      Route::prefix('/dashboard')->group(function(){ 
         Route::get('sales', [DashboardSalesController::class, 'index']);
-
         Route::get('user/{id:id}/properties', [DashboardSalesController::class, 'show']);
+
+        Route::get('dev', [DashboardDevController::class, 'index']);
+
     });
 });
 
