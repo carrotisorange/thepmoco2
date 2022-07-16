@@ -18,13 +18,13 @@
             <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/tenant/{{ $tenant->uuid }}/bill/send">
                 @csrf
 
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Send SOA</h3>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Send Unpaid Bills</h3>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-full px-3">
                         <x-label for="due_date">
                             Email
                         </x-label>
-                        <x-form-input id="email" type="email" value="{{ $tenant->email }}" name="email" />
+                        <x-form-input id="email" type="email" value="{{ $tenant->email }}" name="email" required/>
                 
                         @error('due_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -58,7 +58,7 @@
                         <x-label for="due_date">
                             Penalty After Due Date
                         </x-label>
-                        <x-form-input id="penalty" type="number"
+                        <x-form-input id="penalty" type="number" step="0.001"
                             value="{{ old('penalty', ($unpaid_bills->sum('bill')*.1)) }}" name="penalty" min="0" />
                         @error('penalty')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -73,7 +73,7 @@
                         <textarea class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
 appearance-none
 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
-peer" placeholder="Please send your payment to 123 123 123 and send the receipt to youremail@gmail.com."
+peer" placeholder="Put your notes here."
                             name="note_to_bill">{{ $note_to_bill }}</textarea>
                         @error('note_to_bill')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

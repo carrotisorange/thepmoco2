@@ -18,7 +18,7 @@
             <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/tenant/{{ $tenant->uuid }}/bill/export">
                 @csrf
 
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Export SOA</h3>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Download Unpaid Bills</h3>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-full px-3">
                         <x-label for="due_date">
@@ -62,14 +62,14 @@
                         <textarea class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
 appearance-none
 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
-peer" placeholder="Please send your payment to 123 123 123 and send the receipt to youremail@gmail.com."
+peer" placeholder="Put your notes here."
                             name="note_to_bill">{{ $note_to_bill }}</textarea>
                         @error('note_to_bill')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
-                @if($tenant->email)
+                {{-- @if($tenant->email)
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-full px-3">
                         <div class="form-check">
@@ -82,7 +82,7 @@ peer" placeholder="Please send your payment to 123 123 123 and send the receipt 
                         </div>
                     </div>
                 </div>
-                @endif
+                @endif --}}
                 <div class="mt-5">
                     <p class="text-right">
                         <x-form-button>Export</x-form-button>

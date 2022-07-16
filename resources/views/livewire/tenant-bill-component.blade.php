@@ -29,36 +29,66 @@
     <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
+                <x-button id="dropdownButton" data-dropdown-toggle="billsOptionsDropdown" type="button">Bills <svg
+                        class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                        </path>
+                    </svg></x-button>
 
-                @if($total_unpaid_bills->count())
-                @can('billing')
-                <x-button title="export unpaid bills" data-modal-toggle="export-bill-modal">
-                   Download Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=', 'paid')->count()
-                    }})
-                </x-button>
-                @endcan
-                {{-- <x-button title="send unpaid bills" data-modal-toggle="send-bill-modal">
-                    <i class="fa-solid fa-paper-plane"></i>&nbsp
-                    Bills ({{ $total_unpaid_bills->count() }})
-                </x-button> --}}
-                @endif
+                <div id="billsOptionsDropdown"
+                    class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                    <ul class="py-1" aria-labelledby="billsOptionsDropdown">
+                        @if($total_unpaid_bills->count())
+                        @can('billing')
+                        <li>
 
-                {{-- @if($total_count)
-                @if(auth()->user()->username == 'landley')
-                @can('manager')
-                <x-button onclick="confirmMessage()" wire:click="unpayBills()"><i
-                        class="fa-solid fa-rotate-right"></i>&nbsp
-                    Mark as Unpaid ({{ $total_count }})
-                </x-button>
-                @endif
-                @endcan
-                @endif --}}
+                            <a href="#/" data-modal-toggle="export-bill-modal"
+                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Download Unpaid Bills ({{
+                                App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=',
+                                'paid')->count() }})
+                            </a>
+
+                        </li>
+                        <li>
+
+                            <a href="#/" data-modal-toggle="send-bill-modal"
+                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Send Unpaid Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status',
+                                '!=',
+                                'paid')->count() }})
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#/" data-modal-toggle="create-particular-modal"
+                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Create a Bill Particular
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#/" data-modal-toggle="create-bill-modal"
+                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Create a Bill 
+                            </a>
+
+                        </li>
+                        @endcan
+                        @endif
+                    </ul>
+                </div>
 
                 @can('treasury')
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
                 <x-button
                     wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-                   Create a payment
+                    Create a payment
                 </x-button>
                 {{-- ({{ number_format($total, 2) }}) --}}
                 @else
@@ -66,21 +96,12 @@
                 @endif
                 @endcan
 
-                @can('billing')
-                <x-button data-modal-toggle="create-particular-modal">
-                   Create a Particular
-                </x-button>
-                <x-button data-modal-toggle="create-bill-modal">
-                    Create a Bill
-                </x-button>
-                @endcan
-
-
             </div>
             <div class="basis-1/4 ml-12 text-right">
                 @can('accountowner')
                 @if($selectedBills)
-                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">Remove bills ({{ count($selectedBills) }})
+                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">Remove
+                    bills ({{ count($selectedBills) }})
                 </x-button>
                 @endif
                 @endcan
