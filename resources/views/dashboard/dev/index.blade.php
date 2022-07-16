@@ -81,7 +81,7 @@
                                                     class="fas fa-solid fa-house fa-2x fa-fw fa-inverse"></i></div>
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500">Total Users/Account Owners</h5>
+                                            <h5 class="font-bold uppercase text-gray-500"><a class="text-blue-600" href="/dashboard/sales">Total Users/Account Owners</a></h5>
                                             <h3 class="font-bold text-3xl"> <span class="text-yellow-600"><i
                                                         class="fas fa-caret-up"></i>{{ $users->count() }}/{{ $users->where('role_id', 5)->count() }}</span>
                                             </h3>
