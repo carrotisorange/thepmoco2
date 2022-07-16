@@ -39,8 +39,9 @@
                 <div id="billsOptionsDropdown"
                     class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                     <ul class="py-1" aria-labelledby="billsOptionsDropdown">
-                        @if($total_unpaid_bills->count())
+
                         @can('billing')
+                        @if($total_unpaid_bills->count())
                         <li>
 
                             <a href="#/" data-modal-toggle="export-bill-modal"
@@ -61,6 +62,7 @@
                             </a>
 
                         </li>
+                        @endif
 
                         <li>
 
@@ -75,12 +77,12 @@
 
                             <a href="#/" data-modal-toggle="create-bill-modal"
                                 class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Create a Bill 
+                                Create a Bill
                             </a>
 
                         </li>
                         @endcan
-                        @endif
+
                     </ul>
                 </div>
 
@@ -100,9 +102,9 @@
             <div class="basis-1/4 ml-12 text-right">
                 @can('accountowner')
                 @if($selectedBills)
-                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">Remove
+                {{-- <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">Remove
                     bills ({{ count($selectedBills) }})
-                </x-button>
+                </x-button> --}}
                 @endif
                 @endcan
             </div>
@@ -120,7 +122,7 @@
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <x-th>
-                                            <x-input id="" wire:model="selectAll" type="checkbox" />
+                                            {{-- <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
                                         </x-th>
                                         <x-th> #</x-th>
                                         <x-th>Unit</x-th>
@@ -137,8 +139,9 @@
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     <tr>
                                         <x-td>
-                                            <x-input type="checkbox" wire:model="selectedBills"
-                                                value="{{ $item->id }}" />
+                                            @if($item->status != 'paid')
+                                            <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
+                                            @endif
                                         </x-td>
                                         <x-td>{{ $item->bill_no }}</x-td>
                                         <x-td>{{$item->unit->unit }}</x-td>
