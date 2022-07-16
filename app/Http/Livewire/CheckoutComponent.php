@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Plan;
 use App\Models\Subscription;
+use DB;
 
 class CheckoutComponent extends Component
 {
@@ -20,11 +21,22 @@ class CheckoutComponent extends Component
         sleep(1);
 
         $validatedData = $this->validate();
+        try{
+            DB::beginTransaction();
 
-        $this->update_user(auth()->user()->id);
+            $this->update_user(auth()->user()->id);
 
-        $this->store_subscription(auth()->user()->id, $this->plan_id);
+            $this->store_subscription(auth()->user()->id, $this->plan_id);
 
+            DB::commit();
+        }
+        catch(\Exception $e)
+        {   
+            DB::rollback();
+            
+            return back()->with('error','Cannot complete your action.');
+        }
+       
         ddd('success');
     }
 
@@ -43,7 +55,8 @@ class CheckoutComponent extends Component
          ->update([
             'address' => $this->address,
             'city' => $this->city,
-            'zip_code' => $this->zip_code
+            'zip_code' => $this->zip_code,
+            'status' => 'active'
          ]);
     }
 

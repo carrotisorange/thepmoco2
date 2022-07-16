@@ -45,7 +45,7 @@ class PropertyController extends Controller
 
     public function is_user_new()
     {
-        if(!User::find(Auth::user()->id)->user_properties->count()){
+        if(!User::find(auth()->user()->id)->user_properties->count()){
             return true; 
         }else{ 
             return false; 
@@ -57,8 +57,10 @@ class PropertyController extends Controller
         $this->destroy_property_session();
 
         if($this->is_user_new()){
-            return redirect('/property/'.Str::random(8).'/create');
+            // return redirect('/property/'.Str::random(8).'/create');
+            return redirect('/select-a-plan');
         }
+        
         elseif(auth()->user()->role_id == '12')
         {
             return redirect('/dashboard/sales');
