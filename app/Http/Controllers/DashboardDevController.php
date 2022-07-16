@@ -17,6 +17,8 @@ class DashboardDevController extends Controller
 {
     public function index()
     {
+        $this->authorize('dev');
+
          $sessions = DB::table('sessions')
          ->whereDate('created_at', Carbon::today())
          ->get();
