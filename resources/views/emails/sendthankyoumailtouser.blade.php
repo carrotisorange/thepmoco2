@@ -7,7 +7,6 @@ The Property Manager Online will help you to simplify your rental property opera
 
 Note: {{ $data['message'] }}
 
-
 @component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
     Start Now
 @endcomponent
