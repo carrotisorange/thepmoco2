@@ -112,8 +112,7 @@ class CollectionModalComponent extends ModalComponent
     {
         $ar = AcknowledgementReceipt::create([
           'tenant_uuid' => $this->tenant,
-          'amount' => Collection::where('property_uuid', Session::get('property'))->where('tenant_uuid',
-          $this->tenant)->where('batch_no', $collection_batch_no)->sum('collection'),
+          'amount' => Collection::where('property_uuid', Session::get('property'))->where('tenant_uuid', $this->tenant)->where('batch_no', $collection_batch_no)->sum('collection'),
           'property_uuid' => Session::get('property'),
           'user_id' => auth()->user()->id,
           'ar_no' => $collection_ar_no,

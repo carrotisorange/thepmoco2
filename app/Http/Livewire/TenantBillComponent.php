@@ -20,7 +20,7 @@ class TenantBillComponent extends Component
 
      public $selectedBills = [];
      public $selectAll = false;  
-     public $status ='unpaid';
+     public $status;
 
      public function removeBills()
      {
@@ -60,8 +60,7 @@ class TenantBillComponent extends Component
 
          AcknowledgementReceipt::where('collection_batch_no', $collection_batch_no)->delete();
 
-         Collection::whereIn('bill_id', $this->selectedBills)
-           ->delete();
+         Collection::whereIn('bill_id', $this->selectedBills)->delete();
 
           $this->selectedBills = [];
 
@@ -87,57 +86,57 @@ class TenantBillComponent extends Component
     public function render()
     {
 
-       $bills = Tenant::find($this->tenant->uuid)
-       ->bills()
-       ->orderBy('bill_no','asc')
-       ->when($this->status, function($query){
-       $query->where('status', $this->status);
-       })
-       ->get();
+      $bills = Tenant::find($this->tenant->uuid)
+      ->bills()
+      ->orderBy('bill_no','asc')
+      ->when($this->status, function($query){
+         $query->where('status', $this->status);
+      })
+      ->get();
 
-         $statuses = Bill::where('bills.property_uuid', Session::get('property'))
-         ->select('status', DB::raw('count(*) as count'))
-         ->groupBy('status')
-         ->get();
+      $statuses = Bill::where('bills.property_uuid', Session::get('property'))
+      ->select('status', DB::raw('count(*) as count'))
+      ->groupBy('status')
+      ->get();
 
-                $unpaid_bills = Tenant::find($this->tenant->uuid)
-                ->bills()
-                ->where('status', 'unpaid')
-                ->whereIn('id', $this->selectedBills)
-                ->sum('bill');
+      $unpaid_bills = Tenant::find($this->tenant->uuid)
+      ->bills()
+      ->where('status', 'unpaid')
+      ->whereIn('id', $this->selectedBills)
+      ->sum('bill');
 
-                $partially_paid_bills = Tenant::find($this->tenant->uuid)
-                ->bills()
-                ->where('status', 'partially_paid')
-                  ->whereIn('id', $this->selectedBills)
-                ->sum('bill') - Tenant::find($this->tenant->uuid)
-                ->bills()
-                ->where('status', 'partially_paid')
-                        ->whereIn('id', $this->selectedBills)
-                ->sum('initial_payment');
+      $partially_paid_bills = Tenant::find($this->tenant->uuid)
+      ->bills()
+      ->where('status', 'partially_paid')
+      ->whereIn('id', $this->selectedBills)
+      ->sum('bill') - Tenant::find($this->tenant->uuid)
+      ->bills()
+      ->where('status', 'partially_paid')
+      ->whereIn('id', $this->selectedBills)
+      ->sum('initial_payment');
 
-                $paid_bills = Tenant::find($this->tenant->uuid)
-                ->bills()
-                ->where('status', 'paid')
-                        ->whereIn('id', $this->selectedBills)
-                ->sum('bill');
+      $paid_bills = Tenant::find($this->tenant->uuid)
+      ->bills()
+      ->where('status', 'paid')
+      ->whereIn('id', $this->selectedBills)
+      ->sum('bill');
 
       $balance = ($unpaid_bills + $partially_paid_bills) - $paid_bills;
 
       $total_count = Bill::whereIn('id', $this->selectedBills)
-        ->whereIn('status', ['paid', 'partially_paid'])
-         ->count();
+      ->whereIn('status', ['paid', 'partially_paid'])
+      ->count();
 
       $total_bills = Tenant::find($this->tenant->uuid)->bills->sum('bill');
 
-        return view('livewire.tenant-bill-component',[
-            'bills' => $bills,
-             'total' => $balance,
-            'total_count' => $total_count,
-            'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-            'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-            'total_bills' => $bills,
-            'statuses' => $statuses
+      return view('livewire.tenant-bill-component',[
+         'bills' => $bills,
+         'total' => $balance,
+         'total_count' => $total_count,
+         'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+         'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+         'total_bills' => $bills,
+         'statuses' => $statuses
         ]);
     }
 }

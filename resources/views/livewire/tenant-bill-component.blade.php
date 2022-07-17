@@ -39,50 +39,34 @@
                 <div id="billsOptionsDropdown"
                     class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                     <ul class="py-1" aria-labelledby="billsOptionsDropdown">
-
                         @can('billing')
                         @if($total_unpaid_bills->count())
                         <li>
-
                             <a href="#/" data-modal-toggle="export-bill-modal"
                                 class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Download Unpaid Bills ({{
-                                App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=',
-                                'paid')->count() }})
+                                Download Unpaid Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=','paid')->count() }})
                             </a>
-
                         </li>
                         <li>
-
                             <a href="#/" data-modal-toggle="send-bill-modal"
                                 class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Send Unpaid Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status',
-                                '!=',
-                                'paid')->count() }})
+                                Send Unpaid Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=', 'paid')->count() }})
                             </a>
-
                         </li>
                         @endif
-
                         <li>
-
-                            <a href="#/" data-modal-toggle="create-particular-modal"
-                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Create a Bill Particular
-                            </a>
-
-                        </li>
-
-                        <li>
-
                             <a href="#/" data-modal-toggle="create-bill-modal"
                                 class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 Create a Bill
                             </a>
-
+                        </li>
+                        <li>
+                            <a href="#/" data-modal-toggle="create-particular-modal"
+                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Create a Bill Particular
+                            </a>
                         </li>
                         @endcan
-
                     </ul>
                 </div>
 
@@ -90,11 +74,8 @@
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
                 <x-button
                     wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-                    Create a payment
+                    Create a payment ({{ count($selectedBills) }})
                 </x-button>
-                {{-- ({{ number_format($total, 2) }}) --}}
-                @else
-
                 @endif
                 @endcan
 
@@ -102,7 +83,8 @@
             <div class="basis-1/4 ml-12 text-right">
                 @can('accountowner')
                 @if($selectedBills)
-                {{-- <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">Remove
+                {{-- <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
+                    Remove
                     bills ({{ count($selectedBills) }})
                 </x-button> --}}
                 @endif
@@ -117,12 +99,13 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            <table class="min-w-full divide-y divide-gray-200">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <?php $ctr =1; ?>
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <x-th>
-                                            {{-- <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
+                                            {{--
+                                            <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
                                         </x-th>
                                         <x-th> #</x-th>
                                         <x-th>Unit</x-th>
@@ -140,7 +123,8 @@
                                     <tr>
                                         <x-td>
                                             @if($item->status != 'paid')
-                                            <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
+                                            <x-input type="checkbox" wire:model="selectedBills"
+                                                value="{{ $item->id }}" />
                                             @endif
                                         </x-td>
                                         <x-td>{{ $item->bill_no }}</x-td>

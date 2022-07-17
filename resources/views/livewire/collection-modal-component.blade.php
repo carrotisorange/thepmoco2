@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="mt-5 flex flex-wrap -mx-3 mb-6">
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
                 <thead class="bg-gray-50">
                     <tr>
@@ -29,8 +29,8 @@
                         <x-th>Payment</x-th>
                     </tr>
                 </thead>
-                @foreach ($collections as $index => $item)
                 <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($collections as $index => $item)
                     <tr>
                         <x-td>{{ $item->bill_no }}</x-td>
                         <x-td>{{$item->particular->particular }}</x-td>
@@ -39,7 +39,7 @@
                         <x-td>{{number_format($item->bill - $item->initial_payment,2) }}</x-td>
                         <x-td>
                             <x-table-input form="create-form" wire:model="bill.{{ $index }}" type="number" step="0.001"
-                                required /> 
+                                required />
                         </x-td>
                         @endforeach
                     </tr>

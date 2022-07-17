@@ -54,7 +54,7 @@ class CheckoutComponent extends Component
 
          $params = [
             'external_id' => $external_id,
-            'payer_email' => auth()->user()->email,
+            'payer_email' => User::find($user_id)->email,
             'description' => Plan::find($plan_id)->plan,
             'amount' => Plan::find($plan_id)->price,
             'interval' => 'MONTH',
