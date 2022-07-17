@@ -1,6 +1,9 @@
-@if(App\Models\Property::find(Session::get('property'))->units->count())
+
 <div class="border-b pb-5 border-gray-200">
     <x-search placeholder="Search for units..."></x-search>
+    <div class="mt-4">
+        <p class="text-center">Showing <span class="text-black-600">{{ $units->count() }}</span> units.</p>
+    </div>
     <div class="mt-2">
         {{ $units->links() }}
     </div>
@@ -15,6 +18,3 @@
         </div>
     </div>
 </div>
-@else
-<p class="text-left">No data found.</p>
-@endif

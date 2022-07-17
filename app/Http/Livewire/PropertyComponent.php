@@ -159,7 +159,7 @@ class PropertyComponent extends Component
          'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
          'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
           'countries' => Country::orderBy('country', 'ASC')->where('id', '!=', 247)->get(),
-         'types' => Type::all(),
+         'types' => Type::orderBy('type')->get(),
         ]);
      }
 }

@@ -1,5 +1,5 @@
-<div class="py-2">
-        <x-slot name="header">
+<div class="py-3">
+    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
                 <div class="h-3">
@@ -23,30 +23,52 @@
                     <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Go back to
                         units
                     </x-button>
-                    <x-button data-modal-toggle="create-unit-modal">Create a unit
-                    </x-button>
-                    <x-button data-modal-toggle="add-building-modal">Create a building
-                    </x-button>
+                    <x-button id="dropdownButton" data-dropdown-toggle="unitsOptionsDropdown" type="button">Create <svg
+                            class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg></x-button>
+
+                        <div id="unitsOptionsDropdown"
+                            class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                            <ul class="py-1" aria-labelledby="billsOptionsDropdown">
+                               
+                                <li>
+                                    <a href="#/" data-modal-toggle="create-unit-modal" class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                        Unit
+                                    </a>
+                                </li>
+                              
+                                <li>
+                                    <a href="#/" data-modal-toggle="add-building-modal"
+                                        class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                        Building
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                 </h5>
             </div>
         </h2>
     </x-slot>
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-        <div class="mt-5">
+        <div class="">
             <div class="flex flex-row">
                 <div class="basis-1/2">
-                    {{-- @if($selectedUnits) --}}
+                    @if(App\Models\Property::find(Session::get('property'))->units->count())
                     <x-button wire:loading.remove wire:click="updateForm()">
                         Save Units ({{ $units->count() }})
                     </x-button>
-                    {{-- @endif --}}
+                    @endif
                     <div wire:loading wire:target="updateForm">
                         Processing...
                     </div>
                 </div>
                 <div class="basis-1/2 ml-12 text-right">
                     @if($selectedUnits)
-                    <x-button wire:loading.remove class="bg-red-800" onclick="confirmMessage()" wire:click="removeUnits()">
+                    <x-button wire:loading.remove class="bg-red-800" onclick="confirmMessage()"
+                        wire:click="removeUnits()">
                         Remove Units ({{ count($selectedUnits) }})
                     </x-button>
                     @endif
@@ -80,7 +102,7 @@
                                             <x-th>Category</x-th>
                                             <x-th>Size (sqm)</x-th>
                                             <x-th>Rent/Mo</x-th>
-                                            <x-th>No of Beds</x-th>
+                                            <x-th># of Beds</x-th>
                                         </tr>
                                     </thead>
                                     <?php $ctr=1; ?>

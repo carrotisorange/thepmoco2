@@ -4,7 +4,7 @@
         <div class="flex flex-col md:w-full">
             <h2 class="mb-4 font-bold md:text-xl text-heading ">Customer Information
             </h2>
-            <form class="justify-center w-full mx-auto" method="post" wire:submit.prevent="submitForm">
+            <form class="justify-center w-full mx-auto" method="post" wire:submit.prevent="payNow()">
                 <div class="">
                     <div class="space-x-0 lg:flex lg:space-x-4">
                         <div class="w-full lg:w-1/2">
@@ -47,7 +47,7 @@
                         <div class="w-full lg:w-1/2 ">
                             <label for="postcode" class="block mb-3 text-sm font-semibold text-gray-500">
                                 Zip Code</label>
-                            <input wire:model="zip_code" type="number"  min="1" placeholder="Post Code"
+                            <input wire:model="zip_code" type="number" min="1" placeholder="Post Code"
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                             @error('zip_code')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -78,6 +78,21 @@
                         </div>
                     </div>
 
+                    <div class="mt-4">
+                        <div class="w-full">
+                            <label for="Address" class="block mb-3 text-sm font-semibold text-gray-500">Select your
+                                checkout option</label>
+                            <select
+                                class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                wire:model="checkout_option">
+                                @foreach ($checkout_options as $checkout_option)
+                                <option value="{{ $checkout_option->id }}">{{ $checkout_option->option }} - {{
+                                    $checkout_option->policy }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
 
                 </div>
 
@@ -86,12 +101,39 @@
             <div class="pt-12 md:pt-0 2xl:ps-4">
                 <h2 class="text-xl font-bold">Purchase Summary
                 </h2>
-                <div
+                <table class="mt-5 w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <x-th>Plan</x-th>
+                            <x-td>{{ $selected_plan->plan }}</x-td>
+                        </tr>
+                        <tr>
+                            <x-th>Plan</x-th>
+                            <x-td>{{ $selected_plan->plan }}</x-td>
+                        </tr>
+                        <tr>
+                            <x-th>Description</x-th>
+                            <x-td>{{ $selected_plan->description }}</x-td>
+                        </tr>
+                        <tr>
+                            <x-th>Price</x-th>
+                            <x-td>{{ number_format($selected_plan->price, 2) }}</x-td>
+                        </tr>
+                        <tr>
+                            <x-th>Payment Policy</x-th>
+                            <x-td>{{ $selected_checkoutoption->policy }}</x-td>
+                        </tr>
+                    </thead>
+                </table>
+                {{-- <div
                     class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
                     Plan: <span class="ml-2">{{ $selected_plan->plan }}</span></div>
                 <div
                     class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
                     Description: <span class="ml-2">{{ $selected_plan->description }}</span></div>
+                <div
+                    class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
+                    Payment Policy: Php <span class="ml-2">{{ $selected_checkoutoption->policy }}</span></div>
                 <div
                     class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
                     Price: Php <span class="ml-2">{{ number_format($selected_plan->price, 2) }}</span></div>
@@ -103,23 +145,18 @@
                     Total<span class="ml-2">$50.00</span></div> --}}
             </div>
             <div class="mt-4">
-                <button class="w-full px-6 py-2 text-purple-200 bg-purple-600 hover:bg-purple-900" wire:loading.remove
-                    wire:click="submitForm()">
+                <button class="w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200" wire:loading.remove
+                    wire:click="payNow">
                     Process
                 </button>
-                <div wire:loading wire:target="submitForm">
-                    <span class="text-center">Processing</span>
-                </div>
-                {{-- <svg wire:loading class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                    </path>
-                </svg>
+                <button
+                    class="w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200 opacity-10 cursor-not-allowed"
+                    wire:loading wire:target="payNow" disabled>
+                    Processing...
+                </button>
 
-                <button class="">Process</button> --}}
             </div>
+
         </div>
     </div>
     </form>

@@ -12,7 +12,7 @@
             Create a Particular
         </x-button> --}}
     </x-slot>
-    <div class="container p-12 mx-auto">
+    <div class="container p-6 mx-auto">
        @livewire('checkout-component')
     </div>
 

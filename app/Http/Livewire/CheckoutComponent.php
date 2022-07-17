@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\CheckoutOption;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Plan;
@@ -16,13 +17,13 @@ class CheckoutComponent extends Component
     public $address;
     public $city;
     public $zip_code;
+    public $checkout_option = 1;
 
     private $token = 'xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ';
-    
 
-    public function submitForm()
+    public function payNow()
     {
-        sleep(1);
+        sleep(2);
 
         $validatedData = $this->validate();
 
@@ -34,10 +35,11 @@ class CheckoutComponent extends Component
 
             $this->store_subscription(auth()->user()->id, $this->plan_id, $external_id);
 
-            $this->charge_user_account($this->token, auth()->user()->id, $this->plan_id, $external_id);
+            //$this->charge_user_account($this->token, auth()->user()->id, $this->plan_id, $external_id, 6);
 
             DB::commit();
 
+            return redirect('/properties', 'Payment is successfully processed.');
         }
         catch(\Exception $e)
         {   
@@ -48,7 +50,7 @@ class CheckoutComponent extends Component
         }
     }
 
-    public function charge_user_account($token, $user_id, $plan_id, $external_id)
+    public function charge_user_account($token, $user_id, $plan_id, $external_id, $interval)
     {
          Xendit::setApiKey($this->token);
 
@@ -58,13 +60,11 @@ class CheckoutComponent extends Component
             'description' => Plan::find($plan_id)->plan,
             'amount' => Plan::find($plan_id)->price,
             'interval' => 'MONTH',
-            'interval_count' => 1,
+            'interval_count' => $interval,
          ];
 
         $createRecurring = \Xendit\Recurring::create($params);
-         
     }
-
 
     protected function rules()
     {
@@ -72,6 +72,7 @@ class CheckoutComponent extends Component
             'address' => 'required',
             'city' => 'required',
             'zip_code' => 'required',
+            'checkout_option' => 'required'
         ];
     }
 
@@ -84,6 +85,7 @@ class CheckoutComponent extends Component
             'zip_code' => $this->zip_code,
             'status' => 'active',
             'external_id' => $plan_id,
+            'checkoutoption_id' => $this->checkout_option
          ]);
     }
 
@@ -103,8 +105,10 @@ class CheckoutComponent extends Component
     public function render()
     {
         return view('livewire.checkout-component',[
-            'plans' => Plan::all(),
-            'selected_plan' => Plan::find($this->plan_id)
+            'plans' => Plan::where('id','!=','4')->get(),
+            'checkout_options' => CheckoutOption::all(),
+            'selected_plan' => Plan::find($this->plan_id),
+            'selected_checkoutoption' => CheckoutOption::find($this->checkout_option)
         ]);
     }
 }

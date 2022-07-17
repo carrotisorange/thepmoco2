@@ -43,7 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $attributes = [
         //'avatar' => 'avatars/avatar.png',
-        'status' => 'active',
+        'status' => 'pending',
+        'external_id' => '4',
     ];
 
     public function roles()
