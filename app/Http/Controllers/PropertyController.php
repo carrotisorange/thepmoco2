@@ -411,7 +411,7 @@ class PropertyController extends Controller
     public function show(Property $property)
     {  
         if($this->is_trial_expire()){
-            return redirect('/select-a-plan');
+            return redirect('/plan/1/checkout_option/1');
         }
 
         session(['property' => $property->uuid]);
