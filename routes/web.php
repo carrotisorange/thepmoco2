@@ -12,6 +12,8 @@ use Analytics;
 use Spatie\Analytics\Period;
 use \PDF;
 use App\Models\Bill;
+use App\Models\CheckoutOption;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +35,7 @@ Route::get('/', function(){
 Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::get('/select-a-plan/{checkout_url?}', [CheckoutController::class, 'create'])->where('checkout_url', '[1-2]');
     Route::get('/thankyou', [CheckoutController::class, 'thankyou']);
+    Route::get('/plan/{plan_id}', [CheckoutController::class, 'chooseplanfromlandingpage']);
 });
 
 //routes for dashboard
