@@ -75,7 +75,7 @@ class PropertyController extends Controller
         $this->destroy_property_session();
 
         if($this->is_user_pending()){
-            return redirect('/select-a-plan');
+            return redirect('/plan/1/checkout/1');
         }elseif($this->is_user_interested()){
             return redirect('https://www.thepropertymanager.online/plans-pricing');
         }
@@ -411,7 +411,7 @@ class PropertyController extends Controller
     public function show(Property $property)
     {  
         if($this->is_trial_expire()){
-            return redirect('/plan/1/checkout_option/1');
+            return redirect('/plan/1/checkout/1');
         }
 
         session(['property' => $property->uuid]);

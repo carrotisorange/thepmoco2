@@ -30,4 +30,14 @@ class CheckoutController extends Controller
 
         return redirect('/plan/'.$plan_id.'/checkout/'.$checkout_option.'/get');
     }
+
+    public function reset()
+    {
+        User::where('id', auth()->user()->id)
+         ->update([
+         'status' => 'interested'
+         ]);
+
+        return redirect('https://www.thepropertymanager.online/plans-pricing');
+    }
 }

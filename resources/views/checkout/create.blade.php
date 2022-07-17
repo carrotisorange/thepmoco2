@@ -8,9 +8,7 @@
         Select a plan
     </x-slot>
     <x-slot name="options">
-        {{-- <x-button data-modal-toggle="create-particular-modal">
-            Create a Particular
-        </x-button> --}}
+       <x-button onclick="window.location.href='/reset/plan'">Select another plan</x-button>
     </x-slot>
     <div class="container p-6 mx-auto">
        @livewire('checkout-component', ['plan_id' => $plan_id,'checkout_option' => $checkout_option])
