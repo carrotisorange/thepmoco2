@@ -9,10 +9,11 @@ use App\Models\User;
 
 class CheckoutController extends Controller
 {
-    public function create($checkout_url=1)
+    public function create($plan_id=1,$checkout_option=1)
     {
         return view('checkout.create', [
-            'checkout_url' => $checkout_url
+            'plan_id' => $plan_id,
+            'checkout_option' => $checkout_option
         ]);
     }
 
@@ -21,12 +22,12 @@ class CheckoutController extends Controller
         return view('checkout.thankyou');
     }
 
-    public function chooseplanfromlandingpage($plan_id){
+    public function chooseplanfromlandingpage($plan_id, $checkout_option){
         User::where('id', auth()->user()->id)
          ->update([
             'status' => 'pending'
         ]);
 
-        return redirect('/select-a-plan/'.$plan_id);
+        return redirect('/plan/'.$plan_id.'/checkout/'.$checkout_option.'/get');
     }
 }

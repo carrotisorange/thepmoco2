@@ -33,9 +33,9 @@ Route::get('/', function(){
 
 //Routes for checkout pages
 Route::group(['middleware' => ['auth', 'verified']], function(){
-    Route::get('/select-a-plan/{checkout_url?}', [CheckoutController::class, 'create'])->where('checkout_url', '[1-2]');
+    Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get', [CheckoutController::class, 'create'])->where(['plan_id', '[1-2]', 'checkout_option', '[1-2]']);
     Route::get('/thankyou', [CheckoutController::class, 'thankyou']);
-    Route::get('/plan/{plan_id}', [CheckoutController::class, 'chooseplanfromlandingpage']);
+    Route::get('/plan/{plan_id}/checkout/{checkout_option}', [CheckoutController::class, 'chooseplanfromlandingpage']);
 });
 
 //routes for dashboard

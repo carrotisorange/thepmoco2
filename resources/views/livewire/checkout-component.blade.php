@@ -67,12 +67,19 @@
                             <select
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 wire:model="plan_id">
-                                @foreach ($plans as $plan)
+                                {{-- @foreach ($plans as $plan)
                                 <option value="{{ $plan->id }}" {{ $plan_id==$plan->id ? 'selected' : 'selected'
                                     }}> {{
                                     $plan->plan }}
                                 </option>
-                                @endforeach
+                                @endforeach --}}
+                                @if($selected_plan->id == '1')
+                                <option value="1">basic</option>
+                                @elseif($selected_plan->id == '2')
+                                <option value="2">advanced</option>
+                                @else
+                                <option value="3">premium</option>
+                                @endif
                             </select>
 
                         </div>
@@ -86,7 +93,7 @@
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 wire:model="checkout_option">
                                 {{-- @foreach ($checkout_options as $checkout_option) --}}
-                                @if($checkout_url == '1')
+                                @if($selected_checkout_option == '1')
                                     <option value="1">Pay Now</option>
                                 @else
                                     <option value="1">Pay After 30 Days</option>
@@ -124,7 +131,7 @@
                         </tr>
                         <tr>
                             <x-th>Payment Policy</x-th>
-                            <x-td>{{ $selected_checkoutoption->policy }}</x-td>
+                            <x-td>{{ $selected_checkout_option->policy }}</x-td>
                         </tr>
                     </thead>
                 </table>

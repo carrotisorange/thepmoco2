@@ -22,9 +22,10 @@ class CheckoutComponent extends Component
     public $checkout_option = 1;
     public $checkout_url;
 
-    public function mount($checkout_url)
+    public function mount($plan_id, $checkout_option)
     {
-        $this->checkout_url = $checkout_url;
+        $this->plan_id = $plan_id;
+        $this->checkout_option = $this->checkout_option;
     }
 
     private $token = 'xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ';
@@ -63,7 +64,7 @@ class CheckoutComponent extends Component
     public function send_mail_to_user()
     {
         $details =[
-         'message' => CheckoutOption::find($this->checkout_url)->policy
+         'message' => CheckoutOption::find($this->checkout_option)->policy
         ];
 
         Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser($details));
@@ -127,7 +128,7 @@ class CheckoutComponent extends Component
             'plans' => Plan::where('id','!=','4')->get(),
             'checkout_options' => CheckoutOption::all(),
             'selected_plan' => Plan::find($this->plan_id),
-            'selected_checkoutoption' => CheckoutOption::find($this->checkout_url)
+            'selected_checkout_option' => CheckoutOption::find($this->checkout_option)
         ]);
     }
 }
