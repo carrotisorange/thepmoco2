@@ -25,15 +25,17 @@ use App\Models\Bill;
 
 require __DIR__.'/auth.php';
 
-Route::get('/select-a-plan/{checkout_url?}', [CheckoutController::class, 'create'])->middleware('auth')->where('checkout_url', '[1-2]');
-
-Route::get('/checkout', [CheckoutController::class, 'submit'])->middleware('auth');
-
 Route::get('/', function(){
     return view('auth.login');
 });
 
-//routes for sales
+//Routes for checkout pages
+Route::group(['middleware' => ['auth', 'verified']], function(){
+    Route::get('/select-a-plan/{checkout_url?}', [CheckoutController::class, 'create'])->where('checkout_url', '[1-2]');
+    Route::get('/thankyou', [CheckoutController::class, 'thankyou']);
+});
+
+//routes for dashboard
 Route::group(['middleware'=>['auth', 'verified']], function(){
      Route::prefix('/dashboard')->group(function(){ 
         Route::get('sales', [DashboardSalesController::class, 'index']);

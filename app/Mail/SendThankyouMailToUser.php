@@ -6,10 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Session;
-use Carbon\Carbon;
 
-class SendBillToTenant extends Mailable
+class SendThankyouMailToUser extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,8 +30,7 @@ class SendBillToTenant extends Mailable
      */
     public function build()
     {
-          return $this->subject(Session::get('property_name').' - Statements of Account as of '.Carbon::parse(Carbon::now())->format('M d, Y'))
-            ->markdown('emails.sendbilltotenant', [
-          ]);
+        return $this->subject('Thank You Message')
+            ->markdown('emails.sendthankyoumailtouser');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\SendThankyouMailToUser;
 use App\Models\CheckoutOption;
 use Livewire\Component;
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Models\Subscription;
 use DB;
 use Xendit\Xendit;
 use Str;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutComponent extends Component
 {
@@ -29,7 +31,7 @@ class CheckoutComponent extends Component
 
     public function payNow()
     {
-        sleep(2);
+        sleep(1);
 
         $validatedData = $this->validate();
 
@@ -43,9 +45,11 @@ class CheckoutComponent extends Component
 
             //$this->charge_user_account($this->token, auth()->user()->id, $this->plan_id, $external_id, 6);
 
+            $this->send_mail_to_user();
+
             DB::commit();
 
-            return redirect('/properties', 'Payment is successfully processed.');
+            return redirect('/thankyou', 'Payment is successfully processed.');
         }
         catch(\Exception $e)
         {   
@@ -54,6 +58,15 @@ class CheckoutComponent extends Component
 
             return back()->with('error','Cannot complete your action.');
         }
+    }
+
+    public function send_mail_to_user()
+    {
+        $details =[
+         'message' => CheckoutOption::find($this->checkout_url)->policy
+        ];
+
+        Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser($details));
     }
 
     public function charge_user_account($token, $user_id, $plan_id, $external_id, $interval)

@@ -14,4 +14,9 @@ class CheckoutController extends Controller
             'checkout_url' => $checkout_url
         ]);
     }
+
+    public function thankyou()
+    {
+        return view('checkout.thankyou');
+    }
 }
