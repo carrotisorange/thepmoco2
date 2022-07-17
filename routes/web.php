@@ -28,7 +28,7 @@ use App\Models\CheckoutOption;
 require __DIR__.'/auth.php';
 
 Route::get('/', function(){
-    return view('auth.login');
+    return view('/properties');
 });
 
 //Routes for checkout pages
