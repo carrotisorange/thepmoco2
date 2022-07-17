@@ -43,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $attributes = [
         //'avatar' => 'avatars/avatar.png',
-        'status' => 'pending',
+        'status' => 'interested',
         'external_id' => '4',
     ];
 

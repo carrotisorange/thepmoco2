@@ -51,6 +51,15 @@ class PropertyController extends Controller
             return false; 
         } 
     }
+    
+    public function is_user_interested()
+    {
+        if(auth()->user()->status == 'interested'){
+            return true; 
+        }else{ 
+            return false; 
+        } 
+    }
 
     public function is_property_exist()
     {
@@ -67,6 +76,8 @@ class PropertyController extends Controller
 
         if($this->is_user_pending()){
             return redirect('/select-a-plan');
+        }elseif($this->is_user_interested()){
+            return redirect('https://www.thepropertymanager.online/plans-pricing');
         }
 
         if($this->is_property_exist()){
