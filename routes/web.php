@@ -25,7 +25,7 @@ use App\Models\Bill;
 
 require __DIR__.'/auth.php';
 
-Route::get('/select-a-plan/{plan_id?}', [CheckoutController::class, 'create'])->middleware('auth');
+Route::get('/select-a-plan/{checkout_url?}', [CheckoutController::class, 'create'])->middleware('auth')->where('checkout_url', '[1-2]');
 
 Route::get('/checkout', [CheckoutController::class, 'submit'])->middleware('auth');
 

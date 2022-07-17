@@ -13,7 +13,7 @@
         </x-button> --}}
     </x-slot>
     <div class="container p-6 mx-auto">
-       @livewire('checkout-component')
+       @livewire('checkout-component', ['checkout_url' => $checkout_url])
     </div>
 
 </x-index-layout>

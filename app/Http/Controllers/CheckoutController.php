@@ -8,8 +8,10 @@ use Xendit\Xendit;
 
 class CheckoutController extends Controller
 {
-    public function create($plan_id=1)
+    public function create($checkout_url=1)
     {
-        return view('checkout.create');
+        return view('checkout.create', [
+            'checkout_url' => $checkout_url
+        ]);
     }
 }

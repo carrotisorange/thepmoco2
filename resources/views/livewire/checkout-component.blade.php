@@ -85,10 +85,13 @@
                             <select
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 wire:model="checkout_option">
-                                @foreach ($checkout_options as $checkout_option)
-                                <option value="{{ $checkout_option->id }}">{{ $checkout_option->option }} - {{
-                                    $checkout_option->policy }}</option>
-                                @endforeach
+                                {{-- @foreach ($checkout_options as $checkout_option) --}}
+                                @if($checkout_url == '1')
+                                    <option value="1">Pay Now</option>
+                                @else
+                                    <option value="1">Pay After 30 Days</option>
+                                @endif
+                                {{-- @endforeach --}}
                             </select>
                         </div>
                     </div>
