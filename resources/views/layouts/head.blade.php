@@ -4,6 +4,8 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<meta name="facebook-domain-verification" content="q3z93v1eg3wsq648g7aq2cuby3ibcv" />
+
 <!-- Favicon -->
 <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
