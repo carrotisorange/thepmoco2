@@ -82,7 +82,7 @@ class CheckoutComponent extends Component
             'external_id' => $external_id,
             'payer_email' => User::find($user_id)->email,
             'description' => Plan::find($plan_id)->plan,
-            'amount' => Plan::find($plan_id)->price,
+            'amount' => 1,
             'interval' => 'MONTH',
             'total_recurrence' => 6,
             'interval_count' => 1,
@@ -95,7 +95,7 @@ class CheckoutComponent extends Component
             'external_id' => $external_id,
             'payer_email' => User::find($user_id)->email,
             'description' => Plan::find($plan_id)->plan,
-            'amount' => Plan::find($plan_id)->price,
+            'amount' => 1,
             'interval' => 'MONTH',
             'total_recurrence' => 1,
             'interval_count' => 1,
@@ -106,8 +106,6 @@ class CheckoutComponent extends Component
          }
         
         $createRecurring = \Xendit\Recurring::create($params);
-
-        //ddd($createRecurring);
 
         return $createRecurring['last_created_invoice_url'];
     }
