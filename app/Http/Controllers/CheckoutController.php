@@ -42,4 +42,9 @@ class CheckoutController extends Controller
 
         return redirect('https://www.thepropertymanager.online/plans-pricing');
     }
+
+    public function success()
+    {
+        
+    }
 }

@@ -140,11 +140,11 @@
                         </tr>
                     </thead>
                 </table>
-                <div
+                {{-- <div
                     class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
                     <span class="ml-2">The process page is still being developed. This is just a simulation. Your card
                         won't be charged.</span>
-                </div>
+                </div> --}}
                 {{-- <div
                     class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
                     Description: <span class="ml-2">{{ $selected_plan->description }}</span></div>

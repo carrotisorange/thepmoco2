@@ -28,7 +28,7 @@ class CheckoutComponent extends Component
         $this->checkout_option = $this->checkout_option;
     }
 
-    private $token = 'xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ';
+    private $token = 'xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34';
 
     public function payNow()
     {
@@ -44,13 +44,15 @@ class CheckoutComponent extends Component
 
             $this->store_subscription(auth()->user()->id, $this->plan_id, $external_id);
 
-            //$this->charge_user_account($this->token, auth()->user()->id, $this->plan_id, $external_id, 6);
+            $last_created_invoice_url = $this->charge_user_account($this->token, auth()->user()->id, $this->plan_id, $external_id, 6,$this->checkout_option);
 
-            $this->send_mail_to_user();
+            //$this->send_mail_to_user();
 
             DB::commit();
 
-            return redirect('/thankyou', 'Payment is successfully processed.');
+            return redirect($last_created_invoice_url, 'Payment is successfully processed.');
+
+            //return redirect('/thankyou', 'Payment is successfully processed.');
         }
         catch(\Exception $e)
         {   
@@ -70,20 +72,44 @@ class CheckoutComponent extends Component
         Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser($details));
     }
 
-    public function charge_user_account($token, $user_id, $plan_id, $external_id, $interval)
+    public function charge_user_account($token, $user_id, $plan_id, $external_id, $interval, $checkout_option)
     {
          Xendit::setApiKey($this->token);
 
-         $params = [
+         if($checkout_option === '1')
+         {
+            $params = [
             'external_id' => $external_id,
             'payer_email' => User::find($user_id)->email,
             'description' => Plan::find($plan_id)->plan,
-            'amount' => Plan::find($plan_id)->price,
+            'amount' => 1,
             'interval' => 'MONTH',
-            'interval_count' => $interval,
-         ];
-
+            'total_recurrence' => 6,
+            'interval_count' => 1,
+            'currency'=>'PHP',
+            'success_redirect_url' => 'https://thepmo.co/thankyou',
+            'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1'
+            ];
+         }else{
+            $params = [
+            'external_id' => $external_id,
+            'payer_email' => User::find($user_id)->email,
+            'description' => Plan::find($plan_id)->plan,
+            'amount' => 1,
+            'interval' => 'MONTH',
+            'total_recurrence' => 1,
+            'interval_count' => 1,
+            'currency'=>'PHP',
+            'success_redirect_url' => 'https://thepmo.co/thankyou',
+            'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1'
+            ];
+         }
+        
         $createRecurring = \Xendit\Recurring::create($params);
+
+        //ddd($createRecurring);
+
+        return $createRecurring['last_created_invoice_url'];
     }
 
     protected function rules()
@@ -118,7 +144,7 @@ class CheckoutComponent extends Component
             'price' => Plan::find($this->plan_id)->price,
             'quantity' => 1,
             'trial_ends_at' => User::find($user_id)->trial_ends_at,
-            'external_id' => $external_id
+            'external_id' => $external_id,
         ]);
     }
 
