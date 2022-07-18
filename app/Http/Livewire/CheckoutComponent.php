@@ -82,20 +82,20 @@ class CheckoutComponent extends Component
             'external_id' => $external_id,
             'payer_email' => User::find($user_id)->email,
             'description' => Plan::find($plan_id)->plan,
-            'amount' => 1,
+            'amount' => Plan::find($plan_id)->price,
             'interval' => 'MONTH',
             'total_recurrence' => 6,
             'interval_count' => 1,
             'currency'=>'PHP',
             'success_redirect_url' => 'https://thepmo.co/thankyou',
-            'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1'
+            'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1',
             ];
          }else{
             $params = [
             'external_id' => $external_id,
             'payer_email' => User::find($user_id)->email,
             'description' => Plan::find($plan_id)->plan,
-            'amount' => 1,
+            'amount' => Plan::find($plan_id)->price,
             'interval' => 'MONTH',
             'total_recurrence' => 1,
             'interval_count' => 1,
