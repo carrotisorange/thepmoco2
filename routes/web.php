@@ -33,7 +33,7 @@ Route::get('/', function(){
 
 //Routes for checkout pages
 Route::group(['middleware' => ['auth', 'verified']], function(){
-    Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get', [CheckoutController::class, 'create'])->where(['plan_id', '[1-2]', 'checkout_option', '[1-2]']);
+    Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get', [CheckoutController::class, 'create'])->where(['plan_id', '[1-3]', 'checkout_option', '[1-2]']);
     Route::get('/thankyou', [CheckoutController::class, 'thankyou']);
     Route::get('/plan/{plan_id}/checkout/{checkout_option}', [CheckoutController::class, 'chooseplanfromlandingpage']);
     Route::get('/reset/plan', [CheckoutController::class, 'reset']);

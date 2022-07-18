@@ -127,10 +127,6 @@
                             <x-td>{{ $selected_plan->plan }}</x-td>
                         </tr>
                         <tr>
-                            <x-th>Plan</x-th>
-                            <x-td>{{ $selected_plan->plan }}</x-td>
-                        </tr>
-                        <tr>
                             <x-th>Description</x-th>
                             <x-td>{{ $selected_plan->description }}</x-td>
                         </tr>
