@@ -73,12 +73,21 @@
                                     $plan->plan }}
                                 </option>
                                 @endforeach --}}
-                                @if($selected_plan->id == '1')
-                                <option value="1">basic</option>
-                                @elseif($selected_plan->id == '2')
-                                <option value="2">advanced</option>
+                                @if($selected_checkout_option->id == '1')
+                                   @foreach ($plans as $plan)
+                                    <option value="{{ $plan->id }}" {{ $plan_id==$plan->id ? 'selected' : 'selected'
+                                        }}> {{
+                                        $plan->plan }}
+                                    </option>
+                                    @endforeach
                                 @else
-                                <option value="3">premium</option>
+                                    @if($selected_plan->id == '1')
+                                    <option value="1">basic</option>
+                                    @elseif($selected_plan->id == '2')
+                                    <option value="2">advanced</option>
+                                    @else
+                                    <option value="3">premium</option>
+                                    @endif
                                 @endif
                             </select>
 
@@ -93,10 +102,10 @@
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 wire:model="checkout_option">
                                 {{-- @foreach ($checkout_options as $checkout_option) --}}
-                                @if($selected_checkout_option == '1')
-                                    <option value="1">Pay Now</option>
+                                @if($selected_checkout_option->id == '1')
+                                <option value="1">Pay Now</option>
                                 @else
-                                    <option value="1">Pay After 30 Days</option>
+                                <option value="1">Pay After 30 Days</option>
                                 @endif
                                 {{-- @endforeach --}}
                             </select>
@@ -135,10 +144,12 @@
                         </tr>
                     </thead>
                 </table>
-              <div
+                <div
                     class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                    <span class="ml-2">The process page is still being developed. This is just a simulation. Your card won't be charged.</span></div>
-               {{-- <div
+                    <span class="ml-2">The process page is still being developed. This is just a simulation. Your card
+                        won't be charged.</span>
+                </div>
+                {{-- <div
                     class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
                     Description: <span class="ml-2">{{ $selected_plan->description }}</span></div>
                 <div
