@@ -46,7 +46,7 @@ class CheckoutComponent extends Component
 
             $last_created_invoice_url = $this->charge_user_account($this->token, auth()->user()->id, $this->plan_id, $external_id, 6,$this->checkout_option);
 
-            //$this->send_mail_to_user();
+            $this->send_mail_to_user();
 
             DB::commit();
 
