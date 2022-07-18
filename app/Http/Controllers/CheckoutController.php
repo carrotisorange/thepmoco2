@@ -11,6 +11,7 @@ class CheckoutController extends Controller
 {
     public function create($plan_id=1,$checkout_option=1)
     {
+
         return view('checkout.create', [
             'plan_id' => $plan_id,
             'checkout_option' => $checkout_option
@@ -23,6 +24,7 @@ class CheckoutController extends Controller
     }
 
     public function chooseplanfromlandingpage($plan_id, $checkout_option){
+
         User::where('id', auth()->user()->id)
          ->update([
             'status' => 'pending'

@@ -4,15 +4,40 @@
         Welcome &nbsp<b> {{ auth()->user()->username }}</b>!
     </x-slot>
     <x-slot name="options">
-        <x-button onclick="window.location.href='/chatify'">
-            Chat other users
-        </x-button>
-        @can('manager')
-        <x-button onclick="window.location.href='/property/{{ Str::random(10) }}/create'">
-            Create a property
-        </x-button>
+        <x-button id="dropdownButton" data-dropdown-toggle="propertiesOptionsDropdown" type="button">Actions<svg
+                class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                </path>
+            </svg></x-button>
 
-        @endcan
+        <div id="propertiesOptionsDropdown"
+            class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+            <ul class="py-1" aria-labelledby="propertiesOptionsDropdown">
+                <li>
+                    <a href="/property/{{ Str::random(10) }}/create/"
+                        class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        Create another property
+                    </a>
+                </li>
+                <li>
+                    <a href="/chatify"
+                        class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        Chat other users
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}"
+                        class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        Logout
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </div>
+
     </x-slot>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
@@ -64,7 +89,8 @@
                         $property->property->status }}
                     </span>
                     @else
-                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-sm text-orange-800">
+                    <span
+                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-sm text-orange-800">
                         <i class="fa-solid fa-clock"></i> {{
                         $property->property->status }}
                     </span>

@@ -8,7 +8,12 @@
         Select a plan
     </x-slot>
     <x-slot name="options">
-       <x-button onclick="window.location.href='/reset/plan'">Select another plan</x-button>
+        @auth
+           <x-button onclick="window.location.href='/reset/plan'">Select another plan</x-button> 
+        @else
+            <x-button onclick="window.location.href='{{ url()->previous() }}'">Select  another plan</x-button>
+        @endauth
+
     </x-slot>
     <div class="container p-6 mx-auto">
        @livewire('checkout-component', ['plan_id' => $plan_id,'checkout_option' => $checkout_option])

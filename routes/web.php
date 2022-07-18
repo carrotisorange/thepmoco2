@@ -13,6 +13,8 @@ use Spatie\Analytics\Period;
 use \PDF;
 use App\Models\Bill;
 use App\Models\CheckoutOption;
+use Laravel\Socialite\Facades\Socialite;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,14 @@ Route::get('/', function(){
     return view('auth.login');
 });
 
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('facebook')->user();
+});
+
 //Routes for checkout pages
 Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get', [CheckoutController::class, 'create'])->where(['plan_id', '[1-3]', 'checkout_option', '[1-2]']);
@@ -44,9 +54,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
      Route::prefix('/dashboard')->group(function(){ 
         Route::get('sales', [DashboardSalesController::class, 'index']);
         Route::get('user/{id:id}/properties', [DashboardSalesController::class, 'show']);
-
         Route::get('dev', [DashboardDevController::class, 'index']);
-
     });
 });
 
