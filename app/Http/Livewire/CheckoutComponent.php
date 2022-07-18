@@ -89,6 +89,17 @@ class CheckoutComponent extends Component
             'currency'=>'PHP',
             'success_redirect_url' => 'https://thepmo.co/thankyou',
             'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1',
+            'customer'=> [
+                    'given_name'=> User::find($user_id)->name,
+                    'mobile_number' => User::find($user_id)->mobile_number,
+                    'email' => User::find($user_id)->email
+            ],
+            'customer_notification_preference'=>[
+                'invoice_created' => [
+                    'email',
+                    'sms'
+                ]
+            ]
             ];
          }else{
             $params = [
@@ -101,7 +112,18 @@ class CheckoutComponent extends Component
             'interval_count' => 1,
             'currency'=>'PHP',
             'success_redirect_url' => 'https://thepmo.co/thankyou',
-            'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1'
+            'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1',
+             'customer'=> [
+             'given_name'=> User::find($user_id)->name,
+             'mobile_number' => User::find($user_id)->mobile_number,
+             'email' => User::find($user_id)->email
+             ],
+                'customer_notification_preference'=>[
+                'invoice_created' => [
+                    'email',
+                    'sms'
+             ]
+             ]
             ];
          }
         
