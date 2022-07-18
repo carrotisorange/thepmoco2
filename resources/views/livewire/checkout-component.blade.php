@@ -164,7 +164,7 @@
             <div class="mt-4">
                 <button class="w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200" wire:loading.remove
                     wire:click="payNow">
-                    Process
+                    Proceed to Checkout
                 </button>
                 <button
                     class="w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200 opacity-10 cursor-not-allowed"
