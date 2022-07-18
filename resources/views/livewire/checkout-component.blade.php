@@ -140,26 +140,7 @@
                         </tr>
                     </thead>
                 </table>
-                {{-- <div
-                    class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                    <span class="ml-2">The process page is still being developed. This is just a simulation. Your card
-                        won't be charged.</span>
-                </div> --}}
-                {{-- <div
-                    class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                    Description: <span class="ml-2">{{ $selected_plan->description }}</span></div>
-                <div
-                    class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                    Payment Policy: Php <span class="ml-2">{{ $selected_checkoutoption->policy }}</span></div>
-                <div
-                    class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                    Price: Php <span class="ml-2">{{ number_format($selected_plan->price, 2) }}</span></div>
-                {{-- <div
-                    class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                    Shipping Tax<span class="ml-2">$10</span></div>
-                <div
-                    class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                    Total<span class="ml-2">$50.00</span></div> --}}
+               
             </div>
             <div class="mt-4">
                 <button class="w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200" wire:loading.remove

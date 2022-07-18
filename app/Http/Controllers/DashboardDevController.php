@@ -119,9 +119,9 @@ class DashboardDevController extends Controller
         return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
         DB::raw("(DATE_FORMAT(created_at,
         '%M %D')) as date_year"))
-        ->orderBy('created_at')
+        ->orderBy('created_at', 'desc')
         ->groupBy(DB::raw("date_year"))
-        ->take(31)
+        ->limit(30)
         ->pluck('date_year');
         }
 
@@ -130,9 +130,9 @@ class DashboardDevController extends Controller
          return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
          DB::raw("(DATE_FORMAT(created_at,
          '%M %D')) as date_year"))
-         ->orderBy('created_at')
+         ->orderBy('created_at', 'desc')
          ->groupBy(DB::raw("date_year"))
-         ->take(31)
+         ->limit(30)
          ->pluck('total_session');
         }
 
