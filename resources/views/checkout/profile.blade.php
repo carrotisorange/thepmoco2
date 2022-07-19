@@ -29,7 +29,7 @@
                 <x-label for="username" :value="__('Username')" />
 
                 <x-form-input form="edit-form" id="username" type="text" name="username"
-                    value="{{old('username', $user->username)}}" required autofocus />
+                    value="{{old('username')}}" required autofocus />
 
                 @error('username')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
