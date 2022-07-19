@@ -85,7 +85,7 @@ class CheckoutController extends Controller
 
     public function profile(User $user)
     {  
-        if($user->plan_id !== '0')
+        if($user->password == null)
         {
             abort(403);
         }
