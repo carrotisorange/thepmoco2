@@ -44,10 +44,6 @@ class CheckoutComponent extends Component
         try{
             DB::beginTransaction();
 
-            $user_id = $this->store_user($temporary_username);
-
-            $this->store_subscription($user_id, $this->plan_id, $external_id);
-
             if($this->checkout_option == '1')
             {
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
@@ -61,6 +57,10 @@ class CheckoutComponent extends Component
                     $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, Plan::find($this->plan_id)->price, 1
                 );
             }
+
+            $user_id = $this->store_user($temporary_username);
+
+            $this->store_subscription($user_id, $this->plan_id, $external_id);
 
             // $this->send_mail_to_user();
 
