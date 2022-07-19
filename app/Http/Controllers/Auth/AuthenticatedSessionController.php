@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
         if($sessions<=0) 
         { 
             DB::table('sessions')->insert([
-             'id' => DB::table('sessions')->count()+1,
+             'id' => DB::table('sessions')->max('id')*10,
              'user_id' => auth()->user()->id,
              'created_at' => now(),
              'ip_address' => request()->ip(),
