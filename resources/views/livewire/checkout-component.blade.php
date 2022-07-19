@@ -72,7 +72,7 @@
                                 @elseif($selected_plan->id == '2')
                                 <option value="2">advanced</option>
                                 @else
-                                <option value="3">premium</option>
+                                <option value="3">professional</option>
                                 @endif
                                 @endif
                             </select>
