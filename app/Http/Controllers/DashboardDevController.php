@@ -116,24 +116,22 @@ class DashboardDevController extends Controller
 
         public function get_session_rate_labels()
         {
-        return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
-        DB::raw("(DATE_FORMAT(created_at,
-        '%M %D')) as date_year"))
-        ->orderBy('created_at', 'desc')
-        ->groupBy(DB::raw("date_year"))
-        ->limit(30)
-        ->pluck('date_year');
+            return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
+            DB::raw("(DATE_FORMAT(created_at, '%M %D')) as date_year"))
+            ->orderBy('created_at')
+            ->groupBy(DB::raw("date_year"))
+            
+            ->pluck('date_year');
         }
 
         public function get_session_rate_values()
         {
-         return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
-         DB::raw("(DATE_FORMAT(created_at,
-         '%M %D')) as date_year"))
-         ->orderBy('created_at', 'desc')
-         ->groupBy(DB::raw("date_year"))
-         ->limit(30)
-         ->pluck('total_session');
+            return DB::table('sessions')->select(DB::raw("(count(*)) as total_session"),
+            DB::raw("(DATE_FORMAT(created_at, '%M %D')) as date_year"))
+             ->orderBy('created_at')
+            ->groupBy(DB::raw("date_year"))
+            
+            ->pluck('total_session');
         }
 
         public function get_property_type_labels()
