@@ -1,7 +1,7 @@
 <x-index-layout>
     @section('title', '| Properties')
     <x-slot name="labels">
-        Create
+        Enter your property details
     </x-slot>
     <x-slot name="options">
         <x-button onclick="window.location.href='/properties'">

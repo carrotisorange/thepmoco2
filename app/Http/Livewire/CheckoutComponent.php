@@ -12,13 +12,14 @@ use DB;
 use Xendit\Xendit;
 use Str;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class CheckoutComponent extends Component
 {
     public $plan_id = 1;
-    public $address;
-    public $city;
-    public $zip_code;
+    public $name;
+    public $email;
+    public $mobile_number;
     public $checkout_option = 1;
     public $checkout_url;
 
@@ -28,25 +29,40 @@ class CheckoutComponent extends Component
         $this->checkout_option = $this->checkout_option;
     }
 
-    private $token = 'xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34';
-
     public function payNow()
     {
         sleep(1);
 
         $validatedData = $this->validate();
 
-        $external_id = Plan::find($this->plan_id)->plan.'_'.auth()->user()->id.'_'.Str::random(8);
+        $external_id = Plan::find($this->plan_id)->plan.'_'.Str::random(8);
+
+        $temporary_username = Str::random(8);
+
+        session(['temporary_username' => $temporary_username]);
+
         try{
             DB::beginTransaction();
 
-            $this->update_user(auth()->user()->id, $this->plan_id);
+            $user_id = $this->store_user($temporary_username);
 
-            $this->store_subscription(auth()->user()->id, $this->plan_id, $external_id);
+            $this->store_subscription($user_id, $this->plan_id, $external_id);
 
-            $last_created_invoice_url = $this->charge_user_account($this->token, auth()->user()->id, $this->plan_id, $external_id, 6,$this->checkout_option);
+            if($this->checkout_option == '1')
+            {
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
+                ->charge_user_account(
+                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, 950, 6
+                );
 
-            $this->send_mail_to_user();
+            }else{
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
+                ->charge_user_account(
+                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, Plan::find($this->plan_id)->price, 1
+                );
+            }
+
+            // $this->send_mail_to_user();
 
             DB::commit();
 
@@ -63,96 +79,29 @@ class CheckoutComponent extends Component
         }
     }
 
-    public function send_mail_to_user()
-    {
-        $details =[
-         'message' => CheckoutOption::find($this->checkout_option)->policy
-        ];
-
-        Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser($details));
-    }
-
-    public function charge_user_account($token, $user_id, $plan_id, $external_id, $interval, $checkout_option)
-    {
-         Xendit::setApiKey($this->token);
-
-         if($checkout_option === '1')
-         {
-            $params = [
-            'external_id' => $external_id,
-            'payer_email' => User::find($user_id)->email,
-            'description' => Plan::find($plan_id)->plan,
-            'amount' => Plan::find($plan_id)->price,
-            'interval' => 'MONTH',
-            'total_recurrence' => 6,
-            'interval_count' => 1,
-            'currency'=>'PHP',
-            'success_redirect_url' => 'https://thepmo.co/thankyou',
-            'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1',
-            'customer'=> [
-                    'given_name'=> User::find($user_id)->name,
-                    'mobile_number' => User::find($user_id)->mobile_number,
-                    'email' => User::find($user_id)->email
-            ],
-            'customer_notification_preference'=>[
-                'invoice_created' => [
-                    'email',
-                    'sms'
-                ]
-            ]
-            ];
-         }else{
-            $params = [
-            'external_id' => $external_id,
-            'payer_email' => User::find($user_id)->email,
-            'description' => Plan::find($plan_id)->plan,
-            'amount' => '1',
-            'interval' => 'MONTH',
-            'total_recurrence' => 1,
-            'interval_count' => 1,
-            'currency'=>'PHP',
-            'success_redirect_url' => 'https://thepmo.co/thankyou',
-            'failure_redirect_url' => 'https://thepmo.co/plan/1/checkout/1',
-             'customer'=> [
-             'given_name'=> User::find($user_id)->name,
-             'mobile_number' => User::find($user_id)->mobile_number,
-             'email' => User::find($user_id)->email
-             ],
-                'customer_notification_preference'=>[
-                'invoice_created' => [
-                    'email',
-                    'sms'
-             ]
-             ]
-            ];
-         }
-        
-        $createRecurring = \Xendit\Recurring::create($params);
-
-        return $createRecurring['last_created_invoice_url'];
-    }
-
     protected function rules()
     {
         return [
-            'address' => 'required',
-            'city' => 'required',
-            'zip_code' => 'required',
-            'checkout_option' => 'required'
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'mobile_number' => ['required', 'unique:users'],
+            
         ];
     }
 
-    public function update_user($user_id, $plan_id)
+    public function store_user($temporary_username)
     {
-        User::where('id', $user_id)
-         ->update([
-            'address' => $this->address,
-            'city' => $this->city,
-            'zip_code' => $this->zip_code,
-            'status' => 'active',
-            'external_id' => $plan_id,
-            'checkoutoption_id' => $this->checkout_url
+        $user_id = User::insertGetId
+        ([
+           'name' => $this->name,
+           'mobile_number' => $this->mobile_number,
+           'email' => $this->email,
+           'role_id' => '5',
+           'username' => $temporary_username,
+           'checkoutoption_id' => $this->checkout_option
          ]);
+
+         return $user_id;
     }
 
     public function store_subscription($user_id, $plan_id, $external_id)
@@ -163,9 +112,18 @@ class CheckoutComponent extends Component
             'status' => 'active',
             'price' => '1',
             'quantity' => 1,
-            'trial_ends_at' => User::find($user_id)->trial_ends_at,
+            'trial_ends_at' => Carbon::now()->addMonth(),
             'external_id' => $external_id,
         ]);
+    }
+
+    public function send_mail_to_user()
+    {
+        $details =[
+         'message' => CheckoutOption::find($this->checkout_option)->policy
+        ];
+
+        Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser($details));
     }
 
     public function render()

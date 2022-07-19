@@ -42,11 +42,14 @@ Route::get('/auth/callback', function () {
 });
 
 //Routes for checkout pages
-Route::group(['middleware' => ['auth', 'verified']], function(){
+Route::group(['middleware' => []], function(){
     Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get', [CheckoutController::class, 'create'])->where(['plan_id', '[1-3]', 'checkout_option', '[1-2]']);
     Route::get('/thankyou', [CheckoutController::class, 'thankyou']);
     Route::get('/plan/{plan_id}/checkout/{checkout_option}', [CheckoutController::class, 'chooseplanfromlandingpage']);
     Route::get('/reset/plan', [CheckoutController::class, 'reset']);
+    Route::get('/select-a-plan', [CheckoutController::class, 'select']);
+    Route::get('/profile/{user}/complete',[CheckoutController::class, 'profile']);
+    Route::patch('/profile/{user}/complete/update',[CheckoutController::class, 'save']);
 });
 
 //routes for dashboard
@@ -243,8 +246,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     [BillController::class,'store']);
     Route::delete('bill/{id:id}/delete', [BillController::class, 'destroy']);
 
-    Route::get('/profile/{user}/edit',[UserController::class, 'edit'])->name('profile');
+    
     Route::patch('/profile/{user}/update',[UserController::class, 'update']);
+    Route::get('/profile/{user}/edit',[UserController::class, 'edit'])->name('profile');
 
     Route::get('/profile/{username:username}/point',[PointController::class, 'index'])->name('point');
 
