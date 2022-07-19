@@ -99,7 +99,6 @@ class CheckoutComponent extends Component
            'role_id' => '5',
            'username' => $temporary_username,
            'checkoutoption_id' => $this->checkout_option,
-           'external_id' => $this->plan_id,
          ]);
 
          return $user_id;
