@@ -34,6 +34,7 @@
                         class="text-xl w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200">
                         Try Now
                     </button>
+                 
                     {{-- <x-button>Try Now</x-button> --}}
                 </div>
 

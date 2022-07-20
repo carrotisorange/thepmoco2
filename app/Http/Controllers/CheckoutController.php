@@ -14,12 +14,13 @@ use Illuminate\Auth\Events\Registered;
 
 class CheckoutController extends Controller
 {
-    public function create($plan_id=1,$checkout_option=1)
+    public function create($plan_id=1,$checkout_option=1, $discount_code='none')
     {
 
         return view('checkout.create', [
             'plan_id' => $plan_id,
-            'checkout_option' => $checkout_option
+            'checkout_option' => $checkout_option,
+            'discount_code' => $discount_code
         ]);
     }
 
@@ -28,24 +29,14 @@ class CheckoutController extends Controller
         return view('checkout.thankyou');
     }
 
-    public function chooseplanfromlandingpage($plan_id, $checkout_option){
+    public function chooseplanfromlandingpage($plan_id, $checkout_option, $discount_code){
 
         User::where('id', auth()->user()->id)
          ->update([
             'status' => 'pending'
         ]);
 
-        return redirect('/plan/'.$plan_id.'/checkout/'.$checkout_option.'/get');
-    }
-
-    public function reset()
-    {
-        User::where('id', auth()->user()->id)
-         ->update([
-         'status' => 'interested'
-         ]);
-
-        return redirect('https://www.thepropertymanager.online/plans-pricing');
+        return redirect('/plan/'.$plan_id.'/checkout/'.$checkout_option.'/get'.$discount_code);
     }
 
     public function select()

@@ -13,6 +13,7 @@ use Xendit\Xendit;
 use Str;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use App\Models\DiscountCode;
 
 class CheckoutComponent extends Component
 {
@@ -22,11 +23,13 @@ class CheckoutComponent extends Component
     public $mobile_number;
     public $checkout_option = 1;
     public $checkout_url;
+    public $discount_code = 'none';
 
-    public function mount($plan_id, $checkout_option)
+    public function mount($plan_id, $checkout_option, $discount_code)
     {
         $this->plan_id = $plan_id;
-        $this->checkout_option = $this->checkout_option;
+        $this->checkout_option = $checkout_option;
+        $this->discount_code = $discount_code;
     }
 
     public function updated($propertyName)
@@ -54,13 +57,13 @@ class CheckoutComponent extends Component
             {
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
                 ->charge_user_account(
-                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, 950, 6
+                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, 950-DiscountCode::find($this->discount_code)->discount, 6
                 );
 
             }else{
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
                 ->charge_user_account(
-                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, Plan::find($this->plan_id)->price, 1
+                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 1
                 );
             }
 
@@ -91,7 +94,7 @@ class CheckoutComponent extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'mobile_number' => ['required', 'unique:users'],
-            
+            'discount_code' => ['required']
         ];
     }
 
@@ -106,6 +109,7 @@ class CheckoutComponent extends Component
            'username' => $temporary_username,
            'checkoutoption_id' => $this->checkout_option,
            'plan_id' => $this->plan_id,
+           'discount_code' => $this->discount_code,
          ]);
 
          return $user_id;
@@ -139,7 +143,9 @@ class CheckoutComponent extends Component
             'plans' => Plan::where('id','!=','4')->get(),
             'checkout_options' => CheckoutOption::all(),
             'selected_plan' => Plan::find($this->plan_id),
-            'selected_checkout_option' => CheckoutOption::find($this->checkout_option)
+            'selected_checkout_option' => CheckoutOption::find($this->checkout_option),
+            'selected_discount_code' => DiscountCode::find($this->discount_code),
+            'discount_codes' => DiscountCode::all(),
         ]);
     }
 }

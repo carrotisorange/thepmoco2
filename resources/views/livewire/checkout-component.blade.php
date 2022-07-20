@@ -1,6 +1,6 @@
 <div>
     @include('layouts.notifications')
-    <div class="flex flex-col w-full px-0 mx-auto md:flex-row">
+    <div class="p-12 flex flex-col w-full px-0 mx-auto md:flex-row">
         <div class="flex flex-col md:w-full">
             <h2 class="mb-4 font-bold md:text-xl text-heading ">Customer Information
             </h2>
@@ -33,7 +33,8 @@
                             <div class="w-full lg:w-1/2">
                                 <label for="mobile_number" class="block mb-3 text-sm font-semibold text-gray-500">Mobile
                                     Number</label>
-                                <input wire:model.lazy="mobile_number" type="text" placeholder="Mobile Number" maxlength="20"
+                                <input wire:model.lazy="mobile_number" type="text" placeholder="Mobile Number"
+                                    maxlength="20"
                                     class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 @error('mobile_number')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -81,18 +82,18 @@
                     </div>
 
                     {{-- <div class="mt-4">
+                        <h2 class="mb-4 font-bold md:text-xl text-heading ">Referral Code
+                        </h2>
+                    </div>
+
+                    <div class="mt-4">
                         <div class="w-full">
-                            <label for="Address" class="block mb-3 text-sm font-semibold text-gray-500">Select your
-                                checkout option</label>
+                            
                             <select
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                wire:model="checkout_option">
-                                @foreach ($checkout_options as $checkout_option)
-                                @if($selected_checkout_option->id == '1')
-                                <option value="1">Pay Now</option>
-                                @else
-                                <option value="1">Pay After 30 Days</option>
-                                @endif
+                                wire:model="discount_code">
+                                @foreach ($discount_codes as $code)
+                                    <option value="{{ $code->discount_code }}" {{ $discount_code==$code->discount_code? 'selected' : 'selected'}}> {{ $code->name }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -119,16 +120,30 @@
                         <tr>
                             <x-th>Price</x-th>
                             @if($selected_checkout_option->id == '1')
-                                <x-td><span class="line-through">{{ number_format($selected_plan->price, 2) }}</span>
+                            <x-td>Php <span class="line-through">{{ number_format($selected_plan->price, 2) }}</span>
                                 950/month</x-td>
                             @else
-                                <x-td>{{ number_format($selected_plan->price, 2) }}/month</x-td>
+                            <x-td>Php {{ number_format($selected_plan->price, 2) }}/month</x-td>
                             @endif
                         </tr>
                         <tr>
                             <x-th>Payment Policy</x-th>
                             <x-td>{{ $selected_checkout_option->policy }}</x-td>
                         </tr>
+                        <tr>
+                            <x-th>Discount</x-th>
+                            <x-td>Php {{ $selected_discount_code->discount }}</x-td>
+                        </tr>
+                        <tr>
+                            <x-th>Final Price </x-th>
+                            @if($selected_checkout_option->id == '1')
+                           <x-td>Php {{ number_format(950-$selected_discount_code->discount, 2) }}/month</x-td>
+                            @else
+                           <x-td>Php {{ number_format($selected_plan->price-$selected_discount_code->discount, 2) }}/month</x-td>
+                            @endif
+                          
+                        </tr>
+
                     </thead>
                 </table>
 
@@ -138,9 +153,8 @@
                     wire:click="payNow()">
                     Proceed to Checkout
                 </button>
-                <button
-                    class="w-full px-6 py-2 text-purple-200 bg-purple-500 opacity-1 cursor-not-allowed"
-                    wire:loading wire:target="payNow" disabled>
+                <button class="w-full px-6 py-2 text-purple-200 bg-purple-500 opacity-1 cursor-not-allowed" wire:loading
+                    wire:target="payNow" disabled>
                     Processing...
                 </button>
 
