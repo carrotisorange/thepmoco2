@@ -1,7 +1,7 @@
 <x-index-layout>
     @section('title', 'Select a Plan | The PMO Co')
     <x-slot name="labels">
-        Choose the plan that right for your business... </x-slot>
+        Select a plan... </x-slot>
 
     <x-slot name="options">
 
