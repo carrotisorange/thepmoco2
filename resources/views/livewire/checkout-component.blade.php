@@ -11,7 +11,7 @@
                     <div class="mt-4">
                         <div class="w-full">
                             <label for="name" class="block mb-3 text-sm font-semibold text-gray-500">Full Name</label>
-                            <input type="text" placeholder="Full Name" wire:model.lazy="name"
+                            <input type="text" placeholder="Full Name" wire:model.lazy="name" maxlength="35"
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                             @error('name')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -24,7 +24,7 @@
                             <div class="w-full lg:w-1/2">
                                 <label for="email" class="block mb-3 text-sm font-semibold text-gray-500">
                                     Email</label>
-                                <input wire:model.lazy="email" type="email" placeholder="Email"
+                                <input wire:model.lazy="email" type="email" placeholder="Email" maxlength="40"
                                     class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 @error('email')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -33,7 +33,7 @@
                             <div class="w-full lg:w-1/2">
                                 <label for="mobile_number" class="block mb-3 text-sm font-semibold text-gray-500">Mobile
                                     Number</label>
-                                <input wire:model.lazy="mobile_number" type="text" placeholder="Mobile Number" maxlength="15"
+                                <input wire:model.lazy="mobile_number" type="text" placeholder="Mobile Number" maxlength="20"
                                     class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 @error('mobile_number')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
