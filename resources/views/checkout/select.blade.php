@@ -28,7 +28,7 @@
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             Free Trial for 30 days</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">You will only be charged after 30 days.
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Try any plans for FREE. You will only be charged after the trial expire.
                     </p>
                     <x-button onclick="window.location.href='/plan/1/checkout/2/get'">Try Now</x-button>
                 </div>
@@ -52,10 +52,15 @@
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             Access all features</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Pay only 950 per month for 6 months.
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Pay only Php<span class="line-through"> 2,400.00</span> 950.00 per month for 6 months.
                     </p>
-                   <x-button onclick="window.location.href='/plan/3/checkout/1/get'">Try Now</x-button>
+                    <x-button onclick="window.location.href='/plan/3/checkout/1/get'">Try Now</x-button>
                 </div>
+
+                <p
+                    class="absolute -bottom-12 left-6 w-[300px] p-4 bg-inherit border-slate-900 text-slate-900 border shadow-lg rounded-3xl hover:text-black hover:shadow-xl">
+                   Promo is available until July 31, 2022.
+                </p>
 
             </div>
         </div>

@@ -29,6 +29,12 @@ class CheckoutComponent extends Component
         $this->checkout_option = $this->checkout_option;
     }
 
+    public function updated($propertyName)
+      {
+        $this->validateOnly($propertyName);
+    }
+
+
     public function payNow()
     {
         sleep(1);

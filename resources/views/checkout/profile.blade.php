@@ -1,20 +1,20 @@
 <x-index-layout>
     @section('title', '| Profile')
     <x-slot name="labels">
-        Profile
+        Profile / {{ $user->name }} / Complete
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='/properties'">
+        {{-- <x-button onclick="window.location.href='/properties'">
             Go back
-        </x-button>
+        </x-button> --}}
     </x-slot>
 
     <div class="p-8 px-12 bg-white border-b border-gray-200">
         <form action="/profile/{{ $user->username }}/complete/update" method="POST" id="edit-form" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
-            <div>
+            {{-- <div>
                 <x-label for="name" :value="__('Name')" />
 
                 <x-form-input form="edit-form" type="text" name="name" value="{{old('name', $user->name)}}" required
@@ -23,7 +23,7 @@
                 @error('name')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="mt-5">
                 <x-label for="username" :value="__('Username')" />
@@ -68,7 +68,18 @@
                 @enderror
             </div>
 
-            <div class="mt-5 flex">
+            <div class="mt-5">
+                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+            
+                <x-form-input form="edit-form" id="password" type="password" name="password_confirmation" autofocus required />
+            
+                @error('password_confirmation')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+            
+
+            {{-- <div class="mt-5 flex">
                 <div class="flex-3">
                     <x-label for="avatar" :value="__('Avatar')" />
 
@@ -87,7 +98,7 @@
                     @endif
 
                 </div>
-            </div>
+            </div> --}}
             <div class="mt-5">
                 <p class="text-right">
                     <x-button form="edit-form">

@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
+use Illuminate\Auth\Events\Registered;
 
 class CheckoutController extends Controller
 {
@@ -96,17 +99,27 @@ class CheckoutController extends Controller
     }
 
     public function save(User $user, Request $request){
+
+        $request->validate([
+          //'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255' ,Rule::unique('users','email')->ignore($user->id)],
+          'username' => ['required', 'string', 'max:255', Rule::unique('users','username')->ignore($user->id)],
+          'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
+          'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
     
         User::where('username', $user->username)
         ->update([
-            'name' => $request->name,
+            //'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
-            'mobile_number' => $request->mobile_number,
+             'mobile_number' => $request->mobile_number,
             'password' => Hash::make($request->password),
         ]);
 
         Auth::login($user);
+
+        event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOME);
     }
