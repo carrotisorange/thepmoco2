@@ -2,7 +2,7 @@
 
 @yield('scripts')
 
-@include('layouts.messenger-chatbot')
+{{-- @include('layouts.messenger-chatbot') --}}
 
 @include('layouts.notifications')
 
