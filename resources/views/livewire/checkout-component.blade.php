@@ -81,7 +81,7 @@
                         </div>
                     </div>
 
-                    {{-- <div class="mt-4">
+                    <div class="mt-4">
                         <h2 class="mb-4 font-bold md:text-xl text-heading ">Referral Code
                         </h2>
                     </div>
@@ -91,13 +91,11 @@
                             
                             <select
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                wire:model="discount_code">
-                                @foreach ($discount_codes as $code)
-                                    <option value="{{ $code->discount_code }}" {{ $discount_code==$code->discount_code? 'selected' : 'selected'}}> {{ $code->name }} </option>
-                                @endforeach
+                                wire:model="">
+                                <option value="{{ $discount_code }}">{{ $discount_code }}</option>
                             </select>
                         </div>
-                    </div> --}}
+                    </div>
 
 
                 </div>
@@ -130,6 +128,7 @@
                             <x-th>Payment Policy</x-th>
                             <x-td>{{ $selected_checkout_option->policy }}</x-td>
                         </tr>
+                       
                         <tr>
                             <x-th>Discount</x-th>
                             <x-td>Php {{ $selected_discount_code->discount }}</x-td>
