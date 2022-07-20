@@ -11,7 +11,7 @@
                     <div class="mt-4">
                         <div class="w-full">
                             <label for="name" class="block mb-3 text-sm font-semibold text-gray-500">Full Name</label>
-                            <input type="text" placeholder="Full Name" wire:model="name"
+                            <input type="text" placeholder="Full Name" wire:model.lazy="name"
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                             @error('name')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -24,7 +24,7 @@
                             <div class="w-full lg:w-1/2">
                                 <label for="email" class="block mb-3 text-sm font-semibold text-gray-500">
                                     Email</label>
-                                <input wire:model="email" type="email" placeholder="Email"
+                                <input wire:model.lazy="email" type="email" placeholder="Email"
                                     class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 @error('email')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -33,7 +33,7 @@
                             <div class="w-full lg:w-1/2">
                                 <label for="mobile_number" class="block mb-3 text-sm font-semibold text-gray-500">Mobile
                                     Number</label>
-                                <input wire:model="mobile_number" type="text" placeholder="Mobile Number" maxlength="15"
+                                <input wire:model.lazy="mobile_number" type="text" placeholder="Mobile Number" maxlength="15"
                                     class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 @error('mobile_number')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -104,7 +104,7 @@
         </div>
         <div class="flex flex-col w-full ml-0 lg:ml-12 lg:w-2/5">
             <div class="pt-12 md:pt-0 2xl:ps-4">
-                <h2 class="text-xl font-bold">Purchase Summary
+                <h2 class="text-xl font-bold">Order Summary
                 </h2>
                 <table class="mt-5 w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="bg-gray-50">
@@ -120,9 +120,9 @@
                             <x-th>Price</x-th>
                             @if($selected_checkout_option->id == '1')
                                 <x-td><span class="line-through">{{ number_format($selected_plan->price, 2) }}</span>
-                                950</x-td>
+                                950/month</x-td>
                             @else
-                                <x-td>{{ number_format($selected_plan->price, 2) }}</x-td>
+                                <x-td>{{ number_format($selected_plan->price, 2) }}/month</x-td>
                             @endif
                         </tr>
                         <tr>
@@ -135,11 +135,11 @@
             </div>
             <div class="mt-4">
                 <button class="w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200" wire:loading.remove
-                    wire:click="payNow">
+                    wire:click="payNow()">
                     Proceed to Checkout
                 </button>
                 <button
-                    class="w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200 opacity-10 cursor-not-allowed"
+                    class="w-full px-6 py-2 text-purple-200 bg-purple-500 opacity-1 cursor-not-allowed"
                     wire:loading wire:target="payNow" disabled>
                     Processing...
                 </button>
