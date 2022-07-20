@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <h2 class="mb-4 font-bold md:text-xl text-heading ">Referral Code <span class="text-xs text-blue-600"><a target="_blank" href="https://facebook.com/onlinepropertymanager">Don't have a referral code?</a></span>
+                        <h2 class="mb-4 font-bold md:text-xl text-heading ">Referral Code <span class="text-xs text-blue-600"><a target="_blank" href="https://facebook.com/onlinepropertymanager">Don't have a referral code? Ask for one.</a></span>
                         </h2>
                     </div>
 
