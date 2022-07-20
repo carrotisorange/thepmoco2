@@ -1,6 +1,6 @@
 <div>
     @include('layouts.notifications')
-    <div class="p-12 flex flex-col w-full px-0 mx-auto md:flex-row">
+    <div class="mb-12 flex flex-col w-full px-0 mx-auto md:flex-row">
         <div class="flex flex-col md:w-full">
             <h2 class="mb-4 font-bold md:text-xl text-heading ">Customer Information
             </h2>

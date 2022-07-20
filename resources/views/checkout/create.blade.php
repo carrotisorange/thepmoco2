@@ -14,7 +14,7 @@
     <x-slot name="options">
         <x-button onclick="window.location.href='/select-a-plan'">Select another plan</x-button>
     </x-slot>
-    <div class="container px-4 py-2 -mx-auto">
+    <div class="container px-4 -mx-auto">
         @livewire('checkout-component', ['plan_id' => $plan_id,'checkout_option' => $checkout_option, 'discount_code' => $discount_code])
     </div>
 
