@@ -44,18 +44,18 @@ class CheckoutController extends Controller
         return view('checkout.select');
     }
 
-    public function charge_user_account($external_id, $email, $mobile_number, $name, $description, $amount, $start_date ,$total_recurrence)
+    public function charge_user_account($external_id, $email, $mobile_number, $name, $description, $amount, $total_recurrence, $start_date)
     {
-        Xendit::setApiKey('xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ');
+        Xendit::setApiKey('xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34');
 
         $params = [
             'external_id' => $external_id,
             'payer_email' => $email,
             'description' => $description,
-            'amount' => 1,
+            'amount' => $amount,
             'interval' => 'MONTH',
             //'total_recurrence' => $total_recurrence,
-            'start_date' => $start_date,
+            //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
             'success_redirect_url' => 'https://thepmo.co/thankyou',
