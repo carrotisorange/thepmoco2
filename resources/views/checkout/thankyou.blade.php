@@ -17,7 +17,7 @@
             <img class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
                 src="{{ asset('/brands/full-logo.png') }}" alt="" />
             <div class="p-6 flex flex-col justify-start">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">Thanks for Signing Up</h5>
+                <h5 class="text-gray-900 text-xl font-medium mb-2">Thanks for Signing Up to {{ $message }}</h5>
                 <p class="text-gray-700 text-base mb-4">
                    The Property Manager Online will help you to simplify your rental property operations.
                 </p>

@@ -12,12 +12,14 @@ use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use Illuminate\Auth\Events\Registered;
 use Carbon\Carbon;
+use App\Models\Subscription;
+use Session;
+use DB;
 
 class CheckoutController extends Controller
 {
     public function create($plan_id=1,$checkout_option=1, $discount_code='none')
     {
-
         return view('checkout.create', [
             'plan_id' => $plan_id,
             'checkout_option' => $checkout_option,
@@ -26,10 +28,94 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function thankyou()
+    public function success($name, $temporary_username, $external_id, $email, $mobile_number, $discount_code, $checkout_option, $plan_id)
     {
-        return view('checkout.thankyou');
+       try{
+
+        DB::beginTransaction();
+
+        $user_id = $this->store_user($name, $temporary_username, $external_id, $email, $mobile_number, $discount_code, $checkout_option, $plan_id);
+
+        $user_info = User::find($user_id);
+
+        $this->store_subscription($user_info->id, $user_info->plan_id, $user_info->external_id);
+
+        DB::commit();
+
+        if($checkout_option == '1')
+        {
+           return redirect('/thankyou/regular-plan');
+        }else{
+           return redirect('/thankyou/promo-plan');
+        }
+        
+       }catch(\Exception $e)
+       {
+            DB::rollback();
+
+            return back()->with('Cannot perform your action');
+       }
+        
     }
+
+    public function thankyou_regular_plan($checkout_option="1")
+    {
+        return view('checkout.thankyou',[
+            'message' => 'Regular Plan'
+        ]);
+    }
+
+    public function thankyou_promo_plan($checkout_option="2")
+    {
+        return view('checkout.thankyou',[
+            'message' => 'Promo Plan'
+        ]);
+    }
+
+    public function store_user($name, $temporary_username, $external_id, $email, $mobile_number, $discount_code, $checkout_option, $plan_id)
+    {
+        
+            $user_id = User::insertGetId
+                (
+                    [
+                        'name' => $name,
+                        'mobile_number' => $mobile_number,
+                        'email' => $email,
+                        'role_id' => '5',
+                        'username' => $temporary_username,
+                        'external_id' => $external_id,
+                        'checkoutoption_id' => $checkout_option,
+                        'plan_id' => $plan_id,
+                        'discount_code' => $discount_code,
+                        'trial_ends_at' => Carbon::now()->addMonth(6),
+                    ]
+            );
+        
+            if($checkout_option == '1')
+            {
+                 User::where('id', $user_id)
+                 ->where('checkoutoption_id', $checkout_option)
+                 ->update([
+                    'trial_ends_at' => Carbon::now()->addMonth()
+                 ]);
+            }
+            
+         return $user_id;
+    }
+
+    public function store_subscription($user_id, $plan_id, $external_id)
+    {
+        Subscription::firstOrCreate([
+            'user_id' => $user_id,
+            'plan_id' => $plan_id,
+            'status' => 'active',
+            'price' => '1',
+            'quantity' => 1,
+            'trial_ends_at' => Carbon::now()->addMonth(),
+            'external_id' => $external_id,
+        ]);
+    }
+
 
     public function chooseplanfromlandingpage($plan_id, $checkout_option, $discount_code='none'){
 
@@ -46,7 +132,7 @@ class CheckoutController extends Controller
         return view('checkout.select');
     }
 
-    public function charge_user_account($external_id, $email, $mobile_number, $name, $description, $amount, $total_recurrence, $start_date)
+    public function charge_user_account($temporary_username, $discount_code, $external_id, $description, $email, $mobile_number, $name, $plan_id, $amount, $total_recurrence, $checkout_option)
     {     
         Xendit::setApiKey('xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34');
 
@@ -60,8 +146,10 @@ class CheckoutController extends Controller
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
-            'success_redirect_url' => 'https://thepmo.co/thankyou',
-            'failure_redirect_url' => 'https://thepmo.co/select-a-plan',
+                // 'success_redirect_url' => 'https://thepmo.co/thankyou',
+                // 'failure_redirect_url' => 'https://thepmo.co/select-a-plan',
+            'success_redirect_url' => 'https://thepmo.co/success/'.$name.'/'.$temporary_username.'/'.$external_id.'/'.$email.'/'.$mobile_number.'/'.$discount_code.'/'.$checkout_option.'/'.$plan_id,
+            'failure_redirect_url' => 'https://thepmo.co//select-a-plan',
             'customer'=> [
                     'given_name'=> $name,
                     'mobile_number' => $mobile_number,

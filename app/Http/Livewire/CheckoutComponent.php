@@ -22,7 +22,6 @@ class CheckoutComponent extends Component
     public $email;
     public $mobile_number;
     public $checkout_option = 1;
-    public $checkout_url;
     public $discount_code = 'none';
 
     public function mount($plan_id, $checkout_option, $discount_code)
@@ -30,62 +29,6 @@ class CheckoutComponent extends Component
         $this->plan_id = $plan_id;
         $this->checkout_option = $checkout_option;
         $this->discount_code = $discount_code;
-    }
-
-    public function updated($propertyName)
-      {
-        $this->validateOnly($propertyName);
-    }
-
-
-    public function payNow()
-    {
-        sleep(1);
-
-        $validatedData = $this->validate();
-
-        $external_id = Plan::find($this->plan_id)->plan.'_'.Str::random(8);
-
-        $temporary_username = Str::random(8);
-
-        session(['temporary_username' => $temporary_username]);
-
-        try{
-            DB::beginTransaction();
-
-            if($this->checkout_option == '1')
-            {
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
-                ->charge_user_account(
-                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan,950-DiscountCode::find($this->discount_code)->discount, 6, Carbon::now()->addMonth()->toIso8601String()
-                );
-
-            }else{
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
-                ->charge_user_account(
-                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 1, Carbon::now()->toIso8601String()
-                );
-            }
-
-            $user_id = $this->store_user($temporary_username);
-
-            $this->store_subscription($user_id, $this->plan_id, $external_id);
-
-            // $this->send_mail_to_user();
-
-            DB::commit();
-
-            return redirect($last_created_invoice_url, 'Payment is successfully processed.');
-
-            //return redirect('/thankyou', 'Payment is successfully processed.');
-        }
-        catch(\Exception $e)
-        {   
-            DB::rollback();
-            ddd($e);
-
-            return back()->with('error','Cannot complete your action.');
-        }
     }
 
     protected function rules()
@@ -98,61 +41,94 @@ class CheckoutComponent extends Component
         ];
     }
 
-    public function store_user($temporary_username)
+
+    public function updated($propertyName)
+      {
+        $this->validateOnly($propertyName);
+    }
+
+    public function generate_external_id($plan_id)
     {
-         if($this->checkout_option == '1')
-         {
-            $user_id = User::insertGetId
-                ([
-                'name' => $this->name,
-                'mobile_number' => $this->mobile_number,
-                'email' => $this->email,
-                'role_id' => '5',
-                'username' => $temporary_username,
-                'checkoutoption_id' => $this->checkout_option,
-                'plan_id' => $this->plan_id,
-                'discount_code' => $this->discount_code,
-                'trial_ends_at' => Carbon::now()->addMonth(6),
-                ]);
-         }else{
-            $user_id = User::insertGetId
-                ([
-                'name' => $this->name,
-                'mobile_number' => $this->mobile_number,
-                'email' => $this->email,
-                'role_id' => '5',
-                'username' => $temporary_username,
-                'checkoutoption_id' => $this->checkout_option,
-                'plan_id' => $this->plan_id,
-                'discount_code' => $this->discount_code,
-                'trial_ends_at' => Carbon::now()->addMonth(),
-                ]);
-         }
+         return Plan::find($plan_id)->plan.'_'.Str::random(8);
+    }
+
+    public function generate_temporary_username()
+    {
+        return Str::random(12);
+    }
+
+
+    public function processPayment()
+    {
+        sleep(1);
+
+        $validatedData = $this->validate();
+
+        $external_id = $this->generate_external_id($this->plan_id);
     
-         return $user_id;
+        $temporary_username = $this->generate_temporary_username();
+
+        session(['temporary_username' => $temporary_username]);
+       
+        try{
+            DB::beginTransaction();
+
+            if($this->checkout_option == '1')
+            {
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
+                ->charge_user_account(
+                    $temporary_username, 
+                    $this->discount_code,
+                    $external_id,
+                    Plan::find($this->plan_id)->description,
+                    $this->email, 
+                    $this->mobile_number, 
+                    $this->name, 
+                    Plan::find($this->plan_id)->plan,
+                    950-DiscountCode::find($this->discount_code)->discount, 
+                    6, 
+                    $this->checkout_option,
+                );
+            }else{
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
+                ->charge_user_account(
+                    $temporary_username, 
+                    $this->discount_code, 
+                    $external_id,
+                    Plan::find($this->plan_id)->description,
+                    $this->email, 
+                    $this->mobile_number, 
+                    $this->name, 
+                    Plan::find($this->plan_id)->plan, 
+                    Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 
+                    1, 
+                    $this->checkout_option,
+                );
+            }
+
+            DB::commit();
+
+            return redirect($last_created_invoice_url);
+
+            //return redirect('/thankyou', 'Payment is successfully processed.');
+        }
+        catch(\Exception $e)
+        {   
+            DB::rollback();
+            ddd($e);
+
+            return back()->with('error','Cannot complete your action.');
+        }
     }
 
-    public function store_subscription($user_id, $plan_id, $external_id)
-    {
-        Subscription::firstOrCreate([
-            'user_id' => $user_id,
-            'plan_id' => $plan_id,
-            'status' => 'active',
-            'price' => '1',
-            'quantity' => 1,
-            'trial_ends_at' => Carbon::now()->addMonth(),
-            'external_id' => $external_id,
-        ]);
-    }
+    // public function send_mail_to_user()
+    // {
+    //     $details =[
+    //      'message' => CheckoutOption::find($this->checkout_option)->policy
+    //     ];
 
-    public function send_mail_to_user()
-    {
-        $details =[
-         'message' => CheckoutOption::find($this->checkout_option)->policy
-        ];
-
-        Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser($details));
-    }
+    //     Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser($details));
+    // }
 
     public function render()
     {
