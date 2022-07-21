@@ -51,8 +51,8 @@ Route::group(['middleware' => []], function(){
     Route::get('/profile/{user}/complete',[CheckoutController::class, 'profile']);
     Route::patch('/profile/{user}/complete/update',[CheckoutController::class, 'save']);
     Route::get('/plan/{plan_id}/checkout/{checkout_option}/trial/expires', [CheckoutController::class, 'trial_expires_checkout']);
-    Route::get('/thankyou/promo-plan/{checkout_option?}', [CheckoutController::class, 'thankyou_promo_plan']);
-    Route::get('/thankyou/regular-plan/{checkout_option?}', [CheckoutController::class, 'thankyou_regular_plan']);
+    Route::get('/thankyou/{checkout_option?}', [CheckoutController::class, 'thankyou_promo_plan']);
+    Route::get('thankyoutrial/{checkout_option?}', [CheckoutController::class, 'thankyou_regular_plan']);
 });
 
 //routes for dashboard

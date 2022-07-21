@@ -44,9 +44,9 @@ class CheckoutController extends Controller
 
         if($checkout_option == '1')
         {
-           return redirect('/thankyou/regular-plan');
+           return redirect('/thankyou/');
         }else{
-           return redirect('/thankyou/promo-plan');
+           return redirect('/thankyoutrial');
         }
         
        }catch(\Exception $e)
@@ -68,7 +68,7 @@ class CheckoutController extends Controller
     public function thankyou_promo_plan($checkout_option="2")
     {
         return view('checkout.thankyou',[
-            'message' => 'Our For Professional Plan'
+            'message' => 'Our Professional Plan'
         ]);
     }
 
