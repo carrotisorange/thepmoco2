@@ -57,13 +57,13 @@ class CheckoutComponent extends Component
             {
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
                 ->charge_user_account(
-                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, 950-DiscountCode::find($this->discount_code)->discount, 6
+                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, 950-DiscountCode::find($this->discount_code)->discount, 6, Carbon::now()->addMonth()
                 );
 
             }else{
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
                 ->charge_user_account(
-                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 1
+                    $external_id,$this->email, $this->mobile_number, $this->name, Plan::find($this->plan_id)->plan, Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 1, Carbon::now()
                 );
             }
 
