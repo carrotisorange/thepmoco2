@@ -11,6 +11,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use Illuminate\Auth\Events\Registered;
+use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
@@ -20,7 +21,8 @@ class CheckoutController extends Controller
         return view('checkout.create', [
             'plan_id' => $plan_id,
             'checkout_option' => $checkout_option,
-            'discount_code' => $discount_code
+            'discount_code' => $discount_code,
+           
         ]);
     }
 
@@ -29,7 +31,7 @@ class CheckoutController extends Controller
         return view('checkout.thankyou');
     }
 
-    public function chooseplanfromlandingpage($plan_id, $checkout_option, $discount_code){
+    public function chooseplanfromlandingpage($plan_id, $checkout_option, $discount_code='none'){
 
         User::where('id', auth()->user()->id)
          ->update([
@@ -45,8 +47,8 @@ class CheckoutController extends Controller
     }
 
     public function charge_user_account($external_id, $email, $mobile_number, $name, $description, $amount, $total_recurrence, $start_date)
-    {
-        Xendit::setApiKey('xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34');
+    {     
+        Xendit::setApiKey('xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ');
 
         $params = [
             'external_id' => $external_id,
@@ -54,7 +56,7 @@ class CheckoutController extends Controller
             'description' => $description,
             'amount' => $amount,
             'interval' => 'MONTH',
-            //'total_recurrence' => $total_recurrence,
+            'total_recurrence' => $total_recurrence,
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
@@ -114,5 +116,9 @@ class CheckoutController extends Controller
         event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function trial_expires_checkout(){
+        
     }
 }

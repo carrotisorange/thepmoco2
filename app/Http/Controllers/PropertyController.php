@@ -43,9 +43,9 @@ class PropertyController extends Controller
         Session::forget('property_name');
     }
 
-    public function is_user_pending()
+    public function is_trial_expire()
     {
-        if(auth()->user()->status == 'pending'){
+        if(auth()->user()->trial_ends_at <= Carbon::now()){
             return true; 
         }else{ 
             return false; 
@@ -73,12 +73,6 @@ class PropertyController extends Controller
     public function index()
     {
         $this->destroy_property_session();
-
-        if($this->is_user_pending()){
-            return redirect('/plan/1/checkout/1');
-        }elseif($this->is_user_interested()){
-            return redirect('https://www.thepropertymanager.online/plans-pricing');
-        }
 
         if($this->is_property_exist()){
            return redirect('/property/'.Str::random(8).'/create');  
@@ -399,20 +393,11 @@ class PropertyController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
-
-    public function is_trial_expire()
-    {
-        if(auth()->user()->trial_ends_at < Carbon::now()){
-           return true;
-        }else{
-            return false;
-        }
-    }
     public function show(Property $property)
     {  
-        if($this->is_trial_expire()){
-            return redirect('/plan/1/checkout/1');
-        }
+         if($this->is_trial_expire()){
+            return redirect('/plan/3/checkout/1/get');
+         }
 
         session(['property' => $property->uuid]);
         session(['property_name' => $property->property]);

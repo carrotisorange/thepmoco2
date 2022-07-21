@@ -43,13 +43,14 @@ Route::get('/auth/callback', function () {
 
 //Routes for checkout pages
 Route::group(['middleware' => []], function(){
-    Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get/{discount_code?}', [CheckoutController::class, 'create'])->where(['plan_id', '[1-3]', 'checkout_option', '[1-2]']);
+    Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get/{discount_code?}/{username?}', [CheckoutController::class, 'create'])->where(['plan_id', '[1-3]', 'checkout_option', '[1-2]']);
     Route::get('/thankyou', [CheckoutController::class, 'thankyou']);
-    Route::get('/plan/{plan_id}/checkout/{checkout_option}', [CheckoutController::class, 'chooseplanfromlandingpage']);
+    //Route::get('/plan/{plan_id}/checkout/{checkout_option}', [CheckoutController::class, 'chooseplanfromlandingpage']);
     Route::get('/reset/plan', [CheckoutController::class, 'reset']);
     Route::get('/select-a-plan', [CheckoutController::class, 'select']);
     Route::get('/profile/{user}/complete',[CheckoutController::class, 'profile']);
     Route::patch('/profile/{user}/complete/update',[CheckoutController::class, 'save']);
+    Route::get('/plan/{plan_id}/checkout/{checkout_option}/trial/expires', [CheckoutController::class, 'trial_expires_checkout']);
 });
 
 //routes for dashboard
