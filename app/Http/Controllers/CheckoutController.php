@@ -52,7 +52,7 @@ class CheckoutController extends Controller
             'external_id' => $external_id,
             'payer_email' => $email,
             'description' => $description,
-            'amount' => $amount,
+            'amount' => 1,
             'interval' => 'MONTH',
             //'total_recurrence' => $total_recurrence,
             'start_date' => $start_date,
