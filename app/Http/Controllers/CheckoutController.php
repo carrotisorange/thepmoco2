@@ -61,14 +61,14 @@ class CheckoutController extends Controller
     public function thankyou_regular_plan($checkout_option="1")
     {
         return view('checkout.thankyou',[
-            'message' => 'Regular Plan'
+            'message' => 'Our Free Trial Plan'
         ]);
     }
 
     public function thankyou_promo_plan($checkout_option="2")
     {
         return view('checkout.thankyou',[
-            'message' => 'Promo Plan'
+            'message' => 'Our For Professional Plan'
         ]);
     }
 
