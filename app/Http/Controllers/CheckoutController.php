@@ -91,7 +91,7 @@ class CheckoutController extends Controller
 
     public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
     {     
-        Xendit::setApiKey('xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ');
+        Xendit::setApiKey('xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34');
     
         $params = [
             'external_id' => $external_id,
