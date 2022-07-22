@@ -14,7 +14,6 @@ use Illuminate\Auth\Events\Registered;
 use Carbon\Carbon;
 use App\Models\Subscription;
 use DB;
-use Session;
 
 class CheckoutController extends Controller
 {
@@ -28,13 +27,11 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function show_payment_success_page()
+    public function show_payment_success_page($temporary_username)
     {
        try{
 
         DB::beginTransaction();
-
-        $temporary_username = Session::get('temporary_username');
 
         $user = User::find($temporary_username);
 
@@ -93,7 +90,7 @@ class CheckoutController extends Controller
 
     public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
     {     
-        Xendit::setApiKey('xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ');
+        Xendit::setApiKey('xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34');
     
         $params = [
             'external_id' => $external_id,
@@ -105,9 +102,9 @@ class CheckoutController extends Controller
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
-            //  'success_redirect_url' => '127.0.0.1:8000/success/',
-            //  'failure_redirect_url' => '127.0.0.1:8000/select-a-plan',
-            'success_redirect_url' => 'https://thepmo.co/success/',
+             //'success_redirect_url' => '127.0.0.1:8000/success/'.$temporary_username,
+            // 'failure_redirect_url' => '127.0.0.1:8000/select-a-plan',
+            'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username,
             'failure_redirect_url' => 'https://thepmo.co//select-a-plan',
             'customer'=> [
                     'given_name'=> $name,
