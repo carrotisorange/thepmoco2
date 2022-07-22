@@ -21,7 +21,7 @@
                 <p class="text-gray-700 text-base mb-4">
                    The Property Manager Online will help you to simplify your rental property operations.
                 </p>
-                <p class="text-gray-600"><x-button onclick="window.location.href='/profile/{{ Session::get('temporary_username') }}/complete'">Start Now</x-button></p>
+                <p class="text-gray-600"><x-button onclick="window.location.href='/profile/{{ $temporary_username }}/complete'">Start Now</x-button></p>
             </div>
         </div>
     </div>

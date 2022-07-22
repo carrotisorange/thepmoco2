@@ -2,17 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\SendThankyouMailToUser;
 use App\Models\CheckoutOption;
 use Livewire\Component;
-use App\Models\User;
 use App\Models\Plan;
-use App\Models\Subscription;
 use DB;
-use Xendit\Xendit;
 use Str;
-use Illuminate\Support\Facades\Mail;
-use Carbon\Carbon;
 use App\Models\DiscountCode;
 
 class CheckoutComponent extends Component
@@ -76,30 +70,24 @@ class CheckoutComponent extends Component
             {
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
                     $temporary_username, 
-                    $this->discount_code,
                     $external_id,
                     Plan::find($this->plan_id)->description,
                     $this->email, 
                     $this->mobile_number, 
                     $this->name, 
-                    Plan::find($this->plan_id)->plan,
                     950-DiscountCode::find($this->discount_code)->discount, 
                     6, 
-                    $this->checkout_option,
                 );
             }else{
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
                     $temporary_username, 
-                    $this->discount_code, 
                     $external_id,
                     Plan::find($this->plan_id)->description,
                     $this->email, 
                     $this->mobile_number, 
                     $this->name, 
-                    Plan::find($this->plan_id)->plan, 
                     Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 
                     1, 
-                    $this->checkout_option,
                 );
             }
 
@@ -112,7 +100,6 @@ class CheckoutComponent extends Component
         catch(\Exception $e)
         {   
             DB::rollback();
-            ddd($e);
 
             return back()->with('error','Cannot complete your action.');
         }

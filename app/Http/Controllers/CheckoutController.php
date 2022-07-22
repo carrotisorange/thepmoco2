@@ -13,7 +13,6 @@ use Illuminate\Validation\Rule;
 use Illuminate\Auth\Events\Registered;
 use Carbon\Carbon;
 use App\Models\Subscription;
-use Session;
 use DB;
 
 class CheckoutController extends Controller
@@ -42,9 +41,9 @@ class CheckoutController extends Controller
 
         if($user->checkout_option == '1')
         {
-           return redirect('/thankyou/');
+           return redirect('/thankyou/'.$temporary_username);
         }else{
-           return redirect('/thankyoutrial');
+           return redirect('/thankyoutrial/'.$temporary_username);
         }
         
        }catch(\Exception $e)
@@ -55,17 +54,19 @@ class CheckoutController extends Controller
        }    
     }
 
-    public function show_thankyou_regular_plan_page($checkout_option="1")
+    public function show_thankyou_regular_plan_page($temporary_username)
     {
         return view('checkout.thankyou',[
-            'message' => 'Our Free Trial Plan'
+            'message' => 'Our Free Trial Plan',
+            'temporary_username' => $temporary_username
         ]);
     }
 
-    public function show_thankyou_promo_plan_page($checkout_option="2")
+    public function show_thankyou_promo_plan_page($temporary_username)
     {
         return view('checkout.thankyou',[
-            'message' => 'Our Professional Plan'
+            'message' => 'Our Professional Plan',
+            'temporary_username' => $temporary_username
         ]);
     }
 
@@ -98,7 +99,7 @@ class CheckoutController extends Controller
         return view('checkout.select');
     }
 
-    public function charge_user_account($temporary_username, $discount_code, $external_id, $description, $email, $mobile_number, $name, $plan_id, $amount, $total_recurrence, $checkout_option)
+    public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
     {     
         Xendit::setApiKey('xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ');
     
@@ -112,10 +113,10 @@ class CheckoutController extends Controller
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
-            // 'success_redirect_url' => '127.0.0.1:8000/success/'.$temporary_username,
-            // 'failure_redirect_url' => '127.0.0.1:8000/select-a-plan',
-            'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username,
-            'failure_redirect_url' => 'https://thepmo.co//select-a-plan',
+            'success_redirect_url' => '127.0.0.1:8000/success/'.$temporary_username,
+            'failure_redirect_url' => '127.0.0.1:8000/select-a-plan',
+            // 'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username,
+            // 'failure_redirect_url' => 'https://thepmo.co//select-a-plan',
             'customer'=> [
                     'given_name'=> $name,
                     'mobile_number' => $mobile_number,
