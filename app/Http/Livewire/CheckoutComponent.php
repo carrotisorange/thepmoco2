@@ -94,8 +94,6 @@ class CheckoutComponent extends Component
             DB::commit();
 
             return redirect($last_created_invoice_url);
-
-            //return redirect('/thankyou', 'Payment is successfully processed.');
         }
         catch(\Exception $e)
         {   

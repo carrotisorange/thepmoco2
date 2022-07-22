@@ -17,6 +17,24 @@ use DB;
 
 class CheckoutController extends Controller
 {
+    public function store_subscription($user_id, $plan_id, $external_id)
+    {
+        Subscription::firstOrCreate([
+            'user_id' => $user_id,
+            'plan_id' => $plan_id,
+            'status' => 'active',
+            'price' => '1',
+            'quantity' => 1,
+            'trial_ends_at' => Carbon::now()->addMonth(),
+            'external_id' => $external_id,
+        ]);
+    }
+
+    public function show_select_plan_page()
+    {
+        return view('checkout.select');
+    }
+
     public function show_checkout_page($plan_id=1,$checkout_option=1, $discount_code='none')
     {
         return view('checkout.create', [
@@ -70,24 +88,6 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function store_subscription($user_id, $plan_id, $external_id)
-    {
-        Subscription::firstOrCreate([
-            'user_id' => $user_id,
-            'plan_id' => $plan_id,
-            'status' => 'active',
-            'price' => '1',
-            'quantity' => 1,
-            'trial_ends_at' => Carbon::now()->addMonth(),
-            'external_id' => $external_id,
-        ]);
-    }
-
-    public function show_select_plan_page()
-    {
-        return view('checkout.select');
-    }
-
     public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
     {     
         Xendit::setApiKey('xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34');
@@ -96,7 +96,7 @@ class CheckoutController extends Controller
             'external_id' => $external_id,
             'payer_email' => $email,
             'description' => $description,
-            'amount' => 1,
+            'amount' => $amount,
             'interval' => 'MONTH',
             'total_recurrence' => $total_recurrence,
             //'start_date' => $start_date,
