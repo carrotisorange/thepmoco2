@@ -40,4 +40,10 @@ return [
         'redirect' => 'http://127.0.0.1:8000/callback-url',
     ],
 
+    'xendit' => [
+        'xendit_secret_key_prod' => env('XENDIT_SECRET_KEY_PROD'),
+        'xendit_public_key' => env('XENDIT_PUBLIC_KEY'),
+        'xendit_secret_key_dev' => env('XENDIT_SECRET_KEY_DEV')
+    ],
+
 ];

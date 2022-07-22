@@ -43,16 +43,13 @@ Route::get('/auth/callback', function () {
 
 //Routes for checkout pages
 Route::group(['middleware' => []], function(){
-    Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get/{discount_code?}/{username?}', [CheckoutController::class, 'create'])->where(['plan_id', '[1-3]', 'checkout_option', '[1-2]']);
-    Route::get('/success/{name}/{temporary_username}/{external_id}/{email}/{mobile_number}/{discount_code}/{checkout_option}/{plan_id}', [CheckoutController::class,'success']);
-    //Route::get('/plan/{plan_id}/checkout/{checkout_option}', [CheckoutController::class, 'chooseplanfromlandingpage']);
-    Route::get('/reset/plan', [CheckoutController::class, 'reset']);
-    Route::get('/select-a-plan', [CheckoutController::class, 'select']);
-    Route::get('/profile/{user}/complete',[CheckoutController::class, 'profile']);
-    Route::patch('/profile/{user}/complete/update',[CheckoutController::class, 'save']);
-    Route::get('/plan/{plan_id}/checkout/{checkout_option}/trial/expires', [CheckoutController::class, 'trial_expires_checkout']);
-    Route::get('/thankyou/{checkout_option?}', [CheckoutController::class, 'thankyou_promo_plan']);
-    Route::get('thankyoutrial/{checkout_option?}', [CheckoutController::class, 'thankyou_regular_plan']);
+    Route::get('/plan/{plan_id?}/checkout/{checkout_option?}/get/{discount_code?}/{username?}', [CheckoutController::class, 'show_checkout_page'])->where(['plan_id', '[1-3]', 'checkout_option', '[1-2]']);
+    Route::get('/success/{username}', [CheckoutController::class,'show_payment_success_page']);
+    Route::get('/select-a-plan/', [CheckoutController::class, 'show_select_plan_page']);
+    Route::get('/profile/{user}/complete',[CheckoutController::class, 'show_complete_profile_page']);
+    Route::patch('/profile/{user}/complete/update',[CheckoutController::class, 'update_user_profile']);
+    Route::get('/thankyou/{checkout_option?}', [CheckoutController::class, 'show_thankyou_promo_plan_page']);
+    Route::get('thankyoutrial/{checkout_option?}', [CheckoutController::class, 'show_thankyou_regular_plan_page']);
 });
 
 //routes for dashboard

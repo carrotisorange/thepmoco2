@@ -18,7 +18,7 @@ use DB;
 
 class CheckoutController extends Controller
 {
-    public function create($plan_id=1,$checkout_option=1, $discount_code='none')
+    public function show_checkout_page($plan_id=1,$checkout_option=1, $discount_code='none')
     {
         return view('checkout.create', [
             'plan_id' => $plan_id,
@@ -28,21 +28,19 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function success($name, $temporary_username, $external_id, $email, $mobile_number, $discount_code, $checkout_option, $plan_id)
+    public function show_payment_success_page($temporary_username)
     {
        try{
 
         DB::beginTransaction();
 
-        $user_id = $this->store_user($name, $temporary_username, $external_id, $email, $mobile_number, $discount_code, $checkout_option, $plan_id);
+        $user = User::find($temporary_username);
 
-        $user_info = User::find($user_id);
-
-        $this->store_subscription($user_info->id, $user_info->plan_id, $user_info->external_id);
+        $this->store_subscription($user->id, $user->plan_id, $user->external_id);
 
         DB::commit();
 
-        if($checkout_option == '1')
+        if($user->checkout_option == '1')
         {
            return redirect('/thankyou/');
         }else{
@@ -54,53 +52,21 @@ class CheckoutController extends Controller
             DB::rollback();
 
             return back()->with('Cannot perform your action');
-       }
-        
+       }    
     }
 
-    public function thankyou_regular_plan($checkout_option="1")
+    public function show_thankyou_regular_plan_page($checkout_option="1")
     {
         return view('checkout.thankyou',[
             'message' => 'Our Free Trial Plan'
         ]);
     }
 
-    public function thankyou_promo_plan($checkout_option="2")
+    public function show_thankyou_promo_plan_page($checkout_option="2")
     {
         return view('checkout.thankyou',[
             'message' => 'Our Professional Plan'
         ]);
-    }
-
-    public function store_user($name, $temporary_username, $external_id, $email, $mobile_number, $discount_code, $checkout_option, $plan_id)
-    {
-        
-            $user_id = User::insertGetId
-                (
-                    [
-                        'name' => $name,
-                        'mobile_number' => $mobile_number,
-                        'email' => $email,
-                        'role_id' => '5',
-                        'username' => $temporary_username,
-                        'external_id' => $external_id,
-                        'checkoutoption_id' => $checkout_option,
-                        'plan_id' => $plan_id,
-                        'discount_code' => $discount_code,
-                        'trial_ends_at' => Carbon::now()->addMonth(6),
-                    ]
-            );
-        
-            if($checkout_option == '1')
-            {
-                 User::where('id', $user_id)
-                 ->where('checkoutoption_id', $checkout_option)
-                 ->update([
-                    'trial_ends_at' => Carbon::now()->addMonth()
-                 ]);
-            }
-            
-         return $user_id;
     }
 
     public function store_subscription($user_id, $plan_id, $external_id)
@@ -127,15 +93,15 @@ class CheckoutController extends Controller
         return redirect('/plan/'.$plan_id.'/checkout/'.$checkout_option.'/get'.$discount_code);
     }
 
-    public function select()
+    public function show_select_plan_page()
     {
         return view('checkout.select');
     }
 
     public function charge_user_account($temporary_username, $discount_code, $external_id, $description, $email, $mobile_number, $name, $plan_id, $amount, $total_recurrence, $checkout_option)
     {     
-        Xendit::setApiKey('xnd_production_52fkoBURt8c7bakQQ0yrlTBIvj4EO6pivzssLgQPK5kDVOziWettxaILUGVj34');
-
+        Xendit::setApiKey('xnd_development_s3XST6NK13S4A3gYjgNoaJMvT5X5bSBSAiHJhzne02DxonZ2v18tOjt3VmJ');
+    
         $params = [
             'external_id' => $external_id,
             'payer_email' => $email,
@@ -146,9 +112,9 @@ class CheckoutController extends Controller
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
-                // 'success_redirect_url' => 'https://thepmo.co/thankyou',
-                // 'failure_redirect_url' => 'https://thepmo.co/select-a-plan',
-            'success_redirect_url' => 'https://thepmo.co/success/'.$name.'/'.$temporary_username.'/'.$external_id.'/'.$email.'/'.$mobile_number.'/'.$discount_code.'/'.$checkout_option.'/'.$plan_id,
+            // 'success_redirect_url' => '127.0.0.1:8000/success/'.$temporary_username,
+            // 'failure_redirect_url' => '127.0.0.1:8000/select-a-plan',
+            'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username,
             'failure_redirect_url' => 'https://thepmo.co//select-a-plan',
             'customer'=> [
                     'given_name'=> $name,
@@ -168,7 +134,7 @@ class CheckoutController extends Controller
         return $createRecurring['last_created_invoice_url'];
     }
 
-    public function profile(User $user)
+    public function show_complete_profile_page(User $user)
     {  
         if($user->password)
         {
@@ -180,7 +146,7 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function save(User $user, Request $request){
+    public function update_user_profile(User $user, Request $request){
 
         $request->validate([
           //'name' => ['required', 'string', 'max:255'],
@@ -204,9 +170,5 @@ class CheckoutController extends Controller
         event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOME);
-    }
-
-    public function trial_expires_checkout(){
-        
     }
 }

@@ -57,7 +57,6 @@ class CheckoutComponent extends Component
         return Str::random(12);
     }
 
-
     public function processPayment()
     {
         sleep(1);
@@ -65,18 +64,17 @@ class CheckoutComponent extends Component
         $validatedData = $this->validate();
 
         $external_id = $this->generate_external_id($this->plan_id);
-    
-        $temporary_username = $this->generate_temporary_username();
 
-        session(['temporary_username' => $temporary_username]);
-       
+        $temporary_username = $this->generate_temporary_username();
+        
+        app('App\Http\Controllers\UserController')->store($this->name, $temporary_username, $external_id,$this->email, $this->mobile_number, $this->discount_code, $this->checkout_option, $this->plan_id);
+
         try{
             DB::beginTransaction();
 
             if($this->checkout_option == '1')
             {
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
-                ->charge_user_account(
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
                     $temporary_username, 
                     $this->discount_code,
                     $external_id,
@@ -90,8 +88,7 @@ class CheckoutComponent extends Component
                     $this->checkout_option,
                 );
             }else{
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')
-                ->charge_user_account(
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
                     $temporary_username, 
                     $this->discount_code, 
                     $external_id,

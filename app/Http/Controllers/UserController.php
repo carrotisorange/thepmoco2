@@ -38,9 +38,35 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($name, $temporary_username, $external_id, $email, $mobile_number, $discount_code, $checkout_option, $plan_id)
     {
-        //
+        session(['temporary_username' => $temporary_username]);
+
+        $user_id = User::insertGetId(
+            [
+                'name' => $name,
+                'mobile_number' => $mobile_number,
+                'email' => $email,
+                'role_id' => '5',
+                'username' => $temporary_username,
+                'external_id' => $external_id,
+                'checkoutoption_id' => $checkout_option,
+                'plan_id' => $plan_id,
+                'discount_code' => $discount_code,
+                'trial_ends_at' => Carbon::now()->addMonth(6),
+            ]
+        );
+
+         if($checkout_option == '1')
+         {
+            User::where('id', $user_id)
+            ->where('checkoutoption_id', $checkout_option)
+            ->update([
+                    'trial_ends_at' => Carbon::now()->addMonth()
+            ]);
+         }
+
+         return $user_id;
     }
 
     /**
