@@ -112,7 +112,7 @@
                             <x-td>{{ $selected_plan->plan }}</x-td>
                         </tr>
                         <tr>
-                            <x-th>Description</x-th>
+                            <x-th>Features</x-th>
                             <x-td>{{ $selected_plan->description }}</x-td>
                         </tr>
                         <tr>
