@@ -29,6 +29,7 @@ class CheckoutController extends Controller
 
     public function show_payment_success_page($temporary_username)
     {
+
        try{
 
         DB::beginTransaction();
@@ -83,17 +84,6 @@ class CheckoutController extends Controller
         ]);
     }
 
-
-    public function chooseplanfromlandingpage($plan_id, $checkout_option, $discount_code='none'){
-
-        User::where('id', auth()->user()->id)
-         ->update([
-            'status' => 'pending'
-        ]);
-
-        return redirect('/plan/'.$plan_id.'/checkout/'.$checkout_option.'/get'.$discount_code);
-    }
-
     public function show_select_plan_page()
     {
         return view('checkout.select');
@@ -113,10 +103,10 @@ class CheckoutController extends Controller
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
-            'success_redirect_url' => '127.0.0.1:8000/success/'.$temporary_username,
-            'failure_redirect_url' => '127.0.0.1:8000/select-a-plan',
-            // 'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username,
-            // 'failure_redirect_url' => 'https://thepmo.co//select-a-plan',
+            // 'success_redirect_url' => '127.0.0.1:8000/success/'.$temporary_username,
+            // 'failure_redirect_url' => '127.0.0.1:8000/select-a-plan',
+            'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username,
+            'failure_redirect_url' => 'https://thepmo.co//select-a-plan',
             'customer'=> [
                     'given_name'=> $name,
                     'mobile_number' => $mobile_number,
