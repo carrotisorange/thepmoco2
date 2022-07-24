@@ -49,19 +49,6 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request)
     {
         app('App\Http\Controllers\SessionController')->update();
-        //   DB::table('sessions')
-        //   ->where('user_id', auth()->user()->id)
-        //   ->whereDate('created_at', Carbon::today())
-        //   ->update([
-        //   'updated_at' => now()
-        //   ]);
-
-        //    DB::table('timestamps')
-        //    ->where('user_id', auth()->user()->id)
-        //    ->whereDate('created_at', Carbon::today())
-        //    ->update([
-        //    'updated_at' => now()
-        //    ]);
 
         Auth::guard('web')->logout();
 

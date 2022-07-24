@@ -11,11 +11,19 @@ class SessionController extends Controller
 {
     public function store()
     {
-        Session::firstOrCreate([
-            'user_id' => auth()->user()->id,
-            'created_at' => now(),
-            'ip_address' => request()->ip(),
-        ]);
+        $sessions = DB::table('sessions')
+         ->where('user_id', auth()->user()->id)
+         ->whereDate('created_at', Carbon::today())
+         ->count();
+
+        if($sessions<=0) 
+        { 
+            DB::table('sessions')->insert([
+             'user_id' => auth()->user()->id,
+             'created_at' => now(),
+             'ip_address' => request()->ip(),
+            ]);
+        }
     }
 
     public function update()
