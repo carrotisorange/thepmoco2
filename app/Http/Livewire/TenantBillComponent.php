@@ -8,9 +8,10 @@ use App\Models\Bill;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Collection;
-use Barryvdh\DomPDF\Facade\PDF;
+use Carbon\Carbon;
 use DB;
 use Session;
+use App\Models\Property;
 
 class TenantBillComponent extends Component
 {
@@ -43,10 +44,52 @@ class TenantBillComponent extends Component
 
          }catch(\Exception $e)
          { 
-            ddd($e);
+            DB::rollback();
+
             return back()->with('error','Cannot perform your action.');
          }
      }
+
+   public function payBills()
+   {
+      $collection_ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
+
+      $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
+
+      for($i=0; $i<count($this->selectedBills); $i++){
+        $collection_id =  Collection::insertGetId([
+            'tenant_uuid' => $this->tenant->uuid,
+            'unit_uuid' => Bill::find($this->selectedBills[$i])->unit_uuid,
+            'property_uuid' => Session::get('property'),
+            'user_id' => auth()->user()->id,
+            'bill_id' => Bill::find($this->selectedBills[$i])->id,
+            'bill_reference_no' => Tenant::find($this->tenant->uuid)->bill_reference_no,
+            'form' => 'cash',
+            'collection' => 0,
+            'batch_no' => $collection_batch_no,
+            'ar_no' => $collection_ar_no,
+            'is_posted' => 0
+         ]);
+
+         Bill::where('id', $this->selectedBills[$i])
+         ->where('tenant_uuid', $this->tenant->uuid)
+         ->update([
+            'batch_no' => $collection_batch_no
+         ]);
+
+         $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
+
+         if($particular_id === 3 || $particular_id === 4)
+         {
+             Collection::where('id', $collection_id)
+             ->update([
+               'is_deposit' => 1
+             ]);
+         }
+      }
+
+      return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
+   }
 
      public function unpayBills()
      {
@@ -65,7 +108,7 @@ class TenantBillComponent extends Component
           $this->selectedBills = [];
 
           return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bill is successfully marked as unpaid.');
-        
+
      }
 
    public function updatedSelectAll($value)

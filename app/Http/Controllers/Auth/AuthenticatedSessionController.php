@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Carbon\Carbon;
+use App\Models\Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -34,20 +35,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-         $sessions = DB::table('sessions')
-         ->where('user_id', auth()->user()->id)
-         ->whereDate('created_at', Carbon::today())
-         ->count();
-
-        if($sessions<=0) 
-        { 
-            DB::table('sessions')->insert([
-             'id' => DB::table('sessions')->max('id')*10,
-             'user_id' => auth()->user()->id,
-             'created_at' => now(),
-             'ip_address' => request()->ip(),
-            ]);
-        }
+        app('App\Http\Controllers\SessionController')->store();
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -60,20 +48,20 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        
-          DB::table('sessions')
-          ->where('user_id', auth()->user()->id)
-          ->whereDate('created_at', Carbon::today())
-          ->update([
-          'updated_at' => now()
-          ]);
+        app('App\Http\Controllers\SessionController')->update();
+        //   DB::table('sessions')
+        //   ->where('user_id', auth()->user()->id)
+        //   ->whereDate('created_at', Carbon::today())
+        //   ->update([
+        //   'updated_at' => now()
+        //   ]);
 
-           DB::table('timestamps')
-           ->where('user_id', auth()->user()->id)
-           ->whereDate('created_at', Carbon::today())
-           ->update([
-           'updated_at' => now()
-           ]);
+        //    DB::table('timestamps')
+        //    ->where('user_id', auth()->user()->id)
+        //    ->whereDate('created_at', Carbon::today())
+        //    ->update([
+        //    'updated_at' => now()
+        //    ]);
 
         Auth::guard('web')->logout();
 

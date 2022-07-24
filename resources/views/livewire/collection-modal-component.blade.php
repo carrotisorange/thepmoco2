@@ -23,51 +23,30 @@
                         <tr>
                             <x-th>#</x-th>
                             <x-th>Particular</x-th>
-                            <x-th>Start</x-th>
-                            <x-th>End</x-th>
-                            <x-th>Amount Due</x-th>
-                            
+                            <x-th>Period</x-th>
+                            <x-th>Amount</x-th>
                             <x-th>Payment</x-th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                       @forelse ($collections as $index => $collection)
-                        <div wire:key="collection-field-{{ $collection->id }}">
+                        @foreach ($collections as $index => $item)
                         <tr>
+                            <x-td>{{ $item->bill_no }}</x-td>
+                            <x-td>{{$item->particular->particular }}</x-td>
+                            <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
+                                Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
                             <x-td>
-                                <x-table-input form="create-form" wire:model="collections.{{ $index }}.bill_no" type="number" step="0.001" required
-                                    readonly />
-                            </x-td>
-                            <x-td>
-                                <x-table-input form="create-form" wire:model="collections.{{ $index }}.particular_id" type="number" step="0.001" required
-                                    readonly />
-                            </x-td>
-                            <x-td>
-                                <x-table-input form="create-form" wire:model="collections.{{ $index }}.start" type="number" step="0.001" required
-                                    readonly />
-                            </x-td>
-
-                            <x-td>
-                                <x-table-input form="create-form" wire:model="collections.{{ $index }}.end" type="number" step="0.001" required
-                                    readonly />
-                            </x-td>
-
-                            {{-- <x-td>{{Carbon\Carbon::parse($collection->start)->format('M d,
-                                Y').'-'.Carbon\Carbon::parse($collection->end)->format('M d, Y') }}</x-td>
-                            <x-td> --}}
-                            <x-td>
-                                <x-table-input form="create-form" wire:model="collections.{{ $index }}.bill" type="number"
+                                <x-table-input form="create-form" wire:model.lazy="amount.{{ $index }}" type="number"
                                     step="0.001" required readonly/>
                             </x-td>
                             <x-td>
-                                <x-table-input form="create-form" wire:model.lazy="" type="number"
+                                <x-table-input form="create-form" wire:model.lazy="bill.{{ $index }}" type="number"
                                     step="0.001" required />
                             </x-td>
                             @endforeach
                         </tr>
                     </tbody>
                 </table>
-                </div>
             </div>
 
             <div class="mt-5 flex flex-wrap -mx-3 mb-6">

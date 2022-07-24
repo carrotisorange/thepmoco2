@@ -107,7 +107,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
         Route::prefix('{tenant}')->group(function(){
             Route::get('bills', [TenantBillController::class, 'index'])->name('tenant');
+            Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit'])->name('tenant');
+            Route::patch('bills/{batch_no}/pay/update', [TenantCollectionController::class, 'update']);
             Route::get('collections', [TenantCollectionController::class,'index'])->name('tenant');
+            Route::get('collection/{batch_no}', [TenantCollectionController::class,'destroy']);
             Route::get('contracts', [TenantContractController::class,'index'])->name('tenant');
             Route::get('delete', [TenantController::class, 'destroy']);
             Route::post('bill/store', [TenantBillController::class, 'store']);

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 class Bill extends Model
 {
@@ -51,4 +51,11 @@ class Bill extends Model
          : static::where('reference_no','like', '%'.$search.'%');
         // }
     }
+
+    //  protected static function booted()
+    //  {
+    //     static::addGlobalScope('ancient', function (Builder $builder) {
+    //     $builder->where('created_at', '<', now()->subDays(20));
+    //      });
+    //  }
  }

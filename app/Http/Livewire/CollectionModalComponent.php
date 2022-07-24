@@ -22,6 +22,9 @@ class CollectionModalComponent extends ModalComponent
     use WithFileUploads;
     
     public $selectedBills = [];
+    public $bills;
+
+
     public $bank;
     public $check_no;
     public $created_at;
@@ -30,30 +33,30 @@ class CollectionModalComponent extends ModalComponent
     public $attachment;
     public $tenant;
     public $collections;
-    public $form;
+    public $form = 'cash'; 
     public $bill;
     public $amount;
 
-    public $exportCollection;
+    public $exportCollection = false;
 
     public function mount($selectedBills, $total, $tenant)
     {
         $this->selectedBills = $selectedBills;
-        $this->collections = $this->get_collections();
+        $this->bills = $this->get_bills();
         // $this->collections = Bill::whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->get();
-        $this->form = 'cash';
-        $this->amount = Bill::selectRaw('bill-initial_payment as balance')->whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->pluck('balance');
-        $this->bill = Bill::selectRaw('bill-initial_payment as balance')->whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->pluck('balance');
-        $this->total = $total;
-        $this->collection = $total;
-        $this->created_at = Carbon::now()->format('Y-m-d');
-        $this->tenant = $tenant;
-        $this->exportCollection = false;
+        // $this->amount = Bill::selectRaw('bill-initial_payment as balance')->whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->pluck('balance');
+        // $this->bill = Bill::selectRaw('bill-initial_payment as balance')->whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->pluck('balance');
+        // $this->total = $total;
+        // $this->collection = $total;
+        // $this->created_at = Carbon::now()->format('Y-m-d');
+        // $this->tenant = $tenant;
     }
 
-    public function get_collections()
+    public function get_bills()
     {
-        return Bill::whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->get();
+        return Bill::whereIn('id',$this->selectedBills)
+        ->whereIn('status', ['unpaid', 'partially_paid'])
+        ->get();
     }
 
     protected function rules()
@@ -90,13 +93,13 @@ class CollectionModalComponent extends ModalComponent
 
             $ar = $this->store_ar($collection_ar_no, $collection_batch_no);
 
+            $this->export_ar($ar);
+            
             DB::commit();
             
             $this->resetForm();
 
-            $this->export_ar($ar);
-
-            $this->closeModal();
+            // $this->closeModal();
     
        }catch(\Exception $e)
        {    
@@ -149,12 +152,6 @@ class CollectionModalComponent extends ModalComponent
 
     public function store_collection($validated_data, $collection_ar_no , $collection_batch_no)
     {
-        ddd($this->collections);
-
-        // foreach ($this->collections as $collection) {
-        //     $collection->save();
-        // }
-
         for($i=0; $i<count($this->selectedBills); $i++)
         {     
             if((Bill::find($this->selectedBills[$i])->bill - Bill::find($this->selectedBills[$i])->initial_payment)<=$this->bill[$i])
@@ -175,8 +172,7 @@ class CollectionModalComponent extends ModalComponent
 
                 Bill::find($this->selectedBills[$i])->increment('initial_payment', $this->bill[$i]);
             }
-                //ddd($i.'-'.$this->amount[1]);
-
+    
                 $validated_data['tenant_uuid']= $this->tenant;
                 $validated_data['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
                 $validated_data['property_uuid'] = Session::get('property');

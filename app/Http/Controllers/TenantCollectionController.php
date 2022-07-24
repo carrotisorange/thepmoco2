@@ -29,8 +29,21 @@ class TenantCollectionController extends Controller
         ]);
     }
 
-    public function store(Request $request, Tenant $tenant)
-    {      
+    public function edit(Property $property, Tenant $tenant, $batch_no)
+    {
+      $collections = Bill::where('tenant_uuid', $tenant->uuid)
+      ->where('batch_no', $batch_no)
+      ->get();
+
+      return view('tenants.collections.edit',[
+         'collections' => $collections,
+         'tenant' => $tenant,
+         'batch_no' => $batch_no
+      ]);
+    }
+
+    public function store(Request $request, Property $property, Tenant $tenant, $batch_no)
+    {     
          $attributes = request()->validate([
             'collection' => 'required|integer|min:1',
          ]);
@@ -131,6 +144,45 @@ class TenantCollectionController extends Controller
                55, array(0,0,0),2,2,-30);
 
         return $pdf->download($tenant->tenant.'-ar.pdf');
+     }
+
+     public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
+     {
+   
+         $max = Collection::where('property_uuid', Session::get('property'))
+           ->where('is_posted', false)
+           ->where('batch_no', $batch_no)
+           ->max('id');
+         
+         for($i=0; $i<=$max; $i++)
+         {
+          Collection::where('property_uuid', Session::get('property'))
+           ->where('is_posted', false)
+           ->where('batch_no', $batch_no)
+           ->where('tenant_uuid', $tenant->uuid)
+           ->update([
+              'collection' => $request->input("collection_amount_".$i),
+              'form' => $request->form,
+              ]);
+            // ->get();
+         }
+
+         return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills')->with('success', 'Payment is successfully saved.');
+     }
+
+     public function destroy(Property $property, Tenant $tenant, $batch_no)
+     {
+         Collection::where('tenant_uuid', $tenant->uuid)
+         ->where('batch_no', $batch_no)
+         ->delete();
+
+         Bill::where('tenant_uuid', $tenant->uuid)
+         ->where('batch_no', $batch_no)
+         ->update([
+            'batch_no' => null
+         ]);
+
+         return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills');
      }
 }
 

@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Property;
 use Session;
 use App\Models\Bill;
 use DB;
@@ -23,7 +22,6 @@ class BillEditComponent extends Component
     protected function rules()
     {
         return [
-          
             'bills.*.start' => 'required',
             'bills.*.end' => 'required',
             'bills.*.bill' => 'required',
@@ -127,7 +125,7 @@ class BillEditComponent extends Component
     public function render()
     {
         return view('livewire.bill-edit-component', [
-            'bills' => Property::find(Session::get('property'))->bills->where('batch_no', $this->batch_no),
+            //'bills' => Property::find(Session::get('property'))->bills->where('batch_no', $this->batch_no),
         ]);
     }
 }
