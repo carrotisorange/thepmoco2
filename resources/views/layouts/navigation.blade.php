@@ -7,7 +7,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="/properties">
+                    <a href="/property">
                         <img class="h-24 w-15" src="{{ asset('/brands/full-logo.png') }}" />
                     </a>
                 </div>
@@ -30,33 +30,33 @@
 
                 @can('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/units"
-                        :active="request()->routeIs('units')">
-                        <i class="fa-solid fa-house"></i>&nbspUnits
+                    <x-nav-link href="/property/{{ Session::get('property') }}/unit"
+                        :active="request()->routeIs('unit')">
+                        <i class="fa-solid fa-house"></i>&nbspUnit
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/owners"
-                        :active="request()->routeIs('owners')">
-                        <i class="fa-solid fa-user-tie"></i>&nbspOwners
+                    <x-nav-link href="/property/{{ Session::get('property') }}/owner"
+                        :active="request()->routeIs('owner')">
+                        <i class="fa-solid fa-user-tie"></i>&nbspOwner
                     </x-nav-link>
                 </div>
                 @endcan
                 {{--
                 @can('treasury') --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/tenants"
-                        :active="request()->routeIs('tenants')">
-                        <i class="fa-solid fa-user"></i>&nbspTenants
+                    <x-nav-link href="/property/{{ Session::get('property') }}/tenant"
+                        :active="request()->routeIs('tenant')">
+                        <i class="fa-solid fa-user"></i>&nbspTenant
                     </x-nav-link>
                 </div>
                 {{-- @endcan --}}
 
                 @can('billing')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/bills"
-                        :active="request()->routeIs('bills')">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
+                    <x-nav-link href="/property/{{ Session::get('property') }}/bill"
+                        :active="request()->routeIs('bill')">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBill
                     </x-nav-link>
                 </div>
                 @endcan
@@ -102,23 +102,23 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link href="/properties">
+                        <x-dropdown-link href="/property">
                             <i class="fa-regular fa-building"></i> {{ __('Properties') }}
                         </x-dropdown-link>
                         <x-dropdown-link href="/profile/{{ Auth::user()->username }}/edit">
                             <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                         </x-dropdown-link>
-                        <x-dropdown-link href="/property/{{ Session::get('property') }}/referrals">
-                            <i class="fa-solid fa-user-group"></i> {{ __('Referrals') }}
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/referral">
+                            <i class="fa-solid fa-user-group"></i> {{ __('Referral') }}
                         </x-dropdown-link>
                         <x-dropdown-link
-                            href="/property/{{ Session::get('property') }}/timestamps/{{ Carbon\Carbon::today() }}">
+                            href="/property/{{ Session::get('property') }}/timestamps">
                             <i class="fa-solid fa-user-clock"></i> {{ __('Timestamps') }}
                         </x-dropdown-link>
                         <x-dropdown-link target="_blank" href="/chatify">
                             <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
                         </x-dropdown-link>
-                        <x-dropdown-link href="/profile/{{ Auth::user()->username }}/point">
+                        <x-dropdown-link href="point">
                             <i class="fas fa-coins"></i> {{ __('My Points') }}
                         </x-dropdown-link>
                         <!-- Authentication -->
@@ -168,30 +168,30 @@
             @endcannot
 
             @can('managerandadmin')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/units"
-                :active="request()->routeIs('units')">
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/unit"
+                :active="request()->routeIs('unit')">
                 <i class="fa-solid fa-house"></i>&nbspUnits
             </x-responsive-nav-link>
             @endcan
 
             {{-- @can('treasury') --}}
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenants"
-                :active="request()->routeIs('tenants')">
-                <i class="fa-solid fa-user"></i>&nbspTenants
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/tenant"
+                :active="request()->routeIs('tenant')">
+                <i class="fa-solid fa-user"></i>&nbspTenant
             </x-responsive-nav-link>
             {{-- @endcan --}}
 
             @can('managerandadmin')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owners"
-                :active="request()->routeIs('owners')">
-                <i class="fa-solid fa-user-tie"></i>&nbspOwners
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/owner"
+                :active="request()->routeIs('owner')">
+                <i class="fa-solid fa-user-tie"></i>&nbspOwner
             </x-responsive-nav-link>
             @endcan
 
             @can('billing')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/bills"
-                :active="request()->routeIs('bills')">
-                <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/bill"
+                :active="request()->routeIs('bill')">
+                <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBill
             </x-responsive-nav-link>
             @endcan
 
@@ -208,7 +208,7 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link href="/properties" :active="request()->routeIs('properties')">
+                <x-responsive-nav-link href="/property" :active="request()->routeIs('property')">
                     <i class="fa-regular fa-building"></i> {{ __('Properties') }}
                 </x-responsive-nav-link>
             </div>
@@ -218,7 +218,7 @@
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link target="_blank" href="/profile/{{ Auth::user()->username }}/point">
+                <x-responsive-nav-link target="_blank" href="/point">
                     <i class="fas fa-coins"></i> {{ __('My Points') }}
                 </x-responsive-nav-link>
             </div>

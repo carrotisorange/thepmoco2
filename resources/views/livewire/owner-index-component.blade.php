@@ -22,7 +22,7 @@
                     <x-td>
                         <div class="flex items-center">
                             <div class="flex-shrink-0 h-10 w-10">
-                                <a href="/owner/{{ $owner->uuid }}/edit"><img class="h-10 w-10 rounded-full"
+                                <a href="owner/{{ $owner->uuid }}"><img class="h-10 w-10 rounded-full"
                                         src="/storage/{{ $owner->photo_id }}" alt=""></a>
                             </div>
                             <div class="ml-4">

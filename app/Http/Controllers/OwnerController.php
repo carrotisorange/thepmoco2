@@ -11,6 +11,7 @@ use App\Models\Enrollee;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Models\Property;
 
 class OwnerController extends Controller
 {
@@ -72,14 +73,14 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function show(Owner $owner)
+    public function show(Property $property, Owner $owner)
     {
-        return view('owners.show',[
-            'owner' => $owner,
-            'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
-            'enrollees' => Owner::find($owner->uuid)->enrollees,
+         return view('owners.show',[
+            'owner_details' => $owner,
             'representatives' => Owner::find($owner->uuid)->representatives,
             'banks' => Owner::find($owner->uuid)->banks,
+            'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
+            'enrollees' => Owner::find($owner->uuid)->enrollees, 
         ]);
     }
 
@@ -93,11 +94,10 @@ class OwnerController extends Controller
     {
         return view('owners.edit',[
             'owner_details' => $owner,
-             'representatives' => Owner::find($owner->uuid)->representatives,
-             'banks' => Owner::find($owner->uuid)->banks,
-              'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
-              'enrollees' => Owner::find($owner->uuid)->enrollees,
-             
+            'representatives' => Owner::find($owner->uuid)->representatives,
+            'banks' => Owner::find($owner->uuid)->banks,
+            'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
+            'enrollees' => Owner::find($owner->uuid)->enrollees,
         ]);
     }
 

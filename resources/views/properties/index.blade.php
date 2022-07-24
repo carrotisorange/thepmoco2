@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| Properties')
+    @section('title', 'My Property')
     <x-slot name="labels">
         Welcome &nbsp<b> {{ auth()->user()->username }}</b>!
     </x-slot>

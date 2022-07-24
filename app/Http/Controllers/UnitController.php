@@ -55,8 +55,8 @@ class UnitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $batch_no)
-    {
+    public function store(Property $property, Request $request, $batch_no)
+    {   
         $request->validate([
             'number_of_units' => ['integer', 'required', 'min:1', 'gt:0']
         ]);
@@ -77,7 +77,7 @@ class UnitController extends Controller
 
         app('App\Http\Controllers\PointController')->store(Session::get('property'), $request->number_of_units, 5);
         
-        return redirect('units/'.$batch_no.'/edit')->with('success', $units.' unit is successully created.');
+        return back()->with('success', $units.' unit is successully created.');
     }
 
     /**
@@ -86,15 +86,31 @@ class UnitController extends Controller
      * @param \App\Models\Unit $unit
      * @return \Illuminate\Http\Response
      */
-    public function show(Unit $unit)
+    public function show(Property $property, Unit $unit)
     {
-        return view('units.show', [
-            'unit' => Unit::findOrFail($unit->uuid),
-            'contracts' => Unit::findOrFail($unit->uuid)->contracts,
-            'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales,
-            'bills' => Unit::findOrFail($unit->uuid)->bills,
-            'enrollees' => Unit::findOrFail($unit->uuid)->enrollees
+        $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
+        ->where('property_buildings.property_uuid', Session::get('property'))
+        ->get();
+
+        return view('units.show',[
+            'unit' => $unit,
+            'buildings' => $buildings,
+            'floors' => Floor::all(),
+            'categories' => Category::all(),
+            'statuses' => Status::all(),
+            'contracts' => Unit::findOrFail($unit->uuid)->contracts()->paginate(5),
+            'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales()->paginate(5),
+            'bills' => Unit::findOrFail($unit->uuid)->bills()->paginate(5),
+            'enrollees' => Unit::findOrFail($unit->uuid)->enrollees()->paginate(5)
         ]);
+
+        // return view('units.show', [
+        //     'unit' => Unit::findOrFail($unit->uuid),
+        //     'contracts' => Unit::findOrFail($unit->uuid)->contracts,
+        //     'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales,
+        //     'bills' => Unit::findOrFail($unit->uuid)->bills,
+        //     'enrollees' => Unit::findOrFail($unit->uuid)->enrollees
+        // ]);
     }
 
     /**

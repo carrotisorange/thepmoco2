@@ -40,8 +40,8 @@
                     <x-td>{{ number_format($ar->amount,2) }} ({{ $collections_count }})</x-td>
                     <x-td>
                         <x-button
-                            onclick="window.location.href='/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/export'">
-                            Download
+                            onclick="window.location.href='tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/export'">
+                            Export
                         </x-button>
                     </x-td>
                     @empty

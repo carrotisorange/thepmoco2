@@ -21,6 +21,8 @@ class BillIndexComponent extends Component
 
    public $active_contracts;
 
+   public $batch_no;
+
    public $active_tenants;
 
    public $selectedBills = [];
@@ -31,6 +33,11 @@ class BillIndexComponent extends Component
    public $end;
    public $particular_id = [];
    public $created_at;
+
+   public function mount($batch_no)
+   {
+      $this->batch_no = $batch_no;
+   }
 
    public function updatedSelectAllBills($value)
    {
@@ -79,9 +86,15 @@ class BillIndexComponent extends Component
          ->when($this->particular_id, function($query){
       $query->whereIn('particular_id', $this->particular_id);
       })
+      ->when($this->batch_no, function($query){
+      $query->where('batch_no', $this->batch_no);
+      })
          ->when($this->created_at, function($query){
-      $query->whereDate('created_at', $this->created_at);
+      $query->whereDate('created_at', $this->created_at)
+      ->where('is_posted', true);
+      
       })->paginate(10);
+
    }
 
    public function unpayBills()

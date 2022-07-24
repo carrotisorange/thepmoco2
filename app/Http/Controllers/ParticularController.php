@@ -47,8 +47,9 @@ class ParticularController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-
+    {   
+        return 'asd';
+        
         $particular_attributes = request()->validate([
           'particular_id'=> 'required',
           'minimum_charge' => 'required', 
@@ -81,7 +82,7 @@ class ParticularController extends Controller
 
                 DB::commit();
 
-             return back()->with('success', 'New Particular created successfully.');
+             return back()->with('success', 'Particular is successfully created.');
              } catch (\Throwable $e) {
         
                 DB::rollback();

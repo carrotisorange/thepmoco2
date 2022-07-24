@@ -14,5 +14,11 @@
 
 @livewireScripts()
 
+<script>
+  window.addEventListener('closeModal', event => {
+    $("#modalForm").modal('hide');
+})
+</script>
+
 @livewire('livewire-ui-modal')
 

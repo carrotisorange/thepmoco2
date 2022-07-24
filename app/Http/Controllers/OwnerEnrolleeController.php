@@ -13,7 +13,7 @@ class OwnerEnrolleeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Owner $owner)
+    public function index(Owner $owner)
     {
         return view('owners.enrollees.index',[
             'owner' => Owner::find($owner->uuid),

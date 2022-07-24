@@ -26,7 +26,8 @@ class BillEditComponent extends Component
           
             'bills.*.start' => 'required',
             'bills.*.end' => 'required',
-            'bills.*.bill' => 'required'
+            'bills.*.bill' => 'required',
+            'bills.*.is_posted' => 'required'
         ];
     }
 
@@ -61,7 +62,7 @@ class BillEditComponent extends Component
 
     }
 
-    public function updateForm()
+    public function saveBills()
     {
         sleep(1);
 
@@ -79,7 +80,7 @@ class BillEditComponent extends Component
             $this->selectedBills = [];
 
 
-            session()->flash('success', count($this->bills). ' bill is successfully updated.');
+            session()->flash('success', count($this->bills). ' bill is successfully saved.');
 
         }catch(\Exception $e){
             DB::rollback();
@@ -88,9 +89,38 @@ class BillEditComponent extends Component
         }
     }
 
+    public function postBills()
+    {
+        sleep(1);
+
+        $validatedData = $this->validate();
+
+        try{
+            DB::beginTransaction();
+            
+            Bill::where('property_uuid', Session::get('property'))
+                ->where('is_posted', false)
+                ->where('batch_no', $this->batch_no)
+                ->update([
+                    'is_posted' => true
+                ]);
+
+
+            DB::commit();
+
+            return redirect('/property/'.Session::get('property').'/bill/'.$this->batch_no)->flash('success', count($this->bills). ' bill is successfully posted.');
+
+        }catch(\Exception $e){
+            DB::rollback();
+            
+            session()->flash('error');
+        }
+    }
+
     public function get_bills()
     {
         return Bill::where('property_uuid', Session::get('property'))
+        ->where('is_posted', false)
         ->where('batch_no', $this->batch_no)->get();
     }
 

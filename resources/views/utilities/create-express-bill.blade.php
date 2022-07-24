@@ -15,7 +15,7 @@
                 </button>
             </div>
             <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST"
-                action="/bill/{{ Session::get('property') }}/store/{{ $active_contracts->count() }}/express">
+                action="/property/{{ Session::get('property') }}/bill/express/{{ $active_contracts->count() }}/store">
                 @csrf
 
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">Configure your express bills</h3>

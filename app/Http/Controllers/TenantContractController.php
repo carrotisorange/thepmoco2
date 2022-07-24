@@ -16,8 +16,8 @@ class TenantContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Tenant $tenant)
-{
+    public function index(Property $property, Tenant $tenant)
+    {
         return view('tenants.contracts.index',[
             'tenant' => Tenant::find($tenant->uuid),
             'contracts' => Tenant::find($tenant->uuid)->contracts,

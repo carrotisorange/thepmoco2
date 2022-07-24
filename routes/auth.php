@@ -9,6 +9,18 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+
+//Routes for socialte - allow user to register/login using social media sites (i.e. facebook)
+Route::prefix('/auth')->group(function(){
+    Route::get('redirect', function(){
+    return Socialite::driver('facebook')->redirect();
+    });
+
+    Route::get('callback', function(){
+    $user = Socialite::driver('facebook')->user();
+    });
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -18,6 +30,8 @@ Route::middleware('guest')->group(function () {
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
+
+    Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
@@ -51,9 +65,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
-
-    Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
+    Route::match(['post', 'get'], 'logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });

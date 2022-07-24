@@ -1,7 +1,9 @@
 <x-index-layout>
     @section('title', '| Guardians')
     <x-slot name="labels">
-        {{ $unit->unit }} / {{ $tenant->tenant }} / Guardians
+        <li class="text-gray-500">{{ $unit->unit }}</li>
+        <li><span class="text-gray-500 mx-2">/</span></li>
+        <li class="text-gray-500">Guardian</li>
     </x-slot>
 
     <x-slot name="options">
@@ -11,7 +13,7 @@
             Next
         </x-button>
         @else
-        <x-button wire:submit.prevent="submitForm" onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'">
+        <x-button wire:submit.prevent="submitForm" onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'">
             Go back to tenant
         </x-button>
         @endif

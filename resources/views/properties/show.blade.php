@@ -12,8 +12,8 @@
         Dashboard
     </x-slot>
     <x-slot name="options">
-        <x-button onclick="window.location.href='/properties'">
-            Select another property
+        <x-button onclick="window.location.href='/property'">
+            My Property
         </x-button>
 
         @can('manager')
@@ -183,7 +183,8 @@
                                                             <x-td>
                                                                 <div class="flex items-center">
                                                                     <div class="flex-shrink-0 h-10 w-10">
-                                                                        <a href="/tenant/{{ $item->tenant_uuid }}/edit">
+                                                                        <a
+                                                                            href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}">
                                                                             <img class="h-10 w-10 rounded-full"
                                                                                 src="/storage/{{ $item->tenant->photo_id }}"
                                                                                 alt=""></a>
@@ -258,57 +259,25 @@
                                                                     </span>
                                                                 </div>
                                                             </x-td>
+                                                            @can('admin')
                                                             <x-td>
-                                                                @can('admin')
-                                                                <x-button id="dropdownDividerButton"
-                                                                    data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
-                                                                    type="button">Actions
-                                                                    <svg class="ml-2 w-4 h-4" fill="none"
-                                                                        stroke="currentColor" viewBox="0 0 24 24"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path stroke-linecap="round"
-                                                                            stroke-linejoin="round" stroke-width="2"
-                                                                            d="M19 9l-7 7-7-7">
-                                                                        </path>
-                                                                    </svg>
-                                                                </x-button>
-
-                                                                <div id="dropdownDivider.{{ $item->uuid }}"
-                                                                    class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                                    <ul class="py-1"
-                                                                        aria-labelledby="dropdownDividerButton">
-
-                                                                        <li>
-                                                                            <a href="/contract/{{ $item->uuid }}/renew"
-                                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                                    class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
-                                                                            </a>
-                                                                        </li>
-
-                                                                    </ul>
-                                                                    @if($item->status ===
-                                                                    'active')
-                                                                    <div class="py-1">
-                                                                        <?php
-                                                                                                                                                                                    $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
-                                                                                                                                                                                ?>
-                                                                        @if($unpaid_bills->count()<=0) <a
-                                                                            href="/contract/{{ $item->uuid }}/moveout"
-                                                                            class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                            <i
-                                                                                class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
-                                                                            @else
-                                                                            <a data-modal-toggle="popup-error-modal"
-                                                                                href="#/"
-                                                                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                                <i
-                                                                                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
-                                                                            @endif
-                                                                    </div>
+                                                                <x-button
+                                                                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew'">
+                                                                    Renew</x-button>
+                                                            
+                                                                <?php
+                                                                $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
+                                                            ?>
+                                                                @if($unpaid_bills->count()<=0) <x-button
+                                                                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout'">
+                                                                    Moveout</x-button>
+                                                                    @else
+                                                                    <x-button data-modal-toggle="popup-error-modal">
+                                                                        Moveout</x-button>
                                                                     @endif
-                                                                </div>
-                                                                @endcan
                                                             </x-td>
+                                                            @endcan
+
 
                                                         </tr>
                                                     </tbody>
@@ -348,10 +317,7 @@
                                                             <x-th># of contracts</x-th>
                                                             <x-th>Last Payment</x-th>
                                                             <x-th>Unpaid Bills</x-th>
-
                                                             <x-th></x-th>
-
-
                                                         </tr>
                                                     </thead>
                                                     @foreach ($delinquents as $index => $item)
@@ -362,7 +328,7 @@
                                                                 <div class="flex items-center">
                                                                     <div class="flex-shrink-0 h-10 w-10">
                                                                         <a
-                                                                            href="/tenant/{{ $item->tenant_uuid }}/contracts">
+                                                                            href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contracts">
                                                                             <img class="h-10 w-10 rounded-full"
                                                                                 src="/storage/{{ $item->tenant->photo_id }}"
                                                                                 alt=""></a>
@@ -396,6 +362,15 @@
                                                             <x-td>{{ number_format($item->balance, 2) }}</x-td>
                                                             <x-td>
                                                                 @can('treasury')
+                                                                <x-button
+                                                                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/bills'">
+                                                                    Pay Now
+                                                                </x-button>
+
+                                                                @endcan
+                                                            </x-td>
+                                                            {{-- <x-td>
+                                                                @can('treasury')
                                                                 <x-button id="dropdownDividerButton"
                                                                     data-dropdown-toggle="dropdownDivider.{{ $item->tenant_uuid }}"
                                                                     type="button">Actions
@@ -415,7 +390,7 @@
                                                                         aria-labelledby="dropdownDividerButton">
 
                                                                         <li>
-                                                                            <a href="/tenant/{{ $item->tenant_uuid }}/bills"
+                                                                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/bills"
                                                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                                                                     class="fa-solid fa-cash-register"></i>&nbspPay
                                                                             </a>
@@ -425,13 +400,13 @@
 
                                                                 </div>
                                                                 @endcan
-                                                            </x-td>
+                                                            </x-td> --}}
 
                                                         </tr>
                                                     </tbody>
                                                     @endforeach
                                                 </table>
-                                                {{ $expiring_contracts->links() }}
+                                                {{ $delinquents->links() }}
                                             </div>
                                         </div>
                                     </div>

@@ -47,7 +47,7 @@ class RepresentativeComponent extends Component
 
         $this->representatives = $this->get_representatives();
 
-        return back()->with('success', 'Representative is successfully removed');
+         return back()->with('success', 'Representative is successfully removed');
       }
 
       public function updated($propertyName)

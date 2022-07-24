@@ -21,7 +21,7 @@ class CollectionModalComponent extends ModalComponent
 {
     use WithFileUploads;
     
-    public $selectedBills;
+    public $selectedBills = [];
     public $bank;
     public $check_no;
     public $created_at;
@@ -29,23 +29,31 @@ class CollectionModalComponent extends ModalComponent
     public $total;
     public $attachment;
     public $tenant;
-    public $collection;
+    public $collections;
     public $form;
     public $bill;
+    public $amount;
 
     public $exportCollection;
 
     public function mount($selectedBills, $total, $tenant)
     {
         $this->selectedBills = $selectedBills;
-        $this->collections = Bill::whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->get();
+        $this->collections = $this->get_collections();
+        // $this->collections = Bill::whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->get();
         $this->form = 'cash';
+        $this->amount = Bill::selectRaw('bill-initial_payment as balance')->whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->pluck('balance');
         $this->bill = Bill::selectRaw('bill-initial_payment as balance')->whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->pluck('balance');
         $this->total = $total;
         $this->collection = $total;
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->tenant = $tenant;
         $this->exportCollection = false;
+    }
+
+    public function get_collections()
+    {
+        return Bill::whereIn('id',$this->selectedBills)->whereIn('status', ['unpaid', 'partially_paid'])->get();
     }
 
     protected function rules()
@@ -63,7 +71,7 @@ class CollectionModalComponent extends ModalComponent
         $this->validateOnly($propertyName);
     }
 
-    public function submitForm()
+    public function payBill()
     {
         sleep(1);
 
@@ -87,10 +95,14 @@ class CollectionModalComponent extends ModalComponent
             $this->resetForm();
 
             $this->export_ar($ar);
+
+            $this->closeModal();
     
        }catch(\Exception $e)
        {    
            DB::rollback();
+
+           ddd($e);
            
            return back()->with('error','Cannot perform your action.');
        }
@@ -100,11 +112,11 @@ class CollectionModalComponent extends ModalComponent
     {
         if($this->exportCollection)
         {
-            return redirect('/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Collection is successfully created.');
+            return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Collection is successfully created.');
         }
          else
         {
-            return redirect('/tenant/'.$this->tenant.'/bills')->with('success','Collection is successfully created.');
+            return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant.'/bills')->with('success','Collection is successfully created.');
         }
     }
 
@@ -137,8 +149,14 @@ class CollectionModalComponent extends ModalComponent
 
     public function store_collection($validated_data, $collection_ar_no , $collection_batch_no)
     {
+        ddd($this->collections);
+
+        // foreach ($this->collections as $collection) {
+        //     $collection->save();
+        // }
+
         for($i=0; $i<count($this->selectedBills); $i++)
-        {
+        {     
             if((Bill::find($this->selectedBills[$i])->bill - Bill::find($this->selectedBills[$i])->initial_payment)<=$this->bill[$i])
             {
                 Bill::where('id', $this->selectedBills[$i])
@@ -157,12 +175,13 @@ class CollectionModalComponent extends ModalComponent
 
                 Bill::find($this->selectedBills[$i])->increment('initial_payment', $this->bill[$i]);
             }
-                       
+                //ddd($i.'-'.$this->amount[1]);
+
                 $validated_data['tenant_uuid']= $this->tenant;
                 $validated_data['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
                 $validated_data['property_uuid'] = Session::get('property');
                 $validated_data['user_id'] = auth()->user()->id;
-                $validated_data['bill_id'] = $this->selectedBills[$i];
+                $validated_data['bill_id'] = $i;
                 $validated_data['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;
                 $validated_data['form'] = $this->form;
                 $validated_data['collection'] = $this->bill[$i];
@@ -220,6 +239,22 @@ class CollectionModalComponent extends ModalComponent
         $this->form = '';
         $this->dispatchBrowserEvent('closeModal', 'collection-modal-component');
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return '6xl';
+    }
+
+    public static function closeModalOnEscape(): bool
+    {
+        return false;
+    }
+
+    public static function closeModalOnClickAway(): bool
+    {
+        return false;
+    }
+
     public function render()
     {
         return view('livewire.collection-modal-component');

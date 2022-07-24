@@ -286,8 +286,7 @@ class PropertyController extends Controller
 
     public function get_expiring_contracts()
     {
-        return Contract::where('end','<=',Carbon::now()->
-            addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->paginate(5);
+        return Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->paginate(5);
     }
 
     public function get_delinquents()

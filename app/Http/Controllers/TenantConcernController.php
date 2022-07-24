@@ -13,7 +13,7 @@ class TenantConcernController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Tenant $tenant)
+    public function index(Tenant $tenant)
     {
          return view('tenants.concerns.index',[
          'tenant' => Tenant::find($tenant->uuid),

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
+use App\Models\Property;
 use DB;
 
 class TeamController extends Controller
@@ -128,7 +129,7 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Property $property, User $user)
     {
         return view('teams.edit',[
             'member' => $user,
@@ -143,7 +144,7 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Property $property, User $user)
     {
         $attributes = request()->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -167,7 +168,7 @@ class TeamController extends Controller
 
         $user->update($attributes);
 
-        return redirect('/profile/'.$user->username.'/edit')->with('success', 'Profile has been updated.');
+        return redirect('/property/'.Session::get('property').'/team/'.$user->username.'/edit')->with('success', 'Team is successfully updated.');
 
         //return back()->with('success', 'Member has been updated.');
     }

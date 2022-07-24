@@ -1,9 +1,7 @@
-<div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-    <div class="">
-        Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Deposits: <b> {{
-            number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit',
-            '1')->sum('collection'), 2) }}</b>
-    </div>
+<div>
+    Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Deposits: <b> {{
+        number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit',
+        '1')->sum('collection'), 2) }}</b>
 
     {{-- <div class="mt-1">
         Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
@@ -44,13 +42,16 @@
                         <li>
                             <a href="#/" data-modal-toggle="export-bill-modal"
                                 class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Download Unpaid Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=','paid')->count() }})
+                                Download Unpaid Bills ({{
+                                App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=','paid')->count()
+                                }})
                             </a>
                         </li>
                         <li>
                             <a href="#/" data-modal-toggle="send-bill-modal"
                                 class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Send Unpaid Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=', 'paid')->count() }})
+                                Send Unpaid Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status',
+                                '!=', 'paid')->count() }})
                             </a>
                         </li>
                         @endif
@@ -71,12 +72,18 @@
                 </div>
 
                 @can('treasury')
-                @if($total_unpaid_bills->sum('bill') && $selectedBills)
-                <x-button
-                    wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-                    Create a payment ({{ count($selectedBills) }})
-                </x-button>
-                @endif
+                    @if($total_unpaid_bills->sum('bill') && $selectedBills)
+                    {{-- <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'">POa</x-button> --}}
+                    <x-button 
+                        wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
+                        Create a payment
+                    </x-button>
+
+                    <div class="mt-5">
+                        <span>You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}} amounting to {{ number_format($total) }}</span>...
+                    </div>
+                    
+                    @endif
                 @endcan
 
             </div>

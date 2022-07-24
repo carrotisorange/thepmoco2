@@ -17,17 +17,12 @@ class OldTenantController extends Controller
      */
     public function index(Unit $unit)
     {
-        $this->authorize('managerandadmin');
-
-         return view('tenants.old.create', [
-            'unit' => $unit
-         ]);
+        
     }
 
     public function export()
     {
-        $pdf = PDF::loadView('tenants.export');
-        return $pdf->download('tenant_information_sheet.pdf');
+        
 
     }
 }

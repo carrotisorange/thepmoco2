@@ -23,12 +23,12 @@ class PropertyBillExpressController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index($property_uuid, $batch_no)
+    public function index(Property $property, $batch_no)
     {
         return $batch_no;
     }
 
-    public function store(Request $request, $property_uuid, $bill_count)
+    public function store(Request $request, Property $property, $bill_count)
     {
         $attributes = request()->validate([
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
@@ -84,11 +84,12 @@ class PropertyBillExpressController extends Controller
 
             DB::commit();
 
-            return redirect('/bill/'.Session::get('property').'/express/batch/'.$batch_no)->with('success', $bill_count.' bill is succesffully created.');
+            return redirect('/property/'.Session::get('property').'/bill/'.$batch_no)->with('success', $bill_count.' bill is succesfully created.');
 
         }catch(\Exception $e)
         {   
             DB::rollback();
+
             return back('error')->with('success', 'Cannot perform your action.');
         }
     }

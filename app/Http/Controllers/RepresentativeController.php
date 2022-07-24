@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Representative;
 use Illuminate\Http\Request;
 use App\Models\Unit;
+use App\Models\Property;
 use App\Models\Owner;
 
 class RepresentativeController extends Controller
@@ -24,7 +25,7 @@ class RepresentativeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Unit $unit, Owner $owner)
+    public function create(Property $property, Unit $unit, Owner $owner)
     {
          return view('representatives.create',[
             'unit' => $unit,

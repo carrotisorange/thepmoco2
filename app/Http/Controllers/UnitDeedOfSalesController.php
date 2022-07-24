@@ -13,7 +13,7 @@ class UnitDeedOfSalesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Unit $unit)
+    public function index(Unit $unit)
     {
          return view('units.deed_of_sales.index',[
          'unit' => Unit::find($unit->uuid),

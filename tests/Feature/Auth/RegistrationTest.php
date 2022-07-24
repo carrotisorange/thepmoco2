@@ -25,6 +25,6 @@ class RegistrationTest extends TestCase
         $user = \App\Models\User::factory()->create();
         $this->actingAs($user);
         $this->assertAuthenticated();
-        $response = $this->get('/properties');
+        $response = $this->get('/property');
     }
 }

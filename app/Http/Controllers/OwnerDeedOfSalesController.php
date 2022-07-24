@@ -15,7 +15,7 @@ class OwnerDeedOfSalesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Owner $owner)
+    public function index(Property $property, Owner $owner)
     {
         return view('owners.deed_of_sales.index',[
             'owner' => Owner::find($owner->uuid),

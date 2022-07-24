@@ -9,7 +9,7 @@ use Session;
 use App\Models\References;
 use Illuminate\Validation\Rule;
 use DB;
-use App\Models\Relationship;
+use App\Models\Property;
 
 use Illuminate\Http\Request;
 
@@ -30,7 +30,7 @@ class ReferenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Unit $unit, Tenant $tenant)
+    public function create(Property $property, Unit $unit, Tenant $tenant)
     {
          return view('references.create',[
          'unit' => $unit,

@@ -13,7 +13,7 @@ class TransferContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Contract $contract)
+    public function index(Contract $contract)
     {
         return view('contracts.transfer',[
             'contract_details' => $contract

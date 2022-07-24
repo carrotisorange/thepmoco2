@@ -6,6 +6,7 @@ use App\Models\Bank;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 use App\Models\Owner;
+use App\Models\Property;
 
 class BankController extends Controller
 {
@@ -24,7 +25,7 @@ class BankController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Unit $unit, Owner $owner)
+    public function create(Property $property, Unit $unit, Owner $owner)
     {
 
         return view('banks.create',[

@@ -21,7 +21,7 @@ class TenantCollectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Tenant $tenant)
+    public function index(Property $property, Tenant $tenant)
     {
         return view('tenants.collections.index',[
          'tenant' => Tenant::find($tenant->uuid),
@@ -29,10 +29,8 @@ class TenantCollectionController extends Controller
         ]);
     }
 
-    public function store(Request $request,  Tenant $tenant)
-    {
-       return 'asd';
-       
+    public function store(Request $request, Tenant $tenant)
+    {      
          $attributes = request()->validate([
             'collection' => 'required|integer|min:1',
          ]);
@@ -94,7 +92,7 @@ class TenantCollectionController extends Controller
          }
     }
 
-     public function export(Tenant $tenant, AcknowledgementReceipt $ar)
+     public function export(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
      {          
          $balance = Bill::where('tenant_uuid', $ar->tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid']);
    
@@ -132,7 +130,7 @@ class TenantCollectionController extends Controller
                $canvas->page_text($width/5, $height/2, $property->property, null,
                55, array(0,0,0),2,2,-30);
 
-        return $pdf->stream($tenant->tenant.'-ar.pdf');
+        return $pdf->download($tenant->tenant.'-ar.pdf');
      }
 }
 

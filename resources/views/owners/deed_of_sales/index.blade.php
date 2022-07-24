@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='/owner/{{ $owner->uuid }}/edit'">Go back to owner
+        <x-button onclick="window.location.href='{{ url()->previous() }}'">Go back to owner
         </x-button>
     </x-slot>
 

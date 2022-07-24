@@ -14,7 +14,7 @@ class TenantLedgerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Tenant $tenant)
+    public function index(Tenant $tenant)
     {
         // $bills = DB::table('bills')->select('bill_no as no','bill as amount', 'created_at')->where('tenant_uuid', $tenant->uuid)->groupBy('id')->get();
 

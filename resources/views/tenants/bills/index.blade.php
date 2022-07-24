@@ -1,42 +1,24 @@
-<x-app-layout>
-    @section('title',' | '.$tenant->tenant)
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <div class="flex">
-                <div class="h-3">
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        <nav class="rounded-md">
-                            <ol class="list-reset flex">
-                                <li><a href="/property/{{ Session::get('property') }}"
-                                        class="text-blue-600 hover:text-blue-700">{{
-                                        Session::get('property_name') }}</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
+<x-index-layout>
+    @section('title', '| Bills')
 
-                                <li class="text-gray-500">{{ $tenant->tenant }}</li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-
-                                <li class="text-gray-500">Bills</li>
-                            </ol>
-                        </nav>
-                    </h2>
-                </div>
-                <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'">Go back to tenant
-                    </x-button>
-                    @can('treasury')
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/collections'">View Payments
-                    </x-button>
-                    @endcan
-                </h5>
-
-            </div>
-        </h2>
+    <x-slot name="labels">
+        <li class="text-gray-500">{{ $tenant->tenant }}</li>
+        <li><span class="text-gray-500 mx-2">/</span></li>
+        <li class="text-gray-500">Bills</li>
     </x-slot>
-    <div class="py-2">
-        @livewire('tenant-bill-component', ['tenant'=> $tenant]);
-    </div>
-</x-app-layout>
+
+    <x-slot name="options">
+        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'">Go back to tenant
+        </x-button>
+        @can('treasury')
+        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/collections'">View Payments
+        </x-button>
+        @endcan
+    </x-slot>
+
+    @livewire('tenant-bill-component', ['tenant'=> $tenant])
+
+</x-index-layout>
 @include('utilities.create-bill-modal')
 @include('utilities.export-bill-modal')
 @include('utilities.send-bill-modal')

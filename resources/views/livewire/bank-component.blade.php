@@ -58,6 +58,7 @@
 
     </div>
 
+    @if($banks->count())
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
 
         <table class="text-sm min-w-full divide-y divide-gray-200">
@@ -92,4 +93,5 @@
             </tbody>
         </table>
     </div>
+    @endif
 </div>

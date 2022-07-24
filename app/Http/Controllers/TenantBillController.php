@@ -26,7 +26,7 @@ class TenantBillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Tenant $tenant)
+    public function index(Property $property, Tenant $tenant)
     {        
 
         $particulars = Particular::join('property_particulars', 'particulars.id',
@@ -47,7 +47,7 @@ class TenantBillController extends Controller
         ]);
     }
 
-    public function store(Request $request, Tenant $tenant)
+    public function store(Request $request, Property $property, Tenant $tenant)
     {
 
          $attributes = request()->validate([
@@ -96,7 +96,7 @@ class TenantBillController extends Controller
         }
     }
 
-    public function export(Request $request, Tenant $tenant)
+    public function export(Request $request, Property $property, Tenant $tenant)
     {
         Property::where('uuid',Session::get('property'))->update([
             'note_to_bill' => $request->note_to_bill,
@@ -137,7 +137,7 @@ class TenantBillController extends Controller
         return $pdf->download($tenant->tenant.'-soa.pdf');
     }
 
-    public function send(Request $request, Tenant $tenant)
+    public function send(Request $request, Property $property, Tenant $tenant)
     {     Property::where('uuid',Session::get('property'))->update([
             'note_to_bill' => $request->note_to_bill,
         ]);

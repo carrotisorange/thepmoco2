@@ -64,6 +64,7 @@
             </div>
         </form>
     </div>
+    @if($references->count())
     <div class="mt-5 p-8 bg-white border-b border-gray-200">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-50">
@@ -99,5 +100,6 @@
             @endforelse
         </table>
     </div>
+    @endif
     @include('layouts.notifications')
 </div>

@@ -21,9 +21,8 @@ class BillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Property $property, $batch_no='')
     {
-
         $this->authorize('billing');
 
         $particulars = Particular::join('property_particulars', 'particulars.id',
@@ -34,7 +33,8 @@ class BillController extends Controller
         return view('bills.index',[
             'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->get(),
             'active_tenants' => Contract::where('property_uuid', Session::get('property'))->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
-            'particulars' => $particulars
+            'particulars' => $particulars,
+            'batch_no' => $batch_no
         ]);
     }
 
@@ -68,8 +68,8 @@ class BillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Unit $unit, Tenant $tenant, Contract $contract)
-    {    
+    public function store(Request $request, Property $property, Tenant $tenant)
+    {   
          $attributes = request()->validate([
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
             'bill' =>'required',
@@ -77,24 +77,24 @@ class BillController extends Controller
             'end' => 'required|date|after:start'
          ]);
 
-        $bill_no = Property::find(Session::get('property'))->bills->count();
+        $bill_no = Property::find(Session::get('property'))->bills->count()+1;
 
         try {
-        $attributes['reference_no'] = Carbon::now()->timestamp.''.$bill_no++;
-        $attributes['tenant_uuid'] = $tenant->uuid;
-        $attributes['unit_uuid'] = $unit->uuid;
-        $attributes['property_uuid'] = Session::get('property');
-        $attributes['user_id'] = auth()->user()->id;
-        $attributes['bill_no'] = Property::find(Session::get('property'))->bills->count()+1;
-     
-
-        Bill::create($attributes);
+            $attributes['reference_no'] = Carbon::now()->timestamp.''.$bill_no++;
+            $attributes['tenant_uuid'] = $tenant->uuid;
+            $attributes['unit_uuid'] = $request->unit_uuid;
+            $attributes['property_uuid'] = Session::get('property');
+            $attributes['user_id'] = auth()->user()->id;
+            $attributes['bill_no'] = $bill_no;
+            $attributes['due_date'] = Carbon::now()->addDays(14);
         
-        DB::commit();
-        return back()->with('success', 'Bill has been created.');
-        } catch (\Throwable $e) {
-            ddd($e);
+            Bill::create($attributes);
+            
+            DB::commit();
+            return back()->with('success', 'Bill has been created.');
+        }catch (\Exception $e) {
             DB::rollback();
+            ddd($e);
             return back()->with('error','Cannot complete your action.');
         }   
 

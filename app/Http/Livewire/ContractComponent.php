@@ -93,11 +93,12 @@ class ContractComponent extends Component
               return redirect('/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Contract is successfully created.');
 
             }else{
-              return redirect('/tenant/'.$this->tenant->uuid.'/bills/')->with('success','Contract is successfully created.');
+              return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/bills/')->with('success','Contract is successfully created.');
             }
             
-        }catch (\Throwable $e) {
+        }catch (\Exception $e) {
           DB::rollback();
+          ddd($e);
           return back()->with('error','Cannot complete your action.');
         }
       }

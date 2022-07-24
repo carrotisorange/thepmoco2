@@ -21,6 +21,7 @@ class PropertyBillCustomizedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request, $property_uuid, $bill_count)
     {
         $attributes = request()->validate([
@@ -69,7 +70,8 @@ class PropertyBillCustomizedController extends Controller
 
                 Bill::create($attributes);
                 }
-                return redirect('/bill/'.Session::get('property').'/customized/batch/'.$batch_no)->with('success', $i.' bill is succesffully created.');
+
+                return redirect('/property/'.Session::get('property').'/bill/customized/'.$batch_no.'/edit')->with('success', $bill_count.' bill is succesfully created.');
 
             }catch(\Exception $e)
             {
@@ -78,7 +80,7 @@ class PropertyBillCustomizedController extends Controller
                 return back('error')->with('success', 'Cannot perform your action.');
             }
     }
-    public function edit($property_uuid, $batch_no)
+    public function edit(Property $property, $batch_no)
     {
         $particulars = Particular::join('property_particulars', 'particulars.id',
         'property_particulars.particular_id')

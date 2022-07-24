@@ -15,14 +15,14 @@
                 </button>
             </div>
 
-            <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/particular/{{ Str::random(10) }}/store""
+            <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/property/{{ Session::get('property') }}/particular/store""
                 method=" POST" id="add-particular-form">
                 @csrf
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">Particular Information</h3>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
                     <div class="w-full md:w-full px-3">
-                        <x-label>Name of the new particular <span class="text-red-600">*</span></x-label>
+                        <x-label>Particular <span class="text-red-600">*</span></x-label>
 
                         <x-form-input form="add-particular-form" id="particular" type="text" name="particular_id"
                             required />

@@ -335,7 +335,7 @@
             <span>Showing the last 5 guardians</span>
             <p class="text-right">
                 <x-button
-                    onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/guardian/{{ Str::random(8) }}/create'">
+                    onclick="window.location.href='{{ $tenant_details->uuid }}/guardian/create'">
                     Create a guardian
                 </x-button>
                 {{-- <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/contracts/'">See more
@@ -352,8 +352,8 @@
         <div class="mt-5">
             <span>Showing the last 5 references</span>
             <p class="text-right">
-                <x-button
-                    onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/reference/{{ Str::random(8) }}/create'">
+               <x-button
+                    onclick="window.location.href='{{ $tenant_details->uuid }}/reference/create'">
                     Create a reference
                 </x-button>
                 {{-- <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/contracts/'">See more
@@ -385,7 +385,8 @@
             <tr>
                 <x-td>{{ $ctr++ }}</x-td>
                 <x-td>
-                    <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold" href="/unit/{{ $item->unit->uuid }}/edit">{{ $item->unit->unit }}</a>
+                    <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold"
+                            href="/unit/{{ $item->unit->uuid }}/edit">{{ $item->unit->unit }}</a>
                     </div>
 
                     <div class="text-sm text-gray-500">{{
@@ -493,7 +494,7 @@
                 onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/units/'">
                 Create a contract
             </x-button>
-            <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/contracts/'">See more
+            <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/contracts'">See more
                 contracts
             </x-button>
         </p>
@@ -574,8 +575,8 @@
     <div class="mt-5">
         <span>Showing the last 5 bills</span>
         <p class="text-right">
-            <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/bills/'">See more
-                bills
+            <x-button   onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/bills'">
+                See more   bills
             </x-button>
         </p>
     </div>
@@ -636,7 +637,9 @@
     <div class="mt-5">
         <span>Showing the last 5 payments</span>
         <p class="text-right">
-            <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/collections/'">See more
+            <x-button
+                onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/collections'">
+                See more
                 payments
             </x-button>
         </p>

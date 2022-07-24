@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units/'">Go back to units
+        <x-button onclick="window.location.href='{{ url()->previous() }}'">Go back to units
         </x-button>
     </x-slot>
 

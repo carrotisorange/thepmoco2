@@ -87,8 +87,7 @@ class UnitComponent extends Component
 
     public function updateForm()
     {
-        sleep(2);
-
+        
         $this->validate();
 
         try{
@@ -104,7 +103,7 @@ class UnitComponent extends Component
 
         }catch(\Exception $e){
             DB::rollback();
-
+         
             session()->flash('error');
         }
     }

@@ -8,6 +8,7 @@ use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use DB;
 use Illuminate\Http\Request;
+use App\Models\Property;
 
 class GuardianController extends Controller
 {
@@ -26,7 +27,7 @@ class GuardianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Unit $unit, Tenant $tenant)
+    public function create(Property $property, Unit $unit, Tenant $tenant)
     {
         // $guardians = Guardian::join('tenants', 'guardians.tenant_uuid', 'tenants.uuid')
         // ->select('*', 'guardians.id as guardian_id')

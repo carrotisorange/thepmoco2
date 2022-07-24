@@ -13,7 +13,7 @@ class NewTenantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Unit $unit)
+    public function index(Unit $unit)
     {
         $this->authorize('admin');
         

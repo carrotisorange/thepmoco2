@@ -51,21 +51,21 @@ class TenantController extends Controller
      */
     public function store(Request $request, $unit_uuid)
     {   
-
         $tenant_attributes = request()->validate([
-        'tenant' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
-        'mobile_number' => 'required',
-        'type' => 'required',
-        'gender' => 'required',
-        'civil_status' => 'required',
-        'country_id' => ['required', Rule::exists('countries', 'id')],
-        'province_id' => ['required', Rule::exists('provinces', 'id')],
-        'city_id' => ['required', Rule::exists('cities', 'id')],
-        'photo_id' => 'required|image',
+            'tenant' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
+            'mobile_number' => 'required',
+            'type' => 'required',
+            'gender' => 'required',
+            'civil_status' => 'required',
+            'country_id' => ['required', Rule::exists('countries', 'id')],
+            'province_id' => ['required', Rule::exists('provinces', 'id')],
+            'city_id' => ['required', Rule::exists('cities', 'id')],
+            'photo_id' => 'required|image',
         ]);
 
         $tenant_attributes['uuid'] = Str::uuid();
+
         $tenant_attributes['photo_id'] = $request->file('photo_id')->store('tenants');
 
         $tenant = Tenant::create($tenant_attributes)->uuid;
@@ -79,15 +79,28 @@ class TenantController extends Controller
      * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function show(Tenant $tenant)
+    public function show(Property $property, Tenant $tenant)
     {
-        return view('tenants.show',[
-            'tenant' => $tenant,
-            'bills' => Tenant::find($tenant->uuid)->bills,
-            'contracts' => Tenant::find($tenant->uuid)->contracts,
-            'references' => Tenant::find($tenant->uuid)->references,
-            'guardians' => Tenant::find($tenant->uuid)->guardians
-        ]);
+        // return view('tenants.show',[
+        //     'tenant' => $tenant,
+        //     'bills' => Tenant::find($tenant->uuid)->bills,
+        //     'contracts' => Tenant::find($tenant->uuid)->contracts,
+        //     'references' => Tenant::find($tenant->uuid)->references,
+        //     'guardians' => Tenant::find($tenant->uuid)->guardians
+        // ]);
+
+        if(auth()->user()->role->id == 3 || auth()->user()->role->id == 2)
+         {
+            //return redirect('/tenant/'.$tenant->uuid.'/bills');
+         }
+         else{
+             return view('tenants.show',[
+             'tenant_details' => $tenant,
+             'references' => Tenant::find($tenant->uuid)->references,
+             'guardians' => Tenant::find($tenant->uuid)->guardians,
+             'relationships' => Relationship::all()
+             ]);
+         } 
     }
 
     /**

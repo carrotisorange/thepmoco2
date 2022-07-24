@@ -1,5 +1,4 @@
 <div>
-    @include('layouts.notifications')
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
         <form method="POST" wire:submit.prevent="submitForm" class="w-full" id="create-form">
             @csrf
@@ -73,6 +72,7 @@
         </form>
     </div>
 
+    @if($representatives->count())
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
         <table class="text-sm min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
@@ -94,7 +94,8 @@
                     <x-td>{{ $representative->mobile_number }}</x-td>
                     <x-td>{{ $representative->relationship->relationship }}</x-td>
                     <x-td>
-                        <x-button wire:click="removeRepresentative({{ $representative->id }})" onclick="confirmMessage()">Remove
+                        <x-button wire:click="removeRepresentative({{ $representative->id }})"
+                            onclick="confirmMessage()">Remove
                         </x-button>
                     </x-td>
                 </tr>
@@ -106,4 +107,6 @@
             @endforelse
         </table>
     </div>
+    @endif
+    @include('layouts.notifications')
 </div>
