@@ -11,7 +11,7 @@ class SessionController extends Controller
 {
     public function store()
     {
-        Session::firstOrNew([
+        Session::firstOrCreate([
             'user_id' => auth()->user()->id,
             'created_at' => now(),
             'ip_address' => request()->ip(),
