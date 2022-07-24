@@ -74,10 +74,10 @@
                 @can('treasury')
                     @if($total_unpaid_bills->sum('bill') && $selectedBills)
                     {{-- <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'">POa</x-button> --}}
-                    <x-button 
+                    {{-- <x-button 
                         wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
                         Create a payment
-                    </x-button>
+                    </x-button> --}}
 
                     <div class="mt-5">
                         <span>You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}} amounting to {{ number_format($total) }}</span>...

@@ -1,7 +1,7 @@
 <div>
     <div class="flex flex-row">
         <div class="basis-1/2">
-            @if(!$bills->count())
+            @if($bills->count())
            
 
             <x-button wire:loading.remove wire:click="saveBills()">Save Bills ({{ $bills->count() }})

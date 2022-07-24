@@ -74,6 +74,7 @@ class BillIndexComponent extends Component
       return Bill::search($this->search)
       ->orderBy('bill_no', 'desc')
       ->where('property_uuid', Session::get('property'))
+      ->where('is_posted', true)
       ->when($this->status, function($query){
       $query->whereIn('status', $this->status);
       })
@@ -90,8 +91,7 @@ class BillIndexComponent extends Component
       $query->where('batch_no', $this->batch_no);
       })
          ->when($this->created_at, function($query){
-      $query->whereDate('created_at', $this->created_at)
-      ->where('is_posted', true);
+      $query->whereDate('created_at', $this->created_at);
       
       })->paginate(10);
 
