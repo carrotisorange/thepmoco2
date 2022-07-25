@@ -12,6 +12,7 @@ use Session;
 use DB;
 use App\Models\Bill;
 use \PDF;
+use Carbon\Carbon;
 
 class TenantCollectionController extends Controller
 {
@@ -148,26 +149,57 @@ class TenantCollectionController extends Controller
 
      public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
      {
+         $collection_ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
 
-      return $request->all();
-   
          $max = Collection::where('property_uuid', Session::get('property'))
-           ->where('is_posted', false)
-           ->where('batch_no', $batch_no)
-           ->max('id');
+          ->where('batch_no', $batch_no)
+         ->where('is_posted', false)
+         ->max('id');
          
          for($i=0; $i<=$max; $i++)
          {
-          Collection::where('property_uuid', Session::get('property'))
-           ->where('is_posted', false)
-           ->where('batch_no', $batch_no)
-           ->where('tenant_uuid', $tenant->uuid)
-           ->update([
-              'collection' => $request->input("collection_amount_".$i),
-              'form' => $request->form,
-              ]);
-            // ->get();
+            Collection::where('bill_id',$request->input("bill_id_".$i))
+            ->update([
+               'collection' => $request->input("collection_amount_".$i),
+               'form' => $request->form,
+       
+            ]);
+
+            if((Bill::where('id',$request->input("bill_id_".$i))->sum('bill') - Bill::where('id',$request->input("bill_id_".$i))->sum('initial_payment')) <= $request->input("collection_amount_".$i))
+            {
+               Bill::where('id', $request->input("bill_id_".$i))
+                  ->update([
+                  'status' => 'paid',
+               ]);
+                  Bill::where('id',$request->input("bill_id_".$i))
+                  ->increment('initial_payment', (int)$request->input("collection_amount_".$i));
+            }
+            else
+            {
+                  Bill::where('id', $request->input("bill_id_".$i))
+                  ->update([
+                     'status' => 'partially_paid',
+                  ]);
+
+                  Bill::where('id',$request->input("bill_id_".$i))
+                   ->increment('initial_payment', (int)$request->input("collection_amount_".$i));
+            }
          }
+
+           $ar = AcknowledgementReceipt::create([
+           'tenant_uuid' => $tenant->uuid,
+           'amount' => Collection::where('property_uuid', Session::get('property'))->where('tenant_uuid',
+           $tenant->uuid)->where('batch_no', $batch_no)->sum('collection'),
+           'property_uuid' => Session::get('property'),
+           'user_id' => auth()->user()->id,
+           'ar_no' => $collection_ar_no,
+           'mode_of_payment' => $request->form,
+           'collection_batch_no' => $batch_no,
+           'cheque_no' => $request->check_no,
+           'bank' => $request->bank,
+           'date_deposited' => $request->date_deposited,
+           'created_at' => $request->created_at,
+           ]);
 
          return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills')->with('success', 'Payment is successfully saved.');
      }
@@ -187,4 +219,3 @@ class TenantCollectionController extends Controller
          return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills');
      }
 }
-

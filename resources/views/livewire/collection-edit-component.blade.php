@@ -127,8 +127,9 @@
                                 <x-td>{{ number_format(($bill->bill-$bill->initial_payment), 2) }}
                                 </x-td>
                                 <x-td>
-
-                                    <x-table-input form="edit-form" name="collection_amount_{{ $index }}" type="number"
+                                    <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden"
+                                        value="{{ $bill->id }}" />
+                                    <x-table-input form="edit-form" name="collection_amount_{{ $index }}" type="number" required 
                                         value="{{ $bill->bill-$bill->initial_payment }}" />
                                 </x-td>
                             </tr>
