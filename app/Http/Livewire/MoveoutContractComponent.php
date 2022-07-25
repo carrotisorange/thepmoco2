@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Contract;
 use Carbon\Carbon;
+use Session;
 
 class MoveoutContractComponent extends Component
 {
@@ -43,7 +44,7 @@ class MoveoutContractComponent extends Component
         $this->contract->update($validatedData);
 
         return
-        redirect('/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success',
+        redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success',
         'Contract has been moveout.');
     }
 

@@ -25,8 +25,8 @@
                 </div>
                 <h5 class="flex-1 text-right">
 
-                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='/tenant/{{ $contract_details->tenant_uuid }}/contracts'">
-                        <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack</x-button>
+                    <x-button wire:submit.prevent="submitForm" onclick="window.location.href='{{ url()->previous() }}'">
+                        Go Back</x-button>
 
                 </h5>
 

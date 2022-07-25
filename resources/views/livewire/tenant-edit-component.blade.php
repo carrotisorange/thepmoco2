@@ -443,20 +443,20 @@
                         <ul class="py-1" aria-labelledby="dropdownDividerButton">
 
                             <li>
-                                <a href="/contract/{{ $item->uuid }}/export"
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/export"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                         class="fa-solid fa-file-contract"></i>&nbspExport
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/contract/{{ $item->uuid }}/transfer"
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                         class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
                                 </a>
                             </li>
                             <li>
-                                <a href="/contract/{{ $item->uuid }}/renew"
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
                                         class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
                                 </a>
@@ -468,7 +468,8 @@
                                                                 ?>
                         @if($item->status == 'active')
                         <div class="py-1">
-                            @if($unpaid_bills->count()<=0) <a href="/contract/{{ $item->uuid }}/moveout"
+                            @if($unpaid_bills->count()<=0) 
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
                                 class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
                                 @else
