@@ -75,6 +75,7 @@ class PropertyBillExpressController extends Controller
                 $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
                 $attributes['property_uuid'] = Session::get('property');
                 $attributes['batch_no'] = $batch_no;
+                $attributes['is_posted'] = true;
 
                 Bill::create($attributes);
 
