@@ -382,6 +382,14 @@ class PropertyController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
+
+    public function update_property_note_to_bill($property_uuid, $note)
+    {
+        return Property::where('uuid',$property_uuid)->update([
+            'note_to_bill' => $note,
+        ]);
+    }
+     
     public function show(Property $property)
     {  
         if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){

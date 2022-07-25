@@ -21,14 +21,11 @@ class BillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Property $property, $batch_no='')
+    public function index(Property $property, $batch_no=null)
     {
         $this->authorize('billing');
 
-        $particulars = Particular::join('property_particulars', 'particulars.id',
-        'property_particulars.particular_id')
-        ->where('property_uuid', Session::get('property'))
-        ->get();
+        $particulars = app('App\Http\Controllers\PropertyParticularController')->show($property->uuid);
 
         return view('bills.index',[
             'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->get(),
@@ -36,6 +33,11 @@ class BillController extends Controller
             'particulars' => $particulars,
             'batch_no' => $batch_no
         ]);
+    }
+
+    public function get_latest_bill_no($property_uuid)
+    {
+        return Property::find($property_uuid)->bills->max('bill_no')+1;
     }
 
     /**
@@ -47,10 +49,7 @@ class BillController extends Controller
     {
         $bills = Tenant::find($tenant->uuid)->bills;
        
-        $particulars = Particular::join('property_particulars', 'particulars.id',
-        'property_particulars.particular_id')
-        ->where('property_uuid', Session::get('property'))
-        ->get();
+        $particulars = app('App\Http\Controllers\PropertyParticularController')->show(Session::get('property'));
 
         return view('bills.create',[
             'unit' => $unit,
@@ -77,9 +76,10 @@ class BillController extends Controller
             'end' => 'required|date|after:start'
          ]);
 
-        $bill_no = Property::find(Session::get('property'))->bills->count()+1;
+        $bill_no = $this->get_latest_bill_no($property->uuid);
 
         try {
+
             $attributes['reference_no'] = Carbon::now()->timestamp.''.$bill_no++;
             $attributes['tenant_uuid'] = $tenant->uuid;
             $attributes['unit_uuid'] = $request->unit_uuid;
@@ -91,10 +91,12 @@ class BillController extends Controller
             Bill::create($attributes);
             
             DB::commit();
+
             return back()->with('success', 'Bill has been created.');
+            
         }catch (\Exception $e) {
             DB::rollback();
-            ddd($e);
+           
             return back()->with('error','Cannot complete your action.');
         }   
 

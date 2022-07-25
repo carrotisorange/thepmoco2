@@ -97,7 +97,7 @@ class OldTenantComponent extends Component
 
             DB::commit();
 
-            return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$tenant.'/guardian/'.Str::random(8).'/create')->with('success','Tenant is succesfully created.');
+            return redirect('/property/'.Session::get('property').'/tenant/'.$tenant.'/guardian/'.$this->unit->uuid.'/create')->with('success','Tenant is succesfully created.');
 
        }catch(\Exception $e)
        {
@@ -135,7 +135,7 @@ class OldTenantComponent extends Component
             $validated_data['city_id'] = '48315';
         }
 
-        $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1;
+         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
 
         $reference_no = Carbon::now()->timestamp.''.$bill_no;
 

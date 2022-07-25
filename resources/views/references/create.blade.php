@@ -9,7 +9,7 @@
     <x-slot name="options">
         @if($unit->unit)
         <x-button wire:submit.prevent="submitForm"
-            onclick="window.location.href='/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'">
+            onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'">
             Next
         </x-button>
         @else

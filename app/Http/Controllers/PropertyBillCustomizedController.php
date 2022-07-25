@@ -36,7 +36,7 @@ class PropertyBillCustomizedController extends Controller
         ->where('contracts.status','active')
         ->pluck('tenant_uuid');
 
-        $bill_no = Property::find(Session::get('property'))->bills->max('bill_no')+1;
+        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
 
         $batch_no = Carbon::now()->timestamp.''.$bill_no;
 

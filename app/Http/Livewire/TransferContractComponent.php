@@ -81,7 +81,7 @@ class TransferContractComponent extends Component
        try {
        DB::beginTransaction();
 
-       $bill_no = Property::find(Session::get('property'))->bills->count()+1;
+       $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
 
        $reference_no = Carbon::now()->timestamp.''.$bill_no;
 

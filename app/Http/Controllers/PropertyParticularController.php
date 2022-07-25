@@ -24,6 +24,14 @@ class PropertyParticularController extends Controller
         ->get();
     }
 
+    public function show($property_uuid)
+    {
+        return Particular::join('property_particulars', 'particulars.id',
+        'property_particulars.particular_id')
+        ->where('property_uuid', $property_uuid)
+        ->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,10 +59,6 @@ class PropertyParticularController extends Controller
      * @param  \App\Models\PropertyParticular  $propertyParticular
      * @return \Illuminate\Http\Response
      */
-    public function show(PropertyParticular $propertyParticular)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

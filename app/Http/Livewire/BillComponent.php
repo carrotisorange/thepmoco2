@@ -56,7 +56,7 @@ class BillComponent extends Component
 
       $validated_data = $this->validate();
 
-      $bill_no = Property::find(Session::get('property'))->bills->max('bill_no');
+      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property')->uuid);
 
       try
       {

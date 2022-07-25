@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Mail\SendBillToTenant;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
-use App\Models\Particular;
 use Session;
 use Illuminate\Validation\Rule;
 use DB;
@@ -14,7 +13,6 @@ use App\Models\Property;
 use App\Models\User;
 use Carbon\Carbon;
 use \PDF;
-use App\Models\Point;
 use Illuminate\Support\Facades\Mail;
 
 class TenantBillController extends Controller
@@ -25,25 +23,30 @@ class TenantBillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function index(Property $property, Tenant $tenant)
     {        
+        $particulars = app('App\Http\Controllers\PropertyParticularController')->show($property->uuid);
 
-        $particulars = Particular::join('property_particulars', 'particulars.id',
-        'property_particulars.particular_id')
-        ->where('property_uuid', Session::get('property'))
-        ->get();
+        $unpaid_bills = $this->get_tenant_balance($tenant->uuid);
 
+        $bills = $this->get_tenant_bills($tenant->uuid);
+
+        $contracts = app('App\Http\Controllers\TenantContractController')->get_tenant_contracts($tenant->uuid);
+      
         return view('tenants.bills.index',[
             'tenant' => $tenant,  
-            'bills' => Tenant::find($tenant->uuid)->bills()->orderBy('bill_no','desc')->get(),
-            'unpaid_bills' => Tenant::find($tenant->uuid)
-            ->bills()
-            ->whereIn('status', ['unpaid', 'partially_paid'])
-            ->get(),
+            'bills' => $bills,
+            'unpaid_bills' => $unpaid_bills,
             'particulars' => $particulars,
-            'units' => Tenant::find($tenant->uuid)->contracts,
-            'note_to_bill' => Property::find(Session::get('property'))->note_to_bill
+            'units' => $contracts,
+            'note_to_bill' => $property->note_to_bill,
         ]);
+    }
+
+    public function get_tenant_bills($tenant_uuid)
+    {
+        return Tenant::find($tenant_uuid)->bills()->orderBy('bill_no','desc')->get();
     }
 
     public function get_bill_balance($bill_id)
@@ -56,10 +59,8 @@ class TenantBillController extends Controller
         return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid']);
     }
 
-        
     public function store(Request $request, Property $property, Tenant $tenant)
     {
-
         $attributes = request()->validate([
             'bill' => 'required|numeric|min:1',
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
@@ -69,22 +70,26 @@ class TenantBillController extends Controller
         ]);
 
         try {
-            
             DB::beginTransaction();
             
-            $bill_no = Property::find(Session::get('property'))->bills->max('bill_no');
+            $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($property->uuid);
+            
+            $attributes['bill_no']= $bill_no;
 
-            $attributes['bill_no']= $bill_no+1;
-             if($request->particular_id == 8)
-             {
+            if($request->particular_id == 8)
+            {
               $attributes['bill'] = -($request->bill);
-             }
+            }
+
             $attributes['reference_no']= $tenant->bill_reference_no;
+
             $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
+
             $attributes['user_id'] = auth()->user()->id;
-            $attributes['property_uuid'] = Session::get('property');
+
+            $attributes['property_uuid'] = $property->uuid;
+
             $attributes['tenant_uuid'] = $tenant->uuid;
-            //$attributes['description'] = 'movein charges';
 
             Bill::create($attributes);
 
@@ -96,77 +101,66 @@ class TenantBillController extends Controller
         }
         catch(\Exception $e)
         {
-            ddd($e);
-             return back()->with('error','Cannot perform the action. Please try again.');
+            DB::rollback();
+            
+            return back()->with('error','Cannot perform the action. Please try again.');
         }
     }
 
     public function export(Request $request, Property $property, Tenant $tenant)
     {
-        Property::where('uuid',Session::get('property'))->update([
-            'note_to_bill' => $request->note_to_bill,
-        ]);
+       app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
-        $property = Property::find(Session::get('property'));
+       $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
+    
+        $pdf = $this->generate_pdf($data, $property);
 
-        $data = [
-            'tenant' => $tenant->tenant,
-            'reference_no' => $tenant->bill_reference_no,
-            'due_date' => $request->due_date,
-            'penalty' => $request->penalty,
-            'user' => User::find(auth()->user()->id)->name,
-            'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => Tenant::find($tenant->uuid)
-            ->bills()
-            ->whereIn('status', ['unpaid', 'partially_paid'])
-            ->orderBy('bill_no')
-            ->get(),
-            'note_to_bill' => $request->note_to_bill,
-      
-        ];
+       return $pdf->download($tenant->tenant.'-soa.pdf');
+    }
 
-       $pdf = PDF::loadView('tenants.bills.export', $data);
-       $pdf->output();
-       $canvas = $pdf->getDomPDF()->getCanvas();
+    public function generate_pdf($data, $property)
+    {
+        $pdf = PDF::loadView('tenants.bills.export', $data);
 
-       $height = $canvas->get_height();
-       $width = $canvas->get_width();
+        $pdf->output();
 
-       $canvas->set_opacity(.2,"Multiply");
+        $canvas = $pdf->getDomPDF()->getCanvas();
 
-       $canvas->set_opacity(.2);
+        $height = $canvas->get_height();
 
-       $canvas->page_text($width/5, $height/2, $property->property, null,
-       55, array(0,0,0),2,2,-30);
+        $width = $canvas->get_width();
 
-        return $pdf->download($tenant->tenant.'-soa.pdf');
+        $canvas->set_opacity(.2,"Multiply");
+
+        $canvas->set_opacity(.2);
+
+        $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+
+        return $pdf;
     }
 
     public function send(Request $request, Property $property, Tenant $tenant)
-    {     Property::where('uuid',Session::get('property'))->update([
-            'note_to_bill' => $request->note_to_bill,
-        ]);
+    {    
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
-        $property = Property::find(Session::get('property'));
+        $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
-        $data = [
+        Mail::to($request->email)->send(new SendBillToTenant($data));
+
+        return back()->with('success', 'Unpaid bills is successfully sent');
+    }
+
+    public function get_bill_data($tenant, $due_date, $penalty, $note)
+    {
+        return $data = [
             'tenant' => $tenant->tenant,
             'reference_no' => $tenant->bill_reference_no,
-            'due_date' => $request->due_date,
-            'penalty' => $request->penalty,
+            'due_date' => $due_date,
+            'penalty' => $penalty,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => Tenant::find($tenant->uuid)
-            ->bills()
-            ->whereIn('status', ['unpaid', 'partially_paid'])
-            ->orderBy('bill_no')
-            ->get(),
-            'note_to_bill' => $request->note_to_bill,
-      
-         ];
-
-         Mail::to($request->email)->send(new SendBillToTenant($data));
-
-         return back()->with('success', 'Unpaid bills is successfully sent');
+            'bills' => $this->get_tenant_bills($tenant->uuid),
+            'note_to_bill' => $note,
+        ];
     }
 }

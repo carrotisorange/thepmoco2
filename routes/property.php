@@ -123,11 +123,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('ledger', [TenantLedgerController::class, 'index'])->name('tenants');
 
             Route::prefix('guardian')->group(function(){
-                Route::get('create', [GuardianController::class, 'create'])->name('tenant');
+                Route::get('{unit?}/create', [GuardianController::class, 'create'])->name('tenant');
             });
 
             Route::prefix('reference')->group(function(){
-                Route::get('create', [ReferenceController::class, 'create'])->name('tenant');
+                Route::get('{unit?}/create', [ReferenceController::class, 'create'])->name('tenant');
             });
         
             Route::prefix('/contract')->group(function(){
