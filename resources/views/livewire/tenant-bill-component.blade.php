@@ -79,7 +79,7 @@
                         Create a payment
                     </x-button> --}}
 
-                    {{-- <x-button wire:click="payBills">Pay Bills</x-button> --}}
+                    <x-button wire:click="payBills">Pay Bills</x-button>
                     <div class="mt-5">
                         <span>You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}} amounting to {{ number_format($total) }}</span>...
                     </div>

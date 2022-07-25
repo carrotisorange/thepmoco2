@@ -148,6 +148,8 @@ class TenantCollectionController extends Controller
 
      public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
      {
+
+      return $request->all();
    
          $max = Collection::where('property_uuid', Session::get('property'))
            ->where('is_posted', false)

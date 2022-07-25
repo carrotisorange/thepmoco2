@@ -12,6 +12,12 @@ class CollectionEditComponent extends Component
     public $batch_no;
     public $tenant;
     public $collections;
+    public $attachment;
+    public $form = 'cash';
+    public $bank;
+    public $check_no;
+    public $created_at;
+    public $date_deposited; 
 
     public function mount($collections, $tenant, $batch_no)
     {

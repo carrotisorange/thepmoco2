@@ -1,46 +1,94 @@
-<div>
+<div class="p-8">
     <div class="p-8 bg-white border-b border-gray-200">
-
         <div class="mt-2 flex flex-wrap mb-6">
-            <div class="w-full md:w-1/2 ">
-                <x-label for="guardian">
-                    Mode of payment <span class="text-red-600">*</span>
+            <div class="w-full md:w-1/2 px-3">
+                <x-label for="created_at">
+                    Date
                 </x-label>
-                <x-form-input form="edit-form" type="text" name="form"
-                    value="{{ old('guardian') }}" />
+                <x-form-input form="edit-form" name="created_at" wire:model="created_at" type="date" />
 
-                @error('guardian')
+                @error('created_at')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
+
             </div>
 
-            <div class="mt-2 w-full md:w-1/2 ">
-                <x-label for="email">
-                    Email
+            <div class="w-full md:w-1/2 px-3">
+                <x-label for="particular_id">
+                    Mode of payment
                 </x-label>
-                <x-form-input wire:model="email" id="grid-last-name" type="email" name="email"
-                    value="{{ old('email') }}" />
+                <x-form-select form="edit-form" name="form" wire:model="form" required>
+                    <option value="bank" {{ old('form')=='bank' ? 'selected' : 'Select one' }}>bank</option>
+                    <option value="cash" {{ old('form')=='cash' ? 'selected' : 'Select one' }} selected>cash
+                    </option>
+                    <option value="cheque" {{ old('form')=='cheque' ? 'selected' : 'Select one' }}>cheque
+                    </option>
+                </x-form-select>
 
-                @error('email')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="mt-2 w-full md:w-1/2 ">
-                <x-label for="mobile_number">
-                    Mobile <span class="text-red-600">*</span>
-                </x-label>
-                <x-form-input wire:model="mobile_number" id="grid-last-name" type="text" name="mobile_number"
-                    value="{{ old('mobile_number') }}" />
-
-                @error('mobile_number')
+                @error('form')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
         </div>
+        @if($form === 'bank')
+        <div class="mt-2 flex flex-wrap mb-6">
+            <div class="w-full md:w-1/2 px-3">
+                <x-label for="bank">
+                    Bank
+                </x-label>
+                <x-form-input form="edit-form" name="bank" wire:model="bank" type="text" />
+
+                @error('bank')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+
+            </div>
+
+            <div class="w-full md:w-1/2 px-3">
+                <x-label for="date_deposited">
+                    Date Deposited
+                </x-label>
+                <x-form-input form="edit-form" name="date_deposited" wire:model="date_deposited" type="date" />
+
+                @error('date_deposited')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
 
 
+        </div>
+        <div class="w-full  px-3">
+            <x-label for="attachment">
+                Proof of payment (Deposit Slip)
+            </x-label>
+            <x-form-input form="edit-form" name="attachment" wire:model="attachment" type="file" />
 
+            @error('attachment')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mt-2 flex flex-wrap mb-6">
+
+        </div>
+        @endif
+
+        @if($form === 'cheque')
+        <div class="mt-2 flex flex-wrap mb-6">
+            <div class="w-full px-3">
+                <x-label for="check_no">
+                    Cheque No
+                </x-label>
+                <x-form-input form="edit-form" name="check_no" wire:model="check_no" type="text" />
+
+                @error('check_no')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+
+            </div>
+        </div>
+        @endif
     </div>
+
 
     <div class="mt-5 p-2 bg-white border-b border-gray-200">
 
@@ -92,16 +140,16 @@
         </div>
 
     </div>
-</div>
 
-<div class="mt-5">
-    <p class="text-right">
+    <div class="mt-5 p-2">
+        <p class="text-right">
 
 
-        <x-button form="edit-form">Confirm Payments
-        </x-button>
+            <x-button form="edit-form">Confirm Payment
+            </x-button>
 
-    </p>
+        </p>
 
-</div>
+    </div>
+
 </div>
