@@ -129,9 +129,17 @@ class BillController extends Controller
      * @param  \App\Models\Bill  $bill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bill $bill)
+    public function update_bill_amount_due($bill_id, $status)
     {
-        //
+         Bill::where('id', $bill_id)
+         ->update([
+             'status' => $status,
+         ]);
+    }
+
+    public function update_bill_initial_payment($bill_id,$amount)
+    {
+        Bill::where('id', $bill_id)->increment('initial_payment', $amount);
     }
 
     /**

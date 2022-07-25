@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Point;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Property;
 use DB;
 use Session;
 
@@ -15,7 +16,7 @@ class PointController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Property $property)
     {
         $points = User::find(auth()->user()->id)->points()->paginate(10);
 
@@ -40,10 +41,10 @@ class PointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($property_uuid, $point, $action_id)
+    public function store($property_uuid,$user_id, $point, $action_id)
     {
           Point::create([
-          'user_id' => auth()->user()->id,
+          'user_id' => $user_id,
           'point' => $point,
           'action_id' => $action_id,
           'property_uuid' => $property_uuid

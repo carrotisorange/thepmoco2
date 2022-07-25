@@ -108,7 +108,7 @@ class TenantCollectionController extends Controller
 
      public function export(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
      {          
-         $balance = Bill::where('tenant_uuid', $ar->tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid']);
+         $balance = app('App\Http\Controllers\TenantBillController')->get_tenant_balance($ar->tenant_uuid);
    
          $property = Property::find(Session::get('property'));
 
@@ -147,60 +147,60 @@ class TenantCollectionController extends Controller
         return $pdf->download($tenant->tenant.'-ar.pdf');
      }
 
-     public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
+     public function get_selected_bills_count($batch_no)
      {
-         $collection_ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
-
-         $max = Collection::where('property_uuid', Session::get('property'))
-          ->where('batch_no', $batch_no)
+        return Collection::where('property_uuid', Session::get('property'))
+         ->where('batch_no', $batch_no)
          ->where('is_posted', false)
          ->max('id');
-         
-         for($i=0; $i<=$max; $i++)
-         {
-            Collection::where('bill_id',$request->input("bill_id_".$i))
-            ->update([
-               'collection' => $request->input("collection_amount_".$i),
-               'form' => $request->form,
-               'is_posted' => true
-       
-            ]);
+     }
 
-            if((Bill::where('id',$request->input("bill_id_".$i))->sum('bill') - Bill::where('id',$request->input("bill_id_".$i))->sum('initial_payment')) <= $request->input("collection_amount_".$i))
+     public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
+     {
+         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
+
+         $counter = $this->get_selected_bills_count($batch_no);
+      
+         for($i=0; $i<=$counter; $i++)
+         {
+            $collection = (int) $request->input("collection_amount_".$i);
+
+            $form = $request->form;
+
+            $bill_id = $request->input("bill_id_".$i);
+
+            $total_amount_due = app('App\Http\Controllers\TenantBillController')->get_bill_balance($bill_id);
+
+            app('App\Http\Controllers\CollectionController')->update($collection, $form, $bill_id);
+
+            if(($total_amount_due) <= $collection)
             {
-               Bill::where('id', $request->input("bill_id_".$i))
-                  ->update([
-                  'status' => 'paid',
-               ]);
-                  Bill::where('id',$request->input("bill_id_".$i))
-                  ->increment('initial_payment', (int)$request->input("collection_amount_".$i));
+                app('App\Http\Controllers\BillController')->update_bill_amount_due($bill_id, 'paid');
+
+                app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id , $collection);
             }
             else
             {
-                  Bill::where('id', $request->input("bill_id_".$i))
-                  ->update([
-                     'status' => 'partially_paid',
-                  ]);
+                app('App\Http\Controllers\BillController')->update_bill_amount_due($bill_id, 'partially_paid');
 
-                  Bill::where('id',$request->input("bill_id_".$i))
-                   ->increment('initial_payment', (int)$request->input("collection_amount_".$i));
+                app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id, $collection);
             }
          }
 
-           $ar = AcknowledgementReceipt::create([
-           'tenant_uuid' => $tenant->uuid,
-           'amount' => Collection::where('property_uuid', Session::get('property'))->where('tenant_uuid',
-           $tenant->uuid)->where('batch_no', $batch_no)->sum('collection'),
-           'property_uuid' => Session::get('property'),
-           'user_id' => auth()->user()->id,
-           'ar_no' => $collection_ar_no,
-           'mode_of_payment' => $request->form,
-           'collection_batch_no' => $batch_no,
-           'cheque_no' => $request->check_no,
-           'bank' => $request->bank,
-           'date_deposited' => $request->date_deposited,
-           'created_at' => $request->created_at,
-           ]);
+         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')
+         ->store(
+                  $tenant->uuid,
+                  Collection::where('property_uuid', Session::get('property'))->where('tenant_uuid', $tenant->uuid)->where('batch_no', $batch_no)->sum('collection'),
+                  Session::get('property'),
+                  auth()->user()->id,
+                  $ar_no,
+                  $request->form,
+                  $batch_no,
+                  $request->check_no,
+                  $request->bank,
+                  $request->date_deposited,
+                  $request->created_at,
+         );
 
          return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills')->with('success', 'Payment is successfully saved.');
      }

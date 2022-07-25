@@ -32,6 +32,24 @@ class UserController extends Controller
         //
     }
 
+    public function is_trial_expired($date)
+    {
+        if($date <= Carbon::now()){
+            return true; 
+        }else{ 
+            return false; 
+        } 
+    }
+    
+    // public function is_user_interested($status)
+    // {
+    //     if($status == 'interested'){
+    //         return true; 
+    //     }else{ 
+    //         return false; 
+    //     } 
+    // }
+
     /**
      * Store a newly created resource in storage.
      *

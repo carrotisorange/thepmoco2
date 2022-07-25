@@ -43,23 +43,13 @@ class PropertyController extends Controller
         Session::forget('property_name');
     }
 
-    public function is_trial_expire()
+    public function store_property_session($property)
     {
-        if(auth()->user()->trial_ends_at <= Carbon::now()){
-            return true; 
-        }else{ 
-            return false; 
-        } 
+        session(['property' => $property->uuid]);
+        session(['property_name' => $property->property]);
     }
-    
-    public function is_user_interested()
-    {
-        if(auth()->user()->status == 'interested'){
-            return true; 
-        }else{ 
-            return false; 
-        } 
-    }
+
+
 
     public function is_property_exist()
     {
@@ -394,12 +384,11 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {  
-         if($this->is_trial_expire()){
+        if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
             return redirect('/plan/3/checkout/1/get');
-         }
+        }
 
-        session(['property' => $property->uuid]);
-        session(['property_name' => $property->property]);
+        $this->store_property_session($property);
 
         $this->save_unit_stats();
 

@@ -82,9 +82,14 @@ class CollectionController extends Controller
      * @param  \App\Models\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Collection $collection)
+    public function update($bill_id, $collection, $form)
     {
-        //
+         Collection::where('bill_id', $bill_id)
+         ->update([
+         'collection' => $collection,
+         'form' => $form,
+         'is_posted' => true
+         ]);
     }
 
     /**

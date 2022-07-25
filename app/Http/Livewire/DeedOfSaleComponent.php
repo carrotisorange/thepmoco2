@@ -59,7 +59,7 @@ class DeedOfSaleComponent extends Component
 
             $this->store_deed_of_sale($validated_data);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), 5, 7);
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, 7);
 
             DB::commit();
 

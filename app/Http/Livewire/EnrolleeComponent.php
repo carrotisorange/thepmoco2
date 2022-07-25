@@ -72,7 +72,7 @@ class EnrolleeComponent extends Component
 
             $this->update_unit();
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), 5, 2);
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, 2);
 
             DB::commit();
         

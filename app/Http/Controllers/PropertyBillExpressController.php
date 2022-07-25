@@ -81,7 +81,7 @@ class PropertyBillExpressController extends Controller
 
             }
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), $bill_count, 3);
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, $bill_count, 3);
 
             DB::commit();
 

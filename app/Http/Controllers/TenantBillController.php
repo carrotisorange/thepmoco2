@@ -13,7 +13,6 @@ use App\Models\Bill;
 use App\Models\Property;
 use App\Models\User;
 use Carbon\Carbon;
-use LivewireUI\Modal\ModalComponent;
 use \PDF;
 use App\Models\Point;
 use Illuminate\Support\Facades\Mail;
@@ -47,16 +46,27 @@ class TenantBillController extends Controller
         ]);
     }
 
+    public function get_bill_balance($bill_id)
+    {
+        return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');
+    }
+
+    public function get_tenant_balance($tenant_uuid)
+    {
+        return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid']);
+    }
+
+        
     public function store(Request $request, Property $property, Tenant $tenant)
     {
 
-         $attributes = request()->validate([
+        $attributes = request()->validate([
             'bill' => 'required|numeric|min:1',
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'start' => 'required|date',
             'end' => 'required|date|after:start',
-         ]);
+        ]);
 
         try {
             
@@ -78,12 +88,7 @@ class TenantBillController extends Controller
 
             Bill::create($attributes);
 
-            Point::create([
-            'user_id' => auth()->user()->id,
-            'point' => 1,
-            'action_id' => 3,
-            'property_uuid' => Session::get('property')
-          ]);
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 1, 3);
 
             DB::commit();
 

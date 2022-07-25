@@ -6,6 +6,7 @@ use Livewire\Component;
 use Session;
 use App\Models\Collection;
 use App\Models\Bill;
+use Carbon\Carbon;
 
 class CollectionEditComponent extends Component
 {
@@ -24,6 +25,7 @@ class CollectionEditComponent extends Component
         $this->batch_no = $batch_no;
         $this->tenant = $tenant;
         $this->collections = $collections;
+        $this->created_at = Carbon::now()->format('Y-m-d');
     }
 
     public function get_bills()
