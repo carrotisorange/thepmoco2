@@ -162,6 +162,7 @@ class TenantCollectionController extends Controller
             ->update([
                'collection' => $request->input("collection_amount_".$i),
                'form' => $request->form,
+               'is_posted' => true
        
             ]);
 
