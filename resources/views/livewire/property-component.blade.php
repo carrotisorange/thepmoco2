@@ -9,7 +9,7 @@
                         Property <span class="text-red-600">*</span>
                     </x-label>
 
-                    <x-form-input wire:model="property" id="property" type="text" name="property"
+                    <x-form-input wire:model.lazy="property" id="property" type="text" name="property"
                         :value="old('property')" autofocus />
 
                     @error('property')
@@ -22,7 +22,7 @@
                         Ownership <span class="text-red-600">*</span>
                     </x-label>
 
-                    <x-form-select wire:model="ownership" name="ownership" id="ownership">
+                    <x-form-select wire:model.lazy="ownership" name="ownership" id="ownership">
                         <option value="">Select one</option>
                         <option value="Single owned" {{ old('ownership')=='Single owned' ? 'selected' : 'Select one' }}>
                             Single
@@ -42,7 +42,7 @@
                         Type <span class="text-red-600">*</span>
                     </x-label>
 
-                    <x-form-select wire:model="type_id" name="type_id" id="type_id">
+                    <x-form-select wire:model.lazy="type_id" name="type_id" id="type_id">
                         <option value="">Select one</option>
                         @foreach ($types as $type)
                         <option value="{{ $type->id }}" {{ old('type_id')==$type->id?
@@ -63,7 +63,7 @@
                                 Email
                             </x-label>
                             <div class="relative">
-                                <x-form-input type="email" wire:model="email" value="{{old('email', $email)}}" required
+                                <x-form-input type="email" wire:model.lazy="email" value="{{old('email', $email)}}" required
                                     autofocus />
 
                                 @error('email')
@@ -76,7 +76,7 @@
                                 Mobile
                             </x-label>
                             <div class="relative">
-                                <x-form-input type="text" wire:model="mobile" value="{{old('mobile', $mobile)}}"
+                                <x-form-input type="text" wire:model.lazy="mobile" value="{{old('mobile', $mobile)}}"
                                     required autofocus />
                                 @error('mobile')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -93,7 +93,7 @@
                                 Country <span class="text-red-600">*</span>
                             </x-label>
                             <div class="relative">
-                                <x-form-select wire:model="country_id" id="country_id" name="country_id">
+                                <x-form-select wire:model.lazy="country_id" id="country_id" name="country_id">
                                     <option value="">Select one</option>
                                     @foreach ($countries as $country)
                                     <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
@@ -112,7 +112,7 @@
                                 Region <span class="text-red-600">*</span>
                             </x-label>
                             <div class="relative">
-                                <x-form-select wire:model="province_id" id="province_id" id="province_id"
+                                <x-form-select wire:model.lazy="province_id" id="province_id" id="province_id"
                                     name="province_id">
                                     <option value="">Select one</option>
                                     @foreach ($provinces as $province)
@@ -130,7 +130,7 @@
                             <x-label for="city_id">
                                 City
                             </x-label>
-                            <x-form-select wire:model="city_id" id="city_id" id="city_id" name="city_id">
+                            <x-form-select wire:model.lazy="city_id" id="city_id" id="city_id" name="city_id">
                                 <option value="">Select one</option>
                                 @foreach ($cities as $city)
                                 <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
@@ -148,7 +148,7 @@
                             <x-label for="barangay">
                                 Address <span class="text-red-600">*</span>
                                 </x-lab>
-                                <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
+                                <x-form-input wire:model.lazy="barangay" id="barangay" type="text" name="barangay"
                                     value="{{ old('barangay') }}" />
 
                                 @error('barangay')
@@ -167,7 +167,7 @@
 
 
 
-                    <x-form-input wire:model="thumbnail" id="thumbnail" type="file" name="thumbnail"
+                    <x-form-input wire:model.lazy="thumbnail" id="thumbnail" type="file" name="thumbnail"
                         :value="old('thumbnail')" autofocus />
 
                     @error('thumbnail')
@@ -181,7 +181,7 @@
                         upload a PDF file.) <span class="text-blue-600">(optional)</span>
                     </x-label>
 
-                    <x-form-input wire:model="tenant_contract" id="tenant_contract" type="file" name="tenant_contract"
+                    <x-form-input wire:model.lazy="tenant_contract" id="tenant_contract" type="file" name="tenant_contract"
                         :value="old('tenant_contract')" autofocus />
 
                     @error('tenant_contract')
@@ -197,7 +197,7 @@
                     </x-label>
 
 
-                    <x-form-input wire:model="owner_contract" id="owner_contract" type="file" name="owner_contract"
+                    <x-form-input wire:model.lazy="owner_contract" id="owner_contract" type="file" name="owner_contract"
                         :value="old('owner_contract')" autofocus />
 
                     @error('owner_contract')

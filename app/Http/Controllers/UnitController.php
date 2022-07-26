@@ -75,7 +75,7 @@ class UnitController extends Controller
 
        $units = Unit::where('batch_no', $batch_no)->count();
 
-        app('App\Http\Controllers\PointController')->store(Session::get('property'), $request->number_of_units, 5);
+        app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, $request->number_of_units, 5);
         
         return back()->with('success', $units.' unit is successully created.');
     }
@@ -156,61 +156,55 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function bulk_update(Request $request, $batch_no)
-    {
-        return $request->all();
-        $units = Unit::where('status_id', 6)->count();
+    // public function bulk_update(Request $request, Property $property, $batch_no)
+    // {
+    //     $units = Unit::where('status_id', 6)->count();
 
-        for($i = 1; $i<=$units; $i++){ 
-            $unit=Unit::find(request('uuid'.$i));
-            $unit->unit = request('unit'.$i);
-            if(request('building_id'.$i))
-            {
-                $unit->building_id = request('building_id'.$i);
-            }
-            else
-            {
-                $unit->building_id = '1';
-            }
+    //     for($i = 1; $i<=$units; $i++){ 
+    //         $unit=Unit::find(request('uuid'.$i));
+    //         $unit->unit = request('unit'.$i);
+    //         if(request('building_id'.$i))
+    //         {
+    //             $unit->building_id = request('building_id'.$i);
+    //         }
+    //         else
+    //         {
+    //             $unit->building_id = '1';
+    //         }
            
-            if(request('floor_id'.$i))
-            {
-                $unit->floor_id = request('floor_id'.$i);
-            }
-            else
-            {
-                $unit->floor_id = '1';
-            }
+    //         if(request('floor_id'.$i))
+    //         {
+    //             $unit->floor_id = request('floor_id'.$i);
+    //         }
+    //         else
+    //         {
+    //             $unit->floor_id = '1';
+    //         }
 
-            if(request('category_id'.$i))
-            {
-                $unit->category_id = request('category_id'.$i);
-            }
-             else
-            {
-                $unit->category_id = '1';
-            }
+    //         if(request('category_id'.$i))
+    //         {
+    //             $unit->category_id = request('category_id'.$i);
+    //         }
+    //          else
+    //         {
+    //             $unit->category_id = '1';
+    //         }
             
-            $unit->size = request('size'.$i);
-            $unit->rent = request('rent'.$i);
-            $unit->occupancy = request('occupancy'.$i);
-            $unit->status_id = '1';
-            $unit->save();
-        }
+    //         $unit->size = request('size'.$i);
+    //         $unit->rent = request('rent'.$i);
+    //         $unit->occupancy = request('occupancy'.$i);
+    //         $unit->status_id = '1';
+    //         $unit->save();
+    //     }
 
-          Point::create([
-          'user_id' => auth()->user()->id,
-          'point' => $units,
-          'action_id' => 5,
-          'property_uuid' => Session::get('property')
-          ]);
-        
-        return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' unit is successfully 
-        created.');
-    }
+    //     app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, $units);
+
+    //     return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' unit is successfully 
+    //     created.');
+    // }
 
 
-    public function update(Request $request, Unit $unit)
+    public function update(Request $request, Property $property, Unit $unit)
     {
         $attributes = request()->validate([
         'unit' => ['required', 'string', 'max:255'],
@@ -227,7 +221,7 @@ class UnitController extends Controller
 
         if(isset($attributes['thumbnail']))
         {
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
 
         $unit->update($attributes);

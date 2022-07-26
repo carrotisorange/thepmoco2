@@ -62,17 +62,19 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     //Routes for Unit
-    Route::prefix('/unit')->group(function(){
+    Route::prefix('unit')->group(function(){
         Route::get('/', [UnitController::class, 'index'])->name('unit');
-            Route::patch('update', [UnitController::class, 'update']);
-            Route::post('{batch_no}/store', [UnitController::class, 'store']);
-            Route::get('{batch_no}/edit', [UnitController::class, 'bulk_edit']);
+       
+            Route::post('{batch_no:batch_no}/store', [UnitController::class, 'store']);
+            Route::get('{batch_no:batch_no}/edit', [UnitController::class, 'bulk_edit']);
             Route::get('{batch_no}/create', [UnitController::class, 'create']);
-            Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
+            //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
             Route::get('masterlist', [UnitMasterlistController::class, 'index']);
 
         Route::prefix('{unit}')->group(function(){
             Route::get('/', [UnitController::class, 'show']);
+            // Route::get('edit', [UnitController::class, 'edit']);
+            Route::patch('update', [UnitController::class, 'update']);
             Route::get('contracts', [UnitContractController::class, 'index']);
 
             Route::prefix('tenant')->group(function(){
@@ -80,10 +82,18 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{random_str}/old_create/export', [UnitContractController::class, 'export']);
                 Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create']);
             });
+
+            Route::prefix('deed_of_sale')->group(function(){
+                Route::post('{random_str}/create',[DeedOfSaleController::class,'create']);
+                Route::post('{random_str}/store',[DeedOfSaleController::class,'store']);
+            });
+
                 
             Route::prefix('owner')->group(function(){
-                Route::prefix('/')->group(function(){
-                });
+                Route::get('/', [OwnerController::class, 'index']);
+                Route::get('{random_str}/create', [OwnerController::class, 'create']);
+                Route::post('{random_str}/store', [OwnerController::class, 'store']);
+
 
                 Route::prefix('{owner}')->group(function(){
                     Route::get('deed_of_sale/{random_str}/create',[DeedOfSaleController::class,'create']);
@@ -236,14 +246,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create',[BillController::class,'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);
 
-
-    Route::get('unit/{unit}/owner/{random_str}/create', [OwnerController::class, 'create']);
-    Route::post('unit/{unit}/owner/{random_str}/store', [OwnerController::class, 'store']);
-
-
-    Route::post('unit/{unit}/owner/{owner}/deed_of_sale/{random_str}/store',[DeedOfSaleController::class,'store']);
-
-    //4
     Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create',[EnrolleeController::class,'create']);
     Route::post('unit/{unit}/owner/{owner}/enrollee/{random_str}/store', [EnrolleeController::class, 'store']);
     //3

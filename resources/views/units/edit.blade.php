@@ -17,7 +17,7 @@
     <div class="p-6 bg-white border-b border-gray-200">
         <h1 class="font-bold">Unit Details</h1>
         <div>
-            <form action="/unit/{{ $unit->uuid }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
+            <form action="{{ $unit->uuid }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="flex flex-row">

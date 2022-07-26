@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/unit'">Go back to
+        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Go back to
             units
         </x-button>
         <x-button data-modal-toggle="add-building-modal">Create a building
@@ -17,7 +17,7 @@
     <div class="p-6 bg-white border-b border-gray-200">
         <h1 class="font-bold">Unit Details</h1>
         <div>
-            <form action="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
+            <form action="update" method="POST" id="edit-form" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="flex flex-row">
@@ -191,13 +191,13 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Contracts</h1>
+        <h1 class="font-bold">Tenants</h1>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>#</x-th>
                     <x-th>Tenant</x-th>
-                    <x-th>Duration</x-th>
+                    <x-th>Contract</x-th>
                     <x-th>Rent/Mo</x-th>
                     <x-th>Status</x-th>
                     <x-th>Interaction</x-th>
@@ -211,7 +211,7 @@
                     <x-td>
                         <div class="flex items-center">
                             <div class="flex-shrink-0 h-10 w-10">
-                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}">
+                                <a href="/tenant/{{ $item->tenant_uuid }}/edit">
                                     <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->tenant->photo_id }}"
                                         alt=""></a>
                             </div>
@@ -317,13 +317,13 @@
             @endforelse
         </table>
         <div class="mt-5">
-            <span>Showing the last 5 contracts</span>
+            <span>Showing the last 5 tenants</span>
             <p class="text-right">
                 <x-button
-                    onclick="window.location.href='{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/old_create'">
+                    onclick="window.location.href='tenant/{{ Str::random(8) }}/old_create'">
                     Add a tenant
                 </x-button>
-                <x-button onclick="window.location.href='{{ $unit->uuid }}/contracts/'">See more contracts
+                <x-button onclick="window.location.href='contracts/'">See more tenants
                 </x-button>
             </p>
         </div>
@@ -392,10 +392,10 @@
         <div class="mt-5">
             <span>Showing the last 5 property documents</span>
             <p class="text-right">
-                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/owner/{{ Str::random(8) }}/create'">
+                <x-button onclick="window.location.href='owner/{{ Str::random(8) }}/create'">
                     Add a property document
                 </x-button>
-                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/deed_of_sales/'">See more property
+                <x-button onclick="window.location.href='deed_of_sales/'">See more property
                     documents
                 </x-button>
             </p>

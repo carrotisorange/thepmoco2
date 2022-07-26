@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Models\Property;
+use App\Models\Unit;
 use Session;
 
 class OwnerDeedOfSalesController extends Controller
@@ -15,7 +16,7 @@ class OwnerDeedOfSalesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Property $property, Owner $owner)
+    public function index(Property $property, Unit $unit, Owner $owner)
     {
         return view('owners.deed_of_sales.index',[
             'owner' => Owner::find($owner->uuid),

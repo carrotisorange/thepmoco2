@@ -30,7 +30,7 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Unit $unit)
+    public function create(Property $property, Unit $unit)
     {
         $this->authorize('manager');
 
@@ -45,18 +45,18 @@ class OwnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $unit_uuid)
+    public function store(Request $request, Property $property, $unit_uuid)
     {
          $owner_attributes = request()->validate([
-         'owner' => 'required',
-         'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
-         'mobile_number' => 'required',
-         'gender' => 'required',
-         'civil_status' => 'required',
-         'birthdate' => 'required',
-         'country_id' => ['required', Rule::exists('countries', 'id')],
-         'province_id' => ['required', Rule::exists('provinces', 'id')],
-         'city_id' => ['required', Rule::exists('cities', 'id')],
+            'owner' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
+            'mobile_number' => 'required',
+            'gender' => 'required',
+            'civil_status' => 'required',
+            'birthdate' => 'required',
+            'country_id' => ['required', Rule::exists('countries', 'id')],
+            'province_id' => ['required', Rule::exists('provinces', 'id')],
+            'city_id' => ['required', Rule::exists('cities', 'id')],
          ]);
 
          $owner_attributes['uuid'] = Str::uuid();
