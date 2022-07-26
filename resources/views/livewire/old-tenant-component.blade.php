@@ -7,7 +7,7 @@
                     <x-label for="tenant">
                         Full Name <span class="text-red-600">*</span>
                     </x-label>
-                    <x-form-input wire:model="tenant" id="tenant" type="text" name="tenant"
+                    <x-form-input wire:model.lazy="tenant" id="tenant" type="text" name="tenant"
                         value="{{ old('tenant') }}" />
 
                     @error('tenant')
@@ -21,7 +21,7 @@
                     <x-label for="email">
                         Email
                     </x-label>
-                    <x-form-input wire:model="email" id="email" type="email" name="email" value="{{ old('email') }}" />
+                    <x-form-input wire:model.lazy="email" id="email" type="email" name="email" value="{{ old('email') }}" />
 
                     @error('email')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -31,7 +31,7 @@
                     <x-label for="mobile_number">
                         Mobile
                     </x-label>
-                    <x-form-input wire:model="mobile_number" id="mobile_number" type="text" name="mobile_number"
+                    <x-form-input wire:model.lazy="mobile_number" id="mobile_number" type="text" name="mobile_number"
                         value="{{ old('mobile_number') }}" />
 
                     @error('mobile_number')
@@ -45,7 +45,7 @@
                     <x-label for="type">
                         Type <span class="text-red-600">*</span>
                     </x-label>
-                    <x-form-select wire:model="type" id="type" name="type">
+                    <x-form-select wire:model.lazy="type" id="type" name="type">
                         <option value="">Select one</option>
                         <option value="studying" {{ old('type')=='studying' ? 'selected' : 'Select one' }}>
                             {{
@@ -62,7 +62,7 @@
                     <x-label for="birthdate">
                         Birthdate
                     </x-label>
-                    <x-form-input wire:model="birthdate" id="birthdate" type="date" name="birthdate"
+                    <x-form-input wire:model.lazy="birthdate" id="birthdate" type="date" name="birthdate"
                         value="{{ old('birthdate') }}" />
 
                     @error('birthdate')
@@ -73,7 +73,7 @@
                     <x-label for="gender">
                         Gender <span class="text-red-600">*</span>
                     </x-label>
-                    <x-form-select wire:model="gender" id="gender" name="gender">
+                    <x-form-select wire:model.lazy="gender" id="gender" name="gender">
                         <option value="">Select one</option>
                         <option value="female" {{ old('gender')=='female' ? 'selected' : 'Select one' }}>
                             {{
@@ -91,7 +91,7 @@
                     <x-label for="civil_status">
                         Civil Status
                     </x-label>
-                    <x-form-select wire:model="civil_status" id="civil_status" name="civil_status">
+                    <x-form-select wire:model.lazy="civil_status" id="civil_status" name="civil_status">
                         <option value="">Select one</option>
                         <option value="single" {{ old('civil_status')=='single' ? 'selected' : 'Select one' }}>
                             {{
@@ -117,7 +117,7 @@
                         Country
                     </x-label>
                     <div class="relative">
-                        <x-form-select wire:model="country_id" id="country_id" name="country_id">
+                        <x-form-select wire:model.lazy="country_id" id="country_id" name="country_id">
                             <option value="">Select one</option>
                             @foreach ($countries as $country)
                             <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
@@ -136,7 +136,7 @@
                         Region
                     </x-label>
                     <div class="relative">
-                        <x-form-select wire:model="province_id" id="province_id" id="province_id" name="province_id">
+                        <x-form-select wire:model.lazy="province_id" id="province_id" id="province_id" name="province_id">
                             <option value="">Select one</option>
                             @foreach ($provinces as $province)
                             <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
@@ -153,7 +153,7 @@
                     <x-label for="city_id">
                         City
                     </x-label>
-                    <x-form-select wire:model="city_id" id="city_id" id="city_id" name="city_id">
+                    <x-form-select wire:model.lazy="city_id" id="city_id" id="city_id" name="city_id">
                         <option value="">Select one</option>
                         @foreach ($cities as $city)
                         <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
@@ -171,7 +171,7 @@
                     <x-label for="barangay">
                         Address
                         </x-lab>
-                        <x-form-input wire:model="barangay" id="barangay" type="text" name="barangay"
+                        <x-form-input wire:model.lazy="barangay" id="barangay" type="text" name="barangay"
                             value="{{ old('barangay') }}" />
 
                         @error('barangay')
@@ -186,7 +186,7 @@
                     <x-label for="course">
                         Course
                     </x-label>
-                    <x-form-input wire:model="course" id="course" type="text" name="course"
+                    <x-form-input wire:model.lazy="course" id="course" type="text" name="course"
                         value="{{ old('course') }}" />
 
                     @error('course')
@@ -197,7 +197,7 @@
                     <x-label for="year_level">
                         Year Level
                     </x-label>
-                    <x-form-input wire:model="year_level" id="year_level" type="text" name="year_level"
+                    <x-form-input wire:model.lazy="year_level" id="year_level" type="text" name="year_level"
                         value="{{ old('year_level') }}" />
 
                     @error('year_level')
@@ -208,7 +208,7 @@
                     <x-label for="school">
                         School
                     </x-label>
-                    <x-form-input wire:model="school" id="school" type="text" name="school"
+                    <x-form-input wire:model.lazy="school" id="school" type="text" name="school"
                         value="{{ old('school') }}" />
 
                     @error('school')
@@ -219,7 +219,7 @@
                     <x-label for="school_address">
                         Address
                     </x-label>
-                    <x-form-input wire:model="school_address" id="school_address" type="text" name="school_address"
+                    <x-form-input wire:model.lazy="school_address" id="school_address" type="text" name="school_address"
                         value="{{ old('school_address') }}" />
 
                     @error('school_address')
@@ -235,7 +235,7 @@
                     <x-label for="occupation">
                         Occupation
                     </x-label>
-                    <x-form-input wire:model="occupation" id="occupation" type="text" name="occupation"
+                    <x-form-input wire:model.lazy="occupation" id="occupation" type="text" name="occupation"
                         value="{{ old('occupation') }}" />
 
                     @error('occupation')
@@ -246,7 +246,7 @@
                     <x-label for="employer">
                         Employer
                     </x-label>
-                    <x-form-input wire:model="employer" id="employer" type="text" name="employer"
+                    <x-form-input wire:model.lazy="employer" id="employer" type="text" name="employer"
                         value="{{ old('employer') }}" />
 
                     @error('employer')
@@ -257,7 +257,7 @@
                     <x-label for="employer_address">
                         Employer Address
                     </x-label>
-                    <x-form-input wire:model="employer_address" id="employer_address" type="text"
+                    <x-form-input wire:model.lazy="employer_address" id="employer_address" type="text"
                         name="employer_address" value="{{ old('employer_address') }}" />
 
                     @error('employer_address')
@@ -274,7 +274,7 @@
                     </x-label>
 
 
-                    <x-form-input wire:model="photo_id" id="grid-last-name" type="file" name="photo_id"
+                    <x-form-input wire:model.lazy="photo_id" id="grid-last-name" type="file" name="photo_id"
                         value="{{ old('photo_id') }}" />
 
                     @error('photo_id')
