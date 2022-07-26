@@ -118,20 +118,21 @@
                 <th>Unit</th>
                 <th>Particular</th>
                 <th>Period Covered</th>
-                <th>Amount</th>
+                <th>Amount Due</th>
             </tr>
 
             @foreach($bills as $item)
 
             <tr>
+                @if ($item->bill-$item->initial_payment > 0)
                 <td>{{ $item->bill_no }}</td>
-
                 <td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</td>
                 <td>{{ $item->unit->unit }}</td>
                 <td>{{ $item->particular->particular }}</td>
                 <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
                 <td>{{ number_format(($item->bill-$item->initial_payment),2) }}</td>
+                @endif
             </tr>
             @endforeach
         </table>

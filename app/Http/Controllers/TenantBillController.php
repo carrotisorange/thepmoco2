@@ -46,7 +46,7 @@ class TenantBillController extends Controller
 
     public function get_tenant_bills($tenant_uuid)
     {
-        return Tenant::find($tenant_uuid)->bills()->orderBy('bill_no','desc')->get();
+        return Tenant::find($tenant_uuid)->bills()->where('bill','>', 0)->orderBy('bill_no','desc')->get();
     }
 
     public function get_bill_balance($bill_id)
