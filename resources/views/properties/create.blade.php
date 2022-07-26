@@ -4,7 +4,7 @@
         Enter your property details
     </x-slot>
     <x-slot name="options">
-        <x-button onclick="window.location.href='/properties'">
+        <x-button onclick="window.location.href='/property'">
             Go back to main
         </x-button>
     </x-slot>
