@@ -20,6 +20,10 @@ require __DIR__.'/auth.php';
 
 require __DIR__.'/property.php';
 
+require __DIR__.'/dashboard.php';
+
+require __DIR__.'/user.php';
+
 require __DIR__.'/marketing.php';
 
 //All routes that do not require authentication and verification

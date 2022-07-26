@@ -1,4 +1,4 @@
-<div class="p-8">
+<div class="p-3">
     <div class="p-8 bg-white border-b border-gray-200">
         <div class="mt-2 flex flex-wrap mb-6">
             <div class="w-full md:w-1/2 px-3">

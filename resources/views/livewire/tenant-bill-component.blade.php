@@ -37,7 +37,7 @@
                 <div id="billsOptionsDropdown"
                     class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                     <ul class="py-1" aria-labelledby="billsOptionsDropdown">
-                        @can('billing')
+                        @cannot('billing')
                         @if($total_unpaid_bills->count())
                         <li>
                             <a href="#/" data-modal-toggle="export-bill-modal"

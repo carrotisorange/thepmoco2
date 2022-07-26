@@ -150,7 +150,7 @@ class UserController extends Controller
         }
         $user->update($attributes);
 
-        return redirect('/profile/'.$user->username.'/edit')->with('success', 'Profile is successfully updated.');
+        return redirect('/user/'.$user->username.'/edit')->with('success', 'Profile is successfully updated.');
     }
 
     /**

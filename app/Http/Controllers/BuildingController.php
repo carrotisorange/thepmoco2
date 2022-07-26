@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Building;
 use App\Models\PropertyBuilding;
 use Illuminate\Http\Request;
+use App\Models\Property;
 use Session;
 
 class BuildingController extends Controller
@@ -35,13 +36,11 @@ class BuildingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Property $property)
     {
-        
         $attributes = request()->validate([
             'building'=> 'required|max:255'
         ]);
-
 
         $building = Building::
           where('building', strtolower($request->building))

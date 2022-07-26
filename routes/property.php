@@ -42,20 +42,14 @@ use App\Http\Controllers\PointController;
 use App\Http\Controllers\ReferenceController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
-    //Routes for dashboard
-    Route::prefix('/dashboard')->group(function(){
-        //Routes for Developer
-        Route::get('sales', [DashboardSalesController::class, 'index']);
-        Route::get('user/{id:id}/properties', [DashboardSalesController::class, 'show']);
-        //Route for Sales Folk
-        Route::get('dev', [DashboardDevController::class, 'index']);
-    });
 
     Route::prefix('/property')->group(function(){
         Route::get('/', [PropertyController::class, 'index'])->name('property');
         Route::get('{random_str}/create', [PropertyController::class, 'create']);
         Route::post('{random_str}/store', [PropertyController::class, 'store']);
     });
+
+       
 
     Route::prefix('/property/{property:uuid}')->group(function(){
         //Routes for Property
@@ -64,7 +58,17 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::patch('update',[PropertyController::class, 'update']);
         Route::get('delete', [PropertyController::class, 'destroy']);
 
-        //Routes for Unit
+    //Route for Building
+    Route::prefix('/building')->group(function(){
+        Route::post('{random_str}/store',[BuildingController::class, 'store']);
+    });
+
+    //Routes for Particular
+    Route::prefix('particular')->group(function(){
+        Route::post('{random_str}/store', [ParticularController::class, 'store']);
+    });
+
+    //Routes for Unit
     Route::prefix('/unit')->group(function(){
         Route::get('/', [UnitController::class, 'index'])->name('unit');
             Route::patch('update', [UnitController::class, 'update']);
@@ -86,7 +90,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 
             Route::prefix('owner')->group(function(){
                 Route::prefix('/')->group(function(){
-
                 });
 
                 Route::prefix('{owner}')->group(function(){
@@ -187,16 +190,16 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/',[PointController::class, 'index'])->name('point');
     });
 
-   
-
-   
-   
 
     //Routes for Payment
-    Route::get('payments', [AcknowledgementReceiptController::class, 'index'])->name('payments');
+    Route::prefix('payment')->group(function(){
+        Route::get('/', [AcknowledgementReceiptController::class, 'index'])->name('payment');
+    });
 
     //Routes for Concern
-    Route::get('concerns', [ConcernController::class, 'index'])->name('concerns');
+    Route::prefix('concern')->group(function(){
+        Route::get('/', [ConcernController::class, 'index'])->name('concern');
+    });
 
     //Routes for Team
     Route::prefix('team')->group(function(){
@@ -211,21 +214,19 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Referral
     Route::prefix('referral')->group(function(){
-        Route::get('/', [ReferralController::class, 'index'])->name('referrals');
+        Route::get('/', [ReferralController::class, 'index'])->name('referral');
     });
    
 
     //Routes for Timestamp
-    Route::get('timestamps', [TimestampController::class, 'index'])->name('timestamps');
+    Route::prefix('timestamp')->group(function(){
+        Route::get('/', [TimestampController::class, 'index'])->name('timestamp');
+    });
 
     //Routes for Enrollee
-    Route::get('enrollees', [EnrolleeController::class, 'index'])->name('enrollees');
-
-    //Routes for Particular
-    Route::prefix('particular')->group(function(){
-        Route::post('store', [ParticularController::class, 'store']);
-    });
-    
+    Route::prefix('enrollees')->group(function(){
+        Route::get('/', [EnrolleeController::class, 'index'])->name('enrollees');
+    });    
 
     //show contracts
     Route::get('/tenant_contract', [PropertyController::class, 'show_tenant_contract']);
@@ -234,13 +235,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('roles', [PropertyRoleController::class, 'index']);
 });
-
-    Route::get('bill/{bills}', [CollectionController::class, 'create']);
-
-
-    //edit an individual unit
-
-    Route::post('building/{random_str}/store',[BuildingController::class, 'store']);
 
     //'Route::get('tenant/{tenant}/unit/{unit}/contract/units', [TenantContractController::class, 'units']);
     Route::get('tenant/{tenant}/unit/{unit}/edit', [TenantContractController::class, 'create']);
@@ -262,7 +256,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::post('unit/{unit}/owner/{owner}/deed_of_sale/{random_str}/store',[DeedOfSaleController::class,'store']);
 
-
     //4
     Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create',[EnrolleeController::class,'create'])->name('units');
     Route::post('unit/{unit}/owner/{owner}/enrollee/{random_str}/store', [EnrolleeController::class, 'store']);
@@ -270,9 +263,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create',[BillController::class,'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);
-
-    Route::patch('/profile/{user}/update',[UserController::class, 'update']);
-    Route::get('/profile/{user}/edit',[UserController::class, 'edit'])->name('profile');
 
     Route::get('/contract/{contract}/moveout/bills', [MoveoutContractBillController::class, 'index'])->name('tenants');
 

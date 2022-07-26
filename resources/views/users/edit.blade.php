@@ -5,13 +5,13 @@
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='/properties'">
+        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}'">
             Go back
         </x-button>
     </x-slot>
 
     <div class="p-8 px-12 bg-white border-b border-gray-200">
-        <form action="/profile/{{ $user->username }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
+        <form action="/user/{{ $user->username }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div>

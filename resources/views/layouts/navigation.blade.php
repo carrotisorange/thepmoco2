@@ -63,9 +63,9 @@
 
                 @can('treasury')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/payments"
-                        :active="request()->routeIs('payments')">
-                        <i class="fa-solid fa-cash-register"></i>&nbspPayments
+                    <x-nav-link href="/property/{{ Session::get('property') }}/payment"
+                        :active="request()->routeIs('payment')">
+                        <i class="fa-solid fa-cash-register"></i>&nbspPayment
                     </x-nav-link>
                 </div>
                 @endcan
@@ -105,15 +105,15 @@
                         <x-dropdown-link href="/property">
                             <i class="fa-regular fa-building"></i> {{ __('Properties') }}
                         </x-dropdown-link>
-                        <x-dropdown-link href="/profile/{{ Auth::user()->username }}/edit">
+                        <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                             <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                         </x-dropdown-link>
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/referral">
                             <i class="fa-solid fa-user-group"></i> {{ __('Referral') }}
                         </x-dropdown-link>
                         <x-dropdown-link
-                            href="/property/{{ Session::get('property') }}/timestamps">
-                            <i class="fa-solid fa-user-clock"></i> {{ __('Timestamps') }}
+                            href="/property/{{ Session::get('property') }}/timestamp">
+                            <i class="fa-solid fa-user-clock"></i> {{ __('Timestamp') }}
                         </x-dropdown-link>
                         <x-dropdown-link target="_blank" href="/chatify">
                             <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
@@ -197,9 +197,9 @@
 
 
             @can('treasury')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/payments"
-                :active="request()->routeIs('payments')">
-                <i class="fa-solid fa-cash-register"></i>&nbspPayments
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/payment"
+                :active="request()->routeIs('payment')">
+                <i class="fa-solid fa-cash-register"></i>&nbspPayment
             </x-responsive-nav-link>
             @endcan
 
@@ -223,7 +223,7 @@
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link href="/profile/{{ Auth::user()->username }}/edit"
+                <x-responsive-nav-link href="/user/{{ Auth::user()->username }}/edit"
                     :active="request()->routeIs('profile')">
                     <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                 </x-responsive-nav-link>
