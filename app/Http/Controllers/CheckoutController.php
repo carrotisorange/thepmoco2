@@ -72,7 +72,7 @@ class CheckoutController extends Controller
        }    
     }
 
-    public function show_thankyou_regular_plan_page($temporary_username=null)
+    public function show_thankyou_regular_plan_page($temporary_username)
     {
         return view('checkout.thankyou',[
             'message' => 'Our Free Trial Plan',
