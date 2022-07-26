@@ -66,19 +66,19 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [UnitController::class, 'index'])->name('unit');
             Route::patch('update', [UnitController::class, 'update']);
             Route::post('{batch_no}/store', [UnitController::class, 'store']);
-            Route::get('{batch_no}/edit', [UnitController::class, 'bulk_edit'])->name('unit');
-            Route::get('{batch_no}/create', [UnitController::class, 'create'])->name('unit');
+            Route::get('{batch_no}/edit', [UnitController::class, 'bulk_edit']);
+            Route::get('{batch_no}/create', [UnitController::class, 'create']);
             Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
-            Route::get('masterlist', [UnitMasterlistController::class, 'index'])->name('unit');
+            Route::get('masterlist', [UnitMasterlistController::class, 'index']);
 
         Route::prefix('{unit}')->group(function(){
-            Route::get('/', [UnitController::class, 'show'])->name('unit');
-            Route::get('contracts', [UnitContractController::class, 'index'])->name('unit');
+            Route::get('/', [UnitController::class, 'show']);
+            Route::get('contracts', [UnitContractController::class, 'index']);
 
             Route::prefix('tenant')->group(function(){
-                Route::get('{random_str}/old_create', [UnitContractController::class, 'create'])->name('unit');
+                Route::get('{random_str}/old_create', [UnitContractController::class, 'create']);
                 Route::get('{random_str}/old_create/export', [UnitContractController::class, 'export']);
-                Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create'])->name('unit');
+                Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create']);
             });
                 
             Route::prefix('owner')->group(function(){
@@ -86,7 +86,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 });
 
                 Route::prefix('{owner}')->group(function(){
-                    Route::get('deed_of_sale/{random_str}/create',[DeedOfSaleController::class,'create'])->name('unit');
+                    Route::get('deed_of_sale/{random_str}/create',[DeedOfSaleController::class,'create']);
                 });
        
             });
@@ -99,39 +99,39 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){
         Route::get('/', [TenantController::class, 'index'])->name('tenant');
-        Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
+        Route::get('{tenant:uuid}', [TenantController::class, 'show']);
     
         Route::prefix('{tenant}')->group(function(){
-            Route::get('bills', [TenantBillController::class, 'index'])->name('tenant');
-            Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit'])->name('tenant');
+            Route::get('bills', [TenantBillController::class, 'index']);
+            Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit']);
             Route::patch('bills/{batch_no}/pay/update', [TenantCollectionController::class, 'update']);
-            Route::get('collections', [TenantCollectionController::class,'index'])->name('tenant');
+            Route::get('collections', [TenantCollectionController::class,'index']);
             Route::get('collection/{batch_no}', [TenantCollectionController::class,'destroy']);
-            Route::get('contracts', [TenantContractController::class,'index'])->name('tenant');
+            Route::get('contracts', [TenantContractController::class,'index']);
             Route::get('delete', [TenantController::class, 'destroy']);
             Route::post('bill/store', [TenantBillController::class, 'store']);
             Route::get('bill/export', [TenantBillController::class, 'export']);
             Route::get('bill/send', [TenantBillController::class, 'send']);
             //Route::get('collection/store', [TenantCollectionController::class, 'store']);
             Route::get('ar/{ar}/export', [TenantCollectionController::class, 'export']);
-            Route::get('concerns', [TenantConcernController::class, 'index'])->name('tenant');
-            Route::get('units', [TenantContractController::class, 'create'])->name('tenant');
-            Route::get('ledger', [TenantLedgerController::class, 'index'])->name('tenants');
+            Route::get('concerns', [TenantConcernController::class, 'index']);
+            Route::get('units', [TenantContractController::class, 'create']);
+            Route::get('ledger', [TenantLedgerController::class, 'index']);
 
             Route::prefix('guardian')->group(function(){
-                Route::get('{unit?}/create', [GuardianController::class, 'create'])->name('tenant');
+                Route::get('{unit?}/create', [GuardianController::class, 'create']);
             });
 
             Route::prefix('reference')->group(function(){
-                Route::get('{unit?}/create', [ReferenceController::class, 'create'])->name('tenant');
+                Route::get('{unit?}/create', [ReferenceController::class, 'create']);
             });
         
             Route::prefix('/contract')->group(function(){
                 Route::prefix('{contract}')->group(function(){
-                    Route::get('renew', [ContractController::class, 'renew'])->name('tenant');
-                    Route::get('moveout', [ContractController::class, 'moveout'])->name('tenant');
+                    Route::get('renew', [ContractController::class, 'renew']);
+                    Route::get('moveout', [ContractController::class, 'moveout']);
                     Route::get('export', [ContractController::class, 'export']);
-                    Route::get('transfer', [ContractController::class, 'transfer'])->name('tenant');
+                    Route::get('transfer', [ContractController::class, 'transfer']);
                 });
             });  
         });
@@ -141,24 +141,24 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/owner')->group(function(){
         Route::get('/', [OwnerController::class, 'index'])->name('owner');
         Route::prefix('{owner}')->group(function(){
-            Route::get('/', [OwnerController::class, 'show'])->name('owner');
+            Route::get('/', [OwnerController::class, 'show']);
        
 
             Route::prefix('representative')->group(function(){
-                Route::get('create', [RepresentativeController::class, 'create'])->name('owner');
+                Route::get('create', [RepresentativeController::class, 'create']);
             });
 
             Route::prefix('bank')->group(function(){
-                Route::get('create', [BankController::class, 'create'])->name('owner');
+                Route::get('create', [BankController::class, 'create']);
             });
 
-            Route::get('units', [OwnerDeedOfSalesController::class, 'create'])->name('owner');
+            Route::get('units', [OwnerDeedOfSalesController::class, 'create']);
 
-            Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index'])->name('owners');
+            Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);
             Route::get('bills', [OwnerBillController::class, 'index']);
             Route::get('collections', [OwnerCollectionController::class, 'index']);
-            Route::get('edit', [OwnerController::class, 'edit'])->name('owners');
+            Route::get('edit', [OwnerController::class, 'edit']);
         });      
     });
 
@@ -173,7 +173,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
         Route::post('express/{bill_count}/store',[ PropertyBillExpressController::class, 'store']);
         Route::post('customized/{bill_count}/store',[PropertyBillCustomizedController::class,'store']);
-        Route::get('customized/{batch_no}/edit',[PropertyBillCustomizedController::class,'edit'])->name('bill');
+        Route::get('customized/{batch_no}/edit',[PropertyBillCustomizedController::class,'edit']);
         Route::patch('customized/batch/{batch_no}',[PropertyBillCustomizedController::class,'update']);
       
     });
@@ -194,7 +194,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
         Route::prefix('{user}')->group(function(){
-            Route::get('edit', [TeamController::class, 'edit'])->name('team');
+            Route::get('edit', [TeamController::class, 'edit']);
             Route::patch('update', [TeamController::class, 'update']);
         });
     });
@@ -237,21 +237,21 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);
 
 
-    Route::get('unit/{unit}/owner/{random_str}/create', [OwnerController::class, 'create'])->name('units');
+    Route::get('unit/{unit}/owner/{random_str}/create', [OwnerController::class, 'create']);
     Route::post('unit/{unit}/owner/{random_str}/store', [OwnerController::class, 'store']);
 
 
     Route::post('unit/{unit}/owner/{owner}/deed_of_sale/{random_str}/store',[DeedOfSaleController::class,'store']);
 
     //4
-    Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create',[EnrolleeController::class,'create'])->name('units');
+    Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create',[EnrolleeController::class,'create']);
     Route::post('unit/{unit}/owner/{owner}/enrollee/{random_str}/store', [EnrolleeController::class, 'store']);
     //3
 
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create',[BillController::class,'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);
 
-    Route::get('/contract/{contract}/moveout/bills', [MoveoutContractBillController::class, 'index'])->name('tenants');
+    Route::get('/contract/{contract}/moveout/bills', [MoveoutContractBillController::class, 'index']);
 
     Route::get('/contract/{contract}/signed_contract', [ExportSignedContractController::class, 'index']);
 

@@ -89,9 +89,9 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
-    {     
-        Xendit::setApiKey(env("XENDIT_SECRET_KEY_PROD"));
+public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
+{
+    Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
     
         $params = [
             'external_id' => $external_id,
@@ -103,8 +103,8 @@ class CheckoutController extends Controller
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
-             //'success_redirect_url' => '127.0.0.1:8000/success/'.$temporary_username,
-            // 'failure_redirect_url' => '127.0.0.1:8000/select-a-plan',
+            // 'success_redirect_url' => '/127.0.0.1:8000/success/'.$temporary_username,
+            // 'failure_redirect_url' => '/127.0.0.1:8000/select-a-plan',
             'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username,
             'failure_redirect_url' => 'https://thepmo.co/select-a-plan',
             'customer'=> [
@@ -112,12 +112,12 @@ class CheckoutController extends Controller
                     'mobile_number' => $mobile_number,
                     'email' => $email
             ],
-            'customer_notification_preference'=>[
-                'invoice_created' => [
-                    'email',
-                    'sms'
-                ]
-            ]
+            // 'customer_notification_preference'=>[
+            //     'invoice_created' => [
+            //         'email',
+            //         'sms'
+            //     ]
+            // ]
         ];
 
         $createRecurring = \Xendit\Recurring::create($params);
