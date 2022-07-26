@@ -71,7 +71,7 @@ class UserController extends Controller
                 'checkoutoption_id' => $checkout_option,
                 'plan_id' => $plan_id,
                 'discount_code' => $discount_code,
-                'trial_ends_at' => Carbon::now()->addMonth(6),
+                'trial_ends_at' => Carbon::now()->addMonth(),
             ]
         );
 
@@ -80,7 +80,7 @@ class UserController extends Controller
             User::where('id', $user_id)
             ->where('checkoutoption_id', $checkout_option)
             ->update([
-                    'trial_ends_at' => Carbon::now()->addMonth()
+                    'trial_ends_at' => Carbon::now()->addMonth(6)
             ]);
          }
 
