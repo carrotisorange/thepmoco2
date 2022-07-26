@@ -37,7 +37,7 @@
                 <div id="billsOptionsDropdown"
                     class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                     <ul class="py-1" aria-labelledby="billsOptionsDropdown">
-                        @cannot('billing')
+                        @can('billing')
                         @if($total_unpaid_bills->count())
                         <li>
                             <a href="#/" data-modal-toggle="export-bill-modal"
@@ -72,19 +72,21 @@
                 </div>
 
                 @can('treasury')
-                    @if($total_unpaid_bills->sum('bill') && $selectedBills)
-                    {{-- <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'">POa</x-button> --}}
-                    {{-- <x-button 
-                        wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-                        Create a payment
-                    </x-button> --}}
+                @if($total_unpaid_bills->sum('bill') && $selectedBills)
+                {{-- <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'">POa
+                </x-button> --}}
+                {{-- <x-button
+                    wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
+                    Create a payment
+                </x-button> --}}
 
-                    <x-button wire:click="payBills">Pay Bills</x-button>
-                    <div class="mt-5">
-                        <span>You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}} amounting to {{ number_format($total) }}</span>...
-                    </div>
-                    
-                    @endif
+                <x-button wire:click="payBills">Pay Bills</x-button>
+                <div class="mt-5">
+                    <span>You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}}
+                        amounting to {{ number_format($total) }}</span>...
+                </div>
+
+                @endif
                 @endcan
 
             </div>
@@ -112,8 +114,7 @@
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <x-th>
-                                            {{--
-                                            <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
+                                            {{-- <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
                                         </x-th>
                                         <x-th> #</x-th>
                                         <x-th>Unit</x-th>

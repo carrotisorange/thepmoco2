@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UnitController;
-use App\Http\Controllers\DashboardSalesController;
-use App\Http\Controllers\DashboardDevController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\UnitContractController;
 use App\Http\Controllers\TenantController;
@@ -22,14 +20,12 @@ use App\Http\Controllers\EnrolleeController;
 use App\Http\Controllers\OwnerDeedOfSalesController;
 use App\Http\Controllers\ParticularController;
 use App\Http\Controllers\UnitMasterlistController;
-use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\UnitDeedOfSalesController;
 use App\Http\Controllers\UnitBillController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\TenantConcernController;
 use App\Http\Controllers\TenantLedgerController;
 use App\Http\Controllers\GuardianController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\RepresentativeController;
 use App\Http\Controllers\DeedOfSaleController;
@@ -38,7 +34,6 @@ use App\Http\Controllers\PropertyBillExpressController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ExportSignedContractController;
 use App\Http\Controllers\MoveoutContractBillController;
-use App\Http\Controllers\PointController;
 use App\Http\Controllers\ReferenceController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
@@ -48,8 +43,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{random_str}/create', [PropertyController::class, 'create']);
         Route::post('{random_str}/store', [PropertyController::class, 'store']);
     });
-
-       
 
     Route::prefix('/property/{property:uuid}')->group(function(){
         //Routes for Property

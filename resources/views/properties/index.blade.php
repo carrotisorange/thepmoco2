@@ -39,7 +39,7 @@
         </div>
 
     </x-slot>
-    <table class="min-w-full divide-y divide-gray-200">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>
                 <x-th>#</x-th>
