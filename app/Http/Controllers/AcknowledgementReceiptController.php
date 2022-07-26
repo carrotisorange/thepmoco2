@@ -46,7 +46,7 @@ class AcknowledgementReceiptController extends Controller
      */
     public function store($tenant_uuid, $collection, $property_uuid, $user_id, $ar_no, $mode_of_payment, $batch_no, $cheque_no, $bank, $date_deposited, $created_at)
     {
-        AcknowledgementReceipt::create([
+        return AcknowledgementReceipt::create([
             'tenant_uuid' => $tenant_uuid,
             'amount' => $collection,
             'property_uuid' => $property_uuid,

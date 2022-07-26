@@ -171,7 +171,7 @@ class TenantCollectionController extends Controller
 
             $total_amount_due = app('App\Http\Controllers\TenantBillController')->get_bill_balance($bill_id);
 
-            app('App\Http\Controllers\CollectionController')->update($collection, $form, $bill_id);
+            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form,);
 
             if(($total_amount_due) <= $collection)
             {
@@ -187,10 +187,10 @@ class TenantCollectionController extends Controller
             }
          }
 
-         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')
+         app('App\Http\Controllers\AcknowledgementReceiptController')
          ->store(
                   $tenant->uuid,
-                  Collection::where('property_uuid', Session::get('property'))->where('tenant_uuid', $tenant->uuid)->where('batch_no', $batch_no)->sum('collection'),
+                  Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->sum('collection'),
                   Session::get('property'),
                   auth()->user()->id,
                   $ar_no,
@@ -201,6 +201,8 @@ class TenantCollectionController extends Controller
                   $request->date_deposited,
                   $request->created_at,
          );
+
+         app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
          return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills')->with('success', 'Payment is successfully saved.');
      }
