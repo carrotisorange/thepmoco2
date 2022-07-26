@@ -14,6 +14,7 @@ use Illuminate\Auth\Events\Registered;
 use Carbon\Carbon;
 use App\Models\Subscription;
 use DB;
+use Session;
 
 class CheckoutController extends Controller
 {
@@ -59,9 +60,9 @@ class CheckoutController extends Controller
 
         if($user->checkout_option == '1')
         {
-           return redirect('/thankyou/'.$temporary_username);
+           return redirect('/thankyou/');
         }else{
-           return redirect('/thankyoutrial/'.$temporary_username);
+           return redirect('/thankyoutrial/');
         }
         
        }catch(\Exception $e)
@@ -72,19 +73,19 @@ class CheckoutController extends Controller
        }    
     }
 
-    public function show_thankyou_regular_plan_page($temporary_username)
+    public function show_thankyou_regular_plan_page()
     {
         return view('checkout.thankyou',[
             'message' => 'Our Free Trial Plan',
-            'temporary_username' => $temporary_username
+            'temporary_username' => Session::get('temporary_username')
         ]);
     }
 
-    public function show_thankyou_promo_plan_page($temporary_username)
+    public function show_thankyou_promo_plan_page()
     {
         return view('checkout.thankyou',[
             'message' => 'Our Professional Plan',
-            'temporary_username' => $temporary_username
+            'temporary_username' => Session::get('temporary_username')
         ]);
     }
 

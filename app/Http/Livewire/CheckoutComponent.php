@@ -43,7 +43,7 @@ class CheckoutComponent extends Component
 
     public function generate_external_id($plan_id)
     {
-         return Plan::find($plan_id)->plan.'_'.Str::random(8);
+        return Plan::find($plan_id)->plan.'_'.Str::random(8);
     }
 
     public function generate_temporary_username()
@@ -60,6 +60,8 @@ class CheckoutComponent extends Component
         $external_id = $this->generate_external_id($this->plan_id);
 
         $temporary_username = $this->generate_temporary_username();
+        
+        session(['temporary_username' => $temporary_username]);
         
         app('App\Http\Controllers\UserController')->store($this->name, $temporary_username, $external_id,$this->email, $this->mobile_number, $this->discount_code, $this->checkout_option, $this->plan_id);
 

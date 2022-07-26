@@ -9,6 +9,6 @@ Route::group(['middleware' => []], function(){
     Route::get('/select-a-plan/', [CheckoutController::class, 'show_select_plan_page']);
     Route::get('/profile/{user}/complete',[CheckoutController::class, 'show_complete_profile_page']);
     Route::patch('/profile/{user}/complete/update',[CheckoutController::class, 'update_user_profile']);
-    Route::get('/thankyou/{username}', [CheckoutController::class, 'show_thankyou_promo_plan_page']);
-    Route::get('/thankyoutrial/{username}', [CheckoutController::class, 'show_thankyou_regular_plan_page']);
+    Route::get('/thankyou/', [CheckoutController::class, 'show_thankyou_promo_plan_page']);
+    Route::get('/thankyoutrial/', [CheckoutController::class, 'show_thankyou_regular_plan_page']);
 });
