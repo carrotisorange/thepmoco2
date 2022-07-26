@@ -91,6 +91,8 @@ class TenantBillController extends Controller
 
             $attributes['tenant_uuid'] = $tenant->uuid;
 
+            $attributes['is_posted'] = true;
+
             Bill::create($attributes);
 
             app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 1, 3);
