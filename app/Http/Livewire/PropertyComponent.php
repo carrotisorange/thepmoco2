@@ -136,7 +136,7 @@ class PropertyComponent extends Component
             ]);
         }
 
-         app('App\Http\Controllers\PointController')->store($property_uuid, 50, 6);
+         app('App\Http\Controllers\PointController')->store($property_uuid, auth()->user()->id, 50, 6);
 
          User::where('id', auth()->user()->id)
           ->update([
