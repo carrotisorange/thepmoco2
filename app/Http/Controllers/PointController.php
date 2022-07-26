@@ -16,9 +16,9 @@ class PointController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Property $property)
+    public function index(User $user)
     {
-        $points = User::find(auth()->user()->id)->points()->paginate(10);
+        $points = User::find($user->id)->points()->paginate(10);
 
         return view('points.index',[
             'points' => $points

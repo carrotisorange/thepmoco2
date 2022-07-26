@@ -185,12 +185,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
       
     });
 
-     //Routes for Point
-    Route::prefix('point')->group(function(){
-        Route::get('/',[PointController::class, 'index'])->name('point');
-    });
-
-
     //Routes for Payment
     Route::prefix('payment')->group(function(){
         Route::get('/', [AcknowledgementReceiptController::class, 'index'])->name('payment');

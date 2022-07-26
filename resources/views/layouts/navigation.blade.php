@@ -118,7 +118,7 @@
                         <x-dropdown-link target="_blank" href="/chatify">
                             <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}
                         </x-dropdown-link>
-                        <x-dropdown-link href="point">
+                        <x-dropdown-link href="/user/{{ auth()->user()->username }}/point">
                             <i class="fas fa-coins"></i> {{ __('My Points') }}
                         </x-dropdown-link>
                         <!-- Authentication -->
