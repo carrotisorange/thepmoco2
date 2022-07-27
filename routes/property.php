@@ -76,7 +76,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('masterlist', [UnitMasterlistController::class, 'index']);
 
         Route::prefix('{unit}')->group(function(){
-            Route::get('/', [UnitController::class, 'show']);
+            Route::get('/', [UnitController::class, 'show'])->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
             // Route::get('edit', [UnitController::class, 'edit']);
             Route::patch('update', [UnitController::class, 'update']);
