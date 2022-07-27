@@ -21,8 +21,8 @@
             <span>Showing the last 5 representatives</span>
             <p class="text-right">
                 <x-button
-                    onclick="window.location.href='{{ $owner_details->uuid }}/representative/create'">
-                    Add a representative
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/representative/create'">
+                    Add
                 </x-button>
 
             </p>
@@ -33,11 +33,11 @@
         <h1 class="font-bold">Banks</h1>
         @include('owners.banks.index')
         <div class="mt-5">
-            <span>Showing the last 5 Bank details</span>
+            <span>Showing the last 5 Banks</span>
             <p class="text-right">
                 <x-button
-                   onclick="window.location.href='{{ $owner_details->uuid }}/bank/create'">
-                    Add a bank
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bank/create'">
+                    Add
                 </x-button>
 
             </p>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Property Documents</h1>
+        <h1 class="font-bold">Units</h1>
         <table class="text-sm min-w-full divide-y divide-gray-200">
             <?php $ctr =1; ?>
             <thead class="bg-gray-50">
@@ -101,10 +101,10 @@
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/units'">
-                    Add Property Documents
+                    Add
                 </x-button>
-                <x-button onclick="window.location.href='{{ $owner_details->uuid }}/deed_of_sales/'">
-                    See more property documents
+                <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/deed_of_sales'">
+                    See more
                 </x-button>
 
             </p>
@@ -189,8 +189,9 @@
                     onclick="window.location.href='/owner/{{ $owner_details->uuid }}/enrollee/{{ Str::random(8) }}/create'">
                     Add to lease
                 </x-button> --}}
-                <x-button onclick="window.location.href='/owner/{{ $owner_details->uuid }}/enrollees/'">
-                    See more management agreements
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property')}}/owner/{{ $owner_details->uuid }}/enrollee/'">
+                    See more
                 </x-button>
 
             </p>

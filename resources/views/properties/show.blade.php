@@ -13,12 +13,12 @@
     </x-slot>
     <x-slot name="options">
         <x-button onclick="window.location.href='/property'">
-            My Property
+           Go back
         </x-button>
 
         @can('manager')
         <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/edit'">
-            Edit your property
+           Edit
         </x-button>
 
 

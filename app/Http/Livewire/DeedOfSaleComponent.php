@@ -64,10 +64,10 @@ class DeedOfSaleComponent extends Component
             DB::commit();
 
             if(Session::forget('owner_uuid')){
-                return redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
+                return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
             }else{
                 return
-                redirect('/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/enrollee/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
+                redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/enrollee/'.Str::random(8).'/create')->with('success','Deedof sale is successfully created.');
             }
             
         }catch(\Exception $e)

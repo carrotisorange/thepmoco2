@@ -6,7 +6,7 @@
 
     <x-slot name="options">
         @if($unit)
-        <x-button onclick="window.location.href='/owner/{{ $owner->uuid }}/edit'">
+        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}'">
             Skip
         </x-button>
         @else

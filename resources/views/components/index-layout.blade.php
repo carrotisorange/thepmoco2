@@ -23,7 +23,9 @@
                                                 Session::get('property_name') }}</a>
                                         </li>
                                         <li><span class="text-gray-500 mx-2">/</span></li>
-                                        {{ $labels }}
+                                        <li>
+                                            {{ $labels }}
+                                        </li>
                                     </ol>
                                 </nav>
                             </h2>
@@ -60,4 +62,5 @@
 </body>
 @include('layouts.script')
 @include('utilities.popup-error-modal')
+
 </html>

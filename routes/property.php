@@ -35,6 +35,8 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ExportSignedContractController;
 use App\Http\Controllers\MoveoutContractBillController;
 use App\Http\Controllers\ReferenceController;
+use App\Http\Controllers\UnitEnrolleeController;
+
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -43,6 +45,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{random_str}/create', [PropertyController::class, 'create']);
         Route::post('{random_str}/store', [PropertyController::class, 'store']);
     });
+
+    //Routes for Particular
+    Route::prefix('particular')->group(function(){
+        Route::post('store', [ParticularController::class, 'store']);
+    });
+
 
     Route::prefix('/property/{property:uuid}')->group(function(){
         //Routes for Property
@@ -56,10 +64,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::post('{random_str}/store',[BuildingController::class, 'store']);
     });
 
-    //Routes for Particular
-    Route::prefix('particular')->group(function(){
-        Route::post('{random_str}/store', [ParticularController::class, 'store']);
-    });
 
     //Routes for Unit
     Route::prefix('unit')->group(function(){
@@ -73,6 +77,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
         Route::prefix('{unit}')->group(function(){
             Route::get('/', [UnitController::class, 'show']);
+            Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
             // Route::get('edit', [UnitController::class, 'edit']);
             Route::patch('update', [UnitController::class, 'update']);
             Route::get('contracts', [UnitContractController::class, 'index']);
@@ -83,10 +88,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create']);
             });
 
-            Route::prefix('deed_of_sale')->group(function(){
-                Route::post('{random_str}/create',[DeedOfSaleController::class,'create']);
-                Route::post('{random_str}/store',[DeedOfSaleController::class,'store']);
-            });
+            // Route::prefix('deed_of_sale')->group(function(){
+            //     Route::post('{random_str}/create',[DeedOfSaleController::class,'create']);
+            //     Route::post('{random_str}/store',[DeedOfSaleController::class,'store']);
+            // });
 
                 
             Route::prefix('owner')->group(function(){
@@ -96,12 +101,23 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
                 Route::prefix('{owner}')->group(function(){
-                    Route::get('deed_of_sale/{random_str}/create',[DeedOfSaleController::class,'create']);
+        
+                    Route::prefix('deed_of_sale')->group(function(){
+                        Route::get('{random_str}/create',[DeedOfSaleController::class,'create']);
+                        Route::post('{random_str}/store', [DeedOfSaleController::class,'store']);
+                    });
+
+                    Route::prefix('enrollee')->group(function(){
+                        Route::get('{random_str}/create',[EnrolleeController::class,'create']);
+                        Route::post('{random_str}/store', [EnrolleeController::class,'store']);
+                    });
                 });
        
             });
             
             Route::get('deed_of_sales', [UnitDeedOfSalesController::class, 'index']);
+            
+            
             Route::get('bills', [UnitBillController::class, 'index']);
         });
     });
@@ -148,11 +164,17 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 });
     
     //Routes for Owner
-    Route::prefix('/owner')->group(function(){
+    Route::prefix('owner')->group(function(){
         Route::get('/', [OwnerController::class, 'index'])->name('owner');
+
+
         Route::prefix('{owner}')->group(function(){
+            
             Route::get('/', [OwnerController::class, 'show']);
-       
+             
+            Route::prefix('enrollee')->group(function(){
+                Route::get('/',[EnrolleeController::class,'index']);
+            });
 
             Route::prefix('representative')->group(function(){
                 Route::get('create', [RepresentativeController::class, 'create']);
@@ -245,10 +267,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //5
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create',[BillController::class,'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);
-
-    Route::get('unit/{unit}/owner/{owner}/enrollee/{random_str}/create',[EnrolleeController::class,'create']);
-    Route::post('unit/{unit}/owner/{owner}/enrollee/{random_str}/store', [EnrolleeController::class, 'store']);
-    //3
 
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create',[BillController::class,'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);

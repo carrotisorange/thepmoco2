@@ -11,3 +11,4 @@
     @livewire('team-component')
 
 </x-index-layout>
+

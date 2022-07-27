@@ -1,7 +1,7 @@
 <div class="p-6 bg-white border-b border-gray-200">
     <div>
         <form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data"
-            action="/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/store" class="w-full" id="create-form">
+            action="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Str::random(10) }}/store" class="w-full" id="create-form">
             @csrf
             <div class="flex flex-wrap mx-3">
                 <div class="w-full md:w-full px-3 mb-6 md:mb-0">

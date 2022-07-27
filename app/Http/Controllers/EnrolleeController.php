@@ -22,17 +22,20 @@ class EnrolleeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Property $property, Owner $owner)
     {
-         $enrollees = Enrollee::leftJoin('units', 'enrollees.unit_uuid', 'units.uuid')
-         ->leftJoin('owners', 'enrollees.owner_uuid', 'owners.uuid')
-         ->leftJoin('buildings', 'units.building_id','buildings.id' )
-         ->where('units.property_uuid', session('property'))
-         ->groupBy('enrollees.uuid')
-         ->paginate(10);
+        $enrollees = Owner::find($owner->uuid)->enrollees;
+
+        //  $enrollees = Enrollee::leftJoin('units', 'enrollees.unit_uuid', 'units.uuid')
+        //  ->leftJoin('owners', 'enrollees.owner_uuid', 'owners.uuid')
+        //  ->leftJoin('buildings', 'units.building_id','buildings.id' )
+        //  ->where('units.property_uuid', session('property'))
+        //  ->groupBy('enrollees.uuid')
+        //  ->paginate(10);
 
         return view('enrollees.index',[
             'enrollees' => $enrollees,
+            'owner' => $owner
         ]);
     }
 
@@ -41,7 +44,7 @@ class EnrolleeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Unit $unit, Owner $owner)
+    public function create(Property $property, Unit $unit, Owner $owner)
     {
         return view('enrollees.create', [
             'unit' => $unit,
@@ -57,7 +60,6 @@ class EnrolleeController extends Controller
      */
     public function store(Request $request, Unit $unit, Owner $owner)
     {
-
          $enrollee_attributes = request()->validate([
          'start' => 'required|date',
          'end' => 'required|date|after:start',

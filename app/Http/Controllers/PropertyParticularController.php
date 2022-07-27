@@ -6,7 +6,9 @@ use App\Models\PropertyParticular;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\Particular;
+use App\Models\Property;
 use DB;
+
 
 class PropertyParticularController extends Controller
 {
@@ -48,9 +50,9 @@ class PropertyParticularController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Property $property)
     {
-        
+        return 'asd';
     }
 
     /**

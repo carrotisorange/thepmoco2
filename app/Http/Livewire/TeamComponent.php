@@ -126,7 +126,7 @@ class TeamComponent extends Component
          'password'=>$this->password
          ];
 
-         //Mail::to($this->email)->send(new WelcomeMailToMember($details));
+      Mail::to($this->email)->send(new WelcomeMailToMember($details));
      }
 
      public function resetForm()

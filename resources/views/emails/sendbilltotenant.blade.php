@@ -18,7 +18,9 @@ Bills Breakdown
 | Bill # | Date Posted | Unit | Particular | Period Covered | Amount |
 | ------------- |------------- |------------- |------------- |------------- |------------- |
 @foreach ($data['bills'] as $item)
+@if ($item->bill-$item->initial_payment > 0)
 | {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | {{ $item->particular->particular }} | {{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | {{ number_format(($item->bill-$item->initial_payment),2) }} |
+@endif
 @endforeach
 
 @endcomponent

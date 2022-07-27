@@ -1,9 +1,14 @@
-<div class="mb-3 mt-5">
-    <span>{{ Str::plural('Leasing Contract', $enrollees->count())}} ({{
+<x-index-layout>
+    @section('title', '| Management Agreements')
+    <x-slot name="labels">
+        {{ Str::plural('Management Agreements', $enrollees->count())}} ({{
         $enrollees->count()
-        }})</span>
-</div>
-<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        }})
+    </x-slot>
+
+    <x-slot name="options">
+
+    </x-slot>
 
     <table class="min-w-full divide-y divide-gray-200">
         <?php $ctr =1; ?>
@@ -14,7 +19,7 @@
                 <x-th>Contract Period</x-th>
                 <x-th>Agreed Rent/mo</x-th>
                 <x-th>Status</x-th>
-               
+
                 <x-th></x-th>
             </tr>
         </thead>
@@ -25,7 +30,7 @@
                 <x-td>
                     <div class="flex items-center">
                         <div class="flex-shrink-0 h-10 w-10">
-                            <a href="/owner/{{ $item->owner_uuid }}">
+                            <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner_uuid }}">
                                 <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->owner->photo_id }}"
                                     alt=""></a>
                         </div>
@@ -64,14 +69,13 @@
                 </x-td>
 
                 <x-td>
-                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
-                        class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                        type="button"><i class="fa-solid fa-list-check"></i>&nbspOptions
+                    <x-button>Actions
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
-                        </svg></button>
+                        </svg>
+                    </x-button>
 
                     <div id="dropdownDivider.{{ $item->uuid }}"
                         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
@@ -113,4 +117,4 @@
         </tbody>
     </table>
 
-</div>
+</x-index-layout>

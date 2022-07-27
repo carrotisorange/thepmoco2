@@ -17,7 +17,8 @@
     <div class="p-6 bg-white border-b border-gray-200">
         <h1 class="font-bold">Unit Details</h1>
         <div>
-            <form action="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/update" method="POST" id="edit-form" enctype="multipart/form-data">
+            <form action="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/update" method="POST"
+                id="edit-form" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="flex flex-row">
@@ -181,7 +182,7 @@
                 <div class="">
                     <div class="mt-5">
                         <p class="text-right">
-                            <x-button form="edit-form">Update Unit Info</x-button>
+                            <x-button form="edit-form">Update</x-button>
                         </p>
                     </div>
                 </div>
@@ -293,8 +294,8 @@
 
                             </ul>
                             <?php
-                                                                    $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
-                                                                ?>
+                                $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
+                            ?>
                             @if($item->status == 'active')
                             <div class="py-1">
                                 @if($unpaid_bills->count()<=0) <a href="/contract/{{ $item->uuid }}/moveout"
@@ -321,9 +322,11 @@
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/old_create'">
-                    Add a tenant
+                    Add
                 </x-button>
-                <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/contracts/'">See more tenants
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/contracts/'">
+                    See more
                 </x-button>
             </p>
         </div>
@@ -331,7 +334,7 @@
 
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Property Documents</h1>
+        <h1 class="font-bold">Unit Owners</h1>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <?php $ctr =1; ?>
             <thead class="bg-gray-50">
@@ -392,11 +395,13 @@
         <div class="mt-5">
             <span>Showing the last 5 property documents</span>
             <p class="text-right">
-                <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Str::random(8) }}/create'">
-                    Add a property document
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Str::random(8) }}/create'">
+                    Add
                 </x-button>
-                <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/deed_of_sales/'">See more property
-                    documents
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/deed_of_sales/'">
+                    See more
                 </x-button>
             </p>
         </div>
@@ -515,8 +520,8 @@
         <div class="mt-5">
             <span>Showing the last 5 management agreements</span>
             <p class="text-right">
-                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/enrollees/'">See more management
-                    agreements
+                <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/enrollee/'">See more
+
                 </x-button>
             </p>
         </div>
@@ -602,7 +607,7 @@
         <div class="mt-5">
             <span>Showing the last 5 bills</span>
             <p class="text-right">
-                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/bills/'">See more bills
+                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/bills/'">See more
                 </x-button>
             </p>
         </div>

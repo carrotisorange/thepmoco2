@@ -177,7 +177,7 @@
         </div>
         <div class="mt-5">
             <p class="text-right">
-                <x-form-button>Update Owner Info</x-form-button>
+                <x-form-button>Update </x-form-button>
             </p>
         </div>
     </form>

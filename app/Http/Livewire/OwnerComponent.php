@@ -93,19 +93,16 @@ class OwnerComponent extends Component
                 $owner = Owner::create($validatedData)->uuid;
 
                 return
-                redirect('/unit/'.$this->unit->uuid.'/owner/'.$owner.'/deed_of_sale/'.Str::random(8).'/create')->with('success',
+                redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner.'/deed_of_sale/'.Str::random(8).'/create')->with('success',
                 'Owner is created successfully.');
         }
 
         public function render()
         {
-             
-               
-
                 return view('livewire.owner-component',[
-                        'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
-                        'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
-                        'countries' => Country::orderBy('country', 'ASC')->get()
+                                'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
+                                'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
+                                'countries' => Country::orderBy('country', 'ASC')->get()
                 ]);
         }
 }

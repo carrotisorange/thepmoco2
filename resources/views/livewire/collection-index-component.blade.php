@@ -28,7 +28,9 @@
                                 //$unit = App\Models\Unit::find($ar->unit_uuid)->unit
                             ?>
                     <x-td>{{ Carbon\Carbon::parse($ar->created_at)->format('M d, Y') }}
-                        <x-td><a href="/tenant/{{ $ar->tenant->uuid }}/ars"><b class="text-blue-600">{{ $tenant
+                        <x-td><a
+                                href="/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant->uuid }}/collections"><b
+                                    class="text-blue-600">{{ $tenant
                                     }}</b></a>
                         </x-td>
 
