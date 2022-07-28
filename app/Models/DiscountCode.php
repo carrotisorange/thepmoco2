@@ -10,4 +10,9 @@ class DiscountCode extends Model
     use HasFactory;
 
     protected $primaryKey = 'discount_code';
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -9,8 +9,8 @@ class CheckoutOption extends Model
 {
     use HasFactory;
 
-    public function checkoutoptions()
+    public function users()
     {
-        return $this->hasMany(CheckoutOption::class);
+        return $this->hasMany(User::class);
     }
 }

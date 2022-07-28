@@ -57,6 +57,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Plan::class, 'plan_id');
     }
 
+    public function discountcode()
+    {
+        return $this->belongsTo(DiscountCode::class, 'discount_code');
+    }
+
     public function checkoutoption()
     {
         return $this->belongsTo(CheckoutOption::class, 'checkoutoption_id');

@@ -20,6 +20,7 @@
                     <x-th>Property</x-th>
                     <x-th>Plan</x-th>
                     <x-th>Checkout</x-th>
+                    <x-th>Code</x-th>
                     <x-th>Trial ends</x-th>
                 </tr>
             </thead>
@@ -37,7 +38,7 @@
                                 <i class="fa-solid fa-circle-check"></i>
                             </span>
                             @else
-                            <span tile="unverified"
+                            <span title="unverified"
                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-sm text-red-800">
                                 <i class="fa-solid fa-circle-xmark"></i>
                                 @endif
@@ -70,7 +71,22 @@
                             property, {{ $unit_count }} unit, {{ $tenant_count }} tenant </a></x-td>
 
                     <x-td> {{ $user->plan->plan }}</x-td>
-                    <x-td>{{ $user->checkoutoption->option }}</x-td>
+                    <x-td>
+                        @if($user->checkoutoption_id == '1')
+                        <span 
+                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
+                            {{ $user->checkoutoption->option }}
+                        </span>
+                        @else
+                        <span 
+                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-sm text-orange-800">
+                            {{ $user->checkoutoption->option }}
+                        </span>
+                        @endif
+                    </x-td>
+                    </span>
+                    <x-td>{{ $user->discountcode->discount_code }}</x-td>
+
                     <x-td>
                         @if($user->trial_ends_at)
                         {{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}
