@@ -74,7 +74,6 @@ class Property extends Model
         return $this->hasMany(AcknowledgementReceipt::class);
     }
 
-
     public function tenants()
     {
         return $this->hasMany(Tenant::class);

@@ -23,6 +23,8 @@ class TeamController extends Controller
     public function index()
     {
         $this->authorize('accountowner');
+
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id, 'opens', 8);
         
         $teams = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
         ->select('*', 'users.status as user_status')

@@ -30,7 +30,7 @@
                     <x-td>{{ $user->id }}</x-td>
                     <x-td>{{ Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</x-td>
 
-                    <x-td><a class="text-blue-600" href="user/{{ $user->id }}/properties">
+                    <x-td><a class="text-blue-600" href="user/{{ $user->username }}/activity">
                             {{ $user->name }}
                             @if($user->email_verified_at)
                             <span title="verified"
@@ -67,9 +67,13 @@
                             ->where('user_properties.user_id', $user->id)
                             ->count();
                         ?>
-                    <x-td><a class="text-blue-600" href="user/{{ $user->id }}/properties">{{ $property_count }}
-                            property, {{ $unit_count }} unit, {{ $tenant_count }} tenant </a></x-td>
-
+                    <x-td>
+                        <a class="text-blue-600" href="user/{{ $user->username }}/property">
+                            {{ $property_count }} property, 
+                            {{ $unit_count }} unit, 
+                            {{ $tenant_count }} tenant 
+                        </a>
+                    </x-td>
                     <x-td> {{ $user->plan->plan }}</x-td>
                     <x-td>
                         @if($user->checkoutoption_id == '1')
@@ -86,12 +90,11 @@
                     </x-td>
                     </span>
                     <x-td>{{ $user->discountcode->discount_code }}</x-td>
-
                     <x-td>
                         @if($user->trial_ends_at)
-                        {{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}
+                            {{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}
                         @else
-                        N/A
+                            N/A
                         @endif
                     </x-td>
                 </tr>

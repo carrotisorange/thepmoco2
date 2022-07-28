@@ -1,7 +1,7 @@
 <x-index-layout>
     @section('title', 'Dashboard')
     <x-slot name="labels">
-        Sales / Properties / {{ $user->name }}
+        Sales / {{ $user->name }} / Property
     </x-slot>
     <x-slot name="options">
         <x-button onclick="window.location.href='{{ url()->previous() }}'"> Go back to main
@@ -41,17 +41,12 @@
                                 }}
                             </div>
                         </x-td>
-                        <?php
-                                                                            $users = App\Models\UserProperty::where('property_uuid', $property->property->uuid)->count();
-                                                                        ?>
+                        <?php $users = App\Models\UserProperty::where('property_uuid', $property->property->uuid)->count();?>
                         <x-td>{{ $users }}</x-td>
                         <x-td>{{ $property->property->units->count()}}</x-td>
                         <x-td>{{ $property->property->tenants->count() }}</x-td>
                         <x-td>{{ $property->property->country->country.','.$property->property->province->province.','.$property->property->city->city.','.$property->property->barangay }}</x-td>
-
-                        <x-td>{{
-                            Carbon\Carbon::parse($property->property->created_at)->diffForHumans()
-                            }}</x-td>
+                        <x-td>{{Carbon\Carbon::parse($property->property->created_at)->diffForHumans()}}</x-td>
 
                     </tr>
                 </tbody>

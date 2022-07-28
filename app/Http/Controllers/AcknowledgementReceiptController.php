@@ -12,7 +12,7 @@ class AcknowledgementReceiptController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response  app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id, 'opens', 8);
      */
     public function index()
     {

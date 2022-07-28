@@ -14,11 +14,19 @@ class DashboardSalesController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show_property(User $user)
     {
-        return view('dashboard.sales.show',[
-            'properties'=>User::find($id)->user_properties,
-            'user' => User::find($id)
+        return view('dashboard.sales.show-property',[
+            'properties'=>User::find($user->id)->user_properties,
+            'user' => User::find($user->id)
+        ]);
+    }
+
+    public function show_activity(User $user)
+    {
+        return view('dashboard.sales.show-activity',[
+            'activities'=>User::find($user->id)->activities,
+            'user' => User::find($user->id)
         ]);
     }
 }
