@@ -1,7 +1,7 @@
 <x-index-layout>
     @section('title', 'Dashboard')
     <x-slot name="labels">
-        Sales / {{ $user->name }} / Property
+        Sales / {{ $user->name }} / Activity
     </x-slot>
     <x-slot name="options">
         <x-button onclick="window.location.href='{{ url()->previous() }}'"> Go back to main
