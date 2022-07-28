@@ -45,13 +45,7 @@
                             </span>
                             <a>
                     </x-td>
-                    {{-- <x-td>
-                        <div class="text-sm text-gray-900">{{ $user->email }}
-                        </div>
-                        <div class="text-sm text-gray-500">{{
-                            $user->mobile_number }}
-                        </div>
-                    </x-td> --}}
+                  
                     <?php
                            $property_count = App\Models\UserProperty::where('user_id', $user->id)->count();
                            
