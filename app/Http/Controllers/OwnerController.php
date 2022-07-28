@@ -20,8 +20,10 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Property $property)
     {
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',4);
+
         return view('owners.index');
     }
 
@@ -75,6 +77,8 @@ class OwnerController extends Controller
      */
     public function show(Property $property, Owner $owner)
     {
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
+
          return view('owners.show',[
             'owner_details' => $owner,
             'representatives' => Owner::find($owner->uuid)->representatives,

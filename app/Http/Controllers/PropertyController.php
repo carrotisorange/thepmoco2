@@ -398,6 +398,8 @@ class PropertyController extends Controller
 
         $this->store_property_session($property);
 
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
+
         $this->save_unit_stats();
 
         $occupancy_rate_date = $this->get_occupancy_rate_dates();

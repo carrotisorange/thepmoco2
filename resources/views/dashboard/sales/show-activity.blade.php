@@ -23,8 +23,8 @@
                     <tr>
                         <x-th>#</x-th>
                         <x-th>Property</x-th>
-                        <x-th>Description</x-th>
                         <x-th>Activity</x-th>
+                        <x-th>Description</x-th>
                         <x-th>Created</x-th>
                     </tr>
                 </thead>

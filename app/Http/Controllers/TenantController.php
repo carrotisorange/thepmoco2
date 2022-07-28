@@ -22,8 +22,10 @@ class TenantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Property $property)
     {
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',3);
+
         $tenants = Property::find(Session::get('property'))->tenants;
 
         return view('tenants.index',[
@@ -81,26 +83,14 @@ class TenantController extends Controller
      */
     public function show(Property $property, Tenant $tenant)
     {
-        // return view('tenants.show',[
-        //     'tenant' => $tenant,
-        //     'bills' => Tenant::find($tenant->uuid)->bills,
-        //     'contracts' => Tenant::find($tenant->uuid)->contracts,
-        //     'references' => Tenant::find($tenant->uuid)->references,
-        //     'guardians' => Tenant::find($tenant->uuid)->guardians
-        // ]);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
 
-        if(auth()->user()->role->id == 3 || auth()->user()->role->id == 2)
-         {
-            //return redirect('/tenant/'.$tenant->uuid.'/bills');
-         }
-         else{
-             return view('tenants.show',[
-             'tenant_details' => $tenant,
+        return view('tenants.show',[
+            'tenant_details' => $tenant,
              'references' => Tenant::find($tenant->uuid)->references,
              'guardians' => Tenant::find($tenant->uuid)->guardians,
              'relationships' => Relationship::all()
-             ]);
-         } 
+        ]);
     }
 
     /**

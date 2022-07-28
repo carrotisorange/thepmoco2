@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Session;
 
 
 class UserController extends Controller
@@ -97,7 +98,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {        
-     
+        // app('App\Http\Controllers\ActivityController')->store(Session::get('session'), auth()->user()->id,'opens',11);
+
        if($user->id === auth()->user()->id || auth()->user()->username === 'landley'){
            return view('users.edit', [
            'user' => $user,

@@ -26,8 +26,10 @@ class UnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Property $property)
     {   
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
+
         Session::forget('tenant_uuid');
 
         Session::forget('owner_uuid');
@@ -91,7 +93,9 @@ class UnitController extends Controller
          Session::forget('tenant_uuid');
 
          Session::forget('owner_uuid');
-         
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens a',2);
+
         $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
         ->where('property_buildings.property_uuid', Session::get('property'))
         ->get();
