@@ -88,6 +88,10 @@ class UnitController extends Controller
      */
     public function show(Property $property, Unit $unit)
     {
+         Session::forget('tenant_uuid');
+
+         Session::forget('owner_uuid');
+         
         $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
         ->where('property_buildings.property_uuid', Session::get('property'))
         ->get();

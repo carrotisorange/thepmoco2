@@ -427,7 +427,7 @@
                     <!--Graph Card-->
                     <div class="bg-white border rounded shadow">
                         <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Current Occupancy Rate ({{
+                            <h5 class="font-bold uppercase text-gray-600">Occupancy Rate ({{
                                 number_format($current_occupancy_rate->occupancy_rate, 2) }}%)</h5>
                         </div>
                         <div class="p-5">
@@ -462,7 +462,7 @@
                     <!--Graph Card-->
                     <div class="bg-white border rounded shadow">
                         <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Current Collection Rate ({{
+                            <h5 class="font-bold uppercase text-gray-600">Collection Rate ({{
                                 number_format($current_collection_rate, 2) }}%)</h5>
                         </div>
                         <div class="p-5">

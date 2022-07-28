@@ -120,13 +120,9 @@ class RenewContractComponent extends Component
             Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
          }
 
-      
-
        DB::commit();
 
-       return
-        redirect('/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
-        is successfully renewed.');
+        redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract is successfully renewed.');
        } catch (\Throwable $e) {
        DB::rollback();
        ddd($e);

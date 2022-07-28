@@ -77,8 +77,8 @@
                     </div>
                 </x-td>
                 <?php
-                                                            $users = App\Models\UserProperty::where('property_uuid', $property->property->uuid)->count();
-                                                        ?>
+                    $users = App\Models\UserProperty::where('property_uuid', $property->property->uuid)->count();
+                ?>
                 <x-td>{{ $users }}</x-td>
                 <x-td>{{ $property->property->units->count()}}</x-td>
                 <x-td>{{ $property->property->tenants->count() }}</x-td>

@@ -137,7 +137,7 @@ class TransferContractComponent extends Component
        DB::commit();
 
        return
-       redirect('/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
+       redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
        has been transferred.');
 
        } catch (\Throwable $e) {

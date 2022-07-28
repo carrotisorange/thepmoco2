@@ -7,7 +7,8 @@
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='{{ url()->previous() }}'">Go back to tenant
+        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'">
+            Go back to tenant
         </x-button>
 
         <x-button onclick="window.location.href='units'">
@@ -15,7 +16,7 @@
         </x-button>
 
     </x-slot>
-    <table class="min-w-full divide-y divide-gray-200">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <?php $ctr =1; ?>
         <thead class="bg-gray-50">
             <tr>
@@ -35,8 +36,7 @@
                 <x-td>
                     <div class="flex items-center">
                         <div class="flex-shrink-0 h-10 w-10">
-                            <a
-                                href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                            <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
                                 <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->tenant->thumbnail }}"
                                     alt=""></a>
                         </div>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="text-sm text-gray-500">
                                 {{
-                               $item->unit->building->building
+                                $item->unit->building->building
                                 }}
                             </div>
                         </div>

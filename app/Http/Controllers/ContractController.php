@@ -144,6 +144,12 @@ class ContractController extends Controller
 
     public function renew(Property $property, Tenant $tenant, Contract $contract)
     {
+        Session::put('tenant_uuid', $tenant->uuid);
+
+         Session::forget('tenant_uuid');
+
+         Session::forget('owner_uuid');
+        
          return view('contracts.renew',[
             'contract_details' => $contract
          ]);
