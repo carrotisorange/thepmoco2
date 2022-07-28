@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function activities()
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)->orderBy('id', 'desc');
     }
 
     public function plan()
