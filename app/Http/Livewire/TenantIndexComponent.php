@@ -15,11 +15,13 @@ class TenantIndexComponent extends Component
 
     public function render()
     {
+        $tenants = Tenant::search($this->search)
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('created_at', 'asc')
+        ->paginate(10);
+        
         return view('livewire.tenant-index-component', [
-            'tenants' => Tenant::search($this->search)
-            ->where('property_uuid', Session::get('property'))
-            ->orderBy('created_at', 'asc')
-            ->paginate(10),
+            'tenants' => $tenants
         ]);
     }
 }

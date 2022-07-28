@@ -9,41 +9,49 @@
             <x-button hre>Logout</x-button>
         </form>
     </x-slot>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="bg-gray-50">
+                <tr>
+                    <x-th>ID</x-th>
+                    <x-th>Created</x-th>
+                    <x-th>Name</x-th>
+                    {{-- <x-th>Contact</x-th> --}}
+                    <x-th>Property</x-th>
+                    <x-th>Plan</x-th>
+                    <x-th>Checkout</x-th>
+                    <x-th>Trial ends</x-th>
+                </tr>
+            </thead>
+            @foreach ($users as $user)
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <x-td>{{ $user->id }}</x-td>
+                    <x-td>{{ Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</x-td>
 
-    <div class="">
-        {{-- <x-search placeholder="Enter name, email, and mobile..."></x-search>
-        <div class="mt-2 mb-2">
-            {{ $tenants->links() }}
-        </div>--}}
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <x-th>ID</x-th>
-                        <x-th>Account Created</x-th>
-                        <x-th>Is verified?</x-th>
-                        <x-th>Name</x-th>
-                        <x-th>Contact</x-th>
-                        <x-th>Stats</x-th>
-                        <x-th>Plan</x-th>
-                        <x-th>Trial ends</x-th>
-                    </tr>
-                </thead>
-                @foreach ($users as $user)
-                <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <x-td>{{ $user->id }}</x-td>
-                        <x-td>{{ Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</x-td>
-                        <x-td>{{ $user->email_verified_at?'verified':'unverified' }}</x-td>
-                        <x-td>{{ $user->name }}</x-td>
-                        <x-td>
-                            <div class="text-sm text-gray-900">{{ $user->email }}
-                            </div>
-                            <div class="text-sm text-gray-500">{{
-                                $user->mobile_number }}
-                            </div>
-                        </x-td>
-                        <?php
+                    <x-td><a class="text-blue-600" href="user/{{ $user->id }}/properties">
+                            {{ $user->name }}
+                            @if($user->email_verified_at)
+                            <span title="verified"
+                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+                            @else
+                            <span tile="unverified"
+                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-sm text-red-800">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                @endif
+                            </span>
+                            <a>
+                    </x-td>
+                    {{-- <x-td>
+                        <div class="text-sm text-gray-900">{{ $user->email }}
+                        </div>
+                        <div class="text-sm text-gray-500">{{
+                            $user->mobile_number }}
+                        </div>
+                    </x-td> --}}
+                    <?php
                            $property_count = App\Models\UserProperty::where('user_id', $user->id)->count();
                            
                            $unit_count = App\Models\UserProperty::join('users', 'user_properties.user_id', 'users.id')
@@ -58,15 +66,21 @@
                             ->where('user_properties.user_id', $user->id)
                             ->count();
                         ?>
-                        <x-td><a class="text-blue-600" href="user/{{ $user->id }}/properties">{{ $property_count }} properties, {{ $unit_count }} units, {{ $tenant_count }} tenants </a></x-td>
-                            <?php $plan = App\Models\Plan::find($user->plan_id)->plan?>
-                        <x-td> {{ $plan }}</x-td>
-                        <x-td>{{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}</x-td>
-                    </tr>
-                </tbody>
-                @endforeach
-            </table>
-        </div>
-    </div>
+                    <x-td><a class="text-blue-600" href="user/{{ $user->id }}/properties">{{ $property_count }}
+                            property, {{ $unit_count }} unit, {{ $tenant_count }} tenant </a></x-td>
 
+                    <x-td> {{ $user->plan->plan }}</x-td>
+                    <x-td>{{ $user->checkoutoption->option }}</x-td>
+                    <x-td>
+                        @if($user->trial_ends_at)
+                        {{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}
+                        @else
+                        N/A
+                        @endif
+                    </x-td>
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
+    </div>
 </x-index-layout>

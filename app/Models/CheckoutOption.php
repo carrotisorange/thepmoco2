@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CheckoutOption extends Model
 {
     use HasFactory;
+
+    public function checkoutoptions()
+    {
+        return $this->hasMany(CheckoutOption::class);
+    }
 }

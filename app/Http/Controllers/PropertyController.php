@@ -393,7 +393,7 @@ class PropertyController extends Controller
     public function show(Property $property)
     {  
         if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
-            return redirect('/plan/3/checkout/1/get');
+            return redirect('/select-a-plan');
         }
 
         $this->store_property_session($property);

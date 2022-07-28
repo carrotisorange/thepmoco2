@@ -34,21 +34,13 @@ class UserController extends Controller
 
     public function is_trial_expired($date)
     {
-        if($date <= Carbon::now()){
+        if($date <= Carbon::now() && $date!=null){
             return true; 
         }else{ 
             return false; 
         } 
     }
     
-    // public function is_user_interested($status)
-    // {
-    //     if($status == 'interested'){
-    //         return true; 
-    //     }else{ 
-    //         return false; 
-    //     } 
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -74,15 +66,14 @@ class UserController extends Controller
                 'trial_ends_at' => Carbon::now()->addMonth(),
             ]
         );
-
-         if($checkout_option == '1')
-         {
-            User::where('id', $user_id)
-            ->where('checkoutoption_id', $checkout_option)
-            ->update([
-                    'trial_ends_at' => Carbon::now()->addMonth(6)
-            ]);
-         }
+        //  if($checkout_option == '1')
+        //  {
+        //     User::where('id', $user_id)
+        //     ->where('checkoutoption_id', $checkout_option)
+        //     ->update([
+        //             'trial_ends_at' => Carbon::now()->addMonth(6)
+        //     ]);
+        //  }
 
          return $user_id;
     }

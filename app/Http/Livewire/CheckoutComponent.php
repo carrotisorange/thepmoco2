@@ -61,8 +61,6 @@ class CheckoutComponent extends Component
 
         $temporary_username = $this->generate_temporary_username();
         
-        session(['temporary_username' => $temporary_username]);
-        
         app('App\Http\Controllers\UserController')->store($this->name, $temporary_username, $external_id,$this->email, $this->mobile_number, $this->discount_code, $this->checkout_option, $this->plan_id);
 
         try{

@@ -52,6 +52,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Role::class);
     }
 
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class, 'plan_id');
+    }
+
+    public function checkoutoption()
+    {
+        return $this->belongsTo(CheckoutOption::class, 'checkoutoption_id');
+    }
+
     public function units()
     {
         return $this->hasMany(Unit::class);
@@ -82,10 +92,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Point::class, 'user_id');
     }
 
-      public function timestamps()
-      {
+    public function timestamps()
+    {
       return $this->hasMany(Timestamp::class, 'user_id');
-      }
+    }
 
 
     public function user_properties()

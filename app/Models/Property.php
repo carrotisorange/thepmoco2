@@ -77,7 +77,7 @@ class Property extends Model
 
     public function tenants()
     {
-    return $this->hasMany(Tenant::class);
+        return $this->hasMany(Tenant::class);
     }
 
     public function particulars()
