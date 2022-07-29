@@ -36,7 +36,7 @@ use App\Http\Controllers\ExportSignedContractController;
 use App\Http\Controllers\MoveoutContractBillController;
 use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\UnitEnrolleeController;
-
+use App\Http\Controllers\UserController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -221,8 +221,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     //Routes for Team
-    Route::prefix('team')->group(function(){
-        Route::get('/', [TeamController::class, 'index'])->name('team');
+    Route::prefix('user')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('user');
+        Route::get('{random_str}/create', [UserController::class, 'create']);
 
 
         Route::prefix('{user}')->group(function(){

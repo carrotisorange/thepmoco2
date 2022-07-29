@@ -114,6 +114,11 @@ class Property extends Model
         return $query->where('unit', '%like%','10');
     }
 
+    public function property_users()
+    {
+        return $this->hasMany(UserProperty::class, 'property_uuid')->orderBy('id', 'desc');
+    }
+
 
 
 }

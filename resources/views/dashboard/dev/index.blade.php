@@ -18,6 +18,7 @@
             @csrf
             <x-button hre>Logout</x-button>
         </form>
+        {{-- <x-button onclick="window.location.href='/user/{{ }}/bill'">Go back to bills</x-button> --}}
     </x-slot>
 
     <div class="max-w-12xl mx-auto sm:px-6">
@@ -90,23 +91,7 @@
                                 </div>
                                 <!--/Metric Card-->
                             </div>
-                            {{-- <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                                <!--Metric Card-->
-                                <div class="bg-white border rounded shadow p-2">
-                                    <div class="flex flex-row items-center">
-                                        <div class="flex-shrink pr-4">
-                                            <div class="rounded p-3 bg-blue-600"><i
-                                                    class="fas fa-server fa-2x fa-fw fa-inverse"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500">Total Units</h5>
-                                            <h3 class="font-bold text-3xl">{{ $units->count() }}</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/Metric Card-->
-                            </div> --}}
+                           
                             <div class="w-full md:w-1/2 xl:w-1/2 p-3">
                                 <!--Metric Card-->
                                 <div class="bg-white border rounded shadow p-2">
@@ -378,6 +363,16 @@
                                     </table>
                                 </div>
                             </div>
+
+                            <div class="w-full md:w-1/2 xl:w-1/2 p-3">
+                            
+                                <div class="mt-2 mb-2">
+                                    New User
+                                </div>
+                                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                    @livewire('user-component')
+                                </div>
+                            </div>
                    
                         </div>
                     </div>
@@ -440,5 +435,4 @@
             }
     </script>
     @endsection
-
 </x-index-layout>

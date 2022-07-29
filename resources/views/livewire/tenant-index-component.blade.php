@@ -1,4 +1,4 @@
-<div class="">
+<div>
     <x-search placeholder="Enter name, email, and mobile..."></x-search>
     <div class="mt-2 mb-2">
         {{ $tenants->links() }}

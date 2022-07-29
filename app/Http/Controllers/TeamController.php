@@ -20,26 +20,13 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Property $property)
     {
         $this->authorize('accountowner');
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id, 'opens', 8);
-        
-        $teams = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-        ->select('*', 'users.status as user_status')
-        ->join('users', 'user_properties.user_id', 'users.id')
-        ->join('types', 'properties.type_id', 'types.id')
-        ->join('roles', 'users.role_id', 'roles.id')
-        ->where('properties.uuid', Session::get('property'))
-        ->where('users.id','!=',auth()->user()->id)
-        ->where('users.status', 'active')
-        ->orderBy('users.created_at', 'desc')
-        ->paginate(10);
-
-        return view('teams.index',[
-        'teams' => $teams
-        ]);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
+    
+        return view('teams.index');
     }
 
     /**
@@ -49,19 +36,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        // $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-        //  ->select('*', 'users.status as user_status', 'users.id as user_id')
-        //  ->join('users', 'user_properties.user_id', 'users.id')
-        //  ->join('types', 'properties.type_id', 'types.id')
-        //  ->join('roles', 'users.role_id', 'roles.id')
-        //  ->where('properties.uuid', Session::get('property'))
-        //  ->where('users.status', 'pending')
-        //  ->orderBy('users.created_at', 'desc')
-        //  ->paginate(10);
-
-        return view('teams.create',[
-        
-        ]);
+        return view('teams.create');
     }
 
     /**
@@ -134,7 +109,7 @@ class TeamController extends Controller
     public function edit(Property $property, User $user)
     {
         return view('teams.edit',[
-            'member' => $user,
+           'member' => $user,
            'roles' => Role::orderBy('role')->where('id','!=','5')->get(),
         ]);
     }

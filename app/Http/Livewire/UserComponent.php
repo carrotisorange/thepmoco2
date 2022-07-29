@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Role;
 use DB;
+use App\Models\Property;
 use Livewire\WithPagination;
 
 use Livewire\Component;
 
-class TeamComponent extends Component
+class UserComponent extends Component
 {
      use WithFileUploads;
 
@@ -31,23 +32,21 @@ class TeamComponent extends Component
     public $avatar;
     public $password;
 
-    protected $teams;
-
     public function mount()
     {
-      $this->teams = $this->get_teams();
+      $this->password = Str::random(8);
+      $this->username= Str::random(8);
     }
 
      protected function rules()
      {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            // 'name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'mobile_number' => ['required', 'unique:users'],
-            'password' => ['required'],
+            // 'username' => ['nullable', 'string', 'max:255', 'unique:users'],
+            // 'mobile_number' => ['nullable', 'unique:users'],
+            // 'password' => ['nullable'],
             'role_id' => ['required', Rule::exists('roles', 'id')],
-            'avatar' => 'nullable|image',
         ];
      }
 
@@ -56,7 +55,7 @@ class TeamComponent extends Component
         $this->validateOnly($propertyName);
      }
 
-     public function submitForm()
+     public function addUser()
      {
         sleep(1);
 
@@ -71,17 +70,17 @@ class TeamComponent extends Component
 
             DB::commit();       
             
-            $this->send_invite();
+            $this->send_email($this->email, $this->username, $this->password);
 
             $this->resetForm();
 
-            $this->teams = $this->get_teams();
-
-            return back()->with('success', 'Member is successfully created.');
+            return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User is successfully created.');
 
          }catch(\Exception $e)
          {
             DB::rollback();
+
+            ddd($e);
 
             return back()->with('error');
          }
@@ -91,16 +90,13 @@ class TeamComponent extends Component
      public function store_team($validatedData)
      {
          $validatedData['password'] = Hash::make($this->password);
-         $validatedData['status'] = 'active';
-         $validatedData['email_verified_at'] = now();
+         $validatedData['username'] = $this->username;
+         //$validatedData['status'] = 'active';
+         //$validatedData['email_verified_at'] = now();
          $validatedData['account_owner_id'] = auth()->user()->id;
-
-         if(isset($this->avatar))
-         {
-            $validatedData['avatar'] = $this->avatar->store('avatars');
-         }else{
-            $validatedData['avatar'] = 'avatars/avatar.png';
-         }
+         $validatedData['account_owner_id'] = auth()->user()->checkoutoption_id;
+         $validatedData['account_owner_id'] = auth()->user()->plan_id;
+         $validatedData['avatar'] = 'avatars/avatar.png';
 
          $user_id = User::create($validatedData)->id;
 
@@ -116,14 +112,14 @@ class TeamComponent extends Component
          ]);
      }
 
-     public function send_invite()
+     public function send_email($email, $username, $password)
      {
          $details = [
-         'email' => $this->email,
-         'name' => $this->name,
-         'role' => Role::find($this->role_id)->role,
-         'username' => $this->username,
-         'password'=>$this->password
+            'email' => $email,
+            // 'name' => $this->name,
+            'role' => Role::find($this->role_id)->role,
+            'username' => $username,
+            'password'=>$password
          ];
 
       Mail::to($this->email)->send(new WelcomeMailToMember($details));
@@ -143,9 +139,8 @@ class TeamComponent extends Component
 
      public function render()
      {
-        return view('livewire.team-component',[
+        return view('livewire.user-component',[
          'roles' => Role::orderBy('role')->whereIn('id',['1','2', '3', '9'])->get(),
-         'teams' => $this->get_teams(),
         ]);
      }
 
@@ -157,21 +152,6 @@ class TeamComponent extends Component
 
          UserProperty::where('user_id', $id)->delete();
 
-         $this->teams = $this->get_teams();
-
-         return back()->with('success', 'Member is successfully removed.');
-     }
-
-     public function get_teams()
-     {
-         return $members = UserProperty::join('properties', 'user_properties.property_uuid', 'properties.uuid')
-         ->select('*', 'users.status as user_status', 'users.id as user_id', 'users.created_at as user_created')
-         ->join('users', 'user_properties.user_id', 'users.id')
-         ->join('types', 'properties.type_id', 'types.id')
-         ->join('roles', 'users.role_id', 'roles.id')
-         ->where('user_id','!=' , auth()->user()->id)
-         ->where('properties.uuid', Session::get('property'))
-         ->orderBy('users.created_at', 'desc')
-         ->paginate(5);
+         return back()->with('success', 'User is successfully removed.');
      }
 }

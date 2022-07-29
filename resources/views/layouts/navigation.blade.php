@@ -21,9 +21,9 @@
                 </div>
                 @can('accountowner')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property') }}/team"
-                        :active="request()->routeIs('team')">
-                        <i class="fa-solid fa-user-gear"></i>&nbspTeam
+                    <x-nav-link href="/property/{{ Session::get('property') }}/user"
+                        :active="request()->routeIs('user')">
+                        <i class="fa-solid fa-user-gear"></i>&nbspUser
                     </x-nav-link>
                 </div>
                 @endcan
@@ -161,9 +161,9 @@
                 <i class="fa-solid fa-chart-line"></i>&nbspDashboard
             </x-responsive-nav-link>
             @can('accountowner')
-            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/team"
-                :active="request()->routeIs('team')">
-                <i class="fa-solid fa-user-gear"></i>&nbspTeam
+            <x-responsive-nav-link href="/property/{{ Session::get('property') }}/user"
+                :active="request()->routeIs('user')">
+                <i class="fa-solid fa-user-gear"></i>&nbspUser
             </x-responsive-nav-link>
             @endcannot
 

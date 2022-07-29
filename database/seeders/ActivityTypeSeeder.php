@@ -43,7 +43,7 @@ class ActivityTypeSeeder extends Seeder
         ]);
 
         ActivityType::create([
-            'activity_type' => 'team'
+            'activity_type' => 'user'
         ]);
 
         ActivityType::create([

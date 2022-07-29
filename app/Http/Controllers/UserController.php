@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use App\Models\Property;
 use Session;
 
 
@@ -18,9 +19,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+public function index(Property $property)
     {
+        $this->authorize('accountowner');
 
+        $users = Property::find(Session::get('property'))->property_users;
+
+        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
+
+        return view('users.index',[
+            'users' => $users
+        ]);
     }
 
     /**
@@ -28,9 +37,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Property $property, $random_str)
     {
-        //
+        return view('users.create');
     }
 
     public function is_trial_expired($date)

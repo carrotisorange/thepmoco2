@@ -49,12 +49,7 @@
                             <li class="nav-item">
                                 <a class="page-scroll" href="#services">Services</a>
                             </li>
-                            {{-- <li class="nav-item">
-                                <a class="page-scroll" href="#feature">feature</a>
-                            </li> --}}
-                            {{-- <li class="nav-item">
-                                <a class="page-scroll" href="#team">Team</a>
-                            </li> --}}
+                           
                             <li class="nav-item">
                                 <a class="page-scroll" href="#testimonial">Testimonial</a>
                             </li>

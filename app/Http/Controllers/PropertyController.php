@@ -79,14 +79,13 @@ class PropertyController extends Controller
         elseif(auth()->user()->role_id == '8')
         {
             return view('portal.tenants.index',[
-            'properties'=>User::find(Auth::user()->id)->user_properties
+                'properties'=>User::find(Auth::user()->id)->user_properties
             ]);
         }
         else
         {
             return view('properties.index',[
-            'properties'=>User::find(Auth::user()->id)->user_properties
-            
+                'properties'=>User::find(Auth::user()->id)->user_properties
             ]);
         }
     }

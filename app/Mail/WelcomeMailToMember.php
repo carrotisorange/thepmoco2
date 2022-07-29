@@ -31,10 +31,10 @@ class WelcomeMailToMember extends Mailable
      */
     public function build()
     {
-        return $this->subject(Session::get('property_name'))
-                    ->from(auth()->user()->email)
-                    ->markdown('emails.welcomemailtomember', [
-                        'url' => 'https://www.thepropertymanager.online/login',
-                    ]);
+        return $this->subject('Invitation to manage '. Session::get('property_name'))
+            ->from(auth()->user()->email)
+            ->markdown('emails.welcomemailtomember', [
+                'url' => 'https://www.thepmo.co',
+            ]);
     }
 }
