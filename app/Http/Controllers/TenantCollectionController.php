@@ -15,6 +15,7 @@ use DB;
 use App\Models\Bill;
 use \PDF;
 use Carbon\Carbon;
+use App\Models\Contract;
 
 class TenantCollectionController extends Controller
 {
@@ -205,6 +206,16 @@ class TenantCollectionController extends Controller
          );
 
          app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
+
+         $contract_status = Tenant::find($tenant->uuid)->bills->where('status', '!=','paid')->where('description','movein charges');
+
+         if($contract_status->count()<=0)
+         {
+            Contract::where('tenant_uuid', $tenant->uuid)
+            ->update([
+               'status' => 'active'
+            ]);
+         }
 
           $data = [
             'tenant' => $tenant->tenant,

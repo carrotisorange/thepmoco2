@@ -27,10 +27,9 @@
                                 </a>
                             </div>
                             <?php
-                                                                        $unpaid_bills = App\Models\Tenant::find($tenant->uuid)->bills->where('status', '!=', 'paid');
-                                                                        $contract_status = App\Models\Tenant::find($tenant->uuid)->bills->where('status', '!=', 'paid')
-                                                                        ->where('description','movein charges');
-                                                                    ?>
+                                $unpaid_bills = App\Models\Tenant::find($tenant->uuid)->bills->where('status', '!=', 'paid');
+                                $contract_status = App\Models\Tenant::find($tenant->uuid)->bills->where('status', '!=', 'paid')->where('description','movein charges');
+                            ?>
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900"><b>{{
                                         $tenant->tenant }} </b>
