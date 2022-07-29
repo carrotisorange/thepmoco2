@@ -4,7 +4,7 @@
 You've got an invitation to be a part of the team to manage <b>{{ Session::get('property_name') }}</b> with the role of <b>{{ $details['role'] }}</b>.
 <br>
 
-Please press the continue button below to accept the invitation and use the following credentials.
+Please press the accept invitation button below and use the following credentials:
 {{-- <br>
 Email: {{ $details['email'] }} --}}
 <br>

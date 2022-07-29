@@ -33,6 +33,7 @@ class WelcomeMailToMember extends Mailable
     {
         return $this->subject('Invitation to manage '. Session::get('property_name'))
             ->from(auth()->user()->email)
+            ->from($this->details['email'])
             ->markdown('emails.welcomemailtomember', [
                 'url' => 'https://www.thepmo.co',
             ]);

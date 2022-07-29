@@ -520,7 +520,9 @@
         <div class="mt-5">
             <span>Showing the last 5 management agreements</span>
             <p class="text-right">
-                <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/enrollee/'">See more
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/enrollee/'">
+                    See more
 
                 </x-button>
             </p>
@@ -534,12 +536,11 @@
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>#</x-th>
-
-                    <x-th>Payee</x-th>
-                    <x-th>Period Covered</x-th>
+                    <x-th>Tenant</x-th>
                     <x-th>Particular</x-th>
-                    <x-th>Amount</x-th>
-                    <x-th>Status</x-th>
+                    <x-th>Period</x-th>
+                    <x-th>Amount Due</x-th>
+
                     <x-th>Amount Paid</x-th>
                     <x-th>Balance</x-th>
                 </tr>
@@ -547,67 +548,53 @@
             @forelse ($bills as $item)
             <tbody class="bg-white divide-y divide-gray-200">
                 <tr>
-                    <x-td>{{ $ctr++ }}</x-td>
-
-                    <x-td>@if($item->tenant_uuid)
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                                <a href="/tenant/{{ $item->tenant_uuid }}/edit">
-                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->tenant->photo_id }}"
-                                        alt=""></a>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">{{
-                                    $item->tenant->tenant }}
-                                </div>
-
-                            </div>
-                        </div>
-
+                    <x-td>{{ $item->bill_no }}</x-td>
+                    <x-td><a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/bills"><b
+                                class="text-blue-600">{{$item->tenant->tenant }}</b></a></x-td>
+                    <x-td>{{$item->particular->particular }}</x-td>
+                    <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
+                        Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
+                    <x-td>{{number_format($item->bill,2) }}
+                        @if($item->status === 'paid')
+                        <span title="paid"
+                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </span>
+                        @elseif($item->status === 'partially_paid')
+                        <span title="partially_paid"
+                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                            <i class="fa-solid fa-clock"></i>
+                        </span>
                         @else
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                                <a href="/tenant/{{ $item->owner_uuid }}/edit">
-                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->owner->photo_id }}"
-                                        alt=""></a>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">{{
-                                    $item->owner->owner }}
-                                </div>
-
-                            </div>
-                        </div>
+                        <span title="unpaid"
+                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </span>
                         @endif
-                    </x-td>
-                    <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.
-                        Carbon\Carbon::parse($item->end)->format('M d, Y')}}</x-td>
-                    <x-td>{{ $item->particular->particular}}</x-td>
-                    <x-td>{{ number_format($item->bill, 2) }}</x-td>
-                    <x-td>@if($item->status === 'paid')
-                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            <i class="fa-solid fa-circle-check"></i> {{
-                            $item->status }}
-                            @else
-                            <span
-                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                <i class="fa-solid fa-clock"></i> {{
-                                $item->status }}
-                            </span>
-                            @endif
+
+                        @if($item->description === 'movein charges')
+                        <span title="urgent"
+                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                            <i class="fa-solid fa-bolt"></i>
+                        </span>
+                        @endif
                     </x-td>
                     <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
                     <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
                     @empty
-                    <x-td>No data found!</x-td>
-                    @endforelse
+                    <x-td>
+                        No data found!
+                    </x-td>
                 </tr>
+                @endforelse
             </tbody>
         </table>
         <div class="mt-5">
             <span>Showing the last 5 bills</span>
             <p class="text-right">
-                <x-button onclick="window.location.href='/unit/{{ $unit->uuid }}/bills/'">See more
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/bills/'">
+                    See more
                 </x-button>
             </p>
         </div>
