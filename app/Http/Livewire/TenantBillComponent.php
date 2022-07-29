@@ -25,11 +25,19 @@ class TenantBillComponent extends Component
 
      public function removeBills()
      {
-        Bill::destroy($this->selectedBills);
+       
+        if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
+        {
+            $this->selectedBills = [];
+
+            return back()->with('error', 'Bill cannnot be deleted.');
+        }
+
+        //Bill::destroy($this->selectedBills);
 
         $this->selectedBills = [];
 
-        return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bill is successfully removed.');
+        return back()->with('success','Bill is successfully removed.');
      }
 
      public function postBills()

@@ -93,10 +93,10 @@
             <div class="basis-1/4 ml-12 text-right">
                 @can('accountowner')
                 @if($selectedBills)
-                {{-- <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
+                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
                     Remove
                     bills ({{ count($selectedBills) }})
-                </x-button> --}}
+                </x-button>
                 @endif
                 @endcan
             </div>
@@ -114,7 +114,8 @@
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <x-th>
-                                            {{-- <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
+                                            {{--
+                                            <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
                                         </x-th>
                                         <x-th> #</x-th>
                                         <x-th>Unit</x-th>
@@ -137,7 +138,9 @@
                                             @endif
                                         </x-td>
                                         <x-td>{{ $item->bill_no }}</x-td>
-                                        <x-td> <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}"><b class="text-blue-600">{{ $item->unit->unit}} </b></a></x-td>
+                                        <x-td> <a
+                                                href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}"><b
+                                                    class="text-blue-600">{{ $item->unit->unit}} </b></a></x-td>
                                         <x-td>{{$item->particular->particular }}</x-td>
                                         <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
                                             Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
@@ -202,4 +205,5 @@
             </div>
         </div>
     </div>
+    @include('layouts.notifications')
 </div>
