@@ -1,5 +1,10 @@
 <div class="">
     <x-search placeholder="Search for reference no..."></x-search>
+    @if($batch_no)
+    <div class="mt-4">
+        <p class="text-center">Showing <span class="text-black-600">{{ $bills->count() }}</span> newly posted bills.</p>
+    </div>
+    @endif
     <div class="mt-2 mb-2">
         {{ $bills->links() }}
     </div>
@@ -7,9 +12,9 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-50">
                 <tr>
-                    <x-th>
+                    {{-- <x-th>
                         <x-input id="" wire:model="selectAllBills" type="checkbox" />
-                    </x-th>
+                    </x-th> --}}
                     {{-- <x-th>#</x-th> --}}
                     <x-th>Bill #</x-th>
                     <x-th>Date posted</x-th>
@@ -25,18 +30,20 @@
             @forelse ($bills as $index => $item)
             <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <tr>
-                    <x-td>
+                    {{-- <x-td>
                         <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
-                    </x-td>
+                    </x-td> --}}
                     {{-- <x-td>{{ $index + $bills->firstItem() }}</x-td> --}}
                     <x-td>{{ $item->bill_no}}</x-td>
                     <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
-                   
+
                     <x-td>
-                        <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/bills"><b class="text-blue-600">{{ $item->tenant->tenant}} </b></a>
+                        <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/bills"><b
+                                class="text-blue-600">{{ $item->tenant->tenant}} </b></a>
                     </x-td>
                     <x-td>
-                         <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills"><b class="text-blue-600">{{ $item->unit->unit}} </b></a>
+                        <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills"><b
+                                class="text-blue-600">{{ $item->unit->unit}} </b></a>
                     </x-td>
                     <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                         y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}</x-td>
@@ -77,7 +84,7 @@
                 </tr>
                 @endforelse
                 <tr>
-                    <x-td></x-td>
+                    {{-- <x-td></x-td> --}}
                     <x-td>Total</x-td>
                     <x-td></x-td>
                     <x-td></x-td>
