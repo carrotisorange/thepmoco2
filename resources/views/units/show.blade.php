@@ -210,19 +210,7 @@
                 <tr>
                     <x-td>{{ $index +1 }}</x-td>
                     <x-td>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                                <a href="/tenant/{{ $item->tenant_uuid }}/edit">
-                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->tenant->photo_id }}"
-                                        alt=""></a>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">{{
-                                    $item->tenant->tenant }}
-                                </div>
-
-                            </div>
-                        </div>
+                         <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}"><b class="text-blue-600">{{ $item->tenant->tenant}} </b></a>
                     </x-td>
                     <x-td>
                         <div class="text-sm text-gray-900">{{
@@ -353,19 +341,7 @@
                 <tr>
                     <x-td>{{ $ctr++ }}</x-td>
                     <x-td>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                                <a href="/owner/{{ $item->owner_uuid }}/edit">
-                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->owner->photo_id }}"
-                                        alt=""></a>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">{{
-                                    $item->owner->owner }}
-                                </div>
-
-                            </div>
-                        </div>
+                         <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}"><b class="text-blue-600">{{ $item->owner->owner}} </b></a>
                     </x-td>
                     <x-td>
                         {{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
@@ -429,19 +405,7 @@
                 <tr>
                     <x-td>{{ $ctr++ }}</x-td>
                     <x-td>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                                <a href="/owner/{{ $item->owner_uuid }}">
-                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->owner->photo_id }}"
-                                        alt=""></a>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">{{
-                                    $item->owner->owner }}
-                                </div>
-
-                            </div>
-                        </div>
+                        <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}"><b class="text-blue-600">{{ $item->owner->owner}} </b></a>
                     </x-td>
                     <x-td>
                         <div class="text-sm text-gray-900">{{
@@ -572,7 +536,7 @@
                         </span>
                         @endif
 
-                        @if($item->description === 'movein charges')
+                        @if($item->description === 'movein charges' && $item->status==='unpaid')
                         <span title="urgent"
                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                             <i class="fa-solid fa-bolt"></i>

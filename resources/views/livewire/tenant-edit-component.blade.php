@@ -528,8 +528,8 @@
                     {{-- <x-td>{{ $index + $bills->firstItem() }}</x-td> --}}
                     <x-td>{{ $item->bill_no}}</x-td>
                     <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
-                    <?php $unit = App\Models\Unit::find($item->unit_uuid)->unit?>
-                    <x-td>{{ $unit }}</x-td>
+                 <x-td><a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills"><b
+                                class="text-blue-600">{{$item->unit->unit }}</b></a></x-td>
                     <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                         y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}</x-td>
                     <x-td>{{ $item->particular->particular}}</x-td>
@@ -552,7 +552,7 @@
                         </span>
                         @endif
 
-                        @if($item->description === 'movein charges')
+                        @if($item->description === 'movein charges' && $item->status==='unpaid')
                         <span title="urgent"
                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                             <i class="fa-solid fa-bolt"></i>

@@ -96,7 +96,7 @@
                     </span>
                     @endif
 
-                    @if($item->description === 'movein charges')
+                    @if($item->description === 'movein charges' && $item->status==='unpaid')
                     <span title="urgent"
                         class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                         <i class="fa-solid fa-bolt"></i>
