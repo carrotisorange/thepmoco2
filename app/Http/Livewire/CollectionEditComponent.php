@@ -19,6 +19,7 @@ class CollectionEditComponent extends Component
     public $check_no;
     public $created_at;
     public $date_deposited; 
+    public $sendPayment = false;
 
     public function mount($collections, $tenant, $batch_no)
     {
@@ -26,6 +27,19 @@ class CollectionEditComponent extends Component
         $this->tenant = $tenant;
         $this->collections = $collections;
         $this->created_at = Carbon::now()->format('Y-m-d');
+    }
+
+    protected function rules()
+    {
+      return [
+       'created_at' => 'required|date',
+       'form' => 'required',
+      ];
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
     public function get_bills()

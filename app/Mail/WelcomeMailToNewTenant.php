@@ -34,7 +34,7 @@ class WelcomeMailToNewTenant extends Mailable
           return $this->subject(Session::get('property_name'))
                       ->from(auth()->user()->email)
                       ->markdown('emails.welcomemailtonewtenant', [
-                            'url' => 'https://www.thepropertymanager.online/login',
+                            'url' => 'https://www.thepmo.co',
                         ]);
     }
 }

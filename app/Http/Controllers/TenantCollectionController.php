@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AcknowledgementReceipt;
+use App\Mail\SendPaymentToTenant;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
 use App\Models\Collection;
@@ -204,7 +206,21 @@ class TenantCollectionController extends Controller
 
          app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
-         return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills')->with('success', 'Payment is successfully saved.');
+          $data = [
+            'tenant' => $tenant->tenant,
+            'ar_no' => $ar_no,
+            'form' => $request->form,
+            'payment_made' => $request->created_at,
+            'user' => User::find(auth()->user()->id)->name,
+            'role' => User::find(auth()->user()->id)->role->role,
+            'collections' => Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get()
+          ];
+
+          if($tenant->email){
+            Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
+          }
+   
+         return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills')->with('success', 'Payment is successfully created.');
      }
 
      public function destroy(Property $property, Tenant $tenant, $batch_no)

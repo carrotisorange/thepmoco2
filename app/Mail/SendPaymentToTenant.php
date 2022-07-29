@@ -7,21 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Session;
+use Carbon\Carbon;
 
-class SendContractToTenant extends Mailable
+class SendPaymentToTenant extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $details;
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($data)
     {
-        $this->details = $details;
+        $this->data = $data;
     }
 
     /**
@@ -31,10 +32,8 @@ class SendContractToTenant extends Mailable
      */
     public function build()
     {
-        return $this->subject(Session::get('property_name'))
-                    ->from(auth()->user()->email)
-                    ->markdown('emails.sendcontracttotenant', [
-                        'url' => 'https://www.thepmo.co',
-                    ]);
+          return $this->subject(Session::get('property_name').' - Acknowledgement Receipt '.Carbon::parse(Carbon::now())->format('M d, Y'))
+            ->markdown('emails.sendpaymenttotenant', [
+          ]);
     }
 }
