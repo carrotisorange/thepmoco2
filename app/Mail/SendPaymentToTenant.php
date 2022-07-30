@@ -33,7 +33,10 @@ class SendPaymentToTenant extends Mailable
     public function build()
     {
           return $this->subject(Session::get('property_name').' - Acknowledgement Receipt '.Carbon::parse(Carbon::now())->format('M d, Y'))
+            ->from(auth()->user()->email)
             ->markdown('emails.sendpaymenttotenant', [
           ]);
+
+  
     }
 }
