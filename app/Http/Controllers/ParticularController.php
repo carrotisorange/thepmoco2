@@ -48,8 +48,6 @@ class ParticularController extends Controller
      */
     public function store(Request $request)
     {   
-        return 'asd';
-        
         $particular_attributes = request()->validate([
           'particular_id'=> 'required',
           'minimum_charge' => 'required', 
