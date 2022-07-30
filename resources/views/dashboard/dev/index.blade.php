@@ -82,9 +82,9 @@
                                                     class="fas fa-solid fa-house fa-2x fa-fw fa-inverse"></i></div>
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500"><a class="text-blue-600" href="/dashboard/sales">Total Users/Account Owners</a></h5>
+                                            <h5 class="font-bold uppercase text-gray-500"><a class="text-blue-600" href="/dashboard/sales">Account Owners/Total Users</a></h5>
                                             <h3 class="font-bold text-3xl"> <span class="text-yellow-600"><i
-                                                        class="fas fa-caret-up"></i>{{ $users->count() }}/{{ $users->where('role_id', 5)->count() }}</span>
+                                                        class="fas fa-caret-up"></i>{{ $users->where('role_id', 5)->count() }}/{{ $users->count() }}</span>
                                             </h3>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                                             </div>
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500">Total tenants/owners</h5>
+                                            <h5 class="font-bold uppercase text-gray-500">Tenants/Owners</h5>
                                             <h3 class="font-bold text-3xl">{{ $tenants->count() }}/{{ $owners->count() }}</h3>
                                         </div>
                                     </div>
@@ -119,9 +119,9 @@
                                             </div>
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500">Total Contracts</h5>
+                                            <h5 class="font-bold uppercase text-gray-500">Contracts/Active Contracts</h5>
                                             <h3 class="font-bold text-3xl"><span class="text-red-500"><i
-                                                        class="fas fa-caret-up"></i></span>{{ $contracts->count() }}
+                                                        class="fas fa-caret-up"></i></span>{{ $contracts->where('status', 'active')->count() }}/{{ $contracts->count()}}
                                             </h3>
                                         </div>
                                     </div>
@@ -267,7 +267,8 @@
                                                                             "datasets": [{
                                                                                 "label": "Issues",
                                                                                 "data": {!!$get_property_type_values!!},
-                                                                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                                                                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(192, 192, 192)",
+                                                                            , "rgb(255, 153, 51)", "rgb(123, 180, 3)", "rgb(111, 205, 2)", "rgb(153, 51, 255)"]
                                                                             }]
                                                                         }
                                                                     });
@@ -364,16 +365,7 @@
                                 </div>
                             </div>
 
-                            <div class="w-full md:w-1/2 xl:w-1/2 p-3">
-                            
-                                <div class="mt-2 mb-2">
-                                    New User
-                                </div>
-                                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                                    @livewire('user-component')
-                                </div>
-                            </div>
-                   
+                         
                         </div>
                     </div>
                 </div>
