@@ -42,7 +42,14 @@
                     <x-td>{{ number_format($ar->amount,2) }} ({{ $collections_count }})</x-td>
                     <x-td>
                         <x-button
-                            onclick="window.location.href='tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/export'">
+                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/view'">
+                            View
+                        </x-button>
+                        {{-- <x-button
+                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/send'">
+                            Send
+                        </x-button> --}}
+                        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/export'">
                             Export
                         </x-button>
                     </x-td>

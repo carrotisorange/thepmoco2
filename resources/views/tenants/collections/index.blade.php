@@ -54,6 +54,10 @@
                 <x-td>{{ number_format($item->amount,2) }}</x-td>
                 <x-td>
                     <x-button
+                        onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view'">
+                        View
+                    </x-button>
+                    <x-button
                         onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export'">
                         Export
                     </x-button>

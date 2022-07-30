@@ -115,39 +115,93 @@ class TenantCollectionController extends Controller
    
          $property = Property::find(Session::get('property'));
 
-         $data = [
-            'created_at' => $ar->created_at,
-            'reference_no' => $tenant->bill_reference_no,
-            'tenant' => Tenant::find($ar->tenant_uuid)->tenant,
-            'mode_of_payment' => $ar->mode_of_payment,
-            'user' => User::find($ar->user_id)->name,
-            'role' => User::find($ar->user_id)->role->role,
-            'ar_no' => $ar->ar_no,
-            'amount' => $ar->amount,
-            'cheque_no' => $ar->cheque_no,
-            'bank' => $ar->bank,
-            'date_deposited' => $ar->date_deposited,
-            'collections' => Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no',
-            $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
-            'balance' => $balance
-         ];
+         $data = $this->get_collection_data(
+            $ar->created_at, 
+            $tenant->bill_reference_no, 
+            $tenant->tenant,
+            $ar->mode_of_payment,
+            User::find($ar->user_id)->name,
+            User::find($ar->user_id)->role->role,
+            $ar->ar_no,
+            $ar->amount,
+            $ar->cheque_no,
+            $ar->bank,
+            $ar->date_deposited,
+            Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
+            $balance
+         );
 
-        $pdf = PDF::loadView('tenants.collections.export', $data);
-
-               $pdf->output();
-               $canvas = $pdf->getDomPDF()->getCanvas();
-
-               $height = $canvas->get_height();
-               $width = $canvas->get_width();
-
-               $canvas->set_opacity(.2,"Multiply");
-
-               $canvas->set_opacity(.2);
-
-               $canvas->page_text($width/5, $height/2, $property->property, null,
-               55, array(0,0,0),2,2,-30);
+        $pdf = $this->generate_pdf($property, $data);
 
         return $pdf->download($tenant->tenant.'-ar.pdf');
+     }
+
+     public function view(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
+     {          
+         $balance = app('App\Http\Controllers\TenantBillController')->get_tenant_balance($ar->tenant_uuid);
+   
+         $property = Property::find(Session::get('property'));
+
+         $data = $this->get_collection_data(
+            $ar->created_at, 
+            $tenant->bill_reference_no, 
+            $tenant->tenant,
+            $ar->mode_of_payment,
+            User::find($ar->user_id)->name,
+            User::find($ar->user_id)->role->role,
+            $ar->ar_no,
+            $ar->amount,
+            $ar->cheque_no,
+            $ar->bank,
+            $ar->date_deposited,
+            Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
+            $balance
+         );
+
+        $pdf = $this->generate_pdf($property, $data);
+
+        return $pdf->stream($tenant->tenant.'-ar.pdf');
+     }
+
+     public function generate_pdf($property, $data)
+     {
+         $pdf = PDF::loadView('tenants.collections.export', $data);
+
+         $pdf->output();
+               
+         $canvas = $pdf->getDomPDF()->getCanvas();
+
+         $height = $canvas->get_height();
+         
+         $width = $canvas->get_width();
+
+         $canvas->set_opacity(.2,"Multiply");
+
+         $canvas->set_opacity(.2);
+
+         $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+
+         return $pdf;
+
+     }
+
+     public function get_collection_data($payment_made, $reference_no, $tenant, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $date_deposited, $collections, $balance)
+     {
+      return [
+         'created_at' => $payment_made,
+         'reference_no' => $reference_no,
+         'tenant' => $tenant,
+         'mode_of_payment' => $mode_of_payment,
+         'user' => $user,
+         'role' => $role,
+         'ar_no' => $ar_no,
+         'amount' => $amount,
+         'cheque_no' => $cheque_no,
+         'bank' => $bank,
+         'date_deposited' => $date_deposited,
+         'collections' => $collections,
+         'balance' => $balance
+      ];
      }
 
      public function get_selected_bills_count($batch_no)
@@ -217,21 +271,27 @@ class TenantCollectionController extends Controller
             ]);
          }
 
-          $data = [
-            'tenant' => $tenant->tenant,
-            'ar_no' => $ar_no,
-            'form' => $request->form,
-            'payment_made' => $request->created_at,
-            'user' => User::find(auth()->user()->id)->name,
-            'role' => User::find(auth()->user()->id)->role->role,
-            'collections' => Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get()
-          ];
-
-          if($tenant->email){
-            Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
-          }
+         $this->send_payment_to_tenant($tenant, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
    
          return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills')->with('success', 'Payment is successfully created.');
+     }
+
+     public function send_payment_to_tenant($tenant, $ar_no, $form, $payment_made, $user, $role, $collection)
+     {
+       $data = [
+         'tenant' => $tenant,
+         'ar_no' => $ar_no,
+         'form' => $form,
+         'payment_made' => $payment_made,
+         'user' => $user,
+         'role' => $role,
+         'collections' => $collection
+       ];
+
+       if($tenant->email)
+       {
+         return Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
+       }
      }
 
      public function destroy(Property $property, Tenant $tenant, $batch_no)

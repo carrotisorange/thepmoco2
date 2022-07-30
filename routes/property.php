@@ -140,6 +140,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('bill/send', [TenantBillController::class, 'send']);
             //Route::get('collection/store', [TenantCollectionController::class, 'store']);
             Route::get('ar/{ar}/export', [TenantCollectionController::class, 'export']);
+            Route::get('ar/{ar}/view', [TenantCollectionController::class, 'view']);
             Route::get('concerns', [TenantConcernController::class, 'index']);
             Route::get('units', [TenantContractController::class, 'create']);
             Route::get('ledger', [TenantLedgerController::class, 'index']);

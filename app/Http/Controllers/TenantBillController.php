@@ -115,7 +115,7 @@ class TenantBillController extends Controller
 
        $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
     
-        $pdf = $this->generate_pdf($data, $property);
+       $pdf = $this->generate_pdf($data, $property);
 
        return $pdf->download($tenant->tenant.'-soa.pdf');
     }
