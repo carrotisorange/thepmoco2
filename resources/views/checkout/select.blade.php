@@ -1,78 +1,358 @@
-<x-index-layout>
-    @section('title', 'Select a Plan | The PMO Co')
-    <x-slot name="labels">
-        Select a plan... </x-slot>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <x-slot name="options">
+<head>
+    @include('layouts.head')
+</head>
 
-    </x-slot>
+<body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
+    <div class="min-h-screen bg-gray-100">
+        <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+            <!-- Primary Navigation Menu -->
 
-    <!-- component -->
-    <!-- component -->
-    <div class="p-12 flex flex-wrap justify-center gap-12 container mx-auto bg-gray-50">
+            <div class="max-w-12xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- Style 1 -->
-        <div class="w-[360px] h-[480px] py-8 px-1">
-            <div
-                class="relative flex flex-col justify-center items-center w-[300px] h-[400px] mx-auto p-2 bg-slate-50 border-slate-900 text-slate-50 shadow-lg rounded-3xl hover:shadow-xl">
+                <div class="flex justify-between h-16">
+                    <div class="flex">
+                        <!-- Logo -->
+                        <div class="shrink-0 flex items-center">
+                            <a href="/property">
+                                <img class="h-24 w-15" src="{{ asset('/brands/full-logo.png') }}" />
+                            </a>
+                        </div>
 
-                <h3
-                    class="absolute -top-5 -left-5 w-32 p-2 bg-slate-800 rounded-3xl text-2xl font-merriweather text-center">
-                    Regular
-                </h3>
 
-                <div
-                    class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Free Trial </h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Try for FREE. You will only be charged
-                        after the trial expires.
-                    </p>
-                    <button onclick="window.location.href='/plan/1/checkout/2/get'"
-                        class="text-xl w-full px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200">
-                        Try Now
-                    </button>
-                 
-                    {{-- <x-button>Try Now</x-button> --}}
+                    </div>
+
+                    <!-- Hamburger -->
+                    <div class="-mr-2 flex items-center sm:hidden">
+                        <button @click="open = ! open"
+                            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                                <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-
             </div>
-        </div>
 
-        <!-- Style 2 -->
-        <div class="w-[360px] h-[480px] py-8 px-1">
-            <div
-                class="relative flex flex-col justify-center items-center w-[300px] h-[400px] mx-auto p-2 bg-slate-50 border-slate-900 border-2 rounded-3xl">
-
-                <h3
-                    class="absolute -top-5 -left-5 w-32 p-2 bg-inherit border-slate-900 text-slate-900 border-2 rounded-3xl text-2xl font-merriweather text-center">
-                    Promo
-                </h3>
-
-                <div
-                    class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Access all features</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Pay only Php<span class="line-through">
-                            2,400.00</span> 950.00 per month for 6 months.
-                    </p>
-                    <button onclick="window.location.href='/plan/3/checkout/1/get'"
-                        class="w-full text-xl px-6 py-2 text-purple-200 bg-purple-900 hover:bg-purple-1200">
-                        Buy Now
-                    </button>
-                    {{-- <x-button onclick="window.location.href=''">Try Now</x-button> --}}
-                </div>
-
-                <p
-                    class="absolute -bottom-12 left-6 w-[300px] p-4 bg-inherit border-slate-900 text-slate-900 border shadow-lg rounded-3xl hover:text-black hover:shadow-xl">
-                    Promo is available until July 31, 2022.
-                </p>
-
-            </div>
-        </div>
+            <main>
+                <section class="">
+                    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+                        <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+                            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-purple-900 dark:text-white">
+                                Choose the right plan for your property</h2>
+                            <p class="mb-5 font-light text-dark-500 sm:text-xl dark:text-purple-400">
+                                Here at The Property Managere we focus on markets
+                                where technology, innovation, and capital can unlock
+                                long-term value and drive economic growth.</p>
+                        </div>
+                        <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+                            <!-- Pricing Card -->
+                            <div
+                                class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                                <h3 class="mb-4 text-2xl font-semibold">Basic</h3>
+                                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                                    Best option for small property.</p>
+                                <div class="flex justify-center items-baseline my-8">
+                                    <span class="mr-2 text-5xl font-extrabold">Php 950</span>
+                                    <span class="text-gray-500 dark:text-gray-400">/month</span>
+                                </div>
+                                <!-- List -->
+                                <ul role="list" class="mb-8 space-y-4 text-left">
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Unlimited Properties</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>1-20 units</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>1 user <span class="font-semibold">
+                                            </span>(manager)</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Accounting<span class="font-semibold">
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Tenant and Owner Portals<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                </ul>
+                                <a href="/plan/1/checkout/2/get"
+                                    class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-purple-900">Get
+                                    started</a>
+                            </div>
+                            <div
+                                class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                                <h3 class="mb-4 text-2xl font-semibold">Advanced</h3>
+                                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                                    Relevant for multiple properties and users.</p>
+                                <div class="flex justify-center items-baseline my-8">
+                                    <span class="mr-2 text-5xl font-extrabold">Php 1800</span>
+                                    <span class="text-gray-500 dark:text-gray-400">/month</span>
+                                </div>
+                                <!-- List -->
+                                <ul role="list" class="mb-8 space-y-4 text-left">
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Unlimited Properties</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Up to 50 units</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>5 users <span class="font-semibold">
+                                            </span>(manager, admin, treasury, billing, and account payables)</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Accounting<span class="font-semibold">
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Tenant and Owner Portals<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Contract management<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Concerns<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Maintenance requests<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                </ul>
+                                <a href="/plan/2/checkout/2/get"
+                                    class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-purple-900">Get
+                                    started</a>
+                            </div>
+                            <div
+                                class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                                <h3 class="mb-4 text-2xl font-semibold">Professional</h3>
+                                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                                    Best for large and multiple properties.</p>
+                                <div class="flex justify-center items-baseline my-8">
+                                    <span class="mr-2 text-5xl font-extrabold">Php 2500</span>
+                                    <span class="text-gray-500 dark:text-gray-400">/month</span>
+                                </div>
+                                <!-- List -->
+                                <ul role="list" class="mb-8 space-y-4 text-left">
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Unlimited Properties</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Up to 100 units</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Unlimited users <span class="font-semibold">
+                                            </span>(manager, admin, treasury, billing, and account payables)</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Accounting<span class="font-semibold">
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Tenant and Owner Portals<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Contract management<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Concerns<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Maintenance requests<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Concierge<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <!-- Icon -->
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Facilities management<span class="font-semibold">
+                                            </span></span>
+                                    </li>
+                                </ul>
+                                <a href="/plan/3/checkout/2/get"
+                                    class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-purple-900">Get
+                                    started</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
     </div>
-</x-index-layout>
+    @include('layouts.footer')
+</body>
+@include('layouts.script')
+
+</html>
