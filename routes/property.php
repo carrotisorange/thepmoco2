@@ -228,8 +228,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
         Route::prefix('{user}')->group(function(){
-            Route::get('edit', [TeamController::class, 'edit']);
-            Route::patch('update', [TeamController::class, 'update']);
+            // Route::get('edit', [TeamController::class, 'edit']);
+            // Route::patch('update', [TeamController::class, 'update']);
+            Route::get('/property/{property_uuid:uuid}/delegate', [UserController::class, 'delegate']);
         });
     });
 

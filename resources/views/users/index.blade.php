@@ -19,10 +19,10 @@
 
                 <x-th>Created</x-th>
                 {{-- <x-th>Email verified at</x-th> --}}
-                {{-- <x-th></x-th> --}}
+                <x-th></x-th>
             </tr>
         </thead>
-        @forelse ($users as $item)
+        @foreach ($users as $item)
         <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <tr>
                 <x-td>{{ $item->id }}</x-td>
@@ -57,28 +57,48 @@
                     <div class="text-sm text-gray-500">{{ $item->user->mobile_number }}
                     </div>
                 </x-td>
-                <x-td>{{ Carbon\Carbon::parse($item->created_at)->timezone('Asia/Manila')->format('M d, Y @ g:i A')}}</x-td>
-                {{-- <x-td>
-                    @if($item->status==='active')
-                    {{ Carbon\Carbon::parse($item->email_verified_at)->timezone('Asia/Manila')->format('M d, Y @
-                    g:i
-                    A')}}
+                <x-td>{{ Carbon\Carbon::parse($item->created_at)->timezone('Asia/Manila')->format('M d, Y @ g:i A')}}
+                </x-td>
+                <x-td>
+                    @can('accountowner')
+                    {{-- <x-button
+                        onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ $item->user->username }}/delegate'">
+                        Delegate</x-button>
+                    --}}
 
-                    @endif
-                </x-td> --}}
-                {{-- <x-td>
-                    <x-button onclick="confirmMessage()" wire:loading.remove wire:click='removeUser({{ $item->id }})'
-                        class="bg-purple-800 hover:bg-purple-700 active:bg-purple-900 focus:border-purple-900">
-                        Remove</x-button>
-                    <div wire:loading wire:target="removeUser">
-                        Processing...
+                    <x-button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $item->id }}"
+                        type="button">
+                        Delegate
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </x-button>
+
+                    <div id="dropdownDivider.{{ $item->id }}"
+                        class="hidden z-10 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                            @foreach ($properties as $property)
+
+                            <li>
+                                <a href="/property/{{ Session::get('property') }}/user/{{ $item->user->id }}/property/{{ $property->property->uuid }}/delegate"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                    {{ $property->property->property.' '.$property->property->type->type }}
+                                </a>
+                            </li>
+                           
+                            @endforeach
+                        </ul>
+
                     </div>
-                </x-td> --}}
-                @empty
-                <x-td>No data found!</x-td>
+                    @endcan
+                </x-td>
+
+
             </tr>
         </tbody>
-        @endforelse
+        @endforeach
     </table>
 
 </x-index-layout>

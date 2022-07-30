@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Models\Property;
 use Session;
-
+use App\Models\UserProperty;
 
 class UserController extends Controller
 {
@@ -23,12 +23,15 @@ public function index(Property $property)
     {
         $this->authorize('accountowner');
 
-        $users = Property::find(Session::get('property'))->property_users;
+        $users = Property::find(Session::get('property'))->property_users->where('user_id', '!=', auth()->user()->id);
+
+        $properties = User::find(auth()->user()->id)->user_properties->where('property_uuid', '!=', Session::get('property'));
 
         //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
 
         return view('users.index',[
-            'users' => $users
+            'users' => $users,
+            'properties' => $properties
         ]);
     }
 
@@ -88,6 +91,17 @@ public function index(Property $property)
          return $user_id;
     }
 
+    public function delegate(Property $property, $user_id, $property_uuid)
+    {
+        UserProperty::create([
+            'property_uuid' => $property_uuid,
+            'user_id' => $user_id,
+            'is_account_owner' => false
+        ]);
+
+        return back()->with('success', 'User invite is successfully sent.');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -107,12 +121,13 @@ public function index(Property $property)
      */
     public function edit(User $user)
     {        
-        // app('App\Http\Controllers\ActivityController')->store(Session::get('session'), auth()->user()->id,'opens',11);
 
-       if($user->id === auth()->user()->id || auth()->user()->username === 'landley'){
+       if($user->id === auth()->user()->id || auth()->user()->role_id === 'manager'){
+
+         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
            return view('users.edit', [
-           'user' => $user,
-           'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
+            'user' => $user,
+            'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
            ]);
        }else{
             abort(404);
