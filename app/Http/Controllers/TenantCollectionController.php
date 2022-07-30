@@ -285,7 +285,8 @@ class TenantCollectionController extends Controller
          'payment_made' => $payment_made,
          'user' => $user,
          'role' => $role,
-         'collections' => $collection
+         'collections' => $collection,
+         'balance' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($tenant->tenant_uuid)
        ];
 
        if($tenant->email)
