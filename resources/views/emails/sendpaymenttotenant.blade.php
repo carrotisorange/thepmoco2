@@ -11,7 +11,7 @@ Payment Made: {{ Carbon\Carbon::parse($data['payment_made'])->format('M d, Y') }
 
 Total Amount Paid: {{ number_format($data['collections']->sum('collection'), 2) }}
 
-Total Unpaid Bills: {{ number_format($data['balance'], 2) }}
+Total Unpaid Bills: {{ number_format(($balance->sum('bill') - $balance->sum('initial_payment')),2)}}
 
 Payments Breakdown
 
