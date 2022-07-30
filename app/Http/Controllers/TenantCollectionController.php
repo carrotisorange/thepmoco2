@@ -279,7 +279,7 @@ class TenantCollectionController extends Controller
      public function send_payment_to_tenant($tenant, $ar_no, $form, $payment_made, $user, $role, $collection)
      {
        $data = [
-         'tenant' => $tenant,
+         'tenant' => $tenant->tenant,
          'ar_no' => $ar_no,
          'form' => $form,
          'payment_made' => $payment_made,
