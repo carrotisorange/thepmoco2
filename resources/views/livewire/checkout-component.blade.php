@@ -82,13 +82,16 @@
                     </div>
 
                     <div class="mt-4">
-                        <h2 class="mb-4 font-bold md:text-xl text-heading ">Referral Code <span class="text-xs text-blue-600"><a target="_blank" href="https://facebook.com/onlinepropertymanager">Don't have a referral code? Ask for one.</a></span>
+                        <h2 class="mb-4 font-bold md:text-xl text-heading ">Referral Code <span
+                                class="text-xs text-blue-600"><a target="_blank"
+                                    href="https://facebook.com/onlinepropertymanager">Don't have a referral code? Ask
+                                    for one.</a></span>
                         </h2>
                     </div>
 
                     <div class="mt-4">
                         <div class="w-full">
-                            
+
                             <select
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 wire:model="">
@@ -128,7 +131,7 @@
                             <x-th>Payment Policy</x-th>
                             <x-td>{{ $selected_checkout_option->policy }}</x-td>
                         </tr>
-                       
+
                         <tr>
                             <x-th>Discount</x-th>
                             <x-td>Php {{ $selected_discount_code->discount }}</x-td>
@@ -136,11 +139,12 @@
                         <tr>
                             <x-th>Final Price </x-th>
                             @if($selected_checkout_option->id == '1')
-                           <x-td>Php {{ number_format(950-$selected_discount_code->discount, 2) }}/month</x-td>
+                            <x-td>Php {{ number_format(950-$selected_discount_code->discount, 2) }}/month</x-td>
                             @else
-                           <x-td>Php {{ number_format($selected_plan->price-$selected_discount_code->discount, 2) }}/month</x-td>
+                            <x-td>Php {{ number_format($selected_plan->price-$selected_discount_code->discount, 2)
+                                }}/month</x-td>
                             @endif
-                          
+
                         </tr>
 
                     </thead>

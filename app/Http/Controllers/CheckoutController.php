@@ -18,16 +18,16 @@ use Session;
 
 class CheckoutController extends Controller
 {
-    public function store_subscription($user_id, $plan_id, $external_id)
+    public function store_subscription($user_id, $plan_id, $external_id, $amount)
     {
         Subscription::firstOrCreate([
             'user_id' => $user_id,
             'plan_id' => $plan_id,
-            'status' => 'active',
-            'price' => '1',
-            'quantity' => 1,
-            'trial_ends_at' => Carbon::now()->addMonth(),
             'external_id' => $external_id,
+            'status' => 'active',
+            'price' => $amount,
+            'quantity' => 1,
+            'trial_ends_at' => Carbon::now()->addMonth(), 
         ]);
     }
 
@@ -46,7 +46,7 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function show_payment_success_page($temporary_username)
+    public function show_payment_success_page($temporary_username, $amount)
     {
        try{
 
@@ -54,7 +54,7 @@ class CheckoutController extends Controller
 
         $user = User::find($temporary_username);
 
-        $this->store_subscription($user->id, $user->plan_id, $user->external_id);
+        $this->store_subscription($user->id, $user->plan_id, $user->external_id, $amount);
 
         DB::commit();
 
@@ -91,7 +91,7 @@ class CheckoutController extends Controller
 
 public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
 {
-    Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
+    Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
     
         $params = [
             'external_id' => $external_id,
@@ -99,13 +99,13 @@ public function charge_user_account($temporary_username, $external_id, $descript
             'description' => $description,
             'amount' => $amount,
             'interval' => 'MONTH',
-            'total_recurrence' => $total_recurrence,
+            //'total_recurrence' => $total_recurrence,
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
             // 'success_redirect_url' => '/127.0.0.1:8000/success/'.$temporary_username,
             // 'failure_redirect_url' => '/127.0.0.1:8000/select-a-plan',
-            'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username,
+            'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username.'/'.$amount,
             'failure_redirect_url' => 'https://thepmo.co/select-a-plan',
             'customer'=> [
                     'given_name'=> $name,

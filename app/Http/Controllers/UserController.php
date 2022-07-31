@@ -77,16 +77,9 @@ public function index(Property $property)
                 'plan_id' => $plan_id,
                 'discount_code' => $discount_code,
                 'trial_ends_at' => Carbon::now()->addMonth(),
+                'created_at' => Carbon::now()
             ]
         );
-        //  if($checkout_option == '1')
-        //  {
-        //     User::where('id', $user_id)
-        //     ->where('checkoutoption_id', $checkout_option)
-        //     ->update([
-        //             'trial_ends_at' => Carbon::now()->addMonth(6)
-        //     ]);
-        //  }
 
          return $user_id;
     }
