@@ -289,10 +289,10 @@ class TenantCollectionController extends Controller
          'balance' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($tenant->uuid)
        ];
 
-       if($tenant->email)
-       {
-         return Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
-       }
+      // if($tenant->email)
+      //  {
+      //    return Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
+      //  }
      }
 
      public function destroy(Property $property, Tenant $tenant, $batch_no)
