@@ -161,7 +161,7 @@ class TenantBillController extends Controller
             'penalty' => $penalty,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => $this->get_tenant_bills($tenant->uuid),
+            'bills' => $this->get_tenant_balance($tenant->uuid),
             'note_to_bill' => $note,
         ];
     }
