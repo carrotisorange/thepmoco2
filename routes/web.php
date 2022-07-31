@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\User;
+use Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,13 @@ require __DIR__.'/marketing.php';
 
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
+
+// Route::get('/a', function(){
+//     $user = User::where('username','landley')->get();
+
+//     $user_id = str_replace( array('[',']') , '' , $user->pluck('id'));
+
+//     $user_info = User::find($user_id);
+    
+//     return $user_info->username;
+// });

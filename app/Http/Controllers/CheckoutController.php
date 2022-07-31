@@ -52,9 +52,15 @@ class CheckoutController extends Controller
 
             DB::beginTransaction();
 
-            $user = User::find($temporary_username);
+            // $user = User::find($temporary_username);
 
-            $this->store_subscription($user->id, $user->plan_id, $user->external_id, $amount);
+            $user = User::where('username', $temporary_username)->get();
+
+            $user_id = str_replace( array('[',']') , '' , $user->pluck('id'));
+
+            $user_info = User::find($user_id);
+
+            $this->store_subscription($user_info->id, $user_info->plan_id, $user_info->external_id, $amount);
 
             DB::commit();
 
