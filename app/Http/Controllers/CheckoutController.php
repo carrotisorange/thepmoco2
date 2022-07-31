@@ -52,8 +52,6 @@ class CheckoutController extends Controller
 
             DB::beginTransaction();
 
-            // $user = User::find($temporary_username);
-
             $user = User::where('username', $temporary_username)->get();
 
             $user_id = str_replace( array('[',']') , '' , $user->pluck('id'));
@@ -64,7 +62,7 @@ class CheckoutController extends Controller
 
             DB::commit();
 
-            if($user->checkout_option == '1')
+            if($user->checkoutoption_id == '1')
             {
                 return redirect('/thankyou/');
             }else{
