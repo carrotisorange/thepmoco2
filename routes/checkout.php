@@ -11,4 +11,6 @@ use App\Http\Controllers\CheckoutController;
     Route::patch('/profile/{user}/complete/update',[CheckoutController::class, 'update_user_profile']);
     Route::get('/thankyou/', [CheckoutController::class, 'show_thankyou_promo_plan_page']);
     Route::get('/thankyoutrial/', [CheckoutController::class, 'show_thankyou_regular_plan_page']);
+    Route::get('/privacy-policy', [CheckoutController::class, 'show_privacy_policy']);
+    Route::get('/terms-of-service', [CheckoutController::class, 'show_terms-of-service']);
 // });

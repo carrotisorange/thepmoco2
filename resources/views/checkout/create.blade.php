@@ -7,8 +7,7 @@
 
 
     <div class="container px-4 -mx-auto">
-        @livewire('checkout-component', ['plan_id' => $plan_id,'checkout_option' => $checkout_option, 'discount_code' =>
-        $discount_code])
+        @livewire('checkout-component', ['plan_id' => $plan_id,'checkout_option' => $checkout_option, 'discount_code' =>$discount_code])
     </div>
 </x-checkout-base-component>
 
