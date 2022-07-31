@@ -62,7 +62,7 @@ class CheckoutController extends Controller
 
             DB::commit();
 
-            if($user->checkoutoption_id == '1')
+            if($user_info->checkoutoption_id == '1')
             {
                 return redirect('/thankyou/');
             }else{
