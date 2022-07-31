@@ -50,24 +50,26 @@ class CheckoutController extends Controller
     {
        try{
 
-        DB::beginTransaction();
+            DB::beginTransaction();
 
-        $user = User::find($temporary_username);
+            $user = User::find($temporary_username);
 
-        $this->store_subscription($user->id, $user->plan_id, $user->external_id, $amount);
+            $this->store_subscription($user->id, $user->plan_id, $user->external_id, $amount);
 
-        DB::commit();
+            DB::commit();
 
-        if($user->checkout_option == '1')
-        {
-           return redirect('/thankyou/');
-        }else{
-           return redirect('/thankyoutrial/');
-        }
+            if($user->checkout_option == '1')
+            {
+                return redirect('/thankyou/');
+            }else{
+                return redirect('/thankyoutrial/');
+            }
         
        }catch(\Exception $e)
        {
             DB::rollback();
+
+            ddd($e);
 
             return back()->with('Cannot perform your action');
        }    
@@ -91,7 +93,7 @@ class CheckoutController extends Controller
 
 public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
 {
-    Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
+    Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
     
         $params = [
             'external_id' => $external_id,
