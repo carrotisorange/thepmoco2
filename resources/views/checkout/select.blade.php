@@ -25,54 +25,60 @@
                     <ul role="list" class="mb-8 space-y-4 text-left">
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Unlimited Properties</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>1-20 units</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>1 user <span class="font-semibold">
                                 </span>(manager)</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Accounting<span class="font-semibold">
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Tenant and Owner Portals<span class="font-semibold">
+                                </span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <!-- Icon -->
+                            <i class="fa-solid text-red-600 fa-xmark"></i>
+
+                            <span>Contract management<span class="font-semibold">
+                                </span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <!-- Icon -->
+                            <i class="fa-solid text-red-600 fa-xmark"></i>
+                            <span>Concerns<span class="font-semibold">
+                                </span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <!-- Icon -->
+                            <i class="fa-solid text-red-600 fa-xmark"></i>
+                            <span>Maintenance requests<span class="font-semibold">
+                                </span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <!-- Icon -->
+                            <i class="fa-solid text-red-600 fa-xmark"></i>
+                            <span>Concierge<span class="font-semibold">
+                                </span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <!-- Icon -->
+                            <i class="fa-solid text-red-600 fa-xmark"></i>
+                            <span>Facilities management<span class="font-semibold">
                                 </span></span>
                         </li>
                     </ul>
@@ -84,7 +90,7 @@
                     class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                     <h3 class="mb-4 text-2xl font-semibold">Advanced</h3>
                     <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                        Relevant for multiple properties with various employees</p>
+                        Relevant for multiple properties.</p>
                     <div class="flex justify-center items-baseline my-8">
                         <span class="mr-2 text-5xl font-extrabold">Php 1800</span>
                         <span class="text-gray-500 dark:text-gray-400">/month</span>
@@ -93,87 +99,59 @@
                     <ul role="list" class="mb-8 space-y-4 text-left">
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Unlimited Properties</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Up to 50 units</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>5 users <span class="font-semibold">
                                 </span>(manager, admin, treasury, billing, and account payables)</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Accounting<span class="font-semibold">
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Tenant and Owner Portals<span class="font-semibold">
                                 </span></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Contract management<span class="font-semibold">
                                 </span></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Concerns<span class="font-semibold">
                                 </span></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Maintenance requests<span class="font-semibold">
+                                </span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <!-- Icon -->
+                            <i class="fa-solid text-red-600 fa-xmark"></i>
+                            <span>Concierge<span class="font-semibold">
+                                </span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <!-- Icon -->
+                            <i class="fa-solid text-red-600 fa-xmark"></i>
+                            <span>Facilities management<span class="font-semibold">
                                 </span></span>
                         </li>
                     </ul>
@@ -194,108 +172,58 @@
                     <ul role="list" class="mb-8 space-y-4 text-left">
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Unlimited Properties</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Up to 100 units</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Unlimited users <span class="font-semibold">
                                 </span>(manager, admin, treasury, billing, and account payables)</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Accounting<span class="font-semibold">
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Tenant and Owner Portals<span class="font-semibold">
                                 </span></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Contract management<span class="font-semibold">
                                 </span></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Concerns<span class="font-semibold">
                                 </span></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Maintenance requests<span class="font-semibold">
                                 </span></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Concierge<span class="font-semibold">
                                 </span></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <i class="fa-solid text-green-600 fa-check"></i>
                             <span>Facilities management<span class="font-semibold">
                                 </span></span>
                         </li>
