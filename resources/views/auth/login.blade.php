@@ -3,6 +3,7 @@
 
 <head>
     @include('layouts.auth-head')
+    <title>Login | The Property Manager</title>
 </head>
 
 <body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
