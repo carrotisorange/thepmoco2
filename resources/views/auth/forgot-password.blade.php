@@ -46,6 +46,15 @@
                         <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     </div>
                 </div>
+
+                <div class="flex items-center">
+                    <div class="text-md">
+                        Does not have an account?
+                        <a href="/select-a-plan" class="font-medium text-white-600 hover:text-white-500">
+                            Sign up here.
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
                 <img class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"

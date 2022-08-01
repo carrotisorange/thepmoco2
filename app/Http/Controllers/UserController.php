@@ -117,7 +117,8 @@ public function index(Property $property)
 
        if($user->id === auth()->user()->id || auth()->user()->role_id === 'manager'){
 
-         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
+         //app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
+
            return view('users.edit', [
             'user' => $user,
             'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
