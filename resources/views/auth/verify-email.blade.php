@@ -15,10 +15,11 @@
                     another.
 
                     @if (session('status') == 'verification-link-sent')
-                    <div class="mt-4 mb-4 font-medium text-md text-green-600">
+                    <div class="font-medium text-sm text-white-600">
                         A new verification link has been sent to the email address you provided during
                         registration.
                     </div>
+
                 @endif
 
                 <div class="mt-4 flex items-center justify-between p-2">
@@ -47,7 +48,7 @@
             <div class="relative">
                 <div class="absolute inset-0 h-1/2 bg-gray-50"></div>
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    
+
                 </div>
             </div>
         </div>
