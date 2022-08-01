@@ -7,48 +7,49 @@
 </head>
 
 <body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
-    <div class="bg-white">
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-            <div class="bg-purple-700 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
-                <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
-                    <div class="lg:self-center">
-                        <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-                            <span class="block">Forgot your password?</span>
-                            {{-- <span class="block">Start your free trial today.</span> --}}
-                        </h2>
-                        <p class="mt-4 text-lg leading-6 text-purple-200"> No problem. Just let us know your email
-                            address and we will email you a
-                            password reset link that will allow you to choose a new one.</p>
-                        <!-- Validation Errors -->
-                        {{--
-                        <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
-                        <form class="mt-8 sm:flex" method="POST" action="{{ route('password.email') }}">
-                            @csrf
-                            <label for="email" class="sr-only">Email address</label>
-                            <input id="email" name="email" type="email" autocomplete="email" required
-                                class="w-full px-5 py-3 placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500 sm:max-w-xs border-gray-300 rounded-md"
-                                placeholder="Enter your email">
-                            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                                <button type="submit"
-                                    class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                    Email Password Reset Link
-                                </button>
-                            </div>
-                        </form>
-                        <!-- Session Status -->
-                        <div class="mt-4 mb-4 font-medium text-md text-white-600">
-                            <x-auth-session-status class="mb-4" :status="session('status')" />
-                        </div>
+    <div class="max-w-12xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <div class="bg-purple-700 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+            <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+                <img class="object-cover h-40 w-48" src="{{ asset('/brands/pm_logo_3.png') }}" alt="Workflow">
+                <div class="lg:self-center">
 
-                        <div class="mt-4 mb-4 font-medium text-md text-red-600">
-                            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                        <span class="block">Forgot your password?</span>
+                        {{-- <span class="block">Start your free trial today.</span> --}}
+                    </h2>
+                    <p class="mt-4 text-lg leading-6 text-purple-200"> No problem. Just let us know your email
+                        address and we will email you a
+                        password reset link that will allow you to choose a new one.</p>
+                    <!-- Validation Errors -->
+                    {{--
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
+                    <form class="mt-8 sm:flex" method="POST" action="{{ route('password.email') }}">
+                        @csrf
+                        <label for="email" class="sr-only">Email address</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required
+                            class="w-full px-5 py-3 placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500 sm:max-w-xs border-gray-300 rounded-md"
+                            placeholder="Enter your email">
+                        <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                            <button type="submit"
+                                class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                Email Password Reset Link
+                            </button>
                         </div>
+                    </form>
+
+                    <!-- Session Status -->
+                    <div class="mt-4 mb-4 font-medium text-md text-white-600">
+                        <x-auth-session-status class="mb-4" :status="session('status')" />
+                    </div>
+
+                    <div class="mt-4 mb-4 font-medium text-md text-red-600">
+                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     </div>
                 </div>
-                <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-                    <img class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
-                        src="{{ asset('/brands/success_property.png') }}" alt="App screenshot">
-                </div>
+            </div>
+            <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                <img class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
+                    src="{{ asset('/brands/success_property.png') }}" alt="App screenshot">
             </div>
         </div>
     </div>
