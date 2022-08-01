@@ -50,9 +50,9 @@
                                 <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                                     Profile
                                 </x-dropdown-link>
-                                <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
+                                {{-- <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
-                                </x-dropdown-link>
+                                </x-dropdown-link> --}}
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
@@ -95,11 +95,11 @@
                             Profile
                         </x-dropdown-link>
                     </div>
-                    <div class="pt-2 pb-3 space-y-1">
+                    {{-- <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                             Subscriptions
                         </x-dropdown-link>
-                    </div>
+                    </div> --}}
                     <div class="pt-2 pb-3 space-y-1">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
