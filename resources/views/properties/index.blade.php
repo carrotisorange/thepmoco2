@@ -22,6 +22,13 @@
                             </a>
                         </div>
 
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link href="#/" :active="request()->routeIs('property')">
+                                <i class="fa-solid fa-building"></i>&nbspProperty
+                            </x-nav-link>
+                        
+                        </div>
+
 
                     </div>
 
@@ -49,6 +56,10 @@
 
                                 <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                                     Profile
+                                </x-dropdown-link>
+
+                                <x-dropdown-link href="/property">
+                                    Property
                                 </x-dropdown-link>
                                 {{-- <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
@@ -95,6 +106,11 @@
                             Profile
                         </x-dropdown-link>
                     </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property">
+                            Property
+                        </x-dropdown-link>
+                    </div>
                     {{-- <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                             Subscriptions
@@ -118,16 +134,17 @@
                     <div class="space-y-12">
                         <div class="lg:flex lg:items-center lg:justify-between xl:mt-0">
                             <div>
-                             <?php $name = explode(" ", auth()->user()->name); ?>
-                                <h2 class="text-xl text-purple-600 font-bold tracking-tight sm:text-4xl">Welcome back, {{ $name[0] }}</h2>
+                                <?php $name = explode(" ", auth()->user()->name); ?>
+                                <h2 class="text-xl text-purple-600 font-bold tracking-tight sm:text-4xl">Welcome back,
+                                    {{ $name[0] }}</h2>
                                 <p class="mt-4 text-xl text-base text-gray-900">
                                     Select your property.
                                 </p>
                             </div>
                             {{-- <form class="mt-1 sm:flex sm:max-w-md lg:mt-0">
                                 <input type="text" name="property" id="property" autocomplete="property" required
-                                class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"
-                                placeholder="Enter property">
+                                    class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"
+                                    placeholder="Enter property">
                             </form> --}}
                         </div>
                         <ul role="list"

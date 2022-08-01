@@ -6,9 +6,9 @@
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-purple-900 dark:text-white">
                     Choose the right plan for your property</h2>
                 <p class="mb-5 font-light text-dark-500 sm:text-xl dark:text-purple-400">
-                    Here at The Property Manager we focus on markets
-                    where technology, innovation, and capital can unlock
-                    long-term value and drive economic growth.</p>
+                    Here at The Property Manager w continue to innovate and improve our systems, tools, and resources to
+                    incorporate tested policies and procedures, best practices, and best in
+                    customer service.</p>
             </div>
             <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
                 <!-- Pricing Card -->
