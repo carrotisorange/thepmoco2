@@ -64,11 +64,11 @@ class PropertyController extends Controller
     {
         $this->destroy_property_session();
 
-        if($this->is_property_exist()){
-           return redirect('/property/'.Str::random(8).'/create');  
-        }
+        // if(!$this->is_property_exist()){
+        //    return redirect('/property/'.Str::random(8).'/create');  
+        // }
         
-        elseif(auth()->user()->role_id == '12')
+        if(auth()->user()->role_id == '12')
         {
             return redirect('/dashboard/sales');
         }

@@ -40,8 +40,7 @@
                     <div class="sm:col-span-2">
                         <label for="first-name" class="block text-sm font-medium text-gray-700">Username</label>
                         <div class="mt-1">
-                            <input type="text" name="username" id="username" autocomplete="username"
-                                {{old('username')}}"
+                            <input type="text" name="username" id="username" autocomplete="username" value="{{old('username')}}"
                                 class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
                         @error('username')

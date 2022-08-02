@@ -1,19 +1,19 @@
 <x-checkout-base-component>
     @section('title', 'Select a Plan | The Property Manager')
     <section class="">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
             <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-purple-900 dark:text-white">
                     Choose the right plan for your property</h2>
                 <p class="mb-5 font-light text-dark-500 sm:text-xl dark:text-purple-400">
-                    Here at The Property Manager w continue to innovate and improve our systems, tools, and resources to
+                    Here at The Property Manager we continue to innovate and improve our systems, tools, and resources to
                     incorporate tested policies and procedures, best practices, and best in
                     customer service.</p>
             </div>
             <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
                 <!-- Pricing Card -->
-                <div
-                    class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                <div 
+                    class="border-purple-500 flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                     <h3 class="mb-4 text-2xl font-semibold">Basic</h3>
                     <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                         Best option for small property.</p>
@@ -26,7 +26,7 @@
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
                             <i class="fa-solid text-green-600 fa-check"></i>
-                            <span>Unlimited Properties</span>
+                            <span><span class="text-1xl font-extrabold">Unlimited</span> properties</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
@@ -87,7 +87,7 @@
                         started</a>
                 </div>
                 <div
-                    class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                    class="border-purple-500 flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                     <h3 class="mb-4 text-2xl font-semibold">Advanced</h3>
                     <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                         Relevant for multiple properties.</p>
@@ -100,7 +100,7 @@
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
                             <i class="fa-solid text-green-600 fa-check"></i>
-                            <span>Unlimited Properties</span>
+                            <span><span class="text-1xl font-extrabold">Unlimited</span> properties</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
@@ -160,7 +160,7 @@
                         started</a>
                 </div>
                 <div
-                    class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                    class=" border-purple-500 flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                     <h3 class="mb-4 text-2xl font-semibold">Professional</h3>
                     <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                         Best for large and multiple properties.</p>
@@ -173,7 +173,7 @@
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
                             <i class="fa-solid text-green-600 fa-check"></i>
-                            <span>Unlimited Properties</span>
+                            <span><span class="text-1xl font-extrabold">Unlimited</span> properties</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
@@ -183,7 +183,7 @@
                         <li class="flex items-center space-x-3">
                             <!-- Icon -->
                             <i class="fa-solid text-green-600 fa-check"></i>
-                            <span>Unlimited users <span class="font-semibold">
+                            <span><span class="text-1xl font-extrabold">Unlimited</span> users <span class="font-semibold">
                                 </span>(manager, admin, treasury, billing, and account payables)</span>
                         </li>
                         <li class="flex items-center space-x-3">

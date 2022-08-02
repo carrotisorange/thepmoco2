@@ -15,13 +15,33 @@ class CheckoutOptionSeeder extends Seeder
     public function run()
     {
         CheckoutOption::create([
-            'option' => 'pay now',
-            'policy' => 'Pay only 950 per month for 6 months.'
+            'option' => 'trial',
+            'policy' => 'all features available for 30 days',
+            'discount' => '0.00'
         ]);
         
         CheckoutOption::create([
-            'option' => 'pay after 30 days',
-            'policy' => 'You will only be charged after 30 days.'
+            'option' => '1 month',
+            'policy' => 'all features available',
+            'discount' => '0.00'
+        ]);
+
+        CheckoutOption::create([
+            'option' => '3 months',
+            'policy' => 'all features available',
+            'discount' => '0.10'
+        ]);
+
+        CheckoutOption::create([
+            'option' => '6 months',
+            'policy' => 'all features available',
+            'discount' => '0.20'
+        ]);
+
+        CheckoutOption::create([
+            'option' => '1 year',
+            'policy' => 'all features available',
+            'discount' => '0.30'
         ]);
     }
 }

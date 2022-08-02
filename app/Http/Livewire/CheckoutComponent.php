@@ -15,7 +15,7 @@ class CheckoutComponent extends Component
     public $name;
     public $email;
     public $mobile_number;
-    public $checkout_option = 1;
+    public $checkout_option = 4;
     public $discount_code = 'none';
 
     public function mount($plan_id, $checkout_option, $discount_code)
@@ -31,7 +31,8 @@ class CheckoutComponent extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'mobile_number' => ['required', 'unique:users'],
-            'discount_code' => ['required']
+            'discount_code' => ['required'],
+            'checkout_option' => ['required']
         ];
     }
 
@@ -65,9 +66,8 @@ class CheckoutComponent extends Component
 
         try{
             DB::beginTransaction();
-
-            if($this->checkout_option == '1')
-            {
+            // if($this->checkout_option == '1')
+            // {
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
                     $temporary_username, 
                     $external_id,
@@ -75,21 +75,21 @@ class CheckoutComponent extends Component
                     $this->email, 
                     $this->mobile_number, 
                     $this->name, 
-                    950-DiscountCode::find($this->discount_code)->discount, 
+                    Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
                     6, 
                 );
-            }else{
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
-                    $temporary_username, 
-                    $external_id,
-                    Plan::find($this->plan_id)->description,
-                    $this->email, 
-                    $this->mobile_number, 
-                    $this->name, 
-                    Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 
-                    1, 
-                );
-            }
+            // }else{
+            //     $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+            //         $temporary_username, 
+            //         $external_id,
+            //         Plan::find($this->plan_id)->description,
+            //         $this->email, 
+            //         $this->mobile_number, 
+            //         $this->name, 
+            //         Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 
+            //         1, 
+            //     );
+            // }
 
             DB::commit();
 
@@ -123,6 +123,7 @@ class CheckoutComponent extends Component
             'selected_checkout_option' => CheckoutOption::find($this->checkout_option),
             'selected_discount_code' => DiscountCode::find($this->discount_code),
             'discount_codes' => DiscountCode::all(),
+            'checkout_options' => CheckoutOption::all(),
         ]);
     }
 }
