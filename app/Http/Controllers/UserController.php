@@ -82,7 +82,8 @@ public function index(Property $property)
                 'plan_id' => $plan_id,
                 'discount_code' => $discount_code,
                 'trial_ends_at' => Carbon::now()->addMonth(),
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
+                'email_verified_at' => Carbon::now()
             ]
         );
 

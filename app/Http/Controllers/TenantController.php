@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 use DB;
 use App\Models\Property;
 use Session;
+use App\Models\User;
 use App\Models\Relationship;
 
 class TenantController extends Controller
@@ -180,5 +181,30 @@ class TenantController extends Controller
         return back()->with('success', 'A tenant has been removed.');
         }
         return back()->with('error', 'Cannot complete your action.');
+    }
+
+    public function generate_credentials($tenant_uuid)
+    {
+        $tenant = Tenant::find($tenant_uuid);
+
+        $user_id = app('App\Http\Controllers\UserController')->store(
+            $tenant->tenant,
+            app('App\Http\Controllers\UserController')->generate_temporary_username(),
+            app('App\Http\Controllers\UserController')->generate_temporary_username(),
+            auth()->user()->external_id,
+            $tenant->email,
+            8,
+            $tenant->mobile_number,
+            "none",
+            auth()->user()->checkoutoption_id,
+            auth()->user()->plan_id,
+        );
+
+        User::where('id', $user_id)
+          ->update([
+          'tenant_uuid' => $tenant->uuid
+        ]);
+
+        return back()->with('succcess', 'Credentials are generated successfully!');
     }
 }

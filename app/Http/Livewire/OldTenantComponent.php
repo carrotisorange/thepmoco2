@@ -113,7 +113,7 @@ class OldTenantComponent extends Component
                 'tenant_uuid' => $tenant
             ]);
 
-            app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),$user_id,false,true);
+            //app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),$user_id,false,true);
 
             DB::commit();
 
