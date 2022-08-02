@@ -6,6 +6,7 @@ use App\Http\Controllers\TenantController;
 
     //Routes for dashboard
 Route::prefix('user/{user}')->group(function(){
+    Route::get('dashboard', [DashboardTenantController::class, 'index']);
     Route::get('contracts', [DashboardTenantController::class, 'show_contracts']);
     Route::get('bills', [DashboardTenantController::class, 'show_bills']);
     Route::get('payments', [DashboardTenantController::class, 'show_payments']);

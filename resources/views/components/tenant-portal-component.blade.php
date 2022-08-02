@@ -51,7 +51,7 @@
             <!-- Menu button area -->
             <div class="absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden">
                 <!-- Mobile menu button -->
-                <button type="button"
+                {{-- <button type="button"
                     class="-mr-2 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600">
                     <span class="sr-only">Open main menu</span>
                     <!-- Heroicon name: outline/menu -->
@@ -60,7 +60,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                </button>
+                </button> --}}
             </div>
 
             <!-- Desktop nav area -->
@@ -250,7 +250,7 @@
             <!-- Narrow sidebar-->
             <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto">
                 <div class="relative w-20 flex flex-col p-3 space-y-3">
-                    <a href="/dashboard/tenant" title="announcements"
+                    <a href="/user/{{ auth()->user()->username }}/dashboard" title="announcements"
                         class="bg-gray-900 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                         <span class="sr-only">Announcements</span>
                         <!-- Heroicon name: outline/inbox -->
