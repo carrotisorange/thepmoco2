@@ -144,9 +144,8 @@ class PropertyComponent extends Component
          ]);
 
         DB::commit();
-         return redirect('/property/'.$property_uuid)->with('success', 'Property is successfully created.');
+         return redirect('/property/')->with('success', 'Property is successfully created.');
         }catch (\Throwable $e) {
-           ddd($e);
             DB::rollback();
             return back()->with('error', 'Cannot perform your action.');
         }

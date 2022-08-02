@@ -66,30 +66,67 @@ class CheckoutComponent extends Component
 
         try{
             DB::beginTransaction();
-            // if($this->checkout_option == '1')
-            // {
+            if($this->checkout_option == '1')
+            {
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
-                    $temporary_username, 
-                    $external_id,
-                    Plan::find($this->plan_id)->description,
-                    $this->email, 
-                    $this->mobile_number, 
-                    $this->name, 
-                    Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
-                    6, 
-                );
-            // }else{
-            //     $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
-            //         $temporary_username, 
-            //         $external_id,
-            //         Plan::find($this->plan_id)->description,
-            //         $this->email, 
-            //         $this->mobile_number, 
-            //         $this->name, 
-            //         Plan::find($this->plan_id)->price-DiscountCode::find($this->discount_code)->discount, 
-            //         1, 
-            //     );
-            // }
+                $temporary_username, 
+                $external_id,
+                Plan::find($this->plan_id)->description,
+                $this->email, 
+                $this->mobile_number, 
+                $this->name, 
+                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
+                12, 
+            );
+                
+            }elseif($this->checkout_option == '2'){
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $temporary_username,
+                $external_id,
+                Plan::find($this->plan_id)->description,
+                $this->email,
+                $this->mobile_number,
+                $this->name,
+                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
+                12,
+            );
+            }
+            elseif($this->checkout_option == '3'){
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $temporary_username,
+                $external_id,
+                Plan::find($this->plan_id)->description,
+                $this->email,
+                $this->mobile_number,
+                $this->name,
+                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
+                3,
+            );
+            }
+            elseif($this->checkout_option == '4'){
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $temporary_username,
+                $external_id,
+                Plan::find($this->plan_id)->description,
+                $this->email,
+                $this->mobile_number,
+                $this->name,
+                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
+                6,
+             );
+            }
+             else{
+                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $temporary_username,
+                $external_id,
+                Plan::find($this->plan_id)->description,
+                $this->email,
+                $this->mobile_number,
+                $this->name,
+                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
+                12,
+             );
+            }
 
             DB::commit();
 

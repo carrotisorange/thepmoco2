@@ -42,7 +42,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::prefix('/property')->group(function(){
         Route::get('/', [PropertyController::class, 'index'])->name('property');
-        Route::get('{random_str}/create', [PropertyController::class, 'create']);
+        Route::get('{random_str}/create', [PropertyController::class, 'create'])->name('property');
         Route::post('{random_str}/store', [PropertyController::class, 'store']);
     });
 

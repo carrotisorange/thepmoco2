@@ -42,7 +42,6 @@ class CheckoutController extends Controller
             'plan_id' => $plan_id,
             'checkout_option' => $checkout_option,
             'discount_code' => $discount_code,
-           
         ]);
     }
 
@@ -97,7 +96,7 @@ class CheckoutController extends Controller
 
 public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
 {
-    Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
+    Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
     
         $params = [
             'external_id' => $external_id,
@@ -105,7 +104,7 @@ public function charge_user_account($temporary_username, $external_id, $descript
             'description' => $description,
             'amount' => $amount,
             'interval' => 'MONTH',
-            //'total_recurrence' => $total_recurrence,
+            'total_recurrence' => $total_recurrence,
             //'start_date' => $start_date,
             'interval_count' => 1,
             'currency'=>'PHP',
@@ -127,8 +126,6 @@ public function charge_user_account($temporary_username, $external_id, $descript
         ];
 
         $createRecurring = \Xendit\Recurring::create($params);
-
-    
 
         return $createRecurring['last_created_invoice_url'];
     }
