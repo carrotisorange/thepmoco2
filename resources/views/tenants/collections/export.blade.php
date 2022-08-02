@@ -62,11 +62,11 @@
 <body>
     <!-- Define header and footer blocks before your content -->
     <header>
-        {{ Session::get('property_name') }} | Acknowledgment Receipt
-        <h5>{{ App\Models\Property::find(Session::get('property'))->country->country }},
-            {{ App\Models\Property::find(Session::get('property'))->province->province }},
-            {{ App\Models\Property::find(Session::get('property'))->city->city }},
-            {{ App\Models\Property::find(Session::get('property'))->barangay }}
+        {{ $property->property }} | Acknowledgment Receipt
+        <h5>{{ $property->country->country }},
+            {{ $property->province->province }},
+            {{ $property->city->city }},
+            {{ $property->barangay }}
             <hr>
             <br>
         </h5>
@@ -75,10 +75,10 @@
 
     <footer>
         <h5>
-            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
-            {{ App\Models\Property::find(Session::get('property'))->mobile }}
+            For inquiries reach us at: {{ $property->email }} /
+            {{ $property->mobile }}
         </h5>
-        {{ Session::get('property_name') }} Copyright &copy;
+        {{ $property->property }} Copyright &copy;
         <?php echo date("Y");?>
     </footer>
 

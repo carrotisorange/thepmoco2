@@ -19,7 +19,7 @@
             <div class="mt-2 flex flex-wrap mb-2">
                 <div class="w-full md:w-1/2  mb-3">
                     <x-label for="email">
-                        Email
+                        Email <span class="text-red-600">*</span>
                     </x-label>
                     <x-form-input wire:model.lazy="email" id="email" type="email" name="email" value="{{ old('email') }}" />
 

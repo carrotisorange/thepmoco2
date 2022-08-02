@@ -57,7 +57,7 @@ class OldTenantComponent extends Component
     {
         return [
             'tenant' => 'required',
-            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tenants'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
             'mobile_number' => 'nullable',
             'type' => 'required',
             'gender' => 'required',
@@ -94,6 +94,26 @@ class OldTenantComponent extends Component
             DB::beginTransaction();
 
             $tenant = Tenant::create($validated_data)->uuid;
+
+            $user_id = app('App\Http\Controllers\UserController')->store(
+                $this->tenant, 
+                app('App\Http\Controllers\UserController')->generate_temporary_username(), 
+                app('App\Http\Controllers\UserController')->generate_temporary_username(),
+                auth()->user()->external_id, 
+                $this->email,
+                8,
+                $this->mobile_number,
+                "none", 
+                auth()->user()->checkoutoption_id,
+                auth()->user()->plan_id,
+            );
+
+            User::where('id', $user_id)
+            ->update([
+                'tenant_uuid' => $tenant
+            ]);
+
+            app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),$user_id,false,true);
 
             DB::commit();
 

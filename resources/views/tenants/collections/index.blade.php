@@ -19,7 +19,7 @@
                 <x-th>AR #</x-th>
                 {{-- <x-th>Unit</x-th> --}}
 
-                <x-th>Date collected</x-th>
+                <x-th>Date of payment</x-th>
 
                 {{-- <x-th>Bill ID</x-th> --}}
 

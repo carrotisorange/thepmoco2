@@ -78,9 +78,10 @@ class PropertyController extends Controller
         }
         elseif(auth()->user()->role_id == '8')
         {
-            return view('portal.tenants.index',[
-                'properties'=>User::find(Auth::user()->id)->user_properties
-            ]);
+            return redirect('/dashboard/tenant');
+            // return view('portal.tenants.index',[
+            //     'properties'=>redirect::find(Auth::user()->id)->user_properties
+            // ]);
         }
         else
         {
@@ -133,12 +134,7 @@ class PropertyController extends Controller
 
         Property::create($attributes);
 
-        UserProperty::create([
-            'property_uuid' => $property_uuid,
-            'user_id' => auth()->user()->id,
-            'is_account_owner' => true,
-            'is_approve' => true
-        ]);
+        app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),auth()->user()->id,true,true);
 
         for($i=1; $i<=5; $i++){
             PropertyParticular::create([

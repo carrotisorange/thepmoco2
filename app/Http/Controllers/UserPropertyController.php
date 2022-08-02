@@ -33,9 +33,14 @@ class UserPropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($property_uuid, $user_id, $is_account_owner, $is_approve)
     {
-        //
+        UserProperty::create([
+            'property_uuid' => $property_uuid,
+            'user_id' => $user_id,
+            'is_account_owner' => $is_account_owner,
+            'is_approve' => $is_approve
+        ]);
     }
 
     /**

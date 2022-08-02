@@ -7,10 +7,13 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\WelcomeMailToMember;
 use Carbon\Carbon;
 use App\Models\Property;
 use Session;
 use App\Models\UserProperty;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -21,13 +24,14 @@ class UserController extends Controller
      */
 public function index(Property $property)
     {
+
         $this->authorize('accountowner');
 
         $users = Property::find(Session::get('property'))->property_users->where('user_id', '!=', auth()->user()->id);
 
         $properties = User::find(auth()->user()->id)->user_properties->where('property_uuid', '!=', Session::get('property'));
 
-        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
 
         return view('users.index',[
             'users' => $users,
@@ -61,7 +65,7 @@ public function index(Property $property)
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($name, $temporary_username, $external_id, $email, $mobile_number, $discount_code, $checkout_option, $plan_id)
+    public function store($name, $temporary_username, $password, $external_id, $email, $role_id, $mobile_number, $discount_code, $checkout_option, $plan_id)
     {
         session(['temporary_username' => $temporary_username]);
 
@@ -70,8 +74,9 @@ public function index(Property $property)
                 'name' => $name,
                 'mobile_number' => $mobile_number,
                 'email' => $email,
-                'role_id' => '5',
+                'role_id' => $role_id,
                 'username' => $temporary_username,
+                'password' => Hash::make($password),
                 'external_id' => $external_id,
                 'checkoutoption_id' => $checkout_option,
                 'plan_id' => $plan_id,
@@ -81,16 +86,40 @@ public function index(Property $property)
             ]
         );
 
-         return $user_id;
+        if($role_id == '5')
+        {
+            User::where('id', $user_id)
+            ->update([
+                'password' => null
+            ]);
+        }else{
+            $this->send_email($role_id, $email, $temporary_username, $password);
+        }
+
+        return $user_id;
+    }
+
+    public function generate_temporary_username()
+    {
+        return Str::random(12);
+    }
+
+    public function send_email($role_id, $email, $username, $password)
+    {
+        $details = [
+        'email' => $email,
+        // 'name' => $this->name,
+        'role' => Role::find($role_id)->role,
+        'username' => $username,
+        'password'=>$password
+    ];
+
+        Mail::to($email)->send(new WelcomeMailToMember($details));
     }
 
     public function delegate(Property $property, $user_id, $property_uuid)
     {
-        UserProperty::create([
-            'property_uuid' => $property_uuid,
-            'user_id' => $user_id,
-            'is_account_owner' => false
-        ]);
+        app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
 
         return back()->with('success', 'User invite is successfully sent.');
     }

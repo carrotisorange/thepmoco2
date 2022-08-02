@@ -112,8 +112,6 @@ class TenantCollectionController extends Controller
      public function export(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
      {          
          $balance = app('App\Http\Controllers\TenantBillController')->get_tenant_balance($ar->tenant_uuid);
-   
-         $property = Property::find(Session::get('property'));
 
          $data = $this->get_collection_data(
             $ar->created_at, 
@@ -126,6 +124,7 @@ class TenantCollectionController extends Controller
             $ar->amount,
             $ar->cheque_no,
             $ar->bank,
+            $property,
             $ar->date_deposited,
             Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
             $balance
@@ -139,8 +138,6 @@ class TenantCollectionController extends Controller
      public function view(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
      {          
          $balance = app('App\Http\Controllers\TenantBillController')->get_tenant_balance($ar->tenant_uuid);
-   
-         $property = Property::find(Session::get('property'));
 
          $data = $this->get_collection_data(
             $ar->created_at, 
@@ -153,6 +150,7 @@ class TenantCollectionController extends Controller
             $ar->amount,
             $ar->cheque_no,
             $ar->bank,
+            $property,
             $ar->date_deposited,
             Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
             $balance
@@ -163,8 +161,9 @@ class TenantCollectionController extends Controller
         return $pdf->stream($tenant->tenant.'-ar.pdf');
      }
 
-     public function generate_pdf($property, $data)
+     public function generate_pdf(Property $property, $data)
      {
+
          $pdf = PDF::loadView('tenants.collections.export', $data);
 
          $pdf->output();
@@ -185,7 +184,7 @@ class TenantCollectionController extends Controller
 
      }
 
-     public function get_collection_data($payment_made, $reference_no, $tenant, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $date_deposited, $collections, $balance)
+     public function get_collection_data($payment_made, $reference_no, $tenant, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $property, $date_deposited, $collections, $balance)
      {
       return [
          'created_at' => $payment_made,
@@ -198,6 +197,7 @@ class TenantCollectionController extends Controller
          'amount' => $amount,
          'cheque_no' => $cheque_no,
          'bank' => $bank,
+         'property' => $property,
          'date_deposited' => $date_deposited,
          'collections' => $collections,
          'balance' => $balance

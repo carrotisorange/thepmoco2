@@ -69,9 +69,9 @@ class UserComponent extends Component
             $this->store_user_property($user_id);
 
             DB::commit();       
-            
-            $this->send_email($this->email, $this->username, $this->password);
 
+            app('App\Http\Controllers\UserController')->send_email(User::find($user_id)->role_id, $this->email, $this->username, $this->password);
+      
             $this->resetForm();
 
             return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User is successfully created.');
@@ -112,18 +112,6 @@ class UserComponent extends Component
          ]);
      }
 
-     public function send_email($email, $username, $password)
-     {
-         $details = [
-            'email' => $email,
-            // 'name' => $this->name,
-            'role' => Role::find($this->role_id)->role,
-            'username' => $username,
-            'password'=>$password
-         ];
-
-      Mail::to($this->email)->send(new WelcomeMailToMember($details));
-     }
 
      public function resetForm()
      {
