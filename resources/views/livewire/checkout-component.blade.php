@@ -71,13 +71,7 @@
                         </dl>
                     </div>
 
-                    <p
-                        class="flex items-center justify-between text-sm font-medium text-gray-900 border-t border-gray-200 pt-6 mt-6">
-                        <span class="text-base">Total</span>
-                        <span class="text-base">₱{{
-                            number_format($selected_plan->price-$selected_discount_code->discount, 2)
-                            }}</span>
-                    </p>
+                   
                 </div>
             </section>
 
