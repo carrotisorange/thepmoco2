@@ -172,19 +172,19 @@
                         </p>
 
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱2,565 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱2565 </span>
                             <span class="text-base font-medium text-gray-500">billed every 3 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱2,850</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱2850</span>
                         </p>
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱4,560 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱4560 </span>
                             <span class="text-base font-medium text-gray-500">billed every 6 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱5,700</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱5700</span>
                         </p>
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱7,980 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱7980 </span>
                             <span class="text-base font-medium text-gray-500">billed every 12 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱11,400</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱11400</span>
                         </p>
                         <a href="/plan/1/checkout/2/get"
                             class="mt-8 block w-full bg-purple-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-purple-900">Buy
@@ -264,19 +264,19 @@
                             <span class="text-base font-medium text-gray-500">billed every mo</span>
                         </p>
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱4,860 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱4860 </span>
                             <span class="text-base font-medium text-gray-500">billed every 3 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱5,400</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱5400</span>
                         </p>
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱8,640 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱8640 </span>
                             <span class="text-base font-medium text-gray-500">billed every 6 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱10,800</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱10800</span>
                         </p>
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱15,120 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱15120 </span>
                             <span class="text-base font-medium text-gray-500">billed every 12 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱21,600</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱21600</span>
                         </p>
                         <a href="/plan/2/checkout/2/get"
                             class="mt-8 block w-full bg-purple-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-purple-900">Buy
@@ -356,19 +356,19 @@
                             <span class="text-base font-medium text-gray-500">billed every mo</span>
                         </p>
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱6,750 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱6750 </span>
                             <span class="text-base font-medium text-gray-500">billed every 3 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱7,500</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱7500</span>
                         </p>
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱12,000 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱12000 </span>
                             <span class="text-base font-medium text-gray-500">billed every 6 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱15,000</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱15000</span>
                         </p>
                         <p class="mt-2">
-                            <span class="text-2xl font-extrabold text-gray-900">₱21,000 </span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱21000 </span>
                             <span class="text-base font-medium text-gray-500">billed every 12 mo</span>
-                            <span class="text-1xl font-extrabold text-red-500 line-through">₱30,000</span>
+                            <span class="text-1xl font-extrabold text-red-500 line-through">₱30000</span>
                         </p>
                         <a href="/plan/3/checkout/2/get"
                             class="mt-8 block w-full bg-purple-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-purple-900">Buy
