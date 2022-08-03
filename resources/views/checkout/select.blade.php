@@ -16,7 +16,7 @@
                 </div> --}}
             </div>
             <div
-                class="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4">
+                class="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-2xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4">
                 <div class="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
                     <div class="p-6">
                         <h2 class="text-lg leading-6 font-medium text-gray-900">Trial</h2>
@@ -85,8 +85,8 @@
                     <div class="p-6">
 
                         <p class="mt-3">
-                            <span class="text-4xl font-extrabold text-gray-900">₱0</span>
-                            <span class="text-base font-medium text-gray-500">/mo</span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱0</span>
+                            <span class="text-base font-medium text-gray-500">billed every mo</span>
                         </p>
 
                         <p class="mt-2">
@@ -167,8 +167,8 @@
                     <div class="p-6">
 
                         <p class="mt-3">
-                            <span class="text-4xl font-extrabold text-gray-900">₱950</span>
-                            <span class="text-base font-medium text-gray-500">/mo</span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱950</span>
+                            <span class="text-base font-medium text-gray-500">billed every mo</span>
                         </p>
 
                         <p class="mt-2">
@@ -260,8 +260,8 @@
 
                     <div class="p-6">
                         <p class="mt-3">
-                            <span class="text-4xl font-extrabold text-gray-900">₱1800</span>
-                            <span class="text-base font-medium text-gray-500">/mo</span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱1800</span>
+                            <span class="text-base font-medium text-gray-500">billed every mo</span>
                         </p>
                         <p class="mt-2">
                             <span class="text-2xl font-extrabold text-gray-900">₱4,860 </span>
@@ -352,8 +352,8 @@
                     </div>
                     <div class="p-6">
                         <p class="mt-3">
-                            <span class="text-4xl font-extrabold text-gray-900">₱2500</span>
-                            <span class="text-base font-medium text-gray-500">/mo</span>
+                            <span class="text-2xl font-extrabold text-gray-900">₱2500</span>
+                            <span class="text-base font-medium text-gray-500">billed every mo</span>
                         </p>
                         <p class="mt-2">
                             <span class="text-2xl font-extrabold text-gray-900">₱6,750 </span>

@@ -44,7 +44,8 @@
                         <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
                             <div class="flex justify-between">
                                 <dt>Subtotal</dt>
-                                <dd class="text-gray-900">₱{{ number_format($selected_plan->price, 2) }}</dd>
+                                <dd class="text-gray-900">₱{{
+                                    number_format($selected_plan->price*$selected_checkout_option->policy, 2) }}</dd>
                             </div>
                             <div class="flex justify-between">
                                 <dt class="flex">
@@ -54,8 +55,8 @@
                                         $selected_discount_code->discount_code }}</span>
                                 </dt>
                                 <dd class="text-gray-900">₱{{
-                                    number_format(($selected_plan->price*$selected_checkout_option->discount),2) }}
-                                </dd>
+                                    number_format(($selected_plan->price*$selected_checkout_option->discount)*$selected_checkout_option->policy,2)
+                                    }}</dd>
                             </div>
                             <div class="flex justify-between">
                                 <dt>Taxes</dt>
@@ -65,13 +66,23 @@
                             <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
                                 <dt class="text-base">Total</dt>
                                 <dd class="text-base">₱{{
-                                    number_format($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount),2)
+                                    number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)
                                     }}</dd>
                             </div>
+                            
+                            @if($selected_checkout_option->id == 1)
+
+                            <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
+                                <dt class="text-base">Billing starts on {{ Carbon\Carbon::now()->addMonth()->format('M
+                                    d, Y') }}</dt>
+                                <dd class="text-base">Cancel Anytime</dd>
+                            </div>
+
+                            @endif
                         </dl>
                     </div>
 
-                   
+
                 </div>
             </section>
 
@@ -104,7 +115,8 @@
                     <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
                         <div class="flex justify-between">
                             <dt>Subtotal</dt>
-                            <dd class="text-gray-900">₱{{ number_format($selected_plan->price*$selected_checkout_option->policy, 2) }}</dd>
+                            <dd class="text-gray-900">₱{{
+                                number_format($selected_plan->price*$selected_checkout_option->policy, 2) }}</dd>
                         </div>
                         <div class="flex justify-between">
                             <dt class="flex">
@@ -114,7 +126,8 @@
                                     $selected_discount_code->discount_code }}</span>
                             </dt>
                             <dd class="text-gray-900">₱{{
-                                number_format(($selected_plan->price*$selected_checkout_option->discount)*$selected_checkout_option->policy,2) }}</dd>
+                                number_format(($selected_plan->price*$selected_checkout_option->discount)*$selected_checkout_option->policy,2)
+                                }}</dd>
                         </div>
                         <div class="flex justify-between">
                             <dt>Taxes</dt>
@@ -127,6 +140,16 @@
                                 number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)
                                 }}</dd>
                         </div>
+
+                        @if($selected_checkout_option->id == 1)
+
+                        <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
+                            <dt class="text-base">Billing starts on {{ Carbon\Carbon::now()->addMonth()->format('M d,
+                                Y') }}</dt>
+                            <dd class="text-base">Cancel Anytime</dd>
+                        </div>
+
+                        @endif
                     </dl>
                 </ul>
 
@@ -207,14 +230,17 @@
                                 </div>
                             </div>
                             <div class="col-span-full">
-                                <label for="expiration-date" class="block text-sm font-medium text-gray-700">Select your plan
+                                <label for="expiration-date" class="block text-sm font-medium text-gray-700">Select your
+                                    plan
                                     duration
                                 </label>
                                 <div class="mt-1">
-                                    <select type="text" name="checkout_option" id="checkout_option" wire:model="checkout_option" autocomplete="cc-exp"
+                                    <select type="text" name="checkout_option" id="checkout_option"
+                                        wire:model="checkout_option" autocomplete="cc-exp"
                                         class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         @foreach ($checkout_options as $item)
-                                        <option value="{{ $item->id }}" {{ $selected_checkout_option->id==$item->id ? 'selected' : 'selected' }}> {{ $item->option }} </option>
+                                        <option value="{{ $item->id }}" {{ $selected_checkout_option->id==$item->id ?
+                                            'selected' : 'selected' }}> {{ $item->option }} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -268,7 +294,7 @@
 
 
                         <button type="submit" wire:loading.remove wire:click="processPayment()"
-                            class="w-full mt-6 bg-purple-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Pay
+                            class="w-full mt-6 bg-purple-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Pay
                             ₱{{
                             number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)
                             }}</button>
