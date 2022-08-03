@@ -104,7 +104,7 @@
                     <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
                         <div class="flex justify-between">
                             <dt>Subtotal</dt>
-                            <dd class="text-gray-900">₱{{ number_format($selected_plan->price, 2) }}</dd>
+                            <dd class="text-gray-900">₱{{ number_format($selected_plan->price*$selected_checkout_option->policy, 2) }}</dd>
                         </div>
                         <div class="flex justify-between">
                             <dt class="flex">
@@ -114,7 +114,7 @@
                                     $selected_discount_code->discount_code }}</span>
                             </dt>
                             <dd class="text-gray-900">₱{{
-                                number_format(($selected_plan->price*$selected_checkout_option->discount),2) }}</dd>
+                                number_format(($selected_plan->price*$selected_checkout_option->discount)*$selected_checkout_option->policy,2) }}</dd>
                         </div>
                         <div class="flex justify-between">
                             <dt>Taxes</dt>
@@ -124,7 +124,7 @@
                         <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
                             <dt class="text-base">Total</dt>
                             <dd class="text-base">₱{{
-                                number_format($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount),2)
+                                number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)
                                 }}</dd>
                         </div>
                     </dl>
@@ -270,7 +270,7 @@
                         <button type="submit" wire:loading.remove wire:click="processPayment()"
                             class="w-full mt-6 bg-purple-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Pay
                             ₱{{
-                            number_format($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount),2)
+                            number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)
                             }}</button>
 
                         <button type="submit" wire:loading wire:target="processPayment" disabled
@@ -284,7 +284,7 @@
                                     d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Payment details are encrypted.
+                            Payment details are secured.
                         </p>
                     </form>
                 </div>

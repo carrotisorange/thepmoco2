@@ -94,19 +94,19 @@ class CheckoutController extends Controller
         ]);
     }
 
-public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $total_recurrence)
+public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $interval)
 {
-    Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
+    Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
     
         $params = [
             'external_id' => $external_id,
             'payer_email' => $email,
             'description' => $description,
-            'amount' => $amount,
+            'amount' => $amount*$interval,
             'interval' => 'MONTH',
-            'total_recurrence' => $total_recurrence,
+            //'total_recurrence' => $total_recurrence,
             //'start_date' => $start_date,
-            'interval_count' => 1,
+            'interval_count' => $interval,
             'currency'=>'PHP',
             // 'success_redirect_url' => '/127.0.0.1:8000/success/'.$temporary_username,
             // 'failure_redirect_url' => '/127.0.0.1:8000/select-a-plan',

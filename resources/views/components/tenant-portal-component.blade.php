@@ -3,7 +3,7 @@
 
 <head>
     @include('layouts.auth-head')
-    <title> @yield('title') </title> 
+    <title> @yield('title') </title>
 </head>
 
 <body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
@@ -12,9 +12,9 @@
         <header class="flex-shrink-0 relative h-16 bg-white flex items-center">
             <!-- Logo area -->
             <div class="absolute inset-y-0 left-0 md:static md:flex-shrink-0">
-                <a href="#"
+                <a href="/user/{{ auth()->user()->username }}/dashboard"
                     class="flex items-center justify-center h-16 w-16 bg-purple-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600 md:w-20">
-                    <img class="h-8 w-auto" src="{{ asset('/brands/logo.png') }}" alt="Workflow">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/logo.png') }}" alt="The PMO Co">
                 </a>
             </div>
 
@@ -65,30 +65,21 @@
 
             <!-- Desktop nav area -->
             <div class="hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between">
-                <div class="min-w-0 flex-1">
-                    <div class="max-w-2xl relative text-gray-400 focus-within:text-gray-500">
-                       
-                        {{-- <label for="desktop-search" class="sr-only">Search</label>
-                        <input id="desktop-search" type="search" placeholder="Search"
-                            class="block w-full border-transparent pl-12 placeholder-gray-500 focus:border-transparent sm:text-sm focus:ring-0">
-                        <div
-                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4">
-                            <!-- Heroicon name: solid/search -->
-                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </div> --}}
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="ml-5 text-1xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                            @yield('header')
+                        </h2>
                     </div>
+                   
                 </div>
                 <div class="ml-10 pr-4 flex-shrink-0 flex items-center space-x-10">
-                    {{-- <nav aria-label="Global" class="flex space-x-10">
-                        <a href="#" class="text-sm font-medium text-gray-900">Inboxes</a>
+                    <nav aria-label="Global" class="flex space-x-10">
+                        {{-- <a href="#" class="text-sm font-medium text-gray-900">Inboxes</a>
                         <a href="#" class="text-sm font-medium text-gray-900">Reporting</a>
-                        <a href="#" class="text-sm font-medium text-gray-900">Settings</a>
-                    </nav> --}}
+                        <a href="#" class="text-sm font-medium text-gray-900">Settings</a> --}}
+                    </nav>
                     <div class="flex items-center space-x-8">
                         <span class="inline-flex">
                             <a href="#" class="-mx-1 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500">
@@ -109,21 +100,20 @@
                                     class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                                     id="user-menu-button" aria-expanded="false" aria-haspopup="false">
                                     <span class="sr-only">Open user menu</span>
-                                    <img class="h-8 w-8 rounded-full"
-                                        src="{{ auth()->user()->avatarUrl() }}"
-                                        alt="">
+                                    <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->avatarUrl() }}" alt="">
                                 </button>
                             </div>
-                            <div x-show="dropdown"
-                                class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            <div x-show="dropdown" 
+                                class="z-40 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                 tabindex="-1">
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
-                                <a href="/user/{{ auth()->user()->username }}/edit" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                <a href="/user/{{ auth()->user()->username }}/edit"
+                                    class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                     id="user-menu-item-0">Your Profile</a>
 
-                                <a href="/logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                    id="user-menu-item-2">Sign out</a>
+                                <a href="/logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-2">Sign out</a>
                             </div>
                         </div>
                     </div>
@@ -159,8 +149,8 @@
                 <nav class="fixed z-40 inset-0 h-full w-full bg-purple sm:inset-y-0 sm:left-auto sm:right-0 sm:max-w-sm sm:w-full sm:shadow-lg"
                     aria-label="Global">
                     <div class="h-16 flex items-center justify-between px-4 sm:px-6">
-                        <a href="#">
-                            <img class="block h-8 w-auto" src="{{ asset('/brands/logo.png') }}" alt="Workflow">
+                        <a href="/user/{{ auth()->user()->username }}/dashboard">
+                            <img class="block h-8 w-auto" src="{{ asset('/brands/logo.png') }}" alt="The PMO Co">
                         </a>
                         <button type="button"
                             class="-mr-2 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600">
@@ -190,7 +180,7 @@
                         </div>
                     </div> --}}
                     <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
-                        {{-- <a href="#"
+                        <a href="#"
                             class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Inboxes</a>
 
                         <a href="#"
@@ -208,7 +198,7 @@
 
                         <a href="#"
                             class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Settings</a>
-                        --}}
+
                     </div>
                     <div class="border-t border-gray-200 pt-4 pb-3">
                         <div class="max-w-8xl mx-auto px-4 flex items-center sm:px-6">
@@ -232,11 +222,11 @@
                             </a>
                         </div>
                         <div class="mt-3 max-w-8xl mx-auto px-2 space-y-1 sm:px-4">
-                            <a href="#"
+                            <a href="/user/{{ auth()->user()->username }}/edit"
                                 class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50">Your
                                 Profile</a>
 
-                            <a href="#"
+                            <a href="/logout"
                                 class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50">Sign
                                 out</a>
                         </div>
@@ -279,12 +269,7 @@
                         <i class="fa-solid fa-money-bills"></i>
                     </a>
 
-                    {{-- <a href="/user/{{ auth()->user()->username }}/concerns" title="concerns"
-                        class="text-gray-400 hover:bg-gray-700 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
-                        <span class="sr-only">Concerns</span>
-                        <!-- Heroicon name: outline/ban -->
-                        <i class="fa-solid fa-comment-dots"></i>
-                    </a> --}}
+
                 </div>
             </nav>
 
@@ -296,7 +281,6 @@
                     <h1 id="primary-heading" class="sr-only">Home</h1>
                     <!-- This example requires Tailwind CSS v2.0+ -->
                     {{ $slot }}
-
                 </section>
             </main>
         </div>

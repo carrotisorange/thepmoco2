@@ -1,6 +1,8 @@
 <x-tenant-portal-component>
     @section('title', 'Announcements')
 
+    @section('header', 'Announcements')
+
     <div class="flex flex-col p-2">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">

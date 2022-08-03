@@ -1,5 +1,7 @@
 <x-tenant-portal-component>
     @section('title', 'Contracts')
+    
+    @section('header', 'Contracts')
 
     <div class="flex flex-col p-10">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

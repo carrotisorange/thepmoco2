@@ -72,8 +72,8 @@ class CheckoutComponent extends Component
                 $this->email, 
                 $this->mobile_number, 
                 $this->name, 
-                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
-                12, 
+                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount), 
+                1,
             );
                 
             }elseif($this->checkout_option == '2'){
@@ -85,7 +85,7 @@ class CheckoutComponent extends Component
                 $this->mobile_number,
                 $this->name,
                 Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
-                12,
+                3,
             );
             }
             elseif($this->checkout_option == '3'){
@@ -97,7 +97,7 @@ class CheckoutComponent extends Component
                 $this->mobile_number,
                 $this->name,
                 Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
-                3,
+                6,
             );
             }
             elseif($this->checkout_option == '4'){
@@ -109,7 +109,7 @@ class CheckoutComponent extends Component
                 $this->mobile_number,
                 $this->name,
                 Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
-                6,
+                12,
              );
             }
              else{
