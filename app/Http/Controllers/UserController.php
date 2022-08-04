@@ -105,9 +105,9 @@ public function show_all_users()
             ]);
         }
 
-        if($email){
+        // if($email){
             $this->send_email($role_id, $email, $temporary_username, $password);
-        }
+        // }
 
         return $user_id;
     }
