@@ -14,7 +14,7 @@ Password: {{ $details['password'] }}
 <br>
 
 @component('mail::button', ['url' => $url])
-Accept Invitation
+    Accept Invitation
 @endcomponent
 
 Regards,<br>

@@ -94,7 +94,7 @@
                             <span class="text-base font-medium text-gray-500">Cancel Anytime</span>
                         </p>
 
-                        <a href="plan/3/checkout/1/get"
+                        <a href="/plan/3/checkout/1/get"
                             class="mt-8 block w-full bg-purple-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-purple-900">Try
                             Now</a>
                     </div>

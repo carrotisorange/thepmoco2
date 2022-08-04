@@ -59,7 +59,7 @@ class CheckoutComponent extends Component
 
         $temporary_username = app('App\Http\Controllers\UserController')->generate_temporary_username();
         
-        app('App\Http\Controllers\UserController')->store($this->name, $temporary_username, null, $external_id,$this->email, 5, $this->mobile_number, $this->discount_code, $this->checkout_option, $this->plan_id);
+        app('App\Http\Controllers\UserController')->store($this->name, $temporary_username, $temporary_username, $external_id,$this->email, 5, $this->mobile_number, $this->discount_code, $this->checkout_option, $this->plan_id);
 
         try{
             DB::beginTransaction();

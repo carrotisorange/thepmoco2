@@ -64,13 +64,25 @@ class UserComponent extends Component
          try{
             DB::beginTransaction();
 
-            $user_id = $this->store_team($validatedData);
+            $user_id =  app('App\Http\Controllers\UserController')->store(
+               $this->name, 
+               $this->username, 
+               null, 
+               auth()->user()->id, 
+               $this->email, 
+               $this->role_id,
+               $this->mobile_number, 
+               auth()->user()->discount_code,
+               auth()->user()->checkout_option,
+               auth()->user()->plan_id
+            );
+            //$user_id = $this->store_team($validatedData);
 
             $this->store_user_property($user_id);
 
             DB::commit();       
 
-            app('App\Http\Controllers\UserController')->send_email(User::find($user_id)->role_id, $this->email, $this->username, $this->password);
+            //app('App\Http\Controllers\UserController')->send_email(User::find($user_id)->role_id, $this->email, $this->username, $this->password);
       
             $this->resetForm();
 

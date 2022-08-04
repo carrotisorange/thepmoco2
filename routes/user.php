@@ -20,5 +20,7 @@ Route::prefix('user')->group(function(){
     Route::get('point',[PointController::class, 'index'])->name('point');
 });
 
+Route::get('users',[UserController::class, 'show_all_users'])->name('user');
+
 
 

@@ -3,11 +3,12 @@
 
 <head>
     @include('layouts.auth-head')
-    <title>Profile | The Property Manager</title>
+    <title>Users | The Property Manager</title>
 </head>
 
 <body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
-    <div class="min-h-screen bg-gray-100">
+    {{-- <div style="background-image: url('{{ asset('/brands/property_page_bg.png') }}');" --}} <div
+        class="min-h-screen w-full h-1/2">
         <nav x-data="{ open: false }" class="bg-white p-3 border-b border-gray-100">
             <!-- Primary Navigation Menu -->
 
@@ -57,12 +58,23 @@
                                 <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                                     Profile
                                 </x-dropdown-link>
+
+                                <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
+                                    Subscriptions
+                                </x-dropdown-link>
+
                                 <x-dropdown-link href="/property">
                                     Property
                                 </x-dropdown-link>
+
                                 {{-- <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
                                 </x-dropdown-link> --}}
+
+                                <x-dropdown-link href="/select-a-plan">
+                                    Plans
+                                </x-dropdown-link>
+
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
@@ -106,8 +118,18 @@
                         </x-dropdown-link>
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
+                            Subscriptions
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/property">
                             Property
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/select-a-plan">
+                            Plans
                         </x-dropdown-link>
                     </div>
                     {{-- <div class="pt-2 pb-3 space-y-1">
@@ -127,7 +149,7 @@
                 </div>
             </div>
         </nav>
-        <main>
+        <main class="">
             <div class="w-full h-full">
                 <div class="mx-auto px-12 md:w-1/2 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-10">
                     <form class="space-y-8 divide-y divide-gray-200" method="POST"

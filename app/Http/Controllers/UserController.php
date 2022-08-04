@@ -24,8 +24,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 public function index(Property $property)
-    {
-
+{
         $this->authorize('accountowner');
 
         $users = Property::find(Session::get('property'))->property_users->where('user_id', '!=', auth()->user()->id);
@@ -38,7 +37,16 @@ public function index(Property $property)
             'users' => $users,
             'properties' => $properties
         ]);
-    }
+}
+
+public function show_all_users()
+{
+    $users =  User::find(auth()->user()->id)->where('account_owner_id', auth()->user()->id)->get();
+
+    return view('users.all-users', [
+        'users' => $users
+    ]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -84,7 +92,8 @@ public function index(Property $property)
                 'discount_code' => $discount_code,
                 'trial_ends_at' => Carbon::now()->addMonth(),
                 'created_at' => Carbon::now(),
-                'email_verified_at' => Carbon::now()
+                'account_owner_id' => auth()->user()->id,
+                // 'email_verified_at' => Carbon::now()
             ]
         );
 

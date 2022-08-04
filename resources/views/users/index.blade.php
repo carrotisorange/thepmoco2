@@ -17,7 +17,8 @@
                 <x-th>Name</x-th>
                 <x-th>Contact</x-th>
 
-                <x-th>Created</x-th>
+                <x-th>Invited at</x-th>
+                
                 {{-- <x-th>Email verified at</x-th> --}}
                 <x-th></x-th>
             </tr>
@@ -59,6 +60,7 @@
                 </x-td>
                 <x-td>{{ Carbon\Carbon::parse($item->created_at)->timezone('Asia/Manila')->format('M d, Y @ g:i A')}}
                 </x-td>
+                
                 <x-td>
                     @can('accountowner')
                     {{-- <x-button
