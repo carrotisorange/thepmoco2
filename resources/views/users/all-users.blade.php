@@ -160,14 +160,15 @@
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
-                                            
+
                                             <tr>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     #
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                 Name
+                                                    Name
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -178,8 +179,8 @@
                                                     Invited at
                                                 </th>
 
-                                               
-                                               
+
+
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
@@ -189,28 +190,36 @@
                                                     {{ $index+1 }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                    {{ $user->name }}      
-                                                    @if($user->email_verified_at)
-                                                    <span titl="verified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        <i class="fa-solid fa-circle-check"></i>
-                                                        @else
-                                                        <span title="unverified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                            <i class="fa-solid fa-clock"></i>
-                                                        </span>
-                                                        @endif                                              
+                                                    <div class="text-sm text-gray-900">{{ $user->name
+                                                        }}@if($user->email_verified_at)
+                                                        <span titl="verified"
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            <i class="fa-solid fa-circle-check"></i>
+                                                            @else
+                                                            <span title="unverified"
+                                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                                <i class="fa-solid fa-clock"></i>
+                                                            </span>
+                                                            @endif
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">{{ $user->role->role }}
+                                                    </div>
+
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                   <div class="text-sm text-gray-900">{{ $user->mobile_number }}
+                                                    <div class="text-sm text-gray-900">{{ $user->mobile_number }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">{{ $user->email }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                   {{ Carbon\Carbon::parse($user->created_at)->timezone('Asia/Manila')->format('M d, Y @ g:i A')}}
+                                                    {{
+                                                    Carbon\Carbon::parse($user->created_at)->timezone('Asia/Manila')->format('M
+                                                    d, Y @ g:i A')}}
                                                 </td>
-                                               
-                                               
-                                                
+
+
+
                                             </tr>
                                             @endforeach
                                         </tbody>

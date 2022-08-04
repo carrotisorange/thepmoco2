@@ -54,11 +54,20 @@
 
                             <x-slot name="content">
 
-                                <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
+                              <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                                     Profile
                                 </x-dropdown-link>
+                                
+                                <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
+                                    Subscriptions
+                                </x-dropdown-link>
+                                
                                 <x-dropdown-link href="/property">
-                                    Property
+                                    Properties
+                                </x-dropdown-link>
+                                
+                                <x-dropdown-link href="/users">
+                                    Users
                                 </x-dropdown-link>
                                 {{-- <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
@@ -100,16 +109,21 @@
                 <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-gray-200">
 
-                    <div class="pt-2 pb-3 space-y-1">
-                        <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
-                            Profile
-                        </x-dropdown-link>
-                    </div>
-                    <div class="pt-2 pb-3 space-y-1">
-                        <x-dropdown-link href="/property">
-                            Property
-                        </x-dropdown-link>
-                    </div>
+                    <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
+                        Profile
+                    </x-dropdown-link>
+
+                    <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
+                        Subscriptions
+                    </x-dropdown-link>
+
+                    <x-dropdown-link href="/property">
+                        Properties
+                    </x-dropdown-link>
+
+                    <x-dropdown-link href="/users">
+                        Users
+                    </x-dropdown-link>
                     {{-- <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                             Subscriptions
@@ -141,15 +155,3 @@
 @include('layouts.script')
 
 </html>
-{{-- <x-index-layout>
-    @section('title', '| Properties')
-    <x-slot name="labels">
-        Enter your property details
-    </x-slot>
-    <x-slot name="options">
-        <x-button onclick="window.location.href='/property'">
-            Go back to main
-        </x-button>
-    </x-slot>
-    @livewire('property-component', ['types' => $types])
-</x-index-layout> --}}
