@@ -14,6 +14,7 @@ use Session;
 use App\Models\UserProperty;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Models\Subscription;
 
 class UserController extends Controller
 {
@@ -204,4 +205,5 @@ public function index(Property $property)
     {
         //
     }
+
 }

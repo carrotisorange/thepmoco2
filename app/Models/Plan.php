@@ -13,4 +13,9 @@ class Plan extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function plans()
+    {
+        return $this->hasMany(Plan::class)->orderBy('id', 'desc');
+    }
 }

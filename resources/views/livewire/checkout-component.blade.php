@@ -21,7 +21,7 @@
                                         <h3 class="text-gray-900">{{ $selected_plan->plan }} plan</h3>
                                         <p class="text-gray-900">₱{{ number_format($selected_plan->price, 2) }}/month
                                         </p>
-                                        <p class="text-gray-500">{{ $selected_plan->description }}</p>
+                                        <p class="text-gray-500">Limited to {{ $selected_plan->description }} units</p>
 
                                     </div>
 
@@ -98,7 +98,7 @@
                             <div class="text-sm font-medium space-y-1">
                                 <h3 class="text-gray-900">{{ $selected_plan->plan }} plan</h3>
                                 <p class="text-gray-900">₱{{ number_format($selected_plan->price, 2) }}/month</p>
-                                <p class="text-gray-500">{{ $selected_plan->description }}</p>
+                              <p class="text-gray-500">Limited to {{ $selected_plan->description }} units</p>
                             </div>
                         </div>
                     </li>

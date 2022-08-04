@@ -18,6 +18,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Bill;
 use App\Models\DeedOfSale;
 use App\Models\Point;
+use App\Models\Plan;
 
 class UnitController extends Controller
 {
@@ -59,6 +60,14 @@ class UnitController extends Controller
      */
     public function store(Property $property, Request $request, $batch_no)
     {   
+        $plan_unit_limit =  Plan::find(auth()->user()->plan_id)->description;
+
+        $total_unit_created = Property::find(Session::get('property'))->units()->count();
+
+        if($plan_unit_limit <= $total_unit_created){
+            return back()->with('error', 'Sorry. You have reached your plan unit limit');
+        }
+
         $request->validate([
             'number_of_units' => ['integer', 'required', 'min:1', 'gt:0']
         ]);
