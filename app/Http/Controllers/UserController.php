@@ -92,7 +92,7 @@ public function show_all_users()
                 'discount_code' => $discount_code,
                 'trial_ends_at' => Carbon::now()->addMonth(),
                 'created_at' => Carbon::now(),
-                
+                 'email_verified_at' => Carbon::now()
             ]
         );
 
@@ -102,15 +102,10 @@ public function show_all_users()
             ->update([
                 'password' => null,
                 'account_owner_id' => $user_id,
-                'email_verified_at' => Carbon::now()
             ]);
-        }else{
+        }
 
-              User::where('id', $user_id)
-            ->update([
-                'password' => null,
-                'account_owner_id' => auth()->user()->id,
-            ]);
+        if($email){
             $this->send_email($role_id, $email, $temporary_username, $password);
         }
 

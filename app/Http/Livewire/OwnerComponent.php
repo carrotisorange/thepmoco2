@@ -8,6 +8,7 @@ use Livewire\WithFileUploads;
 use Session;
 use App\Models\City;
 use App\Models\Province;
+use App\Models\User;
 use App\Models\Country;
 
 use Livewire\Component;
@@ -41,7 +42,7 @@ class OwnerComponent extends Component
                 return 
                 [
                         'owner' => 'required',
-                        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners'],
+                        'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
                         'mobile_number' => 'nullable',
                         'gender' => 'required',
                         'civil_status' => 'nullable',
@@ -62,47 +63,75 @@ class OwnerComponent extends Component
         {
                 sleep(1);
 
-                $validatedData = $this->validate();
+                $validated_data = $this->validate();
 
-                $validatedData['uuid'] = Str::uuid();
-                $validatedData['property_uuid'] = Session::get('property');
+                $validated_data = $this->store_owner($validated_data);
 
-                if($this->photo_id)
-                {
-                        $validatedData['photo_id'] = $this->photo_id->store('owners');
-                }else
-                {
-                        $validatedData['photo_id'] = 'avatars/avatar.png';
-                }
+                $owner = Owner::create($validated_data)->uuid;
 
-                if(!$this->country_id)
-                {
-                $validatedData['country_id'] = '247';
-                }
+                $user_id = app('App\Http\Controllers\UserController')->store(
+                        $this->owner, 
+                        app('App\Http\Controllers\UserController')->generate_temporary_username(), 
+                        app('App\Http\Controllers\UserController')->generate_temporary_username(),
+                        auth()->user()->external_id, 
+                        $this->email,
+                        7,
+                        $this->mobile_number,
+                        "none", 
+                        auth()->user()->checkoutoption_id,
+                        auth()->user()->plan_id,
+                );
 
-                 if(!$this->province_id)
-                 {
-                 $validatedData['province_id'] = '4121';
-                 }
-
-                  if(!$this->city_id)
-                  {
-                  $validatedData['city_id'] = '48315';
-                  }
-
-                $owner = Owner::create($validatedData)->uuid;
+                User::where('id', $user_id)
+                ->update([
+                        'tenant_uuid' => $owner
+                ]);
 
                 return
                 redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner.'/deed_of_sale/'.Str::random(8).'/create')->with('success',
                 'Owner is created successfully.');
         }
 
+        public function store_owner($validated_data)
+        {
+                $validated_data['uuid'] = Str::uuid();
+
+                $validated_data['property_uuid'] = Session::get('property');
+
+                if($this->photo_id)
+                {
+                        $validated_data['photo_id'] = $this->photo_id->store('owners');
+                }
+                else
+                {
+                        $validated_data['photo_id'] = 'avatars/avatar.png';
+                }
+
+                if(!$this->country_id)
+                {
+                $validated_data['country_id'] = '247';
+                }
+
+                 if(!$this->province_id)
+                {
+                 $validated_data['province_id'] = '4121';
+                }
+
+                if(!$this->city_id)
+                {
+                  $validated_data['city_id'] = '48315';
+                }
+
+                return $validated_data;
+
+        }
+
         public function render()
         {
                 return view('livewire.owner-component',[
-                                'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
-                                'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
-                                'countries' => Country::orderBy('country', 'ASC')->get()
+                        'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
+                        'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
+                        'countries' => Country::orderBy('country', 'ASC')->get()
                 ]);
         }
 }

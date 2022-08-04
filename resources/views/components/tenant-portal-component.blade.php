@@ -72,7 +72,7 @@
                             @yield('header')
                         </h2>
                     </div>
-                   
+
                 </div>
                 <div class="ml-10 pr-4 flex-shrink-0 flex items-center space-x-10">
                     <nav aria-label="Global" class="flex space-x-10">
@@ -103,7 +103,7 @@
                                     <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->avatarUrl() }}" alt="">
                                 </button>
                             </div>
-                            <div x-show="dropdown" 
+                            <div x-show="dropdown"
                                 class="z-40 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                 tabindex="-1">
@@ -181,24 +181,17 @@
                     </div> --}}
                     <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
                         <a href="#"
-                            class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Inboxes</a>
+                            class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Announcements</a>
 
                         <a href="#"
-                            class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Technical
-                            Support</a>
+                            class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Contracts
+                        </a>
 
                         <a href="#"
-                            class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Sales</a>
+                            class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Bills</a>
 
                         <a href="#"
-                            class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">General</a>
-
-                        <a href="#"
-                            class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Reporting</a>
-
-                        <a href="#"
-                            class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Settings</a>
-
+                            class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Payments</a>
                     </div>
                     <div class="border-t border-gray-200 pt-4 pb-3">
                         <div class="max-w-8xl mx-auto px-4 flex items-center sm:px-6">

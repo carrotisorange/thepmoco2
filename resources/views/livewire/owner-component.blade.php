@@ -17,7 +17,7 @@
             <div class="flex flex-wrap mx-3 mb-2 mt-5">
                 <div class="w-full md:w-1/2 px-3">
                     <x-label for="grid-last-name">
-                        Email
+                        Email 
                     </x-label>
                     <x-form-input wire:model="email" id="email" type="email" name="email" value="{{ old('email') }}" />
 

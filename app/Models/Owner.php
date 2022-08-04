@@ -15,6 +15,9 @@ class Owner extends Model
 
     protected $attributes = [
         'photo_id' => 'avatars/avatar.png',
+        'country_id' => 247,
+        'province_id' => 4121,
+        'city_id' => 48315,
     ];
 
     public function barangay()

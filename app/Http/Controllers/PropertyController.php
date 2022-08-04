@@ -79,9 +79,10 @@ class PropertyController extends Controller
         elseif(auth()->user()->role_id == '8')
         {
             return redirect('/user/'.auth()->user()->username.'/dashboard');
-            // return view('portal.tenants.index',[
-            //     'properties'=>redirect::find(Auth::user()->id)->user_properties
-            // ]);
+        }
+        elseif(auth()->user()->role_id == '7')
+        {
+            return redirect('/user/'.auth()->user()->username.'/dashboard');
         }
         else
         {

@@ -113,8 +113,6 @@ class OldTenantComponent extends Component
                 'tenant_uuid' => $tenant
             ]);
 
-            //app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),$user_id,false,true);
-
             DB::commit();
 
             return redirect('/property/'.Session::get('property').'/tenant/'.$tenant.'/guardian/'.$this->unit->uuid.'/create')->with('success','Tenant is succesfully created.');
