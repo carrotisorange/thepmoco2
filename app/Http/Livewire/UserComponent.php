@@ -67,7 +67,7 @@ class UserComponent extends Component
             $user_id =  app('App\Http\Controllers\UserController')->store(
                $this->name, 
                $this->username, 
-               null, 
+               $this->password, 
                auth()->user()->id, 
                $this->email, 
                $this->role_id,

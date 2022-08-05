@@ -103,10 +103,12 @@ public function show_all_users()
                 'password' => null,
                 'account_owner_id' => $user_id,
             ]);
+        }else{
+            $this->send_email($role_id, $email, $temporary_username, $password);
         }
 
         // if($email){
-            $this->send_email($role_id, $email, $temporary_username, $password);
+            
         // }
 
         return $user_id;
