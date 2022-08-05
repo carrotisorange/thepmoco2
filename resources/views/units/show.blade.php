@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/units'">Go back to
+        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/unit'">Go back to
             units
         </x-button>
         <x-button data-modal-toggle="add-building-modal">Create a building
@@ -210,7 +210,8 @@
                 <tr>
                     <x-td>{{ $index +1 }}</x-td>
                     <x-td>
-                         <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}"><b class="text-blue-600">{{ $item->tenant->tenant}} </b></a>
+                        <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}"><b
+                                class="text-blue-600">{{ $item->tenant->tenant}} </b></a>
                     </x-td>
                     <x-td>
                         <div class="text-sm text-gray-900">{{
@@ -341,7 +342,8 @@
                 <tr>
                     <x-td>{{ $ctr++ }}</x-td>
                     <x-td>
-                         <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}"><b class="text-blue-600">{{ $item->owner->owner}} </b></a>
+                        <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}"><b
+                                class="text-blue-600">{{ $item->owner->owner}} </b></a>
                     </x-td>
                     <x-td>
                         {{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
@@ -369,7 +371,7 @@
             </tbody>
         </table>
         <div class="mt-5">
-            <span>Showing the last 5 property documents</span>
+            <span>Showing the last 5 unit owners</span>
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Str::random(8) }}/create'">
@@ -405,7 +407,8 @@
                 <tr>
                     <x-td>{{ $ctr++ }}</x-td>
                     <x-td>
-                        <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}"><b class="text-blue-600">{{ $item->owner->owner}} </b></a>
+                        <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}"><b
+                                class="text-blue-600">{{ $item->owner->owner}} </b></a>
                     </x-td>
                     <x-td>
                         <div class="text-sm text-gray-900">{{
@@ -484,6 +487,11 @@
         <div class="mt-5">
             <span>Showing the last 5 management agreements</span>
             <p class="text-right">
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/{{ $unit->uuid }}/enrollee/'">
+                    Add
+
+                </x-button>
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/enrollee/'">
                     See more

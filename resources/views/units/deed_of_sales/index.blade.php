@@ -25,7 +25,7 @@
                                         <x-th>Price</x-th>
                                         <x-th>Classification</x-th>
                                         <x-th>Status</x-th>
-                                        <x-th></x-th>
+                                        {{-- <x-th></x-th> --}}
                                     </tr>
                                 </thead>
                                 @forelse ($deed_of_sales as $item)
@@ -35,7 +35,7 @@
                                         <x-td>
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
-                                                    <a href="/owner/{{ $item->owner_uuid }}">
+                                                    <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner_uuid }}">
                                                         <img class="h-10 w-10 rounded-full"
                                                             src="/storage/{{ $item->owner->photo_id }}" alt=""></a>
                                                 </div>
@@ -66,7 +66,7 @@
                                                 </span>
                                                 @endif
                                         </x-td>
-                                        <x-td>
+                                        {{-- <x-td>
                                             <x-button id="dropdownDividerButton"
                                                 data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}" type="button">
                                                 <i class="fa-solid fa-list-check"></i>&nbspOptions
@@ -88,7 +88,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </x-td>
+                                        </x-td> --}}
                                         @empty
                                         <x-td>No data found!</x-td>
                                         @endforelse
