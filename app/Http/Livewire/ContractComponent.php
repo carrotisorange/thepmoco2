@@ -90,7 +90,7 @@ class ContractComponent extends Component
         
             if(auth()->user()->role_id === 1)
             {
-              return redirect('/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Contract is successfully created.');
+               return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Contract is successfully created.');
 
             }else{
               return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/bills/')->with('success','Contract is successfully created.');
