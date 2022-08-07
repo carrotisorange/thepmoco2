@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| Banks')
+    @section('title', '| Bank')
     <x-slot name="labels">
         {{ $unit->unit }} / {{ $owner->owner }} / Bank
     </x-slot>
