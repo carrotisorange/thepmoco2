@@ -37,6 +37,12 @@ class PropertyController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function show_list_of_all_tenants($property_uuid)
+    {
+        return Property::find($property_uuid)->tenants;
+    }
+
+    
     public function destroy_property_session()
     {
         Session::forget('property');
@@ -58,6 +64,11 @@ class PropertyController extends Controller
         }else{ 
             return false; 
         } 
+    }
+
+    public function generate_uuid()
+    {
+        return Str::uuid();
     }
 
     public function index()

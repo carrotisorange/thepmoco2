@@ -25,7 +25,15 @@
                 </div>
             </x-td>
             <x-td>
-                <x-button onclick="window.location.href='/guardian/{{ $item->id }}/delete'">Remove</x-button>
+
+                <form method="POST" id="remove-button"
+                    action="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/guardian/{{ $item->id }}">
+                    @csrf
+                    @method('delete')
+                    <x-form-button form="remove-button">Remove
+
+                    </x-form-button>
+                </form>
             </x-td>
             @empty
             <x-td>No data found!</x-td>

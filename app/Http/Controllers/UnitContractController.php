@@ -27,7 +27,7 @@ class UnitContractController extends Controller
         
         $this->authorize('managerandadmin');
 
-        return view('tenants.old.create', [
+        return view('tenants.create', [
             'unit' => $unit
         ]);
     }

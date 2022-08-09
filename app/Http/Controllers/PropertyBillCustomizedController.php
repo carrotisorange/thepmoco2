@@ -38,7 +38,7 @@ class PropertyBillCustomizedController extends Controller
 
         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
 
-        $batch_no = Carbon::now()->timestamp.''.$bill_no;
+        $batch_no = app('App\Http\Controllers\BillController')->generate_bill_batch_no($bill_no);
 
         try{
             for($i=0; $i<$bill_count; $i++){ $unit_uuid=Contract::where('property_uuid', Session::get('property')) ->

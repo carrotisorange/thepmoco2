@@ -3,7 +3,7 @@
     <div class="p-6 bg-white border-b border-gray-200">
         <h1 class="font-bold">Tenant Details</h1>
         <div>
-            <form method="POST" wire:submit.prevent="updateForm" class="w-full" enctype="multipart/form-data">
+            <form method="POST" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
                 <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <x-label for="tenant">
@@ -34,8 +34,8 @@
                         <x-label for="mobile_number">
                             Mobile
                         </x-label>
-                        <x-form-input wire:model.lazy="mobile_number" id="mobile_number" type="text" name="mobile_number"
-                            value="{{ old('mobile_number', $tenant_details->mobile_number) }}" />
+                        <x-form-input wire:model.lazy="mobile_number" id="mobile_number" type="text"
+                            name="mobile_number" value="{{ old('mobile_number', $tenant_details->mobile_number) }}" />
 
                         @error('mobile_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -247,7 +247,8 @@
                         <x-label for="school_address">
                             School Address
                         </x-label>
-                        <x-form-input wire:model.lazy="school_address" id="school_address" type="text" name="school_address"
+                        <x-form-input wire:model.lazy="school_address" id="school_address" type="text"
+                            name="school_address"
                             value="{{ old('school_address', $tenant_details->school_address) }}" />
 
                         @error('school_address')
@@ -318,7 +319,7 @@
 
                 <div class="mt-6 p-4">
                     <p class="text-right">
-                        <x-form-button>Update</x-form-button>
+                        <x-form-button wire:loading.remove wire:click="submitForm()">Update</x-form-button>
                     </p>
                 </div>
         </div>
@@ -332,16 +333,7 @@
     <div>
         @include('tenants.guardians.index')
         <div class="mt-5">
-            <span>Showing the last 5 guardians</span>
-            <p class="text-right">
-                <x-button
-                    onclick="window.location.href='{{ $tenant_details->uuid }}/guardian/create'">
-                    Add
-                </x-button>
-                {{-- <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/contracts/'">See more
-                    guardians
-                </x-button> --}}
-            </p>
+            {{ $guardians->links() }}
         </div>
     </div>
 </div>
@@ -350,16 +342,7 @@
     <div>
         @include('tenants.references.index')
         <div class="mt-5">
-            <span>Showing the last 5 references</span>
-            <p class="text-right">
-               <x-button
-                    onclick="window.location.href='{{ $tenant_details->uuid }}/reference/create'">
-                  Add
-                </x-button>
-                {{-- <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/contracts/'">See more
-                    guardians
-                </x-button> --}}
-            </p>
+            {{ $references->links() }}
         </div>
     </div>
 </div>
@@ -386,7 +369,8 @@
                 <x-td>{{ $ctr++ }}</x-td>
                 <x-td>
                     <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold"
-                            href="/unit/{{ $item->unit->uuid }}/edit">{{ $item->unit->unit }}</a>
+                            href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">{{
+                            $item->unit->unit }}</a>
                     </div>
 
                     <div class="text-sm text-gray-500">{{
@@ -431,6 +415,13 @@
                 </x-td>
                 <x-td>{{ $item->interaction->interaction }}</x-td>
                 <x-td>
+
+                    <button type="button"
+                        onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/view'"
+                        class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        View
+                    </button>
+
                     <x-button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
                         type="button">Actions<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -468,8 +459,8 @@
                                                                 ?>
                         @if($item->status == 'active')
                         <div class="py-1">
-                            @if($unpaid_bills->count()<=0) 
-                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
+                            @if($unpaid_bills->count()<=0) <a
+                                href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
                                 class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
                                 @else
@@ -488,15 +479,22 @@
         </tbody>
         @endforelse
     </table>
+
     <div class="mt-5">
-        <span>Showing the last 5 contracts</span>
+        {{ $contracts->links() }}
+    </div>
+
+    <div class="mt-5">
+
         <p class="text-right">
             <x-button
                 onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/units/'">
                 Add
             </x-button>
-            <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/contracts'">See more
-                
+            <x-button
+                onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/contracts'">
+                See more
+
             </x-button>
         </p>
     </div>
@@ -528,7 +526,7 @@
                     {{-- <x-td>{{ $index + $bills->firstItem() }}</x-td> --}}
                     <x-td>{{ $item->bill_no}}</x-td>
                     <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
-                 <x-td><a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills"><b
+                    <x-td><a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills"><b
                                 class="text-blue-600">{{$item->unit->unit }}</b></a></x-td>
                     <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                         y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}</x-td>
@@ -574,10 +572,14 @@
         </table>
     </div>
     <div class="mt-5">
-        <span>Showing the last 5 bills</span>
+        {{ $bills->links() }}
+    </div>
+    <div class="mt-5">
+
         <p class="text-right">
-            <x-button   onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/bills'">
-                See more 
+            <x-button
+                onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/bills'">
+                See more
             </x-button>
         </p>
     </div>
@@ -586,66 +588,49 @@
 <div class="mt-5 p-6 bg-white border-b border-gray-200">
     <h1 class="font-bold">Payments</h1>
     <div>
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>AR #</x-th>
-                    <x-th>Date of Payment</x-th>
-                    <x-th>Tenant</x-th>
-                    {{-- <x-th>Reference #</x-th> --}}
-
-                    <x-th>Mode of Payment</x-th>
-                    <x-th>Amount Paid</x-th>
+                    <x-th>Date of payment</x-th>
+                    <x-th>Mode of payment</x-th>
+                    <x-th>Amount</x-th>
                     <x-th></x-th>
                 </tr>
             </thead>
-            @forelse ($ars as $ar)
-            <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            @forelse ($collections as $item)
+            <tbody class="bg-white divide-y divide-gray-200">
                 <tr>
-                    <x-td>{{ $ar->ar_no }}</x-td>
-                    {{-- <x-td><a href="/tenant/{{ $ar->tenant->uuid }}/ars"><b class="text-blue-600">{{
-                                $ar->tenant->bill_reference_no}}</b></a></x-td> --}}
-                    <?php
-                                            $tenant = App\Models\Tenant::find($ar->tenant_uuid)->tenant;
-                                            //$unit = App\Models\Unit::find($ar->unit_uuid)->unit
-                                        ?>
-                    <x-td>{{ Carbon\Carbon::parse($ar->created_at)->format('M d, Y') }}
-                        <x-td><a href="/tenant/{{ $ar->tenant->uuid }}/ars"><b class="text-blue-600">{{ $tenant
-                                    }}</b></a>
-                        </x-td>
-
-                    </x-td>
-                    <x-td>{{ $ar->mode_of_payment }}</x-td>
-                    <?php
-                            $collections_count = App\Models\Collection::where('batch_no', $ar->collection_batch_no)->count();
-                    ?>
-                    <x-td>{{ number_format($ar->amount,2) }} ({{ $collections_count }})</x-td>
+                    <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
+                    <x-td>{{ $item->mode_of_payment }}</x-td>
+                    <x-td>{{ number_format($item->amount,2) }}</x-td>
                     <x-td>
-                       <x-button
-                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/view'">
+                        <x-button
+                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view'">
                             View
                         </x-button>
                         <x-button
-                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/export'">
+                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export'">
                             Export
                         </x-button>
                     </x-td>
                     @empty
                     <x-td>No data found!</x-td>
                 </tr>
-                @endforelse
-
             </tbody>
-
+            @endforelse
         </table>
     </div>
     <div class="mt-5">
-        <span>Showing the last 5 payments</span>
+        {{ $collections->links() }}
+    </div>
+    <div class="mt-5">
+
         <p class="text-right">
             <x-button
                 onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/collections'">
                 See more
-                
+
             </x-button>
         </p>
     </div>

@@ -7,10 +7,10 @@
     </x-slot>
     <x-slot name="options">
         <x-button onclick="window.location.href='{{ url()->previous() }}'">
-            Go back to unit
+            Select another unit
         </x-button>
-        <x-button onclick="window.location.href='old_create/export'">Download Tenant Sheet
+        <x-button onclick="window.location.href='create/export'">Download Tenant Sheet
         </x-button>
     </x-slot>
-    @livewire('old-tenant-component', ['unit' => $unit])
+    @livewire('tenant-component', ['unit' => $unit])
 </x-index-layout>

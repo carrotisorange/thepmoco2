@@ -3,7 +3,7 @@
 
 We're thrilled you've selected <b>{{ Session::get('property_name') }}</b> as your new home.
 <br><br>
-We've attached some useful information to help get you ready for your move-in on {{ $details['start'] }}. Please settle your movein-chargee before the end of the day. 
+We've attached some useful information to help get you ready for your move-in on {{ $details['start'] }}. 
 <br>
 <br>
 The details of your contract are summarized below:

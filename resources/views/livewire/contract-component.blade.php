@@ -1,8 +1,7 @@
 <div>
     <div class="p-8 bg-white border-b border-gray-200">
-        <form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data"
-            action="/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/store"
-            class="w-full" id="create-form">
+        <form method="POST" wire:submit.prevent="submitForm()" enctype="multipart/form-data" class="w-full"
+            id="create-form">
             @csrf
             <div class="flex flex-wrap mb-6">
                 <div class="w-full md:w-1/2 ">
@@ -124,11 +123,17 @@
                 </div>
             </div>
             @endif
+            <div class="pt-5">
+                <div class="flex justify-end">
 
-            <div class="mt-4">
-                <p class="text-right">
-                    <x-form-button>Create</x-form-button>
-                </p>
+                    <x-form-button type="submit" wire:loading.remove wire:click="submitForm()" id="create-form">
+                        Submit
+                    </x-form-button>
+
+                    {{-- <button type="button" wire:loading wire:target="submitForm" disabled
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Processing...</button>
+                 --}}
+                    </div>
             </div>
         </form>
 
