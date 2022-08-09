@@ -22,9 +22,11 @@ use App\Models\Bill;
 use App\Models\Contract;
 use App\Models\Guardian;
 use App\Models\Reference;
+use Livewire\WithPagination;
 
 class TenantEditComponent extends Component
 {
+    use WithPagination;
 
     use WithFileUploads;
 
@@ -49,12 +51,6 @@ class TenantEditComponent extends Component
     public $occupation;
     public $employer_address;
     public $employer;
-
-    public $guardians;
-    public $references;
-    public $contracts;
-    public $bills;
-    public $ars;
 
     public $guardian;
     public $guardian_relationship_id;
@@ -88,11 +84,7 @@ class TenantEditComponent extends Component
         $this->occupation = $tenant_details->occupation;
         $this->employer_address = $tenant_details->employer_address;
         $this->employer = $tenant_details->employer;
-        $this->guardians = $this->get_guardians();
-        $this->references = $this->get_references();
-        $this->contracts = $this->get_contracts();
-        $this->bills = $this->get_bills();
-        $this->ars = $this->get_ars();
+        $this->photo_id = $this->photo_id;
     }
 
     protected function rules()
@@ -124,7 +116,7 @@ class TenantEditComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function updateForm()
+    public function submitForm()
     {
         sleep(1);
 
@@ -133,10 +125,10 @@ class TenantEditComponent extends Component
          
         try{
 
-             if($this->photo_id)
-             {
+            if($this->photo_id)
+            {
                 $validatedData['photo_id'] = $this->photo_id->store('avatars');
-             }
+            }
 
             DB::beginTransaction();
         
@@ -154,39 +146,18 @@ class TenantEditComponent extends Component
     }
 
     public function render()
-    {
+    {   
             return view('livewire.tenant-edit-component',[
             'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
             'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
             'countries' => Country::orderBy('country', 'ASC')->get(),
-            'relationships' => Relationship::all()
+            'relationships' => Relationship::all(),
+            'references' => app('App\Http\Controllers\TenantController')->get_tenant_references($this->tenant_details->uuid),     
+            'guardians' => app('App\Http\Controllers\TenantController')->get_tenant_guardians($this->tenant_details->uuid),
+            'contracts' => app('App\Http\Controllers\TenantController')->get_tenant_contracts($this->tenant_details->uuid),
+            'bills' => app('App\Http\Controllers\TenantController')->get_tenant_bills($this->tenant_details->uuid),
+            'collections' => app('App\Http\Controllers\TenantController')->get_tenant_collections($this->tenant_details->uuid),
+            'tenant' => Tenant::find($this->tenant_details->uuid),
          ]);
     }
-
-    public function get_references()
-    {
-        return Reference::where('tenant_uuid',$this->tenant_details->uuid)->limit(5)->get();
-    }
-
-    public function get_guardians()
-    {
-        return Guardian::where('tenant_uuid',$this->tenant_details->uuid)->limit(5)->get();
-    }
-
-    public function get_contracts()
-
-    {
-        return Contract::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('start','desc')->limit(5)->get();
-    }
-
-    public function get_bills()
-    {
-        return Bill::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('bill_no','desc')->limit(5)->get();
-    }
-
-    public function get_ars()
-    {
-        return AcknowledgementReceipt::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('ar_no','desc')->limit(5)->get();
-    }
-
 }

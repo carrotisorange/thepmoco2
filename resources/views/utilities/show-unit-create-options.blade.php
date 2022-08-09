@@ -16,7 +16,7 @@
             </a>
         </li> --}}
         <li>
-            <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/old_create"
+            <a href="/unit/{{ $unit->uuid }}/tenant/{{ Str::random(10) }}/create"
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                 <i class="fa-solid fa-user"></i>&nbsp Tenant
             </a>

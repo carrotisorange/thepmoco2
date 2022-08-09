@@ -56,8 +56,8 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
-            'strict' => false,
-            'engine' => null,
+            'strict' => true,
+            'engine' => 'InnoDB',
             'dump' => [
             'dump_binary_path' => env('DB_DUMP_COMMAND_PATH', 'C:\wamp64\bin\mysql\mysql5.7.28\bin'),
             'use_single_transaction',

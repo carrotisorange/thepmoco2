@@ -110,11 +110,11 @@ class GuardianController extends Controller
      * @param  \App\Models\Guardian  $guardian
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Property $property, Tenant $tenant, $guardian_id)
     {
-        $guardian = Guardian::where('id', $id);
-        $guardian->delete();
+    
+       Guardian::destroy($guardian_id);
 
-        return back()->with('success', 'Guardian has been removed.');
+       return back()->with('success', 'Guardian has been removed.');
     }
 }

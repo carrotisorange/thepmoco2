@@ -1,8 +1,6 @@
 <div>
     <div class="p-8 bg-white border-b border-gray-200">
-        <form method="POST" wire:submit.prevent="submitForm"
-            action="/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(10) }}/store"
-            class="w-full" id="create-form">
+        <form method="POST" wire:submit.prevent="submitForm()" class="w-full" id="create-form">
             @csrf
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full md:w-1/2 px-3">
@@ -55,12 +53,17 @@
                     @enderror
                 </div>
             </div>
-            <div class="mt-5">
-                <p class="text-right">
-                    <x-form-button>
-                        Create
+            <div class="pt-5">
+                <div class="flex justify-end">
+                    <button type="button"
+                        onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/contract/{{ Str::random(8) }}/create'"
+                        class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        Skip
+                    </button>
+                    <x-form-button type="submit" wire:loading.remove wire:click="submitForm()" id="create-form">
+                        Submit
                     </x-form-button>
-                </p>
+                </div>
             </div>
         </form>
     </div>
@@ -74,7 +77,8 @@
                     <x-th>Email</x-th>
                     <x-th>Mobile</x-th>
                     <x-th>Relationship</x-th>
-                    <x-th></x-th>
+
+                    {{--<x-th></x-th> --}}
                 </tr>
             </thead>
             <?php $ctr = 1; ?>
@@ -86,11 +90,11 @@
                     <x-td>{{ $item->email }}</x-td>
                     <x-td>{{ $item->mobile_number }}</x-td>
                     <x-td>{{ $item->relationship->relationship }}</x-td>
-                    <x-td>
+                    {{-- <x-td>
                         <x-button wire:click="removeReference({{ $item->id }})" onclick="confirmMessage()">
                             Remove
                         </x-button>
-                    </x-td>
+                    </x-td> --}}
                 </tr>
                 @empty
                 <tr>
@@ -99,6 +103,7 @@
             </tbody>
             @endforelse
         </table>
+        {{ $references->links() }}
     </div>
     @endif
     @include('layouts.notifications')

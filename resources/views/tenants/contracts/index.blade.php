@@ -35,16 +35,12 @@
                 <x-td>{{ $ctr++ }}</x-td>
                 <x-td>
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 h-10 w-10">
-                            <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
-                                <img class="h-10 w-10 rounded-full" src="/storage/{{ $item->tenant->thumbnail }}"
-                                    alt=""></a>
-                        </div>
-                        <div class="ml-4">
+
+                        <div>
                             <div class="text-sm font-medium text-gray-900">
-                                <b>{{
-                                    $item->unit->unit
-                                    }}</b>
+                                <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">{{
+                                    $item->unit->unit }}</a>
+
                             </div>
                             <div class="text-sm text-gray-500">
                                 {{

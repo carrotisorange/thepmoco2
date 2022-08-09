@@ -83,8 +83,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('contracts', [UnitContractController::class, 'index']);
 
             Route::prefix('tenant')->group(function(){
-                Route::get('{random_str}/old_create', [UnitContractController::class, 'create']);
-                Route::get('{random_str}/old_create/export', [UnitContractController::class, 'export']);
+                Route::get('{random_str}/create', [UnitContractController::class, 'create']);
+                Route::get('{random_str}/create/export', [UnitContractController::class, 'export']);
                 Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create']);
             });
 
@@ -147,10 +147,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::prefix('guardian')->group(function(){
                 Route::get('{unit?}/create', [GuardianController::class, 'create']);
+                Route::delete('{guardian_id:id}', [GuardianController::class, 'destroy']);
             });
 
             Route::prefix('reference')->group(function(){
                 Route::get('{unit?}/create', [ReferenceController::class, 'create']);
+                Route::delete('{reference_id:id}', [ReferenceController::class, 'destroy']);
             });
         
             Route::prefix('/contract')->group(function(){

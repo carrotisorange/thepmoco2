@@ -92,7 +92,7 @@ public function show_all_users()
                 'discount_code' => $discount_code,
                 'trial_ends_at' => Carbon::now()->addMonth(),
                 'created_at' => Carbon::now(),
-                 'email_verified_at' => Carbon::now()
+                'email_verified_at' => Carbon::now()
             ]
         );
 
@@ -107,16 +107,20 @@ public function show_all_users()
             $this->send_email($role_id, $email, $temporary_username, $password);
         }
 
-        // if($email){
-            
-        // }
-
         return $user_id;
     }
 
     public function generate_temporary_username()
     {
         return Str::random(12);
+    }
+    
+    public function update_tenant_uuid($user_id, $tenant_uuid)
+    {
+        User::where('id', $user_id)
+         ->update([
+         'tenant_uuid' => $tenant_uuid
+        ]);
     }
 
     public function send_email($role_id, $email, $username, $password)

@@ -144,7 +144,7 @@
 
         </div>
 
-
+{{-- 
         @if($tenant->email)
         <div class="mt-5 p-2 bg-white border-b border-gray-200">
             <div class="flex flex-wrap mb-6">
@@ -155,7 +155,7 @@
                 </div>
             </div>
         </div>
-        @endif
+        @endif --}}
 
         <div class="mt-5 p-2">
             <p class="text-right">

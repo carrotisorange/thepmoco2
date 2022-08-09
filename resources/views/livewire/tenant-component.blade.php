@@ -21,7 +21,8 @@
                     <x-label for="email">
                         Email <span class="text-red-600">*</span>
                     </x-label>
-                    <x-form-input wire:model.lazy="email" id="email" type="email" name="email" value="{{ old('email') }}" />
+                    <x-form-input wire:model.lazy="email" id="email" type="email" name="email"
+                        value="{{ old('email') }}" />
 
                     @error('email')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -136,7 +137,8 @@
                         Region
                     </x-label>
                     <div class="relative">
-                        <x-form-select wire:model.lazy="province_id" id="province_id" id="province_id" name="province_id">
+                        <x-form-select wire:model.lazy="province_id" id="province_id" id="province_id"
+                            name="province_id">
                             <option value="">Select one</option>
                             @foreach ($provinces as $province)
                             <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
@@ -273,7 +275,6 @@
                         Photo ID (i.e., Government issues ID, school ID, employee ID)
                     </x-label>
 
-
                     <x-form-input wire:model.lazy="photo_id" id="grid-last-name" type="file" name="photo_id"
                         value="{{ old('photo_id') }}" />
 
@@ -284,10 +285,17 @@
 
             </div>
 
-            <div class="mt-4 mb-2">
-                <p class="text-right">
-                   <x-form-button>Create</x-form-button>
-                </p>
+            <div class="pt-5">
+                <div class="flex justify-end">
+                    <button type="button" onclick="window.location.href='{{ url()->previous() }}'"
+                        class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        Cancel
+                    </button>
+                    <x-form-button type="submit" wire:loading.remove wire:click="submitForm()">
+                       Submit
+                    </x-form-button>
+
+                </div>
             </div>
         </form>
         @include('layouts.notifications')

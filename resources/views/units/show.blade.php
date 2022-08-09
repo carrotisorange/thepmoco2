@@ -310,7 +310,7 @@
             <span>Showing the last 5 tenants</span>
             <p class="text-right">
                 <x-button
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/old_create'">
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/create'">
                     Add
                 </x-button>
                 <x-button

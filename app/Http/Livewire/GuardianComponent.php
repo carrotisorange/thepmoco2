@@ -2,20 +2,18 @@
 
 namespace App\Http\Livewire;
 use App\Models\Guardian;
-use App\Models\Relationship;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use DB;
-use App\Models\Tenant;
 
 use Livewire\Component;
 
 class GuardianComponent extends Component
 {
+    //list of passed parameters
     public $unit;
     public $tenant;
-    public $guardians;
     
+    //list of input fields
     public $guardian;
     public $relationship_id;
     public $mobile_number;
@@ -25,30 +23,15 @@ class GuardianComponent extends Component
      {
         $this->unit = $unit;
         $this->tenant = $tenant;
-        $this->guardians = $this->get_guardians();
-     }
-
-     public function get_guardians()
-     {
-         return Tenant::find($this->tenant->uuid)->guardians;
-     }
-
-     public function removeGuardian($id)
-     {
-        Guardian::destroy($id);
-
-        $this->guardians = $this->get_guardians();
-
-        return back()->with('success', 'Guardian is successfully removed');
      }
 
     protected function rules()
     {
         return [
-        'guardian' => 'required',
-        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:guardians'],
-        'mobile_number' => 'required',
-        'relationship_id' => ['required', Rule::exists('relationships', 'id')],
+            'guardian' => 'required',
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:guardians'],
+            'mobile_number' => 'required',
+            'relationship_id' => ['required', Rule::exists('relationships', 'id')],
         ];
     }
 
@@ -61,21 +44,17 @@ class GuardianComponent extends Component
     {
         sleep(1);
 
+        //validate inputs
         $validated_data = $this->validate();
-
-        $validated_data = $this->store_guardian($validated_data);
 
         try
         {
             DB::beginTransaction();
-            
-            Guardian::create($validated_data);
 
-            $this->resetForm();
+            //store new guardian
+           $this->store_guardian($validated_data);
 
-            $this->guardians = $this->get_guardians();
-
-            return back()->with('success', 'Guardian is successfully created.');
+            DB::commit();
         }
         catch(\Exception $e)
         {
@@ -83,16 +62,19 @@ class GuardianComponent extends Component
             
             return back()->with('error');
         }
-     
     }
+
 
     public function store_guardian($validated_data)
     {
-        $validated_data = $this->validate();
-
         $validated_data['tenant_uuid'] = $this->tenant->uuid;
-      
-        return $validated_data;
+
+        Guardian::create($validated_data);
+
+        //retrieve updated list of guardians
+
+        return back()->with('success', 'Guardian is successfully created.');
+
     }
 
     public function resetForm()
@@ -103,10 +85,19 @@ class GuardianComponent extends Component
         $this->relationship_id='';
     }
 
+    public function removeGuardian($guardian_id)
+    {
+        sleep(1);
+
+        return app('App\Http\Controllers\GuardianController')->destroy($guardian_id);
+
+    }
+
     public function render()
     {
         return view('livewire.guardian-component',[
-            'relationships' => Relationship::all()
+            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'guardians' => app('App\Http\Controllers\TenantController')->get_tenant_guardians($this->tenant->uuid)
         ]);
     }
 }

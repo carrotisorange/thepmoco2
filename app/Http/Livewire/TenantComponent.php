@@ -2,14 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\WelcomeMailToNewTenant;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Tenant;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\UserProperty;
 use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Validation\Rule;
@@ -17,10 +13,9 @@ use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
 use Session;
-use App\Models\Property;
 use Carbon\Carbon;
 
-class OldTenantComponent extends Component
+class TenantComponent extends Component
 {
     use WithFileUploads;
 
@@ -57,7 +52,7 @@ class OldTenantComponent extends Component
     {
         return [
             'tenant' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants', 'unique:users'],
             'mobile_number' => 'nullable',
             'type' => 'required',
             'gender' => 'required',
@@ -85,41 +80,42 @@ class OldTenantComponent extends Component
     public function submitForm()
     {
         sleep(1);
-        
-        $validated_data = $this->validate();
 
-        $validated_data = $this->store_tenant($validated_data);
+        //validate inputs
+        $validated_data = $this->validate();
 
        try{
             DB::beginTransaction();
 
-            $tenant = Tenant::create($validated_data)->uuid;
+            //store new tenant
+            $tenant_uuid = $this->store_tenant($validated_data);
 
+            //store a new user
             $user_id = app('App\Http\Controllers\UserController')->store(
                 $this->tenant, 
                 app('App\Http\Controllers\UserController')->generate_temporary_username(), 
                 app('App\Http\Controllers\UserController')->generate_temporary_username(),
                 auth()->user()->external_id, 
                 $this->email,
-                8,
+                8, //tenant 
                 $this->mobile_number,
                 "none", 
                 auth()->user()->checkoutoption_id,
                 auth()->user()->plan_id,
             );
 
-            User::where('id', $user_id)
-            ->update([
-                'tenant_uuid' => $tenant
-            ]);
+            //update tenant_uuid of the newly created tenant
+            app('App\Http\Controllers\UserController')->update_tenant_uuid($user_id, $tenant_uuid);
 
+            return redirect('/property/'.Session::get('property').'/tenant/'.$tenant_uuid.'/guardian/'.$this->unit->uuid.'/create')->with('success','Tenant is succesfully created.');
+           
             DB::commit();
-
-            return redirect('/property/'.Session::get('property').'/tenant/'.$tenant.'/guardian/'.$this->unit->uuid.'/create')->with('success','Tenant is succesfully created.');
 
        }catch(\Exception $e)
        {
             DB::rollback();
+
+            ddd($e);
 
             return back()->with('error');
        }
@@ -130,10 +126,19 @@ class OldTenantComponent extends Component
     {
         $validated_data['uuid'] = Str::uuid();
 
+        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
+
+        $bill_reference_no = app('App\Http\Controllers\BillController')->generate_bill_reference_no($bill_no);
+
+        $validated_data['property_uuid'] = Session::get('property');
+        
+        $validated_data['bill_reference_no'] = $bill_reference_no;
+
         if($this->photo_id)
         {
             $validated_data['photo_id'] = $this->photo_id->store('tenants');
-        }else
+        }
+        else
         {
             $validated_data['photo_id'] = 'avatars/avatar.png';
         }
@@ -153,20 +158,14 @@ class OldTenantComponent extends Component
             $validated_data['city_id'] = '48315';
         }
 
-         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
+        $tenant_uuid = Tenant::create($validated_data)->uuid;
 
-        $reference_no = Carbon::now()->timestamp.''.$bill_no;
-
-        $validated_data['property_uuid'] = Session::get('property');
-        
-        $validated_data['bill_reference_no'] = $reference_no;
-
-        return $validated_data;
+        return $tenant_uuid;
     }
 
     public function render()
     {
-        return view('livewire.old-tenant-component',[
+        return view('livewire.tenant-component',[
              'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
              'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->where('id','!=', '247')->get(),
              'countries' => Country::orderBy('country', 'ASC')->get()

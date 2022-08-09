@@ -111,11 +111,10 @@ class ReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $reference = Reference::where('id', $id);
-        $reference->delete();
+     public function destroy(Property $property, Tenant $tenant, $reference_id)
+     {
+        Reference::destroy($reference_id);
 
-        return back()->with('success', 'A reference has been removed.');
-    }
+        return back()->with('success', 'Reference has been removed.');
+     }
 }

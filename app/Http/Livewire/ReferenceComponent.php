@@ -2,20 +2,19 @@
 
 namespace App\Http\Livewire;
 use App\Models\Reference;
-use Illuminate\Support\Str;
 use App\Models\Relationship;
 use DB;
 use Illuminate\Validation\Rule;
-use App\Models\Tenant;
 
 use Livewire\Component;
 
 class ReferenceComponent extends Component
 {
+    //list of passed parameters
     public $unit;
     public $tenant;
-    public $references;
     
+    //list of input fields
     public $reference;
     public $relationship_id;
     public $mobile_number;
@@ -25,30 +24,15 @@ class ReferenceComponent extends Component
      {
         $this->unit = $unit;
         $this->tenant = $tenant;
-        $this->references = $this->get_references();
-     }
-
-     public function get_references()
-     {
-         return Tenant::find($this->tenant->uuid)->references;
-     }
-
-     public function removeReference($id)
-     {
-        Reference::destroy($id);
-
-        $this->references = $this->get_references();
-
-        return back()->with('success', 'Reference is successfully removed');
      }
 
     protected function rules()
     {
         return [
-        'reference' => 'required',
-        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:references'],
-        'mobile_number' => 'required',
-        'relationship_id' => ['required', Rule::exists('relationships', 'id')],
+            'reference' => 'required',
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:references'],
+            'mobile_number' => 'required',
+            'relationship_id' => ['required', Rule::exists('relationships', 'id')],
         ];
     }
 
@@ -63,19 +47,15 @@ class ReferenceComponent extends Component
 
         $validated_data = $this->validate();
 
-        $validated_data = $this->store_reference($validated_data);
-
         try
         {
             DB::beginTransaction();
-            
-            Reference::create($validated_data);
 
-            $this->resetForm();
+            //store new reference
+            $this->store_reference($validated_data);
 
-            $this->references = $this->get_references();
+            DB::commit();
 
-            return back()->with('success', 'Reference is successfully created.');
         }
         catch(\Exception $e)
         {
@@ -91,8 +71,20 @@ class ReferenceComponent extends Component
         $validated_data = $this->validate();
 
         $validated_data['tenant_uuid'] = $this->tenant->uuid;
+
+        Reference::create($validated_data);
+
+        //$this->resetForm();
       
-        return $validated_data;
+        return back()->with('success', 'Reference is successfully created.');
+    }
+
+   
+    public function removeReference($reference_id)
+    {
+        app('App\Http\Controllers\ReferenceController')->destroy($reference_id);
+
+        return back()->with('success', 'Reference is successfully removed');
     }
 
     public function resetForm()
@@ -106,7 +98,8 @@ class ReferenceComponent extends Component
     public function render()
     {
         return view('livewire.reference-component',[
-            'relationships' => Relationship::all()
+            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'references' => app('App\Http\Controllers\TenantController')->get_tenant_references($this->tenant->uuid),
         ]);
     }
 }

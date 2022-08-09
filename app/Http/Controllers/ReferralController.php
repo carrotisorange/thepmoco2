@@ -37,9 +37,13 @@ class ReferralController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($referral, $contract_uuid, $property_uuid)
     {
-        //
+        Referral::create([
+           'referral' => $referral,
+           'contract_uuid' => $contract_uuid,
+           'property_uuid' => $property_uuid
+        ]);
     }
 
     /**
