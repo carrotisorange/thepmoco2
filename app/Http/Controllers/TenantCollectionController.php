@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AcknowledgementReceipt;
 use App\Mail\SendPaymentToTenant;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
@@ -29,7 +30,7 @@ class TenantCollectionController extends Controller
     {
         return view('tenants.collections.index',[
          'tenant' => Tenant::find($tenant->uuid),
-         'collections' => Tenant::find($tenant->uuid)->acknowledgementreceipts
+         'collections' => app('App\Http\Controllers\TenantController')->get_tenant_collections($tenant->uuid),
         ]);
     }
 
@@ -45,6 +46,8 @@ class TenantCollectionController extends Controller
          'batch_no' => $batch_no
       ]);
     }
+
+
 
     public function store(Request $request, Property $property, Tenant $tenant, $batch_no)
     {     
@@ -161,6 +164,13 @@ class TenantCollectionController extends Controller
         return $pdf->stream($tenant->tenant.'-ar.pdf');
      }
 
+   public function attachment(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
+   {
+      $attachment = $ar->attachment;
+
+      return Storage::download(($attachment), 'AR_'.$ar->ar_no.'_'.$ar->tenant->tenant.'.png');
+   }
+
      public function generate_pdf(Property $property, $data)
      {
 
@@ -214,6 +224,7 @@ class TenantCollectionController extends Controller
 
      public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
      {
+
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
 
          $counter = $this->get_selected_bills_count($batch_no);
@@ -257,6 +268,7 @@ class TenantCollectionController extends Controller
                   $request->bank,
                   $request->date_deposited,
                   $request->created_at,
+                  $request->attachment,
          );
 
          app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
@@ -273,7 +285,7 @@ class TenantCollectionController extends Controller
 
          $this->send_payment_to_tenant($tenant, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
    
-         return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/bills')->with('success', 'Payment is successfully created.');
+         return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/collections')->with('success', 'Payment is successfully created.');
      }
 
      public function send_payment_to_tenant($tenant, $ar_no, $form, $payment_made, $user, $role, $collection)

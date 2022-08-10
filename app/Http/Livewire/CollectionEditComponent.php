@@ -7,9 +7,12 @@ use Session;
 use App\Models\Collection;
 use App\Models\Bill;
 use Carbon\Carbon;
+use Livewire\WithFileUploads;
 
 class CollectionEditComponent extends Component
 {
+    use WithFileUploads;
+
     public $batch_no;
     public $tenant;
     public $collections;
@@ -34,6 +37,7 @@ class CollectionEditComponent extends Component
       return [
        'created_at' => 'required|date',
        'form' => 'required',
+       'attachment' => 'image|max:1024',
       ];
     }
 

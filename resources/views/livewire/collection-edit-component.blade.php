@@ -60,7 +60,7 @@
             </div>
             <div class="w-full  px-3">
                 <x-label for="attachment">
-                    Proof of payment (Deposit Slip)
+                    Proof of payment (i.e., Deposit Slip)
                 </x-label>
                 <x-form-input form="edit-form" name="attachment" wire:model="attachment" type="file" />
 
@@ -110,7 +110,7 @@
                                 </tr>
                             </thead>
 
-                            <form method="POST" id="edit-form"
+                            <form method="POST" id="edit-form" enctype="multipart/form-data"
                                 action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bills/{{ $batch_no }}/pay/update">
                                 @method('patch')
                                 @csrf
