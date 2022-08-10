@@ -24,6 +24,9 @@
                         </option>
                         <option value="cheque" {{ old('form')=='cheque' ? 'selected' : 'Select one' }}>cheque
                         </option>
+                        <option value="e-wallet" {{ old('form')=='e-wallet' ? 'selected' : 'Select one' }} selected>
+                            e-wallet
+                        </option>
                     </x-form-select>
 
                     @error('form')
@@ -58,6 +61,8 @@
 
 
             </div>
+
+            @endif
             <div class="w-full  px-3">
                 <x-label for="attachment">
                     Proof of payment (i.e., Deposit Slip)
@@ -71,7 +76,6 @@
             <div class="mt-2 flex flex-wrap mb-6">
 
             </div>
-            @endif
 
             @if($form === 'cheque')
             <div class="mt-2 flex flex-wrap mb-6">
@@ -144,13 +148,13 @@
 
         </div>
 
-{{-- 
+        {{--
         @if($tenant->email)
         <div class="mt-5 p-2 bg-white border-b border-gray-200">
             <div class="flex flex-wrap mb-6">
                 <div class="mt-2 w-full md:w-full  mb-6 md:mb-0">
                     <div>
-                       Acknowledgement Receipt will be sent to {{ $tenant->email }}
+                        Acknowledgement Receipt will be sent to {{ $tenant->email }}
                     </div>
                 </div>
             </div>
