@@ -9,8 +9,6 @@ use App\Models\Property;
 use App\Models\Unit;
 use App\Models\Tenant;
 use App\Models\Contract;
-use Illuminate\Validation\Rule;
-use DB;
 use Carbon\Carbon;
 
 class BillController extends Controller
@@ -71,6 +69,10 @@ class BillController extends Controller
         ]);
     }
 
+    public function show_unit_bills($unit_uuid)
+    {
+        return Unit::findOrFail($unit_uuid)->bills()->paginate(5);
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -12,9 +12,9 @@ class ProvinceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($country_id)
     {
-        //
+        return Province::orderBy('province', 'ASC')->where('country_id', $country_id)->get();
     }
 
     /**

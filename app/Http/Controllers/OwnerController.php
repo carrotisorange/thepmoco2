@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use Illuminate\Http\Request;
-use App\Models\City;
-use App\Models\Province;
-use App\Models\Country;
-use App\Models\Enrollee;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -77,15 +73,32 @@ class OwnerController extends Controller
      */
     public function show(Property $property, Owner $owner)
     {
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
 
          return view('owners.show',[
-            'owner_details' => $owner,
-            'representatives' => Owner::find($owner->uuid)->representatives,
-            'banks' => Owner::find($owner->uuid)->banks,
-            'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
-            'enrollees' => Owner::find($owner->uuid)->enrollees, 
+            'owner_details' => $owner
         ]);
+    }
+
+    public function show_owner_representatives($owner_uuid)
+    {
+        return Owner::find($owner_uuid)->representatives()->paginate(5);
+    }
+
+    public function show_owner_banks($owner_uuid)
+    {
+        return Owner::find($owner_uuid)->banks()->paginate(5);
+    }
+
+    public function show_owner_deed_of_sales($owner_uuid)
+    {
+        return Owner::find($owner_uuid)->deed_of_sales()->paginate(5);
+    }
+
+    public function show_owner_enrollees($owner_uuid)
+    {
+        return Owner::find($owner_uuid)->enrollees()->paginate(5);
     }
 
     /**
@@ -96,13 +109,7 @@ class OwnerController extends Controller
      */
     public function edit(Owner $owner)
     {
-        return view('owners.edit',[
-            'owner_details' => $owner,
-            'representatives' => Owner::find($owner->uuid)->representatives,
-            'banks' => Owner::find($owner->uuid)->banks,
-            'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales,
-            'enrollees' => Owner::find($owner->uuid)->enrollees,
-        ]);
+       
     }
 
     /**

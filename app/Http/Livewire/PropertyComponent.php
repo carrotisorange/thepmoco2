@@ -66,7 +66,7 @@ class PropertyComponent extends Component
         $this->validateOnly($propertyName);
      }
 
-     public function createForm()
+     public function submitForm()
      {
         sleep(1);
 

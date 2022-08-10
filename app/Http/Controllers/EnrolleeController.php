@@ -6,13 +6,8 @@ use App\Models\Enrollee;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 use App\Models\Owner;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use App\Models\Tenant;
-use App\Models\Bill;
 use App\Models\Property;
-use App\Models\PropertyParticular;
-use Session;
 use DB;
 
 class EnrolleeController extends Controller
@@ -25,13 +20,6 @@ class EnrolleeController extends Controller
     public function index(Property $property, Owner $owner)
     {
         $enrollees = Owner::find($owner->uuid)->enrollees;
-
-        //  $enrollees = Enrollee::leftJoin('units', 'enrollees.unit_uuid', 'units.uuid')
-        //  ->leftJoin('owners', 'enrollees.owner_uuid', 'owners.uuid')
-        //  ->leftJoin('buildings', 'units.building_id','buildings.id' )
-        //  ->where('units.property_uuid', session('property'))
-        //  ->groupBy('enrollees.uuid')
-        //  ->paginate(10);
 
         return view('enrollees.index',[
             'enrollees' => $enrollees,
@@ -50,6 +38,11 @@ class EnrolleeController extends Controller
             'unit' => $unit,
             'owner' => $owner
         ]);
+    }
+
+    public function show_unit_enrollees($unit_uuid)
+    {
+        return Unit::findOrFail($unit_uuid)->enrollees()->paginate(5);
     }
 
     /**

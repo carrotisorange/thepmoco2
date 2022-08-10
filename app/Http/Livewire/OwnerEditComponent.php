@@ -6,9 +6,6 @@ use App\Models\Province;
 use App\Models\Country;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
-use App\Models\DeedOfSale;
-use App\Models\Owner;
-use App\Models\Role;
 use DB;
 
 use Livewire\Component;
@@ -123,6 +120,10 @@ class OwnerEditComponent extends Component
             'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
             'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
             'countries' => Country::orderBy('country', 'ASC')->get(),
+            'representatives' => app('App\Http\Controllers\OwnerController')->show_owner_representatives($this->owner_details->uuid),
+            'banks' => app('App\Http\Controllers\OwnerController')->show_owner_banks($this->owner_details->uuid),
+            'deed_of_sales' => app('App\Http\Controllers\OwnerController')->show_owner_deed_of_sales($this->owner_details->uuid),
+            'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid)
         ]);
     }
 }

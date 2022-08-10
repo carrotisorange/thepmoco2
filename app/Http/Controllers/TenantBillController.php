@@ -30,9 +30,9 @@ class TenantBillController extends Controller
 
         $unpaid_bills = $this->get_tenant_balance($tenant->uuid);
 
-        $bills = $this->get_tenant_bills($tenant->uuid);
+        $bills = $this->show_tenant_bills($tenant->uuid);
 
-        $contracts = app('App\Http\Controllers\TenantContractController')->get_tenant_contracts($tenant->uuid);
+        $contracts = app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid);
       
         return view('tenants.bills.index',[
             'tenant' => $tenant,  
@@ -44,7 +44,7 @@ class TenantBillController extends Controller
         ]);
     }
 
-    public function get_tenant_bills($tenant_uuid)
+    public function show_tenant_bills($tenant_uuid)
     {
         return Tenant::find($tenant_uuid)->bills()->where('bill','>', 0)->orderBy('bill_no','desc')->get();
     }

@@ -54,7 +54,6 @@ class TenantComponent extends Component
             'tenant' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants', 'unique:users'],
             'mobile_number' => 'nullable',
-            'type' => 'required',
             'gender' => 'required',
             'civil_status' => 'nullable',
             'country_id' => ['nullable', Rule::exists('countries', 'id')],

@@ -15,7 +15,7 @@
     </x-slot>
 
     <div class="p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Unit Details</h1>
+   
         <div>
             <form action="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/update" method="POST"
                 id="edit-form" enctype="multipart/form-data">
@@ -192,122 +192,12 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Tenants</h1>
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="bg-gray-50">
-                <tr>
-                    <x-th>#</x-th>
-                    <x-th>Tenant</x-th>
-                    <x-th>Contract</x-th>
-                    <x-th>Rent/Mo</x-th>
-                    <x-th>Status</x-th>
-                    <x-th>Interaction</x-th>
-                    <x-th></x-th>
-                </tr>
-            </thead>
-            @forelse ($contracts as $index => $item)
-            <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <x-td>{{ $index +1 }}</x-td>
-                    <x-td>
-                        <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}"><b
-                                class="text-blue-600">{{ $item->tenant->tenant}} </b></a>
-                    </x-td>
-                    <x-td>
-                        <div class="text-sm text-gray-900">{{
-                            Carbon\Carbon::parse($item->start)->format('M d, Y').' -
-                            '.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
-                        </div>
-
-                        <div class="text-sm text-gray-500">{{
-                            Carbon\Carbon::parse($item->end)->diffInMonths($item->start)
-                            }} months
-                        </div>
-
-                    </x-td>
-                    <x-td>{{number_format($item->rent, 2)}}</x-td>
-                    <x-td>
-                        @if($item->status === 'active')
-                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            <i class="fa-solid fa-circle-check"></i> {{ $item->status }}
-                        </span>
-                        @else
-
-                        <span class="px-2 text-sm leading-5 font-semibold rounded-full
-                                                                bg-orange-100 text-orange-800">
-                            <i class="fa-solid fa-clock"></i> {{
-                            $item->status }}
-                        </span>
-                        @endif
-                        @if($item->end <= Carbon\Carbon::now()->addMonth() && $item->status
-                            == 'active')
-                            <span
-                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                <i class="fa-solid fa-clock"></i> expiring
-                            </span>
-                            @endif
-                    </x-td>
-                    <x-td>{{ $item->interaction->interaction }}</x-td>
-                    <x-td>
-                        <x-button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
-                            type="button">Actions<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7">
-                                </path>
-                            </svg></x-button>
-
-                        <div id="dropdownDivider.{{ $item->uuid }}"
-                            class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-1" aria-labelledby="dropdownDividerButton">
-
-                                <li>
-                                    <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/export"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                            class="fa-solid fa-file-contract"></i>&nbspExport
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                            class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                            class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
-                                    </a>
-                                </li>
-
-                            </ul>
-                            <?php
-                                $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
-                            ?>
-                            @if($item->status == 'active')
-                            <div class="py-1">
-                                @if($unpaid_bills->count()<=0) <a href="/contract/{{ $item->uuid }}/moveout"
-                                    class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                    <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
-                                    @else
-                                    <a data-modal-toggle="popup-error-modal" href="#/"
-                                        class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                        <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
-                                    @endif
-
-                            </div>
-                            @endif
-                        </div>
-                    </x-td>
-                    @empty
-                    <x-td>No data found!</x-td>
-                </tr>
-            </tbody>
-            @endforelse
-        </table>
+        <h1 class="font-bold">Contracts</h1>
+        @include('tables.contracts')
         <div class="mt-5">
-            <span>Showing the last 5 tenants</span>
+            {{ $contracts->links() }}
+        </div>
+        <div class="mt-5">
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/create'">
@@ -323,55 +213,10 @@
 
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Unit Owners</h1>
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <?php $ctr =1; ?>
-            <thead class="bg-gray-50">
-                <tr>
-                    <x-th>#</x-th>
-                    <x-th>Name</x-th>
-                    <x-th>Date of turnover</x-th>
-                    <x-th>Price</x-th>
-                    <x-th>Classification</x-th>
-                    <x-th>Status</x-th>
-
-                </tr>
-            </thead>
-            @forelse ($deed_of_sales as $item)
-            <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <x-td>{{ $ctr++ }}</x-td>
-                    <x-td>
-                        <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}"><b
-                                class="text-blue-600">{{ $item->owner->owner}} </b></a>
-                    </x-td>
-                    <x-td>
-                        {{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
-                    </x-td>
-                    <x-td>{{ number_format($item->price, 2) }}</x-td>
-                    <x-td>{{ $item->classification }}</x-td>
-                    <x-td>
-                        @if($item->status === 'active')
-                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            <i class="fa-solid fa-circle-check"></i> {{
-                            $item->status }}
-                            @else
-                            <span
-                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                <i class="fa-solid fa-clock"></i> {{
-                                $item->status }}
-                            </span>
-                            @endif
-                    </x-td>
-
-                    @empty
-                    <x-td>No data found!</x-td>
-                    @endforelse
-                </tr>
-            </tbody>
-        </table>
+        <h1 class="font-bold">Deed of sales</h1>
+        @include('tables.deed_of_sales')
         <div class="mt-5">
-            <span>Showing the last 5 unit owners</span>
+            {{ $deed_of_sales->links() }}
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Str::random(8) }}/create'">
@@ -388,109 +233,14 @@
 
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Management Agreements</h1>
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <?php $ctr =1; ?>
-            <thead class="bg-gray-50">
-                <tr>
-                    <x-th>#</x-th>
-                    <x-th>Owner</x-th>
-                    <x-th>Contract Period</x-th>
-                    <x-th>Agreed Rent/mo</x-th>
-                    <x-th>Status</x-th>
-
-                    <x-th></x-th>
-                </tr>
-            </thead>
-            @forelse ($enrollees as $item)
-            <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <x-td>{{ $ctr++ }}</x-td>
-                    <x-td>
-                        <a href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}"><b
-                                class="text-blue-600">{{ $item->owner->owner}} </b></a>
-                    </x-td>
-                    <x-td>
-                        <div class="text-sm text-gray-900">{{
-                            Carbon\Carbon::parse($item->start)->format('M d, Y').' -
-                            '.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
-                        </div>
-                        <div class="text-sm text-gray-500">{{
-                            Carbon\Carbon::parse($item->end)->diffForHumans($item->start)
-                            }}
-                        </div>
-                    </x-td>
-                    <x-td>
-                        {{ number_format($item->rent, 2) }}
-                    </x-td>
-                    <x-td>
-                        @if($item->status === 'active')
-                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            <i class="fa-solid fa-circle-check"></i> {{
-                            $item->status }}
-                            @else
-                            <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                <i class="fa-solid fa-clock"></i> {{
-                                $item->status }}
-                            </span>
-                            @endif
-                    </x-td>
-
-                    <x-td>
-                        <x-button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
-                            type="button">Actions<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7">
-                                </path>
-                            </svg></x-button>
-
-                        <div id="dropdownDivider.{{ $item->uuid }}"
-                            class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-1" aria-labelledby="dropdownDividerButton">
-
-                                <li>
-                                    <a href="/contract/{{ $item->uuid }}/edit"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                            class="fa-solid fa-file-contract"></i>&nbspShow
-                                        Contract</a>
-                                </li>
-
-                                <li>
-                                    <a href="/contract/{{ $item->uuid }}/transfer"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                            class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
-                                        Contract</a>
-                                </li>
-                                <li>
-                                    <a href="/contract/{{ $item->uuid }}/renew"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                            class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
-                                        Contract</a>
-                                </li>
-                            </ul>
-                            @if($item->status == 'active')
-                            <div class="py-1">
-                                <a href="/contract/{{ $item->uuid }}/moveout/bills"
-                                    class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                    <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspUnenroll</a>
-                            </div>
-                            @endif
-                        </div>
-                    </x-td>
-                    @empty
-                    <x-td>No data found!</x-td>
-                    @endforelse
-                </tr>
-            </tbody>
-        </table>
+        <h1 class="font-bold">Enrollees</h1>
+        @include('tables.enrollees')
         <div class="mt-5">
-            <span>Showing the last 5 management agreements</span>
+            {{ $enrollees->links() }}
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/{{ $unit->uuid }}/enrollee/'">
                     Add
-
                 </x-button>
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/enrollee/'">
@@ -503,66 +253,9 @@
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
         <h1 class="font-bold">Bills</h1>
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <?php $ctr =1; ?>
-            <thead class="bg-gray-50">
-                <tr>
-                    <x-th>#</x-th>
-                    <x-th>Tenant</x-th>
-                    <x-th>Particular</x-th>
-                    <x-th>Period</x-th>
-                    <x-th>Amount Due</x-th>
-
-                    <x-th>Amount Paid</x-th>
-                    <x-th>Balance</x-th>
-                </tr>
-            </thead>
-            @forelse ($bills as $item)
-            <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <x-td>{{ $item->bill_no }}</x-td>
-                    <x-td><a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/bills"><b
-                                class="text-blue-600">{{$item->tenant->tenant }}</b></a></x-td>
-                    <x-td>{{$item->particular->particular }}</x-td>
-                    <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
-                        Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
-                    <x-td>{{number_format($item->bill,2) }}
-                        @if($item->status === 'paid')
-                        <span title="paid"
-                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </span>
-                        @elseif($item->status === 'partially_paid')
-                        <span title="partially_paid"
-                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                            <i class="fa-solid fa-clock"></i>
-                        </span>
-                        @else
-                        <span title="unpaid"
-                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                            <i class="fa-solid fa-circle-xmark"></i>
-                        </span>
-                        @endif
-
-                        @if($item->description === 'movein charges' && $item->status==='unpaid')
-                        <span title="urgent"
-                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                            <i class="fa-solid fa-bolt"></i>
-                        </span>
-                        @endif
-                    </x-td>
-                    <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
-                    <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
-                    @empty
-                    <x-td>
-                        No data found!
-                    </x-td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+        @include('tables.bills')
         <div class="mt-5">
-            <span>Showing the last 5 bills</span>
+         {{ $bills->links() }}
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/bills/'">

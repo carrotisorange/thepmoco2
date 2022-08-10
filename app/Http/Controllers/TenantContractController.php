@@ -37,7 +37,7 @@ class TenantContractController extends Controller
         return view('units.index');
     }
 
-    public function get_tenant_contracts($tenant_uuid)
+    public function show_tenant_contracts($tenant_uuid)
     {
         return Tenant::find($tenant_uuid)->contracts;
     }

@@ -20,6 +20,11 @@ class DeedOfSaleController extends Controller
         //
     }
 
+    public function show_unit_deed_of_sales($unit_uuid)
+    {
+        return Unit::findOrFail($unit_uuid)->deed_of_sales()->paginate(5);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

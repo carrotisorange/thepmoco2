@@ -1,6 +1,5 @@
 <div>
-    <form class="space-y-8 divide-y divide-gray-200" method="POST" wire:submit.prevent="createForm"
-        action="/property/{{ Str::random(8) }}/store">
+    <form class="space-y-8 divide-y divide-gray-200" method="POST" wire:submit.prevent="submitForm()"
         @csrf
         <div class=" space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div>
@@ -197,9 +196,8 @@
                             class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                             Cancel
                         </button>
-                        <x-form-button type="submit"
-                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                            Save
+                        <x-form-button type="submit" wire:loading.remove wire:click="submitForm()" id="create-form">
+                            Submit
                         </x-form-button>
                     </div>
                 </div>

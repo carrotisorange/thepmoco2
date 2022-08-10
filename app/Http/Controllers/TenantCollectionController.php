@@ -30,7 +30,7 @@ class TenantCollectionController extends Controller
     {
         return view('tenants.collections.index',[
          'tenant' => Tenant::find($tenant->uuid),
-         'collections' => app('App\Http\Controllers\TenantController')->get_tenant_collections($tenant->uuid),
+         'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($tenant->uuid),
         ]);
     }
 

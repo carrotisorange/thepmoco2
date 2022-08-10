@@ -8,8 +8,8 @@ use App\Http\Controllers\SubscriptionController;
 //All routes for user
 Route::prefix('user')->group(function(){
     //routes for user crud operations
-
     Route::patch('{user}/update',[UserController::class, 'update']);
+
     Route::get('{user}/edit',[UserController::class, 'edit'])->name('profile');
 
     Route::get('{user}/subscriptions',[SubscriptionController::class, 'index'])->name('subscription');

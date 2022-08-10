@@ -105,20 +105,16 @@ class UnitController extends Controller
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens a',2);
 
-        $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
-        ->where('property_buildings.property_uuid', Session::get('property'))
-        ->get();
-
         return view('units.show',[
             'unit' => $unit,
-            'buildings' => $buildings,
-            'floors' => Floor::all(),
-            'categories' => Category::all(),
-            'statuses' => Status::all(),
-            'contracts' => Unit::findOrFail($unit->uuid)->contracts()->paginate(5),
-            'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales()->paginate(5),
-            'bills' => Unit::findOrFail($unit->uuid)->bills()->paginate(5),
-            'enrollees' => Unit::findOrFail($unit->uuid)->enrollees()->paginate(5)
+            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(),
+            'floors' => app('App\Http\Controllers\FloorController')->index(),
+            'categories' => app('App\Http\Controllers\CategoryController')->index(),
+            'statuses' => app('App\Http\Controllers\StatusController')->index(),
+            'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($unit->uuid),
+            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
+            'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($unit->uuid),
+            'enrollees' => app('App\Http\Controllers\EnrolleeController')->show_unit_enrollees($unit->uuid)
         ]);
 
         // return view('units.show', [
@@ -147,23 +143,7 @@ class UnitController extends Controller
 
     public function edit(Unit $unit)
     {
-        $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
-        ->where('property_buildings.property_uuid', Session::get('property'))
-        ->get();
-
-        return view('units.edit',[
-            
-            'unit' => $unit,
-            'buildings' => $buildings,
-            'floors' => Floor::all(),
-            'categories' => Category::all(),
-            'statuses' => Status::all(),
-             'contracts' => Unit::findOrFail($unit->uuid)->contracts()->paginate(5),
-             'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales()->paginate(5),
-             'bills' => Unit::findOrFail($unit->uuid)->bills()->paginate(5),
-             'enrollees' => Unit::findOrFail($unit->uuid)->enrollees()->paginate(5)
-        ]);
-
+        
     }
 
     /**

@@ -101,10 +101,10 @@
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/units'">
-                   Add Property Documents
+                    Add Property Documents
                 </x-button>
                 <x-button onclick="window.location.href='/owner/{{ $owner_details->uuid }}/deed_of_sales/'">
-                   See more property documents
+                    See more property documents
                 </x-button>
 
             </p>
@@ -112,7 +112,7 @@
     </div>
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
-        <h1 class="font-bold">Management Agreements</h1>
+        <h1 class="font-bold">Enrollees</h1>
         <table class="min-w-full divide-y divide-gray-200">
             <?php $ctr =1; ?>
             <thead class="bg-gray-50">
@@ -183,13 +183,14 @@
             </tbody>
         </table>
         <div class="mt-5">
-            <span>Showing the last 5 management agreements</span>
+            <span>Showing the last 5 Enrollees</span>
             <p class="text-right">
-                {{-- <x-button onclick="window.location.href='/owner/{{ $owner_details->uuid }}/enrollee/{{ Str::random(8) }}/create'">
+                {{-- <x-button
+                    onclick="window.location.href='/owner/{{ $owner_details->uuid }}/enrollee/{{ Str::random(8) }}/create'">
                     Add to lease
                 </x-button> --}}
                 <x-button onclick="window.location.href='/owner/{{ $owner_details->uuid }}/enrollees/'">
-                    See more management agreements
+                    See more Enrollees
                 </x-button>
 
             </p>

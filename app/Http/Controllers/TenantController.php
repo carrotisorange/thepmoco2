@@ -55,6 +55,7 @@ class TenantController extends Controller
      */
     public function show(Property $property, Tenant $tenant)
     {
+        
         //store activity for opening a particular tenant.
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
 
@@ -189,7 +190,7 @@ class TenantController extends Controller
         return back()->with('succcess', 'Credentials are generated successfully!');
     }
 
-    public function get_tenant_contracts($tenant_uuid)
+    public function show_tenant_contracts($tenant_uuid)
     {
        return Contract::where('tenant_uuid', $tenant_uuid)->orderBy('start','desc')->paginate(5);
     }
@@ -199,17 +200,17 @@ class TenantController extends Controller
        return Reference::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(5);
     }
 
-    public function get_tenant_guardians($tenant_uuid)
+    public function show_tenant_guardians($tenant_uuid)
     {
        return Guardian::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(5);
     }
 
-    public function get_tenant_bills($tenant_uuid)
+    public function show_tenant_bills($tenant_uuid)
     {
        return Bill::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(5);
     }
 
-    public function get_tenant_collections($tenant_uuid)
+    public function show_tenant_collections($tenant_uuid)
     {
        return AcknowledgementReceipt::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(5);
     }

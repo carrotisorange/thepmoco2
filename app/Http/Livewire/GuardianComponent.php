@@ -97,7 +97,7 @@ class GuardianComponent extends Component
     {
         return view('livewire.guardian-component',[
             'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
-            'guardians' => app('App\Http\Controllers\TenantController')->get_tenant_guardians($this->tenant->uuid)
+            'guardians' => app('App\Http\Controllers\TenantController')->show_tenant_guardians($this->tenant->uuid)
         ]);
     }
 }

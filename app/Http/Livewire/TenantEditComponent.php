@@ -148,15 +148,15 @@ class TenantEditComponent extends Component
     public function render()
     {   
             return view('livewire.tenant-edit-component',[
-            'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
-            'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
-            'countries' => Country::orderBy('country', 'ASC')->get(),
-            'relationships' => Relationship::all(),
+            'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
+            'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
+            'countries' =>  app('App\Http\Controllers\CountryController')->index(),
+            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
             'references' => app('App\Http\Controllers\TenantController')->get_tenant_references($this->tenant_details->uuid),     
-            'guardians' => app('App\Http\Controllers\TenantController')->get_tenant_guardians($this->tenant_details->uuid),
-            'contracts' => app('App\Http\Controllers\TenantController')->get_tenant_contracts($this->tenant_details->uuid),
-            'bills' => app('App\Http\Controllers\TenantController')->get_tenant_bills($this->tenant_details->uuid),
-            'collections' => app('App\Http\Controllers\TenantController')->get_tenant_collections($this->tenant_details->uuid),
+            'guardians' => app('App\Http\Controllers\TenantController')->show_tenant_guardians($this->tenant_details->uuid),
+            'contracts' => app('App\Http\Controllers\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
+            'bills' => app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant_details->uuid),
+            'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($this->tenant_details->uuid),
             'tenant' => Tenant::find($this->tenant_details->uuid),
          ]);
     }

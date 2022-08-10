@@ -11,10 +11,8 @@ use App\Mail\WelcomeMailToMember;
 use Carbon\Carbon;
 use App\Models\Property;
 use Session;
-use App\Models\UserProperty;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use App\Models\Subscription;
 
 class UserController extends Controller
 {
@@ -162,7 +160,7 @@ public function show_all_users()
      */
     public function edit(User $user)
     {        
-
+    
        if($user->id === auth()->user()->id || auth()->user()->role_id === 'manager'){
 
          //app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
@@ -172,7 +170,7 @@ public function show_all_users()
             'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
            ]);
        }else{
-            abort(404);
+            abort(403);
        }
 
     }

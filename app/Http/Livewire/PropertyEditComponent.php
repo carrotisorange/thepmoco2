@@ -73,7 +73,7 @@ class PropertyEditComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function updateForm(Request $request)
+    public function submitForm(Request $request)
     {   
         sleep(1);
 

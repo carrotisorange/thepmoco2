@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Point;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Property;
-use DB;
-use Session;
 
 class PointController extends Controller
 {

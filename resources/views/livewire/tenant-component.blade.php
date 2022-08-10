@@ -44,7 +44,7 @@
             <div class="mt-2 flex flex-wrap mb-2">
                 <div class="w-full md:w-1/4  mb-3">
                     <x-label for="type">
-                        Type <span class="text-red-600">*</span>
+                        Type 
                     </x-label>
                     <x-form-select wire:model.lazy="type" id="type" name="type">
                         <option value="">Select one</option>

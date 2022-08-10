@@ -5,15 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Contract;
 use Illuminate\Http\Request;
 use App\Models\Unit;
-use App\Models\City;
-use App\Models\Province;
-use App\Models\Country;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use App\Models\Tenant;
 use App\Models\Bill;
 use App\Models\Property;
-use App\Models\PropertyParticular;
 use Session;
 use DB;
 
@@ -27,6 +22,11 @@ class ContractController extends Controller
     public function index($property)
     {
         return Contract::where('property_uuid', $property)->where('status', 'active')->get();
+    }
+
+    public function show_unit_contracts($unit_uuid)
+    {
+        return Unit::findOrFail($unit_uuid)->contracts()->paginate(5);
     }
 
     /**

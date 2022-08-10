@@ -14,7 +14,7 @@ class FloorController extends Controller
      */
     public function index()
     {
-        return Floor::all   ();
+        return Floor::all();
     }
 
     /**
