@@ -21,9 +21,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
     </div>
-
     <div class="flex flex-wrap mb-6">
 
         <div class="w-full md:w-1/3 ">
@@ -65,9 +63,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
     </div>
-
     @if($interaction_id == 10)
     <div class="flex flex-wrap mb-6">
         <div class="mt-2 w-full md:w-full  mb-6 md:mb-0">
@@ -84,7 +80,6 @@
         </div>
     </div>
     @endif
-
     <div class="flex flex-wrap mb-6">
         <div class="mt-2 w-full md:w-full  mb-6 md:mb-0">
             <x-label for="contract">
@@ -98,10 +93,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
-
     @if($tenant->email)
     <div class="flex flex-wrap mb-6">
         <div class="mt-2 w-full md:w-full  mb-6 md:mb-0">
@@ -121,14 +113,9 @@
     @endif
     <div class="pt-5">
         <div class="flex justify-end">
-
             <x-form-button type="submit" wire:loading.remove wire:click="submitForm()" id="create-form">
                 Submit
             </x-form-button>
-
-            {{-- <button type="button" wire:loading wire:target="submitForm" disabled
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Processing...</button>
-            --}}
         </div>
     </div>
 </form>

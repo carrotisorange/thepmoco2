@@ -1,8 +1,6 @@
-<table class="text-sm min-w-full divide-y divide-gray-200">
-    <?php $ctr =1; ?>
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-            <x-th>#</x-th>
             <x-th>Unit</x-th>
             <x-th>Date of turnover</x-th>
             <x-th>Price</x-th>
@@ -14,7 +12,6 @@
     @forelse ($deed_of_sales as $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-            <x-td>{{ $ctr++ }}</x-td>
             <x-td>
                 <div class="text-sm text-gray-900">{{
                     $item->unit->unit}}
@@ -41,11 +38,11 @@
                     @endif
             </x-td>
             <x-td>
-                
+
             </x-td>
             @empty
             <x-td>No data found</x-td>
-            @endforelse
         </tr>
+        @endforelse
     </tbody>
 </table>

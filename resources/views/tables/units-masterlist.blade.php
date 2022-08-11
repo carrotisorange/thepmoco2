@@ -1,5 +1,4 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <?php $ctr =1; ?>
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
@@ -13,10 +12,9 @@
 
         </tr>
     </thead>
-    @forelse ($units as $index => $unit)
+    @forelse ($units as $unit)
     <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <tr>
-            <x-td>{{ $index }}</x-td>
             <x-td><a class="text-blue-600" href="/unit/{{ $unit->unit->uuid }}/contracts">{{
                     $unit->unit->building->building.' '.$unit->unit->unit }}</a>
             </x-td>
@@ -123,6 +121,6 @@
                 No data found!
             </x-td>
         </tr>
+        @endforelse
     </tbody>
-    @endforelse
 </table>

@@ -10,8 +10,7 @@
         </x-button>
         <x-button data-modal-toggle="add-building-modal">Create a building
         </x-button>
-        {{-- @include('modals.show-unit-show-options')
-        @include('modals.show-unit-create-options') --}}
+
     </x-slot>
 
     <div class="p-6 bg-white border-b border-gray-200">
@@ -83,6 +82,9 @@
         @include('tables.bills')
         <div class="mt-5">
             {{ $bills->links() }}
+        </div>
+        <div class="mt-5">
+
             <p class="text-right">
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/bills/'">

@@ -1,5 +1,4 @@
 <table class="min-w-full divide-y divide-gray-200">
-    <?php $ctr =1; ?>
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
@@ -13,15 +12,13 @@
     @forelse ($representatives as $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-            <x-td>{{ $ctr++ }}</x-td>
             <x-td>{{ $item->representative }}</x-td>
             <x-td>{{ $item->relationship->relationship }}</x-td>
             <x-td>{{ $item->email }}</x-td>
             <x-td>{{ $item->mobile_number }}</x-td>
-
             @empty
             <x-td>No data found!</x-td>
-            @endforelse
         </tr>
+        @endforelse
     </tbody>
 </table>

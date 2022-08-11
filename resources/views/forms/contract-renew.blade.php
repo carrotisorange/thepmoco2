@@ -58,8 +58,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
     <div class="flex flex-wrap mx-3 mb-6">
         <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
@@ -72,10 +70,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
-
     @if($contract_details->tenant->email)
     <div class="flex flex-wrap mx-3 mb-6">
         <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">

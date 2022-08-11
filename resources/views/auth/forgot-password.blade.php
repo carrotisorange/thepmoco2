@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @include('layouts.auth-head')
+    @include('layouts.head')
     <title>Forgot Password | The Property Manager</title>
 </head>
 

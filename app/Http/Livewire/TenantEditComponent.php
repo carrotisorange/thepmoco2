@@ -1,27 +1,11 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Mail\WelcomeMailToNewTenant;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Tenant;
-use Illuminate\Support\Str;
 use Livewire\Component;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\UserProperty;
 use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Validation\Rule;
-use App\Models\Country;
-use App\Models\Province;
-use App\Models\City;
-use Session;
-use App\Models\Relationship;
-use App\Models\AcknowledgementReceipt;
-use App\Models\Bill;
-use App\Models\Contract;
-use App\Models\Guardian;
-use App\Models\Reference;
 use Livewire\WithPagination;
 
 class TenantEditComponent extends Component
@@ -84,7 +68,7 @@ class TenantEditComponent extends Component
         $this->occupation = $tenant_details->occupation;
         $this->employer_address = $tenant_details->employer_address;
         $this->employer = $tenant_details->employer;
-        $this->photo_id = $this->photo_id;
+        $this->photo_id = $tenant_details->photo_id;
     }
 
     protected function rules()
@@ -99,8 +83,8 @@ class TenantEditComponent extends Component
             'country_id' => ['nullable', Rule::exists('countries', 'id')],
             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
-            'barangay' => ['nullable'],
-            'photo_id' => ['nullable'],
+            'barangay' => 'nullable',
+            'photo_id' => 'nullable',
             'course' => 'nullable',
             'year_level' => 'nullable',
             'school' => 'nullable',
@@ -119,13 +103,12 @@ class TenantEditComponent extends Component
     public function submitForm()
     {
         sleep(1);
-
        
         $validatedData = $this->validate();
          
         try{
 
-            if($this->photo_id)
+            if(!$this->photo_id)
             {
                 $validatedData['photo_id'] = $this->photo_id->store('avatars');
             }

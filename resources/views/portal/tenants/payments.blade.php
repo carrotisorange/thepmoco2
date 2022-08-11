@@ -1,4 +1,4 @@
-<x-tenant-portal-component>
+<x-portal-layout>
     @section('title', 'Payments')
 
     @section('header', 'Payments')
@@ -64,7 +64,7 @@
 
                                 <td class="px-6 py-4 whitespace-nowrap">
 
-                                {{ number_format($item->amount,2) }}
+                                    {{ number_format($item->amount,2) }}
 
                                 </td>
 
@@ -85,7 +85,7 @@
                             @endforeach
                             <x-td>Total</x-td>
                             <x-td></x-td>
-                            
+
                             <x-td></x-td>
                             <?php
                                 $payments_count = App\Models\Collection::where('tenant_uuid', $item->tenant->uuid)->count();
@@ -100,4 +100,4 @@
             </div>
         </div>
     </div>
-</x-tenant-portal-component>
+</x-portal-layout>

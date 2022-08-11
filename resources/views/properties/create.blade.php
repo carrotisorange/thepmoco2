@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @include('layouts.auth-head')
+    @include('layouts.head')
     <title>Property | The Property Manager</title>
 </head>
 
@@ -54,18 +54,18 @@
 
                             <x-slot name="content">
 
-                              <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
+                                <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                                     Profile
                                 </x-dropdown-link>
-                                
+
                                 <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
                                 </x-dropdown-link>
-                                
+
                                 <x-dropdown-link href="/property">
                                     Properties
                                 </x-dropdown-link>
-                                
+
                                 <x-dropdown-link href="/users">
                                     Users
                                 </x-dropdown-link>

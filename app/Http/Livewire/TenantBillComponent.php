@@ -139,7 +139,7 @@ class TenantBillComponent extends Component
 
       $bills = Tenant::find($this->tenant->uuid)
       ->bills()
-      ->orderBy('bill_no','asc')
+      ->orderBy('bill_no','desc')
       ->when($this->status, function($query){
          $query->where('status', $this->status);
       })

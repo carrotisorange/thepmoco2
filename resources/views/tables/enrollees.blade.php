@@ -1,8 +1,6 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <?php $ctr =1; ?>
     <thead class="bg-gray-50">
         <tr>
-            <x-th>#</x-th>
             <x-th>Unit</x-th>
             <x-th>Duration</x-th>
             <x-th>Contact</x-th>
@@ -10,10 +8,9 @@
             <x-th>Status</x-th>
         </tr>
     </thead>
-    @foreach ($enrollees as $item)
+    @forelse ($enrollees as $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-            <x-td>{{ $ctr++ }}</x-td>
             <x-td>
                 <div class="text-sm text-gray-900">{{ $item->unit->unit }}
                 </div>
@@ -56,10 +53,9 @@
                     </span>
                     @endif
             </x-td>
-
+            @empty
+            <x-td>No data found</x-td>
         </tr>
-
-        <!-- More people... -->
+        @endforelse
     </tbody>
-    @endforeach
 </table>

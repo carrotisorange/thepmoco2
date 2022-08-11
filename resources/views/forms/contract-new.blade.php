@@ -39,11 +39,8 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
     </div>
-
     <div class="flex flex-wrap mx-3 mb-6">
-
         <div class="w-full md:w-1/3 px-3">
             <x-label for="term">
                 Term
@@ -51,7 +48,6 @@
             <x-form-input wire:model="term" id="term" value="{{ old('term', $term)}} " type="text" name="term"
                 readonly />
         </div>
-
         <div class="w-full md:w-1/3 px-3">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                 Rent/mo
@@ -63,7 +59,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
         <div class="w-full md:w-1/3 px-3">
             <x-label for="discount">
                 Discount
@@ -75,8 +70,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
     <div class="flex flex-wrap mx-3 mb-6">
         <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
@@ -89,8 +82,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
     <div class="mt-5">
         <p class="text-right">

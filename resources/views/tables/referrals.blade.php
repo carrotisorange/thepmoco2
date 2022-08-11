@@ -1,8 +1,6 @@
 <table class="min-w-full divide-y divide-gray-200">
-    <?php $ctr =1; ?>
     <thead class="bg-gray-50">
         <tr>
-            <x-th>#</x-th>
             <x-th>Name</x-th>
             <x-th>Contract</x-th>
             <x-th>Admin</x-th>
@@ -12,7 +10,6 @@
     @forelse ($referrals as $referral)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-            <x-td>{{ $ctr++ }}</x-td>
             <x-td>{{ $referral->referral }}</x-td>
             <x-td>{{$referral->contract->tenant->tenant.' in
                 '.$referral->contract->unit->unit }}</x-td>
@@ -25,6 +22,6 @@
             @empty
             <x-td>No data found!</x-td>
         </tr>
+        @endforelse
     </tbody>
-    @endforelse
 </table>

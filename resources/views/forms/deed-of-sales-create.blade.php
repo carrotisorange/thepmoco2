@@ -9,7 +9,6 @@
             </x-label>
             <x-form-input wire:model="turnover_at" id="turnover_at" type="date" value="{{ old('start')}}"
                 name="turnover_at" />
-
             @error('turnover_at')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
@@ -19,7 +18,6 @@
                 Classification
                 </x-lab>
                 <x-form-select wire:model="classification" id="classification" name="classification">
-
                     <option value="">Select one</option>
                     <option value="regular" {{ old('classification')=='regular' ? 'selected' : 'Select one' }}>
                         {{
@@ -31,28 +29,22 @@
                         {{
                         'vvip' }}</option>
                 </x-form-select>
-
                 @error('classification')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
         </div>
-
     </div>
-
     <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
-
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <x-label for="price">
                 Price
             </x-label>
             <x-form-input wire:model="price" id="price" value="{{ old('price') }}" type="number" step="0.001"
                 name="price" />
-
             @error('price')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <x-label for="status">
                 Status
@@ -66,15 +58,11 @@
                     {{
                     'inactive' }}</option>
             </x-form-select>
-
             @error('status')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
-
     <div class="flex flex-wrap mx-3 mb-6">
         <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
             <x-label for="contract" :value="__('Contract (Please attached the signed contract here.)')" />
@@ -87,7 +75,6 @@
             @enderror
         </div>
     </div>
-
     <div class="mt-5">
         <p class="text-right">
             <x-form-button>

@@ -1,8 +1,6 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <?php $ctr =1; ?>
     <thead class="bg-gray-50">
         <tr>
-            <x-th>#</x-th>
             <x-th>Tenant</x-th>
             <x-th>Unit</x-th>
             <x-th>Duration</x-th>
@@ -15,7 +13,6 @@
     @forelse ($contracts as $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-            <x-td>{{ $ctr++ }}</x-td>
             <x-td>
                 <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold"
                         href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">{{
@@ -136,6 +133,6 @@
             @empty
             <x-td>No data found!</x-td>
         </tr>
+        @endforelse
     </tbody>
-    @endforelse
 </table>

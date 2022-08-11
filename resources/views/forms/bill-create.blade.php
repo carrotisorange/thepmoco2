@@ -1,7 +1,6 @@
 <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="post"
     action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bill/store">
     @csrf
-
     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Bill Information</h3>
     <div>
         <div class="mt-5 flex flex-wrap -mx-3 mb-6">
@@ -104,6 +103,5 @@
             </p>
         </div>
 </form>
-
 </div>
 </form>

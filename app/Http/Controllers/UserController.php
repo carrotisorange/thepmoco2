@@ -25,26 +25,21 @@ public function index(Property $property)
 {
         $this->authorize('accountowner');
 
-        $users = Property::find(Session::get('property'))->property_users->where('user_id', '!=', auth()->user()->id);
-
-        $properties = User::find(auth()->user()->id)->user_properties->where('property_uuid', '!=', Session::get('property'));
-
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
 
         return view('users.index',[
-            'users' => $users,
-            'properties' => $properties
+            'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users($property->uuid,auth()->user()->id),
+            'properties' => app('App\Http\Controllers\UserPropertyController')->show_user_properties($property->uuid,auth()->user()->id),
         ]);
 }
 
-public function show_all_users()
-{
-    $users =  User::find(auth()->user()->id)->where('account_owner_id', auth()->user()->id)->get();
-
-    return view('users.all-users', [
-        'users' => $users
-    ]);
-}
+// public function show_all_users(Property $property)
+// {
+//     return view('users.all-users', [
+//         'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users($property->uuid,auth()->user()->id),
+//         'properties' => app('App\Http\Controllers\UserPropertyController')->show_user_properties($property->uuid,auth()->user()->id),
+//     ]);
+// }
 
     /**
      * Show the form for creating a new resource.

@@ -31,8 +31,6 @@ use App\Http\Controllers\DeedOfSaleController;
 use App\Http\Controllers\PropertyBillCustomizedController;
 use App\Http\Controllers\PropertyBillExpressController;
 use App\Http\Controllers\ContractController;
-use App\Http\Controllers\ExportSignedContractController;
-use App\Http\Controllers\MoveoutContractBillController;
 use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\UnitEnrolleeController;
 use App\Http\Controllers\UserController;
@@ -77,7 +75,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::prefix('{unit}')->group(function(){
             Route::get('/', [UnitController::class, 'show'])->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
-            // Route::get('edit', [UnitController::class, 'edit']);
             Route::patch('update', [UnitController::class, 'update']);
             Route::get('contracts', [UnitContractController::class, 'index']);
 
@@ -86,12 +83,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{random_str}/create/export', [UnitContractController::class, 'export']);
                 Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create']);
             });
-
-            // Route::prefix('deed_of_sale')->group(function(){
-            //     Route::post('{random_str}/create',[DeedOfSaleController::class,'create']);
-            //     Route::post('{random_str}/store',[DeedOfSaleController::class,'store']);
-            // });
-
                 
             Route::prefix('owner')->group(function(){
                 Route::get('/', [OwnerController::class, 'index']);
@@ -256,23 +247,5 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/owner_contract', [PropertyController::class, 'show_owner_contract']);
 
     Route::get('roles', [PropertyRoleController::class, 'index']);
-});
-
-    //'Route::get('tenant/{tenant}/unit/{unit}/contract/units', [TenantContractController::class, 'units']);
-    Route::get('tenant/{tenant}/unit/{unit}/edit', [TenantContractController::class, 'create']);
-    // Route::get('tenant/{tenant}/unit/{unit}/contract/create', [TenantContractController::class, 'create']);
-
-
-    Route::post('unit/{unit}/tenant/{tenant}/contract/{random_str}/store', [ContractController::class, 'store']);
-    Route::get('/contract/{contract}/edit', [ContractController::class, 'edit']);
-    Route::get('/contract/{contract}/preview', [ContractController::class, 'preview']);
-    Route::patch('/contract/{contract}/update', [ContractController::class, 'update']);
-    //5
-    Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create',[BillController::class,'create']);
-    Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);
-
-    Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create',[BillController::class,'create']);
-    Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);
-
-    Route::get('/leasing/{enrollee}/pullout', [EnrolleeController::class, 'update']);
+    });
 });

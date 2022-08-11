@@ -1,4 +1,4 @@
-<x-tenant-portal-component>
+<x-portal-layout>
     @section('title', 'Bills')
 
     @section('header', 'Bills')
@@ -6,11 +6,11 @@
     <div class="flex flex-col p-10">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div class="mb-5">
-                {{ $bills->links() }}
-              </div>
+                <div class="mb-5">
+                    {{ $bills->links() }}
+                </div>
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                   
+
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
@@ -34,30 +34,33 @@
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Particular
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Amount Due
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Amount Paid
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Balance
                                 </th>
 
-                              
+
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($bills as $index => $item)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">    
+                                <td class="px-6 py-4 whitespace-nowrap">
                                     {{ $item->bill_no }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                 {{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}
+                                    {{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}
                                 </td>
 
-                               
+
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
 
@@ -86,25 +89,29 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ number_format($item->bill, 2) }}
                                     @if($item->status === 'paid')
-                                    <span title="paid" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                       <i class="fa-solid fa-circle-check"></i>
+                                    <span title="paid"
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        <i class="fa-solid fa-circle-check"></i>
                                     </span>
                                     @elseif($item->status === 'partially_paid')
-                                    <span title="partially paid" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                       <i class="fa-solid fa-clock"></i>
+                                    <span title="partially paid"
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                        <i class="fa-solid fa-clock"></i>
                                     </span>
                                     @else
-                                    <span title="unpaid" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                       <i class="fa-solid fa-circle-xmark"></i>
+                                    <span title="unpaid"
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        <i class="fa-solid fa-circle-xmark"></i>
                                     </span>
                                     @endif
 
                                     @if($item->description === 'movein charges' && $item->status==='unpaid')
-                                    <span title="urgent" class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                    <span title="urgent"
+                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                                         <i class="fa-solid fa-bolt"></i>
                                     </span>
                                     @endif
-                                
+
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
 
@@ -112,11 +119,11 @@
 
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                
-                                   {{ number_format(($item->bill-$item->initial_payment), 2) }}
-                                
+
+                                    {{ number_format(($item->bill-$item->initial_payment), 2) }}
+
                                 </td>
-                                
+
 
                                 {{-- <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900"></a>
@@ -144,4 +151,4 @@
             </div>
         </div>
     </div>
-</x-tenant-portal-component>
+</x-portal-layout>

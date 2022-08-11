@@ -8,7 +8,6 @@
                 Start
             </x-label>
             <x-form-input wire:model="start" id="start" type="date" value="{{ old('start', $start)}}" name="start" />
-
             @error('start')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
@@ -18,16 +17,12 @@
                 End
             </x-label>
             <x-form-input wire:model="end" id="end" type="date" name="end" value="{{ old('end', $end )}}" />
-
             @error('end')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
     </div>
-
     <div class="flex flex-wrap mx-3 mb-6">
-
         <div class="w-full md:w-1/2 px-3">
             <x-label for="term">
                 Term
@@ -35,18 +30,15 @@
             <x-form-input wire:model="term" id="term" value="{{ old('term', $term)}} " type="text" name="term"
                 readonly />
         </div>
-
         <div class="w-full md:w-1/4 px-3">
             <x-label for="rent">
                 Rent
             </x-label>
             <x-form-input wire:model="rent" id="rent" type="number" value="{{ old('rent',$rent) }}" name="rent" />
-
             @error('rent')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
         <div class="w-full md:w-1/4 px-3">
             <x-label for="discount">
                 Discount
@@ -58,10 +50,8 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
         <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
             <x-label for="contract" :value="__('Contract (Please attached the signed contract here.)')" />
-
             <x-form-input wire:model="contract" id="contract" type="file" name="contract"
                 value="{{ old('contract') }}" />
 
@@ -69,8 +59,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
     <div class="mt-5">
         <p class="text-right">

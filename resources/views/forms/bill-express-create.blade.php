@@ -1,15 +1,11 @@
 <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST"
     action="/property/{{ Session::get('property') }}/bill/express/{{ $active_contracts->count() }}/store">
     @csrf
-
     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Configure your express bills</h3>
-
     <p class="text-sm font-medium text-gray-900 dark:text-white">You're about to create <b>{{
             $active_contracts->count() }}</b> bills for <b>{{ $active_tenants->count('tenant_uuid') }}</b>
         active tenants. The period covered
     </p>
-
-
     <div class="mt-5">
 
         <x-label for="particular_id">
@@ -19,21 +15,12 @@
         <x-form-select wire:model="particular_id" name="particular_id" id="particular_id">
             <option value="">Select one</option>
             <option value="1" {{ old('particular_id')==1? 'selected' : 'Select one' }}>Rent </option>
-            {{-- @foreach ($particulars as $particular)
-            @if($particular->id == 1)
-            <option value="{{ $particular->id }}" {{ old('particular_id')==$particular->id?
-                'selected': 'Select one'
-                }}>{{ $particular->particular }}</option>
-            @endif
-            @endforeach --}}
-
         </x-form-select>
 
         @error('particular_id')
         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
         @enderror
     </div>
-
 
     <div class="mt-5">
         <x-label for="">
@@ -63,35 +50,8 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-
         </div>
-
     </div>
-
-    {{-- <div class="mt-5">
-        <x-label for="due_date">
-            Due Date
-        </x-label>
-        <x-form-input wire:model="due_date" id="start" type="date" name="due_date" value="{{ old('due_date') }}" />
-
-        @error('due_date')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
-
-    </div> --}}
-    {{--
-    <div class="mt-5">
-        <x-label for="due_date">
-            Amount<span class="text-red-600">*</span>
-        </x-label>
-        <x-form-input wire:model="bill" id="bill" type="number" name="bill" value="{{ old('bill') }}" />
-
-        @error('bill')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
-
-    </div> --}}
-
     <p class="text-right">
         <x-form-button>Create</x-form-button>
     </p>

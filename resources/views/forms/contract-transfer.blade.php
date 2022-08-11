@@ -5,7 +5,6 @@
             <x-label for="unit_uuid">
                 Select a unit
             </x-label>
-
             <x-form-select wire:model="unit_uuid" id="unit_uuid" name="unit_uuid">
                 <option value="">Select one</option>
                 @foreach ($units as $unit)
@@ -19,7 +18,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
         <div class="w-full md:w-1/4 px-3">
             <x-label for="start">
                 Start
@@ -40,11 +38,8 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
     </div>
-
     <div class="flex flex-wrap mx-3 mb-6">
-
         <div class="w-full md:w-1/3 px-3">
             <x-label for="term">
                 Term
@@ -52,7 +47,6 @@
             <x-form-input wire:model="term" id="term" value="{{ old('term', $term)}} " type="text" name="term"
                 readonly />
         </div>
-
         <div class="w-full md:w-1/3 px-3">
             <x-label for="rent">
                 Rent/mo
@@ -64,7 +58,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
         <div class="w-full md:w-1/3 px-3">
             <x-label for="discount">
                 Discount
@@ -76,8 +69,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
     <div class="flex flex-wrap mx-3 mb-6">
         <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
@@ -90,10 +81,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
     </div>
-
     @if($contract_details->tenant->email)
     <div class="flex flex-wrap mx-3 mb-6">
         <div class="mt-5 w-full md:w-full px-3 mb-6 md:mb-0">
@@ -111,8 +99,6 @@
         </div>
     </div>
     @endif
-
-
     <div class="mt-5">
         <p class="text-right">
             <x-button form="create-form">

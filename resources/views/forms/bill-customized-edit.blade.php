@@ -3,23 +3,16 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <x-th>
-                    {{-- <div class="flex items-center">
-                        <x-input id="" wire:model="selectAll" type="checkbox" />
-                    </div> --}}
                 </x-th>
                 <x-th>#</x-th>
                 <x-th>Tenant</x-th>
                 <x-th>Unit</x-th>
-                {{-- <x-th>Date Posted</x-th> --}}
                 <x-th>Start</x-th>
                 <x-th>End</x-th>
                 <x-th>Particular</x-th>
                 <x-th>Amount</x-th>
-                {{-- <x-th></x-th> --}}
             </tr>
         </thead>
-
-
         <tbody>
             @forelse ($bills as $index => $bill)
             <div wire:key="bill-field-{{ $bill->id }}">
@@ -67,18 +60,10 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
-                    {{-- <x-td>
-                        <x-table-input form="edit-form" wire:model="bills.{{ $index }}.is_posted" />
-
-                    </x-td> --}}
                 </tr>
                 @empty
-                <tr>
-                    <x-td>No data found.</x-td>
-                </tr>
-
+                <x-td>No data found.</x-td>
                 @endforelse
         </tbody>
-
     </table>
 </form>

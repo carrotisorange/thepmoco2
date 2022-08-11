@@ -51,6 +51,6 @@
             @empty
             <x-td>No data found!</x-td>
         </tr>
+        @endforelse
     </tbody>
-    @endforelse
 </table>

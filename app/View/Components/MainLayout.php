@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class TenantPortalComponent extends Component
+class MainLayout extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class TenantPortalComponent extends Component
      */
     public function render()
     {
-        return view('components.tenant-portal-component');
+        return view('components.main-layout');
     }
 }

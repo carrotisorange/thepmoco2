@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @include('layouts.auth-head')
+    @include('layouts.head')
     <title>Reset Password | The Property Manager</title>
 </head>
 
@@ -10,7 +10,8 @@
 
     <div class="min-h-screen bg-white flex">
         <div class="hidden lg:block relative w-0 flex-1">
-            <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('/brands/dashboard_home.png') }}" alt="">
+            <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('/brands/dashboard_home.png') }}"
+                alt="">
         </div>
         <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div class="mx-auto w-full max-w-sm lg:w-96">
@@ -58,8 +59,8 @@
                                 Confirm Password
                             </label>
                             <div class="mt-1">
-                                <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="password_confirmation"
-                                    required
+                                <input id="password_confirmation" name="password_confirmation" type="password"
+                                    autocomplete="password_confirmation" required
                                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm">
                             </div>
                         </div>
@@ -70,7 +71,7 @@
                                 Reset Password
                             </button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>

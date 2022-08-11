@@ -1,4 +1,4 @@
-<x-tenant-portal-component>
+<x-portal-layout>
     @section('title', 'Announcements')
 
     @section('header', 'Announcements')
@@ -15,7 +15,7 @@
                                 <div>
                                     <h3
                                         class="text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                                        Hi,  {{ $tenant }}
+                                        Hi, {{ $tenant }}
                                     </h3>
                                 </div>
                             </div>
@@ -57,14 +57,16 @@
                                 </div>
                                 <div class="mt-8 lg:mt-0">
                                     <div class="text-base max-w-prose mx-auto lg:max-w-none">
-                                        <p class="text-lg text-gray-500">This is an online platform for accessing various information on bills, contracts and
-                                        payments, and more. The portal is also used to record transactions related to everything mentioned above.</p>
+                                        <p class="text-lg text-gray-500">This is an online platform for accessing
+                                            various information on bills, contracts and
+                                            payments, and more. The portal is also used to record transactions related
+                                            to everything mentioned above.</p>
                                     </div>
                                     <div
                                         class="mt-5 prose prose-indigo text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                                         <p>No announcements today.</p>
-                                       
-                                      
+
+
                                     </div>
                                 </div>
                             </div>
@@ -74,4 +76,4 @@
             </div>
         </div>
     </div>
-</x-tenant-portal-component>
+</x-portal-layout>
