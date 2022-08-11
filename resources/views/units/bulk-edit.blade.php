@@ -42,5 +42,5 @@
     @livewire('unit-component', ['batch_no' => $batch_no])
 
 </x-index-layout>
-@include('utilities.create-unit-modal')
-@include('utilities.create-building-modal');
+@include('modals.create-unit-modal')
+@include('modals.create-building-modal');

@@ -19,4 +19,4 @@
     @include('tables.contracts')
 </x-index-layout>
 @include('tenants.contracts.create')
-@include('utilities.popup-error-modal')
+@include('modals.popup-error-modal')

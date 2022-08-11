@@ -13,7 +13,6 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\TenantContractController;
 use App\Http\Controllers\AcknowledgementReceiptController;
 use App\Http\Controllers\ConcernController;
-use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\TimestampController;
 use App\Http\Controllers\EnrolleeController;
@@ -231,8 +230,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
         Route::prefix('{user}')->group(function(){
-            // Route::get('edit', [TeamController::class, 'edit']);
-            // Route::patch('update', [TeamController::class, 'update']);
             Route::get('/property/{property_uuid:uuid}/delegate', [UserController::class, 'delegate']);
         });
     });
@@ -276,10 +273,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create',[BillController::class,'create']);
     Route::post('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/store',[BillController::class,'store']);
-
-    Route::get('/contract/{contract}/moveout/bills', [MoveoutContractBillController::class, 'index']);
-
-    Route::get('/contract/{contract}/signed_contract', [ExportSignedContractController::class, 'index']);
 
     Route::get('/leasing/{enrollee}/pullout', [EnrolleeController::class, 'update']);
 });

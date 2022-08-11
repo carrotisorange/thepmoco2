@@ -30,7 +30,8 @@
                     {{-- <x-button data-modal-toggle="create-bill-modal">
                         <i class="fa-solid fa-circle-plus"></i>&nbsp Bill
                     </x-button> --}}
-                    <x-button data-modal-toggle="save-contract-modal"><i class="fa-solid fa-circle-check"></i>&nbspSave</x-button>
+                    <x-button data-modal-toggle="save-contract-modal"><i class="fa-solid fa-circle-check"></i>&nbspSave
+                    </x-button>
                 </h5>
             </div>
         </h2>
@@ -94,7 +95,7 @@
             </div>
         </div>
     </div>
-    @include('utilities.create-particular-modal');
-    @include('utilities.create-bill-modal');
-   @include('utilities.save-contract-modal');
+    @include('modals.create-particular-modal');
+    @include('modals.create-bill-modal');
+    @include('modals.save-contract-modal');
 </x-app-layout>

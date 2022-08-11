@@ -13,6 +13,6 @@
 
     @include('tables.enrollees')
     @if($enrollees->count())
-    @include('utilities.pullout-unit-modal')
+    @include('modals.pullout-unit-modal')
     @endif
 </x-index-layout>

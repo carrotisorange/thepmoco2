@@ -58,7 +58,7 @@
     </x-slot>
     @livewire('bill-index-component', ['active_contracts' => $active_contracts, 'active_tenants' => $active_tenants,
     'batch_no' => $batch_no])
-    @include('utilities.create-particular-modal')
-    @include('utilities.create-express-bill')
-    @include('utilities.create-customized-bill')
+    @include('modals.create-particular-modal')
+    @include('modals.create-express-bill')
+    @include('modals.create-customized-bill')
 </x-index-layout>

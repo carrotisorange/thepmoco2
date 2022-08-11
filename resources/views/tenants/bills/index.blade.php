@@ -8,10 +8,13 @@
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'">Go back to tenant
+        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'">
+            Go back to tenant
         </x-button>
         @can('treasury')
-        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/collections'">View Payments
+        <x-button
+            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/collections'">
+            View Payments
         </x-button>
         @endcan
     </x-slot>
@@ -19,8 +22,8 @@
     @livewire('tenant-bill-component', ['tenant'=> $tenant])
 
 </x-index-layout>
-@include('utilities.create-bill-modal')
-@include('utilities.export-bill-modal')
-@include('utilities.send-bill-modal')
-@include('utilities.create-collection-modal')
-@include('utilities.create-particular-modal');
+@include('modals.create-bill-modal')
+@include('modals.export-bill-modal')
+@include('modals.send-bill-modal')
+@include('modals.create-collection-modal')
+@include('modals.create-particular-modal');

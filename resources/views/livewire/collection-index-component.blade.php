@@ -49,7 +49,8 @@
                             onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/send'">
                             Send
                         </x-button> --}}
-                        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/export'">
+                        <x-button
+                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $ar->tenant_uuid }}/ar/{{ $ar->id }}/export'">
                             Export
                         </x-button>
                     </x-td>
@@ -74,31 +75,3 @@
         </table>
     </div>
 </div>
-
-
-{{-- @section('title', '| Payments')
-<x-slot name="labels">
-    Payments
-</x-slot>
-
-<x-slot name="options">
-    @if($start || $end)
-    <x-button class="text-black-600 cursor-pointer" wire:click="resetFilters"><i
-            class="fa-solid fa-circle-xmark"></i>&nbsp
-        Clear filters</x-button>
-    @endif
-</x-slot>
-
-<x-slot name="search">
-    <x-search placeholder="Search for name, mobile, or email"></x-search>
-</x-slot>
-
-<x-slot name="paginate">
-    {{ $ars->links() }}
-</x-slot>
-
-<x-slot name="table">
-    @if($ars->count())
-    @include('utilities.show-ars-results')
-    @endif
-</x-slot> --}}

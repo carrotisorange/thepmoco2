@@ -81,7 +81,7 @@
                         <i class="fa-solid fa-file-invoice"></i>&nbsp
                         Ledger</a>
                 </li>
-            </ul> 
+            </ul>
             {{-- <div class="py-1">
                 <li>
                     <a href="/tenant/{{ $tenant_details->uuid }}/delete"
@@ -89,14 +89,14 @@
                             class="fa-solid fa-trash-alt"></i>&nbspRemove
                     </a>
                 </li>
-            </div> 
+            </div>
         </div>--}}
     </x-slot>
 
 
     @livewire('tenant-edit-component', ['tenant_details' => $tenant_details])
-    
-    @include('utilities.create-guardian-modal')
-    @include('utilities.create-reference-modal')
+
+    @include('modals.create-guardian-modal')
+    @include('modals.create-reference-modal')
 
 </x-index-layout>
