@@ -129,9 +129,9 @@ class OwnerComponent extends Component
         public function render()
         {
                 return view('livewire.owner-component',[
-                        'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
-                        'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
-                        'countries' => Country::orderBy('country', 'ASC')->get()
+                        'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
+                        'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
+                        'countries' => app('App\Http\Controllers\CountryController')->index(),
                 ]);
         }
 }

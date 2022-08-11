@@ -117,9 +117,9 @@ class OwnerEditComponent extends Component
     public function render()
     {
         return view('livewire.owner-edit-component',[
-            'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
-            'provinces' => Province::orderBy('province', 'ASC')->where('country_id',$this->country_id)->get(),
-            'countries' => Country::orderBy('country', 'ASC')->get(),
+           'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
+           'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
+           'countries' => app('App\Http\Controllers\CountryController')->index(),
             'representatives' => app('App\Http\Controllers\OwnerController')->show_owner_representatives($this->owner_details->uuid),
             'banks' => app('App\Http\Controllers\OwnerController')->show_owner_banks($this->owner_details->uuid),
             'deed_of_sales' => app('App\Http\Controllers\OwnerController')->show_owner_deed_of_sales($this->owner_details->uuid),

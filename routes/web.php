@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use Session;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

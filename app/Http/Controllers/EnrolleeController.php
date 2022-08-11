@@ -12,11 +12,6 @@ use DB;
 
 class EnrolleeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Property $property, Owner $owner)
     {
         $enrollees = Owner::find($owner->uuid)->enrollees;

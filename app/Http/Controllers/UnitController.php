@@ -3,21 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unit;
-use App\Models\PropertyBuilding;
-use App\Models\Category;
 use App\Models\Property;
-use App\Models\Floor;
-use App\Models\Status;
-use App\Models\Contract;
-use App\Models\Enrollee;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Str;
-use DB;
 use Illuminate\Validation\Rule;
-use App\Models\Bill;
-use App\Models\DeedOfSale;
-use App\Models\Point;
+
 use App\Models\Plan;
 
 class UnitController extends Controller
