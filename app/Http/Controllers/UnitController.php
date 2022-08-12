@@ -20,7 +20,7 @@ class UnitController extends Controller
      */
     public function index(Property $property)
     {   
-        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
 
         Session::forget('tenant_uuid');
 
@@ -94,27 +94,12 @@ class UnitController extends Controller
 
          Session::forget('owner_uuid');
 
-        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens a',2);
+         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
 
         return view('units.show',[
-            'unit' => $unit,
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(),
-            'floors' => app('App\Http\Controllers\FloorController')->index(),
-            'categories' => app('App\Http\Controllers\CategoryController')->index(),
-            'statuses' => app('App\Http\Controllers\StatusController')->index(),
-            'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($unit->uuid),
-            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
-            'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($unit->uuid),
-            'enrollees' => app('App\Http\Controllers\EnrolleeController')->show_unit_enrollees($unit->uuid)
+            'unit_details' => $unit,
         ]);
 
-        // return view('units.show', [
-        //     'unit' => Unit::findOrFail($unit->uuid),
-        //     'contracts' => Unit::findOrFail($unit->uuid)->contracts,
-        //     'deed_of_sales' => Unit::findOrFail($unit->uuid)->deed_of_sales,
-        //     'bills' => Unit::findOrFail($unit->uuid)->bills,
-        //     'enrollees' => Unit::findOrFail($unit->uuid)->enrollees
-        // ]);
     }
 
     /**

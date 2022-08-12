@@ -1,5 +1,4 @@
-<form action="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/update" method="POST" id="edit-form"
-    enctype="multipart/form-data">
+<form method="POST" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
     <div class="flex flex-row">
@@ -7,8 +6,8 @@
             <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="unit" value="Unit" />
 
-                <x-form-input form="edit-form" type="text" name="unit" value="{{old('unit', $unit->unit)}}" required
-                    autofocus />
+                <x-form-input form="edit-form" type="text" wire:model="unit"
+                    value="{{ old('unit', $unit_details->unit) }}" required autofocus />
 
                 @error('unit')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -19,11 +18,12 @@
             <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="building_id" :value="__('Building')" />
 
-                <x-form-select form="edit-form" name="building_id" id="building_id">
+                <x-form-select form="edit-form" wire:model="building_id">
                     @foreach($buildings as $building)
-                    <option value="{{ $building->id }}" {{ $building->id == $unit->building_id ?
-                        'selected' : ''
-                        }}>{{ $building->building }}</option>
+                    <option value="{{ $building->id }}" {{ old('building_id', $unit_details->
+                        building_id) == $building->id ? 'selected' : 'selected' }}>
+                        {{ $building->building }}
+                    </option>
                     @endforeach
                 </x-form-select>
 
@@ -37,11 +37,12 @@
             <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="floor_id" :value="__('Floor')" />
 
-                <x-form-select form="edit-form" name="floor_id" id="floor_id">
+                <x-form-select form="edit-form" wire:model="floor_id">
                     @foreach($floors as $floor)
-                    <option value="{{ $floor->id }}" {{ $floor->id == $unit->floor_id ?
-                        'selected' : ''
-                        }}>{{ $floor->floor }}</option>
+                    <option value="{{ $floor->id }}" {{ old('floor_id', $unit_details->
+                        floor_id) == $floor->id ? 'selected' : 'selected' }}>
+                        {{ $floor->floor }}
+                    </option>
                     @endforeach
                 </x-form-select>
 
@@ -55,10 +56,10 @@
             <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="category_id" :value="__('Category')" />
 
-                <x-form-select form="edit-form" name="category_id" id="category_id">
+                <x-form-select form="edit-form" wire:model="category_id">
                     @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category_id', $unit->category_id) ==
-                        $category->id ? 'selected' : '' }}>
+                    <option value="{{ $category->id }}" {{ old('category_id', $unit_details->
+                        category_id) == $category->id ? 'selected' : 'selected' }}>
                         {{ $category->category }}
                     </option>
                     @endforeach
@@ -77,12 +78,13 @@
             <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="category_id" :value="__('Status')" />
 
-                <x-form-select form="edit-form" name="status_id" id="status_id">
+                <x-form-select form="edit-form" wire:model="status_id">
                     @foreach($statuses as $status)
-                    <option value="{{ $status->id }}" {{ old('status_id', $unit->status_id) ==
-                        $status->id ? 'selected' : '' }}>
+                    <option value="{{ $status->id }}" {{ old('status_id', $unit_details->
+                        status_id) == $status->id ? 'selected' : 'selected' }}>
                         {{ $status->status }}
-                        @endforeach
+                    </option>
+                    @endforeach
                 </x-form-select>
 
                 @error('status_id')
@@ -95,8 +97,8 @@
             <div class="basis-full">
                 <x-label for="size" :value="__('Size')" />
 
-                <x-form-input form="edit-form" type="text" name="size" value="{{old('size', $unit->size)}}" required
-                    autofocus />
+                <x-form-input form="edit-form" type="text" wire:model="size"
+                    value="{{old('size', $unit_details->size)}}" required autofocus />
 
                 @error('size')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -108,8 +110,8 @@
             <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="rent" :value="__('Rent')" />
 
-                <x-form-input form="edit-form" type="number" step="0.00" name="rent"
-                    value="{{old('rent', $unit->rent)}}" autofocus />
+                <x-form-input form="edit-form" type="number" step="0.00" wire:model="rent"
+                    value="{{old('rent', $unit_details->rent)}}" autofocus />
 
                 @error('rent')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -123,8 +125,8 @@
             <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="discount" :value="__('Discount')" />
 
-                <x-form-input form="edit-form" type="number" step="0.00" name="discount"
-                    value="{{old('discount', $unit->discount)}}" autofocus />
+                <x-form-input form="edit-form" type="number" step="0.00" wire:model="discount"
+                    value="{{old('discount', $unit_details->discount)}}" autofocus />
 
                 @error('discount')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -135,8 +137,8 @@
             <div class="mt-2 w-full md:w-full px-3 mb-6 md:mb-0">
                 <x-label for="occupancy" :value="__('No of Beds')" />
 
-                <x-form-input form="edit-form" type="number" name="occupancy"
-                    value="{{old('occupancy', $unit->occupancy)}}" autofocus />
+                <x-form-input form="edit-form" type="number" wire:model="occupancy"
+                    value="{{old('occupancy', $unit_details->occupancy)}}" autofocus />
 
                 @error('occupancy')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -162,9 +164,7 @@
     </div>
     <div class="mt-5">
         <p class="text-right">
-            <x-form-button type="submit" wire:loading.remove wire:click="submitForm()" id="create-form">
-                Update
-            </x-form-button>
+            <x-form-button wire:loading.remove wire:click="submitForm()">Update</x-form-button>
         </p>
     </div>
     </div>

@@ -1,4 +1,4 @@
-<form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data"
+<form method="POST" wire:submit.prevent="submitForm()" enctype="multipart/form-data"
     action="/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/enrollee/{{ Str::random(8) }}/store" class="w-full"
     id="create-form">
     @csrf
@@ -60,19 +60,17 @@
             @enderror
         </div>
     </div>
-    <div class="mt-5">
-        <p class="text-right">
-            <x-button form="create-form">
-                <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                    </circle>
-                    <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                    </path>
-                </svg>
-                Create
-            </x-button>
-        </p>
+    <div class="pt-5">
+        <div class="flex justify-end">
+            <button type="button"
+                onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/'"
+                class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                Skip
+            </button>
+            <x-form-button type="submit" wire:loading.remove wire:click="submitForm()">
+                Submit
+            </x-form-button>
+
+        </div>
     </div>
 </form>

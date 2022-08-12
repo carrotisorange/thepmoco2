@@ -25,7 +25,7 @@ class TenantController extends Controller
     public function index(Property $property)
     {
         //store activity for opening tenant page.
-        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',3);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',3);
 
         //retrieve all tenants associated to the current property.
         $list_of_all_the_tenants = app('App\Http\Controllers\PropertyController')->show_list_of_all_tenants($property->uuid);
@@ -57,7 +57,7 @@ class TenantController extends Controller
     {
         
         //store activity for opening a particular tenant.
-        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
 
         $list_of_all_relationships = app('App\Http\Controllers\RelationshipController')->index();
 

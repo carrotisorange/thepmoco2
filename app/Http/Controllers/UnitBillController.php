@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Unit;
 use App\Models\Property;
 
@@ -17,8 +16,8 @@ class UnitBillController extends Controller
     public function index(Property $property, Unit $unit)
     {
          return view('units.bills.index',[
-         'unit' => Unit::find($unit->uuid),
-         'bills' => Unit::find($unit->uuid)->bills,
+         'unit' => $unit,
+          'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($unit->uuid),
          ]);
     }
 }

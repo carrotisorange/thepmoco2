@@ -1,4 +1,4 @@
-<form method="POST" wire:submit.prevent="submitForm" enctype="multipart/form-data"
+<form method="POST" wire:submit.prevent="submitForm()" enctype="multipart/form-data"
     action="/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/sale/{{ Str::random(8) }}/store" class="w-full"
     id="create-form">
     @csrf
@@ -75,11 +75,16 @@
             @enderror
         </div>
     </div>
-    <div class="mt-5">
-        <p class="text-right">
-            <x-form-button>
-                Create
+    <div class="pt-5">
+        <div class="flex justify-end">
+            <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/enrollee/{{ Str::random(8) }}/create'"
+                class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                Skip
+            </button>
+            <x-form-button type="submit" wire:loading.remove wire:click="submitForm()">
+                Submit
             </x-form-button>
-        </p>
+
+        </div>
     </div>
 </form>

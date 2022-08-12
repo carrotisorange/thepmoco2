@@ -10,7 +10,7 @@ class AcknowledgementReceiptController extends Controller
 {
     public function index(Property $property)
     {
-        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
         
         $collections = Property::find(Session::get('property'))->acknowledgementreceipts;
 
