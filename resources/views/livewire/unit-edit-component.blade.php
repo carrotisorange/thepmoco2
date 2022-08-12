@@ -53,7 +53,7 @@
 
     <div class="mt-5 p-6 bg-white border-b border-gray-200">
         <h1 class="font-bold">Enrollees <i
-                title="Enrollees/Leasing is an implied or written agreement specifying the conditions under which a lessor accepts to let out a property to be used by a lessee.."
+                title="Enrollees/Leasing is an implied or written agreement specifying the conditions under which a lessor accepts to let out a property to be used by a lessee. You can enroll a unit to leasing by adding a deed of sale."
                 class="fa-solid fa-circle-question"></i></h1>
         @include('tables.enrollees')
         <div class="mt-5">
@@ -91,5 +91,4 @@
         </div>
     </div>
     @include('modals.create-building-modal')
-
 </div>
