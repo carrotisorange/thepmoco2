@@ -21,7 +21,7 @@ require __DIR__.'/dashboard.php';
 
 require __DIR__.'/tenant.php';
 
-require __DIR__.'/unitowner.php';
+require __DIR__.'/owner.php';
 
 require __DIR__.'/user.php';
 

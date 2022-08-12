@@ -4,11 +4,15 @@
         Sales
     </x-slot>
     <x-slot name="options">
-        <form method="POST" action="{{ route('logout') }}">
+        {{-- <form method="POST" action="{{ route('logout') }}">
             @csrf
             <x-button hre>Logout</x-button>
-        </form>
+        </form> --}}
+
+        <x-button onclick="window.location.href='/dashboard/users'">All users</x-button>
+        <x-button onclick="window.location.href='/logout'">Logout</x-button>
     </x-slot>
+
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-50">
@@ -45,7 +49,7 @@
                             </span>
                             <a>
                     </x-td>
-                  
+
                     <?php
                            $property_count = App\Models\UserProperty::where('user_id', $user->id)->count();
                            
@@ -63,20 +67,20 @@
                         ?>
                     <x-td>
                         <a class="text-blue-600" href="user/{{ $user->username }}/property">
-                            {{ $property_count }} property, 
-                            {{ $unit_count }} unit, 
-                            {{ $tenant_count }} tenant 
+                            {{ $property_count }} property,
+                            {{ $unit_count }} unit,
+                            {{ $tenant_count }} tenant
                         </a>
                     </x-td>
                     <x-td> {{ $user->plan->plan }}</x-td>
                     <x-td>
                         @if($user->checkoutoption_id == '1')
-                        <span 
+                        <span
                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
                             {{ $user->checkoutoption->option }}
                         </span>
                         @else
-                        <span 
+                        <span
                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-sm text-orange-800">
                             {{ $user->checkoutoption->option }}
                         </span>
@@ -86,9 +90,9 @@
                     <x-td>{{ $user->discountcode->discount_code }}</x-td>
                     <x-td>
                         @if($user->trial_ends_at)
-                            {{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}
+                        {{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}
                         @else
-                            N/A
+                        N/A
                         @endif
                     </x-td>
                 </tr>

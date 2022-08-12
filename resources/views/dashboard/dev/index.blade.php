@@ -18,7 +18,7 @@
             @csrf
             <x-button hre>Logout</x-button>
         </form>
-        {{-- <x-button onclick="window.location.href='/user/{{ }}/bill'">Go back to bills</x-button> --}}
+      
     </x-slot>
 
     <div class="max-w-12xl mx-auto sm:px-6">

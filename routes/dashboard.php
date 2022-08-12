@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardTenantController;
     //Routes for dashboard
 Route::prefix('/dashboard')->group(function(){
     Route::get('sales', [DashboardSalesController::class, 'index']);
+    Route::get('users', [DashboardSalesController::class, 'show_all_users']);
     Route::get('user/{user}/property', [DashboardSalesController::class, 'show_property']);
     Route::get('user/{user}/activity', [DashboardSalesController::class, 'show_activity']);
 

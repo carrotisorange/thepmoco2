@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Owner;
 
-class DashboardUnitOwnerController extends Controller
+class DashboardOwnerController extends Controller
 {
     public function index(User $user)
     {
         return view('portal.owners.index',[
-            'tenant' => Owner::findOrFail($user->tenant_uuid)->owner
+            'owner' => Owner::findOrFail($user->owner_uuid)->owner
         ]);
     }
 }

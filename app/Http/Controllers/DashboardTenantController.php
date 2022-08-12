@@ -28,10 +28,10 @@ class DashboardTenantController extends Controller
         ]);
     }
 
-    public function show_payments(User $user)
+    public function show_collections(User $user)
     {
-        return view('portal.tenants.payments',[
-            'payments' => Tenant::findOrFail($user->tenant_uuid)->acknowledgementreceipts()->paginate(5)
+        return view('portal.tenants.collections',[
+            'collections' => Tenant::findOrFail($user->tenant_uuid)->acknowledgementreceipts()->paginate(5)
         ]);
     }
 

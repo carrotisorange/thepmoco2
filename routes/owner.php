@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardUnitOwnerController;
+use App\Http\Controllers\DashboardOwnerController;
 use App\Http\Controllers\TenantController;
 
     //Routes for dashboard
-Route::prefix('user/{user}')->group(function(){
-    //Route::get('dashboard', [DashboardUnitOwnerController::class, 'index']);
+Route::prefix('owner/user/{user}')->group(function(){
+    Route::get('dashboard', [DashboardOwnerController::class, 'index']);
+    
     // Route::get('contracts', [DashboardTenantController::class, 'show_contracts']);
     // Route::get('bills', [DashboardTenantController::class, 'show_bills']);
     // Route::get('payments', [DashboardTenantController::class, 'show_payments']);

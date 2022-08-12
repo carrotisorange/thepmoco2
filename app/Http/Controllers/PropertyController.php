@@ -89,11 +89,11 @@ class PropertyController extends Controller
         }
         elseif(auth()->user()->role_id == '8')
         {
-            return redirect('/user/'.auth()->user()->username.'/dashboard');
+            return redirect('/tenant/user/'.auth()->user()->username.'/dashboard');
         }
         elseif(auth()->user()->role_id == '7')
         {
-            return redirect('/user/'.auth()->user()->username.'/dashboard');
+            return redirect('/owner/user/'.auth()->user()->username.'/dashboard');
         }
         else
         {
