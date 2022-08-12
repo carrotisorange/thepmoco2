@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\WelcomeMailToMember;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -10,10 +9,8 @@ use Session;
 use App\Models\User;
 use App\Models\UserProperty;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Role;
 use DB;
-use App\Models\Property;
 use Livewire\WithPagination;
 
 use Livewire\Component;

@@ -20,7 +20,7 @@ class UnitController extends Controller
      */
     public function index(Property $property)
     {   
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
+        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
 
         Session::forget('tenant_uuid');
 
@@ -94,7 +94,7 @@ class UnitController extends Controller
 
          Session::forget('owner_uuid');
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens a',2);
+        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens a',2);
 
         return view('units.show',[
             'unit' => $unit,

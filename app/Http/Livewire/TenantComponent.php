@@ -4,14 +4,13 @@ namespace App\Http\Livewire;
 
 use App\Models\Tenant;
 use Illuminate\Support\Str;
-use Livewire\Component;
+
 use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Validation\Rule;
-use App\Models\Country;
-use App\Models\Province;
-use App\Models\City;
 use Session;
+
+use Livewire\Component;
 
 class TenantComponent extends Component
 {
@@ -102,7 +101,7 @@ class TenantComponent extends Component
             );
 
             //update tenant_uuid of the newly created tenant
-            app('App\Http\Controllers\UserController')->update_tenant_uuid($user_id, $tenant_uuid);
+            app('App\Http\Controllers\UserController')->update_user_tenant_uuid($user_id, $tenant_uuid);
 
             return redirect('/property/'.Session::get('property').'/tenant/'.$tenant_uuid.'/guardian/'.$this->unit->uuid.'/create')->with('success','Tenant is succesfully created.');
            
@@ -111,8 +110,6 @@ class TenantComponent extends Component
        }catch(\Exception $e)
        {
             DB::rollback();
-
-            ddd($e);
 
             return back()->with('error');
        }

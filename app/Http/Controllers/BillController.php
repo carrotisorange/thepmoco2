@@ -17,7 +17,7 @@ class BillController extends Controller
     {
         $this->authorize('billing');
                 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
+        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
 
         $particulars = app('App\Http\Controllers\PropertyParticularController')->show($property->uuid);
 

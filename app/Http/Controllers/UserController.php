@@ -25,7 +25,7 @@ public function index(Property $property)
 {
         $this->authorize('accountowner');
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
+        //app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
 
         return view('users.index',[
             'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users($property->uuid,auth()->user()->id),
@@ -108,11 +108,20 @@ public function index(Property $property)
         return Str::random(12);
     }
     
-    public function update_tenant_uuid($user_id, $tenant_uuid)
+    public function update_user_tenant_uuid($user_id, $tenant_uuid)
     {
         User::where('id', $user_id)
          ->update([
          'tenant_uuid' => $tenant_uuid
+        ]);
+    }
+
+        
+    public function update_user_owner_uuid($user_id, $owner_uuid)
+    {
+        User::where('id', $user_id)
+         ->update([
+         'owner_uuid' => $owner_uuid
         ]);
     }
 

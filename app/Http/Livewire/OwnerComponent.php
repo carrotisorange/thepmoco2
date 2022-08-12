@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use App\Models\Owner;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Session;
-use App\Models\City;
-use App\Models\Province;
-use App\Models\User;
-use App\Models\Country;
+use DB;
 
 use Livewire\Component;
 
@@ -39,8 +37,7 @@ class OwnerComponent extends Component
 
         protected function rules()
         {
-                return 
-                [
+                return [
                         'owner' => 'required',
                         'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
                         'mobile_number' => 'nullable',
@@ -65,31 +62,38 @@ class OwnerComponent extends Component
 
                 $validated_data = $this->validate();
 
-                $validated_data = $this->store_owner($validated_data);
+                try{
 
-                $owner = Owner::create($validated_data)->uuid;
+                        DB::beginTransaction();
 
-                $user_id = app('App\Http\Controllers\UserController')->store(
-                        $this->owner, 
-                        app('App\Http\Controllers\UserController')->generate_temporary_username(), 
-                        app('App\Http\Controllers\UserController')->generate_temporary_username(),
-                        auth()->user()->external_id, 
-                        $this->email,
-                        7,
-                        $this->mobile_number,
-                        "none", 
-                        auth()->user()->checkoutoption_id,
-                        auth()->user()->plan_id,
-                );
+                        $owner_uuid = $this->store_owner($validated_data);
 
-                User::where('id', $user_id)
-                ->update([
-                        'tenant_uuid' => $owner
-                ]);
+                        $user_id = app('App\Http\Controllers\UserController')->store(
+                                $this->owner, 
+                                app('App\Http\Controllers\UserController')->generate_temporary_username(), 
+                                app('App\Http\Controllers\UserController')->generate_temporary_username(),
+                                auth()->user()->external_id, 
+                                $this->email,
+                                7, //owner
+                                $this->mobile_number,
+                                "none", 
+                                auth()->user()->checkoutoption_id,
+                                auth()->user()->plan_id,
+                        );
 
-                return
-                redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner.'/deed_of_sale/'.Str::random(8).'/create')->with('success',
-                'Owner is created successfully.');
+                        //update owner_uuid of the newly created owner
+                        app('App\Http\Controllers\UserController')->update_user_owner_uuid($user_id, $owner_uuid);
+
+                        DB::commit();
+
+                        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/'.Str::random(8).'/create')->with('success', 'Owner is created successfully.');
+                }
+                catch(\Exception $e)
+                {
+                        DB::rollback();
+
+                        return back()->with('error');
+                }
         }
 
         public function store_owner($validated_data)
@@ -122,7 +126,9 @@ class OwnerComponent extends Component
                   $validated_data['city_id'] = '48315';
                 }
 
-                return $validated_data;
+                $owner_uuid = Owner::create($validated_data)->uuid;
+
+                return $owner_uuid;
 
         }
 
