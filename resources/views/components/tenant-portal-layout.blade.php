@@ -12,7 +12,7 @@
         <header class="flex-shrink-0 relative h-16 bg-white flex items-center">
             <!-- Logo area -->
             <div class="absolute inset-y-0 left-0 md:static md:flex-shrink-0">
-                <a href="/{{auth()->user()->role_id}}/{{ auth()->user()->username }}/dashboard"
+                <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/dashboard"
                     class="flex items-center justify-center h-16 w-16 bg-purple-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600 md:w-20">
                     <img class="h-8 w-auto" src="{{ asset('/brands/logo.png') }}" alt="The PMO Co">
                 </a>
@@ -149,7 +149,7 @@
                 <nav class="fixed z-40 inset-0 h-full w-full bg-purple sm:inset-y-0 sm:left-auto sm:right-0 sm:max-w-sm sm:w-full sm:shadow-lg"
                     aria-label="Global">
                     <div class="h-16 flex items-center justify-between px-4 sm:px-6">
-                        <a href="/{{auth()->user()->role_id}}/{{ auth()->user()->username }}/dashboard">
+                        <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/dashboard">
                             <img class="block h-8 w-auto" src="{{ asset('/brands/logo.png') }}" alt="The PMO Co">
                         </a>
                         <button type="button"
@@ -233,7 +233,7 @@
             <!-- Narrow sidebar-->
             <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto">
                 <div class="relative w-20 flex flex-col p-3 space-y-3">
-                    <a href="/{{auth()->user()->role_id}}/{{ auth()->user()->username }}/dashboard" title="announcements"
+                    <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/dashboard" title="announcements"
                         class="bg-gray-900 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                         <span class="sr-only">Announcements</span>
                         <!-- Heroicon name: outline/inbox -->
@@ -241,21 +241,21 @@
 
                     </a>
 
-                    <a href="/{{auth()->user()->role_id}}/{{ auth()->user()->username }}/contracts" title="contracts"
+                    <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/contracts" title="contracts"
                         class="text-gray-400 hover:bg-gray-700 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                         <span class="sr-only">Contracts</span>
                         <!-- Heroicon name: outline/archive -->
                         <i class="fa-solid fa-file-contract"></i>
                     </a>
 
-                    <a href="/{{auth()->user()->role_id}}/{{ auth()->user()->username }}/bills" title="bills"
+                    <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/bills" title="bills"
                         class="text-gray-400 hover:bg-gray-700 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                         <span class="sr-only">Bills</span>
                         <!-- Heroicon name: outline/user-circle -->
                         <i class="fa-solid fa-file-invoice-dollar"></i>
                     </a>
 
-                    <a href="/{{auth()->user()->role_id}}/{{ auth()->user()->username }}/collections" title="collections"
+                    <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/collections" title="collections"
                         class="text-gray-400 hover:bg-gray-700 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                         <span class="sr-only">Collections</span>
                         <!-- Heroicon name: outline/flag -->
