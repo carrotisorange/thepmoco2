@@ -1,4 +1,4 @@
-<x-portal-layout>
+<x-tenant-portal-layout>
     @section('title', 'Contracts')
 
     @section('header', 'Contracts')
@@ -15,4 +15,4 @@
             </div>
         </div>
     </div>
-</x-portal-layout>
+</x-tenant-portal-layout>

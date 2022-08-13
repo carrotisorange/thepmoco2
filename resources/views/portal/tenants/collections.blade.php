@@ -1,4 +1,4 @@
-<x-portal-layout>
+<x-tenant-portal-layout>
     @section('title', 'Collections')
 
     @section('header', 'Collections')
@@ -15,4 +15,4 @@
             </div>
         </div>
     </div>
-</x-portal-layout>
+</x-tenant-portal-layout>

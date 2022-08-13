@@ -5,7 +5,7 @@ use App\Http\Controllers\DashboardOwnerController;
 use App\Http\Controllers\TenantController;
 
     //Routes for dashboard
-Route::prefix('owner/user/{user}')->group(function(){
+Route::prefix('{role_id:id}/{user:username}')->group(function(){
     Route::get('dashboard', [DashboardOwnerController::class, 'index']);
     
     // Route::get('contracts', [DashboardTenantController::class, 'show_contracts']);

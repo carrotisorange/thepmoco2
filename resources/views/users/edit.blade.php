@@ -81,7 +81,7 @@
                             </label>
                             <div class="mt-1 sm:mt-0 sm:col-span-2">
                                 <div class="max-w-lg flex rounded-md shadow-sm">
-                                    <input type="password" name="password" id="password" autocomplete="password"
+                                    <input type="password" name="password" id="password" autocomplete="password" value="{{old('password', $user->password)}}"
                                         class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
                                 </div>
                             </div>

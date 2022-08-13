@@ -7,7 +7,7 @@ use App\Models\Owner;
 
 class DashboardOwnerController extends Controller
 {
-    public function index(User $user)
+    public function index($role_id, User $user)
     {
         return view('portal.owners.index',[
             'owner' => Owner::findOrFail($user->owner_uuid)->owner
