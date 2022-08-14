@@ -56,7 +56,7 @@
                 <div class="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
                     <div class="p-6">
                         <h2 class="text-lg leading-6 font-medium text-gray-900">Professional</h2>
-                        <p class="mt-4 text-sm text-gray-500">Best for large and multiple properties.</p>
+                        <p class="mt-4 text-sm text-gray-500">Best for all time of rental properties.</p>
                     </div>
                     <div class="pt-6 pb-8 px-6">
                         <h3 class="text-xs font-medium text-gray-900 tracking-wide uppercase">What's included</h3>
