@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| Leasing')
+    @section('title', '| Enrollee')
     <x-slot name="labels">
         {{ $unit->unit }} / {{ $owner->owner }} / Management Agreement
     </x-slot>
