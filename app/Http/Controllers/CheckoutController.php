@@ -103,7 +103,7 @@ public function charge_user_account($temporary_username, $external_id, $descript
             'payer_email' => $email,
             'description' => $description,
             // 'amount' => $amount*$interval,
-            'amount' => 1,
+            'amount' => $amount,
             'interval' => 'MONTH',
             //'total_recurrence' => $total_recurrence,
             //'start_date' => $start_date,
