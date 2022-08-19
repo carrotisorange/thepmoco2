@@ -305,11 +305,16 @@
                   </div>
                   
               </div>
-              <div class="container p-5 text-xs text-center">
-              <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">2 Contracts</button> 
-              <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">2 Unpaid Bills</button> 
+              <div class="grid grid-cols-3 gap-4 place-content-center ">
+              <img class=" ml-8 h-10 w-auto flex " src=brands/contract.png>
+              <img class=" ml-8 h-10 w-auto flex " src=brands/contract.png>
+              <img class=" ml-8 h-10 w-auto flex " src=brands/contract.png>
+              <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Contracts</button> 
+              <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Unpaid Bills</button> 
+              <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Concerns</button>  
             </div>
-</div>
+            
+            </div>
 
 
             <!-- card -->
