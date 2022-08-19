@@ -70,7 +70,7 @@
                                     }}</dd>
                             </div>
 
-                            @if($selected_checkout_option->id == 1)
+                            @if($selected_plan->id != 4)
 
                             <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
                                 <dt class="text-base">Billing starts on {{ Carbon\Carbon::now()->addMonth()->format('M
@@ -141,7 +141,7 @@
                                 }}</dd>
                         </div>
 
-                        @if($selected_checkout_option->id == 1)
+                        @if($selected_plan->id != 4)
 
                         <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
                             <dt class="text-base">Billing starts on {{ Carbon\Carbon::now()->addMonth()->format('M
