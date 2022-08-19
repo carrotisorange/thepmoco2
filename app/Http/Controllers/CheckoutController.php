@@ -33,7 +33,12 @@ class CheckoutController extends Controller
 
     public function show_select_plan_page()
     {
-        return view('checkout.select');
+        return view('checkout.select-a-plan');
+    }
+
+    public function show_select_plan_free_page()
+    {
+        return view('checkout.select-a-plan-free');
     }
 
     public function show_checkout_page($plan_id=1,$checkout_option=1, $discount_code='none')

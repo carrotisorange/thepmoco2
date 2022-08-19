@@ -44,22 +44,18 @@
                 <select type="text" name="plan_id" id="plan_id" wire:model="plan_id" autocomplete="cc-exp"
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     {{-- @if($selected_checkout_option->id == '2') --}}
+                    @if($plan_id == '4')
+                    <option value="4" selected> Professional </option>
+                    @else
                     @foreach ($plans as $plan)
-                    {{-- @if($plan->id == '3') --}}
+
                     <option value="{{ $plan->id }}" {{ $plan_id==$plan->id ? 'selected' : 'selected'
                         }}> {{ $plan->plan }} </option>
-                    {{-- @endif --}}
-                    @endforeach
 
-                    {{-- @else
-                    @if($selected_plan->id == '1')
-                    <option value="1">basic</option>
-                    @elseif($selected_plan->id == '2')
-                    <option value="2">advanced</option>
-                    @else
-                    <option value="3">professional</option>
+                    @endforeach
                     @endif
-                    @endif --}}
+
+
                 </select>
             </div>
         </div>
@@ -72,12 +68,16 @@
                 <select type="text" name="checkout_option" id="checkout_option" wire:model="checkout_option"
                     autocomplete="cc-exp"
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    @if($plan_id == '4')
+                    <option value="1" selected> Billed every month </option>
+                    @else
                     @foreach ($checkout_options as $item)
                     {{-- @if($item->id == '2') --}}
                     <option value="{{ $item->id }}" {{ $selected_checkout_option->id==$item->id ?
                         'selected' : 'selected' }}> {{ $item->option }} </option>
                     {{-- @endif --}}
                     @endforeach
+                    @endif
                 </select>
             </div>
         </div>
