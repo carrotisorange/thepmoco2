@@ -69,16 +69,16 @@
                                     number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)
                                     }}</dd>
                             </div>
-                            
-                            {{-- @if($selected_checkout_option->id == 1) --}}
+
+                            @if($selected_checkout_option->id == 1)
 
                             <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
-                                {{-- <dt class="text-base">Billing starts on {{ Carbon\Carbon::now()->addMonth()->format('M
-                                    d, Y') }}</dt> --}}
+                                <dt class="text-base">Billing starts on {{ Carbon\Carbon::now()->addMonth()->format('M
+                                    d, Y') }}</dt>
                                 <dd class="text-base">Cancel Anytime</dd>
                             </div>
 
-                            {{-- @endif --}}
+                            @endif
                         </dl>
                     </div>
 
@@ -98,7 +98,7 @@
                             <div class="text-sm font-medium space-y-1">
                                 <h3 class="text-gray-900">{{ $selected_plan->plan }} plan</h3>
                                 <p class="text-gray-900">₱{{ number_format($selected_plan->price, 2) }}/month</p>
-                              <p class="text-gray-500">Limited to {{ $selected_plan->description }} units</p>
+                                <p class="text-gray-500">Limited to {{ $selected_plan->description }} units</p>
                             </div>
                         </div>
                     </li>
@@ -140,23 +140,19 @@
                                 number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)
                                 }}</dd>
                         </div>
-{{-- 
-                        @if($selected_checkout_option->id == 1) --}}
+                        
+                        @if($selected_checkout_option->id == 1)
 
                         <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
-                            {{-- <dt class="text-base">Billing starts on {{ Carbon\Carbon::now()->addMonth()->format('M d,
-                                Y') }}</dt> --}}
+                            <dt class="text-base">Billing starts on {{ Carbon\Carbon::now()->addMonth()->format('M
+                                d,
+                                Y') }}</dt>
                             <dd class="text-base">Cancel Anytime</dd>
                         </div>
 
-                        {{-- @endif --}}
+                        @endif
                     </dl>
                 </ul>
-
-                {{-- <div class=" bg-gray-50 border-t border-gray-200 p-6">
-
-
-                </div> --}}
             </section>
 
             <!-- Checkout form -->

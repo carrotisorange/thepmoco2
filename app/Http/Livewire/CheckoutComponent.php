@@ -47,8 +47,6 @@ class CheckoutComponent extends Component
         return Plan::find($plan_id)->plan.'_'.Str::random(8);
     }
 
-
-
     public function processPayment()
     {
         sleep(1);

@@ -96,14 +96,14 @@ class CheckoutController extends Controller
 
 public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $interval)
 {
-    Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
+    Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
     
         $params = [
             'external_id' => $external_id,
             'payer_email' => $email,
             'description' => $description,
-            // 'amount' => $amount*$interval,
-            'amount' => $amount,
+            'amount' => $amount*$interval,
+            // 'amount' => $amount,
             'interval' => 'MONTH',
             //'total_recurrence' => $total_recurrence,
             //'start_date' => $start_date,

@@ -45,10 +45,10 @@
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     {{-- @if($selected_checkout_option->id == '2') --}}
                     @foreach ($plans as $plan)
-                    @if($plan->id == '3')
+                    {{-- @if($plan->id == '3') --}}
                     <option value="{{ $plan->id }}" {{ $plan_id==$plan->id ? 'selected' : 'selected'
                         }}> {{ $plan->plan }} </option>
-                    @endif
+                    {{-- @endif --}}
                     @endforeach
 
                     {{-- @else
@@ -73,10 +73,10 @@
                     autocomplete="cc-exp"
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     @foreach ($checkout_options as $item)
-                    @if($item->id == '2')
+                    {{-- @if($item->id == '2') --}}
                     <option value="{{ $item->id }}" {{ $selected_checkout_option->id==$item->id ?
                         'selected' : 'selected' }}> {{ $item->option }} </option>
-                    @endif
+                    {{-- @endif --}}
                     @endforeach
                 </select>
             </div>
