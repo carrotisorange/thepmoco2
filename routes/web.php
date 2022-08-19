@@ -33,3 +33,7 @@ require __DIR__.'/marketing.php';
 
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
+
+Route::get('/tenant', function(){
+    return view('newlayout.newlayout');
+});
