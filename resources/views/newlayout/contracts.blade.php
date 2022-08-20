@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenant Portal</title>
+    <title>Contracts</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
   <html class="h-full bg-white">
@@ -186,18 +189,18 @@
               <div class="relative flex w-20 flex-col space-y-3 p-3">
 
                 <!-- Dashboard -->
-                <a href="#" class="bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Dashboard</span>
           
-                  <img class="h-10 w-auto"  src="{{ asset('/brands/dashboard_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <img class="h-10 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Contracts -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="bg-purple-500 text-whit flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Contracts</span>
-                    <img class="h-13 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-13 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Contracts</div>
@@ -237,170 +240,233 @@
             </nav>
 
           <!-- Main area -->
-        <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-          <div class="mt-8">
+          <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-          <!-- card Welcome back -->
-                <div class="bg-white overflow-hidden shadow rounded-lg">
-                  <div class="p-5">
-                    <div class="flex items-center">
-                      <div class="flex-shrink-0">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                      </div>
-                      <div class="ml-5 w-0 flex-1">
-                        <dl>
-                          <dt class="text-xl font-semibold font-body text-gray-500 truncate">Welcome back, Basilio</dt>
-                            <dd>
-                              <img class="h-45 w-auto"  src="{{ asset('/brands/juan.png') }}">
-                            </dd>
-                        </dl>
-                      </div>
-                   </div>
-                  </div>
+            <!--
+  This example requires Tailwind CSS v3.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<div class="mt-10 px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-3xl font-bold text-gray-700">Contracts</h1>
+    </div>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Contract</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">View Contract</button>
+    </div>
+  </div>
+  <div class="mt-8 flex flex-col">
+    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+      <button type="button" class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select All</button>
+        <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <!-- Selected row actions, only show when rows are selected. -->
+          <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+            
+          </div>
 
-                  <div class="px-5 py-3">
-                    <div class="text-sm">
-                      <p class="font-medium text-center"> Update your profile. </p>
-                    </div>
-                  </div>
+          <table class="min-w-full table-fixed divide-y divide-gray-300">
+            <thead class="bg-yellow-950">
+              <tr>
+                <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </th>
+                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PROPERTY</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DURATION</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INTERACTION</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">ABCD</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Request to move out<span class="sr-only">, Lindsay Walton</span></a>
+                </td>
+              </tr>
 
-                  <div class="grid grid-cols-3 gap-4 place-content-center ">
-                    <img class=" ml-8 h-10 w-auto flex " src="{{ asset('/brands/contract.png') }}">
-                    <img class=" ml-8 h-10 w-auto flex " src="{{ asset('/brands/contract.png') }}">
-                    <img class=" ml-8 h-10 w-auto flex " src="{{ asset('/brands/contract.png') }}">
-                    <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Contracts</button> 
-                    <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Unpaid Bills</button> 
-                    <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Concerns</button>  
-                  </div>
-                </div>
+              <!-- More people... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
 
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">ABCD</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Request to move out<span class="sr-only">, Lindsay Walton</span></a>
+                </td>
+              </tr>
 
-            <!-- card Announcements -->
-            <div class="bg-white overflow-hidden">
-              <div class="p-5">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <!-- Heroicon name: outline/scale -->
-                    <img class="h-10 w-auto" src="{{ asset('/brands/megaphone.png') }}">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                    </svg>
-                  </div>
-                  <div class="ml-5 w-0 flex-1">
-                    
-                    <dl>
-                      <dt class="text-3xl font-medium text-black-500 truncate">Announcements:</dt>
-                      
-                      <dd>
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
-                <div class="text-sm">
-                <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> Your contract will expire in 2 days. </a>
-                <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Renew</button></div>
-                </div>
-              </div>
-              <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
-                <div class="text-sm">
-                  <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> You have unpaid bills for unit #2. </a>
-                  <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay now</button></div>
-                </div>
-              </div>
-              <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
-                <div class="text-sm">
-                  <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> You have unpaid bills. </a>
-                  <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay now</button></div>
-                </div>
-              </div>
-            </div>
+              <!-- More people... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">ABCD</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Request to move out<span class="sr-only">, Lindsay Walton</span></a>
+                </td>
+              </tr>
 
-            <!-- card Notifications -->
-            <div class="bg-white">
-              <div class="p-5">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <!-- Heroicon name: outline/scale -->
-                    
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                    </svg>
-                  </div>
-                  <div class="ml-0 w-0 flex-1">
-                    <dl>
-                      <dt class="text-sm font-medium text-gray-500 truncate">Friday, August 19, 2022</dt>
-                      <dd>
-                        <div class="text-lg font-medium text-gray-900">$30,659.45</div>
-                        <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">Today</h2>
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="bg-gray-50 px-5 py-3">
-                <div class="text-sm">
-                <div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-      <div class="p-4">
-        <div class="flex items-start">
-          <div class="flex-shrink-0">
-            <!-- Heroicon name: outline/check-circle -->
-            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
-          </div>
-                </div>
-              </div>
-</div>
-<div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-              <div class="p-4">
-        <div class="flex items-start">
-          <div class="flex-shrink-0">
-            <!-- Heroicon name: outline/check-circle -->
-            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
-          </div>
-          </div>
-</div>
-</div>
-<div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-      <div class="p-4">
-        <div class="flex items-start">
-          <div class="flex-shrink-0">
-            <!-- Heroicon name: outline/check-circle -->
-            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
-          </div>
-                </div>
-              </div>
-</div>
-</div>
-</div>
+              <!-- More people... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">ABCD</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Request to move out<span class="sr-only">, Lindsay Walton</span></a>
+                </td>
+              </tr>
 
-        <div button type="button" class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
-text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View More</button>
+              <!-- More people... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">ABCD</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Request to move out<span class="sr-only">, Lindsay Walton</span></a>
+                </td>
+              </tr>
+
+              <!-- More people... -->
+            </tbody>
+          </table>
         </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+  <div class="flex-1 flex justify-between sm:hidden">
+    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
+    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </a>
+  </div>
+  <div class="mt-5 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-gray-700">
+        Showing
+        <span class="font-medium">1</span>
+        to
+        <span class="font-medium">10</span>
+        of
+        <span class="font-medium">97</span>
+        results
+      </p>
+    </div>
+    <div>
+      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+          <span class="sr-only">Previous</span>
+          <!-- Heroicon name: solid/chevron-left -->
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
+        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
+        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
+        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
+        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> ... </span>
+        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
+        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+          <span class="sr-only">Next</span>
+          <!-- Heroicon name: solid/chevron-right -->
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </div>
+</div>
+</div>
 
 
-        </div>
-        </div>
-      </aside>
+
       <!-- Footer -->
 <footer class="">
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">

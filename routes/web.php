@@ -41,3 +41,7 @@ Route::get('/tenant', function(){
 Route::get('/portfolio', function(){
     return view('newlayout.portfolio');
 });
+
+Route::get('/contracts', function(){
+    return view('newlayout.contracts');
+});
