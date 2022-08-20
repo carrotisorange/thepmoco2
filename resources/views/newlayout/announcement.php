@@ -443,7 +443,7 @@ text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:
         </div>
       </aside>
       <!-- Footer -->
-<footer class="bg-white">
+<footer class="">
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
     <div class="flex justify-center space-x-6 md:order-2">
       <a href="#" class="text-gray-400 hover:text-gray-500">

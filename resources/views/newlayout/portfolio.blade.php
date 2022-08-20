@@ -28,8 +28,9 @@
 
   ```
 -->
-  <html class="h-full bg-white">
-  <body class="h-full overflow-hidden font-body>
+  <html class="h-full w-full bg-no-repeat bg-cover"
+        style= "background-image: url('/brands/property_bg.png');">
+  <body class="h-full overflow-hidden font-body">
 
 <div class="flex h-full flex-col">
   <!-- Top nav-->
@@ -220,7 +221,7 @@
 
     <!-- Main area -->
     <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-    <div class="mt-8">
+    
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <!--
   This example requires Tailwind CSS v2.0+ 
@@ -238,33 +239,42 @@
   }
   ```
 -->
-<div class="bg-white">
-  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900">Welcome back, Juan</h2>
 
-    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      <div class="group relative">
-        <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-        </div>
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Basic Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Black</p>
-          </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
-        </div>
-      </div>
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900">Welcome back, Juan!</h2>
 
-      <!-- More products... -->
+        <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            <div class="group relative">
+                <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                    <img src="brands/property_page.png" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
+                    <h3 class="text-medium text-gray-700">ABCD Property</h3>
+                </div>
+            </div>
+            
+            <div class="group relative">
+                <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                    <img src="brands/property_page.png" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
+                    <h3 class="text-medium text-gray-700">ABCD Property</h3>
+                </div>
+            </div>   
+
+            <div class="group relative">
+                <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                    <img src="brands/property_page.png" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
+                    <h3 class="text-medium text-gray-700">ABCD Property</h3>
+                </div>
+            </div>   
+
+            <div class="group relative">
+                <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                    <img src="brands/property_page.png" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
+                    <h3 class="text-medium text-gray-700">ABCD Property</h3>
+                </div>
+            </div>   
+
+            
+        </div>
     </div>
-  </div>
-</div>
         
        <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="px-4 sm:px-6 lg:px-8">
@@ -274,7 +284,9 @@
       <p class="mt-2 text-sm text-gray-700">Select a property.</p>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</button>
+      
     </div>
   </div>
   <div class="mt-8 flex flex-col">
@@ -284,30 +296,226 @@
           <table class="min-w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">
               <tr>
-                <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Transaction ID</th>
-                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Company</th>
-                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Share</th>
-                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Commision</th>
-                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Price</th>
-                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Quantity</th>
-                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Net amount</th>
+                <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">Property</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Property 1</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Property 2</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Property 3</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Property 4</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Property 5</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Property 6</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Property 7</th>
                 <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-6">
-                  <span class="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
               <tr>
-                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">AAPS0L</td>
-                <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">Chase &amp; Co.</td>
-                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">CAC</td>
-                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">+$4.37</td>
-                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">$3,509.00</td>
-                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">12.00</td>
-                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">$4,397.00</td>
-                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, AAPS0L</span></a>
-                </td>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">Type</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Condominium</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">Condominium</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Condominium</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Condominium</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Condominium</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Condominium</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Condominium</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">No. of Units</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">100</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">100</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">100</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">100</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">100</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">100</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">100</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">Occupied</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">80</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">80</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">80</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">80</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">80</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">80</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">80</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">Vacant</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">Occupancy Rate</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">Total bills for Collection</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">Collected Amount</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">Collection Efficiency</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">Total Unpaid Collection</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">No. of past due Accounts</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">No. of Expiring Contracts</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">No. of Expired Contracts</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">No. of Concerns Received</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
+              </tr>
+
+              <!-- More properties... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">No. of Concerns Closed</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">20</td>
+                <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
               </tr>
 
               <!-- More properties... -->
@@ -320,7 +528,7 @@
 </div>
    
       <!-- Footer -->
-<footer class="bg-white">
+<footer class="">
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
     <div class="flex justify-center space-x-6 md:order-2">
       <a href="#" class="text-gray-400 hover:text-gray-500">
