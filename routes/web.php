@@ -35,5 +35,9 @@ require __DIR__.'/marketing.php';
 require __DIR__.'/checkout.php';
 
 Route::get('/tenant', function(){
-    return view('newlayout.newlayout');
+    return view('newlayout.announcement');
+});
+
+Route::get('/portfolio', function(){
+    return view('newlayout.portfolio');
 });
