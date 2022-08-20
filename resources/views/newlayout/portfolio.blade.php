@@ -242,34 +242,35 @@
 
   <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
     <h2 class="text-2xl font-bold tracking-tight text-gray-900">Welcome back, Juan!</h2>
+    <p class="mt-2 text-sm text-gray-700">Select a property.</p>
 
         <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             <div class="group relative">
                 <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
-                    <h3 class="text-medium text-gray-700">ABCD Property</h3>
+                    <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">    
                 </div>
+                <h3 class="text-medium text-gray-700 font-semibold text-center">ABCD Property</h3>
             </div>
             
             <div class="group relative">
                 <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
-                    <h3 class="text-medium text-gray-700">ABCD Property</h3>
+                    <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </div>
+                <h3 class="text-medium text-gray-700 font-semibold text-center">ABCD Property</h3>
             </div>   
 
             <div class="group relative">
                 <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
-                    <h3 class="text-medium text-gray-700">ABCD Property</h3>
+                    <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </div>
+                <h3 class="text-medium text-gray-700 font-semibold text-center">ABCD Property</h3>
             </div>   
 
             <div class="group relative">
                 <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
-                    <h3 class="text-medium text-gray-700">ABCD Property</h3>
+                    <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </div>
+                <h3 class="text-medium text-gray-700 font-semibold text-center">ABCD Property</h3>
             </div>   
 
             
@@ -277,12 +278,11 @@
     </div>
         
        <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="px-4 sm:px-6 lg:px-8">
+<div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1 class="text-xl font-semibold text-gray-900">Properties</h1>
-      <p class="mt-2 text-sm text-gray-700">Select a property.</p>
-    </div>
+          </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
       <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export</button>
       <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</button>
