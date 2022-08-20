@@ -38,7 +38,7 @@
     <!-- Logo area -->
     <div class="absolute inset-y-0 left-0 md:static md:flex-shrink-0">
       <a href="#" class="flex h-16 w-16 items-center justify-center bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-600 md:w-20">
-        <img class="h-15 w-auto" src=brands/full-logo.png>
+        <img class="h-15 w-auto"src="{{ asset('/brands/full-logo.png') }}">
       </a>
     </div>
 
@@ -154,7 +154,7 @@
         <div class="fixed inset-0 z-40 h-full w-full bg-white sm:inset-y-0 sm:left-auto sm:right-0 sm:w-full sm:max-w-sm sm:shadow-lg" aria-label="Global">
           <div class="flex h-16 items-center justify-between px-4 sm:px-6">
             <a href="#">
-              <img class="block h-10 w-auto" src="brands/logo.png" alt="Workflow">
+              <img class="block h-10 w-auto" src="{{ asset('/brands/logo.png') }}" alt="Workflow">
             </a>
             <button type="button" class="-mr-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600">
               <span class="sr-only">Close main menu</span>
@@ -192,7 +192,7 @@
           <div class="border-t border-gray-200 pt-4 pb-3">
             <div class="max-w-8xl mx-auto flex items-center px-4 sm:px-6">
               <div class="flex-shrink-0">
-                <img class="h-10 w-10 rounded-full" src="brands/avatar.png" alt="">
+                <img class="h-10 w-10 rounded-full" src="{{ asset('/brands/avatar.png') }}" alt="">
               </div>
               <div class="ml-3 min-w-0 flex-1">
                 <div class="truncate text-base font-medium text-gray-800">Basilio</div>
@@ -246,28 +246,28 @@
         <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             <div class="group relative">
                 <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img src="brands/property_page.png" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
+                    <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
                     <h3 class="text-medium text-gray-700">ABCD Property</h3>
                 </div>
             </div>
             
             <div class="group relative">
                 <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img src="brands/property_page.png" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
+                <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
                     <h3 class="text-medium text-gray-700">ABCD Property</h3>
                 </div>
             </div>   
 
             <div class="group relative">
                 <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img src="brands/property_page.png" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
+                <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
                     <h3 class="text-medium text-gray-700">ABCD Property</h3>
                 </div>
             </div>   
 
             <div class="group relative">
                 <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img src="brands/property_page.png" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
+                <img src="{{ asset('/brands/property_page.png') }}" alt="building" class="w-40 object-center object-cover lg:w-full lg:h-full">
                     <h3 class="text-medium text-gray-700">ABCD Property</h3>
                 </div>
             </div>   
