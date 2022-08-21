@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Portfolio</title>
 </head>
 <!--
   This example requires Tailwind CSS v2.0+ 
@@ -30,7 +32,7 @@
 -->
   <html class="h-full w-full bg-no-repeat bg-cover"
         style= "background-image: url('/brands/property_bg.png');">
-  <body class="h-full overflow-hidden font-body">
+  <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
   <!-- Top nav-->
@@ -92,9 +94,12 @@
           </div>
         </div>
       </div>
-      <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
+      <div class="ml-10 flex flex-shrink-0 items-center space-x-5 pr-4">
         <nav aria-label="Global" class="flex space-x-10">
           <a href="#" class="text-sm font-medium text-gray-900">Basilio Tenant</a>
+          <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
         </nav>
 
 
@@ -114,17 +119,20 @@
                 From: "transform opacity-100 scale-100"
                 To: "transform opacity-0 scale-95"
             --> 
-           <!-- PROFILE DROPDOWN! <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
-              <div class="py-1" role="none"> -->
+           <!-- PROFILE DROPDOWN! --> 
+           <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
+              <div class="py-1" role="none"> 
                 <!-- Active: "bg-gray-100", Not Active: "" -->
-                <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Your Profile </a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Profile </a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Subscription </a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Properties </a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Log Out </a>
+              </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
--->
+
     <!-- Mobile menu, show/hide this `div` based on menu open/closed state -->
 
     <div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
@@ -241,7 +249,7 @@
 -->
 
   <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900">Welcome back, Juan!</h2>
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900 font-pop">Welcome back, Juan!</h2>
     <p class="mt-2 text-sm text-gray-700">Select a property.</p>
 
         <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">

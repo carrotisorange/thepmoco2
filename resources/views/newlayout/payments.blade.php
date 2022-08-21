@@ -12,7 +12,7 @@
 </head>
 
   <html class="h-full bg-white">
-  <body class="h-full overflow-hidden font-body">
+  <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
 
