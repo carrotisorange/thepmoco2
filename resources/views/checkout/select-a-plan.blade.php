@@ -13,7 +13,7 @@
                             onclick="window.location.href='/select-a-plan-free'"
                             class="px-5 py-3 border border-transparent text-base font-medium rounded-md text-white
                         bg-purple-800 hover:bg-purple-90 relative w-full bg-purple-600 border-purple-600 rounded-md shadow-sm py-2 text-sm font-medium text-white-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:z-10 sm:w-auto sm:px-8">
-                            FREE TRIAL for the FIRST 30 DAYS
+                            TRY FREE TRIAL for the FIRST 30 DAYS
                         </button></p>
 
              
