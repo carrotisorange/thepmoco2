@@ -198,17 +198,17 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Contracts -->
-                <a href="#" class="bg-purple-500 text-whit flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class=" text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Contracts</span>
-                    <img class="h-13 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-13 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Contracts</div>
                 
                 <!-- Bills -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Bills</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto"  src="{{ asset('/brands/invoice_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
@@ -265,7 +265,7 @@
       <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Contract</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Bills</button>
       <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Upload Proof of Payment</button>
     </div>
   </div>
@@ -273,13 +273,13 @@
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
       <button type="button" class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select All</button>
-        <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+        <div class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
           <!-- Selected row actions, only show when rows are selected. -->
           <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
             
           </div>
 
-          <table class="min-w-full table-fixed divide-y divide-gray-300 border">
+          <table class="min-w-full table-fixed divide-y-8 divide-gray-50 border">
             <thead class="bg-yellow-950">
               <tr>
                 <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">

@@ -198,7 +198,7 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Contracts -->
-                <a href="#" class="bg-purple-500 text-whit flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Contracts</span>
                     <img class="h-13 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -273,13 +273,13 @@
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
       <button type="button" class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select All</button>
-        <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+        <div class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
           <!-- Selected row actions, only show when rows are selected. -->
           <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
             
           </div>
 
-          <table class="min-w-full table-fixed divide-y divide-gray-300 border">
+          <table class="min-w-full table-fixed divide-y-8 divide-gray-50 border">
             <thead class="bg-yellow-950">
               <tr>
                 <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -428,13 +428,11 @@
   <div class="mt-5 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
     <div>
       <p class="text-sm text-gray-700">
-        Showing
+      Showing
         <span class="font-medium">1</span>
-        to
-        <span class="font-medium">10</span>
         of
-        <span class="font-medium">97</span>
-        results
+        <span class="font-medium">5</span>
+        pages
       </p>
     </div>
     <div>
