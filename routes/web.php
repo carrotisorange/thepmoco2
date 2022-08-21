@@ -34,7 +34,7 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
-Route::get('/tenant', function(){
+Route::get('/announcement', function(){
     return view('newlayout.announcement');
 });
 
@@ -48,4 +48,8 @@ Route::get('/contracts', function(){
 
 Route::get('/bills', function(){
     return view('newlayout.bills');
+});
+
+Route::get('/payments', function(){
+    return view('newlayout.payments');
 });

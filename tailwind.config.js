@@ -30,11 +30,12 @@ module.exports = {
             },
 
             fontFamily: {
-                body:['Poppins']
-            },
+                'poppins': ['Poppins', 'sans-serif'],
         },
     },
 
     plugins: [require('@tailwindcss/forms')],
     plugins: [require('flowbite/plugin')]
+}
+
 };
