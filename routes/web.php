@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-Class 'App\Http\Controllers\Route';
 
 /*
 |--------------------------------------------------------------------------
