@@ -47,7 +47,7 @@
 {{-- Alpine.js --}}
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
 
 {{-- Flowbite --}}
 <script src="../path/to/flowbite/dist/flowbite.js"></script>
