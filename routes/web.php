@@ -53,3 +53,7 @@ Route::get('/bills', function(){
 Route::get('/payments', function(){
     return view('newlayout.payments');
 });
+
+Route::get('/concerns', function(){
+    return view('newlayout.concerns');
+});
