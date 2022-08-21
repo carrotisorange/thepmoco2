@@ -11,9 +11,12 @@
                         Simplify your rental operations with The PMO.</h2>
                     <p class="mt-4 text-xl text-gray-600"><button type="button"
                             onclick="window.location.href='/select-a-plan-free'"
-                            class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-purple-500 focus:z-10 sm:w-auto sm:px-8">
+                            class="px-5 py-3 border border-transparent text-base font-medium rounded-md text-white
+                        bg-purple-800 hover:bg-purple-90 relative w-full bg-purple-600 border-purple-600 rounded-md shadow-sm py-2 text-sm font-medium text-white-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:z-10 sm:w-auto sm:px-8">
                             FREE TRIAL for the FIRST 30 DAYS
                         </button></p>
+
+             
                 </div>
             </div>
         </div>
