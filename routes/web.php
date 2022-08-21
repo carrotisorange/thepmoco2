@@ -45,3 +45,7 @@ Route::get('/portfolio', function(){
 Route::get('/contracts', function(){
     return view('newlayout.contracts');
 });
+
+Route::get('/bills', function(){
+    return view('newlayout.bills');
+});
