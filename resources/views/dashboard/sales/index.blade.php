@@ -77,12 +77,12 @@
                         @if($user->checkoutoption_id == '1')
                         <span
                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
-                            {{ $user->checkoutoption->option }}
+                            {{ $user->checkoutoption_id }}
                         </span>
                         @else
                         <span
                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-sm text-orange-800">
-                            {{ $user->checkoutoption->option }}
+                            {{ $user->checkoutoption_id }}
                         </span>
                         @endif
                     </x-td>
