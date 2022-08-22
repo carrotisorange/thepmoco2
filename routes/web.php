@@ -57,3 +57,11 @@ Route::get('/payments', function(){
 Route::get('/concerns', function(){
     return view('newlayout.concerns');
 });
+
+Route::get('/newaccount', function(){
+    return view('newlayout.newaccount');
+});
+
+Route::get('/newsignup', function(){
+    return view('newlayout.newsignup');
+});

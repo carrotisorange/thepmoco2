@@ -262,7 +262,7 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
+      <h1 class="text-3xl font-Poppins font-bold text-gray-700">Bills</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
       <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Bills</button>
@@ -280,7 +280,7 @@
           </div>
 
           <table class="min-w-full table-fixed divide-y-8 divide-gray-50 border">
-            <thead class="bg-yellow-950">
+            <thead class="bg-yellow-900">
               <tr>
                 <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
                   
