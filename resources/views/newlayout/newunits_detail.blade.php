@@ -288,7 +288,9 @@
           <h2 class="sr-only">Images</h2>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-          <img src="{{ asset('/brands/door_detail.png') }}" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 md:row-span-2 rounded-md">
+          <img src="{{ asset('/brands/door_detail.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md">
+          <a href="#" class="flex justify-left text-sm font-medium text-purple-500 hover:text-purple-700">Upload a Picture</a>
+
           </div>
         </div>
 
@@ -306,7 +308,7 @@
                     Active: "ring-2 ring-offset-2 ring-indigo-500"
                     Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
                   -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
                     <span id="size-choice-0-label"> Unit </span>
                   </label>
@@ -316,7 +318,7 @@
                     Active: "ring-2 ring-offset-2 ring-indigo-500"
                     Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
                   -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
                     <span id="size-choice-1-label"> Rent </span>
                   </label>
@@ -326,7 +328,7 @@
                     Active: "ring-2 ring-offset-2 ring-indigo-500"
                     Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
                   -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
                     <span id="size-choice-2-label"> Owner/Tenant </span>
                   </label>
@@ -336,7 +338,7 @@
                     Active: "ring-2 ring-offset-2 ring-indigo-500"
                     Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
                   -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
                     <span id="size-choice-3-label"> Rooms </span>
                   </label>
@@ -346,7 +348,7 @@
                     Active: "ring-2 ring-offset-2 ring-indigo-500"
                     Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
                   -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
                     <span id="size-choice-4-label"> Furniture List </span>
                   </label>
@@ -359,22 +361,37 @@
 
               </fieldset>
             </div>
-          
-            <div class="space-y-5 rounded-md shadow-sm mt-10">
+
+            <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6 mt-9">
+
+            <div class="sm:col-span-2">
               <div class="relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="name" class="block text-xs font-medium text-gray-900">Unit No.</label>
                   <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-              </div>
+                </div>
+                </div>
 
+                <div class="sm:col-span-4">
               <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">Area</label>
                   <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
               </div>
+              </div>
 
+              <div class="sm:col-span-2">
               <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">Occupancy</label>
                   <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
               </div>
+              </div>
+
+              <div class="sm:col-span-4">
+              <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="job-title" class="block text-xs font-medium text-gray-900">Status</label>
+                  <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+              </div>
+              </div>
+
             </div>
           
             </div>
@@ -383,6 +400,7 @@
           
           
           </form>
+</div>
 </div>
 </div>
 

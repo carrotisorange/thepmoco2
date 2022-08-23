@@ -273,6 +273,7 @@
         <h3 class="mb-10 mt-10 text-center text-4xl font-bold leading-6 text-gray-900">Create a Property</h3>
         
       </div>
+      
       <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
       <div class="sm:col-span-6">
           <label for="street-address" class="block text-sm font-medium text-gray-700"> Property Name: </label>
