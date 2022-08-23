@@ -81,3 +81,19 @@ Route::get('/newunits_thumbnail', function(){
 Route::get('/newunits_detail', function(){
     return view('newlayout.newunits_detail');
 });
+
+Route::get('/newunits_rent', function(){
+    return view('newlayout.newunits_rent');
+});
+
+Route::get('/newunits_owner', function(){
+    return view('newlayout.newunits_owner');
+});
+
+Route::get('/newunits_rooms', function(){
+    return view('newlayout.newunits_rooms');
+});
+
+Route::get('/newunits_furniture', function(){
+    return view('newlayout.newunits_furniture');
+});

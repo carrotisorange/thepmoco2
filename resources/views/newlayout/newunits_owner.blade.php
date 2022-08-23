@@ -363,37 +363,26 @@
             </div>
 
             <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6 mt-9">
-
-            <div class="sm:col-span-2">
+            <img src="{{ asset('/brands/user.png') }}" alt="user" class="h-16 col-span-1 md:row-span-6 rounded-md">
+            <div class="sm:col-span-5">
               <div class="relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="name" class="block text-xs font-medium text-gray-900">Unit No.</label>
-                  <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+              
+              <label for="name" class="block text-xs font-medium text-gray-900">Owner</label>
+                    <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
                 </div>
                 </div>
-
-                <div class="sm:col-span-4">
-              <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Area</label>
-                  <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-              </div>
-              </div>
-
-              <div class="sm:col-span-2">
-              <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Occupancy</label>
-                  <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-              </div>
-              </div>
-
-              <div class="sm:col-span-4">
-              <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Status</label>
-                  <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-              </div>
-              </div> 
+                
+                <div class="sm:col-span-5">
+                <div class="relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+              
+              <label for="name" class="block text-xs font-medium text-gray-900">Tenant</label>
+                    <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+                </div>
+                </div>
+                
             </div>
 
-            <div class="mt-10 flex justify-end">
+            <div class="mt-2 flex justify-end">
             <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
             </div>  
           </div>
