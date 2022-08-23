@@ -58,8 +58,8 @@ Route::get('/concerns', function(){
     return view('newlayout.concerns');
 });
 
-Route::get('/newaccount', function(){
-    return view('newlayout.newaccount');
+Route::get('/newsignin', function(){
+    return view('newlayout.newsignin');
 });
 
 Route::get('/newsignup', function(){
@@ -68,4 +68,16 @@ Route::get('/newsignup', function(){
 
 Route::get('/createproperty', function(){
     return view('newlayout.createproperty');
+});
+
+Route::get('/newunits_list', function(){
+    return view('newlayout.newunits_list');
+});
+
+Route::get('/newunits_thumbnail', function(){
+    return view('newlayout.newunits_thumbnail');
+});
+
+Route::get('/newunits_detail', function(){
+    return view('newlayout.newunits_detail');
 });
