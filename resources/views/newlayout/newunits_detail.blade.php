@@ -274,7 +274,7 @@
 
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
       <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
-        <div class="lg:col-start-6 lg:col-span-8">
+        <div class="lg:col-start-5 lg:col-span-9">
         
           <div class="flex justify-between">
           <h1 class="text-3xl font-bold text-gray-900">Unit #1</h1>
@@ -284,7 +284,7 @@
         </div>
 
         <!-- Image gallery -->
-        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-5 lg:row-start-1 lg:row-span-3">
+        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-span-3">
           <h2 class="sr-only">Images</h2>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
@@ -292,7 +292,7 @@
           </div>
         </div>
 
-        <div class="mt-8 lg:col-span-7">
+        <div class="mt-8 lg:col-span-9">
           <form>
             
 
@@ -300,8 +300,7 @@
             <div class="mt-2">
 
               <fieldset class="mt-2">
-                <legend class="sr-only">Choose a size</legend>
-                <div class="grid grid-cols-3 gap-2 sm:grid-cols-5">
+                <div class="grid grid-cols-5 gap-2 sm:grid-cols-5">
                   <!--
                     In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
                     Active: "ring-2 ring-offset-2 ring-indigo-500"
@@ -329,7 +328,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                    <span id="size-choice-2-label"> Owner / Tenant </span>
+                    <span id="size-choice-2-label"> Owner/Tenant </span>
                   </label>
 
                   <!--
