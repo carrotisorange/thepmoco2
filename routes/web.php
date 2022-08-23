@@ -65,3 +65,7 @@ Route::get('/newaccount', function(){
 Route::get('/newsignup', function(){
     return view('newlayout.newsignup');
 });
+
+Route::get('/createproperty', function(){
+    return view('newlayout.createproperty');
+});
