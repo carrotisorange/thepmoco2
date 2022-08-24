@@ -47,13 +47,28 @@
     <div class="bg-white py-5 px-4 shadow sm:rounded-lg sm:px-10">
     
       <form class="space-y-2" action="#" method="POST">
+
+      <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-4">
+      <div class="sm:col-span-2">
         <div>
-          <label for="name" class="block text-sm font-medium text-gray-700">Name </label>
+          <label for="name" class="block text-sm font-medium text-gray-700">First Name </label>
           <div class="mt-1">
             <input id="name" name="name" type="name"  required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-           
+          </div>
           </div>
         </div>
+        
+        <div class="sm:col-span-2">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Last Name </label>
+          <div class="mt-1">
+            <input id="name" name="name" type="name"  required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          </div>
+          </div>
+        </div>
+</div>
+
+
 
         <div>
           <label for="username" class="block text-sm font-medium text-gray-700"> Username</label>
@@ -103,7 +118,5 @@
 </div>
 
 </body>
-
-
 
 </html>

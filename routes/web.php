@@ -97,3 +97,11 @@ Route::get('/newunits_rooms', function(){
 Route::get('/newunits_furniture', function(){
     return view('newlayout.newunits_furniture');
 });
+
+Route::get('/newowners', function(){
+    return view('newlayout.newowners');
+});
+
+Route::get('/admindashboard', function(){
+    return view('newlayout.admindashboard');
+});

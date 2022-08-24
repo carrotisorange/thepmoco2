@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Units</title>
+    <title>Dashboard</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
   <html class="h-full bg-white">
-  <body class="h-full overflow-hidden font-pop">
+  <body class="h-full overflow-hidden font-body">
 
 <div class="flex h-full flex-col">
 
@@ -129,7 +126,7 @@
           </div>
 
         <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
-          <div class="elative text-gray-400 focus-within:text-gray-500">
+          <div class="relative text-gray-400 focus-within:text-gray-500">
               <label for="mobile-search" class="sr-only">The Property Manager</label>
                 <input id="mobile-search" type="search" placeholder="The Property Manager" class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
             <div class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
@@ -144,11 +141,11 @@
         <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Dashboard</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Units</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Contracts</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Owners</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Bills</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Teams</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Payments</a>
 
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Concerns</a>
         </div>
@@ -185,22 +182,22 @@
   <!-- Bottom section -->
           <div class="flex min-h-0 flex-1 overflow-hidden">
     <!-- Narrow sidebar-->
-            <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white ">
+    <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white ">
               <div class="relative flex w-20 flex-col space-y-3 p-3">
 
                 <!-- Dashboard -->
-                <a href="" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="" class="bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Dashboard</span>
           
-                  <img class="h-10 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <img class="h-10 w-auto"  src="{{ asset('/brands/dashboard_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Units</span>
-                    <img class="h-13 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-13 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
@@ -240,228 +237,240 @@
             </nav>
 
           <!-- Main area -->
-          <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
+        <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
+          <div class="mt-8">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-    ],
-  }
-  ```
--->
+          <!-- card Welcome back -->
+                    
+                    <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
 
-  <div class="pt-6 pb-16 sm:pb-24">
+                    <div class="sm:col-span-6 ml-2 font-bold text-3xl mb-5">
+                    Property Name
+                    </div>
+                        <div class="sm:col-span-6 mb-5">
+                            <div class="bg-purple-300 h-35 overflow-hidden shadow rounded-lg">
+                                <div class="p-5">
+                                     <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                        </div>
+                                            <div class="w-0 flex-1">
+                                                <dl>
+                                                    <dt class="text-xl font-semibold font-body text-gray-500 truncate">Welcome back, Juan</dt>
+                                            </div>
 
-    <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <ol role="list" class="flex items-center space-x-4">
-        <li>
-          <div class="flex items-center">
-          <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
-          </div>
-        </li>
-      </ol>
-    </nav>
+                        <div class="sm:col-span-1">
+                            <img class="h-24 w-auto mt-2 flex justify-end"  src="{{ asset('/brands/juan.png') }}">
+                                                </dl>
+                        </div>
 
-    <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
-      <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
-        <div class="lg:col-start-5 lg:col-span-9">
-        
-          <div class="flex justify-between">
-          <h1 class="text-3xl font-bold text-gray-900">Unit #1</h1>
-            <a href="#" class="flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Edit</a>
-          </div>
-          
-        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- Image gallery -->
-        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-span-3">
-          <h2 class="sr-only">Images</h2>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-          <img src="{{ asset('/brands/door_detail.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md">
-          <a href="#" class="flex justify-left text-sm font-medium text-purple-500 hover:text-purple-700">Upload a Picture</a>
+                        <div class="sm:col-span-6">
+                            <div class="bg-gray-50 h-72 overflow-hidden shadow rounded-lg">
+                                <div class="p-5">
+                                     <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                        </div>
+                                            <div class="w-0 flex-1">
+                                                <dl>
+                                                    <dt class="text-l font-semibold font-body text-gray-500 truncate">Moveout Requests</dt>
+                                                    <dt class="text-l font-semibold font-body text-gray-500 truncate">Payments for Approval</dt>
+                                            </div>
 
-          </div>
-        </div>
 
-        <div class="mt-8 lg:col-span-9">
-          <form>
-            
+                                                </dl>
 
-            <!-- Links -->
-            <div class="mt-2">
 
-              <fieldset class="mt-2">
-                <div class="grid grid-cols-5 gap-2 sm:grid-cols-5">
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
-                    <span id="size-choice-0-label"> Unit </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                    <span id="size-choice-1-label"> Rent </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                    <span id="size-choice-2-label"> Owner/Tenant </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                    <span id="size-choice-3-label"> Rooms </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                    <span id="size-choice-4-label"> Furniture List </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-
-              </fieldset>
-            </div>
-
-            <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6 mt-9">
-
-            <div class="sm:col-span-3">
-           <label for="unitsNumber" class="block text-sm font-medium text-gray-700">Refrigirator</label>
-           <input type="number" class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-             id="unitsNumber"
-             placeholder=""/>
-         </div>
-
-         <div class="sm:col-span-3">
-           <label for="unitsNumber" class="block text-sm font-medium text-gray-700">Bed</label>
-           <input type="number" class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-             id="unitsNumber"
-             placeholder=""/>
-         </div>
-             
-         <div class="sm:col-span-3">
-           <label for="unitsNumber" class="block text-sm font-medium text-gray-700">Sofa</label>
-           <input type="number" class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-             id="unitsNumber"
-             placeholder=""/>
-         </div>
-
-         <div class="sm:col-span-3">
-           <label for="unitsNumber" class="block text-sm font-medium text-gray-700">TV</label>
-           <input type="number" class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-             id="unitsNumber"
-             placeholder=""/>
-         </div>
-            
-                
-               
-
-            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 
-            <div class="mt-5 flex justify-end">
-            <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
-            </div>  
-          </div>
+                    </div>
+
+
+            <!-- card Announcements -->
+            <div class="bg-white overflow-hidden">
+              <div class="p-5">
+                <div class="flex items-center">
+                 
+                  <div class="w-0 flex-1">
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="font-bold text-lg mb-5">Concerns Requests:</div>
+              <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-5 ">
+                <div class="text-semibold">
+
+                <div class="flex justify-end">
+                <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Review</button></div>
+                </div>
+                </div>
+              </div>
 
               
-          
-          
-          </form>
+              <div class="font-bold text-lg">Occupancy Graph of the Year</div>
+           
+
+                <canvas class="p-10" id="chartLine"></canvas>
+           
+
+                <!-- graph chart.js -->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <!-- chart line -->
+                <script>
+                const labels = ["January", "February", "March", "April", "May", "June"];
+                const data = {
+                    labels: labels,
+                    datasets: [
+                    {
+                    label: "Occupancy Graph",
+                     backgroundColor: "hsl(252, 82.9%, 67.8%)",
+                     borderColor: "hsl(252, 82.9%, 67.8%)",
+                     data: [0, 10, 5, 2, 20, 30, 45],
+                    },
+                    ],
+                 };
+
+                const configLineChart = {
+                    type: "line",
+                    data,
+                    options: {},
+                 };
+
+                var chartLine = new Chart(
+                 document.getElementById("chartLine"),
+                    configLineChart
+                );
+                </script>
+
+                <!-- vacant, occupied -->
+                
+                <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-4">
+
+                <div class="sm:col-span-2 mb-5">
+                <div class="bg-white overflow-hidden">
+                    <div class="p-5">
+                        <div class="px-5">
+                        <img class="h-12 w-auto mt-2 flex justify-end"  src="{{ asset('/brands/key.png') }}">Occupied
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="sm:col-span-2 mb-5">
+                <div class="bg-white overflow-hidden">
+                    <div class="p-5">
+                        <div class="px-5">
+                        <img class="h-12 w-auto mt-2 flex justify-end"  src="{{ asset('/brands/key.png') }}">Vacant
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                </div>
+            </div>    
+            
+
+
+            <!-- card Notifications -->
+            <div class>
+            <!--button -->
+            <div class="bg-white">
+              <div class="p-5">
+                <div class="flex items-center">
+                  <div class="ml-0 w-0 flex-1">
+                    <dl>
+                      <dt class="text-sm font-medium text-gray-500 truncate">Friday, August 19, 2022</dt>
+                      <dd>
+                        <div class="text-lg font-medium text-gray-900">$30,659.45</div>
+                        <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">Today</h2>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-gray-50 px-5 py-3">
+                <div class="text-sm">
+                <div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+      <div class="p-4">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <!-- Heroicon name: outline/check-circle -->
+            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="ml-3 w-0 flex-1 pt-0.5">
+            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
+            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
+          </div>
+                </div>
+              </div>
+</div>
+<div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div class="p-4">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <!-- Heroicon name: outline/check-circle -->
+            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="ml-3 w-0 flex-1 pt-0.5">
+            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
+            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
+          </div>
+          </div>
+</div>
+</div>
+<div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+      <div class="p-4">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <!-- Heroicon name: outline/check-circle -->
+            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="ml-3 w-0 flex-1 pt-0.5">
+            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
+            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
+          </div>
+                </div>
+              </div>
 </div>
 </div>
 </div>
-
-
-
-
-
-      
- <div class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-  <div class="flex-1 flex justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
-    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </a>
-  </div>
-  <div class="mt-5 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-    <div>
-      <p class="text-sm text-gray-700">
-        Showing
-        <span class="font-medium">1</span>
-        of
-        <span class="font-medium">5</span>
-        pages
-      </p>
-    </div>
-    <div>
-      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Previous</span>
-          <!-- Heroicon name: solid/chevron-left -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
-        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> ... </span>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Next</span>
-          <!-- Heroicon name: solid/chevron-right -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </div>
-</div>
 </div>
 
+        <div button type="button" class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
+text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View More</button>
 
 
+
+        </div>
+
+
+        </div>
+        </div>
+            
+      </aside>
       <!-- Footer -->
 <footer class="">
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
