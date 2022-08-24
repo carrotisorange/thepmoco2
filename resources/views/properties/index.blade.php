@@ -474,10 +474,16 @@
                                                     class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                                                     Occupancy Rate</td>
                                                 @foreach ($properties as $property)
-                                                {{-- <th scope="col"
+                                                @if($property->property->units->count())
+                                                <?php $occupancy_rate = $property->property->units->where('status_id', 2)->count()/$property->property->units->count() * 100; ?>
+                                                @else
+                                                <?php $occupancy_rate = 0;?>
+                                                @endif
+                                               
+                                                <th scope="col"
                                                     class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                                    {{ $property->property->units->where('status_id', 6)->count() }}
-                                                </th> --}}
+                                                    {{ number_format($occupancy_rate, 2) }} %
+                                                </th>
                                                 @endforeach
                                             </tr>
 
@@ -521,13 +527,19 @@
                                                     class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                                                     Collection Efficiency</td>
                                                 @foreach ($properties as $property)
-                                                {{-- <th scope="col"
+
+                                                @if($property->property->bills->count())
+                                                <?php $collection_efficiency = ($property->property->bills->whereIn('status',
+                                                ['unpaid', 'partially_paid'])->sum('bill') -
+                                                $property->property->bills->whereIn('status', ['unpaid',
+                                                'partially_paid'])->sum('initial_payment')) / $property->property->bills->sum('bill'); ?>
+                                                @else
+                                                <?php $collection_efficiency = 0;?>
+                                                @endif
+                                                <th scope="col"
                                                     class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                                    {{ number_format($property->property->bills->whereIn('status',
-                                                    ['unpaid', 'partially_paid'])->sum('bill') -
-                                                    $property->property->bills->whereIn('status', ['unpaid',
-                                                    'partially_paid'])->sum('initial_payment'), 2) }}
-                                                </th> --}}
+                                                    {{ number_format($collection_efficiency, 2) }} %
+                                                </th>
                                                 @endforeach
                                             </tr>
 
