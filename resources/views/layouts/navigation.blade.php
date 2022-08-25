@@ -70,6 +70,14 @@
                 </div>
                 @endcan
 
+                @can('admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/concern" :active="request()->routeIs('concern')">
+                        <i class="fa-solid fa-cash-register"></i>&nbspConcern
+                    </x-nav-link>
+                </div>
+                @endcan
+
             </div>
 
             <!-- Settings Dropdown -->

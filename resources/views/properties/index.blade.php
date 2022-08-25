@@ -12,31 +12,8 @@
         rel="stylesheet">
     <title>Portfolio</title>
 </head>
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<!--
-  This example requires updating your template:
 
-  ```
--->
-<html class="h-full w-full bg-no-repeat bg-cover" style="background-image: url('/brands/property_bg.png');">
-
-<body class="font-sans antialiased " body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
-
+<body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
     <div class="flex h-full flex-col">
         <!-- Top nav-->
         <header class="relative flex h-16 flex-shrink-0 items-center bg-white">
@@ -127,17 +104,6 @@
                             <span class="sr-only">Open user menu</span>
 
                         </button>
-
-                        <!--
-              Dropdown menu, show/hide based on menu state.
-
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
                         <!-- PROFILE DROPDOWN! -->
                         <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
@@ -358,7 +324,8 @@
                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
                                 property</button>
                             {{-- <button type="button"
-                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New property</button>
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
+                                property</button>
                             <button type="button"
                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</button>
                             --}}
@@ -479,7 +446,7 @@
                                                 @else
                                                 <?php $occupancy_rate = 0;?>
                                                 @endif
-                                               
+
                                                 <th scope="col"
                                                     class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
                                                     {{ number_format($occupancy_rate, 2) }} %
