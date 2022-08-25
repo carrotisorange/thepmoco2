@@ -57,7 +57,7 @@
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link href="/property" :active="request()->routeIs('property')">
-                                <i class="fa-solid fa-building"></i>&nbspProperty
+                                <i class="fa-solid fa-building"></i>&nbspPortforlio
                             </x-nav-link>
 
                         </div>
@@ -162,7 +162,7 @@
                 </div>
             </div>
         </nav>
-        <main class="bg-gray-200 backdrop-grayscale">
+        <main class="">
             <div class="w-full h-full backdrop-contrast-100">
                 {{ $slot }}
             </div>

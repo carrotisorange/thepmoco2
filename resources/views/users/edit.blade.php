@@ -74,21 +74,21 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div
+                        {{-- <div
                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                             <label for="password" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                 Password
                             </label>
                             <div class="mt-1 sm:mt-0 sm:col-span-2">
                                 <div class="max-w-lg flex rounded-md shadow-sm">
-                                    <input type="password" name="password" id="password" autocomplete="password" value="{{old('password', $user->password)}}"
+                                    <input type="password" name="password" id="password" autocomplete="password" value="{{old('password')}}"
                                         class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
                                 </div>
                             </div>
                             @error('password')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         {{-- <div
                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">

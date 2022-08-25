@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\WelcomeMailToMember;
 use Carbon\Carbon;
 use App\Models\Property;
-use Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -189,26 +188,26 @@ public function index(Property $property)
     public function update(Request $request, User $user)
     {
         $attributes = request()->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
-        'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
-        'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
-        'password' => ['nullable'],
-        'role_id' => ['nullable', Rule::exists('roles', 'id')],
-        'status' => 'nullable',
-        'avatar' => 'image',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
+            'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
+            'role_id' => ['nullable', Rule::exists('roles', 'id')],
+            'status' => 'nullable',
+            // 'avatar' => 'image',
         ]);
 
-        if(isset($attributes['avatar']))
-        {
-            $attributes['avatar'] = request()->file('avatar')->store('avatars');
-        }
+        // if($request->avatar != null)
+        // {
+        //     $attributes['avatar'] = request()->file('avatar')->store('avatars');
+        // }
 
-        if(isset($attributes['password']))
-        {
-           $attributes['password'] = Hash::make($request->password);
-           $attributes['email_verified_at'] = Carbon::now();
-        }
+        // if($request->password != null){
+        // {
+        //    $attributes['password'] = Hash::make($request->password);
+        //    $attributes['email_verified_at'] = Carbon::now();
+        // }
+
         $user->update($attributes);
 
         return redirect('/user/'.$user->username.'/edit')->with('success', 'Profile is successfully updated.');
