@@ -460,24 +460,24 @@
   <div class="mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
     <div class="md:grid md:grid-cols-1 md:gap-6">
       <div class="mt-5 md:mt-0 md:col-span-2">
-        <div class="grid grid-cols-9 gap-6">
-          <div class="col-span-6 sm:col-span-3">
+        <div class="grid grid-cols-8 gap-6">
+          <div class="col-span-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700">Full Name</label>
             <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
           </div>
 
-          <div class="col-span-6 sm:col-span-3">
-            <label for="last-name" class="block text-sm font-medium text-gray-700">Mobile</label>
+          <div class="col-span-2">
+            <label for="last-name" class="block text-sm font-medium text-gray-700">Relationship</label>
             <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
           </div>
 
-          <div class="col-span-6 sm:col-span-3">
+          <div class="col-span-2">
             <label for="email-address" class="block text-sm font-medium text-gray-700">Email</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
           </div>
 
           <div class="col-span-2">
-            <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+            <label for="country" class="block text-sm font-medium text-gray-700">Mobile</label>
             <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option>United States</option>
               <option>Canada</option>
@@ -485,58 +485,6 @@
             </select>
           </div>
 
-          <div class="col-span-2">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
-            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-          </div>
-
-          <div class="col-span-2">
-            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-            <input type="text" name="city" id="city" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-          </div>
-
-          <div class="col-span-2">
-            <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
-            <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-          </div>
-
-          <div class="col-span-1">
-            <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
-            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-          </div>
-
-          <div class="col-span-2">
-            <label for="country" class="block text-sm font-medium text-gray-700">Gender</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div>
-          <div class="col-span-2">
-            <label for="country" class="block text-sm font-medium text-gray-700">Birthdate</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div>
-          <div class="col-span-3">
-            <label for="country" class="block text-sm font-medium text-gray-700">Civil Status</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div>
-          <div class="col-span-2">
-            <label for="country" class="block text-sm font-medium text-gray-700">Type</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div>
 
           
         </div>
