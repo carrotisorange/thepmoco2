@@ -1,15 +1,8 @@
-<x-index-layout>
-    @section('title', '| User')
-    <x-slot name="labels">
-        User
-    </x-slot>
-
-    <x-slot name="options">
-        <x-button
-            onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'">
-            Add a user</x-button>
-    </x-slot>
-
-    @include('tables.users')
-
-</x-index-layout>
+<x-new-layout>
+    @section('title','Units | '. Session::get('property'))
+    <div class="mt-8">
+        <div class="max-full mx-auto px-4 sm:px-6 lg:px-11">
+           @livewire('user-index-component')
+        </div>
+    </div>
+</x-new-layout>

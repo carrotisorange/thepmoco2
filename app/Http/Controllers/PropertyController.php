@@ -201,11 +201,11 @@ class PropertyController extends Controller
         ->pluck('occupancy_rate');
     }
 
-    public function get_current_occupancy_rate()
+    public function get_current_occupancy_rate($property_uuid)
     {
         return UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
         DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', $property_uuid)
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
         ->get()
@@ -402,6 +402,11 @@ class PropertyController extends Controller
             'note_to_bill' => $note,
         ]);
     }
+
+    public function success(Property $property)
+    {
+        return redirect ('/property');
+    }
      
     public function show(Property $property)
     {  
@@ -419,7 +424,7 @@ class PropertyController extends Controller
 
         $occupancy_rate_value = $this->get_occupancy_rate_values();
 
-        $current_occupancy_rate = $this->get_current_occupancy_rate();
+        $current_occupancy_rate = $this->get_current_occupancy_rate($property->uuid);
 
         $collection_rate_date = $this->get_collection_rate_dates();
 

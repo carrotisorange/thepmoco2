@@ -22,12 +22,10 @@
                                 </a>
                             </div>
 
-                            {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-nav-link href="/property" :active="request()->routeIs('property')">
-                                    <i class="fa-solid fa-building"></i>&nbspPortforlio
-                                </x-nav-link>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <h1 class="text-2xl p-5 tracking-tight font-bold leading-tight text-gray-900">The Property Manager Online</h1>
 
-                            </div> --}}
+                            </div>
                             {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <x-nav-link href="/users" :active="request()->routeIs('user')">
                                     <i class="fa-solid fa-user"></i>&nbspUser
@@ -65,7 +63,7 @@
                                     </x-dropdown-link>
 
                                     <x-dropdown-link href="/property">
-                                        Properties
+                                        Portforlio
                                     </x-dropdown-link>
 
                                     <form method="POST" action="{{ route('logout') }}">
@@ -113,7 +111,7 @@
                         </div>
                         <div class="pt-2 pb-3 space-y-1">
                             <x-dropdown-link href="/property">
-                                Properties
+                                Portforlio
                             </x-dropdown-link>
                         </div>
 
@@ -170,9 +168,9 @@
                         <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
 
                         <!-- Teams -->
-                        <x-nav-link href="/property/{{ Session::get('property') }}/owner"
-                            :active="request()->routeIs('owner')">
-                            <span class="sr-only">Owners</span>
+                        <x-nav-link href="/property/{{ Session::get('property') }}/user"
+                            :active="request()->routeIs('user')">
+                            <span class="sr-only">Employees</span>
 
                             <span class="sr-only">Employees</span>
                             <img class="h-13 w-auto" src="{{ asset('/brands/team_gr.png') }}" fill="none"

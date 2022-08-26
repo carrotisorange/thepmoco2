@@ -19,7 +19,7 @@ class UserPropertyController extends Controller
         return User::find($user_id)->user_properties()->paginate(5);
     }
 
-    public function show_property_users($property_uuid, $user_id)
+    public function show_property_users($property_uuid)
     {
         return Property::find($property_uuid)->property_users()->paginate(5);
     }

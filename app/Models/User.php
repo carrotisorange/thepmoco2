@@ -122,4 +122,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
     }
+
+    public static function search($search)
+    {
+    return empty($search)? static::query()
+        : static::where('name','like', '%'.$search.'%')
+        ->orWhere('mobile_number','like', '%'.$search.'%')
+        ->orWhere('email','like', '%'.$search.'%');
+    }
 }

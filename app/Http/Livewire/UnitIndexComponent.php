@@ -21,6 +21,7 @@ class UnitIndexComponent extends Component
 
     public $search = '';
     public $selectedUnits = [];
+    public $view = 'list';
 
     public $status_id = [];
     public $category_id = [];
@@ -31,6 +32,11 @@ class UnitIndexComponent extends Component
     public $discount = [];
     public $size = [];
     public $occupancy = [];
+
+    public function changeView($value)
+    {
+        $this->view = $value;
+    }
 
     public function resetFilters()
     {
@@ -112,7 +118,7 @@ class UnitIndexComponent extends Component
 
         return view('livewire.unit-index-component',[
             'units' => Unit::search($this->search)
-                    ->orderBy('unit', 'desc')
+                  ->orderByRaw('LENGTH(unit) ASC') ->orderBy('unit', 'ASC')
                     ->where('property_uuid', Session::get('property'))
                     ->when($this->status_id, function($query){
                     $query->whereIn('status_id', $this->status_id);
@@ -141,7 +147,7 @@ class UnitIndexComponent extends Component
                        ->when($this->occupancy, function($query){
                        $query->where('occupancy', $this->occupancy);
                        })
-                    ->paginate(80),
+                    ->paginate(10),
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,

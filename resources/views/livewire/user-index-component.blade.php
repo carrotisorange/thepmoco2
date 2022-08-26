@@ -2,14 +2,14 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Owners</h1>
+                <h1 class="text-3xl font-bold text-gray-700">Employees</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-                {{-- <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ Str::random(8) }}/edit'"
+                <button type="button"
+                   onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add
-                    Units</button> --}}
+                    Employee</button>
 
             </div>
         </div>
@@ -27,7 +27,7 @@
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </div>
-                        <input type="search" id="default-search" wire:model="search"
+                        <input type="search" id="default-search" wire:model="search" disabled
                             class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search..." required>
 
@@ -77,15 +77,13 @@
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     NAME</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    UNIT</th>
-                                {{-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    RENT</th> --}}
+                                    Position</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     EMAIL</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    CONTACT #</th>
+                                    MOBILE</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    ADDRESS</th>
+                                    INVITED AT</th>
 
 
                             </tr>
@@ -94,7 +92,7 @@
 
                         <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
                             <!-- Selected: "bg-gray-50" -->
-                            @foreach($owners as $index => $owner )
+                            @foreach($users as $index => $user )
                             <tr>
                                 <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                                     <!-- Selected row marker, only show when row is selected. -->
@@ -107,31 +105,30 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <a class="text-blue-500 text-decoration-line: underline"
-                                        href="/property/{{ $owner->property_uuid }}/owner/{{ $owner->uuid }}">{{
-                                        $owner->owner }}</a>
+                                        href="/user/{{ $user->user->username }}/edit">{{
+                                        $user->user->name }}</a>
+                                    @if($user->user->email_verified_at && $user->user->name)
+                                    <span titl="verified"
+                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        @else
+                                        <span title="unverified"
+                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                            <i class="fa-solid fa-clock"></i>
+                                        </span>
+                                        @endif
 
                                 </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{-- @if($owner->deed_of_sales->count())
-                                    @foreach ($owner->deed_of_sales->where('status','!=','inactive')->take(1) as $owner)
-                                    <a class="text-blue-500 text-decoration-line: underline"
-                                        href="/property/{{ $owner->property_uuid }}/owner/{{ $owner->owner->uuid }}">{{
-                                        $owner->owner->owner }}</a>...({{ $owner->deed_of_sales->count()-1 }})
-                                    @endforeach
-                                    @else
-                                    NA
-                                    @endif --}}
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->role->role }}
                                 </td>
-                                {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00
-                                </td> --}}
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $owner->email }} </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $owner->mobile_number
-                                    }} </td>
+
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->email }}
+                                </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
-                                    $owner->country->country.', '.$owner->province->province.', '.$owner->city->city.',
-                                    '.$owner->barangay }}
-                                </td>
-
+                                    $user->user->mobile_number }} </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
+                                    Carbon\Carbon::parse($user->created_at)->timezone('Asia/Manila')->format('M d, Y @
+                                    g:i A')}}</td>
 
                             </tr>
                             @endforeach
@@ -147,6 +144,6 @@
     </div>
 
     <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-        {{ $owners->links() }}
+        {{ $users->links() }}
     </div>
 </div>

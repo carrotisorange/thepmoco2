@@ -39,6 +39,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::prefix('/property')->group(function(){
         Route::get('/', [PropertyController::class, 'index'])->name('property');
+        Route::get('/{property}/success', [PropertyController::class, 'success']);
         Route::get('{random_str}/create', [PropertyController::class, 'create'])->name('property');
         Route::post('{random_str}/store', [PropertyController::class, 'store']);
     });
@@ -70,7 +71,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{batch_no:batch_no}/edit', [UnitController::class, 'bulk_edit']);
             Route::get('{batch_no}/create', [UnitController::class, 'create']);
             //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
-            Route::get('masterlist', [UnitMasterlistController::class, 'index']);
 
         Route::prefix('{unit}')->group(function(){
             Route::get('/', [UnitController::class, 'show'])->scopeBindings();

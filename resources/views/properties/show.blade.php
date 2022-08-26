@@ -1,438 +1,118 @@
-@section('styles')
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-<!--Replace with your tailwind.css once created-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
-    integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
-@endsection
-<x-index-layout>
-    @section('title', '| Dashboard')
-    <x-slot name="labels">
-        Dashboard
-    </x-slot>
-    <x-slot name="options">
-        <x-button onclick="window.location.href='/property'">
-           Go back
-        </x-button>
+<x-new-layout>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
+        integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+    @section('title', $property->property.' | The Property Manager')
+    <div class="mt-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-11">
+            <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- card Welcome back -->
+                <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-6 ml-2 font-bold text-3xl mb-5">
+                        {{ $property->property }}
+                        <section>
+                    </div>
+                    <div class="sm:col-span-6 mb-3">
+                        <div class="bg-purple-300 h-35 overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                    </div>
+                                    <div class="w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-lg font-bold font-body text-gray-700 truncate">
+                                                Welcome back, {{ auth()->user()->name }}</dt>
+                                    </div>
 
-        @can('manager')
-        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/edit'">
-           Edit
-        </x-button>
-
-
-        @endcan
-    </x-slot>
-
-    <!--Container-->
-    <div class="container w-full mx-auto">
-        <div class="w-full md:px-0 mb-16 text-gray-800 leading-normal">
-            <!--Console Content-->
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Metric Card-->
-                    <div class="bg-white border rounded shadow p-2">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded p-3 bg-green-600"><i
-                                        class="fa fa-solid fa-coins fa-2x fa-fw fa-inverse"></i>
+                                    <div class="sm:col-span-1">
+                                        <img class="h-24 w-auto mt-2 flex justify-end"
+                                            src="{{ asset('/brands/juan.png') }}">
+                                        </dl>
+                                    </div>
 
                                 </div>
                             </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Monthly Collections</h5>
-                                <h3 class="font-bold text-3xl">{{ number_format($collections, 2) }}
-                                    {{-- <span class="text-green-500"><i class="fas fa-caret-up"></i></span>
-                                    --}}
-                                </h3>
-                            </div>
                         </div>
                     </div>
-                    <!--/Metric Card-->
-                </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Metric Card-->
-                    <div class="bg-white border rounded shadow p-2">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded p-3 bg-pink-600"><i
-                                        class="fa-2x fa-fw fa-solid fa-inversef fa-file-invoice-dollar"></i>
-
-                                </div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Monthly Bills</h5>
-                                <h3 class="font-bold text-3xl">{{ number_format($bills, 2) }}
-                                    {{-- <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span> --}}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Metric Card-->
-                </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Metric Card-->
-                    <div class="bg-white border rounded shadow p-2">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded p-3 bg-yellow-600"><i
-                                        class="fas fa-solid fa-house fa-2x fa-fw fa-inverse"></i></div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Buildings/Units</h5>
-                                <h3 class="font-bold text-3xl">{{ $buildings }}/{{ $units }}
-                                    {{-- <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span> --}}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Metric Card-->
-                </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Metric Card-->
-                    <div class="bg-white border rounded shadow p-2">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded p-3 bg-blue-600">
-                                    <i class="fa-solid fa-2x fa-users fa-fw fa-inverse"></i>
-
-                                    {{-- <i class="fas fa-server fa-2x fa-fw fa-inverse"></i> --}}
-                                </div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Tenants/Owners</h5>
-                                <h3 class="font-bold text-3xl">{{ $tenants->count() }}/{{ $owners->count() }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Metric Card-->
-                </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Metric Card-->
-                    <div class="bg-white border rounded shadow p-2">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded p-3 bg-indigo-600">
-                                    <i class="fa-solid fa-2x fa-file-contract fa-fw fa-inverse"></i>
-                                </div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Active Contracts
-                                </h5>
-                                <h3 class="font-bold text-3xl">{{ $contracts }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Metric Card-->
-                </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Metric Card-->
-                    <div class="bg-white border rounded shadow p-2">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded p-3 bg-red-600"><i
-                                        class="fas fa-screwdriver-wrench fa-2x fa-fw fa-inverse"></i>
-                                </div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Pending Concerns</h5>
-                                <h3 class="font-bold text-3xl">{{ $concerns }}
-                                    {{-- <span class="text-red-500"><i class="fas fa-caret-up"></i></span>
-                                    --}}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Metric Card-->
-                </div>
-            </div>
 
 
-            @if($expiring_contracts->count() > 0)
-            <div class="w-full p-3">
-                <!--Table Card-->
-                <div class="bg-white border rounded shadow">
+                    <div class="sm:col-span-6">
+                        <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                    </div>
 
-                    <div class="p-5">
-                        <h1 class="font-bold">Expiring Contracts ({{ $expiring_contracts->count() }})</h1>
-                        <div class="mt-5 bg-white text-sm overflow-hidden shadow-sm sm:rounded-lg">
-                            <div class="bg-white border-b border-gray-200">
-                                <div class="flex flex-col">
-                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                                <table class="min-w-full text-sm divide-y divide-gray-200">
-
-                                                    <thead class="bg-gray-50">
-                                                        <tr>
-                                                            <x-th>#</x-th>
-                                                            <x-th>Tenant</x-th>
-                                                            <x-th>Duration</x-th>
-                                                            <x-th>Unit</x-th>
-                                                            <x-th>Status</x-th>
-                                                            <x-th>Moveout date</x-th>
-                                                            <x-th></x-th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    @foreach ($expiring_contracts as $index => $item)
-                                                    <tbody class="bg-white divide-y divide-gray-200">
-                                                        <tr>
-                                                            <x-td>{{ $index + $expiring_contracts->firstItem() }}</x-td>
-                                                            <x-td>
-                                                                <div class="flex items-center">
-                                                                    <div class="flex-shrink-0 h-10 w-10">
-                                                                        <a
-                                                                            href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}">
-                                                                            <img class="h-10 w-10 rounded-full"
-                                                                                src="/storage/{{ $item->tenant->photo_id }}"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div class="ml-4">
-                                                                        <div class="text-sm font-medium text-gray-900">
-                                                                            <b>{{
-                                                                                $item->tenant->tenant
-                                                                                }}</b>
-                                                                        </div>
-                                                                        <div class="text-sm text-gray-500">
-                                                                            {{
-                                                                            $item->tenant->type
-                                                                            }}
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </x-td>
-                                                            <x-td>
-                                                                <div class="text-sm text-gray-500">
-                                                                    {{ Carbon\Carbon::parse($item->start)->format('M d,
-                                                                    Y') }} - {{
-                                                                    Carbon\Carbon::parse($item->end)->format('M d,
-                                                                    Y') }}
-                                                                </div>
-                                                                <div class="text-sm text-gray-500">
-                                                                    <span
-                                                                        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-blue-700 dark:text-blue-300">
-                                                                        {{
-                                                                        Carbon\Carbon::parse($item->end)->diffForHumans($item->start)
-                                                                        }}
-                                                                    </span>
-                                                                </div>
-                                                            </x-td>
-                                                            <x-td>
-                                                                <div class="text-sm text-gray-900">{{
-                                                                    $item->unit->unit }}
-                                                                </div>
-
-                                                                <div class="text-sm text-gray-500">{{
-                                                                    $item->unit->building->building}}
-                                                                </div>
-
-                                                            </x-td>
-                                                            <x-td>
-                                                                @if($item->status === 'active')
-                                                                <span
-                                                                    class="px-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-
-                                                                    {{
-                                                                    $item->status }}
-                                                                    @else
-                                                                    <span
-                                                                        class="px-2 text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-
-                                                                        {{
-                                                                        $item->status }}
-                                                                    </span>
-                                                                    @endif
-                                                            </x-td>
-                                                            <x-td>
-                                                                <div class="text-sm text-gray-900">{{
-                                                                    Carbon\Carbon::parse($item->end)->format('M d,
-                                                                    Y') }}
-                                                                </div>
-                                                                <div class="text-sm text-gray-500">
-                                                                    <span
-                                                                        class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
-                                                                        {{
-                                                                        Carbon\Carbon::parse($item->end)->diffForHumans()
-                                                                        }}
-                                                                    </span>
-                                                                </div>
-                                                            </x-td>
-                                                            @can('admin')
-                                                            <x-td>
-                                                                <x-button
-                                                                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew'">
-                                                                    Renew</x-button>
-                                                            
-                                                                <?php
-                                                                $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
-                                                            ?>
-                                                                @if($unpaid_bills->count()<=0) <x-button
-                                                                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout'">
-                                                                    Moveout</x-button>
-                                                                    @else
-                                                                    <x-button data-modal-toggle="popup-error-modal">
-                                                                        Moveout</x-button>
-                                                                    @endif
-                                                            </x-td>
-                                                            @endcan
-
-
-                                                        </tr>
-                                                    </tbody>
-                                                    @endforeach
-                                                </table>
-                                                {{ $expiring_contracts->links() }}
-                                            </div>
-                                        </div>
+                                    <div class="w-0 flex-1">
+                                        <div class="text-l font-semibold font-body text-gray-500 truncate">
+                                            Moveout Requests:</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            @endif
 
-            @if($delinquents->count() > 0)
-            <div class="w-full p-3">
-                <!--Table Card-->
-                <div class="bg-white border rounded shadow">
 
-                    <div class="p-5">
-                        <h1 class="font-bold">Delinquents ({{ $delinquents->count() }})</h1>
-                        <div class="mt-5 bg-white text-sm overflow-hidden shadow-sm sm:rounded-lg">
-                            <div class="bg-white border-b border-gray-200">
-                                <div class="flex flex-col">
-                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                                <table class="min-w-full text-sm divide-y divide-gray-200">
+                    <div class="sm:col-span-6">
+                        <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                    </div>
 
-                                                    <thead class="bg-gray-50">
-                                                        <tr>
-                                                            <x-th>#</x-th>
-                                                            <x-th>Tenant</x-th>
-                                                            <x-th># of contracts</x-th>
-                                                            <x-th>Last Payment</x-th>
-                                                            <x-th>Unpaid Bills</x-th>
-                                                            <x-th></x-th>
-                                                        </tr>
-                                                    </thead>
-                                                    @foreach ($delinquents as $index => $item)
-                                                    <tbody class="bg-white divide-y divide-gray-200">
-                                                        <tr>
-                                                            <x-td>{{ $index + $delinquents->firstItem() }}</x-td>
-                                                            <x-td>
-                                                                <div class="flex items-center">
-                                                                    <div class="flex-shrink-0 h-10 w-10">
-                                                                        <a
-                                                                            href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contracts">
-                                                                            <img class="h-10 w-10 rounded-full"
-                                                                                src="/storage/{{ $item->tenant->photo_id }}"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div class="ml-4">
-                                                                        <div class="text-sm font-medium text-gray-900">
-                                                                            <b>{{
-                                                                                $item->tenant->tenant
-                                                                                }}</b>
-                                                                        </div>
-                                                                        <div class="text-sm text-gray-500">
-                                                                            {{
-                                                                            $item->tenant->type
-                                                                            }}
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </x-td>
-                                                            <x-td>
-                                                                ({{ $item->tenant->contracts->count() }})
-                                                                @foreach($item->tenant->contracts as $unit)
-                                                                {{ $unit->unit->unit }},
-                                                                @endforeach
-                                                            </x-td>
-                                                            <?php
-                                                                $last_payment = App\Models\AcknowledgementReceipt::where('property_uuid', Session::get('property_uuid'))->where('tenant_uuid', $item->tenant_uuid)
-                                                                ->orderBy('ar_no', 'desc')->limit(1)->pluck('amount');
-                                                            ?>
-                                                            <x-td>{{ $last_payment }}</x-td>
-
-                                                            <x-td>{{ number_format($item->balance, 2) }}</x-td>
-                                                            <x-td>
-                                                                @can('treasury')
-                                                                <x-button
-                                                                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/bills'">
-                                                                    Pay Now
-                                                                </x-button>
-
-                                                                @endcan
-                                                            </x-td>
-                                                            {{-- <x-td>
-                                                                @can('treasury')
-                                                                <x-button id="dropdownDividerButton"
-                                                                    data-dropdown-toggle="dropdownDivider.{{ $item->tenant_uuid }}"
-                                                                    type="button">Actions
-                                                                    <svg class="ml-2 w-4 h-4" fill="none"
-                                                                        stroke="currentColor" viewBox="0 0 24 24"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path stroke-linecap="round"
-                                                                            stroke-linejoin="round" stroke-width="2"
-                                                                            d="M19 9l-7 7-7-7">
-                                                                        </path>
-                                                                    </svg>
-                                                                </x-button>
-
-                                                                <div id="dropdownDivider.{{ $item->tenant_uuid }}"
-                                                                    class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                                    <ul class="py-1"
-                                                                        aria-labelledby="dropdownDividerButton">
-
-                                                                        <li>
-                                                                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/bills"
-                                                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                                                                    class="fa-solid fa-cash-register"></i>&nbspPay
-                                                                            </a>
-                                                                        </li>
-
-                                                                    </ul>
-
-                                                                </div>
-                                                                @endcan
-                                                            </x-td> --}}
-
-                                                        </tr>
-                                                    </tbody>
-                                                    @endforeach
-                                                </table>
-                                                {{ $delinquents->links() }}
-                                            </div>
-                                        </div>
+                                    <div class="w-0 flex-1">
+                                        <div class="text-l font-semibold font-body text-gray-500 truncate">
+                                            Payments Approval:</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
-            </div>
-            @endif
-            <!--Divider-->
-            {{--
-            <hr class="border-b-2 border-gray-400 my-8 mx-4"> --}}
 
-            <div class="flex flex-row flex-wrap flex-grow mt-2">
 
-                <div class="w-full md:w-1/2 p-3">
-                    <!--Graph Card-->
-                    <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Occupancy Rate ({{
-                                number_format($current_occupancy_rate->occupancy_rate, 2) }}%)</h5>
+                <!-- card Announcements -->
+                <div class="bg-white overflow-hidden">
+                    <div class="p-5">
+                        <div class="flex items-center">
+
+                            <div class="w-0 flex-1">
+
+
+
+
+
+                            </div>
                         </div>
-                        <div class="p-5">
-                            <canvas id="occupancy_rate" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
+                    </div>
+                    <div class="font-bold text-lg mb-5">Concerns Requests:</div>
+                    <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-5 ">
+                        <div class="text-semibold">
+
+                            <div class="flex justify-end">
+                                <div button type="button"
+                                    class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Review</button></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="font-bold text-lg">
+                        @if($property->units->count())
+                        <?php $occupancy_rate = $property->units->where('status_id', 2)->count()/$property->units->count() * 100; ?>
+                        @else
+                        <?php $occupancy_rate = 0;?>
+                        @endif
+                        Occupancy Rate ({{  number_format($occupancy_rate, 2) }}%)
+                    </div>
+
+
+               <canvas id="occupancy_rate" class="chartjs" width="undefined" height="undefined"></canvas>
+
+                    <!-- chart line -->
+                    <script>
                                 new Chart(document.getElementById("occupancy_rate"), {
                                                         "type": "line",
                                                         "data": {
@@ -453,183 +133,353 @@
                                                         }
                                                     });
                             </script>
+
+                    <!-- vacant, occupied -->
+
+                    <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-4">
+
+                        <div class="sm:col-span-2 mb-5">
+                            <div class="bg-white overflow-hidden">
+                                <div class="p-5">
+                                    <div class="px-5">
+                                        <img class="h-12 w-auto mt-2 flex justify-end"
+                                            src="{{ asset('/brands/key.png') }}">Occupied
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="sm:col-span-2 mb-5">
+                            <div class="bg-white overflow-hidden">
+                                <div class="p-5">
+                                    <div class="px-5">
+                                        <img class="h-12 w-auto mt-2 flex justify-end"
+                                            src="{{ asset('/brands/key.png') }}">Vacant
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <!--/Graph Card-->
                 </div>
 
-                <div class="w-full md:w-1/2 p-3">
-                    <!--Graph Card-->
-                    <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Collection Rate ({{
-                                number_format($current_collection_rate, 2) }}%)</h5>
-                        </div>
+
+                <!-- card Notifications -->
+                <div class>
+                    <!--button -->
+                    <div class="bg-white">
                         <div class="p-5">
-                            <canvas id="collection_rate" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
-                                new Chart(document.getElementById("collection_rate"), {
-                                                        "type": "bar",
-                                                        "data": {
-                                                            "labels": {!!$collection_rate_date!!},
-                                                            "datasets": [{
-                                                                "label": "Collections",
-                                                                 "data": {!!$collection_rate_value!!},
-                                                                "fill": true,
-                                                                "borderColor": "rgba(255, 99, 132, 0.2)",
-                                                                "backgroundColor": "rgba(255, 99, 132, 0.2)",
-                                                                "lineTension": 0.1
-                                                            }, {
-                                                            "label": "Bills",
-                                                            "data": {!!$bill_rate_value!!},
-                                                            "type": "bar",
-                                                            "fill": true,
-                                                            "borderColor": "rgb(255, 159, 64, 0.2)",
-                                                            "backgroundColor": "rgb(255, 159, 64, 0.2)"
-                                                            }
-                                                            , {
-                                                            //"label": "Collections Overtime",
-                                                            "data": {!!$collection_rate_value!!},
-                                                            "type": "line",
-                                                            "fill": false,
-                                                            "borderColor": "rgb(148,0,211)",
-                                                            "backgroundColor": "rgba(148,0,211)",
-                                                            }
-                                                                , {
-                                                            //"label": "Collections Overtime",
-                                                            "data": {!!$bill_rate_value!!},
-                                                            "type": "line",
-                                                            "fill": false,
-                                                            "borderColor": "rgb(148,0,211)",
-                                                            "backgroundColor": "rgba(148,0,211)",
-                                                            }
-                                                        ]
-                                                        },
-                                                       
-                                                        "options": {
-                                                            legend: {
-                                                            display: false
-                                                            },
-                                                        }
-                                                    });
-                            </script>
+                            <div class="flex items-center">
+                                <div class="ml-0 w-0 flex-1">
+                                    <dl>
+                                        <dt class="text-sm font-medium text-gray-500 truncate">{{
+                                            Carbon\Carbon::now()->format('l, M d, Y') }}</dt>
+                                        <dd>
+                                            <div class="text-lg font-medium text-gray-900">Php {{
+                                                number_format($property_collected_payments, 2) }}</div>
+                                            <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">
+                                                Today</h2>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="bg-gray-50 px-5 py-3">
+                            <div class="text-sm">
+                                <div
+                                    class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div class="p-4">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <!-- Heroicon name: outline/check-circle -->
+                                                <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+
+                                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                                <p class="text-sm font-medium text-gray-900">Successfully
+                                                    paid!</p>
+                                                <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for
+                                                    rent.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div class="p-4">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <!-- Heroicon name: outline/check-circle -->
+                                                <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+
+                                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                                <p class="text-sm font-medium text-gray-900">Successfully
+                                                    paid!</p>
+                                                <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for
+                                                    rent.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div
+                                    class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div class="p-4">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <!-- Heroicon name: outline/check-circle -->
+                                                <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+
+                                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                                <p class="text-sm font-medium text-gray-900">Successfully
+                                                    paid!</p>
+                                                <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for
+                                                    rent.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
                     </div>
-                    <!--/Graph Card-->
-                </div>
-
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Graph Card-->
-                    <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Tenant Moveins/Moveouts</h5>
-                        </div>
-                        <div class="p-5">
-                            <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
-                                new Chart(document.getElementById("chartjs-1"), {
-                                                        "type": "bar",
-                                                        "data": {
-                                                            "labels": {!!$tenant_movein_label!!},
-                                                            "datasets": [{
-                                                                "label": "No of Moveins",
-                                                                "data": {!!$tenant_movein_value!!},
-                                                                "fill": true,
-                                                                "backgroundColor": ["rgba(255, 159, 64)"],
-                                                                "borderColor": ["rgb(255, 159, 64)"],
-                                                                "borderWidth": 1
-                                                            },{
-                                                                "label": "No of Moveouts",
-                                                                "data": {!!$tenant_moveout_value!!},
-                                                                "fill": true,
-                                                                "backgroundColor": ["rgba(255, 159, 64, 0.2)"],
-                                                                "borderColor": ["rgb(255, 159, 64, 0.2)"],
-                                                                "borderWidth": 1
-                                                            }
-                                                        ]
-                                                        },
-                                                        "options": {
-                                                            "scales": {
-                                                                "yAxes": [{
-                                                                    "ticks": {
-                                                                        "beginAtZero": false
-                                                                    }
-                                                                }]
-                                                            }
-                                                        }
-                                                    });
-                            </script>
-                        </div>
-                    </div>
-                    <!--/Graph Card-->
-                </div>
-
-
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Graph Card-->
-                    <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Reasons for moveout</h5>
-                        </div>
-                        <div class="p-5">
-                            <canvas id="moveout_reason" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
-                                new Chart(document.getElementById("moveout_reason"), {
-                                                        "type": "bar",
-                                                        "data": {
-                                                            "labels": {!!$reasons_for_moveout_label!!},
-                                                            "datasets": [{
-                                                                
-                                                                "data": {!!$reasons_for_moveout_value!!},
-                                                                "fill": true,
-                                                                "backgroundColor": ["rgba(255, 159, 64)"],
-                                                                "borderColor": ["rgb(255, 159, 64)"],
-                                                                "borderWidth": 1
-                                                            }
-                                                        ]
-                                                        },
-                                                        "options": {
-                                                            legend: {
-                                                            display: false
-                                                            },
-                                                        }
-                                                    });
-                            </script>
-                        </div>
-                    </div>
-                    <!--/Graph Card-->
-                </div>
-
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Graph Card-->
-                    <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Tenant Type</h5>
-                        </div>
-                        <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined"
-                                height="undefined"></canvas>
-                            <script>
-                                new Chart(document.getElementById("chartjs-4"), {
-                                                        "type": "doughnut",
-                                                        "data": {
-                                                            "labels": {!!$tenant_type_label!!},
-                                                            "datasets": [{
-                                                                "label": "Issues",
-                                                                "data": {!!$tenant_type_value!!},
-                                                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)"]
-                                                            }]
-                                                        }
-                                                    });
-                            </script>
-                        </div>
+                    <div button type="button"
+                        class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
+                text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        View
+                        More</button>
                     </div>
 
+
+
+
+
                 </div>
+                </section>
             </div>
+
+            <div class="sm:col-span-4 ml-2 font-bold text-xl mb-5 mt-6">
+                Number by categories:
+            </div>
+            <section>
+                <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-2 mb-3 mt-6">
+                        <div class="bg-gray-300 h-24 overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="w-0 flex-1">
+                                        <div class="text-l font-semibold font-body text-gray-500 truncate">
+                                            Total number of Units: {{ $property->units->count() }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="sm:col-span-2 mb-3 mt-6">
+                        <div class="bg-purple-300 h-24 overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="w-0 flex-1">
+                                        <div class="text-l font-semibold font-body text-gray-500 truncate">
+                                            Total collected for August: {{ $property_collected_payments }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-2 mb-3 mt-6">
+                        <div class="bg-blue-100 h-24 overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="w-0 flex-1">
+                                        <div class="text-l font-semibold font-body text-gray-500 truncate">
+                                            Total number of Tenants: {{ $property->tenants->count() }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2 mb-3 mt-6">
+                        <div class="bg-yellow-50 h-24 overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="w-0 flex-1">
+                                        <div class="text-l font-semibold font-body text-gray-500 truncate">
+                                            Total unpaid Bills: {{ number_format($property_unpaid_bills,2) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="sm:col-span-2 mb-3 mt-6">
+
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="grid grid-cols-2 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-4 mb-3 mt-6">
+                        <!-- This example requires Tailwind CSS v2.0+ -->
+                        <div class="px-4 sm:px-6 lg:px-8">
+                            <div class="sm:flex sm:items-center">
+                                <div class="sm:flex-auto">
+                                    <h1 class="text-xl font-semibold text-gray-900">Expiring Contracts ({{ $expiring_contracts->count() }})</h1>
+                                </div>
+                                <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                                    <button type="button"
+                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">30
+                                        days</button>
+                                </div>
+                            </div>
+                            <div class="mt-8 flex flex-col">
+                                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                        <div
+                                            class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                            <table class="min-w-full divide-y divide-gray-300">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th scope="col"
+                                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                            Name</th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Unit</th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Status</th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Moveout</th>
+                                                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                            <span class="sr-only">Edit</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                @foreach ($expiring_contracts as $contract)
+                                                <tbody class="divide-y divide-gray-200 bg-white">
+                                                    <tr>
+                                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                                                            <div class="flex items-center">
+                                                                {{-- <div class="h-10 w-10 flex-shrink-0">
+                                                                    <img src="{{ asset('/brands/user.png') }}"
+                                                                        alt="building"
+                                                                        class="w-40 object-center object-cover lg:w-full lg:h-full">
+                                                                </div> --}}
+                                                                <div class="">
+                                                                    <div class="font-medium text-gray-900">
+                                                                        {{ $contract->tenant->tenant }}</div>
+                                                                    <div class="text-gray-500">
+                                                                        {{$contract->tenant->email}}</div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            <div class="flex items-center">
+
+                                                                <div class="">
+                                                                    <div class="font-medium text-gray-900">
+                                                                        {{ $contract->unit->unit }}</div>
+                                                                    <div class="text-gray-500">
+                                                                        {{$contract->unit->building->building}}</div>
+                                                                </div>
+                                                            </div>
+
+                                                        </td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            <span
+                                                                class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                                                                {{ $contract->status }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            <div class="text-sm text-gray-900">{{
+                                                                Carbon\Carbon::parse($contract->end)->format('M d,
+                                                                Y') }}
+                                                            </div>
+                                                            <div class="text-sm text-gray-500">
+                                                                <span
+                                                                    class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-red-700 dark:text-red-300">
+                                                                    {{
+                                                                    Carbon\Carbon::parse($contract->end)->diffForHumans()
+                                                                    }}
+                                                                </span>
+                                                            </div>
+                                                        </td>
+                                                        <td
+                                                            class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                            @can('admin')
+
+                                                            <x-button
+                                                                onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/renew'">
+                                                                Renew</x-button>
+                                                            <?php
+                                                                $unpaid_bills = App\Models\Tenant::find($contract->tenant_uuid)->bills->where('status', '!=', 'paid');
+                                                            ?>
+                                                            @if($unpaid_bills->count()<=0) <x-button
+                                                                onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $item->uuid }}/moveout'">
+                                                                Moveout</x-button>
+                                                                @else
+                                                                <x-button data-modal-toggle="popup-error-modal">
+                                                                    Moveout</x-button>
+                                                                @endif
+
+                                                                @endcan
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- More people... -->
+                                                </tbody>
+                                                @endforeach
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
         </div>
     </div>
+    
+</x-new-layout>
 
-</x-index-layout>
 @section('scripts')
 <script>
     /*Toggle dropdown list*/

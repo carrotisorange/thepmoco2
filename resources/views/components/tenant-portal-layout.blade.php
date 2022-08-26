@@ -12,7 +12,7 @@
         <header class="flex-shrink-0 relative h-16 bg-white flex items-center">
             <!-- Logo area -->
             <div class="absolute inset-y-0 left-0 md:static md:flex-shrink-0">
-                <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/dashboard"
+                <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}"
                     class="flex items-center justify-center h-16 w-16 bg-purple-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600 md:w-20">
                     <img class="h-8 w-auto" src="{{ asset('/brands/logo.png') }}" alt="The PMO Co">
                 </a>
