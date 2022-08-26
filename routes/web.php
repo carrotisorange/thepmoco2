@@ -105,3 +105,7 @@ Route::get('/newowners', function(){
 Route::get('/admindashboard', function(){
     return view('newlayout.admindashboard');
 });
+
+Route::get('/success_property', function(){
+    return view('newlayout.success_property');
+});
