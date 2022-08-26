@@ -327,13 +327,13 @@
                         <div class="sm:col-span-3">
                           
                             <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Occupied:</div>
+                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Received:</div>
                             </div>
                           </div>
 
                           <div class="sm:col-span-3">
                             <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Vacants:</div>
+                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Closed:</div>
                           </div>
                         </div>
                         
@@ -424,25 +424,62 @@
                           </div>
                         </div>
 
+                        <div class="sm:col-span-6">
+                          <div class="bg-white h-24 mb-6">
+                           
+                          </div>
+                        </div>
+
+                        <div class="mt-5">
+              <canvas class="" id="chartLine"></canvas>
+              </div>
+
+                <!-- graph chart.js -->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <!-- chart line -->
+                <script>
+                const labels = ["January", "February", "March", "April", "May", "June"];
+                const data = {
+                    labels: labels,
+                    datasets: [
+                    {
+                    label: "Occupancy Graph",
+                     backgroundColor: "hsl(252, 82.9%, 67.8%)",
+                     borderColor: "hsl(252, 82.9%, 67.8%)",
+                     data: [0, 10, 5, 2, 20, 30, 45],
+                    },
+                    ],
+                 };
+
+                const configLineChart = {
+                    type: "line",
+                    data,
+                    options: {},
+                 };
+
+                var chartLine = new Chart(
+                 document.getElementById("chartLine"),
+                    configLineChart
+                );
+                </script>
+
                 <!-- total bills for collection -->        
 
-                        <div class="sm:col-span-6 mt-2">
-                        <div class="bg-gray-100 h-24 overflow-hidden shadow rounded-lg mb-5 mt-10">
-                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Bills for Collection:</div>
-                          </div>
+                <div class="mt-10 grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                          
+                          
+                            <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Occupied:</div>
+                          
                         </div>
 
-                        <div class="sm:col-span-6">
-                          <div class="bg-gray-100 h-24 overflow-hidden shadow rounded-lg mb-5">
-                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount:</div>
-                          </div>
-                        </div>
-
-                        <div class="sm:col-span-6">
-                          <div class="bg-gray-100 h-24 overflow-hidden shadow rounded-lg mb-5">
-                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid Collection:</div>
-                          </div>
-                        </div>
+                        <div class="sm:col-span-3">
+                          
+                            <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Vacant:</div>
+                        
+                      </div>
+              </div>
                 
             </div>    
             
@@ -535,53 +572,29 @@
 <div button type="button" class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View More</button></div>
 
 <div class="mt-10 grid grid-cols-1 gap-x-4 sm:grid-cols-6">
-<div class="sm:col-span-3">
-                          
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Received:</div>
-                            </div>
-                          </div>
 
-                          <div class="sm:col-span-3">
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Closed:</div>
+<div class="sm:col-span-6 mt-2">
+                        <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5 mt-10">
+                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Bills for Collection:</div>
                           </div>
                         </div>
+
+                        <div class="sm:col-span-6">
+                          <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
+                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount:</div>
+                          </div>
+                        </div>
+
+                        <div class="sm:col-span-6">
+                          <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
+                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid Collection:</div>
+                          </div>
+                        </div>
+
+                        
 </div>
 
-<div class="mt-5">
-<canvas class="" id="chartLine"></canvas>
-              </div>
 
-                <!-- graph chart.js -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-                <!-- chart line -->
-                <script>
-                const labels = ["January", "February", "March", "April", "May", "June"];
-                const data = {
-                    labels: labels,
-                    datasets: [
-                    {
-                    label: "Occupancy Graph",
-                     backgroundColor: "hsl(252, 82.9%, 67.8%)",
-                     borderColor: "hsl(252, 82.9%, 67.8%)",
-                     data: [0, 10, 5, 2, 20, 30, 45],
-                    },
-                    ],
-                 };
-
-                const configLineChart = {
-                    type: "line",
-                    data,
-                    options: {},
-                 };
-
-                var chartLine = new Chart(
-                 document.getElementById("chartLine"),
-                    configLineChart
-                );
-                </script>
 
 
 
@@ -765,7 +778,7 @@
   </div>
 
                         <div class="sm:col-span-2 mt-5">
-                        <div class="shadow-lg rounded-lg overflow-hidden">
+                        <div class="overflow-hidden">
                         <div class="py-3 px-5 ">Collection Rate</div>
                         <canvas class="p-8" id="chartDoughnut"></canvas>
                       </div>
