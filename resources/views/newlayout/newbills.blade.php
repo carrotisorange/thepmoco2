@@ -59,7 +59,7 @@
 
             <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Basilio Tenant</a>
+                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
               </nav>
 
             <div class="relative inline-block text-left">
@@ -198,9 +198,9 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Units</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
@@ -231,9 +231,9 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
 
                     <!-- Bills -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-8 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/invoice_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
@@ -266,7 +266,7 @@
 
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class=" mx-auto px-4 sm:px-6 lg:px-8">
 
             <!--
   This example requires Tailwind CSS v3.0+ 
@@ -399,6 +399,7 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PARTICULAR</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT DUE</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT PAID</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
                 </th>
               </tr>
@@ -422,6 +423,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -441,6 +443,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -462,6 +465,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -482,6 +486,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -500,6 +505,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -520,6 +526,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
