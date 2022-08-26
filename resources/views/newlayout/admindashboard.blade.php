@@ -425,7 +425,7 @@
                         </div>
 
                         <div class="sm:col-span-6">
-                          <div class="bg-white h-24 mb-6">
+                          <div class="bg-white h-24">
                            
                           </div>
                         </div>
@@ -467,16 +467,17 @@
                 <!-- total bills for collection -->        
 
                 <div class="mt-10 grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+
                 <div class="sm:col-span-3">
-                          
-                          
-                            <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Occupied:</div>
+                            <div class="ml-2 mt-2 text-sm text-center font-semibold font-body text-gray-500 truncate">Occupied: <a href= # class="text-indigo-600 text-lg">50</a> </div>
+                            <img src="{{ asset('/brands/key.png') }}" alt="building" class="ml-10 h-20 w-20 object-center object-cover ">
                           
                         </div>
 
                         <div class="sm:col-span-3">
-                          
-                            <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Vacant:</div>
+                        <div class="mt-2 text-sm text-center font-semibold font-body text-gray-500 truncate">Vacant: <a href= # class="text-indigo-600 text-lg">30</a> </div>
+                            <img src="{{ asset('/brands/vacant.png') }}" alt="building" class="ml-10 h-20 w-20 object-center object-cover ">
+                            
                         
                       </div>
               </div>
@@ -580,8 +581,8 @@
                         </div>
 
                         <div class="sm:col-span-6">
-                          <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
-                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount:</div>
+                          <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-10">
+                            <div class="mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount:</div>
                           </div>
                         </div>
 
@@ -620,7 +621,7 @@
 
               <div class="grid grid-cols-2 gap-x-4 sm:grid-cols-6">
 
-                  <div class="sm:col-span-4 mb-3 mt-6">              
+                  <div class="sm:col-span-4 mb-3 mt-10">              
                     <div class="px-4">
                       <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
