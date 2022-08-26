@@ -118,4 +118,19 @@ Route::get('/ownerprofile', function(){
     return view('newlayout.ownerprofile');
 });
 
+Route::get('/newtenant', function(){
+    return view('newlayout.newtenant');
+});
+
+Route::get('/employees', function(){
+    return view('newlayout.employees');
+});
+
+Route::get('/tenantprofile', function(){
+    return view('newlayout.tenantprofile');
+});
+
+
+
+
 

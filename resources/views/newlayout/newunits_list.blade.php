@@ -393,14 +393,14 @@
                   
                 </th>
                 <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
-                <th scope="col" class="px-2 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
-                <th scope="col" class="px-2 py-3.5 text-left text-sm font-semibold text-gray-900">FLOOR</th>
-                <th scope="col" class="px-2 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT STATUS</th>
-                <th scope="col" class="px-2 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT</th>
-                <th scope="col" class="px-2 py-3.5 text-left text-sm font-semibold text-gray-900">CONTRACT</th>
-                <th scope="col" class="px-2 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
-                <th scope="col" class="px-2 py-3.5 text-left text-sm font-semibold text-gray-900">OCCUPANCY</th>
-                <th scope="col" class="px-2 py-3.5 text-left text-sm font-semibold text-gray-900">ROOMS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">FLOOR</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT STATUS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTRACT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">OCCUPANCY</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ROOMS</th>
                 </th>
               </tr>
             </thead>

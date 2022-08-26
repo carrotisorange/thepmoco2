@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owners</title>
+    <title>Employees</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +198,7 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2  text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Units</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -206,9 +206,9 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
                 
                 <!-- Owners -->
-                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Owners</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/user_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
@@ -247,9 +247,9 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
 
                     <!-- Employees -->
-                <a href="#" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class=" ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Teams</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/team_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employees</div>
@@ -287,13 +287,15 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Owners</h1>
+      <h1 class="text-3xl font-bold text-gray-700">Employees</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add Owner</button>
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Owner</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add Employee</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Employee</button>
     </div>
   </div>
+
+  
 
   <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
   <div class="sm:col-span-4">
@@ -312,17 +314,56 @@
 
 <div class="sm:col-span-2">
 <form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Filters</label>
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
     <div class="relative w-full mb-5">
         <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
-        <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
+        
         </div>
-        <button type="button" class="text-center bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">Filter by Default</button>
-</div>
-    </div>
+        <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-full flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
+                <span class="text-sm font-medium text-gray-900"> Filter by: Default</span>
+                <span class="ml-6 flex items-center">
+                  <!--
+                    Expand/collapse icon, toggle classes based on question open state.
+
+                    Heroicon name: solid/chevron-down
+
+                    Open: "-rotate-180", Closed: "rotate-0"
+                  -->
+                  <svg class="rotate-0 h-5 w-5 transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            <div class="pt-6 hidden bg-white" id="filter-section-0">
+              <div class="space-y-6">
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500"> Floor</label>
+                </div>
+
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500"> Status </label>
+                </div>
+
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500"> Rent </label>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+        
+      
+</div
+
+
+    
 </form>
+
 
 
 
@@ -347,17 +388,15 @@
             
             <thead class="">
               <tr>
-                <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
+                <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
                   
                 </th>
                 <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NAME</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTACT #</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ADDRESS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">POSITION</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">EMAIL</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BIRTHDAY</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTACT #</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INVITED AT</th>
                 </th>
               </tr>
             </thead>
@@ -373,13 +412,11 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -392,33 +429,12 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-                <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
@@ -430,14 +446,12 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
@@ -449,14 +463,12 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
@@ -468,14 +480,29 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
