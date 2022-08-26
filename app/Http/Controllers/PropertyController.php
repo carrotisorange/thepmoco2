@@ -21,11 +21,7 @@ use App\Models\Tenant;
 use App\Models\Owner;
 use App\Models\AcknowledgementReceipt;
 use App\Models\Unit;
-use App\Models\Point;
 use App\Models\PropertyBuilding;
-use App\Models\Status;
-use App\Models\Timestamp;
-use Illuminate\Support\Facades\Gate;
 use App\Models\UnitStats;
 use App\Models\Collection;
 
@@ -69,6 +65,15 @@ class PropertyController extends Controller
     public function generate_uuid()
     {
         return Str::uuid();
+    }
+
+    public function property_unpaid_bills($property_uuid){
+        return Property::find($property_uuid)->bills->whereIn('status',['unpaid', 'partially_paid'])->sum('bill') -
+        Property::find($property_uuid)->bills->whereIn('status', ['unpaid','partially_paid'])->sum('initial_payment');
+    }
+
+    public function property_collected_payments($property_uuid){
+        return Property::find($property_uuid)->collections->sum('collection');
     }
 
     public function index()
@@ -487,7 +492,9 @@ class PropertyController extends Controller
             'reasons_for_moveout_value' => $reasons_for_moveout_value,
             'delinquents' => $delinquents,
             'owners' => $owners,
-            'buildings' => $buildings
+            'buildings' => $buildings,
+            'property_unpaid_bills' => $this->property_unpaid_bills($property->uuid),
+            'property_collected_payments' => $this->property_collected_payments($property->uuid)
         ]); 
     }
 

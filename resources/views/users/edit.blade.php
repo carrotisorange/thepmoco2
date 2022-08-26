@@ -2,13 +2,15 @@
     @section('title', 'The Property Manager | Profile')
 
     <div class="mx-auto px-12 md:w-1/2 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-10">
+        <div>
+            <h3 class="text-3xl leading-6 font-medium text-gray-900">Profile</h3>
+            <p class="mt-1 max-w-2xl text-sm text-gray-500"></p>
+        </div>
         <form class="space-y-8 divide-y divide-gray-200" method="POST" action="/user/{{ $user->username }}/update">
             @csrf
             @method('PATCH')
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-                <div>
-
-
+          
                     <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                         <div
                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -167,7 +169,7 @@
 
 
                     </div>
-                </div>
+            
 
                 <div class="pt-5">
                     <div class="flex justify-end">

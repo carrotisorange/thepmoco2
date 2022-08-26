@@ -55,12 +55,12 @@
                             </a>
                         </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link href="/property" :active="request()->routeIs('property')">
                                 <i class="fa-solid fa-building"></i>&nbspPortforlio
                             </x-nav-link>
 
-                        </div>
+                        </div> --}}
                         {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link href="/users" :active="request()->routeIs('user')">
                                 <i class="fa-solid fa-user"></i>&nbspUser

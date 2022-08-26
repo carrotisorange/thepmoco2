@@ -1,14 +1,7 @@
-<footer class="bg-white">
-    <div class="text-purple-700 max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-        <div class="mt-2 flex justify-center space-x-6">
-            <a title="Need support?" href="https://www.thepropertymanager.online/support/" target="_blank"
-                class="text-gray-400 hover:text-gray-500">
-                <span class="sr-only">Support</span>
-                <i class="fa-brands fa-rocketchat"></i>
-            </a>
-
-            <a title="Follow us on Facebook" href="https://www.facebook.com/onlinepropertymanager/" target="_blank"
-                class="text-gray-400 hover:text-gray-500">
+<footer class="">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+        <div class="flex justify-center space-x-6 md:order-2">
+            <a title="Like us on Facebook." target="_blank" href="https://www.facebook.com/onlinepropertymanager/" class="text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Facebook</span>
                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -17,8 +10,7 @@
                 </svg>
             </a>
 
-            <a title="Like us on Facebook" href="https://www.instagram.com/thepmoco/" target="_blank"
-                class="text-gray-400 hover:text-gray-500">
+            <a title="Follow us on Twitter" target="_blank" href="https://www.instagram.com/thepmoco/" class="text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Instagram</span>
                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -27,9 +19,14 @@
                 </svg>
             </a>
 
+            <a  title="Get in touch with our customer support" target="_blank" href="https://www.thepropertymanager.online/support/" class="text-gray-400 hover:text-gray-500">
+                <span class="sr-only">Customer Support</span>
+            <i class="fa-solid fa-comment"></i>
+            </a>
         </div>
-        <p class="mt-8 text-center text-base text-gray-400">
-            &copy; 2022 The PMO Co. All rights reserved.
-        </p>
+        <div class="mt-8 md:mt-0 md:order-1">
+            <p class="text-center text-base text-gray-400">&copy; 2020 The PMO Co. All rights reserved.
+            </p>
+        </div>
     </div>
 </footer>
