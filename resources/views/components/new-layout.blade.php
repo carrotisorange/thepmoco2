@@ -63,7 +63,7 @@
                                     </x-dropdown-link>
 
                                     <x-dropdown-link href="/property">
-                                        Portforlio
+                                        Portfolio
                                     </x-dropdown-link>
 
                                     <form method="POST" action="{{ route('logout') }}">

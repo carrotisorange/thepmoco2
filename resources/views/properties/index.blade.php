@@ -1,5 +1,5 @@
 <x-main-layout>
-    @section('title', 'Portforlio | The Property Manager')
+    @section('title', 'Portfolio | The Property Manager')
     <div class="mx-auto md:w-full px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-10">
         @if(!$properties->count())
         <h2 class="text-2xl font-bold tracking-tight text-gray-900 font-pop">Welcome, {{
@@ -51,7 +51,7 @@
 
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">Portforlio</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                     <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/create'"
