@@ -194,7 +194,7 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $unit->rent }}</td>
 
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">
-                                    {{$unit->occupancy }}
+                                    {{$unit->occupancy }} pax
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">
                                 </td>
