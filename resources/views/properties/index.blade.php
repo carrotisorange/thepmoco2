@@ -1,6 +1,4 @@
 <x-main-layout>
-    <html class="h-full w-full bg-no-repeat bg-cover"
-        style= "background-image: url('/brands/property_bg.png');">
     @section('title', 'Portforlio | The Property Manager')
     <div class="mx-auto md:w-full px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-10">
         @if(!$properties->count())

@@ -405,7 +405,9 @@ class PropertyController extends Controller
 
     public function success(Property $property)
     {
-        return redirect ('/property');
+        return view('properties.success', [
+            'property' => $property
+        ]);
     }
      
     public function show(Property $property)
