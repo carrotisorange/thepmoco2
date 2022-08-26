@@ -228,7 +228,7 @@
   
 
     <!-- Main area -->
-    <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
+    <main class="flex-1 pb-8 h-screen y-screen">
     
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <!--
