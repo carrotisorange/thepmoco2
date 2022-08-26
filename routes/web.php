@@ -130,6 +130,15 @@ Route::get('/tenantprofile', function(){
     return view('newlayout.tenantprofile');
 });
 
+Route::get('/addtenant', function(){
+    return view('newlayout.addtenant');
+});
+
+Route::get('/newbills', function(){
+    return view('newlayout.newbills');
+});
+
+
 
 
 

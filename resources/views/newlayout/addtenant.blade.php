@@ -297,143 +297,127 @@
       </ol>
     </nav>
 
-    <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
-      <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
-        <div class="lg:col-start-5 lg:col-span-9">
-        
-          <div class="flex justify-between">
-          <h1 class="text-3xl font-bold text-gray-900">Unit #1</h1>
-            <a href="#" class="flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Edit</a>
-          </div>
-          
+    <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
+    <ol role="list" class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
+          <!-- Completed Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+                <span class="w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
+                  <span class="text-indigo-600">01</span>
+                </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+                <span class="text-sm font-medium">Tenant Information</span>
+              </span>
+            </span>
+          </a>
         </div>
+      </li>
 
-        <!-- Image gallery -->
-        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-span-3">
-          <h2 class="sr-only">Images</h2>
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-fulllg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
+                  <span class="text-indigo-600">02</span>
+                </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+                <span class="text-sm font-medium text-indigo-600">Application form</span>
+                <span class="text-sm font-medium text-gray-500">Cursus semper viverra.</span>
+              </span>
+            </span>
+          </a>
 
-          <div class="grid grid-cols-1 lg:gap-8">
-          <img src="{{ asset('/brands/door_detail.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md">
-          <div class="flex items-center justify-center ml-5">
-          <a href="#" class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload Picture </a>
-      </div>
-          
+          <!-- Separator -->
+          <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
           </div>
         </div>
+      </li>
 
-        <div class="mt-8 lg:col-span-9">
-          <form>
-            
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
+          <!-- Upcoming Step -->
+          <a href="#" class="group">
+            <span class="absolute top-0 left-0 w-1 h-full bg-transparent group-hover:bg-gray-200 lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+                <span class="w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full">
+                  <span class="text-gray-500">03</span>
+                </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+                <span class="text-sm font-medium text-gray-500">Preview</span>
+                <span class="text-sm font-medium text-gray-500">Penatibus eu quis ante.</span>
+              </span>
+            </span>
+          </a>
 
-            <!-- Links -->
-            <div class="mt-2">
-
-              <fieldset class="mt-2">
-                <div class="grid grid-cols-5 gap-2 sm:grid-cols-5">
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
-                    <span id="size-choice-0-label"> Unit </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                    <span id="size-choice-1-label"> Rent </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                    <span id="size-choice-2-label"> Owner/Tenant </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                    <span id="size-choice-3-label"> Rooms </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                    <span id="size-choice-4-label"> Furniture List </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-
-              </fieldset>
-            </div>
-
-            <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6 mt-9">
-
-            <div class="sm:col-span-3">
-              <div class="relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="name" class="block text-xs font-medium text-gray-900">Contract</label>
-                  <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-                </div>
-                </div>
-
-                <div class="sm:col-span-3">
-              <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Rent/Month</label>
-                  <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-              </div>
-              </div>
-
-              <div class="sm:col-span-3">
-              <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Date of Turnover</label>
-                  <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-              </div>
-              </div>
-
-              <div class="sm:col-span-3">
-              <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Status</label>
-                  <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-              </div>
-              </div> 
-            </div>
-
-            <a href="#" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Bills History</a>
-
-            <div class="mt-10 flex justify-end">
-            <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
-            </div>  
+          <!-- Separator -->
+          <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
           </div>
 
-              
-          
-          
-          </form>
+          <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
+          <!-- Completed Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full  lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
+                  <span class="text-indigo-600">04</span>
+                </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+                <span class="text-sm font-medium">Tenant Information</span>
+                <span class="text-sm font-medium text-gray-500">Vitae sed mi luctus laoreet.</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </li>
+
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full  lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+                <span class="w-10 h-10 flex items-center justify-center border-2 rounded-full">
+                  <span class="text-indigo-600">05</span>
+                </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+                <span class="text-sm font-medium text-indigo-600">Application form</span>
+                <span class="text-sm font-medium text-gray-500">Cursus semper viverra.</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+    
 </div>
 </div>
-</div>
+
+
 
 
 
