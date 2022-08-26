@@ -331,8 +331,8 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTACT #</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ADDRESS</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">EMAIL</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BIRTHDAY</th>
                 </th>
               </tr>
             </thead>
@@ -348,13 +348,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">11223456</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -367,13 +367,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">11223456</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -386,13 +386,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">11223456</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -405,13 +405,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">11223456</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -424,13 +424,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">11223456</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -443,13 +443,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Maria Clara</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">11223456</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2/5/99</td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>

@@ -260,7 +260,7 @@
   ```
 -->
 
-  <div class="pt-6 pb-16 sm:pb-24">
+  <div class="pt-6 sm:pb-5">
 
     <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <ol role="list" class="flex items-center space-x-4">
@@ -289,7 +289,7 @@
 
           <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
           <img src="{{ asset('/brands/door_detail.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md">
-          <a href="#" class="flex justify-left text-sm font-medium text-purple-500 hover:text-purple-700">Upload a Picture</a>
+          <a href="#" class="flex justify-center text-sm font-medium text-purple-500 hover:text-purple-700">Upload a Picture</a>
 
           </div>
         </div>

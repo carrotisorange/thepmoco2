@@ -259,7 +259,7 @@
   ```
 -->
 
-  <div class="pt-6 pb-16 sm:pb-24">
+  <div class="pt-6 sm:pb-5">
 
     <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <ol role="list" class="flex items-center space-x-4">

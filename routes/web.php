@@ -109,3 +109,13 @@ Route::get('/admindashboard', function(){
 Route::get('/success_property', function(){
     return view('newlayout.success_property');
 });
+
+Route::get('/newconcerns', function(){
+    return view('newlayout.newconcerns');
+});
+
+Route::get('/ownerprofile', function(){
+    return view('newlayout.ownerprofile');
+});
+
+

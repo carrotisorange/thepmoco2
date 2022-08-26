@@ -11,7 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-  <html class="h-full bg-white">
+<html class="h-full w-full bg-no-repeat bg-cover"
+        style= "background-image: url('/brands/profile_bg.png');">
   <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
@@ -243,209 +244,101 @@
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-    ],
-  }
-  ```
--->
+            <div class="pt-6 sm:pb-5">
 
-  <div class="pt-6 sm:pb-5">
+<nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <ol role="list" class="flex items-center space-x-4">
+    <li>
+      <div class="flex items-center">
+      <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
+      </div>
+    </li>
+  </ol>
+</nav>
 
-    <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <ol role="list" class="flex items-center space-x-4">
-        <li>
-          <div class="flex items-center">
-          <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
-          </div>
-        </li>
-      </ol>
-    </nav>
-
-    <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
-      <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
-        <div class="lg:col-start-5 lg:col-span-9">
-        
-          <div class="flex justify-between">
-          <h1 class="text-3xl font-bold text-gray-900">Unit #1</h1>
-            <a href="#" class="flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Edit</a>
-          </div>
-          
-        </div>
-
-        <!-- Image gallery -->
-        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-span-3">
-          <h2 class="sr-only">Images</h2>
-
-          <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-          <img src="{{ asset('/brands/door_detail.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md">
-          <a href="#" class="flex justify-left text-sm font-medium text-purple-500 hover:text-purple-700">Upload a Picture</a>
-
-          </div>
-        </div>
-
-        <div class="mt-8 lg:col-span-9">
-          <form>
-            
-
-            <!-- Links -->
-            <div class="mt-2">
-
-              <fieldset class="mt-2">
-                <div class="grid grid-cols-5 gap-2 sm:grid-cols-5">
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
-                    <span id="size-choice-0-label"> Unit </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                    <span id="size-choice-1-label"> Rent </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                    <span id="size-choice-2-label"> Owner/Tenant </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                    <span id="size-choice-3-label"> Rooms </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
-                    <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                    <span id="size-choice-4-label"> Furniture List </span>
-                  </label>
-
-                  <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
-
-              </fieldset>
-            </div>
-
-            <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6 mt-5">
-            <img src="{{ asset('/brands/user.png') }}" alt="user" class="h-16 col-span-1 md:row-span-6 rounded-md">
-            <div class="sm:col-span-5">
-              <div class="relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-              
-              <label for="name" class="block text-xs font-medium text-gray-900">Owner</label>
-                    <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-                </div>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6 mt-5">
-                <img src="{{ asset('/brands/user.png') }}" alt="user" class="h-16 col-span-1 md:row-span-6 rounded-md">
-                <div class="sm:col-span-5">
-                <div class="relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-              
-              <label for="name" class="block text-xs font-medium text-gray-900">Tenant</label>
-                    <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-                </div>
-                </div>
-                
-            </div>
-
-            <div class="mt-2 flex justify-end">
-            <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
-            </div>  
-          </div>
-
-              
-          
-          
-          </form>
-</div>
-</div>
-</div>
-
-
-
-
-
+<div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+  <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
+    <div class="lg:col-start-5 lg:col-span-9">
+    
+      <div class="flex justify-between">
+      <h1 class="text-3xl font-bold text-white">Juan Dela Cruz</h1>
+        <a href="#" class="flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Edit</a>
+      </div>
       
- <div class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-  <div class="flex-1 flex justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
-    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </a>
-  </div>
-  <div class="mt-5 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-    <div>
-      <p class="text-sm text-gray-700">
-        Showing
-        <span class="font-medium">1</span>
-        of
-        <span class="font-medium">5</span>
-        pages
-      </p>
     </div>
-    <div>
-      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Previous</span>
-          <!-- Heroicon name: solid/chevron-left -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
-        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> ... </span>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Next</span>
-          <!-- Heroicon name: solid/chevron-right -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </nav>
+
+    <!-- Image gallery -->
+    <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-span-3">
+      <h2 class="sr-only">Images</h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
+      <img src="{{ asset('/brands/user.png') }}" alt="door" class="h-48 lg:col-span-2 md:row-span-2 rounded-md">
+      <a href="#" class="flex justify-left text-sm font-medium text-purple-500 hover:text-purple-700">Upload a Picture</a>
+
+      </div>
     </div>
-  </div>
+
+    <div class="mt-2 lg:col-span-9">
+      <form>
+        
+
+        <!-- Links -->
+    
+
+        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6 mt-9">
+
+        <div class="sm:col-span-3">
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="name" class="block text-xs font-medium text-gray-900">Contract</label>
+              <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+            </div>
+            </div>
+
+            <div class="sm:col-span-3">
+          <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Rent/Month</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+          </div>
+          </div>
+
+          <div class="sm:col-span-3">
+          <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Date of Turnover</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+          </div>
+          </div>
+
+          <div class="sm:col-span-3">
+          <div class="relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Status</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+          </div>
+          </div> 
+        </div>
+
+        <a href="#" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Bills History</a>
+
+        <div class="mt-10 flex justify-end">
+        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+        </div>  
+      </div>
+
+          
+      
+      
+      </form>
+</div>
 </div>
 </div>
 
+
+
+  
+
+</div>
+</div>
+</div>
+</div>
 
 
       <!-- Footer -->
