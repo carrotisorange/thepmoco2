@@ -150,6 +150,9 @@ Route::get('/addtenant4', function(){
     return view('newlayout.addtenant4');
 });
 
+Route::get('/cashflow', function(){
+    return view('newlayout.cashflow');
+});
 
 
 

@@ -280,7 +280,7 @@
           </div>
 
           <table class="min-w-full table-fixed divide-y-8 divide-gray-50 border">
-            <thead class="bg-yellow-900">
+            <thead class="">
               <tr>
                 <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
                   

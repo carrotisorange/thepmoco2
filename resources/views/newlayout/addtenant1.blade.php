@@ -458,8 +458,9 @@
 
   <div class="mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
     <div class="md:grid md:grid-cols-1 md:gap-6">
-      <div class="mt-5 md:mt-0 md:col-span-2">
+      <div class="mt-5 md:mt-0 md:col-span-3">
         <div class="grid grid-cols-9 gap-6">
+          
           <div class="col-span-6 sm:col-span-3">
             <label for="first-name" class="block text-sm font-medium text-gray-700">Full Name</label>
             <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">

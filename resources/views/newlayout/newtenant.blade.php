@@ -313,24 +313,135 @@
 
 <div class="sm:col-span-2">
 <form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Filters</label>
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
     <div class="relative w-full mb-5">
         <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
-        <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
+        
         </div>
-        <button type="button" class="text-center bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">Filter by Default</button>
-</div>
-    </div>
+        <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-full flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
+                <span class="text-sm font-medium text-gray-900"> Filter by: Default</span>
+                <span class="ml-6 flex items-center">
+                  <!--
+                    Expand/collapse icon, toggle classes based on question open state.
+
+                    Heroicon name: solid/chevron-down
+
+                    Open: "-rotate-180", Closed: "rotate-0"
+                  -->
+                  <svg class="rotate-0 h-5 w-5 transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+
+            <div class="mt-5 grid grid-cols-1 gap-y-6  sm:grid-cols-6">
+            <div class="sm:col-span-3">
+            <div class=" pl-2 bg-white" id="filter-section-0">
+              <div class="">
+
+              
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Oldest</label>
+               
+                  </div>
+
+     
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Latest</label>
+                
+                  </div>
+
+                  
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Active</label>
+                </div>
+
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Inactive</label>
+                </div>
+
+              
+
+             
+                 
+                 
+                 
+                  </div>
+                  
+              </div>
+
+                  </div>
+
+                  <div class="sm:col-span-3">
+            <div class=" pl-2 bg-white" id="filter-section-0">
+              <div class="">
+
+              
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Unit</label>
+                  <input type="text" name="unit" id="unit" autocomplete="unit" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+               
+                  </div>
+
+     
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Bills</label>
+                  <input type="text" name="floor" id="floor" autocomplete="floor" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                  </div>
+
+                  
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Size</label>
+                  <input type="text" name="size" id="size" autocomplete="size" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                </div>
+
+                <div class="flex items-center">
+                <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Rent:</label>
+                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                  </div>
+
+       
+                
+                  <div class="mt-4 flex justify-end">
+                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
+                  </div>
+                
+            
+                 
+                  </div>
+                  
+              </div>
+             
+
+                  </div>
+
+
+              
+            </div>
+          </div>
+        
+      
+                  </div>
+
+
+    
 </form>
+
 
 
 
     
 
 </div>
-
 
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
