@@ -310,12 +310,15 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
-                  <span class="text-indigo-600">01</span>
-                </span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+            <!-- Heroicon name: solid/check -->
+            <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+            </svg>
+          </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Tenant Information Sheet</span>
+                <span class="text-sm font-medium text-gray-900">Tenant Information Sheet</span>
                 
               </span>
             </span>
@@ -330,7 +333,7 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
                   <span class="text-indigo-600">02</span>
                 </span>
               </span>
@@ -358,12 +361,12 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
-                  <span class="text-indigo-600">03</span>
-                </span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+            <span class="text-gray-500 group-hover:text-gray-900">03</span>
+          </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Reference</span>
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Reference</span>
                 
               </span>
             </span>
@@ -384,12 +387,12 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
-                  <span class="text-indigo-600">02</span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">04</span>
                 </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Contract</span>
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Contract</span>
                 
               </span>
             </span>
@@ -410,12 +413,12 @@
             <span class="absolute top-0 left-0 w-1 h-full  lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2 rounded-full">
-                  <span class="text-indigo-600">05</span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+                <span class="text-gray-500 group-hover:text-gray-900">05</span>
                 </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Bill Information</span>
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Bill Information</span>
               </span>
             </span>
           </a>
@@ -463,28 +466,25 @@
         <div class="grid grid-cols-8 gap-6">
           <div class="col-span-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700">Full Name</label>
-            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-2">
             <label for="last-name" class="block text-sm font-medium text-gray-700">Relationship</label>
-            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-2">
             <label for="email-address" class="block text-sm font-medium text-gray-700">Email</label>
-            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-2">
-            <label for="country" class="block text-sm font-medium text-gray-700">Mobile</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Mobile</label>
+            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
+          
 
           
         </div>
@@ -495,7 +495,7 @@
 
 
   <div class="flex justify-end">
-    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
+    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Back</button>
     <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
   </div>
 </form>

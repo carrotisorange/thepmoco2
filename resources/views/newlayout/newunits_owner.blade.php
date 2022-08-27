@@ -401,7 +401,8 @@
                 </div>
                 </div>
               </div>
-
+              <a href="#" class="mt-10 flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Add a Owner</a>
+            
               <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6 mt-5">
                 <img src="{{ asset('/brands/user.png') }}" alt="user" class="h-16 col-span-1 md:row-span-6 rounded-md">
                 <div class="sm:col-span-5">

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concerns</title>
+    <title>Units</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-  <html class="h-full bg-gray-50">
+  <html class="h-full bg-white">
   <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
@@ -198,9 +198,9 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Units</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
@@ -223,9 +223,9 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
 
                     <!-- Concerns -->
-                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-10 w-auto" src="{{ asset('/brands/concerns_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
@@ -267,14 +267,181 @@
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mt-5 px-4 sm:px-6 lg:px-8">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">Concerns</h1>
-    </div>
+
+<!--
+  This example requires Tailwind CSS v2.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/typography'),
+    ],
+  }
+  ```
+-->
+
+  <div class="pt-6 sm:pb-5">
+
+    <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ol role="list" class="flex items-center space-x-4">
+        <li>
+          <div class="flex items-center">
+          <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
+    <ol role="list" class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
+
+
+    <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+            <!-- Heroicon name: solid/check -->
+            <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+            </svg>
+          </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+                <span class="text-sm font-medium text-gray-900">Tenant Information Sheet</span>
+                
+              </span>
+            </span>
+          </a>
+        </div>
+      </li>
+
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+            <span class="flex-shrink-0">
+            <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+            <!-- Heroicon name: solid/check -->
+            <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+            </svg>
+          </span>
+                  
+                </span>
+              
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+                <span class="text-sm font-medium text-gray-900">Guardian Information</span>
+                
+              </span>
+            </span>
+          </a>
+
+
+          <!-- Separator -->
+          <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+        </div>
+      </li>
+
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
+              <span class="text-indigo-600">03</span>
+          </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+              <span class="text-sm font-medium text-indigo-600">Reference</span>
+                
+              </span>
+            </span>
+          </a>
+
+          <!-- Separator -->
+          <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+</li>
+
+           <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">04</span>
+                </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Contract</span>
+                
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+      </li>
+
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full  lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+                <span class="text-gray-500 group-hover:text-gray-900">05</span>
+                </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Bill Information</span>
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+      </li>
+    </ol>
+  </nav>
+
+
 </div>
 
-            <!--
+<!--
   This example requires Tailwind CSS v2.0+ 
   
   This example requires some changes to your config:
@@ -291,147 +458,66 @@
   ```
 -->
 <form class="space-y-6" action="#" method="POST">
+ 
 
-     
 
-  <div class=" px-4 py-5 sm:rounded-lg sm:p-6">
-    <div class="md:grid md:grid-cols-6 md:gap-6">
+        
 
-    
-          <div class="col-span-3 sm:col-span-3">
-            <label for="first-name" class="block text-sm font-medium text-gray-700">Date:</label>
+        
+
+  <div class="mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="md:grid md:grid-cols-1 md:gap-6">
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="grid grid-cols-8 gap-6">
+          <div class="col-span-2">
+            <label for="first-name" class="block text-sm font-medium text-gray-700">Full Name</label>
             <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-3 sm:col-span-3">
-            <label for="last-name" class="block text-sm font-medium text-gray-700">Name of Tenant</label>
+          <div class="col-span-2">
+            <label for="last-name" class="block text-sm font-medium text-gray-700">Relationship</label>
             <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-3 sm:col-span-3">
-            <label for="email-address" class="block text-sm font-medium text-gray-700">Unit No.</label>
+          <div class="col-span-2">
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Email</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-3 sm:col-span-3">
-            <label for="email-address" class="block text-sm font-medium text-gray-700">Contact No.</label>
+          <div class="col-span-2">
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Mobile</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-
-        <fieldset>
-
-        <div class="col-span-2 sm:col-span-3">
-          <legend class="sr-only">By Email</legend>
-          <div class="text-base font-medium text-gray-900" aria-hidden="true">Department</div>
-          <div class="mt-4 space-y-4">
-            
           
-            <div class="flex items-start">
-              <div class="h-5 flex items-center">
-                <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border border-gray-300 rounded">
-              </div>
 
-
-              <div class="ml-3 text-sm">
-                <label for="comments" class="font-medium text-gray-700">Leasing</label>
-              </div>
-            </div>
-</div>
-
-<div class="col-span-2 sm:col-span-3">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input id="candidates" name="candidates" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="candidates" class="font-medium text-gray-700">Accounting</label>
-              </div>
-            </div>
-</div>
-
-<div class="col-span-2 sm:col-span-3">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="offers" class="font-medium text-gray-700">Others</label>
-
-              </div>
-            </div>
-</div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-
-<div class="col-span-2 sm:col-span-3">
-  <legend class="sr-only">By Email</legend>
-  <div class="text-base font-medium text-gray-900" aria-hidden="true">Urgency</div>
-  <div class="mt-4 space-y-4">
-    
-  
-    <div class="flex items-start">
-      <div class="h-5 flex items-center">
-        <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-      </div>
-
-
-      <div class="ml-3 text-sm">
-        <label for="comments" class="font-medium text-gray-700">Emergency</label>
-      </div>
-    </div>
-</div>
-
-<div class="col-span-2 sm:col-span-3">
-    <div class="flex items-start">
-      <div class="flex items-center h-5">
-        <input id="candidates" name="candidates" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-      </div>
-      <div class="ml-3 text-sm">
-        <label for="candidates" class="font-medium text-gray-700">Minor Concern</label>
-      </div>
-    </div>
-</div>
-
-<div class="col-span-2 sm:col-span-3">
-    <div class="flex items-start">
-      <div class="flex items-center h-5">
-        <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-      </div>
-      <div class="ml-3 text-sm">
-        <label for="offers" class="font-medium text-gray-700">Under Warranty</label>
-
-      </div>
-    </div>
-</div>
-  </div>
-</fieldset>
-
-        <div class="col-span-4">
-        <fieldset>
-        <div>
-          <label for="about" class="block text-sm font-medium text-gray-700">Concern</label>
-          <div class="mt-1">
-            <textarea id="about" name="about" rows="3" class="h-32 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md" placeholder=""></textarea>
-          </div>
-          <p class="mt-2 text-sm text-gray-500">Describe your concern in detail.</p>
+          
         </div>
-        </fieldset>
-</div>
-
-
-       
       </div>
     </div>
   </div>
+
+
 
   <div class="flex justify-end">
-    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
+    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Back</button>
+    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
   </div>
 </form>
+
+    
+</div>
+</div>
+
+
+
+
+
+
+
+      
+ 
+
 
 
       <!-- Footer -->

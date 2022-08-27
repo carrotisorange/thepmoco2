@@ -298,7 +298,7 @@
     </nav>
 
     <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
+    <div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
     <ol role="list" class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
 
@@ -310,12 +310,12 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
-                  <span class="text-indigo-600">01</span>
-                </span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
+            <span class="text-indigo-600">01</span>
+          </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Tenant Information Sheet</span>
+              <span class="text-sm font-medium text-indigo-600">Tenant Information Sheet</span>
                 
               </span>
             </span>
@@ -330,12 +330,12 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
-                  <span class="text-indigo-600">02</span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">02</span>
                 </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Guardian Information</span>
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Guardian Information</span>
                 
               </span>
             </span>
@@ -358,12 +358,12 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
-                  <span class="text-indigo-600">03</span>
-                </span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+            <span class="text-gray-500 group-hover:text-gray-900">03</span>
+          </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Reference</span>
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Reference</span>
                 
               </span>
             </span>
@@ -384,12 +384,12 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2  rounded-full">
-                  <span class="text-indigo-600">02</span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">04</span>
                 </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Contract</span>
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Contract</span>
                 
               </span>
             </span>
@@ -410,12 +410,12 @@
             <span class="absolute top-0 left-0 w-1 h-full  lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-                <span class="w-10 h-10 flex items-center justify-center border-2 rounded-full">
-                  <span class="text-indigo-600">05</span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+                <span class="text-gray-500 group-hover:text-gray-900">05</span>
                 </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                <span class="text-sm font-medium text-indigo-600">Bill Information</span>
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Bill Information</span>
               </span>
             </span>
           </a>
@@ -432,7 +432,6 @@
 
 
 </div>
-
 <!--
   This example requires Tailwind CSS v2.0+ 
   
@@ -463,22 +462,22 @@
         <div class="grid grid-cols-9 gap-6">
           <div class="col-span-6 sm:col-span-3">
             <label for="first-name" class="block text-sm font-medium text-gray-700">Full Name</label>
-            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-6 sm:col-span-3">
             <label for="last-name" class="block text-sm font-medium text-gray-700">Mobile</label>
-            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-6 sm:col-span-3">
             <label for="email-address" class="block text-sm font-medium text-gray-700">Email</label>
-            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-2">
             <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option>United States</option>
               <option>Canada</option>
               <option>Mexico</option>
@@ -487,27 +486,27 @@
 
           <div class="col-span-2">
             <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
-            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-2">
             <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-            <input type="text" name="city" id="city" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="city" id="city" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-2">
             <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
-            <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-1">
             <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
-            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-2">
             <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
-            <select id="gender" name="gender" autocomplete="gender-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <select id="gender" name="gender" autocomplete="gender-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option>Male</option>
               <option>Female</option>
               <option>Others</option>
@@ -515,7 +514,7 @@
           </div>
           <div class="col-span-2">
             <label for="country" class="block text-sm font-medium text-gray-700">Birthdate</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option>United States</option>
               <option>Canada</option>
               <option>Mexico</option>
@@ -523,7 +522,7 @@
           </div>
           <div class="col-span-3">
             <label for="civil" class="block text-sm font-medium text-gray-700">Civil Status</label>
-            <select id="civil" name="civil" autocomplete="civil-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <select id="civil" name="civil" autocomplete="civil-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option>Single</option>
               <option>Married</option>
               <option>Divorced</option>
@@ -531,7 +530,7 @@
           </div>
           <div class="col-span-2">
             <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-            <select id="type" name="type" autocomplete="type-name" class="mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <select id="type" name="type" autocomplete="type-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option>Working</option>
               <option>Studying</option>
             </select>

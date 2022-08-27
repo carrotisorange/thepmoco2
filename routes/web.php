@@ -139,8 +139,18 @@ Route::get('/addtenant1', function(){
 });
 
 Route::get('/addtenant2', function(){
-    return view('newlayout.addtenant1');
+    return view('newlayout.addtenant2');
 });
+
+Route::get('/addtenant3', function(){
+    return view('newlayout.addtenant3');
+});
+
+Route::get('/addtenant4', function(){
+    return view('newlayout.addtenant4');
+});
+
+
 
 
 
