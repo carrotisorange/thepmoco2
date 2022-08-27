@@ -11,8 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-<html class="h-full w-full bg-no-repeat bg-cover"
-        style= "background-image: url('/brands/tenant_bg.png');">
+<html>
   <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
@@ -78,17 +77,18 @@
                 From: "transform opacity-100 scale-100"
                 To: "transform opacity-0 scale-95"
             --> 
-           <!-- PROFILE DROPDOWN! <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
-              <div class="py-1" role="none"> -->
+           <!-- PROFILE DROPDOWN! --> 
+            <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
+              <div class="py-1" role="none">
                 <!-- Active: "bg-gray-100", Not Active: "" -->
-                <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Your Profile </a>
+                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Your Profile </a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
--->
+
     <!-- Mobile menu, show/hide this `div` based on menu open/closed state -->
 
         <div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
@@ -207,18 +207,18 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
                 
                 <!-- Owners -->
-                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Owners</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/user_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
 
               
                     <!-- Tenant -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/tenant_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
@@ -266,8 +266,11 @@
             </nav>
 
           <!-- Main area -->
+
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-full w-full bg-no-repeat bg-cover"
+        style= "background-image: url('/brands/tenant_bg.png');">
+            <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
             <div class="pt-6 sm:pb-5">
 
@@ -395,21 +398,21 @@
 
         
 
-        <div class="mt-10 flex justify-end">
+        <div class="mt-8 mb-10 flex justify-end">
         <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
         </div>  
 
       
-
+</div>
 
       </div>
 
       </form>
-
-      
 </div>
-<section>
-<h1 class="text-xl font-bold text-white">Contracts</h1>
+      
+
+<section class="mb-10">
+<h1 class="mt-10 text-xl font-bold text-black">Contracts</h1>
 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
     
@@ -429,13 +432,14 @@
           <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
             
           </th>
-          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
+          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">TENANT</th>
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DURATION</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT/MO</th>
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INTERACTION</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
           <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
 
           </th>
@@ -458,7 +462,12 @@
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Moveout</td>
+          <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Lindsay Walton</span></a>
+            </td>
+           <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
+               <a href="#" class="text-indigo-600 hover:text-indigo-900">Action<span class="sr-only">, Lindsay Walton</span></a>
+            </td>
           <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
             
         </tr>
@@ -476,7 +485,12 @@
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Moveout</td>
+          <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Lindsay Walton</span></a>
+            </td>
+           <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
+               <a href="#" class="text-indigo-600 hover:text-indigo-900">Action<span class="sr-only">, Lindsay Walton</span></a>
+            </td>
           <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
             
         </tr>
@@ -494,8 +508,8 @@
   </div>
         </section>
 
-        <section>
-<h1 class="text-xl font-bold text-white">Bills</h1>
+        <section class="mb-10">
+<h1 class="text-xl font-bold text-black">Bills</h1>
 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
     
@@ -522,7 +536,7 @@
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PARTICULAR</th>
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT DUE</th>
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT PAID</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
           <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
 
           </th>
@@ -581,14 +595,167 @@
     
   </div>
         </section>
+
+        <section class="mb-10">
+<h1 class="text-xl font-bold text-black">Guardian</h1>
+<div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+
+    
+
+<div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+  <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+    <!-- Selected row actions, only show when rows are selected. -->
+    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+      
+    </div>
+
+    <table class="min-w-full table-fixed">
+      
+      <thead class="bg-white">
+        <tr>
+          <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
+            
+          </th>
+          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">NAME</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RELATIONSHIP</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTRACT</th>
+          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+
+          </th>
+        </tr>
+      </thead>
+      
+
+      <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+        <!-- Selected: "bg-gray-50" -->
+        <tr>
+          <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+            <!-- Selected row marker, only show when row is selected. -->
+            
+            <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+          </td>
+          <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+          <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #4</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456789</td>
+          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+            
+        </tr>
+
+  
+     
+        
+
+        <!-- More people... -->
+      </tbody>
+
+
+      
+    </table>
+    
+  </div>
+        </section>
+
+        <section class="mb-10">
+<h1 class="text-xl font-bold text-black">Collection</h1>
+<div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+
+    
+
+<div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+  <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+    <!-- Selected row actions, only show when rows are selected. -->
+    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+      
+    </div>
+
+    <table class="min-w-full table-fixed">
+      
+      <thead class="bg-white">
+        <tr>
+          <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
+            
+          </th>
+          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">AR #</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE APPLIED</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE DEPOSITED</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">MODE OF PAYMENT</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT</th>
+    
+          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+
+          </th>
+        </tr>
+      </thead>
+      
+
+      <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+        <!-- Selected: "bg-gray-50" -->
+        <tr>
+          <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+            <!-- Selected row marker, only show when row is selected. -->
+            
+            <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+          </td>
+          <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+          <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #4</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456789</td>
+          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+            
+        </tr>
+
+        <tr>
+          <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+            <!-- Selected row marker, only show when row is selected. -->
+            
+            <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+          </td>
+          <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+          <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #4</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456789</td>
+          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+            
+        </tr>
+     
+        
+
+        <!-- More people... -->
+      </tbody>
+
+
+      
+    </table>
+    
+  </div>
+        </section>
+
 </div>
-</div>
+
 
 
 
   
 
-</div>
+
 
 
 
