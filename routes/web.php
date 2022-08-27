@@ -110,10 +110,6 @@ Route::get('/success_property', function(){
     return view('newlayout.success_property');
 });
 
-Route::get('/newconcerns', function(){
-    return view('newlayout.newconcerns');
-});
-
 Route::get('/ownerprofile', function(){
     return view('newlayout.ownerprofile');
 });
@@ -154,7 +150,13 @@ Route::get('/cashflow', function(){
     return view('newlayout.cashflow');
 });
 
+Route::get('/newconcern_detail', function(){
+    return view('newlayout.newconcern_detail');
+});
 
+Route::get('/newconcernlist', function(){
+    return view('newlayout.newconcernlist');
+});
 
 
 

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employees</title>
+    <title>Units</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-  <html class="h-full bg-gray-50">
+  <html class="h-full bg-white">
   <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
@@ -59,7 +59,7 @@
 
             <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
+                <a href="#" class="text-sm font-medium text-gray-900">Basilio Tenant</a>
               </nav>
 
             <div class="relative inline-block text-left">
@@ -198,9 +198,9 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="ml-2  text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Units</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
@@ -247,9 +247,9 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
 
                     <!-- Employees -->
-                <a href="#" class=" ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Teams</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/team_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employees</div>
@@ -266,10 +266,174 @@
 
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
-            <!--
-  This example requires Tailwind CSS v3.0+ 
+<!--
+  This example requires Tailwind CSS v2.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/typography'),
+    ],
+  }
+  ```
+-->
+
+  <div class="pt-6 sm:pb-5">
+
+    <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ol role="list" class="flex items-center space-x-4">
+        <li>
+          <div class="flex items-center">
+          <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
+    <ol role="list" class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
+
+
+    <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
+            <span class="text-indigo-600">01</span>
+          </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+              <span class="text-sm font-medium text-indigo-600">Tenant Information Sheet</span>
+                
+              </span>
+            </span>
+          </a>
+        </div>
+      </li>
+
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">02</span>
+                </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Guardian Information</span>
+                
+              </span>
+            </span>
+          </a>
+
+
+          <!-- Separator -->
+          <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+        </div>
+      </li>
+
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+            <span class="text-gray-500 group-hover:text-gray-900">03</span>
+          </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Reference</span>
+                
+              </span>
+            </span>
+          </a>
+
+          <!-- Separator -->
+          <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+</li>
+
+           <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">04</span>
+                </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Contract</span>
+                
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+      </li>
+
+      <li class="relative overflow-hidden lg:flex-1">
+        <div class="border border-gray-200 overflow-hidden lg:border-0">
+          <!-- Current Step -->
+          <a href="#" aria-current="step">
+            <span class="absolute top-0 left-0 w-1 h-full  lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
+            <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
+              <span class="flex-shrink-0">
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
+                <span class="text-gray-500 group-hover:text-gray-900">05</span>
+                </span>
+              </span>
+              <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
+              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Bill Information</span>
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+            <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+              <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+      </li>
+    </ol>
+  </nav>
+
+
+</div>
+<!--
+  This example requires Tailwind CSS v2.0+ 
   
   This example requires some changes to your config:
   
@@ -284,269 +448,121 @@
   }
   ```
 -->
-<div class="mt-10 px-4 sm:px-6 lg:px-8">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Employees</h1>
-    </div>
-    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add Employee</button>
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Employee</button>
-    </div>
-  </div>
+<form class="space-y-6" action="#" method="POST">
+ 
 
-  
 
-  <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-  <div class="sm:col-span-4">
-  <form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-    <div class="relative w-full mb-5">
-        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </div>
-        <input type="search" id="default-search" class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." required>
         
-    </div>
-</div>
 
-</form>
-
-<div class="sm:col-span-2">
-<form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
-    <div class="relative w-full mb-5">
-        <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
         
-        </div>
-        
-            </h3>
-            <div class="pt-6 hidden bg-white" id="filter-section-0">
-              <div class="space-y-6">
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500"> Floor</label>
-                </div>
 
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500"> Status </label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500"> Rent </label>
-                </div>
-              </div>
-
-              
-            </div>
-          </div>
-        
-      
-</div
-
-
-    
-</form>
-
-
-
-
-    
-
-</div>
-
-
-    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-    
-
-      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-      
-        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-          <!-- Selected row actions, only show when rows are selected. -->
-          <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-            
+  <div class="mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="md:grid md:grid-cols-1 md:gap-6">
+      <div class="mt-5 md:mt-0 md:col-span-3">
+        <div class="grid grid-cols-9 gap-6">
+          
+          <div class="col-span-6 sm:col-span-3">
+            <label for="first-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <table class="min-w-full table-fixed">
-            
-            <thead class="">
-              <tr>
-                <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
-                  
-                </th>
-                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NAME</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">POSITION</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">EMAIL</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTACT #</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INVITED AT</th>
-                </th>
-              </tr>
-            </thead>
-            
+          <div class="col-span-6 sm:col-span-3">
+            <label for="last-name" class="block text-sm font-medium text-gray-700">Mobile</label>
+            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-              <!-- Selected: "bg-gray-50" -->
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
+          <div class="col-span-6 sm:col-span-3">
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
+          <div class="col-span-2">
+            <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option>United States</option>
+              <option>Canada</option>
+              <option>Mexico</option>
+            </select>
+          </div>
 
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
+          <div class="col-span-2">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
+            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
+          <div class="col-span-2">
+            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+            <input type="text" name="city" id="city" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
+          <div class="col-span-2">
+            <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
+            <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mark Lee</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Admin</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">marklee@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0987654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 5, 2022</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
+          <div class="col-span-1">
+            <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
+            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-              <!-- More people... -->
-            </tbody>
+          <div class="col-span-2">
+            <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+            <select id="gender" name="gender" autocomplete="gender-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Others</option>
+            </select>
+          </div>
+          <div class="col-span-2">
+            <label for="country" class="block text-sm font-medium text-gray-700">Birthdate</label>
+            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option>United States</option>
+              <option>Canada</option>
+              <option>Mexico</option>
+            </select>
+          </div>
+          <div class="col-span-3">
+            <label for="civil" class="block text-sm font-medium text-gray-700">Civil Status</label>
+            <select id="civil" name="civil" autocomplete="civil-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option>Single</option>
+              <option>Married</option>
+              <option>Divorced</option>
+            </select>
+          </div>
+          <div class="col-span-2">
+            <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+            <select id="type" name="type" autocomplete="type-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option>Working</option>
+              <option>Studying</option>
+            </select>
+          </div>
 
-
-            
-          </table>
           
         </div>
-        <button type="button" class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select All</button>
       </div>
     </div>
   </div>
 
- <div class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-  <div class="flex-1 flex justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
-    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </a>
+
+
+  <div class="flex justify-end">
+    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
+    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
   </div>
-  <div class="mt-5 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-    <div>
-      <p class="text-sm text-gray-700">
-        Showing
-        <span class="font-medium">1</span>
-        of
-        <span class="font-medium">5</span>
-        pages
-      </p>
-    </div>
-    <div>
-      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Previous</span>
-          <!-- Heroicon name: solid/chevron-left -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
-        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> ... </span>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Next</span>
-          <!-- Heroicon name: solid/chevron-right -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </div>
+</form>
+
+    
 </div>
 </div>
+
+
+
+
+
+
+
+      
+ 
 
 
 
