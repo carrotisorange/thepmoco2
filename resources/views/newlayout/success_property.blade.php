@@ -47,28 +47,11 @@
     <!-- Picker area -->
     <div class="mx-auto md:hidden">
       <div class="relative">
-        <label for="inbox-select" class="sr-only">Choose inbox</label>
-        <select id="inbox-select" class="rounded-md border-0 bg-none pl-3 pr-8 text-base font-medium text-gray-900 focus:ring-2 focus:ring-indigo-600">
-          <option selected>Open</option>
-
-          <option>Archive</option>
-
-          <option>Customers</option>
-
-          <option>Flagged</option>
-
-          <option>Spam</option>
-
-          <option>Drafts</option>
-        </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pr-2">
-          <!-- Heroicon name: solid/chevron-down -->
-          <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
+      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pr-2">
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+
 
     <!-- Menu button area -->
     <div class="absolute inset-y-0 right-0 flex items-center pr-4 sm:pr-6 md:hidden">
@@ -133,96 +116,11 @@
           </div>
         </div>
 
-    <!-- Mobile menu, show/hide this `div` based on menu open/closed state -->
-
-    <div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
-      <!--
-        Off-canvas menu backdrop, show/hide based on off-canvas menu state.
-
-        Entering: "transition-opacity ease-linear duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "transition-opacity ease-linear duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
-      <div class="hidden sm:fixed sm:inset-0 sm:block sm:bg-gray-600 sm:bg-opacity-75"></div>
-
-      <div class="fixed inset-0 z-40">
-        <!--
-          Mobile menu, toggle classes based on menu state.
-
-          Entering: "transition ease-out duration-150 sm:ease-in-out sm:duration-300"
-            From: "transform opacity-0 scale-110 sm:translate-x-full sm:scale-100 sm:opacity-100"
-            To: "transform opacity-100 scale-100  sm:translate-x-0 sm:scale-100 sm:opacity-100"
-          Leaving: "transition ease-in duration-150 sm:ease-in-out sm:duration-300"
-            From: "transform opacity-100 scale-100 sm:translate-x-0 sm:scale-100 sm:opacity-100"
-            To: "transform opacity-0 scale-110  sm:translate-x-full sm:scale-100 sm:opacity-100"
-        -->
-        <div class="fixed inset-0 z-40 h-full w-full bg-white sm:inset-y-0 sm:left-auto sm:right-0 sm:w-full sm:max-w-sm sm:shadow-lg" aria-label="Global">
-          <div class="flex h-16 items-center justify-between px-4 sm:px-6">
-            <a href="#">
-              <img class="block h-10 w-auto" src="{{ asset('/brands/logo.png') }}" alt="Workflow">
-            </a>
-            <button type="button" class="-mr-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600">
-              <span class="sr-only">Close main menu</span>
-              <!-- Heroicon name: outline/x -->
-              <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
-            <div class="relative text-gray-400 focus-within:text-gray-500">
-              <label for="mobile-search" class="sr-only">The Property Manager</label>
-              <input id="mobile-search" type="search" placeholder="The Property Manager" class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
-              <div class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
-                <!-- Heroicon name: solid/search -->
-                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
-            <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Dashboard</a>
-
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Contracts</a>
-
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Bills</a>
-
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Payments</a>
-
-            <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Concerns</a>
-
-            
-          </div>
-          <div class="border-t border-gray-200 pt-4 pb-3">
-            <div class="max-w-8xl mx-auto flex items-center px-4 sm:px-6">
-              <div class="flex-shrink-0">
-                <img class="h-10 w-10 rounded-full" src="{{ asset('/brands/avatar.png') }}" alt="">
-              </div>
-              <div class="ml-3 min-w-0 flex-1">
-                <div class="truncate text-base font-medium text-gray-800">Basilio</div>
-                <div class="truncate text-sm font-medium text-gray-500">basilio_tenant@gmail.com</div>
-              </div>
-              <a href="#" class="ml-auto flex-shrink-0 bg-white p-2 text-gray-400 hover:text-gray-500">
-                <span class="sr-only">View notifications</span>
-                <!-- Heroicon name: outline/bell -->
-                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </a>
-            </div>
-            <div class="max-w-8xl mx-auto mt-3 space-y-1 px-2 sm:px-4">
-              <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50">Your Profile</a>
-
-              <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50">Sign out</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
+      
+          
+          
+        
   </header>
 
   
