@@ -432,16 +432,13 @@
           <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
             
           </th>
-          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">TENANT</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DURATION</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT/MO</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INTERACTION</th>
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NAME</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RELATIONSHIP</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">EMAIL</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">MOBILE</th>
 
+          
           </th>
         </tr>
       </thead>
@@ -457,18 +454,11 @@
           </td>
           <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
           <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-          <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Lindsay Walton</span></a>
-            </td>
-           <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
-               <a href="#" class="text-indigo-600 hover:text-indigo-900">Action<span class="sr-only">, Lindsay Walton</span></a>
-            </td>
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Cardo</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Friend</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">cardo@gmail.com</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0977889900</td>
+
             
         </tr>
 
@@ -480,18 +470,11 @@
           </td>
           <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
           <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-          <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Lindsay Walton</span></a>
-            </td>
-           <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
-               <a href="#" class="text-indigo-600 hover:text-indigo-900">Action<span class="sr-only">, Lindsay Walton</span></a>
-            </td>
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Cardo</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Friend</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">cardo@gmail.com</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0977889900</td>
+
             
         </tr>
 
@@ -607,10 +590,12 @@
           <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
             
           </th>
-          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">NAME</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RELATIONSHIP</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTRACT</th>
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">UNIT</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE OF TURNOVER</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PRICE</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CLASSIFICATION</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
+
 
           </th>
         </tr>
@@ -628,13 +613,10 @@
           <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
           <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #4</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456789</td>
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Regular</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+
             
         </tr>
 
@@ -673,13 +655,11 @@
           <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
             
           </th>
-          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">AR #</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE APPLIED</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE DEPOSITED</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">MODE OF PAYMENT</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT</th>
-    
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+          <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">UNIT</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DURATION</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTACT</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">MANAGEMENT FEE</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
 
           </th>
         </tr>
@@ -697,13 +677,10 @@
           <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
           <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #4</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456789</td>
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">091234567891</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5,000.00</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+  
             
         </tr>
 
@@ -716,14 +693,10 @@
           <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
           <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #4</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456789</td>
-          <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-            
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">091234567891</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5,000.00</td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+  
         </tr>
      
         
