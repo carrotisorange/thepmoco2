@@ -238,14 +238,21 @@
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
 
+                    <!-- Payments -->
+                    <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+
                     <!-- Cashflow -->
                 <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-8 w-auto" src="{{ asset('/brands/credit-card-white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
-
                     <!-- Employees -->
                 <a href="#" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Teams</span>
@@ -255,15 +262,12 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employees</div>
 
                 <!-- Log out -->
-                <a href="#" class="text-gray-400  flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="text-gray-400  flex-shrink-0 inline-flex items-center h-5 justify-center  rounded-lg">
                   <span class="sr-only">Logout</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/logout_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">logout</div>
               </div>
             </nav>
-
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
@@ -607,12 +611,51 @@
               <!-- More people... -->
             </tbody>
 
+            <table class="min-w-full table-fixed">
+            
+            <thead class="">
+              <tr>
+                <th scope="col" class="relative w-12  sm:w-8 sm:px-8">
+                  
+                </th>
+                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                
+                </th>
+              </tr>
+            </thead>
+            
 
+            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 text-sm font-medium text-gray-900">Total:</td>
+                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
+                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
+                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
+                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
+                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
+                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
+                
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
             
           </table>
           
         </div>
-        <button type="button" class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select All</button>
+        
       </div>
     </div>
   </div>
