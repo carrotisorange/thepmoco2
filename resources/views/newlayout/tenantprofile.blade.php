@@ -542,9 +542,13 @@
           </th>
         </tr>
       </thead>
+
+     
       
 
       <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+
+      
         <!-- Selected: "bg-gray-50" -->
         <tr>
           <td class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -564,6 +568,9 @@
           <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
             
         </tr>
+
+      
+
 
         <tr>
           <td class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -592,8 +599,14 @@
 
       
     </table>
+
+    
     
   </div>
+
+  <div class="mt-8 flex justify-end">
+        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay Bills</button>
+        </div> 
         </section>
 
         <section class="mb-10">

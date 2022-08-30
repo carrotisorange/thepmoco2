@@ -224,7 +224,7 @@
                 <!-- Concerns -->
                 <a href="#" class="bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-12 w-auto" src="{{ asset('/brands/concern_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-12 w-auto" src="{{ asset('/brands/concerns_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
@@ -266,20 +266,15 @@
   ```
 -->
 <div>
-  <div class="mt-5 md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-        <p class="mt-1 text-sm text-gray-600">This information will be displayed publicly so be careful what you share.</p>
-      </div>
-    </div>
+  <div class="flex justify-center mt-5 md:grid md:grid-cols-1 md:gap-6">
+    
     <div class="mt-5 md:mt-0 md:col-span-2">
       <form action="#" method="POST">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
           <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
-                <label for="subject" class="block text-sm font-medium text-gray-700"> Subject </label>
+                <label for="subject" class="block text-sm font-medium text-gray-700"> Subject (required) </label>
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input id="subject" name="subject" type="subject" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                 </div>
@@ -287,7 +282,7 @@
             </div>
             
             <div>
-              <label for="concern" class="block text-sm font-medium text-gray-700"> Concern </label>
+              <label for="concern" class="block text-sm font-medium text-gray-700"> Concern (required)</label>
               <div class="mt-1">
                 <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
               </div>

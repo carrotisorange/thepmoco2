@@ -146,6 +146,10 @@ Route::get('/addtenant4', function(){
     return view('newlayout.addtenant4');
 });
 
+Route::get('/addtenant5', function(){
+    return view('newlayout.addtenant5');
+});
+
 Route::get('/cashflow', function(){
     return view('newlayout.cashflow');
 });
@@ -157,6 +161,8 @@ Route::get('/newconcern_detail', function(){
 Route::get('/newconcernlist', function(){
     return view('newlayout.newconcernlist');
 });
+
+
 
 
 

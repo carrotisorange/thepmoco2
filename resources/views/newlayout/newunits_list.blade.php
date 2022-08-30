@@ -315,7 +315,7 @@
 
 <div class="sm:col-span-2">
 <form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
+    <label for="hidden default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
     <div class="relative w-full mb-5">
         <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
         
@@ -538,7 +538,9 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -559,7 +561,9 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -580,7 +584,9 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -601,7 +607,9 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">Inactive</span>
+                                        </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -622,7 +630,9 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -643,7 +653,9 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>

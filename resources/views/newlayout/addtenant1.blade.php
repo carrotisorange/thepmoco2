@@ -285,6 +285,7 @@
   ```
 -->
 
+  
   <div class="pt-6 sm:pb-5">
 
     <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -297,8 +298,12 @@
       </ol>
     </nav>
 
+    
+
     <!-- This example requires Tailwind CSS v2.0+ -->
+
     <div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
+    
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
     <ol role="list" class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
 
@@ -456,7 +461,7 @@
 
         
 
-  <div class="mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+  <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
     <div class="md:grid md:grid-cols-1 md:gap-6">
       <div class="mt-5 md:mt-0 md:col-span-3">
         <div class="grid grid-cols-9 gap-6">
@@ -537,6 +542,11 @@
             </select>
           </div>
 
+          <div class="col-span-2">
+          <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Create credentials for tenant.</label>
+          </div>
+
           
         </div>
       </div>
@@ -547,7 +557,7 @@
 
   <div class="flex justify-end">
     <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
+    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
   </div>
 </form>
 

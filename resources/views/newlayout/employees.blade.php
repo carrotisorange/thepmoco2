@@ -298,10 +298,10 @@
   
 
   <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-  <div class="sm:col-span-4">
+  <div class="sm:col-span-6">
   <form>   
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-    <div class="relative w-full mb-5">
+    <div class="relative w-full">
         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
             <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         </div>
@@ -312,13 +312,11 @@
 
 </form>
 
-<div class="sm:col-span-2">
+<div class="sm:col-span-">
 <form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
-    <div class="relative w-full mb-5">
-        <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
+    
+    <div class="relative w-full">
         
-        </div>
         
             </h3>
             <div class="pt-6 hidden bg-white" id="filter-section-0">
@@ -500,7 +498,7 @@
           </table>
           
         </div>
-        <button type="button" class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select All</button>
+        
       </div>
     </div>
   </div>

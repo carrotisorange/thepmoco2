@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-  <html class="h-full bg-white">
+  <html class="h-full bg-gray-50">
   <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
@@ -301,10 +301,7 @@
       <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
         <div class="lg:col-start-5 lg:col-span-9">
         
-          <div class="flex justify-between">
-          <h1 class="text-3xl font-bold text-gray-900">Unit #1</h1>
-            <a href="#" class="flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Edit</a>
-          </div>
+          
           
         </div>
 
@@ -321,7 +318,13 @@
           </div>
         </div>
 
-        <div class="mt-8 lg:col-span-9">
+        <div class="mt-5 lg:col-span-9 ">
+
+        <div class="flex justify-between">
+          <h1 class="mb-5 text-3xl font-bold text-gray-900">Unit #1</h1>
+            <a href="#" class="flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Edit</a>
+          </div>
+
           <form>
             
 
@@ -375,7 +378,7 @@
                     Active: "ring-2 ring-offset-2 ring-indigo-500"
                     Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
                   -->
-                  <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
+                  <label class="bg-white border border-purple-900 rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
                     <span id="size-choice-4-label"> Furniture List </span>
                   </label>
