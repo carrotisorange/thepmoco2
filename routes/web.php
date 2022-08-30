@@ -162,6 +162,11 @@ Route::get('/newconcernlist', function(){
     return view('newlayout.newconcernlist');
 });
 
+Route::get('/newpayments', function(){
+    return view('newlayout.newpayments');
+});
+
+
 
 
 
