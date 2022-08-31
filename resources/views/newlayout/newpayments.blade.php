@@ -342,7 +342,7 @@
               </button>
             </h3>
 
-            <div class="mt-5 grid grid-cols-1 gap-y-6  sm:grid-cols-6">
+            <div class="hidden mt-5 grid grid-cols-1 gap-y-6  sm:grid-cols-6">
             <div class="sm:col-span-3">
             <div class=" pl-2 bg-white" id="filter-section-0">
               <div class="">
@@ -475,8 +475,8 @@
                   <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
                   </div>
 
-                  <div class="mt-4 flex justify-end">
-                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
+                  <div class="flex justify-end">
+                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-xs font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
                   </div>
 
 

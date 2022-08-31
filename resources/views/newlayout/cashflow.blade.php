@@ -294,14 +294,15 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Cashflow</h1>
+    <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+      <h1 class="mb-5 text-3xl font-bold text-gray-700">Cashflow</h1>
     </div>
    
   </div>
 
   
 
-  <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+  
   <div class="sm:col-span-3">
 
   <div class="sm:col-span-2">
