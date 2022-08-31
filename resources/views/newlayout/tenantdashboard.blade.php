@@ -54,9 +54,12 @@
             </div>
           </div>
 
-            <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
+          <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
                 <a href="#" class="text-sm font-medium text-gray-900">Basilio Tenant</a>
+                <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
               </nav>
 
             <div class="relative inline-block text-left">
@@ -249,33 +252,59 @@
                       <div class="flex-shrink-0">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                       </div>
-                      <div class="ml-5 w-0 flex-1">
+                      <div class="flex items-center justify-center w-0 flex-1">
                         <dl>
                           <dt class="text-xl font-semibold font-body text-gray-500 truncate">Welcome back, Basilio</dt>
                             <dd>
-                              <img class="h-45 w-auto"  src="{{ asset('/brands/juan.png') }}">
+                              <img class="h-64 w-auto"  src="{{ asset('/brands/juan.png') }}">
                             </dd>
                         </dl>
                       </div>
                    </div>
                   </div>
 
-                  <div class="px-5 py-3">
-                    <div class="text-sm">
-                      <p class="font-medium text-center"> Update your profile. </p>
+                  <div class="">
+                    <div class="text-sm text-center ">
+                      <a href="#" class="font-medium text-gray-900">Update your profile.</a>
                     </div>
                   </div>
 
-                  <div class="grid grid-cols-3 gap-4 place-content-center ">
-                    <img class=" ml-8 h-10 w-auto flex " src="{{ asset('/brands/contract.png') }}">
-                    <img class=" ml-8 h-10 w-auto flex " src="{{ asset('/brands/contract.png') }}">
-                    <img class=" ml-8 h-10 w-auto flex " src="{{ asset('/brands/contract.png') }}">
-                    <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Contracts</button> 
-                    <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Unpaid Bills</button> 
-                    <button class="type= py-2.5 px-5 mr-2 mb-2 text-sm font-light text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Concerns</button>  
-                  </div>
-                </div>
+                  <div class="mt-10 grid grid-cols-1 gap-x-4 sm:grid-cols-3">
 
+              <div class="sm:col-span-1">
+        
+        <div class=" flex items-center justify-center">
+            <img src="{{ asset('/brands/door.png') }}" alt="building" class=" w-10 object-center object-cover ">
+            
+              </div>    
+              <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">Contract</div>
+              <a href= # class="flex items-center justify-center text-indigo-600 text-lg">30</a>
+        
+      </div>
+
+        <div class="sm:col-span-1">
+        
+        <div class=" flex items-center justify-center">
+            <img src="{{ asset('/brands/tenant.png') }}" alt="building" class=" w-10 object-center object-cover ">
+            
+              </div>    
+              <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">Unpaid Bills</div>
+              <a href= # class="flex items-center justify-center text-indigo-600 text-lg">30</a>
+        
+      </div>
+
+      <div class="sm:col-span-1">
+        
+        <div class=" flex items-center justify-center">
+            <img src="{{ asset('/brands/key-chain.png') }}" alt="building" class=" w-10 object-center object-cover ">
+            
+              </div>    
+              <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">Concern</div>
+              <a href= # class="flex items-center justify-center text-indigo-600 text-lg">30</a>
+        
+      </div>
+</div>
+</div>
 
             <!-- card Announcements -->
             <div class="bg-white overflow-hidden">
