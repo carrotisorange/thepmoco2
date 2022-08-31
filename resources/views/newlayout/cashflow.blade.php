@@ -307,7 +307,7 @@
   <div class="sm:col-span-2">
 <form>   
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
-    <div class="relative w-full mb-5">
+    <div class="relative w-64 mb-5">
         <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
         
         </div>
@@ -328,7 +328,7 @@
               </button>
             </h3>
 
-            <div class="mt-5 grid grid-cols-1 gap-y-6  sm:grid-cols-6">
+            <div class="hidden mt-5 grid grid-cols-1 gap-y-6  sm:grid-cols-6">
             <div class="sm:col-span-3">
             <div class=" pl-2 bg-white" id="filter-section-0">
               <div class="">
@@ -374,6 +374,8 @@
                   <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">July</label>
                   
                 </div>
+
+                
                  
                 
                   </div>
@@ -427,8 +429,8 @@
                 </div>
 
                 
-                <div class="mt-4 flex justify-end">
-                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
+                <div class="flex justify-end">
+                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-xs font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
                   </div>
                  
                   </div>
