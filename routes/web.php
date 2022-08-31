@@ -166,6 +166,10 @@ Route::get('/newpayments', function(){
     return view('newlayout.newpayments');
 });
 
+Route::get('/ownerdashboard', function(){
+    return view('newlayout.ownerdashboard');
+});
+
 
 
 
