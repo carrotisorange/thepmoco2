@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-  <html class="h-full bg-white">
+  <html class="h-full bg-gray-50">
   <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
@@ -505,7 +505,7 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">MODE OF PAYMENT</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT PAID</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                
                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                   <span class="sr-only">Edit</span>
                 </th>
@@ -528,6 +528,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">E-wallet</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
