@@ -34,30 +34,33 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
-Route::get('/announcement', function(){
-    return view('newlayout.announcement');
-});
 
 Route::get('/portfolio', function(){
     return view('newlayout.portfolio');
 });
 
-Route::get('/contracts', function(){
-    return view('newlayout.contracts');
+//tenant portal
+Route::get('/tenantdashboard', function(){
+    return view('newlayout.tenantdashboard');
 });
 
-Route::get('/bills', function(){
-    return view('newlayout.bills');
+Route::get('/tenantcontracts', function(){
+    return view('newlayout.tenantcontracts');
 });
 
-Route::get('/payments', function(){
-    return view('newlayout.payments');
+Route::get('/tenantbills', function(){
+    return view('newlayout.tenantbills');
 });
 
-Route::get('/concerns', function(){
-    return view('newlayout.concerns');
+Route::get('/tenantpayments', function(){
+    return view('newlayout.tenantpayments');
 });
 
+Route::get('/tenantconcerns', function(){
+    return view('newlayout.tenantconcerns');
+});
+
+// admin portal
 Route::get('/newsignin', function(){
     return view('newlayout.newsignin');
 });
@@ -110,8 +113,8 @@ Route::get('/success_property', function(){
     return view('newlayout.success_property');
 });
 
-Route::get('/ownerprofile', function(){
-    return view('newlayout.ownerprofile');
+Route::get('/newownerprofile', function(){
+    return view('newlayout.newownerprofile');
 });
 
 Route::get('/newtenant', function(){
@@ -122,8 +125,8 @@ Route::get('/employees', function(){
     return view('newlayout.employees');
 });
 
-Route::get('/tenantprofile', function(){
-    return view('newlayout.tenantprofile');
+Route::get('/newtenantprofile', function(){
+    return view('newlayout.newtenantprofile');
 });
 
 Route::get('/newbills', function(){
@@ -179,14 +182,15 @@ Route::get('/newconcern_detail', function(){
     return view('newlayout.newconcern_detail');
 });
 
-Route::get('/newconcernlist', function(){
-    return view('newlayout.newconcernlist');
+Route::get('/newconcern_list', function(){
+    return view('newlayout.newconcern_list');
 });
 
 Route::get('/newpayments', function(){
     return view('newlayout.newpayments');
 });
 
+// owner portal
 Route::get('/ownerdashboard', function(){
     return view('newlayout.ownerdashboard');
 });
@@ -195,6 +199,17 @@ Route::get('/ownerunits', function(){
     return view('newlayout.ownerunits');
 });
 
+Route::get('/ownerbills', function(){
+    return view('newlayout.ownerbills');
+});
+
+Route::get('/ownerpayment', function(){
+    return view('newlayout.ownerpayment');
+});
+
+Route::get('/ownerconcern', function(){
+    return view('newlayout.ownerconcern');
+});
 
 
 

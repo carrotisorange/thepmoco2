@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-  <html class="h-full bg-white">
+  <html class="h-full bg-gray-50">
   <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
@@ -51,15 +51,18 @@
           <div class="min-w-0 flex-1">
             <div class="relative max-w-2xl text-gray-400 focus-within:text-gray-500">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4">
-                <p class="font-semibold ml-5">Tenant Portal</p>
+                <p class="font-semibold ml-5">Property Management</p>
                   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
               </div>
             </div>
           </div>
 
-            <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
+          <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Basilio Tenant</a>
+                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
+                <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
               </nav>
 
             <div class="relative inline-block text-left">
@@ -518,8 +521,8 @@
             
           </div>
 
-          <table class="min-w-full table-fixed divide-y-8 divide-gray-50 border">
-            <thead class="bg-yellow-950">
+          <table class="min-w-full table-fixed">
+            <thead class="">
               <tr>
                 <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
                   

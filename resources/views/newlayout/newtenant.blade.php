@@ -57,10 +57,12 @@
             </div>
           </div>
 
-            <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
+          <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz
-                </a>
+                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
+                <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
               </nav>
 
             <div class="relative inline-block text-left">

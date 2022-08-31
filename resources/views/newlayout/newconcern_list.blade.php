@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Units</title>
+    <title>Concerns</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,15 +51,18 @@
           <div class="min-w-0 flex-1">
             <div class="relative max-w-2xl text-gray-400 focus-within:text-gray-500">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4">
-                <p class="font-semibold ml-5">Owner Portal</p>
+                <p class="font-semibold ml-5">Property Management</p>
                   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
               </div>
             </div>
           </div>
 
-            <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
+          <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Maria Clara</a>
+                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
+                <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
               </nav>
 
             <div class="relative inline-block text-left">
@@ -130,7 +133,7 @@
 
         <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
           <div class="elative text-gray-400 focus-within:text-gray-500">
-              <label for="mobile-search" class="sr-only">Owner Portal</label>
+              <label for="mobile-search" class="sr-only">The Property Manager</label>
                 <input id="mobile-search" type="search" placeholder="The Property Manager" class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
             <div class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
                 <!-- Heroicon name: solid/search -->
@@ -186,63 +189,92 @@
           <div class="flex min-h-0 flex-1 overflow-hidden">
     <!-- Narrow sidebar-->
     <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white ">
-              <div class="relative flex w-20 flex-col space-y-3 p-3">
+              <div class="relative flex w-20 flex-col space-y-1 p-3">
 
                 <!-- Dashboard -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="" class="ml-3 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
                   <span class="sr-only">Dashboard</span>
           
-                  <img class="h-10 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <img class="h-8 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
-                  <span class="sr-only">Contracts</span>
-                    <img class="h-13 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <a href="#" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Units</span>
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
                 
-                <!-- Bills -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
-                  <span class="sr-only">Bills</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <!-- Owners -->
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Owners</span>
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
 
-                <!-- Payments -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
-                  <span class="sr-only">Payments</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
-                </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
-
-                <!-- Concerns -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+              
+                    <!-- Tenant -->
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-12 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
+
+                    <!-- Concerns -->
+                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-10 w-auto" src="{{ asset('/brands/concerns_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
 
+                    <!-- Bills -->
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-7 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
+
+                    <!-- Payments -->
+                    <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+
+                    <!-- Cashflow -->
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
+                    <!-- Employees -->
+                <a href="#" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Teams</span>
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employees</div>
+
                 <!-- Log out -->
-                <a href="#" class="text-gray-400  flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="text-gray-400  flex-shrink-0 inline-flex items-center h-5 justify-center  rounded-lg">
                   <span class="sr-only">Logout</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/logout_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">logout</div>
               </div>
             </nav>
 
-
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-            <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class=" mx-auto px-4 sm:px-6 lg:px-8">
 
             <!--
   This example requires Tailwind CSS v3.0+ 
@@ -263,12 +295,11 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Units</h1>
+      <h1 class="text-3xl font-bold text-gray-700">Concerns</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Contract</button>
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">View as thumbnail</button>
-      
+    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Concern</button>
     </div>
   </div>
 
@@ -291,7 +322,7 @@
 
 <div class="sm:col-span-2">
 <form>   
-    <label for="hidden default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
     <div class="relative w-full mb-5">
         <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
         
@@ -321,50 +352,30 @@
               
                 <div class="flex items-center">
                   <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Occupied</label>
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Concern</label>
                
                   </div>
 
      
                 <div class="flex items-center">
                   <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Vacant</label>
+                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Request</label>
                 
                   </div>
 
                   
                 <div class="flex items-center">
                   <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Reserved</label>
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Accounting</label>
                 </div>
 
                 <div class="flex items-center">
                   <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Partially Occupied</label>
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Leasing</label>
                 </div>
 
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Under Maintenance</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Housekeeping</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Enrolled</label>
-                  
-                </div>
                 
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Unenrolled</label>
-                  
-                </div>
-                 
+        
                  
                  
                   </div>
@@ -380,31 +391,28 @@
               
                 <div class="flex items-center">
                   <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Building name</label>
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Unit:</label>
                   <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
                
                   </div>
 
      
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Floor</label>
-                  <input type="text" name="floor" id="floor" autocomplete="floor" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-                  </div>
+                  <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Pending</label>
+                </div>
 
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Oldest</label>
+                </div>
+
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Latest</label>
                   
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Size</label>
-                  <input type="text" name="size" id="size" autocomplete="size" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
                 </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Occupancy</label>
-                  <input type="text" name="occupancy" id="occupancy" autocomplete="occupancy" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-                </div>
-
+                
                 
             
                  
@@ -412,22 +420,11 @@
                   
               </div>
               <div class="sm:col-span-3">
-            <div class=" pl-2 bg-white" id="filter-section-0">
+            <div class=" pl-2" id="filter-section-0">
               <div class="">
 
-              
-                <div class="flex items-center">
-                <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Rent Min:</label>
-                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-                  </div>
-
-                  <div class="flex items-center">
-                <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Rent Max:</label>
-                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-                  </div>
-
+        
+                 
                   <div class="mt-4 flex justify-end">
                   <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
                   </div>
@@ -484,13 +481,12 @@
                 </th>
                 <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">FLOOR</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT STATUS</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTRACT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">OCCUPANCY</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ROOMS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TYPE</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE POSTED</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DEPARTMENT    </th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">SUBJECT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
                 </th>
               </tr>
             </thead>
@@ -507,16 +503,13 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                                        </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Department</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Subject</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -530,40 +523,13 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                                        </td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-                <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                                        </td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Department</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Subject</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
@@ -576,17 +542,13 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">Inactive</span>
-                                        </td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Department</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Subject</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
@@ -599,17 +561,31 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                                        </td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Department</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Subject</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Department</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Subject</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
@@ -622,17 +598,13 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                                        </td>
-                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Department</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Subject</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
