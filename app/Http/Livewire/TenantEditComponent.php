@@ -108,10 +108,10 @@ class TenantEditComponent extends Component
          
         try{
 
-            if($this->photo_id)
-            {
-                $validatedData['photo_id'] = $this->photo_id->store('avatars');
-            }
+            // if($this->photo_id)
+            // {
+            //     $validatedData['photo_id'] = $this->photo_id->store('avatars');
+            // }
 
             DB::beginTransaction();
         

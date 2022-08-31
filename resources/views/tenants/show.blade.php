@@ -5,6 +5,9 @@
     </x-slot>
 
     <x-slot name="options">
+        <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/user'">
+            Generate Credentials
+        </x-button>
         <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant'">Go back
             to tenants
         </x-button>
