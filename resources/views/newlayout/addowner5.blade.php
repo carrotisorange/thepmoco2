@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Units</title>
+    <title>Owner</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +59,7 @@
 
             <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Basilio Tenant</a>
+                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
               </nav>
 
             <div class="relative inline-block text-left">
@@ -198,17 +198,17 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Units</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
                 
                 <!-- Owners -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Owners</span>
-                    <img class="h-10 w-auto"  src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/user_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
@@ -253,7 +253,6 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
-
                     <!-- Employees -->
                 <a href="#" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Teams</span>
@@ -263,10 +262,8 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employees</div>
 
                 <!-- Log out -->
-                <a href="#" class="text-gray-400  flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="text-gray-400  flex-shrink-0 inline-flex items-center h-5 justify-center  rounded-lg">
                   <span class="sr-only">Logout</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/logout_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">logout</div>
               </div>
@@ -293,6 +290,7 @@
   ```
 -->
 
+  
   <div class="pt-6 sm:pb-5">
 
     <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -305,8 +303,12 @@
       </ol>
     </nav>
 
+    
+
     <!-- This example requires Tailwind CSS v2.0+ -->
+
     <div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
+    
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
     <ol role="list" class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
 
@@ -318,12 +320,15 @@
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
-            <span class="text-indigo-600">01</span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+            <!-- Heroicon name: solid/check -->
+            <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+            </svg>
           </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-              <span class="text-sm font-medium text-indigo-600">Tenant Information Sheet</span>
+                <span class="text-sm font-medium text-gray-900">Owner Information Sheet</span>
                 
               </span>
             </span>
@@ -337,13 +342,18 @@
           <a href="#" aria-current="step">
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
-              <span class="flex-shrink-0">
-              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
-              <span class="text-gray-500 group-hover:text-gray-900">02</span>
+            <span class="flex-shrink-0">
+            <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+            <!-- Heroicon name: solid/check -->
+            <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+            </svg>
+          </span>
+                  
                 </span>
-              </span>
+              
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Guardian Information</span>
+                <span class="text-sm font-medium text-gray-900">Deed of Sales</span>
                 
               </span>
             </span>
@@ -365,13 +375,17 @@
           <a href="#" aria-current="step">
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
-              <span class="flex-shrink-0">
-              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
-            <span class="text-gray-500 group-hover:text-gray-900">03</span>
+            <span class="flex-shrink-0">
+            <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+            <!-- Heroicon name: solid/check -->
+            <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+            </svg>
           </span>
-              </span>
+                  
+                </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Reference</span>
+              <span class="text-sm font-medium text-gray-900">Enrollee</span>
                 
               </span>
             </span>
@@ -385,19 +399,21 @@
           </div>
 </li>
 
-           <li class="relative overflow-hidden lg:flex-1">
+<li class="relative overflow-hidden lg:flex-1">
         <div class="border border-gray-200 overflow-hidden lg:border-0">
           <!-- Current Step -->
           <a href="#" aria-current="step">
             <span class="absolute top-0 left-0 w-1 h-full lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
-              <span class="text-gray-500 group-hover:text-gray-900">04</span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+              <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+            </svg>
                 </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Contract</span>
+              <span class="text-sm font-medium text-gray-900">Representative</span>
                 
               </span>
             </span>
@@ -418,12 +434,12 @@
             <span class="absolute top-0 left-0 w-1 h-full  lg:w-full lg:h-1 lg:bottom-0 lg:top-auto" aria-hidden="true"></span>
             <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
               <span class="flex-shrink-0">
-              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
-                <span class="text-gray-500 group-hover:text-gray-900">05</span>
+              <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
+              <span class="text-indigo-600">05</span>
                 </span>
               </span>
               <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-              <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Bill Information</span>
+              <span class="text-sm font-medium text-indigo-600">Bill Information</span>
               </span>
             </span>
           </a>
@@ -459,91 +475,27 @@
 <form class="space-y-6" action="#" method="POST">
  
 
-
-        
-
-        
-
-  <div class="mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+<div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
     <div class="md:grid md:grid-cols-1 md:gap-6">
-      <div class="mt-5 md:mt-0 md:col-span-3">
-        <div class="grid grid-cols-9 gap-6">
-          
-          <div class="col-span-6 sm:col-span-3">
-            <label for="first-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-2">
+            <label for="first-name" class="block text-sm font-medium text-gray-700">Account Name</label>
             <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-6 sm:col-span-3">
-            <label for="last-name" class="block text-sm font-medium text-gray-700">Mobile</label>
+          <div class="col-span-2">
+            <label for="last-name" class="block text-sm font-medium text-gray-700">Bank Name</label>
             <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-6 sm:col-span-3">
-            <label for="email-address" class="block text-sm font-medium text-gray-700">Email</label>
+          <div class="col-span-2">
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Account Number</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-2">
-            <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div>
-
-          <div class="col-span-2">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
-            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-          </div>
-
-          <div class="col-span-2">
-            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-            <input type="text" name="city" id="city" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-          </div>
-
-          <div class="col-span-2">
-            <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
-            <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-          </div>
-
-          <div class="col-span-1">
-            <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
-            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-          </div>
-
-          <div class="col-span-2">
-            <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
-            <select id="gender" name="gender" autocomplete="gender-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>Male</option>
-              <option>Female</option>
-              <option>Others</option>
-            </select>
-          </div>
-          <div class="col-span-2">
-            <label for="country" class="block text-sm font-medium text-gray-700">Birthdate</label>
-            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div>
-          <div class="col-span-3">
-            <label for="civil" class="block text-sm font-medium text-gray-700">Civil Status</label>
-            <select id="civil" name="civil" autocomplete="civil-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>Single</option>
-              <option>Married</option>
-              <option>Divorced</option>
-            </select>
-          </div>
-          <div class="col-span-2">
-            <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-            <select id="type" name="type" autocomplete="type-name" class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <option>Working</option>
-              <option>Studying</option>
-            </select>
-          </div>
+          
+          
 
           
         </div>
@@ -555,7 +507,7 @@
 
   <div class="flex justify-end">
     <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
+    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
   </div>
 </form>
 

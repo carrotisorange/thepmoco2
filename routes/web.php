@@ -150,6 +150,27 @@ Route::get('/addtenant5', function(){
     return view('newlayout.addtenant5');
 });
 
+Route::get('/addowner1', function(){
+    return view('newlayout.addowner1');
+});
+
+Route::get('/addowner2', function(){
+    return view('newlayout.addowner2');
+});
+
+Route::get('/addowner3', function(){
+    return view('newlayout.addowner3');
+});
+
+Route::get('/addowner4', function(){
+    return view('newlayout.addowner4');
+});
+
+Route::get('/addowner5', function(){
+    return view('newlayout.addowner5');
+});
+
+
 Route::get('/cashflow', function(){
     return view('newlayout.cashflow');
 });
@@ -169,6 +190,11 @@ Route::get('/newpayments', function(){
 Route::get('/ownerdashboard', function(){
     return view('newlayout.ownerdashboard');
 });
+
+Route::get('/ownerunits', function(){
+    return view('newlayout.ownerunits');
+});
+
 
 
 
