@@ -10,7 +10,7 @@
         </tr>
     </thead>
     @forelse ($collections as $item)
-    <tbody class="bg-white divide-y divide-gray-200">
+<tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <tr>
             <x-td>{{ $item->ar_no }}</x-td>
             <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
@@ -33,16 +33,16 @@
             <x-td>{{ number_format($item->amount,2) }}</x-td>
             <x-td>
                 <x-button
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view'">
+                    onclick="window.location.href='/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view'">
                     View
                 </x-button>
                 <x-button
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export'">
+                    onclick="window.location.href='/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export'">
                     Export
                 </x-button>
                 @if(!$item->attachment == null)
                 <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment'"
+                    onclick="window.location.href='/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment'"
                     class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                     Attachment
                 </button>
