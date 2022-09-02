@@ -243,6 +243,11 @@ Route::get('/paymenthistory', function(){
     return view('newlayout.paymenthistory');
 });
 
+Route::get('/paybills', function(){
+    return view('newlayout.paybills');
+});
+
+
 
 
 
