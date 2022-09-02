@@ -235,6 +235,10 @@ Route::get('/newbills_detail', function(){
     return view('newlayout.newbills_detail');
 });
 
+Route::get('/unitbillshistory', function(){
+    return view('newlayout.unitbillshistory');
+});
+
 
 
 
