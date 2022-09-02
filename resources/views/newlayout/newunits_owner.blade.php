@@ -348,7 +348,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
-                    <span id="size-choice-0-label"> Unit </span>
+                    <a href="newunits_detail">Unit</a>
                   </label>
 
                   <!--
@@ -358,7 +358,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                    <span id="size-choice-1-label"> Rent </span>
+                    <a href="newunits_rent">Rent</a>
                   </label>
 
                   <!--
@@ -368,7 +368,7 @@
                   -->
                   <label class="bg-white border border-purple-900 rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                    <span id="size-choice-2-label"> Owner/Tenant </span>
+                    <a href="newunits_owner">Owner/Tenant</a>
                   </label>
 
                   <!--
@@ -378,7 +378,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                    <span id="size-choice-3-label"> Rooms </span>
+                    <a href="newunits_rooms">Rooms</a>
                   </label>
 
                   <!--
@@ -388,7 +388,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                    <span id="size-choice-4-label"> Furniture List </span>
+                    <a href="newunits_furniture">Furniture</a>
                   </label>
 
                   <!--
@@ -410,7 +410,7 @@
                 </div>
                 </div>
               </div>
-              <a href="#" class="mt-10 flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Add a Owner</a>
+              <a href="addowner1" class="mt-10 flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Add Owner</a>
             
               <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6 mt-5">
                 <img src="{{ asset('/brands/user.png') }}" alt="user" class="h-16 col-span-1 md:row-span-6 rounded-md">
@@ -425,7 +425,7 @@
             </div>
 
 
-            <a href="#" class="mt-10 flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Add a tenant</a>
+            <a href="addtenant1" class="mt-10 flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Add Tenant</a>
             <div class="mt-2 flex justify-end">
             
             <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>

@@ -60,6 +60,14 @@ Route::get('/tenantconcerns', function(){
     return view('newlayout.tenantconcerns');
 });
 
+Route::get('/tenantrequest', function(){
+    return view('newlayout.tenantrequest');
+});
+
+Route::get('/tenant_close', function(){
+    return view('newlayout.tenant_close');
+});
+
 // admin portal
 Route::get('/newsignin', function(){
     return view('newlayout.newsignin');
@@ -190,6 +198,10 @@ Route::get('/newpayments', function(){
     return view('newlayout.newpayments');
 });
 
+Route::get('/accountspayables', function(){
+    return view('newlayout.accountspayables');
+});
+
 // owner portal
 Route::get('/ownerdashboard', function(){
     return view('newlayout.ownerdashboard');
@@ -210,6 +222,16 @@ Route::get('/ownerpayment', function(){
 Route::get('/ownerconcern', function(){
     return view('newlayout.ownerconcern');
 });
+
+Route::get('/addunits', function(){
+    return view('newlayout.addunits');
+});
+
+Route::get('/createbills', function(){
+    return view('newlayout.createbills');
+});
+
+
 
 
 

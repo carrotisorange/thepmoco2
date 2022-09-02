@@ -151,7 +151,7 @@
 
             <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Owners</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Team</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Teams</a>
 
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Concerns</a>
         </div>
@@ -192,7 +192,7 @@
               <div class="relative flex w-20 flex-col space-y-1 p-3">
 
                 <!-- Dashboard -->
-                <a href="admindashboard" class="ml-3 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
+                <a href="" class="ml-3 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
                   <span class="sr-only">Dashboard</span>
           
                   <img class="h-8 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -201,7 +201,7 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="newunits_list" class="ml-2  bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Units</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/units_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -209,7 +209,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
                 
                 <!-- Owners -->
-                <a href="newowners" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Owners</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -218,7 +218,7 @@
 
               
                     <!-- Tenant -->
-                <a href="newtenant" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -226,7 +226,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
 
                     <!-- Concerns -->
-                <a href="newconcern_list" class="ml-2 text-gray-400 hover:bg-gray-flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-10 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -234,7 +234,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
 
                     <!-- Bills -->
-                <a href="newbills" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -242,30 +242,22 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
 
                     <!-- Payments -->
-                    <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                    <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
 
-                    <!-- Accounts Payable -->
-                    <a href="accountspayables" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
-                  <span class="sr-only">Concerns</span>
-                    <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Accounts</div>
-
                     <!-- Cashflow -->
-                <a href="cashflow" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
                     <!-- Employees -->
-                <a href="employees" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="#" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Teams</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
@@ -307,9 +299,13 @@
       <h1 class="text-3xl font-bold text-gray-700">Units</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="newunits_list">View as List</a></button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="newunits_thumbnail">View as Thumbnail</a></button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add Units</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Units</button>
     </div>
   </div>
+
+  
 
   <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
   <div class="sm:col-span-4">
@@ -328,7 +324,7 @@
 
 <div class="sm:col-span-2">
 <form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
+    <label for="hidden default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
     <div class="relative w-full mb-5">
         <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
         
@@ -502,72 +498,190 @@
 
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
-    <!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
+    
 
-  <div class="max-w-2xl mx-auto py-8 px-4  sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="flex items-center justify-between space-x-4">
-      <h2 class="text-lg font-medium text-gray-900">Ground Floor</h2>
-
-    </div>
-    <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
-
-          <div>
-          <a href="newunits_detail"><img src="{{ asset('/brands/close_occupied.png') }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden"></a>
-          <h3 class="text-center mt-2">Unit 1</h3>
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+      
+        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <!-- Selected row actions, only show when rows are selected. -->
+          <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+            
           </div>
 
-          <div class="transform hover:background-image: url('/brands/occupied.png');">
-          <a href="newunits_detail"><img src="{{ asset('/brands/close_occupied.png') }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden"></a>
-          <h3 class="text-center mt-2">Unit 1</h3>
-          </div>
-        
-          <div>
-          <a href="newunits_detail"><img src="{{ asset('/brands/close_occupied.png') }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden"></a>
-          <h3 class="text-center mt-2">Unit 1</h3>
-          </div>
+          <table class="min-w-full table-fixed">
+            
+            <thead class="">
+              <tr>
+                <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
+                  
+                </th>
+                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">FLOOR</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT STATUS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTRACT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">OCCUPANCY</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ROOMS</th>
+                </th>
+              </tr>
+            </thead>
+            
 
-          <div>
-          <a href="newunits_detail"><img src="{{ asset('/brands/close_occupied.png') }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden"></a>
-          <h3 class="text-center mt-2">Unit 1</h3>
-          </div>
+            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
 
-          <div>
-          <a href="newunits_detail"><img src="{{ asset('/brands/close_occupied.png') }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden"></a>
-          <h3 class="text-center mt-2">Unit 1</h3>
-          </div>
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
 
-          <div>
-          <a href="newunits_detail"><img src="{{ asset('/brands/close_occupied.png') }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden"></a>
-          <h3 class="text-center mt-2">Unit 1</h3>
-          </div>
+                <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">Inactive</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">4</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">2</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <!-- More people... -->
+            </tbody>
 
 
+            
+          </table>
           
         </div>
-
-      
-
-
+        <button type="button" class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select All</button>
+      </div>
     </div>
+  </div>
 
-
-
-      
  <div class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
   <div class="flex-1 flex justify-between sm:hidden">
     <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
@@ -609,6 +723,55 @@
     </div>
   </div>
 </div>
+</div>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <!--
+    Background backdrop, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+        <div>
+          
+          <div class="mt-3 text-center sm:mt-5">
+            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Input No. of Units</h3>
+            <div class="mt-2">
+            
+    <input type="number" class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      id="unitsNumber"
+      placeholder=""/>
+ 
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
+          <button type="button" class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-700 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm">Create</button>
+          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 

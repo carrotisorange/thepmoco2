@@ -347,7 +347,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
-                    <span id="size-choice-0-label"> Unit </span>
+                    <a href="newunits_detail">Unit</a>
                   </label>
 
                   <!--
@@ -357,7 +357,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                    <span id="size-choice-1-label"> Rent </span>
+                    <a href="newunits_rent">Rent</a>
                   </label>
 
                   <!--
@@ -367,7 +367,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                    <span id="size-choice-2-label"> Owner/Tenant </span>
+                    <a href="newunits_owner">Owner/Tenant</a>
                   </label>
 
                   <!--
@@ -377,7 +377,7 @@
                   -->
                   <label class="bg-white border border-purple-900 rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                    <span id="size-choice-3-label"> Rooms </span>
+                    <a href="newunits_rooms">Rooms</a>
                   </label>
 
                   <!--
@@ -387,7 +387,7 @@
                   -->
                   <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium  sm:flex-1 cursor-pointer focus:outline-none">
                     <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                    <span id="size-choice-4-label"> Furniture List </span>
+                    <a href="newunits_furniture">Furniture</a>
                   </label>
 
                   <!--

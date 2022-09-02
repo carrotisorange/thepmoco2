@@ -249,6 +249,7 @@
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1 class="text-3xl font-bold text-gray-700">Concerns</h1>
+    <a href="#" class="flex justify-end text-sm font-medium text-purple-500 hover:text-purple-700">Change to request</a>
     </div>
 </div>
     <!--
@@ -268,32 +269,49 @@
   ```
 -->
 <div>
-  <div class="flex justify-center mt-5 md:grid md:grid-cols-1 md:gap-6">
+  <div class="flex justify-center mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
     
-    <div class="mt-5 md:mt-0 md:col-span-2">
+    <div class="mt-5 md:mt-0 md:col-span-6">
       <form action="#" method="POST">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
           <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
+            <div class="grid grid-cols-4 gap-6">
+
+              <div class="sm:col-span-2">
                 <label for="subject" class="block text-sm font-medium text-gray-700"> Subject (required) </label>
                 <div class="mt-1 flex rounded-md shadow-sm">
-                  <input id="subject" name="subject" type="subject" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                  <input id="subject" name="subject" type="subject" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
                 </div>
               </div>
-            </div>
+              
+              <div class="sm:col-span-2">
+          <label for="concern" class="block text-sm font-medium text-gray-700">Category: </label>
+          
+            <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+              <option>Billing</option>
+              <option>Payment</option>
+              <option>Contract</option>
+              <option>Maintenance</option>
+              <option>Housekeeping</option>
+              <option>Others</option>
+              
+              
+            </select>
+          
+        </div>
             
-            <div>
+            
+        <div class="sm:col-span-6">
               <label for="concern" class="block text-sm font-medium text-gray-700"> Concern (required)</label>
               <div class="mt-1">
-                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
               </div>
               <p class="mt-2 text-sm text-gray-500">Please share your concern in detail.</p>
             </div>
 
            
 
-            <div>
+            <div class="sm:col-span-6">
               <label class="block text-sm font-medium text-gray-700"> Upload an image </label>
               <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                 <div class="space-y-1 text-center">

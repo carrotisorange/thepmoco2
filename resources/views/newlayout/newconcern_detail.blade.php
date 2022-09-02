@@ -192,7 +192,7 @@
               <div class="relative flex w-20 flex-col space-y-1 p-3">
 
                 <!-- Dashboard -->
-                <a href="" class="ml-3 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
+                <a href="admindashboard" class="ml-3  text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
                   <span class="sr-only">Dashboard</span>
           
                   <img class="h-8 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -201,7 +201,7 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newunits_list" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Units</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -209,7 +209,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
                 
                 <!-- Owners -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newowners" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Owners</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -218,7 +218,7 @@
 
               
                     <!-- Tenant -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newtenant" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -226,7 +226,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
 
                     <!-- Concerns -->
-                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newconcern_list" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-10 w-auto" src="{{ asset('/brands/concerns_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -234,7 +234,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
 
                     <!-- Bills -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newbills" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -242,22 +242,30 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
 
                     <!-- Payments -->
-                    <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                    <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
 
+                    <!-- Accounts Payable -->
+                    <a href="accountspayables" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Accounts</div>
+
                     <!-- Cashflow -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="cashflow" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
                     <!-- Employees -->
-                <a href="#" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="employees" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Teams</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
@@ -271,7 +279,6 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">logout</div>
               </div>
             </nav>
-
 
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
@@ -307,132 +314,73 @@
     <div class="md:grid md:grid-cols-6 md:gap-6">
 
     
-          <div class="col-span-3 sm:col-span-3">
+          <div class="col-span-3 sm:col-span-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700">Date:</label>
             <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-3 sm:col-span-3">
+          <div class="col-span-3 sm:col-span-2">
             <label for="last-name" class="block text-sm font-medium text-gray-700">Name of Tenant</label>
             <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-3 sm:col-span-3">
+          <div class="col-span-3 sm:col-span-2">
             <label for="email-address" class="block text-sm font-medium text-gray-700">Unit No.</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-3 sm:col-span-3">
-            <label for="email-address" class="block text-sm font-medium text-gray-700">Contact No.</label>
-            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-          </div>
-
-
-        <fieldset>
-
-        <div class="col-span-2 sm:col-span-3">
-          <legend class="sr-only">By Email</legend>
-          <div class="text-base font-medium text-gray-900" aria-hidden="true">Department</div>
-          <div class="mt-4 space-y-4">
-            
+          <div class="sm:col-span-3">
+                <label for="subject" class="block text-sm font-medium text-gray-700"> Subject (required) </label>
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input id="subject" name="subject" type="subject" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
+                </div>
+              </div>
+              
+              <div class="sm:col-span-3">
+          <label for="concern" class="block text-sm font-medium text-gray-700">Category: </label>
           
-            <div class="flex items-start">
-              <div class="h-5 flex items-center">
-                <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border border-gray-300 rounded">
-              </div>
-
-
-              <div class="ml-3 text-sm">
-                <label for="comments" class="font-medium text-gray-700">Leasing</label>
-              </div>
-            </div>
-</div>
-
-<div class="col-span-2 sm:col-span-3">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input id="candidates" name="candidates" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="candidates" class="font-medium text-gray-700">Accounting</label>
-              </div>
-            </div>
-</div>
-
-<div class="col-span-2 sm:col-span-3">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="offers" class="font-medium text-gray-700">Others</label>
-
-              </div>
-            </div>
-</div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-
-<div class="col-span-2 sm:col-span-3">
-  <legend class="sr-only">By Email</legend>
-  <div class="text-base font-medium text-gray-900" aria-hidden="true">Urgency</div>
-  <div class="mt-4 space-y-4">
-    
-  
-    <div class="flex items-start">
-      <div class="h-5 flex items-center">
-        <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-      </div>
-
-
-      <div class="ml-3 text-sm">
-        <label for="comments" class="font-medium text-gray-700">Emergency</label>
-      </div>
-    </div>
-</div>
-
-<div class="col-span-2 sm:col-span-3">
-    <div class="flex items-start">
-      <div class="flex items-center h-5">
-        <input id="candidates" name="candidates" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-      </div>
-      <div class="ml-3 text-sm">
-        <label for="candidates" class="font-medium text-gray-700">Minor Concern</label>
-      </div>
-    </div>
-</div>
-
-<div class="col-span-2 sm:col-span-3">
-    <div class="flex items-start">
-      <div class="flex items-center h-5">
-        <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-      </div>
-      <div class="ml-3 text-sm">
-        <label for="offers" class="font-medium text-gray-700">Under Warranty</label>
-
-      </div>
-    </div>
-</div>
-  </div>
-</fieldset>
-
-        <div class="col-span-4">
-        <fieldset>
-        <div>
-          <label for="about" class="block text-sm font-medium text-gray-700">Concern</label>
-          <div class="mt-1">
-            <textarea id="about" name="about" rows="3" class="h-32 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md" placeholder=""></textarea>
-          </div>
+            <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+              <option>Billing</option>
+              <option>Payment</option>
+              <option>Contract</option>
+              <option>Maintenance</option>
+              <option>Housekeeping</option>
+              <option>Others</option>
+              
+              
+            </select>
           
         </div>
-        </fieldset>
-</div>
-        <div class="col-span-3">
+            
+            
+        <div class="sm:col-span-6">
+              <label for="concern" class="block text-sm font-medium text-gray-700"> Concern (required)</label>
+              <div class="mt-1">
+                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
+              </div>
+              
+            </div>
+
+
+         
+          <div class="col-span-3 sm:col-span-2">
         <fieldset>
         <div>
-          <label for="about" class="block text-sm font-medium text-gray-700">Course of action taken:
+          <label for="about" class="block text-sm font-medium text-gray-700">Image Uploaded:
+          </label>
+          <div class="mt-1">
+            
+          </div>
+
+          </div>
+        </fieldset>
+          </div>
+
+
+        <div class="col-span-3 sm:col-span-2">
+        <fieldset>
+        <div>
+          <label for="about" class="block text-sm font-medium text-gray-700">Course of action taken/Remarks:
           </label>
           <div class="mt-1">
             <textarea id="about" name="about" rows="3" class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md" placeholder=""></textarea>
@@ -442,7 +390,7 @@
         </fieldset>
           </div>
 
-        <div class="col-span-3">
+        <div class="col-span-3 sm:col-span-2">
         <fieldset>
         <div>
           <label for="about" class="block text-sm font-medium text-gray-700">Resolved by:
@@ -469,7 +417,7 @@
      
                 <div class="flex items-center">
                   <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Concern Open</label>
+                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Concern Pending</label>
                 
                   </div>
 
@@ -492,7 +440,7 @@
 
   <div class="flex justify-end">
     <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-    <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+    <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Respond</button>
   </div>
 </form>
 

@@ -64,7 +64,6 @@
           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
               </nav>
-
             <div class="relative inline-block text-left">
               <button type="button" class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" id="menu-0-button" aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
@@ -200,13 +199,13 @@
                 </a>
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
-                <!-- Units -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <!-- Contracts -->
+                <a href="#" class=" text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
                   <span class="sr-only">Contracts</span>
                     <img class="h-13 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Contracts</div>
                 
                 <!-- Bills -->
                 <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
@@ -250,6 +249,7 @@
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1 class="text-3xl font-bold text-gray-700">Concerns</h1>
+    <a href="#" class="flex justify-end text-sm font-medium text-purple-500 hover:text-purple-700">Change to request</a>
     </div>
 </div>
     <!--
@@ -269,32 +269,49 @@
   ```
 -->
 <div>
-  <div class="flex justify-center mt-5 md:grid md:grid-cols-1 md:gap-6">
+  <div class="flex justify-center mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
     
-    <div class="mt-5 md:mt-0 md:col-span-2">
+    <div class="mt-5 md:mt-0 md:col-span-6">
       <form action="#" method="POST">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
           <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
+            <div class="grid grid-cols-4 gap-6">
+
+              <div class="sm:col-span-2">
                 <label for="subject" class="block text-sm font-medium text-gray-700"> Subject (required) </label>
                 <div class="mt-1 flex rounded-md shadow-sm">
-                  <input id="subject" name="subject" type="subject" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                  <input id="subject" name="subject" type="subject" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
                 </div>
               </div>
-            </div>
+              
+              <div class="sm:col-span-2">
+          <label for="concern" class="block text-sm font-medium text-gray-700">Category: </label>
+          
+            <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+              <option>Billing</option>
+              <option>Payment</option>
+              <option>Contract</option>
+              <option>Maintenance</option>
+              <option>Housekeeping</option>
+              <option>Others</option>
+              
+              
+            </select>
+          
+        </div>
             
-            <div>
+            
+        <div class="sm:col-span-6">
               <label for="concern" class="block text-sm font-medium text-gray-700"> Concern (required)</label>
               <div class="mt-1">
-                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
               </div>
               <p class="mt-2 text-sm text-gray-500">Please share your concern in detail.</p>
             </div>
 
            
 
-            <div>
+            <div class="sm:col-span-6">
               <label class="block text-sm font-medium text-gray-700"> Upload an image </label>
               <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                 <div class="space-y-1 text-center">
