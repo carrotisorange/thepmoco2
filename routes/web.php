@@ -239,6 +239,11 @@ Route::get('/unitbillshistory', function(){
     return view('newlayout.unitbillshistory');
 });
 
+Route::get('/paymenthistory', function(){
+    return view('newlayout.paymenthistory');
+});
+
+
 
 
 

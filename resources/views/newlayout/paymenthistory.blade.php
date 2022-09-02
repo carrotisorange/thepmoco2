@@ -303,7 +303,8 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Payments</h1>
+    <h1 class="text-sm font-semibold text-gray-500">Payment History</h1>  
+      <h1 class="text-3xl font-bold text-gray-700">Tenant/Owner Name</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
       <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Payment</button>
@@ -536,14 +537,13 @@
                   
                 </th>
                 <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">AR #</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NAME</th>
+                
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE APPLIED</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE DEPOSITED</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PARTICULAR</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">MODE OF PAYMENT</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT PAID</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
+                
                 
                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                   <span class="sr-only">Edit</span>
@@ -560,14 +560,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">E-wallet</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -585,14 +584,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">E-wallet</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
                 </td>
@@ -610,14 +608,13 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">E-wallet</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
                 </td>
@@ -635,14 +632,12 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">E-wallet</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
                 </td>
@@ -660,14 +655,12 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">E-wallet</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
                 </td>

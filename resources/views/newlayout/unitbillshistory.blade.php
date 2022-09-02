@@ -296,7 +296,8 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Unit #: Bills</h1>
+    <h1 class="text-sm font-semibold text-gray-500">Bills History</h1>  
+      <h1 class="text-3xl font-bold text-gray-700">Unit #:</h1>
 
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
