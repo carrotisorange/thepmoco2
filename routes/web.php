@@ -231,6 +231,11 @@ Route::get('/createbills', function(){
     return view('newlayout.createbills');
 });
 
+Route::get('/newbills_detail', function(){
+    return view('newlayout.newbills_detail');
+});
+
+
 
 
 

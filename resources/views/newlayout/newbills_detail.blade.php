@@ -296,12 +296,14 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
+      <h1 class="text-3xl font-bold text-gray-700">Tenant/Owner Name</h1>
+      <h3 class="text-xl font-semibold text-gray-500">Reference #:</h3>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
     <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="createbills">Create Bills</a></button>
     <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Pay Bills</button>
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Bills</button>
+    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Bills</button>
+    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Bills</button>
     </div>
   </div>
 
@@ -368,41 +370,20 @@
                   
                 <div class="flex items-center">
                   <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Rent</label>
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Paid Bills</label>
                 </div>
 
                 <div class="flex items-center">
                   <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Rent Deposit</label>
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Unpaid Bills</label>
                 </div>
 
                 <div class="flex items-center">
                   <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Utilities Deposit</label>
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Partially paid Bills</label>
                 </div>
 
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Water</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Electricity</label>
-                  
-                </div>
-                
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Surcharge</label>
-                  
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Internet</label>
-                  
-                </div>
+               
                  
                  
                  
@@ -417,32 +398,7 @@
               <div class="">
 
               
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Amount paid:</label>
-                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-               
-                  </div>
-
-     
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Unpaid</label>
-                  <input type="text" name="floor" id="floor" autocomplete="floor" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-                  </div>
-
-                  
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Paid</label>
-                  <input type="text" name="size" id="size" autocomplete="size" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Pending</label>
-                  <input type="text" name="occupancy" id="occupancy" autocomplete="occupancy" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-                </div>
+                
 
                 
             
@@ -535,7 +491,7 @@
                 </th>
                 <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">BILL #</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE POSTED</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NAME</th>
+                
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PERIOD COVERED</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PARTICULAR</th>
@@ -559,7 +515,7 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
@@ -580,7 +536,7 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
@@ -601,7 +557,7 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
@@ -622,7 +578,7 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
@@ -642,7 +598,7 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
@@ -663,7 +619,7 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
