@@ -72,8 +72,15 @@ class PropertyController extends Controller
         Property::find($property_uuid)->bills->whereIn('status', ['unpaid','partially_paid'])->sum('initial_payment');
     }
 
-    public function property_collected_payments($property_uuid){
-        return Property::find($property_uuid)->collections->sum('collection');
+    public function current_month_property_unpaid_bills($property_uuid){
+        return Property::find($property_uuid)->bills()->whereIn('status',['unpaid',
+        'partially_paid'])->whereDate('created_at',Carbon::today())->sum('bill') -
+        Property::find($property_uuid)->bills()->whereDate('created_at',Carbon::today())->whereIn('status',
+        ['unpaid','partially_paid'])->sum('initial_payment');
+    }
+
+    public function current_month_total_collected_payment($property_uuid){
+        return Property::find($property_uuid)->collections()->whereDate('created_at',Carbon::today())->sum('collection');
     }
 
     public function index()
@@ -287,9 +294,9 @@ class PropertyController extends Controller
         ->pluck('count');
     }
 
-    public function get_expiring_contracts()
+    public function property_expiring_contracts($property_uuid)
     {
-        return Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',Session::get('property'))->where('status', 'active')->paginate(5);
+        return Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',$property_uuid)->where('status', 'active')->paginate(5);
     }
 
     public function get_delinquents()
@@ -412,6 +419,7 @@ class PropertyController extends Controller
      
     public function show(Property $property)
     {  
+
         if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
             return redirect('/select-a-plan');
         }
@@ -466,10 +474,6 @@ class PropertyController extends Controller
 
         $concerns = Property::find($property->uuid)->concerns->where('status', 'pending')->count();
 
-        $timestamps = $this->store_timestamps(Session::get('property'));
-
-        $expiring_contracts = $this->get_expiring_contracts();
-
         $delinquents = $this->get_delinquents();
 
         return view('properties.show',[
@@ -485,7 +489,7 @@ class PropertyController extends Controller
             'current_occupancy_rate' => $current_occupancy_rate,
             'bills' => $bills,
             'contracts' => $contracts,
-            'expiring_contracts' => $expiring_contracts,
+            'expiring_contracts' => $this->property_expiring_contracts($property->uuid),
             'collection_rate_date' => $collection_rate_date,
             'collection_rate_value' => $collection_rate_value,
             'current_collection_rate' => $current_collection_rate,
@@ -501,7 +505,17 @@ class PropertyController extends Controller
             'owners' => $owners,
             'buildings' => $buildings,
             'property_unpaid_bills' => $this->property_unpaid_bills($property->uuid),
-            'property_collected_payments' => $this->property_collected_payments($property->uuid)
+            'daily_collected_amount' => Property::find($property->uuid)->collections()->whereDate('created_at',Carbon::today())->sum('collection'),
+            'occupied_units' => Property::find($property->uuid)->units()->where('status_id', 2)->count(),
+            'vacant_units' => Property::find($property->uuid)->units()->where('status_id', 1)->count(),
+            'total_units' => Property::find($property->uuid)->units()->count(),
+            'total_tenants' => Property::find($property->uuid)->tenants()->count(),
+            'past_due_accounts' => $this->property_unpaid_bills($property->uuid),
+            'expired_contracts' => Property::find($property->uuid)->contracts()->where('status', 'inactive')->count(),
+            'current_month_property_unpaid_bills' => $this->current_month_property_unpaid_bills($property->uuid),
+            'current_month_total_collected_payment' => $this->current_month_total_collected_payment($property->uuid),
+            'current_month_total_unpaid_collection' =>$this->current_month_property_unpaid_bills($property->uuid) - $this->current_month_total_collected_payment($property->uuid),
+
         ]); 
     }
 
