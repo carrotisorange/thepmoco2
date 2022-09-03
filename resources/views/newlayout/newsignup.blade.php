@@ -38,7 +38,7 @@
 -->
 <div class="min-h-full flex ">
 <div class="flex-1 flex flex-col  py-2 px-4 sm:px-6 lg:flex-none lg:px-20 ">
-<div class="mt-2 grid grid-cols-1 gap-y-6 gap-x-20 sm:grid-cols-2">
+<div class="mt-2 grid grid-cols-1 gap-y-6 gap-x-10 sm:grid-cols-2">
   <div class="w-full max-w-s">
   <div class="sm:col-span-1">
     
@@ -47,7 +47,7 @@
   <img class="h-auto w-auto py-5" src="{{ asset('/brands/signup_vector.png') }}">
 </div>
 </div>
-<div class="mt-10 sm:col-span-1">
+<div class="mt-5 sm:col-span-1">
   <div class="sm:max-w-2xl">
   <h2 class="text-center text-3xl tracking-tight font-bold text-gray-900 mb-5">Create an Account</h2>
 
@@ -111,14 +111,20 @@
           </div>
         </div>
 
+        
+        <div class="text-sm text-center">
+                By clicking the sign up below, you agree to the <a href="terms" class="font-medium text-indigo-600 hover:text-indigo-500">Terms & Conditions</a> and <a href="privacy" class="font-medium text-indigo-600 hover:text-indigo-500">Privacy Policy</a>
+              </div>
+
+
+        <div>
+          <button type="submit" class="mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign up</button>
+        </div>
+
         <div class="text-sm text-center">
                 Already have an account? <a href="newsignin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in. </a>
               </div>
-        
 
-        <div>
-          <button type="submit" class="mb-2 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign up</button>
-        </div>
       </form>
 </div>
 

@@ -247,6 +247,15 @@ Route::get('/paybills', function(){
     return view('newlayout.paybills');
 });
 
+Route::get('/terms', function(){
+    return view('newlayout.terms');
+});
+
+Route::get('/privacy', function(){
+    return view('newlayout.privacy');
+});
+
+
 Route::get('/landingpage', function(){
     return view('landing.landingpage');
 });
