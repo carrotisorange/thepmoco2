@@ -247,6 +247,13 @@ Route::get('/paybills', function(){
     return view('newlayout.paybills');
 });
 
+Route::get('/landingpage', function(){
+    return view('landing.landingpage');
+});
+
+
+
+
 
 
 
