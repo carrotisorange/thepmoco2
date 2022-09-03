@@ -173,4 +173,16 @@ public function charge_user_account($temporary_username, $external_id, $descript
 
         return redirect(RouteServiceProvider::HOME);
     }
+    
+    public function show_privacy_policy()
+    {
+        return ;
+    }
+
+    public function show_terms_of_service()
+    {
+        return view('websites.terms-of-service');
+    }
+
+
 }

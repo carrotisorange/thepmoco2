@@ -24,6 +24,7 @@ class RegisteredUserController extends Controller
         return redirect('/select-a-plan');
     }
 
+
     /**
      * Handle an incoming registration request.
      *
