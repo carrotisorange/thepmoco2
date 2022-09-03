@@ -55,7 +55,6 @@ class TenantController extends Controller
      */
     public function show(Property $property, Tenant $tenant)
     {
-        
         //store activity for opening a particular tenant.
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
 

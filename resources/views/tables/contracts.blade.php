@@ -14,9 +14,15 @@
 <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <tr>
             <x-td>
-                <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold"
-                        href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">{{
-                        $item->tenant->tenant }}</a>
+                <div class="text-sm text-gray-900">
+                    @if(auth()->user()->role_id == '8')
+                        {{ $item->tenant->tenant }}
+                    @else
+                    <a class="text-blue-800 font-bold" href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">
+                        {{ $item->tenant->tenant }}
+                    </a>
+                    @endif
+                  
                 </div>
 
                 <div class="text-sm text-gray-500">{{
@@ -25,10 +31,15 @@
 
             </x-td>
             <x-td>
-                <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold"
-                        href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">{{
-                        $item->unit->unit }}</a>
+                @if(auth()->user()->role_id == '8')
+                    {{ $item->unit->unit }}
+                @else
+                <div class="text-sm text-gray-900">
+                    <a class="text-blue-800 font-bold" href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                        {{ $item->unit->unit }}
+                    </a>
                 </div>
+                @endif
 
                 <div class="text-sm text-gray-500">{{
                     $item->unit->building->building}}
@@ -112,8 +123,8 @@
 
                     </ul>
                     <?php
-                                                                    $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
-                                                                ?>
+                        $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
+                    ?>
                     @if($item->status == 'active')
                     <div class="py-1">
                         @if($unpaid_bills->count()<=0) <a
@@ -136,3 +147,5 @@
         @endforelse
     </tbody>
 </table>
+
+@include('modals.popup-error-modal')

@@ -210,38 +210,34 @@
                                 </div>
 
                                 <div class="mt-5">
-                                    <canvas class="" id="chartLine"></canvas>
+                                  <canvas id="occupancy_rate" class="chartjs" width="undefined" height="undefined"></canvas>
                                 </div>
 
                                 <!-- graph chart.js -->
                                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                                 <!-- chart line -->
-                                <script>
-                                    const labels = ["January", "February", "March", "April", "May", "June"];
-                                    const data = {
-                                        labels: labels,
-                                        datasets: [
-                                        {
-                                        label: "Occupancy Graph",
-                                         backgroundColor: "hsl(252, 82.9%, 67.8%)",
-                                         borderColor: "hsl(252, 82.9%, 67.8%)",
-                                         data: [0, 10, 5, 2, 20, 30, 45],
-                                        },
-                                        ],
-                                     };
-                    
-                                    const configLineChart = {
-                                        type: "line",
-                                        data,
-                                        options: {},
-                                     };
-                    
-                                    var chartLine = new Chart(
-                                     document.getElementById("chartLine"),
-                                        configLineChart
-                                    );
-                                </script>
+                                           <script>
+                                new Chart(document.getElementById("occupancy_rate"), {
+                                                        "type": "line",
+                                                        "data": {
+                                                            "labels": {!!$occupancy_rate_date!!},
+                                                            "datasets": [{
+                                                                "label": "Occupancy Rate",
+                                                                 data: {!!$occupancy_rate_value!!},
+                                                                "fill": false,
+                                                                "borderColor": "rgba(148,0,211)",
+                                                                "lineTension": 0.1
+                                                            }]
+                                                        },
+                                                       
+                                                        "options": {
+                                                            legend: {
+                                                            display: false
+                                                            },
+                                                        }
+                                                    });
+                            </script>
 
                                 <!-- total bills for collection -->
 

@@ -15,7 +15,7 @@ class DashboardTenantController extends Controller
     }
 
     public function show_contracts($role_id, User $user)
-    {
+    {        
         return view('portal.tenants.contracts',[
             'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts()->paginate(5)
         ]);
