@@ -20,20 +20,32 @@
             <x-td>{{ $item->bill_no}}</x-td>
             <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
             <x-td>
-                <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold"
-                        href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">{{
-                        $item->tenant->tenant }}</a>
+                @if(auth()->user()->role_id == '8')
+                    {{ $item->tenant->tenant }}
+                @else
+                <div class="text-sm text-gray-900">
+                    <a class="text-blue-800 font-bold" href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">
+                        {{ $item->tenant->tenant }}
+                    </a>
                 </div>
+                @endif
+
 
                 <div class="text-sm text-gray-500">{{
                     $item->tenant->type}}
                 </div>
             </x-td>
             <x-td>
-                <div class="text-sm text-gray-900"><a class="text-blue-800 font-bold"
-                        href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">{{
-                        $item->unit->unit }}</a>
+                @if(auth()->user()->role_id == '8')
+                    {{ $item->unit->unit }}
+                @else
+                <div class="text-sm text-gray-900">
+                    <a class="text-blue-800 font-bold" href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                        {{ $item->unit->unit }}
+                    </a>
                 </div>
+                @endif
+              
 
                 <div class="text-sm text-gray-500">{{
                     $item->unit->building->building}}

@@ -24,7 +24,7 @@ class DashboardTenantController extends Controller
     public function show_bills($role_id, User $user)
     {
         return view('portal.tenants.bills',[
-            'bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->paginate(5)
+            'bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->orderBy('created_at', 'desc')->paginate(5)
         ]);
     }
 
