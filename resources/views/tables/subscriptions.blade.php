@@ -35,7 +35,7 @@
             </td>
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ Carbon\Carbon::parse($subscription->trial_ends_at)->format('M d, Y') }}
+                {{ Carbon\Carbon::parse($subscription->created_at)->format('M d, Y') }}
             </td>
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
