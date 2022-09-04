@@ -321,7 +321,12 @@
                                         </div>
 
                                               <div class="w-0 flex-1">
-                                                      <div class="text-l font-semibold font-body text-gray-500 truncate">Moveout Requests:</div>
+                                                      <div class="text-l font-semibold font-body text-gray-500 underline truncate">Moveout Requests:</div>
+                                                      <a href="" class="text-sm text-gray-900 font-bold mt-2">Unit #1 requested to moveout.</a>
+                                                      <div class="flex justify-end gap-2">
+                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="newconcern_detail">View</a></button></div>
+                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Close</button></div>
+                </div>
                                               </div>
                                     </div>
                                 </div>
@@ -330,14 +335,19 @@
 
 
                         <div class="sm:col-span-6">
-                            <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg">
+                            <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg mb-2">
                                 <div class="p-5">
                                      <div class="flex items-center">
                                         <div class="flex-shrink-0">
                                         </div>
 
                                               <div class="w-0 flex-1">
-                                                      <div class="text-l font-semibold font-body text-gray-500 truncate">Payments Approval Requests:</div>
+                                                      <div class="text-l font-semibold font-body text-gray-500 underline truncate">Payments Approval Requests:</div>
+                                                      <a href="" class="text-sm text-gray-900 font-bold mt-2">Unit #1 wants to pay rent.</a>
+                                                      <div class="flex justify-end gap-2">
+                                                      <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="newconcern_detail">View</a></button></div>
+                                                      <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Close</button></div>
+                                                      </div>
                                               </div>
                                     </div>
                                 </div>
@@ -353,12 +363,14 @@
                           
                             <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
                               <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Units:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newunits_list class="text-gray-700 text-3xl ">50</a> </div>
                             </div>
                           </div>
 
                           <div class="sm:col-span-3">
                             <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
                               <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Tenants:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newtenants class="text-gray-700 text-3xl ">50</a> </div>
                           </div>
                         </div>
 
@@ -366,12 +378,14 @@
                           
                             <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
                               <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Received:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
                             </div>
                           </div>
 
                           <div class="sm:col-span-3">
                             <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
                               <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Closed:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
                           </div>
                         </div>
                         
@@ -379,12 +393,14 @@
                           
                             <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
                               <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Past Due Accounts:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newbills class="text-gray-700 text-3xl ">50</a> </div>
                             </div>
                           </div>
 
                           <div class="sm:col-span-3">
                             <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
                               <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Expired Contracts:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
                           </div>
                         </div>
                         
@@ -415,10 +431,10 @@
                 </div>
               </div>
 
-              <div class="font-bold text-lg mb-5">Concerns Requests:</div>
-              <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-8 ">
+              <div class="font-bold text-lg mb-1">Concerns Requests:</div>
+              <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-5">
                 <div class="text-semibold">
-
+                <a href="" class="text-sm text-gray-900 font-bold mt-2">Unit #1 has pending concern.</a>
                 <div class="flex justify-end gap-2">
                 <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="newconcern_detail">View</a></button></div>
                 <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Close</button></div>
@@ -441,11 +457,13 @@
                 <div class="ml-2 font-bold text-lg"></div>
                 <div class="text-center font-semibold text-lg mb-5 text-gray-500">Moveouts:</div>
                           <div class="bg-purple-100 h-20 overflow-hidden shadow rounded-lg mb-5">
+                          <div class="py-5 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
                           </div>
                         </div>
                         <div class="sm:col-span-3">
                         <div class="text-center font-semibold text-lg mb-5 text-gray-500">Move Ins:</div>
                           <div class="bg-purple-100 h-20 overflow-hidden shadow rounded-lg mb-5">
+                          <div class="py-5 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
                           </div>
                         </div>
                 </div>
@@ -453,13 +471,15 @@
                 <!-- total collection of the month -->
                 <div class="sm:col-span-6 mt-2">
                         <div class="bg-gray-200 h-16 overflow-hidden shadow rounded-lg mb-5">
-                            <div class="mt-2 ml-2 text-left font-semibold text-sm mb-5 text-gray-500">Total Collection of the Month:</div>
+                            <div class="mt-2 ml-2 text-left font-semibold text-sm  text-gray-500">Total Collection of the Month:</div>
+                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
                         <div class="sm:col-span-6">
                           <div class="bg-gray-200 h-16 overflow-hidden shadow rounded-lg mb-5">
-                            <div class="mt-2 ml-2 text-left font-semibold text-sm mb-5 text-gray-500">Total Unpaid of the Month:</div>
+                            <div class="mt-2 ml-2 text-left font-semibold text-sm text-gray-500">Total Unpaid of the Month:</div>
+                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
@@ -616,18 +636,21 @@
 <div class="sm:col-span-6 mt-2">
                         <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5 mt-10">
                             <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Bills for Collection:</div>
+                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
                         <div class="sm:col-span-6">
                           <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
                             <div class="mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount:</div>
+                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
                         <div class="sm:col-span-6">
                           <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
                             <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid Collection:</div>
+                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
