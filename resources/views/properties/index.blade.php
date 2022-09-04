@@ -54,13 +54,10 @@
                     <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/create'"
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
-                        property</button>
-                    {{-- <button type="button"
+                <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/create'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
                         property</button>
-                    <button type="button"
+                    {{-- <button type="button"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</button>
                     --}}
 
@@ -73,20 +70,20 @@
                             <table class="min-w-full divide-y divide-gray-300">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Property</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Property
+                                        </td>
                                         @foreach ($properties as $property)
                                         <th scope="col"
                                             class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
                                             {{ $property->property->property }}
                                         </th>
                                         @endforeach
-
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                                             Type</td>
                                         @foreach ($properties as $property)
                                         <th scope="col"
@@ -94,31 +91,24 @@
                                             {{ $property->property->type->type }}
                                         </th>
                                         @endforeach
-
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            No. of Units</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Units</td>
                                         @foreach ($properties as $property)
                                         <th scope="col"
                                             class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
                                             {{ $property->property->units->count() }}
                                         </th>
                                         @endforeach
-
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
-
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Occupied</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Occupied Units</td>
                                         @foreach ($properties as $property)
                                         <th scope="col"
                                             class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
@@ -127,14 +117,11 @@
                                         @endforeach
 
                                     </tr>
-
-                                    <!-- More properties... -->
-                                </tbody>
-
+                                <tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Vacant</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Tota Vacant Units</td>
                                         @foreach ($properties as $property)
                                         <th scope="col"
                                             class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
@@ -143,14 +130,11 @@
                                         @endforeach
 
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
-
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Pending
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Pending Units
                                         </td>
                                         @foreach ($properties as $property)
                                         <th scope="col"
@@ -160,175 +144,137 @@
                                         @endforeach
 
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Occupancy Rate</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Occupancy Rate
+                                        </td>
                                         @foreach ($properties as $property)
-                                        @if($property->property->units->count())
-                                        <?php $occupancy_rate = $property->property->units->where('status_id', 2)->count()/$property->property->units->count() * 100; ?>
-                                        @else
-                                        <?php $occupancy_rate = 0;?>
-                                        @endif
-
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{ number_format($occupancy_rate, 2) }} %
-                                        </th>
+                                            @if($property->property->units->count())
+                                            <?php $occupancy_rate = $property->property->units->where('status_id', 2)->count()/$property->property->units->count() * 100; ?>
+                                            @else
+                                            <?php $occupancy_rate = 0;?>
+                                            @endif
+                                            <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                                {{ number_format($occupancy_rate, 2) }} %
+                                            </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Total bills for Collection</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Bills For Collection
+                                        </td>
                                         @foreach ($properties as $property)
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
                                             {{ number_format($property->property->bills->sum('bill'), 2) }}
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Collected Amount</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Collected Bills
+                                        </td>
                                         @foreach ($properties as $property)
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{
-                                            number_format($property->property->collections->sum('collection'),
-                                            2) }}
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                            {{ number_format($property->property->collections->sum('collection'), 2) }}
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Collection Efficiency</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Collection Efficiency
+                                        </td>
                                         @foreach ($properties as $property)
-
-                                        @if($property->property->bills->count())
-                                        <?php $collection_efficiency = ($property->property->bills->whereIn('status',
-                                                                                ['unpaid', 'partially_paid'])->sum('bill') -
-                                                                                $property->property->bills->whereIn('status', ['unpaid',
-                                                                                'partially_paid'])->sum('initial_payment')) / $property->property->bills->sum('bill'); ?>
-                                        @else
-                                        <?php $collection_efficiency = 0;?>
-                                        @endif
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{ number_format($collection_efficiency, 2) }} %
+                                            @if($property->property->bills->count())
+                                            <?php $collection_efficiency = 
+                                            $property->property->collections->sum('collection') / $property->property->bills->sum('bill'); ?>
+                                            @else
+                                            <?php $collection_efficiency = 0;?>
+                                            @endif
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                            {{ number_format($collection_efficiency * 100, 2) }} %
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Total Unpaid Collection</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Uncollected Bills
+                                        </td>
                                         @foreach ($properties as $property)
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{ number_format($property->property->bills->whereIn('status',
-                                            ['unpaid', 'partially_paid'])->sum('bill') -
-                                            $property->property->bills->whereIn('status', ['unpaid',
-                                            'partially_paid'])->sum('initial_payment'), 2) }}
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                            {{ number_format($property->property->bills->whereIn('status', ['unpaid', 'partially_paid'])->sum('bill') -
+                                            $property->property->bills->whereIn('status', ['unpaid', 'partially_paid'])->sum('initial_payment'), 2) }}
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            No. of past due Accounts</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Past Due Accounts
+                                        </td>
                                         @foreach ($properties as $property)
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{ $property->property->bills->whereIn('status', ['unpaid',
-                                            'partially_paid'])->count() }}
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                            {{ number_format($property->property->bills->where('end','<=',Carbon\Carbon::now())->whereIn('status', ['unpaid', 'partially_paid'])->sum('bill') -
+                                            $property->property->bills->where('end','<=',Carbon\Carbon::now())->whereIn('status', ['unpaid', 'partially_paid'])->sum('initial_payment'), 2) }}
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            No. of Expiring Contracts</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Expiring Contracts</td>
                                         @foreach ($properties as $property)
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{ $property->property->contracts->where('end','
-                                            <=',Carbon\Carbon::now()->addMonth())->count() }}
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                            {{ $property->property->contracts->where('end','<=',Carbon\Carbon::now()->addMonth())->count() }}
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            No. of Expired Contracts</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Expired Contracts</td>
                                         @foreach ($properties as $property)
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{
-                                            $property->property->contracts->where('status','inactive')->count()
-                                            }}
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                            {{ $property->property->contracts->where('status','inactive')->count() }}
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            No. of Concerns Received</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Received Concerns
+                                        </td>
                                         @foreach ($properties as $property)
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{
-                                            $property->property->concerns->where('status','received')->count()
-                                            }}
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                            {{ $property->property->concerns->where('status','received')->count() }}
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            No. of Concerns Closed</td>
+                                        <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            Total Closed Concerns
+                                        </td>
                                         @foreach ($properties as $property)
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{ $property->property->concerns->where('status','closed')->count()
-                                            }}
+                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
+                                            {{ $property->property->concerns->where('status','closed')->count() }}
                                         </th>
                                         @endforeach
                                     </tr>
-
-                                    <!-- More properties... -->
                                 </tbody>
                             </table>
                         </div>
