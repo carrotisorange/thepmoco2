@@ -247,6 +247,10 @@ Route::get('/paybills', function(){
     return view('newlayout.paybills');
 });
 
+Route::get('/banner', function(){
+    return view('newlayout.banner');
+});
+
 Route::get('/terms', function(){
     return view('newlayout.terms');
 });
