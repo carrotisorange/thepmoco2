@@ -247,6 +247,11 @@ Route::get('/paybills', function(){
     return view('newlayout.paybills');
 });
 
+Route::get('/addemployee', function(){
+    return view('newlayout.addemployee');
+});
+
+
 Route::get('/banner', function(){
     return view('newlayout.banner');
 });
