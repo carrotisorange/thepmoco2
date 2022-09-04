@@ -18,19 +18,6 @@ use Session;
 
 class CheckoutController extends Controller
 {
-    public function store_subscription($user_id, $plan_id, $external_id, $amount)
-    {
-        Subscription::firstOrCreate([
-            'user_id' => $user_id,
-            'plan_id' => $plan_id,
-            'external_id' => $external_id,
-            'status' => 'active',
-            'price' => $amount,
-            'quantity' => 1,
-            'trial_ends_at' => Carbon::now()->addMonth(), 
-        ]);
-    }
-
     public function show_select_plan_page()
     {
         return view('checkout.select-a-plan');
@@ -62,7 +49,7 @@ class CheckoutController extends Controller
 
             $user_info = User::find($user_id);
 
-            $this->store_subscription($user_info->id, $user_info->plan_id, $user_info->external_id, $amount);
+            $this->app('App\Http\Controllers\SubscriptionController')->store_subscription($user_info->id, $user_info->plan_id, $user_info->external_id, $amount);
 
             DB::commit();
 

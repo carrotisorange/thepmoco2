@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 Use App\Models\Subscription;
 use Xendit\Xendit;
+use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
@@ -15,6 +16,19 @@ class SubscriptionController extends Controller
             'subscriptions'=> Subscription::where('user_id', $user->id)->get()
         ]);
      }
+
+   public function store_subscription($user_id, $plan_id, $external_id, $amount)
+    {
+        Subscription::firstOrCreate([
+            'user_id' => $user_id,
+            'plan_id' => $plan_id,
+            'external_id' => $external_id,
+            'status' => 'active',
+            'price' => $amount,
+            'quantity' => 1,
+            'trial_ends_at' => Carbon::now()->addMonth(), 
+        ]);
+    }
 
      public function unsubscribe(User $user, $external_id)
      {

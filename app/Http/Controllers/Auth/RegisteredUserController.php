@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Carbon\Carbon;
+use App\Models\Plan;
+use Str;
 
 class RegisteredUserController extends Controller
 {
@@ -49,6 +51,10 @@ class RegisteredUserController extends Controller
         $attributes['trial_ends_at'] = Carbon::now()->addMonth();
 
         $user = User::create($attributes);
+
+        $external_id = Plan::find(4)->plan.'_'.Str::random(8);
+
+        app('App\Http\Controllers\SubscriptionController')->store_subscription($user->id, 4, $external_id, 0);
 
         event(new Registered($user));
 
