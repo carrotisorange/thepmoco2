@@ -28,33 +28,30 @@
   }
   ```
 -->
-<!--
-  This example requires updating your template:
 
-  ```
+
   <html class="h-full bg-gray-300s">
   <body class="h-full">
-  ```
--->
-<div class="min-h-full flex ">
-<div class="flex-1 flex flex-col  py-2 px-4 sm:px-6 lg:flex-none lg:px-20 ">
+
+  <div class="hidden lg:block relative flex-1 items-center justify-center">
+  <img class="absolute inset-0 w-auto py-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt="">
+  <img class="absolute inset-0 w-32 py-12 ml-10" src="{{ asset('/brands/logo_text.png') }}" alt="">
+</div>
+  <div class="min-h-full flex ">
+<div class="mt-8 flex-1 flex flex-col py-2 px-4 sm:px-6 lg:flex-none lg:px-10 ">
 <div class="mt-2 grid grid-cols-1 gap-y-6 gap-x-10 sm:grid-cols-2">
-  <div class="w-full max-w-s">
+  <div class="w-full max-w-sm">
   <div class="sm:col-span-1">
-    
-  <img class="mt-10 h-20 w-auto" src="{{ asset('/brands/logo_text.png') }}">
+
+
+</div>
+
+  </div>
  
-  <img class="h-auto w-auto py-5" src="{{ asset('/brands/signup_vector.png') }}">
-</div>
-</div>
-<div class="mt-5 sm:col-span-1">
-  <div class="sm:max-w-2xl">
+  
+  <form class="space-y-2" action="#" method="POST">
   <h2 class="text-center text-3xl tracking-tight font-bold text-gray-900 mb-5">Create an Account</h2>
-
-    
-      <form class="space-y-2" action="#" method="POST">
-
-      <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-4">
+      <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-4">
       <div class="sm:col-span-2">
         <div>
           <label for="name" class="block text-sm font-medium text-gray-700">First Name </label>
@@ -126,15 +123,10 @@
               </div>
 
       </form>
-</div>
 
 
       </div>
 
-    </div>
-    
-  </div>
-</div>
 
 </body>
 

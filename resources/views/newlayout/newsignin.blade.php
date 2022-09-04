@@ -38,6 +38,7 @@
 <div class="min-h-full flex">
   <div class="flex-1 flex flex-col justify-center py-2 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
     <div class="mx-auto w-full max-w-sm lg:w-96">
+      
       <div>
         <img class="mt-10 mb-5 h-48 w-auto" src="{{ asset('/brands/logo_cropped.png') }}" alt="Workflow">
         <h2 class="mb-10 text-center mt-2 text-2xl tracking-tight font-semibold text-gray-500">Sign in to your account</h2>
