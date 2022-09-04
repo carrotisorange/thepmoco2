@@ -400,10 +400,9 @@
         
           
         </div>
+</div>
 
 
-        
-        </fieldset>
        
         <div class="mt-3 sm:col-span-3">
           <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
@@ -413,13 +412,7 @@
           
 </div>
         
-</div>
 
-
-       
-      </div>
-    </div>
-  </div>
 
   <div class="flex justify-end">
     <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>

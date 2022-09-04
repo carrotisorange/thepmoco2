@@ -251,6 +251,11 @@ Route::get('/addemployee', function(){
     return view('newlayout.addemployee');
 });
 
+Route::get('/dashboard_moveout', function(){
+    return view('newlayout.dashboard_moveout');
+});
+
+
 
 Route::get('/banner', function(){
     return view('newlayout.banner');

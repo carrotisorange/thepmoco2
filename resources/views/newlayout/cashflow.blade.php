@@ -497,13 +497,11 @@
                 <th scope="col" class="relative w-12 px-5 sm:w-8 sm:px-8">
                   
                 </th>
-                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">PERIOD</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">#</th>
+                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">DATE</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CASH INFLOW</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CASH OUTFLOW</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ACCURED INCOME</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ACCURED EXPENSE</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NET ACCURALS</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NET CASH FLOW</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
                 
                 </th>
               </tr>
@@ -520,10 +518,8 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 
@@ -538,10 +534,8 @@
                   </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 
@@ -557,10 +551,8 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 
@@ -576,10 +568,8 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                  <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 
@@ -594,10 +584,8 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -612,10 +600,8 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 
@@ -626,46 +612,7 @@
               <!-- More people... -->
             </tbody>
 
-            <table class="min-w-full table-fixed">
             
-            <thead class="">
-              <tr>
-                <th scope="col" class="relative w-12  sm:w-8 sm:px-8">
-                  
-                </th>
-                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
-                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
-                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
-                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
-                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
-                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
-                <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900"></th>
-                
-                </th>
-              </tr>
-            </thead>
-            
-
-            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-              <!-- Selected: "bg-gray-50" -->
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 text-sm font-medium text-gray-900">Total:</td>
-                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
-                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
-                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
-                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
-                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
-                <td class="whitespace-nowrap py-4 text-sm text-gray-500">6,000</td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
             
           </table>
           
