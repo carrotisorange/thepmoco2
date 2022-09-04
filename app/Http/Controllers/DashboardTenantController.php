@@ -10,7 +10,11 @@ class DashboardTenantController extends Controller
     public function index($role_id, User $user)
     {
         return view('portal.tenants.index',[
-            'tenant' => Tenant::findOrFail($user->tenant_uuid)->tenant
+            'tenant' => Tenant::findOrFail($user->tenant_uuid)->tenant,
+            'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts,
+            'unpaid_bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid']),
+            'concerns' => Tenant::findOrFail($user->tenant_uuid)->concerns,
+            'payments' => Tenant::findOrFail($user->tenant_uuid)->collections()->orderBy('created_at', 'desc')->limit(5)->get(),
         ]);
     }
 
@@ -38,7 +42,7 @@ class DashboardTenantController extends Controller
     public function show_concerns($role_id, User $user)
     {
         return view('portal.tenants.concerns',[
-            'concerns' => Tenant::find($user->tenant_uuid)->concerns
+            'concerns' => Tenant::find($user->tenant_uuid)->concerns()->paginate(5)
         ]);
     }
 }
