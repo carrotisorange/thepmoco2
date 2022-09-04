@@ -568,7 +568,7 @@
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
@@ -589,7 +589,7 @@
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
@@ -610,7 +610,7 @@
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
@@ -631,7 +631,7 @@
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
@@ -651,7 +651,7 @@
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
@@ -672,7 +672,7 @@
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
