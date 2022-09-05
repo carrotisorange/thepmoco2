@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use App\Models\Contract;
 use Illuminate\Support\Facades\Mail;
 use DB;
-use App\Models\Bill;
 
 class RenewContractComponent extends Component
 {
@@ -75,24 +74,30 @@ class RenewContractComponent extends Component
        try {
        DB::beginTransaction();
 
-      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
+      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->contract_details->property_uuid);
 
        $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
        $validatedData['uuid'] = $contract_uuid;
        $validatedData['tenant_uuid'] = $this->contract_details->tenant_uuid;
        $validatedData['unit_uuid'] = $this->contract_details->unit_uuid;
-       $validatedData['property_uuid'] = Session::get('property');
+       $validatedData['property_uuid'] = $this->contract_details->property_uuid;
        $validatedData['user_id'] = auth()->user()->id;
        $validatedData['bill_reference_no'] = $reference_no;
-       $validatedData['status'] = 'active';
        $validatedData['interaction_id'] = '8';
+
+      if(auth()->user()->role_id == '8'){
+          $validatedData['status'] = 'pendingrenew';
+       }
+       else{
+          $validatedData['status'] = 'active';
+       }
 
        if($this->contract)
        {
           $validatedData['contract'] = $this->contract->store('contracts');
        }else{
-          $validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
+          //$validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
        }
 
        Contract::create($validatedData);
@@ -122,10 +127,18 @@ class RenewContractComponent extends Component
 
        DB::commit();
 
-        redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract is successfully renewed.');
+       if(auth()->user()->role_id == '8'){
+          return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
+       }else{
+          redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
+          is successfully renewed.');
+       }
+
+
+       
        } catch (\Throwable $e) {
        DB::rollback();
-       ddd($e);
+  
        return back()->with('error','Cannot complete your action.');
        }
        }
