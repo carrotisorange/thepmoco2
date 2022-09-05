@@ -192,7 +192,7 @@
               <div class="relative flex w-20 flex-col space-y-1 p-3">
 
                 <!-- Dashboard -->
-                <a href="" class="ml-3 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
+                <a href="admindashboard" class="ml-3  text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
                   <span class="sr-only">Dashboard</span>
           
                   <img class="h-8 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -201,7 +201,7 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newunits_list" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Units</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -209,7 +209,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
                 
                 <!-- Owners -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newowners" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Owners</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -218,7 +218,7 @@
 
               
                     <!-- Tenant -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newtenant" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -226,7 +226,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
 
                     <!-- Concerns -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newconcern_list" class="ml-2 text-gray-400 hover:bg-gray-flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-10 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -234,30 +234,38 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
 
                     <!-- Bills -->
-                <a href="#" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newbills" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-7 w-auto" src="{{ asset('/brands/invoice_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/invoice_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
 
                     <!-- Payments -->
-                    <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                    <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
 
+                    <!-- Accounts Payable -->
+                    <a href="accountspayables" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Accounts</div>
+
                     <!-- Cashflow -->
-                <a href="#" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="cashflow" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
                     <!-- Employees -->
-                <a href="#" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="employees" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Teams</span>
                     <img class="h-10 w-auto"  src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
@@ -299,8 +307,8 @@
       <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Create Bills</button>
-    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Pay Bills</button>
+    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="createbills">Create Bills</a></button>
+    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="paybills">Pay Bills</a></button>
       <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Bills</button>
     </div>
   </div>
@@ -535,14 +543,14 @@
                 </th>
                 <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">BILL #</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE POSTED</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NAME</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PERIOD COVERED</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PARTICULAR</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT DUE</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT PAID</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
+                
                 </th>
               </tr>
             </thead>
@@ -559,14 +567,14 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
+
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -580,14 +588,14 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
+
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -601,14 +609,14 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
+
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -622,14 +630,14 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
+
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -642,14 +650,14 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
+
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -663,14 +671,14 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #3</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newbills_detail">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12345677</td>
+
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -761,19 +769,50 @@
         <div>
           
           <div class="mt-3 text-center sm:mt-5">
-            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Choose Bill:</h3>
+            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Select Bill</h3>
             
             <div class="mt-3 sm:col-span-3">
+            
           <label for="concern" class="block text-sm font-medium text-gray-700"></label>
           
             <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
               <option>Express Bill</option>
               <option>Customized Bill</option>
               <option>Particular</option>
-              
+
               
             </select>
           
+        </div>
+
+        <div class="mt-3 sm:col-span-3">
+        <h3 class="text-left text-sm font-medium leading-6 text-gray-900" id="modal-title">Select a Particular:</h3>
+          <label for="concern" class="block text-sm font-medium text-gray-700"></label>
+          
+            <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+              <option>Select one</option>
+              <option>Rent</option>
+
+
+              
+            </select>
+          
+        </div>
+
+        <div class="mt-3 sm:col-span-3">
+            <h3 class="text-left text-sm font-medium leading-6 text-gray-900" id="modal-title">Period Covered</h3>
+          <label for="concern" class="block text-sm font-medium text-gray-700"></label>
+          
+          <input type="text" class="w-full border border-gray-500 rounded-md"></td>
+  
+        </div>
+
+        <div class="mt-3 sm:col-span-3">
+            <h3 class="text-left text-sm font-medium leading-6 text-gray-900" id="modal-title">Amount (optional)</h3>
+          <label for="concern" class="block text-sm font-medium text-gray-700"></label>
+          
+          <input type="text" class="w-full border border-gray-500 rounded-md"></td>
+  
         </div>
 
           </div>

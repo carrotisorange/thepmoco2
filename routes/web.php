@@ -64,6 +64,10 @@ Route::get('/tenantrequest', function(){
     return view('newlayout.tenantrequest');
 });
 
+Route::get('/tenantbills_detail', function(){
+    return view('newlayout.tenantbills_detail');
+});
+
 Route::get('/tenant_close', function(){
     return view('newlayout.tenant_close');
 });
@@ -215,6 +219,11 @@ Route::get('/ownerbills', function(){
     return view('newlayout.ownerbills');
 });
 
+Route::get('/ownerbills_detail', function(){
+    return view('newlayout.ownerbills_detail');
+});
+
+
 Route::get('/ownerpayment', function(){
     return view('newlayout.ownerpayment');
 });
@@ -227,9 +236,14 @@ Route::get('/addunits', function(){
     return view('newlayout.addunits');
 });
 
+Route::get('/individualbill', function(){
+    return view('newlayout.individualbill');
+});
+
 Route::get('/createbills', function(){
     return view('newlayout.createbills');
 });
+
 
 Route::get('/newbills_detail', function(){
     return view('newlayout.newbills_detail');
