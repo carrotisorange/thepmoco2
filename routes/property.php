@@ -57,6 +57,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::patch('update',[PropertyController::class, 'update']);
         Route::get('delete', [PropertyController::class, 'destroy']);
 
+
+    //Route for contract
+    Route::get('contract/{status}',[ContractController::class, 'show_moveout_request']);
+
     //Route for Building
     Route::prefix('/building')->group(function(){
         Route::post('{random_str}/store',[BuildingController::class, 'store']);

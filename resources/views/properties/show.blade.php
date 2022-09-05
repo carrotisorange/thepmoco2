@@ -50,8 +50,10 @@
 
                                                 <div class="w-0 flex-1">
                                                     <div class="text-l font-semibold font-body text-gray-500 truncate">
-                                                        Moveout
-                                                        Requests: {{ $pending_moveout_contracts->count() }}</div>
+                                                        Moveout Requests: 
+                                                        <?php $status = 'pendingmoveout'; ?>
+                                                    <a href="/property/{{ Session::get('property') }}/contract/{{ $status }}" class="font-medium text-blue-900">{{ $pending_moveout_contracts->count() }}</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,15 +212,16 @@
                                 </div>
 
                                 <div class="mt-5">
-                                  <canvas id="occupancy_rate" class="chartjs" width="undefined" height="undefined"></canvas>
+                                    <canvas id="occupancy_rate" class="chartjs" width="undefined"
+                                        height="undefined"></canvas>
                                 </div>
 
                                 <!-- graph chart.js -->
                                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                                 <!-- chart line -->
-                                           <script>
-                                new Chart(document.getElementById("occupancy_rate"), {
+                                <script>
+                                    new Chart(document.getElementById("occupancy_rate"), {
                                                         "type": "line",
                                                         "data": {
                                                             "labels": {!!$occupancy_rate_date!!},
@@ -237,7 +240,7 @@
                                                             },
                                                         }
                                                     });
-                            </script>
+                                </script>
 
                                 <!-- total bills for collection -->
 
@@ -444,7 +447,8 @@
                                 <div class="px-4">
                                     <div class="sm:flex sm:items-center">
                                         <div class="sm:flex-auto">
-                                            <h1 class="text-xl font-semibold text-gray-900">Expiring Contracts ({{ $expiring_contracts->count() }})</h1>
+                                            <h1 class="text-xl font-semibold text-gray-900">Expiring Contracts ({{
+                                                $expiring_contracts->count() }})</h1>
                                         </div>
 
 
@@ -458,29 +462,28 @@
                                     <div class="mt-8 flex flex-col">
                                         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                                   c
-                                                            <tr>
-                                                                <th scope="col"
-                                                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                                    Name</th>
-                                                                <th scope="col"
-                                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Unit</th>
-                                                                <th scope="col"
-                                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Status</th>
-                                                                <th scope="col"
-                                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Moveout</th>
-                                                                <th scope="col"
-                                                                    class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                                <th scope="col"
-                                                                    class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                                    <span class="sr-only">Renew</span>
-                                                                    <span class="sr-only">Moveout</span>
-                                                                </th>
-                                                            </tr>
+                                                <div
+                                                    class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                                    <table class="min-w-full divide-y divide-gray-300">
+                                                        <tr>
+                                                            <th scope="col"
+                                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                                Name</th>
+                                                            <th scope="col"
+                                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                                Unit</th>
+                                                            <th scope="col"
+                                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                                Status</th>
+                                                            <th scope="col"
+                                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                                Moveout</th>
+                                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                                <span class="sr-only">Renew</span>
+                                                                <span class="sr-only">Moveout</span>
+                                                            </th>
+                                                        </tr>
                                                         </thead>
 
                                                         @forelse ($expiring_contracts as $item)
@@ -508,7 +511,8 @@
                                                                     </div>
                                                                 </td>
 
-                                                                <td  class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                                <td
+                                                                    class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                                     <div class="font-medium text-gray-900">
                                                                         {{ $item->unit->unit }}
                                                                     </div>
@@ -517,25 +521,34 @@
                                                                     </div>
                                                                 </td>
 
-                                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                                <td
+                                                                    class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                                     @if($item->status == 'active')
-                                                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">{{ $item->status }}</span>
+                                                                    <span
+                                                                        class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">{{
+                                                                        $item->status }}</span>
                                                                     @else
-                                                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">{{ $item->status }}</span>
+                                                                    <span
+                                                                        class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">{{
+                                                                        $item->status }}</span>
                                                                     @endif
                                                                 </td>
 
-                                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                                    {{ Carbon\Carbon::parse($item->end)->format('M d, Y') }}
+                                                                <td
+                                                                    class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                                    {{ Carbon\Carbon::parse($item->end)->format('M d,
+                                                                    Y') }}
                                                                 </td>
                                                                 <td
                                                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                                    <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew" class="text-indigo-600 hover:text-indigo-900">Renew</a>
+                                                                    <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
+                                                                        class="text-indigo-600 hover:text-indigo-900">Renew</a>
                                                                 </td>
 
                                                                 <td
                                                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                                    <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout" class="text-indigo-600 hover:text-indigo-900">Moveout</a>
+                                                                    <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
+                                                                        class="text-indigo-600 hover:text-indigo-900">Moveout</a>
                                                                 </td>
                                                             </tr>
                                                             @empty

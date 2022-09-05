@@ -202,11 +202,11 @@ public function index(Property $property)
         //     $attributes['avatar'] = request()->file('avatar')->store('avatars');
         // }
 
-        // if($request->password != null){
-        // {
-        //    $attributes['password'] = Hash::make($request->password);
-        //    $attributes['email_verified_at'] = Carbon::now();
-        // }
+        if($request->password != null)
+        {
+           $attributes['password'] = Hash::make($request->password);
+           $attributes['email_verified_at'] = Carbon::now();
+        }
 
         $user->update($attributes);
 

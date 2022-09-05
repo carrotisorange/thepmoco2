@@ -76,7 +76,7 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- <div
+                        <div
                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                             <label for="password" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                 Password
@@ -90,7 +90,7 @@
                             @error('password')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         {{-- <div
                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -116,8 +116,7 @@
                             @enderror
                         </div> --}}
 
-                        <div
-                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                             <label for="status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                 Status
                             </label>
