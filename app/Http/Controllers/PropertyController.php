@@ -512,6 +512,7 @@ class PropertyController extends Controller
             'total_tenants' => Property::find($property->uuid)->tenants()->count(),
             'past_due_accounts' => $this->property_unpaid_bills($property->uuid),
             'expired_contracts' => Property::find($property->uuid)->contracts()->where('status', 'inactive')->count(),
+            'pending_moveout_contracts' => Property::find($property->uuid)->contracts()->where('status', 'pendingmoveout')->get(),
             'current_month_property_unpaid_bills' => $this->current_month_property_unpaid_bills($property->uuid),
             'current_month_total_collected_payment' => $this->current_month_total_collected_payment($property->uuid),
             'current_month_total_unpaid_collection' =>$this->current_month_property_unpaid_bills($property->uuid) - $this->current_month_total_collected_payment($property->uuid),

@@ -39,13 +39,22 @@ class MoveoutContractComponent extends Component
         sleep(1);
 
         $validatedData = $this->validate();
-        $validatedData['status'] = 'inactive';
+   
+        if(auth()->user()->role_id == '8'){
+            $validatedData['status'] = 'pendingmoveout';
 
-        $this->contract->update($validatedData);
+            $this->contract->update($validatedData);
 
-        return
-        redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success',
-        'Contract has been moveout.');
+            return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract moveout has been requested.');
+
+        }else{  
+            $validatedData['status'] = 'inactive';
+
+            $this->contract->update($validatedData);
+
+            return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Contract has been moveout.');
+        }
+       
     }
 
     

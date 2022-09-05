@@ -1,4 +1,4 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+<table class="min-w-full divide-y divide-gray-300">
     <thead class="bg-gray-50">
         <tr>
             <x-th>Tenant</x-th>
@@ -7,6 +7,7 @@
             <x-th>Rent/Mo</x-th>
             <x-th>Status</x-th>
             <x-th>Interaction</x-th>
+            <x-th></x-th>
             <x-th></x-th>
         </tr>
     </thead>
@@ -82,64 +83,16 @@
                     @endif
             </x-td>
             <x-td>{{ $item->interaction->interaction }}</x-td>
-            <x-td>
-
-                {{-- <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/view'"
-                    class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    View
-                </button> --}}
-
-                <x-button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider.{{ $item->uuid }}"
-                    type="button">Actions<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                        </path>
-                    </svg></x-button>
-
-                <div id="dropdownDivider.{{ $item->uuid }}"
-                    class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
-
-                        {{-- <li>
-                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/export"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                    class="fa-solid fa-file-contract"></i>&nbspExport
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                    class="fa-solid fa-arrow-right-arrow-left"></i>&nbspTransfer
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i
-                                    class="fa-solid fa-arrow-rotate-right"></i>&nbspRenew
-                            </a>
-                        </li> --}}
-
-                    </ul>
-                    <?php
-                        $unpaid_bills = App\Models\Tenant::find($item->tenant_uuid)->bills->where('status', '!=', 'paid');
-                    ?>
-                    @if($item->status == 'active')
-                    <div class="py-1">
-                        @if($unpaid_bills->count()<=0) <a
-                            href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
-                            class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
-                            @else
-                            <a data-modal-toggle="popup-error-modal" href="#/"
-                                class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbspMoveout</a>
-                            @endif
-
-                    </div>
-                    @endif
-                </div>
+           <x-td>
+            <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
+                class="text-indigo-600 hover:text-indigo-900">Renew</a>
+           </x-td>
+           <x-td>
+                @if($item->status == 'active')
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
+                        class="text-indigo-600 hover:text-indigo-900">Moveout</a>
+                @endif
+               
             </x-td>
             @empty
             <x-td>No data found!</x-td>
