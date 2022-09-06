@@ -292,6 +292,11 @@ Route::get('/landingpage', function(){
     return view('landing.landingpage');
 });
 
+Route::get('/about', function(){
+    return view('landing.about');
+});
+
+
 
 
 

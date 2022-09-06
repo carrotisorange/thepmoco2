@@ -256,7 +256,7 @@
         <div class="relative shadow-xl sm:overflow-hidden ">
           <div class="absolute inset-0">
             <div class="flex items-center justify-center ">
-            <img class="h-scren w-auto" src="{{ asset('/brands/ass_comm.jpg') }}" alt="community">
+            <img class="h-screen w-auto" src="{{ asset('/brands/ass_comm.jpg') }}" alt="community">
 </div>
             <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-gray-300 mix-blend-multiply"></div>
           </div>
@@ -555,7 +555,7 @@
         <div class="relative">
           <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
             <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Quick start guide</p>
-            <p class="mx-auto mt-5 max-w-prose text-xl text-white">Let us take care of your business process, so you can focus on growing your business!
+            <p class="mx-auto mt-5  text-xl text-white">Let us take care of your business process, so you can focus on growing your business!
 
 </p>
           </div>
@@ -564,7 +564,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
+                <img class="h-24  object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -586,7 +586,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
+                <img class="h-24  object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -605,7 +605,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
+                <img class="h-24  object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -624,7 +624,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-              <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
+              <img class="h-24  object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
               </div>
 </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -643,7 +643,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-              <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
+              <img class="h-24 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
               </div>
 </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -659,10 +659,13 @@
               </div>
             </div>
 
-
-
+            
           </div>
         </div>
+
+        <div class="mt-10 flex items-center justify-center">
+            <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-3xl border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Start Free Trial</button>
+</div>
       </div>
      
 
@@ -767,19 +770,19 @@
             <div>
               <label for="first-name" class="block text-sm font-medium text-gray-900">First name</label>
               <div class="mt-1">
-                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="bg-purple-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
               <label for="last-name" class="block text-sm font-medium text-gray-900">Last name</label>
               <div class="mt-1">
-                <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="bg-purple-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
               <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
               <div class="mt-1">
-                <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input id="email" name="email" type="email" autocomplete="email" class="bg-purple-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
@@ -789,7 +792,7 @@
                 <span id="message-max" class="text-sm text-gray-500">Max. 500 characters</span>
               </div>
               <div class="mt-1">
-                <textarea id="message" name="message" rows="1" class="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" aria-describedby="message-max"></textarea>
+                <textarea id="message" name="message" rows="1" class="bg-purple-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" aria-describedby="message-max"></textarea>
               </div>
             </div>
 
@@ -820,7 +823,7 @@
 
 
             <div class="sm:col-span-2 sm:flex sm:justify-end">
-              <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send</button>
+              <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-purple-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send</button>
             </div>
           </form>
         </div>
