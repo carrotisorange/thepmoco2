@@ -131,7 +131,7 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                 <?php
-                                    $property_collections_count = App\Models\Collection::where('property_uuid', $item->property_uuid)->count();
+                                    $property_collections_count = App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->count();
                                 ?>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
