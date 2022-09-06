@@ -95,9 +95,9 @@ class Tenant extends Model
       public static function search($search)
       {
         return empty($search)? static::query():static::
-        where('tenant','like', '%'.$search.'%')
-        ->orWhere('mobile_number','like', '%'.$search.'%')
-        ->orWhere('email','like', '%'.$search.'%')
-        ->orWhere('bill_reference_no','like', '%'.$search.'%');
+        where('tenant','like', '%'.$search.'%');
+        // ->orWhere('mobile_number','like', '%'.$search.'%')
+        // ->orWhere('email','like', '%'.$search.'%')
+        // ->orWhere('bill_reference_no','like', '%'.$search.'%');
       }
 }

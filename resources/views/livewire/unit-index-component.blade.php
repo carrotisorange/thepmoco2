@@ -171,10 +171,10 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($unit->contracts->count())
-                                    @foreach ($unit->contracts->where('status','!=','inactive')->take(1) as $tenant)
+                                    @foreach ($unit->contracts->where('status','!=','inactive') as $tenant)
                                     <a class="text-blue-500 text-decoration-line: underline"
                                         href="/property/{{ $unit->property_uuid }}/tenant/{{ $tenant->tenant->uuid }}">{{
-                                        $tenant->tenant->tenant }}</a>...({{ $unit->contracts->count()-1 }})
+                                        $tenant->tenant->tenant }}</a>,
                                     @endforeach
                                     @else
                                     NA
@@ -182,10 +182,9 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($unit->contracts->count())
-                                    @foreach ($unit->contracts->where('status','!=','inactive')->take(1) as $contract)
+                                    @foreach ($unit->contracts->where('status','!=','inactive') as $contract)
                                     {{ Carbon\Carbon::parse($contract->start)->format('M d, Y').' - '.
-                                    Carbon\Carbon::parse($contract->end)->format('M d, Y')}}...({{
-                                    $unit->contracts->count()-1 }})
+                                    Carbon\Carbon::parse($contract->end)->format('M d, Y')}},
                                     @endforeach
                                     @else
                                     NA
@@ -215,7 +214,7 @@
         </div>
     </div>
 
-    <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    {{-- <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
         {{ $units->links() }}
-    </div>
+    </div> --}}
 </div>

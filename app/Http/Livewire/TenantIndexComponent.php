@@ -18,7 +18,7 @@ class TenantIndexComponent extends Component
         $tenants = Tenant::search($this->search)
         ->where('property_uuid', Session::get('property'))
         ->orderBy('created_at', 'asc')
-        ->paginate(10);
+        ->get();
         
         return view('livewire.tenant-index-component', [
             'tenants' => $tenants
