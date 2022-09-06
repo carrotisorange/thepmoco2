@@ -72,7 +72,9 @@
                             {{ $tenant_count }} tenant
                         </a>
                     </x-td>
-                    <x-td> {{ $user->plan->plan }}</x-td>
+                    <x-td> 
+                        {{-- {{ $user->plan->plan }} --}}
+                    </x-td>
                     <x-td>
                         @if($user->checkoutoption_id == '1')
                         <span
@@ -87,7 +89,9 @@
                         @endif
                     </x-td>
                     </span>
-                    <x-td>{{ $user->discountcode->discount_code }}</x-td>
+                    <x-td>
+                        {{-- {{ $user->discountcode->discount_code }} --}}
+                    </x-td>
                     <x-td>
                         @if($user->trial_ends_at)
                         {{ Carbon\Carbon::parse($user->trial_ends_at)->format('M d, Y') }}
