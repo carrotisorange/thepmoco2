@@ -2,8 +2,19 @@
 <html lang="en">
 
 <head>
-    @include('layouts.head')
-    <title>@yield('title')</title>
+    <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    {{-- Fontawesome --}}
+    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
+
+    {{-- Flowbite --}}
+    <script src="../path/to/flowbite/dist/flowbite.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
+
+    <title>{{ Session::get('property_name')? Session::get('property_name'): config('APP_NAME') }} @yield('title')
+    </title>
+
 </head>
 
 <body class="h-full overflow-hidden font-body">
@@ -23,8 +34,8 @@
                         </div>
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <h1 class="text-xl p-5 tracking-tight font-bold leading-tight text-gray-900">The Property
-                                Manager Online</h1>
+                            <h1 class="text-xl p-5 tracking-tight font-bold leading-tight text-gray-900">Property
+                                Management Portal</h1>
 
                         </div>
                         {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -131,9 +142,8 @@
         <!-- Bottom section -->
         <div class="flex min-h-0 flex-1 overflow-hidden">
             <!-- Narrow sidebar-->
-            <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white ">
+            <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white overflow-y-auto h-screen">
                 <div class="relative flex w-20 flex-col space-y-3 p-3">
-
                     <!-- Dashboard -->
                     <x-nav-link href="/property/{{ Session::get('property') }}"
                         :active="request()->routeIs('dashboard')">
@@ -230,16 +240,16 @@
                 </div>
             </nav>
 
-            <!-- Main area -->
             <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-                {{ $slot }}
-                <div class="mb-10">
-                    @include('layouts.footer')
-                </div>
+                <div class="mt-8">
+                    <div class="max-w-12xl mx-auto px-4 sm:px-6 lg:px-8">
+                        {{ $slot }}
+                        <!-- Footer -->
+                        @include('layouts.footer')
             </main>
         </div>
-    </div>
+    </div>>
+    @include('layouts.script')
 </body>
-@include('layouts.script')
 
 </html>
