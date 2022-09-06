@@ -90,7 +90,7 @@
                     </x-td>
                     </span>
                     <x-td>
-                        {{-- {{ $user->discountcode->discount_code }} --}}
+                        {{-- {{ $user->discount_code }} --}}
                     </x-td>
                     <x-td>
                         @if($user->trial_ends_at)

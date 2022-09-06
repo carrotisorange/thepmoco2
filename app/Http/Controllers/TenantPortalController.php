@@ -23,18 +23,25 @@ class TenantPortalController extends Controller
     public function show_contracts($role_id, User $user)
     {        
         return view('portal.tenants.contracts',[
-            'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts()->orderBy('start', 'desc')->paginate(5)
+            'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts()->orderBy('start', 'desc')->get()
         ]);
     }
 
     public function show_bills($role_id, User $user)
     {
         return view('portal.tenants.bills',[
-            'bills' => app('App\Http\Controllers\TenantController')->show_tenant_bills($user->tenant_uuid),
+            'bills' => $this->get_bills($user->tenant_uuid),
             'tenant' => Tenant::findOrFail($user->tenant_uuid),
             'unpaid_bills' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($user->tenant_uuid),
         ]);
     }
+
+
+    public function get_bills($tenant_uuid)
+    {
+          return Bill::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->get();
+    }
+  
 
     public function export_bills($role_id, User $user)
     {
@@ -87,7 +94,7 @@ class TenantPortalController extends Controller
     public function show_collections($role_id, User $user)
     {
         return view('portal.tenants.collections',[
-            'collections' => Tenant::findOrFail($user->tenant_uuid)->acknowledgementreceipts()->orderBy('ar_no','desc')->paginate(5)
+            'collections' => Tenant::findOrFail($user->tenant_uuid)->acknowledgementreceipts()->orderBy('ar_no','desc')->get()
         ]);
     }
 
