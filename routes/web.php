@@ -269,6 +269,10 @@ Route::get('/dashboard_moveout', function(){
     return view('newlayout.dashboard_moveout');
 });
 
+Route::get('/dashboard_payment', function(){
+    return view('newlayout.dashboard_payment');
+});
+
 
 
 Route::get('/banner', function(){

@@ -345,7 +345,7 @@
                                                       <div class="text-l font-semibold font-body text-gray-500 underline truncate">Payments Approval Requests:</div>
                                                       <a href="" class="text-sm text-gray-900 font-bold mt-2">Unit #1 wants to pay rent.</a>
                                                       <div class="flex justify-end gap-2">
-                                                      <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="newconcern_detail">View</a></button></div>
+                                                      <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="dashboard_payment">View</a></button></div>
                                                       <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Close</button></div>
                                                       </div>
                                               </div>
