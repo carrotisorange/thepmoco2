@@ -1,10 +1,8 @@
-<x-index-layout>
-    @section('title', '| Payments')
-    <x-slot name="labels">
-        Payments
-    </x-slot>
-    <x-slot name="options">
-
-    </x-slot>
-    @livewire('collection-index-component')
-</x-index-layout>
+<x-new-layout>
+    @section('title','Payments | '. Session::get('property_name'))
+    <div class="mt-8">
+        <div class="max-full mx-auto sm:px-6">
+           @livewire('collection-index-component')
+        </div>
+    </div>
+</x-new-layout>

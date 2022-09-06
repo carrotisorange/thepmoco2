@@ -1,7 +1,7 @@
 <x-new-layout>
-    @section('title','Tenants | '. Session::get('property'))
+    @section('title','Tenants | '. Session::get('property_name'))
     <div class="mt-8">
-        <div class="max-full mx-auto px-4 sm:px-6 lg:px-11">
+        <div class="max-full mx-auto sm:px-6">
            @livewire('tenant-index-component')
         </div>
     </div>

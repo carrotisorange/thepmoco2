@@ -19,8 +19,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
-    <title>{{ Session::get('property_name')? Session::get('property_name'): config('APP_NAME') }} @yield('title')
-    </title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -175,9 +174,8 @@
         <!-- Bottom section -->
         <div class="flex min-h-0 flex-1 overflow-hidden">
             <!-- Narrow sidebar-->
-            <nav aria-label="Sidebar"
-                class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white overflow-y-auto h-screen">
-                <div class="relative flex w-20 flex-col space-y-3 p-3">
+            <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-y-auto h-screen">
+                <div class="relative flex w-22 flex-col space-y-3 p-3 mb-20">
                     <!-- Dashboard -->
                     <x-nav-link href="/property/{{ Session::get('property') }}"
                         :active="request()->routeIs('dashboard')">
@@ -278,7 +276,7 @@
                         :active="request()->routeIs('cashflow')">
 
                         <span class="sr-only">Cashflow</span>
-                        <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none"
+                        <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />

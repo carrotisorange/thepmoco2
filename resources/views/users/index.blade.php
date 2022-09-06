@@ -1,7 +1,7 @@
 <x-new-layout>
-    @section('title','Units | '. Session::get('property'))
+    @section('title','Employees | '. Session::get('property_name'))
     <div class="mt-8">
-        <div class="max-full mx-auto px-4 sm:px-6 lg:px-11">
+        <div class="max-full mx-auto sm:px-6">
            @livewire('user-index-component')
         </div>
     </div>

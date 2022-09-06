@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\CashflowController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\UnitContractController;
@@ -207,6 +208,13 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::patch('customized/batch/{batch_no}',[PropertyBillCustomizedController::class,'update']);
       
     });
+
+
+        //Routes for Bill
+    Route::prefix('cashflow')->group(function(){
+        Route::get('/', [CashflowController::class, 'index'])->name('cashflow');
+    });
+
 
     //Routes for Payment
     Route::prefix('payment')->group(function(){

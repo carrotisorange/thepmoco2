@@ -93,7 +93,7 @@ class BillIndexComponent extends Component
          ->when($this->created_at, function($query){
       $query->whereDate('created_at', $this->created_at);
       
-      })->paginate(10);
+      })->get();
 
    }
 

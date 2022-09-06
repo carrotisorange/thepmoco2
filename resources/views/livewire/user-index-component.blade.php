@@ -1,5 +1,4 @@
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="mt-10 px-4 sm:px-6 lg:px-8">
+<div>
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">Employees</h1>
@@ -77,7 +76,7 @@
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     NAME</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    Position</th>
+                                    ROLE</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     EMAIL</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -143,7 +142,6 @@
         </div>
     </div>
 
-    <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    {{-- <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
         {{ $users->links() }}
-    </div>
-</div>
+    </div> --}}
