@@ -269,7 +269,7 @@
             <div class="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
               <div class="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
                 <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-50 sm:px-8">Start Free Trial</a>
-                <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 bg-opacity-60 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-opacity-70 sm:px-8">Demo</a>
+                <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-500  px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-opacity-70 sm:px-8">Demo</a>
               </div>
             </div>
           </div>
@@ -283,7 +283,7 @@
         <p class="text-center text-xl font-semibold text-gray-500">Trusted by over 6 rental management clients:</p>
         <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-6">
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-            <img class="h-20" src="{{ asset('/brands/clients/client-1.png') }}" alt="Tuple">
+            <a href=""><img class="h-20" src="{{ asset('/brands/clients/client-1.png') }}" alt="Tuple"></a>
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
           <img class="h-20" src="{{ asset('/brands/clients/client-2.png') }}" alt="Tuple">
@@ -381,7 +381,7 @@
           </div>
         </div>
       </div>
-      <div class="mt-24">
+      <div class="mt-32">
         <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
           <div class="mx-auto max-w-xl px-4 sm:px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-5 lg:px-0">
             <div>
@@ -391,7 +391,9 @@
               <div class="mt-2">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900">A property dashboard to oversee all your processes!</h2>
                 <p class="mt-4 text-lg text-gray-500">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
-                
+                <div class="mt-6">
+                  <a href="#" class="inline-flex rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Get started</a>
+                </div>
               </div>
             </div>
           </div>
@@ -404,24 +406,27 @@
         </div>
       
 
-      <div class="mt-24">
+      <div class="mt-32">
         <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
-          <div class="mb-32 mx-auto max-w-xl px-4 sm:px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-5 lg:px-0">
+          <div class="mb-16 mx-auto max-w-xl px-4 sm:px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-5 lg:px-0">
             <div>
               <div>
-                
-              </div>
-              <div class="mt-3">
+              <div class="mt-12 sm:mt-16 lg:col-start-1 lg:mt-0">
+          <div class="-mr-48 pl-4 sm:pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
+              <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5" src="{{ asset('/brands/collab.png') }}" alt="Tuple">
+              
+          </div>
+</div>
+</div>   
+            </div>
+          </div>
+          
+          <div class="mt-3 ml-3">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900">Easily collaborate and align your goals with your team!</h2>
                 <p class="mt-4 text-lg text-gray-500">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
                 
               </div>
-            </div>
-          </div>
-          <div class="mt-12 sm:mt-16 lg:col-start-1 lg:mt-0">
-          <div class="-mr-48 pl-4 sm:pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
-              <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5" src="{{ asset('/brands/collab.png') }}" alt="Tuple">
-          </div>
+
             </div>
           </div>
         </div>
@@ -438,8 +443,8 @@
         <div class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-16">
           <div>
             
-            <div>
-              <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
+            <div class="flex items-center justify-center">
+              <span class="h-12 w-12 flex items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/inbox -->
                 <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth=1.5 stroke="currentColor">
   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
@@ -448,13 +453,13 @@
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-lg font-medium text-white">Bulk Billing</h3>
-              <p class="mt-2 text-base text-purple-200">Simplifies the process of billing by providing a way to conveniently add, send recurring bills to tenant/owner in a few clicks, and export ready-to-print statements.</p>
+              <h3 class="text-center text-lg font-medium text-white">Bulk Billing</h3>
+              <p class="text-center mt-2 text-base text-purple-200">Simplifies the process of billing by providing a way to conveniently add, send recurring bills to tenant/owner in a few clicks, and export ready-to-print statements.</p>
             </div>
           </div>
 
           <div>
-            <div>
+          <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/users -->
                 <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -464,13 +469,13 @@
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-lg font-medium text-white">Payment Solutions</h3>
-              <p class="mt-2 text-base text-purple-200">Receives payments from the tenants and sends remittances to unit owners.</p>
+              <h3 class="text-center text-lg font-medium text-white">Payment Solutions</h3>
+              <p class="text-center mt-2 text-base text-purple-200">Receives payments from the tenants and sends remittances to unit owners.</p>
             </div>
           </div>
 
           <div>
-            <div>
+            <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/trash -->
                 <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -479,13 +484,13 @@
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-lg font-medium text-white">Team Monitoring</h3>
-              <p class="mt-2 text-base text-purple-200">Assigns a role to each employee and manages them virtually.</p>
+              <h3 class="text-center text-lg font-medium text-white">Team Monitoring</h3>
+              <p class="text-center mt-2 text-base text-purple-200">Assigns a role to each employee and manages them virtually.</p>
             </div>
           </div>
 
           <div>
-            <div>
+          <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/pencil-square -->
                 <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -494,13 +499,13 @@
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-lg font-medium text-white">Tenant/Owner Portal</h3>
-              <p class="mt-2 text-base text-purple-200">Provides convenient access to both tenants and owners to view their contracts, bills, payments, and file concerns.</p>
+              <h3 class="text-center text-lg font-medium text-white">Tenant/Owner Portal</h3>
+              <p class="text-center mt-2 text-base text-purple-200">Provides convenient access to both tenants and owners to view their contracts, bills, payments, and file concerns.</p>
             </div>
           </div>
 
           <div>
-            <div>
+          <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/document-chart-bar -->
                 <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -509,13 +514,13 @@
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-lg font-medium text-white">Real-time Statistics & Reports</h3>
-              <p class="mt-2 text-base text-purple-200">Offers a hassle-free way to monitor property performance through different charts and visuals and downloadable reports.</p>
+              <h3 class="text-center text-lg font-medium text-white">Real-time Statistics & Reports</h3>
+              <p class="text-center mt-2 text-base text-purple-200">Offers a hassle-free way to monitor property performance through different charts and visuals and downloadable reports.</p>
             </div>
           </div>
 
           <div>
-            <div>
+          <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/arrow-uturn-left -->
                 <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -526,8 +531,8 @@
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-lg font-medium text-white">24/7 Customer Support</h3>
-              <p class="mt-2 text-base text-purple-200">Assigns a dedicated team to assist customers in boarding and setting up their property.</p>
+              <h3 class="text-center text-lg font-medium text-white">24/7 Customer Support</h3>
+              <p class="text-center mt-2 text-base text-purple-200">Assigns a dedicated team to assist customers in boarding and setting up their property.</p>
             </div>
           </div>
 
@@ -544,51 +549,122 @@
       </div>
     </div>
 
-    <!-- Stats section -->
-    <div class="relative bg-gray-900">
-      <div class="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
-        <div class="h-full w-full xl:grid xl:grid-cols-2">
-          <div class="h-full xl:relative xl:col-start-2">
-            <img class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100" alt="People working on laptops">
-            <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-gray-900 xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
+    
+<!-- Blog section -->
+<div class="relative bg-gray-50 py-16 sm:py-24 lg:py-32" style= "background-image: url('/brands/bg-build.png');">
+        <div class="relative">
+          <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Quick start guide</p>
+            <p class="mx-auto mt-5 max-w-prose text-xl text-white">Let us take care of your business process, so you can focus on growing your business!
+
+</p>
+          </div>
+
+          <div class="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-5 lg:px-8">
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+              <div class="flex-shrink-0">
+              <div class="flex items-center justify-center">
+                <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
+</div>
+              </div>
+              <div class="flex flex-1 flex-col justify-between bg-white p-6">
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-cyan-600">
+                    <a href="#" class="hover:underline">Step 1:</a>
+                  </p>
+                  <a href="#" class="mt-2 block">
+                    <p class="text-xl font-semibold text-gray-900">Register your property</p>
+                    <p class="mt-3 text-base text-gray-500">Register your dorm, apartments, commercial spaces, residential units, condominums.</p>
+                  </a>
+                </div>
+
+</div>
+</div>
+
+                
+
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+              <div class="flex-shrink-0">
+              <div class="flex items-center justify-center">
+                <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
+</div>
+              </div>
+              <div class="flex flex-1 flex-col justify-between bg-white p-6">
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-cyan-600">
+                    <a href="#" class="hover:underline">Step 2:</a>
+                  </p>
+                  <a href="#" class="mt-2 block">
+                    <p class="text-xl font-semibold text-gray-900">Add the units, rooms, or bed spaces</p>
+                    <p class="mt-3 text-base text-gray-500">Set up the monthly rent, deposit requirements, room features, and more.</p>
+                  </a>
+                </div>
+</div>
+</div>
+                
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+              <div class="flex-shrink-0">
+              <div class="flex items-center justify-center">
+                <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
+</div>
+              </div>
+              <div class="flex flex-1 flex-col justify-between bg-white p-6">
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-cyan-600">
+                    <a href="#" class="hover:underline">Step 3:</a>
+                  </p>
+                  <a href="#" class="mt-2 block">
+                    <p class="text-xl font-semibold text-gray-900">Add your tenants</p>
+                    <p class="mt-3 text-base text-gray-500">Input your tenants' names, contact details, contract period, and other necessary info.</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+              <div class="flex-shrink-0">
+              <div class="flex items-center justify-center">
+              <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
+              </div>
+</div>
+              <div class="flex flex-1 flex-col justify-between bg-white p-6">
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-cyan-600">
+                    <a href="#" class="hover:underline">Step 4:</a>
+                  </p>
+                  <a href="#" class="mt-2 block">
+                    <p class="text-xl font-semibold text-gray-900">Manage your tenants</p>
+                    <p class="mt-3 text-base text-gray-500">Here you can address their concerns and requests, create job orders, assign jobs, and monitor up to completion</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+              <div class="flex-shrink-0">
+              <div class="flex items-center justify-center">
+              <img class="h-full w-32 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
+              </div>
+</div>
+              <div class="flex flex-1 flex-col justify-between bg-white p-6">
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-cyan-600">
+                    <a href="#" class="hover:underline">Step 5:</a>
+                  </p>
+                  <a href="#" class="mt-2 block">
+                    <p class="text-xl font-semibold text-gray-900">Bill your tenants, collect rent & utilities</p>
+                    <p class="mt-3 text-base text-gray-500">Automate billing for recurring charges. Set your billing date, and recurring bill amount, and tenants will be notified on the bill date.</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+
           </div>
         </div>
       </div>
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
-        <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-          
-          <p class="mt-3 text-3xl font-bold tracking-tight text-white">Quick Start Guide</p>
-          <p class="mt-5 text-lg text-gray-300">Let us take care of your business process, so you can focus on growing your business!</p>
-          <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-10 sm:grid-cols-2">
-            <p>
-              <span class="block text-2xl font-bold text-white">1. Register your Property</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Companies</span> use laoreet amet lacus nibh integer quis.</span>
-            </p>
-
-            <p>
-              <span class="block text-2xl font-bold text-white">2. Add the units, rooms, or bed spaces</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Countries around the globe</span> lacus nibh integer quis.</span>
-            </p>
-
-            <p>
-              <span class="block text-2xl font-bold text-white">3. Add your tenants</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Customer satisfaction</span> laoreet amet lacus nibh integer quis.</span>
-            </p>
-
-            <p>
-              <span class="block text-2xl font-bold text-white">4. Manage your tenants</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Issues resolved</span> lacus nibh integer quis.</span>
-            </p>
-
-            <p>
-              <span class="block text-2xl font-bold text-white">5. Bill your tenants, collect rent & utilities</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Issues resolved</span> lacus nibh integer quis.</span>
-            </p>
-
-          </div>
-        </div>
-      </div>
-    </div>
+     
 
     <!-- CTA Section -->
    <!--
@@ -608,13 +684,13 @@
   ```
 -->
 <div>
-  <div class="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+  <div class="">
     <div class="relative bg-white shadow-xl">
       <h2 class="sr-only">Contact us</h2>
 
       <div class="grid grid-cols-1 lg:grid-cols-3">
         <!-- Contact information -->
-        <div class="relative overflow-hidden bg-indigo-700 py-10 px-6 sm:px-10 xl:p-12">
+        <div class="px-5 relative overflow-hidden bg-gray-700 py-10 sm:px-10 xl:p-12">
           <div class="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
             <svg class="absolute inset-0 h-full w-full" width="343" height="388" viewBox="0 0 343 388" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
               <path d="M-99 461.107L608.107-246l707.103 707.107-707.103 707.103L-99 461.107z" fill="url(#linear1)" fill-opacity=".1" />
@@ -648,8 +724,9 @@
               </defs>
             </svg>
           </div>
-          <h3 class="text-lg font-medium text-white">Contact information</h3>
-          <p class="mt-6 max-w-3xl text-base text-indigo-50">Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus arcu.</p>
+          <h3 class="text-3xl font-medium text-white">Contact Us</h3>
+          <h3 class="mt-2 text-xl font-medium text-white">The PMO Co.</h3>
+          <p class="mt-6 max-w-3xl text-base text-indigo-50">Asian Institute of Management - Dado Banatao Incubator Benavidez Street, corner Trasierra, Legazpi Village, Makati, 1229 Metro Manila</p>
           <dl class="mt-8 space-y-6">
             <dt><span class="sr-only">Phone number</span></dt>
             <dd class="flex text-base text-indigo-50">
@@ -657,12 +734,12 @@
               <svg class="h-6 w-6 flex-shrink-0 text-indigo-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
               </svg>
-              <span class="ml-3">+1 (555) 123-4567</span>
+              <span class="ml-3">(+63) 916 779 9750</span>
             </dd>
             <dt><span class="sr-only">Email</span></dt>
             <dd class="flex text-base text-indigo-50">
               <!-- Heroicon name: outline/envelope -->
-              <svg class="h-6 w-6 flex-shrink-0 text-indigo-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <svg class="h-6 w- flex-shrink-0 text-indigo-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
               <span class="ml-3">support@workcation.com</span>
@@ -678,20 +755,7 @@
               </a>
             </li>
             <li>
-              <a class="text-indigo-200 hover:text-indigo-100" href="#">
-                <span class="sr-only">GitHub</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" aria-hidden="true">
-                  <path d="M11.999 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.386.6.11.819-.26.819-.578 0-.284-.01-1.04-.017-2.04-3.337.724-4.042-1.61-4.042-1.61-.545-1.386-1.332-1.755-1.332-1.755-1.09-.744.082-.73.082-.73 1.205.086 1.838 1.238 1.838 1.238 1.07 1.833 2.81 1.304 3.493.996.109-.775.419-1.303.762-1.603C7.145 17 4.343 15.97 4.343 11.373c0-1.31.468-2.382 1.236-3.22-.124-.304-.536-1.524.118-3.176 0 0 1.007-.323 3.3 1.23.956-.266 1.983-.4 3.003-.404 1.02.005 2.046.138 3.005.404 2.29-1.553 3.296-1.23 3.296-1.23.655 1.652.243 2.872.12 3.176.77.838 1.233 1.91 1.233 3.22 0 4.61-2.806 5.624-5.478 5.921.43.37.814 1.103.814 2.223 0 1.603-.015 2.898-.015 3.291 0 .321.217.695.825.578C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12.001-12" fill="currentColor" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a class="text-indigo-200 hover:text-indigo-100" href="#">
-                <span class="sr-only">Twitter</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" aria-hidden="true">
-                  <path d="M7.548 22.501c9.056 0 14.01-7.503 14.01-14.01 0-.213 0-.425-.015-.636A10.02 10.02 0 0024 5.305a9.828 9.828 0 01-2.828.776 4.94 4.94 0 002.165-2.724 9.867 9.867 0 01-3.127 1.195 4.929 4.929 0 00-8.391 4.491A13.98 13.98 0 011.67 3.9a4.928 4.928 0 001.525 6.573A4.887 4.887 0 01.96 9.855v.063a4.926 4.926 0 003.95 4.827 4.917 4.917 0 01-2.223.084 4.93 4.93 0 004.6 3.42A9.88 9.88 0 010 20.289a13.941 13.941 0 007.548 2.209" fill="currentColor" />
-                </svg>
-              </a>
+            
             </li>
           </ul>
         </div>
@@ -720,17 +784,43 @@
             </div>
             <div>
               
-            <div class="sm:col-span-2">
-              <div class="flex justify-between">
+            <div class="flex justify-between">
                 <label for="message" class="block text-sm font-medium text-gray-900">Message</label>
                 <span id="message-max" class="text-sm text-gray-500">Max. 500 characters</span>
               </div>
               <div class="mt-1">
-                <textarea id="message" name="message" rows="4" class="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" aria-describedby="message-max"></textarea>
+                <textarea id="message" name="message" rows="1" class="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" aria-describedby="message-max"></textarea>
               </div>
             </div>
+
+          
+
+            <div class="sm:col-span-2">
+             
+            <label for="country" class="block text-sm font-medium text-gray-700"> Property Type: </label>
+          <div class="mt-5">
+            
+              <option>Condominium Association</option>
+              <option>Condominium Units</option>
+              <option>Student Accomodation</option>
+              <option>HOA</option>
+              <option>Dormitory</option>
+              <option>Commercial</option>
+              <option>Self storage</option>
+              <option>Senior Living</option>
+              <option>Residential Apartments</option>
+              <option>Bed and breakfast</option>
+              <option>Transient</option>
+              
+            </select>
+          </div>
+        </div>
+
+            
+
+
             <div class="sm:col-span-2 sm:flex sm:justify-end">
-              <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Submit</button>
+              <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send</button>
             </div>
           </form>
         </div>
@@ -743,105 +833,75 @@
 
   <footer class="bg-gray-50" aria-labelledby="footer-heading">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
-    <div class="mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24">
-      <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-        <div class="grid grid-cols-2 gap-8 xl:col-span-2">
-          <div class="md:grid md:grid-cols-2 md:gap-8">
+    <div class="content-center mx-auto max-w-xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24">
+      <div class="xl:grid xl:grid-cols-1 xl:gap-8">
+        <div class="grid grid-cols-3 gap-8 xl:col-span-2">
+          
+          <div class="md:grid md:grid-cols-1 md:gap-8">
             <div>
-              <h3 class="text-base font-medium text-gray-900">Solutions</h3>
+              
               <ul role="list" class="mt-4 space-y-4">
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Marketing</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Plans and Pricing</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Analytics</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Quick start guide</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Commerce</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">About The PMO</a>
                 </li>
 
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Insights</a>
-                </li>
+                
               </ul>
             </div>
-            <div class="mt-12 md:mt-0">
-              <h3 class="text-base font-medium text-gray-900">Support</h3>
+            </div>
+
+            <div class="md:grid md:grid-cols-1 md:gap-8">
+              
               <ul role="list" class="mt-4 space-y-4">
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Pricing</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">FAQ</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Documentation</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Support</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Guides</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Blogs</a>
                 </li>
 
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">API Status</a>
-                </li>
+                
               </ul>
             </div>
-          </div>
-          <div class="md:grid md:grid-cols-2 md:gap-8">
+          
+          <div class="md:grid md:grid-cols-1 md:gap-8">
             <div>
-              <h3 class="text-base font-medium text-gray-900">Company</h3>
+              
               <ul role="list" class="mt-4 space-y-4">
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">About</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Acceptable Use</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Blog</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Privacy Policy</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Jobs</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms & Conditions</a>
                 </li>
 
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Press</a>
-                </li>
+               
 
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Partners</a>
-                </li>
+              
               </ul>
             </div>
-            <div class="mt-12 md:mt-0">
-              <h3 class="text-base font-medium text-gray-900">Legal</h3>
-              <ul role="list" class="mt-4 space-y-4">
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Claim</a>
-                </li>
-
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Privacy</a>
-                </li>
-
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms</a>
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </div>
-        <div class="mt-12 xl:mt-0">
-          <h3 class="text-base font-medium text-gray-900">Subscribe to our newsletter</h3>
-          <p class="mt-4 text-base text-gray-500">The latest news, articles, and resources, sent to your inbox weekly.</p>
-          <form class="mt-4 sm:flex sm:max-w-md">
-            <label for="email-address" class="sr-only">Email address</label>
-            <input type="email" name="email-address" id="email-address" autocomplete="email" required class="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:placeholder-gray-400 focus:outline-none focus:ring-indigo-500" placeholder="Enter your email">
-            <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-              <button type="submit" class="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Subscribe</button>
-            </div>
-          </form>
-        </div>
+        
       </div>
       <div class="mt-12 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between lg:mt-16">
         <div class="flex space-x-6 md:order-2">
@@ -880,7 +940,7 @@
             </svg>
           </a>
         </div>
-        <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">&copy; 2020 Your Company, Inc. All rights reserved.</p>
+        <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">&copy; 2022 The PMO Co. All rights reserved.</p>
       </div>
     </div>
   </footer>
