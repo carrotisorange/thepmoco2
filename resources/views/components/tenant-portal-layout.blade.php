@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenant Portal | The Property Manager</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    {{-- Fontawesome --}}
+        <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
     
 </head>
 
@@ -76,7 +78,7 @@
                 <div class="md:flex md:items-center md:justify-between">
                     <div class="flex-1 min-w-0">
                         <h2 class="ml-5 text-md font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                            @yield('header')
+                          Tenant Portal
                         </h2>
                     </div>
 

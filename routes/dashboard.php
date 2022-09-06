@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardSalesController;
 use App\Http\Controllers\DashboardDevController;
-use App\Http\Controllers\DashboardTenantController;
+use App\Http\Controllers\TenantPortalController;
 
     //Routes for dashboard
 Route::prefix('/dashboard')->group(function(){
@@ -13,5 +13,5 @@ Route::prefix('/dashboard')->group(function(){
     Route::get('user/{user}/activity', [DashboardSalesController::class, 'show_activity']);
 
     Route::get('dev', [DashboardDevController::class, 'index']);
-    Route::get('tenant', [DashboardTenantController::class, 'index']);
+    Route::get('tenant', [TenantPortalController::class, 'index']);
 });
