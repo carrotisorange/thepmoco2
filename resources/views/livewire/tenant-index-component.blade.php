@@ -57,7 +57,7 @@
             </div>
             </form>
         </div>
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -104,12 +104,14 @@
                                         class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
                                 </td>
                                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{ $index+1 }}
-                                </td>
+                                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{ $index+1 }}  </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    
                                     <a class="text-blue-500 text-decoration-line: underline"
                                         href="/property/{{ $tenant->property_uuid }}/tenant/{{ $tenant->uuid }}">{{
                                         $tenant->tenant }}</a>
+
+                                    
 
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

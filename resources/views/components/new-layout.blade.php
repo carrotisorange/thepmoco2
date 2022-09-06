@@ -2,18 +2,51 @@
 <html lang="en">
 
 <head>
-    <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
-    {{-- Fontawesome --}}
-    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
 
-    {{-- Flowbite --}}
-    <script src="../path/to/flowbite/dist/flowbite.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <meta name="facebook-domain-verification" content="q3z93v1eg3wsq648g7aq2cuby3ibcv" />
+
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=847561769549195&ev=PageView
+        &noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
     <title>{{ Session::get('property_name')? Session::get('property_name'): config('APP_NAME') }} @yield('title')
     </title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
+
+    {{-- Fontawesome --}}
+    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    {{-- Alpine.js --}}
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    {{-- Flowbite --}}
+    <script src="../path/to/flowbite/dist/flowbite.js"></script>
+
+    @yield('styles')
+
+    @livewireStyles
 
 </head>
 
@@ -34,7 +67,7 @@
                         </div>
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <h1 class="text-xl p-5 tracking-tight font-bold leading-tight text-gray-900">Property
+                            <h1 class="text-xl py-5 tracking-tight font-bold leading-tight text-gray-900">Property
                                 Management Portal</h1>
 
                         </div>
@@ -142,7 +175,8 @@
         <!-- Bottom section -->
         <div class="flex min-h-0 flex-1 overflow-hidden">
             <!-- Narrow sidebar-->
-            <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white overflow-y-auto h-screen">
+            <nav aria-label="Sidebar"
+                class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white overflow-y-auto h-screen">
                 <div class="relative flex w-20 flex-col space-y-3 p-3">
                     <!-- Dashboard -->
                     <x-nav-link href="/property/{{ Session::get('property') }}"
@@ -226,6 +260,19 @@
                     </x-nav-link>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
 
+
+                    <!-- Collections -->
+                    <x-nav-link href="/property/{{ Session::get('property') }}/payment"
+                        :active="request()->routeIs('payment')">
+
+                        <span class="sr-only">Payments</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+
                     <!-- Cashflow -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/cashflow"
                         :active="request()->routeIs('cashflow')">
@@ -241,11 +288,10 @@
             </nav>
 
             <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-                <div class="mt-8">
-                    <div class="max-w-12xl mx-auto px-4 sm:px-6 lg:px-8">
-                        {{ $slot }}
-                        <!-- Footer -->
-                        @include('layouts.footer')
+                {{ $slot }}
+                <div class="mb-10">
+                    @include('layouts.footer')
+                </div>
             </main>
         </div>
     </div>>

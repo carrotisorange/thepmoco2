@@ -48,6 +48,7 @@
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                         <span class="sr-only">VIew</span>
                                         <span class="sr-only">Download</span>
+                                        <span class="sr-only">Attachment</span>
                                     </th>
 
 
@@ -111,6 +112,15 @@
                                         <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export"
                                             class="text-indigo-600 hover:text-indigo-900">Export</a>
                                     </td>
+
+                                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        
+                                        @if(!$item->attachment == null)\
+                                        <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment"
+                                            class="text-indigo-600 hover:text-indigo-900">Export</a>
+                                            @endif
+                                    </td>
+
 
                                 </tr>
                                 @empty
