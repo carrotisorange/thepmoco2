@@ -168,6 +168,10 @@ class TenantController extends Controller
     {
         $tenant = Tenant::find($tenant_uuid);
 
+        if(!$tenant->email){
+            return back()->with('error', 'The email address is required.');
+        }
+
         $count_user = User::where('email', $tenant->email)->count();
         if($count_user > 0)
         {
