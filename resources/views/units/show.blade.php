@@ -36,7 +36,7 @@
                                     <ul class="py-1" aria-labelledby="dropdownButton">
 
                                         <li>
-                                            <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create""
+                                            <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create"
                                                                                     class=" block py-2 px-4 text-sm
                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                 dark:text-gray-200 dark:hover:text-white">
@@ -44,11 +44,16 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create""
+                                            <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create"
                                                                                     class=" block py-2 px-4 text-sm
                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                 dark:text-gray-200 dark:hover:text-white">
                                                 New owner
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#/" class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="add-building-modal">
+                                                New building
                                             </a>
                                         </li>
                                     </ul>
@@ -148,4 +153,5 @@
                     </div>
                 </div>
             </div>
+            @include('modals.create-building-modal')
 </x-new-layout>
