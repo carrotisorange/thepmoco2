@@ -362,88 +362,11 @@ Condominium unit owners who invest for the purpose of renting it out are a good 
        
       </div>
 
-      <!-- Testimonial section -->
-      <div class="bg-gradient-to-r from-purple-500 to-gray-600 pb-16 lg:relative lg:z-10 lg:pb-0">
-        <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
-          <div class="relative lg:-my-8">
-            <div aria-hidden="true" class="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"></div>
-           
-          </div>
-          <div class="mt-12 lg:col-span-1 lg:m-0 lg:pl-8">
-            <div class="py-20 mx-auto px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
-              <blockquote>
-                <div>
-                  
-                  <p class="mt-6 text-2xl font-medium text-white">We carry the values of hard work, integrity, and outstanding client service into making property management simpler!</p>
-                </div>
-                <footer class="mt-6">
-                  
-                  
-                </footer>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
-      <!-- Stats section -->
-    <div class="relative bg-gray-900">
-      <div class="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
-        <div class="h-full w-full xl:grid xl:grid-cols-2">
-          <div class="h-full xl:relative xl:col-start-2">
-            <img class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100" alt="People working on laptops">
-            <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-gray-900 xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
-          </div>
-        </div>
-      </div>
-      <div class="py-20 mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
-        <div class="relative pt-12  xl:col-start-1 xl:pb-24">
-          
-          <p class="mt-3 text-3xl font-bold tracking-tight text-white">The PMO is HIPER-Focused</p>
-          <p class="mt-5 text-lg text-gray-300">Our search is focused on our client’s requirements. We respect their time, finances, or any other boundaries and offer them world-class services</p>
-          <div class="mt-10 grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-5">
-            <p>
-              <span class="block text-2xl font-bold text-white">H</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">High</span>-tech Performance</span>
-            </p>
-
-            <p>
-              <span class="block text-2xl font-bold text-white">I</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Integrity</span> </span>
-            </p>
-
-            <p>
-              <span class="block text-2xl font-bold text-white">P</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Passion</span></span>
-            </p>
-
-            <p>
-              <span class="block text-2xl font-bold text-white">E</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Excellent</span> communication</span>
-            </p>
-
-            <p>
-              <span class="block text-2xl font-bold text-white">R</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Respect</span></span>
-            </p>
-
-          </div>
-        </div>
-      </div>
-    </div>
+      
      
-    <div class="bg-white">
-      <div class="mx-auto max-w-4xl py-16 px-4 sm:px-6 sm:py-24 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
-        <h2 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          <span class="block">Register and start your journey with us now!</span>
-          <span class="-mb-1 block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text pb-1 text-transparent">Get in touch or create an account.</span>
-        </h2>
-        <div class="mt-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-5">
-          <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Start Free Trial</a>
-          
-        </div>
-      </div>
-    </div>
+    
 
    
   </main>
