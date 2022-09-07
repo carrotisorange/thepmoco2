@@ -293,7 +293,7 @@
                                             <div class="text-lg font-medium text-gray-900">{{
                                                 number_format($daily_collected_amount,2) }}</div>
                                             <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">
-                                                Today
+                                                Recent activities
                                             </h2>
                                         </dd>
                                     </dl>
