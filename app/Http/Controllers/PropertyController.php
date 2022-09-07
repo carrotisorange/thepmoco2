@@ -80,7 +80,11 @@ class PropertyController extends Controller
     }
 
     public function current_month_total_collected_payment($property_uuid){
-        return Property::find($property_uuid)->collections()->whereDate('created_at',Carbon::today())->sum('collection');
+        return Property::find($property_uuid)->collections()->whereMonth('created_at',Carbon::now())->sum('collection');
+    }
+
+    public function current_month_property_billed($property_uuid){
+        return Property::find($property_uuid)->bills()->whereMonth('created_at',Carbon::now())->sum('bill');
     }
 
     public function index()
@@ -514,6 +518,9 @@ class PropertyController extends Controller
             'expired_contracts' => Property::find($property->uuid)->contracts()->where('status', 'inactive')->count(),
             'pending_moveout_contracts' => Property::find($property->uuid)->contracts()->where('status', 'pendingmoveout')->get(),
             'current_month_property_unpaid_bills' => $this->current_month_property_unpaid_bills($property->uuid),
+            'current_month_property_billed' => $this->current_month_property_billed($property->uuid),
+            'payments' => Property::findOrFail($property->uuid)->collections()->orderBy('created_at', 'desc')->limit(3)->get(),
+            'bills' => Property::findOrFail($property->uuid)->bills()->orderBy('created_at', 'desc')->limit(3)->get(),
             'current_month_total_collected_payment' => $this->current_month_total_collected_payment($property->uuid),
             'current_month_total_unpaid_collection' =>$this->current_month_property_unpaid_bills($property->uuid) - $this->current_month_total_collected_payment($property->uuid),
 

@@ -303,6 +303,8 @@
 
                         <div class="bg-gray-50 px-5 py-3">
                             <div class="text-sm">
+                                @if($payments->count() || $bills->count())
+                                @foreach($payments as $item)
                                 <div
                                     class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                                     <div class="p-4">
@@ -316,16 +318,71 @@
                                                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
                                             </div>
-
-                                            {{-- <div class="ml-3 w-0 flex-1 pt-0.5">
-                                                <p class="text-sm font-medium text-gray-900">Successfully
-                                                    paid!</p>
-                                                <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for
-                                                    rent.</p>
-                                            </div> --}}
+                                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                                <p class="text-sm font-medium text-gray-900">Successfully paid!
+                                                </p>
+                                                <p class="mt-1 text-sm text-gray-500">{{ $item->tenant->tenant }} paid
+                                                    {{
+                                                    number_format($item->collection, 2) }} for {{
+                                                    $item->bill->particular->particular }}.</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
+                                @foreach($bills as $item)
+                                <div
+                                    class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div class="p-4">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <!-- Heroicon name: outline/check-circle -->
+                                                <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                                <p class="text-sm font-medium text-gray-900">Successfully billed!
+                                                </p>
+                                                <p class="mt-1 text-sm text-gray-500">{{ $item->tenant->tenant }} billed
+                                                    {{
+                                                    number_format($item->bill, 2) }} for {{
+                                                    $item->particular->particular }}.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                                @else
+                                <div
+                                    class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div class="p-4">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <!-- Heroicon name: outline/check-circle -->
+                                                <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                                <p class="text-sm font-medium text-gray-900">No notifications today.
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+
+
+
 
 
                             </div>
@@ -335,9 +392,11 @@
 
                     </div>
 
-                    <div button type="button"
+                    <div
                         class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        View More</button></div>
+                        <a href="/property/{{ Session::get('property') }}/bill">View More</a>
+                    
+                    </div>
 
                     <div class="mt-10 grid grid-cols-1 gap-x-4 sm:grid-cols-6">
 
@@ -533,7 +592,7 @@
                                               datasets: [
                                                 {
                                                   label: "My First Dataset",
-                                                  data: [300, {{ $current_month_total_collected_payment }}, 20],
+                                                  data: [{{ $current_month_property_billed }}, {{ $current_month_total_collected_payment }}, 20],
                                                   backgroundColor: [
                                                     "rgb(133, 105, 241)",
                                                     "rgb(164, 101, 241)",
