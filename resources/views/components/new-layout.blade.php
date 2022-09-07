@@ -141,7 +141,52 @@
 
             <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
 
-                <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen mb-20">
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}">
+                            Dashboard
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/unit">
+                            Units
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/tenant">
+                            Tenants
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/owner">
+                            Owners
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/user">
+                            Employees
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/concern">
+                            Concern
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/bill">
+                            Bill
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/payment">
+                            Payment
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/cashflow">
+                            Cashflow
+                        </x-dropdown-link>
+                    </div>
 
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">

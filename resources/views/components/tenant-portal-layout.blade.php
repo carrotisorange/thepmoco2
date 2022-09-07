@@ -103,7 +103,7 @@
                                     Profile
                                 </x-dropdown-link>
 
-                              
+
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -136,14 +136,45 @@
 
             <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
 
-                <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen">
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}">
+                            Dashboard
+                        </x-dropdown-link>
+                    </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link
+                            href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/contracts">
+                            Contracts
+                        </x-dropdown-link>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link
+                            href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/bills">
+                            Bills
+                        </x-dropdown-link>
+                    </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments">
+                            Payments
+                        </x-dropdown-link>
+                    </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/concerns">
+                            Concerns
+                        </x-dropdown-link>
+                    </div>
 
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                             Profile
                         </x-dropdown-link>
                     </div>
-                    
+
 
                     <div class="pt-2 pb-3 space-y-1">
                         <form method="POST" action="{{ route('logout') }}">
@@ -164,7 +195,7 @@
                 class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white overflow-y-auto h-screen">
                 <div class="relative flex w-20 flex-col space-y-3 p-3">
                     <!-- Dashboard -->
-                     <x-nav-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}"
+                    <x-nav-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}"
                         :active="request()->routeIs('tenant-dashboard')">
                         <span class="sr-only">Dashboard</span>
                         <img class="h-10 w-auto" src="{{ asset('/brands/dashboard_gr.png') }}" fill="none"
