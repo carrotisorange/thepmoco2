@@ -77,6 +77,8 @@
                                 NAME</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 UNIT</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                STATUS</th>
 
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 EMAIL</th>
@@ -84,8 +86,8 @@
                                 CONTACT #</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 ADDRESS</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                REFERENCE #</th>
+                            {{-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                REFERENCE #</th> --}}
 
 
                         </tr>
@@ -119,6 +121,7 @@
                                     $item->unit->unit }}</a>,
                                 @endforeach
                             </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $tenant->type }} </td>
 
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $tenant->email }} </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $tenant->mobile_number
@@ -128,9 +131,9 @@
                                 '.$tenant->city->city.',
                                 '.$tenant->barangay }}
                             </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
+                            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
                                 $tenant->bill_reference_no
-                                }} </td>
+                                }} </td> --}}
 
 
                         </tr>

@@ -294,6 +294,7 @@
         </div>
     </div>>
     @include('layouts.script')
+    @include('layouts.notifications')
 </body>
 
 </html>

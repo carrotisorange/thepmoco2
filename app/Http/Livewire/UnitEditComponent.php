@@ -68,7 +68,7 @@ class UnitEditComponent extends Component
 
             DB::commit();
 
-            session()->flash('success', 'Unit details is successfully updated.');    
+            session()->flash('success', 'Unit is successfully updated.');    
             
         }catch(\Exception $e){
             DB::rollback();
@@ -84,8 +84,7 @@ class UnitEditComponent extends Component
             'floors' => app('App\Http\Controllers\FloorController')->index(),
             'categories' => app('App\Http\Controllers\CategoryController')->index(),
             'statuses' => app('App\Http\Controllers\StatusController')->index(),
-            'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($this->unit_details->uuid),
-            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid),
+
             'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($this->unit_details->uuid),
             'enrollees' => app('App\Http\Controllers\EnrolleeController')->show_unit_enrollees($this->unit_details->uuid)
         ]);

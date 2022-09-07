@@ -98,6 +98,8 @@ class UnitController extends Controller
 
         return view('units.show',[
             'unit_details' => $unit,
+            'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($unit->uuid),
+            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
         ]);
 
     }
