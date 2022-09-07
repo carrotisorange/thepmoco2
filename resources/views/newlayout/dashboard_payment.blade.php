@@ -331,8 +331,13 @@
             <label for="email-address" class="block text-sm font-medium text-gray-700">Unit No.</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
+
+          <div class="col-span-3 sm:col-span-3">
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Amount</label>
+            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
               
-              <div class="sm:col-span-6">
+              <div class="col-span-3 sm:col-span-3">
           <label for="concern" class="block text-sm font-medium text-gray-700">Mode of Payment:</label>
           
             <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">

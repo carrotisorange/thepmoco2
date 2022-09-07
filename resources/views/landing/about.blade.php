@@ -312,6 +312,19 @@
 </p>
           </div>
 
+          <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
+          <!-- Content area -->
+          <div class="pt-12 sm:pt-16 lg:pt-20">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">How our Journey Started</h2>
+            <div class="mt-6 space-y-6 text-gray-500">
+              <p class="text-lg">When we first started out as property managers, we followed the old-school methods. During leasing procedures, we used the traditional way of paper and pen to sign up tenant info sheets, contracts, billing statements, and receipts. It took an entire day to process a single report! 
+</p>
+              <p class="text-base leading-7">At one point, our operations are so wrapped up in administrative work that we are spending less time strengthening our customer relations. We spend so much time looking for documents and less time on satisfying customer requests.</p>
+              <p class="text-base leading-7">Here’s where we need to innovate and rejuvenate.</p>
+              <p class="text-base leading-7">But the good old days are long gone; we need to advance and adapt to the technological evolution! And before you know it, we have built The PMO for all landlords and professional property managers out there who, like us, want to make work easier and better. </p>
+              <p class="text-base leading-7">Automating our process enables us to increase customer service satisfaction, become efficient in our operations, and improve transparency in management. </p>
+            </div>
+          </div>
           
 
 </div>
@@ -320,9 +333,7 @@
                 
 
 
-        <div class="mt-10 flex items-center justify-center">
-            <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-3xl border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Start Free Trial</button>
-</div>
+       
       </div>
      
 
