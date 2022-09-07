@@ -296,6 +296,11 @@ Route::get('/about', function(){
     return view('landing.about');
 });
 
+Route::get('/faq', function(){
+    return view('landing.faq');
+});
+
+
 
 
 
