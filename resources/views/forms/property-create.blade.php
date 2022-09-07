@@ -112,7 +112,7 @@
                 </div>
 
                 <div class="sm:col-span-6">
-                    <label for="barangay" class="block text-sm font-medium text-gray-700"> Barangay/County: </label>
+                    <label for="barangay" class="block text-sm font-medium text-gray-700"> Address: </label>
                     <div class="mt-5">
                         <input type="text" wire:model="barangay" autocomplete="barangay"
                             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border-gray-300 rounded-md">
