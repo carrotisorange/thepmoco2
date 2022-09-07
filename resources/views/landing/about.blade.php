@@ -303,7 +303,7 @@
 
     
 <!-- Blog section -->
-<div class="relative bg-gray-white py-16 sm:py-24 lg:py-32">
+<div class="relative bg-gray-white pb-10">
         <div class="relative">
         <img class="h-72 w-full object-cover" src="{{ asset('/brands/build.jpg') }}" alt="pmo logo">
 
@@ -339,7 +339,7 @@
            
           </div>
           <div class="mt-12 lg:col-span-1 lg:m-0 lg:pl-8">
-            <div class="mx-auto px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
+            <div class="py-20 mx-auto px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
               <blockquote>
                 <div>
                   
@@ -365,7 +365,7 @@
           </div>
         </div>
       </div>
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
+      <div class="py-20 mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div class="relative pt-12  xl:col-start-1 xl:pb-24">
           
           <p class="mt-3 text-3xl font-bold tracking-tight text-white">The PMO is HIPER-Focused</p>
