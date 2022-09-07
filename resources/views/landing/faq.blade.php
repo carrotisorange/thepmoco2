@@ -307,6 +307,29 @@
 
     
       
+    <!-- Stats section -->
+    <div class="relative bg-purple-100">
+      <div class="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
+        <div class="h-full w-full xl:grid xl:grid-cols-2">
+          <div class="h-full xl:relative xl:col-start-2">
+            <img class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100" alt="People working on laptops">
+            <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32  xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-10 mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
+        <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
+          
+          <p class="mt-12 text-3xl font-bold tracking-tight text-white">
+Why do I need a property manager?</p>
+          <p class="mt-5 text-lg text-gray-300">There are few individuals who can afford to own a building because larger buildings cost more to build and maintain. Like condominiums, ownership by groups by pooling capital emerged due to the demand and need, but such ownership requires different handling. Larger properties require full-time attention to maintain. These larger properties also require greater scrutiny of cash flow because of multiple owners’ interests. Third-party professional property managers are needed not only to oversee the maintenance of the building and its facilities, and collect dues and rents but also to manage the financial aspect of the property. Multiple-owned properties are much more complicated to manage due to the differences of opinion and interests of the multiple owners and third-party professional property managers provide an objective opinion when handling property concerns which have its objective the enhancement of the value of the real estate.</p>
+          <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 
     <div class="relative bg-gray-900">
