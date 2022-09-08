@@ -309,7 +309,7 @@
       
     <!-- Stats section -->
     <div class="relative bg-purple-200">
-      <div class="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
+      <div class="absolute inset-x-0 bottom-0 h-56 xl:top-0 xl:h-full">
         <div class="h-full w-full xl:grid xl:grid-cols-3">
           <div class="h-full xl:relative xl:col-start-3">
             <img class="h-full w-full object-cover  xl:absolute xl:inset-0"  src="{{ asset('/brands/why.jpg') }}" alt="pmo logo">
@@ -320,9 +320,9 @@
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
           
-          <p class="pl-20 mt-12 text-3xl font-bold tracking-tight text-gray-900">
+          <p class="mt-12 text-3xl font-bold tracking-tight text-gray-900">
 Why do I need a property manager?</p>
-          <p class="mt-5 text-md text-gray-700 pl-20 ">There are few individuals who can afford to own a building because larger buildings cost more to build and maintain. Like condominiums, ownership by groups by pooling capital emerged due to the demand and need, but such ownership requires different handling. Larger properties require full-time attention to maintain. These larger properties also require greater scrutiny of cash flow because of multiple owners’ interests. Third-party professional property managers are needed not only to oversee the maintenance of the building and its facilities, and collect dues and rents but also to manage the financial aspect of the property. Multiple-owned properties are much more complicated to manage due to the differences of opinion and interests of the multiple owners and third-party professional property managers provide an objective opinion when handling property concerns which have its objective the enhancement of the value of the real estate.</p>
+          <p class="mt-5 text-md text-gray-700 ">There are few individuals who can afford to own a building because larger buildings cost more to build and maintain. Like condominiums, ownership by groups by pooling capital emerged due to the demand and need, but such ownership requires different handling. Larger properties require full-time attention to maintain. These larger properties also require greater scrutiny of cash flow because of multiple owners’ interests. Third-party professional property managers are needed not only to oversee the maintenance of the building and its facilities, and collect dues and rents but also to manage the financial aspect of the property. Multiple-owned properties are much more complicated to manage due to the differences of opinion and interests of the multiple owners and third-party professional property managers provide an objective opinion when handling property concerns which have its objective the enhancement of the value of the real estate.</p>
           <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
            
           </div>
@@ -332,8 +332,10 @@ Why do I need a property manager?</p>
 
 
 
-    <div class="relative bg-gray-900">
-        <div class="px-6 py-32 relative h-56 bg-gray-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+    <div class="relative bg-gray-900 ">
+        <div class="mx-auto max-w px-6 py-12 lg:py-32 lg:px-8 md:py-28 sm:py-20 sm:px-6 relative h-72 bg-gray-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+        <div class="md:ml-auto md:pl-">
+            
           <p class="mt-2 text-xl font-bold tracking-tight text-white sm:text-xl">
 Condominium unit owners who invest for the purpose of renting it out are a good investment for the passive income it’s supposed to generate for the owner. This is truly passive income only if it is managed by a third-party property manager.</p>
             
@@ -343,6 +345,7 @@ Condominium unit owners who invest for the purpose of renting it out are a good 
               </div>
             </div>
         </div>
+</div>
         <div class="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
 
           <div class="md:ml-auto md:w-1/2 md:pl-10">
