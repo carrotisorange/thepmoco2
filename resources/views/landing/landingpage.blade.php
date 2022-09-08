@@ -801,22 +801,24 @@
             <div class="sm:col-span-2">
              
             <label for="country" class="block text-sm font-medium text-gray-700"> Property Type: </label>
-          <div class="mt-5">
+            <div class="mt-5">
             
-              <option>Condominium Association</option>
-              <option>Condominium Units</option>
-              <option>Student Accomodation</option>
-              <option>HOA</option>
-              <option>Dormitory</option>
-              <option>Commercial</option>
-              <option>Self storage</option>
-              <option>Senior Living</option>
-              <option>Residential Apartments</option>
-              <option>Bed and breakfast</option>
-              <option>Transient</option>
-              
-            </select>
-          </div>
+                
+            <ul><input type="checkbox"> Condominium Association</ul>
+            <ul><input type="checkbox"> Condominium Units</ul>
+            <ul><input type="checkbox"> Student Accomodation</ul>
+            <ul><input type="checkbox"> HOA</ul>
+            <ul><input type="checkbox"> Dormitory</ul>
+            <ul><input type="checkbox"> Commercial</ul>
+            <ul><input type="checkbox"> Self storage</ul>
+            <ul><input type="checkbox"> Senior Living</ul>
+            <ul><input type="checkbox"> Residential Apartments</ul>
+            <ul><input type="checkbox"> Bed and breakfast</ul>
+            <ul><input type="checkbox"> Transient</ul>
+           
+            
+          
+        </div>
         </div>
 
             

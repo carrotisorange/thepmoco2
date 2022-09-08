@@ -300,6 +300,11 @@ Route::get('/faq', function(){
     return view('landing.faq');
 });
 
+Route::get('/support', function(){
+    return view('landing.support');
+});
+
+
 
 
 
