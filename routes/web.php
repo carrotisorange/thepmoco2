@@ -81,6 +81,10 @@ Route::get('/newsignup', function(){
     return view('newlayout.newsignup');
 });
 
+Route::get('/signup_thanks', function(){
+    return view('newlayout.signup_thanks');
+});
+
 Route::get('/createproperty', function(){
     return view('newlayout.createproperty');
 });
