@@ -258,7 +258,7 @@
             <div class="flex items-center justify-center ">
             
 </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-gray-300 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-gray-300 mix-blend-multiply" style= "background-image: url('/brands/faq.jpg ');"></div>
           </div>
           <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
             <h1 class="text-4xl font-bold tracking-tight sm:text-4xl lg:text-4xl">
@@ -308,21 +308,21 @@
     
       
     <!-- Stats section -->
-    <div class="relative bg-purple-100">
+    <div class="relative bg-purple-200">
       <div class="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
-        <div class="h-full w-full xl:grid xl:grid-cols-2">
-          <div class="h-full xl:relative xl:col-start-2">
-            <img class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100" alt="People working on laptops">
+        <div class="h-full w-full xl:grid xl:grid-cols-3">
+          <div class="h-full xl:relative xl:col-start-3">
+            <img class="h-full w-full object-cover  xl:absolute xl:inset-0"  src="{{ asset('/brands/why.jpg') }}" alt="pmo logo">
             <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32  xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
           </div>
         </div>
       </div>
-      <div class="mb-10 mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
           
-          <p class="mt-12 text-3xl font-bold tracking-tight text-white">
+          <p class="pl-20 mt-12 text-3xl font-bold tracking-tight text-gray-900">
 Why do I need a property manager?</p>
-          <p class="mt-5 text-lg text-gray-300">There are few individuals who can afford to own a building because larger buildings cost more to build and maintain. Like condominiums, ownership by groups by pooling capital emerged due to the demand and need, but such ownership requires different handling. Larger properties require full-time attention to maintain. These larger properties also require greater scrutiny of cash flow because of multiple owners’ interests. Third-party professional property managers are needed not only to oversee the maintenance of the building and its facilities, and collect dues and rents but also to manage the financial aspect of the property. Multiple-owned properties are much more complicated to manage due to the differences of opinion and interests of the multiple owners and third-party professional property managers provide an objective opinion when handling property concerns which have its objective the enhancement of the value of the real estate.</p>
+          <p class="mt-5 text-md text-gray-700 pl-20 ">There are few individuals who can afford to own a building because larger buildings cost more to build and maintain. Like condominiums, ownership by groups by pooling capital emerged due to the demand and need, but such ownership requires different handling. Larger properties require full-time attention to maintain. These larger properties also require greater scrutiny of cash flow because of multiple owners’ interests. Third-party professional property managers are needed not only to oversee the maintenance of the building and its facilities, and collect dues and rents but also to manage the financial aspect of the property. Multiple-owned properties are much more complicated to manage due to the differences of opinion and interests of the multiple owners and third-party professional property managers provide an objective opinion when handling property concerns which have its objective the enhancement of the value of the real estate.</p>
           <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
            
           </div>
@@ -361,15 +361,15 @@ Condominium unit owners who invest for the purpose of renting it out are a good 
     
 <!-- Blog section -->
 <div class="relative bg-gray-white pb-10">
-        <div class="relative">
-        <img class="h-72 w-full object-cover" src="{{ asset('/brands/build.jpg') }}" alt="pmo logo">
+        <div class="py-20 relative">
+        
 
           <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
           <!-- Content area -->
           <div class="pt-8 sm:pt-8 lg:pt-8">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">When do I need to hire the services of a property or leasing manager?</h2>
-            <div class="mt-10 space-y-6 text-gray-500">
-              <p class="text-lg">     Just like any business, you need full time focus and commitment to operate a rental property to reach the objective of the business. If the daily operations become too burdensome to the rental property owner, then it is time to hire a professional property manager. If the owner has a full time job or lives far away from the rental property, then it would be best to hire the services of a local property manager who will be committed to operate the rental property. A property management system is then necessary as a channel for the owner to be updated about the status of their property because it automates the reporting aspect of the job of a property manager. 
+            <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">When do I need to hire the services of a property or leasing manager?</h2>
+            <div class="mt-10 space-y-6 text-gray-500 text-center">
+              <p class="text-lg">Just like any business, you need full time focus and commitment to operate a rental property to reach the objective of the business. If the daily operations become too burdensome to the rental property owner, then it is time to hire a professional property manager. If the owner has a full time job or lives far away from the rental property, then it would be best to hire the services of a local property manager who will be committed to operate the rental property. A property management system is then necessary as a channel for the owner to be updated about the status of their property because it automates the reporting aspect of the job of a property manager. 
 </p>
              
             </div>
