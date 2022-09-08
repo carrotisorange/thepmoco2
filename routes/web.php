@@ -304,6 +304,15 @@ Route::get('/support', function(){
     return view('landing.support');
 });
 
+Route::get('/blog', function(){
+    return view('landing.blog');
+});
+
+Route::get('/plans', function(){
+    return view('landing.plans');
+});
+
+
 
 
 
