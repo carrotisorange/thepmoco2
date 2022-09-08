@@ -102,6 +102,10 @@
                                     Profile
                                 </x-dropdown-link>
 
+                                <x-dropdown-link href="/chatify">
+                                    Chat
+                                </x-dropdown-link>
+
                                 <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
                                 </x-dropdown-link>
@@ -193,6 +197,13 @@
                             Profile
                         </x-dropdown-link>
                     </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/chatify">
+                            Chat
+                        </x-dropdown-link>
+                    </div>
+
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                             Subscriptions

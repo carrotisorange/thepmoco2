@@ -51,6 +51,7 @@ class RegisteredUserController extends Controller
         $attributes['plan_id'] = 1;
         $attributes['role_id'] = 5;
         $attributes['trial_ends_at'] = Carbon::now()->addMonth();
+        $attributes['discount_code'] = 'none';
 
         $user = User::create($attributes);
 

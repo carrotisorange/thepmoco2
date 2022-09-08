@@ -48,6 +48,10 @@
                                     Profile
                                 </x-dropdown-link>
 
+                                <x-dropdown-link href="/chatify">
+                                    Chat
+                                </x-dropdown-link>
+
                                 <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
                                 </x-dropdown-link>
@@ -94,6 +98,13 @@
                             Profile
                         </x-dropdown-link>
                     </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/chatify">
+                            Chat
+                        </x-dropdown-link>
+                    </div>
+
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                             Subscriptions
@@ -123,9 +134,9 @@
                 <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                     {{ $slot }}
                 </div>
-               <div class="text-purple-500">
+                <div class="text-purple-500">
                     @include('layouts.footer')
-               </div>
+                </div>
         </main>
     </div>
 </body>
