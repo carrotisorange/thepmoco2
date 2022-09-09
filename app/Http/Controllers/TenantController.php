@@ -175,7 +175,7 @@ class TenantController extends Controller
         $count_user = User::where('email', $tenant->email)->count();
         if($count_user > 0)
         {
-            return back()->with('error', 'The email address is already taken.');
+            return back()->with('error', 'Credentials for this user has already been generated.');
         }
 
          $user_id = app('App\Http\Controllers\UserController')->store(

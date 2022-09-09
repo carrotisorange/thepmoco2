@@ -51,9 +51,9 @@ class PropertyComponent extends Component
             'tenant_contract' => 'nullable|mimes:pdf',
             'owner_contract' => 'nullable|mimes:pdf',
             'description' => 'nullable',
-             'country_id' => ['required', Rule::exists('countries', 'id')],
-             'province_id' => ['required', Rule::exists('provinces', 'id')],
-             'city_id' => ['required', Rule::exists('cities', 'id')],
+             'country_id' => ['nullable', Rule::exists('countries', 'id')],
+             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
+             'city_id' => ['nullable', Rule::exists('cities', 'id')],
              'barangay' => ['required'],
              'email' => ['required'],
              'mobile' => ['required'],
@@ -72,17 +72,17 @@ class PropertyComponent extends Component
 
           if(!$this->country_id)
           {
-          $validatedData['country_id'] = '247';
+            $validatedData['country_id'] = '247';
           }
 
           if(!$this->province_id)
           {
-          $validatedData['province_id'] = '4121';
+            $validatedData['province_id'] = '4121';
           }
 
           if(!$this->city_id)
           {
-          $validatedData['city_id'] = '48315';
+            $validatedData['city_id'] = '48315';
           }
 
 
