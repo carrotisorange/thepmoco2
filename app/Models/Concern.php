@@ -14,10 +14,20 @@ class Concern extends Model
     return $this->belongsTo(Property::class);
     }
 
-        public function tenant()
-        {
+    public function tenant()
+    {
         return $this->belongsTo(Tenant::class);
-        }
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(ConcernCategory::class);
+    }
 
 
 }

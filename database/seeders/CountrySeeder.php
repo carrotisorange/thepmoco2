@@ -34,8 +34,8 @@ class CountrySeeder extends Seeder
         ];
 
         foreach($countries as $country){
-        \App\Models\Country::factory()->create([
-        'country' => $country
+            \App\Models\Country::factory()->create([
+            'country' => $country
         ]);
         }   
     }

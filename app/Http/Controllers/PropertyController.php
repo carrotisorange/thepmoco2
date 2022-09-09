@@ -144,7 +144,6 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
         $attributes = request()->validate([
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],

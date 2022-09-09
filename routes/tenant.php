@@ -12,6 +12,8 @@ Route::prefix('{role_id:role_id}/tenant/{user}')->group(function(){
     Route::get('bills/export', [TenantPortalController::class, 'export_bills']);
     Route::get('payments', [TenantPortalController::class, 'show_collections'])->name('tenant-payments');
     Route::get('concerns', [TenantPortalController::class, 'show_concerns'])->name('tenant-concerns');
+    Route::post('concerns/store', [TenantPortalController::class, 'store_concern']);
+    Route::get('concerns/{concern}', [TenantPortalController::class, 'edit_concern'])->name('tenant-concerns');
 
      Route::get('ar/{ar}/export', [TenantCollectionController::class, 'export']);
      Route::get('ar/{ar}/view', [TenantCollectionController::class, 'view']);

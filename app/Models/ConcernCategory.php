@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ConcernCategory extends Model
 {
     use HasFactory;
+
+    public function concern()
+    {
+        return $this->hasMany(Concern::class);
+    }
 }
