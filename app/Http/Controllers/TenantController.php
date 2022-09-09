@@ -206,7 +206,7 @@ class TenantController extends Controller
 
         User::where('id', $user_id)
           ->update([
-          'tenant_uuid' => $tenant->uuid
+          'tenant_uuid' => $tenant_uuid
         ]);
 
         return back()->with('succcess', 'Credentials are generated successfully!');

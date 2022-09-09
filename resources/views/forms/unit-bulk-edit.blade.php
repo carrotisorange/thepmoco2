@@ -19,7 +19,7 @@
         </thead>
 
         <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            @forelse ($units as $index => $item)
+            @foreach ($units as $index => $item)
             <div wire:key="unit-field-{{ $item->uuid }}">
                 <tr>
                     <x-td>{{ $index }}</x-td>
@@ -97,11 +97,8 @@
                     </x-td>
                 </tr>
             </div>
-            @empty
-            <tr>
-                <x-td>No data found.</x-td>
-            </tr>
-            @endforelse
+         
+            @endforeach
         </tbody>
     </table>
 </form>

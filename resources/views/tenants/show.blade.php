@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="options">
-        @if(App\Models\User::find($tenant_details->uuid))
+        @if(!App\Models\User::where('tenant_uuid',$tenant_details->uuid)->count())
         <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/user'">
             Generate Credentials
         </x-button>
