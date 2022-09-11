@@ -15,7 +15,7 @@
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-4">
-            <form>
+          
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                 <div class="relative w-full mb-5">
@@ -33,10 +33,10 @@
                 </div>
         </div>
 
-        </form>
+      
 
         <div class="sm:col-span-2">
-            <form>
+          
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Filters</label>
                 <div class="relative w-full mb-5">
@@ -54,7 +54,7 @@
                         by Default</button>
                 </div>
         </div>
-        </form>
+      
     </div>
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

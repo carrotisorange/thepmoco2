@@ -121,7 +121,7 @@ class UnitIndexComponent extends Component
                   ->orderByRaw('LENGTH(unit) ASC') ->orderBy('unit', 'ASC')
                     ->where('property_uuid', Session::get('property'))
                     ->when($this->status_id, function($query){
-                    $query->whereIn('status_id', $this->status_id);
+                    $query->whereIn('status_id',[ $this->status_id]);
                     })
                     ->when($this->building_id, function($query){
                     $query->whereIn('building_id', $this->building_id);

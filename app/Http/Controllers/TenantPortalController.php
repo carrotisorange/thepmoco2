@@ -35,7 +35,6 @@ class TenantPortalController extends Controller
     public function show_bills($role_id, User $user)
     {
         return view('portal.tenants.bills',[
-            'bills' => $this->get_bills($user->tenant_uuid),
             'tenant' => Tenant::findOrFail($user->tenant_uuid),
             'unpaid_bills' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($user->tenant_uuid),
         ]);

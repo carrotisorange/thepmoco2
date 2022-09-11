@@ -172,8 +172,6 @@ class TenantBillComponent extends Component
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');
 
-      $balance = ($unpaid_bills + $partially_paid_bills) - $paid_bills;
-
       $total_count = Bill::whereIn('id', $this->selectedBills)
       ->whereIn('status', ['paid', 'partially_paid'])
       ->count();
@@ -182,7 +180,7 @@ class TenantBillComponent extends Component
 
       return view('livewire.tenant-bill-component',[
          'bills' => $bills,
-         'total' => $balance,
+         'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
          'total_count' => $total_count,
          'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
