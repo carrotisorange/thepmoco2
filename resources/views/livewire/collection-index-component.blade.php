@@ -399,7 +399,7 @@
                         @empty
                         <tr>
                             <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">No
-                                bills
+                                data
                                 found.</td>
                         </tr>
 
