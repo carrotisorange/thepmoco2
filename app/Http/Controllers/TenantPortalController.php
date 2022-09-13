@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Concern;
 use App\Models\Unit;
 use Str;
+use App\Models\PaymentRequest;
 
 class TenantPortalController extends Controller
 {
@@ -100,6 +101,13 @@ class TenantPortalController extends Controller
     {
         return view('portal.tenants.collections',[
             'collections' => Tenant::findOrFail($user->tenant_uuid)->acknowledgementreceipts()->orderBy('ar_no','desc')->get()
+        ]);
+    }
+
+    public function show_collections_pending($role_id, User $user, $status)
+    {   
+        return view('portal.tenants.payment-requests',[
+            'requests' => PaymentRequest::where('tenant_uuid', $user->tenant_uuid)->get()
         ]);
     }
 

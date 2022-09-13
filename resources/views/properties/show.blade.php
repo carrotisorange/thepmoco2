@@ -155,10 +155,10 @@
                         </div>
                     </div>
 
-                    <div class="font-bold text-lg mb-5">Concerns Requests:</div>
+                    <div class="font-bold text-lg mb-5">Concerns Requests ({{ $concerns->where('status', 'pending')->count() }}):</div>
                     <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-8 ">
                         <div class="text-semibold">
-                            @foreach($concerns->where('status', 'pending') as $concern)
+                            @foreach($concerns->where('status', 'pending')->take(3) as $concern)
                                 {{ $concern->tenant->tenant }} ({{ $concern->unit->unit }}) reported a {{ $concern->category->category }} concern...
                                 <br>
                             @endforeach

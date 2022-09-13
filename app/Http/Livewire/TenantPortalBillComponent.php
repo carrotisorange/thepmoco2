@@ -6,6 +6,8 @@ use Livewire\Component;
 use Xendit\Xendit;
 use App\Models\Tenant;
 use Str;
+use App\Models\PaymentRequest;
+use App\Models\Bill;
 
 class TenantPortalBillComponent extends Component
 {
@@ -20,19 +22,16 @@ class TenantPortalBillComponent extends Component
         $amount_to_be_paid = ($this->get_unpaid_bills($this->selectedBills) +
         $this->partially_paid_bills($this->selectedBills)) - $this->paid_bills($this->selectedBills);
 
-        Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
 
-        $params = [
-        'token_id' => '5e2e8231d97c174c58bcf644',
-        'external_id' => 'card_' . time(),
-        'authentication_id' => '5e2e8658bae82e4d54d764c0',
-        'amount' => 100000,
-        'card_cvn' => '123',
-        'capture' => false
-        ];
+        PaymentRequest::create([
+            'tenant_uuid' => $this->tenant->uuid,
+            'bill_nos' =>Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
+            'amount' => $amount_to_be_paid,
+            'batch_no' => auth()->user()->id.'_'.Str::random(8),
+            'status' => 'pending',
+        ]);
 
-        $createCharge = \Xendit\Cards::create($params);
-        var_dump($createCharge);
+        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments/pending')->with('success', 'Payment is successfully sent.');
     }
 
     public function get_unpaid_bills($selectedBills)
