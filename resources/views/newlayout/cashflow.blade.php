@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cashflow</title>
+    <title>General Ledger</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -257,13 +257,13 @@
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Accounts</div>
 
-                    <!-- Cashflow -->
-                <a href="cashflow" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                    <!-- General Ledger -->
+                <a href="General Ledger" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">General Ledger</div>
                     <!-- Employees -->
                 <a href="employees" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Teams</span>
@@ -303,9 +303,9 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-    <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-      <h1 class="mb-5 text-3xl font-bold text-gray-700">Cashflow</h1>
-    </div>
+    
+      <h1 class="mb-5 text-3xl font-bold text-gray-700">General Ledger</h1>
+    
    
   </div>
 
@@ -477,6 +477,21 @@
 
 </div>
 
+<div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px">
+        <li class="mr-2">
+            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Daily</a>
+        </li>
+        <li class="mr-2">
+            <a href="#" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Monthly</a>
+        </li>
+        <li class="mr-2">
+            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Annual Summary</a>
+        </li>
+        
+    </ul>
+</div>
+
 
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
@@ -497,10 +512,14 @@
                 <th scope="col" class="relative w-12 px-5 sm:w-8 sm:px-8">
                   
                 </th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">#</th>
-                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">DATE</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CASH INFLOW</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CASH OUTFLOW</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ITEM #</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT #</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">DESCRIPTION</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">PAYOR/PAYEE</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INCOME</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">EXPENSE</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
                 
                 </th>
@@ -519,6 +538,10 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
@@ -535,6 +558,10 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
@@ -552,6 +579,10 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
@@ -567,8 +598,12 @@
                  
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
@@ -585,6 +620,10 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
@@ -601,6 +640,10 @@
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
