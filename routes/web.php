@@ -210,6 +210,11 @@ Route::get('/accountspayables', function(){
     return view('newlayout.accountspayables');
 });
 
+Route::get('/accounts-payable-list', function(){
+    return view('newlayout.accounts-payable-list');
+});
+
+
 // owner portal
 Route::get('/ownerdashboard', function(){
     return view('newlayout.owner_portal.ownerdashboard');

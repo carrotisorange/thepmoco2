@@ -290,7 +290,7 @@
       <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">Accounts Payables</h1>
     </div>
 
-    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="addunits">Add Particular</a></button>
+    <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="accountspayables">Create New Request</a></button>
 </div>
 
             <!--
@@ -309,109 +309,177 @@
   }
   ```
 -->
+<div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px">
+        <li class="mr-2">
+            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">All</a>
+        </li>
+        <li class="mr-2">
+            <a href="#" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Bills</a>
+        </li>
+        
+        
+    </ul>
+</div>
 
-
-<form class="space-y-6" action="#" method="POST">
-
-     
-
-  <div class=" px-4 py-5 sm:rounded-lg sm:p-6">
-    <div class="md:grid md:grid-cols-6 md:gap-6">
+<div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
     
-          
-              
-              <div class="sm:col-span-3">
-          <label for="concern" class="block text-sm font-medium text-gray-700">Request for: </label>
-          
-            <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
 
-              <option>Payment</option>
-              <option>Purchase</option>
-              <option>Fund Transfer</option>
-              
-
-              
-              
-            </select>
-          
-        </div>
-
-        
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+      
+        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <!-- Selected row actions, only show when rows are selected. -->
+          <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
             
-        <div class="sm:col-span-3">
-              <label for="concern" class="block text-sm font-medium text-gray-700">Requester's Name:</label>
-              <div class="mt-1">
-                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
-              </div>
-              
-            </div>
-
-            <div class="sm:col-span-3">
-              <label for="concern" class="block text-sm font-medium text-gray-700">Pay to: (Biller's Name)</label>
-              <div class="mt-1">
-                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
-              </div>
-              
-            </div>
-
-        <div class="sm:col-span-3">
-              <label for="concern" class="block text-sm font-medium text-gray-700">Amount Requested:</label>
-              <div class="mt-1">
-                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
-              </div>
-              
-            </div>
-
-            <div class="sm:col-span-3">
-              <label for="concern" class="block text-sm font-medium text-gray-700">Source of Fund:</label>
-              <div class="mt-1">
-                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
-              </div>
-              
-            </div>
-
-
-         
-            <div class="sm:col-span-3">
-              <label class="block text-sm font-medium text-gray-700"> Upload Bills/Quotation </label>
-              <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div class="space-y-1 text-center">
-                  
-                  <div class="flex text-sm text-gray-600">
-                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                      <span>Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                    </label>
-                    <p class="pl-1">or drag and drop</p>
-                  </div>
-                  <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                </div>
-            
-
-        
-          
-        </div>
-</div>
-
-
-       
-        <div class="mt-3 sm:col-span-3">
-          <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Send email to manager</label>
           </div>
 
+          <table class="min-w-full table-fixed">
+            
+            <thead class="">
+              <tr>
+                <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
+                  
+                </th>
+                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">DATE</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RECIPIENT NAME</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INVOICE NUMBER</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">SENDER</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RECEIVER</th>
+                
+                </th>
+              </tr>
+            </thead>
+            
+
+            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+                <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">Pending</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #2</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1st Floor</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Occupied</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        </td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+              </tr>
+
+              <!-- More people... -->
+            </tbody>
+
+
+            
+          </table>
           
-</div>
+        </div>
         
-
-
-  <div class="flex justify-end">
-    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-    <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit Request</button>
+      </div>
+    </div>
   </div>
-</form>
-
 
       <!-- Footer -->
 <footer class="">
