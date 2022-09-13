@@ -240,11 +240,11 @@
 
                     <!-- Payments -->
                     <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
-                  <span class="sr-only">Concerns</span>
+                  <span class="sr-only">Collection</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Collection</div>
 
                     <!-- Accounts Payable -->
                     <a href="accountspayables" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
@@ -252,7 +252,7 @@
                     <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Accounts</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Accounts Payable</div>
 
                     <!-- Cashflow -->
                 <a href="cashflow" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
@@ -314,7 +314,7 @@
 
                        <!-- moveout request, payments approval -->
                         <div class="sm:col-span-6">
-                            <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg mb-2">
+                            <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg">
                                 <div class="p-5">
                                      <div class="flex items-center">
                                         <div class="flex-shrink-0">
@@ -333,6 +333,7 @@
                             </div>
                         </div>
 
+                        
 
                         <div class="sm:col-span-6">
                             <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg mb-2">
@@ -375,19 +376,31 @@
                         </div>
 
                         <div class="sm:col-span-3">
-                          
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Received:</div>
-                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
-                            </div>
-                          </div>
+               
+               <div class="text-center font-semibold text-lg mb-2 text-gray-500">Moveouts:</div>
+                         <div class="bg-purple-100 h-10 overflow-hidden shadow rounded-lg mb-2">
+                         <div class="py-1 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
+                         </div>
+                       </div>
+                       <div class="sm:col-span-3">
+                       <div class="text-center font-semibold text-lg mb-2 text-gray-500">Move Ins:</div>
+                         <div class="bg-purple-100 h-10 overflow-hidden shadow rounded-lg mb-2">
+                         <div class="py-1 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
+                         </div>
+                       </div>
 
-                          <div class="sm:col-span-3">
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Closed:</div>
-                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
-                          </div>
+                       <div class="sm:col-span-3">
+                            <div class="ml-2 mt-2 text-sm text-center font-semibold font-body text-gray-500 truncate">Occupied: <a href= # class="text-indigo-600 text-lg">50</a> </div>
+                            <img src="{{ asset('/brands/key.png') }}" alt="building" class="ml-10 h-20 w-20 object-center object-cover ">
+                          
                         </div>
+
+                        <div class="sm:col-span-3">
+                        <div class="mt-2 text-sm text-center font-semibold font-body text-gray-500 truncate">Vacant: <a href= # class="text-indigo-600 text-lg">30</a> </div>
+                            <img src="{{ asset('/brands/vacant.png') }}" alt="building" class="ml-10 h-20 w-20 object-center object-cover ">
+                            
+                        
+                      </div>
                         
                         <div class="sm:col-span-3">
                           
@@ -402,7 +415,13 @@
                               <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Expired Contracts:</div>
                               <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
                           </div>
+
+                        
+
+
                         </div>
+
+                        
                         
 
                         </div>
@@ -453,92 +472,64 @@
 
                 
                 <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+
                 <div class="sm:col-span-3">
-                <div class="ml-2 font-bold text-lg"></div>
-                <div class="text-center font-semibold text-lg mb-5 text-gray-500">Moveouts:</div>
-                          <div class="bg-purple-100 h-20 overflow-hidden shadow rounded-lg mb-5">
-                          <div class="py-5 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
+                          
+                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
+                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Received:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
+                            </div>
+                          </div>
+
+                          <div class="sm:col-span-3">
+                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
+                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Closed:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
                           </div>
                         </div>
-                        <div class="sm:col-span-3">
-                        <div class="text-center font-semibold text-lg mb-5 text-gray-500">Move Ins:</div>
-                          <div class="bg-purple-100 h-20 overflow-hidden shadow rounded-lg mb-5">
-                          <div class="py-5 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
-                          </div>
-                        </div>
+                        
+               
                 </div>
 
-                <!-- total collection of the month -->
                 <div class="sm:col-span-6 mt-2">
-                        <div class="bg-gray-200 h-16 overflow-hidden shadow rounded-lg mb-5">
-                            <div class="mt-2 ml-2 text-left font-semibold text-sm  text-gray-500">Total Collection of the Month:</div>
+                        <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5 mt-10">
+                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Bills for Collection:</div>
                             <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
                         <div class="sm:col-span-6">
-                          <div class="bg-gray-200 h-16 overflow-hidden shadow rounded-lg mb-5">
+                          <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
+                            <div class="mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount:</div>
+                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
+                          </div>
+                        </div>
+
+                        <div class="sm:col-span-6">
+                          <div class="bg-gray-white h-16 overflow-hidden shadow rounded-lg mb-5">
                             <div class="mt-2 ml-2 text-left font-semibold text-sm text-gray-500">Total Unpaid of the Month:</div>
                             <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
                         <div class="sm:col-span-6">
-                          <div class="bg-white h-24">
-                           
+                          <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
+                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid Collection:</div>
+                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
-                        <div class="mt-5">
-              <canvas class="" id="chartLine"></canvas>
-              </div>
+               
 
-                <!-- graph chart.js -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        
 
-                <!-- chart line -->
-                <script>
-                const labels = ["January", "February", "March", "April", "May", "June"];
-                const data = {
-                    labels: labels,
-                    datasets: [
-                    {
-                    label: "Occupancy Graph",
-                     backgroundColor: "hsl(252, 82.9%, 67.8%)",
-                     borderColor: "hsl(252, 82.9%, 67.8%)",
-                     data: [0, 10, 5, 2, 20, 30, 45],
-                    },
-                    ],
-                 };
+                        
 
-                const configLineChart = {
-                    type: "line",
-                    data,
-                    options: {},
-                 };
-
-                var chartLine = new Chart(
-                 document.getElementById("chartLine"),
-                    configLineChart
-                );
-                </script>
-
-                <!-- total bills for collection -->        
+                       
 
                 <div class="mt-10 grid grid-cols-1 gap-x-4 sm:grid-cols-6">
 
-                <div class="sm:col-span-3">
-                            <div class="ml-2 mt-2 text-sm text-center font-semibold font-body text-gray-500 truncate">Occupied: <a href= # class="text-indigo-600 text-lg">50</a> </div>
-                            <img src="{{ asset('/brands/key.png') }}" alt="building" class="ml-10 h-20 w-20 object-center object-cover ">
-                          
-                        </div>
-
-                        <div class="sm:col-span-3">
-                        <div class="mt-2 text-sm text-center font-semibold font-body text-gray-500 truncate">Vacant: <a href= # class="text-indigo-600 text-lg">30</a> </div>
-                            <img src="{{ asset('/brands/vacant.png') }}" alt="building" class="ml-10 h-20 w-20 object-center object-cover ">
-                            
-                        
-                      </div>
+               
               </div>
                 
             </div>    
@@ -631,31 +622,44 @@
 
 <div button type="button" class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View More</button></div>
 
-<div class="mt-10 grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+<div class="sm:col-span-3 mt-5">
+                        <div class="overflow-hidden">
+                        <div class="py-3 px-5 ">Collection Rate</div>
+                        <canvas class="p-8" id="chartDoughnut"></canvas>
+                      </div>
 
-<div class="sm:col-span-6 mt-2">
-                        <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5 mt-10">
-                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Bills for Collection:</div>
-                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
-                          </div>
-                        </div>
+                      <!-- Required chart.js -->
+                      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                        <div class="sm:col-span-6">
-                          <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
-                            <div class="mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount:</div>
-                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
-                          </div>
-                        </div>
+                      <!-- Chart doughnut -->
+                      <script>
+                        const dataDoughnut = {
+                          labels: ["Billed","Collected", "Uncollected", ],
+                          datasets: [
+                            {
+                              label: "My First Dataset",
+                              data: [300, 50, 20],
+                              backgroundColor: [
+                                "rgb(133, 105, 241)",
+                                "rgb(164, 101, 241)",
+                                "rgb(101, 143, 241)",
+                              ],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        };
 
-                        <div class="sm:col-span-6">
-                          <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
-                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid Collection:</div>
-                            <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
-                          </div>
-                        </div>
+                        const configDoughnut = {
+                          type: "doughnut",
+                          data: dataDoughnut,
+                          options: {},
+                        };
 
-                        
-</div>
+                        var chartBar = new Chart(
+                          document.getElementById("chartDoughnut"),
+                          configDoughnut
+                        );
+                      </script>
 
 
 
@@ -681,9 +685,9 @@
 
 
 
-              <div class="grid grid-cols-2 gap-x-4 sm:grid-cols-6">
+              <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
 
-                  <div class="sm:col-span-4 mb-3 mt-10">              
+                  <div class="sm:col-span-6 mb-3 mt-10">              
                     <div class="px-4">
                       <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
@@ -829,7 +833,15 @@
                                 
 
                                 </table>
+
+                                
                               </div>
+
+                              <div class="flex justify-end gap-2">
+                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="contracts">See more</a></button></div>
+                
+                </div>
+
                             </div>
                           </div>
                         </div>
@@ -840,44 +852,7 @@
 
   </div>
 
-                        <div class="sm:col-span-2 mt-5">
-                        <div class="overflow-hidden">
-                        <div class="py-3 px-5 ">Collection Rate</div>
-                        <canvas class="p-8" id="chartDoughnut"></canvas>
-                      </div>
-
-                      <!-- Required chart.js -->
-                      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-                      <!-- Chart doughnut -->
-                      <script>
-                        const dataDoughnut = {
-                          labels: ["Billed","Collected", "Uncollected", ],
-                          datasets: [
-                            {
-                              label: "My First Dataset",
-                              data: [300, 50, 20],
-                              backgroundColor: [
-                                "rgb(133, 105, 241)",
-                                "rgb(164, 101, 241)",
-                                "rgb(101, 143, 241)",
-                              ],
-                              hoverOffset: 4,
-                            },
-                          ],
-                        };
-
-                        const configDoughnut = {
-                          type: "doughnut",
-                          data: dataDoughnut,
-                          options: {},
-                        };
-
-                        var chartBar = new Chart(
-                          document.getElementById("chartDoughnut"),
-                          configDoughnut
-                        );
-                      </script>
+                        
 
                        
 </div>

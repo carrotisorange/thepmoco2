@@ -334,7 +334,7 @@
         </div>
 
         <div class="sm:col-span-3">
-          <label for="concern" class="block text-sm font-medium text-gray-700">Particular </label>
+          <label for="concern" class="block text-sm font-medium text-gray-700">Particular:</label>
           
             <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
 
@@ -356,7 +356,7 @@
             </div>
 
             <div class="sm:col-span-3">
-              <label for="concern" class="block text-sm font-medium text-gray-700">Biller's Name:</label>
+              <label for="concern" class="block text-sm font-medium text-gray-700">Pay to: (Biller's Name)</label>
               <div class="mt-1">
                 <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
               </div>

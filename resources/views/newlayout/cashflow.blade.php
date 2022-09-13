@@ -617,7 +617,42 @@
           </table>
           
         </div>
+
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+
+    
+
+<div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+  <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+    <!-- Selected row actions, only show when rows are selected. -->
+    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-whites sm:left-16">
+      
+    </div>
         
+        <table class="min-w-full table-fixed">
+            
+            <thead class="">
+              <tr>
+                <th scope="col" class="relative w-12 px-5 sm:w-8 sm:px-8">
+                  
+                </th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Total:</th>
+                
+                </th>
+              </tr>
+
+              
+            </thead>
+
+                  </table>
+                  </div>
+                  </div>
+                  </div>
       </div>
     </div>
   </div>

@@ -1,13 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenant Portal</title>
-    <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
-</head>
+    <meta charset="utf-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <meta name="facebook-domain-verification" content="q3z93v1eg3wsq648g7aq2cuby3ibcv" />
+
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=847561769549195&ev=PageView
+        &noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
+
+    <title>{{ Session::get('property_name')? Session::get('property_name'): config('APP_NAME') }} @yield('title')
+    </title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
+
+    {{-- Fontawesome --}}
+    <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    {{-- Alpine.js --}}
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    {{-- Flowbite --}}
+    <script src="../path/to/flowbite/dist/flowbite.js"></script>
+
+    @yield('styles')
+
+    @livewireStyles
+
+</head>
   <html class="h-full bg-white">
   <body class="h-full overflow-hidden font-body">
 
@@ -77,17 +117,17 @@
                 From: "transform opacity-100 scale-100"
                 To: "transform opacity-0 scale-95"
             --> 
-           <!-- PROFILE DROPDOWN! <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
-              <div class="py-1" role="none"> -->
-                <!-- Active: "bg-gray-100", Not Active: "" -->
-                <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Your Profile </a>
+         <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
+              <div class="py-1" role="none"> 
+                
+                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Your Profile </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
--->
+
+
     <!-- Mobile menu, show/hide this `div` based on menu open/closed state -->
 
         <div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
@@ -329,23 +369,32 @@
               </div>
               <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
                 <div class="text-sm">
-                <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> Your contract will expire in 2 days. </a>
-                <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Renew</button></div>
-                </div>
+                <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> Concern #1222 resolved!</a>
+                <div class="flex justify-end gap-2">
+                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View</button></div>
+                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Close</button></div>
               </div>
+              </div>
+</div>
               <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
                 <div class="text-sm">
                   <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> You have unpaid bills for unit #2. </a>
-                  <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay now</button></div>
+                  <div class="flex justify-end gap-2">
+                  <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay now</button></div>
                 </div>
               </div>
+</div>
+
               <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
                 <div class="text-sm">
                   <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> You have unpaid bills. </a>
-                  <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay now</button></div>
+                  <div class="flex justify-end gap-2"><div class="flex justify-end gap-2">
+                  <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay now</button></div>
                 </div>
               </div>
             </div>
+</div>
+</div>
 
             <!-- card Notifications -->
             <div class="bg-white">

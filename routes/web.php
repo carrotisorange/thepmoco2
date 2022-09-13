@@ -41,35 +41,35 @@ Route::get('/portfolio', function(){
 
 //tenant portal
 Route::get('/tenantdashboard', function(){
-    return view('newlayout.tenantdashboard');
+    return view('newlayout.tenant_portal.tenantdashboard');
 });
 
 Route::get('/tenantcontracts', function(){
-    return view('newlayout.tenantcontracts');
+    return view('newlayout.tenant_portal.tenantcontracts');
 });
 
 Route::get('/tenantbills', function(){
-    return view('newlayout.tenantbills');
+    return view('newlayout.tenant_portal.tenantbills');
 });
 
 Route::get('/tenantpayments', function(){
-    return view('newlayout.tenantpayments');
+    return view('newlayout.tenant_portal.tenantpayments');
 });
 
 Route::get('/tenantconcerns', function(){
-    return view('newlayout.tenantconcerns');
+    return view('newlayout.tenant_portal.tenantconcerns');
 });
 
 Route::get('/tenantrequest', function(){
-    return view('newlayout.tenantrequest');
+    return view('newlayout.tenant_portal.tenantrequest');
 });
 
 Route::get('/tenantbills_detail', function(){
-    return view('newlayout.tenantbills_detail');
+    return view('newlayout.tenant portal.tenantbills_detail');
 });
 
-Route::get('/tenant_close', function(){
-    return view('newlayout.tenant_close');
+Route::get('/close-concern', function(){
+    return view('newlayout.tenant_portal.close-concern');
 });
 
 // admin portal
@@ -89,104 +89,104 @@ Route::get('/createproperty', function(){
     return view('newlayout.createproperty');
 });
 
-Route::get('/newunits_list', function(){
-    return view('newlayout.newunits_list');
+Route::get('/units-list', function(){
+    return view('newlayout.admin_units.units-list');
 });
 
-Route::get('/newunits_thumbnail', function(){
-    return view('newlayout.newunits_thumbnail');
+Route::get('/units-thumbnail', function(){
+    return view('newlayout.admin_units.units-thumbnail');
 });
 
 Route::get('/newunits_detail', function(){
-    return view('newlayout.newunits_detail');
+    return view('newlayout.admin_units.newunits_detail');
 });
 
 Route::get('/newunits_rent', function(){
-    return view('newlayout.newunits_rent');
+    return view('newlayout.admin_units.newunits_rent');
 });
 
 Route::get('/newunits_owner', function(){
-    return view('newlayout.newunits_owner');
+    return view('newlayout.admin_units.newunits_owner');
 });
 
 Route::get('/newunits_rooms', function(){
-    return view('newlayout.newunits_rooms');
+    return view('newlayout.admin_units.newunits_rooms');
 });
 
 Route::get('/newunits_furniture', function(){
-    return view('newlayout.newunits_furniture');
+    return view('newlayout.admin_units.newunits_furniture');
 });
 
-Route::get('/newowners', function(){
-    return view('newlayout.newowners');
+Route::get('/owner-page', function(){
+    return view('newlayout.admin_owner.owner-page');
 });
 
 Route::get('/admindashboard', function(){
-    return view('newlayout.admindashboard');
+    return view('newlayout.admin_dashboard.admindashboard');
 });
 
 Route::get('/success_property', function(){
     return view('newlayout.success_property');
 });
 
-Route::get('/newownerprofile', function(){
-    return view('newlayout.newownerprofile');
+Route::get('/owner-profile', function(){
+    return view('newlayout.admin_owner.owner-profile');
 });
 
-Route::get('/newtenant', function(){
-    return view('newlayout.newtenant');
+Route::get('/tenant-page', function(){
+    return view('newlayout.admin_tenant.tenant-page');
 });
 
 Route::get('/employees', function(){
     return view('newlayout.employees');
 });
 
-Route::get('/newtenantprofile', function(){
-    return view('newlayout.newtenantprofile');
+Route::get('/tenant-profile', function(){
+    return view('newlayout.admin_tenant.tenant-profile');
 });
 
-Route::get('/newbills', function(){
-    return view('newlayout.newbills');
+Route::get('/bills-page', function(){
+    return view('newlayout.admin_bills.bills-page');
 });
 
 Route::get('/addtenant1', function(){
-    return view('newlayout.addtenant1');
+    return view('newlayout.admin_tenant.addtenant1');
 });
 
 Route::get('/addtenant2', function(){
-    return view('newlayout.addtenant2');
+    return view('newlayout.admin_tenant.addtenant2');
 });
 
 Route::get('/addtenant3', function(){
-    return view('newlayout.addtenant3');
+    return view('newlayout.admin_tenant.addtenant3');
 });
 
 Route::get('/addtenant4', function(){
-    return view('newlayout.addtenant4');
+    return view('newlayout.admin_tenant.addtenant4');
 });
 
 Route::get('/addtenant5', function(){
-    return view('newlayout.addtenant5');
+    return view('newlayout.admin_tenant.addtenant5');
 });
 
 Route::get('/addowner1', function(){
-    return view('newlayout.addowner1');
+    return view('newlayout.admin_owner.addowner1');
 });
 
 Route::get('/addowner2', function(){
-    return view('newlayout.addowner2');
+    return view('newlayout.admin_owner.addowner2');
 });
 
 Route::get('/addowner3', function(){
-    return view('newlayout.addowner3');
+    return view('newlayout.admin_owner.addowner3');
 });
 
 Route::get('/addowner4', function(){
-    return view('newlayout.addowner4');
+    return view('newlayout.admin_owner.addowner4');
 });
 
 Route::get('/addowner5', function(){
-    return view('newlayout.addowner5');
+    return view('newlayout.admin_owner.addowner5');
 });
 
 
@@ -194,16 +194,16 @@ Route::get('/cashflow', function(){
     return view('newlayout.cashflow');
 });
 
-Route::get('/newconcern_detail', function(){
-    return view('newlayout.newconcern_detail');
+Route::get('/individual-concern', function(){
+    return view('newlayout.admin_concerns.individual-concern');
 });
 
-Route::get('/newconcern_list', function(){
-    return view('newlayout.newconcern_list');
+Route::get('/concern-page-list', function(){
+    return view('newlayout.admin_concerns.concern-page-list');
 });
 
-Route::get('/newpayments', function(){
-    return view('newlayout.newpayments');
+Route::get('/payments-page', function(){
+    return view('newlayout.admin_collection.payments-page');
 });
 
 Route::get('/accountspayables', function(){
@@ -212,53 +212,53 @@ Route::get('/accountspayables', function(){
 
 // owner portal
 Route::get('/ownerdashboard', function(){
-    return view('newlayout.ownerdashboard');
+    return view('newlayout.owner_portal.ownerdashboard');
 });
 
 Route::get('/ownerunits', function(){
-    return view('newlayout.ownerunits');
+    return view('newlayout.owner_portal.ownerunits');
 });
 
 Route::get('/ownerbills', function(){
-    return view('newlayout.ownerbills');
+    return view('newlayout.owner_portal.ownerbills');
 });
 
 Route::get('/ownerbills_detail', function(){
-    return view('newlayout.ownerbills_detail');
+    return view('newlayout.owner_portal.ownerbills_detail');
 });
 
 
 Route::get('/ownerpayment', function(){
-    return view('newlayout.ownerpayment');
+    return view('newlayout.owner_portal.ownerpayment');
 });
 
 Route::get('/ownerconcern', function(){
-    return view('newlayout.ownerconcern');
+    return view('newlayout.owner_portal.ownerconcern');
 });
 
-Route::get('/addunits', function(){
-    return view('newlayout.addunits');
+Route::get('/add-units-modal', function(){
+    return view('newlayout.admin_units.add-units-modal');
 });
 
-Route::get('/individualbill', function(){
-    return view('newlayout.individualbill');
+Route::get('/create-individual-bill', function(){
+    return view('newlayout.admin_bills.create-individual-bill');
 });
 
 Route::get('/createbills', function(){
-    return view('newlayout.createbills');
+    return view('newlayout.admin_bills.createbills');
 });
 
 
-Route::get('/newbills_detail', function(){
-    return view('newlayout.newbills_detail');
+Route::get('/individual-bills', function(){
+    return view('newlayout.admin_bills.individual-bills');
 });
 
 Route::get('/unitbillshistory', function(){
-    return view('newlayout.unitbillshistory');
+    return view('newlayout.admin_bills.unitbillshistory');
 });
 
 Route::get('/paymenthistory', function(){
-    return view('newlayout.paymenthistory');
+    return view('newlayout.admin_collection.paymenthistory');
 });
 
 Route::get('/paybills', function(){
@@ -270,11 +270,11 @@ Route::get('/addemployee', function(){
 });
 
 Route::get('/dashboard_moveout', function(){
-    return view('newlayout.dashboard_moveout');
+    return view('newlayout.admin_dashboard.dashboard_moveout');
 });
 
 Route::get('/dashboard_payment', function(){
-    return view('newlayout.dashboard_payment');
+    return view('newlayout.admin_dashboard.dashboard_payment');
 });
 
 
