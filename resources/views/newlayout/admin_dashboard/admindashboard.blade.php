@@ -278,24 +278,38 @@
             </nav>
 
           <!-- Main area -->
-        <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-          <div class="mt-5">
+        <main class="flex-1 pb-2 overflow-y-scroll">
+          <div class="">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div class="mt-2 grid grid-cols-1 gap-5 lg:grid-cols-3">
 
 
 
           <!-- FIRST COLUMN -->
 
                      <!-- welcome back -->
-                  <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+
+                     <div class="bg-white overflow-hidden">
+              <div class="p-5">
+                <div class="flex items-center">
+                 
+                  <div class="w-0 flex-1">
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+                  <div class="grid grid-cols-1 gap-x-4  sm:grid-cols-6">
 
                     <div class="sm:col-span-6 ml-2 font-bold text-3xl mb-5">Property Name</div>
-                        <div class="sm:col-span-6 mb-3">
+                        <div class="sm:col-span-6 mb-5">
                             <div class="bg-purple-300 h-35 overflow-hidden shadow rounded-lg">
                                 <div class="p-5">
                                      <div class="flex items-center">
-                                        <div class="flex-shrink-0">
+                                        <div class="flex">
                                         </div>
                                             <div class="w-0 flex-1">
                                                 <dl>
@@ -312,9 +326,165 @@
                             </div>
                         </div>
 
-                       <!-- moveout request, payments approval -->
-                        <div class="sm:col-span-6">
-                            <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg">
+                      
+                        <div class="sm:col-span-6 mb-5">
+                        <div class="font-bold text-lg mb-1">Concerns Requests:</div>
+              <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-5">
+                <div class="text-semibold">
+                <a href="" class="text-sm text-gray-900 font-bold mt-2">Unit #1 has pending concern.</a>
+                <div class="flex justify-end gap-2">
+                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="newconcern_detail">View</a></button></div>
+                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Close</button></div>
+                </div>
+                </div>
+</div>
+
+              </div>
+
+              
+
+       
+              
+
+              
+
+              
+              <!-- concerns received -->
+
+
+                <div class="sm:col-span-3">
+                          
+                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-10">
+                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Received:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
+                            </div>
+                          </div>
+
+                          <div class="sm:col-span-3">
+                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-10">
+                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Closed:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
+                          </div>
+                        </div>
+                        
+
+
+
+                      
+                        
+                  
+
+                        <!-- number by categories scroll -->
+                        
+
+                        
+                          <div class="sm:col-span-3">
+                          
+                            <div class="bg-purple-100 h-20 overflow-hidden shadow rounded-lg mb-5 mt-2">
+                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Units:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newunits_list class="text-gray-700 text-3xl ">50</a> </div>
+                            </div>
+                          </div>
+
+                          <div class="sm:col-span-3">
+                            <div class="bg-purple-100 h-20 overflow-hidden shadow rounded-lg mb-5 mt-2">
+                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Tenants:</div>
+                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newtenants class="text-gray-700 text-3xl ">50</a> </div>
+                          </div>
+                        </div>
+
+                        
+
+                       
+
+                      <div class="sm:col-span-6 mt-5">
+                          
+
+                        <div class="">
+              <canvas class="" id="chartLine"></canvas>
+      
+
+                <!-- graph chart.js -->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <!-- chart line -->
+                <script>
+                const labels = ["January", "February", "March", "April", "May", "June"];
+                const data = {
+                    labels: labels,
+                    datasets: [
+                    {
+                    label: "Occupancy Graph",
+                     backgroundColor: "hsl(252, 82.9%, 67.8%)",
+                     borderColor: "hsl(252, 82.9%, 67.8%)",
+                     data: [0, 10, 5, 2, 20, 30, 45],
+                    },
+                    ],
+                 };
+
+                const configLineChart = {
+                    type: "line",
+                    data,
+                    options: {},
+                 };
+
+                var chartLine = new Chart(
+                 document.getElementById("chartLine"),
+                    configLineChart
+                );
+                </script>
+                        
+                        
+
+                        
+                        
+
+                        </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                            <div class="mt-10 text-sm text-center font-semibold font-body text-gray-500 truncate">Occupied: <a href= # class="text-indigo-600 text-lg">50</a> </div>
+                            <div class="flex justify-center item-center">
+                            <img src="{{ asset('/brands/key.png') }}" alt="building" class="h-20 w-20 object-center object-cover ">
+              </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                        <div class="mt-10 text-sm text-center font-semibold font-body text-gray-500 truncate">Vacant: <a href= # class="text-indigo-600 text-lg">30</a> </div>
+                        <div class="flex justify-center item-center">    
+                        <img src="{{ asset('/brands/vacant.png') }}" alt="building" class="h-20 w-20 object-center object-cover ">
+              </div>    
+                        
+                      </div>
+
+              </div>
+              </div>
+                        
+                  
+
+                        
+
+             <!-- SECOND COLUMN -->
+            
+
+            <!-- Concerns Requests -->
+            <div class="bg-white overflow-hidden">
+              <div class="p-5">
+                <div class="flex items-center">
+                 
+                  <div class="w-0 flex-1">
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+              <div class="sm:col-span-6">
+                            <div class="bg-gray-50 h-36 mt-10 overflow-hidden shadow rounded-lg">
                                 <div class="p-5">
                                      <div class="flex items-center">
                                         <div class="flex-shrink-0">
@@ -333,10 +503,22 @@
                             </div>
                         </div>
 
-                        
+                        <div class="sm:col-span-3">
+               
+               <div class="text-center font-semibold text-lg text-gray-500 mt-5 mb-5">Moveouts:</div>
+                         <div class="bg-purple-100 h-16 overflow-hidden shadow rounded-lg mb-2">
+                         <div class="py-3 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
+                         </div>
+                       </div>
+                       <div class="sm:col-span-3">
+                       <div class="text-center font-semibold text-lg text-gray-500 mt-5 mb-5">Move Ins:</div>
+                         <div class="bg-purple-100 h-16 overflow-hidden shadow rounded-lg mb-2">
+                         <div class="py-3 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
+                         </div>
+                       </div>
 
                         <div class="sm:col-span-6">
-                            <div class="bg-gray-50 h-36 overflow-hidden shadow rounded-lg mb-2">
+                            <div class="bg-gray-50 h-36 mt-5 overflow-hidden shadow rounded-lg">
                                 <div class="p-5">
                                      <div class="flex items-center">
                                         <div class="flex-shrink-0">
@@ -354,167 +536,35 @@
                                 </div>
                             </div>
                         </div>
-                  
-
-                        <!-- number by categories scroll -->
-                        <div class="sm:col-span-6 ml-2 font-bold text-lg mt-10 mb-2">Number by categories:</div>
 
                         
-                          <div class="sm:col-span-3">
-                          
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Units:</div>
-                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newunits_list class="text-gray-700 text-3xl ">50</a> </div>
-                            </div>
-                          </div>
-
-                          <div class="sm:col-span-3">
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Tenants:</div>
-                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newtenants class="text-gray-700 text-3xl ">50</a> </div>
-                          </div>
-                        </div>
-
-                        <div class="sm:col-span-3">
-               
-               <div class="text-center font-semibold text-lg mb-2 text-gray-500">Moveouts:</div>
-                         <div class="bg-purple-100 h-10 overflow-hidden shadow rounded-lg mb-2">
-                         <div class="py-1 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
-                         </div>
-                       </div>
-                       <div class="sm:col-span-3">
-                       <div class="text-center font-semibold text-lg mb-2 text-gray-500">Move Ins:</div>
-                         <div class="bg-purple-100 h-10 overflow-hidden shadow rounded-lg mb-2">
-                         <div class="py-1 text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
-                         </div>
-                       </div>
-
-                       <div class="sm:col-span-3">
-                            <div class="ml-2 mt-2 text-sm text-center font-semibold font-body text-gray-500 truncate">Occupied: <a href= # class="text-indigo-600 text-lg">50</a> </div>
-                            <img src="{{ asset('/brands/key.png') }}" alt="building" class="ml-10 h-20 w-20 object-center object-cover ">
-                          
-                        </div>
-
-                        <div class="sm:col-span-3">
-                        <div class="mt-2 text-sm text-center font-semibold font-body text-gray-500 truncate">Vacant: <a href= # class="text-indigo-600 text-lg">30</a> </div>
-                            <img src="{{ asset('/brands/vacant.png') }}" alt="building" class="ml-10 h-20 w-20 object-center object-cover ">
-                            
-                        
-                      </div>
-                        
-                        <div class="sm:col-span-3">
-                          
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Past Due Accounts:</div>
-                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newbills class="text-gray-700 text-3xl ">50</a> </div>
-                            </div>
-                          </div>
-
-                          <div class="sm:col-span-3">
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Expired Contracts:</div>
-                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-3xl ">50</a> </div>
-                          </div>
-
-                        
-
-
-                        </div>
-
-                        
-                        
-
-                        </div>
-                      
-
-
-                        
-                  
-
-                        
-
-             <!-- SECOND COLUMN -->
-
-            <!-- Concerns Requests -->
-            <div class="bg-white overflow-hidden">
-              <div class="p-5">
-                <div class="flex items-center">
-                 
-                  <div class="w-0 flex-1">
-
-
-
-
-
-                  </div>
-                </div>
               </div>
 
-              <div class="font-bold text-lg mb-1">Concerns Requests:</div>
-              <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-5">
-                <div class="text-semibold">
-                <a href="" class="text-sm text-gray-900 font-bold mt-2">Unit #1 has pending concern.</a>
-                <div class="flex justify-end gap-2">
-                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="newconcern_detail">View</a></button></div>
-                <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Close</button></div>
-                </div>
-                </div>
-
-
-              </div>
-
-              
-
-              
-
-              
-              <!-- moveout, moveins -->
-
-                
-                <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
-
-                <div class="sm:col-span-3">
-                          
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Received:</div>
-                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
-                            </div>
-                          </div>
-
-                          <div class="sm:col-span-3">
-                            <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
-                              <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Concerns Closed:</div>
-                              <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=newconcern_list class="text-gray-700 text-3xl ">50</a> </div>
-                          </div>
-                        </div>
-                        
-               
-                </div>
-
+                        <div class="grid  gap-x-4 sm:grid-cols-6">
                 <div class="sm:col-span-6 mt-2">
-                        <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5 mt-10">
-                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Bills for Collection:</div>
+                        <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5 mt-12">
+                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Bills for Collection of the Month:</div>
                             <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
                         <div class="sm:col-span-6">
                           <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
-                            <div class="mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount:</div>
+                            <div class="mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Collected Amount of the Month:</div>
                             <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
                         <div class="sm:col-span-6">
-                          <div class="bg-gray-white h-16 overflow-hidden shadow rounded-lg mb-5">
-                            <div class="mt-2 ml-2 text-left font-semibold text-sm text-gray-500">Total Unpaid of the Month:</div>
+                          <div class="bg-gray-white h-24 overflow-hidden shadow rounded-lg mb-5">
+                            <div class="mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid of the Month:</div>
                             <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
 
                         <div class="sm:col-span-6">
                           <div class="bg-white h-24 overflow-hidden shadow rounded-lg mb-5">
-                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid Collection:</div>
+                            <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid Collection of all time:</div>
                             <div class="text-center font-semibold font-body text-gray-500 truncate"><a href= # class="text-gray-700 text-lg ">1,000,000.00</a> </div>
                           </div>
                         </div>
@@ -522,39 +572,39 @@
                
 
                         
-
-                        
-
-                       
-
-                <div class="mt-10 grid grid-cols-1 gap-x-4 sm:grid-cols-6">
-
-               
               </div>
+                        
+
+              </div>
+
                 
-            </div>    
-            
+
+               
+          
+
             
             
 
-            <!-- Notifications -->
-            <div class>
+       
 
             <!--button -->
             <div class="bg-white">
               <div class="p-5">
                 <div class="flex items-center">
                   <div class="ml-0 w-0 flex-1">
+                  <div class="mt-5 grid  gap-x-4 sm:grid-cols-6">
+                  <div class="sm:col-span-6">
                     <dl>
-                      <dt class="text-lg font-semibold text-gray-900 truncate mb-5">Friday, August 19, 2022</dt>
+                      <dt class="text-lg font-semibold text-gray-900 mb-5">Friday, August 19, 2022</dt>
                       <dd>
                       <div class="text-sm font-medium text-gray-500">Daily Collected Amount:</div>
                         <div class="text-lg font-medium text-gray-900">$30,659.45</div>
-                        <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">Today</h2>
+                        <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-5 mb-2">Today</h2>
                       </dd>
                     </dl>
                   </div>
                 </div>
+              </div>
               </div>
               
               <div class="bg-gray-50 px-5 py-3">
@@ -622,7 +672,7 @@
 
 <div button type="button" class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View More</button></div>
 
-<div class="sm:col-span-3 mt-5">
+<div class="sm:col-span-3 mt-10">
                         <div class="overflow-hidden">
                         <div class="py-3 px-5 ">Collection Rate</div>
                         <canvas class="p-8" id="chartDoughnut"></canvas>
@@ -666,11 +716,11 @@
 
 
 
-</div
 
 
 
-              </section>
+
+
 
 
 
@@ -679,30 +729,26 @@
 
                         
               
-
+                      </div>
   
 
 
 
 
-              <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+              <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-3">
 
                   <div class="sm:col-span-6 mb-3 mt-10">              
                     <div class="px-4">
                       <div class="sm:flex sm:items-center">
-                        <div class="sm:flex-auto">
-                        <h1 class="text-xl font-semibold text-gray-900">Expiring Contracts</h1>
-                        </div>
-
-
-                        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                         
-                        </div>
+
+
+                        
                         <!-- 30 days -->
-                    </div>
+                
 
 
-                        <div class="mt-8 flex flex-col">
+                        <div class="mt-2 flex flex-col">
                           <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                               <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -840,14 +886,20 @@
                               <div class="flex justify-end gap-2">
                 <div button type="button" class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="contracts">See more</a></button></div>
                 
+                
                 </div>
 
+                
+
                             </div>
+                      </div>
+                      
+                            
                           </div>
                         </div>
                       </div>
 
-
+                      </div>
                       
 
   </div>
