@@ -329,6 +329,26 @@
               <option>Payment</option>
               <option>Purchase</option>
               <option>Fund Transfer</option>
+              <option>Refund</option>
+              
+
+              
+              
+            </select>
+          
+        </div>
+
+        <div class="sm:col-span-3">
+          <label for="concern" class="block text-sm font-medium text-gray-700">Particular:</label>
+          
+            <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+
+              <option>Rent</option>
+              <option>Electricity</option>
+              <option>Water</option>
+              <option>Remittance</option>
+              <option>Salary</option>
+              <option>Wages</option>
               
 
               
@@ -344,14 +364,17 @@
               <div class="mt-1">
                 <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
               </div>
-              
+              <a href="newunits_detail" class="text-sm text-purple-700">Add Requester</a>
             </div>
+
 
             <div class="sm:col-span-3">
               <label for="concern" class="block text-sm font-medium text-gray-700">Pay to: (Biller's Name)</label>
               <div class="mt-1">
                 <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
               </div>
+
+              <a href="newunits_detail" class="text-sm text-purple-700">Add Biller</a>
               
             </div>
 
@@ -408,7 +431,7 @@
 
   <div class="flex justify-end">
     <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-    <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit Request</button>
+    <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
   </div>
 </form>
 
