@@ -37,7 +37,7 @@
 
                                         <li>
                                             <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create"
-                                                                                    class=" block py-2 px-4 text-sm
+                                                class=" block py-2 px-4 text-sm
                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                 dark:text-gray-200 dark:hover:text-white">
                                                 New tenant
@@ -45,14 +45,16 @@
                                         </li>
                                         <li>
                                             <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create"
-                                                                                    class=" block py-2 px-4 text-sm
+                                                class=" block py-2 px-4 text-sm
                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                 dark:text-gray-200 dark:hover:text-white">
                                                 New owner
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#/" class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="add-building-modal">
+                                            <a href="#/"
+                                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                                data-modal-toggle="add-building-modal">
                                                 New building
                                             </a>
                                         </li>
@@ -80,16 +82,16 @@
                                     class="lg:col-span-2 md:row-span-2 rounded-md">
 
                                 <div class="flex items-center justify-center ml-5">
-                                    {{-- <a href="#"
+                                    <a href="#"
                                         class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload
-                                        Picture </a> --}}
+                                        Picture </a>
                                 </div>
 
 
                             </div>
                         </div>
 
-                        <div class="mt-8 lg:col-span-9">
+                        <div class="mt-8 lg:col-span-8">
                             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center grid grid-cols-5 gap-2 sm:grid-cols-5"
                                     id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
@@ -132,20 +134,179 @@
                                     @livewire('unit-edit-component', ['unit_details' => $unit_details])
                                 </div>
 
-                                <div class="hidden rounded-lg dark:bg-gray-800" id="owners"
-                                    role="tabpanel" aria-labelledby="owners-tab">
-                                    @include('tables.deed_of_sales')
+                                <div class="hidden rounded-lg dark:bg-gray-800" id="owners" role="tabpanel"
+                                    aria-labelledby="owners-tab">
+                                    {{-- @include('tables.deed_of_sales') --}}
+                                    <table class="min-w-full divide-y divide-gray-300 text-sm text-left">
+                                        <tr>
+                                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                #</th>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                OWNER</th>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                TURNOVER DATE</th>
+                                            <th scope="col"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                PRICE</th>
+                                            <th scope="col"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                CLASSIFICATION</th>
+                                            <th scope="col"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                STATUS</th>
+
+                                        </tr>
+                                        </thead>
+
+                                        @foreach ($deed_of_sales as $index => $item)
+                                        <tbody class="divide-y divide-gray-200 bg-white">
+
+                                            <tr>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {{ $index +1 }}
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                   <a class="text-blue-500 text-decoration-line: underline"
+                                                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}">{{
+                                                    $item->owner->owner }}</a>
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {{ number_format($item->price, 2) }}
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {{ $item->classification }}
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    @if($item->status === 'active')
+                                                    <span
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{
+                                                        $item->status }}
+                                                        @else
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                            <i class="fa-solid fa-clock"></i> {{
+                                                            $item->status }}
+                                                        </span>
+                                                        @endif
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                        @endforeach
+
+                                    </table>
                                 </div>
-                                <div class="hidden rounded-lg dark:bg-gray-800" id="tenants"
-                                    role="tabpanel" aria-labelledby="tenants-tab">
-                                    @include('tables.contracts')
+                                <div class="hidden rounded-lg dark:bg-gray-800" id="tenants" role="tabpanel"
+                                    aria-labelledby="tenants-tab">
+                                    {{-- @include('tables.contracts') --}}
+                                    <table class="min-w-full divide-y divide-gray-300 text-sm text-left">
+                                        <tr>
+                                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                #</th>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                TENANT</th>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                CONTRACT</th>
+                                            <th scope="col"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                RENT/MO</th>
+                                            <th scope="col"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                STATUS</th>
+                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                <span class="sr-only">Renew</span>
+                                                <span class="sr-only">Moveout</span>
+                                            </th>
+
+                                        </tr>
+                                        </thead>
+
+                                        @foreach ($contracts as $index => $item)
+                                        <tbody class="divide-y divide-gray-200 bg-white">
+
+                                            <tr>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                   {{$index + 1}}
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    <a class="text-blue-500 text-decoration-line: underline"
+                                                        href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant->uuid }}">{{
+                                                        $item->tenant->tenant }}</a>
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    <div class="text-sm text-gray-900">{{
+                                                        Carbon\Carbon::parse($item->start)->format('M d, Y').' -
+                                                        '.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
+                                                    </div>
+
+                                                    <div class="text-sm text-gray-500">{{
+                                                        Carbon\Carbon::parse($item->end)->diffInMonths($item->start)
+                                                        }} months
+                                                    </div>
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {{number_format($item->rent, 2)}}
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    @if($item->status === 'active')
+                                                    <span
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                        <i class="fa-solid fa-circle-check"></i> {{ $item->status }}
+                                                    </span>
+                                                    @else
+
+                                                    <span
+                                                        class="px-2 text-sm leading-5 font-semibold rounded-full
+                                                                                                                    bg-orange-100 text-orange-800">
+                                                        <i class="fa-solid fa-clock"></i> {{
+                                                        $item->status }}
+                                                    </span>
+                                                    @endif
+                                                    @if($item->end <= Carbon\Carbon::now()->addMonth() && $item->status
+                                                        == 'active')
+                                                        <span
+                                                            class="px-2 text-sm leading-5 font-semibold rounded-full
+                                                                                                                                                                            bg-orange-100 text-orange-800">
+                                                            <i class="fa-solid fa-clock"></i> expiring
+                                                        </span>
+                                                        @endif
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
+                                                        class="text-indigo-600 hover:text-indigo-900">Renew</a>
+                                                </td>
+
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    @if($item->status == 'active')
+                                                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
+                                                        class="text-indigo-600 hover:text-indigo-900">Moveout</a>
+                                                    @endif
+                                                </td>
+
+
+
+                                            </tr>
+
+                                        </tbody>
+                                        @endforeach
+
+                                    </table>
                                 </div>
-                                <div class="hidden rounded-lg dark:bg-gray-800" id="rooms"
-                                    role="tabpanel" aria-labelledby="rooms-tab">
+                                <div class="hidden rounded-lg dark:bg-gray-800" id="rooms" role="tabpanel"
+                                    aria-labelledby="rooms-tab">
                                     rooms
                                 </div>
-                                <div class="hidden rounded-lg dark:bg-gray-800" id="furnitures"
-                                    role="tabpanel" aria-labelledby="furnitures-tab">
+                                <div class="hidden rounded-lg dark:bg-gray-800" id="furnitures" role="tabpanel"
+                                    aria-labelledby="furnitures-tab">
                                     furnitures
                                 </div>
                             </div>

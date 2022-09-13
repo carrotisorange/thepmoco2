@@ -521,6 +521,8 @@ class PropertyController extends Controller
             'payments' => Property::findOrFail($property->uuid)->collections()->orderBy('created_at', 'desc')->limit(3)->get(),
             'bills' => Property::findOrFail($property->uuid)->bills()->orderBy('created_at', 'desc')->limit(3)->get(),
             'current_month_total_collected_payment' => $this->current_month_total_collected_payment($property->uuid),
+            'total_collected_bill' => Property::find($property->uuid)->bills()->whereIn('status', ['paid', 'partially_paid'])->sum('initial_payment'),
+            'total_uncollected_bill' => Property::find($property->uuid)->bills()->where('status', 'unpaid')->sum('bill') - Property::find($property->uuid)->bills()->where('status','partially_paid')->sum('initial_payment'),
             'current_month_total_unpaid_collection' =>$this->current_month_property_unpaid_bills($property->uuid) - $this->current_month_total_collected_payment($property->uuid),
 
         ]); 

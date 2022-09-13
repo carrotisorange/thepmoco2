@@ -475,6 +475,7 @@
                 All</button> --}}
         </div>
     </div>
+    @include('modals.popup-error-modal')
 </div>
 
 {{-- <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">

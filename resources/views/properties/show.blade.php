@@ -588,13 +588,13 @@
                     <!-- Chart doughnut -->
                     <script>
                         const dataDoughnut = {
-                                              labels: ["Billed","Collected", "Uncollected", ],
+                                              labels: ["Collected Bills", "Uncollected Bills", ],
                                               datasets: [
                                                 {
                                                   label: "My First Dataset",
-                                                  data: [{{ $current_month_property_billed }}, {{ $current_month_total_collected_payment }}, 20],
+                                                  data: [{{ $total_collected_bill }}, {{ $total_uncollected_bill }}],
                                                   backgroundColor: [
-                                                    "rgb(133, 105, 241)",
+                                                 
                                                     "rgb(164, 101, 241)",
                                                     "rgb(101, 143, 241)",
                                                   ],
