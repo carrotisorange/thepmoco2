@@ -13,7 +13,7 @@ class CreateFurnitureTable extends Migration
      */
     public function up()
     {
-        Schema::create('furniture', function (Blueprint $table) {
+        Schema::create('furnitures', function (Blueprint $table) {
             $table->id();
             $table->foreignUuid('unit_uuid')->constrained();
             $table->string('furniture');

@@ -13,7 +13,7 @@ class SubscriptionController extends Controller
      public function index(User $user)
      {
         return view('subscriptions.index',[
-            'subscriptions'=> Subscription::where('user_id', $user->id)->get()
+            'subscriptions'=> Subscription::where('user_id', auth()->user()->id)->get()
         ]);
      }
 

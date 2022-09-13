@@ -1,29 +1,25 @@
-<x-index-layout>
-    @section('title', ' | '.$tenant_details->tenant)
-    <x-slot name="labels">
-        {{ $tenant_details->tenant}}
-    </x-slot>
+<x-new-layout>
+    @section('title', $tenant_details->tenant. ' | '. Session::get('property_name'))
+    <div class="mt-5">
+        <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
+            <div class="h-full w-full bg-no-repeat bg-cover" style="background-image: url('/brands/tenant_bg.png');">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
-    <x-slot name="options">
-        @if(!App\Models\User::where('tenant_uuid',$tenant_details->uuid)->count())
-        <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/user'">
-            Generate Credentials
-        </x-button>
-        @else
-        {{-- <x-button onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/user'">
-            Show Credentials
-        </x-button> --}}
-        @endif
-    
-        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant'">Go back
-            to tenants
-        </x-button>
-    </x-slot>
+                    <div class="pt-6 sm:pb-5">
 
-
-    @livewire('tenant-edit-component', ['tenant_details' => $tenant_details])
-
-    @include('modals.create-guardian-modal')
-    @include('modals.create-reference-modal')
-
-</x-index-layout>
+                        <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <ol role="list" class="flex items-center space-x-4">
+                                <li>
+                                    <div class="flex items-center">
+                                        <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
+                                    </div>
+                                </li>
+                            </ol>
+                        </nav>
+                        @livewire('tenant-edit-component', ['tenant_details' => $tenant_details])
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</x-new-layout>

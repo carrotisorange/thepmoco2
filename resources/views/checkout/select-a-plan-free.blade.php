@@ -185,7 +185,7 @@
                                             <div class="rounded-lg shadow-md">
                                                 <a href="/plan/1/checkout/1/get"
                                                     class="block w-full text-center rounded-lg border border-transparent bg-white px-6 py-3 text-base font-medium text-purple-600 hover:bg-gray-50"
-                                                    aria-describedby="tier-hobby"> Start your trial </a>
+                                                    aria-describedby="tier-hobby"> Buy Now </a>
                                             </div>
                                         </div>
                                     </div>
@@ -351,7 +351,7 @@
                                         <div class="rounded-lg shadow-md">
                                             <a href="/plan/2/checkout/1/get"
                                                 class="block w-full text-center rounded-lg border border-transparent bg-purple-600 px-6 py-4 text-xl leading-6 font-medium text-white hover:bg-purple-700"
-                                                aria-describedby="tier-growth"> Start your trial </a>
+                                                aria-describedby="tier-growth"> Buy Now </a>
                                         </div>
                                     </div>
                                 </div>
@@ -524,7 +524,7 @@
                                             <div class="rounded-lg shadow-md">
                                                 <a href="/plan/3/checkout/1/get"
                                                     class="block w-full text-center rounded-lg border border-transparent bg-white px-6 py-3 text-base font-medium text-purple-600 hover:bg-gray-50"
-                                                    aria-describedby="tier-scale"> Start your trial </a>
+                                                    aria-describedby="tier-scale"> Buy Now </a>
                                             </div>
                                         </div>
                                     </div>

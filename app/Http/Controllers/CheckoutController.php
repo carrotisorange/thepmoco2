@@ -14,6 +14,8 @@ use Illuminate\Auth\Events\Registered;
 use Carbon\Carbon;
 use App\Models\Subscription;
 use DB;
+use Str;
+use App\Models\Plan;
 use Session;
 
 class CheckoutController extends Controller
@@ -37,34 +39,36 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function show_payment_success_page($temporary_username, $amount)
+    public function show_payment_success_page($amount)
     {
        try{
 
             DB::beginTransaction();
 
-            $user = User::where('username', $temporary_username)->get();
+           $user = User::where('username', auth()->user()->username)->pluck('id');
 
-            $user_id = str_replace( array('[',']') , '' , $user->pluck('id'));
+            // $user_id = str_replace( array('[',']') , '' , $user->pluck('id'));
 
-            $user_info = User::find($user_id);
+            $user_info = User::find($user[0]);
 
-            $this->app('App\Http\Controllers\SubscriptionController')->store_subscription($user_info->id, $user_info->plan_id, $user_info->external_id, $amount);
+            $external_id = Plan::find($user->plan_id)->plan.'_'.Str::random(8);
+
+            // $this->app('App\Http\Controllers\SubscriptionController')->store_subscription($user_info->id, $user->plan_id, $external_id, 0);
 
             DB::commit();
 
-            if($user_info->checkoutoption_id == '1')
-            {
+            ddd('123');
+
+            // if($user_info->checkoutoption_id == '1')
+            // {
                 return redirect('/thankyou/');
-            }else{
-                return redirect('/thankyoutrial/');
-            }
+            // }else{
+            //     return redirect('/thankyoutrial/');
+            // }
         
        }catch(\Exception $e)
        {
             DB::rollback();
-
-            ddd($e);
 
             return back()->with('Cannot perform your action');
        }    
@@ -86,9 +90,9 @@ class CheckoutController extends Controller
         ]);
     }
 
-public function charge_user_account($temporary_username, $external_id, $description, $email, $mobile_number, $name, $amount, $interval)
+public function charge_user_account($plan_id, $external_id, $description, $email, $mobile_number, $name, $amount, $interval)
 {
-    Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
+    Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
     
         $params = [
             'external_id' => $external_id,
@@ -103,22 +107,29 @@ public function charge_user_account($temporary_username, $external_id, $descript
             'currency'=>'PHP',
             // 'success_redirect_url' => '/127.0.0.1:8000/success/'.$temporary_username,
             // 'failure_redirect_url' => '/127.0.0.1:8000/select-a-plan',
-            'success_redirect_url' => 'https://thepmo.co/success/'.$temporary_username.'/'.$amount,
-            'failure_redirect_url' => 'https://thepmo.co/select-a-plan',
+            //'success_redirect_url' => '/127.0.0.1:8000/success/'.auth()->user()->username.'/'.$amount,
+            'success_redirect_url' => 'https://thepmo.co/user/'.auth()->user()->username.'/subscriptions',
+            'failure_redirect_url' => 'https://thepmo.co/select-a-plan-free',
             'customer'=> [
                     'given_name'=> $name,
                     'mobile_number' => $mobile_number,
                     'email' => $email
             ],
-            // 'customer_notification_preference'=>[
-            //     'invoice_created' => [
-            //         'email',
-            //         'sms'
-            //     ]
-            // ]
+            'customer_notification_preference'=>[
+                'invoice_created' => [
+                    'email',
+                    'sms'
+                ]
+            ]
         ];
 
         $createRecurring = \Xendit\Recurring::create($params);
+
+        $external_id = Plan::find($plan_id)->plan.'_'.Str::random(8);
+
+        app('App\Http\Controllers\SubscriptionController')->store_subscription(
+            auth()->user()->id, $plan_id, $external_id, $amount*$interval
+        );
 
         return $createRecurring['last_created_invoice_url'];
     }

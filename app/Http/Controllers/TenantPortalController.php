@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Concern;
 use App\Models\Unit;
+use Str;
 
 class TenantPortalController extends Controller
 {
@@ -121,6 +122,7 @@ class TenantPortalController extends Controller
         ]);
 
         $attributes['tenant_uuid'] = $user->tenant_uuid;
+        $attributes['reference_no'] = auth()->user()->id.'_'.Str::random(8);
         $attributes['property_uuid'] = Unit::findOrFail($request->unit_uuid)->property_uuid;
         $attributes['status'] = 'pending';
 

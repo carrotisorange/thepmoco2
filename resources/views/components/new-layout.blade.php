@@ -70,7 +70,7 @@
                                 Management Portal</h1>
 
                         </div>
-                        {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        {{-- {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link href="/users" :active="request()->routeIs('user')">
                                 <i class="fa-solid fa-user"></i>&nbspUser
                             </x-nav-link>

@@ -1,6 +1,6 @@
 <x-new-layout>
     @section('title', $unit_details->unit. ' | '. Session::get('property_name'))
-    <div class="mt-5">
+    <div class="mt-8">
         <div class="max-w-full mx-auto sm:px-6">
             <div class="pt-6 sm:pb-5">
                 <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -139,7 +139,8 @@
                                     {{-- @include('tables.deed_of_sales') --}}
                                     <table class="min-w-full divide-y divide-gray-300 text-sm text-left">
                                         <tr>
-                                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                                 #</th>
                                             <th scope="col"
                                                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
@@ -168,9 +169,9 @@
                                                     {{ $index +1 }}
                                                 </td>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                   <a class="text-blue-500 text-decoration-line: underline"
-                                                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}">{{
-                                                    $item->owner->owner }}</a>
+                                                    <a class="text-blue-500 text-decoration-line: underline"
+                                                        href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}">{{
+                                                        $item->owner->owner }}</a>
                                                 </td>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
@@ -208,7 +209,8 @@
                                     {{-- @include('tables.contracts') --}}
                                     <table class="min-w-full divide-y divide-gray-300 text-sm text-left">
                                         <tr>
-                                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                                 #</th>
                                             <th scope="col"
                                                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
@@ -235,7 +237,7 @@
 
                                             <tr>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                   {{$index + 1}}
+                                                    {{$index + 1}}
                                                 </td>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     <a class="text-blue-500 text-decoration-line: underline"
@@ -314,5 +316,7 @@
                     </div>
                 </div>
             </div>
-            @include('modals.create-building-modal')
+        </div>
+    </div>
+    @include('modals.create-building-modal')
 </x-new-layout>

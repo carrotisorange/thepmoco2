@@ -106,7 +106,9 @@
                         <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
                             <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">
                                 Concerns
-                                Received:</div>
+                                Received: 
+                                {{ $concerns->count() }}
+                            </div>
                         </div>
                     </div>
 
@@ -156,11 +158,14 @@
                     <div class="font-bold text-lg mb-5">Concerns Requests:</div>
                     <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-8 ">
                         <div class="text-semibold">
-
+                            @foreach($concerns->where('status', 'pending') as $concern)
+                                {{ $concern->tenant->tenant }} ({{ $concern->unit->unit }}) reported a {{ $concern->category->category }} concern...
+                                <br>
+                            @endforeach
                             <div class="flex justify-end">
-                                <div button type="button"
+                                <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/concern'"
                                     class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Review</button></div>
+                                    Review</button>
                             </div>
                         </div>
 

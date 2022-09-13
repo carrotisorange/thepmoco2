@@ -1,10 +1,10 @@
 <form class="mt-6" method="post" wire:submit.prevent="processPayment()">
     <div class="grid grid-cols-12 gap-y-6 gap-x-4">
         <div class="col-span-full">
-            <label for="name" class="block text-sm font-medium text-gray-700">Full Name
+            <label for="name" class="block text-sm font-medium text-gray-700">Full Name 
             </label>
             <div class="mt-1">
-                <input type="text" wire:model.lazy="name" autocomplete="name"
+                <input type="text" wire:model.lazy="name" autocomplete="name" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             @error('name')
@@ -16,7 +16,7 @@
             <label for="email" class="block text-sm font-medium text-gray-700">Email Address
             </label>
             <div class="mt-1">
-                <input type="email" wire:model.lazy="email" autocomplete="email"
+                <input type="email" wire:model.lazy="email" autocomplete="email" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             @error('email')
@@ -28,7 +28,7 @@
             <label for="mobile_number" class="block text-sm font-medium text-gray-700">Mobile Number
             </label>
             <div class="mt-1">
-                <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
+                <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             @error('mobile_number')

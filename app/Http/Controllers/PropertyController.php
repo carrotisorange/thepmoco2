@@ -475,7 +475,7 @@ class PropertyController extends Controller
 
         $owners = Owner::where('property_uuid', $property->uuid);
 
-        $concerns = Property::find($property->uuid)->concerns->where('status', 'pending')->count();
+        $concerns = Property::find($property->uuid)->concerns;
 
         $delinquents = $this->get_delinquents();
 

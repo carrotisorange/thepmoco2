@@ -16,13 +16,7 @@ class ConcernController extends Controller
      */
     public function index()
     {
-         $concerns = Concern::join('tenants', 'concerns.tenant_uuid', 'tenants.uuid')
-         ->select('*', 'concern.status as concern_status')
-         ->join('users', 'concerns.user_id', 'users.id')
-         ->join('categories', 'concerns.category_id', 'categories.id')
-         ->join('units', 'concerns.unit_uuid', 'units.uuid')
-         ->orderBy('concerns.created_at', 'desc')
-         ->paginate(10);
+        $concerns = Property::find(Session::get('property'))->concerns;
 
          return view('concerns.index',[
          'concerns'=> $concerns,

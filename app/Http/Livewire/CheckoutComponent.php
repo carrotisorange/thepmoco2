@@ -23,14 +23,17 @@ class CheckoutComponent extends Component
         $this->plan_id = $plan_id;
         $this->checkout_option = $checkout_option;
         $this->discount_code = $discount_code;
+        $this->name = auth()->user()->name;
+        $this->email = auth()->user()->email;
+        $this->mobile_number = auth()->user()->mobile_number;
     }
 
     protected function rules()
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'mobile_number' => ['required', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'mobile_number' => ['required'],
             'discount_code' => ['required'],
             'checkout_option' => ['required']
         ];
@@ -55,16 +58,12 @@ class CheckoutComponent extends Component
 
         $external_id = $this->generate_external_id($this->plan_id);
 
-        $temporary_username = app('App\Http\Controllers\UserController')->generate_temporary_username();
-        
-        app('App\Http\Controllers\UserController')->store($this->name, $temporary_username, $temporary_username, $external_id,$this->email, 5, $this->mobile_number, $this->discount_code, $this->checkout_option, $this->plan_id);
-
         try{
             DB::beginTransaction();
             if($this->checkout_option == '1')
             {
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
-                $temporary_username, 
+                $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
                 $this->email, 
@@ -76,7 +75,7 @@ class CheckoutComponent extends Component
                 
             }elseif($this->checkout_option == '2'){
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
-                $temporary_username,
+                $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
                 $this->email,
@@ -88,7 +87,7 @@ class CheckoutComponent extends Component
             }
             elseif($this->checkout_option == '3'){
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
-                $temporary_username,
+               $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
                 $this->email,
@@ -100,7 +99,7 @@ class CheckoutComponent extends Component
             }
             elseif($this->checkout_option == '4'){
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
-                $temporary_username,
+                $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
                 $this->email,
@@ -112,7 +111,7 @@ class CheckoutComponent extends Component
             }
              else{
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
-                $temporary_username,
+             $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
                 $this->email,
@@ -136,15 +135,6 @@ class CheckoutComponent extends Component
             return back()->with('error','Cannot complete your action.');
         }
     }
-
-    // public function send_mail_to_user()
-    // {
-    //     $details =[
-    //      'message' => CheckoutOption::find($this->checkout_option)->policy
-    //     ];
-
-    //     Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser($details));
-    // }
 
     public function render()
     {

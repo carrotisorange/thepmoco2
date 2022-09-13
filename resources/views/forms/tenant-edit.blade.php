@@ -1,4 +1,189 @@
-<form method="POST" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
+<div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
+        <div class="lg:col-start-5 lg:col-span-9">
+
+            <div class="flex justify-between">
+                <h1 class="text-3xl font-bold text-white">{{ $tenant_details->tenant }}</h1>
+                <a href="#" class="flex text-right text-sm font-medium text-white hover:text-purple-700">Edit</a>
+            </div>
+
+        </div>
+
+        <!-- Image gallery -->
+        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4  lg:row-span-3">
+            <h2 class="sr-only">Images</h2>
+
+            <div class="flex items-center justify-center mr-5">
+                <img src="{{ auth()->user()->avatarUrl() }}" alt="door"
+                    class="h-56 lg:col-span-2 md:row-span-2 rounded-md">
+            </div>
+            <a href="#"
+                class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change
+                username </a>
+            <a href="#"
+                class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change
+                password</a>
+
+
+
+        </div>
+
+        <div class="mt-2 lg:col-span-9">
+            <form>
+
+
+                <!-- Links -->
+
+
+                <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8 mt-9">
+
+                    <div class="sm:col-span-4">
+                        <div
+                            class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="name" class="block text-xs font-medium text-gray-900">Tenant
+                                #</label>
+                            <input type="text" wire:model.lazy="tenant" value="{{ $tenant_details->bill_reference_no }}"
+                                readonly
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <div
+                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Mobile #</label>
+                            <input type="text" wire:model.lazy="tenant" value="{{ $tenant_details->mobile_number }}"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <div
+                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">
+                                Address</label>
+                            <input type="text" wire:model.lazy="barangay" value="{{ $tenant_details->barangay }}"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <div
+                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">City</label>
+                            <select wire:model="status_id"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+                                @foreach($cities as $city)
+                                <option value="{{ $status->id }}" {{ old('status_id', $unit_details->
+                                    status_id) == $status->id ? 'selected' : 'selected' }}>
+                                    {{ $status->status }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <input type="text" wire:model.lazy="city_id" value="{{ $tenant_details->city->city }}"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <div
+                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Province</label>
+                            <input type="text" wire:model.lazy="province_id"
+                                value="{{ $tenant_details->province->province }}"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <div
+                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Country
+                            </label>
+                            <input type="text" wire:model.lazy="country_id"
+                                value="{{ $tenant_details->country->country }}"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-8">
+                        <div
+                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Email
+                            </label>
+                            <input type="text" wire:model.lazy="email" value="{{ $tenant_details->email }}"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <div
+                            class="h-32 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="job-title"
+                                class="block text-xs font-medium text-gray-900">School/Company</label>
+                            <input type="text" name="job-title" id="job-title"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Addresss</label>
+                            <input type="text" name="job-title" id="job-title"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Position</label>
+                            <input type="text" name="job-title" id="job-title"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <div
+                            class="h-32 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Character
+                                Reference</label>
+                            <input type="text" name="job-title" id="job-title"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Relationship</label>
+                            <input type="text" name="job-title" id="job-title"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+
+                            <label for="job-title" class="block text-xs font-medium text-gray-900">Contact</label>
+                            <input type="text" name="job-title" id="job-title"
+                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                placeholder="">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="mt-8 mb-10 flex justify-end">
+                    <button type="button"
+                        class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                </div>
+
+
+        </div>
+
+    </div>
+
+    </form>
+</div>
+
+{{-- <form method="POST" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
     <div class="mt-6 flex flex-wrap mt-5 mx-3 mb-2">
         <div class="w-full md:w-full px-3 mb-6 md:mb-0">
             <x-label for="tenant">
@@ -313,4 +498,4 @@
             <x-form-button wire:loading.remove wire:click="submitForm()">Update</x-form-button>
         </p>
     </div>
-</form>
+</form> --}}
