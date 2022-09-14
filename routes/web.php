@@ -299,6 +299,10 @@ Route::get('/renew-request', function(){
     return view('newlayout.renew-request');
 });
 
+Route::get('/moveout-request', function(){
+    return view('newlayout.moveout-request');
+});
+
 Route::get('/banner', function(){
     return view('newlayout.banner');
 });
