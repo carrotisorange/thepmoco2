@@ -40,6 +40,9 @@
                                         DATE UPLOADED</th>
                                     <th scope="col"
                                         class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                        DATE APPROVED</th>
+                                    <th scope="col"
+                                        class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                         AMOUNT</th>
                                     <th scope="col"
                                         class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
@@ -47,6 +50,9 @@
                                     <th scope="col"
                                         class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                         STATUS</th>
+                                    <th scope="col"
+                                        class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                        REMARKS</th>
 
 
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -65,7 +71,8 @@
                                         <!-- Selected row marker, only show when row is selected. -->
 
                                         {{-- <input type="checkbox"
-                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
+                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                                        --}}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $index+1 }}
@@ -75,9 +82,14 @@
                                     </td>
                                     <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
 
-
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        @if($item->updated_at)
+                                        {{ Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}
+                                        @else
+                                        NA
+                                        @endif
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ number_format($item->amount, 2) }}
@@ -89,11 +101,20 @@
                                         {{ $item->status }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        @if($item->reason_for_rejection)
+                                        {{ $item->reason_for_rejection }}
+                                        @else
+                                        NONE
+                                        @endif
+                                      
+                                    </td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         @if(!$item->proof_of_payment == null)
                                         <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments_request/{{ $item->id }}/download"
                                             class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
                                         @endif
                                     </td>
+
                                 </tr>
                                 @empty
                                 <tr>

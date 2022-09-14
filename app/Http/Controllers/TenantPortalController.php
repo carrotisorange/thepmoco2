@@ -188,7 +188,8 @@ class TenantPortalController extends Controller
       {
         PaymentRequest::where('batch_no', $batch_no)
         ->update([
-        'proof_of_payment' => $request->proof_of_payment->store('proof_of_payments')
+        'proof_of_payment' => $request->proof_of_payment->store('proof_of_payments'),
+        'updated_at' => null
       ]);
 
       }

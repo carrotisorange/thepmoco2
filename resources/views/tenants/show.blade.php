@@ -11,7 +11,7 @@
                             <ol role="list" class="flex items-center space-x-4">
                                 <li>
                                     <div class="flex items-center">
-                                        <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
+                                        <a href="{{ url()->previous() }}"><img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}"></a>
                                     </div>
                                 </li>
                             </ol>

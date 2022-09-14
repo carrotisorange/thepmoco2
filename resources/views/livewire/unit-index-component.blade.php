@@ -89,13 +89,31 @@
                     </div>
                     <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                         @foreach ($units as $unit)
-                        <a href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}">
+                        @if(Session::get('tenant_uuid'))
+                        <a href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">
                             <div class="hover:bg-purple-200">
                                 <img src="{{ asset('/brands/close_occupied.png') }}"
                                     class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
                                 <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
                             </div>
                         </a>
+                        @elseif(Session::get('owner_uuid'))
+                        <a href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/{{ Str::random(8) }}/create">
+                            <div class="hover:bg-purple-200">
+                                <img src="{{ asset('/brands/close_occupied.png') }}"
+                                    class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                            </div>
+                        </a>
+                        @else
+                         <a href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}">
+                            <div class="hover:bg-purple-200">
+                                <img src="{{ asset('/brands/close_occupied.png') }}"
+                                    class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                            </div>
+                        </a>
+                        @endif
                         @endforeach
 
                     </div>
@@ -160,8 +178,13 @@
                             </td>
                             <td
                                 class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
-                                <a href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}">{{ $unit->unit
-                                    }}</a>
+                                @if(Session::get('tenant_uuid'))
+                                    <a href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">{{ $unit->unit }}</a>
+                                @elseif(Session::get('owner_uuid'))
+                                    <a href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/{{ Str::random(8) }}/create">{{ $unit->unit }}</a>
+                                @else
+                                    <a href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}">{{ $unit->unit }}</a>
+                                @endif
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                 {{$unit->building->building }}</td>
