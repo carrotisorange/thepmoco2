@@ -8,12 +8,19 @@ use App\Models\Tenant;
 use Str;
 use App\Models\PaymentRequest;
 use App\Models\Bill;
+use DB;
 
 class TenantPortalBillComponent extends Component
 {
     public $tenant;
 
+    public $search;
 
+    public $status;
+
+    public $start_date;
+
+    public $end_date;
 
     public $selectedBills = [];
 
@@ -22,17 +29,20 @@ class TenantPortalBillComponent extends Component
         $amount_to_be_paid = ($this->get_unpaid_bills($this->selectedBills) +
         $this->partially_paid_bills($this->selectedBills)) - $this->paid_bills($this->selectedBills);
 
+        $batch_no = auth()->user()->id.'_'.Str::random(8);
 
-        PaymentRequest::create([
+        $request_id = PaymentRequest::create([
             'tenant_uuid' => $this->tenant->uuid,
             'bill_nos' =>Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
             'amount' => $amount_to_be_paid,
-            'batch_no' => auth()->user()->id.'_'.Str::random(8),
+            'batch_no' => $batch_no,
             'status' => 'pending',
         ]);
 
-        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments/pending')->with('success', 'Payment is successfully sent.');
+        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments_request/'.$batch_no)->with('success', 'Payment request has been processed.');
     }
+
+
 
     public function get_unpaid_bills($selectedBills)
     {
@@ -67,6 +77,23 @@ class TenantPortalBillComponent extends Component
 
     public function render()
     {
+        $statuses = Bill::where('tenant_uuid', $this->tenant->uuid)
+        ->groupBy('status')
+        ->get();
+        
+        $start_dates = Bill::where('tenant_uuid', $this->tenant->uuid)
+        ->select('*',DB::raw("(DATE_FORMAT(start,'%M %d, %Y')) as period_covered_start"), DB::raw('count(*) as count'))
+        ->groupBy('period_covered_start')
+        ->orderBy('start')
+        ->get();
+
+        $end_dates = Bill::where('tenant_uuid', $this->tenant->uuid)
+        ->select('*',DB::raw("(DATE_FORMAT(end,'%M %d, %Y')) as period_covered_end"), DB::raw('count(*) as count'))
+        ->groupBy('period_covered_end')
+        ->orderBy('end')
+        ->get();
+        
+        //$particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
 
         $unpaid_bills = $this->get_unpaid_bills($this->selectedBills);
 
@@ -74,12 +101,28 @@ class TenantPortalBillComponent extends Component
 
         $paid_bills = $this->paid_bills($this->selectedBills);
 
-       $bills = app('App\Http\Controllers\TenantPortalController')->get_bills($this->tenant->uuid);
+        $bills = app('App\Http\Controllers\TenantPortalController')->get_bills($this->tenant->uuid);
 
         return view('livewire.tenant-portal-bill-component',[
-            'bills' => $bills,
+           'bills' => Bill::orderBy('bill_no', 'desc')
+           ->where('tenant_uuid', $this->tenant->uuid)
+           ->where('is_posted', true)
+           ->when($this->status, function($query){
+           $query->whereIn('status', [$this->status]);
+            })
+            ->when($this->start_date, function($query){
+                $query->whereBetween('start', [$this->start_date, $this->end_date]);
+            })
+            ->when($this->end_date, function($query){
+                $query->whereBetween('end', [$this->start_date, $this->end_date]);
+            })
+            ->get(),
             'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
             'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+            'statuses' => $statuses,
+            'start_dates' => $start_dates,
+            'end_dates' => $end_dates,
+            //'particulars' => $particulars
         ]);
     }
 }

@@ -44,8 +44,9 @@
                                     <th scope="col"
                                         class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                         BATCH #</th>
-                                        <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            STATUS</th>
+                                    <th scope="col"
+                                        class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                        STATUS</th>
 
 
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -63,8 +64,8 @@
                                     <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                                         <!-- Selected row marker, only show when row is selected. -->
 
-                                        <input type="checkbox"
-                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                                        {{-- <input type="checkbox"
+                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $index+1 }}
@@ -87,11 +88,17 @@
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $item->status }}
                                     </td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        @if(!$item->proof_of_payment == null)
+                                        <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments_request/{{ $item->id }}/download"
+                                            class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
+                                        @endif
+                                    </td>
                                 </tr>
                                 @empty
                                 <tr>
                                     <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">No
-                                        bills
+                                        data
                                         found.</td>
                                 </tr>
 

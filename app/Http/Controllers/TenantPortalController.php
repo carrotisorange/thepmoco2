@@ -108,7 +108,7 @@ class TenantPortalController extends Controller
     public function show_collections_pending($role_id, User $user, $status)
     {   
         return view('portal.tenants.payment-requests',[
-            'requests' => PaymentRequest::where('tenant_uuid', $user->tenant_uuid)->get()
+            'requests' => PaymentRequest::where('tenant_uuid', $user->tenant_uuid)->orderBy('created_at', 'desc')->get()
         ]);
     }
 
@@ -166,6 +166,44 @@ class TenantPortalController extends Controller
         return Storage::download(($attachment), 'AR_'.$concern->reference_no.'_'.$concern->tenant->tenant.'.png');
     }
 
+    public function payment_request_edit($role_id, User $user, $batch_no)
+    {
+
+        return view('portal.tenants.edit-payment-request',[
+            'payment_request' => PaymentRequest::where('batch_no', $batch_no)->get(),
+        ]);
+    }  
+    
+    public function payment_request_destroy($role_id, User $user, $batch_no)
+    {
+       PaymentRequest::where('batch_no', $batch_no)->delete();
+
+      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/bills/')->with('success', 'Payment request has been discarded.');
+    }  
+
+    public function payment_request_update(Request $request, $role_id, User $user, $batch_no)
+    {
+
+      if(!$request->proof_of_payment == null)
+      {
+        PaymentRequest::where('batch_no', $batch_no)
+        ->update([
+        'proof_of_payment' => $request->proof_of_payment->store('proof_of_payments')
+      ]);
+
+      }
+
+      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments/pending')->with('success', 'Proof of payment has been uploaded.');
+    }  
+
+    public function payment_request_download($role_id, User $user, PaymentRequest $paymentrequest)
+    {
+        $proof_of_payment = $paymentrequest->proof_of_payment;
+
+        return Storage::download(($proof_of_payment), 'AR_'.$user->username.'_'.$paymentrequest->batch_no.'.png');
+    }
+
+    
     public function edit_concern($role_id, User $user, Concern $concern)
     {
         return view('portal.tenants.edit-concern',[
