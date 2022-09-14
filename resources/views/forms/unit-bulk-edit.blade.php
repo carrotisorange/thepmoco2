@@ -4,9 +4,9 @@
             <tr>
                 <x-th>#</x-th>
                 <x-th>
-                    {{-- <div class="flex items-center">
+                    <div class="flex items-center">
                         <x-input wire:model="selectedAllUnits" type="checkbox" />
-                    </div> --}}
+                    </div>
                 </x-th>
                 <x-th>Unit</x-th>
                 <x-th>Building</x-th>

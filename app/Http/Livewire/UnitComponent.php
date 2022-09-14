@@ -67,8 +67,8 @@ class UnitComponent extends Component
     {
         sleep(2);
 
-        foreach($this->selectedUnits as $unit=>$val){
-            if(Contract::where('unit_uuid', $unit)->count() || Enrollee::where('unit_uuid', $unit)->count() || DeedOfSale::where('unit_uuid', $unit)->count())
+        foreach($this->selectedUnits as $unit => $val){
+            if(Contract::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count() || Enrollee::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count())
             {
                session()->flash('error', 'Unit cannot be removed.');
             }
@@ -79,7 +79,7 @@ class UnitComponent extends Component
                 
                 $this->units = $this->get_units();
 
-               session()->flash('success', count($this->selectedUnits).' Unit is successfully removed.');
+            //    session()->flash('success', count($this->selectedUnits).' Unit is successfully removed.');
             }
         }
          $this->selectedUnits = [];
