@@ -206,9 +206,18 @@ Route::get('/payments-page', function(){
     return view('newlayout.admin_collection.payments-page');
 });
 
-Route::get('/accountspayables', function(){
-    return view('newlayout.accountspayables');
+Route::get('/accountspayables1', function(){
+    return view('newlayout.accountspayables1');
 });
+
+Route::get('/accountspayables2', function(){
+    return view('newlayout.accountspayables2');
+});
+
+Route::get('/pending-account', function(){
+    return view('newlayout.pending-account');
+});
+
 
 Route::get('/accounts-payable-list', function(){
     return view('newlayout.accounts-payable-list');
@@ -282,7 +291,13 @@ Route::get('/dashboard_payment', function(){
     return view('newlayout.admin_dashboard.dashboard_payment');
 });
 
+Route::get('/contracts-page-list', function(){
+    return view('newlayout.contracts-page-list');
+});
 
+Route::get('/renew-request', function(){
+    return view('newlayout.renew-request');
+});
 
 Route::get('/banner', function(){
     return view('newlayout.banner');

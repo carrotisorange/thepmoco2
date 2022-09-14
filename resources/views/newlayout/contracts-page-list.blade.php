@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General Ledger</title>
+    <title>Contracts</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -304,7 +304,7 @@
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
     
-      <h1 class="mb-5 text-3xl font-bold text-gray-700">General Ledger</h1>
+      <h1 class="mb-5 text-3xl font-bold text-gray-700">Contracts</h1>
     
    
   </div>
@@ -322,7 +322,7 @@
         
         </div>
         <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-full flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="text-sm font-medium text-gray-900"> Filter by: Month</span>
+                <span class="text-sm font-medium text-gray-900"> Filter by: Latest</span>
                 <span class="ml-6 flex items-center">
                   <!--
                     Expand/collapse icon, toggle classes based on question open state.
@@ -479,15 +479,17 @@
 
 <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul class="flex flex-wrap -mb-px">
-        <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Daily</a>
+    <li class="mr-2">
+            <a href="#" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">All Contracts</a>
         </li>
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Monthly</a>
+            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Renewal Requests</a>
         </li>
+        
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Annual Summary</a>
+            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Moveout Requests</a>
         </li>
+        
         
     </ul>
 </div>
@@ -512,15 +514,14 @@
                 <th scope="col" class="relative w-12 px-5 sm:w-8 sm:px-8">
                   
                 </th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ITEM #</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">#</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT</th> 
                 <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT #</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">DESCRIPTION</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">PAYOR/PAYEE</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INCOME</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">EXPENSE</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">DURATION</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT/MONTH</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
+                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">INTERACTION</th>
+
                 
                 </th>
               </tr>
@@ -537,14 +538,14 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Renew</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Moveout</a></td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -557,14 +558,14 @@
                   </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Renew</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Moveout</a></td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -578,14 +579,14 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Renew</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Moveout</a></td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -599,14 +600,14 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Renew</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Moveout</a></td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -619,14 +620,14 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Renew</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Moveout</a></td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
@@ -639,14 +640,14 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tenant</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Renew</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="">Moveout</a></td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
