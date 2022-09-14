@@ -80,7 +80,7 @@
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         @if(!$item->image == null)
                                         <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $item->id }}/download"
-                                            class="text-indigo-600 hover:text-indigo-900">Attachment</a>
+                                            class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
                                         @endif
                                     </td>
                                 </tr>
