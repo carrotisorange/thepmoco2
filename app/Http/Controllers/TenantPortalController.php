@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Concern;
 use App\Models\Unit;
+use Illuminate\Support\Facades\Storage;
 use Str;
 use App\Models\PaymentRequest;
 
@@ -114,19 +115,27 @@ class TenantPortalController extends Controller
     public function show_concerns($role_id, User $user)
     {
         return view('portal.tenants.concerns',[
-            'concerns' => Tenant::find($user->tenant_uuid)->concerns,
+            'concerns' => Tenant::find($user->tenant_uuid)->concerns()->orderBy('created_at', 'desc')->get(),
+        ]);
+    }
+
+    public function create_concerns($role_id, User $user)
+    {
+        return view('portal.tenants.create-concern',[
             'categories' => ConcernCategory::all(),
             'units' => Tenant::findOrFail($user->tenant_uuid)->contracts
         ]);
     }
 
-    public function store_concern(Request $request, $role_id, User $user){
+    public function store_concern(Request $request, $role_id, User $user)
+    {
 
         $attributes = request()->validate([
             'initial_assessment' => 'required',
             'category_id' => ['required', Rule::exists('concern_categories', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'concern' => 'required',
+            'image' => ['nullable', 'image']
         ]);
 
         $attributes['tenant_uuid'] = $user->tenant_uuid;
@@ -136,7 +145,25 @@ class TenantPortalController extends Controller
 
         $concern = Concern::create($attributes);
 
+        $concern_id = $concern->id;
+
+         if(!$request->image == null)
+         {
+            Concern::where('id', $concern_id)
+            ->update([
+                'image' => $request->image->store('concerns')
+            ]);
+
+         }
+
         return redirect('/'.$role_id.'/tenant/'. auth()->user()->username .'/concerns/'.$concern->id)->with('success','Concern is reported successfully.');
+    }
+
+    public function download_concerns($role_id, User $user, Concern $concern)
+    {
+        $attachment = $concern->image;
+
+        return Storage::download(($attachment), 'AR_'.$concern->reference_no.'_'.$concern->tenant->tenant.'.png');
     }
 
     public function edit_concern($role_id, User $user, Concern $concern)
