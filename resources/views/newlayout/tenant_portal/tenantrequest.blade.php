@@ -271,11 +271,11 @@
 <div>
   <div class="flex justify-center mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
     
-    <div class="mt-5 md:mt-0 md:col-span-6">
+    <div class="mt-5 md:mt-0 sm:col-span-6">
       <form action="#" method="POST">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
           <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <div class="grid grid-cols-4 gap-6">
+            
 
               
               
