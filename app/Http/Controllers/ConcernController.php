@@ -6,6 +6,7 @@ use App\Models\Concern;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\Property;
+use App\Models\ConcernCategory;
 
 class ConcernController extends Controller
 {
@@ -49,6 +50,7 @@ class ConcernController extends Controller
     public function show($property_uuid, Concern $concern)
     {
         return view('concerns.show',[
+            'categories' => ConcernCategory::all(),
             'concern' => $concern
         ]);
     }

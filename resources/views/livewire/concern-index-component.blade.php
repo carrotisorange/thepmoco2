@@ -108,7 +108,7 @@
                                     --}}
                                 </td>
                                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700">
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
                                     <a href="/property/{{ $concern->property_uuid }}/concern/{{ $concern->id }}">{{ $concern->reference_no }}</a>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

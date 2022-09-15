@@ -116,7 +116,9 @@
                         <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
                             <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">
                                 Concerns
-                                Closed:</div>
+                                Closed:
+                                {{ $concerns->where('status', 'closed')->count() }}
+                            </div>
                         </div>
                     </div>
 
