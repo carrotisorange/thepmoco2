@@ -16,11 +16,7 @@ class ConcernController extends Controller
      */
     public function index()
     {
-        $concerns = Property::find(Session::get('property'))->concerns;
-
-         return view('concerns.index',[
-         'concerns'=> $concerns,
-         ]);
+        return view('concerns.index');
     }
 
     /**
@@ -50,9 +46,9 @@ class ConcernController extends Controller
      * @param  \App\Models\Concern  $concern
      * @return \Illuminate\Http\Response
      */
-    public function show(Concern $concern)
+    public function show($property_uuid, Concern $concern)
     {
-        //
+        
     }
 
     /**

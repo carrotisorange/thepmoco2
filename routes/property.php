@@ -224,6 +224,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Concern
     Route::prefix('concern')->group(function(){
         Route::get('/', [ConcernController::class, 'index'])->name('concern');
+        Route::get('/{concern}', [ConcernController::class, 'show'])->name('concern');
     });
 
     //Routes for Team

@@ -64,7 +64,7 @@
 
         <div class="sm:col-span-2">
             <select id="small" wire:model="status_id" 
-            class="text-center bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="">Filter unit status</option>
                 @foreach ($statuses as $item)
                 <option value="{{ $item->status_id }}">{{ $item->status }}</option>
@@ -213,7 +213,7 @@
                                 NA
                                 @endif
                             </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $unit->rent }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format($unit->rent, 2) }}</td>
 
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">
                                 {{$unit->occupancy }} pax

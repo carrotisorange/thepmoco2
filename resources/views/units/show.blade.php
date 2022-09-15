@@ -82,9 +82,9 @@
                                     class="lg:col-span-2 md:row-span-2 rounded-md">
 
                                 <div class="flex items-center justify-center ml-5">
-                                    <a href="#"
-                                        class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload
-                                        Picture </a>
+                                    <a href="#"  class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload
+                                    
+                                    </a>
                                 </div>
 
 

@@ -79,7 +79,7 @@ class UnitComponent extends Component
                 
                 $this->units = $this->get_units();
 
-            //    session()->flash('success', count($this->selectedUnits).' Unit is successfully removed.');
+                session()->flash('success', count($this->selectedUnits).' Unit is successfully removed.');
             }
         }
          $this->selectedUnits = [];

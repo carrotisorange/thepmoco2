@@ -29,5 +29,11 @@ class Concern extends Model
         return $this->belongsTo(ConcernCategory::class);
     }
 
+    public static function search($search)
+    {
+        return empty($search)? static::query()
+        : static::where('reference_no','like', '%'.$search.'%');
+    }
+
 
 }
