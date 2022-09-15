@@ -12,9 +12,13 @@ class PaymentRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($property_uuid)
     {
-        //
+        return PaymentRequest::where('property_uuid', $property_uuid)->get();
+        
+        return view('payment_requests.index',[
+            'requests' => PaymentRequest::where('property_uuid', $property_uuid)->get()
+        ]);
     }
 
     /**

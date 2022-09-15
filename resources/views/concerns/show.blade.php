@@ -96,7 +96,10 @@
                                             Uploaded:
                                         </label>
                                         <div class="mt-1">
-
+                                            @if(!$concern->image == null)
+                                            <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $concern->id }}/download"
+                                                class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
+                                            @endif
                                         </div>
 
                                     </div>

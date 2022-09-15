@@ -49,6 +49,8 @@ class Property extends Model
         return $this->hasMany(Unit::class);
     }
 
+
+
      public function points()
      {
      return $this->hasMany(Point::class);
@@ -63,6 +65,12 @@ class Property extends Model
     {
         return $this->hasMany(Bill::class);
     }
+
+    public function paymentrequests()
+    {
+        return $this->hasMany(PaymentRequest::class);
+    }
+
 
     public function collections()
     {

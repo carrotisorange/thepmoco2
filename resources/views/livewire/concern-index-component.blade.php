@@ -92,6 +92,10 @@
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     STATUS</th>
                                 </th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    
+                                </th>
+                             
                             </tr>
                         </thead>
     
@@ -129,6 +133,9 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     {{ $concern->status }}
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                   
                                 </td>
     
                                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">

@@ -219,7 +219,7 @@
                                                             <label for="file-upload"
                                                                 class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                                 <span>Upload a file</span>
-                                                                <input id="file-upload" name="proof_of_payment" type="file"
+                                                                <input id="file-upload" name="proof_of_payment" type="file" required
                                                                     class="sr-only">
                                                             </label>
                                                             <p class="pl-1">or drag and drop</p>

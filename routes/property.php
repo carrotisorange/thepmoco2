@@ -18,8 +18,6 @@ use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\TimestampController;
 use App\Http\Controllers\EnrolleeController;
 use App\Http\Controllers\OwnerDeedOfSalesController;
-use App\Http\Controllers\ParticularController;
-use App\Http\Controllers\UnitMasterlistController;
 use App\Http\Controllers\UnitDeedOfSalesController;
 use App\Http\Controllers\UnitBillController;
 use App\Http\Controllers\BuildingController;
@@ -35,6 +33,7 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\UnitEnrolleeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentRequestController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -219,6 +218,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Payment
     Route::prefix('payment')->group(function(){
         Route::get('/', [AcknowledgementReceiptController::class, 'index'])->name('payment');
+        Route::get('/requests', [PaymentRequestController::class, 'index'])->name('payment');
     });
 
     //Routes for Concern

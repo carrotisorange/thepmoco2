@@ -116,7 +116,7 @@
                                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                         @if($item->status == 'active')
                                         <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
-                                            class="text-indigo-600 hover:text-indigo-900">Moveout</a>
+                                            class="text-indigo-600 hover:text-indigo-900">Request for Moveout</a>
                                         @endif
                                     </td>
                                 </tr>

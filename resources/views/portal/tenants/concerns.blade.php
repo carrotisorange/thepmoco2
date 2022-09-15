@@ -38,6 +38,10 @@
                                     </th>
 
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        UNIT
+                                    </th>
+
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         CATEGORY 
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -64,6 +68,9 @@
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $item->initial_assessment }}
+                                    </td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        {{ $item->unit->unit }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $item->category->category }}
