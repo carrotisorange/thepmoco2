@@ -48,7 +48,9 @@ class ConcernController extends Controller
      */
     public function show($property_uuid, Concern $concern)
     {
-        
+        return view('concerns.show',[
+            'concern' => $concern
+        ]);
     }
 
     /**
