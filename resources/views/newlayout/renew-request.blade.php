@@ -481,14 +481,14 @@
     <ul class="flex flex-wrap -mb-px">
     
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">All Contracts</a>
+            <a href="contracts-page-list" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">All Contracts</a>
         </li>
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Renewal Requests</a>
+            <a href="renew-request" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Renewal Requests</a>
         </li>
         
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Moveout Requests</a>
+            <a href="moveout-request" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Moveout Requests</a>
         </li>
         
         

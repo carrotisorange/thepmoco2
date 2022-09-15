@@ -364,7 +364,7 @@
               <div class="mt-1">
                 <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
               </div>
-              <a href="newunits_detail" class="text-sm text-purple-700">Add Requester</a>
+              
             </div>
 
 
@@ -374,7 +374,7 @@
                 <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
               </div>
 
-              <a href="newunits_detail" class="text-sm text-purple-700">Add Biller</a>
+              
               
             </div>
 
@@ -420,8 +420,7 @@
 
        
         <div class="mt-3 sm:col-span-3">
-          <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Send email to manager</label>
+         
           </div>
 
           

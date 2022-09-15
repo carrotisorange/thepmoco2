@@ -65,12 +65,17 @@ Route::get('/tenantrequest', function(){
 });
 
 Route::get('/tenantbills_detail', function(){
-    return view('newlayout.tenant portal.tenantbills_detail');
+    return view('newlayout.tenant_portal.tenantbills_detail');
 });
 
 Route::get('/close-concern', function(){
     return view('newlayout.tenant_portal.close-concern');
 });
+
+Route::get('/concern-view', function(){
+    return view('newlayout.tenant_portal.concern-view');
+});
+
 
 // admin portal
 Route::get('/newsignin', function(){
@@ -276,7 +281,7 @@ Route::get('/paymenthistory', function(){
 });
 
 Route::get('/paybills', function(){
-    return view('newlayout.paybills');
+    return view('newlayout.admin_bills.paybills');
 });
 
 Route::get('/addemployee', function(){

@@ -481,16 +481,16 @@
     <ul class="flex flex-wrap -mb-px">
     
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">All Contracts</a>
+            <a href="contracts-page-list" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">All Contracts</a>
         </li>
         
         
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Renewal Requests</a>
+            <a href="renew-request" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Renewal Requests</a>
         </li>
 
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Moveout Requests</a>
+            <a href="moveout-request" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Moveout Requests</a>
         </li>
         
         
@@ -522,7 +522,7 @@
                 <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
                 <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT #</th>
                 <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+               
 
                 
                 </th>
@@ -546,7 +546,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
 
@@ -567,7 +567,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
@@ -589,7 +589,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
@@ -611,7 +611,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
@@ -632,7 +632,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
@@ -653,7 +653,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 

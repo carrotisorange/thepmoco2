@@ -322,7 +322,7 @@
         
         </div>
         <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-full flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="text-sm font-medium text-gray-900"> Filter by: Month</span>
+                <span class="text-sm font-medium text-gray-900"> Select Month:</span>
                 <span class="ml-6 flex items-center">
                   <!--
                     Expand/collapse icon, toggle classes based on question open state.

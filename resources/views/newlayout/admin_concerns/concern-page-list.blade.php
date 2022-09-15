@@ -518,7 +518,7 @@
                   <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newconcern_detail">112233445</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-concern">112233445</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
@@ -538,7 +538,7 @@
                   <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newconcern_detail">112233445</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-concern">112233445</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
@@ -557,7 +557,7 @@
                   <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newconcern_detail">112233445</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-concern">112233445</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
@@ -576,7 +576,7 @@
                   <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newconcern_detail">112233445</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-concern">112233445</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
@@ -594,7 +594,7 @@
                   <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newconcern_detail">112233445</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-concern">112233445</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>
@@ -613,7 +613,7 @@
                   <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="newconcern_detail">112233445</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-concern">112233445</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Request</td>

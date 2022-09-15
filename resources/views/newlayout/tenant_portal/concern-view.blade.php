@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request</title>
+    <title>Concerns</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +51,7 @@
           <div class="min-w-0 flex-1">
             <div class="relative max-w-2xl text-gray-400 focus-within:text-gray-500">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4">
-                <p class="font-semibold ml-5">Tenant Portal</p>
+                <p class="font-semibold ml-5">Property Management</p>
                   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
               </div>
             </div>
@@ -59,11 +59,12 @@
 
           <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Basilio Tenant</a>
+                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
                 <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
               </nav>
+              
             <div class="relative inline-block text-left">
               <button type="button" class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" id="menu-0-button" aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
@@ -131,7 +132,7 @@
           </div>
 
         <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
-          <div class="relative text-gray-400 focus-within:text-gray-500">
+          <div class="elative text-gray-400 focus-within:text-gray-500">
               <label for="mobile-search" class="sr-only">The Property Manager</label>
                 <input id="mobile-search" type="search" placeholder="The Property Manager" class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
             <div class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
@@ -146,11 +147,11 @@
         <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Dashboard</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Contracts</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Units</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Bills</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Owners</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Payments</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Teams</a>
 
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Concerns</a>
         </div>
@@ -187,7 +188,7 @@
   <!-- Bottom section -->
           <div class="flex min-h-0 flex-1 overflow-hidden">
     <!-- Narrow sidebar-->
-            <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white ">
+    <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white ">
               <div class="relative flex w-20 flex-col space-y-3 p-3">
 
                 <!-- Dashboard -->
@@ -241,18 +242,18 @@
               </div>
             </nav>
 
+
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
+            <div class="mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mt-5 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Request</h1>
-    <a href="tenantconcerns" class="flex justify-end text-sm font-medium text-purple-500 hover:text-purple-700">Change to Concern</a>
+      <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">Concerns</h1>
     </div>
 </div>
-    <!--
+
+            <!--
   This example requires Tailwind CSS v2.0+ 
   
   This example requires some changes to your config:
@@ -268,24 +269,46 @@
   }
   ```
 -->
-<div>
-  <div class="flex justify-center mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-    
-    <div class="mt-5 md:mt-0 sm:col-span-6">
-      <form action="#" method="POST">
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            
+<form class="space-y-6" action="#" method="POST">
 
+     
+
+  <div class=" px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="md:grid md:grid-cols-6 md:gap-6">
+
+    
+          <div class="col-span-3 sm:col-span-2">
+            <label for="first-name" class="block text-sm font-medium text-gray-700">Date:</label>
+            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
+
+          <div class="col-span-3 sm:col-span-2">
+            <label for="last-name" class="block text-sm font-medium text-gray-700">Name of Tenant</label>
+            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
+
+          <div class="col-span-3 sm:col-span-2">
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Unit No.</label>
+            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
+
+          <div class="sm:col-span-3">
+                <label for="subject" class="block text-sm font-medium text-gray-700"> Subject (required) </label>
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input id="subject" name="subject" type="subject" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
+                </div>
+              </div>
               
-              
-              <div class="sm:col-span-6">
+              <div class="sm:col-span-3">
           <label for="concern" class="block text-sm font-medium text-gray-700">Category: </label>
           
             <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-              <option>Moveout Request</option>
-              <option>Extension of Contract</option>
-              <option>Transfer of Unit</option>
+              <option>Billing</option>
+              <option>Payment</option>
+              <option>Contract</option>
+              <option>Maintenance</option>
+              <option>Housekeeping</option>
+              <option>Others</option>
               
               
             </select>
@@ -294,38 +317,95 @@
             
             
         <div class="sm:col-span-6">
-              <label for="concern" class="block text-sm font-medium text-gray-700">Reason:</label>
+              <label for="concern" class="block text-sm font-medium text-gray-700"> Concern (required)</label>
               <div class="mt-1">
                 <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
               </div>
-              <p class="mt-2 text-sm text-gray-500">Brief description.</p>
+              
             </div>
 
-           
 
-            <div class="sm:col-span-6">
-              
-              
-                <div class="space-y-1 text-center">
-                 
-                  <div class="flex text-sm text-gray-600">
-                    
-                    
-                  </div>
-                 
-                </div>
-              </div>
-            </div>
+         
+          <div class="col-span-3 sm:col-span-2">
+        <fieldset>
+        <div>
+          <label for="about" class="block text-sm font-medium text-gray-700">Image Uploaded:
+          </label>
+          <div class="mt-1">
+            
           </div>
-          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="submit" class="inline-flex justify-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit Request</button>
+
           </div>
+        </fieldset>
+          </div>
+
+
+        <div class="col-span-3 sm:col-span-2">
+        <fieldset>
+        <div>
+          <label for="about" class="block text-sm font-medium text-gray-700">Course of action taken/Remarks:
+          </label>
+          <div class="mt-1">
+            <textarea id="about" name="about" rows="3" class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md" placeholder=""></textarea>
+          </div>
+          
         </div>
-      </form>
-    </div>
-  </div>
+        </fieldset>
+          </div>
+
+        <div class="col-span-3 sm:col-span-2">
+        <fieldset>
+        <div>
+          <label for="about" class="block text-sm font-medium text-gray-700">Resolved by:
+          </label>
+          <div class="mt-1">
+            <textarea id="about" name="about" rows="3" class="h-5 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md" placeholder=""></textarea>
+          </div>
+          
+          
+        </div>
+        </fieldset>
+        <div class="mt-2 grid grid-cols-1 gap-y-6  sm:grid-cols-6">
+            <div class="sm:col-span-3">
+            <div class=" pl-2" id="filter-section-0">
+              <div class="">
+
+              
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Concern Closed</label>
+               
+                  </div>
+
+     
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Concern Pending</label>
+                
+                  </div>
+
+          </div>
+          </div>
+          </div>
+
+          
+
+          
+</div>
+        
 </div>
 
+
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="close-concern">Close Concern</a></button>
+    
+  </div>
+</form>
 
 
 
