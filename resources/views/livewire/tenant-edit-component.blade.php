@@ -5,12 +5,12 @@
 
                 <div class="flex justify-between">
                     <h1 class="text-3xl font-bold text-white">{{ $tenant_details->tenant }}</h1>
-                   
+
                     <button type="button" onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/user'"
                         class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Generate Credentials
                     </button>
-                  
+
 
                 </div>
 
@@ -57,7 +57,8 @@
                             <div
                                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                 <label for="job-title" class="block text-xs font-medium text-gray-900">Mobile #</label>
-                                <input type="text" wire:model.lazy="mobile_number" value="{{ $tenant_details->mobile_number }}"
+                                <input type="text" wire:model.lazy="mobile_number"
+                                    value="{{ $tenant_details->mobile_number }}"
                                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                     placeholder="">
                             </div>
@@ -150,12 +151,15 @@
                                     placeholder="">
 
                                 <label for="job-title" class="block text-xs font-medium text-gray-900">Addresss</label>
-                                <input type="text" name="job-title" id="job-title" value="{{ $tenant_details->school_address }}"
+                                <input type="text" name="job-title" id="job-title"
+                                    value="{{ $tenant_details->school_address }}"
                                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                     placeholder="">
 
-                                <label for="job-title" class="block text-xs font-medium text-gray-900">Occupation</label>
-                                <input type="text" name="job-title" id="job-title" value="{{ $tenant_details->occupation }}"
+                                <label for="job-title"
+                                    class="block text-xs font-medium text-gray-900">Occupation</label>
+                                <input type="text" name="job-title" id="job-title"
+                                    value="{{ $tenant_details->occupation }}"
                                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                     placeholder="">
                             </div>
@@ -544,97 +548,129 @@
 
                         <thead class="bg-white">
                             <tr>
-                                <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
+                                <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
 
                                 </th>
                                 <th scope="col"
                                     class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                     AR #</th>
+
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     DATE APPLIED</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     DATE DEPOSITED</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    MODE OF PAYMENT</th>
+                                    MDDE OF PAYMENT</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    AMOUNT</th>
+                                    CHEQUE NO</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    BANK</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    AMOUNT PAID</th>
+                                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                    <span class="sr-only">View</span>
+                                    <span class="sr-only">Download</span>
+                                    <span class="sr-only">Attachment</span>
+                                </th>
 
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
 
-                                    </th>
                             </tr>
                         </thead>
 
-
+                        @forelse($collections as $item)
                         <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
                             <!-- Selected: "bg-gray-50" -->
                             <tr>
                                 <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                                     <!-- Selected row marker, only show when row is selected. -->
 
-                                    <input type="checkbox"
+                                    {{-- <input type="checkbox"
                                         class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                                    --}}
                                 </td>
                                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                                    1</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August
-                                    1</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit
-                                    #4</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August
-                                    1-September 1</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{ $item->ar_no }}
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    16,000.00</td>
+                                    {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
+                                </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    6,000.00</td>
+                                    @if($item->date_deposited)
+                                    {{ Carbon\Carbon::parse($item->date_deposited)->format('M d, Y') }}
+                                    @else
+                                    NA
+                                    @endif
+                                </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    123456789</td>
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                                    {{ $item->mode_of_payment }}
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    @if($item->cheque_no)
+                                    {{ $item->cheque_no }}
+                                    @else
+                                    NA
+                                    @endif
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    @if($item->bank)
+                                    {{ $item->bank }}
+                                    @else
+                                    NA
+                                    @endif
+                                </td>
+                                <?php
+                                                                                            $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->count();
+                                                                                        ?>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{ number_format($item->amount,2) }} ({{ $collections_count }})
+                                </td>
+                                <td
+                                    class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view"
+                                        class="text-indigo-600 hover:text-indigo-900">View</a>
+                                </td>
+
+                                <td
+                                    class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export"
+                                        class="text-indigo-600 hover:text-indigo-900">Export</a>
+                                </td>
+
+                                <td
+                                    class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+
+                                    @if(!$item->attachment == null)
+                                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment"
+                                        class="text-indigo-600 hover:text-indigo-900">Attachment</a>
+                                    @endif
+                                </td>
+
 
                             </tr>
-
+                            @empty
                             <tr>
-                                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                    <!-- Selected row marker, only show when row is selected. -->
-
-                                    <input type="checkbox"
-                                        class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                                </td>
-                                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                                    1</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August
-                                    1</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit
-                                    #4</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August
-                                    1-September 1</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Rent
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    16,000.00</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    6,000.00</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    123456789</td>
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-
+                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">No
+                                    data
+                                    found.</td>
                             </tr>
 
 
 
                             <!-- More people... -->
                         </tbody>
-
+                        @endforelse
 
 
                     </table>
 
                 </div>
-
+                <div class="mt-8 flex justify-end">
+                    <button type="button"
+                        onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/collections'"
+                        class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        View Collections</button>
+                </div>
     </section>
 
 </div>
