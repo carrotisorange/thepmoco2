@@ -64,6 +64,8 @@
                             <th scope="col"
                                 class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                 AR #</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                TENANT</th>
 
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 DATE APPLIED</th>
@@ -100,6 +102,12 @@
                             <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                 {{ $item->ar_no }}
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700">
+                                <a class="text-blue-500 text-decoration-line: underline"
+                                    href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/collections">
+                                    {{ $item->tenant->tenant}}
+                                </a>
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                 {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
@@ -167,6 +175,7 @@
                     </tbody>
                     @endforelse
                     <tr>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
