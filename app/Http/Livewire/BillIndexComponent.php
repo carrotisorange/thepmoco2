@@ -4,12 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Bill;
-use App\Models\Particular;
 use App\Models\Collection;
-use App\Models\AcknowledgementReceipt; 
 use Session;
 use DB;
-use Carbon\Carbon;
 
 use Livewire\WithPagination;
 
@@ -76,7 +73,7 @@ class BillIndexComponent extends Component
       ->where('property_uuid', Session::get('property'))
       ->where('is_posted', true)
       ->when($this->status, function($query){
-      $query->whereIn('status', $this->status);
+      $query->whereIn('status', [$this->status]);
       })
          ->when($this->start, function($query){
       $query->whereBetween('start', [$this->start, $this->end]);
