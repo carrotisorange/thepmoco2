@@ -14,10 +14,8 @@ class PaymentRequestController extends Controller
      */
     public function index($property_uuid)
     {
-        return PaymentRequest::where('property_uuid', $property_uuid)->get();
-        
         return view('payment_requests.index',[
-            'requests' => PaymentRequest::where('property_uuid', $property_uuid)->get()
+            'requests' => $this->get_property_payment_requests($property_uuid, 'pending')->get()
         ]);
     }
 

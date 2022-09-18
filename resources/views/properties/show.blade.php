@@ -59,7 +59,7 @@
 
                             <div class="sm:col-span-6 mb-5">
                                 <div class="text-l font-semibold font-body text-gray-500 underline truncate">
-                                    <a href="/property/{{ $property->uuid }}/concern/pending">Pending
+                                    <a href="/property/{{ $property->uuid }}/concern">Pending
                                         Concerns: {{ $pending_concerns->count() }}</a>
                                 </div>
                                 <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-5">

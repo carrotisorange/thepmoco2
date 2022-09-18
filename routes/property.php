@@ -66,6 +66,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //ROute for notitication
     Route::get('notification',[NotificationController::class, 'index']);
 
+    //ROute for notitication
+    Route::get('payment/requests',[PaymentRequestController::class, 'index']);
+
     //Route for Building
     Route::prefix('/building')->group(function(){
         Route::post('{random_str}/store',[BuildingController::class, 'store']);
