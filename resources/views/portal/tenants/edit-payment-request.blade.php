@@ -81,72 +81,6 @@
 
                     </div>
 
-                    {{-- <table class="min-w-full table-fixed">
-
-                        <thead class="">
-                            <tr>
-                                <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
-
-                                </th>
-                                <th scope="col"
-                                    class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                    BILL #</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    DATE POSTED</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    UNIT</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    PERIOD COVERED</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    PARTICULAR</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    AMOUNT DUE</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    PAYMENT</th>
-
-
-                                </th>
-                            </tr>
-                        </thead>
-
-
-                        <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-                            <!-- Selected: "bg-gray-50" -->
-                            <tr>
-                                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                    <!-- Selected row marker, only show when row is selected. -->
-
-
-                                </td>
-                                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                                    1</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #2
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August
-                                    1-September 1</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><input type="text"
-                                        class="border border-gray-500 rounded-md"></td>
-
-
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-
-                            </tr>
-
-
-
-                            <!-- More people... -->
-                        </tbody>
-
-
-
-                    </table> --}}
-
                 </div>
 
                 <div>
@@ -163,46 +97,9 @@
                                     <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                         <div class="grid grid-cols-4 gap-6">
 
-                                            {{-- <div class="sm:col-span-2">
-                                                <label for="subject"
-                                                    class="block text-sm font-medium text-gray-700">Date</label>
-                                                <div class="mt-1 flex rounded-md shadow-sm">
-                                                    <input id="created_at" name="created_at" type="date"
-                                                        value="{{ old('created_at', Carbon\Carbon::now()->format('Y-m-d')) }}"
-                                                        readonly
-                                                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
-                                                </div>
-                                            </div> --}}
-
-                                            {{-- <div class="sm:col-span-2">
-                                                <label for="concern"
-                                                    class="block text-sm font-medium text-gray-700">Mode
-                                                    of Payment:</label>
-
-                                                <select id="category_id" name="category_id"
-                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                                                    <option value="">Select one</option>
-                                                    <option value="bank" {{ old('form')=='bank' ? 'selected'
-                                                        : 'Select one' }}>bank</option>
-                                                    <option value="cash" {{ old('form')=='cash' ? 'selected'
-                                                        : 'Select one' }} selected>cash
-                                                    </option>
-                                                    <option value="cheque" {{ old('form')=='cheque' ? 'selected'
-                                                        : 'Select one' }}>cheque
-                                                    </option>
-                                                    <option value="e-wallet" {{ old('form')=='e-wallet' ? 'selected'
-                                                        : 'Select one' }} selected>
-                                                        e-wallet
-                                                    </option>
-
-                                                </select>
-
-                                            </div> --}}
-
-
 
                                             <div class="sm:col-span-6">
-                                                <label class="block text-sm font-medium text-gray-700"> Upload an image
+                                                <label class="block text-sm font-medium text-gray-700"> Upload a proof of payment
                                                 </label>
                                                 <div
                                                     class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
@@ -218,7 +115,7 @@
                                                         <div class="flex text-sm text-gray-600">
                                                             <label for="file-upload"
                                                                 class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                                <span>Upload a file</span>
+                                                                <span>Upload a proof of payment</span>
                                                                 <input id="file-upload" name="proof_of_payment" type="file" required
                                                                     class="sr-only">
                                                             </label>

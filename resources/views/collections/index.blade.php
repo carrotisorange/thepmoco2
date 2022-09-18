@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Payments | '. Session::get('property_name'))
+    @section('title','Collections | '. Session::get('property_name'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
            @livewire('collection-index-component')

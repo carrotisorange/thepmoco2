@@ -2,31 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PropertyRole;
-use App\Models\Role;
+use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Models\Property;
 
-class PropertyRoleController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($property_uuid)
     {
-        $roles =  PropertyRole::join('roles', 'property_roles.role_id', 'roles.id')
-        ->where('property_uuid',Session('property'))
-        ->get();
-        
-        return view('roles.index',[
-            'roles' => $roles,
+        return view('notifications.index',[
+             'notifications' => $this->get_property_notifications($property_uuid)
         ]);
     }
 
-    public function get_property_user_roles($property_uuid)
+    public function get_property_notifications($property_uuid)
     {
-        return PropertyRole::where('property_uuid',$property_uuid)->get();
+        return Property::find($property_uuid)->notifications();
     }
 
     /**
@@ -53,10 +49,10 @@ class PropertyRoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\PropertyRole $propertyRole
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function show(PropertyRole $propertyRole)
+    public function show(Notification $notification)
     {
         //
     }
@@ -64,10 +60,10 @@ class PropertyRoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\PropertyRole $propertyRole
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function edit(PropertyRole $propertyRole)
+    public function edit(Notification $notification)
     {
         //
     }
@@ -76,10 +72,10 @@ class PropertyRoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param \App\Models\PropertyRole $propertyRole
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PropertyRole $propertyRole)
+    public function update(Request $request, Notification $notification)
     {
         //
     }
@@ -87,10 +83,10 @@ class PropertyRoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\PropertyRole $propertyRole
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PropertyRole $propertyRole)
+    public function destroy(Notification $notification)
     {
         //
     }

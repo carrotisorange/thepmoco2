@@ -19,6 +19,19 @@ class ConcernController extends Controller
     {
         return view('concerns.index');
     }
+    
+    public function get_property_concerns($property_uuid, $status, $duration)
+    {
+        return Property::find($property_uuid)->concerns()
+        ->when($status, function ($query) use ($status) {
+          $query->where('status', $status);
+        })
+         ->when($duration, function ($query) use ($duration) {
+           $query->whereMonth('created_at', $duration);
+        })
+        ->orderBy('created_at', 'desc');
+    }
+
 
     /**
      * Show the form for creating a new resource.

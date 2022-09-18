@@ -35,6 +35,14 @@ class TenantController extends Controller
         ]);
     }
 
+    public function get_property_tenants($property_uuid, $duration)
+    {
+        return Tenant::where('property_uuid', $property_uuid)
+         ->when($duration, function ($query) use ($duration) {
+         $query->whereMonth('created_at', $duration);
+         });
+    }
+
     /**
      * Show the form for creating a new resource.
      *

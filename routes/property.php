@@ -34,6 +34,8 @@ use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\UnitEnrolleeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
+use App\Http\Controllers\AccountPayableController;
+use App\Http\Controllers\NotificationController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -60,6 +62,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Route for contract
     Route::get('contract/{status}',[ContractController::class, 'show_moveout_request']);
+
+    //ROute for notitication
+    Route::get('notification',[NotificationController::class, 'index']);
 
     //Route for Building
     Route::prefix('/building')->group(function(){
@@ -215,10 +220,15 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
 
-    //Routes for Payment
-    Route::prefix('payment')->group(function(){
-        Route::get('/', [AcknowledgementReceiptController::class, 'index'])->name('payment');
-        Route::get('/requests', [PaymentRequestController::class, 'index'])->name('payment');
+    //Routes for Collection
+    Route::prefix('collection')->group(function(){
+        Route::get('/', [AcknowledgementReceiptController::class, 'index'])->name('collection');
+        Route::get('/requests', [PaymentRequestController::class, 'index'])->name('collection');
+    });
+
+    //Routes for Account Payable
+    Route::prefix('accountpayable')->group(function(){
+        Route::get('/', [AccountPayableController::class, 'index'])->name('accountpayable');
     });
 
     //Routes for Concern

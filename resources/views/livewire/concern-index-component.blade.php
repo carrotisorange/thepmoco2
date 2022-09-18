@@ -135,11 +135,11 @@
                                     {{ $concern->status }}
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                   
-                                </td>
-    
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-    
+                                    @if(!$concern->image == null)
+                                    <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $concern->id }}/download"
+                                        class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
+                                    @endif
+                                </td>    
                             </tr>
     
                             <!-- More people... -->

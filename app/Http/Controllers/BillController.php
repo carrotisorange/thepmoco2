@@ -29,6 +29,29 @@ class BillController extends Controller
         ]);
     }
 
+    public function get_property_bills($property_uuid, $month){
+        return Property::find($property_uuid)->bills()
+        ->whereMonth('created_at', $month)
+        ->sum('bill');
+    }
+
+    public function get_property_unpaid_bills($property_uuid, $month)
+    {
+        return  Property::find($property_uuid)->bills()
+        ->whereIn('status',['unpaid', 'partially_paid'])
+        ->when($month, function ($query) use ($month) {
+          $query->whereMonth('created_at', $month);
+          })
+        ->sum('bill') -
+                Property::find($property_uuid)->bills()
+        ->whereIn('status', ['unpaid','partially_paid'])
+          ->when($month, function ($query) use ($month) {
+          $query->whereMonth('created_at', $month);
+        })
+        ->sum('initial_payment');
+        
+    }
+
     public function get_latest_bill_no($property_uuid)
     {
         return Property::find($property_uuid)->bills->max('bill_no')+1;

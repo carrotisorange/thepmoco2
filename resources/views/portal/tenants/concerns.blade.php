@@ -27,8 +27,8 @@
                         <table class="min-w-full table-fixed">
                             <thead class="">
                                 <tr>
-                                    <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
-
+                                   <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-sm font-semibold text-gray-900">
+                                        REFERENCE #
                                     </th>
                                     <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                         REPORTED ON
@@ -57,12 +57,15 @@
                             <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
                                 <!-- Selected: "bg-gray-50" -->
                                 <tr>
-                                    <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        {{ $item->reference_no }}
+                                    </td>
+                                    {{-- <td class="relative w-12 px-6 sm:w-16 sm:px-8"> --}}
                                         <!-- Selected row marker, only show when row is selected. -->
 
-                                        <input type="checkbox"
-                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                                    </td>
+                                        {{-- <input type="checkbox"
+                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
+                                    {{-- </td> --}}
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y')}}
                                     </td>

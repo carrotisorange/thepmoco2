@@ -52,6 +52,11 @@ class Unit extends Model
         return $this->belongsTo(Property::class, 'property_uuid');
     }
 
+    public function paymentrequests()
+    {
+     return $this->hasMany(PaymentRequest::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

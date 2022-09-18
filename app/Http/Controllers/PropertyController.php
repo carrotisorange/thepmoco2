@@ -24,6 +24,7 @@ use App\Models\Unit;
 use App\Models\PropertyBuilding;
 use App\Models\UnitStats;
 use App\Models\Collection;
+use App\Models\PaymentRequest;
 
 class PropertyController extends Controller
 {
@@ -67,25 +68,6 @@ class PropertyController extends Controller
         return Str::uuid();
     }
 
-    public function property_unpaid_bills($property_uuid){
-        return Property::find($property_uuid)->bills->whereIn('status',['unpaid', 'partially_paid'])->sum('bill') -
-        Property::find($property_uuid)->bills->whereIn('status', ['unpaid','partially_paid'])->sum('initial_payment');
-    }
-
-    public function current_month_property_unpaid_bills($property_uuid){
-        return Property::find($property_uuid)->bills()->whereIn('status',['unpaid',
-        'partially_paid'])->whereDate('created_at',Carbon::today())->sum('bill') -
-        Property::find($property_uuid)->bills()->whereDate('created_at',Carbon::today())->whereIn('status',
-        ['unpaid','partially_paid'])->sum('initial_payment');
-    }
-
-    public function current_month_total_collected_payment($property_uuid){
-        return Property::find($property_uuid)->collections()->whereMonth('created_at',Carbon::now())->sum('collection');
-    }
-
-    public function current_month_property_billed($property_uuid){
-        return Property::find($property_uuid)->bills()->whereMonth('created_at',Carbon::now())->sum('bill');
-    }
 
     public function index()
     {
@@ -297,11 +279,6 @@ class PropertyController extends Controller
         ->pluck('count');
     }
 
-    public function property_expiring_contracts($property_uuid)
-    {
-        return Contract::where('end','<=',Carbon::now()->addMonth())->where('property_uuid',$property_uuid)->where('status', 'active')->paginate(5);
-    }
-
     public function get_delinquents()
     {
         return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
@@ -366,7 +343,7 @@ class PropertyController extends Controller
         ->pluck('count');
     }
 
-    public function get_collections($property_uuid)
+    public function get_property_collections($property_uuid)
     {
         return AcknowledgementReceipt::where('property_uuid',$property_uuid)
         ->whereMonth('created_at',date('m'))
@@ -419,12 +396,12 @@ class PropertyController extends Controller
             'property' => $property
         ]);
     }
-     
+
     public function show(Property $property)
     {  
 
         if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
-            return redirect('/select-a-plan');
+            return redirect('/select-a-plan-free');
         }
 
         $this->store_property_session($property);
@@ -461,38 +438,55 @@ class PropertyController extends Controller
 
         $reasons_for_moveout_value = $this->get_reasons_for_moveout_values();
 
-        $collections = $this->get_collections(Session::get('property'));
-
-        $bills = $this->get_bills(Session::get('property'));
-
-        $contracts = app('App\Http\Controllers\ContractController')->index(Session::get('property'))->count();
-
-        $units = Unit::where('property_uuid', $property->uuid)->count();
-
         $buildings = PropertyBuilding::where('property_uuid', $property->uuid)->count();
-
-        $tenants = Tenant::where('property_uuid', $property->uuid);
 
         $owners = Owner::where('property_uuid', $property->uuid);
 
-        $concerns = Property::find($property->uuid)->concerns;
-
         $delinquents = $this->get_delinquents();
+        
 
         return view('properties.show',[
             'property' => $property,
-            'roles' => PropertyRole::where('property_uuid',$property->uuid)->get(),
-            'collections' => $collections,
-            'tenants' => $tenants,
-            'units' => $units,
-            'concerns' => $concerns,
-            'contracts' => $contracts,
+
+            'contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, '', '', '', ''),
+            'expired_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, 'inactive', '', '', ''),
+            'expiring_contracts' =>app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, 'active', Carbon::now()->addMonth(), '', ''),
+            'pending_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, 'pendingmoveout', '', '', ''),
+            'movingin_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, '', '', Carbon::now()->month, ''),
+            'movingout_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, '', '', '', Carbon::now()->month),
+
+            'concerns' =>app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, '', Carbon::now()->month),
+            'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, 'pending', Carbon::now()->month),
+            'closed_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, 'closed', Carbon::now()->month),
+
+
+            'payment_requests' => app('App\Http\Controllers\PaymentRequestController')->get_property_payment_requests($property->uuid, 'pending'),
+
+            'roles' => app('App\Http\Controllers\PropertyRoleController')->get_property_user_roles($property->uuid),
+            
+            'daily_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($property->uuid, Carbon::today(), Carbon::now()->month)->sum('collection'),
+            
+            'monthly_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($property->uuid,Carbon::today(), Carbon::now()->month)->sum('collection'),
+          
+            'tenants' => app('App\Http\Controllers\TenantController')->get_property_tenants($property->uuid ,Carbon::now()->month),
+
+
+            'units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, '',Carbon::now()->month),
+            'occupied_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 2, Carbon::now()->month),
+            'vacant_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 1,Carbon::now()->month),
+
+            'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications($property->uuid),
+
+            'monthly_bills' => app('App\Http\Controllers\BillController')->get_property_bills($property->uuid, Carbon::now()->month()),
+            'monthly_unpaid_bills' => app('App\Http\Controllers\BillController')->get_property_unpaid_bills($property->uuid,Carbon::now()->month),
+            'total_unpaid_bills' => app('App\Http\Controllers\BillController')->get_property_unpaid_bills($property->uuid,''),
+        
             'occupancy_rate_value' => $occupancy_rate_value,
             'occupancy_rate_date' => $occupancy_rate_date,
             'current_occupancy_rate' => $current_occupancy_rate,
-            'bills' => $bills,
-            'contracts' => $contracts,
-            'expiring_contracts' => $this->property_expiring_contracts($property->uuid),
+
+          
+           
             'collection_rate_date' => $collection_rate_date,
             'collection_rate_value' => $collection_rate_value,
             'current_collection_rate' => $current_collection_rate,
@@ -507,24 +501,8 @@ class PropertyController extends Controller
             'delinquents' => $delinquents,
             'owners' => $owners,
             'buildings' => $buildings,
-            'property_unpaid_bills' => $this->property_unpaid_bills($property->uuid),
-            'daily_collected_amount' => Property::find($property->uuid)->collections()->whereDate('created_at',Carbon::today())->sum('collection'),
-            'occupied_units' => Property::find($property->uuid)->units()->where('status_id', 2)->count(),
-            'vacant_units' => Property::find($property->uuid)->units()->where('status_id', 1)->count(),
-            'total_units' => Property::find($property->uuid)->units()->count(),
-            'total_tenants' => Property::find($property->uuid)->tenants()->count(),
-            'past_due_accounts' => $this->property_unpaid_bills($property->uuid),
-            'expired_contracts' => Property::find($property->uuid)->contracts()->where('status', 'inactive')->count(),
-            'pending_moveout_contracts' => Property::find($property->uuid)->contracts()->where('status', 'pendingmoveout')->get(),
-            'current_month_property_unpaid_bills' => $this->current_month_property_unpaid_bills($property->uuid),
-            'current_month_property_billed' => $this->current_month_property_billed($property->uuid),
-            'payments' => Property::findOrFail($property->uuid)->collections()->orderBy('created_at', 'desc')->limit(3)->get(),
-            'bills' => Property::findOrFail($property->uuid)->bills()->orderBy('created_at', 'desc')->limit(3)->get(),
-            'current_month_total_collected_payment' => $this->current_month_total_collected_payment($property->uuid),
-            'total_collected_bill' => Property::find($property->uuid)->bills()->whereIn('status', ['paid', 'partially_paid'])->sum('initial_payment'),
-            'total_uncollected_bill' => Property::find($property->uuid)->bills()->where('status', 'unpaid')->sum('bill') - Property::find($property->uuid)->bills()->where('status','partially_paid')->sum('initial_payment'),
-            'current_month_total_unpaid_collection' =>$this->current_month_property_unpaid_bills($property->uuid) - $this->current_month_total_collected_payment($property->uuid),
-
+        
+          
         ]); 
     }
 

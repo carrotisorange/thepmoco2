@@ -21,6 +21,13 @@ class PaymentRequestController extends Controller
         ]);
     }
 
+    public function get_property_payment_requests($property_uuid, $status)
+    {
+        return PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
+        ->where('tenants.property_uuid', $property_uuid)
+        ->orderBy('payment_requests.created_at');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

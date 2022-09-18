@@ -181,11 +181,19 @@
                             Bill
                         </x-dropdown-link>
                     </div>
+                    
                     <div class="pt-2 pb-3 space-y-1">
-                        <x-dropdown-link href="/property/{{ Session::get('property') }}/payment">
-                            Payment
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/collection">
+                            Collection
                         </x-dropdown-link>
                     </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/accountpayable">
+                            Account Payable
+                        </x-dropdown-link>
+                    </div>
+
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/cashflow">
                             Cashflow
@@ -246,87 +254,97 @@
                     <!-- Units -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/unit"
                         :active="request()->routeIs('unit')">
-                        <span class="sr-only">Units</span>
+                        <span class="sr-only">Unit</span>
                         <img class="h-10 w-auto" src="{{ asset('/brands/units_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Unit</div>
 
                     <!-- Owners -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/tenant"
                         :active="request()->routeIs('tenant')">
-                        <span class="sr-only">Tenants</span>
+                        <span class="sr-only">Tenant</span>
                         <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenants</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
 
                     <!-- Owners -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/owner"
                         :active="request()->routeIs('owner')">
-                        <span class="sr-only">Owners</span>
+                        <span class="sr-only">Owner</span>
                         <img class="h-10 w-auto" src="{{ asset('/brands/user_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owner</div>
 
                     <!-- Teams -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/user"
                         :active="request()->routeIs('user')">
-                        <span class="sr-only">Employees</span>
+                        <span class="sr-only">Employee</span>
 
-                        <span class="sr-only">Employees</span>
                         <img class="h-13 w-auto" src="{{ asset('/brands/team_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employees</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employee</div>
 
                     <!-- Concerns -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/concern"
                         :active="request()->routeIs('concern')">
 
-                        <span class="sr-only">Concerns</span>
+                        <span class="sr-only">Concern</span>
                         <img class="h-10 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concern</div>
 
 
                     <!-- Bills -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/bill"
                         :active="request()->routeIs('bill')">
 
-                        <span class="sr-only">Bils</span>
+                        <span class="sr-only">Bill</span>
                         <img class="h-8 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bill</div>
 
 
-                    <!-- Collections -->
-                    <x-nav-link href="/property/{{ Session::get('property') }}/payment"
-                        :active="request()->routeIs('payment')">
+                    <!-- Collection -->
+                    <x-nav-link href="/property/{{ Session::get('property') }}/collection"
+                        :active="request()->routeIs('collection')">
 
-                        <span class="sr-only">Payments</span>
+                        <span class="sr-only">Collection</span>
                         <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Collection</div>
 
+                    <!-- Account Payable -->
+                   <x-nav-link href="/property/{{ Session::get('property') }}/accountpayable" :active="request()->routeIs('accountpayable')">
+                    
+                        <span class="sr-only">Account <br> Payable </span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Account <br> Payable</div>
+                    
                     <!-- Cashflow -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/cashflow"
                         :active="request()->routeIs('cashflow')">

@@ -57,6 +57,11 @@ class Tenant extends Model
         return $this->belongsTo(Property::class, 'property_uuid');
     }
 
+    public function paymentrequests()
+    {
+     return $this->hasMany(PaymentRequest::class);
+    }
+
     public function contracts()
     {
         return $this->hasMany(Contract::class);

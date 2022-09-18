@@ -66,11 +66,6 @@ class Property extends Model
         return $this->hasMany(Bill::class);
     }
 
-    public function paymentrequests()
-    {
-        return $this->hasMany(PaymentRequest::class);
-    }
-
 
     public function collections()
     {
@@ -85,6 +80,11 @@ class Property extends Model
     public function tenants()
     {
         return $this->hasMany(Tenant::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
     }
 
     public function particulars()

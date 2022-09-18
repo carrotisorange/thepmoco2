@@ -29,6 +29,24 @@ class ContractController extends Controller
         return Contract::where('property_uuid', $property)->where('status', 'active')->get();
     }
 
+    public function get_property_contracts($property_uuid, $status, $dateBeforeExpiration, $movein, $moveout)
+    {
+        return Property::find($property_uuid)->contracts()
+        ->when($status, function ($query) use ($status) {
+          $query->where('status', $status);
+        })
+        ->when($dateBeforeExpiration, function ($query) use ($dateBeforeExpiration) {
+          $query->where('end','<=', $dateBeforeExpiration);
+        })
+        ->when($movein, function ($query) use ($movein) {
+          $query->whereMonth('start', $movein);
+        })
+        ->when($moveout, function ($query) use ($moveout) {
+          $query->whereMonth('end', $moveout);
+        })
+        ->orderBy('created_at', 'desc');
+    }
+
     public function show_unit_contracts($unit_uuid)
     {
         return Unit::findOrFail($unit_uuid)->contracts()->paginate(5);

@@ -9,9 +9,15 @@ class PaymentRequest extends Model
 {
     use HasFactory;
 
-    public function property()
+    public function tenant()
     {
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
 
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_uuid');
+    }
+
+       
 }

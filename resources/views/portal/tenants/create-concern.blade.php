@@ -27,7 +27,8 @@
 
                         <form action="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/concerns/store" 
                             enctype="multipart/form-data"
-                            method="POST">
+                            method="POST"
+                            class="dropzone">
                             @csrf
                             <div class="shadow sm:rounded-md sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
