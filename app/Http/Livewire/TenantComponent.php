@@ -89,7 +89,7 @@ class TenantComponent extends Component
             //store a new user
             $user_id = app('App\Http\Controllers\UserController')->store(
                 $this->tenant, 
-                app('App\Http\Controllers\UserController')->generate_temporary_username(), 
+                $this->email,
                 app('App\Http\Controllers\UserController')->generate_temporary_username(),
                 auth()->user()->external_id, 
                 $this->email,
