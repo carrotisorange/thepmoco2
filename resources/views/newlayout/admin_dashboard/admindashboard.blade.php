@@ -501,7 +501,15 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="flex justify-end gap-2">
+                <div class="items-center text-center px-2.5 py-1 mt-3  text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="moveout-request">See more requests</a></button></div>
+                
+                </div>
                         </div>
+
+                        
+                       
 
                         <div class="sm:col-span-3">
                
@@ -684,15 +692,15 @@
                       <!-- Chart doughnut -->
                       <script>
                         const dataDoughnut = {
-                          labels: ["Billed","Collected", "Uncollected", ],
+                          labels: ["Collected", "Uncollected", ],
                           datasets: [
                             {
                               label: "My First Dataset",
-                              data: [300, 50, 20],
+                              data: [300, 50,],
                               backgroundColor: [
                                 "rgb(133, 105, 241)",
                                 "rgb(164, 101, 241)",
-                                "rgb(101, 143, 241)",
+                               
                               ],
                               hoverOffset: 4,
                             },

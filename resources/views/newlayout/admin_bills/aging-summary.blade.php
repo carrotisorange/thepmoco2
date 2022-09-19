@@ -305,6 +305,7 @@
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
+      <p class="font-semibold">Aging Summary</p>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
     <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="createbills">Create Bills</a></button>
@@ -442,7 +443,7 @@
 </div>
 
 
-    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="-my-2 -mx-4 overflow-x-auto lg:px-36 sm:-mx-6 lg:-mx-8 lg:max-w-7xl ">
 
     
 
@@ -454,22 +455,15 @@
             
           </div>
 
-          <table class="min-w-full table-fixed">
+          <table class="min-w-full table-fixed" >
             
             <thead class="">
               <tr>
                 <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
                   
                 </th>
-                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">BILL #</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE POSTED</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NAME</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PERIOD COVERED</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PARTICULAR</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT DUE</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT PAID</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
+                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">DAYS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TOTAL</th>
                 
                 </th>
               </tr>
@@ -482,18 +476,12 @@
                 <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                   <!-- Selected row marker, only show when row is selected. -->
                   
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                  
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1-30 Days</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-bills">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+               
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -503,18 +491,12 @@
                 <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                   <!-- Selected row marker, only show when row is selected. -->
                   
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                  
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">31-90 Days</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-bills">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+                
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -524,85 +506,19 @@
                 <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                   <!-- Selected row marker, only show when row is selected. -->
                   
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                  
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">Over 90 Days</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-bills">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-
+                
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-bills">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+             
 
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-bills">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="individual-bills">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="unitbillshistory" class="text-purple-700">Unit #2</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
+             
               <!-- More people... -->
             </tbody>
 
@@ -611,53 +527,11 @@
           </table>
           
         </div>
-        <button type="button" class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select All</button>
+        
       </div>
     </div>
   </div>
 
- <div class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-  <div class="flex-1 flex justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
-    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </a>
-  </div>
-  <div class="mt-5 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-    <div>
-      <p class="text-sm text-gray-700">
-        Showing
-        <span class="font-medium">1</span>
-        of
-        <span class="font-medium">5</span>
-        pages
-      </p>
-    </div>
-    <div>
-      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Previous</span>
-          <!-- Heroicon name: solid/chevron-left -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
-        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> ... </span>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Next</span>
-          <!-- Heroicon name: solid/chevron-right -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </div>
-</div>
-</div>
 
 
 
