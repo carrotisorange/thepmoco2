@@ -18,6 +18,8 @@ Route::prefix('user')->group(function(){
 
     //route for point crud operations
     Route::get('point',[PointController::class, 'index'])->name('point');
+
+    Route::get('{user}/export/{portforlio}',[UserController::class, 'export']);
 });
 
 Route::get('users',[UserController::class, 'show_all_users'])->name('user');

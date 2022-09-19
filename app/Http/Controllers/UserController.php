@@ -12,6 +12,8 @@ use Carbon\Carbon;
 use App\Models\Property;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Auth;
+use \PDF;
 
 class UserController extends Controller
 {
@@ -20,25 +22,62 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-public function index(Property $property)
-{
-        $this->authorize('accountowner');
+    public function index(Property $property)
+    {
+            $this->authorize('accountowner');
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
+            app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
 
-        return view('users.index',[
-            'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users($property->uuid,auth()->user()->id),
-            'properties' => app('App\Http\Controllers\UserPropertyController')->show_user_properties($property->uuid,auth()->user()->id),
-        ]);
-}
+            return view('users.index',[
+                'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users($property->uuid,auth()->user()->id),
+                'properties' => app('App\Http\Controllers\UserPropertyController')->show_user_properties($property->uuid,auth()->user()->id),
+            ]);
+    }
 
-// public function show_all_users(Property $property)
-// {
-//     return view('users.all-users', [
-//         'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users($property->uuid,auth()->user()->id),
-//         'properties' => app('App\Http\Controllers\UserPropertyController')->show_user_properties($property->uuid,auth()->user()->id),
-//     ]);
-// }
+    public function export($user_id, $export_option)
+    {
+        if($export_option == 'portforlio'){
+            $portforlio = User::find(Auth::user()->id)->user_properties()->limit(3)->get();
+
+            $data = $this->get_data($portforlio);
+
+            $pdf = $this->generate_pdf($data, $export_option);
+
+            return $pdf->download(Carbon::now().'-'.auth()->user()->name.'-portforlio.pdf');
+        }
+
+    }
+
+    public function get_data($data)
+    {
+        return $data = [
+            'data' => $data,
+        ];
+    }
+    
+    public function generate_pdf($data, $export_option)
+    {
+        $pdf = PDF::loadView('users.exports.'.$export_option, $data);
+
+        $pdf->output();
+
+        $canvas = $pdf->getDomPDF()->getCanvas();
+
+        $height = $canvas->get_height();
+
+        $width = $canvas->get_width();
+
+        $canvas->set_opacity(.2,"Multiply");
+
+        $canvas->set_opacity(.2);
+
+        $canvas->page_text($width/5, $height/2, 'The PMO Co.', null, 55, array(0,0,0),2,2,-30);
+
+        return $pdf;
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
