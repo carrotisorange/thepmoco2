@@ -40,7 +40,7 @@ class Bill extends Model
         return $this->belongsTo(Particular::class, 'particular_id');
     }
 
-    public static function search($search)
+    public static function search($search, $date_posted)
     {
     //   $tenant = Tenant::where('tenant','like', '%'.$search.'%')->pluck('bill_reference_no');
     //     if(!$tenant){

@@ -23,13 +23,22 @@ class BillIndexComponent extends Component
    public $active_tenants;
 
    public $selectedBills = [];
+
    public $selectAllBills = false;
 
-   public $status = ['unpaid', 'partially_paid'];
+   public $status;
+
    public $start;
+
+   public $view;  
+
    public $end;
-   public $particular_id = [];
+
+   public $particular_id;
+
    public $created_at;
+
+   public $posted_dates;
 
    public function mount($batch_no)
    {
@@ -68,30 +77,46 @@ class BillIndexComponent extends Component
 
    public function get_bills()
    {
-      return Bill::search($this->search)
-      ->orderBy('bill_no', 'desc')
-      ->where('property_uuid', Session::get('property'))
-      ->where('is_posted', true)
-      ->when($this->status, function($query){
-      $query->whereIn('status', [$this->status]);
-      })
-         ->when($this->start, function($query){
-      $query->whereBetween('start', [$this->start, $this->end]);
-      })
-         ->when($this->end, function($query){
-      $query->whereBetween('end', [$this->start, $this->end]);
-      })
+      if($this->posted_dates == 'monthly'){
+          return Bill::search($this->search, $this->posted_dates)
+          ->orderBy('bill_no', 'desc')
+          ->where('property_uuid', Session::get('property'))
+          ->where('is_posted', true)
+          ->when($this->status, function($query){
+          $query->whereIn('status', [$this->status]);
+          })
+          ->when($this->particular_id, function($query){
+          $query->where('particular_id', $this->particular_id);
+          })
+          ->whereBetween('created_at', [now()->subdays(30), now()->subday()])
+          ->get();
+      }elseif($this->posted_dates == 'quarterly'){
+          return Bill::search($this->search, $this->posted_dates)
+          ->orderBy('bill_no', 'desc')
+          ->where('property_uuid', Session::get('property'))
+          ->where('is_posted', true)
+          ->when($this->status, function($query){
+          $query->whereIn('status', [$this->status]);
+          })
+          ->when($this->particular_id, function($query){
+          $query->where('particular_id', $this->particular_id);
+          })
+          ->whereBetween('created_at', [now()->subdays(90), now()->subday()])
+          ->get();
+      }else{
+         return Bill::search($this->search, $this->posted_dates)
+         ->orderBy('bill_no', 'desc')
+         ->where('property_uuid', Session::get('property'))
+         ->where('is_posted', true)
+         ->when($this->status, function($query){
+         $query->whereIn('status', [$this->status]);
+         })
          ->when($this->particular_id, function($query){
-      $query->whereIn('particular_id', $this->particular_id);
-      })
-      ->when($this->batch_no, function($query){
-      $query->where('batch_no', $this->batch_no);
-      })
-         ->when($this->created_at, function($query){
-      $query->whereDate('created_at', $this->created_at);
-      
-      })->get();
-
+         $query->where('particular_id', $this->particular_id);
+         })
+         ->get();
+      }
+     
    }
 
    public function unpayBills()
@@ -126,6 +151,7 @@ class BillIndexComponent extends Component
 
    public function render()
    {
+
       $statuses = $this->get_statuses();
 
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
