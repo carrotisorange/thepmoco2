@@ -154,6 +154,24 @@ Route::get('/bills-page', function(){
     return view('newlayout.admin_bills.bills-page');
 });
 
+Route::get('/aging-summary', function(){
+    return view('newlayout.admin_bills.aging-summary');
+});
+
+Route::get('/unpaid', function(){
+    return view('newlayout.admin_bills.unpaid');
+});
+
+Route::get('/paid-list', function(){
+    return view('newlayout.admin_bills.paid-list');
+});
+
+Route::get('/partially', function(){
+    return view('newlayout.admin_bills.partially');
+});
+
+
+
 Route::get('/addtenant1', function(){
     return view('newlayout.admin_tenant.addtenant1');
 });

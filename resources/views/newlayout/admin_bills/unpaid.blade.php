@@ -305,7 +305,7 @@
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
-      
+      <p class="text-sm font-semibold">Unpaid Bills</p>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
     <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="createbills">Create Bills</a></button>
@@ -350,7 +350,7 @@
         
 
         <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-36 flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="text-sm font-medium text-gray-900">Status</span>
+                <span class="text-sm font-medium text-gray-900"> Unpaid</span>
                 <span class="ml-6 flex items-center">
                   <!--
                     Expand/collapse icon, toggle classes based on question open state.
@@ -472,8 +472,7 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PERIOD COVERED</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">PARTICULAR</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT DUE</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT PAID</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
+
                 
                 </th>
               </tr>
@@ -496,8 +495,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -517,8 +515,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -538,8 +535,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -559,8 +555,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">10,0000</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -579,8 +574,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -600,8 +594,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1-September 1</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Water</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -609,31 +602,30 @@
 
               <!-- More people... -->
 
-              <tr>
+             
+
+              
+
+            </tbody>
+            <tr>
                 <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                   <!-- Selected row marker, only show when row is selected. -->
                   
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900"></td>
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">Total Unpaid:</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+
 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
-
-              
-
-            </tbody>
-           
 
             
           </table>

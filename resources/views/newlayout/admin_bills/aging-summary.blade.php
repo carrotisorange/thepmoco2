@@ -317,7 +317,7 @@
 
   
 
-  <div class="mt-6 grid grid-cols-1 sm:grid-cols-6 sm:gap-x-10 md:space-x-10 lg:gap-x-5 lg:pr-16">
+  <div class="mt-6 grid grid-cols-3 gap-x-10 sm:grid-cols-6 sm:gap-x-10 lg:gap-x-10 sm:space-x-5 lg:pr-16">
   <div class="col-span-3">
   <form>   
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -329,13 +329,7 @@
         
     </div>
 
-    <div>
-      <p class="text-sm text-center text-gray-500">
-        Showing
-        <span class="font-medium">1</span>
-        result
-      </p>
-    </div>
+   
 
 </div>
 
@@ -350,7 +344,7 @@
         
 
         <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-36 flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="text-sm font-medium text-gray-900"> Unpaid</span>
+                <span class="text-sm font-medium text-gray-900">Status</span>
                 <span class="ml-6 flex items-center">
                   <!--
                     Expand/collapse icon, toggle classes based on question open state.
@@ -384,7 +378,7 @@
         
 
         <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-36 flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="text-sm font-medium text-gray-900"> 1-30 days </span>
+                <span class="text-sm font-medium text-gray-900">Days</span>
                 <span class="ml-6 flex items-center">
                   <!--
                     Expand/collapse icon, toggle classes based on question open state.
@@ -413,8 +407,8 @@
         <div class="md:mr-20 md:ml-10">
         
      
-        <button type="button" class="px-2 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-purple-700 w-36   text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="text-sm font-medium text-white"><a href="aging-summary">Aging Summary</a></span>
+        <button type="button" class="px-2 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-36 hover:bg-gray-200  text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
+                <span class="text-sm font-medium text-gray-900"><a href="aging-summary">Aging Summary</a></span>
                 <span class="ml-6 flex items-center">
                   <!--
                     Expand/collapse icon, toggle classes based on question open state.
@@ -462,7 +456,7 @@
                 <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
                   
                 </th>
-                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">DAYS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DAYS</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TOTAL</th>
                 
                 </th>
@@ -479,11 +473,11 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1-30 Days</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">1-30 Days</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000,000</td>
                
 
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                
                   
               </tr>
 
@@ -494,11 +488,11 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">31-90 Days</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">31-90 Days</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000,000</td>
                 
 
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                
                   
               </tr>
 
@@ -509,12 +503,29 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">Over 90 Days</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">Over 90 Days</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1,000,000</td>
                 
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                
+                
                   
               </tr>
+
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Total:</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Amount</td>
+                
+                
+                
+                  
+              </tr>
+
 
              
 
