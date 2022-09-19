@@ -83,7 +83,7 @@
                                         @foreach ($properties as $property)
                                         <th scope="col"
                                             class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                                            {{ $property->property->property }}
+                                            {{ $property->property->property }} <a href="/property/{{ $property->property->uuid }}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </th>
                                         @endforeach
                                     </tr>
@@ -222,6 +222,7 @@
                                         @endforeach
                                     </tr>
                                 </tbody>
+                               
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     <tr>
                                         <td

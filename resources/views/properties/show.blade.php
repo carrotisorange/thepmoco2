@@ -404,6 +404,7 @@
                                                 <dt class="text-lg font-semibold text-gray-900 mb-5">
                                                     {{ Carbon\Carbon::now()->format('D, M d, Y') }}
                                                 </dt>
+                                                
                                                 <dd>
                                                     <div class="text-sm font-medium text-gray-500">Daily Collected
                                                         Amount:
