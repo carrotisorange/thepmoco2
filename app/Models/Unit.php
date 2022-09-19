@@ -25,7 +25,7 @@ class Unit extends Model
         'size' => 0.00,
         'discount' => 0.00,
         'building_id' => null,
-        'status_id' => 6,
+        'status_id' => 1,
         'category_id' => 1,
         'thumbnail' => 'thumbnails/thumbnail.png',
         'occupancy' => 1,
