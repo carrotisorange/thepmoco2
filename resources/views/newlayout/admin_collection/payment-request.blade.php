@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenant</title>
+    <title>Payments</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,7 +132,7 @@
           </div>
 
         <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
-          <div class="elative text-gray-400 focus-within:text-gray-500">
+          <div class="relative text-gray-400 focus-within:text-gray-500">
               <label for="mobile-search" class="sr-only">The Property Manager</label>
                 <input id="mobile-search" type="search" placeholder="The Property Manager" class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
             <div class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
@@ -147,11 +147,11 @@
         <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Dashboard</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Units</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Contracts</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Owners</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Bills</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Teams</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Payments</a>
 
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Concerns</a>
         </div>
@@ -192,7 +192,7 @@
               <div class="relative flex w-20 flex-col space-y-1 p-3">
 
                 <!-- Dashboard -->
-                <a href="admindashboard" class="ml-3 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
+                <a href="admindashboard" class="ml-3  text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
                   <span class="sr-only">Dashboard</span>
           
                   <img class="h-8 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -218,9 +218,9 @@
 
               
                     <!-- Tenant -->
-                <a href="newtenant" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newtenant" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-8 w-auto" src="{{ asset('/brands/tenant_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
@@ -242,9 +242,9 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
 
                     <!-- Payments -->
-                    <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                    <a href="newpayments" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/credit-card-white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
@@ -282,7 +282,7 @@
 
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-            <div class=" mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
             <!--
   This example requires Tailwind CSS v3.0+ 
@@ -303,12 +303,11 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Tenants</h1>
+      <h1 class="text-3xl font-bold text-gray-700">Payments</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="addtenant1">Add Tenant</a></button>
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export</button>
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete Tenant</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Payment</button>
+      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">View Payment</button>
     </div>
   </div>
 
@@ -382,17 +381,41 @@
                   
                 <div class="flex items-center">
                   <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Active</label>
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Rent</label>
                 </div>
 
                 <div class="flex items-center">
                   <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Inactive</label>
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Rent Deposit</label>
                 </div>
 
-              
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Utilities Deposit</label>
+                </div>
 
-             
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Water</label>
+                </div>
+
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Electricity</label>
+                  
+                </div>
+                
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Surcharge</label>
+                  
+                </div>
+
+                <div class="flex items-center">
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Internet</label>
+                  
+                </div>
                  
                  
                  
@@ -409,43 +432,78 @@
               
                 <div class="flex items-center">
                   <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Unit</label>
-                  <input type="text" name="unit" id="unit" autocomplete="unit" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Amount paid:</label>
+                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
                
                   </div>
 
      
                 <div class="flex items-center">
                   <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Bills</label>
+                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">Unpaid</label>
                   <input type="text" name="floor" id="floor" autocomplete="floor" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
                   </div>
 
                   
                 <div class="flex items-center">
                   <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Size</label>
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Paid</label>
                   <input type="text" name="size" id="size" autocomplete="size" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
                 </div>
 
                 <div class="flex items-center">
-                <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Rent:</label>
-                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
-                  </div>
+                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Pending</label>
+                  <input type="text" name="occupancy" id="occupancy" autocomplete="occupancy" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                </div>
 
-       
-                
-                  <div class="mt-4 flex justify-end">
-                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
-                  </div>
                 
             
                  
                   </div>
                   
               </div>
-             
+              <div class="sm:col-span-3">
+            <div class=" pl-2 bg-white" id="filter-section-0">
+              <div class="">
+
+        
+                  <div class="flex items-center">
+                <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Cash</label>
+                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                  </div>
+
+                  <div class="flex items-center">
+                <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Bank</label>
+                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                  </div>
+
+                  <div class="flex items-center">
+                <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">E-wallet</label>
+                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                  </div>
+
+                  <div class="flex items-center">
+                <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">Cheque</label>
+                  <input type="text" name="building" id="building" autocomplete="building" class="ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-10 h-3 shadow-sm sm:text-sm border border-gray-700 ">
+                  </div>
+
+                  <div class="flex justify-end">
+                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-xs font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
+                  </div>
+
+
+                  
+
+
+                  </div>
+                  </div>
+                  </div>
+              
 
                   </div>
 
@@ -481,27 +539,29 @@
           </div>
 
           <table class="min-w-full table-fixed">
-            
             <thead class="">
               <tr>
                 <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
                   
                 </th>
                 <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">#</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">NAME</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BILLS</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CONTACT #</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ADDRESS</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">EMAIL</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BILL #</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE UPLOADED</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE APPROVED</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BATCH #</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">REMARKS</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <span class="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
-            
-
-            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+            <tbody class="divide-y divide-gray-200 bg-white">
               <!-- Selected: "bg-gray-50" -->
               <tr>
                 <td class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -511,123 +571,131 @@
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newtenantprofile" class="text-purple-700">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #1</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">112345678</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newtenantprofile" class="text-purple-700">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #1</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">112345678</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newtenantprofile" class="text-purple-700">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #1</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">112345678</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newtenantprofile" class="text-purple-700">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #1</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">112345678</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newtenantprofile" class="text-purple-700">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #1</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">112345678</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newtenantprofile" class="text-purple-700">Basilio</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Unit #1</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">6,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0978654321</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Manila</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">abcd@gmail.com</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">112345678</td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">223344</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">None</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="">View</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="dashboard_payment">Approve</a></td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
               </tr>
 
               <!-- More people... -->
             </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
 
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">223344</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">None</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="">View</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="dashboard_payment">Approve</a></td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+                </td>
+              </tr>
 
-            
+              <!-- More people... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">223344</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">None</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="">View</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="dashboard_payment">Approve</a></td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+                </td>
+              </tr>
+
+              <!-- More people... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">223344</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">None</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="">View</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="dashboard_payment">Approve</a></td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+                </td>
+              </tr>
+
+              <!-- More people... -->
+            </tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                  <!-- Selected row marker, only show when row is selected. -->
+                  
+                  <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                </td>
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="paymenthistory">Basilio</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">123456</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">12,000</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">223344</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Pending</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">None</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="">View</a></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-purple-700"><a href="dashboard_payment">Approve</a></td>
+                <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  
+                </td>
+              </tr>
+
+              <!-- More people... -->
+            </tbody>
           </table>
           
         </div>

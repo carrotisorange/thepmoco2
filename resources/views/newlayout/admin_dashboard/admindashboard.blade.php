@@ -452,7 +452,7 @@
                         <div class="sm:col-span-3">
                         <div class="mt-10 text-sm text-center font-semibold font-body text-gray-500 truncate">Vacant: <a href= # class="text-indigo-600 text-lg">30</a> </div>
                         <div class="flex justify-center item-center">    
-                        <img src="{{ asset('/brands/vacant.png') }}" alt="building" class="h-20 w-20 object-center object-cover ">
+                        <img src="{{ asset('/brands/ghost.png') }}" alt="building" class="h-20 w-20 object-center object-cover ">
               </div>    
                         
                       </div>

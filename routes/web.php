@@ -150,6 +150,14 @@ Route::get('/tenant-profile', function(){
     return view('newlayout.admin_tenant.tenant-profile');
 });
 
+Route::get('/change-username', function(){
+    return view('newlayout.admin_tenant.change-username');
+});
+
+Route::get('/change-password', function(){
+    return view('newlayout.admin_tenant.change-password');
+});
+
 Route::get('/bills-page', function(){
     return view('newlayout.admin_bills.bills-page');
 });
@@ -228,6 +236,11 @@ Route::get('/concern-page-list', function(){
 Route::get('/payments-page', function(){
     return view('newlayout.admin_collection.payments-page');
 });
+
+Route::get('/payment-request', function(){
+    return view('newlayout.admin_collection.payment-request');
+});
+
 
 Route::get('/accountspayables1', function(){
     return view('newlayout.accountspayables1');
@@ -312,6 +325,10 @@ Route::get('/dashboard_moveout', function(){
 
 Route::get('/dashboard_payment', function(){
     return view('newlayout.admin_dashboard.dashboard_payment');
+});
+
+Route::get('/notifications', function(){
+    return view('newlayout.admin_dashboard.notifications');
 });
 
 Route::get('/contracts-page-list', function(){

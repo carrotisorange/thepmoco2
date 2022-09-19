@@ -252,11 +252,11 @@
     <!-- Hero section -->
     <div class="relative">
       <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
-      <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      
         <div class="relative shadow-xl sm:overflow-hidden ">
           <div class="absolute inset-0">
             <div class="flex items-center justify-center ">
-            <img class="h-screen w-auto" src="{{ asset('/brands/ass_comm.jpg') }}" alt="community">
+            <img class="h-full w-full" src="{{ asset('/brands/ass_comm.jpg') }}" alt="community">
 </div>
             <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-gray-300 mix-blend-multiply"></div>
           </div>
