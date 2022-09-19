@@ -94,7 +94,7 @@
                             href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">
                             <div class="hover:bg-purple-200">
                                 @if($unit->status_id == '1')
-                                <img src="{{ asset('/brands/partially.png') }}"
+                                <img src="{{ asset('/brands/vacant.png') }}"
                                     class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
                                 @elseif($unit->status_id == '2')
                                 <img src="{{ asset('/brands/occupied.png') }}"
@@ -118,7 +118,7 @@
                             href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/{{ Str::random(8) }}/create">
                             <div class="hover:bg-purple-200">
                                 @if($unit->status_id == '1')
-                                <img src="{{ asset('/brands/partially.png') }}"
+                                <img src="{{ asset('/brands/vacant.png') }}"
                                     class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
                                 @elseif($unit->status_id == '2')
                                 <img src="{{ asset('/brands/occupied.png') }}"
@@ -141,7 +141,7 @@
                         <a href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}">
                             <div class="hover:bg-purple-200">
                                 @if($unit->status_id == '1')
-                                <img src="{{ asset('/brands/partially.png') }}"
+                                <img src="{{ asset('/brands/vacant.png') }}"
                                     class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
                                 @elseif($unit->status_id == '2')
                                 <img src="{{ asset('/brands/occupied.png') }}"
