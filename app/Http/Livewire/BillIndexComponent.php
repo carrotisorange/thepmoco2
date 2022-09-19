@@ -80,7 +80,7 @@ class BillIndexComponent extends Component
           ->when($this->particular_id, function($query){
           $query->where('particular_id', $this->particular_id);
           })
-          ->whereBetween('created_at', [now()->subdays(30), now()->subday()])
+          ->whereBetween('created_at', [now()->subdays(30), now()])
           ->get();
       }elseif($this->posted_dates == 'quarterly'){
           return Bill::search($this->search, $this->posted_dates)
@@ -93,7 +93,7 @@ class BillIndexComponent extends Component
           ->when($this->particular_id, function($query){
           $query->where('particular_id', $this->particular_id);
           })
-          ->whereBetween('created_at', [now()->subdays(90), now()->subday()])
+          ->whereBetween('created_at', [now()->subdays(90), now()])
           ->get();
       }else{
          return Bill::search($this->search, $this->posted_dates)

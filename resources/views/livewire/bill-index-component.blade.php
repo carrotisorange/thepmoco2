@@ -131,7 +131,7 @@
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="">Filter bill dates</option>
                 <option value="monthly">1-30 days</option>
-                <option value="quaterly">31-90 days</option>
+                <option value="quaterly">1-90 days</option>
                 <option value="alltime">90 days and over</option>
             </select>
 
