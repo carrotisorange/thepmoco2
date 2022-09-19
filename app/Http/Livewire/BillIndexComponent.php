@@ -18,8 +18,6 @@ class BillIndexComponent extends Component
 
    public $active_contracts;
 
-   public $batch_no;
-
    public $active_tenants;
 
    public $selectedBills = [];
@@ -28,15 +26,9 @@ class BillIndexComponent extends Component
 
    public $status;
 
-   public $start;
-
-   public $view;  
-
-   public $end;
+   public $view = 'listView';  
 
    public $particular_id;
-
-   public $created_at;
 
    public $posted_dates;
 
@@ -118,6 +110,11 @@ class BillIndexComponent extends Component
       }
      
    }
+
+   public function changeView($view)
+    {
+        $this->view = $view;
+    }
 
    public function unpayBills()
    {

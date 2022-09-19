@@ -8,17 +8,17 @@
             <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'">Show all bills
             </x-button>
             @endif
-            {{-- @if($view === 'list')
-            <button wire:click="changeView('agingSummary')"
+            @if($view === 'listView')
+            <button wire:click="changeView('agingSummaryView')"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                type="button">View List
+                type="button">View Aging Summary
             </button>
             @else
             <button wire:click="changeView('listView')"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                type="button">View Aging Summary
+                type="button">View List
             </button>
-            @endif --}}
+            @endif
             @can('billing')
             <button
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
@@ -174,6 +174,7 @@
                         </tr>
                     </thead>
 
+                    @if($view === 'listView')
                     @forelse ($bills as $item)
                     <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
                         <!-- Selected: "bg-gray-50" -->
@@ -253,6 +254,8 @@
                         <!-- More people... -->
                     </tbody>
                     @endforelse
+
+                    @endif
                     <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
                         <tr>
                             <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500"></td>
