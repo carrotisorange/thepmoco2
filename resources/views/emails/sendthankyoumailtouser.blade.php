@@ -1,18 +1,28 @@
 @component('mail::message')
 # Hi, {{ auth()->user()->name }}!
 
-Thanks for Signing Up
-<br><br>
-The Property Manager Online will help you to simplify your rental property operations.
+I am one of the co-founders of The Property Manager Online,
+and I am excited you have decided to sign up.
 
-Note: {{ $data['message'] }}
+The The Property Manager Online Team and I have poured
+our heart and soul into making systematized processes reduces which reduces operating expenses
+by 35%.
+
+My top priority is to make sure that you are able
+to automate the tedious and reptitive processes of managing a property, so if you have any
+questions about our product, the website, feel free to reply directly
+to this email.
+I hope we can help you to simplify your rental property operations!
+
+<br><br>
 
 @component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
     Start Now
 @endcomponent
 
-Cheers,<br>
-The Property Manager Online,
-<br><br>
+Stay in touch!<br>
+
+-Pam, Co-Founder
+Thanks for Signing Up
 
 @endcomponent

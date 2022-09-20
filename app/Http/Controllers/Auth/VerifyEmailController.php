@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendThankyouMailToUser;
+
 
 class VerifyEmailController extends Controller
 {
@@ -19,10 +22,12 @@ class VerifyEmailController extends Controller
     {
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+       
         }
 
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
+            Mail::to(auth()->user()->email)->send(new SendThankyouMailToUser());
         }
 
         return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');

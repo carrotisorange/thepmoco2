@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            
+
 
                 </div>
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -33,18 +33,16 @@
                             <table class="min-w-full table-fixed">
                                 <thead class="">
                                     <tr>
-                                        <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
-
-                                        </th>
+                                                                               <th scope="col"
+                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                            BATCH #</th>
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            #</th>
-                                            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                                    TENANT</th>
+                                            TENANT</th>
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             BILL #</th>
-                                    
+
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             DATE UPLOADED</th>
@@ -54,21 +52,13 @@
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             AMOUNT</th>
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            BATCH #</th>
+
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             STATUS</th>
-                                        <th scope="col"
+                                        {{-- <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            REMARKS</th>
-
-
-                                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-
-                                            <span class="sr-only">Attachment</span>
-                                        </th>
+                                            REMARKS</th> --}}
 
 
                                     </tr>
@@ -79,17 +69,11 @@
                                     <!-- Selected: "bg-gray-50" -->
                                     @forelse($requests as $index => $item )
                                     <tr>
-                                        <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                            <!-- Selected row marker, only show when row is selected. -->
-
-                                            {{-- <input type="checkbox"
-                                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                                            --}}
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
+                                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">{{ $item->batch_no }}</a>
                                         </td>
 
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ $index+1 }}
-                                        </td>
+                                       
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             {{ $item->tenant }}
@@ -112,29 +96,19 @@
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             {{ number_format($item->amount, 2) }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ $item->batch_no }}
-                                        </td>
+
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             {{ $item->status }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             @if($item->reason_for_rejection)
                                             {{ $item->reason_for_rejection }}
                                             @else
                                             NONE
                                             @endif
 
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}'"
-                                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium
-                                                text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
-                                                sm:w-auto">
-                                                Verify
-                                            </button>
-        
-                                        </td>
+                                        </td> --}}
+                                      
 
                                     </tr>
                                     @empty

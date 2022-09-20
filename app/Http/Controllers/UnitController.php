@@ -90,7 +90,7 @@ class UnitController extends Controller
 
         app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, $request->number_of_units, 5);
         
-        return back()->with('success', $units.' unit is successully created.');
+        return redirect('/property/'.Session::get('property').'/unit/'.Str::random(8).'/edit')->with('success', $units.' unit is successully created.');
     }
 
     /**

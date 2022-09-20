@@ -22,7 +22,7 @@
             @foreach ($units as $index => $item)
             <div wire:key="unit-field-{{ $item->uuid }}">
                 <tr>
-                    <x-td>{{ $index }}</x-td>
+                    <x-td>{{ $index+1 }}</x-td>
                     <x-td>
                         <div class="flex items-center">
                             <x-input form="edit-form" type="checkbox" wire:model="selectedUnits.{{ $item->uuid }}" />

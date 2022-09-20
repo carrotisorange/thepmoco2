@@ -121,7 +121,7 @@
                     @enderror
                 </div>
 
-                <div class="sm:col-span-3">
+                {{-- <div class="sm:col-span-3">
                     <label for="email" class="block text-sm font-medium text-gray-700">Property Email</label>
                     <div class="mt-5">
                         <input type="email" wire:model="email" autocomplete="email"
@@ -143,7 +143,7 @@
                     @error('mobile')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
             </div>
         </div>
 

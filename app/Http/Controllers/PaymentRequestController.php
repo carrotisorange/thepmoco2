@@ -73,6 +73,11 @@ class PaymentRequestController extends Controller
         //
     }
 
+    public function download()
+    {
+         return Storage::download(($attachment), 'AR_'.$concern->reference_no.'_'.$concern->tenant->tenant.'.png');
+    }
+
     /**
      * Update the specified resource in storage.
      *

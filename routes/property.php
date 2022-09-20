@@ -133,7 +133,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit']);
             Route::patch('bills/{batch_no}/pay/update', [TenantCollectionController::class, 'update']);
             Route::get('collections', [TenantCollectionController::class,'index']);
-            Route::get('payment_requests/{id:id}',[PaymentRequestController::class, 'show'])->name('tenant');
+            Route::get('payment_requests/{payment_request}',[PaymentRequestController::class, 'show'])->name('tenant');
             Route::get('collection/{batch_no}', [TenantCollectionController::class,'destroy']);
             Route::get('contracts', [TenantContractController::class,'index']);
             Route::get('delete', [TenantController::class, 'destroy']);

@@ -13,9 +13,7 @@ use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\Type;
-use App\Models\UnitStats;
 use Livewire\Component;
-use Session;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -55,8 +53,8 @@ class PropertyComponent extends Component
              'province_id' => ['nullable', Rule::exists('provinces', 'id')],
              'city_id' => ['nullable', Rule::exists('cities', 'id')],
              'barangay' => ['required'],
-             'email' => ['required'],
-             'mobile' => ['required'],
+             'email' => ['nullable'],
+             'mobile' => ['nullable'],
              'ownership' => ['required']
         ];
      }
@@ -69,6 +67,9 @@ class PropertyComponent extends Component
      public function submitForm()
      {
         sleep(1);
+
+         $validatedData['mobile'] = auth()->user()->mobile;
+          $validatedData['email'] = auth()->user()->email;
 
           if(!$this->country_id)
           {
@@ -111,7 +112,7 @@ class PropertyComponent extends Component
 
         DB::beginTransaction();
 
-        Property::create($validatedData);
+        $property = Property::create($validatedData);
 
         UserProperty::create([
         'property_uuid' => $property_uuid,
@@ -142,6 +143,8 @@ class PropertyComponent extends Component
           ->update([
             'trial_ends_at' => Carbon::now()->addMonth(),
          ]);
+
+         app('App\Http\Controllers\PropertyController')->store_property_session($property);
 
         DB::commit();
          return redirect('/property/'.$property_uuid.'/success')->with('success', 'Property is successfully created.');

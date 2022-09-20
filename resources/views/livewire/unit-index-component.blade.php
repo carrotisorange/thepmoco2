@@ -87,6 +87,7 @@
                         <h2 class="text-lg font-medium text-gray-900"></h2>
 
                     </div>
+                
                     <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                         @foreach ($units as $unit)
                         @if(Session::get('tenant_uuid'))
@@ -161,9 +162,13 @@
                             </div>
                         </a>
                         @endif
+
+                
+
                         @endforeach
 
                     </div>
+             
                 </div>
 
             </div>
@@ -186,6 +191,10 @@
                             </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT
                             </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT
+                            </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                CONTRACT</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 BUILDING
                             </th>
@@ -193,17 +202,14 @@
                             </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 STATUS</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT
-                            </th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                CONTRACT</th>
+
+
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT
                             </th>
 
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 OCCUPANCY</th>
-                            {{-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ROOMS
-                            </th> --}}
+                          
 
                         </tr>
                     </thead>
@@ -240,12 +246,6 @@
                                 @endif
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {{$unit->building->building }}</td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $unit->floor->floor }}
-                            </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $unit->status->status}}
-                            </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                 @if($unit->contracts->count())
                                 @foreach ($unit->contracts->where('status','!=','inactive')->take(1) as $tenant)
                                 <a class="text-blue-500 text-decoration-line: underline"
@@ -266,14 +266,21 @@
                                 NA
                                 @endif
                             </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {{$unit->building->building }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $unit->floor->floor }}
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $unit->status->status}}
+                            </td>
+
+
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format($unit->rent,
                                 2) }}</td>
 
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">
                                 {{$unit->occupancy }} pax
                             </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">
-                            </td>
+                           
                         </tr>
                         @endforeach
                         <!-- More people... -->

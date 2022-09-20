@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Xendit\Xendit;
 use App\Models\User;
@@ -11,8 +12,6 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use Illuminate\Auth\Events\Registered;
-use Carbon\Carbon;
-use App\Models\Subscription;
 use DB;
 use Str;
 use App\Models\Plan;
@@ -126,6 +125,8 @@ public function charge_user_account($plan_id, $external_id, $description, $email
         $createRecurring = \Xendit\Recurring::create($params);
 
         $external_id = Plan::find($plan_id)->plan.'_'.Str::random(8);
+
+
 
         app('App\Http\Controllers\SubscriptionController')->store_subscription(
             auth()->user()->id, $plan_id, $external_id, $amount*$interval
