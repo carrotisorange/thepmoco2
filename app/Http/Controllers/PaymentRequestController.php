@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PaymentRequest;
 use Illuminate\Http\Request;
+use App\Models\Tenant;
 
 class PaymentRequestController extends Controller
 {
@@ -12,10 +13,10 @@ class PaymentRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($property_uuid)
+    public function index($property_uuid, $status)
     {
         return view('payment_requests.index',[
-            'requests' => $this->get_property_payment_requests($property_uuid, 'pending')->get()
+            'requests' => $this->get_property_payment_requests($property_uuid, $status)->get()
         ]);
     }
 
@@ -23,6 +24,7 @@ class PaymentRequestController extends Controller
     {
         return PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
         ->where('tenants.property_uuid', $property_uuid)
+        ->where('status', $status)
         ->orderBy('payment_requests.created_at');
     }
 
@@ -53,9 +55,11 @@ class PaymentRequestController extends Controller
      * @param  \App\Models\PaymentRequest  $paymentRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(PaymentRequest $paymentRequest)
+    public function show($property_uuid, Tenant $tenant, PaymentRequest $paymentRequest)
     {
-        //
+        return view('payment_requests.show',[
+            'paymentRequest' => $paymentRequest,
+        ]);
     }
 
     /**

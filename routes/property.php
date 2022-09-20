@@ -66,8 +66,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //ROute for notitication
     Route::get('notification',[NotificationController::class, 'index']);
 
-    //ROute for notitication
-    Route::get('payment/requests',[PaymentRequestController::class, 'index']);
+   
 
     //Route for Building
     Route::prefix('/building')->group(function(){
@@ -134,6 +133,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit']);
             Route::patch('bills/{batch_no}/pay/update', [TenantCollectionController::class, 'update']);
             Route::get('collections', [TenantCollectionController::class,'index']);
+            Route::get('payment_requests/{id:id}',[PaymentRequestController::class, 'show'])->name('tenant');
             Route::get('collection/{batch_no}', [TenantCollectionController::class,'destroy']);
             Route::get('contracts', [TenantContractController::class,'index']);
             Route::get('delete', [TenantController::class, 'destroy']);
@@ -226,7 +226,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Collection
     Route::prefix('collection')->group(function(){
         Route::get('/', [AcknowledgementReceiptController::class, 'index'])->name('collection');
-        Route::get('/requests', [PaymentRequestController::class, 'index'])->name('collection');
+        Route::get('/{status}', [PaymentRequestController::class, 'index'])->name('collection');
+
     });
 
     //Routes for Account Payable

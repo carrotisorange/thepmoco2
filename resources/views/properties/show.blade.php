@@ -63,11 +63,11 @@
                                         Concerns: {{ $pending_concerns->count() }}</a>
                                 </div>
                                 <div class="bg-white overflow-hidden shadow rounded-lg px-5 py-5 mb-5">
-                                    @foreach ($pending_concerns->take(1)->get() as $item)
+                                    @forelse ($pending_concerns->take(1)->get() as $item)
                                     <div class="text-semibold">
-                                        <a href="" class="text-sm text-gray-900 font-bold mt-2">{{ $item->tenant->tenant
+                                        <a href="#/" class="text-sm text-gray-900 font-bold mt-2">{{
+                                            $item->tenant->tenant
                                             }} ({{ $item->unit->unit }}) reported {{ $item->category->category }}
-                                            concern
                                             concern.</a>
                                         <div class="flex justify-end gap-2">
                                             <div button type="button"
@@ -75,12 +75,17 @@
                                                 <a
                                                     href="/property/{{ $property->uuid }}/concern/{{ $item->id }}">View</a></button>
                                             </div>
-                                            {{-- <div button type="button"
-                                                class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Close</button></div> --}}
+
                                         </div>
                                     </div>
-                                    @endforeach
+                                    @empty
+                                    <div class="text-semibold">
+                                        <a href="#/" class="text-sm text-gray-900 font-bold mt-2">
+                                            No pending concerns found.
+                                        </a>
+
+                                    </div>
+                                    @endforelse
                                 </div>
 
                             </div>
@@ -158,41 +163,38 @@
 
                             <div class="sm:col-span-6 mt-5">
 
-
+                                 <a href="#/" class="text-sm text-gray-900 font-bold mt-2">Current Occupancy Rate: {{
+                                number_format($current_occupancy_rate->occupancy_rate, 2) }}%</a>
                                 <div class="">
-                                    <canvas class="" id="chartLine"></canvas>
+                      
+                               <canvas id="occupancy_rate" class="chartjs" width="undefined" height="undefined"></canvas>
 
 
                                     <!-- graph chart.js -->
                                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                                     <!-- chart line -->
-                                    <script>
-                                        const labels = ["January", "February", "March", "April", "May", "June"];
-                const data = {
-                    labels: labels,
-                    datasets: [
-                    {
-                    label: "Occupancy Graph",
-                     backgroundColor: "hsl(252, 82.9%, 67.8%)",
-                     borderColor: "hsl(252, 82.9%, 67.8%)",
-                     data: [0, 10, 5, 2, 20, 30, 45],
-                    },
-                    ],
-                 };
-
-                const configLineChart = {
-                    type: "line",
-                    data,
-                    options: {},
-                 };
-
-                var chartLine = new Chart(
-                 document.getElementById("chartLine"),
-                    configLineChart
-                );
+                                   <script>
+                                        new Chart(document.getElementById("occupancy_rate"), {
+                                                                                            "type": "line",
+                                                                                            "data": {
+                                                                                                "labels": {!!$occupancy_rate_date!!},
+                                                                                                "datasets": [{
+                                                                                                    "label": " Occupancy Graph",
+                                                                                                     data: {!!$occupancy_rate_value!!},
+                                                                                                    "fill": false,
+                                                                                                    "borderColor": "rgba(148,0,211)",
+                                                                                                    "lineTension": 0.1
+                                                                                                }]
+                                                                                            },
+                                                                                           
+                                                                                            "options": {
+                                                                                                legend: {
+                                                                                                display: false
+                                                                                                },
+                                                                                            }
+                                                                                        });
                                     </script>
-
 
 
 
@@ -215,7 +217,7 @@
                                 <div class="mt-10 text-sm text-center font-semibold font-body text-gray-500 truncate">
                                     Vacant: <a href=# class="text-indigo-600 text-lg">30</a> </div>
                                 <div class="flex justify-center item-center">
-                                    <img src="{{ asset('/brands/vacant.png') }}" alt="building"
+                                    <img src="{{ asset('/brands/ghost.png') }}" alt="building"
                                         class="h-20 w-20 object-center object-cover ">
                                 </div>
 
@@ -260,7 +262,7 @@
                                                     <a href="/property/{{ $property->uuid }}/contract/pending">Moveout
                                                         Requests: {{ $pending_contracts->count() }}</a>
                                                 </div>
-                                                @foreach ($pending_contracts->take(1)->get() as $item)
+                                                @forelse ($pending_contracts->take(1)->get() as $item)
                                                 <a href="#/" class="text-sm text-gray-900 font-bold mt-2">
                                                     {{ $item->tenant->tenant }} requested to moveout in unit {{
                                                     $item->unit->unit }}
@@ -271,11 +273,21 @@
                                                         <a
                                                             href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout">View</a></button>
                                                     </div>
-                                                    {{-- <div button type="button"
-                                                        class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                        Close</button></div> --}}
+
                                                 </div>
-                                                @endforeach
+                                                @empty
+                                                <a href="#/" class="text-sm text-gray-900 font-bold mt-2">
+                                                    No moveout requests found.
+                                                </a>
+                                                {{-- <div class="flex justify-end gap-2">
+                                                    <div button type="button"
+                                                        class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                        <a
+                                                            href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout">View</a></button>
+                                                    </div>
+
+                                                </div> --}}
+                                                @endforelse
                                             </div>
                                         </div>
                                     </div>
@@ -310,10 +322,10 @@
                                             <div class="w-0 flex-1">
                                                 <div
                                                     class="text-l font-semibold font-body text-gray-500 underline truncate">
-                                                    <a href="/property/{{ $property->uuid }}/payment/requests">Payments
+                                                    <a href="/property/{{ $property->uuid }}/collection/pending">Payments
                                                         Approval Requests: ({{ $payment_requests->count() }})</a>
                                                 </div>
-                                                @foreach ($payment_requests->take(1)->get() as $item)
+                                                @forelse ($payment_requests->take(1)->get() as $item)
                                                 <a href="" class="text-sm text-gray-900 font-bold mt-2">{{ $item->tenant
                                                     }} uploaded request for payments.</a>
                                                 <div class="flex justify-end gap-2">
@@ -322,11 +334,17 @@
                                                         <a
                                                             href="/property/{{ $property->uuid }}/payment/tenant/{{ $item->tenant_uuid }}/pending/{{ $item->id }}">View</a></button>
                                                     </div>
-                                                    {{-- <div button type="button"
-                                                        class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                        Close</button></div> --}}
+
                                                 </div>
-                                                @endforeach
+                                                @empty
+                                                <div class="text-semibold">
+                                                    <a href="#/" class="text-sm text-gray-900 font-bold mt-2">
+                                                        No payment requests found.
+                                                    </a>
+
+                                                </div>
+
+                                                @endforelse
                                             </div>
                                         </div>
                                     </div>
@@ -342,7 +360,8 @@
                                     <div class=" mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Bills for
                                         Collection of the Month:</div>
                                     <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=#
-                                            class="text-gray-700 text-lg ">{{ number_format($monthly_bills, 2) }}</a> </div>
+                                            class="text-gray-700 text-lg ">{{ number_format($monthly_bills, 2) }}</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -352,7 +371,8 @@
                                         the
                                         Month:</div>
                                     <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=#
-                                            class="text-gray-700 text-lg ">{{ number_format($monthly_collections, 2) }}</a> </div>
+                                            class="text-gray-700 text-lg ">{{ number_format($monthly_collections, 2)
+                                            }}</a> </div>
                                 </div>
                             </div>
 
@@ -361,7 +381,8 @@
                                     <div class="mt-2 ml-2 font-semibold text-sm mb-5 text-gray-500">Total Unpaid of the
                                         Month:</div>
                                     <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=#
-                                            class="text-gray-700 text-lg ">{{ number_format($monthly_unpaid_bills, 2) }}</a> </div>
+                                            class="text-gray-700 text-lg ">{{ number_format($monthly_unpaid_bills, 2)
+                                            }}</a> </div>
                                 </div>
                             </div>
 
@@ -371,7 +392,8 @@
                                         Collection
                                         of all time:</div>
                                     <div class="text-center font-semibold font-body text-gray-500 truncate"><a href=#
-                                            class="text-gray-700 text-lg ">{{ number_format($total_unpaid_bills, 2) }}</a> </div>
+                                            class="text-gray-700 text-lg ">{{ number_format($total_unpaid_bills, 2)
+                                            }}</a> </div>
                                 </div>
                             </div>
 
@@ -404,12 +426,13 @@
                                                 <dt class="text-lg font-semibold text-gray-900 mb-5">
                                                     {{ Carbon\Carbon::now()->format('D, M d, Y') }}
                                                 </dt>
-                                                
+
                                                 <dd>
                                                     <div class="text-sm font-medium text-gray-500">Daily Collected
                                                         Amount:
                                                     </div>
-                                                    <div class="text-lg font-medium text-gray-900">{{ number_format($daily_collections, 2) }}</div>
+                                                    <div class="text-lg font-medium text-gray-900">{{
+                                                        number_format($daily_collections, 2) }}</div>
                                                     <h2
                                                         class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-5 mb-2">
                                                         Notifications</h2>
@@ -423,7 +446,8 @@
                             <div class="bg-gray-50 px-5 py-3">
                                 @forelse ($notifications as $item)
                                 <div class="text-sm">
-                                    <div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div
+                                        class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                                         <div class="p-4">
                                             <div class="flex items-start">
                                                 <div class="flex-shrink-0">
@@ -456,20 +480,21 @@
                                             <div class="flex items-start">
                                                 <div class="flex-shrink-0">
                                                     <!-- Heroicon name: outline/check-circle -->
-                                                   <i class="fa-solid fa-folder-open"></i>
+                                                    <i class="fa-solid fa-folder-open"></i>
                                                 </div>
-                                
+
                                                 <div class="ml-3 w-0 flex-1 pt-0.5">
-                                                    <p class="text-sm font-medium text-gray-900">No new notifications</p>
+                                                    <p class="text-sm font-medium text-gray-900">No new notifications
+                                                    </p>
                                                     <p class="mt-1 text-sm text-gray-500">
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
-                                
+
                                     </div>
-                                
-                                
+
+
                                 </div>
                                 @endforelse
                                 {{-- <div class="text-sm">
@@ -514,6 +539,7 @@
                             <div class="overflow-hidden">
                                 <div class="py-3 px-5 ">Collection Rate</div>
                                 <canvas class="p-8" id="chartDoughnut"></canvas>
+                                
                             </div>
 
                             <!-- Required chart.js -->
@@ -549,46 +575,18 @@
                         );
                             </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
-
-
-
                     </div>
-
-
-
-
-
                     <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-3">
 
                         <div class="sm:col-span-6 mb-3 mt-10">
                             <div class="px-4">
                                 <div class="sm:flex sm:items-center">
-
-
-
-
-                                    <!-- 30 days -->
-
-
-
                                     <div class="mt-2 flex flex-col">
                                         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                                <a href="#/" class="text-sm text-gray-900 font-bold mt-2">Expiring
+                                                    Contracts ({{ $expiring_contracts->count() }})</a>
                                                 <div
                                                     class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                                     @include('admin.tables.contracts')
