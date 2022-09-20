@@ -7,9 +7,9 @@ Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
 
 Due Date: {{ Carbon\Carbon::parse($data['due_date'])->format('M d, Y') }}
 
-Bills to be Paid: {{ number_format($data['bills']->sum('bill'), 2) }}
+Bills to be Paid: {{ number_format(($data['bills']->sum('bill') - $data['bills']->sum('initial_payment')), 2) }}
 
-Bills to be Paid After Due Date: {{ number_format(($data['bills']->sum('bill')+$data['penalty']), 2) }}
+Bills to be Paid After Due Date: {{ number_format(($data['bills']->sum('bill') - $data['bills']->sum('initial_payment')) + $data['penalty'], 2) }} 
 
 Bills Breakdown
 

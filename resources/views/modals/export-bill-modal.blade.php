@@ -37,7 +37,7 @@
                         <x-label for="due_date">
                             Total Unpaid Bills
                         </x-label>
-                        {{ number_format($unpaid_bills->sum('bill'), 2) }} ({{ $unpaid_bills->count() }} bills)
+                        {{ number_format($unpaid_bills->sum('bill')-$unpaid_bills->sum('initial_payment'), 2) }} ({{ $unpaid_bills->count() }} bills)
 
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                             Penalty After Due Date
                         </x-label>
                         <x-form-input id="penalty" type="number"
-                            value="{{ old('penalty', ($unpaid_bills->sum('bill')*.1)) }}" name="penalty" min="0"
+                            value="{{ old('penalty', (($unpaid_bills->sum('bill') - $unpaid_bills->sum('initial_payment'))*.1)) }}" name="penalty" min="0"
                             step="0.001" />
                         @error('penalty')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
