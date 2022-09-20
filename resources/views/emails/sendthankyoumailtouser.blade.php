@@ -14,15 +14,16 @@ questions about our product, the website, feel free to reply directly
 to this email.
 I hope we can help you to simplify your rental property operations!
 
-<br><br>
+<br>
 
-@component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
+{{-- @component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
     Start Now
-@endcomponent
+@endcomponent --}}
 
 Stay in touch!<br>
 
 -Pam, Co-Founder
+<br>
 Thanks for Signing Up
 
 @endcomponent
