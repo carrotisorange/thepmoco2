@@ -339,9 +339,18 @@ Route::get('/renew-request', function(){
     return view('newlayout.renew-request');
 });
 
+Route::get('/renew-page', function(){
+    return view('newlayout.renew-page');
+});
+
 Route::get('/moveout-request', function(){
     return view('newlayout.moveout-request');
 });
+
+Route::get('/moveout-page', function(){
+    return view('newlayout.moveout-page');
+});
+
 
 Route::get('/banner', function(){
     return view('newlayout.banner');

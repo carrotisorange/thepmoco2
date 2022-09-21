@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contracts</title>
+    <title>Renew Contract</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,12 +59,11 @@
 
           <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
+                <a href="#" class="text-sm font-medium text-gray-900">Basilio Tenant</a>
                 <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
               </nav>
-
             <div class="relative inline-block text-left">
               <button type="button" class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" id="menu-0-button" aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
@@ -132,7 +131,7 @@
           </div>
 
         <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
-          <div class="elative text-gray-400 focus-within:text-gray-500">
+          <div class="relative text-gray-400 focus-within:text-gray-500">
               <label for="mobile-search" class="sr-only">The Property Manager</label>
                 <input id="mobile-search" type="search" placeholder="The Property Manager" class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
             <div class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
@@ -147,11 +146,11 @@
         <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Dashboard</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Units</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Contracts</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Owners</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Bills</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Teams</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Payments</a>
 
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Concerns</a>
         </div>
@@ -226,7 +225,7 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
 
                     <!-- Concerns -->
-                <a href="newconcern_list" class="ml-2 text-gray-400 hover:bg-gray-flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="newconcern_list" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-10 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -289,12 +288,21 @@
               </div>
             </nav>
 
+
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-            <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <!--
-  This example requires Tailwind CSS v3.0+ 
+            <div class="mt-5 px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-xl font-semibold text-gray-700 mt-5">Renew Contract</h1>
+      <h1 class="text-3xl font-bold text-gray-700 ">Reference #:</h1>
+    
+    </div>
+</div>
+    <!--
+  This example requires Tailwind CSS v2.0+ 
   
   This example requires some changes to your config:
   
@@ -309,424 +317,69 @@
   }
   ```
 -->
-<div class="mt-10 px-4 sm:px-6 lg:px-8">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
+<div>
+  <div class="flex justify-center mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
     
-      <h1 class="mb-5 text-3xl font-bold text-gray-700">Contracts</h1>
-    
-   
-  </div>
+    <div class="mt-5 md:mt-0 md:col-span-6">
+      <form action="#" method="POST">
+        <div class="shadow sm:rounded-md sm:overflow-hidden">
+          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
 
-  
+            <div class="col-span-3 sm:col-span-2">
+            <label for="first-name" class="block text-sm font-medium text-gray-700">Date:</label>
+            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-  
-  <div class="sm:col-span-3">
+          <div class="col-span-3 sm:col-span-2">
+            <label for="last-name" class="block text-sm font-medium text-gray-700">Name of Tenant</label>
+            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-  <div class="sm:col-span-2">
-<form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
-    <div class="relative w-64 mb-5">
-        <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
-        
-        </div>
-        <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-full flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="text-sm font-medium text-gray-900"> Filter by: Latest</span>
-                <span class="ml-6 flex items-center">
-                  <!--
-                    Expand/collapse icon, toggle classes based on question open state.
+          <div class="col-span-3 sm:col-span-2">
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Unit No.</label>
+            <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+          </div>
 
-                    Heroicon name: solid/chevron-down
-
-                    Open: "-rotate-180", Closed: "rotate-0"
-                  -->
-                  <svg class="rotate-0 h-5 w-5 transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-              </button>
-            </h3>
-
-            <div class="hidden mt-5 grid grid-cols-1 gap-y-6  sm:grid-cols-6">
-            <div class="sm:col-span-3">
-            <div class=" pl-2 bg-white" id="filter-section-0">
-              <div class="">
-
+          
               
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">January</label>
-               
-                  </div>
-
-     
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">February</label>
-                
-                  </div>
-
-                  
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">March</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">April</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">May</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">June</label>
-                </div>
-
-               
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">July</label>
-                  
-                </div>
-
-                
-                 
-                
-                  </div>
-                  
-              </div>
-
-                  </div>
-
-                  <div class="sm:col-span-3">
-            <div class=" pl-2 bg-white" id="filter-section-0">
-              <div class="">
-              
-                
-              <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">August</label>
-                  
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">September</label>
-                  
-                </div>
-              
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">October</label>
-                 
-               
-                  </div>
-
-     
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">November</label>
-                  
-                  </div>
-
-                  
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">December</label>
-                  
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Last Year</label>
-                 
-                </div>
-
-                
-                <div class="flex justify-end">
-                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-xs font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
-                  </div>
-                 
-                  </div>
-                  
-              </div>
              
-
-                  </div>
-
-
+            
+            
+        <div class="sm:col-span-6">
+              <label for="concern" class="block text-sm font-medium text-gray-700">Remarks</label>
+              <div class="mt-1">
+                <textarea id="concern" name="concern" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
+              </div>
               
             </div>
-          </div>
-        
-      
-                  </div>
 
-
-    
-</form>
-                  
-
-    
-    
-</div>
-
-
-
-
-
-
-
-    
-
-</div>
-
-<div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
-    <ul class="flex flex-wrap -mb-px">
-    
-        <li class="mr-2">
-            <a href="contracts-page-list" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">All Contracts</a>
-        </li>
-        <li class="mr-2">
-            <a href="renew-request" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Renewal Requests</a>
-        </li>
-        
-        <li class="mr-2">
-            <a href="moveout-request" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Moveout Requests</a>
-        </li>
-        
-        
-    </ul>
-</div>
-
-
-    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-    
-
-      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-      
-      <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-          <!-- Selected row actions, only show when rows are selected. -->
-          <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
             
+
+        <div class="sm:col-span-3">
+        <fieldset>
+        <div>
+          <label for="about" class="block text-sm font-medium text-gray-700">Approved by:
+          </label>
+          <div class="mt-1">
+            <textarea id="about" name="about" rows="3" class="h-5 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md" placeholder=""></textarea>
+          </div>
           </div>
 
-          <table class="min-w-full table-fixed">
             
-            <thead class="">
-              <tr>
-                <th scope="col" class="relative w-12 px-5 sm:w-8 sm:px-8">
-                  
-                </th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">#</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">REFERENCE #</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT #</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
-
-                
-                </th>
-              </tr>
-            </thead>
-            
-
-            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-              <!-- Selected: "bg-gray-50" -->
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
-                                        </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
-                  <a href="renew-page" class="text-indigo-600 hover:text-indigo-900">Renew Contract<span class="sr-only">, Renew</span></a>
-                </td>
-
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
-                                        </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
-                  <a href="renew-page" class="text-indigo-600 hover:text-indigo-900">Renew Contract<span class="sr-only">, Renew</span></a>
-                </td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
-                                        </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
-                  <a href="renew-page" class="text-indigo-600 hover:text-indigo-900">Renew Contract<span class="sr-only">, Renew</span></a>
-                </td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                 
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
-                                        </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
-                  <a href="renew-page" class="text-indigo-600 hover:text-indigo-900">Renew Contract<span class="sr-only">, Renew</span></a>
-                </td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
-                                        </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
-                  <a href="renew-page" class="text-indigo-600 hover:text-indigo-900">Renew Contract<span class="sr-only">, Renew</span></a>
-                </td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">9-5-22</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0912345678</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">UG 123</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
-                                        </td>
-                                        <td class="whitespace-nowrap pl-3 text-right text-sm font-medium">
-                  <a href="renew-page" class="text-indigo-600 hover:text-indigo-900">Renew Contract<span class="sr-only">, Renew</span></a>
-                </td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <!-- More people... -->
-            </tbody>
-
-            
-            
-          </table>
-          
+            </div>
+          </div>
+          <div class="px-4 py-3 text-right sm:px-6">
+            <button type="submit" class="inline-flex justify-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Renew</button>
+          </div>
         </div>
-      
-
-    
-
-
-      </div>
-    </div>
-  </div>
-
- <div class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-  <div class="flex-1 flex justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
-    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </a>
-  </div>
-  <div class="mt-5 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-    <div>
-      <p class="text-sm text-gray-700">
-        Showing
-        <span class="font-medium">1</span>
-        of
-        <span class="font-medium">5</span>
-        pages
-      </p>
-    </div>
-    <div>
-      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Previous</span>
-          <!-- Heroicon name: solid/chevron-left -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
-        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> ... </span>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Next</span>
-          <!-- Heroicon name: solid/chevron-right -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </nav>
+      </form>
     </div>
   </div>
 </div>
-</div>
+
+
+
 
 
 

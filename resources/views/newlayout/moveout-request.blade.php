@@ -241,13 +241,22 @@
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
 
-                    <!-- Payments -->
-                    <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                     <!-- Payments -->
+                     <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+
+                     <!-- Contracts -->
+                     <a href="newpayments" class="ml-2 bg-purple-500 text-white hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Contracts</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/contract-white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Contracts</div>
+
 
                     <!-- Accounts Payable -->
                     <a href="accountspayables" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
@@ -258,9 +267,9 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Accounts</div>
 
                     <!-- General Ledger -->
-                <a href="General Ledger" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                <a href="General Ledger" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">General Ledger</div>
@@ -547,7 +556,7 @@
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
+                  <a href="moveout-page" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
 
                 
@@ -568,7 +577,7 @@
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
+                  <a href="moveout-page" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -590,7 +599,7 @@
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
+                  <a href="moveout-page" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -612,7 +621,7 @@
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
+                  <a href="moveout-page" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -633,7 +642,7 @@
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
+                  <a href="moveout-page" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -654,7 +663,7 @@
                                         <span class="rounded-full bg-red-100 px-2 text-xs font-semibold  text-red-800">Pending</span>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
+                  <a href="moveout-page" class="text-indigo-600 hover:text-indigo-900">Moveout<span class="sr-only">, Moveout</span></a>
                 </td>
                 
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
