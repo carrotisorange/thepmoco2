@@ -30,16 +30,16 @@ class SubscriptionController extends Controller
         ]);
     }
 
-     public function unsubscribe(User $user, $external_id)
-     {
-        Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
+    //  public function unsubscribe(User $user, $external_id)
+    //  {
+    //     Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
 
-        $stopRecurring = \Xendit\Recurring::stop($external_id);
+    //     $stopRecurring = \Xendit\Recurring::stop($external_id);
 
-        var_dump($stopRecurring);
+    //     var_dump($stopRecurring);
 
-        return back()->with('succes', 'Subscription is sucessfully stopped.');
-     }
+    //     return back()->with('succes', 'Subscription is sucessfully stopped.');
+    //  }
 }
 
 

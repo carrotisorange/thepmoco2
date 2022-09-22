@@ -202,14 +202,24 @@
             </tr>
             <tr>
                 <th>
+                    Collected Bills 
+                </th>
+                @foreach ($data as $property)
+                <td>
+                    {{ number_format($property->property->collections->sum('collection'), 2) }}
+                </td>
+                @endforeach
+            </tr>
+            <tr>
+                <th>
                     Uncollected Bills
                 </th>
                 @foreach ($data as $property)
                 <td>
-                    {{ number_format($property->property->bills->whereIn('status', ['unpaid',
-                    'partially_paid'])->sum('bill') -
-                    $property->property->bills->whereIn('status', ['unpaid',
-                    'partially_paid'])->sum('initial_payment'), 2) }}
+                   {{ number_format($property->property->bills->whereIn('status', ['unpaid',
+                'partially_paid'])->sum('bill') -
+                $property->property->bills->whereIn('status', ['unpaid',
+                'partially_paid'])->sum('initial_payment'), 2) }}
                 </td>
                 @endforeach
             </tr>
@@ -262,7 +272,7 @@
                 </td>
                 @endforeach
             </tr>
-          
+
             <tr>
                 <th>
                     Expiring Contracts
@@ -298,7 +308,7 @@
                 </th>
                 @foreach ($data as $property)
                 <td>
-                  {{ $property->property->concerns->where('status','pending')->count() }}    </td>
+                    {{ $property->property->concerns->where('status','pending')->count() }} </td>
                 @endforeach
             </tr>
             <tr>

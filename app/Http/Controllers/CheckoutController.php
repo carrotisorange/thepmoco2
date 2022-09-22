@@ -126,8 +126,6 @@ public function charge_user_account($plan_id, $external_id, $description, $email
 
         $external_id = Plan::find($plan_id)->plan.'_'.Str::random(8);
 
-
-
         app('App\Http\Controllers\SubscriptionController')->store_subscription(
             auth()->user()->id, $plan_id, $external_id, $amount*$interval
         );
