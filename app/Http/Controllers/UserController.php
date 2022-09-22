@@ -43,7 +43,7 @@ class UserController extends Controller
 
             $pdf = $this->generate_pdf($data, $export_option);
 
-            return $pdf->download(Carbon::now().'-'.auth()->user()->name.'-portforlio.pdf');
+            return $pdf->stream(Carbon::now().'-'.auth()->user()->name.'-portforlio.pdf');
         }
 
     }

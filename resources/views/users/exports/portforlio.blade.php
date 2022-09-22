@@ -4,7 +4,7 @@
     <style>
         /** Define the margins of your page **/
         @page {
-            margin: 100px 25px;
+            margin: 60px 25px;
 
         }
 
@@ -46,15 +46,14 @@
         table,
         th,
         td {
-            margin-right: 80px;
-            margin-left: 50px;
+            margin-right: 1;
+            margin-left: 1;
             border: 1px black;
         }
 
         th,
         td {
-            padding: 10px";
-
+            padding: 10px"
         }
     </style>
 </head>
@@ -85,9 +84,9 @@
 
         <table class="">
             <tr>
-                <th>
+                <td>
                     Property
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->property }}
@@ -95,8 +94,9 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
-                    Type</th>
+                <td>
+                    Type
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->type->type }}
@@ -105,8 +105,8 @@
             </tr>
 
             <tr>
-                <th>
-                    Employee</th>
+                <td>
+                    Employee</td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->property_users()->count() }}
@@ -115,8 +115,8 @@
             </tr>
 
             <tr>
-                <th>
-                    Units</th>
+                <td>
+                    Units</td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->units()->count() }}
@@ -124,8 +124,8 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
-                    Occupied Units</th>
+                <td>
+                    Occupied Units</td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->units->where('status_id', 2)->count() }}
@@ -134,8 +134,8 @@
             </tr>
 
             <tr>
-                <th>
-                    Vacant Units </th>
+                <td>
+                    Vacant Units </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->units->where('status_id', 1)->count() }}
@@ -144,8 +144,8 @@
             </tr>
 
             <tr>
-                <th>
-                    Reserved Units </th>
+                <td>
+                    Reserved Units </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->units->where('status_id', 4)->count() }}
@@ -154,9 +154,9 @@
             </tr>
 
             <tr>
-                <th>
+                <td>
                     Dirty Units
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->units->where('status_id', 3)->count() }}
@@ -165,9 +165,9 @@
             </tr>
 
             <tr>
-                <th>
+                <td>
                     Under Maintenance Units
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->units->where('status_id', 5)->count() }}
@@ -176,9 +176,9 @@
             </tr>
 
             <tr>
-                <th>
+                <td>
                     Occupancy Rate
-                </th>
+                </td>
                 @foreach ($data as $property)
                 @if($property->property->units->count())
                 <?php $occupancy_rate = $property->property->units->where('status_id', 2)->count()/$property->property->units->count() * 100; ?>
@@ -191,9 +191,9 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Bills For Collection
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ number_format($property->property->bills->sum('bill'), 2) }}
@@ -201,9 +201,9 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Collected Bills 
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ number_format($property->property->collections->sum('collection'), 2) }}
@@ -211,9 +211,9 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Uncollected Bills
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                    {{ number_format($property->property->bills->whereIn('status', ['unpaid',
@@ -224,9 +224,9 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Collection Efficiency
-                </th>
+                </td>
                 @foreach ($data as $property)
                 @if($property->property->bills->count())
                 <?php $collection_efficiency = 
@@ -240,9 +240,9 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Past Due Accounts
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->bills->whereIn('status', ['unpaid',
@@ -253,9 +253,9 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Contracts
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->contracts->count() }}
@@ -263,9 +263,9 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Active Contracts
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->contracts->where('status','active')->count() }}
@@ -274,9 +274,9 @@
             </tr>
 
             <tr>
-                <th>
+                <td>
                     Expiring Contracts
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->contracts->where('status','inactive')->count() }}
@@ -284,18 +284,18 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Expired Contracts
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->contracts->where('status','inactive')->count() }} </td>
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Received Concerns
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->concerns->count() }}
@@ -303,18 +303,18 @@
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Pending Concerns
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->concerns->where('status','pending')->count() }} </td>
                 @endforeach
             </tr>
             <tr>
-                <th>
+                <td>
                     Closed Concerns
-                </th>
+                </td>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->concerns->where('status','closed')->count() }} </td>
