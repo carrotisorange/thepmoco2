@@ -152,7 +152,7 @@
 
         </nav>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-500 to-indigo-300 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-purple-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
           <a href="newsignin" class="ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
           
         </div>
@@ -258,14 +258,14 @@
             <div class="flex items-center justify-center ">
             
 </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-gray-300 mix-blend-multiply"></div>
+            <div class="absolute inset-0 "></div>
           </div>
-          <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
-            <h1 class="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              <span class="block text-gray-800">About the PMO</span>
+          <div class="relative px-4 py-16 sm:px-6  lg:px-8">
+            <h1 class="text-center text-4xl font-bold  sm:text-5xl lg:text-4xl">
+              <span class="block text-gray-800">The service you deserve, with the people you trust.</span>
               
             </h1>
-            <p class="mx-auto mt-6 max-w-lg text-center text-xl text-white sm:max-w-3xl">The service you deserve, with the people you trust.</p>
+            
             <div class="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
               
             </div>
@@ -332,7 +332,7 @@
       </div>
 
       <!-- Testimonial section -->
-      <div class="bg-gradient-to-r from-purple-500 to-gray-600 pb-16 lg:relative lg:z-10 lg:pb-0">
+      <div class="bg-purple-300 pb-16 lg:relative lg:z-10 lg:pb-0">
         <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
           <div class="relative lg:-my-8">
             <div aria-hidden="true" class="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"></div>

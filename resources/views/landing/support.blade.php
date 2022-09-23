@@ -354,34 +354,7 @@
 </div>
 
 
-    <!-- Hero section -->
-    <div class="relative">
-      <div class="absolute inset-x-0 bottom-0"></div>
-      
-        <div class="relative shadow-xl sm:overflow-hidden ">
-          <div class="absolute inset-0">
-            <div class="flex items-center justify-center ">
-            
-</div>
-            <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-gray-300 mix-blend-multiply"></div>
-          </div>
-          <div class="relative px-4 py-5 sm:px-6 lg:px-8">
-            <h1 class="text-center text-2xl font-bold tracking-tight sm:text-2xl lg:text-2xl">
-              <span class="block text-gray-800">Office Hours</span>
-              
-            </h1>
-            <p class="mx-auto mt-6 max-w-lg text-center text-xl text-white sm:max-w-3xl">Monday - Friday
-
-9:00 am – 5:00 pm</p>
-            <div class="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
+ 
 
     
 <!-- Blog section -->

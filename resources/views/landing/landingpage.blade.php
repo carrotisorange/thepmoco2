@@ -152,7 +152,7 @@
 
         </nav>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-500 to-indigo-300 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-origin-border bg-purple-500 px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
           <a href="newsignin" class="ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
           
         </div>
@@ -251,7 +251,7 @@
   <main>
 
 
-  <div class="min-h-full flex bg-white">
+  <div class=" flex" style= "background-image: url('/brands/build-stock.png');">
   <div class="flex-1 flex flex-col justify-center py-2 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-48">
     <div class="mx-auto w-full max-w-sm lg:w-96">
       
@@ -276,6 +276,7 @@
 
             <div>
               <button type="submit" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Start Free Trial</button>
+              
             </div>
 
           
@@ -406,7 +407,7 @@
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900">A property dashboard to oversee all your processes!</h2>
                 <p class="mt-4 text-lg text-gray-500">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
                 <div class="mt-6">
-                  <a href="#" class="inline-flex rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Get started</a>
+                  <a href="#" class="inline-flex rounded-md border border-transparent bg-purple-500 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Get started</a>
                 </div>
               </div>
             </div>
@@ -568,17 +569,15 @@
 <div class="relative bg-gray-50 py-16 sm:py-24 lg:py-32" >
         <div class="relative">
           <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Quick start guide</p>
-            <p class="mx-auto mt-5  text-xl text-white">Let us take care of your business process, so you can focus on growing your business!
-
-</p>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Quick Start Guide</p>
+           
           </div>
 
           <div class="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-5 lg:px-8">
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-24  object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
+                <img class="h-20  object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -600,7 +599,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-24  object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
+                <img class="h-20  object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -619,7 +618,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-24  object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
+                <img class="h-20  object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -638,7 +637,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-              <img class="h-24  object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
+              <img class="h-20  object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
               </div>
 </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -657,7 +656,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-              <img class="h-24 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
+              <img class="h-20 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
               </div>
 </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -677,9 +676,7 @@
           </div>
         </div>
 
-        <div class="mt-10 flex items-center justify-center">
-            <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-3xl border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Start Free Trial</button>
-</div>
+        
       </div>
      
 
@@ -865,7 +862,7 @@
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Quick start guide</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Quick Start Guide</a>
                 </li>
 
                 <li>
