@@ -258,11 +258,11 @@
             </h1>     
 </div>
 <div class="py-5 flex items-center justify-center gap-10">
-<a href="#" class="items-center justify-center  rounded-full border border-transparent bg-purple-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
-<a href="#" class="items-center justify-center  rounded-full border border-transparent bg-purple-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+<a href="#" class="items-center justify-center  rounded-full border border-transparent bg-purple-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Get Started</a>
+<a href="#" class="items-center justify-center  rounded-full border border-transparent bg-gray-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Live Demo</a>
 </div>
 </div>
-<img class="h-72 w-full object-cover opacity-50" src="{{ asset('/brands/house-outline.jpeg') }}" alt="pmo logo">
+<img class="h-72 w-full object-cover opacity-30" src="{{ asset('/brands/house-outline.jpeg') }}" alt="pmo logo">
             <div class="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
               
             </div>
