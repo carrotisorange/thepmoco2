@@ -78,17 +78,7 @@
                 To: "transform opacity-0 scale-95"
             --> 
            <!-- PROFILE DROPDOWN! --> 
-            <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
-              <div class="py-1" role="none">
-                <!-- Active: "bg-gray-100", Not Active: "" -->
-                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Your Profile </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+        
     <!-- Mobile menu, show/hide this `div` based on menu open/closed state -->
 
         <div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
@@ -305,7 +295,7 @@
     
       <div class="flex justify-between">
       <h1 class="text-3xl font-bold text-white">Basilio Tenant</h1>
-        <a href="#" class="flex text-right text-sm font-medium text-white hover:text-purple-700">Edit</a>
+        <a href="#" class="flex text-right text-sm font-medium text-gray-900 hover:text-purple-700">Generate Credentials</a>
       </div>
       
     </div>
@@ -314,13 +304,23 @@
     <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4  lg:row-span-3">
       <h2 class="sr-only">Images</h2>
 
-      <div class="flex items-center justify-center mr-5">
+      <div class="flex items-center justify-center">
       <img src="{{ asset('/brands/user.png') }}" alt="door" class="h-56 lg:col-span-2 md:row-span-2 rounded-md">
       </div>
-      <h1 class="text-center">username: juandelacruz</h1>
-      <a href="change-username" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change username </a>
-      <a href="change-password" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change password</a>
       
+      <p class="mt-5 text-lg text-center text-gray-700">
+        username:
+        <span class="font-bold ">@basilio_tenant1</span>
+        
+      </p>
+
+
+      <div class="flex items-center justify-center">
+      <a href="change-username" class="mt-8 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change username </a>
+</div>
+<div class="flex items-center justify-center">
+      <a href="change-password" class="mt-5 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change password</a>
+</div>
 
       
     </div>
@@ -384,11 +384,11 @@
           </div> 
 
           <div class="sm:col-span-4">
-          <div class="h-32 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+          <div class=" bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
             <label for="job-title" class="block text-xs font-medium text-gray-900">School/Company</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
               
-              <label for="job-title" class="block text-xs font-medium text-gray-900">Addresss</label>
+              <label for="job-title" class="block text-xs font-medium text-gray-900">Address</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
 
               <label for="job-title" class="block text-xs font-medium text-gray-900">Position</label>
@@ -397,7 +397,7 @@
           </div> 
 
           <div class="sm:col-span-4">
-          <div class="h-32 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+          <div class=" bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
             <label for="job-title" class="block text-xs font-medium text-gray-900">Character Reference</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
 
@@ -415,7 +415,7 @@
         
 
         <div class="mt-8 mb-10 flex justify-end">
-        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</button>
         </div>  
 
       
@@ -522,6 +522,10 @@
     </table>
     
   </div>
+
+  <div class="mt-8 flex justify-end">
+        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New Contract</button>
+        </div> 
         </section>
 
         <section class="mb-10">
@@ -621,7 +625,7 @@
   </div>
 
   <div class="mt-8 flex justify-end">
-        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay Bills</button>
+        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View Bills</button>
         </div> 
         </section>
 
@@ -775,6 +779,9 @@
     </table>
     
   </div>
+  <div class="mt-8 flex justify-end">
+        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View Collection</button>
+        </div> 
         </section>
 
 </div>
