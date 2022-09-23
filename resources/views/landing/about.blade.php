@@ -152,7 +152,7 @@
 
         </nav>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-purple-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-transparent bg-purple-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
           <a href="newsignin" class="ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
           
         </div>
@@ -250,30 +250,22 @@
 
   <main>
     <!-- Hero section -->
-    <div class="relative">
-      <div class="absolute inset-x-0 bottom-0"></div>
-      
-        <div class="relative shadow-xl sm:overflow-hidden ">
-          <div class="absolute inset-0">
-            <div class="flex items-center justify-center ">
-            
+   
+         <div class="py-16 flex items-center justify-center">
+         
+            <h1 class="text-center text-4xl font-bold  sm:text-5xl lg:text-6xl lg:w-1/2 ">
+              <span class=" text-gray-800">The service you deserve, with the people you trust.</span>
+            </h1>     
 </div>
-            <div class="absolute inset-0 "></div>
-          </div>
-          <div class="relative px-4 py-16 sm:px-6  lg:px-8">
-            <h1 class="text-center text-4xl font-bold  sm:text-5xl lg:text-4xl">
-              <span class="block text-gray-800">The service you deserve, with the people you trust.</span>
-              
-            </h1>
-            
+<div class="py-10 flex items-center justify-center gap-10">
+<a href="#" class="items-center justify-center  rounded-full border border-transparent bg-purple-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+<a href="#" class="items-center justify-center  rounded-full border border-transparent bg-purple-500 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+</div>
             <div class="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
               
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
+    
     
 
     <div class="relative bg-gray-900">
