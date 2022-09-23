@@ -312,10 +312,10 @@
 <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul class="flex flex-wrap -mb-px">
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">All</a>
+            <a href="accounts-all" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">All</a>
         </li>
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Bills</a>
+            <a href="accounts-payable-list" class= "inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">Bills</a>
         </li>
         
         
@@ -367,7 +367,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800"><a href="pending-account">Pending</a></span>
                                         </td>
                 <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -386,7 +386,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800"><a href="pending-account">Pending</a></span>
                                         </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -405,7 +405,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800"><a href="pending-account">Pending</a></span>
                                         </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -443,7 +443,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800"><a href="pending-account">Pending</a></span>
                                         </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   
@@ -462,7 +462,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Approved</span>
+                                        <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800"><a href="pending-account">Pending</a></span>
                                         </td>
                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   

@@ -259,6 +259,10 @@ Route::get('/accounts-payable-list', function(){
     return view('newlayout.accounts-payable-list');
 });
 
+Route::get('/accounts-all', function(){
+    return view('newlayout.accounts-all');
+});
+
 
 // owner portal
 Route::get('/ownerdashboard', function(){
