@@ -304,21 +304,13 @@
   
   <div class="pt-6 sm:pb-5">
 
-    <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <ol role="list" class="flex items-center space-x-4">
-        <li>
-          <div class="flex items-center">
-          <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
-          </div>
-        </li>
-      </ol>
-    </nav>
+    
 
     
 
     <!-- This example requires Tailwind CSS v2.0+ -->
 
-    <div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
+    <div class=" lg:border-t lg:border-b lg:border-gray-200">
     
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
     <ol role="list" class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
@@ -483,30 +475,30 @@
 <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
     <div class="md:grid md:grid-cols-1 md:gap-6">
       <div class="mt-5 md:mt-0 md:col-span-2">
-        <div class="grid grid-cols-8 gap-6">
-          <div class="col-span-4">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="col-span-1">
             <label for="first-name" class="block text-sm font-medium text-gray-700">Date of Turnover</label>
             <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-4">
+          <div class="col-span-1">
             <label for="last-name" class="block text-sm font-medium text-gray-700">Classification</label>
             <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-3">
+          <div class="col-span-1">
             <label for="email-address" class="block text-sm font-medium text-gray-700">Price</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-3">
+          <div class="col-span-1">
             <label for="email-address" class="block text-sm font-medium text-gray-700">Status</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           
 
-          <div class="col-span-2">
+          <div class="col-span-1">
           <div>
               <label class="block text-sm font-medium text-gray-700"> Upload Contract </label>
               <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
@@ -530,15 +522,16 @@
         </div>
       </div>
     </div>
-  </div>
-
-
-
-  <div class="flex justify-end">
+    <div class="flex justify-end">
     <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="addowner1">Back</a></button>
     <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <a href="addowner3">Next</a></button>
   </div>
+  </div>
+
+
+
+ 
 </form>
 
     

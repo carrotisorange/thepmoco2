@@ -282,7 +282,7 @@
 
           <!-- Main area -->
           <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-            <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto px-4 sm:px-6 lg:px-8 bg-white">
 
 <!--
   This example requires Tailwind CSS v2.0+ 
@@ -304,21 +304,13 @@
   
   <div class="pt-6 sm:pb-5">
 
-    <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <ol role="list" class="flex items-center space-x-4">
-        <li>
-          <div class="flex items-center">
-          <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
-          </div>
-        </li>
-      </ol>
-    </nav>
+   
 
     
 
     <!-- This example requires Tailwind CSS v2.0+ -->
 
-    <div class="mt-10 lg:border-t lg:border-b lg:border-gray-200">
+    <div class=" lg:border-t lg:border-b lg:border-gray-200">
     
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
     <ol role="list" class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
@@ -482,18 +474,18 @@
       <div class="mt-5 md:mt-0 md:col-span-3">
         <div class="grid grid-cols-6 gap-6">
           
-          <div class="col-span-6 sm:col-span-3">
+          <div class="col-span-6 sm:col-span-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700">Full Name</label>
             <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
-          <div class="col-span-6 sm:col-span-3">
-            <label for="last-name" class="block text-sm font-medium text-gray-700">Mobile</label>
+          <div class="col-span-6 sm:col-span-2">
+            <label for="last-name" class="block text-sm font-medium text-gray-700">Email</label>
             <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
           <div class="col-span-6 sm:col-span-2">
-            <label for="email-address" class="block text-sm font-medium text-gray-700">Email</label>
+            <label for="email-address" class="block text-sm font-medium text-gray-700">Mobile</label>
             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
           </div>
 
@@ -586,7 +578,7 @@
 
 
 
-  <div class="flex justify-end mt-10">
+  <div class="flex justify-end mt-5">
     <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
     <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <a href="addowner2">Next</a></button>

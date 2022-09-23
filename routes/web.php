@@ -200,6 +200,10 @@ Route::get('/addtenant5', function(){
     return view('newlayout.admin_tenant.addtenant5');
 });
 
+Route::get('/tenant-success', function(){
+    return view('newlayout.admin_tenant.tenant-success');
+});
+
 Route::get('/addowner1', function(){
     return view('newlayout.admin_owner.addowner1');
 });
@@ -218,6 +222,10 @@ Route::get('/addowner4', function(){
 
 Route::get('/addowner5', function(){
     return view('newlayout.admin_owner.addowner5');
+});
+
+Route::get('/owner-success', function(){
+    return view('newlayout.admin_owner.owner-success');
 });
 
 
