@@ -25,7 +25,7 @@ class PaymentRequestController extends Controller
         return PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
         ->where('tenants.property_uuid', $property_uuid)
         ->where('status', $status)
-        ->orderBy('payment_requests.created_at');
+        ->orderBy('payment_requests.created_at', 'desc');
     }
 
     /**

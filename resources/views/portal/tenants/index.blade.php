@@ -103,28 +103,30 @@
                 </div>
             </div>
             @foreach ($contracts->where('end','<=',\Carbon\Carbon::now()->addMonth()) as $item)
-            <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
-                <div class="text-sm">
-                    <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> Your contract
-                        will expire in 2 days. </a>
-                    <div button type="button"
-                        class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Renew</button></div>
+                <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> Your contract
+                            will expire in 2 days. </a>
+                        <div button type="button"
+                            class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Renew</button></div>
+                    </div>
                 </div>
-            </div>
-            @endforeach
-            @foreach ($unpaid_bills->get() as $item)
-            <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
-                <div class="text-sm">
-                    <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> You have {{ number_format($item->bill, 2) }}
-                        unpaid bills for {{ $item->unit->unit }}. </a>
-                    <div button type="button" onclick="window.location.href='/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/bills'"
-                        class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Pay now</button></div>
+                @endforeach
+                @foreach ($unpaid_bills->get() as $item)
+                <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> You have {{
+                            number_format($item->bill, 2) }}
+                            unpaid bills for {{ $item->unit->unit }}. </a>
+                        <div button type="button"
+                            onclick="window.location.href='/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/bills'"
+                            class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Pay now</button></div>
+                    </div>
                 </div>
-            </div>
-            @endforeach
-           
+                @endforeach
+
         </div>
 
         <!-- card Notifications -->
@@ -146,7 +148,7 @@
                                 <div class="text-lg font-medium text-gray-900">{{
                                     number_format($unpaid_bills->sum('bill'), 2) }}</div>
                                 <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">
-                                    Recent Payments</h2>
+                                    Notifications</h2>
                             </dd>
                         </dl>
                     </div>
@@ -154,8 +156,8 @@
             </div>
 
             <div class="bg-gray-50 px-5 py-3">
+                @forelse ($notifications->take(3)->get() as $item)
                 <div class="text-sm">
-                    @forelse($payments as $item)
                     <div
                         class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div class="p-4">
@@ -168,44 +170,55 @@
                                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
+
                                 <div class="ml-3 w-0 flex-1 pt-0.5">
-                                    <p class="text-sm font-medium text-gray-900">Successfully paid!
+                                    <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }} {{
+                                        $item->details }}</p>
+                                    <p class="mt-1 text-sm text-gray-500">{{
+                                        Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                                     </p>
-                                    <p class="mt-1 text-sm text-gray-500">You paid {{ number_format($item->collection, 2) }} for {{ $item->bill->particular->particular }}.</p>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    @empty
-                    <div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+
+                </div>
+                @empty
+                <div class="text-sm">
+                    <div
+                        class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div class="p-4">
                             <div class="flex items-start">
                                 <div class="flex-shrink-0">
                                     <!-- Heroicon name: outline/check-circle -->
-                                    <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
+                                    <i class="fa-solid fa-folder-open"></i>
                                 </div>
+
                                 <div class="ml-3 w-0 flex-1 pt-0.5">
-                                    <p class="text-sm font-medium text-gray-900">No notifications today.
+                                    <p class="text-sm font-medium text-gray-900">No new notifications
                                     </p>
-                                    
+                                    <p class="mt-1 text-sm text-gray-500">
+                                    </p>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    @endforelse
+
 
                 </div>
-            </div>
+                @endforelse
 
-            <div button class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
-    text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-     onclick="window.location.href='/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments'">View
-    More</> 
             </div>
+{{-- 
+            <div button
+                class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
+    text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                onclick="window.location.href='/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments'">
+                View
+                More</>
+            </div> --}}
 
 
         </div>

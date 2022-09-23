@@ -70,7 +70,7 @@ class OwnerComponent extends Component
 
                         $user_id = app('App\Http\Controllers\UserController')->store(
                                 $this->owner, 
-                                app('App\Http\Controllers\UserController')->generate_temporary_username(), 
+                                $this->email,
                                 app('App\Http\Controllers\UserController')->generate_temporary_username(),
                                 auth()->user()->external_id, 
                                 $this->email,

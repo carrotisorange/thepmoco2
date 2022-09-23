@@ -96,10 +96,19 @@
                                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                                     <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                         <div class="grid grid-cols-4 gap-6">
-
+                                            <div class="sm:col-span-6">
+                                                <x-form-select name="mode_of_payment" required>
+                                                    <option value="" selected>Select one</option>
+                                                    <option value="bank">bank</option>
+                                                    <option value="cash">cash</option>
+                                                    <option value="cheque">cheque</option>
+                                                    <option value="e-wallet">e-wallet</option>
+                                                </x-form-select>
+                                            </div>
 
                                             <div class="sm:col-span-6">
-                                                <label class="block text-sm font-medium text-gray-700"> Upload a proof of payment
+                                                <label class="block text-sm font-medium text-gray-700"> Upload a proof
+                                                    of payment
                                                 </label>
                                                 <div
                                                     class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
@@ -116,8 +125,8 @@
                                                             <label for="file-upload"
                                                                 class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                                 <span>Upload a proof of payment</span>
-                                                                <input id="file-upload" name="proof_of_payment" type="file" required
-                                                                    class="sr-only">
+                                                                <input id="file-upload" name="proof_of_payment"
+                                                                    type="file" required class="sr-only">
                                                             </label>
                                                             <p class="pl-1">or drag and drop</p>
                                                         </div>

@@ -9,10 +9,10 @@
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-                        {{-- <button type="button"
-                            onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add
-                            Employee</button> --}}
+                        <button type="button"
+                            onclick="window.location.href='/property/{{ Session::get('property') }}/collection/pending'"
+                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                            Show Pending</button>
 
                     </div>
                 </div>
@@ -33,9 +33,7 @@
                             <table class="min-w-full table-fixed">
                                 <thead class="">
                                     <tr>
-                                                                               <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            BATCH #</th>
+
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             TENANT</th>
@@ -52,6 +50,9 @@
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             AMOUNT</th>
+                                        <th scope="col"
+                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                            MODE OF PAYMENT</th>
 
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
@@ -69,11 +70,6 @@
                                     <!-- Selected: "bg-gray-50" -->
                                     @forelse($requests as $index => $item )
                                     <tr>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
-                                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">{{ $item->batch_no }}</a>
-                                        </td>
-
-                                       
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             {{ $item->tenant }}
@@ -98,17 +94,22 @@
                                         </td>
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            {{ $item->mode_of_payment }}
+                                        </td>
+
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             {{ $item->status }}
                                         </td>
-                                        {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            @if($item->reason_for_rejection)
-                                            {{ $item->reason_for_rejection }}
-                                            @else
-                                            NONE
-                                            @endif
 
-                                        </td> --}}
-                                      
+                                        <td
+                                            class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
+                                            <a 
+                                                href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">
+                                                Review
+                                            </a>
+                                        </td>
+
+
 
                                     </tr>
                                     @empty

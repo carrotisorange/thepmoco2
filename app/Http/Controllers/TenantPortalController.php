@@ -14,6 +14,9 @@ use App\Models\Unit;
 use Illuminate\Support\Facades\Storage;
 use Str;
 use App\Models\PaymentRequest;
+use Session;
+use Carbon\Carbon;
+use App\Models\Notification;
 
 class TenantPortalController extends Controller
 {
@@ -24,7 +27,7 @@ class TenantPortalController extends Controller
             'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts,
             'unpaid_bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid']),
             'concerns' => Tenant::findOrFail($user->tenant_uuid)->concerns,
-            'payments' => Tenant::findOrFail($user->tenant_uuid)->collections()->orderBy('created_at', 'desc')->limit(5)->get(),
+            'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications( Tenant::find($user->tenant_uuid)->property->uuid),
         ]);
     }
 
@@ -156,6 +159,15 @@ class TenantPortalController extends Controller
 
          }
 
+          Notification::create([
+          'type' => 'concern',
+          'user_id' => $user->id,
+          'details' => 'has reported a concern.',
+          'status' => 'pending',
+          'role_id' => $role_id,
+          'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
+          ]);
+
         return redirect('/'.$role_id.'/tenant/'. auth()->user()->username .'/concerns/'.$concern->id)->with('success','Concern is reported successfully.');
     }
 
@@ -184,18 +196,79 @@ class TenantPortalController extends Controller
     public function payment_request_update(Request $request, $role_id, User $user, $batch_no)
     {
 
+        if($role_id !== '8')
+        {
+            PaymentRequest::where('batch_no', $batch_no)
+            ->update([
+            'reason_for_rejection' => $request->reason_for_rejection,
+            'updated_at' => Carbon::now(),
+            'status' => 'approved',
+            'user_id' => $user->id
+        ]);
+
+            Notification::create([
+                'type' => 'payment request',
+                'user_id' => $user->id,
+                'details' => 'has approved a payment request.',
+                'status' => 'approved',
+                'role_id' => $role_id,
+                'property_uuid' => Session::get('property') 
+            ]);
+
+         return redirect('/property/'.Session::get('property').'/collection/approved')->with('success', 'Payment has
+         been declined!');
+        }
+         else{
+    
       if(!$request->proof_of_payment == null)
       {
         PaymentRequest::where('batch_no', $batch_no)
         ->update([
         'proof_of_payment' => $request->proof_of_payment->store('proof_of_payments'),
-        'updated_at' => null
+        'updated_at' => null,
+        'mode_of_payment' => $request->mode_of_payment,
       ]);
 
-      }
+          Notification::create([
+          'type' => 'payment request',
+          'user_id' => $user->id,
+          'details' => 'has uploaded a proof of payment.',
+          'status' => 'pending',
+            'role_id' => $role_id,
+          'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
+          ]);
 
-      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments/pending')->with('success', 'Proof of payment has been uploaded.');
+      } 
+
+      return redirect(auth()->user()->role_id.'/tenant/'.
+      auth()->user()->username.'/payments/declined')->with('success', 'Proof of payment has been uploaded.');
+
+
     }  
+}
+
+
+    public function payment_request_deny(Request $request, $role_id, User $user, $batch_no)
+    {
+        PaymentRequest::where('batch_no', $batch_no)
+        ->update([
+            'status' => 'declined',
+            'reason_for_rejection' => $request->reason_for_rejection,
+            'user_id' => $user->id
+        ]);
+
+           Notification::create([
+                'type' => 'payment request',
+                'user_id' => $user->id,
+                'details' => 'has approved a payment request.',
+                'status' => 'declined',
+                'role_id' => $role_id,
+                'property_uuid' => Session::get('property') 
+            ]);
+
+        return redirect('/property/'.Session::get('property').'/collection/declined')->with('success', 'Payment has been declined!');
+    }
+
 
     public function payment_request_download($role_id, User $user, PaymentRequest $paymentrequest)
     {

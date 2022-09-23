@@ -259,7 +259,7 @@
                                             <div class="w-0 flex-1">
                                                 <div
                                                     class="text-l font-semibold font-body text-gray-500 underline truncate">
-                                                    <a href="/property/{{ $property->uuid }}/contract/pending">Moveout
+                                                    <a href="/property/{{ $property->uuid }}/contract/pendingmoveout">Moveout
                                                         Requests: {{ $pending_contracts->count() }}</a>
                                                 </div>
                                                 @forelse ($pending_contracts->take(1)->get() as $item)
@@ -332,7 +332,7 @@
                                                     <div button type="button"
                                                         class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                         <a
-                                                            href="/property/{{ $property->uuid }}/payment/tenant/{{ $item->tenant_uuid }}/pending/{{ $item->id }}">View</a></button>
+                                                            href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">View</a></button>
                                                     </div>
 
                                                 </div>
@@ -444,7 +444,7 @@
                             </div>
 
                             <div class="bg-gray-50 px-5 py-3">
-                                @forelse ($notifications as $item)
+                                @forelse ($notifications->take(3)->get() as $item)
                                 <div class="text-sm">
                                     <div
                                         class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
@@ -462,8 +462,9 @@
                                                 </div>
 
                                                 <div class="ml-3 w-0 flex-1 pt-0.5">
-                                                    <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-                                                    <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.
+                                                    <p class="text-sm font-medium text-gray-900">{{ $item->user->name }} {{ $item->details }}</p>
+                                                    <p class="mt-1 text-sm text-gray-500">{{
+                                                    Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -497,35 +498,6 @@
 
                                 </div>
                                 @endforelse
-                                {{-- <div class="text-sm">
-                                    <div
-                                        class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                        <div class="p-4">
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <!-- Heroicon name: outline/check-circle -->
-                                                    <svg class="h-6 w-6 text-green-400"
-                                                        xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                        aria-hidden="true">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                </div>
-
-                                                <div class="ml-3 w-0 flex-1 pt-0.5">
-                                                    <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-                                                    <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div> --}}
-
 
                             </div>
 

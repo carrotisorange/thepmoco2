@@ -15,7 +15,8 @@ Route::prefix('{role_id:role_id}/tenant/{user}')->group(function(){
     Route::get('payments_request/{batch_no:batch_no}', [TenantPortalController::class, 'payment_request_edit'])->name('tenant-payments');
     Route::get('payments_request/{batch_no:batch_no}/destroy', [TenantPortalController::class, 'payment_request_destroy']);
     Route::PATCH('payments_request/{batch_no:batch_no}/update', [TenantPortalController::class, 'payment_request_update']);
-     Route::get('payments_request/{paymentrequest}/download', [TenantPortalController::class, 'payment_request_download']);
+    Route::get('payments_request/{batch_no:batch_no}/deny', [TenantPortalController::class, 'payment_request_deny']);
+    Route::get('payments_request/{paymentrequest}/download', [TenantPortalController::class, 'payment_request_download']);
     Route::get('concerns', [TenantPortalController::class, 'show_concerns'])->name('tenant-concerns');
     Route::get('concerns/create', [TenantPortalController::class, 'create_concerns'])->name('tenant-concerns');
     Route::get('concerns/{concern}/download', [TenantPortalController::class, 'download_concerns']);

@@ -46,6 +46,9 @@
                                         AMOUNT</th>
                                     <th scope="col"
                                         class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                        MODE OF PAYMENT</th>
+                                    <th scope="col"
+                                        class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                         BATCH #</th>
                                     <th scope="col"
                                         class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
@@ -95,6 +98,9 @@
                                         {{ number_format($item->amount, 2) }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                      {{ $item->mode_of_payment }}
+                                    </td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $item->batch_no }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -106,7 +112,7 @@
                                         @else
                                         NONE
                                         @endif
-                                      
+
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         @if(!$item->proof_of_payment == null)

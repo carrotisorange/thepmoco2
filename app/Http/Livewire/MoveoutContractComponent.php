@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Contract;
 use Carbon\Carbon;
 use Session;
+use App\Models\Tenant;
+use App\Models\Notification;
 
 class MoveoutContractComponent extends Component
 {
@@ -36,6 +38,7 @@ class MoveoutContractComponent extends Component
 
     public function submitForm()
     {
+        
         sleep(1);
 
         $validatedData = $this->validate();
@@ -45,12 +48,31 @@ class MoveoutContractComponent extends Component
 
             $this->contract->update($validatedData);
 
+             Notification::create([
+              'type' => 'concern',
+              'user_id' => auth()->user()->id,
+              'details' => 'has requested to moveout.',
+              'status' => 'pending',
+              'role_id' => auth()->user()->role_id,
+              'property_uuid' => Tenant::find($this->contract->tenant_uuid)->property->uuid
+            ]);
+
             return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract moveout has been requested.');
+
 
         }else{  
             $validatedData['status'] = 'inactive';
 
             $this->contract->update($validatedData);
+
+            Notification::create([
+              'type' => 'concern',
+              'user_id' => auth()->user()->id,
+              'details' => 'has been approved to moveout.',
+              'status' => 'approved',
+              'role_id' => auth()->user()->role_id,
+              'property_uuid' => Tenant::find($this->contract->tenant_uuid)->property->uuid
+            ]);
 
             return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Contract has been moveout.');
         }
