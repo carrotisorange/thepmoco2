@@ -162,7 +162,7 @@ class TenantPortalController extends Controller
           Notification::create([
           'type' => 'concern',
           'user_id' => $user->id,
-          'details' => 'has reported a concern.',
+          'details' => 'reported a concern.',
           'status' => 'pending',
           'role_id' => $role_id,
           'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
@@ -209,7 +209,7 @@ class TenantPortalController extends Controller
             Notification::create([
                 'type' => 'payment request',
                 'user_id' => $user->id,
-                'details' => 'has approved a payment request.',
+                'details' => 'approved a payment request.',
                 'status' => 'approved',
                 'role_id' => $role_id,
                 'property_uuid' => Session::get('property') 
@@ -232,7 +232,7 @@ class TenantPortalController extends Controller
           Notification::create([
           'type' => 'payment request',
           'user_id' => $user->id,
-          'details' => 'has uploaded a proof of payment.',
+          'details' => 'uploaded a proof of payment.',
           'status' => 'pending',
             'role_id' => $role_id,
           'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
@@ -260,7 +260,7 @@ class TenantPortalController extends Controller
            Notification::create([
                 'type' => 'payment request',
                 'user_id' => $user->id,
-                'details' => 'has approved a payment request.',
+                'details' => 'approved a payment request.',
                 'status' => 'declined',
                 'role_id' => $role_id,
                 'property_uuid' => Session::get('property') 
