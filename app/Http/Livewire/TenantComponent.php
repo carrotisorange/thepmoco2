@@ -21,6 +21,7 @@ class TenantComponent extends Component
     public function mount($unit)
     {
         $this->unit = $unit;
+        $this->generateCredentials = true;
     }
 
     public $tenant;
@@ -43,6 +44,8 @@ class TenantComponent extends Component
     public $occupation;
     public $employer_address;
     public $employer;
+
+    public $generateCredentials;
 
 
     protected function rules()
@@ -86,22 +89,26 @@ class TenantComponent extends Component
             //store new tenant
             $tenant_uuid = $this->store_tenant($validated_data);
 
-            //store a new user
-            $user_id = app('App\Http\Controllers\UserController')->store(
-                $this->tenant, 
-                $this->email,
-                app('App\Http\Controllers\UserController')->generate_temporary_username(),
-                auth()->user()->external_id, 
-                $this->email,
-                8, //tenant 
-                $this->mobile_number,
-                "none", 
-                auth()->user()->checkoutoption_id,
-                auth()->user()->plan_id,
-            );
+            if($this->generateCredentials)
+            {
+                //store a new user
+                $user_id = app('App\Http\Controllers\UserController')->store(
+                    $this->tenant, 
+                    $this->email,
+                    app('App\Http\Controllers\UserController')->generate_temporary_username(),
+                    auth()->user()->external_id, 
+                    $this->email,
+                    8, //tenant 
+                    $this->mobile_number,
+                    "none", 
+                    auth()->user()->checkoutoption_id,
+                    auth()->user()->plan_id,
+                );
 
-            //update tenant_uuid of the newly created tenant
-            app('App\Http\Controllers\UserController')->update_user_tenant_uuid($user_id, $tenant_uuid);
+                //update tenant_uuid of the newly created tenant
+                app('App\Http\Controllers\UserController')->update_user_tenant_uuid($user_id, $tenant_uuid);
+            
+            }
 
             return redirect('/property/'.Session::get('property').'/tenant/'.$tenant_uuid.'/guardian/'.$this->unit->uuid.'/create')->with('success','Tenant is succesfully created.');
            

@@ -1,293 +1,299 @@
-<form wire:submit.prevent="submitForm()" class="w-full">
-    @csrf
-    <div class="mt-2 flex flex-wrap mt-5 mb-2">
-        <div class="w-full md:w-full  mb-3">
-            <x-label for="tenant">
-                Full Name <span class="text-red-600">*</span>
-            </x-label>
-            <x-form-input wire:model.lazy="tenant" id="tenant" type="text" name="tenant" value="{{ old('tenant') }}" />
+<form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
+    <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+        <div class="md:grid md:grid-cols-1 md:gap-6">
+            <div class="mt-5 md:mt-0 md:col-span-3">
+                <div class="grid grid-cols-6 gap-6">
 
-            @error('tenant')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-    </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <label for="tenant" class="block text-sm font-medium text-gray-700">Full
+                            Name</label>
+                        <input type="text" wire:model.lazy="tenant" autocomplete="tenant" value="{{ old('tenant') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('tenant')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-    <div class="mt-2 flex flex-wrap mb-2">
-        <div class="w-full md:w-1/2  mb-3">
-            <x-label for="email">
-                Email <span class="text-red-600">*</span>
-            </x-label>
-            <x-form-input wire:model.lazy="email" id="email" type="email" name="email" value="{{ old('email') }}" />
+                    <div class="col-span-6 sm:col-span-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" wire:model.lazy="email" autocomplete="email" value="{{ old('email') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('email')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-            @error('email')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="w-full md:w-1/2  mb-3">
-            <x-label for="mobile_number">
-                Mobile
-            </x-label>
-            <x-form-input wire:model.lazy="mobile_number" id="mobile_number" type="text" name="mobile_number"
-                value="{{ old('mobile_number') }}" />
+                    <div class="col-span-6 sm:col-span-2">
+                        <label for="email-address" class="block text-sm font-medium text-gray-700">Mobile</label>
+                        <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
+                            value="{{ old('mobile_number') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('mobile_number')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-            @error('mobile_number')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-    </div>
 
-    <div class="mt-2 flex flex-wrap mb-2">
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="type">
-                Type
-            </x-label>
-            <x-form-select wire:model.lazy="type" id="type" name="type">
-                <option value="">Select one</option>
-                <option value="studying" {{ old('type')=='studying' ? 'selected' : 'Select one' }}>
-                    {{
-                    'studying' }}</option>
-                <option value="working" {{ old('type')=='working' ? 'selected' : 'Select one' }}>{{
-                    'working' }}</option>
-            </x-form-select>
+                    <div class="col-span-2">
+                        <label for="country_id" class="block text-sm font-medium text-gray-700">Country</label>
+                        <select wire:model.lazy="country_id" autocomplete="country_id"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            @foreach ($countries as $country)
+                            <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
+                                'selected': 'Select one'
+                                }}>{{ $country->country }}</option>
+                            @endforeach
+                        </select>
+                        @error('country_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-            @error('type')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="birthdate">
-                Birthdate
-            </x-label>
-            <x-form-input wire:model.lazy="birthdate" id="birthdate" type="date" name="birthdate"
-                value="{{ old('birthdate') }}" />
+                    <div class="col-span-2">
+                        <label for="province_id" class="block text-sm font-medium text-gray-700">Province</label>
+                        <select wire:model.lazy="province_id" autocomplete="province_id"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
+                                'selected': 'Select one'
+                                }}>{{ $province->province }}</option>
+                            @endforeach
+                        </select>
+                        @error('province_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-            @error('birthdate')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="gender">
-                Gender <span class="text-red-600">*</span>
-            </x-label>
-            <x-form-select wire:model.lazy="gender" id="gender" name="gender">
-                <option value="">Select one</option>
-                <option value="female" {{ old('gender')=='female' ? 'selected' : 'Select one' }}>
-                    {{
-                    'female' }}</option>
-                <option value="male" {{ old('gender')=='male' ? 'selected' : 'Select one' }}>{{
-                    'male' }}</option>
-            </x-form-select>
+                    <div class="col-span-2">
+                        <label for="city_id" class="block text-sm font-medium text-gray-700">City</label>
+                        <select wire:model.lazy="city_id" autocomplete="city_id"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            @foreach ($cities as $city)
+                            <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
+                                'selected': 'Select one'
+                                }}>{{ $city->city }}</option>
+                            @endforeach
+                        </select>
+                        @error('city_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-            @error('gender')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
+                    <div class="col-span-6">
+                        <label for="barangay" class="block text-sm font-medium text-gray-700">
+                            Address</label>
+                        <input type="text" wire:model.lazy="barangay" autocomplete="barangay"
+                            value="{{ old('barangay') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    </div>
 
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="civil_status">
-                Civil Status
-            </x-label>
-            <x-form-select wire:model.lazy="civil_status" id="civil_status" name="civil_status">
-                <option value="">Select one</option>
-                <option value="single" {{ old('civil_status')=='single' ? 'selected' : 'Select one' }}>
-                    {{
-                    'single' }}</option>
-                <option value="married" {{ old('civil_status')=='married' ? 'selected' : 'Select one' }}>{{
-                    'married' }}</option>
-                <option value="widowed" {{ old('civil_status')=='widowed' ? 'selected' : 'Select one' }}>
-                    {{
-                    'widowed' }}</option>
-                <option value="divorced" {{ old('civil_status')=='divorced' ? 'selected' : 'Select one' }}>{{
-                    'divorced' }}</option>
-            </x-form-select>
 
-            @error('civil_status')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-    </div>
+                    <div class="col-span-2">
+                        <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                        <select wire:model.lazy="gender" autocomplete="gender"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            <option value="female" {{ old('gender')=='female' ? 'selected' : 'Select one' }}>
+                                {{
+                                'female' }}</option>
+                            <option value="male" {{ old('gender')=='male' ? 'selected' : 'Select one' }}>{{
+                                'male' }}</option>
+                        </select>
+                        @error('gender')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-    <div class="mt-2 flex flex-wrap mb-2">
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="country_id">
-                Country
-            </x-label>
-            <div class="relative">
-                <x-form-select wire:model.lazy="country_id" id="country_id" name="country_id">
-                    <option value="">Select one</option>
-                    @foreach ($countries as $country)
-                    <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
-                        'selected': 'Select one'
-                        }}>{{ $country->country }}</option>
-                    @endforeach
-                </x-form-select>
+                    <div class="col-span-2">
+                        <label for="birthdate" class="block text-sm font-medium text-gray-700">Birthdate</label>
+                        <input type="date" wire:model.lazy="birthdate" autocomplete="birthdate"
+                            value="{{ old('birthdate') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('birthdate')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                @error('country_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+
+                    <div class="col-span-2">
+                        <label for="civil_status" class="block text-sm font-medium text-gray-700">Civil
+                            Status</label>
+                        <select wire:model.lazy="civil_status" autocomplete="civil_status"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            <option value="single" {{ old('civil_status')=='single' ? 'selected' : 'Select one' }}>
+                                {{
+                                'single' }}</option>
+                            <option value="married" {{ old('civil_status')=='married' ? 'selected' : 'Select one' }}>{{
+                                'married' }}</option>
+                            <option value="widowed" {{ old('civil_status')=='widowed' ? 'selected' : 'Select one' }}>
+                                {{
+                                'widowed' }}</option>
+                            <option value="divorced" {{ old('civil_status')=='divorced' ? 'selected' : 'Select one' }}>
+                                {{
+                                'divorced' }}</option>
+                        </select>
+                        @error('civil_status')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-6">
+                        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+                        <select wire:model.lazy="type" autocomplete="type"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            <option value="studying" {{ old('type')=='studying' ? 'selected' : 'Select one' }}>
+                                {{
+                                'studying' }}</option>
+                            <option value="working" {{ old('type')=='working' ? 'selected' : 'Select one' }}>{{
+                                'working' }}</option>
+                        </select>
+                        @error('type')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    @if($type === 'working')
+                    <div class="col-span-2">
+                        <label for="occupation" class="block text-sm font-medium text-gray-700">Occupation</label>
+                        <input type="text" wire:model.lazy="occupation" autocomplete="occupation"
+                            value="{{ old('occupation') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('occupation')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-2">
+                        <label for="employer" class="block text-sm font-medium text-gray-700">Employer</label>
+                        <input type="text" wire:model.lazy="employer" autocomplete="employer"
+                            value="{{ old('employer') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('employer')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-2">
+                        <label for="employer_address" class="block text-sm font-medium text-gray-700">Employer
+                            Address</label>
+                        <input type="text" wire:model.lazy="employer_address" autocomplete="employer_address"
+                            value="{{ old('employer_address') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('employer_address')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    @elseif($type === 'studying')
+                    <div class="col-span-1">
+                        <label for="course" class="block text-sm font-medium text-gray-700">Course
+                        </label>
+                        <input type="text" wire:model.lazy="course" autocomplete="course" value="{{ old('course') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('course')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-1">
+                        <label for="year_level" class="block text-sm font-medium text-gray-700">Year Level
+                        </label>
+                        <input type="text" wire:model.lazy="year_level" autocomplete="year_level"
+                            value="{{ old('year_level') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('year_level')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-2">
+                        <label for="school" class="block text-sm font-medium text-gray-700">School
+                        </label>
+                        <input type="text" wire:model.lazy="school" autocomplete="school" value="{{ old('school') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('school')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="col-span-2">
+                        <label for="school_address" class="block text-sm font-medium text-gray-700">School Address
+                        </label>
+                        <input type="text" wire:model.lazy="school_address" autocomplete="school_address"
+                            value="{{ old('school_address') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('school_address')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+
+
+                    </div>
+                    @endif
+                    <div class="col-span-6">
+
+                        <label class="block text-sm font-medium text-gray-700"> Upload an ID (i.e.,
+                            Government issues ID, school ID, employee ID)
+                        </label>
+                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="file-upload"
+                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input wire:model.lazy="photo_id" id="file-upload" type="file"
+                                            value="{{ old('photo_id') }}" name="photo_id" class="sr-only">
+                                    </label>
+                                    <p class="pl-1"></p>
+                                </div>
+
+                            </div>
+                            @error('photo_id')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mt-3 col-span-4">
+                        <div class="form-check">
+                            <input wire:model="generateCredentials"
+                                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                type="checkbox" value="{{ old('generateCredentials'), $generateCredentials }}"
+                                id="flexCheckChecked">
+                            <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
+                                Generate credentials and send it to tenant's email address.
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                </div>
             </div>
-        </div>
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="province_id">
-                Region
-            </x-label>
-            <div class="relative">
-                <x-form-select wire:model.lazy="province_id" id="province_id" id="province_id" name="province_id">
-                    <option value="">Select one</option>
-                    @foreach ($provinces as $province)
-                    <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
-                        'selected': 'Select one'
-                        }}>{{ $province->province }}</option>
-                    @endforeach
-                </x-form-select>
-                @error('province_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+            <div class="flex justify-end mt-2">
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                    target="_blank" href="create/export">
+                    Download Tenant Information Sheet
+                </a>
+
+                <button type="button" onclick="window.location.href='{{ url()->previous() }}'"
+                    class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Cancel
+                </button>
+                <button type="submit" wire:click="submitForm()"
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+                    <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        </circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                    </svg>
+                    Next
+                </button>
             </div>
-        </div>
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="city_id">
-                City
-            </x-label>
-            <x-form-select wire:model.lazy="city_id" id="city_id" id="city_id" name="city_id">
-                <option value="">Select one</option>
-                @foreach ($cities as $city)
-                <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
-                    'selected': 'Select one'
-                    }}>{{ $city->city }}</option>
-                @endforeach
-            </x-form-select>
-
-            @error('city_id')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="barangay">
-                Address
-                </x-lab>
-                <x-form-input wire:model.lazy="barangay" id="barangay" type="text" name="barangay"
-                    value="{{ old('barangay') }}" />
-
-                @error('barangay')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-        </div>
-
-    </div>
-    @if($type === 'studying')
-    <div class="mt-2 flex flex-wrap mb-2">
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="course">
-                Course
-            </x-label>
-            <x-form-input wire:model.lazy="course" id="course" type="text" name="course" value="{{ old('course') }}" />
-
-            @error('course')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="year_level">
-                Year Level
-            </x-label>
-            <x-form-input wire:model.lazy="year_level" id="year_level" type="text" name="year_level"
-                value="{{ old('year_level') }}" />
-
-            @error('year_level')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="school">
-                School
-            </x-label>
-            <x-form-input wire:model.lazy="school" id="school" type="text" name="school" value="{{ old('school') }}" />
-
-            @error('school')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="w-full md:w-1/4  mb-3">
-            <x-label for="school_address">
-                Address
-            </x-label>
-            <x-form-input wire:model.lazy="school_address" id="school_address" type="text" name="school_address"
-                value="{{ old('school_address') }}" />
-
-            @error('school_address')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-    </div>
-    @endif
-
-    @if($type === 'working')
-    <div class="mt-2 flex flex-wrap mb-2">
-        <div class="w-full md:w-1/3  mb-3">
-            <x-label for="occupation">
-                Occupation
-            </x-label>
-            <x-form-input wire:model.lazy="occupation" id="occupation" type="text" name="occupation"
-                value="{{ old('occupation') }}" />
-
-            @error('occupation')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="w-full md:w-1/3  mb-3">
-            <x-label for="employer">
-                Employer
-            </x-label>
-            <x-form-input wire:model.lazy="employer" id="employer" type="text" name="employer"
-                value="{{ old('employer') }}" />
-
-            @error('employer')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="w-full md:w-1/3  mb-3">
-            <x-label for="employer_address">
-                Employer Address
-            </x-label>
-            <x-form-input wire:model.lazy="employer_address" id="employer_address" type="text" name="employer_address"
-                value="{{ old('employer_address') }}" />
-
-            @error('employer_address')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-    </div>
-    @endif
-
-    <div class="mt-2 flex flex-wrap mb-2">
-        <div class="w-full md:w-full  mb-3">
-            <x-label for="photo_id">
-                Photo ID (i.e., Government issues ID, school ID, employee ID)
-            </x-label>
-
-            <x-form-input wire:model.lazy="photo_id" id="grid-last-name" type="file" name="photo_id"
-                value="{{ old('photo_id') }}" />
-
-            @error('photo_id')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-        </div>
-
-    </div>
-
-    <div class="pt-5">
-        <div class="flex justify-end">
-            <button type="button" onclick="window.location.href='{{ url()->previous() }}'"
-                class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                Cancel
-            </button>
-            <x-form-button type="submit" wire:loading.remove wire:click="submitForm()">
-                Submit
-            </x-form-button>
-
         </div>
     </div>
 </form>

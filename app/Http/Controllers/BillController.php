@@ -19,13 +19,21 @@ class BillController extends Controller
                 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
 
-        $particulars = app('App\Http\Controllers\PropertyParticularController')->show($property->uuid);
-
         return view('bills.index',[
             'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->get(),
             'active_tenants' => Contract::where('property_uuid', Session::get('property'))->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
-            'particulars' => $particulars,
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
             'batch_no' => $batch_no
+        ]);
+    }
+
+    public function create_new(Property $property, Tenant $tenant, Unit $unit){
+        return view('bills.create-new',[
+          'unit' => Unit::find($unit->uuid),
+          'tenant' => $tenant,
+          'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
+           'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
+            'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($tenant->uuid),
         ]);
     }
 

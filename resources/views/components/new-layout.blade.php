@@ -282,7 +282,7 @@
                     <x-nav-link href="/property/{{ Session::get('property') }}/contract"
                         :active="request()->routeIs('contract')">
                         <span class="sr-only">Contract</span>
-                        <img class="h-8 w-auto" src="{{ asset('/brands/contract.png') }}" fill="none"
+                        <img class="h-8 w-auto" src="{{ asset('/brands/contract-gray.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />

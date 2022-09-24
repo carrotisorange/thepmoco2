@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\Guardian;
 use Illuminate\Validation\Rule;
 use DB;
+use Session;
 
 use Livewire\Component;
 
@@ -73,7 +74,8 @@ class GuardianComponent extends Component
 
         //retrieve updated list of guardians
 
-        return back()->with('success', 'Guardian is successfully created.');
+        return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/reference/'. $this->unit->uuid.'/create')
+        ->with('success', 'Guardian is successfully created.');
 
     }
 

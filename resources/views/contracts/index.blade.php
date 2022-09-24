@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Contracts | '. Session::get('property'))
+    @section('title','Contracts | '. Session::get('property_name'))
 
 
 

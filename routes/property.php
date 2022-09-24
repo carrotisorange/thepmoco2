@@ -36,6 +36,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ParticularController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -152,6 +153,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::prefix('guardian')->group(function(){
                 Route::get('{unit?}/create', [GuardianController::class, 'create']);
                 Route::delete('{guardian_id:id}', [GuardianController::class, 'destroy']);
+            });
+
+            Route::prefix('bill')->group(function(){
+                Route::get('{unit?}/create', [BillController::class, 'create_new']);
             });
 
             Route::prefix('reference')->group(function(){

@@ -114,7 +114,7 @@
                                             id="tenants-tab" data-tabs-target="#tenants" type="button" role="tab"
                                             aria-controls="tenants" aria-selected="false">Tenants</button>
                                     </li>
-                                    <li role="presentation">
+                                    {{-- <li role="presentation">
                                         <button
                                             class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
                                             id="rooms-tab" data-tabs-target="#rooms" type="button" role="tab"
@@ -125,7 +125,7 @@
                                             class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
                                             id="furnitures-tab" data-tabs-target="#furnitures" type="button" role="tab"
                                             aria-controls="furnitures" aria-selected="false">Furnitures</button>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                             <div id="myTabContent">
@@ -303,14 +303,14 @@
 
                                     </table>
                                 </div>
-                                <div class="hidden rounded-lg dark:bg-gray-800" id="rooms" role="tabpanel"
+                                {{-- <div class="hidden rounded-lg dark:bg-gray-800" id="rooms" role="tabpanel"
                                     aria-labelledby="rooms-tab">
                                     rooms
                                 </div>
                                 <div class="hidden rounded-lg dark:bg-gray-800" id="furnitures" role="tabpanel"
                                     aria-labelledby="furnitures-tab">
                                     furnitures
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

@@ -33,7 +33,7 @@ class UnitContractController extends Controller
     }
 
     public function export(Property $property, Unit $unit)
-    { 
+    {
         $pdf = PDF::loadView('tenants.export');
         return $pdf->download('tenant_information_sheet.pdf');
     }

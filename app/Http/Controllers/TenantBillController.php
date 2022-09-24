@@ -29,17 +29,13 @@ class TenantBillController extends Controller
         $particulars = app('App\Http\Controllers\PropertyParticularController')->show($property->uuid);
 
         $unpaid_bills = $this->get_tenant_balance($tenant->uuid);
-
-        $bills = $this->show_tenant_bills($tenant->uuid);
-
-        $contracts = app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid);
       
         return view('tenants.bills.index',[
             'tenant' => $tenant,  
-            'bills' => $bills,
+            'bills' => $this->show_tenant_bills($tenant->uuid),
             'unpaid_bills' => $unpaid_bills,
             'particulars' => $particulars,
-            'units' => $contracts,
+            'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
             'note_to_bill' => $property->note_to_bill,
         ]);
     }
@@ -61,6 +57,7 @@ class TenantBillController extends Controller
 
     public function store(Request $request, Property $property, Tenant $tenant)
     {
+
         $attributes = request()->validate([
             'bill' => 'required|numeric|min:1',
             'particular_id' => ['required', Rule::exists('particulars', 'id')],

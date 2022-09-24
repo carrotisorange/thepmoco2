@@ -5,6 +5,8 @@ use App\Models\Reference;
 use App\Models\Relationship;
 use DB;
 use Illuminate\Validation\Rule;
+use Session;
+use Str;
 
 use Livewire\Component;
 
@@ -76,7 +78,9 @@ class ReferenceComponent extends Component
 
         //$this->resetForm();
       
-        return back()->with('success', 'Reference is successfully created.');
+        return
+        redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.Str::random(8).'/create')
+        ->with('success', 'Reference is successfully created.');
     }
 
    

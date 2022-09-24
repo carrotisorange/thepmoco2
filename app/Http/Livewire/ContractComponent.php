@@ -30,7 +30,7 @@ class ContractComponent extends Component
       public $interaction_id;
       public $contract;
       public $referral;
-      public $sendContract;
+      public $sendContractToTenant;
 
       public function mount($unit, $tenant)
       {
@@ -41,7 +41,7 @@ class ContractComponent extends Component
         $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
         $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
-        $this->sendContract = true;
+        $this->sendContractToTenant = true;
       }
 
       protected function rules()
@@ -95,7 +95,9 @@ class ContractComponent extends Component
                 return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Contract is successfully created.');
 
             }else{
-                  return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/bills/')->with('success','Contract is successfully created.');
+                  return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/bill/'.
+                  $this->unit->uuid.'/create')
+                  ->with('success', 'Contract is successfully created.');
             }
 
             DB::commit();
@@ -150,7 +152,7 @@ class ContractComponent extends Component
           'unit' => $this->unit->unit,
         ];
 
-        if($this->sendContract)
+        if($this->sendContractToTenant)
         {
           Mail::to($this->tenant->email)->send(new SendContractToTenant($details));
         }
