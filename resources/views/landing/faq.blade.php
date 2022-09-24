@@ -308,16 +308,16 @@
     
       
     <!-- Stats section -->
-    <div class="relative bg-purple-200">
+    <div class="relative bg-gray-50">
       <div class="absolute inset-x-0 bottom-0 h-56 xl:top-0 xl:h-full">
         <div class="h-full w-full xl:grid xl:grid-cols-3">
           <div class="h-full xl:relative xl:col-start-3">
-            <img class="h-full w-full object-cover  xl:absolute xl:inset-0"  src="{{ asset('/brands/why.jpg') }}" alt="pmo logo">
+            <img class="h-full w-full object-cover  xl:absolute xl:inset-0 opacity-70"  src="{{ asset('/brands/why.jpg') }}" alt="pmo logo">
             <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32  xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
           </div>
         </div>
       </div>
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-5xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
           
           <p class="mt-12 text-3xl font-bold tracking-tight text-gray-900">

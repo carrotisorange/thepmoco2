@@ -7,7 +7,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>The Property Manager Online</title>
+    <title>Kommunal</title>
 </head>
 <!--
   This example requires Tailwind CSS v2.0+ 
@@ -318,18 +318,16 @@
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <h2 class="mb-20 text-3xl font-bold tracking-tight text-gray-900">Collaborate and align your goals with your team!</h2>
+            <h2 class="mb-20 text-3xl font-bold tracking-tight text-gray-900">Easily collaborate and align your goals with your team!</h2>
             <img src="{{ asset('/brands/car.png') }}" class="block absolute  w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
         </div>
         <!-- Slider indicators -->
-        <div class="flex absolute justify-center items-center bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
+        <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
             <button type="button" class="bg-black w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
             <button type="button" class="bg-black w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
             <button type="button" class="bg-black w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
         </div>
-        </div>
-        
         <!-- Slider controls -->
         <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
             <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -343,7 +341,7 @@
                 <span class="hidden">Next</span>
             </span>
         </button>
-</div>
+    </div>
     </section>
 </div>
 </div>
@@ -473,13 +471,16 @@
 <!-- Blog section -->
 <div class="relative bg-gray-50 py-16 sm:py-24 lg:py-32" >
         <div class="relative">
-         
+          <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Quick Start Guide</p>
+           
+          </div>
 
           <div class="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-5 lg:px-8">
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-16  object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
+                <img class="h-20  object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -501,7 +502,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-16  object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
+                <img class="h-20  object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -520,7 +521,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-16  object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
+                <img class="h-20  object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -539,7 +540,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-              <img class="h-16  object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
+              <img class="h-20  object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
               </div>
 </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -558,7 +559,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-              <img class="h-16 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
+              <img class="h-20 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
               </div>
 </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -642,8 +643,6 @@
 </div>
 </div>
 </div>
-
-
 
     <!-- CTA Section -->
    <!--
@@ -810,34 +809,6 @@
   </div>
 </div>
 
-
-<div class="bg-gray-100">
-      <div class="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
-        <p class="text-center text-xl font-semibold text-gray-500">Trusted by over 6 rental management clients:</p>
-        <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-6">
-          <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-            <a href=""><img class="h-20" src="{{ asset('/brands/clients/client-1.png') }}" alt="Tuple"></a>
-          </div>
-          <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/clients/client-2.png') }}" alt="Tuple">
-          </div>
-          <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/clients/client-3.png') }}" alt="Tuple">
-          </div>
-          <div class="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/clients/client-4.png') }}" alt="Tuple">
-          </div>
-          <div class="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/clients/client-5.png') }}" alt="Tuple">
-          </div>
-          <div class="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
-          <img class="h-10" src="{{ asset('/brands/clients/client-6.png') }}" alt="Tuple">
-          </div>
-
-
-        </div>
-      </div>
-    </div>
   </main>
 
   <footer class="bg-gray-50" aria-labelledby="footer-heading">

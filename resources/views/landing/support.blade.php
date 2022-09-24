@@ -358,9 +358,9 @@
 
     
 <!-- Blog section -->
-<div class="relative bg-gray-white pb-10">
+<div class="py-20 relative bg-gray-white ">
         <div class="relative">
-        <img class="h-72 w-full object-cover" src="{{ asset('/brands/build.jpg') }}" alt="pmo logo">
+        
 
           <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
           <!-- Content area -->

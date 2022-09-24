@@ -401,6 +401,10 @@ Route::get('/plans', function(){
     return view('landing.plans');
 });
 
+Route::get('/catalogue', function(){
+    return view('kommunal.catalogue');
+});
+
 
 
 
