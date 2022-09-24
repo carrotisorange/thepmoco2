@@ -1,4 +1,4 @@
-<table class="min-w-full divide-y divide-gray-300">
+<table class="min-w-full table-fixed divide-y-8 divide-gray-50 border">
     <thead class="bg-gray-50">
         <tr>
             <x-th>Tenant</x-th>

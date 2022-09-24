@@ -61,7 +61,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
     //Route for contract
-    Route::get('contract/{status}',[ContractController::class, 'show_moveout_request']);
+    Route::get('contract/{status?}',[ContractController::class, 'show_moveout_request'])->name('contract');
+
 
     //ROute for notitication
     Route::get('notification',[NotificationController::class, 'index']);

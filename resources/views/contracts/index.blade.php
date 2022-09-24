@@ -1,19 +1,19 @@
 <x-new-layout>
-    @section('title','Moveout Requests | '. Session::get('property'))
+    @section('title','Contracts | '. Session::get('property'))
 
 
 
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Moveout Requests</h1>
+                <h1 class="text-3xl font-bold text-gray-700">Contracts</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-                <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/contract/active'"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">All
-                    contracts</button>
+                    {{-- <button type="button"
+                        onclick="window.location.href='/property/{{ Session::get('property') }}/contract'"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">All
+                        contracts</button> --}}
 
             </div>
         </div>

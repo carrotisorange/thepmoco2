@@ -15,9 +15,13 @@ use DB;
 class ContractController extends Controller
 {
 
-    public function show_moveout_request($property_uuid, $status)
+    public function show_moveout_request($property_uuid, $status=null)
     {
-       $contracts = Contract::where('property_uuid', $property_uuid)->where('status', $status)->get();
+       $contracts = Contract::where('property_uuid', $property_uuid)
+        ->when($status, function ($query) use ($status) {
+        $query->where('created_at', $status);
+        })
+       ->get();
 
        return view('contracts.index',[
         'contracts' => $contracts
