@@ -164,12 +164,12 @@
                         </x-dropdown-link>
                     </div>
 
-                    <div class="pt-2 pb-3 space-y-1">
+                    {{-- <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link
                             href="/{{auth()->user()->role_id}}/owner/{{ auth()->user()->username }}/concerns">
                             Concerns
                         </x-dropdown-link>
-                    </div>
+                    </div> --}}
 
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
@@ -238,14 +238,14 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
 
                     <!-- Concerns -->
-                    <x-nav-link href="/{{auth()->user()->role_id}}/owner/{{ auth()->user()->username }}/concerns"
+                    {{-- <x-nav-link href="/{{auth()->user()->role_id}}/owner/{{ auth()->user()->username }}/concerns"
                         :active="request()->routeIs('owner-concerns')"> <span class="sr-only">Concerns</span>
                         <img class="h-12 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div> --}}
                 </div>
             </nav>
 

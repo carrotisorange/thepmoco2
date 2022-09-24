@@ -188,7 +188,7 @@
                             <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">
                                 Unit
                             </div>
-                            <a href=# class="flex items-center justify-center text-indigo-600 text-lg">30</a>
+                            <a href="#/" class="flex items-center justify-center text-indigo-600 text-lg">{{ $units->count() }}</a>
 
                         </div>
 
@@ -202,7 +202,12 @@
                             <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">
                                 Tenant
                             </div>
-                            <a href=# class="flex items-center justify-center text-indigo-600 text-lg">30</a>
+                            @foreach ($units as $unit)
+                            <?php 
+                                    $tenants = App\Models\Unit::find($unit->unit->uuid)->contracts->count();    
+                            ;?>
+                            @endforeach
+                            <a href="#/" class="flex items-center justify-center text-indigo-600 text-lg">{{ $tenants }}</a>
 
                         </div>
 
@@ -265,11 +270,14 @@
                             </div>
                             <div class="ml-0 w-0 flex-1">
                                 <dl>
-                                    <dt class="text-sm font-medium text-gray-500 truncate">Friday, August 19, 2022
+                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                        {{ Carbon\Carbon::now()->format('D, M d, Y') }}
                                     </dt>
                                     <dd>
-                                        <div class="text-lg font-medium text-gray-900">$30,659.45</div>
-                                        <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">Today
+                                        <div class="text-lg font-medium text-gray-900">
+                                            0.00
+                                        </div>
+                                        <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">Notifications
                                         </h2>
                                     </dd>
                                 </dl>
@@ -342,11 +350,11 @@
                         </div>
                     </div>
 
-                    <div button type="button"
+                    {{-- <div button type="button"
                         class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
     text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View
                         More</button>
-                    </div>
+                    </div> --}}
 
 
                 </div>
