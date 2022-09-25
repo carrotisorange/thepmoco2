@@ -186,7 +186,7 @@
                             Bill
                         </x-dropdown-link>
                     </div>
-                    
+
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/collection">
                             Collection
@@ -278,7 +278,7 @@
                     </x-nav-link>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
 
-                        <!-- Owners -->
+                    <!-- Owners -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/contract"
                         :active="request()->routeIs('contract')">
                         <span class="sr-only">Contract</span>
@@ -351,8 +351,9 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Collection</div>
 
                     <!-- Account Payable -->
-                   <x-nav-link href="/property/{{ Session::get('property') }}/accountpayable" :active="request()->routeIs('accountpayable')">
-                    
+                    <x-nav-link href="/property/{{ Session::get('property') }}/accountpayable"
+                        :active="request()->routeIs('accountpayable')">
+
                         <span class="sr-only">Account <br> Payable </span>
                         <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -360,7 +361,7 @@
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Account <br> Payable</div>
-                    
+
                     <!-- Cashflow -->
                     <x-nav-link href="/property/{{ Session::get('property') }}/cashflow"
                         :active="request()->routeIs('cashflow')">

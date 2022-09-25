@@ -239,6 +239,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Account Payable
     Route::prefix('accountpayable')->group(function(){
         Route::get('/', [AccountPayableController::class, 'index'])->name('accountpayable');
+        Route::get('create', [AccountPayableController::class, 'create'])->name('accountpayable');
     });
 
     //Routes for Concern

@@ -24,7 +24,7 @@ class AccountPayableController extends Controller
      */
     public function create()
     {
-        //
+        return view('accountpayables.create');
     }
 
     /**
