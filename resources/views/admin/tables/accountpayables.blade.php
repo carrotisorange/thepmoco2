@@ -77,8 +77,8 @@
         </td>
 
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-           {{-- <a href="/accountpayables/{{ $accountpayable->attachment }}"
-                class="text-indigo-600 hover:text-indigo-900">View Attachment</a> --}}
+           <a href="{{ asset('/storage/'.$accountpayable->attachment) }}" target="_blank"
+                class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
         </td>
 
     </tr>
