@@ -149,7 +149,7 @@ class BillIndexComponent extends Component
    public function render()
    {
 
-      $statuses = $this->get_statuses();
+    
 
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
 
@@ -163,7 +163,7 @@ class BillIndexComponent extends Component
          
       return view('livewire.bill-index-component', [
          'bills' => $bills,
-         'statuses' => $statuses,
+         'statuses' =>  $this->get_statuses(),
          'particulars' => $particulars,
          'dates_posted' => $dates_posted,
          'period_covered_starts' => $period_covered_starts,

@@ -246,6 +246,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('accountpayable')->group(function(){
         Route::get('{status:status?}', [AccountPayableController::class, 'index'])->name('accountpayable');
         Route::get('{id}/attachment', [AccountPayableController::class, 'download']);
+        Route::get('{id}/approve', [AccountPayableController::class, 'approve']);
         Route::get('{str_random}/create', [AccountPayableController::class, 'create'])->name('accountpayable');
     });
 

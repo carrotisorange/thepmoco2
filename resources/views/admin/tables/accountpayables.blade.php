@@ -32,6 +32,8 @@
 
         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
         </th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+        </th>
 
 
 
@@ -77,8 +79,20 @@
         </td>
 
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-           <a href="{{ asset('/storage/'.$accountpayable->attachment) }}" target="_blank"
+            <a href="{{ asset('/storage/'.$accountpayable->attachment) }}" target="_blank"
                 class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
+        </td>
+
+        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            @if($accountpayable->status != 'approved')
+            @can('manager')
+            <a href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable->id }}/approve"
+                class="text-indigo-600 hover:text-indigo-900">Approve</a>
+            @endcan
+            @else
+
+            @endif
+
         </td>
 
     </tr>

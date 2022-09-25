@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use Session;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class AccountPayableController extends Controller
 {
@@ -17,8 +18,6 @@ class AccountPayableController extends Controller
      */
     public function index($property_uuid, $status=null)
     {
-     
-
         return view('accountpayables.index',[
             'accountpayables' => Property::find(Session::get('property'))->accountpayables()
                ->when($status, function ($query) use ($status) {
@@ -32,6 +31,18 @@ class AccountPayableController extends Controller
         $accountPayable = AccountPayable::find($id);
 
         return Storage::download(($accountPayable->attachment),'AP_'.$accountPayable->id.'_'.$accountPayable->created_at.'.png');
+    }
+
+    public function approve($property_uuid, $id)
+    {
+        AccountPayable::where('id', $id)
+        ->update([
+            'approver_id' => auth()->user()->id,
+            'approved_at' => Carbon::now(),
+            'status' => 'approved'
+        ]);
+
+        return back()->with('succes', 'Request is successfully approved.');
     }
 
     /**

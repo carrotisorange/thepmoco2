@@ -22,6 +22,8 @@ class AccountPayableComponent extends Component
     public $attachment;
     public $remarks;
 
+    public $status;
+
     public $sendEmailToManager;
 
     public function mount(){
@@ -95,12 +97,21 @@ class AccountPayableComponent extends Component
         }
       }
 
+      public function get_statuses()
+      {
+           return AccountPayable::where('property_uuid', Session::get('property'))
+           ->select('status', DB::raw('count(*) as count'))
+           ->groupBy('status')
+           ->get();
+      }
+
     public function render()
     {
         return view('livewire.account-payable-component',[
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->show(Session::get('property')),
             'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users(Session::get('property')),
             'billers' => app('App\Http\Controllers\PropertyBillerController')->show(Session::get('property')),
+            'statuses' => $this->get_statuses()
         ]);
     }
 }
