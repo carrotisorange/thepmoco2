@@ -1,27 +1,57 @@
 <div>
-
-    <div class="flex flex-row">
-        <div class="basis-1/2">
-            @if(App\Models\Property::find(Session::get('property'))->units->count())
-            <x-button wire:loading.remove wire:click="updateForm()">
-                Save Units ({{ $units->count() }})
-            </x-button>
-            @endif
-            <div wire:loading wire:target="updateForm">
-                Processing...
-            </div>
+    <div class="sm:flex sm:items-center">
+        <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ol role="list" class="flex items-center space-x-4">
+                <li>
+                    <div class="flex items-center">
+                        <a href="{{ url()->previous() }}"><img class="h-5 w-auto"
+                                src="{{ asset('/brands/back-button.png') }}"></a>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <div class="sm:flex-auto">
+            <h1 class="text-3xl font-bold text-gray-700">Edit Units</h1>
         </div>
-        <div class="basis-1/2 ml-12 text-right">
+        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+
+
             @if($selectedUnits)
-            <x-button wire:loading.remove class="bg-red-800" onclick="confirmMessage()" wire:click="removeUnits()">
-                Remove Units ({{ count($selectedUnits) }})
-            </x-button>
+            <button type="submit" wire:click="removeUnits()"
+                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+                <svg wire:loading wire:target="removeUnits" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                    </circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
+                </svg>
+                Remove ({{ count($selectedUnits) }})
+            </button>
             @endif
-            <div wire:loading wire:target="removeUnits">
-                Processing...
-            </div>
+
+            @if(App\Models\Property::find(Session::get('property'))->units->count())
+            <button type="submit" wire:click="updateForm()"
+                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+                <svg wire:loading wire:target="updateForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                    </circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
+                </svg>
+                Save
+            </button>
+            @endif
+
         </div>
     </div>
-    @include('forms.unit-bulk-edit')
+    <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+        @include('forms.unit-bulk-edit')
+    </div>
     @include('layouts.notifications')
 </div>

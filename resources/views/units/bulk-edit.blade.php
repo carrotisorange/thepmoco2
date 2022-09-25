@@ -1,4 +1,16 @@
-<x-index-layout>
+
+<x-new-layout>
+    @section('title','Units | '. Session::get('property_name'))
+    <div class="mt-8">
+        <div class="max-full mx-auto sm:px-6">
+          @livewire('unit-component', ['batch_no' => $batch_no])
+        </div>
+    </div>
+@include('modals.create-unit-modal')
+@include('modals.create-building-modal');
+</x-new-layout>
+
+{{-- <x-index-layout>
     @section('title', '| Units | Edit',)
     <x-slot name="labels">
         <li><span class="text-gray-500 mx-2">Units</span></li>
@@ -43,4 +55,4 @@
 
 </x-index-layout>
 @include('modals.create-unit-modal')
-@include('modals.create-building-modal');
+@include('modals.create-building-modal'); --}}
