@@ -25,16 +25,12 @@ class TenantBillController extends Controller
      */
 
     public function index(Property $property, Tenant $tenant)
-    {        
-        $particulars = app('App\Http\Controllers\PropertyParticularController')->show($property->uuid);
-
-        $unpaid_bills = $this->get_tenant_balance($tenant->uuid);
-      
+    {             
         return view('tenants.bills.index',[
             'tenant' => $tenant,  
             'bills' => $this->show_tenant_bills($tenant->uuid),
-            'unpaid_bills' => $unpaid_bills,
-            'particulars' => $particulars,
+            'unpaid_bills' => $this->get_tenant_balance($tenant->uuid),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
             'note_to_bill' => $property->note_to_bill,
         ]);

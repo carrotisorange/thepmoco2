@@ -52,7 +52,8 @@ class PropertyParticularController extends Controller
      */
     public function store(Request $request, Property $property)
     {
-        return 'asd';
+
+
     }
 
     /**

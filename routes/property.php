@@ -37,6 +37,7 @@ use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ParticularController;
+use App\Http\Controllers\PropertyBillerController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -50,6 +51,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Particular
     Route::prefix('particular')->group(function(){
         Route::post('store', [ParticularController::class, 'store']);
+    });
+
+    //Routes for Biller
+    Route::prefix('biller')->group(function(){
+        Route::post('store', [PropertyBillerController::class, 'store']);
     });
 
 
@@ -238,8 +244,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Account Payable
     Route::prefix('accountpayable')->group(function(){
-        Route::get('/', [AccountPayableController::class, 'index'])->name('accountpayable');
-        Route::get('create', [AccountPayableController::class, 'create'])->name('accountpayable');
+        Route::get('{status:status?}', [AccountPayableController::class, 'index'])->name('accountpayable');
+        Route::get('{id}/attachment', [AccountPayableController::class, 'download']);
+        Route::get('{str_random}/create', [AccountPayableController::class, 'create'])->name('accountpayable');
     });
 
     //Routes for Concern

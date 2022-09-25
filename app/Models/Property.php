@@ -66,6 +66,11 @@ class Property extends Model
         return $this->hasMany(Bill::class);
     }
 
+    public function accountpayables()
+    {
+        return $this->hasMany(AccountPayable::class);
+    }
+
 
     public function collections()
     {
