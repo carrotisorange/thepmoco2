@@ -7,7 +7,7 @@
         </div>
     </div>
 @include('modals.create-unit-modal')
-@include('modals.create-building-modal');
+@include('modals.create-building-modal')
 </x-new-layout>
 
 {{-- <x-index-layout>
