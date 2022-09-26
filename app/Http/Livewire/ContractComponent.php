@@ -52,7 +52,7 @@ class ContractComponent extends Component
         'rent' => 'required',
         'discount' => 'required',
         'interaction_id' => 'required',
-        'contract' => 'nullable|mimes:pdf,doc,docx, image',
+        'contract' => 'required | mimes:jpg,bmp,png,pdf,docx|max:1024',
         ];
       }
 

@@ -292,14 +292,14 @@
                                     STATUS</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     INTERACTION</th>
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-
-                                    </th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                </th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                </th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                </th>
                             </tr>
                         </thead>
-
 
                         @foreach ($contracts as $item)
                         <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
@@ -355,6 +355,12 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     {{ $item->interaction->interaction }}
+                                </td>
+                                <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
+                                    @if($item->contract)
+                                   <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
+                                        class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
+                                    @endif
                                 </td>
                                 <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
                                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"

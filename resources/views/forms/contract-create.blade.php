@@ -79,7 +79,12 @@
                             @error('contract')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
+
+                         
                         </div>
+                        @if ($contract)
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        @endif
                     </div>
 
                     <div class="mt-3 col-span-2">
