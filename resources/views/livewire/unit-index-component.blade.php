@@ -1,4 +1,95 @@
 <div>
+    @if(!App\Models\Property::find(Session::get('property'))->units()->count())
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <nav aria-label="Progress">
+        <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+            <li class="relative md:flex md:flex-1">
+                <!-- Completed Step -->
+                <a href="#" class="group flex w-full items-center">
+                    <span class="flex items-center px-6 py-4 text-sm font-medium">
+                        <span
+                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600 group-hover:bg-indigo-800">
+                            <!-- Heroicon name: solid/check -->
+                            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <span class="ml-4 text-sm font-medium text-gray-900">Create a property</span>
+                    </span>
+                </a>
+
+                <!-- Arrow separator for lg screens and up -->
+                <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
+                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </li>
+
+            <li class="relative md:flex md:flex-1">
+                <!-- Current Step -->
+                <a href="#" class="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
+                    <span
+                        class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
+                        <span class="text-indigo-600">02</span>
+                    </span>
+                    <span class="ml-4 text-sm font-medium text-indigo-600">Add units to your property</span>
+                </a>
+
+                <!-- Arrow separator for lg screens and up -->
+                <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
+                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </li>
+
+
+
+            <li class="relative md:flex md:flex-1">
+                <!-- Upcoming Step -->
+                <a href="#" class="group flex items-center">
+                    <span class="flex items-center px-6 py-4 text-sm font-medium">
+                        <span
+                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                            <span class="text-gray-500 group-hover:text-gray-900">03</span>
+                        </span>
+                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add tenants to
+                            your property</span>
+                    </span>
+                </a>
+            </li>
+
+        </ol>
+    </nav>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class="mt-10 text-center">
+        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            aria-hidden="true">
+            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+        </svg>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">No units</h3>
+        <p class="mt-1 text-sm text-gray-500">1 down, 2 more to go...</p>
+        <div class="mt-6">
+            <button type="button" data-modal-toggle="create-unit-modal"
+                class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <!-- Heroicon name: mini/plus -->
+                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                </svg>
+                Add your first unit
+            </button>
+        </div>
+    </div>
+    @else
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-700">Units</h1>
@@ -20,9 +111,7 @@
             </button>
             @endif
 
-            <button type="button" data-modal-toggle="create-unit-modal" {{--
-                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ Str::random(8) }}/edit'"
-                --}}
+            <button type="button" data-modal-toggle="create-unit-modal"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add
                 Units</button>
             @if($units->count())
@@ -33,6 +122,7 @@
             @endif
         </div>
     </div>
+
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-4">
@@ -87,7 +177,7 @@
                         <h2 class="text-lg font-medium text-gray-900"></h2>
 
                     </div>
-                
+
                     <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                         @foreach ($units as $unit)
                         @if(Session::get('tenant_uuid'))
@@ -163,12 +253,12 @@
                         </a>
                         @endif
 
-                
+
 
                         @endforeach
 
                     </div>
-             
+
                 </div>
 
             </div>
@@ -209,7 +299,7 @@
 
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 OCCUPANCY</th>
-                          
+
 
                         </tr>
                     </thead>
@@ -280,10 +370,10 @@
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">
                                 {{$unit->occupancy }} pax
                             </td>
-                           
+
                         </tr>
                         @endforeach
-                    
+
                     </tbody>
 
                 </table>
@@ -291,8 +381,9 @@
             </div>
 
             @endif
-          
+
         </div>
     </div>
+    @endif
     @include('modals.create-unit-modal')
 </div>

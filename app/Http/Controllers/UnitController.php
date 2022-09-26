@@ -29,6 +29,12 @@ class UnitController extends Controller
         return view('units.index');
     }
 
+    public function quick_add(){
+       session(['quick_add' => true]);
+
+       return redirect('/property/'.Session::get('property').'/unit');
+    }
+
     public function get_property_units($property_uuid, $status, $duration)
     {
         return Unit::where('property_uuid', $property_uuid)

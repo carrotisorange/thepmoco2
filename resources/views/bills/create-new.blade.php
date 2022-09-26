@@ -211,6 +211,7 @@
 
             </div>
         </div>
+
     </div>
     @livewire('bill-create-component', ['tenant' => $tenant, 'unit' => $unit])
     @include('modals.create-particular-modal')

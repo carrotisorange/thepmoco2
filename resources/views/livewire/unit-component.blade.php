@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="sm:flex sm:items-center">
         <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ol role="list" class="flex items-center space-x-4">
@@ -78,5 +79,5 @@
     <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
         @include('forms.unit-bulk-edit')
     </div>
-    @include('layouts.notifications')
+   
 </div>

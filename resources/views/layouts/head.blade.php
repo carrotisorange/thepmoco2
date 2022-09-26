@@ -52,6 +52,15 @@
 {{-- Flowbite --}}
 <script src="../path/to/flowbite/dist/flowbite.js"></script>
 
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+</script>
+
 @yield('styles')
 
 @livewireStyles

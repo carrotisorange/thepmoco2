@@ -99,7 +99,9 @@ class UnitComponent extends Component
 
             DB::commit();
 
-            session()->flash('success', count($this->units). ' unit is successfully updated.');
+            //session()->flash('success', count($this->units). ' unit is successfully updated.');
+
+            return redirect('/property/'.Session::get('property').'/unit')->with('success', count($this->units). ' unit is successfully updated.');
 
         }catch(\Exception $e){
             DB::rollback();

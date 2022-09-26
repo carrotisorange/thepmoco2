@@ -38,6 +38,7 @@ class PropertyComponent extends Component
      public function mount(){
         $this->mobile = auth()->user()->mobile_number;
         $this->email = auth()->user()->email;
+        $this->country_id = 173;
      }
 
      protected function rules()
@@ -49,7 +50,7 @@ class PropertyComponent extends Component
             'tenant_contract' => 'nullable|mimes:pdf',
             'owner_contract' => 'nullable|mimes:pdf',
             'description' => 'nullable',
-             'country_id' => ['nullable', Rule::exists('countries', 'id')],
+             'country_id' => ['required', Rule::exists('countries', 'id')],
              'province_id' => ['nullable', Rule::exists('provinces', 'id')],
              'city_id' => ['nullable', Rule::exists('cities', 'id')],
              'barangay' => ['required'],
