@@ -89,7 +89,7 @@
 
 
 
-                            <div class="col-span-3 sm:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <fieldset>
                                     <div>
                                         <label for="about" class="block text-sm font-medium text-gray-700">Image
@@ -97,8 +97,9 @@
                                         </label>
                                         <div class="mt-1">
                                             @if(!$concern->image == null)
-                                            <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $concern->id }}/download"
-                                                class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
+                                            <a href="{{ asset('/storage/'.$concern->image) }}" target="_blank"
+                                                class="text-indigo-600 hover:text-indigo-900">View
+                                                Attachment</a>
                                             @endif
                                         </div>
 
@@ -106,8 +107,7 @@
                                 </fieldset>
                             </div>
 
-
-                            <div class="col-span-3 sm:col-span-2">
+                            <div class="col-span-3 sm:col-span-6">
                                 <fieldset>
                                     <div>
                                         <label for="about" class="block text-sm font-medium text-gray-700">Course of
@@ -124,15 +124,23 @@
                                 </fieldset>
                             </div>
 
-                            <div class="col-span-3 sm:col-span-2">
+
+                            <div class="col-span-6 sm:col-span-2">
                                 <fieldset>
                                     <div>
                                         <label for="about" class="block text-sm font-medium text-gray-700">Resolved by:
                                         </label>
                                         <div class="mt-1">
-                                            <textarea id="about" name="about" rows="3"
-                                                class="h-5 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
-                                                placeholder=""></textarea>
+                                            <select id="category_id" name="category_id"
+                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                                @foreach ($categories as $item)
+                                                <option value="{{ $item->id }}" {{ old('type_id', $concern->category_id)
+                                                    ==$item->id
+                                                    ?'selected' : ''}}>
+                                                    {{ $item->category }}
+                                                </option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
 

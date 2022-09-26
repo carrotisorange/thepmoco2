@@ -28,9 +28,11 @@ class CashflowController extends Controller
     //   ->groupBy('date')
     //   ->orderBy('created_at', 'desc')
     //   ->get();
+      
+    $cashflows = $collections->merge($accountpayables);
 
         return view('cashflows.index',[
-            // 'cashflows' => $cashflows,
+            'cashflows' => $cashflows,
             'collections' => $collections,
             'accountpayables' => $accountpayables
         ]);

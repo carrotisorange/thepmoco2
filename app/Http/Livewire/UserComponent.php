@@ -29,12 +29,6 @@ class UserComponent extends Component
     public $avatar;
     public $password;
 
-    public function mount()
-    {
-      $this->password = Str::random(8);
-      $this->username= Str::random(8);
-    }
-
      protected function rules()
      {
         return [
@@ -63,8 +57,8 @@ class UserComponent extends Component
 
             $user_id =  app('App\Http\Controllers\UserController')->store(
                $this->name, 
-               $this->username, 
-               $this->password, 
+               $this->email,
+               Str::random(8),
                auth()->user()->id, 
                $this->email, 
                $this->role_id,
@@ -137,7 +131,7 @@ class UserComponent extends Component
      public function render()
      {
         return view('livewire.user-component',[
-         'roles' => Role::orderBy('role')->whereIn('id',['1','2', '3', '9'])->get(),
+         'roles' => Role::orderBy('role')->whereIn('id', ['1', '2', '3', '4', '6', '11'])->get(),
         ]);
      }
 

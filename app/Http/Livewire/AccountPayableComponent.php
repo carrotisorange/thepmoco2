@@ -8,6 +8,7 @@ use Session;
 use App\Models\AccountPayable;
 use Livewire\WithFileUploads;
 use DB;
+use Carbon\Carbon;
 
 class AccountPayableComponent extends Component
 {
@@ -40,9 +41,14 @@ class AccountPayableComponent extends Component
             'biller_id' => ['required', Rule::exists('users', 'id')],
             'amount' => ['required'],
             'source' => ['required'],
-            'attachment' => 'required|mimes:pdf,doc,docx, image',
+            'attachment' => 'required | mimes:jpg,bmp,png,pdf,docx|max:1024',
             'remarks' => ['nullable']
         ];
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
      public function submitForm()

@@ -117,6 +117,7 @@
 
 
             <div class="sm:col-span-6">
+                
                 <label class="block text-sm font-medium text-gray-700"> Upload Bills/Quotation </label>
                 <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                     <div class="space-y-1 text-center">
@@ -135,6 +136,10 @@
                         @error('attachment')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
+                        
+                        @if ($attachment)
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        @endif
                     </div>
 
 

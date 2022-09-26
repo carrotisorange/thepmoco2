@@ -138,7 +138,7 @@ class TenantPortalController extends Controller
             'category_id' => ['required', Rule::exists('concern_categories', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'concern' => 'required',
-            'image' => ['nullable', 'image']
+            'image' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
         ]);
 
         $attributes['tenant_uuid'] = $user->tenant_uuid;

@@ -1,15 +1,15 @@
-<x-index-layout>
-    @section('title', '| User | Create')
-    <x-slot name="labels">
-        Add User
-    </x-slot>
+<x-new-layout>
+    @section('title','Employees | '. Session::get('property_name'))
 
-    <x-slot name="options">
-        <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/user'">
-        Go Back
-        </x-button>
-    </x-slot>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mt-5 px-4 sm:px-6 lg:px-8">
+            <div class="sm:flex sm:items-center">
+                <div class="sm:flex-auto">
+                    <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">Add New Employee</h1>
+                </div>
+            </div>
+            @livewire('user-component')
 
-    @livewire('user-component')
-
-</x-index-layout>
+        </div>
+    </div>
+</x-new-layout>

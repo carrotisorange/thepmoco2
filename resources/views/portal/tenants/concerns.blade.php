@@ -79,19 +79,17 @@
                                         {{ $item->category->category }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <a class="font-medium text-blue-500 text-decoration-line: underline"
-                                            href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $item->id }}">{{
-                                            $item->concern }}</a>
+                                        {{ $item->concern }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $item->status }}
                                     </td>
 
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        @if(!$item->image == null)
-                                        <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $item->id }}/download"
-                                            class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
-                                        @endif
+                                      
+                                       <a class="font-medium text-blue-500 text-decoration-line: underline" href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $item->id }}"
+                                            class="text-indigo-600 hover:text-indigo-900">Review</a>
+                                      
                                     </td>
                                 </tr>
                             </tbody>

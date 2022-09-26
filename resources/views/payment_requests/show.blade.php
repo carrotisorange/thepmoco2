@@ -98,8 +98,13 @@
                                             payment</label>
                                         <div class="mt-1">
                                             @if(!$paymentRequest->proof_of_payment == null)
-                                            <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments_request/{{ $paymentRequest->id }}/download"
+
+                                            <a href="{{ asset('/storage/'.$paymentRequest->proof_of_payment) }}" target="_blank"
                                                 class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
+
+
+                                            {{-- <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments_request/{{ $paymentRequest->id }}/download"
+                                                class="text-indigo-600 hover:text-indigo-900">View Attachment</a> --}}
                                             @endif
                                         </div>
 
