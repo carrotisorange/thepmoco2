@@ -8,15 +8,16 @@
                 #</th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">TENANT</th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">BUILDING
-                </th>
+            </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">UNIT</th>
-      
+
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">DURATION
             </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">RENT/MO</th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">STATUS</th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">INTERACTION
             </th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
         </tr>
@@ -62,7 +63,7 @@
                 </div>
                 @endif
             </td>
-          
+
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 <div class="text-sm text-gray-900">{{
                     Carbon\Carbon::parse($item->start)->format('M d, Y').' -
@@ -100,6 +101,10 @@
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->interaction->interaction }}</td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
+                    class="text-indigo-600 hover:text-indigo-900">View Contract</a>
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
                     class="text-indigo-600 hover:text-indigo-900">Renew</a>
             </td>
@@ -110,6 +115,8 @@
                 @endif
 
             </td>
+
+
 
         </tr>
         @empty

@@ -241,19 +241,26 @@
                                     <label for="file-upload"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                         <span>Upload a file</span>
-                                        <input wire:model.lazy="photo_id" id="file-upload" type="file"
-                                            value="{{ old('photo_id') }}" name="photo_id" class="sr-only">
+                                        <input id="file-upload" name="image" type="file" class="sr-only"
+                                            wire:model="photo_id">
                                     </label>
-                                    <p class="pl-1"></p>
+                                    <p class="pl-1">or drag and drop</p>
                                 </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
 
                             </div>
                             @error('photo_id')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
+
                         </div>
+                        @if ($photo_id)
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                                class="fa-solid fa-circle-check"></i></p>
+                        @endif
                     </div>
 
+                    @if($email)
                     <div class="mt-3 col-span-4">
                         <div class="form-check">
                             <input wire:model="generateCredentials"
@@ -265,7 +272,7 @@
                             </label>
                         </div>
                     </div>
-
+                    @endif
 
 
                 </div>

@@ -27,7 +27,7 @@ class ContractComponent extends Component
       public $end;
       public $rent;
       public $discount;
-      public $interaction_id;
+      public $interaction_id = 11;
       public $contract;
       public $referral;
       public $sendContractToTenant;
@@ -38,10 +38,10 @@ class ContractComponent extends Component
         $this->tenant = $tenant;
         $this->rent = $unit->rent;
         $this->discount = $unit->discount;
-        $this->end = Carbon::now()->addYear()->format('Y-m-d');
+        // $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
         $this->term = Carbon::now()->addYear()->diffInDays(Carbon::now());
-        $this->sendContractToTenant = true;
+        $this->sendContractToTenant = false;
       }
 
       protected function rules()
@@ -51,8 +51,8 @@ class ContractComponent extends Component
         'end' => 'required|date|after:start',
         'rent' => 'required',
         'discount' => 'required',
-        'interaction_id' => 'required',
-        'contract' => 'required | mimes:jpg,bmp,png,pdf,docx|max:1024',
+        'interaction_id' => 'nullable',
+        'contract' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
         ];
       }
 

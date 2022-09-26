@@ -30,7 +30,7 @@ class ContractController extends Controller
 
     public function index($property)
     {
-        return Contract::where('property_uuid', $property)->where('status', 'active')->get();
+        return Contract::where('property_uuid', $property)->where('status', 'active')->orderBy('start', 'asc')->get();
     }
 
     public function get_property_contracts($property_uuid, $status, $dateBeforeExpiration, $movein, $moveout)
@@ -48,7 +48,7 @@ class ContractController extends Controller
         ->when($moveout, function ($query) use ($moveout) {
           $query->whereMonth('end', $moveout);
         })
-        ->orderBy('created_at', 'desc');
+        ->orderBy('start', 'desc');
     }
 
     public function show_unit_contracts($unit_uuid)

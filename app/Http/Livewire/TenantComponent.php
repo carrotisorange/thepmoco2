@@ -21,7 +21,7 @@ class TenantComponent extends Component
     public function mount($unit)
     {
         $this->unit = $unit;
-        $this->generateCredentials = true;
+        $this->generateCredentials = false;
     }
 
     public $tenant;
@@ -52,7 +52,7 @@ class TenantComponent extends Component
     {
         return [
             'tenant' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants', 'unique:users'],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tenants', 'unique:users'],
             'mobile_number' => 'nullable',
             'gender' => 'required',
             'civil_status' => 'nullable',
@@ -68,6 +68,7 @@ class TenantComponent extends Component
             'occupation' => 'nullable',
             'employer_address' => 'nullable',
             'employer' => 'nullable',
+            'photo_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
             ];
     }
 

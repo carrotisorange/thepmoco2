@@ -2,7 +2,7 @@
     <div class=" px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-6 md:gap-6">
             <div class="sm:col-span-6">
-                <label for="role_id" class="block text-sm font-medium text-gray-700">User role:</label>
+                <label for="role_id" class="block text-sm font-medium text-gray-700">Position:</label>
                 <select wire:model="role_id"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                     <option value="">Select one</option>
@@ -32,7 +32,7 @@
             </div>
 
             @endif
-            </fieldset>
+
         </div>
 
         <div class="flex justify-end mt-10">
