@@ -259,7 +259,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Team
     Route::prefix('user')->group(function(){
         Route::get('/', [UserController::class, 'index'])->name('user');
-        Route::get('{random_str}/create', [UserController::class, 'create']);
+        Route::get('{random_str}/create', [UserController::class, 'create'])->name('user');
 
 
         Route::prefix('{user}')->group(function(){
