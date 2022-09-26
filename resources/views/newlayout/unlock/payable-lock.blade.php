@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owner Portal</title>
+    <title>Contracts</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-  <html class="h-full bg-white">
-  <body class="h-full overflow-hidden font-body">
+  <html class="h-full bg-gray-white">
+  <body class="h-full overflow-hidden font-pop">
 
 <div class="flex h-full flex-col">
 
@@ -48,7 +51,7 @@
           <div class="min-w-0 flex-1">
             <div class="relative max-w-2xl text-gray-400 focus-within:text-gray-500">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4">
-                <p class="font-semibold ml-5">Owner Portal</p>
+                <p class="font-semibold ml-5">Property Management</p>
                   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
               </div>
             </div>
@@ -56,7 +59,7 @@
 
           <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4">
               <nav aria-label="Global" class="flex space-x-10">
-                <a href="#" class="text-sm font-medium text-gray-900">Maria Clara</a>
+                <a href="#" class="text-sm font-medium text-gray-900">Juan Dela Cruz</a>
                 <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
@@ -129,7 +132,7 @@
           </div>
 
         <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
-          <div class="relative text-gray-400 focus-within:text-gray-500">
+          <div class="elative text-gray-400 focus-within:text-gray-500">
               <label for="mobile-search" class="sr-only">The Property Manager</label>
                 <input id="mobile-search" type="search" placeholder="The Property Manager" class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
             <div class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
@@ -144,11 +147,11 @@
         <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Dashboard</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Contracts</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Units</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Bills</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Owners</a>
 
-            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Payments</a>
+            <a href="#" class="block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100">Teams</a>
 
             <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100">Concerns</a>
         </div>
@@ -159,8 +162,8 @@
               <img class="h-10 w-10 rounded-full"  src="{{ asset('/brands/avatar.png') }}" alt="">
             </div>
               <div class="ml-3 min-w-0 flex-1">
-                <div class="truncate text-base font-medium text-gray-800">Maria</div>
-                  <div class="truncate text-sm font-medium text-gray-500">Maria_tenant@gmail.com</div>
+                <div class="truncate text-base font-medium text-gray-800">Basilio</div>
+                  <div class="truncate text-sm font-medium text-gray-500">basilio_tenant@gmail.com</div>
               </div>
 
                   <a href="#" class="ml-auto flex-shrink-0 bg-white p-2 text-gray-400 hover:text-gray-500">
@@ -185,365 +188,142 @@
   <!-- Bottom section -->
           <div class="flex min-h-0 flex-1 overflow-hidden">
     <!-- Narrow sidebar-->
-            <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white ">
-              <div class="relative flex w-20 flex-col space-y-3 p-3">
+    <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white ">
+              <div class="relative flex w-20 flex-col space-y-1 p-3">
 
                 <!-- Dashboard -->
-                <a href="#" class="bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="admindashboard" class="ml-3  text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg">
                   <span class="sr-only">Dashboard</span>
           
-                  <img class="h-10 w-auto"  src="{{ asset('/brands/dashboard_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <img class="h-8 w-auto"  src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                 <!-- Units -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
-                  <span class="sr-only">Contracts</span>
-                    <img class="h-13 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <a href="newunits_list" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Units</span>
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                  </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
                 
-                <!-- Bills -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
-                  <span class="sr-only">Bills</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <!-- Owners -->
+                <a href="newowners" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Owners</span>
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
 
-                <!-- Payments -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
-                  <span class="sr-only">Payments</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
-                </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
-
-                <!-- Concerns -->
-                <a href="#" class="text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+              
+                    <!-- Tenant -->
+                <a href="newtenant" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
-                    <img class="h-12 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
+
+                    <!-- Concerns -->
+                <a href="newconcern_list" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-10 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
 
+                    <!-- Bills -->
+                <a href="newbills" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
+
+                    <!-- Payments -->
+                    <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+
+                     <!-- Contracts -->
+                     <a href="newpayments" class="ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Contracts</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/contract-gray.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Contracts</div>
+
+
+                    <!-- Accounts Payable -->
+                    <a href="accountspayables" class="ml-2 bg-purple-500 text-white  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/ap_white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Accounts</div>
+
+                    <!-- General Ledger -->
+                <a href="General Ledger" class="ml-2  text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Concerns</span>
+                    <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">General Ledger</div>
+                    <!-- Employees -->
+                <a href="employees" class=" ml-2 text-gray-400 hover:bg-gray-100 flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
+                  <span class="sr-only">Teams</span>
+                    <img class="h-10 w-auto"  src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                </a>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employees</div>
+
                 <!-- Log out -->
-                <a href="#" class="text-gray-400  flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg">
+                <a href="#" class="text-gray-400  flex-shrink-0 inline-flex items-center h-5 justify-center  rounded-lg">
                   <span class="sr-only">Logout</span>
-                    <img class="h-8 w-auto"  src="{{ asset('/brands/logout_gr.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">logout</div>
               </div>
             </nav>
 
           <!-- Main area -->
-        <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-          <div class="mt-8">
+          <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-          <!-- FIRST COLUMN -->
-
-                     <!-- welcome back -->
-                     <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
 
 
-    <div class="sm:col-span-6 mb-3">
-        <div class="bg-gray-800 h-35 overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-                 <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                    </div>
-                        <div class="w-0 flex-1">
-                            <dl>
-                                <dt class="text-lg font-bold font-body text-white truncate">Welcome back, Maria</dt>
-                        </div>
-
-    <div class="sm:col-span-1">
-        <img class="h-24 w-auto mt-2 flex justify-end"  src="{{ asset('/brands/juan.png') }}">
-                            </dl>
-    </div>
-
-                </div>
+  <div class="flex min-h-full flex-col bg-white lg:relative">
+  <div class="flex flex-grow flex-col">
+    <main class="flex flex-grow flex-col bg-white">
+      <div class="mx-auto flex w-full max-w-7xl flex-grow flex-col px-4 sm:px-6 lg:px-8">
+       
+        <div class="my-auto flex-shrink-0 py-16 sm:py-32">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+</svg>
+          <h1 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-3xl">Account Payables Feature Locked</h1>
+          <p class="mt-2 text-base text-purple-500">Unlock this feature for only <span class="font-bold">₱300/month!</span></p>
+          <p class="mt-5 text-sm max-w-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+          <div class="mt-10">
+          <div>
+          <button type="submit" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-purple-700 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="check-page">Unlock now</a></button>
+              
             </div>
+          </div>
         </div>
-    </div>
+      </div>
+    </main>
 
-
-    <div class="sm:col-span-6">
-                          <div class="bg-white h-24">
-
-                          
-                        
-
-                        <div class="">
-              <canvas class="" id="chartLine"></canvas>
-              </div>
-
-                <!-- graph chart.js -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-                <!-- chart line -->
-                <script>
-                const labels = ["January", "February", "March", "April", "May", "June"];
-                const data = {
-                    labels: labels,
-                    datasets: [
-                    {
-                    label: "Occupancy Graph",
-                     backgroundColor: "hsl(252, 82.9%, 67.8%)",
-                     borderColor: "hsl(252, 82.9%, 67.8%)",
-                     data: [0, 10, 5, 2, 20, 30, 45],
-                    },
-                    ],
-                 };
-
-                const configLineChart = {
-                    type: "line",
-                    data,
-                    options: {},
-                 };
-
-                var chartLine = new Chart(
-                 document.getElementById("chartLine"),
-                    configLineChart
-                );
-                </script>
-
-
-              </div>
-
-
-            
-   
-
-
-
-
-
-
-
-   <!-- number by categories scroll -->
-   <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
-   <div class="sm:col-span-6 ml-2 font-bold text-lg mt-10 mb-2 py-8"></div>
-      
-<div class="sm:col-span-3">
-
-  <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
-    <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Total collected:</div>
+  </div>
+  <div class="hidden lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-md">
+  <img class="mt-20 h-80 w-fit" src="{{ asset('/brands/unlock/accounts.png') }}" alt="contracts feature">
   </div>
 </div>
-
-<div class="sm:col-span-3">
-  <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
-    <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Total unpaid bills:</div>
-</div>
-</div>
-
-<div class="sm:col-span-3">
-
-  <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg mb-5">
-    <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Moveouts:</div>
-  </div>
-</div>
-
-<div class="sm:col-span-3">
-  <div class="bg-gray-50 h-20 overflow-hidden shadow rounded-lg">
-    <div class="ml-2 mt-2 text-sm font-semibold font-body text-gray-500 truncate">Moveins:</div>
-</div>
 </div>
 
 
-
-              </div>
-</div>
-              </div>  
-
-              
-
-            <!-- card Announcements -->
-            <div class="bg-white overflow-hidden">
-              <div class="p-5">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <!-- Heroicon name: outline/scale -->
-                    <img class="h-10 w-auto" src="{{ asset('/brands/megaphone.png') }}">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                    </svg>
-                  </div>
-                  <div class="ml-5 w-0 flex-1">
-                    
-                    <dl>
-                      <dt class="text-3xl font-medium text-black-500 truncate">Announcements:</dt>
-                      
-                      <dd>
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-indigo-50 px-5 py-10 mb-5 rounded-lg">
-                <div class="text-sm">
-                <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> Your contract will expire in 2 days. </a>
-                <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Renew</button></div>
-                </div>
-              </div>
-              <div class="bg-indigo-50 px-5 py-8 mb-5 rounded-lg">
-                <div class="text-sm">
-                  <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900"> You have unpaid bills for unit #2. </a>
-                  <div button type="button" class="items-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay now</button></div>
-                </div>
-              </div>
-
-              <div class="mt-8 grid grid-cols-1 gap-x-4 sm:grid-cols-5">
-
-              <div class="sm:col-span-1">
-        
-        <div class=" flex items-center justify-center">
-            <img src="{{ asset('/brands/door.png') }}" alt="building" class=" w-10 object-center object-cover ">
-            
-              </div>    
-              <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">Unit</div>
-              <a href= # class="flex items-center justify-center text-indigo-600 text-lg">30</a>
-        
-      </div>
-
-        <div class="sm:col-span-1">
-        
-        <div class=" flex items-center justify-center">
-            <img src="{{ asset('/brands/tenant.png') }}" alt="building" class=" w-10 object-center object-cover ">
-            
-              </div>    
-              <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">Tenant</div>
-              <a href= # class="flex items-center justify-center text-indigo-600 text-lg">30</a>
-        
-      </div>
-
-      <div class="sm:col-span-1">
-        
-        <div class=" flex items-center justify-center">
-            <img src="{{ asset('/brands/key-chain.png') }}" alt="building" class=" w-10 object-center object-cover ">
-            
-              </div>    
-              <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">Occupied</div>
-              <a href= # class="flex items-center justify-center text-indigo-600 text-lg">30</a>
-        
-      </div>
-
-      <div class="sm:col-span-1">
-        
-        <div class=" flex items-center justify-center">
-            <img src="{{ asset('/brands/ghost-white.png') }}" alt="building" class=" w-10 object-center object-cover ">
-            
-              </div>    
-              <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">Vacant</div>
-              <a href= # class="flex items-center justify-center text-indigo-600 text-lg">30</a>
-        
-      </div>
-
-      <div class="sm:col-span-1">
-        
-        <div class=" flex items-center justify-center">
-            <img src="{{ asset('/brands/contract.png') }}" alt="building" class=" w-10 object-center object-cover ">
-            
-              </div>    
-              <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">Concerns</div>
-              <a href= # class="flex items-center justify-center text-indigo-600 text-lg">30</a>
-        
-      </div>
-
-    
-
-
-</div>
-              </div>
-
-            <!-- card Notifications -->
-            <div class="bg-white">
-              <div class="p-5">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <!-- Heroicon name: outline/scale -->
-                    
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                    </svg>
-                  </div>
-                  <div class="ml-0 w-0 flex-1">
-                    <dl>
-                      <dt class="text-sm font-medium text-gray-500 truncate">Friday, August 19, 2022</dt>
-                      <dd>
-                        <div class="text-lg font-medium text-gray-900">$30,659.45</div>
-                        <h2 class="text-lg leading-3 ml-0 font-medium text-gray-600 mt-10">Today</h2>
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="bg-gray-50 px-5 py-3">
-                <div class="text-sm">
-                <div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-      <div class="p-4">
-        <div class="flex items-start">
-          <div class="flex-shrink-0">
-            <!-- Heroicon name: outline/check-circle -->
-            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
-          </div>
-                </div>
-              </div>
-</div>
-<div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-              <div class="p-4">
-        <div class="flex items-start">
-          <div class="flex-shrink-0">
-            <!-- Heroicon name: outline/check-circle -->
-            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
-          </div>
-          </div>
-</div>
-</div>
-<div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-      <div class="p-4">
-        <div class="flex items-start">
-          <div class="flex-shrink-0">
-            <!-- Heroicon name: outline/check-circle -->
-            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
-          </div>
-                </div>
-              </div>
-</div>
-</div>
-</div>
-
-        <div button type="button" class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
-text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View More</button>
-        </div>
-
-
-        </div>
-        </div>
-      </aside>
       <!-- Footer -->
 <footer class="">
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">

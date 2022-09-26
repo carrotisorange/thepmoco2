@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payments</title>
+    <title>Collection</title>
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -241,13 +241,13 @@
                 </a>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
 
-                    <!-- Payments -->
+                    <!-- Collection -->
                     <a href="newpayments" class="ml-2 bg-purple-500 text-white flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
                   <span class="sr-only">Concerns</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/credit-card-white.png') }}" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </a>
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Collection</div>
 
                     <!-- Accounts Payable -->
                     <a href="accountspayables" class="ml-2 text-gray-400 hover:bg-gray-100  flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-lg">
@@ -303,7 +303,7 @@
 <div class="mt-10 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-3xl font-bold text-gray-700">Payments</h1>
+      <h1 class="text-3xl font-bold text-gray-700">Collection</h1>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
       <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export Payment</button>

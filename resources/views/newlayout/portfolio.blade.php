@@ -120,18 +120,7 @@
                 To: "transform opacity-0 scale-95"
             --> 
            <!-- PROFILE DROPDOWN! --> 
-           <div class="absolute right-0 z-30 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
-              <div class="py-1" role="none"> 
-                <!-- Active: "bg-gray-100", Not Active: "" -->
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Profile </a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Subscription </a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Properties </a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-0-item-0"> Log Out </a>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
     <!-- Mobile menu, show/hide this `div` based on menu open/closed state -->
 

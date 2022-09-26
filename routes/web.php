@@ -76,6 +76,52 @@ Route::get('/concern-view', function(){
     return view('newlayout.tenant_portal.concern-view');
 });
 
+Route::get('/check-page', function(){
+    return view('newlayout.unlock.check-page');
+});
+
+Route::get('/oops-page', function(){
+    return view('newlayout.unlock.oops-page');
+});
+
+
+Route::get('/contract-lock', function(){
+    return view('newlayout.unlock.contract-lock');
+});
+
+Route::get('/concern-lock', function(){
+    return view('newlayout.unlock.concern-lock');
+});
+
+Route::get('/payable-lock', function(){
+    return view('newlayout.unlock.payable-lock');
+});
+
+Route::get('/portfolio-lock', function(){
+    return view('newlayout.unlock.portfolio-lock');
+});
+
+Route::get('/tenant-portal-lock', function(){
+    return view('newlayout.unlock.tenant-portal-lock');
+});
+
+Route::get('/owner-portal-lock', function(){
+    return view('newlayout.unlock.owner-portal-lock');
+});
+
+Route::get('/receivable-bills-lock', function(){
+    return view('newlayout.unlock.receivable-bills-lock');
+});
+
+Route::get('/receivable-payments-lock', function(){
+    return view('newlayout.unlock.receivable-payments-lock');
+});
+
+
+
+
+
+
 
 // admin portal
 Route::get('/newsignin', function(){
