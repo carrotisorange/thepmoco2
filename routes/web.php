@@ -189,7 +189,7 @@ Route::get('/tenant-page', function(){
 });
 
 Route::get('/employees', function(){
-    return view('newlayout.employees');
+    return view('newlayout.admin_employee.employees');
 });
 
 Route::get('/tenant-profile', function(){
@@ -297,11 +297,11 @@ Route::get('/payment-request', function(){
 
 
 Route::get('/accountspayables1', function(){
-    return view('newlayout.accountspayables1');
+    return view('newlayout.admin_payable.accountspayables1');
 });
 
 Route::get('/accountspayables2', function(){
-    return view('newlayout.accountspayables2');
+    return view('newlayout.admin_payable.accountspayables2');
 });
 
 Route::get('/pending-account', function(){
@@ -310,11 +310,11 @@ Route::get('/pending-account', function(){
 
 
 Route::get('/accounts-payable-list', function(){
-    return view('newlayout.accounts-payable-list');
+    return view('newlayout.admin_payable.accounts-payable-list');
 });
 
 Route::get('/accounts-all', function(){
-    return view('newlayout.accounts-all');
+    return view('newlayout.admin_payable.accounts-all');
 });
 
 
@@ -374,7 +374,7 @@ Route::get('/paybills', function(){
 });
 
 Route::get('/addemployee', function(){
-    return view('newlayout.addemployee');
+    return view('newlayout.admin_employee.addemployee');
 });
 
 Route::get('/dashboard_moveout', function(){
@@ -390,23 +390,23 @@ Route::get('/notifications', function(){
 });
 
 Route::get('/contracts-page-list', function(){
-    return view('newlayout.contracts-page-list');
+    return view('newlayout.admin_contracts.contracts-page-list');
 });
 
 Route::get('/renew-request', function(){
-    return view('newlayout.renew-request');
+    return view('newlayout.admin_contracts.renew-request');
 });
 
 Route::get('/renew-page', function(){
-    return view('newlayout.renew-page');
+    return view('newlayout.admin_contracts.renew-page');
 });
 
 Route::get('/moveout-request', function(){
-    return view('newlayout.moveout-request');
+    return view('newlayout.admin_contracts.moveout-request');
 });
 
 Route::get('/moveout-page', function(){
-    return view('newlayout.moveout-page');
+    return view('newlayout.admin_contracts.moveout-page');
 });
 
 
