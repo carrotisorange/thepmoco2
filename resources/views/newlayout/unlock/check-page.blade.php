@@ -113,6 +113,9 @@
 
           <div class="px-10 mt-10">
             <h3 class="text-lg font-medium text-gray-900">Select and Unlock Features:</h3>
+            <p class="mt-3 text-sm "><span class="font-bold text-sm text-red-900">note:</span>  You can <span class="font-semibold">cancel</span> subscription to this feature <span class="font-semibold">anytime!</span>
+            
+           Cancellation will only be applied on  <span class="font-semibold">next billing date.</span></p>
 
             <div class="px-5 mt-6">
 
