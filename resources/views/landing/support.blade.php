@@ -152,7 +152,7 @@
 
         </nav>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-500 to-indigo-300 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-transparent bg-origin-border bg-purple-500 px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
           <a href="newsignin" class="ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
           
         </div>
@@ -344,7 +344,7 @@
 
 
             <div class="sm:col-span-2 sm:flex sm:justify-end">
-              <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-purple-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send</button>
+            <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-transparent bg-origin-border bg-purple-500 px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Send</a>
             </div>
           </form>
         </div>
@@ -367,12 +367,8 @@
           <div class="pt-8 sm:pt-8 lg:pt-8">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Map</h2>
             <div class="mt-10 space-y-6 text-gray-500">
-              <p class="text-lg">When we first started out as property managers, we followed the old-school methods. During leasing procedures, we used the traditional way of paper and pen to sign up tenant info sheets, contracts, billing statements, and receipts. It took an entire day to process a single report! 
-</p>
-              <p class="text-base leading-7">At one point, our operations are so wrapped up in administrative work that we are spending less time strengthening our customer relations. We spend so much time looking for documents and less time on satisfying customer requests.</p>
-              <p class="text-base leading-7">Here’s where we need to innovate and rejuvenate.</p>
-              <p class="text-base leading-7">But the good old days are long gone; we need to advance and adapt to the technological evolution! And before you know it, we have built The PMO for all landlords and professional property managers out there who, like us, want to make work easier and better. </p>
-              <p class="text-base leading-7">Automating our process enables us to increase customer service satisfaction, become efficient in our operations, and improve transparency in management. </p>
+              <p class="text-lg">Asian Institute of Management - Dado Banatao Incubator Benavidez Street, Corner Trasierra, Legazpi Village, Makati, 1229 Metro Manila.</p>
+              <img class="h-full w-full" src="{{ asset('/brands/map-sample.png') }}" alt="pmo logo">
             </div>
           </div>
           

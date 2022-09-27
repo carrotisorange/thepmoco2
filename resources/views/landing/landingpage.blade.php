@@ -298,7 +298,7 @@
 
 
 <!-- This is an example component -->
-<div class="relative bg-purple-50 py-5 sm:py-24 lg:py-32" >
+<div class="relative bg-gradient-to-r from-purple-700 to-gray-500 py-5 sm:py-24 lg:py-32" >
         <div class="relative">
           <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-screen lg:px-8">
 
@@ -307,19 +307,20 @@
         <div class="overflow-hidden relative rounded-lg h-screen sm:h-fit md:h-fit 2xl:h-fit">
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <h2 class="mb-20 text-3xl font-bold tracking-tight text-gray-900">Manage All Your Properties in One Unified System</h2>
-                
-                <img src="{{ asset('/brands/car.png') }}" class="block absolute w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+             <div class="flex justify-center items-center">
+            <h2 class="text-center max-w-md mb-10 text-3xl tracking-tight text-white">Manage All Your Properties in <span class ="font-bold ">One Unified System</span></h2>
+</div>
+                <img src="{{ asset('/brands/unlock/port.png') }}" class="block absolute w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <h2 class="mb-20 text-3xl font-bold tracking-tight text-gray-900">A property dashboard to oversee all your processes!</h2>
-            <img src="{{ asset('/brands/car.png') }}" class="block absolute  w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+            <h2 class="mb-10 text-3xl tracking-tight text-white">A <span class ="font-bold ">Property Dashboard</span> to oversee all your processes!</h2>
+            <img src="{{ asset('/brands/dash-sample.png') }}" class="block absolute  w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <h2 class="mb-20 text-3xl font-bold tracking-tight text-gray-900">Collaborate and align your goals with your team!</h2>
-            <img src="{{ asset('/brands/car.png') }}" class="block absolute  w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+            <h2 class="mb-10 text-3xl tracking-tight text-white"> <span class ="font-bold ">Collaborate</span> and align your goals with your team!</h2>
+            <img src="{{ asset('/brands/employee-sample.png') }}" class="block absolute  w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
         </div>
         <!-- Slider indicators -->
@@ -328,21 +329,26 @@
             <button type="button" class="bg-black w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
             <button type="button" class="bg-black w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
         </div>
-        </div>
-        
-        <!-- Slider controls -->
-        <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
+
+         <!-- Slider controls -->
+         <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
             <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                 <svg class="w-8 h-8 text-black sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 <span class="hidden">Previous</span>
             </span>
         </button>
+
         <button type="button" class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-next>
             <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                 <svg class="w-8 h-8 text-black sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 <span class="hidden">Next</span>
             </span>
         </button>
+
+        </div>
+        
+       
+       
 </div>
     </section>
 </div>
@@ -355,26 +361,24 @@
     
 
     <!-- Gradient Feature Section -->
-    <div class="bg-gradient-to-r from-purple-700 to-gray-500">
+    <div class="bg-purple-100">
       <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pt-24">
-        
-       
-
+      
         <div class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-16">
           <div>
             
             <div class="flex items-center justify-center">
               <span class="h-12 w-12 flex items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/inbox -->
-                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth=1.5 stroke="currentColor">
+                <svg class="h-10 w-10 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth=1.5 stroke="currentColor">
   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
 </svg>
 
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-center text-lg font-medium text-white">Bulk Billing</h3>
-              <p class="text-center mt-2 text-base text-purple-200">Simplifies the process of billing by providing a way to conveniently add, send recurring bills to tenant/owner in a few clicks, and export ready-to-print statements.</p>
+              <h3 class="text-center text-lg font-medium text-gray-600">Bulk Billing</h3>
+              <p class="text-center mt-2 text-sm text-black">Simplifies the process of billing by providing a way to conveniently add, send recurring bills to tenant/owner in a few clicks, and export ready-to-print statements.</p>
             </div>
           </div>
 
@@ -382,15 +386,15 @@
           <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/users -->
-                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <svg class="h-10 w-10 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
 </svg>
 
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-center text-lg font-medium text-white">Payment Solutions</h3>
-              <p class="text-center mt-2 text-base text-purple-200">Receives payments from the tenants and sends remittances to unit owners.</p>
+              <h3 class="text-center text-lg font-medium text-gray-600">Payment Solutions</h3>
+              <p class="text-center mt-2 text-sm text-black">Receives payments from the tenants and sends remittances to unit owners.</p>
             </div>
           </div>
 
@@ -398,14 +402,14 @@
             <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/trash -->
-                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <svg class="h-10 w-10 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                 </svg>
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-center text-lg font-medium text-white">Team Monitoring</h3>
-              <p class="text-center mt-2 text-base text-purple-200">Assigns a role to each employee and manages them virtually.</p>
+              <h3 class="text-center text-lg font-medium text-gray-600">Team Monitoring</h3>
+              <p class="text-center text-sm text-black">Assigns a role to each employee and manages them virtually.</p>
             </div>
           </div>
 
@@ -413,14 +417,14 @@
           <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/pencil-square -->
-                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <svg class="h-10 w-10 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                 </svg>
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-center text-lg font-medium text-white">Tenant/Owner Portal</h3>
-              <p class="text-center mt-2 text-base text-purple-200">Provides convenient access to both tenants and owners to view their contracts, bills, payments, and file concerns.</p>
+              <h3 class="text-center text-lg font-medium text-gray-600">Tenant/Owner Portal</h3>
+              <p class="text-center text-sm text-black">Provides convenient access to both tenants and owners to view their contracts, bills, payments, and file concerns.</p>
             </div>
           </div>
 
@@ -428,14 +432,14 @@
           <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/document-chart-bar -->
-                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <svg class="h-10 w-10 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                 </svg>
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-center text-lg font-medium text-white">Real-time Statistics & Reports</h3>
-              <p class="text-center mt-2 text-base text-purple-200">Offers a hassle-free way to monitor property performance through different charts and visuals and downloadable reports.</p>
+              <h3 class="text-center text-lg font-medium text-gray-600">Real-time Statistics & Reports</h3>
+              <p class="text-center text-sm text-black">Offers a hassle-free way to monitor property performance through different charts and visuals and downloadable reports.</p>
             </div>
           </div>
 
@@ -443,7 +447,7 @@
           <div class="flex items-center justify-center">
               <span class="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
                 <!-- Heroicon name: outline/arrow-uturn-left -->
-                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <svg class="h-10 w-10 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 016.336-4.486l-3.276 3.276a3.004 3.004 0 002.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852z" />
   <path stroke-linecap="round" stroke-linejoin="round" d="M4.867 19.125h.008v.008h-.008v-.008z" />
 </svg>
@@ -451,8 +455,8 @@
               </span>
             </div>
             <div class="mt-6">
-              <h3 class="text-center text-lg font-medium text-white">24/7 Customer Support</h3>
-              <p class="text-center mt-2 text-base text-purple-200">Assigns a dedicated team to assist customers in boarding and setting up their property.</p>
+              <h3 class="text-center text-lg font-medium text-gray-600">24/7 Customer Support</h3>
+              <p class="text-center mt-2 text-sm text-black">Assigns a dedicated team to assist customers in boarding and setting up their property.</p>
             </div>
           </div>
 
@@ -473,13 +477,15 @@
 <!-- Blog section -->
 <div class="relative bg-gray-50 py-16 sm:py-24 lg:py-32" >
         <div class="relative">
+          <div class="flex justify-center items-center">
+         <h2 class="font-bold text-gray-700 text-3xl">Quick Start Guide</h2>
          
-
+</div>
           <div class="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-5 lg:px-8">
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-16  object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
+                <img class="h-10  object-cover mb-5" src="{{ asset('/brands/registered.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -488,8 +494,8 @@
                     <a href="#" class="hover:underline">Step 1:</a>
                   </p>
                   <a href="#" class="mt-2 block">
-                    <p class="text-xl font-semibold text-gray-900">Register your property</p>
-                    <p class="mt-3 text-base text-gray-500">Register your dorm, apartments, commercial spaces, residential units, condominums.</p>
+                    <p class="text-lg font-semibold text-purple-900">Register your property</p>
+                    <p class="mt-3 text-sm text-gray-500">Register your dorm, apartments, commercial spaces, residential units, condominums.</p>
                   </a>
                 </div>
 
@@ -501,7 +507,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-16  object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
+                <img class="h-10  object-cover mb-5" src="{{ asset('/brands/room.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -510,8 +516,8 @@
                     <a href="#" class="hover:underline">Step 2:</a>
                   </p>
                   <a href="#" class="mt-2 block">
-                    <p class="text-xl font-semibold text-gray-900">Add the units, rooms, or bed spaces</p>
-                    <p class="mt-3 text-base text-gray-500">Set up the monthly rent, deposit requirements, room features, and more.</p>
+                    <p class="text-lg font-semibold text-purple-900">Add the units, rooms, or bed spaces</p>
+                    <p class="mt-3 text-sm text-gray-500">Set up the monthly rent, deposit requirements, room features, and more.</p>
                   </a>
                 </div>
 </div>
@@ -520,7 +526,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-                <img class="h-16  object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
+                <img class="h-10  object-cover mb-5" src="{{ asset('/brands/tenants.png') }}" alt="">
 </div>
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -529,8 +535,8 @@
                     <a href="#" class="hover:underline">Step 3:</a>
                   </p>
                   <a href="#" class="mt-2 block">
-                    <p class="text-xl font-semibold text-gray-900">Add your tenants</p>
-                    <p class="mt-3 text-base text-gray-500">Input your tenants' names, contact details, contract period, and other necessary info.</p>
+                    <p class="text-lg font-semibold text-purple-900">Add your tenants</p>
+                    <p class="mt-3 text-sm text-gray-500">Input your tenants' names, contact details, contract period, and other necessary info.</p>
                   </a>
                 </div>
               </div>
@@ -539,7 +545,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-              <img class="h-16  object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
+              <img class="h-10  object-cover mb-5" src="{{ asset('/brands/management.png') }}" alt="">
               </div>
 </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -548,8 +554,8 @@
                     <a href="#" class="hover:underline">Step 4:</a>
                   </p>
                   <a href="#" class="mt-2 block">
-                    <p class="text-xl font-semibold text-gray-900">Manage your tenants</p>
-                    <p class="mt-3 text-base text-gray-500">Here you can address their concerns and requests, create job orders, assign jobs, and monitor up to completion</p>
+                    <p class="text-lg font-semibold text-purple-900">Manage your tenants</p>
+                    <p class="mt-3 text-sm text-gray-500">Here you can address their concerns and requests, create job orders, assign jobs, and monitor up to completion</p>
                   </a>
                 </div>
               </div>
@@ -558,7 +564,7 @@
             <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div class="flex-shrink-0">
               <div class="flex items-center justify-center">
-              <img class="h-16 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
+              <img class="h-10 object-cover mb-5" src="{{ asset('/brands/bill.png') }}" alt="">
               </div>
 </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -567,8 +573,8 @@
                     <a href="#" class="hover:underline">Step 5:</a>
                   </p>
                   <a href="#" class="mt-2 block">
-                    <p class="text-xl font-semibold text-gray-900">Bill your tenants, collect rent & utilities</p>
-                    <p class="mt-3 text-base text-gray-500">Automate billing for recurring charges. Set your billing date, and recurring bill amount, and tenants will be notified on the bill date.</p>
+                    <p class="text-lg font-semibold text-purple-900">Bill your tenants, collect rent & utilities</p>
+                    <p class="mt-3 text-sm text-gray-500">Automate billing for recurring charges. Set your billing date, and recurring bill amount, and tenants will be notified on the bill date.</p>
                   </a>
                 </div>
               </div>
@@ -584,7 +590,7 @@
       <div class="relative overflow-hidden pt-16 pb-32 bg-gray-50">
       <div aria-hidden="true" class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-purple-50"></div>
       <div class="relative">
-        <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
+        <div class="lg:mx-auto lg:grid lg:max-w-4xl lg:grid-flow-col-dense lg:grid-cols-1 lg:gap-24 lg:px-8">
           <div class="mx-auto max-w-xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
            
             

@@ -152,7 +152,7 @@
 
         </nav>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-500 to-indigo-300 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-transparent bg-origin-border bg-purple-500 px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
           <a href="newsignin" class="ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
           
         </div>

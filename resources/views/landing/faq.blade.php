@@ -152,7 +152,7 @@
 
         </nav>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-500 to-indigo-300 bg-origin-border px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
+        <a href="#" class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-transparent bg-origin-border bg-purple-500 px-4 py-1 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700">Sign up</a>
           <a href="newsignin" class="ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
           
         </div>
@@ -293,7 +293,7 @@
                   <svg class="h-12 w-12 text-white opacity-25" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
                     <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                   </svg>
-                  <p class="mt-2 text-2xl font-xl text-gray-800">What does a professional property manager do?</p>
+                  <p class="mt-2 text-2xl font-xl text-gray-800">What does a <span class="font-bold">Professional Property Manager</span> do?</p>
                 </div>
                 <footer class="mt-6">
                   <p class="text-base font-sm text-gray-500">A professional property manager is responsible for the operations, marketing, leasing, and financial reporting of the real estate property to meet the objectives of the owner and includes planning for the future of the property by proposing physical and fiscal strategies that will enhance the value of the real estate.</p>
@@ -320,9 +320,10 @@
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-5xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
           
-          <p class="mt-12 text-3xl font-bold tracking-tight text-gray-900">
-Why do I need a property manager?</p>
-          <p class="mt-5 text-md text-gray-700 ">There are few individuals who can afford to own a building because larger buildings cost more to build and maintain. Like condominiums, ownership by groups by pooling capital emerged due to the demand and need, but such ownership requires different handling. Larger properties require full-time attention to maintain. These larger properties also require greater scrutiny of cash flow because of multiple owners’ interests. Third-party professional property managers are needed not only to oversee the maintenance of the building and its facilities, and collect dues and rents but also to manage the financial aspect of the property. Multiple-owned properties are much more complicated to manage due to the differences of opinion and interests of the multiple owners and third-party professional property managers provide an objective opinion when handling property concerns which have its objective the enhancement of the value of the real estate.</p>
+          <p class="mt-12 text-3xl font-light tracking-tight text-gray-900">
+Why do I need a <span class="font-bold">Property Manager?</span></p>
+          <p class="mt-5 text-md text-gray-600 ">There are few individuals who can afford to own a building because larger buildings cost more to build and maintain. Like condominiums, ownership by groups by pooling capital emerged due to the demand and need, but such ownership requires different handling. </p>
+          <p class="mt-5 text-md text-gray-600 ">Larger properties require full-time attention to maintain. These larger properties also require greater scrutiny of cash flow because of multiple owners’ interests. Third-party professional property managers are needed not only to oversee the maintenance of the building and its facilities, and collect dues and rents but also to manage the financial aspect of the property. Multiple-owned properties are much more complicated to manage due to the differences of opinion and interests of the multiple owners and third-party professional property managers provide an objective opinion when handling property concerns which have its objective the enhancement of the value of the real estate.</p>
           <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
            
           </div>
@@ -332,11 +333,11 @@ Why do I need a property manager?</p>
 
 
 
-    <div class="relative bg-gray-900 ">
+    <div class="relative bg-purple-300 ">
         <div class="mx-auto max-w px-6 py-12 lg:py-32 lg:px-8 md:py-28 sm:py-20 sm:px-6 relative h-72 bg-gray-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
         <div class="md:ml-auto md:pl-">
             
-          <p class="mt-2 text-xl font-bold tracking-tight text-white sm:text-xl">
+          <p class="mt-2 text-xl font-semibold tracking-tight text-gray-100 sm:text-xl">
 Condominium unit owners who invest for the purpose of renting it out are a good investment for the passive income it’s supposed to generate for the owner. This is truly passive income only if it is managed by a third-party property manager.</p>
             
             <div class="mt-8">
@@ -350,7 +351,7 @@ Condominium unit owners who invest for the purpose of renting it out are a good 
 
           <div class="md:ml-auto md:w-1/2 md:pl-10">
             
-            <p class="mt-2 text-xl font-bold tracking-tight text-white sm:text-xl">Unit owners who are active investors manage their own properties. They invest in condominium units because of the business of renting out real estate. They may need different services from property or leasing managers from time to time but they mostly manage the day-to-day operations of their properties.</p>
+            <p class="mt-2 text-xl font-semibold tracking-tight text-gray-100 sm:text-xl">Unit owners who are active investors manage their own properties. They invest in condominium units because of the business of renting out real estate. They may need different services from property or leasing managers from time to time but they mostly manage the day-to-day operations of their properties.</p>
             
             <div class="mt-8">
               <div class="inline-flex rounded-md shadow">
