@@ -1,9 +1,7 @@
 <x-new-layout>
     @section('title','Contracts | '. Session::get('property_name'))
-    @if(auth()->user()->user_type == '1')
+    @if(auth()->user()->user_type == '0')
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
-
-
         <div class="flex min-h-full flex-col bg-white lg:relative">
             <div class="flex flex-grow flex-col">
                 <main class="flex flex-grow flex-col bg-white">
