@@ -84,6 +84,9 @@ Route::get('/oops-page', function(){
     return view('newlayout.unlock.oops-page');
 });
 
+Route::get('/sample-profile-lock', function(){
+    return view('newlayout.unlock.sample-profile-lock');
+});
 
 Route::get('/contract-lock', function(){
     return view('newlayout.unlock.contract-lock');
@@ -447,13 +450,17 @@ Route::get('/plans', function(){
     return view('landing.plans');
 });
 
-Route::get('/catalogue', function(){
-    return view('kommunal.catalogue');
+Route::get('/home', function(){
+    return view('kommunal.home');
 });
 
 Route::get('/search', function(){
     return view('kommunal.search
 ');
+});
+
+Route::get('/catalog', function(){
+    return view('kommunal.catalog');
 });
 
 

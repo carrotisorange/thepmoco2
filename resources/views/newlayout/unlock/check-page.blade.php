@@ -120,37 +120,37 @@
             <div class="px-5 mt-6">
 
             <div class="mt-5 flex items-center justify-between">
-            <dt><input type="checkbox" class="mr-3">Contract Feature</dt>
+            <dt><input type="checkbox" class="mr-3"><a href="contract-lock" class="text-purple-700">Contract Feature</a></dt>
             <dd>₱300.00</dd>
           </div>
 
           <div class="mt-5 flex items-center justify-between">
-            <dt><input type="checkbox" class="mr-3">Concern Feature</dt>
+            <dt><input type="checkbox" class="mr-3"><a href="concern-lock" class="text-purple-700">Concern Feature</a></dt>
             <dd>₱300.00</dd>
           </div>
 
           <div class="mt-5 flex items-center justify-between">
-            <dt><input type="checkbox" class="mr-3">Tenant Portal Feature</dt>
+            <dt><input type="checkbox" class="mr-3"><a href="tenant-portal-lock" class="text-purple-700">Tenant Portal Feature</a></dt>
             <dd>₱600.00</dd>
           </div>
 
           <div class="mt-5 flex items-center justify-between">
-            <dt><input type="checkbox" class="mr-3">Owner Portal Feature</dt>
+            <dt><input type="checkbox" class="mr-3"><a href="owner-portal-lock" class="text-purple-700">Owner Portal Feature</a></dt>
             <dd>₱600.00</dd>
           </div>
 
           <div class="mt-5 flex items-center justify-between">
-            <dt><input type="checkbox" class="mr-3">Account Payables Feature</dt>
+            <dt><input type="checkbox" class="mr-3"><a href="payable-lock" class="text-purple-700">Account Payables Feature</a></dt>
             <dd>₱300.00</dd>
           </div>
           
           <div class="mt-5 flex items-center justify-between">
-            <dt><input type="checkbox" class="mr-3">Account Receivables Feature</dt>
+            <dt><input type="checkbox" class="mr-3"><a href="receivable-bills-lock" class="text-purple-700">Account Receivables Feature</a></dt>
             <dd>₱600.00</dd>
           </div>
 
           <div class="mt-5 flex items-center justify-between">
-            <dt><input type="checkbox" class="mr-3">Portfolio Dashboard Feature</dt>
+            <dt><input type="checkbox" class="mr-3"><a href="portfolio-lock" class="text-purple-700">Portfolio Dashboard Feature</a></dt>
             <dd>₱600.00</dd>
           </div>
         
