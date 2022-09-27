@@ -359,7 +359,7 @@
                                 <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
                                     @if($item->contract)
                                    <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
-                                        class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
+                                        class="text-indigo-600 hover:text-indigo-900">View Contract</a>
                                     @endif
                                 </td>
                                 <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">

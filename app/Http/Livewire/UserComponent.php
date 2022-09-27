@@ -28,6 +28,12 @@ class UserComponent extends Component
     public $mobile_number;
     public $avatar;
     public $password;
+    public $sendEmailToEmployee;
+
+    public function mount()
+    {
+      $this->sendEmailToEmployee = true;
+    }
 
      protected function rules()
      {
@@ -131,7 +137,7 @@ class UserComponent extends Component
      public function render()
      {
         return view('livewire.user-component',[
-         'roles' => Role::orderBy('role')->whereIn('id', ['1', '2', '3', '4', '6', '11'])->get(),
+         'roles' => Role::orderBy('role')->whereIn('id', ['1', '2', '3', '4', '6', '11', '9'])->get(),
         ]);
      }
 

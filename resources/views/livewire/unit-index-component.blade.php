@@ -381,8 +381,9 @@
             </div>
 
             @endif
-
+            {{ $units->links() }}
         </div>
+
     </div>
     @endif
     @include('modals.create-unit-modal')
