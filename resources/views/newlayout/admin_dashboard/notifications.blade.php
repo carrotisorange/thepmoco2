@@ -282,25 +282,52 @@
           <div class="">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="mt-10 text-3xl font-bold text-gray-700">Notifications</h1>
-            <div class="bg-gray-50 px-5 py-3">
-                <div class="text-sm">
-                  <div class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-                    <div class="p-4">
-                       <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                        <!-- Heroicon name: outline/check-circle -->
-                          <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </div>
 
-                          <div class="ml-3 w-0 flex-1 pt-0.5">
-                            <p class="text-sm font-medium text-gray-900">Successfully paid!</p>
-                            <p class="mt-1 text-sm text-gray-500">You paid 16,000.00 for rent.</p>
-                          </div>
-                      </div>
-                    </div>
+            
+            <form>   
+    <label for="hidden default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
+    <div class="relative w-72 mt-5">
+        <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
+        
+        </div>
+        <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-full flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
+                <span class="text-sm font-medium text-gray-900"> Filter by: Recent</span>
+                <span class="ml-6 flex items-center">
+                  <!--
+                    Expand/collapse icon, toggle classes based on question open state.
+
+                    Heroicon name: solid/chevron-down
+
+                    Open: "-rotate-180", Closed: "rotate-0"
+                  -->
+                  <svg class="rotate-0 h-5 w-5 transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+                  </form>
                   </div>
+            <div class="mt-5 alert bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-gray-700 inline-flex items-center w-full alert-dismissible fade show" role="alert">
+  <strong class="mr-1">Holy guacamole! </strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close box-content w-4 h-4 p-1 ml-auto text-yellow-900 border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-yellow-900 hover:opacity-75 hover:no-underline" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="mt-5 alert bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-gray-700 inline-flex items-center w-full alert-dismissible fade show" role="alert">
+  <strong class="mr-1">Holy guacamole! </strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close box-content w-4 h-4 p-1 ml-auto text-yellow-900 border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-yellow-900 hover:opacity-75 hover:no-underline" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="mt-5 alert bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-gray-700 inline-flex items-center w-full alert-dismissible fade show" role="alert">
+  <strong class="mr-1">Holy guacamole! </strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close box-content w-4 h-4 p-1 ml-auto text-yellow-900 border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-yellow-900 hover:opacity-75 hover:no-underline" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+        
+<div class="mt-5 alert bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-gray-700 inline-flex items-center w-full alert-dismissible fade show" role="alert">
+  <strong class="mr-1">Holy guacamole! </strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close box-content w-4 h-4 p-1 ml-auto text-yellow-900 border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-yellow-900 hover:opacity-75 hover:no-underline" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+        
             
 </div>
 </div>

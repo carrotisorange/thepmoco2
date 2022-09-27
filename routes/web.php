@@ -451,6 +451,12 @@ Route::get('/catalogue', function(){
     return view('kommunal.catalogue');
 });
 
+Route::get('/search', function(){
+    return view('kommunal.search
+');
+});
+
+
 
 
 

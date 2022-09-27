@@ -54,8 +54,8 @@
   <div class="bg-white">
   <div class="relative overflow-hidden">
     <header class="relative">
-      <div class="bg-white pt-6">
-        <nav class="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6" aria-label="Global">
+      <div class="">
+        <nav class="float mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6" aria-label="Global">
           <div class="flex flex-1 items-center">
             <div class="flex w-full items-center justify-between md:w-auto">
               <a href="#">
@@ -72,20 +72,9 @@
                 </button>
               </div>
             </div>
-            <div class="hidden space-x-8 md:ml-10 md:flex">
-              <a href="#" class="text-base font-medium text-white hover:text-gray-300">Product</a>
-
-              <a href="#" class="text-base font-medium text-white hover:text-gray-300">Features</a>
-
-              <a href="#" class="text-base font-medium text-white hover:text-gray-300">Marketplace</a>
-
-              <a href="#" class="text-base font-medium text-white hover:text-gray-300">Company</a>
-            </div>
+            
           </div>
-          <div class="hidden md:flex md:items-center md:space-x-6">
-            <a href="#" class="text-base font-medium text-white hover:text-gray-300">Log in</a>
-            <a href="#" class="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700">Start free trial</a>
-          </div>
+          
         </nav>
       </div>
 
@@ -219,7 +208,7 @@
     </div>
   </div>
   <div class="hidden lg:block relative w-0 flex-1 justify-center ">
-  <img class="h-full w-full" src="{{ asset('/brands/bg-green.png') }}" alt="pmo logo">
+  <img class="h-full w-full" src="{{ asset('/brands/catalogue/bg-green.png') }}" alt="pmo logo">
   </div>
 </div>
     
