@@ -101,8 +101,16 @@
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->interaction->interaction }}</td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                @if($item->contract)
                 <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
                     class="text-indigo-600 hover:text-indigo-900">View Contract</a>
+                @else
+                @can('admin')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
+                    class="text-indigo-600 hover:text-indigo-900">Attach a contract</a>
+                @endif
+                @endif
+
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
