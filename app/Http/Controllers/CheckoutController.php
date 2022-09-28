@@ -107,8 +107,8 @@ public function charge_user_account($plan_id, $external_id, $description, $email
             // 'success_redirect_url' => '/127.0.0.1:8000/success/'.$temporary_username,
             // 'failure_redirect_url' => '/127.0.0.1:8000/select-a-plan',
             //'success_redirect_url' => '/127.0.0.1:8000/success/'.auth()->user()->username.'/'.$amount,
-            'success_redirect_url' => 'https://thepmo.co/user/'.auth()->user()->username.'/subscriptions',
-            'failure_redirect_url' => 'https://thepmo.co/select-a-plan-free',
+            'success_redirect_url' => 'https://manuprop.com/user/'.auth()->user()->username.'/subscriptions',
+            'failure_redirect_url' => 'https://manuprop.com/select-a-plan-free',
             'customer'=> [
                     'given_name'=> $name,
                     'mobile_number' => $mobile_number,
