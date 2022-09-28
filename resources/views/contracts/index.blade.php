@@ -1,6 +1,6 @@
 <x-new-layout>
     @section('title','Contracts | '. Session::get('property_name'))
-    @if(auth()->user()->user_type == '0')
+    @can('contract')
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex min-h-full flex-col bg-white lg:relative">
             <div class="flex flex-grow flex-col">
@@ -145,7 +145,7 @@
     <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
         {{-- {{ $contracts->links() }} --}}
     </div>
-    @endif
+    @endcan
 
 </x-new-layout>
 

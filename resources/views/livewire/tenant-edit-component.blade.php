@@ -5,11 +5,17 @@
 
                 <div class="flex justify-between">
                     <h1 class="text-3xl font-bold text-white">{{ $tenant_details->tenant }}</h1>
-
+                    @can('tenantportal')
+                    <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/unlock'"
+                        class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Tenant Portal
+                    </button>
+                    @else
                     <button type="button" onclick="window.location.href='/tenant/{{ $tenant_details->uuid }}/user'"
                         class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Generate Credentials
+                        Tenant Portal
                     </button>
+                    @endcan
 
 
                 </div>
@@ -358,7 +364,7 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
                                     @if($item->contract)
-                                   <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
+                                    <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
                                         class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
                                     @endif
                                 </td>

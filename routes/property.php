@@ -134,6 +134,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){
         Route::get('/', [TenantController::class, 'index'])->name('tenant');
+        Route::get('/unlock', [TenantController::class, 'unlock'])->name('tenant');
         Route::get('{tenant:uuid}', [TenantController::class, 'show']);
     
         Route::prefix('{tenant}')->group(function(){

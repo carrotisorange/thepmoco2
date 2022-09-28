@@ -55,6 +55,11 @@ class TenantController extends Controller
         ]);
     }
 
+    public function unlock(Property $property)
+    {
+        return view('tenants.unlock');
+    }
+
     /**
      * Display the specified resource.
      *

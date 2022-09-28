@@ -130,7 +130,7 @@ class ContractComponent extends Component
           $validated_data['contract'] = Property::find(Session::get('property'))->tenant_contract;
          }
 
-         return Contract::firstOrCreate($validated_data);
+         return Contract::create($validated_data);
        
       }
 

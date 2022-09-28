@@ -1,5 +1,6 @@
 <x-new-layout>
     @section('title','Bills | '. Session::get('property_name'))
+    @can('bill')
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             @livewire('bill-index-component', ['active_contracts' => $active_contracts, 'active_tenants' =>
