@@ -103,7 +103,7 @@ class ContractController extends Controller
         }
     }
 
-    public function edit(Contract $contract)
+    public function edit(Property $property, Tenant $tenant, Contract $contract)
     {
         return view('contracts.edit',[
           'contract' => Contract::findOrFail($contract->uuid),

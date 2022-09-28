@@ -1,3 +1,9 @@
+<x-new-layout>
+    @section('title','Contracts | '. Session::get('property_name'))
+    @livewire('contract-edit-component', ['contract_details' => $contract])
+</x-new-layout>
+
+{{-- 
 <x-app-layout>
     @section('title', '| '.$contract->tenant->tenant)
     <x-slot name="header">
@@ -157,4 +163,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}

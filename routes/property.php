@@ -173,6 +173,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::prefix('/contract')->group(function(){
                 Route::prefix('{contract}')->group(function(){
                     Route::get('renew', [ContractController::class, 'renew']);
+                    Route::get('edit', [ContractController::class, 'edit'])->name('tenant');
                     Route::get('moveout', [ContractController::class, 'moveout']);
                     Route::get('export', [ContractController::class, 'export']);
                     Route::get('transfer', [ContractController::class, 'transfer']);

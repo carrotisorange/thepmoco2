@@ -244,20 +244,20 @@
                                         <input id="file-upload" name="image" type="file" class="sr-only"
                                             wire:model="photo_id">
                                     </label>
-                                    <p class="pl-1">or drag and drop</p>
+                                   
                                 </div>
-                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
                             @error('photo_id')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
+                            @if ($photo_id)
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                            @endif
 
                         </div>
-                        @if ($photo_id)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                class="fa-solid fa-circle-check"></i></p>
-                        @endif
+                       
                     </div>
 
                     @if($email)
