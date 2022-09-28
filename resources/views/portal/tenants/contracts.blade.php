@@ -37,7 +37,7 @@
                                         PROPERTY</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         BUILDING
-                                    </th>    
+                                    </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         UNIT
                                     </th>
@@ -65,7 +65,8 @@
                                         <!-- Selected row marker, only show when row is selected. -->
 
                                         {{-- <input type="checkbox"
-                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
+                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                                        --}}
                                     </td>
                                     <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                                     <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{
@@ -114,11 +115,23 @@
                                         {{ $item->interaction->interaction }}
                                     </td>
                                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        @if($item->contract)
+                                        <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
+                                            class="text-indigo-600 hover:text-indigo-900">View
+                                            Contract</a>
+                                        @else
+                                        No attached contract
+                                        @endif
+                                    </td>
+                                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                         @if($item->status == 'active')
                                         <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
                                             class="text-indigo-600 hover:text-indigo-900">Request for Moveout</a>
                                         @endif
                                     </td>
+                                   
+
+
                                 </tr>
                                 @empty
                                 <tr>
