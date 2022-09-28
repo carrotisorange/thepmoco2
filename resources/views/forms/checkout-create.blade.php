@@ -125,7 +125,7 @@
     </div> --}}
 
 
-    <button type="submit" wire:loading.remove wire:click="processPayment()"
+    <button type="submit" wire:loading.remove 
         class="w-full mt-6 bg-purple-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Pay
         ₱{{
         number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)
