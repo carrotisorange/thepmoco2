@@ -281,7 +281,7 @@
         <main class="flex-1 pb-2 overflow-y-scroll bg-gray-50">
           <div class="">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="mt-10 text-3xl font-bold text-gray-700">Notifications</h1>
+            <h1 class="mt-10 text-3xl font-bold text-gray-700">Edit Notifications</h1>
 
             
             <form>   
