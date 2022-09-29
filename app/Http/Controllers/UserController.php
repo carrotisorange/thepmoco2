@@ -194,6 +194,11 @@ class UserController extends Controller
         return $user;
     }
 
+    public function unlock(User $user)
+    {
+        return view('users.unlock');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

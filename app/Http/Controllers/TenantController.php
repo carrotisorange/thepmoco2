@@ -57,7 +57,7 @@ class TenantController extends Controller
 
     public function unlock(Property $property)
     {
-        return view('tenants.unlock');
+        return view('admin.restrictedpages.tenantportal');
     }
 
     /**

@@ -77,7 +77,7 @@ class AppServiceProvider extends ServiceProvider
           });
 
         Gate::define('dev', function(User $user){
-            return (auth()->user()->role_id === 10);
+            return (auth()->user()->role_id == '10');
         });
 
         Gate::define('old', function (User $user){
@@ -89,31 +89,31 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('porforlio', function (User $user){
-            return (auth()->user()->is_portforlio_unlocked == '1' && auth()->user()->user_type == '0');
+            return (auth()->user()->is_portforlio_unlocked== '0' || auth()->user()->user_type == '1');
         });
 
         Gate::define('contract', function (User $user){
-            return (auth()->user()->is_contract_unlocked == '1' && auth()->user()->user_type == '0');
+            return (auth()->user()->is_contract_unlocked == "0" || auth()->user()->user_type == '1');
         });
 
         Gate::define('concern', function (User $user){
-            return (auth()->user()->is_concern_unlocked == '1' && auth()->user()->user_type == '0');
+            return (auth()->user()->is_concern_unlocked == '0' || auth()->user()->user_type == '1');
         });
 
         Gate::define('tenantportal', function (User $user){
-            return (auth()->user()->is_tenantportal_unlocked == '1' && auth()->user()->user_type == '0');
+            return (auth()->user()->is_tenantportal_unlocked == '0' || auth()->user()->user_type == '1');
         });
 
         Gate::define('ownerportal', function (User $user){
-            return (auth()->user()->is_ownerportal_unlocked == '1' && auth()->user()->user_type == '0');
+            return (auth()->user()->is_ownerportal_unlocked == '0' || auth()->user()->user_type == '1');
         });
 
         Gate::define('accountpayable', function (User $user){
-            return (auth()->user()->is_accountpayable_unlocked == '1' && auth()->user()->user_type == '0');
+            return (auth()->user()->is_accountpayable_unlocked == '0' || auth()->user()->user_type == '1');
         });
 
         Gate::define('accountreceivable', function (User $user){
-            return (auth()->user()->is_accountreceivable_unlocked == '1' && auth()->user()->user_type == '0');
+            return (auth()->user()->is_accountreceivable_unlocked == '0' || auth()->user()->user_type == '1');
         });
     }
 }

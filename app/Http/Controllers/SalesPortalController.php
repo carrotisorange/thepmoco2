@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
-class DashboardSalesController extends Controller
+class SalesPortalController extends Controller
 {
     public function index()
     {

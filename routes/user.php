@@ -10,6 +10,8 @@ Route::prefix('user')->group(function(){
     //routes for user crud operations
     Route::patch('{user}/update',[UserController::class, 'update']);
 
+    Route::get('{user}/unlock', [UserController::class, 'unlock']);
+
     Route::get('{user}/edit',[UserController::class, 'edit'])->name('profile');
 
     Route::get('{username}/subscriptions',[SubscriptionController::class, 'index'])->name('subscription');

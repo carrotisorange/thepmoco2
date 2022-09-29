@@ -67,7 +67,7 @@
                             </x-nav-link>
                         </div> --}}
                     </div>
-                    @if(auth()->user()->role_id == '5')
+                    {{-- @if(auth()->user()->role_id == '5')
                         <div class="flex items-center m-10 h-12 w-auto py-3 bg-yellow-100 text-center rounded-md">
                             
                                 <h1 class="flex-1">
@@ -91,7 +91,7 @@
                             </div>
                     @else
 
-                    @endif
+                    @endif --}}
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-dropdown align="right" width="48">
