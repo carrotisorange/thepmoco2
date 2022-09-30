@@ -14,6 +14,7 @@ use Livewire\WithPagination;
 use App\Models\Contract;
 use App\Models\DeedOfSale;
 use App\Models\Enrollee;
+use App\Models\Tenant;
 
 use Livewire\Component;
 
@@ -101,7 +102,7 @@ class UnitComponent extends Component
             DB::commit();
 
             //session()->flash('success', count($this->units). ' unit is successfully updated.');
-
+            
               if(Tenant::where('property_uuid', Session::get('property'))->count())
               {
                 return redirect('/property/'.Session::get('property').'/unit')->with('success', count($this->units). 'unit is successfully updated.');
@@ -114,6 +115,8 @@ class UnitComponent extends Component
         }catch(\Exception $e){
             DB::rollback();
          
+            ddd($e);
+
             session()->flash('error');
         }
     }

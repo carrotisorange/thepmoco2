@@ -117,7 +117,7 @@
 
 
             <div class="sm:col-span-6">
-                
+
                 <label class="block text-sm font-medium text-gray-700"> Upload Bills/Quotation </label>
                 <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                     <div class="space-y-1 text-center">
@@ -128,24 +128,21 @@
                                 <span>Upload a file</span>
                                 <input id="file-upload" name="file-upload" wire:model="attachment" type="file"
                                     class="sr-only">
-                                
+
                             </label>
-                            <p class="pl-1">or drag and drop</p>
+
                         </div>
-                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                         @error('attachment')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                        
                         @if ($attachment)
-                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                                class="fa-solid fa-circle-check"></i></p>
                         @endif
                     </div>
-
-
-
-
                 </div>
+
             </div>
 
 
@@ -167,7 +164,7 @@
         <div class="flex justify-end">
             <button type="button" onclick="window.location.href='{{ url()->previous() }}'"
                 class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-            <button type="submit" wire:click="submitForm()"
+            <button type="submit"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
                 <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

@@ -244,20 +244,20 @@
                                         <input id="file-upload" name="image" type="file" class="sr-only"
                                             wire:model="photo_id">
                                     </label>
-                                    <p class="pl-1">or drag and drop</p>
+                                   
                                 </div>
-                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
                             @error('photo_id')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
+                            @if ($photo_id)
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                            @endif
 
                         </div>
-                        @if ($photo_id)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                class="fa-solid fa-circle-check"></i></p>
-                        @endif
+                       
                     </div>
 
                     @if($email)
@@ -287,7 +287,7 @@
                     class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Cancel
                 </button>
-                <button type="submit" wire:click="submitForm()"
+                <button type="submit" 
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
                     <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

@@ -147,7 +147,7 @@ class UnitIndexComponent extends Component
                        ->when($this->occupancy, function($query){
                        $query->where('occupancy', $this->occupancy);
                        })
-                    ->get(),
+                    ->paginate(10),
             'buildings' => $buildings,
             'floors' => $floors,
             'categories' => $categories,

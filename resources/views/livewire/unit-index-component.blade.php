@@ -340,7 +340,7 @@
                                 @foreach ($unit->contracts->where('status','!=','inactive')->take(1) as $tenant)
                                 <a class="text-blue-500 text-decoration-line: underline"
                                     href="/property/{{ $unit->property_uuid }}/tenant/{{ $tenant->tenant->uuid }}">{{
-                                    $tenant->tenant->tenant }}</a>,
+                                    $tenant->tenant->tenant }}</a>
                                 @endforeach
                                 @else
                                 NA
@@ -350,7 +350,7 @@
                                 @if($unit->contracts->count())
                                 @foreach ($unit->contracts->where('status','!=','inactive')->take(1) as $contract)
                                 {{ Carbon\Carbon::parse($contract->start)->format('M d, Y').' - '.
-                                Carbon\Carbon::parse($contract->end)->format('M d, Y')}},
+                                Carbon\Carbon::parse($contract->end)->format('M d, Y')}}
                                 @endforeach
                                 @else
                                 NA
@@ -381,8 +381,9 @@
             </div>
 
             @endif
-
+            {{ $units->links() }}
         </div>
+
     </div>
     @endif
     @include('modals.create-unit-modal')

@@ -1,8 +1,8 @@
 <form class="space-y-6" method="POST" wire:submit.prevent="addUser()" enctype="multipart/form-data">
-    <div class=" px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-6 md:gap-6">
             <div class="sm:col-span-6">
-                <label for="role_id" class="block text-sm font-medium text-gray-700">Position:</label>
+                <label for="role_id" class="block text-sm font-medium text-gray-700">Select a position:</label>
                 <select wire:model="role_id"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                     <option value="">Select one</option>
@@ -31,13 +31,29 @@
 
             </div>
 
+
+            @if($sendEmailToEmployee)
+            <div class="mt-3 col-span-2">
+                <div class="form-check">
+                    <input wire:model="sendEmailToEmployee"
+                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        type="checkbox" value="{{ old('sendEmailToEmployee'), $sendEmailToEmployee }}"
+                        id="flexCheckChecked">
+                    <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
+                        Send invite to the new employee.
+                    </label>
+                </div>
+            </div>
+            @endif
+
             @endif
 
         </div>
 
         <div class="flex justify-end mt-10">
-            <button type="button" onclick="window.location.href='{{ url()->previous() }}'"
+            <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/user'"
                 class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
+            @if($role_id)
             <button type="submit" wire:click="addUser()"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
@@ -51,5 +67,6 @@
                 </svg>
                 Create
             </button>
+            @endif
         </div>
 </form>
