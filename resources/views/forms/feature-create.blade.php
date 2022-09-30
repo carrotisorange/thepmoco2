@@ -1,4 +1,4 @@
-<form>
+<form wire:submit.prevent="submitForm()" method="POST">
     <div class="px-10 mt-10">
         <h3 class="text-lg font-medium text-gray-900">Select and Unlock Features:</h3>
         <p class="mt-3 text-sm "><span class="font-bold text-sm text-red-900">note:</span> You can
@@ -28,7 +28,7 @@
 
     <div class="mt-10 flex justify-end border-t border-indigo-200 pt-6">
         @if($selectedFeature)
-        <button type="submit" wire:click="submitForm()"
+        <button type="submit"
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
             <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

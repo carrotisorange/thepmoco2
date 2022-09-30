@@ -9,7 +9,7 @@
             <div class="relative mx-auto grid max-w-7xl grid-cols-1 gap-x-16 lg:grid-cols-2 lg:px-8 lg:pt-16">
                 <h1 class="sr-only">Checkout</h1>
 
-                @if($selectedFeatures->count())
+                {{-- @if($selectedFeatures->count()) --}}
                 <section aria-labelledby="summary-heading"
                     class="bg-purple-900 py-12 text-indigo-300 md:px-10 lg:col-start-2 lg:row-start-1 lg:mx-auto lg:w-full lg:max-w-lg lg:bg-transparent lg:px-0 lg:pt-0 lg:pb-24">
                     <div class="mx-auto max-w-2xl px-4 lg:max-w-none lg:px-0">
@@ -51,7 +51,8 @@
                         </dl>
                     </div>
                 </section>
-                @endif
+               
+                {{-- @endif --}}
 
                 <section aria-labelledby="payment-and-shipping-heading"
                     class="py-16 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:w-full lg:max-w-lg lg:pt-0 lg:pb-24">
@@ -62,4 +63,5 @@
         </div>
 
     </div>
+    @include('layouts.notifications')
 </div>

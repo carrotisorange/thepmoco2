@@ -14,7 +14,7 @@ Route::prefix('user')->group(function(){
 
     Route::get('{user}/edit',[UserController::class, 'edit'])->name('profile');
 
-    Route::get('{username}/subscriptions',[SubscriptionController::class, 'index'])->name('subscription');
+    Route::get('{user}/subscriptions/{external_id:external_id?}',[SubscriptionController::class, 'index'])->name('subscription');
 
     Route::post('{user}/subscriptions/{external_id:external:id}/unsubscribe',[SubscriptionController::class, 'unsubscribe'])->name('subscription');
 
