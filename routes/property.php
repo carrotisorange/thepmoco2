@@ -43,6 +43,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::prefix('/property')->group(function(){
         Route::get('/', [PropertyController::class, 'index'])->name('property');
+        Route::get('{random_str}/unlock/', [PropertyController::class, 'unlock'])->name('property');
         Route::get('/{property}/success', [PropertyController::class, 'success']);
         Route::get('{random_str}/create', [PropertyController::class, 'create'])->name('property');
         Route::post('{random_str}/store', [PropertyController::class, 'store']);
@@ -185,7 +186,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Owner
     Route::prefix('owner')->group(function(){
         Route::get('/', [OwnerController::class, 'index'])->name('owner');
-
+        Route::get('/unlock', [OwnerController::class, 'unlock'])->name('owner');
 
         Route::prefix('{owner}')->group(function(){
             

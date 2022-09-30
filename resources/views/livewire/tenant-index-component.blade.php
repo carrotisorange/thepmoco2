@@ -134,7 +134,7 @@
 
 
 
-        <div class="sm:col-span-2">
+        {{-- <div class="sm:col-span-2">
 
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Filters</label>
@@ -151,7 +151,7 @@
                     class="text-center bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">Filter
                     by Default</button>
             </div>
-        </div>
+        </div> --}}
 
     </div>
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
