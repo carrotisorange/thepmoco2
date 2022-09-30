@@ -111,7 +111,6 @@ class UnitComponent extends Component
                 return redirect('/property/'.Session::get('property').'/tenant')->with('success', count($this->units). 'unit is successfully updated.');
               }
 
-
         }catch(\Exception $e){
             DB::rollback();
          
