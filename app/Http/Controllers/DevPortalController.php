@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use App\Models\Owner;
 
 
-class DashboardDevController extends Controller
+class DevPortalController extends Controller
 {
     public function index()
     {

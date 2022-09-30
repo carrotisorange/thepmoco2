@@ -34,7 +34,7 @@
         </div>
 
         </form>
-
+{{-- 
         <div class="sm:col-span-2">
             <form>
                 <label for="default-search"
@@ -53,7 +53,7 @@
                         class="text-center bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">Filter
                         by Default</button>
                 </div>
-        </div>
+        </div> --}}
         </form>
     </div>
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -79,8 +79,7 @@
                                 UNIT</th>
                             {{-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 RENT</th> --}}
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                EMAIL</th>
+
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 CONTACT #</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -99,28 +98,49 @@
                                 <!-- Selected row marker, only show when row is selected. -->
 
                                 {{-- <input type="checkbox"
-                                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
+                                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                                --}}
                             </td>
                             <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                             <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{ $index+1 }}
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                <a class="text-blue-500 text-decoration-line: underline"
-                                    href="/property/{{ $owner->property_uuid }}/owner/{{ $owner->uuid }}">{{
-                                    $owner->owner }}</a>
+                                <div class="flex items-center">
+                                    <div class="h-10 w-10 flex-shrink-0">
+                                        <img class="h-10 w-10 rounded-full"
+                                            src="{{ asset('/storage/'.$owner->photo_id) }}" alt="">
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-gray-900">
+                                            <a class="text-blue-500 text-decoration-line: underline"
+                                                href="/property/{{ $owner->property_uuid }}/owner/{{ $owner->uuid }}">
+                                                {{ $owner->owner }}
+                                            </a>
 
+                                        </div>
+                                        <div class="text-gray-500">{{
+                                            $owner->email }}</div>
+                                    </div>
+                                </div>
+                                {{-- <a class="text-blue-500 text-decoration-line: underline"
+                                    href="/property/{{ $tenant->property_uuid }}/tenant/{{ $tenant->uuid }}">{{
+                                    $tenant->tenant }}</a>--}}
                             </td>
                             <?php $deed_of_sales = App\Models\DeedOfSale::where('owner_uuid', $owner->uuid)->get(); ?>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                @foreach ($deed_of_sales as $item)
-                                <a class="text-blue-500 text-decoration-line: underline"
-                                    href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">{{
-                                    $item->unit->unit }}</a>,
+                                @if($deed_of_sales->count())
+                                @foreach ($deed_of_sales->take(1) as $item)
+                                <div class="text-gray-900"><a class="text-blue-500 text-decoration-line: underline"
+                                        href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">
+                                        {{ $item->unit->unit }}</a></div>
+                                <div class="text-gray-500">{{ $item->unit->building->building }}</div>
                                 @endforeach
+                                @else
+                                NA
+                                @endif
                             </td>
                             {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00
                             </td> --}}
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $owner->email }} </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $owner->mobile_number
                                 }} </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{

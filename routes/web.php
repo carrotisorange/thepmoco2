@@ -34,26 +34,5 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
-Route::get('/announcement', function(){
-    return view('newlayout.announcement');
-});
 
-Route::get('/portfolio', function(){
-    return view('newlayout.portfolio');
-});
 
-Route::get('/contracts', function(){
-    return view('newlayout.contracts');
-});
-
-Route::get('/bills', function(){
-    return view('newlayout.bills');
-});
-
-Route::get('/payments', function(){
-    return view('newlayout.payments');
-});
-
-Route::get('/concerns', function(){
-    return view('newlayout.concerns');
-});

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OwnerPortalController;
+use App\Http\Controllers\OwnerController;
 
 Route::prefix('{role_id:id}/owner/{user}')->group(function(){
     Route::get('/', [OwnerPortalController::class, 'index'])->name('owner-dashboard');
@@ -11,4 +12,6 @@ Route::prefix('{role_id:id}/owner/{user}')->group(function(){
     Route::get('/concerns', [OwnerPortalController::class, 'show_concerns'])->name('owner-concerns');
     
 });
+
+Route::get('/owner/{uuid:uuid}/user', [OwnerController::class, 'generate_credentials']);
 

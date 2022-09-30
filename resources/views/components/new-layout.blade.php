@@ -147,68 +147,151 @@
 
                 <div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen mb-20">
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}">
                             Dashboard
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Dashboard
+                        </x-dropdown-link>
+                        @endif
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/unit">
-                            Units
+                            Unit
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Unit
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/tenant">
-                            Tenants
+                            Tenant
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Tenant
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/contract/">
-                            Contracts
+                            Contract
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Contract
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/owner">
-                            Owners
+                            Owner
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Owner
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/user">
-                            Employees
+                            Employee
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Employee
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/concern">
                             Concern
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Concern
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/bill">
                             Bill
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Bill
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/collection">
                             Collection
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Collection
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/accountpayable">
                             Account Payable
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Account Payable
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/cashflow">
                             Cashflow
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Cashflow
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                             Profile
                         </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Profile
+                        </x-dropdown-link>
+                        @endif
+
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
@@ -246,6 +329,7 @@
             <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-y-auto h-screen">
                 <div class="relative flex w-22 flex-col space-y-3 p-3 mb-20">
                     <!-- Dashboard -->
+
                     <x-nav-link href="/property/{{ Session::get('property') }}"
                         :active="request()->routeIs('dashboard')">
                         <span class="sr-only">Dashboard</span>
@@ -257,6 +341,7 @@
                     <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
 
                     <!-- Units -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/unit"
                         :active="request()->routeIs('unit')">
                         <span class="sr-only">Unit</span>
@@ -265,9 +350,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('unit')">
+                        <span class="sr-only">Unit</span>
+                        <img class="h-10 w-auto" src="{{ asset('/brands/units_gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Unit</div>
 
-                    <!-- Owners -->
+                    <!-- Tenants -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/tenant"
                         :active="request()->routeIs('tenant')">
                         <span class="sr-only">Tenant</span>
@@ -276,9 +372,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('tenant')">
+                        <span class="sr-only">Tenant</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenant</div>
 
-                    <!-- Owners -->
+                    <!-- Contracts -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/contract"
                         :active="request()->routeIs('contract')">
                         <span class="sr-only">Contract</span>
@@ -287,9 +394,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('contract')">
+                        <span class="sr-only">Contract</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/contract-gray.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Contract</div>
 
                     <!-- Owners -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/owner"
                         :active="request()->routeIs('owner')">
                         <span class="sr-only">Owner</span>
@@ -298,9 +416,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('owner')">
+                        <span class="sr-only">Owner</span>
+                        <img class="h-10 w-auto" src="{{ asset('/brands/user_gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owner</div>
 
-                    <!-- Teams -->
+                    <!-- Employees -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/user"
                         :active="request()->routeIs('user')">
                         <span class="sr-only">Employee</span>
@@ -310,9 +439,21 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('user')">
+                        <span class="sr-only">Employee</span>
+
+                        <img class="h-13 w-auto" src="{{ asset('/brands/team_gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employee</div>
 
                     <!-- Concerns -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/concern"
                         :active="request()->routeIs('concern')">
 
@@ -322,10 +463,22 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('concern')">
+
+                        <span class="sr-only">Concern</span>
+                        <img class="h-10 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concern</div>
 
 
                     <!-- Bills -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/bill"
                         :active="request()->routeIs('bill')">
 
@@ -335,10 +488,22 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('bill')">
+
+                        <span class="sr-only">Bill</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bill</div>
 
 
                     <!-- Collection -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/collection"
                         :active="request()->routeIs('collection')">
 
@@ -348,9 +513,21 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('collection')">
+
+                        <span class="sr-only">Collection</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Collection</div>
 
                     <!-- Account Payable -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/accountpayable"
                         :active="request()->routeIs('accountpayable')">
 
@@ -360,9 +537,21 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('accountpayable')">
+
+                        <span class="sr-only">Account <br> Payable </span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Account <br> Payable</div>
 
                     <!-- Cashflow -->
+                    @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/cashflow"
                         :active="request()->routeIs('cashflow')">
 
@@ -372,6 +561,18 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/"
+                        :active="request()->routeIs('cashflow')">
+
+                        <span class="sr-only">Cashflow</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
                 </div>
             </nav>

@@ -19,7 +19,8 @@
             </th>
 
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                TRIAL ENDS ON</th>
+                EXTERNAL ID</th>
+                
 
         </tr>
     </thead>
@@ -39,7 +40,7 @@
             </td>
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $subscription->plan->plan }}
+                {{ $subscription->plan_id }}
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ number_format($subscription->price, 2) }}
@@ -47,8 +48,12 @@
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $subscription->status }}
             </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ Carbon\Carbon::parse($subscription->trial_ends_at)->format('M d, Y') }}
+            </td> --}}
+
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $subscription->external_id }}
             </td>
 
         </tr>
