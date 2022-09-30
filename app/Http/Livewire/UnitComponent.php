@@ -14,7 +14,6 @@ use Livewire\WithPagination;
 use App\Models\Contract;
 use App\Models\DeedOfSale;
 use App\Models\Enrollee;
-use App\Models\Tenant;
 
 use Livewire\Component;
 
