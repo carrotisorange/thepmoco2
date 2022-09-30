@@ -31,6 +31,29 @@ class FeatureCheckoutComponent extends Component
     public function get_features()
     {
         return Feature::all();
+        
+        if(auth()->user()->is_portforlio_unlocked == '1')
+        {
+            
+        }elseif(auth()->user()->is_contract_unlocked)
+        {
+
+        }elseif(auth()->user()->is_portforlio_unlocked)
+        {
+
+        }
+        elseif(auth()->user()->is_ownerportal_unlocked)
+        {
+
+        }elseif(auth()->user()->is_accountpayable_unlocked)
+        {
+
+        }elseif(auth()->user()->is_accountreceivable_unlocked)
+        {
+
+        }
+        
+        
     }
 
     public function submitForm()

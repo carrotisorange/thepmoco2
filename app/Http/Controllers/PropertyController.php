@@ -52,7 +52,10 @@ class PropertyController extends Controller
         session(['property_name' => $property->property]);
     }
 
-
+    public function unlock($random_str)
+    {
+        return view('admin.restrictedpages.portforlio');
+    }
 
     public function is_property_exist()
     {

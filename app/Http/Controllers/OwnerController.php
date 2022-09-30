@@ -37,6 +37,11 @@ class OwnerController extends Controller
         ]);
     }
 
+    public function unlock(Property $property)
+    {
+        return view('admin.restrictedpages.ownerportal');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

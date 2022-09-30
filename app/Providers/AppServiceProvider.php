@@ -88,7 +88,7 @@ class AppServiceProvider extends ServiceProvider
             return (auth()->user()->user_type == '1');
         });
 
-        Gate::define('porforlio', function (User $user){
+        Gate::define('portforlio', function (User $user){
             return (auth()->user()->is_portforlio_unlocked == '0' && auth()->user()->user_type == '1');
         });
 

@@ -3,65 +3,70 @@
     <div class="mx-auto md:w-full px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-10">
         @if(!$properties->count())
         <nav aria-label="Progress">
-                <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-                    <li class="relative md:flex md:flex-1">
-                        <!-- Completed Step -->
-                       <a href="#" class="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
-                            <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
-                                <span class="text-indigo-600">01</span>
+            <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+                <li class="relative md:flex md:flex-1">
+                    <!-- Completed Step -->
+                    <a href="#" class="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
+                        <span
+                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
+                            <span class="text-indigo-600">01</span>
+                        </span>
+                        <span class="ml-4 text-sm font-medium text-indigo-600">Create a property</span>
+                    </a>
+
+                    <!-- Arrow separator for lg screens and up -->
+                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
+                            preserveAspectRatio="none">
+                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </li>
+
+                <li class="relative md:flex md:flex-1">
+                    <!-- Current Step -->
+                    <a href="#" class="group flex items-center">
+                        <span class="flex items-center px-6 py-4 text-sm font-medium">
+                            <span
+                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                                <span class="text-gray-500 group-hover:text-gray-900">02</span>
                             </span>
-                            <span class="ml-4 text-sm font-medium text-indigo-600">Create a property</span>
-                        </a>
-            
-                        <!-- Arrow separator for lg screens and up -->
-                        <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                            <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
-                                <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                    </li>
-            
-                    <li class="relative md:flex md:flex-1">
-                        <!-- Current Step -->
-                       <a href="#" class="group flex items-center">
-                            <span class="flex items-center px-6 py-4 text-sm font-medium">
-                                <span
-                                    class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                                    <span class="text-gray-500 group-hover:text-gray-900">02</span>
-                                </span>
-                                <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add units to your
-                                    property</span>
+                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add units to
+                                your
+                                property</span>
+                        </span>
+                    </a>
+
+                    <!-- Arrow separator for lg screens and up -->
+                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
+                            preserveAspectRatio="none">
+                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </li>
+
+
+
+                <li class="relative md:flex md:flex-1">
+                    <!-- Upcoming Step -->
+                    <a href="#" class="group flex items-center">
+                        <span class="flex items-center px-6 py-4 text-sm font-medium">
+                            <span
+                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                                <span class="text-gray-500 group-hover:text-gray-900">03</span>
                             </span>
-                        </a>
-            
-                        <!-- Arrow separator for lg screens and up -->
-                        <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                            <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
-                                <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                    </li>
-            
-            
-            
-                    <li class="relative md:flex md:flex-1">
-                        <!-- Upcoming Step -->
-                        <a href="#" class="group flex items-center">
-                            <span class="flex items-center px-6 py-4 text-sm font-medium">
-                                <span
-                                    class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                                    <span class="text-gray-500 group-hover:text-gray-900">03</span>
-                                </span>
-                                <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add tenants to your
-                                    property</span>
-                            </span>
-                        </a>
-                    </li>
-            
-                </ol>
-            </nav>
+                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add tenants
+                                to your
+                                property</span>
+                        </span>
+                    </a>
+                </li>
+
+            </ol>
+        </nav>
         {{-- <h2 class="text-2xl font-bold tracking-tight text-gray-900 font-pop">Welcome, {{
             auth()->user()->name }}!</h2> --}}
         <!-- This example requires Tailwind CSS v2.0+ -->
@@ -120,14 +125,20 @@
                         Export Portforlio
                     </button>
 
-                    
+
+                    @can('portforlio')
+                    <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/unlock'"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
+                        property</button>
+                    @else
                     <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/create'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
                         property</button>
+                    @endcan
                     {{-- <button type="button"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</button>
                     --}}
-                   
+
                 </div>
             </div>
             <div class="mt-8 flex flex-col">

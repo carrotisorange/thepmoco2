@@ -12,7 +12,6 @@
         <div class="px-5 mt-6">
             @foreach ($features as $index => $feature)
             <div class="mt-5 flex items-center justify-between" wire:key="feature-field-{{ $feature->id }}">
-               
                     <dt>
                         <input type="checkbox" wire:model="selectedFeature" value="{{ $feature->id }}" class="mr-3">
                         <a href="/property/{{ Session::get('property') }}/contract" target="_blank"
