@@ -40,7 +40,7 @@
             </td>
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $subscription->feature_id }}
+                {{ $subscription->plan_id }}
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ number_format($subscription->price, 2) }}
@@ -48,9 +48,9 @@
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $subscription->status }}
             </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ Carbon\Carbon::parse($subscription->trial_ends_at)->format('M d, Y') }}
-            </td>
+            </td> --}}
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $subscription->external_id }}
