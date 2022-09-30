@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Floor;
 use App\Models\Unit;
 use App\Models\Property;
+use App\Models\Tenant;
 use Session;
 use DB;
 use Illuminate\Validation\Rule;
@@ -101,13 +102,15 @@ class UnitComponent extends Component
             DB::commit();
 
             //session()->flash('success', count($this->units). ' unit is successfully updated.');
+              if(Tenant::where('property_uuid', Session::get('property'))->count())
+              {
+                return redirect('/property/'.Session::get('property').'/unit')->with('success', count($this->units). 'unit is successfully updated.');
+              }
+              else
+              { 
+                return redirect('/property/'.Session::get('property').'/tenant')->with('success', count($this->units). 'unit is successfully updated.');
+              }
 
-            if(Tenant::where('property_uuid', Session::get('property'))->count())
-            {
-                return redirect('/property/'.Session::get('property').'/unit')->with('success', count($this->units). ' unit is successfully updated.');
-            }else{
-                return redirect('/property/'.Session::get('property').'/tenant')->with('success', count($this->units). ' unit is successfully updated.');
-            }
 
         }catch(\Exception $e){
             DB::rollback();

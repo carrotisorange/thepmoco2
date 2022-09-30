@@ -55,6 +55,11 @@ class TenantController extends Controller
         ]);
     }
 
+    public function unlock(Property $property)
+    {
+        return view('admin.restrictedpages.tenantportal');
+    }
+
     /**
      * Display the specified resource.
      *

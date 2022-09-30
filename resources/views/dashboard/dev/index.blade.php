@@ -62,7 +62,7 @@
                                             </div>
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500">Total Properties/Units</h5>
+                                            <h5 class="font-bold uppercase text-gray-500"><a class="text-blue-600" href="/properties">Total Properties/Units</a></h5>
                                             <h3 class="font-bold text-3xl"> <span class="text-pink-500"><i
                                                         class="fas fa-exchange-alt"></i>{{ $properties->count()
                                                     }}/{{ $units->count()

@@ -49,6 +49,7 @@ class RegisteredUserController extends Controller
         $attributes['password'] = Hash::make($request->password);
         $attributes['checkoutoption_id'] = 4;
         $attributes['plan_id'] = 1;
+        $attributes['user_type'] = 1;
         $attributes['role_id'] = 5;
         $attributes['trial_ends_at'] = Carbon::now()->addMonth();
         $attributes['discount_code'] = 'none';

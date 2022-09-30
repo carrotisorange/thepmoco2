@@ -8,6 +8,7 @@ use App\Models\Unit;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\Property;
+use App\Models\User;
 
 class OwnerController extends Controller
 {
@@ -23,6 +24,43 @@ class OwnerController extends Controller
         return view('owners.index');
     }
 
+        public function generate_credentials($owner_uuid)
+    {
+
+        $owner = Owner::find($owner_uuid);
+
+        if(!$owner->email){
+            return back()->with('error', 'The email address is required.');
+        }
+
+        $count_user = User::where('email', $owner->email)->count();
+
+        if($count_user > 0)
+        {
+            return back()->with('error', 'Credentials for this owner has already been generated.');
+        }
+
+         $user_id = app('App\Http\Controllers\UserController')->store(
+            $owner->owner,
+            $owner->email,
+            app('App\Http\Controllers\UserController')->generate_temporary_username(),
+            auth()->user()->external_id,
+            $owner->email,
+            8, //tenant
+            $owner->mobile_number,
+            "none",
+            auth()->user()->checkoutoption_id,
+            auth()->user()->plan_id,
+         );
+
+        User::where('id', $user_id)
+          ->update([
+          'owner_uuid' => $owner_uuid
+        ]);
+
+        return back()->with('succcess', 'Credentials are generated successfully!');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,6 +73,11 @@ class OwnerController extends Controller
         return view('owners.create', [
             'unit' => $unit,
         ]);
+    }
+
+    public function unlock(Property $property)
+    {
+        return view('admin.restrictedpages.ownerportal');
     }
 
     /**
