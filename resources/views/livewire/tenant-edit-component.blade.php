@@ -483,7 +483,7 @@
                                         $item->unit->unit}}
                                     </a>
                                 </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     {{ Carbon\Carbon::parse($item->start)->format('M d,
                                     y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}
                                 </td>
