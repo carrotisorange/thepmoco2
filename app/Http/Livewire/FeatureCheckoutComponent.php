@@ -52,8 +52,6 @@ class FeatureCheckoutComponent extends Component
         {
 
         }
-        
-        
     }
 
     public function submitForm()
@@ -82,15 +80,9 @@ class FeatureCheckoutComponent extends Component
                 'payer_email' => auth()->user()->email,
                 'description' => $description,
                 'amount' => $this->get_total(),
-            //     // 'amount' => $amount,
                 'interval' => 'MONTH',
-            //     //'total_recurrence' => $total_recurrence,
-            //     //'start_date' => $start_date,
                 'interval_count' => 1,
                 'currency'=>'PHP',
-            //     // 'success_redirect_url' => '/127.0.0.1:8000/success/'.$temporary_username,
-            //     // 'failure_redirect_url' => '/127.0.0.1:8000/select-a-plan',
-            //     //'success_redirect_url' => '/127.0.0.1:8000/success/'.auth()->user()->username.'/'.$amount,
                 'success_redirect_url' => 'https://manuprop.com/user/'.auth()->user()->username.'/subscriptions/'.$external_id,
                 'failure_redirect_url' => 'https://manuprop.com/demo/unlock',
                 'customer'=> [
@@ -113,7 +105,7 @@ class FeatureCheckoutComponent extends Component
        
         }catch(\Exception $e)
         {
-            ddd($e);
+            return back()->with('error', 'Cannot complete your action');
         }
     }
 
