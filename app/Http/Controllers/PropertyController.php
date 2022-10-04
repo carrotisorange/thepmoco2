@@ -403,9 +403,9 @@ class PropertyController extends Controller
     public function show(Property $property)
     {  
 
-        if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
-            return redirect('/select-a-plan-free');
-        }
+        // if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
+        //     return redirect('/select-a-plan-free');
+        // }
 
         $this->store_property_session($property);
 
