@@ -114,6 +114,10 @@
                 @endforeach
             </div>
 
+            <div class="mt-5 mb-5">
+                {{ $properties->links() }}
+            </div>
+
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
                     <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1>
@@ -122,7 +126,7 @@
                     <button type="button"
                         onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portforlio'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                        Export Portforlio
+                     Portforlio
                     </button>
 
 

@@ -99,7 +99,7 @@ class PropertyController extends Controller
         else
         {
             return view('properties.index',[
-                'properties'=> User::find(Auth::user()->id)->user_properties
+                'properties'=> User::find(Auth::user()->id)->user_properties()->paginate(4)
             ]);
         }
     }
@@ -403,9 +403,9 @@ class PropertyController extends Controller
     public function show(Property $property)
     {  
 
-        if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
-            return redirect('/select-a-plan-free');
-        }
+        // if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
+        //     return redirect('/select-a-plan-free');
+        // }
 
         $this->store_property_session($property);
 

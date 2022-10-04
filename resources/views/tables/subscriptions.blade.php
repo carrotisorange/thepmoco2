@@ -20,7 +20,10 @@
 
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 EXTERNAL ID</th>
-                
+
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+            </th>
+
 
         </tr>
     </thead>
@@ -54,6 +57,24 @@
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $subscription->external_id }}
+            </td>
+
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                @if($subscription->plan_id == '1')
+                <a class="text-blue-500 text-decoration-line: underline" href="/property/{{ Session::get('property') }}">Try this feature</a>
+                @elseif($subscription->plan_id == '2')
+                <a class="text-blue-500 text-decoration-line: underline" href="/property/{{ Session::get('property') }}">Try this feature</a>
+                 @elseif($subscription->plan_id == '3')
+                <a class="text-blue-500 text-decoration-line: underline" href="/property/{{ Session::get('property') }}">Try this feature</a>
+                 @elseif($subscription->plan_id == '4')
+                <a class="text-blue-500 text-decoration-line: underline" href="/property/{{ Session::get('property') }}">Try this feature</a>
+                 @elseif($subscription->plan_id == '5')
+                <a class="text-blue-500 text-decoration-line: underline" href="/property/{{ Session::get('property') }}">Try this feature</a>
+                 @elseif($subscription->plan_id == '6')
+                <a class="text-blue-500 text-decoration-line: underline" href="/property/{{ Session::get('property') }}">Try this feature</a>
+                 @elseif($subscription->plan_id == '7')
+                <a class="text-blue-500 text-decoration-line: underline" href="/property/{{ Session::get('property') }}">Try this feature</a>
+                @endif
             </td>
 
         </tr>

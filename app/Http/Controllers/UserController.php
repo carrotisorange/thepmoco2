@@ -13,6 +13,7 @@ use App\Models\Property;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Auth;
+use App\Models\Subscription;
 use \PDF;
 
 class UserController extends Controller
@@ -196,6 +197,8 @@ class UserController extends Controller
 
     public function unlock(User $user)
     {
+        Subscription::where('user_id', auth()->user()->id)->where('status', 'pending')->delete();
+
         return view('users.unlock');
     }
 
