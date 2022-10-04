@@ -24,7 +24,6 @@
                         <ul role="list" class="divide-y divide-white divide-opacity-10 text-sm font-medium">
                             @foreach ($selectedFeatures as $feature)
                             <li class="flex items-start space-x-4 py-6">
-
                                 <div class="flex-auto space-y-1">
                                     <h3 class="text-white">{{ $feature->feature }}</h3>
                                 </div>

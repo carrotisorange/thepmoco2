@@ -102,7 +102,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('contract', function (User $user){
-            return (auth()->user()->is_contract_unlocked == "0" && auth()->user()->user_type == '1');
+            return (auth()->user()->is_contract_unlocked == '0' && auth()->user()->user_type == '1');
         });
 
         Gate::define('concern', function (User $user){
