@@ -56,9 +56,9 @@ class RegisteredUserController extends Controller
 
         $user = User::create($attributes);
 
-        $external_id = Plan::find(4)->plan.'_'.Str::random(8);
+        //$external_id = Plan::find(4)->plan.'_'.Str::random(8);
 
-        app('App\Http\Controllers\SubscriptionController')->store_subscription($user->id, 4, $external_id, 0);
+        //app('App\Http\Controllers\SubscriptionController')->store_subscription($user->id, 4, $external_id, 0);
 
         event(new Registered($user));
 
