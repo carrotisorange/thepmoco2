@@ -55,7 +55,7 @@ class FeatureCheckoutComponent extends Component
 
         try{
 
-        Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
+        Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
 
          $params = [
                 'external_id' => $external_id,
@@ -65,8 +65,8 @@ class FeatureCheckoutComponent extends Component
                 'interval' => 'MONTH',
                 'interval_count' => 1,
                 'currency'=>'PHP',
-                'success_redirect_url' => 'https://thepmo.co/user'.auth()->user()->username.'/subscriptions/'.$external_id,
-                'failure_redirect_url' => 'https://thepmo.co/demo/unlock',
+                'success_redirect_url' => 'https://manuprop.com/user'.auth()->user()->username.'/subscriptions/'.$external_id,
+                'failure_redirect_url' => 'https://manuprop.com/demo/unlock',
                 'customer'=> [
                         'given_name'=> auth()->user()->name,
                         'mobile_number' => auth()->user()->mobile_number,
