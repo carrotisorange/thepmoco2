@@ -65,7 +65,7 @@ class FeatureCheckoutComponent extends Component
                 'interval' => 'MONTH',
                 'interval_count' => 1,
                 'currency'=>'PHP',
-                'success_redirect_url' => 'https://thepmo.co/user'.auth()->user()->username.'/subscriptions/'.$external_id,
+                'success_redirect_url' => 'https://thepmo.co/user/'.auth()->user()->username.'/subscriptions/'.$external_id,
                 'failure_redirect_url' => 'https://thepmo.co/demo/unlock',
                 'customer'=> [
                         'given_name'=> auth()->user()->name,
