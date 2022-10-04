@@ -27,7 +27,7 @@ class SubscriptionController extends Controller
         ]);
      }
 
-   public function store_subscription($user_id, $plan_id, $external_id, $amount, $quantity)
+   public function store_subscription($user_id, $plan_id, $external_id, $amount)
     {
         try{
             DB::beginTransaction();
