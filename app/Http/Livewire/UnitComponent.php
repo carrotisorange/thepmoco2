@@ -101,7 +101,6 @@ class UnitComponent extends Component
             DB::commit();
 
             //session()->flash('success', count($this->units). ' unit is successfully updated.');
-            
               if(Tenant::where('property_uuid', Session::get('property'))->count())
               {
                 return redirect('/property/'.Session::get('property').'/unit')->with('success', count($this->units). 'unit is successfully updated.');

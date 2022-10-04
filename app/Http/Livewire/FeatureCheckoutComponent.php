@@ -73,7 +73,7 @@ class FeatureCheckoutComponent extends Component
 
         try{
 
-        Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
+        Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
 
          $params = [
                 'external_id' => $external_id,
@@ -83,8 +83,11 @@ class FeatureCheckoutComponent extends Component
                 'interval' => 'MONTH',
                 'interval_count' => 1,
                 'currency'=>'PHP',
-                'success_redirect_url' => 'https://manuprop.com/user/'.auth()->user()->username.'/subscriptions/'.$external_id,
-                'failure_redirect_url' => 'https://manuprop.com/demo/unlock',
+            //     // 'success_redirect_url' => '/127.0.0.1:8000/success/'.$temporary_username,
+            //     // 'failure_redirect_url' => '/127.0.0.1:8000/select-a-plan',
+            //     //'success_redirect_url' => '/127.0.0.1:8000/success/'.auth()->user()->username.'/'.$amount,
+                'success_redirect_url' => 'https://thepmo.co./'.auth()->user()->username.'/subscriptions/'.$external_id,
+                'failure_redirect_url' => 'https://thepmo.co/demo/unlock',
                 'customer'=> [
                         'given_name'=> auth()->user()->name,
                         'mobile_number' => auth()->user()->mobile_number,

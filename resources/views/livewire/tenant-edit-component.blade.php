@@ -367,8 +367,6 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($item->contract)
-                                    <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
-                                        class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
                                     <a class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6"
                                         href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
                                         class="text-indigo-600 hover:text-indigo-900">View Contract</a>
@@ -485,7 +483,7 @@
                                         $item->unit->unit}}
                                     </a>
                                 </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">August
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     {{ Carbon\Carbon::parse($item->start)->format('M d,
                                     y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}
                                 </td>
