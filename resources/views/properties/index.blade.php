@@ -114,6 +114,10 @@
                 @endforeach
             </div>
 
+            <div class="mt-5 mb-5">
+                {{ $properties->links() }}
+            </div>
+
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
                     <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1>
