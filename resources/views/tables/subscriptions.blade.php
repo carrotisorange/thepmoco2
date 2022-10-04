@@ -8,7 +8,7 @@
                 SUBSCRIBED ON
             </th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                PLAN
+                FEATURE
             </th>
 
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -40,7 +40,7 @@
             </td>
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $subscription->plan_id }}
+                {{ App\Models\Feature::find($subscription->plan_id)->feature }}
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ number_format($subscription->price, 2) }}

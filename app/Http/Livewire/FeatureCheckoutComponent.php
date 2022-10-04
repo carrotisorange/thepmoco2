@@ -8,6 +8,7 @@ use Exception;
 use Str;
 use DB;
 use Xendit\Xendit;
+use App\Models\Subscription;
 
 class FeatureCheckoutComponent extends Component
 {
@@ -30,30 +31,9 @@ class FeatureCheckoutComponent extends Component
 
     public function get_features()
     {
-        return Feature::all();
-        
-        if(auth()->user()->is_portforlio_unlocked == '1')
-        {
-            
-        }elseif(auth()->user()->is_contract_unlocked)
-        {
+        $subscriptions = Subscription::where('user_id', auth()->user()->id)->where('status', 'active')->pluck('plan_id');
 
-        }elseif(auth()->user()->is_portforlio_unlocked)
-        {
-
-        }
-        elseif(auth()->user()->is_ownerportal_unlocked)
-        {
-
-        }elseif(auth()->user()->is_accountpayable_unlocked)
-        {
-
-        }elseif(auth()->user()->is_accountreceivable_unlocked)
-        {
-
-        }
-        
-        
+        return Feature::whereNotIn('id', $subscriptions)->get();
     }
 
     public function submitForm()
@@ -75,24 +55,18 @@ class FeatureCheckoutComponent extends Component
 
         try{
 
-        Xendit::setApiKey(config('services.xendit.xendit_secret_key_prod'));
+        Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
 
          $params = [
                 'external_id' => $external_id,
                 'payer_email' => auth()->user()->email,
                 'description' => $description,
                 'amount' => $this->get_total(),
-            //     // 'amount' => $amount,
                 'interval' => 'MONTH',
-            //     //'total_recurrence' => $total_recurrence,
-            //     //'start_date' => $start_date,
                 'interval_count' => 1,
                 'currency'=>'PHP',
-            //     // 'success_redirect_url' => '/127.0.0.1:8000/success/'.$temporary_username,
-            //     // 'failure_redirect_url' => '/127.0.0.1:8000/select-a-plan',
-            //     //'success_redirect_url' => '/127.0.0.1:8000/success/'.auth()->user()->username.'/'.$amount,
-                'success_redirect_url' => 'https://thepmo.co./'.auth()->user()->username.'/subscriptions/'.$external_id,
-                'failure_redirect_url' => 'https://thepmo.co/demo/unlock',
+                'success_redirect_url' => 'https://manuprop.com/user'.auth()->user()->username.'/subscriptions/'.$external_id,
+                'failure_redirect_url' => 'https://manuprop.com/demo/unlock',
                 'customer'=> [
                         'given_name'=> auth()->user()->name,
                         'mobile_number' => auth()->user()->mobile_number,
@@ -113,7 +87,7 @@ class FeatureCheckoutComponent extends Component
        
         }catch(\Exception $e)
         {
-            ddd($e);
+            return back()->with('error', 'Cannot complete your action');
         }
     }
 

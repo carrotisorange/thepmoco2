@@ -4,7 +4,7 @@
 I am one of the co-founders of The Property Manager Online,
 and I am excited you have decided to sign up.
 
-The The Property Manager Online Team and I have poured
+The Property Manager Online Team and I have poured
 our heart and soul into making systematized processes reduces which reduces operating expenses
 by 35%.
 

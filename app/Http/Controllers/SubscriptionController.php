@@ -13,13 +13,73 @@ class SubscriptionController extends Controller
 {
      public function index(User $user, $external_id=null)
      {
+        $subscriptions = Subscription::where('user_id', $user->id)->where('external_id', $external_id)->pluck('plan_id');
+
+        for ($i=0; $i < $subscriptions->count(); $i++) { 
+            if($subscriptions[$i] == '1')
+            {
+                User::where('id', $user->id)
+                ->update([
+                    'is_contract_unlocked' => '1'
+                ]);
+                
+            }
+            if($subscriptions[$i] == '2')
+            {
+                User::where('id', $user->id)
+                ->update([
+                    'is_concern_unlocked' => '1'
+                ]);
+            }
+            if($subscriptions[$i] == '3')
+            {
+                User::where('id', $user->id)
+                ->update([
+                    'is_tenantportal_unlocked' => '1'
+                ]);
+            }
+            if($subscriptions[$i] == '4')
+            {
+                User::where('id', $user->id)
+                ->update([
+                    'is_ownerportal_unlocked' => '1'
+                ]);
+            }
+            if($subscriptions[$i] == '5')
+            {
+                User::where('id', $user->id)
+                ->update([
+                    'is_accountpayable_unlocked' => '1'
+                ]);
+            }
+            if($subscriptions[$i] == '6')
+            {
+                User::where('id', $user->id)
+                ->update([
+                    'is_accountreceivable_unlocked' => '1'
+                ]);
+            }
+            if($subscriptions[$i] == '7')
+            {
+                User::where('id', $user->id)
+                ->update([
+                    'is_portforlio_unlocked' => '1'
+                ]);
+            }
+        }
+
         Subscription::where('external_id', $external_id)
         ->update([
             'status' => 'active'
         ]);
 
+        User::where('id', auth()->user()->id)
+        ->update([
+            'external_id' => $external_id
+        ]);
+
         return view('subscriptions.index',[
-            'subscriptions'=> Subscription::where('user_id', auth()->user()->id)
+            'subscriptions'=> Subscription::where('user_id', $user->id)
             ->when($external_id, function ($query) use ($external_id) {
             $query->where('external_id', $external_id);
             })

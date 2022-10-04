@@ -92,7 +92,13 @@
     @else
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h1 class="text-3xl font-bold text-gray-700">Units</h1>
+            <h1 class="text-3xl font-bold text-gray-700">
+            @if(Session::get('tenant_uuid') || Session::get('owner_uuid'))    
+            Select a unit for the tenant
+             @else
+             Units
+             @endif
+            </h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             @if($view === 'list')
