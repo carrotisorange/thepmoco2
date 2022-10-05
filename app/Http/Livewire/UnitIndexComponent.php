@@ -52,23 +52,6 @@ class UnitIndexComponent extends Component
 
     public function render()
     {
-
-      $statuses = Status::join('units', 'statuses.id', 'units.status_id')
-      ->select('status','statuses.id as status_id', DB::raw('count(*) as count'))
-      ->where('units.property_uuid', Session::get('property'))
-      ->where('statuses.status','!=','NA')
-      ->groupBy('statuses.id')
-      ->get();
-
-          $buildings = PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
-          ->join('units', 'buildings.id', 'units.building_id')
-          ->select('building','buildings.id as building_id', DB::raw('count(unit) as count'))
-          ->distinct()
-          ->where('property_buildings.property_uuid', Session::get('property'))
-          ->where('buildings.building','!=','NA')
-          ->groupBy('buildings.id')
-          ->get();
-
            $floors = Floor::join('units', 'floors.id', 'units.floor_id')
         ->select('floor','floors.id as floor_id', DB::raw('count(*) as count'))
           ->where('units.property_uuid', Session::get('property'))
@@ -148,13 +131,14 @@ class UnitIndexComponent extends Component
                        $query->where('occupancy', $this->occupancy);
                        })
                     ->paginate(10),
-            'buildings' => $buildings,
+            'statuses' => app('App\Http\Controllers\UserPropertyController')->get_property_unit_statuses(Session::get('property')),
+            'buildings' => app('App\Http\Controllers\UserPropertyController')->get_property_unit_buildings(Session::get('property')),
             'floors' => $floors,
             'categories' => $categories,
             'rents' => $rents,
             'discounts' => $discounts,
             'sizes' => $sizes,
-            'statuses' => $statuses,
+          
             'occupancies' => $occupancies,
             'enrollment_statuses' => $enrollment_statuses,
             'units_count' => Property::find(Session::get('property'))->units->count()

@@ -25,14 +25,16 @@ class UserController extends Controller
      */
     public function index(Property $property)
     {
-            $this->authorize('accountowner');
+        //restrict access to account owner 
+        $this->authorize('accountowner');
+            
+        //store a new activity
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
 
-            app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', 8);
-
-            return view('users.index',[
-                'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users($property->uuid,auth()->user()->id),
-                'properties' => app('App\Http\Controllers\UserPropertyController')->show_user_properties($property->uuid,auth()->user()->id),
-            ]);
+        return view('users.index',[
+            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users($property->uuid,auth()->user()->id),
+            'properties' => app('App\Http\Controllers\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
+        ]);
     }
 
     public function export($user_id, $export_option)

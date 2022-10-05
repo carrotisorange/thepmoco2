@@ -6,6 +6,7 @@ use App\Models\UserProperty;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\User;
+use App\Models\Role;
 
 class UserPropertyController extends Controller
 {
@@ -14,12 +15,12 @@ class UserPropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show_user_properties($property_uuid, $user_id)
+    public function get_user_properties($property_uuid, $user_id)
     {
         return User::find($user_id)->user_properties()->paginate(5);
     }
 
-    public function show_property_users($property_uuid)
+    public function get_property_users($property_uuid)
     {
         return Property::find($property_uuid)->property_users()->paginate(5);
     }
@@ -50,6 +51,23 @@ class UserPropertyController extends Controller
         ]);
     }
 
+    public function get_employee_positions()
+    {
+       return Role::orderBy('role')->whereIn('id', ['1', '2', '3', '4', '6', '11', '9'])->get();
+    }
+
+    public function get_user_statuses($property_uuid)
+    {
+       return UserProperty::join('users', 'user_id', 'users.id')
+       ->where('property_uuid', $property_uuid)
+       ->groupBy('users.status')
+       ->get();
+    }
+
+
+    
+
+  
     /**
      * Display the specified resource.
      *

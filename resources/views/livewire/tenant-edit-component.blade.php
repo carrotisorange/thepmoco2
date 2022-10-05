@@ -382,7 +382,7 @@
                                         class="text-indigo-600 hover:text-indigo-900">Renew</a>
                                 </td>
                                 <td class="whitespace-nowrap px-3 pr-4 text-sm font-medium sm:pr-6">
-                                    @if($item->status == 'active')
+                                    @if($item->status == 'active' || $item->status == 'pending')
                                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
                                         class="text-indigo-600 hover:text-indigo-900">Moveout</a>
                                     @endif
