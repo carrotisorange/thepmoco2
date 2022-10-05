@@ -89,8 +89,6 @@ class UserComponent extends Component
          {
             DB::rollback();
 
-            ddd($e);
-
             return back()->with('error');
          }
        
