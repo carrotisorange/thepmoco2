@@ -77,13 +77,13 @@ class EnrolleeController extends Controller
 
         DB::commit();
 
-        return
-        redirect('/unit/'.$unit->uuid)->with('success','Contract has been created.');
+        return  redirect('/unit/'.$unit->uuid)->with('success','Contract has been created.');
 
         } catch (\Throwable $e) {
-        ddd($e);
-        DB::rollback();
-        return back()->with('error','Cannot complete your action.');
+
+            DB::rollback();
+
+            return back()->with('error','Cannot complete your action.');
         }
 
     }

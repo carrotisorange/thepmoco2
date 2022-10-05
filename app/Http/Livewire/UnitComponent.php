@@ -113,8 +113,6 @@ class UnitComponent extends Component
         }catch(\Exception $e){
             DB::rollback();
          
-            ddd($e);
-
             session()->flash('error');
         }
     }
@@ -143,11 +141,6 @@ class UnitComponent extends Component
         ->units()
         ->orderBy('created_at', 'desc')
         ->get();
-    }
-
-    public function filterBuilding()
-    {
-        ddd('success');
     }
 
 }

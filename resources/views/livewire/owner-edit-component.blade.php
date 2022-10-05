@@ -321,7 +321,7 @@
 
                                 <td
                                     class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
-                                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">{{
+                                    <a href="/property/{{ $item->unit->property_uuid }}/unit/{{ $item->unit->uuid }}">{{
                                         $item->unit->unit
                                         }}</a>
                                 </td>

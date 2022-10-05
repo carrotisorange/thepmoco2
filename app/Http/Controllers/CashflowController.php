@@ -7,7 +7,9 @@ use DB;
 
 class CashflowController extends Controller
 {
-    public function index(){
+    public function index($property_uuid){
+
+        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',20);
 
         $collections = DB::table('acknowledgement_receipts')
         ->select('id',DB::raw('DATE_FORMAT(created_at, "%d-%b-%Y") as date') ,DB::raw('sum(amount) as amount'), DB::raw("'INCOME' as label"))

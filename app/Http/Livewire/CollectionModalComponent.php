@@ -104,8 +104,6 @@ class CollectionModalComponent extends ModalComponent
        }catch(\Exception $e)
        {    
            DB::rollback();
-
-           ddd($e);
            
            return back()->with('error','Cannot perform your action.');
        }

@@ -108,8 +108,6 @@ class SubscriptionController extends Controller
         {
             DB::rollback();
 
-            ddd($e);
-
             return back()->with('error', 'Cannot complete your action.');
         }
     }

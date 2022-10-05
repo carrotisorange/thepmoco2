@@ -58,8 +58,6 @@ class ContractEditComponent extends Component
         {
             DB::rollback();
 
-            ddd($e);
-
             return back()->with('error','Cannot complete your action.');
         }
     }

@@ -56,8 +56,6 @@ class CheckoutController extends Controller
 
             DB::commit();
 
-            ddd('123');
-
             // if($user_info->checkoutoption_id == '1')
             // {
                 return redirect('/thankyou/');

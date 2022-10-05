@@ -5,10 +5,10 @@
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-            <button type="button"
-                onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add
-                Employee</button>
+            <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+            New Employee
+            </button>
 
         </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-4">
 
-            <label for="default-search"
+            {{-- <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
             <div class="relative w-full mb-5">
                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -30,7 +30,7 @@
                     class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search..." required>
 
-            </div>
+            </div> --}}
             <div>
                 <p class="text-sm text-center text-gray-500">
                     Showing
@@ -74,8 +74,8 @@
                                 NAME</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 POSITION</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                EMAIL</th>
+                            {{-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                EMAIL</th> --}}
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 MOBILE</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -100,26 +100,45 @@
                             <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{ $index+1 }}
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                <a class="text-blue-500 text-decoration-line: underline"
-                                    href="/user/{{ $user->user->username }}/edit">{{
-                                    $user->user->name }}</a>
-                                @if($user->user->email_verified_at && $user->user->name)
-                                <span titl="verified"
-                                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                    @else
-                                    <span title="unverified"
-                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                        <i class="fa-solid fa-clock"></i>
-                                    </span>
-                                    @endif
+                                <div class="flex items-center">
+                                    <div class="h-10 w-10 flex-shrink-0">
+                                
+                                        <img onerror="this.onerror=null;this.src='{{ asset('/brands/avatar.png') }}';" class="h-10 w-10 rounded-full"
+                                            src="{{ asset('/storage/'.$user->avatar) }}" alt="">
+                                
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-gray-900">
+                                            <a class="text-blue-500 text-decoration-line: underline"
+                                               href="/user/{{ $user->user->username }}/edit">
+                                                {{ $user->user->name }}
+                                            </a>
+                                            @if($user->user->email_verified_at && $user->user->name)
+                                            <span titl="verified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                                @else
+                                                <span title="unverified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                    <i class="fa-solid fa-clock"></i>
+                                                </span>
+                                                @endif
+                                
+                                        </div>
+                                        <div class="text-gray-500">{{
+                                            $user->user->email }}</div>
+                                    </div>
+                                </div>
+                                {{-- <a class="text-blue-500 text-decoration-line: underline"
+                                   ">{{
+                                  
+                                  $user->user->name }}</a> --}}
+                               
 
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->role->role }}
                             </td>
 
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->email }}
-                            </td>
+                            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->email }}
+                            </td> --}}
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
                                 $user->user->mobile_number }} </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{

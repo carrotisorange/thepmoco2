@@ -18,6 +18,8 @@ class AccountPayableController extends Controller
      */
     public function index($property_uuid, $status=null)
     {
+        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',17);
+
         return view('accountpayables.index',[
             'accountpayables' => Property::find(Session::get('property'))->accountpayables()
                ->when($status, function ($query) use ($status) {

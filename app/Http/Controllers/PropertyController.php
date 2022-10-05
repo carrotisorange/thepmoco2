@@ -52,8 +52,10 @@ class PropertyController extends Controller
         session(['property_name' => $property->property]);
     }
 
-    public function unlock($random_str)
+    public function unlock($property_uuid)
     {
+        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',20);
+
         return view('admin.restrictedpages.portforlio');
     }
 

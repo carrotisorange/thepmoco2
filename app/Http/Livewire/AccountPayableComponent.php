@@ -96,8 +96,6 @@ class AccountPayableComponent extends Component
         }catch (\Exception $e) {
 
           DB::rollback();
-
-          ddd($e);
    
           return back()->with('error','Cannot complete your action.');
         }

@@ -155,8 +155,8 @@ class TenantController extends Controller
             DB::commit();
             return back()->with('success', 'Tenant has been updated.');
         }catch(\Exception $e){
-            //ddd($e);
             DB::rollback();
+            
             return back()->with('error', 'Cannot perform your action.');
         }
         

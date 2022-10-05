@@ -141,9 +141,9 @@ class TransferContractComponent extends Component
        has been transferred.');
 
        } catch (\Throwable $e) {
-       ddd($e);
-       DB::rollback();
-       return back()->with('error','Cannot complete your action.');
+        DB::rollback();
+        
+        return back()->with('error','Cannot complete your action.');
        }
        }
     

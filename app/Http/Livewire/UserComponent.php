@@ -17,9 +17,9 @@ use Livewire\Component;
 
 class UserComponent extends Component
 {
-     use WithFileUploads;
+   use WithFileUploads;
 
-     use WithPagination;
+   use WithPagination;
 
     public $role_id;
     public $name;
@@ -30,22 +30,18 @@ class UserComponent extends Component
     public $password;
     public $sendEmailToEmployee;
 
-    public function mount()
-    {
+   public function mount()
+   {
       $this->sendEmailToEmployee = true;
-    }
+   }
 
-     protected function rules()
-     {
-        return [
-            // 'name' => ['nullable', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'username' => ['nullable', 'string', 'max:255', 'unique:users'],
-            // 'mobile_number' => ['nullable', 'unique:users'],
-            // 'password' => ['nullable'],
-            'role_id' => ['required', Rule::exists('roles', 'id')],
-        ];
-     }
+   protected function rules()
+   {
+      return [
+         'email' => ['required', 'string', 'email:strict', 'max:255', 'unique:users'],
+         'role_id' => ['required', Rule::exists('roles', 'id')],
+      ];
+   }
 
      public function updated($propertyName)
      {
@@ -73,17 +69,13 @@ class UserComponent extends Component
                auth()->user()->checkout_option,
                auth()->user()->plan_id
             );
-            //$user_id = $this->store_team($validatedData);
+            //$user_id = $this->store_employee($validatedData);
 
             $this->store_user_property($user_id);
 
             DB::commit();       
 
-            //app('App\Http\Controllers\UserController')->send_email(User::find($user_id)->role_id, $this->email, $this->username, $this->password);
-      
-            $this->resetForm();
-
-            return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User is successfully created.');
+            return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User invite has been sent.');
 
          }catch(\Exception $e)
          {
@@ -94,12 +86,10 @@ class UserComponent extends Component
        
      }
 
-     public function store_team($validatedData)
+     public function store_employee($validatedData)
      {
          $validatedData['password'] = Hash::make($this->password);
          $validatedData['username'] = $this->username;
-         //$validatedData['status'] = 'active';
-         //$validatedData['email_verified_at'] = now();
          $validatedData['account_owner_id'] = auth()->user()->id;
          $validatedData['account_owner_id'] = auth()->user()->checkoutoption_id;
          $validatedData['account_owner_id'] = auth()->user()->plan_id;

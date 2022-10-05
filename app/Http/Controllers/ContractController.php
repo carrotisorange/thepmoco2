@@ -17,6 +17,8 @@ class ContractController extends Controller
 
     public function show_moveout_request($property_uuid, $status=null)
     {
+        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',5);
+
        $contracts = Contract::where('property_uuid', $property_uuid)
         ->when($status, function ($query) use ($status) {
         $query->where('created_at', $status);
