@@ -54,7 +54,25 @@ class UserComponent extends Component
       $this->validate();
 
       try{
-       
+         DB::transaction(function (){
+            //store a new user
+            $user_id =  app('App\Http\Controllers\UserController')->store(
+            $this->name, 
+            $this->email,
+            Str::random(8),
+            auth()->user()->id, 
+            $this->email, 
+            $this->role_id,
+            $this->mobile_number, 
+            auth()->user()->discount_code,
+            auth()->user()->checkout_option,
+            auth()->user()->plan_id
+         );
+
+         //store a new user and user property
+         app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),$user_id,false,false);
+            
+         });
          
          //prompt user withe a sucess page
          return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User invite has been sent.');

@@ -61,18 +61,12 @@ class UnitEditComponent extends Component
         $validatedData = $this->validate();
          
         try{
-
-            DB::beginTransaction();
-        
             $this->unit_details->update($validatedData);
-
-            DB::commit();
 
             session()->flash('success', 'Unit is successfully updated.');    
             
         }catch(\Exception $e){
-            DB::rollback();
-
+            
             session()->flash('error');
         }
     }
