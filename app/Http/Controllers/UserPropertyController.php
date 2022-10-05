@@ -63,10 +63,6 @@ class UserPropertyController extends Controller
        ->groupBy('users.status')
        ->get();
     }
-
-
-    
-
   
     /**
      * Display the specified resource.

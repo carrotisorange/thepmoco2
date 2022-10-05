@@ -9,6 +9,10 @@ use Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\PropertyBuilding;
+use App\Models\Status;
+use App\Models\Floor;
+use DB;
+use App\Models\Category;
 
 use App\Models\Plan;
 
@@ -52,9 +56,77 @@ class UnitController extends Controller
         ->join('units', 'buildings.id', 'units.building_id')
         ->select('building','buildings.id as building_id', DB::raw('count(unit) as count'))
         ->distinct()
-        ->where('property_buildings.property_uuid', Session::get('property'))
+        ->where('property_buildings.property_uuid', $property_uuid)
         ->where('buildings.building','!=','NA')
         ->groupBy('buildings.id')
+        ->get();
+    }
+
+    public function get_property_unit_floors($property_uuid)
+    {
+        return Floor::join('units', 'floors.id', 'units.floor_id')
+        ->select('floor','floors.id as floor_id', DB::raw('count(*) as count'))
+          ->where('units.property_uuid', $property_uuid)
+           ->where('floors.floor','!=','NA')
+           ->groupBy('floors.id')
+          ->get();
+    }
+
+    public function get_property_unit_categories($property_uuid)
+    {
+        return Category::join('units', 'categories.id', 'units.category_id')
+        ->select('category','categories.id as category_id', DB::raw('count(*) as count'))
+        ->where('units.property_uuid', $property_uuid)
+        ->where('categories.category','!=','NA')
+        ->groupBy('categories.id')
+        ->get();
+    }
+
+    public function get_property_unit_rents($property_uuid)
+    {
+        return Unit::where('units.property_uuid', $property_uuid)
+        ->select('rent', DB::raw('count(*) as count'))
+        ->where('rent','>',0)
+        ->groupBy('rent')
+        ->get();
+    }
+    
+    public function get_property_unit_discounts($property_uuid)
+    {
+        return Unit::where('units.property_uuid', $property_uuid)
+        ->select('discount', DB::raw('count(*) as count'))
+        ->where('discount','>',0)
+        ->groupBy('discount')
+        ->get();
+    }
+
+       
+    public function get_property_unit_sizes($property_uuid)
+    { 
+        return Unit::where('units.property_uuid', $property_uuid)
+          ->whereNotNull('size')
+         ->select('size', DB::raw('count(*) as count'))
+          ->where('size','>',0)
+          ->groupBy('size')
+          ->get();
+    }
+
+    public function get_property_unit_occupancies($property_uuid)
+    { 
+        return Unit::where('units.property_uuid', $property_uuid)
+        ->whereNotNull('occupancy')
+        ->select('occupancy', DB::raw('count(*) as count'))
+        ->where('occupancy','>',0)
+        ->groupBy('occupancy')
+        ->get();
+    }
+
+    public function get_property_unit_enrollment_statuses($property_uuid)
+    { 
+        return Unit::where('units.property_uuid', $property_uuid)
+        ->select('is_enrolled', DB::raw('count(*) as count'))
+        ->groupBy('is_enrolled')
+        ->orderBy('is_enrolled', 'desc')
         ->get();
     }
 
@@ -163,6 +235,7 @@ class UnitController extends Controller
     {
         
     }
+
 
     public function update(Request $request, Property $property, Unit $unit)
     {
