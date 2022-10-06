@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\PropertyBuilding;
-use App\Models\Category;
-use App\Models\Floor;
 use App\Models\Unit;
-use App\Models\Property;
 use App\Models\Tenant;
 use Session;
+use App\Models\Property;
 use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
@@ -64,9 +61,40 @@ class UnitComponent extends Component
         }
     }
 
+    public function updateForm()
+    {
+        sleep (1);
+
+        $this->validate();
+
+        try{
+            //update the selected unit
+            DB::transaction(function () {
+                foreach ($this->units as $unit) {
+                    $unit->save();
+                }
+            });
+
+            //redirect user with a success message
+            if(Tenant::where('property_uuid', Session::get('property'))->count())
+            {
+                return redirect('/property/'.Session::get('property').'/unit')->with('success', count($this->units). ' unit is successfully updated.');
+            }
+            else
+            { 
+                return redirect('/property/'.Session::get('property').'/tenant')->with('success', count($this->units). ' unit is successfully updated.');
+            }
+
+        }catch(\Exception $e){
+            
+            //redirect user with an error message
+            session()->flash('error');
+        }
+    }
+
     public function removeUnits()
     {
-        sleep(2);
+        sleep(1);
 
         foreach($this->selectedUnits as $unit => $val){
             if(Contract::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count() || Enrollee::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count())
@@ -85,6 +113,7 @@ class UnitComponent extends Component
         }
          $this->selectedUnits = [];
     }
+<<<<<<< Updated upstream
 
     public function updateForm()
     {
@@ -137,6 +166,9 @@ class UnitComponent extends Component
         ]);
     }
 
+=======
+    
+>>>>>>> Stashed changes
     public function get_units()
     {
         return Property::find(Session::get('property'))
@@ -145,9 +177,21 @@ class UnitComponent extends Component
         ->get();
     }
 
+<<<<<<< Updated upstream
     public function filterBuilding()
     {
         ddd('success');
     }
 
+=======
+    public function render()
+    {
+        return view('livewire.unit-component',[
+            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(),
+            'floors' => app('App\Http\Controllers\FloorController')->index(),
+            'units' => $this->get_units(),
+            'categories' => app('App\Http\Controllers\CategoryController')->index(),
+        ]);
+    }
+>>>>>>> Stashed changes
 }

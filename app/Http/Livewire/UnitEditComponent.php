@@ -10,6 +10,7 @@ class UnitEditComponent extends Component
 {
     public $unit_details;
 
+    //unit input fields
     public $unit;
     public $building_id;
     public $floor_id;
@@ -32,7 +33,6 @@ class UnitEditComponent extends Component
         $this->discount = $unit_details->discount;
         $this->occupancy = $unit_details->occupancy;
     }
-
     
     protected function rules()
     {
@@ -61,6 +61,7 @@ class UnitEditComponent extends Component
         $validatedData = $this->validate();
          
         try{
+<<<<<<< Updated upstream
 
             DB::beginTransaction();
         
@@ -73,6 +74,16 @@ class UnitEditComponent extends Component
         }catch(\Exception $e){
             DB::rollback();
 
+=======
+            //update the selected unit
+            $this->unit_details->update($validatedData);
+
+            //prompt user with a success message
+            session()->flash('success', 'Unit is successfully updated.');    
+            
+        }catch(\Exception $e){
+            //promot user with an error message
+>>>>>>> Stashed changes
             session()->flash('error');
         }
     }

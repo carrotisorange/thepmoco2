@@ -81,86 +81,85 @@ class TenantComponent extends Component
     {
         sleep(1);
 
-        //validate inputs
-        $validated_data = $this->validate();
+        $validatedData = $this->validate();
 
        try{
-            DB::beginTransaction();
+            DB::transaction(function () use ($validatedData){
+               
+                $tenant_uuid = $this->store_tenant($validatedData);
 
-            //store new tenant
-            $tenant_uuid = $this->store_tenant($validated_data);
+                if($this->generateCredentials)
+                {
+                    $user_id = $this->store_user();
 
-            if($this->generateCredentials)
-            {
-                //store a new user
-                $user_id = app('App\Http\Controllers\UserController')->store(
-                    $this->tenant, 
-                    $this->email,
-                    app('App\Http\Controllers\UserController')->generate_temporary_username(),
-                    auth()->user()->external_id, 
-                    $this->email,
-                    8, //tenant 
-                    $this->mobile_number,
-                    "none", 
-                    auth()->user()->checkoutoption_id,
-                    auth()->user()->plan_id,
-                );
+                    app('App\Http\Controllers\UserController')->update_user_tenant_uuid($user_id, $tenant_uuid);
 
-                //update tenant_uuid of the newly created tenant
-                app('App\Http\Controllers\UserController')->update_user_tenant_uuid($user_id, $tenant_uuid);
-            
-            }
+                }
 
             return redirect('/property/'.Session::get('property').'/tenant/'.$tenant_uuid.'/guardian/'.$this->unit->uuid.'/create')->with('success','Tenant is succesfully created.');
-           
-            DB::commit();
-
+      
+            });
+        
        }catch(\Exception $e)
        {
-            DB::rollback();
-
             return back()->with('error');
        }
 
     }
 
-    public function store_tenant($validated_data)
+    public function store_user()
     {
-        $validated_data['uuid'] = Str::uuid();
+        return app('App\Http\Controllers\UserController')->store(
+            $this->tenant,
+            $this->email,
+            app('App\Http\Controllers\UserController')->generate_temporary_username(),
+            auth()->user()->external_id,
+            $this->email,
+            8, //tenant
+            $this->mobile_number,
+            "none",
+            auth()->user()->checkoutoption_id,
+            auth()->user()->plan_id,
+        );
+    }
+
+    public function store_tenant($validatedData)
+    {
+        $validatedData['uuid'] = Str::uuid();
 
         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
 
         $bill_reference_no = app('App\Http\Controllers\BillController')->generate_bill_reference_no($bill_no);
 
-        $validated_data['property_uuid'] = Session::get('property');
+        $validatedData['property_uuid'] = Session::get('property');
         
-        $validated_data['bill_reference_no'] = $bill_reference_no;
+        $validatedData['bill_reference_no'] = $bill_reference_no;
 
         if($this->photo_id)
         {
-            $validated_data['photo_id'] = $this->photo_id->store('tenants');
+            $validatedData['photo_id'] = $this->photo_id->store('tenants');
         }
         else
         {
-            $validated_data['photo_id'] = 'avatars/avatar.png';
+            $validatedData['photo_id'] = 'avatars/avatar.png';
         }
 
         if(!$this->country_id)
         {
-            $validated_data['country_id'] = '247';
+            $validatedData['country_id'] = '247';
         }
 
         if(!$this->province_id)
         {
-            $validated_data['province_id'] = '4121';
+            $validatedData['province_id'] = '4121';
         }
 
         if(!$this->city_id)
         {
-            $validated_data['city_id'] = '48315';
+            $validatedData['city_id'] = '48315';
         }
 
-        $tenant_uuid = Tenant::create($validated_data)->uuid;
+        $tenant_uuid = Tenant::create($validatedData)->uuid;
 
         return $tenant_uuid;
     }

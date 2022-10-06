@@ -108,23 +108,13 @@ class TenantEditComponent extends Component
         $validatedData = $this->validate();
          
         try{
+            DB::transaction(function () use ($validatedData){
+                $this->tenant_details->update($validatedData);
+            });
 
-            // if($this->photo_id)
-            // {
-            //     $validatedData['photo_id'] = $this->photo_id->store('avatars');
-            // }
+            session()->flash('success', 'Tenant details is successfully updated.');
 
-            DB::beginTransaction();
-        
-            $this->tenant_details->update($validatedData);
-
-            DB::commit();
-
-            session()->flash('success', 'Tenant details is successfully updated.');    
-            
         }catch(\Exception $e){
-            DB::rollback();
-
             session()->flash('error');
         }
     }

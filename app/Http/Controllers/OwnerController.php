@@ -39,14 +39,13 @@ class OwnerController extends Controller
         {
             return back()->with('error', 'Credentials for this owner has already been generated.');
         }
-
-         $user_id = app('App\Http\Controllers\UserController')->store(
+            $user_id = app('App\Http\Controllers\UserController')->store(
             $owner->owner,
             $owner->email,
             app('App\Http\Controllers\UserController')->generate_temporary_username(),
             auth()->user()->external_id,
             $owner->email,
-            8, //tenant
+            7, //owner
             $owner->mobile_number,
             "none",
             auth()->user()->checkoutoption_id,

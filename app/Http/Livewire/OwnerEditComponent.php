@@ -77,18 +77,12 @@ class OwnerEditComponent extends Component
         
         try
         {
-            DB::beginTransaction();
-
             $this->update_owner($validatedData);
-
-            DB::commit();
 
             session()->flash('success','Owner is successfully updated.');
 
         }catch(\Exception $e)
-        {  
-            DB::rollback();
-
+        { 
             session()->flash('error');
         }
 

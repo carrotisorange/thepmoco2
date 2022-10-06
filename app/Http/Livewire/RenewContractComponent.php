@@ -16,132 +16,143 @@ use DB;
 
 class RenewContractComponent extends Component
 {
-       use WithFileUploads;
+      use WithFileUploads;
 
-       public $contract_details;
-        public $rent = 0.00;
-        public $start;
-        public $end;
+      public $contract_details;
+      public $rent = 0.00;
+      public $start;
+      public $end;
 
-        public $discount= 0;
-        public $contract;
-        public $term;
-        public $sendContract;
-
-
-       public function mount($contract_details)
-       {
-            $this->contract_details = $contract_details;
-            $this->start = Carbon::parse($this->contract_details->start)->format('Y-m-d');
-            $this->end = Carbon::parse($this->contract_details->start)->addYear()->format('Y-m-d');
-            $this->rent = $contract_details->rent;
-            $this->discount = $contract_details->discount;
-           $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
-           $this->sendContract = false;
-
-       }
+      public $discount= 0;
+      public $contract;
+      public $term;
+      public $sendContract;
 
 
-        public function hydrateTerm()
-        {
-           $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
-        }
+      public function mount($contract_details)
+      {
+         $this->contract_details = $contract_details;
+         $this->start = Carbon::parse($this->contract_details->start)->format('Y-m-d');
+         $this->end = Carbon::parse($this->contract_details->start)->addYear()->format('Y-m-d');
+         $this->rent = $contract_details->rent;
+         $this->discount = $contract_details->discount;
+         $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
+         $this->sendContract = false;
+      }
 
-       protected function rules()
-       {
-            return [
+      public function hydrateTerm()
+      {
+         $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
+      }
+
+      protected function rules()
+      {
+         return [
             'start' => 'required|date',
             'end' => 'required|date|after:start',
             'rent' => 'required',
             'discount' => 'required',
             'contract' => 'nullable|mimes:pdf'
-            ];
-       }
+         ];
+      }
 
-       public function updated($propertyName)
-       {
-       $this->validateOnly($propertyName);
-       }
+      public function updated($propertyName)
+      {
+         $this->validateOnly($propertyName);
+      }
 
-       public function submitForm()
-       {
-       sleep(1);
+      public function submitForm()
+      {
+         sleep(1);
 
-       $contract_uuid = Str::uuid();
+         $validatedData = $this->validate();
 
-       $validatedData = $this->validate();
+         try {
+            DB::transaction(function () use ($validatedData){
+               
+               $this->store_contract($validatedData);
 
-       try {
-       DB::beginTransaction();
+               $this->update_current_contract($this->contract_details->uuid);
 
-      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->contract_details->property_uuid);
+               $this->update_unit($this->contract_details->unit_uuid);
 
-       $reference_no = Carbon::now()->timestamp.''.$bill_no;
+               $this->send_mail_to_tenant();
 
-       $validatedData['uuid'] = $contract_uuid;
-       $validatedData['tenant_uuid'] = $this->contract_details->tenant_uuid;
-       $validatedData['unit_uuid'] = $this->contract_details->unit_uuid;
-       $validatedData['property_uuid'] = $this->contract_details->property_uuid;
-       $validatedData['user_id'] = auth()->user()->id;
-       $validatedData['bill_reference_no'] = $reference_no;
-       $validatedData['interaction_id'] = '8';
+            });
 
-      if(auth()->user()->role_id == '8'){
-          $validatedData['status'] = 'pendingrenew';
-       }
-       else{
-          $validatedData['status'] = 'active';
-       }
+         if(auth()->user()->role_id == '8'){
+            return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
+         }else{
+            redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract is successfully renewed.');
+         }
+         
+         } catch (\Throwable $e) {
+            return back()->with('error','Cannot complete your action.');
+         }
+   }
 
-       if($this->contract)
-       {
-          $validatedData['contract'] = $this->contract->store('contracts');
-       }else{
-          //$validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
-       }
+   public function update_unit($unit_uuid)
+   {
+      Unit::where('uuid', $unit_uuid)->update([
+         'status_id' => 4
+      ]);
+   }
 
-       Contract::create($validatedData);
+   public function send_mail_to_tenant()
+   {
+      $details =[
+      'tenant' => $this->contract_details->tenant->tenant,
+      'start' => Carbon::parse($this->start)->format('M d, Y'),
+      'end' => Carbon::parse($this->end)->format('M d, Y'),
+      'rent' => $this->contract_details->rent,
+      'unit' => $this->contract_details->unit_uuid,
+      ];
 
-       Contract::where('uuid', $this->contract_details->uuid)
-       ->update([
-            'status' => 'inactive'
-       ]);  
+      if($this->sendContract)
+      {
+         Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
+      }
+   }
 
-       Unit::where('uuid', $this->contract_details->unit_uuid)->update([
-        'status_id' => 4
-       ]);
+   public function update_current_contract($contract_uuid)
+   {
+        Contract::where('uuid', $contract_uuid)
+        ->update([
+        'status' => 'inactive'
+        ]);
+   }
+   public function store_contract($validatedData)
+   {
+         $contract_uuid = Str::uuid();
 
+         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->contract_details->property_uuid);
 
-       $details =[
-       'tenant' => $this->contract_details->tenant->tenant,
-       'start' => Carbon::parse($this->start)->format('M d, Y'),
-       'end' => Carbon::parse($this->end)->format('M d, Y'),
-       'rent' => $this->contract_details->rent,
-       'unit' => $this->contract_details->unit_uuid,
-       ];
+         $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
-         if($this->sendContract)
-         {
-            Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
+         $validatedData['uuid'] = $contract_uuid;
+         $validatedData['tenant_uuid'] = $this->contract_details->tenant_uuid;
+         $validatedData['unit_uuid'] = $this->contract_details->unit_uuid;
+         $validatedData['property_uuid'] = $this->contract_details->property_uuid;
+         $validatedData['user_id'] = auth()->user()->id;
+         $validatedData['bill_reference_no'] = $reference_no;
+         $validatedData['interaction_id'] = '8';
+
+         if(auth()->user()->role_id == '8'){
+            $validatedData['status'] = 'pendingrenew';
+         }
+         else{
+            $validatedData['status'] = 'active';
          }
 
-       DB::commit();
+         if($this->contract)
+         {
+            $validatedData['contract'] = $this->contract->store('contracts');
+         }else{
+            //$validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
+         }
 
-       if(auth()->user()->role_id == '8'){
-          return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
-       }else{
-          redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
-          is successfully renewed.');
-       }
-
-
-       
-       } catch (\Throwable $e) {
-       DB::rollback();
-  
-       return back()->with('error','Cannot complete your action.');
-       }
-       }
+         Contract::create($validatedData);
+   }
     
     public function render()
     {

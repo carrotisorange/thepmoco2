@@ -280,6 +280,7 @@
 
                     </div>
 
+<<<<<<< Updated upstream
                     <table class="min-w-full table-fixed">
 
                         <thead class="bg-white">
@@ -398,6 +399,9 @@
 
 
                     </table>
+=======
+                  @include('admin.tables.contracts')
+>>>>>>> Stashed changes
 
                 </div>
 
