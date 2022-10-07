@@ -12,9 +12,9 @@ use Carbon\Carbon;
 use App\Models\Property;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use Auth;
-use App\Models\Subscription;
+use Auth;;
 use \PDF;
+use App\Models\Subscription;
 
 class UserController extends Controller
 {

@@ -177,54 +177,6 @@ class TenantController extends Controller
         return back()->with('error', 'Cannot complete your action.');
     }
 
-    public function generate_credentials($tenant_uuid)
-    {
-        $tenant = Tenant::find($tenant_uuid);
-
-        if(!$tenant->email){
-            return back()->with('error', 'The email address is required.');
-        }
-
-        $count_user = User::where('email', $tenant->email)->count();
-        if($count_user > 0)
-        {
-            return back()->with('error', 'Credentials for this tenant has already been generated.');
-        }
-
-         $user_id = app('App\Http\Controllers\UserController')->store(
-            $tenant->tenant,
-            $tenant->email,
-            app('App\Http\Controllers\UserController')->generate_temporary_username(),
-            auth()->user()->external_id,
-            $tenant->email,
-            8, //tenant
-            $tenant->mobile_number,
-            "none",
-            auth()->user()->checkoutoption_id,
-            auth()->user()->plan_id,
-         );
-
-        // $user_id = app('App\Http\Controllers\UserController')->store(
-        //     $tenant->tenant,
-        //     $tenant->email,
-        //     app('App\Http\Controllers\UserController')->generate_temporary_username(),
-        //     auth()->user()->external_id,
-        //     $tenant->email,
-        //     8,
-        //     $tenant->mobile_number,
-        //     "none",
-        //     auth()->user()->checkoutoption_id,
-        //     auth()->user()->plan_id,
-        // );
-
-        User::where('id', $user_id)
-          ->update([
-          'tenant_uuid' => $tenant_uuid
-        ]);
-
-        return back()->with('succcess', 'Credentials are generated successfully!');
-    }
-
     public function show_tenant_contracts($tenant_uuid)
     {
        return Contract::where('tenant_uuid', $tenant_uuid)->orderBy('start','desc')->paginate(5);

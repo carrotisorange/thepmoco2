@@ -14,6 +14,6 @@ class ErrorController extends Controller
      */
     public function show()
     {
-        return back()->with('error','Cannot complete your action.');
+       session()->flash('error');
     }
 }

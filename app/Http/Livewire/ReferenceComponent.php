@@ -47,56 +47,38 @@ class ReferenceComponent extends Component
     {
         sleep(1);
 
-        $validated_data = $this->validate();
+        $validatedData = $this->validate();
 
         try
         {
-            DB::beginTransaction();
-
-            //store new reference
-            $this->store_reference($validated_data);
-
-            DB::commit();
-
+            DB::transaction(function () use ($validatedData){
+               
+                 $this->store_reference($validatedData);
+            });
+       
+            return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.Str::random(8).'/create')->with('success', 'Reference is successfully created.');
         }
         catch(\Exception $e)
         {
-            DB::rollback();
-            
            return back()->with('error');
         }
      
     }
 
-    public function store_reference($validated_data)
+    public function store_reference($validatedData)
     {
-        $validated_data = $this->validate();
+        $validatedData = $this->validate();
 
-        $validated_data['tenant_uuid'] = $this->tenant->uuid;
+        $validatedData['tenant_uuid'] = $this->tenant->uuid;
 
-        Reference::create($validated_data);
-
-        //$this->resetForm();
-      
-        return
-        redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.Str::random(8).'/create')
-        ->with('success', 'Reference is successfully created.');
+        Reference::create($validatedData);
     }
-
    
     public function removeReference($reference_id)
     {
         app('App\Http\Controllers\ReferenceController')->destroy($reference_id);
 
         return back()->with('success', 'Reference is successfully removed');
-    }
-
-    public function resetForm()
-    {
-        $this->reference='';
-        $this->email='';
-        $this->mobile_number='';
-        $this->relationship_id='';
     }
 
     public function render()

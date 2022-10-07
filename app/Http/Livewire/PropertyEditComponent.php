@@ -2,14 +2,9 @@
 
 namespace App\Http\Livewire;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Http\Request;
 use DB;
-use App\Models\Property;
-use App\Models\UserProperty;
-use App\Models\PropertyParticular;
-use App\Models\PropertyRole;
 use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
@@ -80,17 +75,13 @@ class PropertyEditComponent extends Component
         $validatedData = $this->validate();
         
         try{
-            DB::beginTransaction();
-
-            $this->update_property($validatedData, $request);
-
-            DB::commit();
+            DB::transaction(function () use ($validatedData, $request){
+              $this->update_property($validatedData, $request);
+            });
 
             return session()->flash('success', 'Property is successfully updated.');
 
         }catch(\Exception $e){
-            DB::rollback();
-          
             return session()->flash('error');
         }
     }

@@ -1,146 +1,118 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Livewire;
 
+use App\Mail\SendContractMailToOwner;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\Enrollee;
-use Illuminate\Http\Request;
 use App\Models\Unit;
-use App\Models\Owner;
 use Illuminate\Support\Str;
-use App\Models\Property;
 use DB;
+use Carbon\Carbon;
+use App\Models\Point;
+use App\Models\Property;
+use Session;
 
-class EnrolleeController extends Controller
+class EnrolleeComponent extends Component
 {
-    public function index(Property $property, Owner $owner)
-    {
-        $enrollees = Owner::find($owner->uuid)->enrollees;
+    use WithFileUploads;
 
-        return view('enrollees.index',[
-            'enrollees' => $enrollees,
-            'owner' => $owner
-        ]);
+    public $unit;
+    public $owner;
+
+    public $start;
+    public $end;
+    public $rent;
+    public $discount;
+    public $contract;
+
+    public function mount($unit, $owner)
+    {
+        $this->unit = $unit;
+        $this->owner = $owner;
+        $this->rent = $unit->rent;
+        $this->discount = $unit->discount;
+        $this->end = Carbon::now()->addYear()->format('Y-m-d');
+        $this->start = Carbon::now()->format('Y-m-d');
+        $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Property $property, Unit $unit, Owner $owner)
+    public function hydrateTerm()
     {
-        return view('enrollees.create', [
-            'unit' => $unit,
-            'owner' => $owner
-        ]);
+        $this->term = Carbon::parse($this->end)->diffInMonths(Carbon::parse($this->start)).' months';
     }
 
-    public function show_unit_enrollees($unit_uuid)
+    protected function rules()
     {
-        return Unit::findOrFail($unit_uuid)->enrollees()->paginate(5);
+        return [
+            'start' => 'required|date',
+            'end' => 'required|date|after:start',
+            'rent' => 'required',
+            'discount' => 'required',
+            'contract' => 'nullable'
+        ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Unit $unit, Owner $owner)
+    public function updated($propertyName)
     {
-         $enrollee_attributes = request()->validate([
-         'start' => 'required|date',
-         'end' => 'required|date|after:start',
-         'rent' => 'required|integer',
-         'discount' => 'required',
-         'contract' => 'required|mimes:pdf,doc,docx,image'
-         ]);
+        $this->validateOnly($propertyName);
+    }
+
+    public function submitForm()
+    {
+        sleep(1);
 
         try {
-        DB::beginTransaction();
+            DB::beginTransaction();
 
-         $enrollee_uuid = Str::uuid();
+            $validated_data = $this->validate();
 
-        $enrollee_attributes['uuid'] = $enrollee_uuid;
-        $enrollee_attributes['owner_uuid'] = $owner->uuid;
-        $enrollee_attributes['unit_uuid'] = $unit->uuid;
-        $enrollee_attributes['user_id'] = auth()->user()->id;
-        $enrollee_attributes['contract'] = $request->file('contract')->store('enrollees');
+            $this->store_enrollee($validated_data);
 
-        Enrollee::create($enrollee_attributes);
+            $this->update_unit();
 
-        Unit::where('uuid', $unit->uuid)->update([
-        'is_enrolled' => 1,
-        'rent' => $request->rent,
-        'discount' => $request->discount
-        ]);
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, 2);
 
-        DB::commit();
+            DB::commit();
+        
+            return redirect('property/'.Session::get('property').'/owner/'.$this->owner->uuid)->with('success','Unit is successfully added to leasing.');
 
-        return  redirect('/unit/'.$unit->uuid)->with('success','Contract has been created.');
-
-        } catch (\Throwable $e) {
-
+        }catch (\Throwable $e) 
+        {
             DB::rollback();
+           session()->flash('error');
+        }   
+    }
+    
+    public function store_enrollee($validated_data)
+    {
+        $validated_data['uuid'] = Str::uuid();
+        $validated_data['owner_uuid'] = $this->owner->uuid;
+        $validated_data['unit_uuid'] = $this->unit->uuid;
+        $validated_data['user_id'] = auth()->user()->id;
+        $validated_data['property_uuid'] = Session::get('property');
 
-            return back()->with('error','Cannot complete your action.');
+        if($this->contract)
+        {
+            $validated_data['contract'] = $this->contract->store('owner_contracts');
+        }else{
+            $validated_data['contract'] = Property::find(Session::get('property'))->owner_contract;
         }
 
+        Enrollee::create($validated_data);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Enrollee  $enrollee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Enrollee $enrollee)
+    public function update_unit()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Enrollee $enrollee
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Enrollee $enrollee)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param \App\Models\Enrollee $enrollee
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Enrollee $enrollee)
-    {
-        $enrollee->update([
-            'updated_at' => $request->updated_at,
-            'unenrollment_reason' => $request->unenrollment_reason,
-            'status' => 'pulled out'
+        Unit::where('uuid', $this->unit->uuid)->update([
+            'is_enrolled' => 1,
+            'rent' => $this->rent,
         ]);
-
-        Unit::find($enrollee->unit_uuid)
-        ->update([
-            'is_enrolled' => '2'
-        ]);
-
-        return back()->with('success', 'Unit is successfully pulled out from leasing');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Enrollee $enrollee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Enrollee $enrollee)
+    public function render()
     {
-        //
+        return view('livewire.enrollee-component');
     }
 }

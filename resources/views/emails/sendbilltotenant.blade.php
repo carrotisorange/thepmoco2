@@ -32,8 +32,8 @@ Bills Breakdown
 Regards,<br>
 {{ auth()->user()->name }}
 <br><br>
-For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
-{{ App\Models\Property::find(Session::get('property'))->mobile }}
+For inquiries reach us at: {{ auth()->user()->email }} /
+{{ auth()->user()->mobile }}
 <br><br>
 
 @endcomponent

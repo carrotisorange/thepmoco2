@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 use App\Models\Representative;
-use Illuminate\Support\Str;
 use App\Models\Relationship;
 use App\Models\Owner;
 use Livewire\Component;
@@ -63,13 +62,9 @@ class RepresentativeComponent extends Component
 
        try{
 
-        DB::beginTransaction();
-         
-        $this->store_representative($validatedData);
-
-        DB::commit();
-
-        $this->resetForm();
+           DB::transaction(function () use ($validatedData){
+                  $this->store_representative($validatedData);
+            });
 
         $this->representatives = $this->get_representatives();
 
@@ -77,8 +72,6 @@ class RepresentativeComponent extends Component
 
        }catch(\Exception $e)
        {
-          DB::rollback();
-
           session()->flash('error');
        }
         
@@ -89,14 +82,6 @@ class RepresentativeComponent extends Component
           $validatedData['owner_uuid'] = $this->owner->uuid;
 
           Representative::create($validatedData);
-      }
-
-      public function resetForm()
-      {
-      $this->representative='';
-      $this->email='';
-      $this->mobile_number='';
-      $this->relationship_id='';
       }
 
       public function render()

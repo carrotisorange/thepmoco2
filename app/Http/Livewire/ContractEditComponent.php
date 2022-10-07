@@ -58,7 +58,7 @@ class ContractEditComponent extends Component
         {
             DB::rollback();
 
-            return back()->with('error','Cannot complete your action.');
+           session()->flash('error');
         }
     }
 

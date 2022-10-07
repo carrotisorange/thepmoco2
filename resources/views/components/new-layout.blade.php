@@ -562,8 +562,7 @@
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
                     @else
-                    <x-nav-link href="/property/"
-                        :active="request()->routeIs('cashflow')">
+                    <x-nav-link href="/property/" :active="request()->routeIs('cashflow')">
 
                         <span class="sr-only">Cashflow</span>
                         <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none"
@@ -576,17 +575,14 @@
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflow</div>
                 </div>
             </nav>
-
-            <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-                {{ $slot }}
-                <div class="mb-10">
-                    @include('layouts.footer')
-                </div>
-            </main>
+            @include('layouts.notifications')
+            <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll" {{ $slot }} <div class="mb-10">
+                @include('layouts.footer')
         </div>
+        </main>
+    </div>
     </div>>
     @include('layouts.script')
-    @include('layouts.notifications')
 </body>
 
 </html>
