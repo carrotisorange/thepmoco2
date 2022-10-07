@@ -81,16 +81,10 @@ class EnrolleeController extends Controller
         redirect('/unit/'.$unit->uuid)->with('success','Contract has been created.');
 
         } catch (\Throwable $e) {
-<<<<<<< Updated upstream
-        ddd($e);
-        DB::rollback();
-        return back()->with('error','Cannot complete your action.');
-=======
 
             DB::rollback();
 
            session()->flash('error');
->>>>>>> Stashed changes
         }
 
     }

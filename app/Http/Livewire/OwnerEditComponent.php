@@ -85,19 +85,11 @@ class OwnerEditComponent extends Component
         try
         {
             $this->update_owner($validatedData);
-<<<<<<< Updated upstream
-
-            session()->flash('success','Owner is successfully updated.');
-
-        }catch(\Exception $e)
-        { 
-=======
        
             session()->flash('success','Owner is successfully updated.');
 
         }catch(\Exception $e)
         {  
->>>>>>> Stashed changes
             session()->flash('error');
         }
 

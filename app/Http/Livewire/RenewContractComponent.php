@@ -151,10 +151,6 @@ class RenewContractComponent extends Component
             //$validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
          }
 
-<<<<<<< Updated upstream
-         Contract::create($validatedData);
-   }
-=======
        DB::commit();
 
        if(auth()->user()->role_id == '8'){
@@ -172,7 +168,6 @@ class RenewContractComponent extends Component
       session()->flash('error');
        }
        }
->>>>>>> Stashed changes
     
     public function render()
     {

@@ -166,16 +166,6 @@ class TransferContractComponent extends Component
         ]);
     }
 
-<<<<<<< Updated upstream
-=======
-       } catch (\Throwable $e) {
-        DB::rollback();
-        
-       session()->flash('error');
-       }
-       }
-    
->>>>>>> Stashed changes
     public function render()
     {
         return view('livewire.transfer-contract-component', [

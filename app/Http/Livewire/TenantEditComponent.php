@@ -115,15 +115,10 @@ class TenantEditComponent extends Component
                 $this->tenant_details->update($validatedData);
             });
 
-<<<<<<< Updated upstream
-            session()->flash('success', 'Tenant details is successfully updated.');
-
-=======
             $this->tenant_details->update($validatedData);
 
             session()->flash('success', 'Tenant details is successfully updated.');    
             
->>>>>>> Stashed changes
         }catch(\Exception $e){
             session()->flash('error');
         }
