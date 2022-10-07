@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-5 lg:col-span-9">
@@ -263,7 +264,7 @@
 
         </form>
     </div>
-    @include('layouts.notifications')
+
 
     <section class="mb-10">
         <h1 class="mt-10 text-xl font-bold text-black">enrollees</h1>
@@ -487,4 +488,5 @@
 
                 </div>
     </section>
+  
 </div>

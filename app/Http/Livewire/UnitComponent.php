@@ -19,6 +19,7 @@ class UnitComponent extends Component
     use WithPagination;
 
     public $batch_no;
+    
     public $units;
 
     public $selectedUnits =[];
@@ -114,6 +115,7 @@ class UnitComponent extends Component
          $this->selectedUnits = [];
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
     public function updateForm()
     {
@@ -169,6 +171,9 @@ class UnitComponent extends Component
 =======
     
 >>>>>>> Stashed changes
+=======
+    
+>>>>>>> Stashed changes
     public function get_units()
     {
         return Property::find(Session::get('property'))
@@ -178,12 +183,15 @@ class UnitComponent extends Component
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public function filterBuilding()
     {
         ddd('success');
     }
 
 =======
+=======
+>>>>>>> Stashed changes
     public function render()
     {
         return view('livewire.unit-component',[
@@ -193,5 +201,8 @@ class UnitComponent extends Component
             'categories' => app('App\Http\Controllers\CategoryController')->index(),
         ]);
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

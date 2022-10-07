@@ -61,7 +61,6 @@ class UnitEditComponent extends Component
         $validatedData = $this->validate();
          
         try{
-<<<<<<< Updated upstream
 
             DB::beginTransaction();
         
@@ -74,7 +73,16 @@ class UnitEditComponent extends Component
         }catch(\Exception $e){
             DB::rollback();
 
-=======
+
+            //update the selected unit
+            $this->unit_details->update($validatedData);
+
+            //prompt user with a success message
+            session()->flash('success', 'Unit is successfully updated.');    
+            
+        }catch(\Exception $e){
+            //promot user with an error message
+
             //update the selected unit
             $this->unit_details->update($validatedData);
 

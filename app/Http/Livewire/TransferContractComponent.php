@@ -166,16 +166,6 @@ class TransferContractComponent extends Component
         ]);
     }
 
-<<<<<<< Updated upstream
-       } catch (\Throwable $e) {
-       ddd($e);
-       DB::rollback();
-       return back()->with('error','Cannot complete your action.');
-       }
-       }
-    
-=======
->>>>>>> Stashed changes
     public function render()
     {
         return view('livewire.transfer-contract-component', [
