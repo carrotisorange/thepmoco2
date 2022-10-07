@@ -103,7 +103,7 @@ class UnitEditComponent extends Component
             'categories' => app('App\Http\Controllers\CategoryController')->index(),
             'statuses' => app('App\Http\Controllers\StatusController')->index(),
             'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($this->unit_details->uuid),
-            'enrollees' => app('App\Http\Controllers\EnrolleeController')->show_unit_enrollees($this->unit_details->uuid)
+            //'enrollees' => app('App\Http\Controllers\EnrolleeController')->show_unit_enrollees($this->unit_details->uuid)
         ]);
     }
 }
