@@ -130,9 +130,13 @@ class CheckoutComponent extends Component
         {   
             DB::rollback();
 
+<<<<<<< Updated upstream
             ddd($e);
 
             return back()->with('error','Cannot complete your action.');
+=======
+           session()->flash('error');
+>>>>>>> Stashed changes
         }
     }
 

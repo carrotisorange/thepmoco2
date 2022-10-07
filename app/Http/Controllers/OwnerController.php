@@ -24,6 +24,7 @@ class OwnerController extends Controller
         return view('owners.index');
     }
 
+<<<<<<< Updated upstream
         public function generate_credentials($owner_uuid)
     {
 
@@ -59,6 +60,8 @@ class OwnerController extends Controller
 
         return back()->with('succcess', 'Credentials are generated successfully!');
     }
+=======
+>>>>>>> Stashed changes
 
     /**
      * Show the form for creating a new resource.

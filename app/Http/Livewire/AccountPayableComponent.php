@@ -99,7 +99,7 @@ class AccountPayableComponent extends Component
 
           ddd($e);
    
-          return back()->with('error','Cannot complete your action.');
+         session()->flash('error');
         }
       }
 

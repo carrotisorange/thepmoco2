@@ -136,7 +136,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/tenant')->group(function(){
         Route::get('/', [TenantController::class, 'index'])->name('tenant');
         Route::get('/unlock', [TenantController::class, 'unlock'])->name('tenant');
-        Route::get('{tenant:uuid}', [TenantController::class, 'show']);
+        Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
     
         Route::prefix('{tenant}')->group(function(){
             Route::get('bills', [TenantBillController::class, 'index']);
@@ -191,7 +191,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
         Route::prefix('{owner}')->group(function(){
             
-            Route::get('/', [OwnerController::class, 'show']);
+            Route::get('/', [OwnerController::class, 'show'])->name('owner');
              
             Route::prefix('enrollee')->group(function(){
                 Route::get('/',[EnrolleeController::class,'index']);

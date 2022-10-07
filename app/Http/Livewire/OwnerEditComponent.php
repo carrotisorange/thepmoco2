@@ -1,18 +1,16 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\City;
-use App\Models\Province;
-use App\Models\Country;
+use App\Models\Owner;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use DB;
+use App\Models\User;
 
 use Livewire\Component;
 
 class OwnerEditComponent extends Component
 {
-        
     use WithFileUploads;
 
     public $owner_details;
@@ -30,6 +28,9 @@ class OwnerEditComponent extends Component
     public $city_id;
     public $barangay;
     public $photo_id;
+    public $occupation;
+    public $employer;
+    public $employer_address;
 
     public function mount($owner_details)
     {
@@ -45,6 +46,9 @@ class OwnerEditComponent extends Component
         $this->city_id = $owner_details->city_id;
         $this->barangay = $owner_details->barangay;
         $this->photo_id = $owner_details->photo_id;
+        $this->employer = $owner_details->employer;
+        $this->occupation = $owner_details->occupation;
+        $this->employer_address = $owner_details->employer_address;
     }
 
 
@@ -53,7 +57,7 @@ class OwnerEditComponent extends Component
         return 
         [
             'owner' => 'required',
-            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tenants'],
+            'email' => ['nullable', 'string', 'email', 'max:255', Rule::unique('owners','email')->ignore($this->owner_details->uuid, 'uuid')],
             'mobile_number' => 'nullable',
             'gender' => 'required',
             'civil_status' => 'nullable',
@@ -61,6 +65,9 @@ class OwnerEditComponent extends Component
             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
             'barangay' => ['nullable'],
+            'employer' => ['nullable'],
+            'occupation' => ['nullable'],
+            'employer_address' => ['nullable'],
         ];
     }
 
@@ -78,14 +85,70 @@ class OwnerEditComponent extends Component
         try
         {
             $this->update_owner($validatedData);
+<<<<<<< Updated upstream
 
             session()->flash('success','Owner is successfully updated.');
 
         }catch(\Exception $e)
         { 
+=======
+       
+            session()->flash('success','Owner is successfully updated.');
+
+        }catch(\Exception $e)
+        {  
+>>>>>>> Stashed changes
             session()->flash('error');
         }
 
+    }
+
+     public function sendCredentials()
+    {
+        sleep(2);
+
+        // $owner = Owner::find($this->email);
+
+        if(!$this->email){
+            session()->flash('error', 'The email address is required.');
+        }
+
+        $count_user = User::where('email', $this->email)->count();
+
+        if($count_user > 0)
+        {
+            session()->flash('error', 'Credentials for this owner has already been generated.');
+        }
+
+         $user_id = app('App\Http\Controllers\UserController')->store(
+            $this->owner,
+            $this->email,
+            app('App\Http\Controllers\UserController')->generate_temporary_username(),
+            auth()->user()->external_id,
+            $this->email,
+            7, //owner
+            $this->mobile_number,
+            "none",
+            auth()->user()->checkoutoption_id,
+            auth()->user()->plan_id,
+         );
+
+        User::where('id', $user_id)
+          ->update([
+          'owner_uuid' => $this->owner_details->uuid
+        ]);
+
+         session()->flash('succcess', 'Access to owner portal has been sent to email.');
+    }
+
+    public function removeCredentials()
+    {
+        sleep(2);
+
+        User::where('email', $this->owner_details->email)
+        ->delete();
+
+        session()->flash('success', 'Access to owner portal has been removed.');
     }
 
     public function update_owner($validatedData)

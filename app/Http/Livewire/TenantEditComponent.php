@@ -7,6 +7,7 @@ use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
+use App\Models\User;
 
 class TenantEditComponent extends Component
 {
@@ -46,6 +47,8 @@ class TenantEditComponent extends Component
     public $reference_mobile_number;
     public $reference_email;
 
+    public $view = 'listView';
+
     public function mount($tenant_details)
     {
         $this->tenant_details = $tenant_details;
@@ -76,7 +79,7 @@ class TenantEditComponent extends Component
     {
         return [
             'tenant' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('tenants','email')->ignore($this->tenant_details->uuid, 'uuid')],
+            'email' => ['nullable', 'string', 'email', 'max:255', Rule::unique('tenants','email')->ignore($this->tenant_details->uuid, 'uuid')],
             'mobile_number' => ['nullable'],
             'type' => 'nullable',
             'gender' => 'required',
@@ -103,7 +106,7 @@ class TenantEditComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        sleep(2);
        
         $validatedData = $this->validate();
          
@@ -112,12 +115,65 @@ class TenantEditComponent extends Component
                 $this->tenant_details->update($validatedData);
             });
 
+<<<<<<< Updated upstream
             session()->flash('success', 'Tenant details is successfully updated.');
 
+=======
+            $this->tenant_details->update($validatedData);
+
+            session()->flash('success', 'Tenant details is successfully updated.');    
+            
+>>>>>>> Stashed changes
         }catch(\Exception $e){
             session()->flash('error');
         }
     }
+
+     public function sendCredentials()
+    {
+        sleep(2);
+
+        if(!$this->email){
+            session()->flash('error', 'The email address is required.');
+        }
+
+        $count_user = User::where('email', $this->tenant_details->email)->count();
+        if($count_user > 0)
+        {
+             session()->flash('error', 'Credentials for this tenant has already been generated.');
+        }
+
+         $user_id = app('App\Http\Controllers\UserController')->store(
+            $this->tenant,
+            $this->email,
+            app('App\Http\Controllers\UserController')->generate_temporary_username(),
+            auth()->user()->external_id,
+            $this->email,
+            8, //tenant
+            $this->mobile_number,
+            "none",
+            auth()->user()->checkoutoption_id,
+            auth()->user()->plan_id,
+         );
+
+        User::where('id', $user_id)
+          ->update([
+          'tenant_uuid' => $this->tenant_details->uuid
+        ]);
+
+       session()->flash('succcess', 'Access to tenant portal has been sent to email.');
+    }
+
+    public function removeCredentials()
+    {
+        sleep(2);
+
+        User::where('email', $this->tenant_details->email)
+        ->delete();
+
+        session()->flash('success', 'Access to tenant portal has been removed.');
+    }
+
 
     public function render()
     {   

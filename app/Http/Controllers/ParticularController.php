@@ -84,7 +84,7 @@ class ParticularController extends Controller
              } catch (\Throwable $e) {
         
                 DB::rollback();
-                return back()->with('error','Cannot complete your action.');
+               session()->flash('error');
              }
         }
         else{
@@ -106,7 +106,7 @@ class ParticularController extends Controller
              } catch (\Throwable $e) {
           
                 DB::rollback();
-                return back()->with('error','Cannot complete your action.');
+               session()->flash('error');
              }
         }
     }
