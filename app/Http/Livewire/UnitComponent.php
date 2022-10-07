@@ -69,13 +69,9 @@ class UnitComponent extends Component
         $this->validate();
 
         try{
-            //update the selected unit
-            DB::transaction(function () {
-                foreach ($this->units as $unit) {
+            foreach ($this->units as $unit) {
                     $unit->save();
-                }
-            });
-
+            }
             //redirect user with a success message
             if(Tenant::where('property_uuid', Session::get('property'))->count())
             {
