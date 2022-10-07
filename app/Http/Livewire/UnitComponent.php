@@ -35,7 +35,7 @@ class UnitComponent extends Component
     protected function rules()
     {
         return [
-            'units.*.unit' => 'required|max:10',
+            'units.*.unit' => 'required|max:25',
             'units.*.building_id' => ['nullable', Rule::exists('buildings', 'id')],
             'units.*.floor_id' => ['nullable', Rule::exists('floors', 'id')],
             'units.*.category_id' => ['nullable', Rule::exists('categories', 'id')],
@@ -66,12 +66,15 @@ class UnitComponent extends Component
     {
         sleep (1);
 
-        $this->validate();
-
         try{
-            foreach ($this->units as $unit) {
+               $this->validate();
+            //update the selected unit
+            DB::transaction(function () {
+                foreach ($this->units as $unit) {
                     $unit->save();
-            }
+                }
+            });
+
             //redirect user with a success message
             if(Tenant::where('property_uuid', Session::get('property'))->count())
             {
@@ -83,7 +86,7 @@ class UnitComponent extends Component
             }
 
         }catch(\Exception $e){
-            
+            ddd($e);
             //redirect user with an error message
             session()->flash('error');
         }
