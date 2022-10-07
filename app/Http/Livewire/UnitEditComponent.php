@@ -67,6 +67,20 @@ class UnitEditComponent extends Component
             
         }catch(\Exception $e){
             
+<<<<<<< Updated upstream
+=======
+        }catch(\Exception $e){
+            //promot user with an error message
+
+            //update the selected unit
+            $this->unit_details->update($validatedData);
+
+            //prompt user with a success message
+            session()->flash('success', 'Unit is successfully updated.');    
+            
+        }catch(\Exception $e){
+
+>>>>>>> Stashed changes
             session()->flash('error');
         }
     }
