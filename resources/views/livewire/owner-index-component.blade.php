@@ -131,7 +131,7 @@
                                 @if($deed_of_sales->count())
                                 @foreach ($deed_of_sales->take(1) as $item)
                                 <div class="text-gray-900"><a class="text-blue-500 text-decoration-line: underline"
-                                        href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">
+                                        href="/property/{{ $item->unit->property_uuid }}/unit/{{ $item->unit->uuid }}">
                                         {{ $item->unit->unit }}</a></div>
                                 <div class="text-gray-500">{{ $item->unit->building->building }}</div>
                                 @endforeach

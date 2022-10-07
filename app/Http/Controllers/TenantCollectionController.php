@@ -107,7 +107,8 @@ class TenantCollectionController extends Controller
          }
          catch(\Exception $e)
          {
-             ddd($e);
+            DB::rollback();
+            
             return back()->with('error','Cannot perform the action. Please try again.');
          }
     }

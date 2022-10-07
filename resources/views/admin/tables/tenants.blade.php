@@ -52,7 +52,9 @@
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 <div class="flex items-center">
                     <div class="h-10 w-10 flex-shrink-0">
-                        <img class="h-10 w-10 rounded-full" src="{{ asset('/storage/'.$tenant->photo_id) }}" alt="">
+                        
+                        <img onerror="this.onerror=null;this.src='{{ asset('/brands/avatar.png') }}';" class="h-10 w-10 rounded-full" src="{{ asset('/storage/'.$tenant->photo_id) }}" alt="">
+                       
                     </div>
                     <div class="ml-4">
                         <div class="text-gray-900">

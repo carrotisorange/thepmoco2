@@ -96,8 +96,6 @@ class AccountPayableComponent extends Component
         }catch (\Exception $e) {
 
           DB::rollback();
-
-          ddd($e);
    
          session()->flash('error');
         }
@@ -115,7 +113,7 @@ class AccountPayableComponent extends Component
     {
         return view('livewire.account-payable-component',[
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->show(Session::get('property')),
-            'users' => app('App\Http\Controllers\UserPropertyController')->show_property_users(Session::get('property')),
+            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property')),
             'billers' => app('App\Http\Controllers\PropertyBillerController')->show(Session::get('property')),
             'statuses' => $this->get_statuses()
         ]);

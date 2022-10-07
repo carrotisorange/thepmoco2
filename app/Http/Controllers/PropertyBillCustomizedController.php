@@ -75,7 +75,7 @@ class PropertyBillCustomizedController extends Controller
 
             }catch(\Exception $e)
             {
-                ddd($e);
+                DB::rollback();
 
                 return back('error')->with('success', 'Cannot perform your action.');
             }

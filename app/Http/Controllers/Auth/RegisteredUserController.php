@@ -42,7 +42,6 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'mobile_number' => ['required', 'unique:users'],
-            //'email_verified_at' => Carbon::now(),
             'password' => ['required', 'confirmed', Rules\Password::defaults()],    
         ]);
 
@@ -55,10 +54,6 @@ class RegisteredUserController extends Controller
         $attributes['discount_code'] = 'none';
 
         $user = User::create($attributes);
-
-        //$external_id = Plan::find(4)->plan.'_'.Str::random(8);
-
-        //app('App\Http\Controllers\SubscriptionController')->store_subscription($user->id, 4, $external_id, 0);
 
         event(new Registered($user));
 

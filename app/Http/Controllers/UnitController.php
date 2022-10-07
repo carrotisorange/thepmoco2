@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Models\PropertyBuilding;
+use App\Models\Status;
+use App\Models\Floor;
+use DB;
+use App\Models\Category;
 
 use App\Models\Plan;
 
@@ -33,6 +38,96 @@ class UnitController extends Controller
        session(['quick_add' => true]);
 
        return redirect('/property/'.Session::get('property').'/unit');
+    }
+
+    public function get_property_unit_statuses($property_uuid)
+    {
+        return Status::join('units', 'statuses.id', 'units.status_id')
+        ->select('status','statuses.id as status_id', DB::raw('count(*) as count'))
+        ->where('units.property_uuid', $property_uuid)
+        ->where('statuses.status','!=','NA')
+        ->groupBy('statuses.id')
+        ->get();
+    }
+
+    public function get_property_unit_buildings($property_uuid)
+    {
+        return PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
+        ->join('units', 'buildings.id', 'units.building_id')
+        ->select('building','buildings.id as building_id', DB::raw('count(unit) as count'))
+        ->distinct()
+        ->where('property_buildings.property_uuid', $property_uuid)
+        ->where('buildings.building','!=','NA')
+        ->groupBy('buildings.id')
+        ->get();
+    }
+
+    public function get_property_unit_floors($property_uuid)
+    {
+        return Floor::join('units', 'floors.id', 'units.floor_id')
+        ->select('floor','floors.id as floor_id', DB::raw('count(*) as count'))
+          ->where('units.property_uuid', $property_uuid)
+           ->where('floors.floor','!=','NA')
+           ->groupBy('floors.id')
+          ->get();
+    }
+
+    public function get_property_unit_categories($property_uuid)
+    {
+        return Category::join('units', 'categories.id', 'units.category_id')
+        ->select('category','categories.id as category_id', DB::raw('count(*) as count'))
+        ->where('units.property_uuid', $property_uuid)
+        ->where('categories.category','!=','NA')
+        ->groupBy('categories.id')
+        ->get();
+    }
+
+    public function get_property_unit_rents($property_uuid)
+    {
+        return Unit::where('units.property_uuid', $property_uuid)
+        ->select('rent', DB::raw('count(*) as count'))
+        ->where('rent','>',0)
+        ->groupBy('rent')
+        ->get();
+    }
+    
+    public function get_property_unit_discounts($property_uuid)
+    {
+        return Unit::where('units.property_uuid', $property_uuid)
+        ->select('discount', DB::raw('count(*) as count'))
+        ->where('discount','>',0)
+        ->groupBy('discount')
+        ->get();
+    }
+
+       
+    public function get_property_unit_sizes($property_uuid)
+    { 
+        return Unit::where('units.property_uuid', $property_uuid)
+          ->whereNotNull('size')
+         ->select('size', DB::raw('count(*) as count'))
+          ->where('size','>',0)
+          ->groupBy('size')
+          ->get();
+    }
+
+    public function get_property_unit_occupancies($property_uuid)
+    { 
+        return Unit::where('units.property_uuid', $property_uuid)
+        ->whereNotNull('occupancy')
+        ->select('occupancy', DB::raw('count(*) as count'))
+        ->where('occupancy','>',0)
+        ->groupBy('occupancy')
+        ->get();
+    }
+
+    public function get_property_unit_enrollment_statuses($property_uuid)
+    { 
+        return Unit::where('units.property_uuid', $property_uuid)
+        ->select('is_enrolled', DB::raw('count(*) as count'))
+        ->groupBy('is_enrolled')
+        ->orderBy('is_enrolled', 'desc')
+        ->get();
     }
 
     public function get_property_units($property_uuid, $status, $duration)
@@ -140,60 +235,6 @@ class UnitController extends Controller
     {
         
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
-    // public function bulk_update(Request $request, Property $property, $batch_no)
-    // {
-    //     $units = Unit::where('status_id', 6)->count();
-
-    //     for($i = 1; $i<=$units; $i++){ 
-    //         $unit=Unit::find(request('uuid'.$i));
-    //         $unit->unit = request('unit'.$i);
-    //         if(request('building_id'.$i))
-    //         {
-    //             $unit->building_id = request('building_id'.$i);
-    //         }
-    //         else
-    //         {
-    //             $unit->building_id = '1';
-    //         }
-           
-    //         if(request('floor_id'.$i))
-    //         {
-    //             $unit->floor_id = request('floor_id'.$i);
-    //         }
-    //         else
-    //         {
-    //             $unit->floor_id = '1';
-    //         }
-
-    //         if(request('category_id'.$i))
-    //         {
-    //             $unit->category_id = request('category_id'.$i);
-    //         }
-    //          else
-    //         {
-    //             $unit->category_id = '1';
-    //         }
-            
-    //         $unit->size = request('size'.$i);
-    //         $unit->rent = request('rent'.$i);
-    //         $unit->occupancy = request('occupancy'.$i);
-    //         $unit->status_id = '1';
-    //         $unit->save();
-    //     }
-
-    //     app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, $units);
-
-    //     return redirect('/property/'.Session::get('property').'/units')->with('success', $units.' unit is successfully 
-    //     created.');
-    // }
 
 
     public function update(Request $request, Property $property, Unit $unit)

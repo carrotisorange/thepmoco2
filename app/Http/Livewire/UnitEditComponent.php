@@ -90,8 +90,7 @@ class UnitEditComponent extends Component
             session()->flash('success', 'Unit is successfully updated.');    
             
         }catch(\Exception $e){
-            //promot user with an error message
->>>>>>> Stashed changes
+
             session()->flash('error');
         }
     }
