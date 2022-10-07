@@ -20,6 +20,7 @@
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
         </tr>
     </thead>
     @forelse ($contracts as $index => $item)
@@ -115,6 +116,10 @@
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
                     class="text-indigo-600 hover:text-indigo-900">Renew</a>
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
+                    class="text-indigo-600 hover:text-indigo-900">Transfer</a>
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($item->status == 'active' || $item->status == 'pendingmoveout')

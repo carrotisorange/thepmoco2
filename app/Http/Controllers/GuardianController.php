@@ -65,7 +65,7 @@ class GuardianController extends Controller
          }catch(\Exception $e)
          {
             DB::rollback();
-            return back()->with('error','Cannot complete your action.');
+           session()->flash('error');
          }
 
     }

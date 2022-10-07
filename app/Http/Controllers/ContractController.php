@@ -101,7 +101,7 @@ class ContractController extends Controller
 
         } catch (\Throwable $e) {
             DB::rollback();
-            return back()->with('error','Cannot complete your action.');
+           session()->flash('error');
         }
     }
 

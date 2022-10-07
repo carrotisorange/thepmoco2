@@ -14,8 +14,6 @@ use App\Models\Province;
 use App\Models\City;
 use App\Models\Type;
 use Livewire\Component;
-use App\Models\User;
-use Carbon\Carbon;
 
 class PropertyComponent extends Component
 {
@@ -50,13 +48,13 @@ class PropertyComponent extends Component
             'tenant_contract' => 'nullable|mimes:pdf',
             'owner_contract' => 'nullable|mimes:pdf',
             'description' => 'nullable',
-             'country_id' => ['required', Rule::exists('countries', 'id')],
-             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
-             'city_id' => ['nullable', Rule::exists('cities', 'id')],
-             'barangay' => ['required'],
-             'email' => ['nullable'],
-             'mobile' => ['nullable'],
-             'ownership' => ['required']
+            'country_id' => ['required', Rule::exists('countries', 'id')],
+            'province_id' => ['nullable', Rule::exists('provinces', 'id')],
+            'city_id' => ['nullable', Rule::exists('cities', 'id')],
+            'barangay' => ['required'],
+            'email' => ['nullable'],
+            'mobile' => ['nullable'],
+            'ownership' => ['required']
         ];
      }
 
@@ -67,35 +65,83 @@ class PropertyComponent extends Component
 
      public function submitForm()
      {
-        sleep(1);
+         sleep(1);
 
+         $validatedData = $this->validate();
+
+         try {
+
+         $property_uuid = Str::uuid();
+
+         DB::transaction(function () use ($validatedData, $property_uuid){
+            $property = $this->store_property($property_uuid, $validatedData);
+
+            $this->store_user_property($property_uuid);
+
+            $this->store_particulars($property_uuid);
+
+            $this->store_roles($property_uuid);
+
+            app('App\Http\Controllers\PointController')->store($property_uuid, auth()->user()->id, 50, 6);
+
+            app('App\Http\Controllers\PropertyController')->store_property_session($property);
+         });
+         
+         return redirect('/property/'.$property_uuid.'/success')->with('success', 'Property is successfully created.');
+        }catch (\Throwable $e) {
+            return back()->with('error', 'Cannot perform your action.');
+        }
+     }
+
+     public function store_roles($property_uuid)
+     {
+        for($i=1; $i<=9; $i++){ 
+         PropertyRole::create([ 'property_uuid'=> $property_uuid,
+            'role_id'=> $i,
+            ]);
+         }
+     }
+
+      public function store_particulars($property_uuid){
+         for($i=1; $i<=8; $i++){ 
+            PropertyParticular::create([ 'property_uuid'=> $property_uuid,
+            'particular_id'=> $i,
+            'minimum_charge' => 0.00,
+            'due_date' => 28,
+            'surcharge' => 1
+           ]);
+      }
+     }
+
+     public function store_user_property($property_uuid)
+     {
+       UserProperty::create([
+       'property_uuid' => $property_uuid,
+       'user_id' => auth()->user()->id,
+       'is_account_owner' => true
+       ]);
+     }
+
+     public function store_property($property_uuid, $validatedData)
+     {
+         $validatedData['uuid'] = $property_uuid;
          $validatedData['mobile'] = auth()->user()->mobile;
-          $validatedData['email'] = auth()->user()->email;
+         $validatedData['email'] = auth()->user()->email;
 
-          if(!$this->country_id)
-          {
+         if(!$this->country_id)
+         {
             $validatedData['country_id'] = '247';
-          }
+         }
 
-          if(!$this->province_id)
-          {
+         if(!$this->province_id)
+         {
             $validatedData['province_id'] = '4121';
-          }
+         }
 
-          if(!$this->city_id)
-          {
+         if(!$this->city_id)
+         {
             $validatedData['city_id'] = '48315';
-          }
-
-
-        $validatedData = $this->validate();
-
-        try {
-
-        $property_uuid = Str::uuid();
-
-        $validatedData['uuid'] = $property_uuid;
-        //$validatedData['status'] = 'pending';
+         }
 
          if($this->thumbnail){
              $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
@@ -111,51 +157,8 @@ class PropertyComponent extends Component
             $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
          }
 
-        DB::beginTransaction();
-
-        $property = Property::create($validatedData);
-
-        UserProperty::create([
-        'property_uuid' => $property_uuid,
-        'user_id' => auth()->user()->id,
-        'is_account_owner' => true
-        ]);
-
-        for($i=1; $i<=8; $i++){ 
-            PropertyParticular::create([ 'property_uuid'=> $property_uuid,
-            'particular_id'=> $i,
-            'minimum_charge' => 0.00,
-            'due_date' => 28,
-            'surcharge' => 1
-            ]);
-        }
-
-        for($i=1; $i<=9; $i++){ 
-            PropertyRole::create(
-            [ 
-               'property_uuid'=> $property_uuid,
-               'role_id'=> $i,
-            ]);
-        }
-
-         app('App\Http\Controllers\PointController')->store($property_uuid, auth()->user()->id, 50, 6);
-
-         User::where('id', auth()->user()->id)
-          ->update([
-            'trial_ends_at' => Carbon::now()->addMonth(),
-         ]);
-
-         app('App\Http\Controllers\PropertyController')->store_property_session($property);
-
-        DB::commit();
-         return redirect('/property/'.$property_uuid.'/success')->with('success', 'Property is successfully created.');
-        }catch (\Throwable $e) {
-            DB::rollback();
-            return back()->with('error', 'Cannot perform your action.');
-        }
-
+        return Property::create($validatedData);
      }
-
      public function render()
      {
         return view('livewire.property-component',[

@@ -10,6 +10,7 @@ class UnitEditComponent extends Component
 {
     public $unit_details;
 
+    //unit input fields
     public $unit;
     public $building_id;
     public $floor_id;
@@ -32,7 +33,6 @@ class UnitEditComponent extends Component
         $this->discount = $unit_details->discount;
         $this->occupancy = $unit_details->occupancy;
     }
-
     
     protected function rules()
     {
@@ -61,14 +61,25 @@ class UnitEditComponent extends Component
         $validatedData = $this->validate();
          
         try{
+
+            DB::beginTransaction();
+        
             $this->unit_details->update($validatedData);
+
+            DB::commit();
 
             session()->flash('success', 'Unit is successfully updated.');    
             
         }catch(\Exception $e){
+            DB::rollback();
+
+
+            //update the selected unit
+            $this->unit_details->update($validatedData);
+
+            //prompt user with a success message
+            session()->flash('success', 'Unit is successfully updated.');    
             
-<<<<<<< Updated upstream
-=======
         }catch(\Exception $e){
             //promot user with an error message
 
@@ -80,7 +91,6 @@ class UnitEditComponent extends Component
             
         }catch(\Exception $e){
 
->>>>>>> Stashed changes
             session()->flash('error');
         }
     }
@@ -93,7 +103,7 @@ class UnitEditComponent extends Component
             'categories' => app('App\Http\Controllers\CategoryController')->index(),
             'statuses' => app('App\Http\Controllers\StatusController')->index(),
             'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($this->unit_details->uuid),
-            'enrollees' => app('App\Http\Controllers\EnrolleeController')->show_unit_enrollees($this->unit_details->uuid)
+            //'enrollees' => app('App\Http\Controllers\EnrolleeController')->show_unit_enrollees($this->unit_details->uuid)
         ]);
     }
 }
