@@ -114,66 +114,7 @@ class UnitComponent extends Component
         }
          $this->selectedUnits = [];
     }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
-    public function updateForm()
-    {
-        
-        $this->validate();
-
-        try{
-            DB::beginTransaction();
-
-            foreach ($this->units as $unit) {
-                $unit->save();
-            }
-
-            DB::commit();
-
-            //session()->flash('success', count($this->units). ' unit is successfully updated.');
-              if(Tenant::where('property_uuid', Session::get('property'))->count())
-              {
-                return redirect('/property/'.Session::get('property').'/unit')->with('success', count($this->units). 'unit is successfully updated.');
-              }
-              else
-              { 
-                return redirect('/property/'.Session::get('property').'/tenant')->with('success', count($this->units). 'unit is successfully updated.');
-              }
-
-        }catch(\Exception $e){
-            DB::rollback();
-         
-            ddd($e);
-
-            session()->flash('error');
-        }
-    }
-
-    public function render()
-    {
-        $units = $this->get_units();
-
-        $buildings = app('App\Http\Controllers\PropertyBuildingController')->index();
-        
-        $floors = app('App\Http\Controllers\FloorController')->index();
-
-        $categories = app('App\Http\Controllers\CategoryController')->index();
-
-        return view('livewire.unit-component',[
-            'buildings' => $buildings,
-            'floors' => $floors,
-            'categories' => $categories,
-            'units' => $units
-        ]);
-    }
-
-=======
-    
->>>>>>> Stashed changes
-=======
-    
->>>>>>> Stashed changes
     public function get_units()
     {
         return Property::find(Session::get('property'))
@@ -181,17 +122,6 @@ class UnitComponent extends Component
         ->orderBy('created_at', 'desc')
         ->get();
     }
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    public function filterBuilding()
-    {
-        ddd('success');
-    }
-
-=======
-=======
->>>>>>> Stashed changes
     public function render()
     {
         return view('livewire.unit-component',[
@@ -201,8 +131,4 @@ class UnitComponent extends Component
             'categories' => app('App\Http\Controllers\CategoryController')->index(),
         ]);
     }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
