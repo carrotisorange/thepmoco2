@@ -131,7 +131,7 @@
 
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        <div class="sm:col-span-4">
+        <div class="sm:col-span-3">
 
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -158,13 +158,37 @@
             </div>
         </div>
 
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-1">
             <select id="small" wire:model="status_id"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="">Filter unit status</option>
                 @foreach ($statuses as $item)
                 <option value="{{ $item->status_id }}">{{ $item->status }}</option>
                 @endforeach
+            </select>
+
+        </div>
+
+         <div class="sm:col-span-1">
+            <select id="small" wire:model="sortBy"
+                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="" selected>Sort unit by</option>
+             
+               <option value="floor_id">floor</option>
+               <option value="occupancy">occupancy</option>
+               <option value="rent">rent</option>
+               <option value="unit">unit</option>
+            </select>
+
+        </div>
+
+          <div class="sm:col-span-1">
+            <select id="small" wire:model="orderBy"
+                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="asc" selected>Sorting order</option>
+               <option value="asc">asc</option>
+               <option value="desc">desc</option>
+             
             </select>
 
         </div>

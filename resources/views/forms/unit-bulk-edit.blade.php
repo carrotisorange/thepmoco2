@@ -28,7 +28,7 @@
                     Rent/Mo
                 </th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    # of Beds
+                    Occupancy
                 </th>
             </tr>
         </thead>

@@ -26,6 +26,8 @@ class UnitIndexComponent extends Component
     public $discount = [];
     public $size = [];
     public $occupancy = [];
+    public $sortBy;
+    public $orderBy = 'asc';
 
     public function changeView($value)
     {
@@ -35,7 +37,11 @@ class UnitIndexComponent extends Component
     public function get_units($property_uuid)
     {
       return Unit::search($this->search)
-      ->orderByRaw('LENGTH(unit) ASC') ->orderBy('unit', 'ASC')
+    //   ->orderByRaw('LENGTH(unit) ASC') ->orderBy('unit', 'ASC')
+       ->when($this->sortBy, function($query){
+       $query->orderBy($this->sortBy, $this->orderBy);
+       })
+
       ->where('property_uuid', $property_uuid)
       ->when($this->status_id, function($query){
       $query->whereIn('status_id',[ $this->status_id]);
@@ -63,7 +69,8 @@ class UnitIndexComponent extends Component
       })
       ->when($this->occupancy, function($query){
       $query->where('occupancy', $this->occupancy);
-      })->get();
+      })
+      ->get();
     }
 
    public function render()
