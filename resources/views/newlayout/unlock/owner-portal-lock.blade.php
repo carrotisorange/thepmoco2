@@ -306,7 +306,7 @@
     </main>
   </div>
   <div class="hidden lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-md">
-  <img class="mt-20 h-80 w-fit" src="{{ asset('/brands/unlock/owner-portal.png') }}" alt="contracts feature">
+  <img class="mt-20 h-96 w-fit" src="{{ asset('/brands/unlock/owner-portal.png') }}" alt="contracts feature">
   </div>
 </div>
 </div>
