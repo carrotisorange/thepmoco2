@@ -318,7 +318,7 @@
           
               
               <div class="sm:col-span-6">
-          <label for="concern" class="block text-sm font-medium text-gray-700">User role:</label>
+          <label for="concern" class="block text-sm font-medium text-gray-700">Position:</label>
           
             <select id="concern" name="concern" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
 
@@ -348,7 +348,25 @@
             </div>
 
 
-         
+            <div class="sm:col-span-6">
+             
+             <label for="country" class="block text-sm font-medium text-gray-700">User Roles:</label>
+             <div class="mt-5">
+             
+                 
+             <ul><input type="checkbox"> Access to Dashboard</ul>
+             <ul><input type="checkbox"> Access to Units</ul>
+             <ul><input type="checkbox"> Access to Tenants</ul>
+             <ul><input type="checkbox"> Access to Bills</ul>
+             <ul><input type="checkbox"> Access to Books</ul>
+             <ul><input type="checkbox"> Access to Unit Inventory</ul>
+             <ul><input type="checkbox"> Access to Concerns</ul>
+             <ul><input type="checkbox"> Access to Collection</ul>
+
+            
+             
+           
+         </div>
             
               
 
@@ -363,15 +381,16 @@
         
 </div>
 
-<div class="flex justify-end mt-10">
-    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-    <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create</button>
-  </div>
+
 </form>
 
        
 
     </div>
+    <div class="flex justify-end">
+    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
+    <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create</button>
+  </div>
   </div>
 
   
