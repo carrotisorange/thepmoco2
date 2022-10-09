@@ -315,9 +315,14 @@
             <a href="accounts-all" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">All</a>
         </li>    
     <li class="mr-2">
-            <a href="accounts-payable-list" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Bills</a>
+            <a href="accounts-payable-list" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Pending</a>
         </li>
-        
+        <li class="mr-2">
+            <a href="accounts-payable-list" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Approved</a>
+        </li>
+        <li class="mr-2">
+            <a href="accounts-payable-list" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Declined</a>
+        </li>
         
         
     </ul>
@@ -342,9 +347,9 @@
                 <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
                   
                 </th>
-                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">DATE</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RECIPIENT NAME</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">INVOICE NUMBER</th>
+                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">INVOICE NUMBER</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">DATE</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RECIPIENT NAME</th> 
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">SENDER</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RECEIVER</th>
                 
@@ -362,9 +367,9 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">September 1,2022</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Maria Clara</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -381,9 +386,10 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">September 1,2022</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Maria Clara</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
+
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -400,9 +406,10 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">September 1,2022</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Maria Clara</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
+
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -419,9 +426,10 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">September 1,2022</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Maria Clara</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
+
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -438,9 +446,10 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">September 1,2022</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Maria Clara</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
+
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -457,9 +466,10 @@
                   
                 </td>
                 <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">September 1,2022</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> <a href="newunits_detail" class="text-purple-700">Maria Clara</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><a href="">001122</a></td>
+
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5000</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
