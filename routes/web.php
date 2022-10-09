@@ -179,6 +179,14 @@ Route::get('/admindashboard', function(){
     return view('newlayout.admin_dashboard.admindashboard');
 });
 
+Route::get('/portfolio-dashboard', function(){
+    return view('newlayout.admin_dashboard.portfolio-dashboard');
+});
+
+Route::get('/newdashboard', function(){
+    return view('newlayout.admin_dashboard.newdashboard');
+});
+
 Route::get('/success_property', function(){
     return view('newlayout.success_property');
 });
@@ -280,6 +288,10 @@ Route::get('/owner-success', function(){
 
 Route::get('/cashflow', function(){
     return view('newlayout.cashflow');
+});
+
+Route::get('/settings-page', function(){
+    return view('newlayout.settings-page');
 });
 
 Route::get('/individual-concern', function(){
@@ -410,6 +422,10 @@ Route::get('/moveout-request', function(){
 
 Route::get('/moveout-page', function(){
     return view('newlayout.admin_contracts.moveout-page');
+});
+
+Route::get('/sample-contract', function(){
+    return view('newlayout.admin_contracts.sample-contract');
 });
 
 
