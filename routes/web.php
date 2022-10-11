@@ -143,6 +143,10 @@ Route::get('/createproperty', function(){
     return view('newlayout.createproperty');
 });
 
+Route::get('/select_property', function(){
+    return view('newlayout.select_property');
+});
+
 Route::get('/units-list', function(){
     return view('newlayout.admin_units.units-list');
 });
