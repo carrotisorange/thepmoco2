@@ -1,4 +1,4 @@
-<table class="min-w-full divide-y divide-gray-200">
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
             <x-th>Account Number</x-th>
@@ -14,7 +14,7 @@
             <x-td>{{ $item->bank_name }}</x-td>
             <x-td>{{ $item->account_number }}</x-td>
             @empty
-            <x-td>No data found!</x-td>
+            <x-td>No data found.</x-td>
             @endforelse
         </tr>
     </tbody>

@@ -17,7 +17,7 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>
-         {{ $item->unit->building->building.' '.$item->unit->unit}}
+                {{ $item->unit->building->building.' '.$item->unit->unit}}
             </x-td>
 
             <x-td>{{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
@@ -27,15 +27,17 @@
             <x-td>{{ $item->is_the_unit_for_rent_to_tenant }}</x-td>
             <x-td>
                 @if($item->title)
-                <a href="{{ asset('/storage/'.$item->title) }}" target="_blank" class="text-indigo-600 hover:text-indigo-900">View
+                <a href="{{ asset('/storage/'.$item->title) }}" target="_blank"
+                    class="text-indigo-600 hover:text-indigo-900">View
                     Title</a>
                 @else
-                    Title is not available
+                Title is not available
                 @endif
             </x-td>
             <x-td>
                 @if($item->tax_declaration)
-                <a href="{{ asset('/storage/'.$item->tax_declaration) }}" target="_blank" class="text-indigo-600 hover:text-indigo-900">View
+                <a href="{{ asset('/storage/'.$item->tax_declaration) }}" target="_blank"
+                    class="text-indigo-600 hover:text-indigo-900">View
                     Tax Declaration</a>
                 @else
                 Tax declaration is not available
@@ -69,7 +71,7 @@
                 @endif
             </x-td>
             @empty
-            <x-td>No data found</x-td>
+            <x-td>No data found.</x-td>
         </tr>
         @endforelse
     </tbody>

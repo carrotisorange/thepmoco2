@@ -135,7 +135,7 @@
         @empty
         <tr>
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">No data found!</td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">No data found.</td>
         </tr>
         @endforelse
     </tbody>

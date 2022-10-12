@@ -69,7 +69,7 @@ class OwnerComponent extends Component
                         'province_id' => ['nullable', Rule::exists('provinces', 'id')],
                         'city_id' => ['nullable', Rule::exists('cities', 'id')],
                         'barangay' => ['nullable'],
-                        'photo_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
+                        'photo_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
                 ];
         }
 

@@ -32,7 +32,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <x-td>No data found.</x-td>
+                    <x-td>No data found..</x-td>
                 </tr>
             </tbody>
             @endforelse

@@ -8,7 +8,7 @@
         {{-- <span class="text-center text-red">Total Redeemable Points: {{ $points->sum('point')
             }}</span> --}}
         <x-button wire:submit.prevent="submitForm" onclick="window.location.href='{{ url()->previous() }}'">
-           Go back
+            Go back
         </x-button>
     </x-slot>
 
@@ -69,7 +69,7 @@
 
                 @empty
 
-                <x-td>No data found!</x-td>
+                <x-td>No data found.</x-td>
 
             </tr>
         </tbody>

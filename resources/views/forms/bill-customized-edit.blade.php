@@ -62,7 +62,7 @@
                     </x-td>
                 </tr>
                 @empty
-                <x-td>No data found.</x-td>
+                <x-td>No data found..</x-td>
                 @endforelse
         </tbody>
     </table>

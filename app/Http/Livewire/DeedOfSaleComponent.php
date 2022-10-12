@@ -35,11 +35,11 @@ class DeedOfSaleComponent extends Component
     protected function rules()
     {
         return [
-            'title' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
-            'tax_declaration' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
-            'deed_of_sales' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
-            'contract_to_sell' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
-            'certificate_of_membership' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
+            'title' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'tax_declaration' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'deed_of_sales' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'contract_to_sell' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'certificate_of_membership' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
         ];
     }
 

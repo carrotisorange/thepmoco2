@@ -10,7 +10,7 @@
         </tr>
     </thead>
     @forelse ($collections as $item)
-<tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <tr>
             <x-td>{{ $item->ar_no }}</x-td>
             <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
@@ -49,7 +49,7 @@
                 @endif
             </x-td>
             @empty
-            <x-td>No data found!</x-td>
+            <x-td>No data found.</x-td>
         </tr>
         @endforelse
     </tbody>

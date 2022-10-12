@@ -106,7 +106,7 @@
                                                     Carbon\Carbon::parse($item->due_date)->format('M d,
                                                     Y') }}</td>
                                                 @empty
-                                                <x-td>No data found!</x-td>
+                                                <x-td>No data found.</x-td>
                                             </tr>
                                         </tbody>
                                         @endforelse

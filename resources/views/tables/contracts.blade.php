@@ -12,18 +12,19 @@
         </tr>
     </thead>
     @forelse ($contracts as $item)
-<tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <tr>
             <x-td>
                 <div class="text-sm text-gray-900">
                     @if(auth()->user()->role_id == '8')
-                        {{ $item->tenant->tenant }}
+                    {{ $item->tenant->tenant }}
                     @else
-                    <a class="text-blue-800 font-bold" href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">
+                    <a class="text-blue-800 font-bold"
+                        href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">
                         {{ $item->tenant->tenant }}
                     </a>
                     @endif
-                  
+
                 </div>
 
                 <div class="text-sm text-gray-500">{{
@@ -33,10 +34,11 @@
             </x-td>
             <x-td>
                 @if(auth()->user()->role_id == '8')
-                    {{ $item->unit->unit }}
+                {{ $item->unit->unit }}
                 @else
                 <div class="text-sm text-gray-900">
-                    <a class="text-blue-800 font-bold" href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                    <a class="text-blue-800 font-bold"
+                        href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
                         {{ $item->unit->unit }}
                     </a>
                 </div>
@@ -83,19 +85,19 @@
                     @endif
             </x-td>
             <x-td>{{ $item->interaction->interaction }}</x-td>
-           <x-td>
-            <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
-                class="text-indigo-600 hover:text-indigo-900">Renew</a>
-           </x-td>
-           <x-td>
+            <x-td>
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
+                    class="text-indigo-600 hover:text-indigo-900">Renew</a>
+            </x-td>
+            <x-td>
                 @if($item->status == 'active')
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
-                        class="text-indigo-600 hover:text-indigo-900">Moveout</a>
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
+                    class="text-indigo-600 hover:text-indigo-900">Moveout</a>
                 @endif
-               
+
             </x-td>
             @empty
-            <x-td>No data found!</x-td>
+            <x-td>No data found.</x-td>
         </tr>
         @endforelse
     </tbody>

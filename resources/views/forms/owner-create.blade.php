@@ -275,13 +275,16 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('representative_valid_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           
                         </div>
+                        @error('representative_valid_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
                         @if ($representative_valid_id)
                         <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
                         @endif
+                        @enderror
+                       
 
                     </div>
                     @endif
@@ -310,16 +313,18 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('photo_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           
                             
 
                         </div>
+                        @error('photo_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
                         @if ($photo_id)
                         <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
                         @endif
-
+                        @enderror
+                       
                     </div>
 
                     @if($email)

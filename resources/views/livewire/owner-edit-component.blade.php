@@ -77,7 +77,7 @@
                             </div>
                             @include('tables.deed_of_sales')
                         </div>
-                        <div class="mt-8 flex justify-end">
+                        {{-- <div class="mt-8 flex justify-end">
                             @can('ownerportal')
                             <button type="button"
                                 onclick="window.location.href='/property/{{ Session::get('property') }}/contract'"
@@ -90,7 +90,7 @@
                                 class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New
                                 Unit</button>
                             @endif
-                        </div>
+                        </div> --}}
             </section>
 
             <section class="mb-10">
@@ -112,7 +112,7 @@
                             class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
                             </div>
-                            @include('admin.tables.banks')
+                            @include('tables.banks')
                         </div>
             </section>
 

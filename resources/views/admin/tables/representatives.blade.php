@@ -1,66 +1,60 @@
-<table class="min-w-full table-fixed">
-
-    <thead class="bg-white">
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
         <tr>
-            <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
+            <x-th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8 ">
 
-            </th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+            </x-th>
+            <x-th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                 NAME
-            </th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+            </x-th>
+            <x-th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 RELATIONSHIP
-            </th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+            </x-th>
+            <x-th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 MOBILE
-            </th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+            </x-th>
+            <x-th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 EMAIL
-            </th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-               
-            </th>
+            </x-th>
+            <x-th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+
+            </x-th>
         </tr>
     </thead>
 
     @forelse ($representatives as $representative)
-
-
-    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+    <tbody class="bg-white divide-y divide-gray-200">
         <!-- Selected: "bg-gray-50" -->
         <tr>
-            <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+            <x-td class="relative w-12 px-6 sm:w-16 sm:px-8">
                 <!-- Selected row marker, only show when row is selected. -->
 
                 {{-- <input type="checkbox"
                     class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
                 --}}
-            </td>
+            </x-td>
             <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            <x-td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $representative->representative }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            </x-td>
+            <x-td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $representative->relationship->relationship }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            </x-td>
+            <x-td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $representative->mobile_number }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            </x-td>
+            <x-td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $representative->email }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-               @if($representative->valid_id)
+            </x-td>
+            <x-td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                @if($representative->valid_id)
                 <a href="{{ asset('/storage/'.$representative->valid_id) }}" target="_blank"
                     class="text-indigo-600 hover:text-indigo-900">View
-                     Valid ID</a>
+                    Valid ID</a>
                 @else
                 Valid ID is not available
                 @endif
-            </td>
-
-           
-
+            </x-td>
         </tr>
 
     </tbody>
@@ -68,9 +62,9 @@
     @empty
     <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
         <tr>
-            <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                No banks found.
-            </td>
+            <x-td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+                No representatives found.
+            </x-td>
         </tr>
     </tbody>
 

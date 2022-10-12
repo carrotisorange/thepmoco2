@@ -91,7 +91,7 @@
                     </x-td>
 
                     @empty
-                    <x-td>No data found</x-td>
+                    <x-td>No data found.</x-td>
                     @endforelse
                 </tr>
             </tbody>
@@ -177,7 +177,7 @@
                     </x-td>
 
                     @empty
-                    <x-td>No data found!</x-td>
+                    <x-td>No data found.</x-td>
                     @endforelse
                 </tr>
             </tbody>
