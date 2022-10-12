@@ -22,7 +22,7 @@
                 <div class="mt-3 col-span-6">
                     <label for="financing_company" class="block text-sm font-medium text-gray-700">Financing
                         Company</label>
-                    <input type="text" wire:model.lazy="financing_company" placeholder=""
+                    <input type="text" wire:model.lazy="financing_company" placeholder="BDO"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                     @error('financing_company')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

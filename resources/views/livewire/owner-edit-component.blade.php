@@ -75,7 +75,7 @@
                             <!-- Selected row actions, only show when rows are selected. -->
                             <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
                             </div>
-                            @include('admin.tables.enrollees')
+                            @include('tables.deed_of_sales')
                         </div>
                         <div class="mt-8 flex justify-end">
                             @can('ownerportal')
@@ -90,6 +90,17 @@
                                 class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New
                                 Unit</button>
                             @endif
+                        </div>
+            </section>
+
+            <section class="mb-10">
+                <h1 class="text-xl font-bold text-black">Spouse</h1>
+                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                            <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                            </div>
+                            @include('admin.tables.spouses')
                         </div>
             </section>
 
@@ -116,6 +127,8 @@
                             @include('admin.tables.representatives')
                         </div>
             </section>
+
+
 
         </div>
     </div>

@@ -20,16 +20,15 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('title')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-
-
                         </div>
+                        @error('title')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
                         @if ($title)
                         <p class="text-green-500 text-xs mt-2">File has been attached. <i
                                 class="fa-solid fa-circle-check"></i></p>
                         @endif
+                        @enderror
                     </div>
 
                     <div class="col-span-6">
@@ -50,17 +49,17 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('tax_declaration')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                          
 
 
                         </div>
+                        @error('tax_declaration')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
                         @if ($tax_declaration)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                class="fa-solid fa-circle-check"></i></p>
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
                         @endif
-
+                        @enderror
                     </div>
 
                     <div class="col-span-6">
@@ -81,14 +80,16 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('deed_of_sales')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           
                         </div>
+                        @error('deed_of_sales')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
                         @if ($deed_of_sales)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                class="fa-solid fa-circle-check"></i></p>
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
                         @endif
+                        @enderror
+                       
                     </div>
 
                     <div class="col-span-6">
@@ -109,14 +110,16 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('contract_to_sell')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                            
                         </div>
+                        @error('contract_to_sell')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
                         @if ($contract_to_sell)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                class="fa-solid fa-circle-check"></i></p>
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
                         @endif
+                        @enderror
+                       
                     </div>
 
                     <div class="col-span-6">
@@ -138,15 +141,17 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('certificate_of_membership')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           
 
                         </div>
+                        @error('certificate_of_membership')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
                         @if ($certificate_of_membership)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                class="fa-solid fa-circle-check"></i></p>
-                        @endif  
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        @endif
+                        @enderror
+                      
                     </div>
                     {{-- <div class="col-span-2">
                         <label for="turnover_at" class="block text-sm font-medium text-gray-700">Date Of
@@ -195,10 +200,10 @@
             </div>
         </div>
         <div class="flex justify-end mt-10">
-            <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+            {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                 href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/bank/create">
                 Skip
-            </a>
+            </a> --}}
             <button type="submit"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 

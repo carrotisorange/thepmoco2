@@ -17,6 +17,9 @@
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 EMAIL
             </th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+               
+            </th>
         </tr>
     </thead>
 
@@ -46,7 +49,17 @@
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $representative->email }}
             </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+               @if($representative->valid_id)
+                <a href="{{ asset('/storage/'.$representative->valid_id) }}" target="_blank"
+                    class="text-indigo-600 hover:text-indigo-900">View
+                     Valid ID</a>
+                @else
+                Valid ID is not available
+                @endif
+            </td>
 
+           
 
         </tr>
 
