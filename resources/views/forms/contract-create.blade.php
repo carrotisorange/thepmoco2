@@ -82,16 +82,17 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('contract')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                            @if ($contract)
-                            <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                    class="fa-solid fa-circle-check"></i></p>
-                            @endif
+
 
                         </div>
-
+                        @error('contract')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
+                        @if ($contract)
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        @endif
+                        @enderror
+                       
                     </div>
 
                     @if($sendContractToTenant)
