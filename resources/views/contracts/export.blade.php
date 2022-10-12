@@ -68,9 +68,9 @@
             {{ App\Models\Property::find(Session::get('property'))->city->city }},
             {{ App\Models\Property::find(Session::get('property'))->barangay }}
             <hr>
-            
+
         </h5>
-        
+
     </header>
 
     <footer>
@@ -138,7 +138,7 @@
                     Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
                 <td>{{ number_format($item->bill,2) }}</td>
                 @empty
-                <td>No data found!</td>
+                <td>No data found.</td>
             </tr>
             @endforelse
         </table>
@@ -162,7 +162,7 @@
                 <td>{{ $item->email }}</td>
                 <td>{{ $item->mobile_number }}</td>
                 @empty
-                <td>No data found!</td>
+                <td>No data found.</td>
             </tr>
             @endforelse
         </table>
@@ -187,7 +187,7 @@
                 <td>{{ $item->email }}</td>
                 <td>{{ $item->mobile_number }}</td>
                 @empty
-                <td>No data found!</td>
+                <td>No data found.</td>
             </tr>
 
             @endforelse

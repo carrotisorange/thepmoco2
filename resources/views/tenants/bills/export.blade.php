@@ -113,7 +113,7 @@
 
             <tr>
                 <th>Bill #</th>
-                <th>Date Posted</th>
+                <th>Bill Posted</th>
                 <th>Unit</th>
                 <th>Particular</th>
                 <th>Period Covered</th>

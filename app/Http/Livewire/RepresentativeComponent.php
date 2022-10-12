@@ -7,6 +7,7 @@ use App\Models\Owner;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use DB;
+use Session;
 
 class RepresentativeComponent extends Component
 {
@@ -31,7 +32,7 @@ class RepresentativeComponent extends Component
           'representative' => 'required',
           'email' => ['nullable', 'string', 'email', 'max:255', 'unique:guardians'],
           'mobile_number' => 'required',
-          'relationship_id' => ['nullable', Rule::exists('relationships', 'id')],
+          'relationship_id' => ['required', Rule::exists('relationships', 'id')],
         ];
       }
 
@@ -61,20 +62,16 @@ class RepresentativeComponent extends Component
         $validatedData = $this->validate();
 
        try{
+          DB::transaction(function () use ($validatedData){
+            $this->store_representative($validatedData);
+          });
 
-           DB::transaction(function () use ($validatedData){
-                  $this->store_representative($validatedData);
-            });
-
-        $this->representatives = $this->get_representatives();
-
-        session()->flash('success', 'Representative is successfully created.');
+          return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/deed_of_sale/create')->with('success','Representative is successfully created.');
 
        }catch(\Exception $e)
        {
           session()->flash('error');
-       }
-        
+       } 
       }
 
       public function store_representative($validatedData)

@@ -17,7 +17,7 @@
             <x-td>{{ $item->email }}</x-td>
             <x-td>{{ $item->mobile_number }}</x-td>
             @empty
-            <x-td>No data found!</x-td>
+            <x-td>No data found.</x-td>
         </tr>
         @endforelse
     </tbody>

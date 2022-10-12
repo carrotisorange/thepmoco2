@@ -68,7 +68,7 @@ class MoveoutContractComponent extends Component
             Notification::create([
               'type' => 'concern',
               'user_id' => auth()->user()->id,
-              'details' => 'been approved to moveout.',
+              'details' => 'has been approved to moveout.',
               'status' => 'approved',
               'role_id' => auth()->user()->role_id,
               'property_uuid' => Tenant::find($this->contract->tenant_uuid)->property->uuid

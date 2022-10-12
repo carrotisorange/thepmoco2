@@ -8,7 +8,9 @@ use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Session;
 use DB;
-
+use App\Models\Spouse;
+use App\Models\Relationship;
+use App\Models\Representative;
 use Livewire\Component;
 
 class OwnerComponent extends Component
@@ -16,11 +18,6 @@ class OwnerComponent extends Component
         use WithFileUploads;
 
         public $unit;
-
-        public function mount($unit)
-        {
-            $this->unit = $unit;
-        }
 
         public $owner;
         public $email;
@@ -34,12 +31,37 @@ class OwnerComponent extends Component
         public $city_id;
         public $barangay;
         public $photo_id;
+        public $employer;
+        public $occupation;
+        public $employer_address;
+
+        public $spouse_name;
+        public $spouse_email;
+        public $spouse_mobile_number;
+
+        public $representative_name;
+        public $representative_mobile_number;
+        public $representative_email;
+        public $representative_relationship_id;
+        public $representative_valid_id;
+
+        public $generateCredentials;
+
+        public $hasAuthorizedRepresentative;
+
+        public function mount($unit)
+        {
+                $this->unit = $unit;
+                $this->generateCredentials = false;
+                $this->country_id = '173';
+                $this->hasAuthorizedRepresentative = false;
+        }
 
         protected function rules()
         {
                 return [
                         'owner' => 'required',
-                        'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
+                        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners', 'unique:users'],
                         'mobile_number' => 'nullable',
                         'gender' => 'required',
                         'civil_status' => 'nullable',
@@ -47,7 +69,7 @@ class OwnerComponent extends Component
                         'province_id' => ['nullable', Rule::exists('provinces', 'id')],
                         'city_id' => ['nullable', Rule::exists('cities', 'id')],
                         'barangay' => ['nullable'],
-                        'photo_id' => 'nullable|image'
+                        'photo_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
                 ];
         }
 
@@ -60,76 +82,112 @@ class OwnerComponent extends Component
         {
                 sleep(1);
 
-                $validated_data = $this->validate();
+                $validatedData = $this->validate();
 
                 try{
+                        DB::transaction(function () use ($validatedData){
+                
+                                $owner_uuid = $this->store_owner($validatedData);
 
-                        DB::beginTransaction();
+                                if($this->civil_status == 'married')
+                                {
+                                        $this->store_spouse($this->spouse_name, $this->spouse_email, $this->spouse_mobile_number, $owner_uuid);
+                                }
 
-                        $owner_uuid = $this->store_owner($validated_data);
+                                 if($this->hasAuthorizedRepresentative)
+                                {
+                                        $representative_id = app('App\Http\Controllers\RepresentativeController')->store(
+                                                $this->representative_name, $this->representative_email, $this->representative_mobile_number, $this->representative_relationship_id, $owner_uuid
+                                        );
 
-                        $user_id = app('App\Http\Controllers\UserController')->store(
-                                $this->owner, 
-                                $this->email,
-                                app('App\Http\Controllers\UserController')->generate_temporary_username(),
-                                auth()->user()->external_id, 
-                                $this->email,
-                                7, //owner
-                                $this->mobile_number,
-                                "none", 
-                                auth()->user()->checkoutoption_id,
-                                auth()->user()->plan_id,
-                        );
+                                        if($this->representative_valid_id)
+                                        {
+                                                Representative::where('id', $representative_id)
+                                                ->update([
+                                                        'valid_id' => $this->representative_valid_id->store('representatives')
+                                                ]);
+                                        }
+                                }
+                        
+                                if($this->generateCredentials)
+                                {
+                                        $user_id = $this->store_user();
 
-                        //update owner_uuid of the newly created owner
-                        app('App\Http\Controllers\UserController')->update_user_owner_uuid($user_id, $owner_uuid);
+                                        app('App\Http\Controllers\UserController')->update_user_owner_uuid($user_id, $owner_uuid);
 
-                        DB::commit();
+                                }
 
-                        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/'.Str::random(8).'/create')->with('success', 'Owner is created successfully.');
+                        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Owner is created successfully.');
+        
+                        });
+    
                 }
                 catch(\Exception $e)
-                {
-                        DB::rollback();
-
+                {               
+                        ddd($e);
                         return back()->with('error');
                 }
         }
 
-        public function store_owner($validated_data)
+        public function store_user()
         {
-                $validated_data['uuid'] = Str::uuid();
+                return app('App\Http\Controllers\UserController')->store(
+                        $this->owner,
+                        $this->email,
+                        app('App\Http\Controllers\UserController')->generate_temporary_username(),
+                        auth()->user()->external_id,
+                        $this->email,
+                        7, //owner
+                        $this->mobile_number,
+                        "none",
+                        auth()->user()->checkoutoption_id,
+                        auth()->user()->plan_id,
+        );
+        }
 
-                $validated_data['property_uuid'] = Session::get('property');
+        public function store_spouse($name, $email, $mobile_number, $owner_uuid)
+        {
+                Spouse::create([
+                        'spouse' => $name,
+                        'email' => $email,
+                        'mobile_number' => $mobile_number,
+                        'owner_uuid' => $owner_uuid
+                ]);
+        }
+
+        public function store_owner($validatedData)
+        {
+                $validatedData['uuid'] = Str::uuid();
+
+                $validatedData['property_uuid'] = Session::get('property');
 
                 if($this->photo_id)
                 {
-                        $validated_data['photo_id'] = $this->photo_id->store('owners');
+                        $validatedData['photo_id'] = $this->photo_id->store('owners');
                 }
                 else
                 {
-                        $validated_data['photo_id'] = 'avatars/avatar.png';
+                        $validatedData['photo_id'] = 'avatars/avatar.png';
                 }
 
                 if(!$this->country_id)
                 {
-                $validated_data['country_id'] = '247';
+                        $validatedData['country_id'] = '247';
                 }
 
                  if(!$this->province_id)
                 {
-                 $validated_data['province_id'] = '4121';
+                        $validatedData['province_id'] = '4121';
                 }
 
                 if(!$this->city_id)
                 {
-                  $validated_data['city_id'] = '48315';
+                        $validatedData['city_id'] = '48315';
                 }
 
-                $owner_uuid = Owner::create($validated_data)->uuid;
+                $owner_uuid = Owner::create($validatedData)->uuid;
 
                 return $owner_uuid;
-
         }
 
         public function render()
@@ -138,6 +196,7 @@ class OwnerComponent extends Component
                         'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
                         'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
                         'countries' => app('App\Http\Controllers\CountryController')->index(),
+                        'relationships' => Relationship::all(),
                 ]);
         }
 }

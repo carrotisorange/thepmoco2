@@ -60,6 +60,11 @@ class Owner extends Model
         return $this->hasMany(DeedOfSale::class);
     }
 
+    public function spouses()
+    {
+        return $this->hasMany(Spouse::class);
+    }
+
     public function bills()
     {
         return $this->hasMany(Bill::class);

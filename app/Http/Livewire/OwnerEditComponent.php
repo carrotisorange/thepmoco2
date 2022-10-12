@@ -171,6 +171,7 @@ class OwnerEditComponent extends Component
            'countries' => app('App\Http\Controllers\CountryController')->index(),
             'representatives' => app('App\Http\Controllers\OwnerController')->show_owner_representatives($this->owner_details->uuid),
             'banks' => app('App\Http\Controllers\OwnerController')->show_owner_banks($this->owner_details->uuid),
+            'spouses' => app('App\Http\Controllers\OwnerController')->show_owner_spouses($this->owner_details->uuid),
             'deed_of_sales' => app('App\Http\Controllers\OwnerController')->show_owner_deed_of_sales($this->owner_details->uuid),
             'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid)
         ]);

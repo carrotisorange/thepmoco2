@@ -182,7 +182,7 @@
 
                                         @empty
                                         <x-td>
-                                            No data found!
+                                            No data found.
                                         </x-td>
                                     </tr>
                                     @endforelse

@@ -10,7 +10,7 @@
 
     <div class="p-6 bg-white border-b border-gray-200">
         Name : <b> {{ $user->name }}</b>,
-        Email : <b> {{ $user->email }}</b>, 
+        Email : <b> {{ $user->email }}</b>,
         Phone: <b> {{
             $user->mobile_number }}</b>
 
@@ -37,7 +37,7 @@
                         <x-td>{{ $activity->activity_type->activity_type }}</x-td>
                         <x-td>{{Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</x-td>
                         @empty
-                        <x-td>No data found.</x-td>
+                        <x-td>No data found..</x-td>
                     </tr>
                 </tbody>
                 @endforelse

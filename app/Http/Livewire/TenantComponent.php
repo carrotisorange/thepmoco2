@@ -18,12 +18,6 @@ class TenantComponent extends Component
 
     public $unit;
 
-    public function mount($unit)
-    {
-        $this->unit = $unit;
-        $this->generateCredentials = false;
-    }
-
     public $tenant;
     public $email;
     public $mobile_number;
@@ -47,6 +41,12 @@ class TenantComponent extends Component
 
     public $generateCredentials;
 
+    public function mount($unit)
+    {
+        $this->unit = $unit;
+        $this->generateCredentials = false;
+        $this->country_id = '173';
+    }
 
     protected function rules()
     {

@@ -108,6 +108,11 @@ class OwnerController extends Controller
         return Owner::find($owner_uuid)->enrollees()->paginate(5);
     }
 
+    public function show_owner_spouses($owner_uuid)
+    {
+        return Owner::find($owner_uuid)->spouses()->paginate(5);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

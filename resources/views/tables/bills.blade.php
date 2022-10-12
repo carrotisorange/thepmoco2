@@ -87,7 +87,7 @@
             <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
         </tr>
         @empty
-        <x-td>No data found.</x-td>
+        <x-td>No data found..</x-td>
         @endforelse
     </tbody>
 </table>

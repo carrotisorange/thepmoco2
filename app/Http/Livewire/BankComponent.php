@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 use App\Models\Bank;
-use App\Models\Owner;
+use App\Models\DeedOfSale;
 use Illuminate\Support\Str;
 use DB;
+use Session;
 
 use Livewire\Component;
 
@@ -18,41 +19,32 @@ class BankComponent extends Component
    public $bank_name;
    public $account_number;
 
+   public $is_the_property_on_loan;
+   public $financing_company;
+   public $turnover_at;
+   public $price;
+
 
    public function mount($unit, $owner)
    {
       $this->unit = $unit;
+      $this->is_the_property_on_loan = false;
       $this->account_name = $owner->owner;
-      $this->banks = $this->get_banks();
    }
 
-   public function get_banks()
-   {
-      return  Owner::find($this->owner->uuid)->banks;
-   }
-
-   public function removeBank($id)
-     {
-        Bank::destroy($id);
-
-        $this->banks = $this->get_banks();
-
-        return back()->with('success', 'Bank is successfully removed');
-     }
-
-   
    protected function rules()
    {
       return [
-      'account_name' => 'required',
-      'bank_name' => 'required',
-      'account_number' => 'required',
+         'is_the_property_on_loan' => 'nullable',
+         'financing_company' => 'nullable',
+         'price' => 'nullable',
+         'turnover_at' => 'required|date',
       ];
    }
 
    public function updated($propertyName)
    {
-   $this->validateOnly($propertyName);
+      $this->validateOnly($propertyName);
    }
 
    public function submitForm()
@@ -62,40 +54,43 @@ class BankComponent extends Component
       $validatedData = $this->validate();
 
       try{
+           DB::transaction(function () use ($validatedData){
 
-         DB::beginTransaction();
+               $this->update_deed_of_sale($validatedData);
 
-         $this->store_bank($validatedData);
+               $this->store_bank($this->bank_name, $this->account_name, $this->account_number, $this->owner->uuid);
+               
+           });
 
-         DB::commit();
-
-         $this->resetForm();
-
-         $this->banks = $this->get_banks();
-
-         return back()->with('success', 'Bank is successfully created.');
+         return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/occupancy/create')->with('success', 'Bank is successfully created.');
       }
       catch(\Exception $e)
       {
-         DB::rollback();
-
          return back()->with('error');
       }
 
    }
 
-   public function store_bank($validatedData)
+   public function update_deed_of_sale($validatedData)
    {
-      $validatedData['owner_uuid'] = $this->owner->uuid;
-      
-      Bank::create($validatedData);
+      DeedOfSale::where('unit_uuid', $this->unit->uuid)
+      ->where('owner_uuid', $this->owner->uuid)
+      ->update([
+         'is_the_property_on_loan' => $this->is_the_property_on_loan,
+         'financing_company' => $this->financing_company,
+         'price' => $this->price,
+         'turnover_at' => $this->turnover_at
+      ]);
    }
 
-   public function resetForm()
-   {
-      $this->account_name='';
-      $this->bank_name='';
-      $this->account_number='';
+   public function store_bank($bank_name, $account_name, $account_number, $owner_uuid)
+   {  
+      Bank::create([
+         'bank_name' => $bank_name,
+         'account_name' => $account_name, 
+         'account_number' => $account_number,
+         'owner_uuid' => $owner_uuid
+      ]);
    }
 
    public function render()

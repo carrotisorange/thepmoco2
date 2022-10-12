@@ -13,6 +13,7 @@ use App\Models\Status;
 use App\Models\Floor;
 use DB;
 use App\Models\Category;
+use App\Models\Owner;
 
 use App\Models\Plan;
 
@@ -32,6 +33,14 @@ class UnitController extends Controller
         Session::forget('owner_uuid');
 
         return view('units.index');
+    }
+
+    public function update_unit_occupancy_info(Property $property, Unit $unit, Owner $owner)
+    {
+        return view('occupancy.create',[
+            'unit' => $unit,
+            'owner' => $owner,
+        ]);
     }
 
     public function quick_add(){
