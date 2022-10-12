@@ -202,12 +202,7 @@
                             <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">
                                 Tenant
                             </div>
-                            @foreach ($units as $unit)
-                            <?php 
-                                    $tenants = App\Models\Unit::find($unit->unit->uuid)->contracts->count();    
-                            ;?>
-                            @endforeach
-                            <a href="#/" class="flex items-center justify-center text-indigo-600 text-lg">{{ $tenants }}</a>
+                            
 
                         </div>
 

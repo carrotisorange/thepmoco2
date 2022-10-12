@@ -151,7 +151,6 @@ class RenewContractComponent extends Component
             //$validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
          }
 
-       DB::commit();
 
        if(auth()->user()->role_id == '8'){
           return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
@@ -160,14 +159,7 @@ class RenewContractComponent extends Component
           is successfully renewed.');
        }
 
-
-       
-       } catch (\Throwable $e) {
-       DB::rollback();
-  
-      session()->flash('error');
-       }
-       }
+      }
     
     public function render()
     {

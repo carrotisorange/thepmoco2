@@ -22,7 +22,7 @@
                             <div class="flex justify-between">
                                 <h1 class="text-3xl font-bold text-gray-900">{{ $unit_details->unit }}</h1>
                                 <button
-                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                                     id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button">Add
                                     <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -51,13 +51,13 @@
                                                 New owner
                                             </a>
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <a href="#/"
                                                 class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                 data-modal-toggle="add-building-modal">
                                                 New building
                                             </a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                                 {{-- <a

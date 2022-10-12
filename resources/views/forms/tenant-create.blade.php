@@ -7,7 +7,7 @@
                     <div class="col-span-6 sm:col-span-2">
                         <label for="tenant" class="block text-sm font-medium text-gray-700">Full
                             Name</label>
-                        <input type="text" wire:model.lazy="tenant" autocomplete="tenant" value="{{ old('tenant') }}"
+                        <input type="text" wire:model.lazy="tenant" autocomplete="tenant" 
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('tenant')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -16,7 +16,7 @@
 
                     <div class="col-span-6 sm:col-span-2">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" wire:model.lazy="email" autocomplete="email" value="{{ old('email') }}"
+                        <input type="email" wire:model.lazy="email" autocomplete="email" 
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
