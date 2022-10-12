@@ -277,10 +277,11 @@
               </div>
             </nav>
 
+
           <!-- Main area -->
-        <main class="flex-1 pb-2 overflow-y-scroll">
-        <div class="fixed  h-full w-1/2 bg-gray-50" aria-hidden="true"></div>
-<div class="fixed right-0 h-full w-1/3 lg:bg-gradient-to-r from-purple-400 to-indigo-400 sm:bg-gray-50" aria-hidden="true"></div>
+        <main class="relative flex-1 pb-2 overflow-y-scroll">
+        <div class=" fixed w-1/2 bg-gray-50"  aria-hidden="true"></div>
+<div class=" fixed min-h-screen right-4 w-1/3 lg:bg-gradient-to-r from-purple-400 to-indigo-400 sm:bg-gray-50" aria-hidden="true"></div>
 <div class="relative flex min-h-screen flex-col">
         
 <!--
@@ -1348,15 +1349,6 @@
 
 <div class="mt-10 col-span-4">
                         
-   
-
-	<!-- 
-	NOTES
-	For the purpose of this demo, the heights of the bars are simply relying on native Tailwind CSS classes.
-	In a proper implementation, where it represents real data, these height should be dynamically generated based on the data that feeds them.
-	-->
-	
-	<!-- Component Start -->
     <div class="mr-20 items-center w-full h-full lg:p-12 bg-white rounded-lg shadow-md sm:p-10">
 
 
@@ -1798,7 +1790,8 @@
     </div>
                       
 
-
+                        </div>
+                        
            
       <!-- Footer -->
 <footer class="">
