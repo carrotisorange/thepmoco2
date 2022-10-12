@@ -5,16 +5,10 @@
 
     <!-- Main area -->
 
-    <main class="flex-1 pb-2 overflow-y-scroll">
+    <main class="flex-1 pb-2">
         <div class="">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="mt-2 grid grid-cols-1 gap-5 lg:grid-cols-3">
-
-
-
-                    <!-- FIRST COLUMN -->
-
-                    <!-- welcome back -->
 
                     <div class="bg-white overflow-hidden">
                         <div class="p-5">
