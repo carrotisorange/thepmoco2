@@ -199,6 +199,10 @@ Route::get('/owner-profile', function(){
     return view('newlayout.admin_owner.owner-profile');
 });
 
+Route::get('/new-owner', function(){
+    return view('newlayout.admin_owner.new-owner');
+});
+
 Route::get('/tenant-page', function(){
     return view('newlayout.admin_tenant.tenant-page');
 });
