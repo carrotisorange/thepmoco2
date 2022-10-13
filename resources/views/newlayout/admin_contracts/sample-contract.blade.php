@@ -309,421 +309,112 @@
   }
   ```
 -->
-<div class="mt-5 px-4 sm:px-6 lg:px-8">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-    
-      <h1 class="mb-5 text-3xl font-bold text-gray-700">Contracts</h1>
-      
-    
-   
-  </div>
-
-  
-
-  
-  <div class="sm:col-span-3">
-
-  <div class="sm:col-span-2">
-  <div class="flex justify-end py-2">
-<button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a href="sample-contract">Add new Contract</a></button>
-                  </div>
-<form>   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300 ">Filters</label>
-    <div class="relative w-64 mb-5">
-        <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
-        
-        </div>
-        <button type="button" class="px-2 py-3 h-9 rounded-lg border border-gray-300 dark:border-gray-600 bg-white w-full flex items-center justify-between text-sm text-gray-400" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="text-sm font-medium text-gray-900"> Filter by: Latest</span>
-                <span class="ml-6 flex items-center">
-                  <!--
-                    Expand/collapse icon, toggle classes based on question open state.
-
-                    Heroicon name: solid/chevron-down
-
-                    Open: "-rotate-180", Closed: "rotate-0"
-                  -->
-                  <svg class="rotate-0 h-5 w-5 transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-              </button>
-            </h3>
-
-            <div class="hidden mt-5 grid grid-cols-1 gap-y-6  sm:grid-cols-6">
-            <div class="sm:col-span-3">
-            <div class=" pl-2 bg-white" id="filter-section-0">
-              <div class="">
-
-              
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">January</label>
-               
-                  </div>
-
-     
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">February</label>
-                
-                  </div>
-
-                  
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">March</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">April</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">May</label>
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">June</label>
-                </div>
-
-               
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">July</label>
-                  
-                </div>
-
-                
-                 
-                
-                  </div>
-                  
-              </div>
-
-                  </div>
-
-                  <div class="sm:col-span-3">
-            <div class=" pl-2 bg-white" id="filter-section-0">
-              <div class="">
-              
-                
-              <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">August</label>
-                  
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">September</label>
-                  
-                </div>
-              
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-0" name="category[]" value="tees" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 text-sm text-gray-500">October</label>
-                 
-               
-                  </div>
-
-     
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-1" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 text-sm text-gray-500">November</label>
-                  
-                  </div>
-
-                  
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">December</label>
-                  
-                </div>
-
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="hats" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 text-sm text-gray-500">Last Year</label>
-                 
-                </div>
-
-                
-                <div class="flex justify-end">
-                  <button type="submit" class="ml-3 inline-flex justify-center  px-4 border border-transparent shadow-sm text-xs font-medium rounded-md text-white bg-gray-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Filters</button>
-                  </div>
-                 
-                  </div>
-                  
-              </div>
-             
-
-                  </div>
-
-
-              
-            </div>
-          </div>
-        
-      
-                  </div>
-
-
-    
-</form>
-
-    
-</div>
-
-
-
-
-
-
-
-    
-
-</div>
-
-<div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
-    <ul class="flex flex-wrap -mb-px">
-    <li class="mr-2">
-            <a href="contracts-page-list" class="inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500" aria-current="page">All Contracts</a>
-        </li>
-        <li class="mr-2">
-            <a href="renew-request" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Renewal Requests</a>
-        </li>
-        
-        <li class="mr-2">
-            <a href="moveout-request" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Moveout Requests</a>
-        </li>
-        
-        
-    </ul>
-</div>
-
-
-    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-    
-
-      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-      
-        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-          <!-- Selected row actions, only show when rows are selected. -->
-          <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-            
-          </div>
-
-          <table class="min-w-full table-fixed">
-            
-            <thead class="">
-              <tr>
-                <th scope="col" class="relative w-12 px-5 sm:w-8 sm:px-8">
-                  
-                </th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">#</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT</th> 
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT #</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">DURATION</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT/MONTH</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">STATUS</th>
-                <th scope="col" class="PX-3 py-3.5 text-left text-sm font-semibold text-gray-900">INTERACTION</th>
-
-                
-                </th>
-              </tr>
-            </thead>
-            
-
-            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-              <!-- Selected: "bg-gray-50" -->
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="renew-page">Renew</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="moveout-page">Moveout</a></td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="renew-page">Renew</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="moveout-page">Moveout</a></td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="renew-page">Renew</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="moveout-page">Moveout</a></td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                 
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="renew-page">Renew</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="moveout-page">Moveout</a></td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="renew-page">Renew</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="moveout-page">Moveout</a></td>
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <tr>
-                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                  <!-- Selected row marker, only show when row is selected. -->
-                  
-                  
-                </td>
-                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Basilio</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Unit #1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">September 1-October 1</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">16,000.00</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Active</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Website</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="renew-page">Renew</a></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-500"><a href="moveout-page">Moveout</a></td>
-                
-                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                  
-              </tr>
-
-              <!-- More people... -->
-            </tbody>
-
-            
-            
-          </table>
-          
-        </div>
-
-      
-
-    
-
-
+<div class="mt-5 px-4 sm:px-6 ">
+<div class="ml-5 flex items-center ">
+      <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
       </div>
+  <div class="flex justify-center items-center sm:flex sm:items-center">
+  
+
+<!-- component -->
+<div class="-mt-5">
+        <div class="max-w-full mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <form method="POST" action="action.php">
+                        <div class="mb-4">
+                            <label class="text-xl text-gray-600">Title <span class="text-red-500">*</span></label></br>
+                            <input type="text" class="border-2 border-gray-300 p-2 w-full" name="title" id="title" value="" required>
+                        </div>
+
+                        
+
+                        <div class="mb-8">
+                            <label class="text-xl text-gray-600">Content <span class="text-red-500">*</span></label></br>
+                            <textarea name="content" class="border-2 border-gray-500" placeholder="">
+                            LEASE CONTRACT
+
+
+KNOW ALL MEN BY THESE PRESENTS:
+
+This CONTRACT OF LEASE is made and executed at the City of _____, this day of _______________, 20____, by and between:
+
+(NAME OF LESSOR), of legal age, single/married to (Name of spouse if any), Filipino, and with residence and postal address at (Address), hereinafter referred to as the LESSOR.
+-AND-
+
+(NAME OF LESSEE), Filipino and with residence and postal address at (Address), hereinafter referred to as the LESSEE.
+
+WITNESSETH; That
+
+WHEREAS, the LESSOR is the owner of THE LEASED PREMISES, a residential property situated at (Address of property to be leased);
+
+WHEREAS, the LESSOR agrees to lease-out the property to the LESSEE and the LESSEE is willing to lease the same;
+
+NOW THEREFORE, for and in consideration of the foregoing premises, the LESSOR leases unto the LESSEE and the LESSEE hereby accepts from the LESSOR the LEASED premises, subject to the following: 
+
+TERMS AND CONDITIONS:
+
+1. PURPOSES: That premises hereby leased shall be used exclusively by the LESSEE for residential purposes only and shall not be diverted to other uses. It is hereby expressly agreed that if at any time the premises are used for other purposes, the LESSOR shall have the right to rescind this contract without prejudice to its other rights under the law.
+
+2. TERM: This term of lease is for ONE (1) YEAR. from (Date) to (Date) inclusive. Upon its expiration, this lease may be renewed under such terms and conditions as my be mutually agreed upon by both parties, written notice of intention to renew the lease shall be served to the LESSOR not later than seven (7) days prior to the expiry date of the period herein agreed upon.
+
+3. RENTAL RATE: The monthly rental rate for the leased premises shall be in PESOS: AMOUNT IN WORDS (P 00,000.00), Philippine Currency. All rental payments shall be payable to the LESSOR.
+
+4. DEPOSIT: That the LESSEE shall deposit to the LESSOR upon signing of this contract and prior to move-in an amount equivalent to the rent for THREE (3) MONTHS or the sum of PESOS: AMOUNT IN WORDS (P 00,000.00), Philippine Currency, wherein the two (2) months deposit shall be applied as rent for the 11th and 12th months and the remaining one (1) month deposit shall answer partially for damages and any other obligations, for utilities such as Water, Electricity, CATV, Telephone, Association Dues or resulting from violation(s) of any of the provision of this contract.
+
+5. DEFAULT PAYMENT: In case of default by the LESSEE in the payment of the rent, such as when the checks are dishonored, the LESSOR at its option may terminate this contract and eject the LESSEE. The LESSOR has the right to padlock the premises when the LESSEE is in default of payment for One (1) month and may forfeit whatever rental deposit or advances have been given by the LESSEE.
+
+6. SUB-LEASE: The LESSEE shall not directly or indirectly sublet, allow or permit the leased premises to be occupied in whole or in part by any person, form or corporation, neither shall the LESSEE assign its rights hereunder to any other person or entity and no right of interest thereto or therein shall be conferred on or vested in anyone by the LESSEE without the LESSOR'S written approval.
+
+7. PUBLIC UTILITIES: The LESSEE shall pay for its telephone, electric, cable TV, water, Internet, association dues and other public services and utilities during the duration of the lease.
+
+8. FORCE MAJEURE: If whole or any part of the leased premises shall be destroyed or damaged by fire, flood, lightning, typhoon, earthquake, storm, riot or any other unforeseen disabling cause of acts of God, as to render the leased premises during the term substantially unfit for use and occupation of the LESSEE, then this lease contract may be terminated without compensation by the LESSOR or by the LESSEE by notice in writing to the other.
+
+9. LESSOR'S RIGHT OF ENTRY: The LESSOR or its authorized agent shall after giving due notice to the LESSEE shall have the right to enter the premises in the presence of the LESSEE or its representative at any reasonable hour to examine the same or make repairs therein or for the operation and maintenance of the building or to exhibit the leased premises to prospective LESSEE, or for any other lawful purposes which it may deem necessary.
+
+10. EXPIRATION OF LEASE: At the expiration of the term of this lease or cancellation thereof, as herein provided, the LESSEE will promptly deliver to the LESSOR the leased premises with all corresponding keys and in as good and tenable condition as the same is now, ordinary wear and tear expected devoid of all occupants, movable furniture, articles and effects of any kind. Non-compliance with the terms of this clause by the LESSEE will give the LESSOR the right, at the latter's option, to refuse to accept the delivery of the premises and compel the LESSEE to pay rent therefrom at the same rate plus Twenty Five (25) % thereof as penalty until the LESSEE shall have complied with the terms hereof. The same penalty shall be imposed in case the LESSEE fails to leave the premises after the expiration of this Contract of Lease or termination for any reason whatsoever.
+
+11. JUDICIAL RELIEF: Should any one of the parties herein be compelled to seek judicial relief against the other, the losing party shall pay an amount of One Hundred (100) % of the amount clamed in the complaint as attorney's fees which shall in no case be less than P50,000.00 pesos in addition to other cost and damages which the said party may be entitled to under the law.
+
+12. This CONTRACT OF LEASE shall be valid and binding between the parties, their successors-in-interest and assigns.
+
+IN WITNESS WHEREOF, parties herein affixed their signatures on the date and place above written.
+
+_______________________           ____________________
+LESSOR                                           LESSEE
+
+Signed in the presence of:
+  
+_______________________            _____________________
+ 
+ACKNOWLEDGEMENT
+                            </textarea>
+                        </div>
+
+                        <div class="flex p-1">
+                            <select class="border-2 border-gray-300 border-r p-2" name="action">
+                                <option>Save and Create</option>
+                                <option>Save Draft</option>
+                            </select>
+                            <button role="submit" class="p-3 bg-purple-500 text-white hover:bg-blue-400" required>Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace( 'content' );
+    </script>
+
+    
     </div>
   </div>
 
- <div class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-  <div class="flex-1 flex justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
-    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </a>
-  </div>
-  <div class="mt-5 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-    <div>
-      <p class="text-sm text-gray-700">
-        Showing
-        <span class="font-medium">1</span>
-        of
-        <span class="font-medium">5</span>
-        pages
-      </p>
-    </div>
-    <div>
-      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Previous</span>
-          <!-- Heroicon name: solid/chevron-left -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
-        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> ... </span>
-        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
-        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-          <span class="sr-only">Next</span>
-          <!-- Heroicon name: solid/chevron-right -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </div>
-</div>
-</div>
+ 
 
 
 
