@@ -18,7 +18,7 @@ use Session;
 use Carbon\Carbon;
 use App\Models\Notification;
 
-class TenantPortalController extends Controller
+class PortalTenantController extends Controller
 {
     public function index($role_id, User $user)
     {
@@ -125,50 +125,15 @@ class TenantPortalController extends Controller
     public function create_concerns($role_id, User $user)
     {
         return view('portal.tenants.create-concern',[
-            'categories' => ConcernCategory::all(),
-            'units' => Tenant::findOrFail($user->tenant_uuid)->contracts
+          'user' => $user
         ]);
     }
 
-    public function store_concern(Request $request, $role_id, User $user)
+    public function success_concerns($role_id, User $user)
     {
-
-        $attributes = request()->validate([
-            'initial_assessment' => 'required',
-            'category_id' => ['required', Rule::exists('concern_categories', 'id')],
-            'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
-            'concern' => 'required',
-            'image' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
+        return view('portal.tenants.success-concern',[
+          'user' => $user
         ]);
-
-        $attributes['tenant_uuid'] = $user->tenant_uuid;
-        $attributes['reference_no'] = auth()->user()->id.'_'.Str::random(8);
-        $attributes['property_uuid'] = Unit::findOrFail($request->unit_uuid)->property_uuid;
-        $attributes['status'] = 'pending';
-
-        $concern = Concern::create($attributes);
-
-        $concern_id = $concern->id;
-
-         if(!$request->image == null)
-         {
-            Concern::where('id', $concern_id)
-            ->update([
-                'image' => $request->image->store('concerns')
-            ]);
-
-         }
-
-          Notification::create([
-          'type' => 'concern',
-          'user_id' => $user->id,
-          'details' => 'reported a concern.',
-          'status' => 'pending',
-          'role_id' => $role_id,
-          'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
-          ]);
-
-        return redirect('/'.$role_id.'/tenant/'. auth()->user()->username .'/concerns/'.$concern->id)->with('success','Concern is reported successfully.');
     }
 
     public function download_concerns($role_id, User $user, Concern $concern)

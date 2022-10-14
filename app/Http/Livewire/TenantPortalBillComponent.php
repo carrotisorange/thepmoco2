@@ -101,7 +101,7 @@ class TenantPortalBillComponent extends Component
 
         $paid_bills = $this->paid_bills($this->selectedBills);
 
-        $bills = app('App\Http\Controllers\TenantPortalController')->get_bills($this->tenant->uuid);
+        $bills = app('App\Http\Controllers\PortalTenantController')->get_bills($this->tenant->uuid);
 
         return view('livewire.tenant-portal-bill-component',[
            'bills' => Bill::orderBy('bill_no', 'desc')

@@ -66,8 +66,9 @@
                         </div>
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <h1 class="text-xl py-5 tracking-tight font-bold leading-tight text-gray-900">Property
-                                Management Portal</h1>
+                            <h1 class="text-xl py-5 tracking-tight font-bold leading-tight text-gray-900">
+                                {{ Session::get('property_name') }}
+                            </h1>
 
                         </div>
                         {{-- {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

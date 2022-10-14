@@ -1,13 +1,25 @@
 <x-new-layout>
     @section('title','Notifications | '. Session::get('property_name'))
     <div class="mt-8">
-        <div class="max-full mx-auto sm:px-6">
+        <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ol role="list" class="flex items-center space-x-4">
+                <li>
+                    <div class="flex items-center">
+                        <a href="{{ url()->previous() }}">
+                            <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
+                        </a>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <div class="mt-8 max-full mx-auto sm:px-6">
             <div>
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
                         <h1 class="text-3xl font-bold text-gray-700">Notifications</h1>
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                      
 
                         {{-- <button type="button"
                             onclick="window.location.href='/property/{{ Session::get('property') }}/payment/requests'"
@@ -35,27 +47,36 @@
                                     <!-- Selected: "bg-gray-50" -->
                                     <tr>
                                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                                            <div class="flex items-center">
-                                             
-                                                <div class="ml-4">
-                                                    <div class="font-medium text-gray-900">{{ $item->user->name }}</div>
-                                                    {{-- <div class="text-gray-500">lindsay.walton@example.com</div> --}}
-                                                </div>
+
+                                            <div class="font-sm text-gray-900">
+                                                @if($item->status === 'approved')
+                                                <span
+                                                    class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"><i
+                                                        class="fa-solid fa-circle-check"></i></span>{{ $item->user->name
+                                                }} {{ $item->details }}
+                                                @else
+                                                <span
+                                                    class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800"><i
+                                                        class="fa-solid fa-clock"></i></span>{{ $item->user->name
+                                                }} {{ $item->details }}
+                                                @endif
+
                                             </div>
+
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            <div class="text-gray-900">{{ $item->details }}</div>
-                                        
+                                            <div class="text-gray-900"></div>
+
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             <span
-                                                class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">{{ $item->status }}</span>
+                                                class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"></span>
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->role->role }}</td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                         <td
                                             class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             <a href="#" class="text-indigo-600 hover:text-indigo-900">{{
-                                            Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</a>
+                                                Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</a>
                                         </td>
                                     </tr>
                                     @empty
