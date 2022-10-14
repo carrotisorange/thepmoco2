@@ -9,6 +9,10 @@ class Concern extends Model
 {
     use HasFactory;
 
+    protected $attributes = [
+        'status' => 'pending',
+    ];
+
     public function property()
     {
     return $this->belongsTo(Property::class);

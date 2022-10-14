@@ -57,7 +57,7 @@ class UserComponent extends Component
          DB::transaction(function (){
             //store a new user
             $user_id =  app('App\Http\Controllers\UserController')->store(
-            $this->name, 
+            'unnamed', 
             $this->email,
             Str::random(8),
             auth()->user()->id, 

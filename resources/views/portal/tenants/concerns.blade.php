@@ -70,7 +70,7 @@
                                         {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y')}}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $item->initial_assessment }}
+                                        {{ $item->subject }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $item->unit->unit }}

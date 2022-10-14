@@ -1,5 +1,4 @@
 <div>
-
     <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="post"
         action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bill/store">
         @csrf

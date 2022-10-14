@@ -238,10 +238,10 @@
                             <div class="space-y-1 text-center">
 
                                 <div class="flex text-sm text-gray-600">
-                                    <label for="file-upload"
+                                    <label for="photo_id"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                         <span>Upload a file</span>
-                                        <input id="file-upload" name="image" type="file" class="sr-only"
+                                        <input id="photo_id" name="image" type="file" class="sr-only"
                                             wire:model="photo_id">
                                     </label>
                                    
@@ -249,15 +249,17 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                            @error('photo_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                            @if ($photo_id)
-                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
-                            @endif
+                          
+                         
 
                         </div>
-                       
+                       @error('photo_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
+                        @if ($photo_id)
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        @endif
+                        @enderror
                     </div>
 
                     @if($email)

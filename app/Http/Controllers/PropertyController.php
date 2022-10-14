@@ -461,7 +461,7 @@ class PropertyController extends Controller
             'movingout_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, '', '', '', Carbon::now()->month),
 
             'concerns' =>app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, '', Carbon::now()->month),
-            'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, 'pending', Carbon::now()->month),
+            'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, 'pending', ''),
             'closed_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, 'closed', Carbon::now()->month),
 
 

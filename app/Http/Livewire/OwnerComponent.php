@@ -61,7 +61,7 @@ class OwnerComponent extends Component
         {
                 return [
                         'owner' => 'required',
-                        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners', 'unique:users'],
+                        'email' => ['required', 'string', 'email', 'max:255', 'unique:owners', 'unique:users'],
                         'mobile_number' => 'nullable',
                         'gender' => 'required',
                         'civil_status' => 'nullable',
