@@ -34,7 +34,7 @@
                                 <div id="unitCreateDropdown"
                                     class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                                     <ul class="py-1" aria-labelledby="dropdownButton">
-
+                                        @if($unit_details->is_the_unit_for_rent_to_tenant)
                                         <li>
                                             <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create"
                                                 class=" block py-2 px-4 text-sm
@@ -43,6 +43,8 @@
                                                 New tenant
                                             </a>
                                         </li>
+                                        @endif
+
                                         <li>
                                             <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create"
                                                 class=" block py-2 px-4 text-sm
@@ -82,8 +84,9 @@
                                     class="lg:col-span-2 md:row-span-2 rounded-md">
 
                                 <div class="flex items-center justify-center ml-5">
-                                    {{-- <a href="#"  class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload
-                                    
+                                    {{-- <a href="#"
+                                        class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload
+
                                     </a> --}}
                                 </div>
 

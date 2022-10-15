@@ -19,20 +19,21 @@
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                     <span>Upload a contract</span>
                                     <input id="file-upload" type="file" wire:model="contract" class="sr-only">
-                                   
+                                   <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 </label>
 
                             </div>
-                            <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                            @error('contract')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                            @if($contract)
-                            <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                    class="fa-solid fa-circle-check"></i></p>
-                            @endif
+                           
                         </div>
+                      
                     </div>
+                 
+                    @error('contract')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                    @if($contract)
+                    <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                    @endif
                 </div>
             </div>
             <div class="px-4 py-3 text-right sm:px-6">

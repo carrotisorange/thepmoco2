@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use DB;
+use App\Models\Unit;
 use Session;
 
 use Livewire\Component;
@@ -58,8 +59,9 @@ class DeedOfSaleComponent extends Component
 
             $this->store_deed_of_sale($validated_data);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, 7);
+            $this->update_unit();
 
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, 7);
 
             // if(Session::get('owner_uuid')){
             //     return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
@@ -69,9 +71,16 @@ class DeedOfSaleComponent extends Component
             
         }catch(\Exception $e)
         {
-           ddd($e);
             return back()->with('error','Cannot perform your action.');
         }
+    }
+
+    public function update_unit()
+    {
+        Unit::where('unit', $this->unit->uuid)
+        ->update([
+            'is_the_unit_for_rent_to_tenant' => $this->is_the_unit_for_rent_to_tenant
+        ]);
     }
 
     public function store_deed_of_sale($validated_data)

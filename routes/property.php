@@ -107,6 +107,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::prefix('owner')->group(function(){
                 Route::get('/', [OwnerController::class, 'index']);
                 Route::get('{random_str}/create', [OwnerController::class, 'create'])->name('unit');
+                Route::get('{owner}/delete', [OwnerController::class, 'destroy']);
                 Route::post('{random_str}/store', [OwnerController::class, 'store']);
 
 

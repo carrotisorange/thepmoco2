@@ -67,7 +67,7 @@
                     class="text-indigo-600 hover:text-indigo-900">View
                     Certificate of membership</a>
                 @else
-                Contract to sell is not available
+                Certificate of membership is not available
                 @endif
             </x-td>
             @empty
