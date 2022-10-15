@@ -61,7 +61,7 @@ class OwnerComponent extends Component
         {
                 return [
                         'owner' => 'required',
-                        'email' => ['required', 'string', 'email', 'max:255', 'unique:owners', 'unique:users'],
+                        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners', 'unique:users'],
                         'mobile_number' => 'nullable',
                         'gender' => 'required',
                         'civil_status' => 'nullable',
@@ -70,6 +70,17 @@ class OwnerComponent extends Component
                         'city_id' => ['nullable', Rule::exists('cities', 'id')],
                         'barangay' => ['nullable'],
                         'photo_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+
+                        'spouse_name' => [ 'required_if:civil_status,married'],
+                        'spouse_email' => ['nullable', 'string', 'email', 'max:255'],
+                        'spouse_mobile_number' => ['required_if:civil_status,married'],
+
+                        'representative_relationship_id' => ['required_if:hasAuthorizedRepresentative,true'],
+                        'representative_name' => ['required_if:hasAuthorizedRepresentative,true'],
+                        'representative_email' => ['nullable', 'string', 'email', 'max:255'],
+                        'representative_mobile_number' => ['required_if:hasAuthorizedRepresentative,true'],
+                        'representative_valid_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+
                 ];
         }
 
@@ -85,17 +96,21 @@ class OwnerComponent extends Component
                 $validatedData = $this->validate();
 
                 try{
+                       
                         DB::transaction(function () use ($validatedData){
-                
+                                
+                                //method to create a new owner
                                 $owner_uuid = $this->store_owner($validatedData);
 
                                 if($this->civil_status == 'married')
                                 {
+                                        //method to create a new spouse
                                         $this->store_spouse($this->spouse_name, $this->spouse_email, $this->spouse_mobile_number, $owner_uuid);
                                 }
 
                                  if($this->hasAuthorizedRepresentative)
                                 {
+                                        //method to create a new representative
                                         $representative_id = app('App\Http\Controllers\RepresentativeController')->store(
                                                 $this->representative_name, $this->representative_email, $this->representative_mobile_number, $this->representative_relationship_id, $owner_uuid
                                         );
@@ -111,11 +126,15 @@ class OwnerComponent extends Component
                         
                                 if($this->generateCredentials)
                                 {
+                                        //method to create a new user
                                         $user_id = $this->store_user();
-
+                                        
                                         app('App\Http\Controllers\UserController')->update_user_owner_uuid($user_id, $owner_uuid);
 
                                 }
+
+                                //method to create a new point
+                                app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id,4, 1);
 
                         return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Owner is created successfully.');
         
@@ -123,8 +142,7 @@ class OwnerComponent extends Component
     
                 }
                 catch(\Exception $e)
-                {               
-                        ddd($e);
+                {                    
                         return back()->with('error');
                 }
         }
@@ -157,35 +175,55 @@ class OwnerComponent extends Component
 
         public function store_owner($validatedData)
         {
-                $validatedData['uuid'] = Str::uuid();
+                //$validatedData['uuid'] = Str::uuid();
 
-                $validatedData['property_uuid'] = Session::get('property');
+                //$validatedData['property_uuid'] = Session::get('property');
 
                 if($this->photo_id)
                 {
-                        $validatedData['photo_id'] = $this->photo_id->store('owners');
+                        // $validatedData['photo_id'] = $this->photo_id->store('owners');
+                        $this->photo_id = $this->photo_id->store('owners');
                 }
                 else
                 {
-                        $validatedData['photo_id'] = 'avatars/avatar.png';
+                        //$validatedData['photo_id'] = 'avatars/avatar.png';
+                         $this->photo_id = 'avatars/avatar.png';
                 }
 
                 if(!$this->country_id)
                 {
-                        $validatedData['country_id'] = '247';
+                        //$validatedData['country_id'] = '247';
+                        $this->country_id = '247';
                 }
 
                  if(!$this->province_id)
                 {
-                        $validatedData['province_id'] = '4121';
+                        //$validatedData['province_id'] = '4121';
+                        $this->province_id = '4121';
                 }
 
                 if(!$this->city_id)
                 {
-                        $validatedData['city_id'] = '48315';
+                        $this->city_id = '48315';
+                        //$validatedData['city_id'] = '48315';
                 }
 
-                $owner_uuid = Owner::create($validatedData)->uuid;
+                //$owner_uuid = Owner::create($validatedData)->uuid;
+
+                $owner_uuid = Owner::create([
+                        'uuid' => Str::uuid(),
+                        'property_uuid' => Session::get('property'),
+                        'owner' => $this->owner,
+                        'email' => $this->email,
+                        'mobile_number' => $this->mobile_number,
+                        'gender' => $this->gender,
+                        'civil_status' => $this->civil_status,
+                        'country_id' => $this->country_id,
+                        'province_id' => $this->province_id,
+                        'city_id' => $this->city_id,
+                        'barangay' => $this->barangay,
+                        'photo_id' => $this->photo_id,
+                ])->uuid;
 
                 return $owner_uuid;
         }

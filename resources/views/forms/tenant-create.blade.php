@@ -280,15 +280,21 @@
                 </div>
             </div>
             <div class="flex justify-end mt-2">
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                     target="_blank" href="create/export">
-                    Download Tenant Information Sheet
+                    Download Sample Contract
+                </a> --}}
+              
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                    target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
+                    class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a>
+            
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline" target="_blank"
+                    href="/property/{{ Session::get('property') }}/unit">
+                    Cancel
                 </a>
 
-                <button type="button" onclick="window.location.href='{{ url()->previous() }}'"
-                    class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Cancel
-                </button>
+             
                 <button type="submit" 
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 

@@ -142,8 +142,11 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Owner $owner)
+    public function destroy(Property $property, Unit $unit, Owner $owner)
     {
-        //
+        Owner::where('uuid', $owner->uuid)->delete();
+
+        return redirect('/property/'.$property->uuid.'/unit/'.$unit->uuid.'/owner/'.Str::random(8).'/create');
+
     }
 }

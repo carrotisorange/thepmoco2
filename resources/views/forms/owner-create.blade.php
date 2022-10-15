@@ -7,7 +7,7 @@
                     <div class="col-span-6 sm:col-span-2">
                         <label for="owner" class="block text-sm font-medium text-gray-700">
                             Full Name</label>
-                        <input type="text" wire:model.lazy="owner" autocomplete="owner" 
+                        <input type="text" wire:model.lazy="owner" autocomplete="owner"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('owner')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -16,7 +16,7 @@
 
                     <div class="col-span-6 sm:col-span-2">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" wire:model.lazy="email" autocomplete="email" 
+                        <input type="email" wire:model.lazy="email" autocomplete="email"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -90,6 +90,70 @@
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                     </div>
 
+                    <div class="col-span-6">
+
+                        <label class="block text-sm font-medium text-gray-700"> Attach a valid ID of the owner
+                            (i.e., Driver's license, UMID/SSS, Passport)
+                        </label>
+                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="photo_id"
+                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input id="photo_id" name="image" type="file" class="sr-only"
+                                            wire:model="photo_id">
+                                    </label>
+
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+
+                            </div>
+
+
+
+                        </div>
+                        @error('photo_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
+                        @if ($photo_id)
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                                class="fa-solid fa-circle-check"></i></p>
+                        @endif
+                        @enderror
+
+                    </div>
+
+                    <div class="col-span-2">
+                        <label for="occupation" class="block text-sm font-medium text-gray-700">Occupation</label>
+                        <input type="text" wire:model.lazy="occupation" autocomplete="occupation"
+                            value="{{ old('occupation') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('occupation')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-2">
+                        <label for="employer" class="block text-sm font-medium text-gray-700">Employer</label>
+                        <input type="text" wire:model.lazy="employer" autocomplete="employer"
+                            value="{{ old('employer') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('employer')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-2">
+                        <label for="employer_address" class="block text-sm font-medium text-gray-700">Employer
+                            Address</label>
+                        <input type="text" wire:model.lazy="employer_address" autocomplete="employer_address"
+                            value="{{ old('employer_address') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('employer_address')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
 
                     <div class="col-span-2">
                         <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
@@ -140,8 +204,12 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
-                    
+
                     @if($civil_status == 'married')
+                    <div class="col-span-6">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Spouse Information</h3>
+
+                    </div>
                     <div class="col-span-2">
                         <label for="spouse_name" class="block text-sm font-medium text-gray-700">Spouse's name</label>
                         <input type="text" wire:model.lazy="spouse_name" autocomplete="spouse_name"
@@ -152,14 +220,15 @@
                     </div>
                     <div class="col-span-2">
                         <label for="spouse_email" class="block text-sm font-medium text-gray-700">Spouse's Email</label>
-                        <input type="email" wire:model.lazy="spouse_email" autocomplete="spouse_email" 
+                        <input type="email" wire:model.lazy="spouse_email" autocomplete="spouse_email"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('spouse_email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="col-span-2">
-                        <label for="spouse_mobile_number" class="block text-sm font-medium text-gray-700">Spouse's Mobile Number</label>
+                        <label for="spouse_mobile_number" class="block text-sm font-medium text-gray-700">Spouse's
+                            Mobile Number</label>
                         <input type="text" wire:model.lazy="spouse_mobile_number" autocomplete="spouse_mobile_number"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('spouse_mobile_number')
@@ -167,60 +236,36 @@
                         @enderror
                     </div>
                     @endif
-                
-                    <div class="col-span-2">
-                        <label for="occupation" class="block text-sm font-medium text-gray-700">Occupation</label>
-                        <input type="text" wire:model.lazy="occupation" autocomplete="occupation"
-                            value="{{ old('occupation') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('occupation')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="col-span-2">
-                        <label for="employer" class="block text-sm font-medium text-gray-700">Employer</label>
-                        <input type="text" wire:model.lazy="employer" autocomplete="employer"
-                            value="{{ old('employer') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('employer')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="col-span-2">
-                        <label for="employer_address" class="block text-sm font-medium text-gray-700">Employer
-                            Address</label>
-                        <input type="text" wire:model.lazy="employer_address" autocomplete="employer_address"
-                            value="{{ old('employer_address') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('employer_address')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
 
-                 
+
                     <div class="mt-3 col-span-4">
-                       
+
                         <div class="form-check">
-                    
+
                             <input wire:model="hasAuthorizedRepresentative"
                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                type="checkbox" value="{{ old('hasAuthorizedRepresentative'), $hasAuthorizedRepresentative }}" id="flexCheckChecked">
+                                type="checkbox"
+                                value="{{ old('hasAuthorizedRepresentative'), $hasAuthorizedRepresentative }}"
+                                id="flexCheckChecked">
                             <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
                                 Is the owner has an authorized representative?
                             </label>
-                           
+
                         </div>
-                        
+
                     </div>
 
                     @if($hasAuthorizedRepresentative)
+                  
                     <div class="col-span-6">
-                        <label for="last-name" class="block text-sm font-medium text-gray-700">How is the representative related to the unit                       owner</label>
+                        <label for="last-name" class="block text-sm font-medium text-gray-700">How is the representative
+                            related to the unit owner</label>
                         <select wire:model.lazy="representative_relationship_id" autocomplete="relationship_id"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <option value="">Select one</option>
                             @foreach ($relationships as $relationship)
-                            <option value="{{ $relationship->id }}" {{ old('representative_relationship_id')==$relationship->id?
+                            <option value="{{ $relationship->id }}" {{
+                                old('representative_relationship_id')==$relationship->id?
                                 'selected': 'Select one'
                                 }}>{{ $relationship->relationship }}</option>
                             @endforeach
@@ -229,9 +274,15 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
+
                     @if($representative_relationship_id)
+                    <div class="col-span-6">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Authorized Representative Information</h3>
+                    
+                    </div>
                     <div class="col-span-2">
-                        <label for="representative_name" class="block text-sm font-medium text-gray-700">Representative's name</label>
+                        <label for="representative_name"
+                            class="block text-sm font-medium text-gray-700">Representative's name</label>
                         <input type="text" wire:model.lazy="representative_name" autocomplete="representative_name"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('representative_name')
@@ -239,7 +290,8 @@
                         @enderror
                     </div>
                     <div class="col-span-2">
-                        <label for="representative_email" class="block text-sm font-medium text-gray-700">Representative's Email</label>
+                        <label for="representative_email"
+                            class="block text-sm font-medium text-gray-700">Representative's Email</label>
                         <input type="email" wire:model.lazy="representative_email" autocomplete="representative_email"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('representative_email')
@@ -247,8 +299,10 @@
                         @enderror
                     </div>
                     <div class="col-span-2">
-                        <label for="representative_mobile_number" class="block text-sm font-medium text-gray-700">Representative's Mobile Number</label>
-                        <input type="text" wire:model.lazy="representative_mobile_number" autocomplete="representative_mobile_number"
+                        <label for="representative_mobile_number"
+                            class="block text-sm font-medium text-gray-700">Representative's Mobile Number</label>
+                        <input type="text" wire:model.lazy="representative_mobile_number"
+                            autocomplete="representative_mobile_number"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('representative_mobile_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -257,7 +311,7 @@
 
                     <div class="col-span-6">
 
-                        <label class="block text-sm font-medium text-gray-700"> Attach a valid ID of the representative 
+                        <label class="block text-sm font-medium text-gray-700"> Attach a valid ID of the representative
                             (i.e., Driver's license, UMID/SSS, Passport)
                         </label>
                         <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
@@ -275,75 +329,41 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
 
                             </div>
-                           
+
                         </div>
                         @error('representative_valid_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @else
                         @if ($representative_valid_id)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                                class="fa-solid fa-circle-check"></i></p>
                         @endif
                         @enderror
-                       
+
 
                     </div>
                     @endif
 
                     @endif
-                
 
-                 
-                    <div class="col-span-6">
-
-                        <label class="block text-sm font-medium text-gray-700"> Attach a valid ID of the owner 
-                            (i.e., Driver's license, UMID/SSS, Passport)
-                        </label>
-                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
-                            <div class="space-y-1 text-center">
-
-                                <div class="flex text-sm text-gray-600">
-                                    <label for="photo_id"
-                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Upload a file</span>
-                                        <input id="photo_id" name="image" type="file" class="sr-only"
-                                            wire:model="photo_id">
-                                    </label>
-
-                                </div>
-                                <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-
-                            </div>
-                           
-                            
-
-                        </div>
-                        @error('photo_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @else
-                        @if ($photo_id)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
-                        @endif
-                        @enderror
-                       
-                    </div>
 
                     @if($email)
                     <div class="mt-3 col-span-4">
                         @can('ownerportal')
                         <div class="form-check">
-                           
+
                             <input wire:model="generateCredentials"
                                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                 type="checkbox" value="{{ old('generateCredentials'), $generateCredentials }}"
                                 id="flexCheckChecked">
-                                <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
-                                    Generate credentials and send it to owner's email address.
-                                </label>
+                            <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
+                                Generate credentials and send it to owner's email address.
+                            </label>
                             @else
-                        <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline" target="_blank"
-                            href="/property/{{ Session::get('property') }}/owner/unlock">
-                            Generate credentials and send it to owner's email address.
-                        </a>
+                            <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                                target="_blank" href="/property/{{ Session::get('property') }}/owner/unlock">
+                                Generate credentials and send it to owner's email address.
+                            </a>
                         </div>
                         @endcan
                     </div>
