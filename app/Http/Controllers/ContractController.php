@@ -58,6 +58,34 @@ class ContractController extends Controller
         return Unit::findOrFail($unit_uuid)->contracts()->paginate(5);
     }
 
+    public function get_property_moveins($property_uuid, $daily, $monthly)
+    {
+        return Property::find($property_uuid)->contracts()
+        ->where('status', 'active')
+         ->when($daily, function ($query) use ($daily) {
+          $query->whereDate('start', $daily);
+        })
+         ->when($monthly, function ($query) use ($monthly) {
+          $query->whereMonth('start', $monthly);
+        })
+        
+        ->get();
+    }
+
+    public function get_property_moveouts($property_uuid, $daily, $monthly)
+    {
+        return Property::find($property_uuid)->contracts()
+        ->where('status', 'inactive')
+         ->when($daily, function ($query) use ($daily) {
+          $query->whereDate('end', $daily);
+        })
+         ->when($monthly, function ($query) use ($monthly) {
+          $query->whereMonth('end', $monthly);
+        })
+        
+        ->get();
+    }
+
     public function create(Property $property, Unit $unit, Tenant $tenant)
     {
         return view('contracts.create', [

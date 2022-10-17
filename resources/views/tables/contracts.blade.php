@@ -7,6 +7,7 @@
             <x-th>Rent/Mo</x-th>
             <x-th>Status</x-th>
             <x-th>Interaction</x-th>
+            <x-th>Moveout Reason</x-th>
             <x-th></x-th>
             <x-th></x-th>
         </tr>
@@ -85,6 +86,7 @@
                     @endif
             </x-td>
             <x-td>{{ $item->interaction->interaction }}</x-td>
+            <x-td>{{ $item->moveout_reason }}</x-td>
             <x-td>
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
                     class="text-indigo-600 hover:text-indigo-900">Renew</a>

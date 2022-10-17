@@ -15,7 +15,11 @@
             </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">RENT/MO</th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">STATUS</th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">INTERACTION
+            {{-- <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">INTERACTION
+            </th> --}}
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">MOVEOUT REASON
+            </th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">MOVEOUT DATE
             </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
@@ -100,7 +104,15 @@
                     </span>
                     @endif
             </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->interaction->interaction }}</td>
+            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->interaction->interaction }}</td> --}}
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->moveout_reason }}</td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                @if($item->moveout_at)
+{{ Carbon\Carbon::parse($item->moveou_at)->format('M d, Y') }}
+                @else
+                NA
+                @endif
+            </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($item->contract)
                 <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckSessionHasAProperty;
 use App\Http\Middleware\MustBeAccountOwner;
 use App\Http\Middleware\MustBeAccountPayable;
 use App\Http\Middleware\MustBeBilling;
@@ -78,6 +79,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'checksessionhasaproperty' => CheckSessionHasAProperty::class,
         
     ];
 }

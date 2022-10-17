@@ -139,15 +139,18 @@ class UnitController extends Controller
         ->get();
     }
 
-    public function get_property_units($property_uuid, $status, $duration)
+    public function get_property_units($property_uuid, $status, $duration, $unlisted)
     {
         return Unit::where('property_uuid', $property_uuid)
          ->when($status, function ($query) use ($status) {
          $query->where('status_id', $status);
          })
-          ->when($duration, function ($query) use ($duration) {
+        ->when($duration, function ($query) use ($duration) {
           $query->whereMonth('updated_at', $duration);
-          });
+          })
+        ->when($unlisted, function ($query) use ($unlisted) {
+           $query->whereMonth('is_the_unit_for_rent_to_tenant', $unlisted);
+           });
     }
 
     /**

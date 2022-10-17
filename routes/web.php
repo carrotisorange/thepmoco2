@@ -34,5 +34,9 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
+Route::fallback(function () {
+    return view('layouts.not-found');
+});
+
 
 

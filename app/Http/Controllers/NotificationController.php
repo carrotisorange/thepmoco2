@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Tenant;
 
 class NotificationController extends Controller
 {
@@ -41,9 +42,16 @@ class NotificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($type, $details, $status, $property_uuid)
     {
-        //
+        Notification::create([
+         'type' => $type,
+         'user_id' => auth()->user()->id,
+         'details' => $details,
+         'status' => $status,
+         'role_id' => auth()->user()->role_id,
+         'property_uuid' => $property_uuid
+        ]);
     }
 
     /**

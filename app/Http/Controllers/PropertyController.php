@@ -471,14 +471,23 @@ class PropertyController extends Controller
             
             'daily_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($property->uuid, Carbon::today(), Carbon::now()->month)->sum('collection'),
             
-            'monthly_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($property->uuid,Carbon::today(), Carbon::now()->month)->sum('collection'),
+            'current_monthly_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($property->uuid,'', Carbon::now()->month)->sum('collection'),
+            'previous_monthly_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($property->uuid,'', Carbon::now()->subMonth()->month)->sum('collection'),
+            
+            'current_monthly_moveins' => app('App\Http\Controllers\ContractController')->get_property_moveins($property->uuid,'', Carbon::now()->month)->count(),
+            'current_monthly_moveouts' => app('App\Http\Controllers\ContractController')->get_property_moveouts($property->uuid,'', Carbon::now()->month)->count(),
           
-            'tenants' => app('App\Http\Controllers\TenantController')->get_property_tenants($property->uuid ,Carbon::now()->month),
+            'current_monthly_expenses' => app('App\Http\Controllers\AccountPayableController')->get_property_expenses($property->uuid,'', Carbon::now()->month)->sum('collection'),
+            'previous_monthly_expenses' => app('App\Http\Controllers\AccountPayableController')->get_property_expenses($property->uuid,'', Carbon::now()->subMonth(1)->month)->sum('collection'),
+            
+
+            'tenants' => app('App\Http\Controllers\TenantController')->get_property_tenants($property->uuid ,''),
 
 
-            'units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, '',Carbon::now()->month),
-            'occupied_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 2, Carbon::now()->month),
-            'vacant_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 1,Carbon::now()->month),
+            'units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, '','', ''),
+            'occupied_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 2, '', ''),
+            'vacant_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 1,'', ''),
+            'unlisted_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 1,'', 0),
 
             'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications($property->uuid),
 
@@ -489,8 +498,6 @@ class PropertyController extends Controller
             'occupancy_rate_value' => $occupancy_rate_value,
             'occupancy_rate_date' => $occupancy_rate_date,
             'current_occupancy_rate' => $current_occupancy_rate,
-
-          
            
             'collection_rate_date' => $collection_rate_date,
             'collection_rate_value' => $collection_rate_value,
