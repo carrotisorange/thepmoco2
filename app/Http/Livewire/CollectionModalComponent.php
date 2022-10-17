@@ -201,7 +201,7 @@ class CollectionModalComponent extends ModalComponent
                     ]);
 
                     Contract::where('unit_uuid', Bill::find($this->selectedBills[$i])->unit_uuid)
-                    ->where('status', 'pending')
+                    ->where('status', 'pendingmovein')
                     ->update([
                         'status' => 'active'
                     ]);

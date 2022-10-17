@@ -336,7 +336,7 @@
                                     <div class="flex justify-end gap-2">
                                         <div
                                             class="items-center text-center px-2.5 py-1 mt-3  text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900">
-                                            <a href="/property/{{ $property->uuid }}/contract/pending">See more moveout
+                                            <a href="/property/{{ $property->uuid }}/contract/pendingmoveout">See more moveout
                                                 requests</a></button>
                                         </div>
 

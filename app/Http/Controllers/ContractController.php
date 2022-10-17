@@ -113,7 +113,7 @@ class ContractController extends Controller
               $contract_attributes['tenant_uuid'] = $tenant->uuid;
               $contract_attributes['unit_uuid'] = $unit->uuid;
               $contract_attributes['user_id'] = auth()->user()->id;
-              $contract_attributes['status'] = 'pending';
+              $contract_attributes['status'] = 'pendingmovein';
 
               Contract::create($contract_attributes);
 

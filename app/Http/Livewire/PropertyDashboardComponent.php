@@ -33,7 +33,7 @@ class PropertyDashboardComponent extends Component
             'movingin_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '', '',Carbon::now()->month, ''),
             'movingout_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '', '', '',Carbon::now()->month),
             'concerns' =>app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid, '', Carbon::now()->month),
-            'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid,'pending', ''),
+            'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid,'pendingmovein', ''),
             'closed_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid, 'closed', Carbon::now()->month),
             'payment_requests' => app('App\Http\Controllers\PaymentRequestController')->get_property_payment_requests($this->property->uuid, 'pending'),
             'roles' => app('App\Http\Controllers\PropertyRoleController')->get_property_user_roles($this->property->uuid),
