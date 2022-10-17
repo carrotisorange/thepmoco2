@@ -34,6 +34,12 @@
                     <div class="mt-1">
                         <x-form-select wire:model="moveout_reason" name="moveout_reason" id="moveout_reason" required>
                                     <option value="">Select one</option>
+                                    <option value="Cancellation" {{ old('moveout_reason')=='Cancellation' ? 'selected' : 'Select one' }}>
+                                        {{ 'Cancellation' }}
+                                    </option>
+                                    <option value="Incorrect Details" {{ old('moveout_reason')=='Incorrect Details' ? 'selected' : 'Select one' }}>
+                                        {{ 'Incorrect Details' }}
+                                    </option>
                                     <option value="End of Contract" {{ old('moveout_reason')=='End of Contract' ? 'selected' : 'Select one' }}>
                                         {{ 'End of Contract' }}
                                     </option>
