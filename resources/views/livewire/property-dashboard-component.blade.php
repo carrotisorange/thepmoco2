@@ -305,7 +305,7 @@
 
 
                                     </div>
-                                    @foreach ($pending_contracts->take(1)->get() as $item)
+                                    @foreach ($pending_contracts->take(1) as $item)
                                     <li class="border-gray-400 flex flex-row mb-2">
                                         <div
                                             class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -336,7 +336,8 @@
                                     <div class="flex justify-end gap-2">
                                         <div
                                             class="items-center text-center px-2.5 py-1 mt-3  text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900">
-                                            <a href="/property/{{ $property->uuid }}/contract/pendingmoveout">See more moveout
+                                            <a href="/property/{{ $property->uuid }}/contract/pendingmoveout">See more
+                                                moveout
                                                 requests</a></button>
                                         </div>
 
@@ -819,7 +820,7 @@
                         fill: false,
                         backgroundColor: "#DB7093",
                         borderColor: "	#DB7093",
-                        data: [40, 68, 86, 74, 56, 60, 87],
+                        data: {!!$expense_rate_value!!},
                       },
                     ],
                   },
@@ -906,8 +907,8 @@
                     <div class=" px-2 bg-white h-full py-10 rounded-lg shadow-md  w-full">
 
                         <!-- component -->
-                        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer>
-                        </script>
+                        {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer>
+                        </script> --}}
                         <div class="flex justify-end">
                             <div>
 
@@ -929,8 +930,7 @@
 
                         <!-- chart line -->
                         <script>
-                         
-             const data = {
+                            const data = {
                  labels: {!!$occupancy_rate_date!!},
                  datasets: [
                  {
@@ -981,7 +981,7 @@
                                     datasets: [
                                       {
                                         label: "My First Dataset",
-                                        data: [300, 50,],
+                                        data: [{{ $total_collected_bills }}, {{ $total_uncollected_bills }}],
                                         backgroundColor: [
                                           "rgb(133, 105, 241)",
                                           "rgb(199, 210, 254)",
@@ -1078,7 +1078,11 @@
                                                         <p class="text-sm font-medium text-gray-900">Total
                                                             Bills for Collection</p>
                                                         <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                            $100,000</p>
+                                                            {{
+                                                            App\Http\Controllers\CollectionController::shortNumber($total_uncollected_bills
+                                                            + $total_collected_bills)
+                                                            }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1103,7 +1107,9 @@
                                                         <p class="text-sm font-medium text-gray-900">
                                                             Collected Amount </p>
                                                         <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                            $100,000</p>
+                                                            {{
+                                                            App\Http\Controllers\CollectionController::shortNumber($total_collected_bills)
+                                                            }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1129,7 +1135,9 @@
                                                         <p class="text-sm font-medium text-gray-900">Total
                                                             Unpaid Collection:</p>
                                                         <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                            $100,000</p>
+                                                            {{
+                                                            App\Http\Controllers\CollectionController::shortNumber($total_uncollected_bills)
+                                                            }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1172,72 +1180,36 @@
                         <div class="container flex mx-auto w-full items-center justify-center">
 
                             <ul class="flex flex-col bg-gray-200 p-4">
-                                <li class="border-gray-400 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                @foreach ($delinquents as $item)
+                                <a href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant->uuid }}/bills">
+                                    <li class="border-gray-400 flex flex-row mb-2">
                                         <div
-                                            class="flex flex-col rounded-md w-10 h-10 bg-gray-200 justify-center items-center mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="w-6 h-6">
-                                                <path fill-rule="evenodd"
-                                                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
+                                            class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                            <div
+                                                class="flex flex-col rounded-md w-10 h-10 bg-gray-200 justify-center items-center mr-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="currentColor" class="w-6 h-6">
+                                                    <path fill-rule="evenodd"
+                                                        d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
 
 
-                                        </div>
-                                        <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">Chrisostomo Ibarra</div>
-                                            <div class="font-light">10K unpaid</div>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li class="border-indigo-200 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                        <div
-                                            class="flex flex-col rounded-md w-10 h-10 bg-gray-200 justify-center items-center mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="w-6 h-6">
-                                                <path fill-rule="evenodd"
-                                                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-
+                                            </div>
+                                            <div class="flex-1 pl-1 mr-16">
+                                                <div class="font-medium">{{ $item->tenant->tenant }}</div>
+                                                <div class="font-light">{{
+                                                    App\Http\Controllers\CollectionController::shortNumber($item->balance)
+                                                    }}</div>
+                                            </div>
 
                                         </div>
-                                        <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">Bongbong</div>
-                                            <div class="font-light">2B unpaid</div>
+                                    </li>
+                                </a>
+                                @endforeach
 
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li class="border-indigo-200 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                        <div
-                                            class="flex flex-col rounded-md w-10 h-10 bg-gray-200 justify-center items-center mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="w-6 h-6">
-                                                <path fill-rule="evenodd"
-                                                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-
-
-                                        </div>
-                                        <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">Ferdinand</div>
-                                            <div class="font-light">2B unpaid</div>
-
-                                        </div>
-
-                                    </div>
-                                </li>
                             </ul>
+
 
                         </div>
 
@@ -1412,14 +1384,6 @@
                     </div>
 
 
-
-
-
-
-                    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
-                    <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js">
-                    </script>
-
                 </div>
                 <div class="mt-10 lg: sm:my-10  col-span-2">
                     <div class="bg-indigo-200 rounded-lg shadow-md w-full">
@@ -1447,6 +1411,7 @@
                         <div class="container flex mx-auto w-full items-center justify-center">
 
                             <ul class="flex flex-col bg-indigo-200 p-4">
+                                @foreach ($notifications as $item)
                                 <li class="border-gray-400 flex flex-row mb-2">
                                     <div
                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -1460,50 +1425,16 @@
 
                                         </div>
                                         <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">Tenant 1 Paid</div>
-                                            <div class="text-gray-600 text-sm">16,000</div>
+                                            <div class="font-medium">{{ $item->user->name.' '.$item->details }}</div>
+                                            <div class="text-gray-600 text-sm">{{ $item->status }}</div>
                                         </div>
-                                        <div class="text-gray-600 text-xs">6:00 AM</div>
+                                        <div class="text-gray-600 text-xs">{{
+                                            Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</div>
                                     </div>
                                 </li>
-                                <li class="border-indigo-200 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                        <div
-                                            class="flex flex-col rounded-md w-10 h-10 bg-indigo-200 justify-center items-center mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="text-white w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                                            </svg>
 
-                                        </div>
-                                        <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">Renew </div>
-                                            <div class="text-gray-600 text-sm">Unit 1</div>
-                                        </div>
-                                        <div class="text-gray-600 text-xs">10:00 AM</div>
-                                    </div>
-                                </li>
-                                <li class="border-indigo-200 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                        <div
-                                            class="flex flex-col rounded-md w-10 h-10 bg-indigo-200 justify-center items-center mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="text-white w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                                            </svg>
+                                @endforeach
 
-                                        </div>
-                                        <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">New Move In</div>
-                                            <div class="text-gray-600 text-sm">Tenant 10</div>
-                                        </div>
-                                        <div class="text-gray-600 text-xs">1:00 PM</div>
-                                    </div>
-                                </li>
                             </ul>
 
                         </div>
@@ -1511,7 +1442,7 @@
                         <div class="flex justify-end pb-5 pr-5 gap-2">
                             <div
                                 class="items-center text-center px-2.5 mt-3 py-2 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                <a href="moveout-request">View More</a></button>
+                                </button>
                             </div>
 
                         </div>
@@ -1525,7 +1456,7 @@
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                             <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                <table class="min-w-full divide-y divide-gray-300">
+                                {{-- <table class="min-w-full divide-y divide-gray-300">
 
 
                                     <thead class="bg-gray-50">
@@ -1552,7 +1483,7 @@
 
 
                                     <tbody class="divide-y divide-gray-200 bg-white">
-
+                                        @foreach ($expiring_contracts as $item)
                                         <tr>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
 
@@ -1563,8 +1494,9 @@
                                                     </div>
 
                                                     <div class="ml-4">
-                                                        <div class="font-medium text-gray-900">Lindsay
-                                                            Walton</div>
+                                                        <div class="font-medium text-gray-900">
+                                                            {{ $item->tenant->tenant }}
+                                                        </div>
                                                         <div class="text-gray-500">
                                                             lindsay.walton@example.com</div>
                                                     </div>
@@ -1586,7 +1518,8 @@
                                             <td
                                                 class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span
-                                                        class="sr-only">, Lindsay Walton</span></a>
+                                                        class="sr-only">, Lindsay
+                                                        Walton</span></a>
                                             </td>
 
                                             <td
@@ -1595,98 +1528,11 @@
                                                         class="sr-only">, Lindsay Walton</span></a>
                                             </td>
                                         </tr>
-                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                        @endforeach
+                                    </tbody>
 
-                                        <tr>
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-
-                                                <div class="flex items-center">
-                                                    <div class="h-10 w-10 flex-shrink-0">
-                                                        <img src="{{ asset('/brands/user.png') }}" alt="building"
-                                                            class="w-40 object-center object-cover lg:w-full lg:h-full">
-                                                    </div>
-
-                                                    <div class="ml-4">
-                                                        <div class="font-medium text-gray-900">Lindsay
-                                                            Walton</div>
-                                                        <div class="text-gray-500">
-                                                            lindsay.walton@example.com</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div class="text-gray-900">Unit #2</div>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <span
-                                                    class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                Sept. 1</td>
-
-                                            <td
-                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span
-                                                        class="sr-only">, Lindsay Walton</span></a>
-                                            </td>
-
-                                            <td
-                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Renew<span
-                                                        class="sr-only">, Lindsay Walton</span></a>
-                                            </td>
-                                        </tr>
-
-                                    <tbody class="divide-y divide-gray-200 bg-white">
-
-                                        <tr>
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-
-                                                <div class="flex items-center">
-                                                    <div class="h-10 w-10 flex-shrink-0">
-                                                        <img src="{{ asset('/brands/user.png') }}" alt="building"
-                                                            class="w-40 object-center object-cover lg:w-full lg:h-full">
-                                                    </div>
-
-                                                    <div class="ml-4">
-                                                        <div class="font-medium text-gray-900">Lindsay
-                                                            Walton</div>
-                                                        <div class="text-gray-500">
-                                                            lindsay.walton@example.com</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div class="text-gray-900">Unit #2</div>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <span
-                                                    class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                Sept. 1</td>
-
-                                            <td
-                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span
-                                                        class="sr-only">, Lindsay Walton</span></a>
-                                            </td>
-
-                                            <td
-                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Renew<span
-                                                        class="sr-only">, Lindsay Walton</span></a>
-                                            </td>
-                                        </tr>
-
-
-                                </table>
+                                </table> --}}
+                                @include('tables.contracts')
 
 
                             </div>
@@ -1694,7 +1540,7 @@
                             <div class="flex justify-end gap-2">
                                 <div button type="button"
                                     class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    <a href="contracts">See more</a></button>
+                                    </button>
                                 </div>
 
 
@@ -1727,9 +1573,12 @@
                         <div class="container flex mx-auto w-full items-center justify-center">
 
                             <ul class="flex flex-col bg-purple-200 p-4">
+                                @foreach ($employees as $item)
+
+                              
                                 <li class="border-gray-400 flex flex-row mb-2">
                                     <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
                                         <div
                                             class="flex flex-col rounded-md w-10 h-10 bg-purple-200 justify-center items-center mr-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -1741,59 +1590,22 @@
 
                                         </div>
                                         <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">Employee 1</div>
-                                            <div class="text-gray-600 text-sm">Admin</div>
+                                            <div class="font-medium">{{ $item->user->name }}</div>
+                                            <div class="text-gray-600 text-sm">{{ $item->user->role->role }}</div>
                                         </div>
 
                                     </div>
                                 </li>
-                                <li class="border-indigo-200 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                        <div
-                                            class="flex flex-col rounded-md w-10 h-10 bg-purple-200 justify-center items-center mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="w-6 h-6">
-                                                <path fill-rule="evenodd"
-                                                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
+                              
 
-                                        </div>
-                                        <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">Employee 2</div>
-                                            <div class="text-gray-600 text-sm">Manager</div>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li class="border-indigo-200 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                        <div
-                                            class="flex flex-col rounded-md w-10 h-10 bg-purple-200 justify-center items-center mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="w-6 h-6">
-                                                <path fill-rule="evenodd"
-                                                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-
-                                        </div>
-                                        <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">Employee 3</div>
-                                            <div class="text-gray-600 text-sm">Accountant</div>
-                                        </div>
-
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
 
                         </div>
                         <div class="flex justify-end pb-5 pr-5 gap-2">
                             <div
                                 class="items-center text-center px-2.5 mt-3 py-2 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                <a href="moveout-request">View More</a></button>
+                                </button>
                             </div>
 
                         </div>

@@ -50,7 +50,8 @@ class ContractController extends Controller
         ->when($moveout, function ($query) use ($moveout) {
           $query->whereMonth('end', $moveout);
         })
-        ->orderBy('start', 'desc');
+        ->orderBy('start', 'desc')
+        ->get();
     }
 
     public function show_unit_contracts($unit_uuid)

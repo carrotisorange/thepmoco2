@@ -46,7 +46,7 @@ class CollectionController extends Controller
     function shortNumber($number = null)
     {
         if($number == 0) {
-            $short = 'NA';
+            $short = '0.00';
         } elseif($number <= 999) {
             $short = $number;
         } elseif($number < 1000000) {

@@ -36,31 +36,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\ParticularController;
-use App\Http\Controllers\PropertyBillerController;
 
-Route::group(['middleware'=>['auth', 'verified']], function(){
-
-    Route::prefix('/property')->group(function(){
-        Route::controller(PropertyController::class)->group(function () {
-            Route::get('/','index')->name('property');
-            Route::get('{random_str}/unlock/', 'unlock')->name('property');
-            Route::get('/{property}/success','success');
-            Route::get('{random_str}/create', 'create')->name('property');
-            Route::post('{random_str}/store', 'store');
-        });
-    });
-
-    //Routes for Particular
-    Route::prefix('particular')->group(function(){
-        Route::post('store', [ParticularController::class, 'store']);
-    });
-
-    //Routes for Biller
-    Route::prefix('biller')->group(function(){
-        Route::post('store', [PropertyBillerController::class, 'store']);
-    });
-});
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
@@ -241,7 +217,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
       
     });
 
-    //Routes for Bill
+    //Routes for Cashflow
     Route::prefix('cashflow')->group(function(){
         Route::get('/', [CashflowController::class, 'index'])->name('cashflow');
     });

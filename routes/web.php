@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +16,8 @@ use Session;
 */
 
 require __DIR__.'/auth.php';
+
+require __DIR__.'/portforlio.php';
 
 require __DIR__.'/property.php';
 
@@ -34,6 +34,7 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
+//show this route if a user tries to access broken links
 Route::fallback(function () {
     return view('layouts.not-found');
 });

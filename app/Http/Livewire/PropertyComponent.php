@@ -88,6 +88,7 @@ class PropertyComponent extends Component
          });
          
          return redirect('/property/'.$property_uuid.'/success')->with('success', 'Property is successfully created.');
+         
         }catch (\Throwable $e) {
             return back()->with('error', 'Cannot perform your action.');
         }

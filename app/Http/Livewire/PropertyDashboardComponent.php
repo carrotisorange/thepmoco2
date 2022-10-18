@@ -16,14 +16,11 @@ class PropertyDashboardComponent extends Component
 
     public function render()
     {
-
-        //ddd($this->occupancyGraphValue);
-
-        app('App\Http\Controllers\PropertyController')->store_property_session($this->property);
+        app('App\Http\Controllers\PropertyController')->store_property_session($this->property->uuid);
 
         app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'opens',1);
 
-        app('App\Http\Controllers\PropertyController')->save_unit_stats();
+        app('App\Http\Controllers\PropertyController')->save_unit_stats($this->property->uuid);
 
         return view('livewire.property-dashboard-component',[
             'contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '','', '', ''),
@@ -50,15 +47,16 @@ class PropertyDashboardComponent extends Component
             'vacant_units' => app('App\Http\Controllers\UnitController')->get_property_units($this->property->uuid, 1,'', ''),
             'unlisted_units' => app('App\Http\Controllers\UnitController')->get_property_units($this->property->uuid, 1,'', 0),
             'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications($this->property->uuid),
-            'monthly_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid, Carbon::now()->month()),
-            'monthly_unpaid_bills' => app('App\Http\Controllers\BillController')->get_property_unpaid_bills($this->property->uuid,Carbon::now()->month), 
-            'total_unpaid_bills' => app('App\Http\Controllers\BillController')->get_property_unpaid_bills($this->property->uuid,''),
+            //'monthly_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid, Carbon::now()->month()),
+            //'total_acknowledgement_receipts' => app('App\Http\Controllers\AcknowledgementReceiptController')->get_property_acknowledgementreceipts($this->property->uuid, Carbon::now()->month()), 
+            'total_collected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid, Carbon::now()->month,'paid'),
+            'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid, Carbon::now()->month, 'unpaid'),
             'occupancy_rate_value' => app('App\Http\Controllers\PropertyController')->get_occupancy_rate_values($this->occupancyGraphValue),
             'occupancy_rate_date' => app('App\Http\Controllers\PropertyController')->get_occupancy_rate_dates($this->occupancyGraphValue),
             'current_occupancy_rate' => app('App\Http\Controllers\PropertyController')->get_current_occupancy_rate($this->property->uuid),
             'collection_rate_date' => app('App\Http\Controllers\PropertyController')->get_collection_rate_dates($this->collectionLineValue),
-            'collection_rate_value' => app('App\Http\Controllers\PropertyController')->get_collection_rate_dates($this->collectionLineValue),
-            //'expense_rate_value' => app('App\Http\Controllers\PropertyController')->get_expense_rate_dates($this->collectionLineValue),
+            'collection_rate_value' => app('App\Http\Controllers\PropertyController')->get_collection_rate_values($this->collectionLineValue),
+            'expense_rate_value' => app('App\Http\Controllers\PropertyController')->get_expense_rate_values($this->collectionLineValue),
             'current_collection_rate' => app('App\Http\Controllers\PropertyController')->get_current_collection_rate(),
             'bill_rate_value' => app('App\Http\Controllers\PropertyController')->get_bill_rate_values(),
             'tenant_type_label' => app('App\Http\Controllers\PropertyController')->get_tenant_type_labels(),
@@ -71,6 +69,7 @@ class PropertyDashboardComponent extends Component
             'delinquents' => app('App\Http\Controllers\PropertyController')->get_delinquents(),
             'owners' => Owner::where('property_uuid', $this->property->uuid),
             'buildings' => PropertyBuilding::where('property_uuid', $this->property->uuid)->count(),
+            'employees' => app('App\Http\Controllers\UserPropertyController')->get_property_users($this->property->uuid),
         ]);
     }
 }

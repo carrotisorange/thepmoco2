@@ -37,27 +37,45 @@ class BillController extends Controller
         ]);
     }
 
-    public function get_property_bills($property_uuid, $month){
-        return Property::find($property_uuid)->bills()
-        ->whereMonth('created_at', $month)
-        ->sum('bill');
-    }
+    // public function get_property_bills($property_uuid, $month){
 
-    public function get_property_unpaid_bills($property_uuid, $month)
+    //     return Property::find($property_uuid)->acknowledgementreceipts()
+    //     //->whereYear('created_at', Carbon::now()->format('Y'))
+    //      ->when($month, function ($query) use ($month) {
+    //      $query->whereMonth('created_at', $month);
+    //      })
+    //     ->sum('amount');
+    // }
+
+    public function get_property_bills($property_uuid, $month, $status)
     {
-        return  Property::find($property_uuid)->bills()
-        ->whereIn('status',['unpaid', 'partially_paid'])
-        ->when($month, function ($query) use ($month) {
-          $query->whereMonth('created_at', $month);
-          })
-        ->sum('bill') -
-                Property::find($property_uuid)->bills()
-        ->whereIn('status', ['unpaid','partially_paid'])
-          ->when($month, function ($query) use ($month) {
-          $query->whereMonth('created_at', $month);
-        })
-        ->sum('initial_payment');
-        
+        $bills = '';  
+
+        if($status == 'paid')
+        { 
+              $bills = Property::find($property_uuid)->acknowledgementreceipts()
+              ->when($month, function ($query) use ($month) {
+              $query->whereMonth('created_at', $month);
+              })
+              ->sum('amount');
+        }else{
+              $bills = Property::find($property_uuid)->bills()
+              ->whereIn('status', ['pair', 'partially_paid'])
+              ->when($month, function ($query) use ($month) {
+              $query->whereMonth('created_at', $month);
+              })
+              ->sum('bill') -
+
+              Property::find($property_uuid)->bills()
+              ->whereIn('status', ['pair', 'partially_paid'])
+              ->when($month, function ($query) use ($month) {
+              $query->whereMonth('created_at', $month);
+              })
+              ->sum('initial_payment');
+        }
+
+        return $bills;
+    
     }
 
     public function get_latest_bill_no($property_uuid)

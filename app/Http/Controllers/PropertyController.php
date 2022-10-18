@@ -25,6 +25,7 @@ use App\Models\PropertyBuilding;
 use App\Models\UnitStats;
 use App\Models\Collection;
 use App\Models\PaymentRequest;
+use App\Models\AccountPayable;
 
 class PropertyController extends Controller
 {
@@ -46,10 +47,10 @@ class PropertyController extends Controller
         Session::forget('property_name');
     }
 
-    public function store_property_session($property)
+    public function store_property_session($property_uuid)
     {
-        session(['property' => $property->uuid]);
-        session(['property_name' => $property->property]);
+        session(['property' => $property_uuid]);
+        session(['property_name' => Property::find($property_uuid)->property]);
     }
 
     public function unlock($property_uuid)
@@ -78,7 +79,7 @@ class PropertyController extends Controller
     {
         $this->destroy_property_session();
 
-        // if(!$this->is_property_exist()){
+        // if(!$is_property_exist()){
         //    return redirect('/property/'.Str::random(8).'/create');  
         // }
         
@@ -285,7 +286,7 @@ class PropertyController extends Controller
         ->where('property_uuid', Session::get('property'))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
+         ->whereYear('created_at', Carbon::now()->format('Y'))
         ->pluck('month_year');
     }
 
@@ -297,7 +298,20 @@ class PropertyController extends Controller
         ->where('property_uuid', Session::get('property'))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
+          ->whereYear('created_at', Carbon::now()->format('Y'))
+        ->pluck('total_amount');
+    }
+
+    public function get_expense_rate_values($value)
+    {
+        return AccountPayable::select(DB::raw("(sum(amount)) as total_amount"),
+        DB::raw("(DATE_FORMAT(updated_at,
+        '%M %Y')) as month_year"))
+        ->where('status', 'approved')
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('updated_at')
+        ->groupBy(DB::raw("DATE_FORMAT(updated_at, '%m-%Y')"))
+        ->whereYear('updated_at', Carbon::now()->format('Y'))
         ->pluck('total_amount');
     }
 
@@ -356,9 +370,9 @@ class PropertyController extends Controller
     public function get_delinquents()
     {
         return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
-          ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property'))
         ->groupBy('tenant_uuid')
-        ->paginate(3);
+        ->get();
     }
     
 
@@ -478,31 +492,17 @@ class PropertyController extends Controller
         ]); 
     }
 
-    public function save_unit_stats()
+    public function save_unit_stats($property_uuid)
     {
-        $total_units = Property::find(Session::get('property'))->units;
-
-        $vacant_units = $total_units->where('status_id','1')->count();
-
-        $occupied_units = $total_units->where('status_id','2')->count();
-
-        $dirty_units = $total_units->where('status_id','3')->count();
-
-        $reserved_units = $total_units->where('status_id','4')->count();
-
-        $undermaintenance_units = $total_units->where('status_id','5')->count();
-
-        $pending_units = $total_units->where('status_id','6')->count();
-
         UnitStats::firstOrCreate([
-            'total' => $total_units->count(),
-            'vacant' => $vacant_units,
-            'occupied' => $occupied_units,
-            'dirty' => $dirty_units,
-            'reserved' => $reserved_units,
-            'under_maintenance' => $undermaintenance_units,
-            'pending' => $pending_units,
-            'property_uuid' => Session::get('property')
+            'total' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, '', '', '')->count(),
+            'vacant' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 1,'', '')->count(),
+            'occupied' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 2,'', '')->count(),
+            'dirty' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 3,'', '')->count(),
+            'reserved' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 4,'', '')->count(),
+            'under_maintenance' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 5,'', '')->count(),
+            'pending' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 6,'', '')->count(),
+            'property_uuid' => $property_uuid
         ]);
 
     }
@@ -554,7 +554,7 @@ class PropertyController extends Controller
         $attributes['owner_contract'] = request()->file('owner_contract')->store('owner_contracts');
         }
 
-        $property->update($attributes);
+        $property_update($attributes);
 
         return back()->with('success', 'Property has been updated.');
     }
