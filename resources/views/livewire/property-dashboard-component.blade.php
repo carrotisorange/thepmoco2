@@ -37,7 +37,7 @@
                                 </svg>
 
 
-                                <a href="" class="text-gray-900">Export to PDF</a>
+                                <a href="/user/{{ auth()->user()->id }}/export/portforlio" target="_blank" class="text-gray-900">Export to PDF</a>
                         </h1>
 
                     </div>
