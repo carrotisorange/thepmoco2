@@ -68,7 +68,7 @@
                                                         == 'active')
                                                         <span
                                                             class="px-2 text-sm leading-5 font-semibold rounded-full
-                                                                                                                                                                            bg-orange-100 text-orange-800">
+                                                            bg-orange-100 text-orange-800">
                                                             <i class="fa-solid fa-clock"></i> expiring
                                                         </span>
                                                         @endif
@@ -79,7 +79,7 @@
                                                 </td>
 
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    @if($item->status == 'active' || $item->status=='pending')
+                                                    @if($item->status == 'active' || $item->status=='pendingmovein')
                                                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
                                                         class="text-blue-500 text-decoration-line: underline">Moveout</a>
                                                     @endif

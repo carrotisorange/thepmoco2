@@ -134,7 +134,7 @@
                     class="text-indigo-600 hover:text-indigo-900">Transfer</a>
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                @if($item->status == 'active' || $item->status == 'pendingmoveout')
+                @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status == 'pendingmoveout')
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
                     class="text-indigo-600 hover:text-indigo-900">Moveout</a>
                 @endif
