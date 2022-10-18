@@ -42,4 +42,26 @@ class CollectionController extends Controller
           'is_posted' => true
          ]);
     }
+
+    function shortNumber($number = null)
+    {
+        if($number == 0) {
+            $short = '0.00';
+        } elseif($number <= 999) {
+            $short = $number;
+        } elseif($number < 1000000) {
+            $short = round($number/1000, 2).'K';
+        } elseif($number < 1000000000) {
+            $short =  round($number/1000000, 2).'M';
+        } elseif($number >= 1000000000) {
+            $short = round($number/1000000000, 2).'B';
+        }
+        
+        return $short;
+    }
+
+    public function divNumber($numerator, $denominator)
+    {
+       return $denominator == 0 ? 0 : ($numerator / $denominator);
+    }
 }

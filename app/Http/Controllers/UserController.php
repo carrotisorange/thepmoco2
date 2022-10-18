@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Auth;;
 use \PDF;
 use App\Models\Subscription;
+use Session;
 
 class UserController extends Controller
 {
@@ -40,13 +41,23 @@ class UserController extends Controller
     public function export($user_id, $export_option)
     {
         if($export_option == 'portforlio'){
+
             $portforlio = User::find(Auth::user()->id)->user_properties()->limit(3)->get();
 
             $data = $this->get_data($portforlio);
 
             $pdf = $this->generate_pdf($data, $export_option);
 
-            return $pdf->stream(Carbon::now().'-'.auth()->user()->name.'-portforlio.pdf');
+            return $pdf->download(Carbon::now().'-'.auth()->user()->name.'-portforlio.pdf');
+        }elseif($export_option == 'property')
+        {
+            $property = Property::find(Session::get('property'));
+
+            $data = $this->get_data($property);
+
+            $pdf = $this->generate_pdf($data, $export_option);
+
+            return $pdf->download(Carbon::now().'-'.auth()->user()->name.'-property.pdf');
         }
 
     }

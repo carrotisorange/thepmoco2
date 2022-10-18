@@ -86,7 +86,7 @@ class ContractComponent extends Component
             $this->update_unit(4);
 
             //store new point
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id,5, 1);
+          app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id,5, 1);
                   
             $this->send_mail_to_tenant();
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Tenant;
 
 class NotificationController extends Controller
 {
@@ -22,7 +23,7 @@ class NotificationController extends Controller
 
     public function get_property_notifications($property_uuid)
     {
-        return Property::find($property_uuid)->notifications()->orderBy('created_at', 'desc');
+        return Property::find($property_uuid)->notifications()->orderBy('created_at', 'desc')->limit(5)->get();
     }
 
     /**
@@ -41,9 +42,16 @@ class NotificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($type, $details, $status, $property_uuid)
     {
-        //
+        Notification::create([
+         'type' => $type,
+         'user_id' => auth()->user()->id,
+         'details' => $details,
+         'status' => $status,
+         'role_id' => auth()->user()->role_id,
+         'property_uuid' => $property_uuid
+        ]);
     }
 
     /**

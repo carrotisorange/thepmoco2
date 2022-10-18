@@ -353,7 +353,7 @@
                             <td
                                 class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
                                 @if(Session::get('tenant_uuid'))
-                                <a
+                                <a 
                                     href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">{{
                                     $unit->unit }}</a>
                                 @elseif(Session::get('owner_uuid'))

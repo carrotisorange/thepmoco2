@@ -64,7 +64,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link href="/properties">
-                           <i class="fa-regular fa-building"></i> {{ __('Properties') }}
+                            <i class="fa-regular fa-building"></i> {{ __('Properties') }}
                         </x-dropdown-link>
                         <x-dropdown-link target="_blank" href="/chatify">
                             <i class="fab fa-rocketchat"></i> {{ __('Chatify') }}

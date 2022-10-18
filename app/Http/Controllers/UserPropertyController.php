@@ -17,12 +17,12 @@ class UserPropertyController extends Controller
      */
     public function get_user_properties($property_uuid, $user_id)
     {
-        return User::find($user_id)->user_properties()->paginate(5);
+        return User::find($user_id)->user_properties()->get();
     }
 
     public function get_property_users($property_uuid)
     {
-        return Property::find($property_uuid)->property_users()->paginate(5);
+        return Property::find($property_uuid)->property_users()->get();
     }
 
     /**

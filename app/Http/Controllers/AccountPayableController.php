@@ -28,6 +28,19 @@ class AccountPayableController extends Controller
         ]);
     }
 
+    public function get_property_expenses($property_uuid, $daily, $monthly)
+    {
+        return Property::find($property_uuid)->accountpayables()
+        ->when($daily, function ($query) use ($daily) {
+        $query->whereDate('created_at', $daily);
+        })
+        ->when($monthly, function ($query) use ($monthly) {
+        $query->whereMonth('created_at', $monthly);
+        })
+
+        ->get();
+    }
+
     public function download($property_uuid, $id)
     {
         $accountPayable = AccountPayable::find($id);

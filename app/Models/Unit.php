@@ -29,7 +29,8 @@ class Unit extends Model
         'category_id' => 1,
         'thumbnail' => 'thumbnails/thumbnail.png',
         'occupancy' => 1,
-        'is_enrolled' => 0
+        'is_enrolled' => 0,
+        'is_the_unit_for_rent_to_tenant' => 1
     ];
 
     public function category()

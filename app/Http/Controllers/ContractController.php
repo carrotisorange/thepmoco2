@@ -50,12 +50,41 @@ class ContractController extends Controller
         ->when($moveout, function ($query) use ($moveout) {
           $query->whereMonth('end', $moveout);
         })
-        ->orderBy('start', 'desc');
+        ->orderBy('start', 'desc')
+        ->get();
     }
 
     public function show_unit_contracts($unit_uuid)
     {
         return Unit::findOrFail($unit_uuid)->contracts()->paginate(5);
+    }
+
+    public function get_property_moveins($property_uuid, $daily, $monthly)
+    {
+        return Property::find($property_uuid)->contracts()
+        ->where('status', 'active')
+         ->when($daily, function ($query) use ($daily) {
+          $query->whereDate('start', $daily);
+        })
+         ->when($monthly, function ($query) use ($monthly) {
+          $query->whereMonth('start', $monthly);
+        })
+        
+        ->get();
+    }
+
+    public function get_property_moveouts($property_uuid, $daily, $monthly)
+    {
+        return Property::find($property_uuid)->contracts()
+        ->where('status', 'inactive')
+         ->when($daily, function ($query) use ($daily) {
+          $query->whereDate('end', $daily);
+        })
+         ->when($monthly, function ($query) use ($monthly) {
+          $query->whereMonth('end', $monthly);
+        })
+        
+        ->get();
     }
 
     public function create(Property $property, Unit $unit, Tenant $tenant)
@@ -85,7 +114,7 @@ class ContractController extends Controller
               $contract_attributes['tenant_uuid'] = $tenant->uuid;
               $contract_attributes['unit_uuid'] = $unit->uuid;
               $contract_attributes['user_id'] = auth()->user()->id;
-              $contract_attributes['status'] = 'pending';
+              $contract_attributes['status'] = 'pendingmovein';
 
               Contract::create($contract_attributes);
 

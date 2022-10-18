@@ -67,7 +67,7 @@
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <h1 class="text-xl py-5 tracking-tight font-bold leading-tight text-gray-900">
-                                {{ Session::get('property_name') }}
+                                {{ App\Models\Property::find(Session::get('property'))->property.' '.App\Models\Property::find(Session::get('property'))->type->type }}
                             </h1>
 
                         </div>

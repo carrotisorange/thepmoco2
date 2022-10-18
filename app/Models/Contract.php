@@ -15,7 +15,7 @@ class Contract extends Model
     protected $primaryKey = 'uuid';
 
     protected $attributes = [
-        'status' => 'pending',
+        'status' => 'pendingmovein',
         'moveout_reason' => 'NA'
     ];
 

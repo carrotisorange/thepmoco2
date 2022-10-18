@@ -25,6 +25,7 @@ use App\Models\PropertyBuilding;
 use App\Models\UnitStats;
 use App\Models\Collection;
 use App\Models\PaymentRequest;
+use App\Models\AccountPayable;
 
 class PropertyController extends Controller
 {
@@ -46,10 +47,10 @@ class PropertyController extends Controller
         Session::forget('property_name');
     }
 
-    public function store_property_session($property)
+    public function store_property_session($property_uuid)
     {
-        session(['property' => $property->uuid]);
-        session(['property_name' => $property->property]);
+        session(['property' => $property_uuid]);
+        session(['property_name' => Property::find($property_uuid)->property]);
     }
 
     public function unlock($property_uuid)
@@ -78,7 +79,7 @@ class PropertyController extends Controller
     {
         $this->destroy_property_session();
 
-        // if(!$this->is_property_exist()){
+        // if(!$is_property_exist()){
         //    return redirect('/property/'.Str::random(8).'/create');  
         // }
         
@@ -176,26 +177,95 @@ class PropertyController extends Controller
     return redirect('/properties')->with('success', 'New property has been created.');
     }
 
-    public function get_occupancy_rate_dates()
+    public function get_occupancy_rate_dates($value)
     {
-        return UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'), DB::raw('MAX(occupied)'),
-        DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-        ->where('property_uuid', Session::get('property'))
-        ->orderBy('created_at')
-        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
-        ->pluck('month_year');
+        $occupancy_dates = '';
+
+        if($value == '30_days')
+        {
+            $start = Carbon::now()->subDays(30);
+             $end = Carbon::now();
+
+             $occupancy_dates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+             DB::raw('MAX(occupied)'),
+             DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+             ->where('property_uuid', Session::get('property'))
+             ->whereBetween('created_at', [$start, $end])
+             ->orderBy('created_at')
+             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+           
+             ->pluck('month_year');
+        }elseif($value == '90_days')
+        {
+             $start = Carbon::now()->subDays(90);
+             $end = Carbon::now();
+
+             $occupancy_dates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+             DB::raw('MAX(occupied)'),
+             DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+             ->where('property_uuid', Session::get('property'))
+             ->whereBetween('created_at', [$start, $end])
+             ->orderBy('created_at')
+             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+           
+             ->pluck('month_year');
+        }else{
+            $occupancy_dates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+            DB::raw('MAX(occupied)'),
+            DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+            ->where('property_uuid', Session::get('property'))
+            ->whereYear('created_at', Carbon::now()->format('Y'))
+            ->orderBy('created_at')
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+
+            ->pluck('month_year');
+        }
+
+        return $occupancy_dates;
+       
     }
 
-    public function get_occupancy_rate_values()
+    public function get_occupancy_rate_values($value)
     {
-        return UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
-        DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-        ->where('property_uuid', Session::get('property'))
-        ->orderBy('created_at')
-        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
-        ->pluck('occupancy_rate');
+
+         $occupancy_rates = '';
+
+         if($value == '30_days')
+         {
+         $start = Carbon::now()->subDays(30);
+         $end = Carbon::now();
+
+          $occupancy_rates =  UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+          DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+          ->where('property_uuid', Session::get('property'))
+          ->whereBetween('created_at', [$start, $end])
+          ->orderBy('created_at')
+          ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+          ->pluck('occupancy_rate');
+
+         }elseif($value == '90_days'){
+         $start = Carbon::now()->subDays(90);
+         $end = Carbon::now();
+
+         $occupancy_rates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+         DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+         ->where('property_uuid', Session::get('property'))
+         ->whereBetween('created_at', [$start, $end])
+         ->orderBy('created_at')
+         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+         ->pluck('occupancy_rate');
+
+         }else{
+            $occupancy_rates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
+            DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+            ->where('property_uuid', Session::get('property'))
+            ->whereYear('created_at', Carbon::now()->format('Y'))
+            ->orderBy('created_at')
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+            ->pluck('occupancy_rate');
+         }
+         return $occupancy_rates;
+
     }
 
     public function get_current_occupancy_rate($property_uuid)
@@ -209,18 +279,18 @@ class PropertyController extends Controller
         ->last();
     }
 
-    public function get_collection_rate_dates()
+    public function get_collection_rate_dates($value)
     {
         return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
         '%M %Y')) as month_year"))
         ->where('property_uuid', Session::get('property'))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
+         ->whereYear('created_at', Carbon::now()->format('Y'))
         ->pluck('month_year');
     }
 
-    public function get_collection_rate_values()
+    public function get_collection_rate_values($value)
     {
         return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
         DB::raw("(DATE_FORMAT(created_at,
@@ -228,7 +298,20 @@ class PropertyController extends Controller
         ->where('property_uuid', Session::get('property'))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        ->limit(6)
+          ->whereYear('created_at', Carbon::now()->format('Y'))
+        ->pluck('total_amount');
+    }
+
+    public function get_expense_rate_values($value)
+    {
+        return AccountPayable::select(DB::raw("(sum(amount)) as total_amount"),
+        DB::raw("(DATE_FORMAT(updated_at,
+        '%M %Y')) as month_year"))
+        ->where('status', 'approved')
+        ->where('property_uuid', Session::get('property'))
+        ->orderBy('updated_at')
+        ->groupBy(DB::raw("DATE_FORMAT(updated_at, '%m-%Y')"))
+        ->whereYear('updated_at', Carbon::now()->format('Y'))
         ->pluck('total_amount');
     }
 
@@ -287,9 +370,9 @@ class PropertyController extends Controller
     public function get_delinquents()
     {
         return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
-          ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property'))
         ->groupBy('tenant_uuid')
-        ->paginate(3);
+        ->get();
     }
     
 
@@ -404,138 +487,22 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {  
-
-        // if(app('App\Http\Controllers\UserController')->is_trial_expired(auth()->user()->trial_ends_at)){
-        //     return redirect('/select-a-plan-free');
-        // }
-
-        $this->store_property_session($property);
-
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
-
-        $this->save_unit_stats();
-
-        $occupancy_rate_date = $this->get_occupancy_rate_dates();
-
-        $occupancy_rate_value = $this->get_occupancy_rate_values();
-
-        $current_occupancy_rate = $this->get_current_occupancy_rate($property->uuid);
-
-        $collection_rate_date = $this->get_collection_rate_dates();
-
-        $collection_rate_value = $this->get_collection_rate_values();
-
-        $bill_rate_value = $this->get_bill_rate_values();
-
-        $current_collection_rate = $this->get_current_collection_rate();
-
-        $tenant_type_label = $this->get_tenant_type_labels();
-
-        $tenant_type_value = $this->get_tenant_type_values();
-
-        $tenant_movein_value = $this->get_tenant_movein_values();
-
-        $tenant_movein_label = $this->get_tenant_movein_labels();
-
-        $tenant_moveout_value = $this->get_tenant_moveout_values();
-
-        $reasons_for_moveout_label = $this->get_reasons_for_moveout_labels();
-
-        $reasons_for_moveout_value = $this->get_reasons_for_moveout_values();
-
-        $buildings = PropertyBuilding::where('property_uuid', $property->uuid)->count();
-
-        $owners = Owner::where('property_uuid', $property->uuid);
-
-        $delinquents = $this->get_delinquents();
-        
-
         return view('properties.show',[
             'property' => $property,
-
-            'contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, '', '', '', ''),
-            'expired_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, 'inactive', '', '', ''),
-            'expiring_contracts' =>app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, 'active', Carbon::now()->addMonth(), '', ''),
-            'pending_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, 'pendingmoveout', '', '', ''),
-            'movingin_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, '', '', Carbon::now()->month, ''),
-            'movingout_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($property->uuid, '', '', '', Carbon::now()->month),
-
-            'concerns' =>app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, '', Carbon::now()->month),
-            'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, 'pending', ''),
-            'closed_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($property->uuid, 'closed', Carbon::now()->month),
-
-
-            'payment_requests' => app('App\Http\Controllers\PaymentRequestController')->get_property_payment_requests($property->uuid, 'pending'),
-
-            'roles' => app('App\Http\Controllers\PropertyRoleController')->get_property_user_roles($property->uuid),
-            
-            'daily_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($property->uuid, Carbon::today(), Carbon::now()->month)->sum('collection'),
-            
-            'monthly_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($property->uuid,Carbon::today(), Carbon::now()->month)->sum('collection'),
-          
-            'tenants' => app('App\Http\Controllers\TenantController')->get_property_tenants($property->uuid ,Carbon::now()->month),
-
-
-            'units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, '',Carbon::now()->month),
-            'occupied_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 2, Carbon::now()->month),
-            'vacant_units' => app('App\Http\Controllers\UnitController')->get_property_units($property->uuid, 1,Carbon::now()->month),
-
-            'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications($property->uuid),
-
-            'monthly_bills' => app('App\Http\Controllers\BillController')->get_property_bills($property->uuid, Carbon::now()->month()),
-            'monthly_unpaid_bills' => app('App\Http\Controllers\BillController')->get_property_unpaid_bills($property->uuid,Carbon::now()->month),
-            'total_unpaid_bills' => app('App\Http\Controllers\BillController')->get_property_unpaid_bills($property->uuid,''),
-        
-            'occupancy_rate_value' => $occupancy_rate_value,
-            'occupancy_rate_date' => $occupancy_rate_date,
-            'current_occupancy_rate' => $current_occupancy_rate,
-
-          
-           
-            'collection_rate_date' => $collection_rate_date,
-            'collection_rate_value' => $collection_rate_value,
-            'current_collection_rate' => $current_collection_rate,
-            'bill_rate_value' => $bill_rate_value,
-            'tenant_type_label' => $tenant_type_label,
-            'tenant_type_value' => $tenant_type_value,
-            'tenant_movein_value' => $tenant_movein_value,
-            'tenant_movein_label' => $tenant_movein_label,
-            'tenant_moveout_value' => $tenant_moveout_value,
-            'reasons_for_moveout_label' => $reasons_for_moveout_label,
-            'reasons_for_moveout_value' => $reasons_for_moveout_value,
-            'delinquents' => $delinquents,
-            'owners' => $owners,
-            'buildings' => $buildings,
-        
-          
         ]); 
     }
 
-    public function save_unit_stats()
+    public function save_unit_stats($property_uuid)
     {
-        $total_units = Property::find(Session::get('property'))->units;
-
-        $vacant_units = $total_units->where('status_id','1')->count();
-
-        $occupied_units = $total_units->where('status_id','2')->count();
-
-        $dirty_units = $total_units->where('status_id','3')->count();
-
-        $reserved_units = $total_units->where('status_id','4')->count();
-
-        $undermaintenance_units = $total_units->where('status_id','5')->count();
-
-        $pending_units = $total_units->where('status_id','6')->count();
-
         UnitStats::firstOrCreate([
-            'total' => $total_units->count(),
-            'vacant' => $vacant_units,
-            'occupied' => $occupied_units,
-            'dirty' => $dirty_units,
-            'reserved' => $reserved_units,
-            'under_maintenance' => $undermaintenance_units,
-            'pending' => $pending_units,
-            'property_uuid' => Session::get('property')
+            'total' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, '', '', '')->count(),
+            'vacant' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 1,'', '')->count(),
+            'occupied' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 2,'', '')->count(),
+            'dirty' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 3,'', '')->count(),
+            'reserved' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 4,'', '')->count(),
+            'under_maintenance' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 5,'', '')->count(),
+            'pending' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 6,'', '')->count(),
+            'property_uuid' => $property_uuid
         ]);
 
     }
@@ -587,7 +554,7 @@ class PropertyController extends Controller
         $attributes['owner_contract'] = request()->file('owner_contract')->store('owner_contracts');
         }
 
-        $property->update($attributes);
+        $property_update($attributes);
 
         return back()->with('success', 'Property has been updated.');
     }
