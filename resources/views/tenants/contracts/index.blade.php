@@ -16,7 +16,7 @@
         </x-button>
 
     </x-slot>
-    @include('tables.contracts')
+    @include('admin.tables.contracts')
 </x-index-layout>
 @include('tenants.contracts.create')
 @include('modals.popup-error-modal')

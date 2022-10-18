@@ -209,7 +209,7 @@
                                 </div>
                                 <div class="hidden rounded-lg dark:bg-gray-800" id="tenants" role="tabpanel"
                                     aria-labelledby="tenants-tab">
-                                    @include('tables.contracts')
+                                    @include('admin.tables.contracts')
                                    
                                 </div>
                                 {{-- <div class="hidden rounded-lg dark:bg-gray-800" id="rooms" role="tabpanel"

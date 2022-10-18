@@ -1532,7 +1532,7 @@
                                     </tbody>
 
                                 </table> --}}
-                                @include('tables.contracts')
+                                @include('admin.tables.contracts')
 
 
                             </div>
