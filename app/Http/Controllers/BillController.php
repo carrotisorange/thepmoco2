@@ -58,20 +58,23 @@ class BillController extends Controller
               $query->whereMonth('created_at', $month);
               })
               ->sum('amount');
+
         }else{
               $bills = Property::find($property_uuid)->bills()
-              ->whereIn('status', ['pair', 'partially_paid'])
+              ->whereIn('status', ['unpaid', 'partially_paid'])
               ->when($month, function ($query) use ($month) {
               $query->whereMonth('created_at', $month);
               })
               ->sum('bill') -
 
               Property::find($property_uuid)->bills()
-              ->whereIn('status', ['pair', 'partially_paid'])
+              ->whereIn('status', ['unpaid', 'partially_paid'])
               ->when($month, function ($query) use ($month) {
               $query->whereMonth('created_at', $month);
               })
               ->sum('initial_payment');
+
+             
         }
 
         return $bills;
@@ -79,32 +82,33 @@ class BillController extends Controller
     }
 
     
-    public function get_unit_bills($property_uuid, $month, $status)
+    public function get_unit_bills($unit_uuid, $month, $status)
     {
-        $bills =  100;  
+        if($status == 'paid')
+        { 
+            $bills = Unit::find($unit_uuid)->bills()
+              ->whereIn('status', ['paid', 'partially_paid'])
+              ->when($month, function ($query) use ($month) {
+              $query->whereMonth('created_at', $month);
+              })
+              ->sum('initial_payment');
 
-        // if($status == 'paid')
-        // { 
-        //       $bills = Property::find($property_uuid)->acknowledgementreceipts()
-        //       ->when($month, function ($query) use ($month) {
-        //       $query->whereMonth('created_at', $month);
-        //       })
-        //       ->sum('amount');
-        // }else{
-        //       $bills = Property::find($property_uuid)->bills()
-        //       ->whereIn('status', ['pair', 'partially_paid'])
-        //       ->when($month, function ($query) use ($month) {
-        //       $query->whereMonth('created_at', $month);
-        //       })
-        //       ->sum('bill') -
+        
+        }else{
+              $bills = Unit::find($unit_uuid)->bills()
+              ->whereIn('status', ['unpaid', 'partially_paid'])
+              ->when($month, function ($query) use ($month) {
+              $query->whereMonth('created_at', $month);
+              })
+              ->sum('bill') -
 
-        //       Property::find($property_uuid)->bills()
-        //       ->whereIn('status', ['pair', 'partially_paid'])
-        //       ->when($month, function ($query) use ($month) {
-        //       $query->whereMonth('created_at', $month);
-        //       })
-        //       ->sum('initial_payment');
-        // }
+              Unit::find($unit_uuid)->bills()
+              ->whereIn('status', ['unpaid', 'partially_paid'])
+              ->when($month, function ($query) use ($month) {
+              $query->whereMonth('created_at', $month);
+              })
+              ->sum('initial_payment');
+        }
 
         return $bills;
     

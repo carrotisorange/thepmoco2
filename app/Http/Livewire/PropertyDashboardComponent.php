@@ -23,9 +23,9 @@ class PropertyDashboardComponent extends Component
         app('App\Http\Controllers\PropertyController')->save_unit_stats($this->property->uuid);
 
         return view('livewire.property-dashboard-component',[
-            'contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '','', '', ''),
+            //'contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '','', '', ''),
             'expired_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'inactive', '', '',''),
-            'expiring_contracts' =>app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'active', Carbon::now()->addMonth(), '', ''),
+            'contracts' =>app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'active', Carbon::now()->addMonth(), '', ''),
             'pending_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'pendingmoveout','', '', ''),
             'movingin_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '', '',Carbon::now()->month, ''),
             'movingout_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '', '', '',Carbon::now()->month),

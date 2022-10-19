@@ -93,12 +93,10 @@ class OwnerComponent extends Component
         {
                 sleep(1);
 
-               
+                $validatedData = $this->validate();
 
                 try{
                        
-                         $validatedData = $this->validate();
-                         
                         DB::transaction(function () use ($validatedData){
                                 
                                 //method to create a new owner
@@ -144,8 +142,7 @@ class OwnerComponent extends Component
     
                 }
                 catch(\Exception $e)
-                {                       
-                        ddd($e);   
+                {                          
                         return back()->with('error');
                 }
         }
