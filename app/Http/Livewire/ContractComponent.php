@@ -112,6 +112,11 @@ class ContractComponent extends Component
         }
       }
 
+      public function removeContract()
+      {
+         $this->contract = '';
+      }
+
       public function store_contract($validated_data, $contract_uuid)
       {
          $validated_data['uuid'] = $contract_uuid;

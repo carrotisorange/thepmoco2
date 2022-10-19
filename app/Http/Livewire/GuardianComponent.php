@@ -29,10 +29,10 @@ class GuardianComponent extends Component
     protected function rules()
     {
         return [
-            'guardian' => 'required',
-            'email' => ['nullable', 'string', 'email', 'max:255'],
-            'mobile_number' => 'required',
             'relationship_id' => ['required', Rule::exists('relationships', 'id')],
+            'guardian' => [ 'required'],
+            'email' => ['nullable', 'string', 'email', 'max:255'],
+            'mobile_number' => 'required',   
         ];
     }
 
@@ -50,17 +50,11 @@ class GuardianComponent extends Component
 
         try
         {
-            DB::beginTransaction();
-
             //store new guardian
            $this->store_guardian($validated_data);
-
-            DB::commit();
         }
         catch(\Exception $e)
-        {
-            DB::rollback();
-            
+        {   
             return back()->with('error');
         }
     }
@@ -71,8 +65,6 @@ class GuardianComponent extends Component
         $validated_data['tenant_uuid'] = $this->tenant->uuid;
 
         Guardian::create($validated_data);
-
-        //retrieve updated list of guardians
 
         return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/reference/'. $this->unit->uuid.'/create')
         ->with('success', 'Guardian is successfully created.');

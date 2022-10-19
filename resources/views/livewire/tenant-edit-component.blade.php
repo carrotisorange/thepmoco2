@@ -66,6 +66,13 @@
                 <a href="#"
                     class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change
                     password</a> --}}
+                    @if($tenant_details->photo_id)
+                    <a href="{{ asset('/storage/'.$tenant_details->photo_id) }}" target="_blank" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
+                                        bg-white hover:bg-gray-50">View
+                        Valid ID</a>
+                    @else
+                    Valid ID is not available
+                    @endif
 
 
 

@@ -66,7 +66,8 @@
 
                     <div class="col-span-2">
 
-                        <label class="block text-sm font-medium text-gray-700"> You may attached the contract here.
+                        <label class="block text-sm font-medium text-gray-700"> You may attached the signed contract
+                            here.
                         </label>
                         <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
@@ -80,7 +81,10 @@
                                     </label>
                                 </div>
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-
+                                @if($contract)
+                                <span class="text-red-500 text-xs mt-2">
+                                  <a href="#/" wire:click="removeContract()">Remove the uploaded contract.</a></span>
+                                @endif
                             </div>
 
 
@@ -89,10 +93,14 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @else
                         @if ($contract)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                                class="fa-solid fa-circle-check"></i></p>
+
                         @endif
                         @enderror
-                       
+
+
+
                     </div>
 
                     @if($sendContractToTenant)

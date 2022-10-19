@@ -56,7 +56,7 @@ class ContractController extends Controller
 
     public function show_unit_contracts($unit_uuid)
     {
-        return Unit::findOrFail($unit_uuid)->contracts()->paginate(5);
+        return Unit::findOrFail($unit_uuid)->contracts()->orderBy('start', 'desc')->get();
     }
 
     public function get_property_moveins($property_uuid, $daily, $monthly)

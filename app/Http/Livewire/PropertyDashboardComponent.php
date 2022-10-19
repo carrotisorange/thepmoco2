@@ -23,9 +23,9 @@ class PropertyDashboardComponent extends Component
         app('App\Http\Controllers\PropertyController')->save_unit_stats($this->property->uuid);
 
         return view('livewire.property-dashboard-component',[
-            'contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '','', '', ''),
+            //'contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '','', '', ''),
             'expired_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'inactive', '', '',''),
-            'expiring_contracts' =>app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'active', Carbon::now()->addMonth(), '', ''),
+            'contracts' =>app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'active', Carbon::now()->addMonth(), '', ''),
             'pending_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'pendingmoveout','', '', ''),
             'movingin_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '', '',Carbon::now()->month, ''),
             'movingout_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '', '', '',Carbon::now()->month),
@@ -49,8 +49,8 @@ class PropertyDashboardComponent extends Component
             'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications($this->property->uuid),
             //'monthly_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid, Carbon::now()->month()),
             //'total_acknowledgement_receipts' => app('App\Http\Controllers\AcknowledgementReceiptController')->get_property_acknowledgementreceipts($this->property->uuid, Carbon::now()->month()), 
-            'total_collected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid, Carbon::now()->month,'paid'),
-            'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid, Carbon::now()->month, 'unpaid'),
+            'total_collected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid,Carbon::now()->month,'paid'),
+            'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid,Carbon::now()->month, 'unpaid'),
             'occupancy_rate_value' => app('App\Http\Controllers\PropertyController')->get_occupancy_rate_values($this->occupancyGraphValue),
             'occupancy_rate_date' => app('App\Http\Controllers\PropertyController')->get_occupancy_rate_dates($this->occupancyGraphValue),
             'current_occupancy_rate' => app('App\Http\Controllers\PropertyController')->get_current_occupancy_rate($this->property->uuid),

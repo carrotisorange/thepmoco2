@@ -36,7 +36,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\NotificationController;
-
+use App\Http\Livewire\DeedOfSaleComponent;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
@@ -95,6 +95,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         
                     Route::prefix('deed_of_sale')->group(function(){
                         Route::get('create',[DeedOfSaleController::class,'create']);
+                        Route::get('{deed_of_sale}/edit', [DeedOfSaleController::class, 'edit']);
                         Route::post('{random_str}/store', [DeedOfSaleController::class,'store']);
                     });
 

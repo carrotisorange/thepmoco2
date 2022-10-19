@@ -142,7 +142,7 @@ class OwnerComponent extends Component
     
                 }
                 catch(\Exception $e)
-                {                    
+                {                          
                         return back()->with('error');
                 }
         }
@@ -226,6 +226,11 @@ class OwnerComponent extends Component
                 ])->uuid;
 
                 return $owner_uuid;
+        }
+
+        public function removePhotoId()
+        {
+                $this->photo_id = '';
         }
 
         public function render()

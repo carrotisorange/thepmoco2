@@ -123,6 +123,31 @@ class DeedOfSaleComponent extends Component
         DeedOfSale::create($validated_data)->uuid;
     }
 
+    public function removeTitle()
+    {
+        $this->title = '';
+    }
+
+    public function removeTaxDeclaration()
+    {
+        $this->tax_declaration = '';
+    }
+
+    public function removeDeedOfSale()
+    {
+        $this->deed_of_sales = '';
+    }
+
+    public function removeContractToSell()
+    {
+        $this->contract_to_sell = '';
+    }
+
+    public function removeCertificateOfMembership()
+    {
+        $this->certificate_of_membership = '';
+    }
+
     public function render()
     {
         return view('livewire.deed-of-sale-component');

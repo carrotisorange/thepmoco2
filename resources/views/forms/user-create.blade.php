@@ -22,8 +22,8 @@
             <div class="sm:col-span-6">
                 <label for="concern" class="block text-sm font-medium text-gray-700">Email:</label>
                 <div class="mt-1">
-                    <textarea wire:model="email" rows="3"
-                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
+                    <input wire:model="email" 
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></input>
                     @error('email')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -31,8 +31,22 @@
 
             </div>
 
+             {{-- @if($createAnotherEmployee) --}}
+            <div class="mt-3 col-span-2">
+                <div class="form-check">
+                    <input wire:model="createAnotherEmployee"
+                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        type="checkbox" value="{{ old('createAnotherEmployee'), $createAnotherEmployee }}"
+                        id="flexCheckChecked">
+                    <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
+                        Create another employee
+                    </label>
+                </div>
+            </div>
+            {{-- @endif --}}
 
-            @if($sendEmailToEmployee)
+
+            {{-- @if($sendEmailToEmployee)
             <div class="mt-3 col-span-2">
                 <div class="form-check">
                     <input wire:model="sendEmailToEmployee" disabled
@@ -44,15 +58,42 @@
                     </label>
                 </div>
             </div>
-            @endif
+            @endif --}}
 
             @endif
 
+                <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
+                    <div class="md:grid md:grid-cols-3 md:gap-6">
+                        <div class="mt-5 space-y-6 md:col-span-6 md:mt-0">
+                            <fieldset>
+                                
+                                <div class="text-base font-medium text-gray-900" aria-hidden="true">Features</div>
+                                <div class="mt-4 space-y-4">
+                                    <div class="flex items-start">
+                                        <div class="flex h-5 items-center">
+                                            <input id="comments" name="comments" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </div>
+                                        <div class="ml-3 text-sm">
+                                            <label for="comments" class="font-medium text-gray-700">Comments</label>
+                                            <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </fieldset>
+                      
+                        </div>
+                    </div>
+                </div>
+        
         </div>
 
         <div class="flex justify-end mt-10">
-            <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/user'"
-                class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
+            <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                href="/property/{{ Session::get('property') }}/user">
+                Back
+            </a>
             @if($role_id)
             <button type="submit" wire:click="addUser()"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
