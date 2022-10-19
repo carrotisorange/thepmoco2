@@ -18,7 +18,7 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>
-                {{ $item->unit->building->building.' '.$item->unit->unit}}
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}">{{ $item->unit->building->building.' '.$item->unit->unit}}</a>
             </x-td>
 
             <x-td>{{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
