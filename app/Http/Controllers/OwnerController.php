@@ -146,6 +146,8 @@ class OwnerController extends Controller
     {
         Owner::where('uuid', $owner->uuid)->delete();
 
+        User::where('email', $owner->email)->delete();
+
         return redirect('/property/'.$property->uuid.'/unit/'.$unit->uuid.'/owner/'.Str::random(8).'/create');
 
     }
