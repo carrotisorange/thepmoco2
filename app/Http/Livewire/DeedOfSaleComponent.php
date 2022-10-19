@@ -32,6 +32,7 @@ class DeedOfSaleComponent extends Component
     public $deed_of_sales;
     public $contract_to_sell;
     public $certificate_of_membership;
+    public $is_the_unit_for_rent_to_tenant;
 
     protected function rules()
     {
@@ -66,11 +67,12 @@ class DeedOfSaleComponent extends Component
             // if(Session::get('owner_uuid')){
             //     return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
             // }else{
-                return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Deedof sale is successfully created.');
+                return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Documents are successfully uploaded.');
             // }
             
         }catch(\Exception $e)
         {
+            ddd($e);
             return back()->with('error','Cannot perform your action.');
         }
     }
@@ -92,6 +94,7 @@ class DeedOfSaleComponent extends Component
         $validated_data['status'] = 'active';
         $validated_data['classification'] = 'regular';
         $validated_data['property_uuid'] = Session::get('property');
+        
 
         if($this->title)
         {
