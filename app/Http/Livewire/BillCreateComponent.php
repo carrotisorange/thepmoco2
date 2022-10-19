@@ -47,9 +47,16 @@ class BillCreateComponent extends Component
     {
         sleep(1);
 
-        $validated_data = $this->validate();
+         $validated_data = $this->validate();    
+
+       try{
 
         $this->store_bill($validated_data);
+
+       }catch(\Exception $e)
+       {
+            ddd($e);
+       }
         
         return back()->with('success', 'Bill is successfully posted.');
 

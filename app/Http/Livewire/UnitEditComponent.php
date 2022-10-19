@@ -20,6 +20,7 @@ class UnitEditComponent extends Component
     public $rent;
     public $discount;
     public $occupancy;
+    public $is_the_unit_for_rent_to_tenant;
 
     public function mount($unit_details)
     {
@@ -32,6 +33,7 @@ class UnitEditComponent extends Component
         $this->rent = $unit_details->rent;
         $this->discount = $unit_details->discount;
         $this->occupancy = $unit_details->occupancy;
+        $this->is_the_unit_for_rent_to_tenant = $unit_details->is_the_unit_for_rent_to_tenant;
     }
     
     protected function rules()
@@ -45,7 +47,8 @@ class UnitEditComponent extends Component
             'size' => 'required',
             'rent' => 'required',
             'discount' => 'required',
-            'occupancy' => 'required'
+            'occupancy' => 'required',
+            'is_the_unit_for_rent_to_tenant' => 'required'
             ];
     }
 

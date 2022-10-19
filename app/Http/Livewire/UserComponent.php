@@ -28,10 +28,12 @@ class UserComponent extends Component
     public $avatar;
     public $password;
     public $sendEmailToEmployee;
+    public $createAnotherEmployee;
 
    public function mount()
    {
       $this->sendEmailToEmployee = true;
+      $this->createAnotherEmployee = false;
    }
 
    protected function rules()
@@ -74,8 +76,15 @@ class UserComponent extends Component
             
          });
          
-         //prompt user withe a sucess page
-         return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User invite has been sent.');
+          if($this->createAnotherEmployee)
+          {
+          //prompt user withe a sucess page
+          return redirect('/property/'.Session::get('property').'/user/'.Str::random(8).'/create')->with('success', 'User invite has been sent.');
+
+          }else{
+          //prompt user withe a sucess page
+          return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User invite has been sent.');
+          }
 
          }catch(\Exception $e)
          {

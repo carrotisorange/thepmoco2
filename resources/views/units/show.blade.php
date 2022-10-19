@@ -36,12 +36,20 @@
                                     <ul class="py-1" aria-labelledby="dropdownButton">
                                         @if($unit_details->is_the_unit_for_rent_to_tenant)
                                         <li>
+                                            @if($unit_details->occupancy > $unit_details->contracts()->where('status', 'active')->count())
                                             <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create"
                                                 class=" block py-2 px-4 text-sm
                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                 dark:text-gray-200 dark:hover:text-white">
+                                                New tenant 
+                                            </a>
+                                            @else
+                                            <a href="#/" data-modal-toggle="popup-error-modal"
+                                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                dark:text-gray-200 dark:hover:text-white">
                                                 New tenant
                                             </a>
+                                            @endif
                                         </li>
                                         @endif
 
@@ -210,7 +218,7 @@
                                 <div class="hidden rounded-lg dark:bg-gray-800" id="tenants" role="tabpanel"
                                     aria-labelledby="tenants-tab">
                                     @include('admin.tables.contracts')
-                                   
+
                                 </div>
                                 {{-- <div class="hidden rounded-lg dark:bg-gray-800" id="rooms" role="tabpanel"
                                     aria-labelledby="rooms-tab">
@@ -228,4 +236,5 @@
         </div>
     </div>
     @include('modals.create-building-modal')
+  
 </x-new-layout>

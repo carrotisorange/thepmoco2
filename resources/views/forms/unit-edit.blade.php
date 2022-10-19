@@ -66,7 +66,7 @@
             <div class="sm:col-span-2">
                 <div
                     class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                    <label for="job-title" class="block text-xs font-medium text-gray-900">Area</label>
+                    <label for="job-title" class="block text-xs font-medium text-gray-900">Area (sqm)</label>
                     <input type="text" wire:model="size" value="{{old('size', $unit_details->size)}}"
                         class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                         placeholder="">
@@ -76,10 +76,28 @@
             <div class="sm:col-span-2">
                 <div
                     class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                    <label for="job-title" class="block text-xs font-medium text-gray-900">Occupancy</label>
+                    <label for="job-title" class="block text-xs font-medium text-gray-900">Occupancy (No of allowable
+                        tenants)</label>
                     <input type="text" wire:model="occupancy" value="{{old('occupancy', $unit_details->occupancy)}}"
                         class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                         placeholder="">
+                </div>
+            </div>
+
+            <div class="sm:col-span-2">
+                <div
+                    class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                    <label for="is_the_unit_for_rent_to_tenant" class="block text-xs font-medium text-gray-900">Is the unit for rent to
+                        tenant? </label>
+                    <select wire:model="is_the_unit_for_rent_to_tenant"
+                        class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+                        <option value="1" {{ old('is_the_unit_for_rent_to_tenant', $is_the_unit_for_rent_to_tenant) == 1 ? 'selected' : 'selected' }}>
+                            yes
+                        </option>
+                         <option value="0" {{ old('is_the_unit_for_rent_to_tenant', $is_the_unit_for_rent_to_tenant) == 0 ? 'selected' : 'selected' }}>
+                            no
+                        </option>
+                    </select>
                 </div>
             </div>
 
@@ -124,4 +142,5 @@
         </div>
     </form>
     @include('layouts.notifications')
+    @include('modals.popup-error-modal')
 </div>

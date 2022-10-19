@@ -347,7 +347,7 @@
                     @endif
 
 
-                    @if($email)
+                    {{-- @if($email)
                     <div class="mt-3 col-span-4">
                         @can('ownerportal')
                         <div class="form-check">
@@ -367,7 +367,7 @@
                         </div>
                         @endcan
                     </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
             <div class="flex justify-end mt-2">
