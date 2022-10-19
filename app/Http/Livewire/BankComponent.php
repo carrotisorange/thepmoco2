@@ -36,7 +36,7 @@ class BankComponent extends Component
    {
       return [
          'is_the_property_on_loan' => 'nullable',
-         'financing_company' => 'nullable',
+         'financing_company' => ['required_if:is_the_property_on_loan,true'],
          'price' => 'nullable',
          'turnover_at' => 'required|date',
       ];
@@ -58,7 +58,10 @@ class BankComponent extends Component
 
                $this->update_deed_of_sale($validatedData);
 
-               $this->store_bank($this->bank_name, $this->account_name, $this->account_number, $this->owner->uuid);
+               if($this->bank_name)
+               {
+                  $this->store_bank($this->bank_name, $this->account_name, $this->account_number, $this->owner->uuid);
+               }
                
            });
 
@@ -66,6 +69,7 @@ class BankComponent extends Component
       }
       catch(\Exception $e)
       {
+         ddd($e);
          return back()->with('error');
       }
 
