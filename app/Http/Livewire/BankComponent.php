@@ -6,6 +6,7 @@ use App\Models\DeedOfSale;
 use Illuminate\Support\Str;
 use DB;
 use Session;
+use App\Models\Unit;
 
 use Livewire\Component;
 
@@ -58,6 +59,8 @@ class BankComponent extends Component
 
                $this->update_deed_of_sale($validatedData);
 
+               $this->update_unit();
+
                if($this->bank_name)
                {
                   $this->store_bank($this->bank_name, $this->account_name, $this->account_number, $this->owner->uuid);
@@ -74,6 +77,15 @@ class BankComponent extends Component
       }
 
    }
+
+   public function update_unit()
+    {
+        Unit::where('uuid', $this->unit->uuid)
+        ->update([
+            'price' => $this->price
+        ]);
+
+    }
 
    public function update_deed_of_sale($validatedData)
    {
