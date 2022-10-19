@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 use App\Models\DeedOfSale;
 use Session;
+use App\Models\Unit;
 use DB;
 
 use Livewire\Component;
@@ -53,8 +54,7 @@ class OccupancyComponent extends Component
 
     public function update_deed_of_sales($validatedData)
     {
-         DeedOfSale::where('unit_uuid', $this->unit->uuid)
-         ->where('owner_uuid', $this->owner->uuid)
+         Unit::where('uuid', $this->unit->uuid)
          ->update([
             'is_the_unit_for_rent_to_tenant' => $this->is_the_unit_for_rent_to_tenant
          ]);
