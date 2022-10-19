@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use DB;
+use Carbon\Carbon;
 
 class UnitEditComponent extends Component
 {
@@ -106,7 +107,10 @@ class UnitEditComponent extends Component
             'categories' => app('App\Http\Controllers\CategoryController')->index(),
             'statuses' => app('App\Http\Controllers\StatusController')->index(),
             'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($this->unit_details->uuid),
-            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid)
+            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid),
+            'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($this->unit_details->uuid),
+            'total_collected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
+            'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
         ]);
     }
 }

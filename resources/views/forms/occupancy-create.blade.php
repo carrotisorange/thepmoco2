@@ -13,6 +13,7 @@
                         <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
                             Is the unit for rent to tenant?
                         </label>
+                        <p class="mt-1 text-sm text-gray-500">If checked, the admin is going to allow tenants to rent out to the unit.</p>
 
                     </div>
                 </div>

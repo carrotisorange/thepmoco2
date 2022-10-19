@@ -280,14 +280,14 @@
                 </div>
             </div>
             <div class="flex justify-end mt-2">
-                {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                    target="_blank" href="create/export">
-                    Download Sample Contract
-                </a> --}}
-              
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                    target="_blank" href="create/export">
+                    Download Tenant Information Sheet
+                </a>
+              
+                {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
-                    class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a>
+                    class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a> --}}
             
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ Session::get('property') }}/unit">

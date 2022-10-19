@@ -22,7 +22,7 @@
                 <div class="mt-3 col-span-6">
                     <label for="financing_company" class="block text-sm font-medium text-gray-700">Financing
                         Company</label>
-                    <input type="text" wire:model.lazy="financing_company" placeholder="BDO"
+                    <input type="text" wire:model.lazy="financing_company" placeholder="Please enter your bank name."
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                     @error('financing_company')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -32,7 +32,7 @@
 
                 <div class="mt-3 col-span-6">
                     <label for="turnover_at" class="block text-sm font-medium text-gray-700">Date of Purchase</label>
-                    <input type="date" wire:model.lazy="turnover_at" placeholder=""
+                    <input type="date" wire:model.lazy="turnover_at" placeholder="" step="0.001"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                     @error('turnover_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -53,7 +53,7 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="mt-3 col-span-6">
                         <label for="bank_name" class="block text-sm font-medium text-gray-700">Name of the Bank</label>
-                        <input type="text" wire:model.lazy="bank_name" placeholder="BDO"
+                        <input type="text" wire:model.lazy="bank_name" placeholder="Please enter your bank name."
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('bank_name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

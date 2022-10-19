@@ -78,6 +78,38 @@ class BillController extends Controller
     
     }
 
+    
+    public function get_unit_bills($property_uuid, $month, $status)
+    {
+        $bills =  100;  
+
+        // if($status == 'paid')
+        // { 
+        //       $bills = Property::find($property_uuid)->acknowledgementreceipts()
+        //       ->when($month, function ($query) use ($month) {
+        //       $query->whereMonth('created_at', $month);
+        //       })
+        //       ->sum('amount');
+        // }else{
+        //       $bills = Property::find($property_uuid)->bills()
+        //       ->whereIn('status', ['pair', 'partially_paid'])
+        //       ->when($month, function ($query) use ($month) {
+        //       $query->whereMonth('created_at', $month);
+        //       })
+        //       ->sum('bill') -
+
+        //       Property::find($property_uuid)->bills()
+        //       ->whereIn('status', ['pair', 'partially_paid'])
+        //       ->when($month, function ($query) use ($month) {
+        //       $query->whereMonth('created_at', $month);
+        //       })
+        //       ->sum('initial_payment');
+        // }
+
+        return $bills;
+    
+    }
+
     public function get_latest_bill_no($property_uuid)
     {
         return Property::find($property_uuid)->bills->max('bill_no')+1;

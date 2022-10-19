@@ -110,7 +110,7 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($photo_id)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removePhotoId()">Remove the uploaded title.</a></span>
+                                    <a href="#/" wire:click="removePhotoId()">Remove the uploaded photo.</a></span>
                                 @endif
                             </div>
 

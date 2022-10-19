@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserProperty;
 use DB;
 use Livewire\WithPagination;
+use App\Models\Feature;
 
 use Livewire\Component;
 
@@ -97,7 +98,8 @@ class UserComponent extends Component
      public function render()
      {
         return view('livewire.user-component',[
-         'roles' =>  app('App\Http\Controllers\UserPropertyController')->get_employee_positions()
+         'roles' =>  app('App\Http\Controllers\UserPropertyController')->get_employee_positions(), 
+         'features' => Feature::all(),
         ]);
      }
 
