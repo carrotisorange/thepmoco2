@@ -108,7 +108,10 @@
 
                                 </div>
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-
+                                @if($photo_id)
+                                <span class="text-red-500 text-xs mt-2">
+                                    <a href="#/" wire:click="removePhotoId()">Remove the uploaded title.</a></span>
+                                @endif
                             </div>
 
 
@@ -256,7 +259,7 @@
                     </div>
 
                     @if($hasAuthorizedRepresentative)
-                  
+
                     <div class="col-span-6">
                         <label for="last-name" class="block text-sm font-medium text-gray-700">How is the representative
                             related to the unit owner</label>
@@ -277,8 +280,9 @@
 
                     @if($representative_relationship_id)
                     <div class="col-span-6">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900">Authorized Representative Information</h3>
-                    
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Authorized Representative Information
+                        </h3>
+
                     </div>
                     <div class="col-span-2">
                         <label for="representative_name"

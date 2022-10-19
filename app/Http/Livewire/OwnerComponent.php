@@ -228,6 +228,11 @@ class OwnerComponent extends Component
                 return $owner_uuid;
         }
 
+        public function removePhotoId()
+        {
+                $this->photo_id = '';
+        }
+
         public function render()
         {
                 return view('livewire.owner-component',[
