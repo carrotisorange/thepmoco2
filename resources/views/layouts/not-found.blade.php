@@ -16,7 +16,7 @@
                         <p class="mt-2 text-base text-gray-500">Sorry, we couldn’t find the page you’re looking for.</p>
                         <div class="mt-6">
                             <a href="/property" class="text-base font-medium text-indigo-600 hover:text-indigo-500">
-                                Go back portforlio
+                                Go back portfolio
                                 <span aria-hidden="true"> &rarr;</span>
                             </a>
                         </div>

@@ -57,7 +57,7 @@ class PropertyController extends Controller
     {
         app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',20);
 
-        return view('admin.restrictedpages.portforlio');
+        return view('admin.restrictedpages.portfolio');
     }
 
     public function is_property_exist()
@@ -116,7 +116,7 @@ class PropertyController extends Controller
      */
     public function create($random_str)
     {
-        $this->authorize('manager');
+        $this->authorize('is_portfolio_create_allowed');
         
         return view('properties.create', [
             'random_str' => $random_str,

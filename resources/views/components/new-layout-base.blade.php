@@ -57,7 +57,7 @@
                                 </x-dropdown-link>
 
                                 <x-dropdown-link href="/property">
-                                    Portforlio
+                                    Portfolio
                                 </x-dropdown-link>
 
                                 <form method="POST" action="{{ route('logout') }}">
@@ -112,7 +112,7 @@
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/property">
-                            Portforlio
+                            Portfolio
                         </x-dropdown-link>
                     </div>
 

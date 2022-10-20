@@ -57,7 +57,7 @@
 
                         {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link href="/property" :active="request()->routeIs('property')">
-                                <i class="fa-solid fa-building"></i>&nbspPortforlio
+                                <i class="fa-solid fa-building"></i>&nbspportfolio
                             </x-nav-link>
 
                         </div> --}}

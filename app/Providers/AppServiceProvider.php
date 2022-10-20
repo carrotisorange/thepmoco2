@@ -97,8 +97,8 @@ class AppServiceProvider extends ServiceProvider
             return (auth()->user()->user_type == '1');
         });
 
-        Gate::define('portforlio', function (User $user){
-            return (auth()->user()->is_portforlio_unlocked == '0' && auth()->user()->user_type == '1');
+        Gate::define('portfolio', function (User $user){
+            return (auth()->user()->is_portfolio_unlocked == '0' && auth()->user()->user_type == '1');
         });
 
         Gate::define('contract', function (User $user){
@@ -125,8 +125,125 @@ class AppServiceProvider extends ServiceProvider
             return (auth()->user()->is_accountreceivable_unlocked == '0' && auth()->user()->user_type == '1');
         });
 
-        Gate::define('portfotlio_create', function (User $user){
-        return (auth()->user()->is_accountreceivable_unlocked == '0');
+        //set user restrictions
+        //access to portfolio
+        Gate::define('is_portfolio_create_allowed', function (User $user){
+            return (auth()->user()->is_portfolio_create_allowed == '1');
+        });
+        
+        Gate::define('is_portfolio_read_allowed', function (User $user){
+            return (auth()->user()->is_portfolio_read_allowed == '1');
+        });
+
+        Gate::define('is_portfolio_update_allowed', function (User $user){
+            return (auth()->user()->is_portfolio_update_allowed == '1');
+        });
+
+        Gate::define('is_portfolio_delete_allowed', function (User $user){
+            return (auth()->user()->is_portfolio_delete_allowed == '1');
+        });
+
+        //access to contract
+        Gate::define('is_contract_create_allowed', function (User $user){
+            return (auth()->user()->is_contract_create_allowed == '1');
+        });
+        
+        Gate::define('is_contract_read_allowed', function (User $user){
+            return (auth()->user()->is_contract_read_allowed == '1');
+        });
+
+        Gate::define('is_contract_update_allowed', function (User $user){
+            return (auth()->user()->is_contract_update_allowed == '1');
+        });
+
+        Gate::define('is_contract_delete_allowed', function (User $user){
+            return (auth()->user()->is_contract_delete_allowed == '1');
+        });
+
+        //access to concern
+        Gate::define('is_concern_create_allowed', function (User $user){
+            return (auth()->user()->is_concern_create_allowed == '1');
+        });
+        
+        Gate::define('is_concern_read_allowed', function (User $user){
+            return (auth()->user()->is_concern_read_allowed == '1');
+        });
+
+        Gate::define('is_concern_update_allowed', function (User $user){
+            return (auth()->user()->is_concern_update_allowed == '1');
+        });
+
+        Gate::define('is_concern_delete_allowed', function (User $user){
+            return (auth()->user()->is_concern_delete_allowed == '1');
+        });
+
+        //access to tenant portal
+        Gate::define('is_tenant_portal_create_allowed', function (User $user){
+            return (auth()->user()->is_tenant_portal_create_allowed == '1');
+        });
+        
+        Gate::define('is_tenant_portal_read_allowed', function (User $user){
+            return (auth()->user()->is_tenant_portal_read_allowed == '1');
+        });
+
+        Gate::define('is_tenant_portal_update_allowed', function (User $user){
+            return (auth()->user()->is_tenant_portal_update_allowed == '1');
+        });
+
+        Gate::define('is_tenant_portal_delete_allowed', function (User $user){
+            return (auth()->user()->is_tenant_portal_delete_allowed == '1');
+        });
+
+        //access to owner portal
+        Gate::define('is_owner_portal_create_allowed', function (User $user){
+            return (auth()->user()->is_owner_portal_create_allowed == '1');
+        });
+        
+        Gate::define('is_owner_portal_read_allowed', function (User $user){
+            return (auth()->user()->is_owner_portal_read_allowed == '1');
+        });
+
+        Gate::define('is_owner_portal_update_allowed', function (User $user){
+            return (auth()->user()->is_owner_portal_update_allowed == '1');
+        });
+
+        Gate::define('is_owner_portal_delete_allowed', function (User $user){
+            return (auth()->user()->is_owner_portal_delete_allowed == '1');
+        });
+
+        //access to account payable 
+        Gate::define('is_account_payable_create_allowed', function (User $user){
+            return (auth()->user()->is_account_payable_create_allowed == '1');
+        });
+        
+        Gate::define('is_account_payable_read_allowed', function (User $user){
+            return (auth()->user()->is_account_payable_read_allowed == '1');
+        });
+
+        Gate::define('is_account_payable_update_allowed', function (User $user){
+            return (auth()->user()->is_account_payable_update_allowed == '1');
+        });
+
+        Gate::define('is_account_payable_delete_allowed', function (User $user){
+            return (auth()->user()->is_account_payable_delete_allowed == '1');
+        });
+
+        //access to account payable 
+        Gate::define('is_account_receivable_create_allowed', function (User $user){
+            return (auth()->user()->is_account_receivable_create_allowed == '1');
+        });
+        
+        Gate::define('is_account_receivable_read_allowed', function (User $user){
+            return (auth()->user()->is_account_receivable_read_allowed == '1');
+        });
+
+        Gate::define('is_account_receivable_update_allowed', function (User $user){
+            return (auth()->user()->is_account_receivable_update_allowed == '1');
+        });
+
+        Gate::define('is_account_receivable_delete_allowed', function (User $user){
+            return (auth()->user()->is_account_receivable_delete_allowed == '1');
         });
     }
+    
 }

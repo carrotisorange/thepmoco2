@@ -63,7 +63,7 @@ class SubscriptionController extends Controller
             {
                 User::where('id', $user->id)
                 ->update([
-                    'is_portforlio_unlocked' => '1'
+                    'is_portfolio_unlocked' => '1'
                 ]);
             }
         }

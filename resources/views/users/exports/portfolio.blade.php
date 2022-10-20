@@ -62,7 +62,7 @@
 <body>
     <!-- Define header and footer blocks before your content -->
     <header>
-        Portforlio
+        Portfolio
         <h5>
             As of {{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y, g:i A')}}
             <hr>

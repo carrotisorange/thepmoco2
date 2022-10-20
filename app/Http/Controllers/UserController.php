@@ -40,15 +40,15 @@ class UserController extends Controller
 
     public function export($user_id, $export_option)
     {
-        if($export_option == 'portforlio'){
+        if($export_option == 'portfolio'){
 
-            $portforlio = User::find(Auth::user()->id)->user_properties()->limit(3)->get();
+            $portfolio = User::find(Auth::user()->id)->user_properties()->limit(3)->get();
 
-            $data = $this->get_data($portforlio);
+            $data = $this->get_data($portfolio);
 
             $pdf = $this->generate_pdf($data, $export_option);
 
-            return $pdf->download(Carbon::now().'-'.auth()->user()->name.'-portforlio.pdf');
+            return $pdf->download(Carbon::now().'-'.auth()->user()->name.'-portfolio.pdf');
         }elseif($export_option == 'property')
         {
             $property = Property::find(Session::get('property'));
