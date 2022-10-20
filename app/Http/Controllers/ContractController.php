@@ -11,12 +11,15 @@ use App\Models\Bill;
 use App\Models\Property;
 use Session;
 use DB;
+use Carbon\Carbon;
 
 class ContractController extends Controller
 {
 
     public function show_moveout_request($property_uuid, $status=null)
     {
+        $this->authorize('is_contract_read_allowed');
+
         app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',5);
 
        $contracts = Contract::where('property_uuid', $property_uuid)
@@ -54,6 +57,27 @@ class ContractController extends Controller
         ->get();
     }
 
+    public function get_contracts_trend_count($property_uuid)
+    {
+       return DB::table('contracts')
+       ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as contracts'))
+       ->whereMonth('start', Carbon::now()->month)
+       ->orderBy('date', 'desc')
+       ->groupBy('date')
+       ->pluck('contracts');
+    }
+
+
+    public function get_contracts_trend_date($property_uuid)
+    {
+       return DB::table('contracts')
+        ->whereMonth('start', Carbon::now()->month)
+       ->select(DB::raw("(DATE_FORMAT(start,'%D')) as date"), DB::raw('count(*) as contracts'))
+       ->orderBy('date', 'desc')
+       ->groupBy('date')
+       ->pluck('date');
+    }
+
     public function show_unit_contracts($unit_uuid)
     {
         return Unit::findOrFail($unit_uuid)->contracts()->orderBy('start', 'desc')->get();
@@ -89,6 +113,8 @@ class ContractController extends Controller
 
     public function create(Property $property, Unit $unit, Tenant $tenant)
     {
+        $this->authorize('is_contract_create_allowed');
+
         return view('contracts.create', [
             'unit' => $unit,
             'tenant' => $tenant
@@ -136,6 +162,8 @@ class ContractController extends Controller
 
     public function edit(Property $property, Tenant $tenant, Contract $contract)
     {
+        $this->authorize('is_contract_update_allowed');
+
         return view('contracts.edit',[
           'contract' => Contract::findOrFail($contract->uuid),
           'property' => Property::find(Session::get('property')),

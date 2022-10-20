@@ -37,7 +37,8 @@
                                 </svg>
 
 
-                                <a href="/user/{{ auth()->user()->id }}/export/property" target="_blank" class="text-gray-900">Export to PDF</a>
+                                <a href="/user/{{ auth()->user()->id }}/export/property" target="_blank"
+                                    class="text-gray-900">Export to PDF</a>
                         </h1>
 
                     </div>
@@ -1221,169 +1222,124 @@
 
 
 
+                <div class="mx-10 lg:-ml-1 mt-10 col-span-4">
+
+
+                    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer>
+                    </script>
 
 
 
 
-                <div class="mt-10 col-span-4">
+                    <div x-data="app()" x-cloak class="">
+                        <div class="sm:w-full py-10">
+                            <div class="shadow p-6 rounded-lg bg-white">
+                                <div class="md:flex md:justify-between md:items-center">
+                                    <div>
+                                        <h2 class="text-xl text-gray-800 font-bold leading-tight">Move Ins</h2>
+                                        <p class="mb-2 text-gray-600 text-sm">Monthly Count</p>
+                                    </div>
 
-                    <div class="mr-20 items-center w-full h-full lg:p-12 bg-white rounded-lg shadow-md sm:p-10">
+                                    <!-- Legends -->
+                                    <div class="mb-4">
+                                        <div class="flex items-center">
+                                            <div class="w-2 h-2 bg-purple-200 mr-2 rounded-full"></div>
+                                            <div class="text-sm text-gray-700">Moveins</div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
 
 
 
-                        <!-- component -->
-                        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer>
-                        </script>
-                        <div class="flex justify-end">
-                            <div x-data="{ dropdownOpen: true }" class="relative ">
-                                <button @click="dropdownOpen = !dropdownOpen"
-                                    class="relative z-10 block rounded-md bg-white p-2 focus:outline-none">
-                                    <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </button>
 
-                                <div x-show="dropdownOpen" @click="dropdownOpen = false"
-                                    class="fixed inset-0 h-full w-full z-10"></div>
+                                <div class="line my-8 relative">
+                                    <!-- Tooltip -->
+                                    <template x-if="tooltipOpen == true">
+                                        <div x-ref="tooltipContainer"
+                                            class="p-0 m-0 z-10 shadow-lg rounded-lg absolute h-auto block"
+                                            :style="`bottom: ${tooltipY}px; left: ${tooltipX}px`">
+                                            <div class="shadow-xs rounded-lg bg-white p-2">
+                                                <div class="flex items-center justify-between text-sm">
+                                                    <div>Number:</div>
+                                                    <div class="font-bold ml-2">
+                                                        <span x-html="tooltipContent"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
 
-                                <div x-show="dropdownOpen"
-                                    class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20">
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white">
-                                        Today
-                                    </a>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white">
-                                        This Week
-                                    </a>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white">
-                                        This Month
-                                    </a>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white">
-                                        This Year
-                                    </a>
+                                    <!-- Bar Chart -->
+                                    <div class="flex -mx-2 items-end mb-2">
+                                        <template x-for="data in chartData">
+
+                                            <div class="px-2 w-1/6">
+                                                <div :style="`height: ${data}px`"
+                                                    class="transition ease-in duration-200 bg-purple-200 hover:bg-purple-400 relative"
+                                                    @mouseenter="showTooltip($event); tooltipOpen = true"
+                                                    @mouseleave="hideTooltip($event)">
+                                                    <div x-text="data"
+                                                        class="text-center absolute top-0 left-0 right-0 -mt-6 text-gray-800 text-sm">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </template>
+                                    </div>
+
+                                    <!-- Labels -->
+                                    <div class="border-t border-gray-400 mx-auto"
+                                        :style="`height: 1px; width: ${ 100 - 1/chartData.length*100 + 3}%`">
+                                    </div>
+                                    <div class="flex -mx-2 items-end">
+                                        <template x-for="data in labels">
+                                            <div class="px-2 w-1/6">
+                                                <div class="bg-red-600 relative">
+                                                    <div class="text-center absolute top-0 left-0 right-0 h-2 -mt-px bg-gray-400 mx-auto"
+                                                        style="width: 1px"></div>
+                                                    <div x-text="data"
+                                                        class="text-center absolute top-0 left-0 right-0 mt-3 text-gray-700 text-sm">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
 
                                 </div>
                             </div>
-
                         </div>
-                        <h2 class="text-xl font-semibold">Move Ins</h2>
-
-                        <div class="p-10 flex items-end flex-grow w-full mt-2 space-x-2 sm:space-x-3">
-                            <div class="relative flex flex-col items-center flex-grow pb-5 group">
-                                <span
-                                    class="absolute top-0 hidden -mt-6 text-xs font-bold group-hover:block">$37,500</span>
-                                <div class="flex items-end w-full">
-                                    <div class="relative flex justify-center flex-grow h-8 bg-indigo-200">
-                                    </div>
-                                    <div class="relative flex justify-center flex-grow h-16 bg-purple-400">
-                                    </div>
-                                </div>
-                                <span class="absolute bottom-0 text-xs font-bold">Jan</span>
-                            </div>
-                            <div class="relative flex flex-col items-center flex-grow pb-5 group">
-                                <span
-                                    class="absolute top-0 hidden -mt-6 text-xs font-bold group-hover:block">$45,000</span>
-                                <div class="flex items-end w-full">
-                                    <div class="relative flex justify-center flex-grow h-10 bg-indigo-200">
-                                    </div>
-                                    <div class="relative flex justify-center flex-grow h-20 bg-purple-400">
-                                    </div>
-                                </div>
-                                <span class="absolute bottom-0 text-xs font-bold">Feb</span>
-                            </div>
-                            <div class="relative flex flex-col items-center flex-grow pb-5 group">
-                                <span
-                                    class="absolute top-0 hidden -mt-6 text-xs font-bold group-hover:block">$47,500</span>
-                                <div class="flex items-end w-full">
-                                    <div class="relative flex justify-center flex-grow h-10 bg-indigo-200">
-                                    </div>
-                                    <div class="relative flex justify-center flex-grow h-20 bg-purple-400">
-                                    </div>
-                                </div>
-                                <span class="absolute bottom-0 text-xs font-bold">Mar</span>
-                            </div>
-                            <div class="relative flex flex-col items-center flex-grow pb-5 group">
-                                <span
-                                    class="absolute top-0 hidden -mt-6 text-xs font-bold group-hover:block">$50,000</span>
-                                <div class="flex items-end w-full">
-                                    <div class="relative flex justify-center flex-grow h-10 bg-indigo-200">
-                                    </div>
-                                    <div class="relative flex justify-center flex-grow h-24 bg-purple-400">
-                                    </div>
-                                </div>
-                                <span class="absolute bottom-0 text-xs font-bold">Apr</span>
-                            </div>
-                            <div class="relative flex flex-col items-center flex-grow pb-5 group">
-                                <span
-                                    class="absolute top-0 hidden -mt-6 text-xs font-bold group-hover:block">$47,500</span>
-                                <div class="flex items-end w-full">
-                                    <div class="relative flex justify-center flex-grow h-10 bg-indigo-200">
-                                    </div>
-                                    <div class="relative flex justify-center flex-grow h-20 bg-purple-400">
-                                    </div>
-                                </div>
-                                <span class="absolute bottom-0 text-xs font-bold">May</span>
-                            </div>
-                            <div class="relative flex flex-col items-center flex-grow pb-5 group">
-                                <span
-                                    class="absolute top-0 hidden -mt-6 text-xs font-bold group-hover:block">$55,000</span>
-                                <div class="flex items-end w-full">
-                                    <div class="relative flex justify-center flex-grow h-12 bg-indigo-200">
-                                    </div>
-                                    <div class="relative flex justify-center flex-grow h-24 bg-purple-400">
-                                    </div>
-                                </div>
-                                <span class="absolute bottom-0 text-xs font-bold">Jun</span>
-                            </div>
-                            <div class="relative flex flex-col items-center flex-grow pb-5 group">
-                                <span
-                                    class="absolute top-0 hidden -mt-6 text-xs font-bold group-hover:block">$60,000</span>
-                                <div class="flex items-end w-full">
-                                    <div class="relative flex justify-center flex-grow h-12 bg-indigo-200">
-                                    </div>
-
-                                    <div class="relative flex justify-center flex-grow h-20 bg-purple-400">
-                                    </div>
-                                </div>
-                                <span class="absolute bottom-0 text-xs font-bold">Jul</span>
-                            </div>
-
-                        </div>
-                        <div class="flex w-full mt-3">
-                            <div class="flex items-center ml-auto">
-                                <span class="block w-4 h-4 bg-purple-400"></span>
-                                <span class="ml-1 text-xs font-medium">Moveins</span>
-                            </div>
-
-                            <div class="flex items-center ml-4">
-                                <span class="block w-4  h-4 bg-indigo-200"></span>
-                                <span class="ml-1 text-xs font-medium">Moveout</span>
-                            </div>
-
-                        </div>
-                        <h2 class=" pt-3 pb-1"> Today </h2>
-                        <div class="mt-2 w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                            <a href="tenant-page">
-                                <div class="bg-purple-400 text-xs font-medium text-white text-center p-0.5 leading-none rounded-full"
-                                    style="width: 56%"> 56%</div>
-                            </a>
-                        </div>
-                        <div class="mt-5 w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                            <a href="tenant-page">
-                                <div class="bg-indigo-200 text-xs font-medium text-white text-center p-0.5 leading-none rounded-full"
-                                    style="width: 20%"> 20%</div>
-                            </a>
-                        </div>
-
                     </div>
 
+                    <script>
+                        function app() {
+      return {
+        chartData: {!!$new_contracts_count!!},
+        labels: {!!$new_contracts_date!!},
 
+        tooltipContent: '',
+        tooltipOpen: false,
+        tooltipX: 0,
+        tooltipY: 0,
+        showTooltip(e) {
+          console.log(e);
+          this.tooltipContent = e.target.textContent
+          this.tooltipX = e.target.offsetLeft - e.target.clientWidth;
+          this.tooltipY = e.target.clientHeight + e.target.clientWidth;
+        },
+        hideTooltip(e) {
+          this.tooltipContent = '';
+          this.tooltipOpen = false;
+          this.tooltipX = 0;
+          this.tooltipY = 0;
+        }
+      }
+    }
+                    </script>
                 </div>
                 <div class="mt-10 lg: sm:my-10  col-span-2">
                     <div class="bg-indigo-200 rounded-lg shadow-md w-full">
@@ -1575,7 +1531,7 @@
                             <ul class="flex flex-col bg-purple-200 p-4">
                                 @foreach ($employees as $item)
 
-                              
+
                                 <li class="border-gray-400 flex flex-row mb-2">
                                     <div
                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -1596,7 +1552,7 @@
 
                                     </div>
                                 </li>
-                              
+
 
                                 @endforeach
                             </ul>

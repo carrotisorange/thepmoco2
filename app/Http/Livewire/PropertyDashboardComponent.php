@@ -29,6 +29,8 @@ class PropertyDashboardComponent extends Component
             'pending_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'pendingmoveout','', '', ''),
             'movingin_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '', '',Carbon::now()->month, ''),
             'movingout_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '', '', '',Carbon::now()->month),
+            'new_contracts_count' => app('App\Http\Controllers\ContractController')->get_contracts_trend_count($this->property->uuid),
+            'new_contracts_date' => app('App\Http\Controllers\ContractController')->get_contracts_trend_date($this->property->uuid),
             'concerns' =>app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid, '', Carbon::now()->month),
             'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid,'pendingmovein', ''),
             'closed_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid, 'closed', Carbon::now()->month),
