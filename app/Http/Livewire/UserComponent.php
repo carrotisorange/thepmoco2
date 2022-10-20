@@ -73,38 +73,38 @@ class UserComponent extends Component
       $this->sendEmailToEmployee = true;
       $this->createAnotherEmployee = false;
 
-      $this->is_portfolio_create_allowed = true;
+      $this->is_portfolio_create_allowed = false;
       $this->is_portfolio_read_allowed = true;
       $this->is_portfolio_update_allowed = false;
       $this->is_portfolio_delete_allowed = false;
 
       $this->is_contract_create_allowed = false;
-      $this->is_contract_read_allowed = false;
+      $this->is_contract_read_allowed = true;
       $this->is_contract_update_allowed = false;
       $this->is_contract_delete_allowed = false;
 
       $this->is_concern_create_allowed = false;
-      $this->is_concern_read_allowed = false;
+      $this->is_concern_read_allowed = true;
       $this->is_concern_update_allowed = false;
       $this->is_concern_delete_allowed = false;
 
       $this->is_tenant_portal_create_allowed = false;
-      $this->is_tenant_portal_read_allowed = false;
+      $this->is_tenant_portal_read_allowed = true;
       $this->is_tenant_portal_update_allowed = false;
       $this->is_tenant_portal_delete_allowed = false;
 
       $this->is_owner_portal_create_allowed = false;
-      $this->is_owner_portal_read_allowed = false;
+      $this->is_owner_portal_read_allowed = true;
       $this->is_owner_portal_update_allowed = false;
       $this->is_owner_portal_delete_allowed = false;
 
       $this->is_account_payable_create_allowed = false;
-      $this->is_account_payable_read_allowed = false;
+      $this->is_account_payable_read_allowed = true;
       $this->is_account_payable_update_allowed = false;
       $this->is_account_payable_delete_allowed = false;
 
       $this->is_account_receivable_create_allowed = false;
-      $this->is_account_receivable_read_allowed = false;
+      $this->is_account_receivable_read_allowed = true;
       $this->is_account_receivable_update_allowed = false;
       $this->is_account_receivable_delete_allowed = false;
    }
@@ -163,6 +163,7 @@ class UserComponent extends Component
 
          }catch(\Exception $e)
          {
+            ddd($e);
             //prompt user with an error
             return back()->with('error');
          }

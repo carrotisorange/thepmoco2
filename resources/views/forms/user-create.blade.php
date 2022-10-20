@@ -54,7 +54,7 @@
 
         </div>
 
-        @if(!$email)
+        @if($email)
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
