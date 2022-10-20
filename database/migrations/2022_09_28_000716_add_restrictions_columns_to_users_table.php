@@ -14,7 +14,7 @@ class AddRestrictionsColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_portforlio_unlocked');
+            $table->boolean('is_portfolio_unlocked');
             $table->boolean('is_contract_unlocked');
             $table->boolean('is_concern_unlocked');
             $table->boolean('is_tenantportal_unlocked');

@@ -124,13 +124,13 @@
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                     <button type="button"
-                        onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portforlio'"
+                        onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portfolio'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                     Portforlio
+                     Export Portfolio
                     </button>
 
 
-                    @can('portforlio')
+                    @can('portfolio')
                     <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/unlock'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
                         property</button>
@@ -149,7 +149,7 @@
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                            @include('admin.tables.portforlio')
+                            @include('admin.tables.portfolio')
                         </div>
                     </div>
                 </div>

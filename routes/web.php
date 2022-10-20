@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
-require __DIR__.'/portforlio.php';
+require __DIR__.'/portfolio.php';
 
 require __DIR__.'/property.php';
 

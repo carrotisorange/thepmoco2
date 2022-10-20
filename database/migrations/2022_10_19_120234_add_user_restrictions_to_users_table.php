@@ -14,10 +14,10 @@ class AddUserRestrictionsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_portforlio_create_allowed');
-            $table->boolean('is_portforlio_read_allowed');
-            $table->boolean('is_portforlio_update_allowed');
-            $table->boolean('is_portforlio_delete_allowed');
+            $table->boolean('is_portfolio_create_allowed');
+            $table->boolean('is_portfolio_read_allowed');
+            $table->boolean('is_portfolio_update_allowed');
+            $table->boolean('is_portfolio_delete_allowed');
 
              $table->boolean('is_contract_create_allowed');
              $table->boolean('is_contract_read_allowed');

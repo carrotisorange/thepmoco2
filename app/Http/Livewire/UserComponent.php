@@ -21,20 +21,92 @@ class UserComponent extends Component
    use WithPagination;
 
    //employee fields
-    public $role_id;
-    public $name;
-    public $username;
-    public $email;
-    public $mobile_number;
-    public $avatar;
-    public $password;
-    public $sendEmailToEmployee;
-    public $createAnotherEmployee;
+   public $role_id;
+   public $name;
+   public $username;
+   public $email;
+   public $mobile_number;
+   public $avatar;
+   public $password;
+   public $sendEmailToEmployee;
+   public $createAnotherEmployee;
+
+   public $is_portfolio_create_allowed;
+   public $is_portfolio_read_allowed;
+   public $is_portfolio_update_allowed;
+   public $is_portfolio_delete_allowed;
+
+   public $is_contract_create_allowed;
+   public $is_contract_read_allowed;
+   public $is_contract_update_allowed;
+   public $is_contract_delete_allowed;
+
+   
+   public $is_concern_create_allowed;
+   public $is_concern_read_allowed;
+   public $is_concern_update_allowed;
+   public $is_concern_delete_allowed;
+
+   public $is_tenant_portal_create_allowed;
+   public $is_tenant_portal_read_allowed;
+   public $is_tenant_portal_update_allowed;
+   public $is_tenant_portal_delete_allowed;
+
+   public $is_owner_portal_create_allowed;
+   public $is_owner_portal_read_allowed;
+   public $is_owner_portal_update_allowed;
+   public $is_owner_portal_delete_allowed;
+
+   public $is_account_payable_create_allowed;
+   public $is_account_payable_read_allowed;
+   public $is_account_payable_update_allowed;
+   public $is_account_payable_delete_allowed;
+
+   public $is_account_receivable_create_allowed;
+   public $is_account_receivable_read_allowed;
+   public $is_account_receivable_update_allowed;
+   public $is_account_receivable_delete_allowed;
+  
 
    public function mount()
    {
       $this->sendEmailToEmployee = true;
       $this->createAnotherEmployee = false;
+
+      $this->is_portfolio_create_allowed = true;
+      $this->is_portfolio_read_allowed = true;
+      $this->is_portfolio_update_allowed = false;
+      $this->is_portfolio_delete_allowed = false;
+
+      $this->is_contract_create_allowed = false;
+      $this->is_contract_read_allowed = false;
+      $this->is_contract_update_allowed = false;
+      $this->is_contract_delete_allowed = false;
+
+      $this->is_concern_create_allowed = false;
+      $this->is_concern_read_allowed = false;
+      $this->is_concern_update_allowed = false;
+      $this->is_concern_delete_allowed = false;
+
+      $this->is_tenant_portal_create_allowed = false;
+      $this->is_tenant_portal_read_allowed = false;
+      $this->is_tenant_portal_update_allowed = false;
+      $this->is_tenant_portal_delete_allowed = false;
+
+      $this->is_owner_portal_create_allowed = false;
+      $this->is_owner_portal_read_allowed = false;
+      $this->is_owner_portal_update_allowed = false;
+      $this->is_owner_portal_delete_allowed = false;
+
+      $this->is_account_payable_create_allowed = false;
+      $this->is_account_payable_read_allowed = false;
+      $this->is_account_payable_update_allowed = false;
+      $this->is_account_payable_delete_allowed = false;
+
+      $this->is_account_receivable_create_allowed = false;
+      $this->is_account_receivable_read_allowed = false;
+      $this->is_account_receivable_update_allowed = false;
+      $this->is_account_receivable_delete_allowed = false;
    }
 
    protected function rules()
@@ -72,8 +144,10 @@ class UserComponent extends Component
             auth()->user()->plan_id
          );
 
-         //store a new user and user property
-         app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),$user_id,false,false);
+            $this->set_user_restrictions($user_id);
+
+            //store a new user and user property
+            app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),$user_id,false,false);
             
          });
          
@@ -101,6 +175,47 @@ class UserComponent extends Component
          'roles' =>  app('App\Http\Controllers\UserPropertyController')->get_employee_positions(), 
          'features' => Feature::all(),
         ]);
+     }
+
+     public function set_user_restrictions($user_id)
+     {
+         User::where('id', $user_id)
+         ->update([
+            'is_portfolio_create_allowed' => $this->is_portfolio_create_allowed,
+            'is_portfolio_read_allowed' => $this->is_portfolio_read_allowed,
+            'is_portfolio_update_allowed' => $this->is_portfolio_update_allowed,
+            'is_portfolio_delete_allowed' => $this->is_portfolio_delete_allowed,
+
+            'is_contract_create_allowed' => $this->is_contract_create_allowed,
+            'is_contract_read_allowed' => $this->is_contract_read_allowed,
+            'is_contract_update_allowed' => $this->is_contract_update_allowed,
+            'is_contract_delete_allowed' => $this->is_contract_delete_allowed,
+         
+            'is_concern_create_allowed' => $this->is_concern_create_allowed,
+            'is_concern_read_allowed' => $this->is_concern_read_allowed,
+            'is_concern_update_allowed' => $this->is_concern_update_allowed,
+            'is_concern_delete_allowed' => $this->is_concern_delete_allowed,
+
+            'is_tenant_portal_create_allowed' => $this->is_tenant_portal_create_allowed,
+            'is_tenant_portal_read_allowed' => $this->is_tenant_portal_read_allowed,
+            'is_tenant_portal_update_allowed' => $this->is_tenant_portal_update_allowed,
+            'is_tenant_portal_delete_allowed' => $this->is_tenant_portal_delete_allowed,
+
+            'is_owner_portal_create_allowed' => $this->is_owner_portal_create_allowed,
+            'is_owner_portal_read_allowed' => $this->is_owner_portal_read_allowed,
+            'is_owner_portal_update_allowed' => $this->is_owner_portal_update_allowed,
+            'is_owner_portal_delete_allowed' => $this->is_owner_portal_delete_allowed,
+
+            'is_account_payable_create_allowed' => $this->is_account_payable_create_allowed,
+            'is_account_payable_read_allowed' => $this->is_account_payable_read_allowed,
+            'is_account_payable_update_allowed' => $this->is_account_payable_update_allowed,
+            'is_account_payable_delete_allowed' => $this->is_account_payable_delete_allowed,
+
+            'is_account_receivable_create_allowed' => $this->is_account_receivable_create_allowed,
+            'is_account_receivable_read_allowed' => $this->is_account_receivable_read_allowed,
+            'is_account_receivable_update_allowed' => $this->is_account_receivable_update_allowed,
+            'is_account_receivable_delete_allowed' => $this->is_account_receivable_delete_allowed,
+         ]);
      }
 
      public function removeUser($id)
