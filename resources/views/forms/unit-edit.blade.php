@@ -330,7 +330,7 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <a class="text-blue-500 text-decoration-line: underline"
-                                        href="/property/{{ $item->owner->property_uuid }}/owner/{{ $item->owner->uuid }}">{{
+                                        href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}">{{
                                         $item->owner->owner }}</a>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
