@@ -11,6 +11,7 @@ use App\Models\Bill;
 use App\Models\Property;
 use Session;
 use DB;
+use Carbon\Carbon;
 
 class ContractController extends Controller
 {
@@ -52,6 +53,27 @@ class ContractController extends Controller
         })
         ->orderBy('start', 'desc')
         ->get();
+    }
+
+    public function get_contracts_trend_count($property_uuid)
+    {
+       return DB::table('contracts')
+       ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as contracts'))
+       ->whereMonth('start', Carbon::now()->month)
+       ->orderBy('date', 'desc')
+       ->groupBy('date')
+       ->pluck('contracts');
+    }
+
+
+    public function get_contracts_trend_date($property_uuid)
+    {
+       return DB::table('contracts')
+        ->whereMonth('start', Carbon::now()->month)
+       ->select(DB::raw("(DATE_FORMAT(start,'%D')) as date"), DB::raw('count(*) as contracts'))
+       ->orderBy('date', 'desc')
+       ->groupBy('date')
+       ->pluck('date');
     }
 
     public function show_unit_contracts($unit_uuid)
