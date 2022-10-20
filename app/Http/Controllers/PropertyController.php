@@ -487,6 +487,8 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {  
+        $this->authorize('is_portfolio_read_allowed');
+
         return view('properties.show',[
             'property' => $property,
         ]); 
@@ -515,6 +517,8 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     { 
+        $this->authorize('is_portfolio_update_allowed');
+
         return view('properties.edit',[
             'property_details' => $property,
         ]);
@@ -567,6 +571,8 @@ class PropertyController extends Controller
      */
     public function destroy($uuid)
     {
+        $this->authorize('is_portfolio_delete_allowed');
+
         if(!auth()->user()->role_id == '5')
         {
             abort(403);

@@ -18,6 +18,8 @@ class ContractController extends Controller
 
     public function show_moveout_request($property_uuid, $status=null)
     {
+        $this->authorize('is_contract_read_allowed');
+
         app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',5);
 
        $contracts = Contract::where('property_uuid', $property_uuid)
@@ -111,6 +113,8 @@ class ContractController extends Controller
 
     public function create(Property $property, Unit $unit, Tenant $tenant)
     {
+        $this->authorize('is_contract_create_allowed');
+
         return view('contracts.create', [
             'unit' => $unit,
             'tenant' => $tenant
@@ -158,6 +162,8 @@ class ContractController extends Controller
 
     public function edit(Property $property, Tenant $tenant, Contract $contract)
     {
+        $this->authorize('is_contract_update_allowed');
+
         return view('contracts.edit',[
           'contract' => Contract::findOrFail($contract->uuid),
           'property' => Property::find(Session::get('property')),
