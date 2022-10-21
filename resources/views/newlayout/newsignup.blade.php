@@ -33,15 +33,15 @@
   <html class="h-full bg-gray-300s">
   <body class="h-full">
 
-  <div class="hidden lg:block relative flex-1 items-center justify-center">
-  <img class="absolute inset-0 w-auto py-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt="">
-  <img class="absolute inset-0 w-32 py-12 ml-10" src="{{ asset('/brands/logo_text.png') }}" alt="">
+  <div class="hidden lg:block  flex-1 items-center justify-center">
+  <img class="absolute py-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt="">
+  <img class="absolute w-32 py-12 ml-10" src="{{ asset('/brands/logo_text.png') }}" alt="">
 </div>
   <div class="min-h-full flex ">
-<div class="mt-8 flex-1 flex flex-col py-2 px-4 sm:px-6 lg:flex-none lg:px-10 ">
+<div class="mt-8 flex-1 flex flex-col py-2 px-4 sm:px-6 md:flex lg:flex lg:px-10 ">
 <div class="mt-2 grid grid-cols-1 gap-y-6 gap-x-10 sm:grid-cols-2">
   <div class="w-full max-w-sm">
-  <div class="sm:col-span-1">
+  <div class="sm:col-span-1 md:col-span-1">
 
 
 </div>
