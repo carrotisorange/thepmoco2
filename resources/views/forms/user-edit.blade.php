@@ -1,80 +1,52 @@
 <form class="space-y-6" method="POST" wire:submit.prevent="updateUser()" enctype="multipart/form-data">
     <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-
         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                    Full Name
-                </label>
-                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex rounded-md shadow-sm">
-                        <input type="text" wire:model="name" autocomplete="name" 
-                            class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
-                    </div>
-                </div>
+            <div class="col-span-6 sm:col-span-2">
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" wire:model.lazy="name" autocomplete="name"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                 @error('name')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label for="username" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                    Username
-                </label>
-                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex rounded-md shadow-sm">
-                        <input type="text" wire:model="username" autocomplete="username"
-                           
-                            class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
-                    </div>
-                </div>
+            <div class="col-span-6 sm:col-span-2">
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" wire:model.lazy="username" autocomplete="username"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                 @error('username')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label for="email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                    Email
-                </label>
-                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex rounded-md shadow-sm">
-                        <input type="email" wire:model="email" autocomplete="email"
-                          
-                            class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
-                    </div>
-                </div>
+            <div class="col-span-6 sm:col-span-2">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" wire:model.lazy="email" autocomplete="email"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                @error('email')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
             </div>
 
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label for="mobile_number" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                    Mobile
-                </label>
-                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex rounded-md shadow-sm">
-                        <input type="text" wire:model="mobile_number"
-                         autocomplete="mobile_number"
-                            class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
-                    </div>
-                </div>
+            <div class="col-span-6 sm:col-span-2">
+                <label for="username" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                 @error('mobile_number')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label for="password" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                    Password
-                </label>
-                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex rounded-md shadow-sm">
-                        <input type="password" wire:model="password" autocomplete="password"
-                        
-                            class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
-                    </div>
-                </div>
+
+            @if($user_id === auth()->user()->id)
+            <div class="col-span-6 sm:col-span-2">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" wire:model.lazy="password" autocomplete="password"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                 @error('password')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
+            @endif
+
 
             {{-- <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                 <label for="role_id" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
@@ -98,34 +70,33 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div> --}}
-
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label for="status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                    Status
-                </label>
+            
+            @if(auth()->user()->role_id == 5)
+            <div class="col-span-2">
+                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 @if(auth()->user()->role_id === 5)
-                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex rounded-md shadow-sm">
-                        <select name="status" id="status" autocomplete="status"
-                            class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
-                            <option value="active" {{ 'active'==$user->status ? 'selected' : ''
-                                }}>active</option>
-                            <option value="inactive" {{ 'inactive'==$user->status ? 'selected' :
-                                ''
-                                }}>inactive</option>
-                            <option value="banned" {{ 'banned'==$user->status ? 'selected' : ''
-                                }}>banned</option>
-                            <option value="pending" {{ 'pending'==$user->status ? 'selected' :
-                                ''
-                                }}>pending</option>
-                        </select>
-                    </div>
-                </div>
+                <select wire:model.lazy="status" autocomplete="status"
+                    class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">Select one</option>
+                    <option value="active" {{ 'active'==$status ? 'Select one' : 'selected'
+                        }}>active</option>
+                    <option value="inactive" {{ 'inactive'==$status ? 'Select one' :
+                        'selected'
+                        }}>inactive</option>
+                    <option value="banned" {{ 'banned'==$status ? 'Select one' : 'selected'
+                        }}>banned</option>
+                    <option value="pending" {{ 'pending'==$status ? 'Select one' :
+                        'selected'
+                        }}>pending</option>
+                </select>
                 @endif
                 @error('status')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
+            @endif
+
+
 
             {{-- <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5">
                 <label for="avatar" class="block text-sm font-medium text-gray-700">

@@ -50,9 +50,8 @@
             </li>
 
 
-
             <li class="relative md:flex md:flex-1">
-                <!-- Upcoming Step -->
+                <!-- Current Step -->
                 <a href="#" class="group flex items-center">
                     <span class="flex items-center px-6 py-4 text-sm font-medium">
                         <span
@@ -61,6 +60,28 @@
                         </span>
                         <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add tenants to
                             your property</span>
+                    </span>
+                </a>
+
+                <!-- Arrow separator for lg screens and up -->
+                <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
+                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </li>
+
+
+            <li class="relative md:flex md:flex-1">
+                <!-- Upcoming Step -->
+                <a href="#" class="group flex items-center">
+                    <span class="flex items-center px-6 py-4 text-sm font-medium">
+                        <span
+                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                            <span class="text-gray-500 group-hover:text-gray-900">04</span>
+                        </span>
+                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add employees to help you manage your property.</span>
                     </span>
                 </a>
             </li>
@@ -93,11 +114,11 @@
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-700">
-            @if(Session::get('tenant_uuid') || Session::get('owner_uuid'))    
-            Select a unit for the tenant
-             @else
-             Units
-             @endif
+                @if(Session::get('tenant_uuid') || Session::get('owner_uuid'))
+                Select a unit for the tenant
+                @else
+                Units
+                @endif
             </h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -169,26 +190,26 @@
 
         </div>
 
-         <div class="sm:col-span-1">
+        <div class="sm:col-span-1">
             <select id="small" wire:model="sortBy"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="" selected>Sort unit by</option>
-             
-               <option value="floor_id">floor</option>
-               <option value="occupancy">occupancy</option>
-               <option value="rent">rent</option>
-               <option value="unit">unit</option>
+
+                <option value="floor_id">floor</option>
+                <option value="occupancy">occupancy</option>
+                <option value="rent">rent</option>
+                <option value="unit">unit</option>
             </select>
 
         </div>
 
-          <div class="sm:col-span-1">
+        <div class="sm:col-span-1">
             <select id="small" wire:model="orderBy"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="asc" selected>Sorting order</option>
-               <option value="asc">asc</option>
-               <option value="desc">desc</option>
-             
+                <option value="asc">asc</option>
+                <option value="desc">desc</option>
+
             </select>
 
         </div>
@@ -353,7 +374,7 @@
                             <td
                                 class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
                                 @if(Session::get('tenant_uuid'))
-                                <a 
+                                <a
                                     href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">{{
                                     $unit->unit }}</a>
                                 @elseif(Session::get('owner_uuid'))

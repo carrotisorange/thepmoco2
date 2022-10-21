@@ -42,6 +42,13 @@ class BillCreateComponent extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function removeBill($bill_id)
+    {
+        Bill::where('id', $bill_id)->delete();
+
+        return session()->flash('success', 'Bill is successfully removed.');
+    }
+
 
     public function submitForm()
     {
@@ -51,15 +58,23 @@ class BillCreateComponent extends Component
 
        try{
 
-        $this->store_bill($validated_data);
+            $this->store_bill($validated_data);
 
        }catch(\Exception $e)
        {
-            ddd($e);
+            session()->flash('error');
        }
-        
-        return back()->with('success', 'Bill is successfully posted.');
 
+       $this->reset_form();
+        
+        return session()->flash('success', 'Bill is successfully posted.');
+
+    }
+
+    public function reset_form()
+    {
+        $this->particular_id = '';
+        $this->bill = '';
     }
 
     public function store_bill($validated_data)
