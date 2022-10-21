@@ -48,7 +48,7 @@
                                     Profile
                                 </x-dropdown-link>
 
-                                <x-dropdown-link href="/chatify">
+                                <x-dropdown-link href="/chatify" target="_blank">
                                     Chat
                                 </x-dropdown-link>
 
