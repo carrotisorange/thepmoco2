@@ -48,10 +48,8 @@
                     </div>
                 </li>
 
-
-
                 <li class="relative md:flex md:flex-1">
-                    <!-- Upcoming Step -->
+                    <!-- Current Step -->
                     <a href="#" class="group flex items-center">
                         <span class="flex items-center px-6 py-4 text-sm font-medium">
                             <span
@@ -63,8 +61,32 @@
                                 property</span>
                         </span>
                     </a>
+
+
+                    <!-- Arrow separator for lg screens and up -->
+                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
+                            preserveAspectRatio="none">
+                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                 </li>
 
+
+
+                <li class="relative md:flex md:flex-1">
+                    <!-- Upcoming Step -->
+                    <a href="#" class="group flex items-center">
+                        <span class="flex items-center px-6 py-4 text-sm font-medium">
+                            <span
+                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                                <span class="text-gray-500 group-hover:text-gray-900">04</span>
+                            </span>
+                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add employees to help you manage your property.</span>
+                        </span>
+                    </a>
+                </li>
             </ol>
         </nav>
         {{-- <h2 class="text-2xl font-bold tracking-tight text-gray-900 font-pop">Welcome, {{
@@ -126,7 +148,7 @@
                     <button type="button"
                         onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portfolio'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                     Export Portfolio
+                        Export Portfolio
                     </button>
 
 

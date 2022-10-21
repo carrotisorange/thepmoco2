@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Carbon\Carbon;
-use App\Models\Plan;
-use Str;
 
 class RegisteredUserController extends Controller
 {
@@ -49,8 +47,9 @@ class RegisteredUserController extends Controller
         $attributes['checkoutoption_id'] = 4;
         $attributes['plan_id'] = 1;
         $attributes['user_type'] = 1;
+        
         $attributes['role_id'] = 5;
-        $attributes['trial_ends_at'] = Carbon::now()->addMonth();
+        $attributes['trial_ends_at'] = Carbon::now()->addMonths(2);
         $attributes['discount_code'] = 'none';
 
         $user = User::create($attributes);
