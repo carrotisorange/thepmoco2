@@ -49,8 +49,10 @@ class PropertyController extends Controller
 
     public function store_property_session($property_uuid)
     {
-        session(['property' => $property_uuid]);
-        session(['property_name' => Property::find($property_uuid)->property]);
+        Session::put('property', $property_uuid->uuid);
+
+        Session::put('property_name', Property::find($property_uuid->uuid)->property);
+        
     }
 
     public function unlock($property_uuid)

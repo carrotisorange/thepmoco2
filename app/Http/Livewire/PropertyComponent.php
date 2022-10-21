@@ -74,6 +74,7 @@ class PropertyComponent extends Component
          $property_uuid = Str::uuid();
 
          DB::transaction(function () use ($validatedData, $property_uuid){
+            
             $property = $this->store_property($property_uuid, $validatedData);
 
             $this->store_user_property($property_uuid);
@@ -83,8 +84,9 @@ class PropertyComponent extends Component
             $this->store_roles($property_uuid);
 
             app('App\Http\Controllers\PointController')->store($property_uuid, auth()->user()->id, 50, 6);
-
+            
             app('App\Http\Controllers\PropertyController')->store_property_session($property);
+          
          });
          
          return redirect('/property/'.$property_uuid.'/success')->with('success', 'Property is successfully created.');
@@ -116,7 +118,7 @@ class PropertyComponent extends Component
 
      public function store_user_property($property_uuid)
      {
-       UserProperty::create([
+       return UserProperty::create([
        'property_uuid' => $property_uuid,
        'user_id' => auth()->user()->id,
        'is_account_owner' => true

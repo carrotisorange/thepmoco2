@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Session;
 
 class StatusController extends Controller
 {
@@ -14,7 +15,14 @@ class StatusController extends Controller
      */
     public function index()
     {
-        return Status::all();
+        $statuses = '';
+
+        if(Session::get('property') == 'ce1f8806-babc-4a43-9279-e16507290d98'){
+            $statuses = Status::where('id','!=', '7' )->get();
+        }else{
+            $statuses = Status::all();
+        }
+        return $statuses;
     }
 
     /**
