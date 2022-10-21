@@ -270,4 +270,9 @@ class ContractController extends Controller
             'tenant' => $tenant
         ]);
     }
+
+    public function destroy()
+    {
+         $this->authorize('is_contract_delete_allowed');
+    }
 }

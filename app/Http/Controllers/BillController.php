@@ -15,7 +15,7 @@ class BillController extends Controller
 {
     public function index(Property $property, $batch_no=null)
     {
-        $this->authorize('billing');
+        $this->authorize('is_account_receivable_read_allowed');
                 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
 
@@ -131,6 +131,8 @@ class BillController extends Controller
 
     public function create(Unit $unit, Tenant $tenant, Contract $contract)
     {
+        $this->authorize('is_account_receivable_create_allowed');
+
         $bills = Tenant::find($tenant->uuid)->bills;
        
         $particulars = app('App\Http\Controllers\PropertyParticularController')->show(Session::get('property'));
@@ -165,7 +167,7 @@ class BillController extends Controller
 
     public function destroy($id)
     {    
-        $this->authorize('manager');
+        $this->authorize('is_account_receivable_delete_allowed');
 
         $bill = Bill::where('id', $id);
         if($bill->delete()){

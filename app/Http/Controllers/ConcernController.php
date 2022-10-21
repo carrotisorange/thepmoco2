@@ -17,6 +17,8 @@ class ConcernController extends Controller
      */
     public function index($property_uuid)
     {
+        $this->authorize('is_concern_read_allowed');
+
         app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',13);
 
         return view('concerns.index');
@@ -42,7 +44,7 @@ class ConcernController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('is_concern_create_allowed');
     }
 
     /**
@@ -77,7 +79,7 @@ class ConcernController extends Controller
      */
     public function edit(Concern $concern)
     {
-        //
+        $this->authorize('is_concern_update_allowed');
     }
 
     /**
@@ -100,6 +102,6 @@ class ConcernController extends Controller
      */
     public function destroy(Concern $concern)
     {
-        //
+        $this->authorize('is_concern_delete_allowed');
     }
 }
