@@ -73,6 +73,8 @@ class UserComponent extends Component
       $this->sendEmailToEmployee = true;
       $this->createAnotherEmployee = false;
 
+  
+
       $this->is_portfolio_create_allowed = false;
       $this->is_portfolio_read_allowed = true;
       $this->is_portfolio_update_allowed = false;

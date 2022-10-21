@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 use Illuminate\Validation\Rule;
 use DB;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class UserEditComponent extends Component
@@ -16,6 +17,7 @@ class UserEditComponent extends Component
     public $password;
     public $status;
     public $role_id;
+    public $user_id;
 
     public function mount($user)
     {
@@ -25,6 +27,8 @@ class UserEditComponent extends Component
         $this->mobile_number = $user->mobile_number;
         $this->role_id = $user->role_id;
         $this->status = $user->status;
+        $this->user_id = $user->id;
+           
     }
     
      protected function rules()
@@ -51,6 +55,11 @@ class UserEditComponent extends Component
         $validatedData = $this->validate();
          
         try{     
+            if($this->password)
+            {
+                $validatedData['password'] = Hash::make($this->password);
+            }
+            
             DB::transaction(function () use ($validatedData){
                 $this->user->update($validatedData);
             });
@@ -58,7 +67,7 @@ class UserEditComponent extends Component
             session()->flash('success', 'User details is successfully updated.');    
             
         }catch(\Exception $e){
-            ddd($e);
+          
             session()->flash('error');
         }
     }
