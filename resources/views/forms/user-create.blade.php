@@ -18,7 +18,6 @@
 
             </div>
             @if($role_id)
-
             <div class="sm:col-span-6">
                 <label for="concern" class="block text-sm font-medium text-gray-700">Email:</label>
                 <div class="mt-1">
@@ -30,35 +29,14 @@
                 </div>
 
             </div>
-
-
-
-
-            {{-- @if($sendEmailToEmployee)
-            <div class="mt-3 col-span-2">
-                <div class="form-check">
-                    <input wire:model="sendEmailToEmployee" disabled
-                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="checkbox" value="{{ old('sendEmailToEmployee'), $sendEmailToEmployee }}"
-                        id="flexCheckChecked">
-                    <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
-                        Send invite to the new employee.
-                    </label>
-                </div>
-            </div>
-            @endif --}}
-
             @endif
-
-
-
         </div>
 
         @if($email)
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">Set employee restrictions</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">Set employee restrictions to the System.</h1>
                     <p class="mt-2 text-sm text-gray-700">A list of all the features and the different actions a user
                         can perform.</p>
                 </div>
@@ -70,8 +48,6 @@
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
-
                             <table class="min-w-full table-fixed divide-y divide-gray-300">
                                 <thead class="bg-gray-50">
                                     <tr>
@@ -98,40 +74,40 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
-                                  @foreach ($features as $item)
-                                  <tr>
-                                    <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                        <!-- Selected row marker, only show when row is selected. -->
-                                        <div class="absolute inset-y-0 left-0 w-0.5 bg-indigo-600"></div>
-                                
-                                        {{-- <input type="checkbox"
-                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                                        --}}
-                                    </td>
-                                    <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                                    <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                                        {{ $item->feature }}
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <input type="checkbox" wire:model="is_{{ $item->alias }}_create_allowed" value="is_{{ $item->alias }}_create_allowed"
-                                            class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <input type="checkbox" wire:model="is_{{ $item->alias }}_read_allowed"
-                                            class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <input type="checkbox" wire:model="is_{{ $item->alias }}_update_allowed"
-                                            class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <input type="checkbox" wire:model="is_{{ $item->alias }}_delete_allowed"
-                                            class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                    </td>
-                                
-                                </tr>
-                                      
-                                  @endforeach
+                                    @foreach ($features as $item)
+                                    <tr>
+                                        <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+                                            <!-- Selected row marker, only show when row is selected. -->
+
+
+                                            {{-- <input type="checkbox"
+                                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
+
+                                        </td>
+                                        <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                                        <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+                                            {{ $item->feature }}
+                                        </td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <input type="checkbox" wire:model="is_{{ $item->alias }}_create_allowed"
+                                                class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <input type="checkbox" wire:model="is_{{ $item->alias }}_read_allowed"
+                                                class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <input type="checkbox" wire:model="is_{{ $item->alias }}_update_allowed"
+                                                class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <input type="checkbox" wire:model="is_{{ $item->alias }}_delete_allowed"
+                                                class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </td>
+
+                                    </tr>
+
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -139,10 +115,9 @@
                 </div>
             </div>
 
-            {{-- @if($createAnotherEmployee) --}}
             <div class="mt-5 col-span-2">
                 <div class="form-check">
-                    <input wire:model="createAnotherEmployee" 
+                    <input wire:model="createAnotherEmployee"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         type="checkbox" value="{{ old('createAnotherEmployee'), $createAnotherEmployee }}"
                         id="flexCheckChecked">
@@ -151,14 +126,13 @@
                     </label>
                 </div>
             </div>
-            {{-- @endif --}}
         </div>
         @endif
 
         <div class="flex justify-end mt-10">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                 href="/property/{{ Session::get('property') }}/user">
-                Back
+                Cancel
             </a>
             @if($role_id)
             <button type="submit" wire:click="addUser()"

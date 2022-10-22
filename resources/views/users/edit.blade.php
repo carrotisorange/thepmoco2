@@ -1,5 +1,5 @@
 <x-new-layout-base>
-    @section('title', 'The Property Manager | Profile')
+    @section('title', '| Profile')
 
     @livewire('user-edit-component', ['user' => $user])
 </x-main-layout>
