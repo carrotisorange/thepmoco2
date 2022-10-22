@@ -5,9 +5,10 @@
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-            <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
+            <button type="button"
+                onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-            New Employee
+                New Employee
             </button>
 
         </div>
@@ -41,7 +42,7 @@
             </div>
         </div>
 
-        <div class="sm:col-span-2"> 
+        <div class="sm:col-span-2">
             {{-- <select id="small" wire:model="status"
                 class="text-center bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="">Filter user status</option>
@@ -73,6 +74,8 @@
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 NAME</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                STATUS</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 POSITION</th>
                             {{-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 EMAIL</th> --}}
@@ -94,7 +97,8 @@
                                 <!-- Selected row marker, only show when row is selected. -->
 
                                 {{-- <input type="checkbox"
-                                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
+                                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                                --}}
                             </td>
                             <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                             <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{ $index+1 }}
@@ -102,39 +106,44 @@
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                 <div class="flex items-center">
                                     <div class="h-10 w-10 flex-shrink-0">
-                                
-                                        <img onerror="this.onerror=null;this.src='{{ asset('/brands/avatar.png') }}';" class="h-10 w-10 rounded-full"
-                                            src="{{ asset('/storage/'.$user->avatar) }}" alt="">
-                                
+
+                                        <img onerror="this.onerror=null;this.src='{{ asset('/brands/avatar.png') }}';"
+                                            class="h-10 w-10 rounded-full" src="{{ asset('/storage/'.$user->avatar) }}"
+                                            alt="">
+
                                     </div>
                                     <div class="ml-4">
                                         <div class="text-gray-900">
                                             <a class="text-blue-500 text-decoration-line: underline"
-                                               href="/user/{{ $user->user->username }}/edit">
+                                                href="/user/{{ $user->user->username }}/edit">
                                                 {{ $user->user->name }}
                                             </a>
                                             @if($user->user->email_verified_at && $user->user->name)
-                                            <span titl="verified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            <span titl="verified"
+                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                 <i class="fa-solid fa-circle-check"></i>
                                                 @else
-                                                <span title="unverified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                <span title="unverified"
+                                                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                                                     <i class="fa-solid fa-clock"></i>
                                                 </span>
                                                 @endif
-                                
+
                                         </div>
                                         <div class="text-gray-500">{{
                                             $user->user->email }}</div>
                                     </div>
                                 </div>
-                                {{-- <a class="text-blue-500 text-decoration-line: underline"
-                                   ">{{
+                                {{-- <a class="text-blue-500 text-decoration-line: underline" ">{{
                                   
                                   $user->user->name }}</a> --}}
                                
 
                             </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->role->role }}
+                            <td class=" whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->status }}
+                            </td>
+                            <td class=" whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->role->role
+                                    }}
                             </td>
 
                             {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->user->email }}

@@ -66,14 +66,11 @@ class UserComponent extends Component
    public $is_account_receivable_read_allowed;
    public $is_account_receivable_update_allowed;
    public $is_account_receivable_delete_allowed;
-  
 
    public function mount()
    {
       $this->sendEmailToEmployee = true;
       $this->createAnotherEmployee = false;
-
-  
 
       $this->is_portfolio_create_allowed = false;
       $this->is_portfolio_read_allowed = true;

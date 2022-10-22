@@ -49,8 +49,6 @@ class PropertyDashboardComponent extends Component
             'vacant_units' => app('App\Http\Controllers\UnitController')->get_property_units($this->property->uuid, 1,'', ''),
             'unlisted_units' => app('App\Http\Controllers\UnitController')->get_property_units($this->property->uuid, 1,'', 0),
             'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications($this->property->uuid),
-            //'monthly_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid, Carbon::now()->month()),
-            //'total_acknowledgement_receipts' => app('App\Http\Controllers\AcknowledgementReceiptController')->get_property_acknowledgementreceipts($this->property->uuid, Carbon::now()->month()), 
             'total_collected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid,Carbon::now()->month,'paid'),
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid,Carbon::now()->month, 'unpaid'),
             'occupancy_rate_value' => app('App\Http\Controllers\PropertyController')->get_occupancy_rate_values($this->occupancyGraphValue),

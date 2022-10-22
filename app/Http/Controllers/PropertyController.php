@@ -76,10 +76,19 @@ class PropertyController extends Controller
         return Str::uuid();
     }
 
+    public function is_user_allowed_to_access($status)
+    {
+        if($status === 'banned'){
+            abort(403);
+        }
+    }
+
 
     public function index()
     {
         $this->destroy_property_session();
+
+        $this->is_user_allowed_to_access(auth()->user()->status);
 
         // if(!$is_property_exist()){
         //    return redirect('/property/'.Str::random(8).'/create');  
