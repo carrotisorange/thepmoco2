@@ -114,7 +114,7 @@ class UserComponent extends Component
    protected function rules()
    {
       return [
-         'email' => ['required', 'string', 'email:strict', 'max:255', 'unique:users'],
+         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
          'role_id' => ['required', Rule::exists('roles', 'id')],
       ];
    }
