@@ -36,7 +36,7 @@
                 @enderror
             </div>
 
-            @if($user_id === auth()->user()->id)
+            @if($user_id == auth()->user()->id)
             <div class="col-span-6 sm:col-span-2">
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                 <input type="password" wire:model.lazy="password" autocomplete="password"
