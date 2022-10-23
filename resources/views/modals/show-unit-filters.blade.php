@@ -73,7 +73,7 @@
                 <p>NA</p>
                 @endforelse
             </div>
-
+{{-- 
             <div class="mt-5">
                 <b>Building</b>
                 @forelse ($buildings as $building)
@@ -87,7 +87,7 @@
                 @empty
                 <p>NA</p>
                 @endforelse
-            </div>
+            </div> --}}
             <div class="mt-5">
                 <b>Floor</b>
                 @forelse ($floors as $floor)

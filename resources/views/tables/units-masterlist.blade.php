@@ -6,7 +6,7 @@
             <x-th>Status</x-th>
             <x-th>Tenant</x-th>
             {{-- <x-th>Owner</x-th> --}}
-            <x-th>Rent/mo</x-th>
+            <x-th>Rent/Month/Tenant</x-th>
             <x-th>Contract Period</x-th>
             <x-th></x-th>
 
@@ -16,7 +16,7 @@
     <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <tr>
             <x-td><a class="text-blue-600" href="/unit/{{ $unit->unit->uuid }}/contracts">{{
-                    $unit->unit->building->building.' '.$unit->unit->unit }}</a>
+                    $unit->unit->unit }}</a>
             </x-td>
             <x-td>
                 @if($unit->unit->status->status === 'occupied')

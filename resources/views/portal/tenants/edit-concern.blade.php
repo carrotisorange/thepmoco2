@@ -85,7 +85,7 @@
 
                                             <select id="unit_uuid" name="unit_uuid"
                                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                                                <option value="">{{ $concern->unit->building->building }} - {{
+                                                <option value="">{{
                                                     $concern->unit->unit }}</option>
 
                                             </select>

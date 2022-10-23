@@ -17,8 +17,8 @@ class UnitIndexComponent extends Component
     public $search = '';
     public $selectedUnits = [];
     public $view = 'list';
-    public $status_id = [];
-    public $category_id = [];
+    public $status_id;
+    public $category_id;
     public $is_enrolled = [];
     public $building_id = [];
     public $floor_id = [];
@@ -26,7 +26,7 @@ class UnitIndexComponent extends Component
     public $discount = [];
     public $size = [];
     public $occupancy = [];
-    public $sortBy;
+    public $sortBy = 'unit';
     public $orderBy = 'asc';
 
     public function changeView($value)
@@ -38,13 +38,18 @@ class UnitIndexComponent extends Component
     {
       return Unit::search($this->search)
     //   ->orderByRaw('LENGTH(unit) ASC') ->orderBy('unit', 'ASC')
-       ->when($this->sortBy, function($query){
-       $query->orderBy($this->sortBy, $this->orderBy);
+    
+       ->when($this->orderBy, function($query){
+        $query->orderBy($this->sortBy, $this->orderBy);
        })
 
       ->where('property_uuid', $property_uuid)
       ->when($this->status_id, function($query){
-      $query->whereIn('status_id',[ $this->status_id]);
+      $query->where('status_id',$this->status_id);
+      })
+      ->where('property_uuid', $property_uuid)
+      ->when($this->category_id, function($query){
+      $query->where('category_id', $this->category_id);
       })
       ->when($this->building_id, function($query){
       $query->whereIn('building_id', $this->building_id);
@@ -55,9 +60,7 @@ class UnitIndexComponent extends Component
       ->when($this->floor_id, function($query){
       $query->whereIn('floor_id', $this->floor_id);
       })
-      ->when($this->category_id, function($query){
-      $query->whereIn('category_id', $this->category_id);
-      })
+      
       ->when($this->rent, function($query){
       $query->whereIn('rent', $this->rent);
       })
@@ -78,6 +81,7 @@ class UnitIndexComponent extends Component
         return view('livewire.unit-index-component',[
             'units' => $this->get_units(Session::get('property')),
             'statuses' => app('App\Http\Controllers\UnitController')->get_property_unit_statuses(Session::get('property')),
+            'categories' => app('App\Http\Controllers\UnitController')->get_property_unit_categories(Session::get('property')),
             'buildings' => app('App\Http\Controllers\UnitController')->get_property_unit_buildings(Session::get('property')),
             'floors' => app('App\Http\Controllers\UnitController')->get_property_unit_floors(Session::get('property')),
             'categories' => app('App\Http\Controllers\UnitController')->get_property_unit_categories(Session::get('property')),

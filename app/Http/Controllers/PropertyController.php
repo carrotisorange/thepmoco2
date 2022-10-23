@@ -18,13 +18,10 @@ use App\Models\Bill;
 use App\Models\Contract;
 use Carbon\Carbon;
 use App\Models\Tenant;
-use App\Models\Owner;
 use App\Models\AcknowledgementReceipt;
 use App\Models\Unit;
-use App\Models\PropertyBuilding;
 use App\Models\UnitStats;
 use App\Models\Collection;
-use App\Models\PaymentRequest;
 use App\Models\AccountPayable;
 
 class PropertyController extends Controller
@@ -82,7 +79,6 @@ class PropertyController extends Controller
             abort(403);
         }
     }
-
 
     public function index()
     {

@@ -122,9 +122,10 @@
         </div>
 
         <div class="flex justify-end mt-5">
-            {{-- <button type="button"
-                class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a
-                    href="addtenant3">Back</a></button> --}}
+            <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}">
+                For reservation only
+            </a>
             <button type="submit"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 

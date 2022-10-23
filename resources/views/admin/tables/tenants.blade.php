@@ -75,10 +75,10 @@
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($contracts->count())
                 @foreach ($contracts->take(1) as $item)
-                <div class="text-gray-900"><a class="text-blue-500 text-decoration-line: underline"
+                <a class="text-blue-500 text-decoration-line: underline"
                         href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">
-                        {{ $item->unit->unit }}</a></div>
-                <div class="text-gray-500">{{ $item->unit->building->building }}</div>
+                        {{ $item->unit->unit }}</a>
+              
                 @endforeach
                 @else
                 NA

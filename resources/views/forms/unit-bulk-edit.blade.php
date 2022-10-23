@@ -12,9 +12,9 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     Unit
                 </th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                {{-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     Building
-                </th>
+                </th> --}}
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     Floor
                 </th>
@@ -25,7 +25,7 @@
                     Size (sqm)
                 </th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Rent/Mo
+                    Rent/Month/Tenant
                 </th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     Occupancy
@@ -51,7 +51,7 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </td>
-                    <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+                    {{-- <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
                         <x-table-select form="edit-form" wire:model="units.{{ $index }}.building_id">
                             <option value="">Select a building </option>
                             @foreach ($buildings as $building)
@@ -64,7 +64,7 @@
                         @error('units.{{ $index }}.building_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                    </td>
+                    </td> --}}
                     <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
                         <x-table-select form="edit-form" wire:model="units.{{ $index }}.floor_id">
                             <option value="">Select a floor</option>
