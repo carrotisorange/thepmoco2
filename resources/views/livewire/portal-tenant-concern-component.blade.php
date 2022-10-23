@@ -72,7 +72,7 @@
                                                 @foreach ($units as $item)
                                                 <option value="{{ $item->unit->uuid }}" {{ old('unit_uuid')==$item->
                                                     unit->uuid? 'selected': 'Select one'}}>
-                                                    {{ $item->unit->building->building }} - {{ $item->unit->unit }}
+                                                    {{ $item->unit->unit }}
                                                 </option>
                                                 @endforeach
                                             </select>

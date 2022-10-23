@@ -81,7 +81,8 @@
                             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
                             <span class="text-gray-500 group-hover:text-gray-900">04</span>
                         </span>
-                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add employees to help you manage your property.</span>
+                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add employees to
+                            help you manage your property.</span>
                     </span>
                 </a>
             </li>
@@ -152,7 +153,7 @@
 
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        <div class="sm:col-span-3">
+        <div class="sm:col-span-2">
 
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -169,18 +170,23 @@
                     placeholder="Search for unit no" required>
 
             </div>
-            <div>
-                <p class="text-sm text-center text-gray-500">
-                    Showing
-                    <span class="font-medium">{{ $units->count() }}</span>
 
-                    {{Str::plural('results', $units->count())}}
-                </p>
-            </div>
         </div>
 
         <div class="sm:col-span-1">
-            <select id="small" wire:model="status_id"
+            <select id="category_id" wire:model="category_id"
+                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="">Filter unit category</option>
+                @foreach ($categories as $item)
+                <option value="{{ $item->category_id }}">{{ $item->category }}</option>
+                @endforeach
+            </select>
+
+        </div>
+
+
+        <div class="sm:col-span-1">
+            <select id="status_id" wire:model="status_id"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="">Filter unit status</option>
                 @foreach ($statuses as $item)
@@ -193,7 +199,7 @@
         <div class="sm:col-span-1">
             <select id="small" wire:model="sortBy"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                <option value="" selected>Sort unit by</option>
+                <option value="unit" selected>Sort unit by</option>
 
                 <option value="floor_id">floor</option>
                 <option value="occupancy">occupancy</option>
@@ -206,14 +212,22 @@
         <div class="sm:col-span-1">
             <select id="small" wire:model="orderBy"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                <option value="asc" selected>Sorting order</option>
-                <option value="asc">asc</option>
-                <option value="desc">desc</option>
+                <option value="" selected>Sorting order</option>
+                <option value="asc">ascending</option>
+                <option value="desc">descending</option>
 
             </select>
 
         </div>
 
+    </div>
+    <div>
+        <p class="text-sm text-center text-gray-500">
+            Showing
+            <span class="font-medium">{{ $units->count() }}</span>
+
+            {{Str::plural('unit', $units->count())}}
+        </p>
     </div>
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -332,20 +346,24 @@
                             </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT
                             </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">CATEGORY
+                            </th>
+
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">TENANT
                             </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 CONTRACT</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            {{-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 BUILDING
-                            </th>
+                            </th> --}}
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">FLOOR
                             </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 STATUS</th>
 
 
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RENT
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                RENT/MONTH/TENANT
                             </th>
 
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -387,6 +405,9 @@
                                 @endif
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {{ $unit->category->category }}
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                 @if($unit->contracts->count())
                                 @foreach ($unit->contracts->where('status','!=','inactive')->take(1) as $tenant)
                                 <a class="text-blue-500 text-decoration-line: underline"
@@ -407,8 +428,8 @@
                                 NA
                                 @endif
                             </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {{$unit->building->building }}</td>
+                            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {{$unit->building->building }}</td> --}}
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $unit->floor->floor }}
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $unit->status->status}}

@@ -12,10 +12,7 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>
-                <div class="text-sm text-gray-900">{{ $item->unit->unit }}
-                </div>
-                <div class="text-sm text-gray-500">{{ $item->unit->building->building }}
-                </div>
+                {{ $item->unit->unit }}
             </x-td>
             <x-td>
                 <div class="text-sm text-gray-900">{{

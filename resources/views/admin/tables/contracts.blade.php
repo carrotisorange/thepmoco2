@@ -6,21 +6,26 @@
             </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                 #</th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">TENANT</th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">BUILDING
-            </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">UNIT</th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">TENANT</th>
 
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">DURATION
+
+
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">START
+            </th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">END
             </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">RENT/MO</th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">STATUS</th>
-            {{-- <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">INTERACTION
+            {{-- <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                INTERACTION
             </th> --}}
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">MOVEOUT REASON
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">MOVEOUT
+                REASON
             </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">MOVEOUT DATE
             </th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
@@ -42,21 +47,6 @@
                 {{ $index+1 }}
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                <div class="text-sm text-gray-900">
-                    @if(auth()->user()->role_id == '8')
-                    {{ $item->tenant->tenant }}
-                    @else
-                    <a class="text-blue-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">
-                        {{ $item->tenant->tenant }}
-                    </a>
-                    @endif
-                </div>
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $item->unit->building->building }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if(auth()->user()->role_id == '8')
                 {{ $item->unit->unit }}
                 @else
@@ -69,19 +59,26 @@
                 </div>
                 @endif
             </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                <div class="text-sm text-gray-900">
+                    @if(auth()->user()->role_id == '8')
+                    {{ $item->tenant->tenant }}
+                    @else
+                    <a class="text-blue-500 text-decoration-line: underline"
+                        href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">
+                        {{ $item->tenant->tenant }}
+                    </a>
+                    @endif
+                </div>
+            </td>
+
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                <div class="text-sm text-gray-900">{{
-                    Carbon\Carbon::parse($item->start)->format('M d, Y').' -
-                    '.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
-                </div>
+                {{Carbon\Carbon::parse($item->start)->format('M d, Y')}}</td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{Carbon\Carbon::parse($item->end)->format('M
+                d, Y')}}</td>
 
-                <div class="text-sm text-gray-500">{{
-                    Carbon\Carbon::parse($item->end)->diffInMonths($item->start)
-                    }} months
-                </div>
 
-            </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{number_format($item->rent, 2)}}</td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($item->status === 'active')
@@ -105,11 +102,12 @@
                     </span>
                     @endif
             </td>
-            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->interaction->interaction }}</td> --}}
+            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->interaction->interaction }}
+            </td> --}}
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->moveout_reason }}</td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($item->moveout_at)
-{{ Carbon\Carbon::parse($item->moveou_at)->format('M d, Y') }}
+                {{ Carbon\Carbon::parse($item->moveou_at)->format('M d, Y') }}
                 @else
                 NA
                 @endif
@@ -146,8 +144,20 @@
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills"
                     class="text-indigo-600 hover:text-indigo-900">Pay Bills</a>
                 @endif
-            
+
             </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                @if($item->unit->occupancy > $item->unit->contracts()->where('status',
+                'active')->count())
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ Str::random(8) }}/create"
+                    class="text-indigo-600 hover:text-indigo-900">New</a>
+                @else
+
+                @endif
+
+            </td>
+
+
 
 
 

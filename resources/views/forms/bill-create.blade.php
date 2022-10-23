@@ -37,12 +37,12 @@
                     @if($units->count() == 1)
                     <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
                         'selected': 'Select one'
-                        }}>{{ $unit->unit->building->building.' '.$unit->unit->unit }}</option>
+                        }}>{{ $unit->unit->unit }}</option>
                     @else
 
                     <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
                         'selected': 'Select one'
-                        }}>{{ $unit->unit->building->building.' '.$unit->unit->unit }}</option>
+                        }}>{{ $unit->unit->unit }}</option>
                     @endif
                     @endforeach
                 </x-form-select>

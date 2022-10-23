@@ -64,12 +64,8 @@
                 <tr>
                     <x-td>{{ $ctr++ }}</x-td>
                     <x-td>
-                        <div class="text-sm text-gray-900">{{
-                            $item->unit->unit}}
-                        </div>
-                        <div class="text-sm text-gray-500">{{
-                            $item->unit->building->building}}
-                        </div>
+                       {{
+                    $item->unit->unit}}
                     </x-td>
 
                     <x-td>{{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
@@ -130,12 +126,8 @@
                 <tr>
                     <x-td>{{ $ctr++ }}</x-td>
                     <x-td>
-                        <div class="text-sm text-gray-900">{{
-                            $item->unit->unit}}
-                        </div>
-                        <div class="text-sm text-gray-500">{{
-                            $item->unit->building->building}}
-                        </div>
+                       {{
+                    $item->unit->unit}}
                     </x-td>
 
                     <x-td>

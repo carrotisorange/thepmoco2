@@ -7,12 +7,11 @@
             </th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 UNIT</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                BUILDING</th>
+         
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 DURATION</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                RENT/MO</th>
+                RENT/MO/TENANT</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 STATUS</th>
 
@@ -43,8 +42,7 @@
                     $item->unit->unit
                     }}</a>
             </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{$item->unit->building->building }}</td>
+            
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ Carbon\Carbon::parse($item->start)->format('M d, Y').' -
                 '.Carbon\Carbon::parse($item->end)->format('M d, Y') }}

@@ -40,18 +40,11 @@
                 @if(auth()->user()->role_id == '8')
                 {{ $item->unit->unit }}
                 @else
-                <div class="text-sm text-gray-900">
-                    <a class="text-blue-800 font-bold"
-                        href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
-                        {{ $item->unit->unit }}
-                    </a>
-                </div>
+                <a class="text-blue-800 font-bold"
+                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                    {{ $item->unit->unit }}
+                </a>
                 @endif
-
-
-                <div class="text-sm text-gray-500">{{
-                    $item->unit->building->building}}
-                </div>
 
             </x-td>
             <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,

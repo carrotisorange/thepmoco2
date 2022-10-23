@@ -10,7 +10,7 @@
                 @foreach ($units as $unit)
                 <option value="{{ $unit->uuid }}" {{ old('unit_uuid')==$unit->id?
                     'selected': 'Select one'
-                    }}>{{ $unit->building->building.' '.$unit->unit.' ('.$unit->status->status.')' }}</option>
+                    }}>{{ $unit->unit.' ('.$unit->status->status.')' }}</option>
                 @endforeach
             </x-form-select>
 

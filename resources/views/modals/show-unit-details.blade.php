@@ -29,13 +29,13 @@
                     @endif
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Building:</th>
                 <td class="px-6 whitespace-nowrap text-md text-gray-500">{{
                     $info->building->building }}
                 </td>
-            </tr>
+            </tr> --}}
             <tr>
                 <th scope="col" class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Floor:</th>

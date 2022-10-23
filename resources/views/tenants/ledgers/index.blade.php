@@ -84,7 +84,7 @@
                                                   Bill
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                   $item->unit->building->building.' '.$item->unit->unit }}
+                                              $item->unit->unit }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $item->bill_no }}
