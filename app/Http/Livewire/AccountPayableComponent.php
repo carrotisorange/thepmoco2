@@ -41,7 +41,7 @@ class AccountPayableComponent extends Component
             'biller_id' => ['required', Rule::exists('users', 'id')],
             'amount' => ['required'],
             'source' => ['required'],
-            'attachment' => 'required | mimes:jpg,bmp,png,pdf,docx|max:1024',
+            'attachment' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'remarks' => ['nullable']
         ];
     }
@@ -56,49 +56,39 @@ class AccountPayableComponent extends Component
         sleep(1);
 
         //validate inputs
-        $validated_data = $this->validate();
+        $validatedData = $this->validate();
 
         try {
-            DB::beginTransaction();
+
+            DB::transaction(function () use ($validatedData){ 
+
+            $validatedData['remarks'] = 'none';
+            $validatedData['property_uuid'] = Session::get('property');
 
             if($this->attachment)
             {
-                $validated_data['attachment'] = $this->attachment->store('accountpayables');
+                $validatedData['attachment'] = $this->attachment->store('accountpayables');
             }
 
-            $validated_data['remarks'] = 'none';
-            $validated_data['property_uuid'] = Session::get('property');
-
-             AccountPayable::create($validated_data);
-
-            //store new point
-            // $account_payable = app('App\Http\Controllers\AccountPayableController')
-            // ->store(
-            //     $this->request_for,
-            //     $this->particular_id,
-            //     $this->requester_id,
-            //     Session::get('property'),
-            //     $this->biller_id,
-            //     $this->amount,
-            //    // $this->attachment->store('accountpayables')
-            // );
+            AccountPayable::create($validatedData);
 
             if($this->sendEmailToManager)
             {
                 $this->send_mail_to_tenant();
             }
+            });
                   
             return redirect('/property/'.Session::get('property').'/accountpayable/pending')->with('success','Request is successfully created.');
-
-            DB::commit();
-
             
         }catch (\Exception $e) {
-
-          DB::rollback();
-   
-         session()->flash('error');
+            ddd($e);
+            session()->flash('error');
         }
+      }
+
+      public function removeAttachment()
+      {
+        $this->attachment = '';
       }
 
       public function get_statuses()

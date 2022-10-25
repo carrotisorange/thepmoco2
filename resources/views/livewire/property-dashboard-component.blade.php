@@ -1382,7 +1382,7 @@
                                         </div>
                                         <div class="flex-1 pl-1 mr-16">
                                             <div class="font-medium">{{ $item->user->name.' '.$item->details }}</div>
-                                            <div class="text-gray-600 text-sm">{{ $item->status }}</div>
+                                            <div class="text-gray-600 text-sm">{{ $item->payment_status }}</div>
                                         </div>
                                         <div class="text-gray-600 text-xs">{{
                                             Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</div>

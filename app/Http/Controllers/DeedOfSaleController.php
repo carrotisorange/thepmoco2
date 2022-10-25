@@ -22,4 +22,8 @@ class DeedOfSaleController extends Controller
             'owner' => $owner
         ]);
     }
+
+    public function edit(Property $property, Owner $owner, DeedOfSale $deedOfSale){
+        return $deedOfSale;
+    }
 }

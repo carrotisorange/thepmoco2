@@ -273,6 +273,14 @@ class UnitController extends Controller
         return back()->with('success', 'Unit is successfully updated.');
     }
 
+    public function update_unit_status($unit_uuid, $status_id)
+    {
+        Unit::where('uuid', $unit_uuid)
+        ->update([
+           'status_id' => $status_id
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

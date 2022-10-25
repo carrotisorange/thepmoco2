@@ -31,6 +31,8 @@ class TenantComponent extends Component
     public $city_id;
     public $barangay;
     public $photo_id;
+    public $photo_id_2;
+    public $photo_id_3;
     public $course;
     public $year_level;
     public $school;
@@ -60,7 +62,9 @@ class TenantComponent extends Component
             'province_id' => ['nullable', Rule::exists('provinces', 'id')],
             'city_id' => ['nullable', Rule::exists('cities', 'id')],
             'barangay' => ['nullable'],
-            'photo_id' => 'nullable|image',
+            'photo_id' => 'nullable| image |max:1024',
+            'photo_id_2' => 'nullable| image |max:1024',
+            'photo_id_3' => 'nullable| image |max:1024',
             'year_level' => 'nullable',
             'course' => 'nullable',
             'school' => 'nullable',
@@ -68,7 +72,6 @@ class TenantComponent extends Component
             'occupation' => 'nullable',
             'employer_address' => 'nullable',
             'employer' => 'nullable',
-            'photo_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:1024',
             ];
     }
 
@@ -106,6 +109,11 @@ class TenantComponent extends Component
        }
 
     }
+    
+    public function removeId($photo_id)
+    {
+       $this->$photo_id = '';
+    }
 
     public function store_user()
     {
@@ -139,9 +147,15 @@ class TenantComponent extends Component
         {
             $validatedData['photo_id'] = $this->photo_id->store('tenants');
         }
-        else
+
+        if($this->photo_id_2)
         {
-            $validatedData['photo_id'] = 'avatars/avatar.png';
+            $validatedData['photo_id_2'] = $this->photo_id_2->store('tenants');
+        }
+
+        if($this->photo_id_3)
+        {
+            $validatedData['photo_id_3'] = $this->photo_id_3->store('tenants');
         }
 
         if(!$this->country_id)

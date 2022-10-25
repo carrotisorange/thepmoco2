@@ -82,6 +82,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{random_str}/create', [UnitContractController::class, 'create'])->name('unit');
                 Route::get('{random_str}/create/export', [UnitContractController::class, 'export']);
                 Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create']);
+                
             });
                 
             Route::prefix('owner')->group(function(){
@@ -178,6 +179,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                     Route::get('moveout', [ContractController::class, 'moveout']);
                     Route::get('export', [ContractController::class, 'export']);
                     Route::get('transfer', [ContractController::class, 'transfer']);
+                    Route::get('movein', [ContractController::class, 'movein']);
+                  
                 });
             });  
         });
@@ -244,6 +247,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Concern
     Route::prefix('concern')->group(function(){
         Route::get('/', [ConcernController::class, 'index'])->name('concern');
+        Route::get('create', [ConcernController::class, 'create'])->name('concern');
         Route::get('/{concern}', [ConcernController::class, 'show'])->name('concern');
     });
 

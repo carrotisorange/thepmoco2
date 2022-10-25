@@ -1,5 +1,5 @@
-<x-main-layout>
-    @section('title', 'The Property Manager | Profile')
+<x-new-layout-base>
+    @section('title', 'Edit Property | The Property Manager')
 
     <div class="mx-auto px-12 md:w-1/2 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-10">
         <div>
@@ -9,4 +9,4 @@
         @livewire('property-edit-component', ['property_details' => $property_details])
     </div>
     </div>
-</x-main-layout>
+</x-new-layout-base>

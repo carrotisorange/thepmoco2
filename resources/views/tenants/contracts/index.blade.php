@@ -128,7 +128,7 @@
                 d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
         </svg>
         <h3 class="mt-2 text-sm font-medium text-gray-900">No employees</h3>
-        <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
+        <p class="mt-1 text-sm text-gray-500">You're about to finish.</p>
         <div class="mt-6">
             <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
                 class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">

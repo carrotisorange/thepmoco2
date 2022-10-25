@@ -12,10 +12,12 @@
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 NAME</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                STATUS</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 UNIT
             </th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                STATUS</th>
+                TYPE</th>
 
 
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -52,33 +54,35 @@
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 <div class="flex items-center">
                     <div class="h-10 w-10 flex-shrink-0">
-                        
-                        <img onerror="this.onerror=null;this.src='{{ asset('/brands/avatar.png') }}';" class="h-10 w-10 rounded-full" src="{{ asset('/storage/'.$tenant->photo_id) }}" alt="">
-                       
+
+                        <img onerror="this.onerror=null;this.src='{{ asset('/brands/avatar.png') }}';"
+                            class="h-10 w-10 rounded-full" src="{{ asset('/storage/'.$tenant->photo_id) }}" alt="">
+
                     </div>
                     <div class="ml-4">
                         <div class="text-gray-900">
-                           <a class="text-blue-500 text-decoration-line: underline" href="/property/{{ $tenant->property_uuid }}/tenant/{{ $tenant->uuid }}">
-                           {{ $tenant->tenant }}
-                        </a>
-                           
+                            <a class="text-blue-500 text-decoration-line: underline"
+                                href="/property/{{ $tenant->property_uuid }}/tenant/{{ $tenant->uuid }}">
+                                {{ $tenant->tenant }}
+                            </a>
+
                         </div>
                         <div class="text-gray-500">{{
                             $tenant->email }}</div>
                     </div>
                 </div>
-                {{-- <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $tenant->property_uuid }}/tenant/{{ $tenant->uuid }}">{{
-                    $tenant->tenant }}</a>--}}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $tenant->status }}
             </td>
             <?php $contracts = App\Models\Contract::where('tenant_uuid', $tenant->uuid)->get(); ?>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($contracts->count())
                 @foreach ($contracts->take(1) as $item)
                 <a class="text-blue-500 text-decoration-line: underline"
-                        href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">
-                        {{ $item->unit->unit }}</a>
-              
+                    href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">
+                    {{ $item->unit->unit }}</a>
+
                 @endforeach
                 @else
                 NA

@@ -17,5 +17,6 @@
             </div>
 
             @livewire('account-payable-component')
-
+        </div>
+    </div>
 </x-new-layout>

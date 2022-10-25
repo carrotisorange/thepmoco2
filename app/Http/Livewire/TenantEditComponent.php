@@ -115,8 +115,6 @@ class TenantEditComponent extends Component
                 $this->tenant_details->update($validatedData);
             });
 
-            $this->tenant_details->update($validatedData);
-
             session()->flash('success', 'Tenant details is successfully updated.');    
             
         }catch(\Exception $e){

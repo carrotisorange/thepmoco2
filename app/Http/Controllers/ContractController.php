@@ -264,6 +264,14 @@ class ContractController extends Controller
         ]);
     }
 
+    public function movein(Property $property, Tenant $tenant, Contract $contract)
+    {
+        return view('contracts.movein', [
+            'tenant' => $tenant,
+            'contract' => $contract,
+        ]);
+    }
+
     public function new(Property $property, Tenant $tenant)
     {
         return view('contracts.new-contract',[

@@ -28,6 +28,11 @@ class UserProperty extends Model
     {
         return $this->hasMany(Property::class, 'property_uuid');
     }
+
+    public function all_properties()
+    {
+        return $this->hasMany(Property::class, 'property_uuid');
+    }
     
 
 }
