@@ -16,7 +16,7 @@ class UnitIndexComponent extends Component
     //filter fields
     public $search = '';
     public $selectedUnits = [];
-    public $view = 'list';
+    public $view = 'thumbnail';
     public $status_id;
     public $category_id;
     public $is_enrolled = [];
@@ -37,10 +37,11 @@ class UnitIndexComponent extends Component
     public function get_units($property_uuid)
     {
       return Unit::search($this->search)
-    //   ->orderByRaw('LENGTH(unit) ASC') ->orderBy('unit', 'ASC')
+    //    ->orderByRaw('LENGTH(unit) ASC') ->orderBy('unit', 'ASC')
     
        ->when($this->orderBy, function($query){
-        $query->orderBy($this->sortBy, $this->orderBy);
+        // $query->orderBy($this->sortBy, $this->orderBy);
+        $query->orderByRaw('LENGTH(unit) ASC')->orderBy($this->sortBy, $this->orderBy);
        })
 
       ->where('property_uuid', $property_uuid)

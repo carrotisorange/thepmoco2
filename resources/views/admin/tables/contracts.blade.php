@@ -31,6 +31,7 @@
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
+
         </tr>
     </thead>
     @forelse ($contracts as $index => $item)
@@ -136,6 +137,9 @@
                 @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status == 'pendingmoveout')
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
                     class="text-indigo-600 hover:text-indigo-900">Moveout</a>
+                @elseif($item->status == 'reserved')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
+                    class="text-indigo-600 hover:text-indigo-900">Movein</a>
                 @endif
 
             </td>

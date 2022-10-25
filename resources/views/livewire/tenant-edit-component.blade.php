@@ -66,13 +66,37 @@
                 <a href="#"
                     class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change
                     password</a> --}}
-                    @if($tenant_details->photo_id)
-                    <a href="{{ asset('/storage/'.$tenant_details->photo_id) }}" target="_blank" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
-                                        bg-white hover:bg-gray-50">View
-                        Valid ID</a>
-                    @else
-                    Valid ID is not available
-                    @endif
+                @if($tenant_details->photo_id)
+                <a href="{{ asset('/storage/'.$tenant_details->photo_id) }}" target="_blank" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
+                                        bg-white hover:bg-gray-50">
+                    View valid ID 1</a>
+                @else
+                <a href="#/"
+                    class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
+                                                                                                bg-white hover:bg-black-50">
+                    Valid ID 2 is not available</a>
+                @endif
+                <br>
+                @if($tenant_details->photo_id_2)
+                <a href="{{ asset('/storage/'.$tenant_details->photo_id_2) }}" target="_blank" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
+                                                            bg-white hover:bg-gray-50">
+                    View valid ID 2</a>
+                @else
+                <a href="#/" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
+                                                                            bg-white hover:bg-black-50">
+                    Valid ID 2 is not available</a>
+                @endif
+                <br>
+                @if($tenant_details->photo_id_2)
+                <a href="{{ asset('/storage/'.$tenant_details->photo_id_2) }}" target="_blank" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
+                                                                                bg-white hover:bg-gray-50">
+                    View valid ID 3</a>
+                @else
+                <a href="#/"
+                    class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
+                                                                                                bg-white hover:bg-black-50">
+                    Valid ID 3 is not available</a>
+                @endif
 
 
 

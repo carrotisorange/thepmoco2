@@ -45,6 +45,8 @@ class ConcernController extends Controller
     public function create()
     {
         $this->authorize('is_concern_create_allowed');
+
+        return view('concerns.create');
     }
 
     /**

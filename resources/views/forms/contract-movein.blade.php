@@ -68,7 +68,7 @@
                     <div class="col-span-2">
                         <label for="referral" class="block text-sm font-medium text-gray-700">Name of the referral<span
                                 class="text-xs"></label>
-                        <input type="text" wire:model.lazy="referral" autocomplete="referral" 
+                        <input type="text" wire:model.lazy="referral" autocomplete="referral"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('referral')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -134,9 +134,8 @@
         </div>
 
         <div class="flex justify-end mt-5">
-            <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline" href="#/"
-                wire:click="makeReservation()">
-                For reservation only
+            <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline" href="{{ url()->previous() }}">
+                Cancel
             </a>
             <button type="submit"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

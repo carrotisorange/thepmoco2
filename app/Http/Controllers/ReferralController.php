@@ -75,9 +75,12 @@ class ReferralController extends Controller
      * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Referral $referral)
+    public function update($referral, $contract_uuid, $property_uuid)
     {
-        //
+        Referral::where('contract_uuid', $contract_uuid)
+        ->update([
+            'referral' => $referral,
+        ]);
     }
 
     /**

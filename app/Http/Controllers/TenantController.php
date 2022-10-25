@@ -8,7 +8,8 @@ use App\Models\Unit;
 use Illuminate\Validation\Rule;
 use DB;
 use App\Models\Property;
-use App\Models\User;
+use App\Mail\SendContractToTenant;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Contract;
 use App\Models\Reference;
 use App\Models\Guardian;
@@ -161,6 +162,28 @@ class TenantController extends Controller
         }
         
     }
+
+    public function update_tenant_status($tenant_uuid, $status)
+    {
+        Tenant::where('uuid', $tenant_uuid)
+        ->update([
+          'status' => $status
+        ]);
+    }
+
+    public function send_mail_to_tenant($email,$tenant, $start, $end, $rent, $unit)
+      {
+        $details =[
+          'tenant' => $tenant,
+          'start' => $start,
+          'end' => $end,
+          'rent' => $rent,
+          'unit' => $unit,
+        ];
+
+        Mail::to($email)->send(new SendContractToTenant($details));
+    }
+
 
     /**
      * Remove the specified resource from storage.

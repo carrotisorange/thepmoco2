@@ -123,16 +123,20 @@
                     <div class="space-y-1 text-center">
 
                         <div class="flex text-sm text-gray-600">
-                            <label for="file-upload"
+                            <label for="attachment"
                                 class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                 <span>Upload a file</span>
-                                <input id="file-upload" name="file-upload" wire:model="attachment" type="file"
-                                    class="sr-only">
+                                <input id="attachment" wire:model="attachment" type="file" class="sr-only">
+                                <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                                @if($attachment)
+                                <span class="text-red-500 text-xs mt-2">
+                                    <a href="#/" wire:click="removeAttachment()">Remove the attachment .</a></span>
+                                @endif
 
                             </label>
 
                         </div>
-                        <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+
                         @error('attachment')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror

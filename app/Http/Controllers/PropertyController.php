@@ -108,9 +108,7 @@ class PropertyController extends Controller
         }
         else
         {
-            return view('properties.index',[
-                'properties'=> User::find(Auth::user()->id)->user_properties()->paginate(4)
-            ]);
+            return view('properties.index');
         }
     }
 

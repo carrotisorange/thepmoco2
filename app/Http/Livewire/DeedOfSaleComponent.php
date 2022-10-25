@@ -56,9 +56,9 @@ class DeedOfSaleComponent extends Component
 
         try{
 
-            $validated_data = $this->validate();
+            $validatedData = $this->validate();
 
-            $this->store_deed_of_sale($validated_data);
+            $this->store_deed_of_sale($validatedData);
 
             $this->update_unit();
 
@@ -84,43 +84,43 @@ class DeedOfSaleComponent extends Component
         ]);
     }
 
-    public function store_deed_of_sale($validated_data)
+    public function store_deed_of_sale($validatedData)
     {
-        $validated_data = $this->validate();
-        $validated_data['uuid'] = Str::uuid();
-        $validated_data['unit_uuid'] = $this->unit->uuid;
-        $validated_data['owner_uuid'] = $this->owner->uuid;
-        $validated_data['status'] = 'active';
-        $validated_data['classification'] = 'regular';
-        $validated_data['property_uuid'] = Session::get('property');
+        $validatedData = $this->validate();
+        $validatedData['uuid'] = Str::uuid();
+        $validatedData['unit_uuid'] = $this->unit->uuid;
+        $validatedData['owner_uuid'] = $this->owner->uuid;
+        $validatedData['status'] = 'active';
+        $validatedData['classification'] = 'regular';
+        $validatedData['property_uuid'] = Session::get('property');
         
 
         if($this->title)
         {
-            $validated_data['title'] = $this->title->store('titles');
+            $validatedData['title'] = $this->title->store('titles');
         }
 
         if($this->tax_declaration)
         {
-            $validated_data['tax_declaration'] = $this->tax_declaration->store('tax_declarations');
+            $validatedData['tax_declaration'] = $this->tax_declaration->store('tax_declarations');
         }
           
         if($this->deed_of_sales)
         {
-            $validated_data['deed_of_sales'] = $this->deed_of_sales->store('deed_of_sales');
+            $validatedData['deed_of_sales'] = $this->deed_of_sales->store('deed_of_sales');
         }
            
         if($this->contract_to_sell)
         {
-            $validated_data['contract_to_sell'] = $this->contract_to_sell->store('contract_to_sells');
+            $validatedData['contract_to_sell'] = $this->contract_to_sell->store('contract_to_sells');
         }
         
         if($this->certificate_of_membership)
         {
-            $validated_data['certificate_of_membership'] = $this->certificate_of_membership->store('certificate_of_memberships');
+            $validatedData['certificate_of_membership'] = $this->certificate_of_membership->store('certificate_of_memberships');
         }
 
-        DeedOfSale::create($validated_data)->uuid;
+        DeedOfSale::create($validatedData)->uuid;
     }
 
     public function removeTitle()

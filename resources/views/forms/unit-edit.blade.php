@@ -300,75 +300,66 @@
 
                 <div class="hidden rounded-lg dark:bg-gray-800" id="owners" role="tabpanel"
                     aria-labelledby="owners-tab">
-                    {{-- @include('tables.deed_of_sales') --}}
-                    <table class="min-w-full divide-y divide-gray-300 text-sm text-left">
-                        <tr>
-                            <th scope="col"
-                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                #</th>
-                            <th scope="col"
-                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                OWNER</th>
-                            <th scope="col"
-                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                TURNOVER DATE</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                PRICE</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                CLASSIFICATION</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                STATUS</th>
+                    @if($deed_of_sales->count())
+                    @include('tables.deed_of_sales')
+                    @else
+                    <div class="mt-10 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">No owners</h3>
+                        <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
+                        <div class="mt-6">
+                            <button type="button"
+                                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create'"
+                                class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                <!-- Heroicon name: mini/plus -->
+                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                </svg>
+                                Add an owner
+                            </button>
+                        </div>
+                    </div>
+                    @endif
 
-                        </tr>
-                        </thead>
-
-                        @foreach ($deed_of_sales as $index => $item)
-                        <tbody class="divide-y divide-gray-200 bg-white">
-
-                            <tr>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ $index +1 }}
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <a class="text-blue-500 text-decoration-line: underline"
-                                        href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}">{{
-                                        $item->owner->owner }}</a>
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ number_format($item->price, 2) }}
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ $item->classification }}
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    @if($item->status === 'active')
-                                    <span
-                                        class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        <i class="fa-solid fa-circle-check"></i> {{
-                                        $item->status }}
-                                        @else
-                                        <span
-                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                            <i class="fa-solid fa-clock"></i> {{
-                                            $item->status }}
-                                        </span>
-                                        @endif
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-                        @endforeach
 
                     </table>
                 </div>
                 <div class="hidden rounded-lg dark:bg-gray-800" id="tenants" role="tabpanel"
                     aria-labelledby="tenants-tab">
+                    @if($contracts->count())
                     @include('admin.tables.contracts')
-
+                    @else
+                    <div class="mt-10 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">No tenants</h3>
+                        <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
+                        <div class="mt-6">
+                            <button type="button"
+                                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create'"
+                                class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                <!-- Heroicon name: mini/plus -->
+                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                </svg>
+                                Add a tenant.
+                            </button>
+                        </div>
+                    </div>
+                    @endif
                 </div>
 
                 <div class="hidden rounded-lg dark:bg-gray-800" id="financials" role="tabpanel"
@@ -552,50 +543,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-10 mx-5 col-span-2">
-
-                        <div class="bg-white h-full rounded-lg shadow-md overflow-hidden">
-
-
-                            <div class="pt-3 font-semibold px-5 text-lg ">Collection Rate</div>
-                            <canvas class="p-10" id="chartDoughnut"></canvas>
-                        </div>
-
-                        <!-- Required chart.js -->
-                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-                        <!-- Chart doughnut -->
-                        <script>
-                            const dataDoughnut = {
-                                                        labels: ["Collected", "Uncollected", ],
-                                                        datasets: [
-                                                          {
-                                                            label: "My First Dataset",
-                                                        data: [{{ $total_collected_bills }}, {{ $total_uncollected_bills }}],
-                                                            backgroundColor: [
-                                                              "rgb(133, 105, 241)",
-                                                              "rgb(199, 210, 254)",
-                                                             
-                                                            ],
-                                                            hoverOffset: 4,
-                                                          },
-                                                        ],
-                                                      };
-                              
-                                                      const configDoughnut = {
-                                                        type: "doughnut",
-                                                        data: dataDoughnut,
-                                                        options: {},
-                                                      };
-                              
-                                                      var chartBar = new Chart(
-                                                        document.getElementById("chartDoughnut"),
-                                                        configDoughnut
-                                                      );
-                        </script>
-                    </div>
-
-
 
                 </div>
                 {{-- <div class="hidden rounded-lg dark:bg-gray-800" id="rooms" role="tabpanel"

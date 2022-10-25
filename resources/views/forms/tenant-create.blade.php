@@ -7,7 +7,7 @@
                     <div class="col-span-6 sm:col-span-2">
                         <label for="tenant" class="block text-sm font-medium text-gray-700">Full
                             Name</label>
-                        <input type="text" wire:model.lazy="tenant" autocomplete="tenant" 
+                        <input type="text" wire:model.lazy="tenant" autocomplete="tenant"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('tenant')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -16,7 +16,7 @@
 
                     <div class="col-span-6 sm:col-span-2">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" wire:model.lazy="email" autocomplete="email" 
+                        <input type="email" wire:model.lazy="email" autocomplete="email"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -231,8 +231,8 @@
                     @endif
                     <div class="col-span-6">
 
-                        <label class="block text-sm font-medium text-gray-700"> Upload an ID (i.e.,
-                            Government issues ID, school ID, employee ID)
+                        <label class="block text-sm font-medium text-gray-700"> Upload Tenant ID (i.e.,
+                            Government-issued ID, school ID, employee ID)
                         </label>
                         <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
@@ -244,20 +244,84 @@
                                         <input id="photo_id" name="image" type="file" class="sr-only"
                                             wire:model="photo_id">
                                     </label>
-                                   
+
                                 </div>
-                                <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-
+                                <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+                                @if($photo_id)
+                                <span class="text-red-500 text-xs mt-2">
+                                    <a href="#/" wire:click="removeId('photo_id')">Remove the attached ID</a>
+                                </span>
+                                @endif
                             </div>
-                          
-                         
-
                         </div>
-                       @error('photo_id')
+                        @error('photo_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @else
                         @if ($photo_id)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        <p class="text-green-500 text-xs mt-2">Image has been attached. <i
+                                class="fa-solid fa-circle-check"></i></p>
+                        @endif
+                        @enderror
+                    </div>
+
+                    <div class="col-span-6">
+                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="photo_id_2"
+                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input id="photo_id_2" name="image" type="file" class="sr-only"
+                                            wire:model="photo_id_2">
+                                    </label>
+
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+                                @if($photo_id_2)
+                                <span class="text-red-500 text-xs mt-2">
+                                    <a href="#/" wire:click="removeId('photo_id_2')">Remove the attached ID</a>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        @error('photo_id_2')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
+                        @if ($photo_id_2)
+                        <p class="text-green-500 text-xs mt-2">Image has been attached. <i
+                                class="fa-solid fa-circle-check"></i></p>
+                        @endif
+                        @enderror
+                    </div>
+
+                    <div class="col-span-6">
+                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="photo_id_3"
+                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input id="photo_id_3" name="image" type="file" class="sr-only"
+                                            wire:model="photo_id_3">
+                                    </label>
+
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+                                @if($photo_id_3)
+                                <span class="text-red-500 text-xs mt-2">
+                                    <a href="#/" wire:click="removeId('photo_id_3')">Remove the attached ID</a>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        @error('photo_id_3')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
+                        @if ($photo_id_3)
+                        <p class="text-green-500 text-xs mt-2">Image has been attached. <i
+                                class="fa-solid fa-circle-check"></i></p>
                         @endif
                         @enderror
                     </div>
@@ -284,18 +348,18 @@
                     target="_blank" href="create/export">
                     Download Tenant Information Sheet
                 </a>
-              
+
                 {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
                     class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a> --}}
-            
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ Session::get('property') }}/unit">
+
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                    target="_blank" href="/property/{{ Session::get('property') }}/unit">
                     Cancel
                 </a>
 
-             
-                <button type="submit" 
+
+                <button type="submit"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
                     <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PaymentRequest;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
+use App\Models\Property;
 
 class PaymentRequestController extends Controller
 {
@@ -23,9 +24,11 @@ class PaymentRequestController extends Controller
     public function get_property_payment_requests($property_uuid, $status)
     {
         return PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
+        ->select('*', 'payment_requests.status as payment_status')
         ->where('tenants.property_uuid', $property_uuid)
-        ->where('status', $status)
+        ->where('payment_requests.status', $status)
         ->orderBy('payment_requests.created_at', 'desc');
+        //return Property::find($property_uuid)->paymentrequests;
     }
 
     /**
