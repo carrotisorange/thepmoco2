@@ -10,7 +10,7 @@ use Livewire\Component;
 class PropertyIndexComponent extends Component
 {
     public $property;
-    public $sortBy =  'name';
+    public $sortBy;
     
     public function render()
     {
@@ -27,12 +27,11 @@ class PropertyIndexComponent extends Component
         ->join('properties', 'property_uuid', 'properties.uuid')
         ->select('*')
         ->where('user_id', Auth::user()->id)
-         ->when($this->property, function($query){
-         
-         $query->where('property','like', '%'.$this->property.'%');
-         }) 
-          
-        ->orderBy('properties.created_at', 'desc')
-        ->paginate(4);
+        ->when($this->property, function($query){
+        $query->where('property','like', '%'.$this->property.'%');
+        }) 
+        ->when($this->sortBy, function($query){
+        $query->orderBy('properties.'.$this->sortBy, 'asc');
+        })->paginate(4);
     }
 }
