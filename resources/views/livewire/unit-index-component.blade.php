@@ -122,7 +122,14 @@
                 @endif
             </h1>
         </div>
+
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+            @if($sortBy || $orderBy || $search || $status_id || $category_id)
+            <button type="button" wire:click="clearFilters()"
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                Clear Filters
+            </button> &nbsp
+            @endif
             @if($view === 'list')
             <button type="button" wire:click="changeView('thumbnail')"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
@@ -140,12 +147,12 @@
             @endif
 
             <button type="button" data-modal-toggle="create-unit-modal"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add
                 Units</button>
             @if($units->count())
             <button type="button"
                 onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ Str::random(8) }}/edit'"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit
                 Units</button>
             @endif
         </div>
@@ -205,7 +212,7 @@
                 <option value="floor_id">floor</option>
                 <option value="occupancy">occupancy</option>
                 <option value="rent">rent</option>
-                <option value="unit">unit</option>
+                {{-- <option value="unit">unit</option> --}}
             </select>
 
         </div>

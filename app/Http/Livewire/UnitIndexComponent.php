@@ -26,22 +26,33 @@ class UnitIndexComponent extends Component
     public $discount = [];
     public $size = [];
     public $occupancy = [];
-    public $sortBy = 'unit';
-    public $orderBy = 'asc';
+    public $sortBy;
+    public $orderBy;
 
     public function changeView($value)
     {
         $this->view = $value;
     }
 
+    public function clearFilters()
+    {
+        $this->sortBy = '';
+        $this->orderBy = '';  
+        $this->search = '';
+        $this->status_id = '';
+        $this->category_id = '';
+    }
+
     public function get_units($property_uuid)
     {
       return Unit::search($this->search)
-    //    ->orderByRaw('LENGTH(unit) ASC') ->orderBy('unit', 'ASC')
-    
-       ->when($this->orderBy, function($query){
+      ->when(((!$this->sortBy) && (!$this->orderBy)), function($query){
+      // $query->orderBy($this->sortBy, $this->orderBy);
+        $query ->orderByRaw('LENGTH(unit) ASC')->orderBy('unit', 'asc');
+      })
+       ->when(($this->sortBy && $this->orderBy), function($query){
         // $query->orderBy($this->sortBy, $this->orderBy);
-        $query->orderByRaw('LENGTH(unit) ASC')->orderBy($this->sortBy, $this->orderBy);
+        $query->orderBy($this->sortBy, $this->orderBy);
        })
 
       ->where('property_uuid', $property_uuid)
