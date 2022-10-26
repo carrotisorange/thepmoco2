@@ -1,3 +1,4 @@
 <div>
-   @include('forms.concern-edit')
+   @include('layouts.notifications')
+   @include('forms.concern-respond')
 </div>
