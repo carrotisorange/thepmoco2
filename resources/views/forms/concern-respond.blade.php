@@ -6,7 +6,7 @@
                 <ol role="list" class="flex items-center space-x-4">
                     <li>
                         <div class="flex items-center">
-                            <a href="{{ url()->previous() }}"><img class="h-5 w-auto"
+                            <a href="/property/{{ Session::get('property') }}/concern"><img class="h-5 w-auto"
                                     src="{{ asset('/brands/back-button.png') }}"></a>
                         </div>
                     </li>
@@ -15,7 +15,8 @@
             <div class="mt-5 px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-3xl font-bold text-gray-700 ">Concern Reference #: {{ $concern->reference_no }}
+                        <h1 class="text-3xl font-bold text-gray-700 ">Concern Reference #: {{
+                            $concern_details->reference_no }}
                         </h1>
                     </div>
                 </div>
@@ -26,33 +27,45 @@
 
 
                         <div class="col-span-3 sm:col-span-2">
-                            <label for="first-name" class="block text-sm font-medium text-gray-700">Concern reported
+                            <label for="created_at" class="block text-sm font-medium text-gray-700">Concern reported
                                 on</label>
-                            <input type="text" wire:model="created_at" autocomplete="created_at"
-                                value="{{ Carbon\Carbon::parse($concern->created_at)->format('M d, Y') }}" readonly
+                            <input type="date" wire:model="created_at" autocomplete="created_at"
+                                value="{{ Carbon\Carbon::parse($concern_details->created_at)->format('M d, Y') }}"
+                                readonly
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                            @error('created_at')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="col-span-3 sm:col-span-2">
-                            <label for="last-name" class="block text-sm font-medium text-gray-700">Tenant</label>
+                            <label for="tenant_uuid" class="block text-sm font-medium text-gray-700">Tenant</label>
                             <input type="text" wire:model="tenant_uuid" autocomplete="tenant_uuid"
-                                value="{{ $concern->tenant->tenant }}" readonly
+                                value="{{ $concern_details->tenant->tenant }}" readonly
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                            @error('tenant_uuid')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="col-span-3 sm:col-span-2">
-                            <label for="email-address" class="block text-sm font-medium text-gray-700">Unit
+                            <label for="unit_uuid" class="block text-sm font-medium text-gray-700">Unit
                                 No.</label>
+                            @error('unit_uuid')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                             <input type="text" wire:model="unit_uuid" autocomplete="unit_uuid"
-                                value="{{$concern->unit->unit }}" readonly
+                                value="{{$concern_details->unit->unit }}" readonly
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         </div>
 
                         <div class="col-span-4 sm:col-span-4">
-                            <label for="email-address" class="block text-sm font-medium text-gray-700">
-                                Summary of the concern</label>
-                            <input type="text" autocomplete="subject" wire:model="unit_uuid"
-                                readonly
+                            <label for="subject" class="block text-sm font-medium text-gray-700">
+                                Subject</label>
+                            @error('subject')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                            <input type="text" autocomplete="subject" wire:model="subject" readonly
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         </div>
 
@@ -63,8 +76,8 @@
                                         Uploaded:
                                     </label>
                                     <div class="mt-1">
-                                        @if(!$concern->image == null)
-                                        <a href="{{ asset('/storage/'.$concern->image) }}" target="_blank"
+                                        @if(!$concern_details->image == null)
+                                        <a href="{{ asset('/storage/'.$concern_details->image) }}" target="_blank"
                                             class="text-indigo-600 hover:text-indigo-900">View
                                             Attachment</a>
                                         @endif
@@ -81,12 +94,16 @@
                             <select id="category_id" wire:model="category_id"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                                 @foreach ($categories as $item)
-                                <option value="{{ $item->id }}" {{ old('type_id', $concern->category_id) ==$item->id
+                                <option value="{{ $item->id }}" {{ old('type_id', $concern_details->category_id)
+                                    ==$item->id
                                     ?'selected' : ''}}>
                                     {{ $item->category }}
                                 </option>
                                 @endforeach
                             </select>
+                            @error('category_id')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
 
                         </div>
 
@@ -106,23 +123,29 @@
                                     pending
                                 </option>
                             </select>
+                            @error('status')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
 
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="status" class="block text-sm font-medium text-gray-700">Is Urgent?
+                            <label for="urgency" class="block text-sm font-medium text-gray-700">Is Urgent?
                             </label>
 
-                            <select wire:model="status"
+                            <select wire:model="urgency"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                                <option value="no" {{ old('urgency', $urgency)=='no' ?'selected' : '' }}>
+                                <option value="no" {{ $urgency=='no' ?'selected' : '' }}>
                                     no
                                 </option>
-                                <option value="yes" {{ old('urgency', $urgency)=='yes' ?'selected' : '' }}>
+                                <option value="yes" {{ $urgency=='yes' ?'selected' : '' }}>
                                     yes
                                 </option>
 
                             </select>
+                            @error('urgency')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
 
                         </div>
 
@@ -133,18 +156,23 @@
                             <div class="mt-1">
                                 <textarea id="concern" wire:model="concern" rows="3"
                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md">
-                                        {{ $concern->concern }}
+                                        {{ $concern_details->concern }}
                                         </textarea>
+                                @error('concern')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
                             </div>
 
                         </div>
 
                         <div class="col-span-3 sm:col-span-3">
-                            <label for="first-name" class="block text-sm font-medium text-gray-700">Concern assessed
+                            <label for="assessed_at" class="block text-sm font-medium text-gray-700">Concern assessed
                                 on</label>
-                            <input type="date" wire:model="assessed_at" autocomplete="created_at"
-                                value="{{ Carbon\Carbon::parse($concern->created_at)->format('M d, Y') }}" readonly
+                            <input type="date" wire:model="assessed_at" autocomplete="assessed_at" readonly
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                            @error('assessed_at')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
@@ -163,6 +191,9 @@
                                         </option>
                                         @endforeach
                                     </select>
+                                    @error('assessed_by_id')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
 
@@ -171,21 +202,7 @@
                         </div>
 
 
-                        <div class="col-span-3 sm:col-span-6">
-                            <fieldset>
-                                <div>
-                                    <label for="about" class="block text-sm font-medium text-gray-700">Initial 
-                                        assessments
-                                    </label>
-                                    <div class="mt-1">
-                                        <textarea wire:model="initial_assessment" rows="3"
-                                            class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
-                                            placeholder="">{{ $action_taken }}</textarea>
-                                    </div>
 
-                                </div>
-                            </fieldset>
-                        </div>
 
                         <div class="col-span-6 sm:col-span-2">
                             <div>
@@ -196,17 +213,41 @@
                                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                                         <option value="">Select one</option>
                                         @foreach ($users as $item)
-                                        <option value="{{ $item->user_id }}" {{ old('assigned_to_id', $assigned_to_id)==$item->user_id
+                                        <option value="{{ $item->user_id }}" {{ old('assigned_to_id',
+                                            $assigned_to_id)==$item->user_id
                                             ?'selected' : ''}}>
                                             {{ $item->user->name.'-'.$item->user->role->role }}
                                         </option>
                                         @endforeach
                                     </select>
+                                    @error('assigned_to_id')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                        
-                        
+
+
                             </div>
-                        
+
+                        </div>
+
+                        <div class="col-span-3 sm:col-span-4">
+                            <fieldset>
+                                <div>
+                                    <label for="initial_assessment"
+                                        class="block text-sm font-medium text-gray-700">Initial
+                                        assessments
+                                    </label>
+                                    <div class="mt-1">
+                                        <textarea wire:model="initial_assessment" rows="3"
+                                            class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
+                                            placeholder="">{{ $initial_assessment }}</textarea>
+                                        @error('initial_assessment')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                            </fieldset>
                         </div>
 
 
@@ -220,6 +261,9 @@
                                         <textarea wire:model="action_taken" rows="3"
                                             class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
                                             placeholder="">{{ $action_taken }}</textarea>
+                                        @error('action_taken')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -232,8 +276,10 @@
                 </div>
 
                 <div class="flex justify-end">
-                    <button type="button"
-                        class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
+                    <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                        href="/property/{{ Session::get('property') }}/concern">
+                        Cancel
+                    </a>
                     <button type="submit"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
@@ -245,7 +291,7 @@
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                             </path>
                         </svg>
-                        Respond
+                        Update
                     </button>
                 </div>
             </div>
