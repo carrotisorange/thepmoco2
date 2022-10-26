@@ -160,7 +160,7 @@
 
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-6">
 
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -178,6 +178,16 @@
 
             </div>
 
+
+        </div>
+        <div class="sm:col-span-2">
+            <select id="building_id" wire:model="building_id"
+                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="">Filter unit building</option>
+                @foreach ($buildings as $item)
+                <option value="{{ $item->building_id }}">{{ $item->building }}</option>
+                @endforeach
+            </select>
 
         </div>
 
@@ -230,7 +240,7 @@
 
     </div>
 
-    <div>
+    <div class="mt-5">
         <p class="text-sm text-center text-gray-500">
             Showing
             <span class="font-medium">{{ $units->count() }}</span>

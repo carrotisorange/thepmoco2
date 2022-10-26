@@ -20,7 +20,7 @@ class UnitIndexComponent extends Component
     public $status_id;
     public $category_id;
     public $is_enrolled = [];
-    public $building_id = [];
+    public $building_id;
     public $floor_id = [];
     public $rent = [];
     public $discount = [];
@@ -45,6 +45,8 @@ class UnitIndexComponent extends Component
 
     public function get_units($property_uuid)
     {
+       
+
       return Unit::search($this->search)
       ->when(((!$this->sortBy) && (!$this->orderBy)), function($query){
       // $query->orderBy($this->sortBy, $this->orderBy);
@@ -64,7 +66,7 @@ class UnitIndexComponent extends Component
       $query->where('category_id', $this->category_id);
       })
       ->when($this->building_id, function($query){
-      $query->whereIn('building_id', $this->building_id);
+      $query->where('building_id', $this->building_id);
       })
       ->when($this->is_enrolled, function($query){
       $query->whereIn('is_enrolled', $this->is_enrolled);
