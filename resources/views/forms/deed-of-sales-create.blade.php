@@ -20,7 +20,7 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($title)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeTitle()">Remove the uploaded title.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('title')">Remove the uploaded title.</a></span>
                                 @endif
 
                             </div>
@@ -53,7 +53,7 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($tax_declaration)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeTaxDeclaration()">Remove the uploaded tax declaration.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('tax_declaration')">Remove the uploaded tax declaration.</a></span>
                                 @endif
                             </div>
 
@@ -88,7 +88,7 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($deed_of_sales)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeDeedOfSale()">Remove the uploaded deed of sale.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('deed_of_sales')">Remove the uploaded deed of sale.</a></span>
                                 @endif
                             </div>
 
@@ -122,7 +122,7 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($contract_to_sell)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeContractToSell()">Remove the uploaded contract to sell.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('contract_to_sell')">Remove the uploaded contract to sell.</a></span>
                                 @endif
                             </div>
 
@@ -157,7 +157,7 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($certificate_of_membership)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeCertificateOfMembership()">Remove the uploaded certificate of membership.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('certificate_of_membership')">Remove the uploaded certificate of membership.</a></span>
                                 @endif
                             </div>
 

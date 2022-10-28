@@ -41,6 +41,7 @@ class UnitIndexComponent extends Component
         $this->search = '';
         $this->status_id = '';
         $this->category_id = '';
+        $this->building_id = '';
     }
 
     public function get_units($property_uuid)

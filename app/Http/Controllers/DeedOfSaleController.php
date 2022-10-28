@@ -23,7 +23,18 @@ class DeedOfSaleController extends Controller
         ]);
     }
 
-    public function edit(Property $property, Owner $owner, DeedOfSale $deedOfSale){
-        return $deedOfSale;
+    public function edit(Property $property, Unit $unit, Owner $owner, DeedOfSale $deedOfSale){
+        return view('deed_of_sales.edit',[
+            'deedOfSale' => $deedOfSale
+        ]);
+    }
+
+    public function destroy(Property $property, Unit $unit, OWner $owner, DeedOfSale $deedOfSale){
+        
+        $this->authorize('is_owner_portal_delete_allowed');
+
+        DeedOfSale::where('uuid', $deedOfSale->uuid)->delete();
+        
+        return back()->with('success', 'A Deed of sale has been removed.');
     }
 }

@@ -15,18 +15,25 @@ class ContractEditComponent extends Component
     public $contract_details;
 
     public $contract;
+    public $start;
+    public $end;
 
     public $tenant;
 
     public function mount($contract_details)
     {
         $this->tenant = $contract_details->tenant->uuid;
+        $this->contract = $contract_details->contract;
+        $this->start = $contract_details->start;
+        $this->end = $contract_details->end;
     }
     
     protected function rules()
     {
         return [
-        'contract' => 'required | mimes:jpg,bmp,png,pdf,docx|max:1024',
+            'contract' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'start' => 'required|date',
+            'end' => 'required|date',
         ];
     }
 
@@ -39,29 +46,33 @@ class ContractEditComponent extends Component
     {
         sleep(1);
 
-         $validated_data = $this->validate();
+         $validatedData = $this->validate();
 
         try{
-           
-            DB::beginTransaction();
+            
+            DB::transaction(function () use ($validatedData){
+                $this->contract_details->update($validatedData);
+            });
 
-            Contract::where('uuid', $this->contract_details->uuid)
-            ->update([
-                'contract' => $this->contract->store('contracts')
-            ]);
+           if($this->contract){
+                Contract::where('uuid', $this->contract_details->uuid)
+                ->update([
+                    'contract' => $this->contract->store('contracts'),
+                ]);
+           }
 
-            DB::commit();
-
-            return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant_uuid)->with('success', 'Tenant details is successfully updated.');
+            session()->flash('success', 'Tenant details is successfully updated.');
 
         }catch(\Exception $e)
         {
-            DB::rollback();
-
            session()->flash('error');
         }
     }
 
+    public function removeContract()
+    {
+        $this->contract = '';
+    }
 
     public function render()
     {
