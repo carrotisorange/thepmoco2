@@ -1,16 +1,18 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
+            <x-th>Owner</x-th>
             <x-th>Unit</x-th>
             <x-th>Date of Purchase</x-th>
             <x-th>Purchasing Price</x-th>
             <x-th>On loan?</x-th>
-           
+
             <x-th>Title</x-th>
             <x-th>Tax Declaration</x-th>
             <x-th>Deed of Sales</x-th>
             <x-th>Contract to Sell</x-th>
             <x-th>Certificate of Membership</x-th>
+            <x-th></x-th>
             <x-th></x-th>
         </tr>
     </thead>
@@ -18,7 +20,15 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>
-                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}">{{ $item->unit->building->building.' '.$item->unit->unit}}</a>
+                <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}">
+                    {{ $item->owner->owner }}
+                </a>
+            </x-td>
+            <x-td>
+                <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                    {{ $item->unit->unit }}
             </x-td>
 
             <x-td>{{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
@@ -26,12 +36,12 @@
             <x-td>{{ number_format($item->price, 2) }}</x-td>
             <x-td>
                 @if($item->is_the_property_on_loan == '1')
-                     yes
+                yes
                 @else
-                    no
+                no
                 @endif
             </x-td>
-           
+
             <x-td>
                 @if($item->title)
                 <a href="{{ asset('/storage/'.$item->title) }}" target="_blank"
@@ -78,11 +88,18 @@
                 @endif
             </x-td>
             <x-td>
-                
-                <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/edit" 
+
+                {{-- <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/edit"
                     class="text-indigo-600 hover:text-indigo-900">
-                    Edit</a>
-          
+                    Edit</a> --}}
+
+            </x-td>
+            <x-td>
+
+               <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/delete"
+                                class="text-indigo-600 hover:text-indigo-900">
+                Delete</a>
+
             </x-td>
             @empty
             <x-td>No data found.</x-td>

@@ -31,6 +31,7 @@
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
 
         </tr>
     </thead>
@@ -116,22 +117,32 @@
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($item->contract)
                 <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
-                    class="text-indigo-600 hover:text-indigo-900">View Contract</a>
+                    class="text-indigo-600 hover:text-indigo-900">View
+                    Contract</a>
                 @else
                 @can('admin')
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
                     class="text-indigo-600 hover:text-indigo-900">Attach a contract</a>
                 @endif
                 @endif
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
+                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
+
 
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                @if($item->status != 'pendingmovein')
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
                     class="text-indigo-600 hover:text-indigo-900">Renew</a>
+                @endif
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                @if($item->status != 'pendingmovein')
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
                     class="text-indigo-600 hover:text-indigo-900">Transfer</a>
+                @endif
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status == 'pendingmoveout')
@@ -152,7 +163,7 @@
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($item->unit->occupancy > $item->unit->contracts()->where('status',
-                'active')->count())
+                'active')->count() && ($item->status != 'pendingmovein' && $item->status != 'pending'))
                 <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ Str::random(8) }}/create"
                     class="text-indigo-600 hover:text-indigo-900">New</a>
                 @else

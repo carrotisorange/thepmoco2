@@ -57,18 +57,16 @@
                         class="h-56 lg:col-span-2 md:row-span-2 rounded-md">
                 </div>
                 @if($owner_details->photo_id)
-                <a href="{{ asset('/storage/'.$owner_details->photo_id) }}" target="_blank"
-                    class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
+                <a href="{{ asset('/storage/'.$owner_details->photo_id) }}" target="_blank" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
                     bg-white hover:bg-gray-50">View
                     Valid ID</a>
                 @else
                 Valid ID is not available
                 @endif
+                {{-- <a href="#" class="">View Valid ID
+                </a> --}}
                 {{-- <a href="#"
-                    class="">View Valid ID
-                     </a> --}}
-                {{-- <a href="#"
-                    class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change 
+                    class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change
                     password</a> --}}
             </div>
             <div class="mt-2 lg:col-span-9">
@@ -83,7 +81,7 @@
                             <!-- Selected row actions, only show when rows are selected. -->
                             <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
                             </div>
-                            @include('tables.deed_of_sales')
+                            @include('tables.deed-of-sale')
                         </div>
                         {{-- <div class="mt-8 flex justify-end">
                             @can('ownerportal')
@@ -105,7 +103,8 @@
                 <h1 class="text-xl font-bold text-black">Spouse</h1>
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                        <div
+                            class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
                             </div>
                             @include('admin.tables.spouses')
@@ -140,7 +139,8 @@
                 <h1 class="text-xl font-bold text-black">Guests</h1>
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                        <div
+                            class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
                             </div>
                             @include('admin.tables.representatives')
@@ -151,5 +151,5 @@
 
         </div>
     </div>
- 
+
 </div>

@@ -123,29 +123,9 @@ class DeedOfSaleComponent extends Component
         DeedOfSale::create($validatedData)->uuid;
     }
 
-    public function removeTitle()
+    public function removeAttachment($attachment)
     {
-        $this->title = '';
-    }
-
-    public function removeTaxDeclaration()
-    {
-        $this->tax_declaration = '';
-    }
-
-    public function removeDeedOfSale()
-    {
-        $this->deed_of_sales = '';
-    }
-
-    public function removeContractToSell()
-    {
-        $this->contract_to_sell = '';
-    }
-
-    public function removeCertificateOfMembership()
-    {
-        $this->certificate_of_membership = '';
+        $this->$attachment = '';
     }
 
     public function render()

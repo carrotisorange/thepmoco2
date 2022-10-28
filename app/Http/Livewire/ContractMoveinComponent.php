@@ -63,7 +63,7 @@ class ContractMoveinComponent extends Component
         try {
            DB::transaction(function () use ($validatedData){
 
-            $validatedData['status'] = 'pending';
+            $validatedData['status'] = 'pendingmovein';
              
             $this->contract_details->update($validatedData);
 

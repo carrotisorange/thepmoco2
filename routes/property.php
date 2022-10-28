@@ -96,6 +96,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         
                     Route::prefix('deed_of_sale')->group(function(){
                         Route::get('create',[DeedOfSaleController::class,'create']);
+                        Route::get('{deed_of_sale}/delete', [DeedOfSaleController::class, 'destroy']);
                         Route::get('{deed_of_sale}/edit', [DeedOfSaleController::class, 'edit']);
                         Route::post('{random_str}/store', [DeedOfSaleController::class,'store']);
                     });

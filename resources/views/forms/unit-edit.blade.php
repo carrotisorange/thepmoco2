@@ -301,7 +301,7 @@
                 <div class="hidden rounded-lg dark:bg-gray-800" id="owners" role="tabpanel"
                     aria-labelledby="owners-tab">
                     @if($deed_of_sales->count())
-                    @include('tables.deed_of_sales')
+                    @include('tables.deed-of-sale')
                     @else
                     <div class="mt-10 text-center">
                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"

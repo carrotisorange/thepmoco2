@@ -354,7 +354,7 @@
                     class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a> --}}
 
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                    target="_blank" href="/property/{{ Session::get('property') }}/unit">
+                    href="/property/{{ Session::get('property') }}/unit">
                     Cancel
                 </a>
 
