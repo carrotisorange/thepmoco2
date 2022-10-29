@@ -19,7 +19,7 @@ class UnitComponent extends Component
     use WithPagination;
 
     public $batch_no;
-    
+    public $search = '';
     public $units;
 
     public $selectedUnits =[];
@@ -29,7 +29,7 @@ class UnitComponent extends Component
     public function mount($batch_no)
     {
         $this->batch_no = $batch_no;
-        $this->units = $this->get_units();
+        $this->units = $this->get_units(Session::get('property'));
     }
 
     protected function rules()
@@ -54,7 +54,7 @@ class UnitComponent extends Component
     {   
         if($selectedAllUnits)
         {
-            $this->selectedUnits = $this->get_units()->pluck('uuid');
+            $this->selectedUnits = $this->get_units(Session::get('property'))->pluck('uuid');
 
         }else
         {
@@ -106,7 +106,7 @@ class UnitComponent extends Component
 
                 app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, -1, 5);
                 
-                $this->units = $this->get_units();
+                $this->units = $this->get_units(Session::get('property'));
 
                 session()->flash('success', count($this->selectedUnits).' Unit is successfully removed.');
             }
@@ -114,19 +114,20 @@ class UnitComponent extends Component
          $this->selectedUnits = [];
     }
 
-    public function get_units()
-    {
-        return Property::find(Session::get('property'))
-        ->units()
+    public function get_units($property_uuid)
+    {   
+        return Unit::search($this->search)
+        ->where('property_uuid', $property_uuid)
         ->orderBy('created_at', 'desc')
         ->get();
     }
+
     public function render()
     {
         return view('livewire.unit-component',[
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(),
             'floors' => app('App\Http\Controllers\FloorController')->index(),
-            'units' => $this->get_units(),
+            'units' => $this->get_units(Session::get('property')),
             'categories' => app('App\Http\Controllers\CategoryController')->index(),
         ]);
     }

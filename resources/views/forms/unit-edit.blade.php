@@ -2,8 +2,11 @@
     <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
         <div class="lg:col-start-5 lg:col-span-9">
 
+
             <div class="flex justify-between">
+
                 <h1 class="text-3xl font-bold text-gray-900">{{ $unit_details->unit }}</h1>
+
                 <button
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button">Add
@@ -289,6 +292,10 @@
                                 </div>
                             </div>
                             <div class="mt-10 flex justify-end">
+                                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
+                                    href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/delete">
+                                    Delete
+                                </a>
                                 <x-form-button wire:loading.remove wire:click="submitForm()">Update</x-form-button>
                             </div>
                         </form>

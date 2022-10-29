@@ -1,24 +1,26 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
+            <x-th>#</x-th>
             <x-th>Owner</x-th>
             <x-th>Unit</x-th>
             <x-th>Date of Purchase</x-th>
             <x-th>Purchasing Price</x-th>
             <x-th>On loan?</x-th>
 
-            <x-th>Title</x-th>
+            {{-- <x-th>Title</x-th>
             <x-th>Tax Declaration</x-th>
             <x-th>Deed of Sales</x-th>
             <x-th>Contract to Sell</x-th>
-            <x-th>Certificate of Membership</x-th>
+            <x-th>Certificate of Membership</x-th> --}}
             <x-th></x-th>
-            <x-th></x-th>
+            {{-- <x-th></x-th> --}}
         </tr>
     </thead>
-    @forelse ($deed_of_sales as $item)
+    @forelse ($deed_of_sales as $index => $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
+            <x-td>{{ $index+1 }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}">
@@ -42,7 +44,7 @@
                 @endif
             </x-td>
 
-            <x-td>
+            {{-- <x-td>
                 @if($item->title)
                 <a href="{{ asset('/storage/'.$item->title) }}" target="_blank"
                     class="text-indigo-600 hover:text-indigo-900">View
@@ -89,18 +91,24 @@
             </x-td>
             <x-td>
 
-                {{-- <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/edit"
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/edit"
                     class="text-indigo-600 hover:text-indigo-900">
-                    Edit</a> --}}
+                    Edit</a>
 
             </x-td>
+            --}}
             <x-td>
-
-               <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/delete"
-                                class="text-indigo-600 hover:text-indigo-900">
-                Delete</a>
-
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}"
+                    class="text-blue-500 text-decoration-line: underline">
+                    See more</a>
             </x-td>
+            {{-- <x-td>
+
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/delete"
+                    class="text-red-500 text-decoration-line: underline">
+                    Delete</a>
+
+            </x-td> --}}
             @empty
             <x-td>No data found.</x-td>
         </tr>

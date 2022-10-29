@@ -17,13 +17,14 @@ class ContractEditComponent extends Component
     public $contract;
     public $start;
     public $end;
+    public $rent;
 
     public $tenant;
 
     public function mount($contract_details)
     {
         $this->tenant = $contract_details->tenant->uuid;
-        $this->contract = $contract_details->contract;
+        $this->rent = $contract_details->rent;
         $this->start = $contract_details->start;
         $this->end = $contract_details->end;
     }
@@ -31,8 +32,9 @@ class ContractEditComponent extends Component
     protected function rules()
     {
         return [
-            'contract' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
             'start' => 'required|date',
+            'rent' => 'required',
             'end' => 'required|date',
         ];
     }
@@ -60,8 +62,8 @@ class ContractEditComponent extends Component
                     'contract' => $this->contract->store('contracts'),
                 ]);
            }
-
-            session()->flash('success', 'Tenant details is successfully updated.');
+           return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant_uuid);
+            //session()->flash('success', 'Tenant details is successfully updated.');
 
         }catch(\Exception $e)
         {
@@ -76,6 +78,8 @@ class ContractEditComponent extends Component
 
     public function render()
     {
-        return view('livewire.contract-edit-component');
+        return view('livewire.contract-edit-component',[
+            'contract_info' => Contract::find($this->contract_details->uuid)
+        ]);
     }
 }
