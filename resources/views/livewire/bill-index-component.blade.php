@@ -4,9 +4,18 @@
             <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+            @if($search || $status || $particular_id || $posted_dates)
+            <button wire:click="clearFilters()"
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                type="button">Clear Filters
+            </button>
+            @endif
             @if($batch_no)
-            <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'">Show all bills
-            </x-button>
+            <button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'"
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                type="button">Show all bills
+            </button>
+   
             @endif
             @if($view === 'listView')
             <button wire:click="changeView('agingSummaryView')"
@@ -22,7 +31,7 @@
             @can('billing')
             <button
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button">Create <svg
+                id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button">New <svg
                     class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -74,12 +83,12 @@
 
         </div>
     </div>
+    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+        <div class="sm:col-span-6">
 
-    <div class="mt-6 grid grid-cols-3 gap-x-10 sm:grid-cols-6 sm:gap-x-10 lg:gap-x-10 sm:space-x-5 lg:pr-16">
-        <div class="col-span-3">
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-            <div class="relative w-full mb-2">
+            <div class="relative w-full mb-5">
                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -89,54 +98,55 @@
                 </div>
                 <input type="search" id="default-search" wire:model="search"
                     class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter tenant reference no..." required>
+                    placeholder="Search for reference no..." required>
 
-            </div>
-
-            <div>
-                <p class="text-sm text-center text-gray-500">
-                    Showing
-                    <span class="font-medium">{{ $bills->count() }}</span>
-                    results
-                </p>
             </div>
 
         </div>
-
-        <div class="sm:col-span-1">
-            <select id="small" wire:model="status"
+        <div class="sm:col-span-2">
+            <select id="status" wire:model="status"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="">Filter bill status</option>
                 @foreach ($statuses as $item)
                 <option value="{{ $item->status }}">{{ $item->status }}</option>
                 @endforeach
+
             </select>
 
         </div>
-
-        <div class="sm:col-span-1">
-            <select id="small" wire:model="particular_id"
+        <div class="sm:col-span-2">
+            <select id="particular_id" wire:model="particular_id"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="">Filter bill particulars</option>
                 @foreach ($particulars as $item)
                 <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
                 @endforeach
+
             </select>
 
         </div>
-
-
-        <div class="sm:col-span-1">
-            <select id="small" wire:model="posted_dates"
+        <div class="sm:col-span-2">
+            <select id="posted_dates" wire:model="posted_dates"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="">Filter bill dates</option>
                 <option value="monthly">1-30 days</option>
                 <option value="quaterly">1-90 days</option>
                 <option value="alltime">90 days and over</option>
+
             </select>
 
         </div>
 
+    </div>
+
+
+<div>
+        <p class="mt-5 text-sm text-center text-gray-500">
+            Showing
+            <span class="font-medium">{{ $bills->count() }}</span>
+    
+            {{Str::plural('bill', $bills->count())}}
+        </p>
     </div>
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

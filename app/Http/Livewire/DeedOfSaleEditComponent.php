@@ -8,11 +8,11 @@ use DB;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 
-class deedOfSalesDetailsEditComponent extends Component
+class DeedOfSaleEditComponent extends Component
 {
     use WithFileUploads;
 
-    public $deedOfSalesDetailssDetails;
+    public $deedOfSalesDetails;
     
     public $title;
     public $tax_declaration;
@@ -105,7 +105,7 @@ class deedOfSalesDetailsEditComponent extends Component
     public function render()
     {
         return view('livewire.deed-of-sale-edit-component',[
-            'deedOfSale' => DeedOfSale::find($this->deedOfSalesDetailssDetails->uuid),
+          'deedOfSale_info' => DeedOfSale::find($this->deedOfSalesDetails->uuid),
         ]);
     }
 }

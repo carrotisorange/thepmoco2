@@ -162,7 +162,7 @@ class UserComponent extends Component
 
          }catch(\Exception $e)
          {
-            ddd($e);
+    
             //prompt user with an error
             return back()->with('error');
          }

@@ -1,6 +1,8 @@
 <x-new-layout>
     @section('title', $owner_details->owner. ' | '. Session::get('property_name'))
-    <div class="mt-5">
+    @livewire('owner-edit-component', ['owner_details' => $owner_details])
+
+    {{-- <div class="mt-5">
         <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
             <div class="h-full w-full bg-no-repeat bg-cover" style="background-image: url('/brands/tenant_bg.png');">
                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,5 +24,5 @@
                 </div>
             </div>
         </main>
-    </div>
+    </div> --}}
 </x-new-layout>

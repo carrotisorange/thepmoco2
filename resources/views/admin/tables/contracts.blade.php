@@ -111,53 +111,53 @@
                 {{-- <x-td>
                     @if($item->contract)
                     <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
-                        class="text-indigo-600 hover:text-indigo-900">View
+                        class="text-indigo-500 text-decoration-line: underline">View
                         Contract</a>
                     @else
                     @can('admin')
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
-                        class="text-indigo-600 hover:text-indigo-900">Attach a contract</a>
+                        class="text-indigo-500 text-decoration-line: underline">Attach a contract</a>
                     @endif
                     @endif
                 </x-td> --}}
                 <x-td>
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
-                        class="text-blue-500 text-decoration-line: underline">
-                        See more</a>
+                        class="text-indigo-500 text-decoration-line: underline">
+                        Edit</a>
                 </x-td>
                  {{-- <x-td>
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
-                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                        class="text-indigo-500 text-decoration-line: underline">Edit</a>
 
 
                 </x-td> --}}
                 <x-td>
                     @if($item->status != 'pendingmovein')
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
-                        class="text-indigo-600 hover:text-indigo-900">Renew</a>
+                        class="text-indigo-500 text-decoration-line: underline">Renew</a>
                     @endif
                 </x-td>
                 <x-td>
                     @if($item->status != 'pendingmovein')
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
-                        class="text-indigo-600 hover:text-indigo-900">Transfer</a>
+                        class="text-indigo-500 text-decoration-line: underline">Transfer</a>
                     @endif
                 </x-td>
                 <x-td>
                     @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status ==
                     'pendingmoveout')
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
-                        class="text-indigo-600 hover:text-indigo-900">Moveout</a>
+                        class="text-indigo-500 text-decoration-line: underline">Moveout</a>
                     @elseif($item->status == 'reserved')
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
-                        class="text-indigo-600 hover:text-indigo-900">Movein</a>
+                        class="text-indigo-500 text-decoration-line: underline">Movein</a>
                     @endif
 
                 </x-td>
                 <x-td>
                     @if($item->status == 'pendingmovein')
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills"
-                        class="text-indigo-600 hover:text-indigo-900">Pay Bills</a>
+                        class="text-indigo-500 text-decoration-line: underline">Pay Bills</a>
                     @endif
 
                 </x-td> 
@@ -165,7 +165,7 @@
                     @if($item->unit->occupancy > $item->unit->contracts()->where('status',
                     'active')->count() && ($item->status != 'pendingmovein' && $item->status != 'pending'))
                     <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ Str::random(8) }}/create"
-                        class="text-indigo-600 hover:text-indigo-900">New</a>
+                        class="text-indigo-500 text-decoration-line: underline">New</a>
                     @else
 
                     @endif

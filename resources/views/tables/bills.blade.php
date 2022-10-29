@@ -13,7 +13,7 @@
         </tr>
     </thead>
     @forelse ($bills as $index => $item)
-    <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+  <tbody class="bg-white divide-y divide-gray-200">
         <tr>
 
             {{-- <x-td>{{ $index + $bills->firstItem() }}</x-td> --}}

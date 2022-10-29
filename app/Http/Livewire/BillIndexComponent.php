@@ -58,6 +58,14 @@ class BillIndexComponent extends Component
       $this->created_at = '';
    }
 
+   public function clearFilters()
+   {
+      $this->search = '';
+      $this->particular_id = ''; 
+      $this->posted_dates = '';
+      $this->status = '';
+   }
+
    public function deleteBills()
    {
       Bill::destroy($this->selectedBills);
