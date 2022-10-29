@@ -163,6 +163,8 @@ class OwnerComponent extends Component
         );
         }
 
+      
+
         public function store_spouse($name, $email, $mobile_number, $owner_uuid)
         {
                 Spouse::create([
@@ -232,6 +234,8 @@ class OwnerComponent extends Component
         {
                 $this->photo_id = '';
         }
+
+
 
         public function render()
         {

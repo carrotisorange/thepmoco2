@@ -57,30 +57,6 @@
             </div>
             @endif
 
-
-            {{-- <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label for="role_id" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                    Role
-                </label>
-                @if(auth()->user()->role_id === 5)
-                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex rounded-md shadow-sm">
-                        <select name="role_id" id="role_id" autocomplete="role_id"
-                            class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
-                            @foreach($roles as $role)
-                            <option value="{{ $role->id }}" {{ $role->id == $user->role_id
-                                ?'selected': 'selected'}}>{{ $role->role }} - {{
-                                $role->description }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                @endif
-                @error('role_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div> --}}
-
             @if(auth()->user()->role_id == 5)
             <div class="col-span-2">
                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
@@ -99,6 +75,21 @@
                 @enderror
             </div>
             @endif
+            <div class="col-span-2">
+                <label for="role_id" class="block text-sm font-medium text-gray-700">Role</label>
+                @if(auth()->user()->role_id === 5)
+                <select wire:model.lazy="role_id" autocomplete="role_id"
+                    class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    @foreach($roles as $role)
+                        <option value="{{ $role->id }}" {{ old('role_id', $user->role_id) == $role->id ? 'selected' : ''}}>{{ $role->role }}</option>
+                    @endforeach
+                </select>
+                @endif
+                @error('role_id')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
 
 
             {{-- <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5">
@@ -125,88 +116,76 @@
 
         </div>
 
-        {{-- <div class="mt-5 sm:flex sm:items-center">
-            <div class="sm:flex-auto">
-                <h1 class="text-xl font-semibold text-gray-900">More Information About the employee</h1>
-                <p class="mt-2 text-sm text-gray-700">This section shows more information about the employee.</p>
-            </div>
-            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <div class="mt-5 sm:col-span-6">
+            <div class="sm:flex sm:items-center">
+                <div class="sm:flex-auto">
+                    <h1 class="text-xl font-semibold text-gray-900">Employee Access To Properties</p>
+                        <p class="mt-2 text-sm text-gray-700">This section shows a list of all the properties the
+                            employee has access to.</p>
+                </div>
 
+                <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+
+                    @include('modals.popup-error-modal')
+                </div>
             </div>
+            <div class="mt-8 flex flex-col">
+                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                        <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <x-th>#</x-th>
+                                        <x-th>Property</x-th>
+                                        <x-th>Type</x-th>
+                                        <x-th>Employee Access</x-th>
+                                        <x-th>Assigned on</x-th>
+                                        <x-th>Modify Access</x-th>
+                                    </tr>
+                                </thead>
+                                @foreach ($properties as $index => $item)
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <x-td>{{ $index+1 }}</x-td>
+
+                                        <x-td>{{ $item->property->property }}</x-td>
+                                        <x-td>{{ $item->property->type->type }}</x-td>
+                                        <x-td>
+                                            @if($item->is_approve === '0')
+                                            pending
+                                            @else
+                                            approved
+                                            @endif
+
+                                        </x-td>
+                                        <x-td>{{ $item->created_at }}</x-td>
+                                        <x-td>
+                                            @if($item->is_account_owner === '0')
+                                            <a class="text-red-500 text-decoration-line: underline"
+                                            href="/property/{{ Session::get('property') }}/user_property/{{ $item->id }}/remove-access">
+                                        Remove Access
+                                        </a>
+                                    @endif
+                                    </x-td>
+                                    </tr>
+
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
-            <div class="col-span-6 sm:col-span-2">
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" wire:model.lazy="name" autocomplete="name"
-                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                @error('name')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="col-span-6 sm:col-span-2">
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                <input type="text" wire:model.lazy="username" autocomplete="username"
-                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                @error('username')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="col-span-6 sm:col-span-2">
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" wire:model.lazy="email" autocomplete="email"
-                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                @error('email')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="col-span-6 sm:col-span-2">
-                <label for="username" class="block text-sm font-medium text-gray-700">Mobile Number</label>
-                <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
-                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                @error('mobile_number')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            @if($user_id == auth()->user()->id)
-            <div class="col-span-6 sm:col-span-2">
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" wire:model.lazy="password" autocomplete="password"
-                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                @error('password')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-            @endif
-
-            @if(auth()->user()->role_id == 5)
-            <div class="col-span-2">
-                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                @if(auth()->user()->role_id === 5)
-                <select wire:model.lazy="status" autocomplete="status"
-                    class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="">Select one</option>
-                    <option value="active" {{ 'active'==$status ? 'Select one' : 'selected' }}>active</option>
-                    <option value="inactive" {{ 'inactive'==$status ? 'Select one' : 'selected' }}>inactive</option>
-                    <option value="banned" {{ 'banned'==$status ? 'Select one' : 'selected' }}>banned</option>
-                    <option value="pending" {{ 'pending'==$status ? 'Select one' : 'selected' }}>pending</option>
-                </select>
-                @endif
-                @error('status')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-            @endif
-
-        </div> --}}
 
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">Modify employee restrictions to the System</h1>
-                    <p class="mt-2 text-sm text-gray-700">This section show a list of all the features and the different
+                    <h1 class="text-xl font-semibold text-gray-900">Employee Restrictions to the System</h1>
+                    <p class="mt-2 text-sm text-gray-700">This section shows a list of all the features and the
+                        different
                         actions an employee
                         can perform.</p>
                 </div>

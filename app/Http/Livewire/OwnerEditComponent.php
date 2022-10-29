@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Owner;
+use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use DB;
@@ -163,6 +163,26 @@ class OwnerEditComponent extends Component
          $this->owner_details->update($validatedData);
     }
 
+    public function resetPassword()
+    {
+        sleep(1);
+        
+        $new_password = app('App\Http\Controllers\UserController')->generate_temporary_username();
+
+        $user_id = User::where('owner_uuid',$this->owner_details->uuid)->pluck('id')[0];
+
+        $user = User::find($user_id);
+
+        User::where('username', $user->username)
+        ->update([
+            'password' => Hash::make($new_password)
+        ]);
+       
+        app('App\Http\Controllers\UserController')->send_email($user->role_id,$user->email, $user->username, $new_password);
+
+        session()->flash('success','A new password has been sent to owners email.');
+    }
+
     public function render()
     {
         return view('livewire.owner-edit-component',[
@@ -173,7 +193,8 @@ class OwnerEditComponent extends Component
             'banks' => app('App\Http\Controllers\OwnerController')->show_owner_banks($this->owner_details->uuid),
             'spouses' => app('App\Http\Controllers\OwnerController')->show_owner_spouses($this->owner_details->uuid),
             'deed_of_sales' => app('App\Http\Controllers\OwnerController')->show_owner_deed_of_sales($this->owner_details->uuid),
-            'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid)
+            'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid),
+            'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get()
         ]);
     }
 }

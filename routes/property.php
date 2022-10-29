@@ -37,9 +37,11 @@ use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Livewire\DeedOfSaleComponent;
+use App\Models\UserProperty;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
+
         //Routes for Property
         Route::controller(PropertyController::class)->group(function () {
             Route::get('/', 'show')->name('dashboard');
@@ -47,6 +49,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::patch('update','update');
             Route::get('delete', 'destroy');
         });
+
+    Route::get('user_property/{user_property}/remove-access',[UserProperty::class, 'remove_access']);
        
     //Route for contract
     Route::get('contract/{status?}',[ContractController::class, 'show_moveout_request'])->name('contract');
@@ -74,7 +78,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
         Route::prefix('{unit}')->group(function(){
             Route::get('delete', [UnitController::class, 'destroy']);
-            Route::get('/', [UnitController::class, 'show'])->scopeBindings();
+            Route::get('/', [UnitController::class, 'show'])->name('unit')->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
             Route::patch('update', [UnitController::class, 'update']);
             Route::get('contracts', [UnitContractController::class, 'index']);

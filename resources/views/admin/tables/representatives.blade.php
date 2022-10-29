@@ -22,7 +22,7 @@
         </tr>
     </thead>
 
-    @forelse ($representatives as $representative)
+    @foreach ($representatives as $representative)
     <tbody class="bg-white divide-y divide-gray-200">
         <!-- Selected: "bg-gray-50" -->
         <tr>
@@ -59,15 +59,6 @@
 
     </tbody>
 
-    @empty
-    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-        <tr>
-            <x-td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                No representatives found.
-            </x-td>
-        </tr>
-    </tbody>
-
-    @endforelse
+    @endforeach
 
 </table>

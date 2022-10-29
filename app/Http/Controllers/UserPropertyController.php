@@ -108,4 +108,9 @@ class UserPropertyController extends Controller
     {
         //
     }
+
+    public function remove_access(Property $property, UserProperty $userProperty)
+    {
+        return $userProperty;
+    }
 }

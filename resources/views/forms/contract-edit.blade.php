@@ -11,7 +11,7 @@
                     @enderror
                 </div>
                 <div class="col-span-2 sm:col-span-6">
-                    <label for="end" class="block text-sm font-medium text-gray-700">Contracts end on</label>
+                    <label for="end" class="block text-sm font-medium text-gray-700">Contract ends on</label>
                     <input type="date" wire:model="end" autocomplete="end"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                     @error('end')
@@ -75,7 +75,7 @@
                                         <a href="#/" wire:click="removeContract()">Remove the uploaded
                                             contract.</a></span>
                                     @else
-                                    <span class="text-red-600">No contract found.</span>
+                                    {{-- <span class="text-red-600">No contract found.</span> --}}
                                     @endif
 
                                     @if($contract_info->contract)

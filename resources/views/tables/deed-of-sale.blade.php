@@ -98,9 +98,9 @@
             </x-td>
             --}}
             <x-td>
-                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}"
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/edit"
                     class="text-blue-500 text-decoration-line: underline">
-                    See more</a>
+                    Edit</a>
             </x-td>
             {{-- <x-td>
 

@@ -23,7 +23,7 @@ class CollectionIndexComponent extends Component
 
     public function render()
     {
-        $ars = $this->get_ars();
+        $collections = $this->get_ars();
 
         $mode_of_payments = AcknowledgementReceipt::where('property_uuid', Session::get('property'))
         ->select('mode_of_payment', DB::raw('count(*) as count'))
@@ -32,7 +32,7 @@ class CollectionIndexComponent extends Component
 
 
         return view('livewire.collection-index-component',[
-            'ars' => $ars,
+            'collections' => $collections,
             'mode_of_payments' => $mode_of_payments
 
         ]);
@@ -40,8 +40,6 @@ class CollectionIndexComponent extends Component
 
     public function get_ars()
     {
-
-  
         return AcknowledgementReceipt::search($this->search)
         ->orderBy('ar_no', 'asc')
         ->where('property_uuid', Session::get('property'))

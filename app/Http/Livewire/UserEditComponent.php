@@ -6,6 +6,9 @@ use DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use App\Models\Feature;
+use App\Models\User;
+use Auth;
+use App\Models\Role;
 
 class UserEditComponent extends Component
 {
@@ -64,6 +67,7 @@ class UserEditComponent extends Component
         $this->role_id = $user->role_id;
         $this->status = $user->status;
         $this->user_id = $user->id;
+        $this->role_id = $user->role_id;
 
         $this->is_portfolio_create_allowed = $user->is_portfolio_create_allowed;
         $this->is_portfolio_read_allowed = $user->is_portfolio_read_allowed;
@@ -180,6 +184,8 @@ class UserEditComponent extends Component
     {
         return view('livewire.user-edit-component',[
             'features' => Feature::all(),
+            'properties' => User::find($this->user->id)->user_properties()->get(),
+            'roles' => app('App\Http\Controllers\UserPropertyController')->get_employee_positions(),
         ]);
     }
 }

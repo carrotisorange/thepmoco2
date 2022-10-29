@@ -2,12 +2,12 @@
     @csrf
     @method('PATCH')
     <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8 mt-9">
-        <div class="sm:col-span-6">
+        <div class="sm:col-span-8">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="owner" class="block text-xs font-medium text-gray-900">Owner
+                <label for="owner" class="block text-xs font-medium text-gray-900">Name of the unit owner
                 </label>
-                <input type="text" wire:model.lazy="owner" 
+                <input type="text" wire:model.lazy="owner"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
 
@@ -26,18 +26,7 @@
             </div>
         </div> --}}
 
-        <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="mobile_number" class="block text-xs font-medium text-gray-900">Mobile No</label>
-                <input type="text" wire:model.lazy="mobile_number"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-                @error('mobile_number')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-        </div>
+
 
         <div class="sm:col-span-2">
             <div
@@ -116,7 +105,7 @@
         </div>
 
 
-        <div class="sm:col-span-8">
+        <div class="sm:col-span-4">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">Email
@@ -125,6 +114,18 @@
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('email')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+        <div class="sm:col-span-4">
+            <div
+                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="mobile_number" class="block text-xs font-medium text-gray-900">Mobile No</label>
+                <input type="text" wire:model.lazy="mobile_number"
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+                @error('mobile_number')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
@@ -161,7 +162,7 @@
         </div>
 
     </div>
-    <div class="mt-1 flex justify-end">
+    <div class="mt-5 flex justify-end">
         <button type="submit"
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
