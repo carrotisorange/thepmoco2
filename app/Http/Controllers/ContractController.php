@@ -60,8 +60,8 @@ class ContractController extends Controller
     public function get_contracts_trend_count($property_uuid)
     {
        return DB::table('contracts')
-       ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as contracts'))
        ->whereMonth('start', Carbon::now()->month)
+       ->select(DB::raw("(DATE_FORMAT(start,'%M %Y')) as date"), DB::raw('count(*) as contracts'))
        ->orderBy('date', 'desc')
        ->groupBy('date')
        ->pluck('contracts');
@@ -72,7 +72,7 @@ class ContractController extends Controller
     {
        return DB::table('contracts')
         ->whereMonth('start', Carbon::now()->month)
-       ->select(DB::raw("(DATE_FORMAT(start,'%D')) as date"), DB::raw('count(*) as contracts'))
+       ->select(DB::raw("(DATE_FORMAT(start,'%M %Y')) as date"), DB::raw('count(*) as contracts'))
        ->orderBy('date', 'desc')
        ->groupBy('date')
        ->pluck('date');

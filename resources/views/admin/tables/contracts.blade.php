@@ -1,54 +1,47 @@
-<table class="min-w-full table-fixed">
-    <thead class="">
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
         <tr>
-            <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
 
-            </th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                #</th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">UNIT</th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">TENANT</th>
+            <x-th>
+                #</x-th>
+            <x-th>UNIT</x-th>
+            <x-th>TENANT</x-th>
 
 
 
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">START
-            </th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">END
-            </th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">RENT/MO</th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">STATUS</th>
+            <x-th>START
+            </x-th>
+            <x-th>END
+            </x-th>
+            <x-th>RENT/MO</x-th>
+            <x-th>STATUS</x-th>
             {{-- <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                 INTERACTION
-            </th> --}}
+                </x-th> --}}
+                {{--
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">MOVEOUT
                 REASON
-            </th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">MOVEOUT DATE
-            </th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"></th>
+                </x-th>
+                <x-th>MOVEOUT DATE
+                </x-th> --}}
+                {{-- <x-th></x-th> --}}
+                <x-th></x-th>
+                {{-- <x-th></x-th>
+                <x-th></x-th>
+                <x-th></x-th>
+                <x-th></x-th> --}}
+                {{-- <x-th></x-th> --}}
 
         </tr>
     </thead>
     @forelse ($contracts as $index => $item)
-    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+    <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-            <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                <!-- Selected row marker, only show when row is selected. -->
 
-                {{-- <input type="checkbox"
-                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                --}}
-            </td>
-            <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+            <x-td>
                 {{ $index+1 }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            </x-td>
+            <x-td>
                 @if(auth()->user()->role_id == '8')
                 {{ $item->unit->unit }}
                 @else
@@ -60,8 +53,8 @@
 
                 </div>
                 @endif
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            </x-td>
+            <x-td>
                 <div class="text-sm text-gray-900">
                     @if(auth()->user()->role_id == '8')
                     {{ $item->tenant->tenant }}
@@ -72,17 +65,17 @@
                     </a>
                     @endif
                 </div>
-            </td>
+            </x-td>
 
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{Carbon\Carbon::parse($item->start)->format('M d, Y')}}</td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{Carbon\Carbon::parse($item->end)->format('M
-                d, Y')}}</td>
+            <x-td>
+                {{Carbon\Carbon::parse($item->start)->format('M d, Y')}}</x-td>
+            <x-td>{{Carbon\Carbon::parse($item->end)->format('M
+                d, Y')}}</x-td>
 
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{number_format($item->rent, 2)}}</td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            <x-td>{{number_format($item->rent, 2)}}</x-td>
+            <x-td>
                 @if($item->status === 'active')
                 <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                     <i class="fa-solid fa-circle-check"></i> {{ $item->status }}
@@ -103,74 +96,81 @@
                         <i class="fa-solid fa-clock"></i> expiring
                     </span>
                     @endif
-            </td>
+            </x-td>
             {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->interaction->interaction }}
-            </td> --}}
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->moveout_reason }}</td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                @if($item->moveout_at)
-                {{ Carbon\Carbon::parse($item->moveou_at)->format('M d, Y') }}
-                @else
-                NA
-                @endif
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                @if($item->contract)
-                <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
-                    class="text-indigo-600 hover:text-indigo-900">View
-                    Contract</a>
-                @else
-                @can('admin')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
-                    class="text-indigo-600 hover:text-indigo-900">Attach a contract</a>
-                @endif
-                @endif
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
-                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                </x-td> --}}
+                {{--
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->moveout_reason }}</x-td>
+                <x-td>
+                    @if($item->moveout_at)
+                    {{ Carbon\Carbon::parse($item->moveout_at)->format('M d, Y') }}
+                    @else
+                    NA
+                    @endif
+                </x-td> --}}
+                {{-- <x-td>
+                    @if($item->contract)
+                    <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
+                        class="text-indigo-600 hover:text-indigo-900">View
+                        Contract</a>
+                    @else
+                    @can('admin')
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
+                        class="text-indigo-600 hover:text-indigo-900">Attach a contract</a>
+                    @endif
+                    @endif
+                </x-td> --}}
+                <x-td>
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
+                        class="text-blue-500 text-decoration-line: underline">
+                        See more</a>
+                </x-td>
+                 {{-- <x-td>
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
+                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
 
 
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                @if($item->status != 'pendingmovein')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
-                    class="text-indigo-600 hover:text-indigo-900">Renew</a>
-                @endif
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                @if($item->status != 'pendingmovein')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
-                    class="text-indigo-600 hover:text-indigo-900">Transfer</a>
-                @endif
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status == 'pendingmoveout')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
-                    class="text-indigo-600 hover:text-indigo-900">Moveout</a>
-                @elseif($item->status == 'reserved')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
-                    class="text-indigo-600 hover:text-indigo-900">Movein</a>
-                @endif
+                </x-td> --}}
+                <x-td>
+                    @if($item->status != 'pendingmovein')
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
+                        class="text-indigo-600 hover:text-indigo-900">Renew</a>
+                    @endif
+                </x-td>
+                <x-td>
+                    @if($item->status != 'pendingmovein')
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
+                        class="text-indigo-600 hover:text-indigo-900">Transfer</a>
+                    @endif
+                </x-td>
+                <x-td>
+                    @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status ==
+                    'pendingmoveout')
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
+                        class="text-indigo-600 hover:text-indigo-900">Moveout</a>
+                    @elseif($item->status == 'reserved')
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
+                        class="text-indigo-600 hover:text-indigo-900">Movein</a>
+                    @endif
 
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                @if($item->status == 'pendingmovein')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills"
-                    class="text-indigo-600 hover:text-indigo-900">Pay Bills</a>
-                @endif
+                </x-td>
+                <x-td>
+                    @if($item->status == 'pendingmovein')
+                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills"
+                        class="text-indigo-600 hover:text-indigo-900">Pay Bills</a>
+                    @endif
 
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                @if($item->unit->occupancy > $item->unit->contracts()->where('status',
-                'active')->count() && ($item->status != 'pendingmovein' && $item->status != 'pending'))
-                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ Str::random(8) }}/create"
-                    class="text-indigo-600 hover:text-indigo-900">New</a>
-                @else
+                </x-td> 
+                {{-- <x-td>
+                    @if($item->unit->occupancy > $item->unit->contracts()->where('status',
+                    'active')->count() && ($item->status != 'pendingmovein' && $item->status != 'pending'))
+                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ Str::random(8) }}/create"
+                        class="text-indigo-600 hover:text-indigo-900">New</a>
+                    @else
 
-                @endif
+                    @endif
 
-            </td>
+                </x-td> --}}
 
 
 
@@ -180,7 +180,7 @@
         @empty
         <tr>
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">No data found.</td>
+            <x-td>No data found.</x-td>
         </tr>
         @endforelse
     </tbody>

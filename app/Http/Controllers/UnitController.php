@@ -199,11 +199,12 @@ class UnitController extends Controller
             ]);
        }
 
-       $units = Unit::where('batch_no', $batch_no)->count();
+        $units = Unit::where('batch_no', $batch_no)->count();
 
         app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, $request->number_of_units, 5);
         
-        return redirect('/property/'.Session::get('property').'/unit/'.Str::random(8).'/edit')->with('success', $units.' unit is successully created.');
+        return redirect('/property/'.Session::get('property').'/unit/'.$batch_no.'/edit')->with('success', $units.' unit
+        is successully created.');
     }
 
     /**
@@ -233,20 +234,12 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function bulk_edit($batch_no)
+    public function bulk_edit(Property $property, $batch_no)
     {
-        $this->authorize('admin');
-
         return view('units.bulk-edit',[
             'batch_no' => $batch_no,
         ]);
     }
-
-    public function edit(Unit $unit)
-    {
-        
-    }
-
 
     public function update(Request $request, Property $property, Unit $unit)
     {
@@ -287,11 +280,21 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy(Property $property, Unit $unit)
     {
-        $unit = Unit::where('uuid', $uuid);
-        $unit->delete();
 
-        return back()->with('success', 'A unit has been removed.');
+        $tenants = Unit::find($unit->uuid)->contracts()->count();
+
+        $owners = Unit::find($unit->uuid)->deed_of_sales()->count();
+
+        if($tenants || $owners)
+        {
+            return back()->with('error', 'This unit cannot be deleted!');
+        }else{
+            Unit::where('uuid', $unit->uuid)->delete();
+
+            return redirect('/property/'.Session::get('property').'/unit')->with('success', 'A unit is successfully deleted!');
+        }
+       
     }
 }

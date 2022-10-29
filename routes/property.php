@@ -66,13 +66,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Unit
     Route::prefix('unit')->group(function(){
         Route::get('/', [UnitController::class, 'index'])->name('unit');
-       
+        
             Route::post('{batch_no:batch_no}/store', [UnitController::class, 'store']);
-            Route::get('{batch_no:batch_no}/edit', [UnitController::class, 'bulk_edit']);
+            Route::get('{batch_no?}/edit', [UnitController::class, 'bulk_edit']);
             Route::get('{batch_no}/create', [UnitController::class, 'create']);
             //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
 
         Route::prefix('{unit}')->group(function(){
+            Route::get('delete', [UnitController::class, 'destroy']);
             Route::get('/', [UnitController::class, 'show'])->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
             Route::patch('update', [UnitController::class, 'update']);

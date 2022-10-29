@@ -46,8 +46,6 @@ class UnitIndexComponent extends Component
 
     public function get_units($property_uuid)
     {
-       
-
       return Unit::search($this->search)
       ->when(((!$this->sortBy) && (!$this->orderBy)), function($query){
       // $query->orderBy($this->sortBy, $this->orderBy);
