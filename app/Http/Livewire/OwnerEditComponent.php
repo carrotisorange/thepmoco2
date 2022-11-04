@@ -6,6 +6,8 @@ use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use DB;
 use App\Models\User;
+use App\Models\Representative;
+use App\Models\Owner;
 
 use Livewire\Component;
 
@@ -97,12 +99,11 @@ class OwnerEditComponent extends Component
 
      public function sendCredentials()
     {
-        sleep(2);
+        sleep(1);
 
-        // $owner = Owner::find($this->email);
+        if($this->email === null){
+            return back()->with('error', 'The email address is required.');
 
-        if(!$this->email){
-            session()->flash('error', 'The email address is required.');
         }
 
         $count_user = User::where('email', $this->email)->count();
@@ -182,6 +183,14 @@ class OwnerEditComponent extends Component
 
         session()->flash('success','A new password has been sent to owners email.');
     }
+
+    
+      public function removeRepresentative($id)
+        {
+                Representative::destroy($id);
+
+                return back()->with('success', 'Representative is successfully removed');
+        }
 
     public function render()
     {

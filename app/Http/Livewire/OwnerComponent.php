@@ -236,7 +236,6 @@ class OwnerComponent extends Component
         }
 
 
-
         public function render()
         {
                 return view('livewire.owner-component',[

@@ -143,7 +143,7 @@
                         </div>
                         <div>
                             <h3 class="service-title">Team Monitoring</h3>
-                            <p class="text-gray-600">Assigns a role to each employee and manages them virtually.</p>
+                            <p class="text-gray-600">Assigns a role to each personnel and manages them virtually.</p>
                             {{-- <h3 class="service-title">Tenant Management</h3>
                             <p class="text-gray-600">Records the movein and moveout of the tenant and keep track all the
                                 previous tenants.</p> --}}
@@ -262,7 +262,7 @@
                                     </div>
                                     <div class="features-content">
                                         <h4 class="feature-title">2. Form a team.</h4>
-                                        <p> Add and assign a role to your employees, including manager, admin, billing,
+                                        <p> Add and assign a role to your personnels, including manager, admin, billing,
                                             and
                                             treasury to manage the created property.</p>
                                     </div>

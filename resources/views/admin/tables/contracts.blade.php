@@ -15,6 +15,9 @@
             </x-th>
             <x-th>RENT/MO</x-th>
             <x-th>STATUS</x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
             {{-- <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                 INTERACTION
                 </x-th> --}}
@@ -25,6 +28,7 @@
                 <x-th>MOVEOUT DATE
                 </x-th> --}}
                 {{-- <x-th></x-th> --}}
+                <x-th></x-th>
                 <x-th></x-th>
                 {{-- <x-th></x-th>
                 <x-th></x-th>
@@ -125,7 +129,7 @@
                         class="text-indigo-500 text-decoration-line: underline">
                         Edit</a>
                 </x-td>
-                 {{-- <x-td>
+                {{-- <x-td>
                     <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
                         class="text-indigo-500 text-decoration-line: underline">Edit</a>
 
@@ -160,7 +164,7 @@
                         class="text-indigo-500 text-decoration-line: underline">Pay Bills</a>
                     @endif
 
-                </x-td> 
+                </x-td>
                 {{-- <x-td>
                     @if($item->unit->occupancy > $item->unit->contracts()->where('status',
                     'active')->count() && ($item->status != 'pendingmovein' && $item->status != 'pending'))

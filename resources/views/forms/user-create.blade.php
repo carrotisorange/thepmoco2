@@ -5,7 +5,7 @@
                 <label for="role_id" class="block text-sm font-medium text-gray-700">Select a position:</label>
                 <select wire:model="role_id"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                    <option value="">Select an employee role</option>
+                    <option value="">Select an personnel role</option>
                     @foreach ($roles as $role)
                     <option value="{{ $role->id }}" {{ old('role_id')==$role->id?
                         'selected': 'Select one'
@@ -36,7 +36,7 @@
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">Set employee restrictions to the System.</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">Set personnel restrictions to the System.</h1>
                     <p class="mt-2 text-sm text-gray-700">A list of all the features and the different actions a user
                         can perform.</p>
                 </div>
@@ -117,12 +117,12 @@
 
             <div class="mt-5 col-span-2">
                 <div class="form-check">
-                    <input wire:model="createAnotherEmployee"
+                    <input wire:model="createAnotherPersonnel"
                         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="checkbox" value="{{ old('createAnotherEmployee'), $createAnotherEmployee }}"
+                        type="checkbox" value="{{ old('createAnotherPersonnel'), $createAnotherPersonnel}}"
                         id="flexCheckChecked">
                     <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
-                        Create another employee
+                        Create another personnel
                     </label>
                 </div>
             </div>

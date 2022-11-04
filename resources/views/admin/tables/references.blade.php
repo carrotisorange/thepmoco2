@@ -20,7 +20,7 @@
         </tr>
     </thead>
 
-    @forelse ($references as $reference)
+    @foreach ($references as $reference)
 
 
     <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
@@ -52,15 +52,6 @@
 
     </tbody>
 
-    @empty
-    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-        <tr>
-            <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                No references found.
-            </td>
-        </tr>
-    </tbody>
-
-    @endforelse
+    @endforeach
 
 </table>

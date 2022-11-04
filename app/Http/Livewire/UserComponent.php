@@ -20,7 +20,7 @@ class UserComponent extends Component
 
    use WithPagination;
 
-   //employee fields
+   //personnel fields
    public $role_id;
    public $name;
    public $username;
@@ -28,8 +28,8 @@ class UserComponent extends Component
    public $mobile_number;
    public $avatar;
    public $password;
-   public $sendEmailToEmployee;
-   public $createAnotherEmployee;
+   public $sendEmailToPersonnel;
+   public $createAnotherPersonnel;
 
    public $is_portfolio_create_allowed;
    public $is_portfolio_read_allowed;
@@ -69,8 +69,8 @@ class UserComponent extends Component
 
    public function mount()
    {
-      $this->sendEmailToEmployee = true;
-      $this->createAnotherEmployee = false;
+      $this->sendEmailToPersonnel = true;
+      $this->createAnotherPersonnel = false;
 
       $this->is_portfolio_create_allowed = false;
       $this->is_portfolio_read_allowed = true;
@@ -150,7 +150,7 @@ class UserComponent extends Component
             
          });
          
-          if($this->createAnotherEmployee)
+          if($this->createAnotherPersonnel)
           {
           //prompt user withe a sucess page
           return redirect('/property/'.Session::get('property').'/user/'.Str::random(8).'/create')->with('success', 'User invite has been sent.');
@@ -172,7 +172,7 @@ class UserComponent extends Component
      public function render()
      {
         return view('livewire.user-component',[
-         'roles' =>  app('App\Http\Controllers\UserPropertyController')->get_employee_positions(), 
+         'roles' =>  app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(), 
          'features' => Feature::all(),
         ]);
      }

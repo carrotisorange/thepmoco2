@@ -81,7 +81,7 @@
                             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
                             <span class="text-gray-500 group-hover:text-gray-900">04</span>
                         </span>
-                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add employees to
+                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add personnels to
                             help you manage your property.</span>
                     </span>
                 </a>
@@ -115,8 +115,10 @@
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-700">
-                @if(Session::get('tenant_uuid') || Session::get('owner_uuid'))
+                @if(Session::get('tenant_uuid'))
                 Select a unit for the tenant
+                @elseif(Session::get('owner_uuid'))
+                Select a unit for the owner
                 @else
                 Units
                 @endif
@@ -128,7 +130,7 @@
             <button type="button" wire:click="clearFilters()"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                 Clear Filters
-            </button> 
+            </button>
             @else
             &nbsp;
             @endif
@@ -293,7 +295,7 @@
                         </a>
                         @elseif(Session::get('owner_uuid'))
                         <a
-                            href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/{{ Str::random(8) }}/create">
+                            href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
                             <div class="hover:bg-purple-200">
                                 @if($unit->status_id == '1')
                                 <img src="{{ asset('/brands/vacant.png') }}"

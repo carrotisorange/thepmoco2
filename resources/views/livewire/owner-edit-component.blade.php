@@ -25,7 +25,7 @@
                                 @can('ownerportal')
                                 <button type="button"
                                     onclick="window.location.href='/property/{{ Session::get('property') }}/owner/unlock'"
-                                    class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     Send access to owner portal
                                 </button>
                                 @else
@@ -140,7 +140,8 @@
                                     </div>
                                     <div class="mt-8 flex justify-end">
                                         <button type="button"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                                            onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/representative/create'"
+                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New representative</button>
                                     </div>
 
                         </section>
@@ -165,13 +166,14 @@
                                     </div>
                                     <div class="mt-8 flex justify-end">
                                         <button type="button"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                                            onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bank/create'"
+                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New bank</button>
                                     </div>
 
                         </section>
 
                         <section class="mb-10">
-                            <h1 class="text-xl font-bold text-black">Deed of Sales</h1>
+                            <h1 class="text-xl font-bold text-black">Units</h1>
                             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
 
@@ -190,8 +192,8 @@
 
                                     </div>
                                     <div class="mt-8 flex justify-end">
-                                        <button type="button"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                                        <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/unit'"
+                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New unit</button>
                                     </div>
 
                         </section>
@@ -212,11 +214,11 @@
 
                                         </div>
 
-                                    
+
 
                                     </div>
                                     <div class="mt-8 flex justify-end">
-                                       
+
                                     </div>
                         </section>
 

@@ -145,10 +145,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
     
         Route::prefix('{tenant}')->group(function(){
-            Route::get('bills', [TenantBillController::class, 'index']);
+            Route::get('bills', [TenantBillController::class, 'index'])->name('tenant');
             Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit']);
             Route::patch('bills/{batch_no}/pay/update', [TenantCollectionController::class, 'update']);
-            Route::get('collections', [TenantCollectionController::class,'index']);
+            Route::get('collections', [TenantCollectionController::class,'index'])->name('tenant');
             Route::get('payment_requests/{payment_request}',[PaymentRequestController::class, 'show'])->name('tenant');
             Route::get('collection/{batch_no}', [TenantCollectionController::class,'destroy']);
             Route::get('contracts', [TenantContractController::class,'index']);
@@ -180,12 +180,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         
             Route::prefix('/contract')->group(function(){
                 Route::prefix('{contract}')->group(function(){
-                    Route::get('renew', [ContractController::class, 'renew']);
+                    Route::get('renew', [ContractController::class, 'renew'])->name('tenant');
                     Route::get('edit', [ContractController::class, 'edit'])->name('tenant');
-                    Route::get('moveout', [ContractController::class, 'moveout']);
+                    Route::get('moveout', [ContractController::class, 'moveout'])->name('tenant');
                     Route::get('export', [ContractController::class, 'export']);
-                    Route::get('transfer', [ContractController::class, 'transfer']);
-                    Route::get('movein', [ContractController::class, 'movein']);
+                    Route::get('transfer', [ContractController::class, 'transfer'])->name('tenant');
+                    Route::get('movein', [ContractController::class, 'movein'])->name('tenant');
                   
                 });
             });  
@@ -198,10 +198,18 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/unlock', [OwnerController::class, 'unlock'])->name('owner');
 
         Route::prefix('{owner}')->group(function(){
+            Route::prefix('representative')->group(function(){
+                Route::get('create', [RepresentativeController::class, 'create']);
+            });
+
+            Route::prefix('bank')->group(function(){
+                Route::get('create', [BankController::class, 'create'])->name('owner');
+            });
+            
             
             Route::get('/', [OwnerController::class, 'show'])->name('owner');
            
-            Route::get('units', [OwnerDeedOfSalesController::class, 'create']);
+            Route::get('unit', [OwnerDeedOfSalesController::class, 'create']);
 
             Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);

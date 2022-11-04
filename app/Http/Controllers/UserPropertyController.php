@@ -51,7 +51,7 @@ class UserPropertyController extends Controller
         ]);
     }
 
-    public function get_employee_positions()
+    public function get_personnel_positions()
     {
        return Role::orderBy('role')->whereIn('id', ['1', '2', '3', '4', '6', '11', '9'])->get();
     }

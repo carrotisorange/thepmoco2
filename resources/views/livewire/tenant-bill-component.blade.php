@@ -3,12 +3,6 @@
         number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit',
         '1')->sum('collection'), 2) }}</b>
 
-    {{-- <div class="mt-1">
-        Total Bills: <b> {{ number_format(($total_bills->sum('bill')),2)}}</b>,
-        Total Unpaid Bills: <b> {{ number_format(($total_unpaid_bills->sum('bill') -
-            $total_unpaid_bills->sum('initial_payment')),2)}}</b>,
-        Total Paid Bills: <b> {{ number_format($total_paid_bills->sum('initial_payment'),2)}}</b>
-    </div> --}}
     <div class="mt-5">
         @if($bills)
         <x-form-select class="w-24" wire:model="status">
@@ -27,49 +21,7 @@
     <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
-                <x-button id="dropdownButton" data-dropdown-toggle="billsOptionsDropdown" type="button">Bills <svg
-                        class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                        </path>
-                    </svg></x-button>
-
-                <div id="billsOptionsDropdown"
-                    class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-                    <ul class="py-1" aria-labelledby="billsOptionsDropdown">
-                        @can('billing')
-                        @if($total_unpaid_bills->count())
-                        <li>
-                            <a href="#/" data-modal-toggle="export-bill-modal"
-                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Export Unpaid Bills ({{
-                                App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=','paid')->count()
-                                }})
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/" data-modal-toggle="send-bill-modal"
-                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Send Unpaid Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status',
-                                '!=', 'paid')->count() }})
-                            </a>
-                        </li>
-                        @endif
-                        <li>
-                            <a href="#/" data-modal-toggle="create-bill-modal"
-                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Create a Bill
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/" data-modal-toggle="create-particular-modal"
-                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Create a Particular
-                            </a>
-                        </li>
-                        @endcan
-                    </ul>
-                </div>
+  
 
                 @can('treasury')
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
@@ -117,7 +69,7 @@
                                             {{--
                                             <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
                                         </x-th>
-                                        <x-th> #</x-th>
+                                        <x-th>Bill #</x-th>
                                         <x-th>Unit</x-th>
                                         <x-th>Particular</x-th>
                                         <x-th>Period</x-th>

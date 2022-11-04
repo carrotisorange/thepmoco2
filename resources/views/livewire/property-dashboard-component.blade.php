@@ -1517,7 +1517,7 @@
 
                             <div class="ml-0 w-0 flex-1">
 
-                                <div class="pl-5  text-xl font-semibold text-black ">Employees</div>
+                                <div class="pl-5  text-xl font-semibold text-black ">Personnels</div>
 
 
 
@@ -1529,7 +1529,7 @@
                         <div class="container flex mx-auto w-full items-center justify-center">
 
                             <ul class="flex flex-col bg-purple-200 p-4">
-                                @foreach ($employees as $item)
+                                @foreach ($personnels as $item)
 
 
                                 <li class="border-gray-400 flex flex-row mb-2">
