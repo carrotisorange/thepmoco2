@@ -14,6 +14,7 @@
             <x-th>Contract to Sell</x-th>
             <x-th>Certificate of Membership</x-th> --}}
             <x-th></x-th>
+            <x-th></x-th>
             {{-- <x-th></x-th> --}}
         </tr>
     </thead>
@@ -102,13 +103,13 @@
                     class="text-blue-500 text-decoration-line: underline">
                     Edit</a>
             </x-td>
-            {{-- <x-td>
+            <x-td>
 
                 <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/delete"
                     class="text-red-500 text-decoration-line: underline">
-                    Delete</a>
+                    Remove</a>
 
-            </x-td> --}}
+            </x-td>
             @empty
             <x-td>No data found.</x-td>
         </tr>

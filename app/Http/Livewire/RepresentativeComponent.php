@@ -6,17 +6,18 @@ use App\Models\Relationship;
 use App\Models\Owner;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
 use DB;
 use Session;
 
 class RepresentativeComponent extends Component
 {
-      public $unit;
+      use WithFileUploads;
+      
       public $tenant;
-
-      public function mount($unit, $owner)
+        
+      public function mount($owner)
       {
-        $this->unit = $unit;
         $this->owner = $owner;
         $this->representatives = $this->get_representatives();
       }
@@ -25,6 +26,7 @@ class RepresentativeComponent extends Component
       public $relationship_id;
       public $mobile_number;
       public $email;
+      public $valid_id;
 
       protected function rules()
       {
@@ -33,21 +35,13 @@ class RepresentativeComponent extends Component
           'email' => ['nullable', 'string', 'email', 'max:255', 'unique:guardians'],
           'mobile_number' => 'required',
           'relationship_id' => ['required', Rule::exists('relationships', 'id')],
+          'valid_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
         ];
       }
 
       public function get_representatives()
       {
         return Owner::find($this->owner->uuid)->representatives;
-      }
-
-      public function removeRepresentative($id)
-      {
-        Representative::destroy($id);
-
-        $this->representatives = $this->get_representatives();
-
-         return back()->with('success', 'Representative is successfully removed');
       }
 
       public function updated($propertyName)
@@ -66,7 +60,7 @@ class RepresentativeComponent extends Component
             $this->store_representative($validatedData);
           });
 
-          return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/deed_of_sale/create')->with('success','Representative is successfully created.');
+          return redirect('/property/'.Session::get('property').'/owner/'.$this->owner->uuid)->with('success','Representative is successfully created.');
 
        }catch(\Exception $e)
        {
@@ -74,9 +68,19 @@ class RepresentativeComponent extends Component
        } 
       }
 
+    public function removeAttachment()
+    {
+        $this->valid_id = '';
+    }
+
       public function store_representative($validatedData)
       {
           $validatedData['owner_uuid'] = $this->owner->uuid;
+
+          if($this->valid_id)
+          {
+            $validatedData['valid_id'] = $this->valid_id->store('representatives');
+          }
 
           Representative::create($validatedData);
       }

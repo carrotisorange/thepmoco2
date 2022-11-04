@@ -63,16 +63,14 @@ class BankComponent extends Component
 
                if($this->bank_name)
                {
-                  $this->store_bank($this->bank_name, $this->account_name, $this->account_number, $this->owner->uuid);
+                  app('App\Http\Controllers\BankController')->store($this->bank_name, $this->account_name, $this->account_number, $this->owner->uuid);
                }
-               
            });
 
          return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/occupancy/create')->with('success', 'Bank is successfully created.');
       }
       catch(\Exception $e)
       {
-         ddd($e);
          return back()->with('error');
       }
 
@@ -96,16 +94,6 @@ class BankComponent extends Component
          'financing_company' => $this->financing_company,
          'price' => $this->price,
          'turnover_at' => $this->turnover_at
-      ]);
-   }
-
-   public function store_bank($bank_name, $account_name, $account_number, $owner_uuid)
-   {  
-      Bank::create([
-         'bank_name' => $bank_name,
-         'account_name' => $account_name, 
-         'account_number' => $account_number,
-         'owner_uuid' => $owner_uuid
       ]);
    }
 

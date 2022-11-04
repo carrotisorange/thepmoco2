@@ -198,10 +198,18 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/unlock', [OwnerController::class, 'unlock'])->name('owner');
 
         Route::prefix('{owner}')->group(function(){
+            Route::prefix('representative')->group(function(){
+                Route::get('create', [RepresentativeController::class, 'create']);
+            });
+
+            Route::prefix('bank')->group(function(){
+                Route::get('create', [BankController::class, 'create'])->name('owner');
+            });
+            
             
             Route::get('/', [OwnerController::class, 'show'])->name('owner');
            
-            Route::get('units', [OwnerDeedOfSalesController::class, 'create']);
+            Route::get('unit', [OwnerDeedOfSalesController::class, 'create']);
 
             Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);

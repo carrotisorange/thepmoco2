@@ -25,10 +25,9 @@ class RepresentativeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Property $property, Unit $unit, Owner $owner)
+    public function create(Property $property, Owner $owner)
     {
          return view('representatives.create',[
-            'unit' => $unit,
             'owner' => $owner,
          ]);
     }

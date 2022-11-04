@@ -27,6 +27,9 @@
             <x-th>
                 AMOUNT PAID
             </x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
     
           
         </tr>
@@ -122,5 +125,8 @@
         <x-td>
             {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
         </x-td>
+        <x-td></x-td>
+        <x-td></x-td>
+        <x-td></x-td>
     </tr>
 </table>
