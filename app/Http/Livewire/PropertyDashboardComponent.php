@@ -69,7 +69,7 @@ class PropertyDashboardComponent extends Component
             'delinquents' => app('App\Http\Controllers\PropertyController')->get_delinquents(),
             'owners' => Owner::where('property_uuid', $this->property->uuid),
             'buildings' => PropertyBuilding::where('property_uuid', $this->property->uuid)->count(),
-            'employees' => app('App\Http\Controllers\UserPropertyController')->get_property_users($this->property->uuid),
+            'personnels' => app('App\Http\Controllers\UserPropertyController')->get_property_users($this->property->uuid),
         ]);
     }
 }

@@ -76,8 +76,8 @@
                 @endif
             </x-td>
             <?php
-                                                                $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->count();
-                                                            ?>
+                $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->count();
+            ?>
             <x-td>
                 {{ number_format($item->amount,2) }} ({{ $collections_count }})
             </x-td>
@@ -120,8 +120,8 @@
         <x-td></x-td>
         <x-td></x-td>
         <?php
-                           $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property'))->count();
-                        ?>
+            $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property'))->count();
+        ?>
         <x-td>
             {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
         </x-td>

@@ -217,11 +217,11 @@
                     <div class="pt-2 pb-3 space-y-1">
                         @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/user">
-                            Employees
+                            Personnels
                         </x-dropdown-link>
                         @else
                         <x-dropdown-link href="/property/">
-                            Employees
+                            Personnels
                         </x-dropdown-link>
                         @endif
 
@@ -434,10 +434,10 @@
             
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
             
-                    <!-- Employees -->
+                    <!-- Personnels -->
                     @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/user" :active="request()->routeIs('user')">
-                        <span class="sr-only">Employees</span>
+                        <span class="sr-only">Personnels</span>
             
                         <img class="h-13 w-auto" src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -446,7 +446,7 @@
                     </x-nav-link>
                     @else
                     <x-nav-link href="/property/" :active="request()->routeIs('user')">
-                        <span class="sr-only">Employees</span>
+                        <span class="sr-only">Personnels</span>
             
                         <img class="h-13 w-auto" src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -455,7 +455,7 @@
                     </x-nav-link>
                     @endif
             
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Employees</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Personnels</div>
             
                     <!-- Concerns -->
                     @if(Session::get('property'))

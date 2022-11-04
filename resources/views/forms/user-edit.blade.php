@@ -2,8 +2,8 @@
     <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
         <div class="mt-5 sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-xl font-semibold text-gray-900">Employee Access to the System</h1>
-                <p class="mt-2 text-sm text-gray-700">This section shows all the information that the employee needs to
+                <h1 class="text-xl font-semibold text-gray-900">Personnel Access to the System</h1>
+                <p class="mt-2 text-sm text-gray-700">This section shows all the information that the personnel needs to
                     access the system.</p>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -119,9 +119,9 @@
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">Employee Access To Properties</p>
+                    <h1 class="text-xl font-semibold text-gray-900">Personnel Access To Properties</p>
                         <p class="mt-2 text-sm text-gray-700">This section shows a list of all the properties the
-                            employee has access to.</p>
+                            personnel has access to.</p>
                 </div>
 
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -139,7 +139,7 @@
                                         <x-th>#</x-th>
                                         <x-th>Property</x-th>
                                         <x-th>Type</x-th>
-                                        <x-th>Employee Access</x-th>
+                                        <x-th>Personnel Access</x-th>
                                         <x-th>Assigned on</x-th>
                                         <x-th>Modify Access</x-th>
                                     </tr>
@@ -183,10 +183,10 @@
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">Employee Restrictions to the System</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">Personnel Restrictions to the System</h1>
                     <p class="mt-2 text-sm text-gray-700">This section shows a list of all the features and the
                         different
-                        actions an employee
+                        actions an personnel
                         can perform.</p>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">

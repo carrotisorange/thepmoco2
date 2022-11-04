@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <th>
-                    Employees</td>
+                    Personnels</td>
                 <td> {{
                     App\Http\Controllers\UserPropertyController::get_property_users($data->uuid,auth()->user()->id)->count()}}
                 </td>

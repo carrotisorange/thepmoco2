@@ -107,7 +107,7 @@
 
             <tr>
                 <th>
-                    Employee</th>
+                    Personnel</th>
                 @foreach ($data as $property)
                 <td>
                     {{ $property->property->property_users()->count() }}

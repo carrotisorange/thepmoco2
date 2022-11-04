@@ -19,7 +19,7 @@
                     <tr>
                         <x-th>#</x-th>
                         <x-th>Property</x-th>
-                        <x-th># of Employees</x-th>
+                        <x-th># of Personnels</x-th>
                         <x-th># of Units</x-th>
                         <x-th># of Tenants</x-th>
                         <x-th>Address</x-th>

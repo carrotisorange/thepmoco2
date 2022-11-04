@@ -185,7 +185,7 @@ class UserEditComponent extends Component
         return view('livewire.user-edit-component',[
             'features' => Feature::all(),
             'properties' => User::find($this->user->id)->user_properties()->get(),
-            'roles' => app('App\Http\Controllers\UserPropertyController')->get_employee_positions(),
+            'roles' => app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(),
         ]);
     }
 }
