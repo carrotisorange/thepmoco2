@@ -8,5 +8,5 @@
 
     @section('title','Dashboard | '. $property->property)
 
-    @livewire('property-dashboard-component', ['property' => $property])
+    @livewire('property-show-component', ['property' => $property])
 </x-new-layout>

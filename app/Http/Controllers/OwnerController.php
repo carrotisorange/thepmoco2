@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\Property;
 use App\Models\User;
+use App\Models\AcknowledgementReceipt;
 
 class OwnerController extends Controller
 {
@@ -22,6 +23,11 @@ class OwnerController extends Controller
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',4);
 
         return view('owners.index');
+    }
+
+    public function show_owner_collections($owner_uuid)
+    {
+       return AcknowledgementReceipt::where('owner_uuid', $owner_uuid)->orderBy('id','desc')->get();
     }
 
 
@@ -80,11 +86,10 @@ class OwnerController extends Controller
      */
     public function show(Property $property, Owner $owner)
     {
-
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
 
          return view('owners.show',[
-            'owner_details' => $owner
+            'owner_details' => $owner,
         ]);
     }
 

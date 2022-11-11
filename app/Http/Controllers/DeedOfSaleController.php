@@ -21,16 +21,23 @@ class DeedOfSaleController extends Controller
     {
         $this->authorize('is_owner_portal_create_allowed');
 
-        return view('deed_of_sales.create',[
+        return view('deed_of_sale.create',[
             'unit' => $unit,
             'owner' => $owner
         ]);
     }
 
+    public function backout(Property $property, Unit $unit, Owner $owner, DeedOfSale $deedOfSale)
+    {
+          return view('deed_of_sale.backout',[
+          'deedOfSale' => $deedOfSale
+          ]);
+    }
+
     public function edit(Property $property, Unit $unit, Owner $owner, DeedOfSale $deedOfSale){
         $this->authorize('is_owner_portal_update_allowed');
 
-        return view('deed_of_sales.edit',[
+        return view('deed_of_sale.edit',[
             'deedOfSale' => $deedOfSale
         ]);
     }

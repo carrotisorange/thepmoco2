@@ -26,10 +26,11 @@ class AcknowledgementReceiptController extends Controller
         return Property::find($property)->acknowledgementreceipts->max('ar_no')+1;
     }
 
-    public function store($tenant_uuid, $collection, $property_uuid, $user_id, $ar_no, $mode_of_payment, $batch_no, $cheque_no, $bank, $date_deposited, $created_at, $attachment)
+    public function store($tenant_uuid,$owner_uuid,$collection, $property_uuid, $user_id, $ar_no, $mode_of_payment, $batch_no, $cheque_no, $bank, $date_deposited, $created_at, $attachment)
     {
         $ar_id = AcknowledgementReceipt::insertGetId([
             'tenant_uuid' => $tenant_uuid,
+            'owner_uuid' => $owner_uuid,
             'amount' => $collection,
             'property_uuid' => $property_uuid,
             'user_id' => $user_id,

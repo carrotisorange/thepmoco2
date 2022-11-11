@@ -137,7 +137,7 @@ class TenantComponent extends Component
 
         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
 
-        $bill_reference_no = app('App\Http\Controllers\BillController')->generate_bill_reference_no($bill_no);
+        $bill_reference_no = app('App\Http\Controllers\BillController')->generate_bill_reference_no('t', $bill_no);
 
         $validatedData['property_uuid'] = Session::get('property');
         

@@ -211,7 +211,8 @@ class OwnerComponent extends Component
                 }
 
                 //$owner_uuid = Owner::create($validatedData)->uuid;
-
+                $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
+                
                 $owner_uuid = Owner::create([
                         'uuid' => Str::uuid(),
                         'property_uuid' => Session::get('property'),
@@ -225,6 +226,7 @@ class OwnerComponent extends Component
                         'city_id' => $this->city_id,
                         'barangay' => $this->barangay,
                         'photo_id' => $this->photo_id,
+                        'bill_reference_no' => app('App\Http\Controllers\BillController')->generate_bill_reference_no('o',$bill_no),
                 ])->uuid;
 
                 return $owner_uuid;

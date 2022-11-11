@@ -17,10 +17,15 @@ class OwnerDeedOfSalesController extends Controller
      */
     public function index(Property $property, Unit $unit, Owner $owner)
     {
-        return view('owners.deed_of_sales.index',[
+        return view('owners.deed_of_sale.index',[
             'owner' => Owner::find($owner->uuid),
             'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales
         ]);
+    }
+
+    public function show_deed_of_sales($owner_uuid)
+    {
+        return Owner::find($owner_uuid)->deed_of_sales;
     }
 
     public function create(Property $property, Owner $owner)

@@ -31,7 +31,7 @@ class PropertyIndexComponent extends Component
         $query->where('property','like', '%'.$this->property.'%');
         }) 
         ->when($this->sortBy, function($query){
-        $query->orderBy('properties.'.$this->sortBy, 'asc');
+        $query->orderBy('properties.'.$this->sortBy, 'desc');
         })->paginate(4);
     }
 }

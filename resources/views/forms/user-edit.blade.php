@@ -60,7 +60,7 @@
             @if(auth()->user()->role_id == 5)
             <div class="col-span-2">
                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                @if(auth()->user()->role_id === 5)
+
                 <select wire:model.lazy="status" autocomplete="status"
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="">Select one</option>
@@ -69,19 +69,20 @@
                     <option value="banned" {{ 'banned'==$status ? 'Select one' : 'selected' }}>banned</option>
                     <option value="pending" {{ 'pending'==$status ? 'Select one' : 'selected' }}>pending</option>
                 </select>
-                @endif
+
                 @error('status')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-            @endif
+
             <div class="col-span-2">
                 <label for="role_id" class="block text-sm font-medium text-gray-700">Role</label>
                 @if(auth()->user()->role_id === 5)
                 <select wire:model.lazy="role_id" autocomplete="role_id"
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     @foreach($roles as $role)
-                        <option value="{{ $role->id }}" {{ old('role_id', $user->role_id) == $role->id ? 'selected' : ''}}>{{ $role->role }}</option>
+                    <option value="{{ $role->id }}" {{ old('role_id', $user->role_id) == $role->id ? 'selected' :
+                        ''}}>{{ $role->role }}</option>
                     @endforeach
                 </select>
                 @endif
@@ -89,6 +90,7 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
+            @endif
 
 
 
@@ -116,6 +118,7 @@
 
         </div>
 
+        @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
@@ -152,7 +155,7 @@
                                         <x-td>{{ $item->property->property }}</x-td>
                                         <x-td>{{ $item->property->type->type }}</x-td>
                                         <x-td>
-                                            @if($item->is_approve === '0')
+                                            @if($item->is_approve == '0')
                                             pending
                                             @else
                                             approved
@@ -161,22 +164,82 @@
                                         </x-td>
                                         <x-td>{{ $item->created_at }}</x-td>
                                         <x-td>
-                                            @if($item->is_account_owner === '0')
+                                            @if(auth()->user()->role_id == '5')
+                                            @if($item->is_approve == '1')
                                             <a class="text-red-500 text-decoration-line: underline"
-                                            href="/property/{{ Session::get('property') }}/user_property/{{ $item->id }}/remove-access">
-                                        Remove Access
-                                        </a>
-                                    @endif
-                                    </x-td>
+                                                href="/property/{{ Session::get('property') }}/user_property/{{ $item->id }}/remove-access">
+                                                Remove Access
+                                            </a>
+                                            @else
+                                            <a class="text-green-500 text-decoration-line: underline"
+                                                href="/property/{{ Session::get('property') }}/user_property/{{ $item->id }}/restore-access">
+                                                Restore Access
+                                            </a>
+                                            @endif
+                                            @endif
+                                        </x-td>
                                     </tr>
 
                                     @endforeach
                                 </tbody>
                             </table>
+
+
                         </div>
                     </div>
                 </div>
             </div>
+
+            {{-- <div class="mt-8 flex flex-col">
+                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                        <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <x-th>#</x-th>
+                                        <x-th>Property</x-th>
+                                        <x-th>Type</x-th>
+                                        <x-th>Personnel Access</x-th>
+                                        <x-th>Assigned on</x-th>
+                                        <x-th>Modify Access</x-th>
+                                    </tr>
+                                </thead>
+                                @foreach ($all_properties->where('user_id','!=',$user->id) as $index => $item)
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <x-td>{{ $index+1 }}</x-td>
+
+                                        <x-td>{{ $item->property->property }}</x-td>
+                                        <x-td>{{ $item->property->type->type }}</x-td>
+                                        <x-td>
+                                            @if($item->is_approve == '0')
+                                            pending
+                                            @else
+                                            approved
+                                            @endif
+
+                                        </x-td>
+                                        <x-td>{{ $item->created_at }}</x-td>
+                                        <x-td>
+                                            @if(auth()->user()->role_id == '5')
+                                            <a class="text-green-500 text-decoration-line: underline"
+                                                href="/property/{{ Session::get('property') }}/user_property/{{ $item->id }}/provide-access">
+                                                Provide Access
+                                            </a>
+                                            @endif
+                                        </x-td>
+                                    </tr>
+                                </tbody>
+                                @endforeach
+
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
 
         </div>
 
@@ -282,6 +345,7 @@
             </div>
 
         </div>
+        @endif
 
 
         <div class="flex justify-end mt-10">

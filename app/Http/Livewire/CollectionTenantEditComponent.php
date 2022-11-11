@@ -9,7 +9,7 @@ use App\Models\Bill;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
 
-class CollectionEditComponent extends Component
+class CollectionTenantEditComponent extends Component
 {
     use WithFileUploads;
 
@@ -62,7 +62,7 @@ class CollectionEditComponent extends Component
 
     public function render()
     {
-        return view('livewire.collection-edit-component',[
+        return view('livewire.collection-tenant-edit-component',[
             'bills' => $this->get_bills()
         ]);
     }

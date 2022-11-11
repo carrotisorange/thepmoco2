@@ -36,8 +36,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Livewire\DeedOfSaleComponent;
-use App\Models\UserProperty;
+use App\Http\Controllers\UserPropertyController;
+use App\Http\Controllers\OwnerBillController;
+use App\Http\Controllers\OwnerCollectionController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
@@ -50,7 +51,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('delete', 'destroy');
         });
 
-    Route::get('user_property/{user_property}/remove-access',[UserProperty::class, 'remove_access']);
+    Route::get('user_property/{user_property}/remove-access',[UserPropertyController::class, 'remove_access']);
+    Route::get('user_property/{user_property}/restore-access',[UserPropertyController::class, 'restore_access']);
        
     //Route for contract
     Route::get('contract/{status?}',[ContractController::class, 'show_moveout_request'])->name('contract');
@@ -91,9 +93,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             });
                 
             Route::prefix('owner')->group(function(){
-                Route::get('/', [OwnerController::class, 'index']);
+                Route::get('/', [OwnerController::class, 'index'])->scopeBindings();
                 Route::get('{random_str}/create', [OwnerController::class, 'create'])->name('unit');
                 Route::get('{owner}/delete', [OwnerController::class, 'destroy']);
+                Route::get('{owner}/bills', [OwnerBillController::class, 'index'])->name('owner');
                 Route::post('{random_str}/store', [OwnerController::class, 'store']);
 
 
@@ -102,7 +105,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                     Route::prefix('deed_of_sale')->group(function(){
                         Route::get('create',[DeedOfSaleController::class,'create']);
                         Route::get('{deed_of_sale}/delete', [DeedOfSaleController::class, 'destroy']);
-                        Route::get('{deed_of_sale}/edit', [DeedOfSaleController::class, 'edit']);
+                        Route::get('{deed_of_sale}/backout', [DeedOfSaleController::class, 'backout'])->name('owner');
+                        Route::get('{deed_of_sale}/edit', [DeedOfSaleController::class, 'edit'])->name('owner');
                         Route::post('{random_str}/store', [DeedOfSaleController::class,'store']);
                     });
 
@@ -146,7 +150,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
         Route::prefix('{tenant}')->group(function(){
             Route::get('bills', [TenantBillController::class, 'index'])->name('tenant');
-            Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit']);
+            Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit'])->name('tenant');
             Route::patch('bills/{batch_no}/pay/update', [TenantCollectionController::class, 'update']);
             Route::get('collections', [TenantCollectionController::class,'index'])->name('tenant');
             Route::get('payment_requests/{payment_request}',[PaymentRequestController::class, 'show'])->name('tenant');
@@ -213,9 +217,13 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);
-            Route::get('bills', [OwnerBillController::class, 'index']);
-            Route::get('collections', [OwnerCollectionController::class, 'index']);
+            Route::get('bills', [OwnerBillController::class, 'index'])->name('owner');
+            Route::post('bill/store', [OwnerBillController::class, 'store']);
+            Route::get('collections', [OwnerCollectionController::class, 'index'])->name('owner');
             Route::get('edit', [OwnerController::class, 'edit']);
+
+            Route::get('bills/{batch_no}/pay', [OwnerCollectionController::class, 'edit']);
+            Route::patch('bills/{batch_no}/pay/update', [OwnerCollectionController::class, 'update']);
         });      
     });
 
