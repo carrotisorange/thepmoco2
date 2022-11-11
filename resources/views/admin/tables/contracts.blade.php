@@ -38,7 +38,7 @@
 
         </tr>
     </thead>
-    @forelse ($contracts as $index => $item)
+    @foreach ($contracts as $index => $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
 
@@ -181,12 +181,8 @@
 
 
         </tr>
-        @empty
-        <tr>
-
-            <x-td>No data found.</x-td>
-        </tr>
-        @endforelse
+       
+        @endforeach
     </tbody>
 </table>
 

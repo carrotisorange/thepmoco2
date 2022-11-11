@@ -1147,18 +1147,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
                 <div class="mt-20 lg: lg:my-24 sm:my-10  col-span-2">
                     <div class="bg-gray-200 rounded-lg shadow-md w-full">
                         <div class="flex justify-end items-end pr-5 pt-6">
@@ -1411,168 +1401,89 @@
                     <h2 class="p-3 font-semibold text-xl text-gray-700"> Expiring Contracts</h2>
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                {{-- <table class="min-w-full divide-y divide-gray-300">
-
-
-                                    <thead class="bg-gray-50">
-                                        <tr>
-                                            <th scope="col"
-                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                Name</th>
-                                            <th scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Unit</th>
-                                            <th scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Status</th>
-                                            <th scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Moveout</th>
-                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                <span class="sr-only">Renew</span>
-                                                <span class="sr-only">Moveout</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-
-
-                                    <tbody class="divide-y divide-gray-200 bg-white">
-                                        @foreach ($expiring_contracts as $item)
-                                        <tr>
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-
-                                                <div class="flex items-center">
-                                                    <div class="h-10 w-10 flex-shrink-0">
-                                                        <img src="{{ asset('/brands/user.png') }}" alt="building"
-                                                            class="w-40 object-center object-cover lg:w-full lg:h-full">
-                                                    </div>
-
-                                                    <div class="ml-4">
-                                                        <div class="font-medium text-gray-900">
-                                                            {{ $item->tenant->tenant }}
-                                                        </div>
-                                                        <div class="text-gray-500">
-                                                            lindsay.walton@example.com</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div class="text-gray-900">Unit #2</div>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <span
-                                                    class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                                            </td>
-
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                Sept. 1</td>
-
-                                            <td
-                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Moveout<span
-                                                        class="sr-only">, Lindsay
-                                                        Walton</span></a>
-                                            </td>
-
-                                            <td
-                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Renew<span
-                                                        class="sr-only">, Lindsay Walton</span></a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-
-                                </table> --}}
-                                @include('admin.tables.contracts')
-
-
-                            </div>
-
-                            <div class="flex justify-end gap-2">
-                                <div button type="button"
-                                    class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    </button>
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-20 lg:flex lg: sm:my-10  col-span-2">
-                    <div class="bg-purple-200 rounded-lg shadow-md w-full">
-                        <div class="flex justify-end items-end pr-5 pt-6">
-
-                        </div>
-                        <div class="flex items-center">
-
-
-                            <div class="ml-0 w-0 flex-1">
-
-                                <div class="pl-5  text-xl font-semibold text-black ">Personnels</div>
-
-
-
-                            </div>
+                            @include('admin.tables.contracts')
                         </div>
 
-
-                        <!-- component -->
-                        <div class="container flex mx-auto w-full items-center justify-center">
-
-                            <ul class="flex flex-col bg-purple-200 p-4">
-                                @foreach ($personnels as $item)
-
-
-                                <li class="border-gray-400 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                        <div
-                                            class="flex flex-col rounded-md w-10 h-10 bg-purple-200 justify-center items-center mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="w-6 h-6">
-                                                <path fill-rule="evenodd"
-                                                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-
-                                        </div>
-                                        <div class="flex-1 pl-1 mr-16">
-                                            <div class="font-medium">{{ $item->user->name }}</div>
-                                            <div class="text-gray-600 text-sm">{{ $item->user->role->role }}</div>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-
-                                @endforeach
-                            </ul>
-
-                        </div>
-                        <div class="flex justify-end pb-5 pr-5 gap-2">
-                            <div
-                                class="items-center text-center px-2.5 mt-3 py-2 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <div class="flex justify-end gap-2">
+                            <div button type="button"
+                                class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 </button>
                             </div>
 
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 lg:flex lg: sm:my-10  col-span-2">
+                <div class="bg-purple-200 rounded-lg shadow-md w-full">
+                    <div class="flex justify-end items-end pr-5 pt-6">
+
+                    </div>
+                    <div class="flex items-center">
+
+
+                        <div class="ml-0 w-0 flex-1">
+
+                            <div class="pl-5  text-xl font-semibold text-black ">Personnels</div>
+
+
+
+                        </div>
+                    </div>
+
+
+                    <!-- component -->
+                    <div class="container flex mx-auto w-full items-center justify-center">
+
+                        <ul class="flex flex-col bg-purple-200 p-4">
+                            @foreach ($personnels as $item)
+
+
+                            <li class="border-gray-400 flex flex-row mb-2">
+                                <div
+                                    class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                    <div
+                                        class="flex flex-col rounded-md w-10 h-10 bg-purple-200 justify-center items-center mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="w-6 h-6">
+                                            <path fill-rule="evenodd"
+                                                d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+
+                                    </div>
+                                    <div class="flex-1 pl-1 mr-16">
+                                        <div class="font-medium">{{ $item->user->name }}</div>
+                                        <div class="text-gray-600 text-sm">{{ $item->user->role->role }}</div>
+                                    </div>
+
+                                </div>
+                            </li>
+
+
+                            @endforeach
+                        </ul>
+
+                    </div>
+                    <div class="flex justify-end pb-5 pr-5 gap-2">
+                        <div
+                            class="items-center text-center px-2.5 mt-3 py-2 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            </button>
                         </div>
 
                     </div>
 
-
                 </div>
+
 
             </div>
 
-
         </div>
+
+
     </div>
+</div>

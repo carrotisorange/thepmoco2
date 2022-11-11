@@ -6,7 +6,7 @@
                 AR #
             </x-th>
             <x-th>
-                TENANT
+                REFERENCE #
             </x-th>
 
             <x-th>
@@ -16,7 +16,7 @@
                 DATE DEPOSITED
             </x-th>
             <x-th>
-                MDDE OF PAYMENT
+                MODE OF PAYMENT
             </x-th>
             <x-th>
                 CHEQUE NO
@@ -30,23 +30,28 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
-    
-          
+
+
         </tr>
     </thead>
-    @forelse($collections as $item)
+    @foreach($collections as $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <!-- Selected: "bg-gray-50" -->
         <tr>
 
             <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
             <x-td>{{ $item->ar_no }}</x-td>
- 
+
             <x-td>
-                <a class="text-indigo-500 text-decoration-line: underline"
+                {{-- <a class="text-indigo-500 text-decoration-line: underline"
+                    href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/collections">
+                    {{ $item->bill_reference_no}}
+                </a> --}}
+                {{ $item->bill_reference_no}}
+                {{-- <a class="text-indigo-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/collections">
                     {{ $item->tenant->tenant}}
-                </a>
+                </a> --}}
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
@@ -94,22 +99,13 @@
             <x-td>
 
                 @if(!$item->attachment == null)
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment" target="_blank"
-                    class="text-indigo-500 text-decoration-line: underline">Attachment</a>
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment"
+                    target="_blank" class="text-indigo-500 text-decoration-line: underline">Attachment</a>
                 @endif
             </x-td>
-
-
         </tr>
-        @empty
-        <tr>
-            <x-td> No
-                data
-                found.</x-td>
-        </tr>
-
     </tbody>
-    @endforelse
+    @endforeach
     <tr>
 
         <x-td></x-td>

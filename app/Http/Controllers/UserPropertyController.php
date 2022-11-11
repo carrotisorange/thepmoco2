@@ -111,6 +111,21 @@ class UserPropertyController extends Controller
 
     public function remove_access(Property $property, UserProperty $userProperty)
     {
-        return $userProperty;
+        UserProperty::where('id', $userProperty->id)
+        ->update([
+            'is_approve' => 0,
+        ]);
+
+        return back()->with('success', 'Access has been removed to the personnel');
+    }
+
+    public function restore_access(Property $property, UserProperty $userProperty)
+    {
+        UserProperty::where('id', $userProperty->id)
+        ->update([
+            'is_approve' => 1,
+        ]);
+
+        return back()->with('success', 'Access has been restored to the personnel');
     }
 }

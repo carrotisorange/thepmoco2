@@ -4,6 +4,7 @@
             <x-th>#</x-th>
             <x-th>Owner</x-th>
             <x-th>Unit</x-th>
+            <x-th>Status</x-th>
             <x-th>Date of Purchase</x-th>
             <x-th>Purchasing Price</x-th>
             <x-th>On loan?</x-th>
@@ -15,10 +16,11 @@
             <x-th>Certificate of Membership</x-th> --}}
             <x-th></x-th>
             <x-th></x-th>
+            <x-th></x-th>
             {{-- <x-th></x-th> --}}
         </tr>
     </thead>
-    @forelse ($deed_of_sales as $index => $item)
+    @foreach ($deed_of_sales as $index => $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>{{ $index+1 }}</x-td>
@@ -33,7 +35,9 @@
                     href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
                     {{ $item->unit->unit }}
             </x-td>
-
+            <x-td>
+                {{ $item->status }}
+            </x-td>
             <x-td>{{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
             </x-td>
             <x-td>{{ number_format($item->price, 2) }}</x-td>
@@ -104,15 +108,23 @@
                     Edit</a>
             </x-td>
             <x-td>
+                @if($item->status == 'active')
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/backout"
+                    class="text-blue-500 text-decoration-line: underline">
+                    Back out</a>
+                @endif
+
+
+            </x-td>
+            <x-td>
 
                 <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/delete"
                     class="text-red-500 text-decoration-line: underline">
                     Remove</a>
 
             </x-td>
-            @empty
-            <x-td>No data found.</x-td>
+
         </tr>
-        @endforelse
+        @endforeach
     </tbody>
 </table>

@@ -100,25 +100,12 @@
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                       @include('forms.collection-create')
+                        @include('forms.collection-owner-create')
                     </div>
                 </div>
             </div>
 
         </div>
-
-        {{--
-        @if($tenant->email)
-        <div class="mt-5 p-2 bg-white border-b border-gray-200">
-            <div class="flex flex-wrap mb-6">
-                <div class="mt-2 w-full md:w-full  mb-6 md:mb-0">
-                    <div>
-                        Acknowledgement Receipt will be sent to {{ $tenant->email }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif --}}
 
         <div class="mt-5 p-2">
             <p class="text-right">

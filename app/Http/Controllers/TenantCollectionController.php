@@ -259,6 +259,7 @@ class TenantCollectionController extends Controller
          app('App\Http\Controllers\AcknowledgementReceiptController')
          ->store(
                   $tenant->uuid,
+                  '',
                   Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->sum('collection'),
                   Session::get('property'),
                   auth()->user()->id,

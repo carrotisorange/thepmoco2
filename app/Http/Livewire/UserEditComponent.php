@@ -113,7 +113,7 @@ class UserEditComponent extends Component
                 'username' => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($this->user->id, 'id')],
                 'mobile_number' => ['nullable', Rule::unique('users', 'mobile_number')->ignore($this->user->id, 'id')],
                 'role_id' => ['nullable', Rule::exists('roles', 'id')],
-                'status' => 'required',
+                'status' => 'nullable',
 
                 'is_portfolio_create_allowed' => 'nullable',
                 'is_portfolio_read_allowed' => 'nullable',
@@ -185,6 +185,7 @@ class UserEditComponent extends Component
         return view('livewire.user-edit-component',[
             'features' => Feature::all(),
             'properties' => User::find($this->user->id)->user_properties()->get(),
+            'all_properties' => User::find(auth()->user()->id)->user_properties()->get(),
             'roles' => app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(),
         ]);
     }

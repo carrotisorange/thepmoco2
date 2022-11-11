@@ -203,7 +203,9 @@ class OwnerEditComponent extends Component
             'spouses' => app('App\Http\Controllers\OwnerController')->show_owner_spouses($this->owner_details->uuid),
             'deed_of_sales' => app('App\Http\Controllers\OwnerController')->show_owner_deed_of_sales($this->owner_details->uuid),
             'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid),
-            'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get()
+            'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get(),
+            'bills' => Owner::findOrFail($this->owner_details->uuid)->bills,
+            'collections' => Owner::findOrFail($this->owner_details->uuid)->collections
         ]);
     }
 }

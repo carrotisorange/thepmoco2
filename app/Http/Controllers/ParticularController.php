@@ -50,7 +50,7 @@ class ParticularController extends Controller
     {   
         $particular_attributes = request()->validate([
           'particular_id'=> 'required',
-          'minimum_charge' => 'required', 
+          'minimum_charge' => 'nullable', 
         ]);
 
       

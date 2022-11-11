@@ -96,6 +96,6 @@
         </div>
     </div>
     @include('modals.create-particular-modal');
-    @include('modals.create-bill-modal');
+    @include('modals.create-tenant-bill-modal');
     @include('modals.save-contract-modal');
 </x-app-layout>

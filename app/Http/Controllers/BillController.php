@@ -119,9 +119,9 @@ class BillController extends Controller
         return Property::find($property_uuid)->bills->max('bill_no')+1;
     }
 
-    public function generate_bill_reference_no($bill_no)
+    public function generate_bill_reference_no($type, $bill_no)
     {
-        return Carbon::now()->timestamp.''.$bill_no;
+        return $type.Carbon::now()->timestamp.''.$bill_no;
     }
 
     public function generate_bill_batch_no($bill_no)

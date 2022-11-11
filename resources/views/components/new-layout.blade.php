@@ -113,11 +113,11 @@
                                 <x-dropdown-link href="/chatify" target="_blank">
                                     Chat
                                 </x-dropdown-link>
-
+                                @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
                                 <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
                                 </x-dropdown-link>
-
+                                @endif
                                 <x-dropdown-link href="/property">
                                     Portfolio
                                 </x-dropdown-link>
@@ -308,12 +308,13 @@
                             Chat
                         </x-dropdown-link>
                     </div>
-
+                    @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                             Subscriptions
                         </x-dropdown-link>
                     </div>
+                    @endif
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/property">
                             Portfolio

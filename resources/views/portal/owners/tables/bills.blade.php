@@ -1,6 +1,5 @@
-<table class="min-w-full table-fixed divide-y-8 divide-gray-50 border">
-
-    <thead class="">
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
         <tr>
             <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
 
@@ -25,12 +24,6 @@
 
         </tr>
     </thead>
-
-    @forelse ($units as $unit)
-    <?php 
-        $bills = App\Models\Unit::find($unit->unit->uuid)->bills()->orderBy('bill_no', 'desc')->get();    
-    ;?>
-    @if($bills->count())
     @foreach ($bills as $bill)
     <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
         <!-- Selected: "bg-gray-50" -->
@@ -68,13 +61,7 @@
     </tbody>
 
     @endforeach
-    @else
-    NA
-    @endif
 
-    @empty
-
-    @endforelse
     <tr>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>

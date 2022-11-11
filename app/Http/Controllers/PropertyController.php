@@ -104,7 +104,7 @@ class PropertyController extends Controller
         }
         elseif(auth()->user()->role_id == '7')
         {
-            return redirect(auth()->user()->role_id.'/owner/'.auth()->user()->username);
+            return redirect(auth()->user()->role_id.'/owner/'.auth()->user()->username.'/units');
         }
         else
         {
@@ -372,10 +372,11 @@ class PropertyController extends Controller
         ->pluck('count');
     }
 
-    public function get_delinquents()
+    public function get_tenant_delinquents()
     {
         return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
         ->where('property_uuid', Session::get('property'))
+        ->whereNotNull('tenant_uuid')
         ->groupBy('tenant_uuid')
         ->get();
     }

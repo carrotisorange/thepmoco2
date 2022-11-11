@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use App\Models\PropertyBuilding;
 use App\Models\Owner;
 
-class PropertyDashboardComponent extends Component
+class PropertyShowComponent extends Component
 {
     public $property;
 
@@ -22,8 +22,8 @@ class PropertyDashboardComponent extends Component
 
         app('App\Http\Controllers\PropertyController')->save_unit_stats($this->property->uuid);
 
-        return view('livewire.property-dashboard-component',[
-            //'contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, '','', '', ''),
+        return view('livewire.property-show-component',[
+            'property'=> $this->property,
             'expired_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'inactive', '', '',''),
             'contracts' =>app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'active', Carbon::now()->addMonth(), '', ''),
             'pending_contracts' => app('App\Http\Controllers\ContractController')->get_property_contracts($this->property->uuid, 'pendingmoveout','', '', ''),
@@ -66,7 +66,7 @@ class PropertyDashboardComponent extends Component
             'tenant_moveout_value' => app('App\Http\Controllers\PropertyController')->get_tenant_moveout_values(),
             'reasons_for_moveout_label' => app('App\Http\Controllers\PropertyController')->get_reasons_for_moveout_labels(),
             'reasons_for_moveout_value' => app('App\Http\Controllers\PropertyController')->get_reasons_for_moveout_values(),
-            'delinquents' => app('App\Http\Controllers\PropertyController')->get_delinquents(),
+            'delinquents' => app('App\Http\Controllers\PropertyController')->get_tenant_delinquents(),
             'owners' => Owner::where('property_uuid', $this->property->uuid),
             'buildings' => PropertyBuilding::where('property_uuid', $this->property->uuid)->count(),
             'personnels' => app('App\Http\Controllers\UserPropertyController')->get_property_users($this->property->uuid),
