@@ -1,7 +1,6 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-
             <x-th>
                 AR #
             </x-th>
@@ -116,7 +115,7 @@
         <x-td></x-td>
         <x-td></x-td>
         <?php
-            $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property'))->count();
+            $property_collections_count = App\Models\Collection::posted()->where('property_uuid', Session::get('property'))->count();
         ?>
         <x-td>
             {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})

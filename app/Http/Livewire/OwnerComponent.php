@@ -142,7 +142,7 @@ class OwnerComponent extends Component
     
                 }
                 catch(\Exception $e)
-                {                          
+                {                        
                         return back()->with('error');
                 }
         }

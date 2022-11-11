@@ -33,6 +33,7 @@ class OwnerEditComponent extends Component
     public $occupation;
     public $employer;
     public $employer_address;
+    public $bill_reference_no;
 
     public function mount($owner_details)
     {
@@ -51,6 +52,7 @@ class OwnerEditComponent extends Component
         $this->employer = $owner_details->employer;
         $this->occupation = $owner_details->occupation;
         $this->employer_address = $owner_details->employer_address;
+        $this->bill_reference_no = $owner_details->bill_reference_no;
     }
 
 
@@ -70,6 +72,7 @@ class OwnerEditComponent extends Component
             'employer' => ['nullable'],
             'occupation' => ['nullable'],
             'employer_address' => ['nullable'],
+            'bill_reference_no' => ['nullable']
         ];
     }
 

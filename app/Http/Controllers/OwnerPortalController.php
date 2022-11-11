@@ -34,7 +34,7 @@ class OwnerPortalController extends Controller
     public function show_payments($role_id, User $user)
     {
         return view('portal.owners.payments',[
-          'units' => Owner::findOrFail($user->owner_uuid)->bills
+          'collections' => Owner::findOrFail($user->owner_uuid)->collections
         ]);
     }
 
