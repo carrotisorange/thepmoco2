@@ -27,4 +27,9 @@ class Collection extends Model
         return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
 
+    public function scopePosted($query)
+    {
+        return $query->where('is_posted', true);
+    }
+
 }

@@ -2,7 +2,7 @@
     @csrf
     @method('PATCH')
     <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8 mt-9">
-        <div class="sm:col-span-8">
+        <div class="sm:col-span-4">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="owner" class="block text-xs font-medium text-gray-900">Name of the unit owner
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        {{-- <div class="sm:col-span-4">
+        <div class="sm:col-span-4">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="name" class="block text-xs font-medium text-gray-900">Owner Reference No
@@ -24,7 +24,7 @@
                     placeholder="">
 
             </div>
-        </div> --}}
+        </div>
 
 
 

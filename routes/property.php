@@ -138,7 +138,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('deed_of_sales', [UnitDeedOfSalesController::class, 'index']);
             
             
-            Route::get('bills', [UnitBillController::class, 'index']);
+            Route::get('bills', [UnitBillController::class, 'index'])->name('unit');
         });
     });
 
