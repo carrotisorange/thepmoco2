@@ -148,7 +148,7 @@
 
             </div>
 
-            @livewire('deedofsale-component', ['unit' => $unit, 'owner' => $owner])
+            @livewire('deed-of-sale-component', ['unit' => $unit, 'owner' => $owner])
         </div>
     </div>
 </x-new-layout>
