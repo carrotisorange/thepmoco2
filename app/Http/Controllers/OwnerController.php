@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\Property;
 use App\Models\User;
+use Session;
 use App\Models\AcknowledgementReceipt;
 
 class OwnerController extends Controller
@@ -87,6 +88,8 @@ class OwnerController extends Controller
     public function show(Property $property, Owner $owner)
     {
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
+
+        Session::forget('tenant_uuid');
 
          return view('owners.show',[
             'owner_details' => $owner,
