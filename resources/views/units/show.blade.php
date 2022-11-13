@@ -15,9 +15,9 @@
                     </ol>
                 </nav>
 
-                @livewire('unit-edit-component', ['unit_details' => $unit_details]) 
+                @livewire('unit-edit-component', ['unit_details' => $unit_details])
             </div>
         </div>
     </div>
-    @include('modals.create-building-modal')
+    @include('modals.create-building')
 </x-new-layout>

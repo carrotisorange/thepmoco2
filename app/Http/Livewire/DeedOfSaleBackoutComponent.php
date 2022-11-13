@@ -55,6 +55,6 @@ class DeedOfSaleBackoutComponent extends Component
 
     public function render()
     {
-        return view('livewire.deed-of-sale-backout-component');
+        return view('livewire.deedofsale-backout-component');
     }
 }

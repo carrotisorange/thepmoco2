@@ -204,5 +204,5 @@
 
 
     </div>
-    @include('modals.create-particular-modal')
+    @include('modals.create-particular')
 </x-new-layout>

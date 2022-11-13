@@ -96,7 +96,7 @@
 
     @livewire('tenant-edit-component', ['tenant_details' => $tenant_details])
 
-    @include('modals.create-guardian-modal')
-    @include('modals.create-reference-modal')
+    @include('modals.create-guardian')
+    @include('modals.create-reference')
 
 </x-index-layout>

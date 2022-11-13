@@ -21,7 +21,7 @@
 
                                     <p class="mt-5 text-sm max-w-lg text-gray-600">Great customer experience is
                                         possible through tech enabled experiences. Reduce face to face contact and
-                                        still build that rapport with your tenant is possible with a tenant portal.
+                                        still build that rapport with your tenant is possible with a tenant portals.
                                         In this digital age, technology enablement is vital for a harmonious
                                         experience between tenants and rental business. This will form part of your
                                         competitive advangate over other landlords.
@@ -92,8 +92,10 @@
                                     </ul>
                                     <div class="mt-8">
                                         <div>
-                                            <button type="submit" onclick="window.location.href='/user/{{ auth()->user()->username }}/unlock'"
-                                                class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-purple-700 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Unlock now</a></button>
+                                            <button type="submit"
+                                                onclick="window.location.href='/user/{{ auth()->user()->username }}/unlock'"
+                                                class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-purple-700 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Unlock
+                                                now</a></button>
 
                                         </div>
                                     </div>

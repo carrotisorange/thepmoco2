@@ -312,11 +312,16 @@ class TenantCollectionController extends Controller
      public function destroy(Property $property, Tenant $tenant, $batch_no)
      {
          Collection::where('tenant_uuid', $tenant->uuid)
-         ->where('batch_no', $batch_no)
+         ->when($batch_no, function ($query) use ($batch_no) {
+         $query->where('batch_no', $batch_no);
+         })
+         ->where('is_posted', 0)
          ->delete();
 
          Bill::where('tenant_uuid', $tenant->uuid)
-         ->where('batch_no', $batch_no)
+         ->when($batch_no, function ($query) use ($batch_no) {
+            $query->where('batch_no', $batch_no);
+         })
          ->update([
             'batch_no' => null
          ]);

@@ -9,7 +9,11 @@ use Illuminate\Validation\Rule;
 use App\Models\Bill;
 use DB;
 use Session;
+use \PDF;
 use Carbon\Carbon;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendBillToOwner;
 
 class OwnerBillController extends Controller
 {
@@ -43,7 +47,7 @@ class OwnerBillController extends Controller
 
     public function get_owner_balance($owner_uuid)
     {
-        return Bill::where('tenant_uuid', $owner_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
+        return Bill::where('owner_uuid', $owner_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
     }
 
     /**
@@ -113,6 +117,62 @@ class OwnerBillController extends Controller
         }
     }
 
+    public function export(Request $request, Property $property, Owner $owner)
+    {
+       app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+
+       $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
+    
+       $pdf = $this->generate_pdf($data, $property);
+
+       return $pdf->download($owner->owner.'-soa.pdf');
+    }
+
+    public function send(Request $request, Property $property, Owner $owner)
+    {    
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+
+        $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
+
+        Mail::to($request->email)->send(new SendBillToOwner($data));
+
+        return back()->with('success', 'Unpaid bills is successfully sent');
+    }
+
+    public function generate_pdf($data, $property)
+    {
+        $pdf = PDF::loadView('owners.bills.export', $data);
+
+        $pdf->output();
+
+        $canvas = $pdf->getDomPDF()->getCanvas();
+
+        $height = $canvas->get_height();
+
+        $width = $canvas->get_width();
+
+        $canvas->set_opacity(.2,"Multiply");
+
+        $canvas->set_opacity(.2);
+
+        $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+
+        return $pdf;
+    }
+
+    public function get_bill_data($owner, $due_date, $penalty, $note)
+    {
+        return $data = [
+            'owner' => $owner->owner,
+            'reference_no' => $owner->bill_reference_no,
+            'due_date' => $due_date,
+            'penalty' => $penalty,
+            'user' => User::find(auth()->user()->id)->name,
+            'role' => User::find(auth()->user()->id)->role->role,
+            'bills' => $this->get_owner_balance($owner->uuid),
+            'note_to_bill' => $note,
+        ];
+    }
     /**
      * Display the specified resource.
      *

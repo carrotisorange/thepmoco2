@@ -482,5 +482,5 @@
 
     </div>
     @endif
-    @include('modals.create-unit-modal')
+    @include('modals.create-unit')
 </div>

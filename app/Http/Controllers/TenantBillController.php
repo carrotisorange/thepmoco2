@@ -13,6 +13,7 @@ use App\Models\Property;
 use App\Models\User;
 use Carbon\Carbon;
 use \PDF;
+use App\Models\Collection;
 use Illuminate\Support\Facades\Mail;
 
 class TenantBillController extends Controller
@@ -30,6 +31,10 @@ class TenantBillController extends Controller
         ->bills()
         ->orderBy('bill_no','desc')
         ->get();
+
+        Collection::where('tenant_uuid', $tenant->uuid)
+         ->where('is_posted', 0)
+         ->delete();
 
         return view('tenants.bills.index',[
             'tenant' => $tenant,  

@@ -115,8 +115,36 @@
                         </div>
 
                         <div class="mt-2 lg:col-span-9">
-                            @include('forms.owner-edit')
+                            @include('forms.owners.owner-edit')
                         </div>
+
+                        <section class="mb-10">
+                            <h1 class="text-xl font-bold text-black">Units</h1>
+                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+
+
+
+                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                                    <div
+                                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                        <!-- Selected row actions, only show when rows are selected. -->
+                                        <div
+                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                        </div>
+
+                                        @include('portals.owners.tables.deedofsales')
+
+                                    </div>
+                                    <div class="mt-8 flex justify-end">
+                                        <button type="button"
+                                            onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/unit'"
+                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New
+                                            unit</button>
+                                    </div>
+
+                        </section>
 
 
                         <section class="mb-10">
@@ -135,7 +163,7 @@
 
                                         </div>
 
-                                        @include('admin.tables.representatives')
+                                        @include('portals.owners.tables.representatives')
 
                                     </div>
                                     <div class="mt-8 flex justify-end">
@@ -162,7 +190,7 @@
 
                                         </div>
 
-                                        @include('portal.owners.tables.bills')
+                                        @include('portals.owners.tables.bills')
 
                                     </div>
                                     <div class="mt-8 flex justify-end">
@@ -175,7 +203,7 @@
                         </section>
 
                         <section class="mb-10">
-                            <h1 class="mt-10 text-xl font-bold text-black">Collections</h1>
+                            <h1 class="mt-10 text-xl font-bold text-black">Payments</h1>
                             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
 
@@ -190,14 +218,14 @@
 
                                         </div>
 
-                                        @include('portal.owners.tables.payments')
+                                        @include('portals.owners.tables.payments')
 
                                     </div>
                                     <div class="mt-8 flex justify-end">
                                         <button type="button"
                                             onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/collections'"
                                             class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View
-                                            collections</button>
+                                            payments</button>
                                     </div>
 
                         </section>
@@ -206,7 +234,7 @@
 
 
                         <section class="mb-10">
-                            <h1 class="text-xl font-bold text-black">Bank Details</h1>
+                            <h1 class="text-xl font-bold text-black">Banks</h1>
                             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
 
@@ -221,7 +249,7 @@
 
                                         </div>
 
-                                        @include('tables.banks')
+                                        @include('portals.owners.tables.banks')
 
                                     </div>
                                     <div class="mt-8 flex justify-end">
@@ -233,33 +261,7 @@
 
                         </section>
 
-                        <section class="mb-10">
-                            <h1 class="text-xl font-bold text-black">Units</h1>
-                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
-
-
-                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-                                    <div
-                                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                        <!-- Selected row actions, only show when rows are selected. -->
-                                        <div
-                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                                        </div>
-
-                                        @include('tables.deed-of-sale')
-
-                                    </div>
-                                    <div class="mt-8 flex justify-end">
-                                        <button type="button"
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/unit'"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New
-                                            unit</button>
-                                    </div>
-
-                        </section>
 
                         <section class="mb-10">
                             <h1 class="text-xl font-bold text-black">Guests</h1>

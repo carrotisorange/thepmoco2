@@ -17,7 +17,7 @@
                 
                     </div>
                 </div>
-            @include('forms.contract-edit')
+            @include('forms.contracts.contract-edit')
         </div>
     </div>
 </div>

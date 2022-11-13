@@ -104,7 +104,7 @@ class DeedOfSaleEditComponent extends Component
 
     public function render()
     {
-        return view('livewire.deed-of-sale-edit-component',[
+        return view('livewire.deedofsale-edit-component',[
           'deedOfSale_info' => DeedOfSale::find($this->deedOfSalesDetails->uuid),
         ]);
     }

@@ -35,7 +35,7 @@
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden sm:rounded-lg">
                 <div class="flex flex-col items-center justify-center">
-                    @include('forms.unit-create')
+                    @include('forms.units.unit-create')
                 </div>
             </div>
         </div>

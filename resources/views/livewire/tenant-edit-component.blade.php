@@ -119,7 +119,7 @@
                         </div>
 
                         <div class="mt-2 lg:col-span-9">
-                            @include('forms.tenant-edit')
+                            @include('forms.tenants.tenant-edit')
                         </div>
 
 
@@ -139,7 +139,7 @@
 
                                         </div>
 
-                                        @include('admin.tables.contracts')
+                                        @include('portals.tenants.tables.contracts')
 
                                     </div>
 
@@ -174,7 +174,7 @@
                                             class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                                         </div>
-                                        @include('admin.tables.bills')
+                                        @include('portals.tenants.tables.bills')
                                     </div>
 
                                     <div class="mt-8 flex justify-end">
@@ -209,7 +209,7 @@
 
                                         </div>
 
-                                        @include('admin.tables.guardians')
+                                        @include('portals.tenants.tables.guardians')
                                     </div>
                         </section>
                         <section class="mb-10">
@@ -226,7 +226,7 @@
 
                                         </div>
 
-                                        @include('admin.tables.references')
+                                        @include('portals.tenants.tables.references')
                                     </div>
                         </section>
 
@@ -245,7 +245,7 @@
                                             class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                                         </div>
-                                        @include('admin.tables.collections')
+                                        @include('portals.tenants.tables.collections')
 
                                     </div>
                                     <div class="mt-8 flex justify-end">

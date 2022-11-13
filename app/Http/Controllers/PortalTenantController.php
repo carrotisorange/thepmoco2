@@ -22,25 +22,25 @@ class PortalTenantController extends Controller
 {
     public function index($role_id, User $user)
     {
-        return view('portal.tenants.index',[
+        return view('portals.tenants.index',[
             'tenant' => Tenant::findOrFail($user->tenant_uuid)->tenant,
             'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts,
             'unpaid_bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid']),
             'concerns' => Tenant::findOrFail($user->tenant_uuid)->concerns,
-            'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications( Tenant::find($user->tenant_uuid)->property->uuid),
+            'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications(Tenant::find($user->tenant_uuid)->property->uuid),
         ]);
     }
 
     public function show_contracts($role_id, User $user)
     {        
-        return view('portal.tenants.contracts',[
+        return view('portals.tenants.contracts',[
             'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts()->orderBy('start', 'desc')->get()
         ]);
     }
 
     public function show_bills($role_id, User $user)
     {
-        return view('portal.tenants.bills',[
+        return view('portals.tenants.bills',[
             'tenant' => Tenant::findOrFail($user->tenant_uuid),
             'unpaid_bills' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($user->tenant_uuid),
         ]);
@@ -82,7 +82,7 @@ class PortalTenantController extends Controller
 
     public function generate_pdf($data)
     {
-        $pdf = PDF::loadView('portal.tenants.exports.bills', $data);
+        $pdf = PDF::loadView('portals.tenants.exports.bills', $data);
 
         $pdf->output();
 
@@ -103,35 +103,35 @@ class PortalTenantController extends Controller
 
     public function show_collections($role_id, User $user)
     {
-        return view('portal.tenants.collections',[
+        return view('portals.tenants.collections',[
             'collections' => Tenant::findOrFail($user->tenant_uuid)->acknowledgementreceipts()->orderBy('ar_no','desc')->get()
         ]);
     }
 
     public function show_collections_pending($role_id, User $user, $status)
     {   
-        return view('portal.tenants.payment-requests',[
+        return view('portals.tenants.payment-requests',[
             'requests' => PaymentRequest::where('tenant_uuid', $user->tenant_uuid)->orderBy('created_at', 'desc')->get()
         ]);
     }
 
     public function show_concerns($role_id, User $user)
     {
-        return view('portal.tenants.concerns',[
+        return view('portals.tenants.concerns',[
             'concerns' => Tenant::find($user->tenant_uuid)->concerns()->orderBy('created_at', 'desc')->get(),
         ]);
     }
 
     public function create_concerns($role_id, User $user)
     {
-        return view('portal.tenants.create-concern',[
+        return view('portals.tenants.create-concern',[
           'user' => $user
         ]);
     }
 
     public function success_concerns($role_id, User $user)
     {
-        return view('portal.tenants.success-concern',[
+        return view('portals.tenants.success-concern',[
           'user' => $user
         ]);
     }
@@ -146,7 +146,7 @@ class PortalTenantController extends Controller
     public function payment_request_edit($role_id, User $user, $batch_no)
     {
 
-        return view('portal.tenants.edit-payment-request',[
+        return view('portals.tenants.edit-payment-request',[
             'payment_request' => PaymentRequest::where('batch_no', $batch_no)->get(),
         ]);
     }  
@@ -245,7 +245,7 @@ class PortalTenantController extends Controller
     
     public function edit_concern($role_id, User $user, Concern $concern)
     {
-        return view('portal.tenants.edit-concern',[
+        return view('portals.tenants.edit-concern',[
             'concern' => $concern,
         ]);
     }

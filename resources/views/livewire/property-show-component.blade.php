@@ -1401,7 +1401,7 @@
                     <h2 class="p-3 font-semibold text-xl text-gray-700"> Expiring Contracts</h2>
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                            @include('admin.tables.contracts')
+                            @include('portals.tenants.tables.contracts')
                         </div>
 
                         <div class="flex justify-end gap-2">

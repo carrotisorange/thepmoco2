@@ -1,4 +1,4 @@
 <div>
    @include('layouts.notifications')
-   @include('forms.concern-respond')
+   @include('forms.concerns.concern-respond')
 </div>

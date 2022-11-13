@@ -98,19 +98,19 @@
                             {{ number_format($item->amount,2) }} ({{ $collections_count }})
                         </x-td>
                         <x-td>
-                            <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/view"
+                            <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}/ar/{{ $item->id }}/view"
                                 class="text-indigo-500 text-decoration-line: underline" target="_blank">View</a>
                         </x-td>
 
                         <x-td>
-                            <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/export"
+                            <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}/ar/{{ $item->id }}/export"
                                 class="text-indigo-500 text-decoration-line: underline">Export</a>
                         </x-td>
 
                         <x-td>
 
                             @if(!$item->attachment == null)
-                            <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/attachment"
+                            <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}/ar/{{ $item->id }}/attachment"
                                 target="_blank" class="text-indigo-500 text-decoration-line: underline">Attachment</a>
                             @endif
                         </x-td>

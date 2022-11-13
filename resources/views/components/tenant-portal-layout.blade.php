@@ -138,11 +138,11 @@
 
                 <div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen">
 
-                    <div class="pt-2 pb-3 space-y-1">
+                    {{-- <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}">
                             Dashboard
                         </x-dropdown-link>
-                    </div>
+                    </div> --}}
 
                     <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link
@@ -195,7 +195,7 @@
                 class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white overflow-y-auto h-screen">
                 <div class="relative flex w-20 flex-col space-y-3 p-3">
                     <!-- Dashboard -->
-                    <x-nav-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}"
+                    {{-- <x-nav-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}"
                         :active="request()->routeIs('tenant-dashboard')">
                         <span class="sr-only">Dashboard</span>
                         <img class="h-10 w-auto" src="{{ asset('/brands/dashboard_gr.png') }}" fill="none"
@@ -203,7 +203,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                     </x-nav-link>
-                    <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
+                    <div class="leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div> --}}
 
                     <!-- Contracts -->
                     <x-nav-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/contracts"

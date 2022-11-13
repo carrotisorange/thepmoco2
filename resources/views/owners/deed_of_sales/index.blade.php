@@ -15,7 +15,7 @@
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            @include('tables.deed-of-sale')
+                            @include('portals.owners.tables.deedofsales')
                         </div>
                     </div>
                 </div>

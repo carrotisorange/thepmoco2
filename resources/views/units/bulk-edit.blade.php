@@ -5,6 +5,6 @@
             @livewire('unit-component', ['batch_no' => $batch_no])
         </div>
     </div>
-    @include('modals.create-unit-modal')
-    @include('modals.create-building-modal')
+    @include('modals.create-unit')
+    @include('modals.create-building')
 </x-new-layout>

@@ -9,5 +9,5 @@
 
               
             </div>
-            @livewire('deed-of-sale-backout-component', ['deedOfSale' => $deedOfSale])
+            @livewire('deedofsale-backout-component', ['deedOfSale' => $deedOfSale])
 </x-new-layout>
