@@ -1,5 +1,5 @@
 <div>
-    @include('forms.accountpayable-create')
-    @include('modals.create-particular-modal')
-    @include('modals.create-biller-modal')
+    @include('forms.accountpayables.accountpayable-create')
+    @include('modals.create-particular')
+    @include('modals.create-biller')
 </div>

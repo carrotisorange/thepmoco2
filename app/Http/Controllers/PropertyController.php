@@ -100,7 +100,7 @@ class PropertyController extends Controller
         }
         elseif(auth()->user()->role_id == '8')
         {
-            return redirect(auth()->user()->role_id.'/tenant/'.auth()->user()->username);
+            return redirect(auth()->user()->role_id.'/tenant/'.auth()->user()->username.'/contracts');
         }
         elseif(auth()->user()->role_id == '7')
         {

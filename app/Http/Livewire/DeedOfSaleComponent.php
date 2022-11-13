@@ -130,6 +130,6 @@ class DeedOfSaleComponent extends Component
 
     public function render()
     {
-        return view('livewire.deed-of-sale-component');
+        return view('livewire.deedofsale-component');
     }
 }

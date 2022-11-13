@@ -8,7 +8,9 @@ use App\Models\Owner;
 use Session;
 use App\Models\Bill;
 use App\Models\Collection;
-use App\Models\Tenant;
+use App\Models\AcknowledgementReceipt;
+use App\Models\User;
+use \PDF;
 
 class OwnerCollectionController extends Controller
 {
@@ -92,6 +94,76 @@ class OwnerCollectionController extends Controller
          ->max('id');
      }
 
+    public function view(Property $property, Owner $owner, AcknowledgementReceipt $ar)
+     {          
+         $balance = app('App\Http\Controllers\OwnerBillController')->get_owner_balance($ar->owner_uuid);
+
+         $data = $this->get_collection_data(
+            $ar->created_at, 
+            $owner->bill_reference_no, 
+            $owner->owner,
+            $ar->mode_of_payment,
+            User::find($ar->user_id)->name,
+            User::find($ar->user_id)->role->role,
+            $ar->ar_no,
+            $ar->amount,
+            $ar->cheque_no,
+            $ar->bank,
+            $property,
+            $ar->date_deposited,
+            Collection::where('owner_uuid',$ar->owner_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
+            $balance
+         );
+
+        $pdf = $this->generate_pdf($property, $data);
+
+        return $pdf->stream($owner->owner.'-ar.pdf');
+     }
+
+     
+    public function generate_pdf(Property $property, $data)
+     {
+
+         $pdf = PDF::loadView('owners.collections.export', $data);
+
+         $pdf->output();
+               
+         $canvas = $pdf->getDomPDF()->getCanvas();
+
+         $height = $canvas->get_height();
+         
+         $width = $canvas->get_width();
+
+         $canvas->set_opacity(.2,"Multiply");
+
+         $canvas->set_opacity(.2);
+
+         $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+
+         return $pdf;
+
+     }
+
+    public function get_collection_data($payment_made, $reference_no, $owner, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $property, $date_deposited, $collections, $balance)
+     {
+      return [
+         'created_at' => $payment_made,
+         'reference_no' => $reference_no,
+         'owner' => $owner,
+         'mode_of_payment' => $mode_of_payment,
+         'user' => $user,
+         'role' => $role,
+         'ar_no' => $ar_no,
+         'amount' => $amount,
+         'cheque_no' => $cheque_no,
+         'bank' => $bank,
+         'property' => $property,
+         'date_deposited' => $date_deposited,
+         'collections' => $collections,
+         'balance' => $balance
+      ];
+     }
+
     public function update(Request $request, Property $property, Owner $owner, $batch_no)
     {
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
@@ -142,12 +214,36 @@ class OwnerCollectionController extends Controller
          );
 
          app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
-
-         //$this->send_payment_to_owner($owner, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
-   
+         
          return redirect('/property/'.Session::get('property').'/owner/'.$owner->uuid.'/collections')->with('success', 'Payment is successfully created.');
 
     }
+
+    public function export(Property $property, Owner $owner, AcknowledgementReceipt $ar)
+     {          
+         $balance = app('App\Http\Controllers\OwnerBillController')->get_owner_balance($ar->owner_uuid);
+
+         $data = $this->get_collection_data(
+            $ar->created_at, 
+            $owner->bill_reference_no, 
+            $owner->owner,
+            $ar->mode_of_payment,
+            User::find($ar->user_id)->name,
+            User::find($ar->user_id)->role->role,
+            $ar->ar_no,
+            $ar->amount,
+            $ar->cheque_no,
+            $ar->bank,
+            $property,
+            $ar->date_deposited,
+            Collection::where('owner_uuid',$ar->owner_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
+            $balance
+         );
+
+        $pdf = $this->generate_pdf($property, $data);
+
+        return $pdf->download($owner->owner.'-ar.pdf');
+     }
 
     /**
      * Remove the specified resource from storage.

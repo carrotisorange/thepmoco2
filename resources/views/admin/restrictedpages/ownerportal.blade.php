@@ -91,7 +91,8 @@
                             </ul>
                             <div class="mt-8">
                                 <div>
-                                    <button type="submit" onclick="window.location.href='/user/{{ auth()->user()->username }}/unlock'"
+                                    <button type="submit"
+                                        onclick="window.location.href='/user/{{ auth()->user()->username }}/unlock'"
                                         class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-purple-700 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a
                                             href="check-page">Unlock now</a></button>
 
@@ -102,8 +103,7 @@
                 </main>
             </div>
             <div class="hidden lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-md">
-                <img class="mt-20 h-80 w-fit" src="{{ asset('/brands/owner-portal.png') }}"
-                    alt="contracts feature">
+                <img class="mt-20 h-80 w-fit" src="{{ asset('/brands/owner-portals.png') }}" alt="contracts feature">
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
 <div>
     @include('layouts.notifications')
-    @include('forms.property-edit')
+    @include('forms.properties.property-edit')
 </div>

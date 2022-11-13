@@ -1,3 +1,3 @@
 <div>
-   @include('forms.property-create')
+   @include('forms.properties.property-create')
 </div>

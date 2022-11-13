@@ -61,6 +61,6 @@
     @include('layouts.footer')
 </body>
 @include('layouts.script')
-@include('modals.popup-error-modal')
+@include('modals.popup-error')
 
 </html>

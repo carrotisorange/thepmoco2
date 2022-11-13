@@ -11,16 +11,15 @@
                 <button type="button"
                     onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                   Go back to tenant
+                    Go back to tenant
                     </a></button>
 
-                <button type="button"
-                   onclick="window.location.href='units'"
+                <button type="button" onclick="window.location.href='units'"
                     class="ml-2 inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                     New contract
                     </a></button>
             </div>
-            @include('admin.tables.contracts')
+            @include('portals.tenants.tables.contracts')
 </x-new-layout>
 @include('tenants.contracts.create')
-@include('modals.popup-error-modal')
+@include('modals.popup-error')

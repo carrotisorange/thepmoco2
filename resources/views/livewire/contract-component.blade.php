@@ -1,5 +1,5 @@
 <div>
 <div class="p-8 bg-white border-b border-gray-200">
-        @include('forms.contract-create')
+        @include('forms.contracts.contract-create')
     </div>
 </div>

@@ -1,3 +1,3 @@
 <div>
-   @include('forms.contract-transfer')
+   @include('forms.contracts.contract-transfer')
 </div>

@@ -1,17 +1,17 @@
 <x-new-layout>
     @section('title','Contracts | '. Session::get('property_name'))
     @can('contract')
-        @include('admin.restrictedpages.contract')
+    @include('admin.restrictedpages.contract')
     @else
- 
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">Contracts</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                    target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
                     class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a>
 
                 <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/unit'"
@@ -30,7 +30,7 @@
                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                     </div>
-                    @include('admin.tables.contracts')
+                    @include('portals.tenants.tables.contracts')
                 </div>
                 {{-- <button type="button"
                     class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select

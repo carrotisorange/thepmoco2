@@ -37,7 +37,7 @@
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                          @include('forms.bill-customized-edit')
+                            @include('forms.bills.bill-customized-edit')
                         </div>
 
                     </div>

@@ -11,7 +11,7 @@ use App\Http\Controllers\TenantController;
 //     });
 // });
 
-Route::prefix('{role_id:role_id}/tenant/{user}')->group(function(){
+Route::prefix('{role_id}/tenant/{user}')->group(function(){
     Route::controller(PortalTenantController::class)->group(function () {
         Route::get('/', 'index')->name('tenant-dashboard');
         Route::get('contracts','show_contracts')->name('tenant-contracts');

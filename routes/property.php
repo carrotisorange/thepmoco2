@@ -154,7 +154,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::patch('bills/{batch_no}/pay/update', [TenantCollectionController::class, 'update']);
             Route::get('collections', [TenantCollectionController::class,'index'])->name('tenant');
             Route::get('payment_requests/{payment_request}',[PaymentRequestController::class, 'show'])->name('tenant');
-            Route::get('collection/{batch_no}', [TenantCollectionController::class,'destroy']);
+            Route::get('collection/{batch_no?}', [TenantCollectionController::class,'destroy']);
             Route::get('contracts', [TenantContractController::class,'index']);
             Route::get('delete', [TenantController::class, 'destroy']);
             Route::post('bill/store', [TenantBillController::class, 'store']);
@@ -219,7 +219,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);
             Route::get('bills', [OwnerBillController::class, 'index'])->name('owner');
             Route::post('bill/store', [OwnerBillController::class, 'store']);
+            Route::get('bill/export', [OwnerBillController::class, 'export']);
+            Route::get('bill/send', [OwnerBillController::class, 'send']);
             Route::get('collections', [OwnerCollectionController::class, 'index'])->name('owner');
+            Route::get('ar/{ar}/export', [OwnerCollectionController::class, 'export']);
+            Route::get('ar/{ar}/view', [OwnerCollectionController::class, 'view']);
+            Route::get('ar/{ar}/attachment', [OwnerCollectionController::class, 'attachment']);
             Route::get('edit', [OwnerController::class, 'edit']);
 
             Route::get('bills/{batch_no}/pay', [OwnerCollectionController::class, 'edit']);
