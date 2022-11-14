@@ -12,6 +12,7 @@ use App\Models\PropertyBuilding;
 use App\Models\Status;
 use App\Models\Floor;
 use DB;
+use App\Models\Guest;
 use App\Models\Category;
 use App\Models\Owner;
 

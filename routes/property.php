@@ -35,6 +35,7 @@ use App\Http\Controllers\UnitEnrolleeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
@@ -91,6 +92,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create']);
                 
             });
+
+            Route::prefix('guest')->group(function(){
+                Route::get('{random_str}/create', [GuestController::class, 'create']);
+                Route::post('store', [GuestController::class, 'store']);
+            });
                 
             Route::prefix('owner')->group(function(){
                 Route::get('/', [OwnerController::class, 'index'])->scopeBindings();
@@ -110,21 +116,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                         Route::post('{random_str}/store', [DeedOfSaleController::class,'store']);
                     });
 
-                    Route::prefix('enrollee')->group(function(){
-                        Route::get('{random_str}/create',[EnrolleeController::class,'create']);
-                        Route::post('{random_str}/store', [EnrolleeController::class,'store']);
-                    });
-
                     Route::prefix('bank')->group(function(){
                         Route::get('create', [BankController::class, 'create']);
                     });
 
                     Route::prefix('occupancy')->group(function(){
                         Route::get('create', [UnitController::class, 'update_unit_occupancy_info']);
-                    });
-
-                    Route::prefix('enrollee')->group(function(){
-                        Route::get('/',[EnrolleeController::class,'index']);
                     });
 
                     Route::prefix('representative')->group(function(){
@@ -208,8 +205,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::prefix('bank')->group(function(){
                 Route::get('create', [BankController::class, 'create'])->name('owner');
-            });
-            
+            });        
             
             Route::get('/', [OwnerController::class, 'show'])->name('owner');
            
