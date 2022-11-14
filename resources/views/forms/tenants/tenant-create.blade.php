@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="col-span-6 sm:col-span-2">
-                        <label for="email-address" class="block text-sm font-medium text-gray-700">Mobile</label>
+                        <label for="mobile_number" class="block text-sm font-medium text-gray-700">Mobile</label>
                         <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
                             value="{{ old('mobile_number') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">

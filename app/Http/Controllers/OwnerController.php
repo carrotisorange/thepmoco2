@@ -11,6 +11,7 @@ use App\Models\Property;
 use App\Models\User;
 use Session;
 use App\Models\AcknowledgementReceipt;
+use App\Models\Guest;
 
 class OwnerController extends Controller
 {
@@ -30,7 +31,6 @@ class OwnerController extends Controller
     {
        return AcknowledgementReceipt::where('owner_uuid', $owner_uuid)->orderBy('id','desc')->get();
     }
-
 
     /**
      * Show the form for creating a new resource.

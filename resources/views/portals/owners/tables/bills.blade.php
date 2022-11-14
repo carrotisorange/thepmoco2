@@ -1,9 +1,7 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-
             <x-th>BILL #</x-th>
-
             <x-th>
                 DATE POSTED</x-th>
             <x-th>
@@ -18,8 +16,6 @@
                 AMOUNT PAID</x-th>
             <x-th>
                 BALANCE</x-th>
-
-
         </tr>
     </thead>
     @foreach ($bills as $bill)
@@ -47,7 +43,6 @@
 
         </tr>
         @endforeach
-
         <tr>
             <x-td>
                 Total

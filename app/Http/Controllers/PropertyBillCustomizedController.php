@@ -71,7 +71,7 @@ class PropertyBillCustomizedController extends Controller
                 Bill::create($attributes);
                 }
 
-                return redirect('/property/'.Session::get('property').'/bill/customized/'.$batch_no.'/edit')->with('success', $bill_count.' bill is succesfully created.');
+                return redirect('/property/'.Session::get('property').'/bill/customized/'.$batch_no.'/edit')->with('success', $bill_count.' bill is successfully created.');
 
             }catch(\Exception $e)
             {
