@@ -13,7 +13,7 @@
         </x-label>
 
         <x-form-select wire:model="particular_id" name="particular_id" id="particular_id">
-            <option value="">Select one</option>
+            {{-- <option value="">Select one</option> --}}
             <option value="1" {{ old('particular_id')==1? 'selected' : 'Select one' }}>Rent </option>
         </x-form-select>
 

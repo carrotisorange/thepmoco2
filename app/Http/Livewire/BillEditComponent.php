@@ -67,23 +67,21 @@ class BillEditComponent extends Component
         $validatedData = $this->validate();
 
         try{
-            DB::beginTransaction();
-            
-            foreach ($this->bills as $bill) {
-                $bill->save();
-            }
-
-            DB::commit();
-
+            DB::transaction(function () use ($validatedData){
+                foreach ($this->bills as $bill) {
+                    $bill->save();
+                }
+            });
+        
             $this->selectedBills = [];
 
+            return redirect('/property/'.Session::get('property').'/bill')->with('success', count($this->bills). ' bills are successfully saved as draft.');
 
-            session()->flash('success', count($this->bills). ' bill is successfully saved.');
+            // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
 
         }catch(\Exception $e){
-            DB::rollback();
-
-            session()->flash('error');
+            ddd($e);
+            return back()->with('error','Cannot perform the action. Please try again.');
         }
     }
 
@@ -94,24 +92,19 @@ class BillEditComponent extends Component
         $validatedData = $this->validate();
 
         try{
-            DB::beginTransaction();
-            
-            Bill::where('property_uuid', Session::get('property'))
+            DB::transaction(function () use ($validatedData){
+                Bill::where('property_uuid', Session::get('property'))
                 ->where('is_posted', false)
                 ->where('batch_no', $this->batch_no)
                 ->update([
                     'is_posted' => true
                 ]);
+            });
 
+            return redirect('/property/'.Session::get('property').'/bill/'.$this->batch_no)->with('success', count($this->bills). ' bills are successfully posted.');
 
-            DB::commit();
-
-            return redirect('/property/'.Session::get('property').'/bill/'.$this->batch_no)->flash('success', count($this->bills). ' bill is successfully posted.');
-
-        }catch(\Exception $e){
-            DB::rollback();
-            
-            session()->flash('error');
+        }catch(\Exception $e){  
+            return back()->with('error','Cannot perform the action. Please try again.');
         }
     }
 
@@ -124,8 +117,6 @@ class BillEditComponent extends Component
 
     public function render()
     {
-        return view('livewire.bill-edit-component', [
-            //'bills' => Property::find(Session::get('property'))->bills->where('batch_no', $this->batch_no),
-        ]);
+        return view('livewire.bill-edit-component');
     }
 }

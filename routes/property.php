@@ -231,7 +231,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
   
     //Routes for Bill
     Route::prefix('bill')->group(function(){
-        Route::get('/{batch_no?}', [BillController::class, 'index'])->name('bill');
+        Route::get('{batch_no?}', [BillController::class, 'index'])->name('bill');
+        Route::get('drafts', [BillController::class, 'draft'])->name('bill');
         
         Route::prefix('{bill}')->group(function(){
             Route::delete('delete', [BillController::class, 'destroy']);
@@ -239,7 +240,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
         Route::post('express/{bill_count}/store',[ PropertyBillExpressController::class, 'store']);
         Route::post('customized/{bill_count}/store',[PropertyBillCustomizedController::class,'store']);
-        Route::get('customized/{batch_no}/edit',[PropertyBillCustomizedController::class,'edit']);
+        Route::get('customized/{batch_no}/edit',[PropertyBillCustomizedController::class,'edit'])->name('bill');
         Route::patch('customized/batch/{batch_no}',[PropertyBillCustomizedController::class,'update']);
       
     });
