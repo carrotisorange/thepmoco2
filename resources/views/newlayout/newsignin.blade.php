@@ -11,31 +11,8 @@
 </head>
 
 <body>
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<!--
-  This example requires updating your template:
 
-  ```
-  <html class="h-full bg-white">
-  <body class="h-full">
-  ```
--->
-<div class="min-h-full flex">
+<div class="min-h-screen flex">
   <div class="flex-1 flex flex-col justify-center py-2 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
     <div class="mx-auto w-full max-w-sm lg:w-96">
       
@@ -95,7 +72,8 @@
     </div>
   </div>
   <div class="hidden lg:block relative w-0 flex-1">
-    <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('/brands/signin.jpeg') }}" alt="">
+    <img class="absolute h-full w-full object-cover" src="{{ asset('/brands/signin.jpeg') }}" alt="">
+    
   </div>
 </div>
 

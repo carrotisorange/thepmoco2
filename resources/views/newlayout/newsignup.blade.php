@@ -30,8 +30,8 @@
 -->
 
 
-  <html class="h-full bg-gray-300s">
-  <body class="h-full">
+  <html>
+  <body class="min-h-screen">
 
   <div class="hidden lg:block  flex-1 items-center justify-center">
   <img class="absolute py-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt="">
