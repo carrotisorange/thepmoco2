@@ -4,7 +4,7 @@
             <tr>
                 <x-th>
                 </x-th>
-                <x-th>#</x-th>
+                <x-th>Bill #</x-th>
                 <x-th>Tenant</x-th>
                 <x-th>Unit</x-th>
                 <x-th>Start</x-th>
@@ -24,14 +24,22 @@
                     </x-td>
                     <x-td>{{ $bill->bill_no }}</x-td>
                     <?php
-                                                    $tenant = App\Models\Tenant::find($bill->tenant_uuid)->tenant;
-                                                    $unit = App\Models\Unit::find($bill->unit_uuid)->unit
-                                            ?>
-                    <x-td><a href="/property/{{ Session::get('property') }}/tenant/{{ $bill->tenant_uuid }}/bills"><b
-                                class="text-blue-600">{{ $tenant }}</b></a></x-td>
-
-                    <x-td><a href="/property/{{ Session::get('property') }}/unit/{{ $bill->unit_uuid }}/bills"><b
-                                class="text-blue-600">{{ $unit }}</b></a></x-td>
+                        $tenant = App\Models\Tenant::find($bill->tenant_uuid)->tenant;
+                        $unit = App\Models\Unit::find($bill->unit_uuid)->unit
+                    ?>
+                    <x-td>
+                        <a class="text-blue-500 text-decoration-line: underline"
+                            href="/property/{{ Session::get('property') }}/tenant/{{ $bill->tenant_uuid }}/bills"
+                            target="_blank">
+                            {{ $tenant }}
+                        </a>
+                    </x-td>
+                    <x-td>
+                        <a class="text-blue-500 text-decoration-line: underline"
+                            href="/property/{{ Session::get('property') }}/unit/{{ $bill->unit_uuid }}/bills">
+                            {{ $unit }}
+                        </a>
+                    </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.start" />
                         @error('bills.{{ $index }}.start')
@@ -46,7 +54,8 @@
                     </x-td>
                     <x-td>
                         <x-table-select form="edit-form">
-                            <option value="{{ $bill->particular_id }}" {{ old('particular_id')==$bill->particular_id ?
+                            <option value="{{ $bill->particular_id }}" {{ old('particular_id')==$bill->particular_id
+                                ?
                                 'selected'
                                 :
                                 'Select one' }} selected>{{
@@ -61,9 +70,7 @@
                         @enderror
                     </x-td>
                 </tr>
-                @empty
-                <x-td>No data found..</x-td>
-                @endforelse
+                @endforeach
         </tbody>
     </table>
 </form>

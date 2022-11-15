@@ -3,7 +3,7 @@
         <div class="basis-1/2">
             @if($bills->count())
 
-            <x-button wire:loading.remove wire:click="saveBills()">Save Bills ({{ $bills->count() }})
+            <x-button wire:loading.remove wire:click="saveBills()">Save as Draft ({{ $bills->count() }})
             </x-button>
 
             <div wire:loading wire:target="saveBills">
