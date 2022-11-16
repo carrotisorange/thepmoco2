@@ -38,5 +38,3 @@ require __DIR__.'/checkout.php';
 Route::fallback(function () {
     return view('layouts.not-found');
 });
-
-

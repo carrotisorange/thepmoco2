@@ -397,7 +397,7 @@
                     @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/contract" :active="request()->routeIs('contract')">
                         <span class="sr-only">Contracts</span>
-                        <img class="h-8 w-auto" src="{{ asset('/brands/contract-gray.png') }}" fill="none" viewBox="0 0 24 24"
+                        <img class="h-8 w-auto" src="{{ asset('/brands/contract-gr.png') }}" fill="none" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -405,7 +405,7 @@
                     @else
                     <x-nav-link href="/property/" :active="request()->routeIs('contract')">
                         <span class="sr-only">Contracts</span>
-                        <img class="h-8 w-auto" src="{{ asset('/brands/contract-gray.png') }}" fill="none" viewBox="0 0 24 24"
+                        <img class="h-8 w-auto" src="{{ asset('/brands/contract-gr.png') }}" fill="none" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -576,6 +576,29 @@
                     @endif
             
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflows</div>
+
+                    <!-- Utilities -->
+                    @if(Session::get('property'))
+                    <x-nav-link href="/property/{{ Session::get('property') }}/utilities" :active="request()->routeIs('utilities')">
+                    
+                        <span class="sr-only">Utilities</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/utilities-gr.png') }}" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('utilities')">
+                    
+                        <span class="sr-only">Utilities</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/utilities-gr.png') }}" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+                    
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Utilities</div>
                 </div>
             </nav>
             @include('layouts.notifications')

@@ -1,56 +1,49 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-            <x-th>Bill #</x-th>
-            <x-th>Date posted</x-th>
-            <x-th>Tenant</x-th>
-            <x-th>Unit</x-th>
-            <x-th>Period Covered</x-th>
-            <x-th>Particular</x-th>
-            <x-th>Amount Due</x-th>
-            <x-th>Amount Paid</x-th>
-            <x-th>Balance</x-th>
+            <x-th> BILL # </x-th>
+            <x-th>DATE POSTED</x-th>
+            <x-th>REFERENCE # </x-th>
+            <x-th>UNIT</x-th>
+            <x-th>PERIOD COVERED</x-th>
+            <x-th>PARTICULAR</x-th>
+            <x-th>AMOUNT DUE</x-th>
+            <x-th>AMOUNT PAID</x-th>
+            <x-th>BALANCE </x-th>
         </tr>
     </thead>
-    @forelse ($bills as $index => $item)
-  <tbody class="bg-white divide-y divide-gray-200">
+    @if($view === 'listView')
+    @foreach ($bills as $item)
+    <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-
-            {{-- <x-td>{{ $index + $bills->firstItem() }}</x-td> --}}
-            <x-td>{{ $item->bill_no}}</x-td>
-            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}</x-td>
             <x-td>
-                @if(auth()->user()->role_id == '8')
-                {{ $item->tenant->tenant }}
-                @else
-                <div class="text-sm text-gray-900">
-                    <a class="text-blue-800 font-bold"
-                        href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">
-                        {{ $item->tenant->tenant }}
-                    </a>
-                </div>
-                @endif
-
-
-                <div class="text-sm text-gray-500">{{
-                    $item->tenant->type}}
-                </div>
+                {{ $item->bill_no}}
             </x-td>
             <x-td>
-                @if(auth()->user()->role_id == '8')
-                {{ $item->unit->unit }}
-                @else
-                <a class="text-blue-800 font-bold"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
-                    {{ $item->unit->unit }}
+                {{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}
+            </x-td>
+            <x-td>
+                {{-- <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/bills">
+                    {{ $item->tenant->tenant}}
+                </a> --}}
+                {{ $item->reference_no}}
+            </x-td>
+            <x-td>
+                <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills">
+                    {{ $item->unit->unit}}
                 </a>
-                @endif
-
             </x-td>
-            <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
-                y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}</x-td>
-            <x-td>{{ $item->particular->particular}}</x-td>
-            <x-td>{{ number_format($item->bill, 2) }}
+            <x-td>
+                {{ Carbon\Carbon::parse($item->start)->format('M d,
+                y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}
+            </x-td>
+            <x-td>
+                {{ $item->particular->particular}}
+            </x-td>
+            <x-td>
+                {{ number_format($item->bill, 2) }}
 
                 @if($item->status === 'paid')
                 <span title="paid"
@@ -74,13 +67,34 @@
                     <i class="fa-solid fa-bolt"></i>
                 </span>
                 @endif
-
             </x-td>
-            <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
-            <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
+            <x-td>
+                {{ number_format($item->initial_payment, 2) }}
+            </x-td>
+            <x-td>
+                {{ number_format(($item->bill-$item->initial_payment), 2) }}
+            </x-td>
         </tr>
-        @empty
-        <x-td>No data found..</x-td>
-        @endforelse
     </tbody>
+    @endforeach
+
+    @endif
+    <tbody class="bg-white divide-y divide-gray-200">
+        <tr>
+            <x-td> </x-td>
+            <x-td> </x-td>
+            <x-td> </x-td>
+            <x-td> </x-td>
+            <x-td> </x-td>
+            <x-td> </x-td>
+            <x-td>{{
+                number_format($bills->sum('bill'), 2) }} </x-td>
+            <x-td>{{
+                number_format($bills->sum('initial_payment'), 2) }} </x-td>
+            <x-td>{{
+                number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }} </x-td>
+        </tr>
+    </tbody>
+
+
 </table>
