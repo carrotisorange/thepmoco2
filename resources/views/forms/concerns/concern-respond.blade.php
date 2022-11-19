@@ -233,15 +233,15 @@
                         <div class="col-span-3 sm:col-span-4">
                             <fieldset>
                                 <div>
-                                    <label for="initial_assessment"
-                                        class="block text-sm font-medium text-gray-700">Initial
-                                        assessments
+                                    <label for="subject"
+                                        class="block text-sm font-medium text-gray-700">Subject
+                                        
                                     </label>
                                     <div class="mt-1">
-                                        <textarea wire:model="initial_assessment" rows="3"
+                                        <textarea wire:model="subject" rows="3"
                                             class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
-                                            placeholder="">{{ $initial_assessment }}</textarea>
-                                        @error('initial_assessment')
+                                            placeholder="">{{ $subject }}</textarea>
+                                        @error('subject')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                     </div>

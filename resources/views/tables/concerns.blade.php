@@ -57,14 +57,14 @@
             </td>
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $concern->initial_assessment }}
+                {{ $concern->subject }}
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ $concern->status }}
             </td>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
 
-                <a href="/property/{{ Session::get(" property") }}/concern/{{ $concern->id }}"
+                <a href="/property/{{ Session::get("property") }}/concern/{{ $concern->id }}"
                     class="text-indigo-600 hover:text-indigo-900">Review</a>
 
             </td>

@@ -24,6 +24,7 @@ class TenantEditComponent extends Component
     public $birthdate;
     public $gender;
     public $civil_status;
+    public $bill_reference_no;
     public $country_id;
     public $province_id;
     public $city_id;
@@ -52,7 +53,7 @@ class TenantEditComponent extends Component
     public function mount($tenant_details)
     {
         $this->tenant_details = $tenant_details;
-         $this->reference_no = $tenant_details->reference_no;
+        $this->bill_reference_no = $tenant_details->bill_reference_no;
         $this->tenant = $tenant_details->tenant;
         $this->email = $tenant_details->email;
         $this->mobile_number = $tenant_details->mobile_number;
