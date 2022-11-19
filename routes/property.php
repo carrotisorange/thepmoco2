@@ -40,6 +40,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
+use App\Http\Controllers\UtilityController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
@@ -59,7 +60,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('contract/{status?}',[ContractController::class, 'show_moveout_request'])->name('contract');
 
 
-    //ROute for notitication
+    //Route for notitication
     Route::get('notification',[NotificationController::class, 'index']);
 
    
@@ -67,6 +68,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Route for Building
     Route::prefix('/building')->group(function(){
         Route::post('{random_str}/store',[BuildingController::class, 'store']);
+    });
+
+    //Route for utilities
+    Route::prefix('utilities')->group(function(){
+        Route::get('/',[UtilityController::class, 'index'])->name('utilities');
     });
 
 

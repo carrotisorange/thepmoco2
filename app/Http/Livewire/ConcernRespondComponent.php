@@ -13,7 +13,7 @@ class ConcernRespondComponent extends Component
     public $concern_details;
 
     public $action_taken;
-    public $initial_assessment;
+    public $subject;
     public $assessed_by_id;
     public $assessed_at;
     public $assigned_to_id;
@@ -23,7 +23,6 @@ class ConcernRespondComponent extends Component
     public $created_at;
     public $tenant_uuid;
     public $unit_uuid;
-    public $subject;
     public $concern;
 
     public function mount($concern_details)
@@ -39,7 +38,6 @@ class ConcernRespondComponent extends Component
         $this->category_id = $concern_details->category_id;
         $this->urgency = $concern_details->urgency;
         $this->status = $concern_details->status;
-        $this->initial_assessment = $concern_details->initial_assessment;
         $this->concern = $concern_details->concern;
         $this->assessed_at = $concern_details->assessed_at;
         $this->action_taken = $concern_details->action_taken;

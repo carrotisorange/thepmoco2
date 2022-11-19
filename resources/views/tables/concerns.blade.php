@@ -1,56 +1,80 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="bg-gray-50">
+<table class="min-w-full table-fixed">
+
+    <thead class="">
         <tr>
-            <x-th>AR #</x-th>
-            <x-th>Date applied</x-th>
-            <x-th>Date deposited</x-th>
-            <x-th>Mode of payment</x-th>
-            <x-th>Amount</x-th>
-            <x-th></x-th>
+            <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
+
+            </th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                REFERENCE #</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                UNIT</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                TENANT</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                CATEGORY</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                DATE REPORTED</th>
+
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                SUBJECT</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                STATUS</th>
+            </th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+
+            </th>
+
         </tr>
     </thead>
-    @forelse ($concerns as $item)
-    <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <tr>
-            <x-td>{{ $item->ar_no }}</x-td>
-            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
-            <x-td>
-                @if($item->date_deposited)
-                {{ Carbon\Carbon::parse($item->date_deposited)->format('M d, Y') }}
-                @else
-                NA
-                @endif
-            </x-td>
-            <x-td>
-                <div class="text-sm text-gray-900">
-                    {{ $item->mode_of_payment }}
-                </div>
-                <div class="text-sm text-gray-500">
-                    {{ $item->cheque_no }} {{ $item->bank }}
-                </div>
 
-            </x-td>
-            <x-td>{{ number_format($item->amount,2) }}</x-td>
-            <x-td>
-                <x-button
-                    onclick="window.location.href='/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view'">
-                    View
-                </x-button>
-                <x-button
-                    onclick="window.location.href='/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export'">
-                    Export
-                </x-button>
-                @if(!$item->attachment == null)
-                <button type="button"
-                    onclick="window.location.href='/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment'"
-                    class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    Attachment
-                </button>
-                @endif
-            </x-td>
-            @empty
-            <x-td>No data found.</x-td>
+
+    @foreach ($concerns as $concern)
+    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+        <!-- Selected: "bg-gray-50" -->
+        <tr>
+            <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                <!-- Selected row marker, only show when row is selected. -->
+
+                {{-- <input type="checkbox"
+                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                --}}
+            </td>
+            <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $concern->reference_no }}
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $concern->unit->unit }}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $concern->tenant->tenant }}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $concern->category->category }}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ Carbon\Carbon::parse($concern->created_at)->format('M d, Y') }}
+            </td>
+
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $concern->subject }}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $concern->status }}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
+
+                <a href="/property/{{ Session::get("property") }}/concern/{{ $concern->id }}"
+                    class="text-indigo-600 hover:text-indigo-900">Review</a>
+
+            </td>
         </tr>
-        @endforelse
+
+        <!-- More people... -->
     </tbody>
+
+    @endforeach
+
+
+
 </table>

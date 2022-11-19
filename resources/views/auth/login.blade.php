@@ -7,14 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Sign In | The Property Manager</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Sign in | The Property Manager</title>
 </head>
 
 <body>
-    <div class="min-h-full flex">
+
+    <div class="min-h-screen flex">
         <div class="flex-1 flex flex-col justify-center py-2 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div class="mx-auto w-full max-w-sm lg:w-96">
+
                 <div>
                     <img class="mt-10 mb-5 h-48 w-auto" src="{{ asset('/brands/logo_cropped.png') }}" alt="Workflow">
                     <h2 class="mb-10 text-center mt-2 text-2xl tracking-tight font-semibold text-gray-500">Sign in to
@@ -37,8 +41,8 @@
                             <div>
                                 <label for="username" class="block text-sm font-medium text-gray-700"> Username </label>
                                 <div class="mt-1">
-                                    <input id="username" name="username" type="username" autocomplete="username" value="{{ old('username') }}"
-                                        required
+                                    <input id="username" name="username" type="username" autocomplete="username"
+                                        value="{{ old('username') }}" required
                                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
                                 @error('username')
@@ -69,7 +73,8 @@
                                 <div class="text-sm">
                                     @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}"
-                                        class="font-medium text-indigo-600 hover:text-indigo-500"> Forgot your
+                                        class="font-medium text-indigo-600 hover:text-indigo-500"> Forgot
+                                        your
                                         password? </a>
 
                                     @endif
@@ -85,7 +90,8 @@
 
                             <div class="text-sm text-center">
                                 Don't have an account? <a href="/select-a-plan"
-                                    class="font-medium text-indigo-600 hover:text-indigo-500">Sign up. </a>
+                                    class="font-medium text-indigo-600 hover:text-indigo-500">Sign
+                                    up. </a>
                             </div>
 
                         </form>
@@ -94,9 +100,13 @@
             </div>
         </div>
         <div class="hidden lg:block relative w-0 flex-1">
-            <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('/brands/signin.jpeg') }}" alt="">
+            <img class="absolute h-full w-full object-cover" src="{{ asset('/brands/signin.jpeg') }}" alt="">
+
         </div>
     </div>
+
 </body>
+
+
 
 </html>
