@@ -10,7 +10,6 @@ use Carbon\Carbon;
 class UnitEditComponent extends Component
 {
     public $unit_details;
-
     //unit input fields
     public $unit;
     public $building_id;
@@ -85,7 +84,7 @@ class UnitEditComponent extends Component
             session()->flash('success', 'Unit is successfully updated.');    
             
         }catch(\Exception $e){
-            //promot user with an error message
+            //promote user with an error message
 
             //update the selected unit
             $this->unit_details->update($validatedData);

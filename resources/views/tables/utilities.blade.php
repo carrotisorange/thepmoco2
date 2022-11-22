@@ -1,139 +1,44 @@
-<table class="min-w-full divide-y divide-gray-300">
-    <thead>
-        <!-- 1st  row -->
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
         <tr>
-            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 md:pl-0">
-                Unit
-            </th>
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Period
-            </th>
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"></th>
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                Current Reading</th>
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                Previous Reading</th>
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">KWH
-            </th>
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Min
-                Charge/SF</th>
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Total
-                Amount Due</th>
-
-
+            <x-th>UNIT # </x-th>
+            <x-th>START DATE</x-th>
+            <x-th>END DATE </x-th>
+            <x-th>PREVIOUS READING</x-th>
+            <x-th>CURRENT READING</x-th>
+            <x-th>KW/H</x-th>
+            <x-th>MIN CHARGE</x-th>
+            <x-th>AMOUNT DUE</x-th>
         </tr>
     </thead>
-    <tbody class="divide-y divide-gray-200">
-
-        <!-- first unit -->
+    <tbody class="bg-white divide-y divide-gray-200">
+        @foreach ($utilities as $item)
         <tr>
-            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">
-                Unit #1</td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="Start Date" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="End Date" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="Current Reading" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" /></td>
-
-
+            <x-td>
+                {{ $item->unit->unit }}
+            </x-td>
+            <x-td>
+                {{ Carbon\Carbon::parse($item->start_date)->format('M d, y') }}
+            </x-td>
+            <x-td>
+                {{ Carbon\Carbon::parse($item->end_date)->format('M d, y') }}
+            </x-td>
+            <x-td>
+                {{ number_format($item->previous_reading, 2) }}
+            </x-td>
+            <x-td>
+                {{ number_format($item->current_readding, 2) }}
+            </x-td>
+            <x-td>
+                {{ number_format($item->kwh, 2) }}
+            </x-td>
+            <x-td>
+                {{ number_format($item->min_charge, 2) }}
+            </x-td>
+            <x-td>
+                {{ number_format($item->total_amount_due, 2) }}
+            </x-td>
         </tr>
-
-        <!-- second unit -->
-        <tr>
-            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">
-                Unit #1</td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="Start Date" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="End Date" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="Current Reading" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" /></td>
-
-
-        </tr>
-
-        <!-- third unit -->
-        <tr>
-            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">
-                Unit #1</td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="Start Date" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="End Date" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="Current Reading" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" />
-            </td>
-            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"> <input
-                    class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    type="text" placeholder="" /></td>
-
-
-        </tr>
-        <!-- more units -->
+        @endforeach
     </tbody>
 </table>

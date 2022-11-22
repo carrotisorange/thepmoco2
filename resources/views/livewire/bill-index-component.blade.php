@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <style>
         /* since nested groupes are not supported we have to use 
                              regular css for the nested dropdowns 
@@ -19,12 +20,6 @@
             transform: rotate(-270deg)
         }
 
-        /* Below styles fake what can be achieved with the tailwind config
-                             you need to add the group-hover variant to scale and define your custom
-                             min width style.
-                          	 See https://codesandbox.io/s/tailwindcss-multilevel-dropdown-y91j7?file=/index.html
-                          	 for implementation with config file
-                          */
         .group:hover .group-hover\:scale-100 {
             transform: scale(1)
         }
@@ -53,13 +48,13 @@
             </button>
             @endif
 
-            @if($batch_no)
+            {{-- @if($batch_no)
             <button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                 type="button">Show all bills
             </button>
 
-            @endif
+            @endif --}}
 
             @can('billing')
             <div class="group inline-block">
@@ -165,53 +160,11 @@
                 type="button">View List
             </button>
             @endif
-            <button onclick="window.location.href='/property/{{ Session::get('property') }}/bill/drafts'"
+
+            {{-- <button onclick="window.location.href='/property/{{ Session::get('property') }}/bill/drafts'"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                 type="button">Show Drafts
-            </button>
-            <!-- Dropdown menu -->
-            {{-- <div id="unitCreateDropdown"
-                class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-                <ul class="py-1" aria-labelledby="dropdownButton">
-                    <li>
-                        @if($active_contracts->count()>0)
-                        <a href="#/" data-modal-toggle="create-express-bill-modal"
-                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            Express Bill
-                        </a>
-                        @else
-                        <a href="#/" data-modal-toggle="popup-error-modal"
-                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            Express Bill
-                        </a>
-                        @endif
-                    </li>
-                    <li>
-                        @if($active_contracts->count()>0)
-                        <a href="#/" data-modal-toggle="create-customized-bill-modal"
-                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            Customized Bill
-                        </a>
-                        @else
-                        <a href="#/" data-modal-toggle="popup-error-modal"
-                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            Customized Bill
-                        </a>
-                        @endif
-                    </li>
-                    <li>
-                        <a href="#/" data-modal-toggle="create-particular-modal"
-                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            Particular
-                        </a>
-                    </li>
-                </ul>
-            </div> --}}
-            {{-- <button type="button"
-                onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add
-                Personnel</button> --}}
-
+            </button> --}}
         </div>
     </div>
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -279,6 +232,24 @@
             {{Str::plural('bill', $bills->count())}}
         </p>
     </div>
+    <div class="mt-5">
+        <div class="flex flex-row">
+            <div class="basis-3/4">
+
+
+            </div>
+            <div class="basis-1/4 ml-12 text-right">
+                @can('accountowner')
+                @if($selectedBills)
+                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
+                    Remove
+                    bills ({{ count($selectedBills) }})
+                </x-button>
+                @endif
+                @endcan
+            </div>
+        </div>
+    </div>
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
@@ -289,9 +260,6 @@
                 </div>
                 @include('tables.bills')
             </div>
-            {{-- <button type="button"
-                class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select
-                All</button> --}}
         </div>
     </div>
     @include('modals.popup-error')

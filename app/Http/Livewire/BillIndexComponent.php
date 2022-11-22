@@ -32,6 +32,9 @@ class BillIndexComponent extends Component
 
    public $posted_dates;
 
+   public $batch_no;
+
+
    public function mount($batch_no)
    {
       $this->batch_no = $batch_no;
@@ -48,6 +51,23 @@ class BillIndexComponent extends Component
          $this->selectedBills = [];
       }
    }
+
+   public function removeBills()
+     {
+       
+        if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
+        {
+            $this->selectedBills = [];
+
+            return back()->with('error', 'Bill cannnot be deleted.');
+        }
+
+        //Bill::destroy($this->selectedBills);
+
+        $this->selectedBills = [];
+
+        return back()->with('success','Bill is successfully removed.');
+     }
 
    public function resetFilters()
    {
@@ -81,9 +101,12 @@ class BillIndexComponent extends Component
           return Bill::search($this->search, $this->posted_dates)
           ->orderBy('bill_no', 'desc')
           ->where('property_uuid', Session::get('property'))
-          ->where('is_posted', true)
+          ->where('is_posted', 1)
           ->when($this->status, function($query){
           $query->whereIn('status', [$this->status]);
+          })
+         ->when($this->batch_no, function($query){
+          $query->where('batch_no', $this->batch_no);
           })
           ->when($this->particular_id, function($query){
           $query->where('particular_id', $this->particular_id);
@@ -94,10 +117,13 @@ class BillIndexComponent extends Component
           return Bill::search($this->search, $this->posted_dates)
           ->orderBy('bill_no', 'desc')
           ->where('property_uuid', Session::get('property'))
-          ->where('is_posted', true)
+          ->where('is_posted', 1)
           ->when($this->status, function($query){
           $query->whereIn('status', [$this->status]);
           })
+           ->when($this->batch_no, function($query){
+           $query->where('batch_no', $this->batch_no);
+           })
           ->when($this->particular_id, function($query){
           $query->where('particular_id', $this->particular_id);
           })
@@ -107,10 +133,13 @@ class BillIndexComponent extends Component
          return Bill::search($this->search, $this->posted_dates)
          ->orderBy('bill_no', 'desc')
          ->where('property_uuid', Session::get('property'))
-         ->where('is_posted', true)
+         ->where('is_posted', 1)
          ->when($this->status, function($query){
          $query->whereIn('status', [$this->status]);
          })
+          ->when($this->batch_no, function($query){
+          $query->where('batch_no', $this->batch_no);
+          })
          ->when($this->particular_id, function($query){
          $query->where('particular_id', $this->particular_id);
          })
@@ -156,9 +185,6 @@ class BillIndexComponent extends Component
 
    public function render()
    {
-
-    
-
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
 
       $dates_posted = $this->get_posted_dates(); 
