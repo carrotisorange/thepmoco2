@@ -191,6 +191,15 @@ Route::get('/newdashboard', function(){
     return view('newlayout.admin_dashboard.newdashboard');
 });
 
+Route::get('/dashboard2', function(){
+    return view('newlayout.admin_dashboard.dashboard2');
+});
+
+Route::get('/dash2', function(){
+    return view('newlayout.admin_dashboard.dash2');
+});
+
+
 Route::get('/success_property', function(){
     return view('newlayout.success_property');
 });
@@ -296,6 +305,10 @@ Route::get('/owner-success', function(){
 
 Route::get('/cashflow', function(){
     return view('newlayout.cashflow');
+});
+
+Route::get('/utilities', function(){
+    return view('newlayout.utilities.utilities');
 });
 
 Route::get('/settings-page', function(){
@@ -474,6 +487,11 @@ Route::get('/plans', function(){
     return view('landing.plans');
 });
 
+Route::get('/demopage', function(){
+    return view('landing.demopage');
+});
+
+
 Route::get('/home', function(){
     return view('kommunal.home');
 });
@@ -486,6 +504,15 @@ Route::get('/search', function(){
 Route::get('/catalog', function(){
     return view('kommunal.catalog');
 });
+
+Route::get('/room', function(){
+    return view('kommunal.room');
+});
+
+Route::get('/roomtest', function(){
+    return view('kommunal.roomtest');
+});
+
 
 
 

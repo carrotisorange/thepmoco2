@@ -281,7 +281,7 @@
           <!-- Main area -->
         <main class="relative flex-1 pb-2 overflow-y-scroll">
         <div class=" fixed w-1/2 bg-gray-50"  aria-hidden="true"></div>
-<div class=" fixed min-h-screen left-24 w-1/4 lg:bg-purple-400 sm:bg-gray-50" aria-hidden="true"></div>
+<div class=" fixed min-h-screen left-24 w-1/4 lg:bg-purple-200 sm:bg-gray-50" aria-hidden="true"></div>
 <div class="relative flex min-h-screen flex-col">
         
 <!--
@@ -298,10 +298,10 @@
   }
   ```
 -->
-<div class="mt-3 px-4 sm:px-5 lg:px-1">
+<div class="px-4 sm:px-5 lg:px-1">
 <div class="mt-1">
 <div class="ml-5 flex items-center ">
-      <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
+      <img class="mt-3 h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
       </div>
 <div class="mx-10 m-5 sm:grid grid-cols-1 gap-x-4 lg:grid-cols-6">
 
@@ -330,7 +330,7 @@
 
 
 
-<div class="lg: sm:ml-0 col-start-3 col-span-4">
+<div class="lg:-mt-6 sm:mt-3 lg: sm:ml-0 col-start-3 col-span-4">
 
 <!-- component -->
 <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
@@ -344,10 +344,13 @@
     <div class="border-b border-gray-200 dark:border-gray-700 mb-2">
         <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
             <li class="mr-2" role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
             </li>
             <li class="mr-2" role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="true">Revenue History</button>
+                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="units-tab" data-tabs-target="#units" type="button" role="tab" aria-controls="units" aria-selected="false">Units</button>
+            </li>
+            <li class="mr-2" role="presentation">
+                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Revenue History</button>
             </li>
             <li class="mr-2" role="presentation">
                 <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Collection</button>
@@ -356,14 +359,14 @@
                 <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Bills</button>
             </li>
             <li role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="guest-tab" data-tabs-target="#guest" type="button" role="tab" aria-controls="guest" aria-selected="false">Guest Form</button>
+                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="guest-tab" data-tabs-target="#guest" type="button" role="tab" aria-controls="guest" aria-selected="false">Guests</button>
             </li>
         </ul>
     </div>
     <div id="myTabContent">
 
 
-        <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <form>
         
 
@@ -395,10 +398,17 @@
 
           <div class="sm:col-span-2">
           <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">Street Address</label>
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Country</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
           </div>
           </div>
+
+          <div class="sm:col-span-2">
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Province</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+          </div>
+          </div> 
 
           <div class="sm:col-span-2">
           <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
@@ -409,19 +419,12 @@
 
           <div class="sm:col-span-2">
           <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">State</label>
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Address</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
           </div>
           </div> 
 
-          <div class="sm:col-span-2">
-          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">ZIP Code</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-          </div>
-          </div> 
-
-          <div class="sm:col-span-4">
+          <div class="sm:col-span-8">
           <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
             <label for="job-title" class="block text-xs font-medium text-gray-900">Email Address</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
@@ -435,116 +438,95 @@
           </div>
           </div> 
 
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-2">
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Email</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+          </div>
+          </div> 
+
+          <div class="sm:col-span-2">
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Mobile</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+          </div>
+          </div> 
+
+          <div class="sm:col-span-6">
           <div class=" bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">School/Company</label>
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Occupation</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
               
-              <label for="job-title" class="block text-xs font-medium text-gray-900">Addresss</label>
+              <label for="job-title" class="block text-xs font-medium text-gray-900">Employer</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
 
-              <label for="job-title" class="block text-xs font-medium text-gray-900">Position</label>
+              <label for="job-title" class="block text-xs font-medium text-gray-900">Employer Address</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
           </div>
           </div> 
 
-          <div class="sm:col-span-3">
-          <div class=" bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">Character Reference</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-
-              <label for="job-title" class="block text-xs font-medium text-gray-900">Relationship</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-
-              <label for="job-title" class="block text-xs font-medium text-gray-900">Contact</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-          </div>
-          </div> 
+         
 
           <div class="sm:col-span-2">
           <div class="flex justify-between items-center">
           <div>
           <h1 class="text-xs font-semibold text-gray-900">Valid ID</h1>
-          <img class="rounded-xl hover:opacity-40" src="https://images.unsplash.com/photo-1547517023-7ca0c162f816" alt="" />
+          <img class="hover:opacity-40" src="https://images.unsplash.com/photo-1547517023-7ca0c162f816" alt="" />
           </div>
           </div>
           </div> 
 
           <div class="mt-10 sm:col-span-8">
-          <p class="font-medium text-xl text-gray-900">Ownership Documents</p>
+          <p class="font-medium text-xl text-gray-900">Authorized Representatives</p>
+
+          <div class="flex justify-end">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          </div>
+
           </div> 
 
           <div class="sm:col-span-2">
-          <div class="flex justify-between items-center">
-          <div>
-          <h1 class="text-xs font-semibold text-gray-900">Title</h1>
-          <img class="rounded-xl hover:opacity-40" src="https://images.unsplash.com/photo-1547517023-7ca0c162f816" alt="" />
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Name</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
           </div>
           </div>
-          </div> 
 
           <div class="sm:col-span-2">
-          <div class="flex justify-between items-center">
-          <div>
-          <h1 class="text-xs font-semibold text-gray-900">Tax Declaration</h1>
-          <img class="rounded-xl hover:opacity-40" src="https://images.unsplash.com/photo-1547517023-7ca0c162f816" alt="" />
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Relationship</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
           </div>
           </div>
-          </div> 
 
           <div class="sm:col-span-2">
-          <div class="flex justify-between items-center">
-          <div>
-          <h1 class="text-xs font-semibold text-gray-900">Deed of Sale</h1>
-          <img class="rounded-xl hover:opacity-40" src="https://images.unsplash.com/photo-1547517023-7ca0c162f816" alt="" />
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Mobile</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
           </div>
           </div>
-          </div> 
 
           <div class="sm:col-span-2">
-          <div class="flex justify-between items-center">
-          <div>
-          <h1 class="text-xs font-semibold text-gray-900">Certificate</h1>
-          <img class="rounded-xl hover:opacity-40" src="https://images.unsplash.com/photo-1547517023-7ca0c162f816" alt="" />
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Email</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
           </div>
           </div>
-          </div> 
 
           <div class="mt-10 sm:col-span-8">
-          <p class="font-medium text-xl text-gray-900">Financial Details</p>
-          </div> 
+          <p class="font-medium text-xl text-gray-900">Bank Details</p>
 
-          <div class="sm:col-span-2">
-          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">Property on Loan</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-          </div>
+          <div class="flex justify-end">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
           </div>
 
-          <div class="sm:col-span-2">
-          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">Financing Company</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-          </div>
           </div> 
 
-          <div class="sm:col-span-2">
-          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">Date of Purchase</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-          </div>
-          </div> 
-
-          <div class="sm:col-span-2">
-          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">Buying Price</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-          </div>
-          </div> 
-
-          <div class="sm:col-span-8">
-          <p class="text-xs font-medium text-gray-900">Bank Details</p>
-          </div> 
+         
 
           <div class="sm:col-span-2">
           <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
@@ -574,17 +556,7 @@
           </div>
           </div>
 
-          <div class="mt-10 sm:col-span-8">
-          <p class="font-medium text-xl text-gray-900">Is the Unit for rent for tenants?</p>
-          </div> 
-
-          <div class="sm:col-span-4">
-          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="job-title" class="block text-xs font-medium text-gray-900">Yes/No</label>
-              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-          </div>
-          </div>
-
+         
 
         </div>
 
@@ -600,11 +572,115 @@
 
 
 
+        <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="units" role="tabpanel" aria-labelledby="units-tab">
+        
+        <div class="grid gap-y-3 gap-x-4 sm:grid grid-cols-1 lg:grid-cols-4 mt-2">
+        <div class="col-span-3">
+        <h1 class="lg:mx-10 sm:mx-0 mb-5 font-medium text-xl text-gray-900 ">Financial Details</h1>
+        </div>
+
+     
+       </div>
+
+       <div class="gap-y-3 gap-x-4 sm:mx-0 lg:ml-10">
+       <table class=" table-fixed">
+            
+            <thead class="bg-white divide-gray-50 border ">
+              <tr>
+                
+                  
+                </th>
+                <th scope="col" class="px-7 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
+                <th scope="col" class="px-7 py-3.5 text-left text-sm font-semibold text-gray-900">DATE OF PURCHASE</th>
+                <th scope="col" class="px-7 py-3.5 text-left text-sm font-semibold text-gray-900">PURCHASING PRICE</th>
+                <th scope="col" class="px-7 py-3.5 text-left text-sm font-semibold text-gray-900">ON LOAN</th>
+                <th scope="col" class="px-7 py-3.5 text-left text-sm font-semibold text-gray-900">FOR RENT</th>
+                
+                
+                
+                </th>
+              </tr>
+            </thead>
+            
+
+            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+               
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-7 py-3.5 text-left text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-7 py-3.5 text-left text-sm text-gray-500">August 1</td>
+                <td class="whitespace-nowrap px-7 py-3.5 text-left text-sm text-gray-500">Water</td>
+                <td class="whitespace-nowrap px-7 py-3.5 text-left text-sm text-gray-500">Yes</td>
+                <td class="whitespace-nowrap px-7 py-3.5 text-left text-sm  text-gray-500">Yes</td>
+                
+
+                  
+              </tr>
+
+              
+
+</table>
+</div>  
+
+ 
+        <div class="mt-10 grid gap-y-3 gap-x-4 sm:grid grid-cols-1 lg:grid-cols-4">
+        <div class="col-span-3">
+        <h1 class="lg:mx-10 sm:mx-0 mb-5 font-medium text-xl text-gray-900 ">Ownership Details</h1>
+        </div>
+
+     
+       </div>
+
+       <div class="gap-y-3 gap-x-4 sm:mx-0 lg:ml-10">
+       <table class=" table-fixed">
+            
+            <thead class="bg-white divide-gray-50 border ">
+              <tr>
+                
+                  
+                </th>
+                <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">UNIT</th>
+                <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">TITLE</th>
+                <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">TAX DECLARATION</th>
+                <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">DEED OF SALE</th>
+                <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">CONTRACT TO SELL</th>
+                <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">CERTIFICATE OF MEMBERSHIP</th>
+                
+                
+                
+                </th>
+              </tr>
+            </thead>
+            
+
+            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+              <!-- Selected: "bg-gray-50" -->
+              <tr>
+               
+                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                <td class="whitespace-nowrap px-5 py-3.5 text-sm font-medium text-gray-900">1</td>
+                <td class="whitespace-nowrap px-5 py-3.5 text-sm text-purple-500"><a>attachment</a></td>
+                <td class="whitespace-nowrap px-5 py-3.5 text-sm text-purple-500"><a>attachment</a></td>
+                <td class="whitespace-nowrap px-5 py-3.5 text-sm text-purple-500"><a>attachment</a></td>
+                <td class="whitespace-nowrap px-5 py-3.5 text-sm  text-purple-500"><a>attachment</a></td>
+                <td class="whitespace-nowrap px-5 py-3.5 text-sm  text-purple-500"><a>attachment</a></td>
+                
+                
+
+                  
+              </tr>
+
+              
+
+</table>
+</div>  
+      
+      </div>
 
 
 
-
-        <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+        <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
         <div class="grid gap-y-3 gap-x-4 sm:grid grid-cols-1 lg:grid-cols-4 mt-2">
         <div class="col-span-3">
         <h1 class="lg:mx-10 sm:mx-0 mb-5 font-medium lg:text-xl sm:text-sm text-gray-900 ">Return = Total Revenue / Purchase Price</h1>
@@ -765,9 +841,7 @@
 
 
         <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-        <div class="-mt-1 -mb-5 flex justify-end">
-        <button type="button" class="inline-flex items-center mx-10 border border-transparent text-sm leading-4 font-medium text-purple-900">Pay Bills</button>
-        </div> 
+         
         <div class="grid gap-y-3 gap-x-4 sm:grid grid-cols-1 lg:grid-cols-4 mt-2">
         <div class="col-span-3">
         <h1 class="lg:mx-10 sm:mx-0 mb-5 font-medium text-xl text-gray-900 ">Bills</h1>
@@ -790,6 +864,7 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT DUE</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">AMOUNT PAID</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">BALANCE</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
                 
                 
                 </th>
@@ -808,6 +883,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10,000.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">0.00</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm  text-purple-500"><a>Pay Bill</a></td>
 
                   
               </tr>
@@ -824,9 +900,7 @@
 
 
         <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="guest" role="tabpanel" aria-labelledby="guest-tab">
-        <div class="-mt-1 -mb-5 flex justify-end">
-        <button type="button" class="inline-flex items-center mx-10 border border-transparent text-sm leading-4 font-medium text-purple-900">Add Guest</button>
-        </div> 
+       
         <form>
         
 
@@ -839,6 +913,13 @@
 
         <div class="sm:col-span-8">
           <p class="font-medium text-xl text-gray-900">Guest Information</p>
+
+          <div class="flex justify-end">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          </div>
+
           </div>
 
         <div class="sm:col-span-4">
@@ -850,12 +931,19 @@
 
             <div class="sm:col-span-4">
           <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="job-title" class="block text-xs font-medium text-gray-900">Relationship</label>
+              <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
+          </div>
+          </div>
+
+            <div class="sm:col-span-4">
+          <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
             <label for="job-title" class="block text-xs font-medium text-gray-900">Mobile #</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
           </div>
           </div>
 
-          <div class="sm:col-span-8">
+          <div class="sm:col-span-4">
           <div class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
             <label for="job-title" class="block text-xs font-medium text-gray-900">Email Address</label>
               <input type="text" name="job-title" id="job-title" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">

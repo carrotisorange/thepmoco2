@@ -8,6 +8,8 @@
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
+
+
   <html class="h-full bg-purple-50">
   <body class="h-full overflow-hidden font-body">
 
@@ -186,8 +188,8 @@
 
           <!-- Main area -->
         <main class="flex-1 pb-2 overflow-y-scroll">
-        <div class="fixed  h-full w-1/2 bg-purple-50" aria-hidden="true"></div>
-<div class="fixed right-4 h-full w-1/3  sm:bg-purple-50" aria-hidden="true"></div>
+        <div class="fixed  h-full w-1/2 bg-indigo-50" aria-hidden="true"></div>
+<div class="fixed right-4 h-full w-1/3  sm:bg-purple-200" aria-hidden="true"></div>
 <div class="relative flex min-h-screen flex-col">
         
 <!--
@@ -419,9 +421,9 @@
 
     
     
-    <div class="lg:-my-12 sm:my-2 lg:mx-6 sm:mx-0 w-full col-span-2">
+    <div class="lg:-my-20 sm:my-2 lg:mx-6 sm:mx-0 w-full col-span-2">
 
-<div class="bg-white pb-5 sm:items-center lg:h-56 sm:h-48 md:h-80  overflow-hidden rounded-lg shadow-md rounded-5xl">
+<div class="bg-white pb-5 sm:items-center lg:h-60 sm:h-48 md:h-80  overflow-hidden rounded-lg shadow-md rounded-5xl">
     <div class="flex  justify-center items-center  py-5">
 
                     <div class="col-span-1">
@@ -661,7 +663,7 @@
 </div>
 
 
-<div class="lg:-my-6 sm:my-10 col-span-4">
+<div class="lg:my-4 sm:my-10 col-span-4">
      <h1 class="text-2xl font-semibold">Bills</h1>
     <div class="mt-8 flex flex-col">
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
