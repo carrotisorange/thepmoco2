@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Utility;
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Unit;
 
 class UtilityController extends Controller
 {
@@ -14,10 +15,8 @@ class UtilityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Property $property)
-    {
-        return view('utilities.index',[
-            'utilities' => Utility::all()
-        ]);
+    { 
+        return view('utilities.index');
     }
 
     /**
