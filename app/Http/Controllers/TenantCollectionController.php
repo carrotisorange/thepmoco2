@@ -172,6 +172,13 @@ class TenantCollectionController extends Controller
       return Storage::download(($attachment), 'AR_'.$ar->ar_no.'_'.$ar->tenant->tenant.'.png');
    }
 
+   public function proof_of_payment(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
+   {
+      $proof_of_payment = $ar->proof_of_payment;
+
+      return Storage::download(($proof_of_payment), 'AR_'.$ar->ar_no.'_'.$ar->tenant->tenant.'.png');
+   }
+
      public function generate_pdf(Property $property, $data)
      {
 
@@ -271,6 +278,7 @@ class TenantCollectionController extends Controller
                   $request->date_deposited,
                   $request->created_at,
                   $request->attachment,
+                  $request->proof_of_payment,
          );
 
          app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);

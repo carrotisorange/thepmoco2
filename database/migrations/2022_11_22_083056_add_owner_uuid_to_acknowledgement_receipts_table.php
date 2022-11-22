@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddOwnerUuidInAcknowledgementReceiptsTable extends Migration
+class AddOwnerUuidToAcknowledgementReceiptsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddOwnerUuidInAcknowledgementReceiptsTable extends Migration
     public function up()
     {
         Schema::table('acknowledgement_receipts', function (Blueprint $table) {
-            $table->bigInteger('owner_uuid')->references('uuid')->on('owners')->nullable();
+            $table->foreignUuid('owner_uuid')->constrained();
         });
     }
 
@@ -25,7 +25,7 @@ class AddOwnerUuidInAcknowledgementReceiptsTable extends Migration
      */
     public function down()
     {
-        Schema::table('acknowledgement_receipts', function (Blueprint $table) {
+        Schema::table('acknowledgment_receipts', function (Blueprint $table) {
             //
         });
     }

@@ -92,6 +92,19 @@
                 </div>
             </div>
             @endif
+
+            <div class="mt-2 flex flex-wrap mb-6">
+                <div class="w-full  px-3">
+                    <x-label for="proof_of_payment">
+                        Proof of Payment
+                    </x-label>
+                    <x-form-input form="edit-form" name="proof_of_payment" wire:model="proof_of_payment" type="file" />
+
+                    @error('proof_of_payment')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
         </div>
 
 

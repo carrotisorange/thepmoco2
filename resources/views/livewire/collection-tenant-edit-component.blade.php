@@ -63,19 +63,19 @@
             </div>
 
             @endif
-            <div class="w-full  px-3">
-                <x-label for="attachment">
-                    Proof of payment (i.e., Deposit Slip)
-                </x-label>
-                <x-form-input form="edit-form" name="attachment" wire:model="attachment" type="file" />
-
-                @error('attachment')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
             <div class="mt-2 flex flex-wrap mb-6">
+                <div class="w-full  px-3">
+                    <x-label for="attachment">
+                        Proof of payment (i.e., Deposit Slip)
+                    </x-label>
+                    <x-form-input form="edit-form" name="attachment" wire:model="attachment" type="file" />
 
+                    @error('attachment')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
+
 
             @if($form === 'cheque')
             <div class="mt-2 flex flex-wrap mb-6">
@@ -92,6 +92,19 @@
                 </div>
             </div>
             @endif
+
+            <div class="mt-2 flex flex-wrap mb-6">
+                <div class="w-full  px-3">
+                    <x-label for="proof_of_payment">
+                        Proof of Payment
+                    </x-label>
+                    <x-form-input form="edit-form" name="proof_of_payment" wire:model="proof_of_payment" type="file" />
+
+                    @error('proof_of_payment')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
         </div>
 
 
@@ -100,7 +113,7 @@
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                       @include('forms.collections.collection-tenant-create')
+                        @include('forms.collections.collection-tenant-create')
                     </div>
                 </div>
             </div>

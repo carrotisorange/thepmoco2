@@ -46,6 +46,7 @@
                         <x-th></x-th>
                         <x-th></x-th>
                         <x-th></x-th>
+                        <x-th></x-th>
 
 
                     </tr>
@@ -112,6 +113,13 @@
                             @if(!$item->attachment == null)
                             <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}/ar/{{ $item->id }}/attachment"
                                 target="_blank" class="text-indigo-500 text-decoration-line: underline">Attachment</a>
+                            @endif
+                        </x-td>
+                        <x-td>
+                        
+                            @if(!$item->proof_of_payment == null)
+                            <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner->uuid }}/ar/{{ $item->id }}/proof_of_payment"
+                                target="_blank" class="text-indigo-500 text-decoration-line: underline">Proof of payment</a>
                             @endif
                         </x-td>
                     </tr>
