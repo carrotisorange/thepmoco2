@@ -167,6 +167,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('ar/{ar}/export', [TenantCollectionController::class, 'export']);
             Route::get('ar/{ar}/view', [TenantCollectionController::class, 'view']);
             Route::get('ar/{ar}/attachment', [TenantCollectionController::class, 'attachment']);
+            Route::get('ar/{ar}/proof_of_payment', [TenantCollectionController::class, 'proof_of_payment']);
             Route::get('concerns', [TenantConcernController::class, 'index']);
             Route::get('units', [TenantContractController::class, 'create']);
             Route::get('ledger', [TenantLedgerController::class, 'index']);
@@ -227,6 +228,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('ar/{ar}/export', [OwnerCollectionController::class, 'export']);
             Route::get('ar/{ar}/view', [OwnerCollectionController::class, 'view']);
             Route::get('ar/{ar}/attachment', [OwnerCollectionController::class, 'attachment']);
+            Route::get('ar/{ar}/proof_of_payment', [OwnerCollectionController::class, 'proof_of_payment']);
             Route::get('edit', [OwnerController::class, 'edit']);
 
             Route::get('bills/{batch_no}/pay', [OwnerCollectionController::class, 'edit']);
@@ -269,6 +271,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::controller(AccountPayableController::class)->group(function () {
          Route::get('{status:status?}', 'index')->name('accountpayable');
          Route::get('{id}/attachment',  'download');
+
          Route::get('{id}/approve', 'approve');
          Route::get('{str_random}/create', 'create')->name('accountpayable');
         });

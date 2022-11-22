@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Property;
 use App\Models\Owner;
 use Session;
@@ -164,6 +165,21 @@ class OwnerCollectionController extends Controller
       ];
      }
 
+     
+   public function attachment(Property $property, Owner $owner, AcknowledgementReceipt $ar)
+   {
+      $attachment = $ar->attachment;
+
+      return Storage::download(($attachment), 'AR_'.$ar->ar_no.'_'.$ar->owner->owner.'.png');
+   }
+
+   public function proof_of_payment(Property $property, Owner $owner, AcknowledgementReceipt $ar)
+   {
+      $proof_of_payment = $ar->proof_of_payment;
+
+      return Storage::download(($proof_of_payment), 'AR_'.$ar->ar_no.'_'.$ar->owner->owner.'.png');
+   }
+
     public function update(Request $request, Property $property, Owner $owner, $batch_no)
     {
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
@@ -211,6 +227,7 @@ class OwnerCollectionController extends Controller
                   $request->date_deposited,
                   $request->created_at,
                   $request->attachment,
+                  $request->proof_of_payment,
          );
 
          app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);

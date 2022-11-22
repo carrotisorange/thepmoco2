@@ -17,6 +17,7 @@ class CollectionTenantEditComponent extends Component
     public $tenant;
     public $collections;
     public $attachment;
+    public $proof_of_payment;
     public $form = 'cash';
     public $bank;
     public $check_no;
@@ -38,6 +39,7 @@ class CollectionTenantEditComponent extends Component
        'created_at' => 'required|date',
        'form' => 'required',
        'attachment' => 'image|max:1024',
+       'proof_of_payment' => 'image|max:1024',
       ];
     }
 
