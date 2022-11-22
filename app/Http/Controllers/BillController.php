@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class BillController extends Controller
 {
-    public function index(Property $property, $batch_no=null)
+    public function index(Property $property, $batch_no=null, $drafts=0)
     {
         $this->authorize('is_account_receivable_read_allowed');
                 
@@ -23,7 +23,8 @@ class BillController extends Controller
             'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->get(),
             'active_tenants' => Contract::where('property_uuid', Session::get('property'))->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
-            'batch_no' => $batch_no
+            'batch_no' => $batch_no,
+            'drafts' => $drafts
         ]);
     }
 

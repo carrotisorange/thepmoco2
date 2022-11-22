@@ -15,7 +15,9 @@ class UtilityController extends Controller
      */
     public function index(Property $property)
     {
-        return view('utilities.index');
+        return view('utilities.index',[
+            'utilities' => Utility::all()
+        ]);
     }
 
     /**

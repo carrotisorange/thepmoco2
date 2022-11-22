@@ -1,9 +1,11 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
+            <x-th></x-th>
             <x-th> BILL # </x-th>
             <x-th>DATE POSTED</x-th>
-            <x-th>REFERENCE # </x-th>
+            <x-th>NAME</x-th>
+            {{-- <x-th>REFERENCE # </x-th> --}}
             <x-th>UNIT</x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>PARTICULAR</x-th>
@@ -17,20 +19,32 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>
+                @if($item->status != 'paid')
+                <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
+                @endif
+            </x-td>
+            <x-td>
                 {{ $item->bill_no}}
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}
             </x-td>
             <x-td>
-                {{-- <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/bills">
-                    {{ $item->tenant->tenant}}
-                </a> --}}
-                {{ $item->reference_no}}
-            </x-td>
-            <x-td>
+                @if($item->tenant_uuid)
+                <a class="text-blue-500 text-decoration-line: underline" target="_blank"
+                    href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills">{{ $item->tenant->tenant}}</a>
+                @else
                 <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/bills">{{ $item->owner->owner}}</a>
+                @endif
+            
+            </x-td>
+            {{-- <x-td>
+               {{ $item->reference_no}}
+               
+            </x-td> --}}
+            <x-td>
+                <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills">
                     {{ $item->unit->unit}}
                 </a>

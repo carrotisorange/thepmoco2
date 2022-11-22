@@ -237,8 +237,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
   
     //Routes for Bill
     Route::prefix('bill')->group(function(){
-        Route::get('{batch_no?}', [BillController::class, 'index'])->name('bill');
-        Route::get('drafts', [BillController::class, 'draft'])->name('bill');
+        Route::get('{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
+        //Route::get('drafts', [BillController::class, 'draft'])->name('bill');
         
         Route::prefix('{bill}')->group(function(){
             Route::delete('delete', [BillController::class, 'destroy']);
