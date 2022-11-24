@@ -41,6 +41,7 @@ use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
 use App\Http\Controllers\UtilityController;
+use App\Http\Controllers\UnitEditBulkController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
@@ -73,6 +74,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Route for utilities
     Route::prefix('utilities')->group(function(){
         Route::get('/',[UtilityController::class, 'index'])->name('utilities');
+        Route::get('/{batch_no}',[UtilityController::class, 'edit'])->name('utilities');
     });
 
 
@@ -81,7 +83,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [UnitController::class, 'index'])->name('unit');
         
             Route::post('{batch_no:batch_no}/store', [UnitController::class, 'store']);
-            Route::get('{batch_no?}/edit', [UnitController::class, 'bulk_edit']);
+            Route::get('{batch_no?}/edit', [UnitEditBulkController::class, 'edit']);
             Route::get('{batch_no}/create', [UnitController::class, 'create']);
             //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
 
