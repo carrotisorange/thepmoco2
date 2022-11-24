@@ -1353,7 +1353,7 @@
                  >
               <div class="shadow-xs rounded-lg bg-white p-2">
                 <div class="flex items-center justify-between text-sm">
-                  <div>Number:</div>
+                  <div>Number~~php:</div>
                   <div class="font-bold ml-2">
                     <span x-html="tooltipContent"></span>
                   </div>
