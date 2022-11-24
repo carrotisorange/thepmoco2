@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Utility;
 use Illuminate\Http\Request;
 use App\Models\Property;
-use App\Models\Unit;
 
 class UtilityController extends Controller
 {
@@ -35,9 +34,16 @@ class UtilityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($property_uuid, $unit_uuid, $user_id, $start_date, $end_date, $batch_no)
     {
-        //
+        Utility::create([
+            'property_uuid' => $property_uuid,
+            'unit_uuid' => $unit_uuid,
+            'user_id' => $user_id,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'batch_no' => $batch_no
+        ]);
     }
 
     /**
@@ -57,9 +63,11 @@ class UtilityController extends Controller
      * @param  \App\Models\Utility  $utility
      * @return \Illuminate\Http\Response
      */
-    public function edit(Utility $utility)
+    public function edit($property_uuid, $batch_no)
     {
-        //
+       return view('utilities.edit',[
+            'batch_no' => $batch_no,
+       ]);
     }
 
     /**

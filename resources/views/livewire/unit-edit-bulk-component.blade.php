@@ -77,7 +77,8 @@
         </div>
     </div>
     <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-        @include('forms.units.unit-bulk-edit')
+        @include('forms.units.unit-edit-bulk')
     </div>
+    
     @include('layouts.notifications')
 </div>

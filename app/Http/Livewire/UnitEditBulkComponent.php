@@ -3,18 +3,17 @@
 namespace App\Http\Livewire;
 use App\Models\Unit;
 use App\Models\Tenant;
-use Session;
-use App\Models\Property;
 use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use App\Models\Contract;
 use App\Models\DeedOfSale;
 use App\Models\Enrollee;
+use Session;
 
 use Livewire\Component;
 
-class UnitComponent extends Component
+class UnitEditBulkComponent extends Component
 {
     use WithPagination;
 
@@ -86,8 +85,7 @@ class UnitComponent extends Component
             }
 
         }catch(\Exception $e){
-            ddd($e);
-            //redirect user with an error message
+           
             session()->flash('error');
         }
     }
@@ -124,7 +122,7 @@ class UnitComponent extends Component
 
     public function render()
     {
-        return view('livewire.unit-component',[
+        return view('livewire.unit-edit-bulk-component',[
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(),
             'floors' => app('App\Http\Controllers\FloorController')->index(),
             'units' => $this->get_units(Session::get('property')),

@@ -235,12 +235,7 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function bulk_edit(Property $property, $batch_no)
-    {
-        return view('units.bulk-edit',[
-            'batch_no' => $batch_no,
-        ]);
-    }
+
 
     public function update(Request $request, Property $property, Unit $unit)
     {

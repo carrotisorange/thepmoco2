@@ -73,6 +73,10 @@ class Unit extends Model
     return $this->hasMany(Contract::class);
     }
 
+    public function utilities(){
+        return $this->hasMany(Utility::class);
+    }
+
     public function enrollees()
     {
         return $this->hasMany(Enrollee::class);
@@ -93,8 +97,6 @@ class Unit extends Model
         return $this->hasMany(AcknowledgementReceipt::class);
     }
 
-
-
     public function deed_of_sales()
     {
         return $this->hasMany(DeedOfSale::class, 'unit_uuid');
@@ -104,5 +106,9 @@ class Unit extends Model
     {
         return empty($search)? static::query()
         : static::where('unit','like', '%'.$search.'%');
+    }
+
+    public function scopeOccupied($query){
+        return $query->where('status_id', 2);
     }
 }
