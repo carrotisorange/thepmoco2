@@ -6,6 +6,8 @@ use Livewire\Component;
 use Illuminate\Validation\Rule;
 use DB;
 use Carbon\Carbon;
+use Session;
+use App\Models\Utility;
 
 class UnitEditComponent extends Component
 {
@@ -111,6 +113,7 @@ class UnitEditComponent extends Component
             'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($this->unit_details->uuid),
             'total_collected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
+            'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->get()
         ]);
     }
 }

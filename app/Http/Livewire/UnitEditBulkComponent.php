@@ -18,7 +18,7 @@ class UnitEditBulkComponent extends Component
     use WithPagination;
 
     public $batch_no;
-    public $search = '';
+    public $search;
     public $units;
 
     public $selectedUnits =[];

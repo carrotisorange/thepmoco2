@@ -131,6 +131,12 @@
                             id="guests-tab" data-tabs-target="#guests" type="button" role="tab" aria-controls="guests"
                             aria-selected="false">Guests</button>
                     </li>
+                    <li role="presentation">
+                        <button
+                            class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
+                            id="utilities-tab" data-tabs-target="#utilities" type="button" role="tab"
+                            aria-controls="utilities" aria-selected="false">Utilities</button>
+                    </li>
                     {{-- <li role="presentation">
                         <button
                             class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
@@ -596,6 +602,10 @@
                         </div>
                     </div>
 
+                </div>
+                 <div class="hidden rounded-lg dark:bg-gray-800" id="utilities" role="tabpanel"
+                    aria-labelledby="rooms-tab">
+                   @include('tables.utilities')
                 </div>
                 {{-- <div class="hidden rounded-lg dark:bg-gray-800" id="rooms" role="tabpanel"
                     aria-labelledby="rooms-tab">

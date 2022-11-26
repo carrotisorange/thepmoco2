@@ -5,9 +5,11 @@ use Livewire\WithPagination;
 
 use Livewire\Component;
 use Session;
+use Illuminate\Http\Request;
 use App\Models\Utility;
 use App\Models\Property;
 use DB;
+use Carbon\Carbon;
 
 class UtilityEditComponent extends Component
 {
@@ -29,6 +31,8 @@ class UtilityEditComponent extends Component
     {
         $this->batch_no = $batch_no;
         $this->utilities = $this->get_utilities();
+        $this->start_date = Carbon::now()->format('Y-m-d');
+        $this->end_date = Carbon::now()->addMonth()->format('Y-m-d');
     }
 
     public function selectedAllUtilities($selectedAllUtilities)
@@ -41,31 +45,54 @@ class UtilityEditComponent extends Component
         {
             $this->selectedUtilities = [];
         }
+
+        $this->utilities = $this->get_utilities();
+
     }
 
     protected function rules()
     {
         return [
             'utilities.*.unit_uuid' => 'required',
-            'utilities.*.start_date' => 'required|date',
-            'utilities.*.end_date' => 'required|date',
-            'utilities.*.previous_reading' => 'required',
-            'utilities.*.current_reading' => 'required',
-            'utilities.*.current_consumption' => 'required',
-            'utilities.*.kwh' => 'required',
-            'utilities.*.min_charge' => 'required',
-            'utilities.*.total_amount_due' => 'required'
+            'utilities.*.start_date' => 'nullable|date',
+            'utilities.*.end_date' => 'nullable|date',
+            'utilities.*.previous_reading' => 'nullable',
+            'utilities.*.current_reading' => 'nullable',
+            'utilities.*.current_consumption' => 'nullable',
+            'utilities.*.kwh' => 'nullable',
+            'utilities.*.min_charge' => 'nullable',
+            'utilities.*.total_amount_due' => 'nullable'
         ];
     }
 
     public function updated($propertyName){
+
         $this->validateOnly($propertyName);
     }
 
-    public function updateForm()
+    // public function updateUtilities()
+    // {
+    //     try{
+    //         $this->validate();
+    //         //update the selected unit
+    //         DB::transaction(function () {
+    //             foreach ($this->utilities as $utility) {
+    //                 $utility->save();
+    //             }
+    //         });
+
+    //         return back()->with('success', 'Utilities are successfully saved!');
+
+    //     }catch(\Exception $e){
+    //         session()->flash('error');
+    //     }
+
+    //      $this->utilities = $this->get_utilities();
+    // }
+
+    
+    public function updateUtilities()
     {
-        sleep (2);
-        
         try{
             $this->validate();
             //update the selected unit
@@ -75,28 +102,25 @@ class UtilityEditComponent extends Component
                 }
             });
 
-            return back()->with('success', 'Utilities are successfully saved!');
+            $this->utilities = $this->get_utilities();
+
+            session()->flash('success', 'Utilities are successfully saved!');
 
         }catch(\Exception $e){
             session()->flash('error');
         }
+
+         $this->utilities = $this->get_utilities();
     }
 
     public function get_utilities(){
-        // return DB::table('utilities')
-        // ->select('*', 'units.unit as unit')
-        // ->where('utilities.property_uuid', Session::get('property'))
-        // ->where('utilities.batch_no', $this->batch_no)
-        // ->join('units', 'utilities.unit_uuid', 'units.uuid')
-        // ->groupBy('utilities.unit_uuid')
-        // ->get();
-
+     
         return Property::find(Session::get('property'))
         ->utilities
         ->where('batch_no', $this->batch_no);
     }
 
-    public function updateUtilityParameters()
+    public function updateParameters()
     {
         Utility::where('property_uuid', Session::get('property'))
         ->where('batch_no', $this->batch_no)
@@ -106,13 +130,56 @@ class UtilityEditComponent extends Component
             'kwh' => $this->kwh,
             'min_charge' => $this->min_charge
         ]);
+
+        $this->utilities = $this->get_utilities();
+
+        session()->flash('success', 'Parameters are successfully saved!');
+
     }
 
+    public function postUtilities()
+    {
+        sleep(1);
+        
+        Utility::where('property_uuid', Session::get('property'))
+        ->where('batch_no', $this->batch_no)
+        ->update([
+            'is_posted' => 1
+        ]);
+
+        return redirect('/property/'.Session::get('property').'/utilities')->with('success', 'Utilities are successfully posted!');
+
+    }
+
+    // public function updateUtilities($id)
+    // {
+    //     sleep(1);
+
+    //     ddd($id);
+
+    //     Utility::where('id', $id)
+    //     ->update([
+    //         ''
+    //     ]);
+
+    //     $this->utilities = $this->get_utilities();
+
+    //     session()->flash('success', 'Utility is successfully removed');
+    // }
+
+    public function removeUtilities($id)
+    {
+        sleep(1);
+
+        Utility::where('id', $id)->delete();
+
+        $this->utilities = $this->get_utilities();
+
+        session()->flash('success', 'Utility is successfully removed');
+    }
+    
     public function render()
     {   
-        //$this->updateUtilityParameters();
-        return view('livewire.utility-edit-component',[
-            'utilities' => $this->get_utilities()
-        ]);
+        return view('livewire.utility-edit-component');
     }
 }
