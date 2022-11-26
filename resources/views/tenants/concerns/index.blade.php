@@ -1,122 +1,104 @@
-<x-app-layout>
-    @section('title', $tenant->tenant)
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <div class="flex">
-                <div class="h-3">
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        <nav class="rounded-md">
-                            <ol class="list-reset flex">
-                                <li><a href="/property/{{ Session::get('property') }}"
-                                        class="text-blue-600 hover:text-blue-700">{{
-                                        Session::get('property_name') }}</a>
-                                </li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-
-                                <li class="text-gray-500">{{ $tenant->tenant }}</li>
-                                <li><span class="text-gray-500 mx-2">/</span></li>
-
-                                <li class="text-gray-500">Concerns</li>
-                            </ol>
-                        </nav>
-                    </h2>
+<x-new-layout>
+    @section('title', $tenant_details->tenant.' | '.Session::get('property_name'))
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mt-5 px-4 sm:px-6 lg:px-8">
+            <div class="sm:flex sm:items-center">
+                <div class="sm:flex-auto">
+                    <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">{{ $tenant_details->tenant }} /
+                        Contracts</h1>
                 </div>
-                <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/edit'"><i
-                            class="fa-solid fa-circle-arrow-left"></i>&nbsp Back
-                    </x-button>
 
+                <button type="button"
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}'"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                    Go back to tenant
+                    </a></button>
 
-                </h5>
-
+                <button type="button"
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/concern/create'"
+                    class="ml-2 inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                    New concern
+                    </a></button>
             </div>
-        </h2>
-    </x-slot>
-    <div class="py-12">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="bg-white border-b border-gray-200">
-                    <div class="flex flex-col">
-                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                    <table class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-50">
-                                            <tr>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Bill No</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Bill</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Particular</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Tenant</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Unit</th>
-                                                <th colspan="2" scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Period</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Status</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Due date</th>
+            <table class="min-w-full table-fixed">
+                <thead class="">
+                    <tr>
+                        <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-sm font-semibold text-gray-900">
+                            REFERENCE #
+                        </th>
+                        <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                            REPORTED ON
+                        </th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            SUBJECT
+                        </th>
 
-                                            </tr>
-                                        </thead>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            UNIT
+                        </th>
 
-                                        @forelse ($concerns as $item)
-                                        <tbody class="bg-white divide-y divide-gray-200">
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $item->bill_no }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    number_format($item->bill,2) }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $item->particular }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $item->tenant }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    $item->unit }}</td>
-                                                <td colspan="2"
-                                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    Carbon\Carbon::parse($item->start)->format('M d,
-                                                    Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    @if($item->bill_status === 'paid')
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        {{ $item->bill_status }}
-                                                    </span>
-                                                    @else
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                        {{ $item->bill_status }}
-                                                    </span>
-                                                    @endif
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                                    Carbon\Carbon::parse($item->due_date)->format('M d,
-                                                    Y') }}</td>
-                                                @empty
-                                                <x-td>No data found.</x-td>
-                                            </tr>
-                                        </tbody>
-                                        @endforelse
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            CATEGORY
+                        </th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            CONCERN
+                        </th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            STATUS
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @forelse ($concerns as $index => $item)
+                <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+                    <!-- Selected: "bg-gray-50" -->
+                    <tr>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            {{ $item->reference_no }}
+                        </td>
+                        {{-- <td class="relative w-12 px-6 sm:w-16 sm:px-8"> --}}
+                            <!-- Selected row marker, only show when row is selected. -->
+
+                            {{-- <input type="checkbox"
+                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                            --}}
+                            {{--
+                        </td> --}}
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y')}}
+                        </td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            {{ $item->subject }}
+                        </td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            {{ $item->unit->unit }}
+                        </td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            {{ $item->category->category }}
+                        </td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            {{ $item->concern }}
+                        </td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            {{ $item->status }}
+                        </td>
+
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+
+                            <a class="font-medium text-blue-500 text-decoration-line: underline"
+                                href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $item->id }}"
+                                class="text-indigo-600 hover:text-indigo-900">Review</a>
+
+                        </td>
+                    </tr>
+                </tbody>
+                @empty
+                <tr>
+                    <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                        No concerns
+                        found.</td>
+                </tr>
+                @endforelse
+
+            </table>
+</x-new-layout>

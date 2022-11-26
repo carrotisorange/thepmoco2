@@ -15,6 +15,7 @@ use App\Models\Reference;
 use App\Models\Guardian;
 use App\Models\Bill;
 use App\Models\AcknowledgementReceipt;
+use App\Models\Concern;
 
 class TenantController extends Controller
 {
@@ -203,6 +204,11 @@ class TenantController extends Controller
     public function show_tenant_contracts($tenant_uuid)
     {
        return Contract::where('tenant_uuid', $tenant_uuid)->orderBy('start','desc')->paginate(5);
+    }
+
+    public function show_tenant_concerns($tenant_uuid)
+    {
+       return Concern::where('tenant_uuid', $tenant_uuid)->orderBy('start','desc')->paginate(5);
     }
 
     public function get_tenant_references($tenant_uuid)

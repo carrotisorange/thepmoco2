@@ -174,6 +174,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('units', [TenantContractController::class, 'create']);
             Route::get('ledger', [TenantLedgerController::class, 'index']);
 
+            Route::prefix('concern')->group(function(){
+                Route::get('create', [ConcernController::class, 'create']);
+                Route::post('store', [ConcernController::class, 'store']);
+            });
+
+
             Route::prefix('guardian')->group(function(){
                 Route::get('{unit?}/create', [GuardianController::class, 'create']);
                 Route::delete('{guardian_id:id}', [GuardianController::class, 'destroy']);

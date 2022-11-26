@@ -20,6 +20,7 @@ class UtilityIndexComponent extends Component
         sleep(1);
 
         $units = Unit::where('property_uuid', Session::get('property'))->get();
+        
         $batch_no = auth()->user()->id.Str::random(8);
 
         for ($i=0; $i < $units->count(); $i++) { 

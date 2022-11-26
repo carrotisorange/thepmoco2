@@ -46,7 +46,7 @@ class ConcernController extends Controller
     {
         $this->authorize('is_concern_create_allowed');
 
-        return view('concerns.create');
+        return view('tenants.concerns.create');
     }
 
     /**
