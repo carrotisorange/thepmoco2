@@ -9,11 +9,13 @@ use Livewire\WithPagination;
 use App\Models\Unit;
 use Carbon\Carbon;
 use Str;
+use DB;
 
 class UtilityIndexComponent extends Component
 {
     use WithPagination;
-    
+
+    public $search;
 
     public function storeUtilities()
     {
@@ -40,8 +42,15 @@ class UtilityIndexComponent extends Component
     public function render()
     {
         return view('livewire.utility-index-component',[
-            'utilities' => Utility::where('property_uuid', Session::get('property'))
-            ->isposted()
+            'utilities' => Utility::isposted()
+            ->select('*', 'units.unit as unit_name' )
+            ->join('units', 'utilities.unit_uuid', 'units.uuid')
+            ->where('utilities.property_uuid', Session::get('property'))
+             ->when(($this->search), function($query){
+             // $query->orderBy($this->sortBy, $this->orderBy);
+             $query->where('units.unit','like', '%'.$this->search.'%');
+             })
+             ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
             ->paginate(10)
         ]);
     }
