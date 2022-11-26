@@ -16,7 +16,8 @@
         @foreach ($utilities as $item)
         <tr>
             <x-td>
-                {{ $item->unit->unit }}
+                <a class="text-blue-500 text-decoration-line: underline" target="_blank"
+                    href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}">{{ $item->unit->unit }}</a>
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($item->start_date)->format('M d, y') }}
@@ -40,7 +41,8 @@
                 {{ number_format($item->min_charge, 2) }}
             </x-td>
             <x-td>
-                {{ number_format(((($item->current_reading - $item->previous_reading) * $item->kwh) + $item->min_charge), 2) }}
+                {{ number_format(((($item->current_reading - $item->previous_reading) * $item->kwh) +
+                $item->min_charge), 2) }}
             </x-td>
         </tr>
         @endforeach
