@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <a href="article1" class="mt-2 block">
               <p class="text-xl font-semibold text-gray-900">How our journey started</p>
               <p class="mt-3 text-base text-gray-500">
-When we first started out as property managers, we followed the old-school methods. During leasing procedures, we used the traditional way</p>
+                When we first started out as property managers, we followed the old-school methods. During leasing procedures, we used the traditional way</p>
             </a>
           </div>
           <div class="mt-6 flex items-center">
@@ -173,7 +173,7 @@ When we first started out as property managers, we followed the old-school metho
             </div>
             <div class="ml-3">
               <p class="text-sm font-medium text-gray-900">
-                <a href="#" class="hover:underline">Anonymous</a>
+                <a href="" class="hover:underline">Anonymous</a>
               </p>
               <div class="flex space-x-1 text-sm text-gray-500">
                 <time datetime="2020-03-16">Date</time>
@@ -274,11 +274,11 @@ When we first started out as property managers, we followed the old-school metho
               
               <ul role="list" class="mt-4 space-y-4">
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Demo</a>
+                  <a href="demopage" class="text-base text-gray-500 hover:text-gray-900">Demo</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Articles</a>
+                  <a href="blog" class="text-base text-gray-500 hover:text-gray-900">Articles</a>
                 </li>
 
            
@@ -292,11 +292,11 @@ When we first started out as property managers, we followed the old-school metho
               
               <ul role="list" class="mt-4 space-y-4">
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">About Us</a>
+                  <a href="about" class="text-base text-gray-500 hover:text-gray-900">About Us</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">FAQs</a>
+                  <a href="faq" class="text-base text-gray-500 hover:text-gray-900">FAQs</a>
                 </li>
 
                

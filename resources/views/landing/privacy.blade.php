@@ -382,11 +382,11 @@ In compliance with the CAN-SPAM Act, all e-mails sent from us will clearly state
               
               <ul role="list" class="mt-4 space-y-4">
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Demo</a>
+                  <a href="demopage" class="text-base text-gray-500 hover:text-gray-900">Demo</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Articles</a>
+                  <a href="blog" class="text-base text-gray-500 hover:text-gray-900">Articles</a>
                 </li>
 
            
@@ -400,11 +400,11 @@ In compliance with the CAN-SPAM Act, all e-mails sent from us will clearly state
               
               <ul role="list" class="mt-4 space-y-4">
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">About Us</a>
+                  <a href="about" class="text-base text-gray-500 hover:text-gray-900">About Us</a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">FAQs</a>
+                  <a href="faq" class="text-base text-gray-500 hover:text-gray-900">FAQs</a>
                 </li>
 
                
