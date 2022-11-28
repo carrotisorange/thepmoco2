@@ -138,7 +138,7 @@
 
                                         </div>
 
-                                        {{-- @include('tenants.concerns.index') --}}
+                                        @include('tenants.concerns.index')
 
                                     </div>
 

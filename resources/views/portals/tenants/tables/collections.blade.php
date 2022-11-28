@@ -35,9 +35,9 @@
 
         </tr>
     </thead>
-    @foreach($collections as $item)
+
     <tbody class="bg-white divide-y divide-gray-200">
-        <!-- Selected: "bg-gray-50" -->
+        @foreach($collections as $item)
         <tr>
 
             <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
@@ -123,10 +123,11 @@
             <x-td></x-td>
             <?php
             $property_collections_count = App\Models\Collection::posted()->where('property_uuid', Session::get('property'))->count();
-        ?>
+            ?>
             <x-td>
-                {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
+                {{ number_format($collections->sum('amount'), 2) }}
             </x-td>
+            <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>

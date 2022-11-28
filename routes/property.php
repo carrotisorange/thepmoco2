@@ -171,11 +171,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('ar/{ar}/attachment', [TenantCollectionController::class, 'attachment']);
             Route::get('ar/{ar}/proof_of_payment', [TenantCollectionController::class, 'proof_of_payment']);
             Route::get('concerns', [TenantConcernController::class, 'index']);
+            Route::get('concern/create', [TenantConcernController::class, 'create'])->name('concern');
             Route::get('units', [TenantContractController::class, 'create']);
             Route::get('ledger', [TenantLedgerController::class, 'index']);
 
             Route::prefix('concern')->group(function(){
-                Route::get('create', [ConcernController::class, 'create']);
                 Route::post('store', [ConcernController::class, 'store']);
             });
 

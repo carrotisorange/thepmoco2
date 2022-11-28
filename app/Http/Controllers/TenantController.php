@@ -208,7 +208,7 @@ class TenantController extends Controller
 
     public function show_tenant_concerns($tenant_uuid)
     {
-       return Concern::where('tenant_uuid', $tenant_uuid)->orderBy('start','desc')->paginate(5);
+       return Concern::where('tenant_uuid', $tenant_uuid)->orderBy('created_at','desc')->paginate(5);
     }
 
     public function get_tenant_references($tenant_uuid)
