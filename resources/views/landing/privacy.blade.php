@@ -83,7 +83,7 @@ header {
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
        
         <button><a href="select-a-plan" class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-transparent bg-origin-border px-4 py-1 text-sm font-medium text-white shadow-sm bg-purple-700 hover:bg-purple-500">Sign up</a></button>
-          <a href="login" class="ml-8 whitespace-nowrap text-sm font-medium text-gray-300 hover:text-gray-900">Sign in</a>
+          <a href="https://thepmo.co/" class="ml-8 whitespace-nowrap text-sm font-medium text-gray-300 hover:text-gray-900">Sign in</a>
           
         </div>
       </div>
