@@ -30,7 +30,7 @@ body {
     <!-- component -->
 <body class="bg-white">
 	<nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-6 flex justify-between items-center">
-		<a class="text-3xl font-bold leading-none" href="landingpage">
+		<a class="text-3xl font-bold leading-none" href="/">
     <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.png') }}" alt="pmo logo">
 		</a>
 		<div class="lg:hidden">
@@ -42,7 +42,7 @@ body {
 			</button>
 		</div>
 		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-			<li><a class="text-md text-gray-400 hover:text-gray-500" href="landingpage">Home</a></li>
+			<li><a class="text-md text-gray-400 hover:text-gray-500" href="/">Home</a></li>
 			
 			<li><a class="text-md text-white font-semibold" href="about">About Us</a></li>
 			
@@ -70,7 +70,7 @@ body {
 			<div>
 				<ul>
 					<li class="mb-1">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="landingpage">Home</a>
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/">Home</a>
 					</li>
 					<li class="mb-1">
 						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="about">About Us</a>

@@ -46,7 +46,7 @@ header {
           <div class="relative">
           
             <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-            <a href="landingpage" class="text-base font-medium text-gray-200 hover:text-gray-900">Home</a>
+            <a href="/" class="text-base font-medium text-gray-200 hover:text-gray-900">Home</a>
               <!--
                 Heroicon name: mini/chevron-down
 

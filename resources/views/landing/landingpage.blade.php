@@ -28,7 +28,7 @@ body, #nav {
     <!-- component -->
 <body>
 	<nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-6 flex justify-between items-center">
-		<a class="text-3xl font-bold leading-none" href="landingpage">
+		<a class="text-3xl font-bold leading-none" href="/">
     <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.png') }}" alt="pmo logo">
 		</a>
 		<div class="lg:hidden">
@@ -40,7 +40,7 @@ body, #nav {
 			</button>
 		</div>
 		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-			<li><a class="text-md text-white font-semibold" href="landingpage">Home</a></li>
+			<li><a class="text-md text-white font-semibold" href="/">Home</a></li>
 			
 			<li><a class="text-md text-gray-400 hover:text-gray-500" href="about">About Us</a></li>
 			
@@ -68,7 +68,7 @@ body, #nav {
 			<div>
 				<ul>
 					<li class="mb-1">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="landingpage">Home</a>
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/">Home</a>
 					</li>
 					<li class="mb-1">
 						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="about">About Us</a>
@@ -717,23 +717,23 @@ body {
         <!-- Contact form -->
         <div class="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
           
-          <form action="#" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+          <form action="https://formsubmit.co/b60b974aa1881c80c3064c504b2e3f41" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
             <div>
               <label for="first-name" class="block text-sm font-medium text-gray-900">First name</label>
               <div class="mt-1">
-                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input type="text" name="first-name" id="first-name" required autocomplete="given-name" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
               <label for="last-name" class="block text-sm font-medium text-gray-900">Last name</label>
               <div class="mt-1">
-                <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input type="text" name="last-name" id="last-name" required autocomplete="family-name" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
               <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
               <div class="mt-1">
-                <input id="email" name="email" type="email" autocomplete="email" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input id="email" name="email" type="email" required autocomplete="email" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
@@ -743,7 +743,7 @@ body {
                 <span id="message-max" class="text-sm text-gray-500">Max. 500 characters</span>
               </div>
               <div class="mt-1">
-                <textarea id="message" name="message" rows="1" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" aria-describedby="message-max"></textarea>
+                <textarea id="message" name="message" required rows="1" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" aria-describedby="message-max"></textarea>
               </div>
             </div>
 
@@ -751,21 +751,21 @@ body {
 
             <div class="sm:col-span-2">
              
-            <label for="country" class="block text-sm font-medium text-gray-700"> Property Type: </label>
+            <label for="property type" class="block text-sm font-medium text-gray-700"> Property Type: </label>
             <div class="mt-5">
             
                 
-            <ul><input type="checkbox"> Condominium Association</ul>
-            <ul><input type="checkbox"> Condominium Units</ul>
-            <ul><input type="checkbox"> Student Accomodation</ul>
-            <ul><input type="checkbox"> HOA</ul>
-            <ul><input type="checkbox"> Dormitory</ul>
-            <ul><input type="checkbox"> Commercial</ul>
-            <ul><input type="checkbox"> Self storage</ul>
-            <ul><input type="checkbox"> Senior Living</ul>
-            <ul><input type="checkbox"> Residential Apartments</ul>
-            <ul><input type="checkbox"> Bed and breakfast</ul>
-            <ul><input type="checkbox"> Transient</ul>
+            <ul><input type="checkbox" id="property type"> Condominium Association</ul>
+            <ul><input type="checkbox" id="property type"> Condominium Units</ul>
+            <ul><input type="checkbox" id="property type"> Student Accomodation</ul>
+            <ul><input type="checkbox" id="property type"> HOA</ul>
+            <ul><input type="checkbox" id="property type"> Dormitory</ul>
+            <ul><input type="checkbox" id="property type"> Commercial</ul>
+            <ul><input type="checkbox" id="property type"> Self storage</ul>
+            <ul><input type="checkbox" id="property type"> Senior Living</ul>
+            <ul><input type="checkbox" id="property type"> Residential Apartments</ul>
+            <ul><input type="checkbox" id="property type"> Bed and breakfast</ul>
+            <ul><input type="checkbox" id="property type"> Transient</ul>
            
             
           

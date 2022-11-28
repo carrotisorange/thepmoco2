@@ -28,7 +28,7 @@ body {
     <!-- component -->
 <body class="bg-white">
 	<nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-6 flex justify-between items-center">
-		<a class="text-3xl font-bold leading-none" href="landingpage">
+		<a class="text-3xl font-bold leading-none" href="/">
     <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.png') }}" alt="pmo logo">
 		</a>
 		<div class="lg:hidden">
@@ -40,7 +40,7 @@ body {
 			</button>
 		</div>
 		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-			<li><a class="text-md text-gray-400 hover:text-gray-500" href="landingpage">Home</a></li>
+			<li><a class="text-md text-gray-400 hover:text-gray-500" href="/">Home</a></li>
 			
 			<li><a class="text-md text-gray-400 hover:text-gray-500" href="about">About Us</a></li>
 			
@@ -68,7 +68,7 @@ body {
 			<div>
 				<ul>
 					<li class="mb-1">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="landingpage">Home</a>
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/">Home</a>
 					</li>
 					<li class="mb-1">
 						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="about">About Us</a>
@@ -202,11 +202,12 @@ document.addEventListener('DOMContentLoaded', function() {
       
     <!-- Stats section -->
     <div class="relative bg-gray-50">
-    <div class="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
+    <div class="absolute inset-x-0 bottom-0 xl:top-0 h-72 xl:h-full">
         <div class=" h-full w-full xl:grid xl:grid-cols-3">
+
           <div class="h-full xl:relative xl:col-start-3">
             <img class="h-full w-full object-cover opacity-75 xl:absolute xl:inset-0" src="{{ asset('/brands/landing/faq-2.png') }}" alt="People working on laptops">
-            <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32  xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
+            <div aria-hidden="true" class="absolute inset-x-0 top-0 xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
           </div>
         </div>
       </div>
@@ -215,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
           
           <p class="mt-12 text-3xl font-light tracking-tight text-gray-900">
           Why do <span class="font-bold">property managers</span> need an <span class="font-bold">online rental property management system?</span></p>
-          <p class="mt-5 text-md text-gray-600 ">An online property management system is a better and simpler way of managing rental properties that replaces the tedious and repetitive manual processes of property managers managing a rental property like billing and collection management. </p>
+          <p class="mt-5 mb-10 text-md text-gray-600 ">An online property management system is a better and simpler way of managing rental properties that replaces the tedious and repetitive manual processes of property managers managing a rental property like billing and collection management. </p>
           
           <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
            
@@ -227,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     <div class="relative bg-gray-500 ">
-        <div class="mx-auto max-w px-6 py-12 lg:py-32 lg:px-8 md:py-28 sm:py-20 sm:px-6 relative h-72 bg-gray-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+        <div class="mx-auto max-w px-6 py-12 lg:py-32 lg:px-8 md:py-28 sm:py-20 sm:px-6 relative  bg-gray-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
         <div class="md:ml-auto md:pl-">
             
         <p class="mt-2 text-3xl  text-white">Who uses online property management system?</p>
