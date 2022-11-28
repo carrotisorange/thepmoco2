@@ -1,6 +1,7 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
+            <x-th>#</x-th>
             <x-th>UNIT # </x-th>
             <x-th>START DATE</x-th>
             <x-th>END DATE </x-th>
@@ -13,11 +14,14 @@
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-        @foreach ($utilities as $item)
+        @foreach ($utilities as $index => $item)
         <tr>
+            <x-th>
+                {{  $index+1 }}
+            </x-th>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}">{{ $item->unit->unit }}</a>
+                    href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}">{{ $item->unit_name }}</a>
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($item->start_date)->format('M d, y') }}

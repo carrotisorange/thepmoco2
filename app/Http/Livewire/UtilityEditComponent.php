@@ -40,14 +40,12 @@ class UtilityEditComponent extends Component
         if($selectedAllUtilities)
         {
             $this->selectedUtilities = $this->get_utilities()->pluck('id');
-
         }else
         {
             $this->selectedUtilities = [];
         }
 
         $this->utilities = $this->get_utilities();
-
     }
 
     protected function rules()
@@ -69,40 +67,20 @@ class UtilityEditComponent extends Component
 
         $this->validateOnly($propertyName);
     }
-
-    // public function updateUtilities()
-    // {
-    //     try{
-    //         $this->validate();
-    //         //update the selected unit
-    //         DB::transaction(function () {
-    //             foreach ($this->utilities as $utility) {
-    //                 $utility->save();
-    //             }
-    //         });
-
-    //         return back()->with('success', 'Utilities are successfully saved!');
-
-    //     }catch(\Exception $e){
-    //         session()->flash('error');
-    //     }
-
-    //      $this->utilities = $this->get_utilities();
-    // }
-
     
-    public function updateUtilities()
+    public function updateUtilities($id)
     {
+        
         try{
             $this->validate();
             //update the selected unit
             DB::transaction(function () {
                 foreach ($this->utilities as $utility) {
                     $utility->save();
+
+                    $this->utilities = $this->get_utilities();
                 }
             });
-
-            $this->utilities = $this->get_utilities();
 
             session()->flash('success', 'Utilities are successfully saved!');
 
@@ -110,7 +88,7 @@ class UtilityEditComponent extends Component
             session()->flash('error');
         }
 
-         $this->utilities = $this->get_utilities();
+       
     }
 
     public function get_utilities(){
@@ -180,6 +158,8 @@ class UtilityEditComponent extends Component
     
     public function render()
     {   
+        $this->utilities = $this->get_utilities();
+
         return view('livewire.utility-edit-component');
     }
 }

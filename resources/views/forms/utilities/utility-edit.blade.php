@@ -14,7 +14,7 @@
                 <x-th>MIN CHARGE</x-th>
                 {{-- <x-th>AMOUNT DUE</x-th> --}}
                 {{-- <x-th></x-th> --}}
-                <x-th></x-th>
+                {{-- <x-th></x-th> --}}
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
@@ -39,14 +39,14 @@
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="date" wire:model="utilities.{{ $index }}.start_date"
-                            wire:change="updateUtilities" />
+                            wire:change="updateUtilities({{ $item->id }})({{ $item->id }})" />
                         @error('utilities.{{ $index }}.start_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="date" wire:model="utilities.{{ $index }}.end_date" 
-                        wire:change="updateUtilities" />
+                        wire:change="updateUtilities({{ $item->id }})" />
                         @error('utilities.{{ $index }}.end_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -54,7 +54,7 @@
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
                             wire:model="utilities.{{ $index }}.previous_reading" 
-                            wire:change="updateUtilities"/>
+                            wire:change="updateUtilities({{ $item->id }})"/>
                         @error('utilities.{{ $index }}.previous_reading')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -62,7 +62,7 @@
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
                             wire:model="utilities.{{ $index }}.current_reading" 
-                            wire:change="updateUtilities"/>
+                            wire:change="updateUtilities({{ $item->id }})"/>
                         @error('utilities.{{ $index }}.current_reading')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -77,14 +77,14 @@
                     </x-td> --}}
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:model="utilities.{{ $index }}.kwh" wire:change="updateUtilities" />
+                            wire:model="utilities.{{ $index }}.kwh" wire:change="updateUtilities({{ $item->id }})" />
                         @error('utilities.{{ $index }}.kwh')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:model="utilities.{{ $index }}.min_charge" wire:change="updateUtilities"/>
+                            wire:model="utilities.{{ $index }}.min_charge" wire:change="updateUtilities({{ $item->id }})"/>
                         @error('utilities.{{ $index }}.min_charge')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -97,8 +97,8 @@
                         @enderror
                     </x-td> --}}
                  
-                    <x-td>
-                        <a wire:loading wire:target="updateUtilities" class="text-green-500 text-decoration-line: underline" href="#/">
+                    {{-- <x-td>
+                        <a wire:loading wire:target="updateUtilities({{ $item->id }})" class="text-green-500 text-decoration-line: underline" href="#/">
                             Saving...
                         </a>
                         
@@ -117,7 +117,7 @@
                             </svg>
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
-                    </x-td>
+                    </x-td> --}}
                 </tr>
             </div>
             @endforeach
