@@ -26,7 +26,7 @@ class ContractController extends Controller
         ->when($status, function ($query) use ($status) {
         $query->where('created_at', $status);
         })
-       ->get();
+       ->paginate(10);
 
        return view('contracts.index',[
         'contracts' => $contracts

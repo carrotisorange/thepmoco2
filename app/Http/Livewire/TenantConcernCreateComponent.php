@@ -13,9 +13,11 @@ use App\Models\Unit;
 use App\Models\Concern;
 use Session;
 
-class TenantConcernComponent extends Component
+class TenantConcernCreateComponent extends Component
 {
     public $tenant;
+
+    public $concern_details;
     
     use WithFileUploads;
 
@@ -53,7 +55,7 @@ class TenantConcernComponent extends Component
 
        $this->store_notification();
 
-        return redirect('/property/'.Session::get('property').'/concern/'.$concern_id)->with('success','Concern is reported successfully.');
+        return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/concern/'.$concern_id.'/edit')->with('success','Concern is reported successfully.');
     }
 
     public function store_concern($validatedData)
@@ -86,7 +88,7 @@ class TenantConcernComponent extends Component
 
     public function render()
     {
-        return view('livewire.portal-tenant-concern-component',[
+        return view('livewire.tenant-concern-create-component',[
             'categories' => ConcernCategory::all(),
             'units' => Tenant::findOrFail($this->tenant->uuid)->contracts
         ]);

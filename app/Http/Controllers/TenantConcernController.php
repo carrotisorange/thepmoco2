@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request;    
 use App\Models\Tenant;
 use App\Models\Property;
+use App\Models\Concern;
 
 
 class TenantConcernController extends Controller
@@ -21,6 +22,14 @@ class TenantConcernController extends Controller
         return view('tenants.concerns.create',[
             'tenant' => $tenant,
             
+        ]);
+    }
+
+    public function edit(Property $property, Tenant $tenant, Concern $concern)
+    {
+        return view('tenants.concerns.edit',[
+            'tenant' => $tenant,
+            'concern' => $concern,
         ]);
     }
 

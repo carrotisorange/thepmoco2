@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use App\Models\Owner;
 use Livewire\Component;
 use Session;
+use Livewire\WithPagination;
 
 class OwnerIndexComponent extends Component
 {
+    use WithPagination;
+
     public $search = null;
 
     public function render()
@@ -16,7 +19,7 @@ class OwnerIndexComponent extends Component
         'owners' => Owner::search($this->search)
         ->where('property_uuid', Session::get('property'))
         ->orderBy('created_at', 'asc')
-        ->get()
+        ->paginate(10)
     ]);
     }
 }

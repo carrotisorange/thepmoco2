@@ -170,8 +170,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('ar/{ar}/view', [TenantCollectionController::class, 'view']);
             Route::get('ar/{ar}/attachment', [TenantCollectionController::class, 'attachment']);
             Route::get('ar/{ar}/proof_of_payment', [TenantCollectionController::class, 'proof_of_payment']);
-            Route::get('concerns', [TenantConcernController::class, 'index']);
+            Route::get('concerns', [TenantConcernController::class, 'index'])->name('tenant');
             Route::get('concern/create', [TenantConcernController::class, 'create'])->name('concern');
+            Route::get('concern/{concern}/edit', [TenantConcernController::class, 'edit'])->name('tenant');
             Route::get('units', [TenantContractController::class, 'create']);
             Route::get('ledger', [TenantLedgerController::class, 'index']);
 
@@ -289,7 +290,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('concern')->group(function(){
         Route::get('/', [ConcernController::class, 'index'])->name('concern');
         Route::get('create', [ConcernController::class, 'create'])->name('concern');
-        Route::get('/{concern}', [ConcernController::class, 'show'])->name('concern');
     });
 
     //Routes for Team

@@ -56,8 +56,6 @@
                 </div>
             </li>
 
-
-
             <li class="relative md:flex md:flex-1">
                 <!-- Current Step -->
                 <a href="#" class="group flex w-full items-center">
@@ -194,17 +192,19 @@
         </div> --}}
 
     </div>
-    <div>
+    {{-- <div>
         <p class="text-sm text-center text-gray-500">
             Showing
             <span class="font-medium">{{ $tenants->count() }}</span>
 
             {{Str::plural('tenant', $tenants->count())}}
         </p>
-    </div>
+    </div> --}}
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
+            <div class="mt-3">
+                {{ $tenants->links() }}
+            </div>
             <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <!-- Selected row actions, only show when rows are selected. -->
                 <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">

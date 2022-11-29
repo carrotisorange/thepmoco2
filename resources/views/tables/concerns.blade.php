@@ -1,80 +1,40 @@
-<table class="min-w-full table-fixed">
-
-    <thead class="">
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
         <tr>
-            <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
-
-            </th>
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                REFERENCE #</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                UNIT</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                TENANT</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                CATEGORY</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                DATE REPORTED</th>
-
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                SUBJECT</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                STATUS</th>
-            </th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-
-            </th>
-
+            <x-th>#</x-th>
+            <x-th>REFERENCE #</x-th>
+            <x-th>DATE REPORTED</x-th>
+            <x-th>UNIT</x-th>
+            <x-th>TENANT</x-th>
+            <x-th>CATEGORY</x-th>
+            <x-th>SUBJECT</x-th>
+            <x-th>STATUS</x-th>
+            <x-th></x-th>
         </tr>
     </thead>
-
-
-    @foreach ($concerns as $concern)
-    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-        <!-- Selected: "bg-gray-50" -->
+    <tbody class="bg-white divide-y divide-gray-200">
+        @foreach ($concerns as $index => $concern)
         <tr>
-            <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                <!-- Selected row marker, only show when row is selected. -->
-
-                {{-- <input type="checkbox"
-                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                --}}
-            </td>
-            <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $concern->reference_no }}
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $concern->unit->unit }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $concern->tenant->tenant }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $concern->category->category }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ Carbon\Carbon::parse($concern->created_at)->format('M d, Y') }}
-            </td>
-
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $concern->subject }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $concern->status }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
-
-                <a href="/property/{{ Session::get("property") }}/concern/{{ $concern->id }}"
-                    class="text-indigo-600 hover:text-indigo-900">Review</a>
-
-            </td>
+            <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ $concern->reference_no }}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($concern->created_at)->format('M d, Y') }}</x-td>
+            <x-td>
+                <a href="/property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}/concerns"
+                    class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->unit->unit }}</a>
+          </x-td>
+            <x-td>
+                <a href=" /property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}/concerns"
+                    class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->tenant->tenant
+                    }}</a>
+            </x-td>
+            <x-td>{{ $concern->category->category }}</x-td>
+            <x-td>{{ $concern->subject }}</x-td>
+            <x-td>{{ $concern->status }}</x-td>
+            <x-td>
+                <a href="/property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}/concern/{{ $concern->id }}/edit"
+                    class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
+            </x-td>
         </tr>
-
-        <!-- More people... -->
+        @endforeach
     </tbody>
-
-    @endforeach
-
-
-
 </table>

@@ -16,6 +16,7 @@ class TenantEditComponent extends Component
     use WithFileUploads;
 
     public $tenant_details;
+    
     public $tenant;
     public $email;
     public $mobile_number;

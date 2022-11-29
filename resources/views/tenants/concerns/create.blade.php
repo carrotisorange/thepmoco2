@@ -1,6 +1,6 @@
 <x-new-layout>
-    @section('title', 'Concerns')
+    @section('title', $tenant->tenant.' | '.Session::get('property_name'))
 
-    @livewire('tenant-concern-component', ['tenant' => $tenant])
+    @livewire('tenant-concern-create-component', ['tenant' => $tenant])
 
 </x-new-layout>

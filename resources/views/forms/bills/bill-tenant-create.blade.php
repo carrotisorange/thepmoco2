@@ -32,7 +32,6 @@
                     Unit
                 </x-label>
                 <x-form-select wire:model="unit_uuid" id="unit_uuid" name="unit_uuid">
-
                     @foreach ($units as $unit)
                     @if($units->count() == 1)
                     <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
