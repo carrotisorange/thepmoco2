@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use DB;
 
-class ConcernRespondComponent extends Component
+class TenantConcernEditComponent extends Component
 {
     public $concern_details;
 
@@ -76,15 +76,13 @@ class ConcernRespondComponent extends Component
         session()->flash('success', 'Concern details is successfully updated.');
 
        }catch(\Exception $e){
-        ddd($e);
         session()->flash('error');
        }
     }
 
-
     public function render()
     {
-        return view('livewire.concern-respond-component',[
+        return view('livewire.tenant-concern-edit-component',[
             'categories' => ConcernCategory::all(),
             'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property')),
         ]);

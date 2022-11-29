@@ -258,7 +258,7 @@
                                             <div button type="button"
                                                 class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 <a
-                                                    href="/property/{{ $property->uuid }}/concern/{{ $item->id }}">Respond</a></button>
+                                                    href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant_uuid }}/concern/{{ $item->id }}/edit">Respond</a></button>
                                             </div>
 
                                         </div>

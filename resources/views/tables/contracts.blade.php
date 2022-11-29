@@ -1,50 +1,24 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-
-            <x-th>
-                #</x-th>
+            <x-th>#</x-th>
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
-
-
-
-            <x-th>START
-            </x-th>
-            <x-th>END
-            </x-th>
+            <x-th>START</x-th>
+            <x-th>END </x-th>
             <x-th>RENT/MO</x-th>
             <x-th>STATUS</x-th>
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
-            {{-- <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                INTERACTION
-                </x-th> --}}
-                {{--
-            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">MOVEOUT
-                REASON
-                </x-th>
-                <x-th>MOVEOUT DATE
-                </x-th> --}}
-                {{-- <x-th></x-th> --}}
-                <x-th></x-th>
-                <x-th></x-th>
-                {{-- <x-th></x-th>
-                <x-th></x-th>
-                <x-th></x-th>
-                <x-th></x-th> --}}
-                {{-- <x-th></x-th> --}}
-
+            <x-th></x-th>
+            <x-th></x-th>
         </tr>
     </thead>
     @foreach ($contracts as $index => $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-
-            <x-td>
-                {{ $index+1 }}
-            </x-td>
+            <x-td> {{ $index+1 }} </x-td>
             <x-td>
                 @if(auth()->user()->role_id == '8')
                 {{ $item->unit->unit }}
@@ -101,87 +75,40 @@
                     </span>
                     @endif
             </x-td>
-            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->interaction->interaction }}
-                </x-td> --}}
-                {{--
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $item->moveout_reason }}</x-td>
-                <x-td>
-                    @if($item->moveout_at)
-                    {{ Carbon\Carbon::parse($item->moveout_at)->format('M d, Y') }}
-                    @else
-                    NA
-                    @endif
-                </x-td> --}}
-                {{-- <x-td>
-                    @if($item->contract)
-                    <a href="{{ asset('/storage/'.$item->contract) }}" target="_blank"
-                        class="text-indigo-500 text-decoration-line: underline">View
-                        Contract</a>
-                    @else
-                    @can('admin')
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
-                        class="text-indigo-500 text-decoration-line: underline">Attach a contract</a>
-                    @endif
-                    @endif
-                </x-td> --}}
-                <x-td>
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
-                        class="text-indigo-500 text-decoration-line: underline">
-                        Edit</a>
-                </x-td>
-                {{-- <x-td>
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
-                        class="text-indigo-500 text-decoration-line: underline">Edit</a>
-
-
-                </x-td> --}}
-                <x-td>
-                    @if($item->status != 'pendingmovein')
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
-                        class="text-indigo-500 text-decoration-line: underline">Renew</a>
-                    @endif
-                </x-td>
-                <x-td>
-                    @if($item->status != 'pendingmovein')
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
-                        class="text-indigo-500 text-decoration-line: underline">Transfer</a>
-                    @endif
-                </x-td>
-                <x-td>
-                    @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status ==
-                    'pendingmoveout')
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
-                        class="text-indigo-500 text-decoration-line: underline">Moveout</a>
-                    @elseif($item->status == 'reserved')
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
-                        class="text-indigo-500 text-decoration-line: underline">Movein</a>
-                    @endif
-
-                </x-td>
-                <x-td>
-                    @if($item->status == 'pendingmovein')
-                    <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills"
-                        class="text-indigo-500 text-decoration-line: underline">Pay Bills</a>
-                    @endif
-
-                </x-td>
-                {{-- <x-td>
-                    @if($item->unit->occupancy > $item->unit->contracts()->where('status',
-                    'active')->count() && ($item->status != 'pendingmovein' && $item->status != 'pending'))
-                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ Str::random(8) }}/create"
-                        class="text-indigo-500 text-decoration-line: underline">New</a>
-                    @else
-
-                    @endif
-
-                </x-td> --}}
-
-
-
-
-
+            <x-td>
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"
+                    class="text-indigo-500 text-decoration-line: underline">
+                    Edit</a>
+            </x-td>
+            <x-td>
+                @if($item->status != 'pendingmovein')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/renew"
+                    class="text-indigo-500 text-decoration-line: underline">Renew</a>
+                @endif
+            </x-td>
+            <x-td>
+                @if($item->status != 'pendingmovein')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/transfer"
+                    class="text-indigo-500 text-decoration-line: underline">Transfer</a>
+                @endif
+            </x-td>
+            <x-td>
+                @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status ==
+                'pendingmoveout')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
+                    class="text-indigo-500 text-decoration-line: underline">Moveout</a>
+                @elseif($item->status == 'reserved')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
+                    class="text-indigo-500 text-decoration-line: underline">Movein</a>
+                @endif
+            </x-td>
+            <x-td>
+                @if($item->status == 'pendingmovein')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills"
+                    class="text-indigo-500 text-decoration-line: underline">Pay Bills</a>
+                @endif
+            </x-td>
         </tr>
-
         @endforeach
     </tbody>
 </table>

@@ -7,9 +7,12 @@ use App\Models\Property;
 use Session;
 use App\Models\Concern;
 use DB;
+use Livewire\WithPagination;
 
 class ConcernIndexComponent extends Component
 {
+    use WithPagination;
+
     public $search;
 
     public $status;
@@ -27,7 +30,7 @@ class ConcernIndexComponent extends Component
             ->where('property_uuid', Session::get('property'))
             ->when($this->status, function($query){
             $query->whereIn('status',[ $this->status]);
-            })->get(),
+            })->paginate(10),
             'statuses' => $statuses
         ]);
     }

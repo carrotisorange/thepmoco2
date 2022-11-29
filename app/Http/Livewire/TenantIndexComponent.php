@@ -28,7 +28,7 @@ class TenantIndexComponent extends Component
           $query->where('status',$this->status);
         })
         ->orderBy('created_at', 'desc')
-        ->get();
+        ->paginate(10);
         
         return view('livewire.tenant-index-component', [
             'tenants' => $tenants,

@@ -5,15 +5,18 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Session;
 use App\Models\UserProperty;
+use Livewire\WithPagination;
 
 class UserIndexComponent extends Component
 {
+    use WithPagination;
+
     public $search;
     public $status;
 
    public function render()
    {
-      $users = UserProperty::join('users', 'user_id', 'users.id')
+      $personnels = UserProperty::join('users', 'user_id', 'users.id')
       ->join('properties', 'property_uuid', 'properties.uuid')
       ->select('*')
       ->where('property_uuid', Session::get('property'))
@@ -23,10 +26,10 @@ class UserIndexComponent extends Component
       ->when($this->status, function($query){
       $query->where('users.status', $this->status);
         })
-     ->get();
+     ->paginate(10);
       
      return view('livewire.user-index-component', [
-        'users' => $users,
+        'personnels' => $personnels,
         'statuses' => app('App\Http\Controllers\UserPropertyController')->get_user_statuses(Session::get('property')),
       ]);
    }

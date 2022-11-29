@@ -143,7 +143,7 @@ class BillIndexComponent extends Component
          ->when($this->particular_id, function($query){
          $query->where('particular_id', $this->particular_id);
          })
-         ->get();
+         ->paginate(10);
       }
      
    }

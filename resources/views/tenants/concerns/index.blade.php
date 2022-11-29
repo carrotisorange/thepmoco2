@@ -1,33 +1,19 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="bg-gray-50">
-        <tr>
-            <x-th>REFERENCE #</x-th>
-            <x-th>REPORTED ON</x-th>
-            <x-th>SUBJECT</x-th>
-            <x-th>UNIT</x-th>
-            <x-th>CATEGORY</x-th>
-            <x-th>CONCERN</x-th>
-            <x-th>STATUS</x-th>
-            <x-th></x-th>
-        </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
-        @foreach($concerns as $index => $item)
-        <tr>
-            <x-td>{{ $item->reference_no }}</x-td>
-            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y')}}</x-td>
-            <x-td>{{ $item->subject }}</x-td>
-            <x-td>{{ $item->unit->unit }}</x-td>
-            <x-td>{{ $item->category->category }}</x-td>
-            <x-td>{{ $item->concern }}</x-td>
-            <x-td>{{ $item->status }}</x-td>
-            <x-td>
-                <a class="font-medium text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $item->property_uuid }}/concern/{{ $item->id }}"
-                    class="text-indigo-600 hover:text-indigo-900">Review</a>
-            </x-td>
-        </tr>
-        @endforeach
-    </tbody>
+<x-new-layout>
+    @section('title', $tenant->tenant.' | '.Session::get('property_name'))
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mt-5 px-4 sm:px-6 lg:px-8">
+            <div class="sm:flex sm:items-center">
+                <div class="sm:flex-auto">
+                    <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">{{ $tenant->tenant }} /
+                        Concerns</h1>
+                </div>
+                <button type="button"
+                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                    Go back
+                    </a></button>
 
-</table>
+
+            </div>
+            @include('tables.concerns')
+</x-new-layout>

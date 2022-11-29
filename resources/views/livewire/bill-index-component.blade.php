@@ -224,19 +224,17 @@
     </div>
 
 
-    <div>
+    {{-- <div>
         <p class="mt-5 text-sm text-center text-gray-500">
             Showing
             <span class="font-medium">{{ $bills->count() }}</span>
 
             {{Str::plural('bill', $bills->count())}}
         </p>
-    </div>
+    </div> --}}
     <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
-
-
             </div>
             <div class="basis-1/4 ml-12 text-right">
                 @can('accountowner')
@@ -252,14 +250,18 @@
     </div>
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
+            <div class="mt-5">
+                {{ $bills->links() }}
+            </div>
             <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <!-- Selected row actions, only show when rows are selected. -->
                 <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                 </div>
+
                 @include('tables.bills')
             </div>
+
         </div>
     </div>
     @include('modals.popup-error')

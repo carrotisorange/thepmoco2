@@ -1,103 +1,50 @@
-<thead class="">
-    <tr>
-        <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
-            #
-        </th>
-        <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-            DATE</th>
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            REQUEST FOR</th>
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            PARTICULAR
-        </th>
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            REQUESTED BY
-        </th>
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            BILLER</th>
-
-        </th>
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            AMOUNT</th>
-
-        </th>
-
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            APPROVED ON</th>
-
-        </th>
-
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            STATUS</th>
-
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-        </th>
-        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-        </th>
-
-
-
-    </tr>
-</thead>
-
-@foreach($accountpayables as $index => $accountpayable)
-<tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-    <!-- Selected: "bg-gray-50" -->
-    <tr>
-        <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-            {{ $index+1 }}
-        </td>
-        <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            {{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
-        </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            {{ $accountpayable->request_for }}
-        </td>
-        </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            {{ $accountpayable->particular->particular }}
-        </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            {{ $accountpayable->requester->name }}
-        </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            {{ $accountpayable->biller->biller }}
-        </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            {{ number_format($accountpayable->amount, 2) }}
-        </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            @if($accountpayable->approved_at != '0000-00-00 00:00:00')
-            {{ Carbon\Carbon::parse($accountpayable->approved_at)->format('M d, Y') }}
-            @else
-            NA
-            @endif
-        </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            {{$accountpayable->status}}
-        </td>
-
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <a href="{{ asset('/storage/'.$accountpayable->attachment) }}" target="_blank"
-                class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
-        </td>
-
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            @if($accountpayable->status != 'approved')
-            @can('manager')
-            <a href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable->id }}/approve"
-                class="text-indigo-600 hover:text-indigo-900">Approve</a>
-            @endcan
-            @else
-
-            @endif
-
-        </td>
-
-    </tr>
-
-</tbody>
-@endforeach
-
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
+        <tr>
+            <x-th>#</x-th>
+            <x-th>DATE</x-th>
+            <x-th>REQUEST FOR</x-th>
+            <x-th>PARTICULAR</x-th>
+            <x-th>REQUESTED BY</x-th>
+            <x-th>BILLER</x-th>
+            <x-th>AMOUNT</x-th>
+            <x-th>APPROVED ON</x-th>
+            <x-th>STATUS</x-th>
+            <x-th></x-th>
+        </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+        @foreach($accountpayables as $index => $accountpayable)
+        <tr>
+            <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
+            <x-td>{{ $accountpayable->request_for }}</x-td>
+            <x-td>{{ $accountpayable->particular->particular }}</x-td>
+            <x-td>{{ $accountpayable->requester->name }}</x-td>
+            <x-td>{{ $accountpayable->biller->biller }}</x-td>
+            <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
+            <x-td>
+                @if($accountpayable->approved_at != '0000-00-00 00:00:00')
+                {{ Carbon\Carbon::parse($accountpayable->approved_at)->format('M d, Y') }}
+                @else
+                NA
+                @endif
+            </x-td>
+            <x-td>{{$accountpayable->status}}</x-td>
+            <x-td>
+                <a href="{{ asset('/storage/'.$accountpayable->attachment) }}" target="_blank"
+                    class="text-blue-500 text-decoration-line: underline">View Attachment</a>
+            </x-td>
+            <x-td>
+                @if($accountpayable->status != 'approved')
+                @can('manager')
+                <a href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable->id }}/approve"
+                    class="text-blue-500 text-decoration-line: underline">Approve</a>
+                @endcan
+                @else
+                @endif
+            </x-td>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
