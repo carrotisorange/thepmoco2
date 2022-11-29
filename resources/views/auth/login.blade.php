@@ -92,7 +92,7 @@
                             </div>
 
                             <div class="text-sm text-center">
-                                Don't have an account? <a href="/select-a-plan"
+                                Don't have an account? <a href="https://thepmo.co/select-a-plan"
                                     class="font-medium text-indigo-600 hover:text-indigo-500">Sign
                                     up. </a>
                             </div>

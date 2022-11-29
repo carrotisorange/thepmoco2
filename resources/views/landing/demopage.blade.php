@@ -51,7 +51,7 @@ body, #nav {
 			<li><a class="text-md text-gray-400 hover:text-gray-500" href="blog">Articles</a></li>
 		
 		</ul>
-		<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-purple-700 text-sm text-white hover:bg-gray-300  rounded-2xl transition duration-200" href="select-a-plan">Sign Up</a>
+		<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-purple-700 text-sm text-white hover:bg-gray-300  rounded-2xl transition duration-200" href="https://thepmo.co/select-a-plan">Sign Up</a>
 		<a class="hidden lg:inline-block py-2 px-6  text-sm text-white hover:bg-gray-400 rounded-2xl transition duration-200" href="https://thepmo.co/">Sign In</a>
 	</nav>
 	<div class="navbar-menu relative z-50 hidden">
@@ -87,7 +87,7 @@ body, #nav {
 			<div class="mt-auto">
 				<div class="pt-6">
 					<a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="https://thepmo.co/">Sign in</a>
-					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-700  rounded-xl" href="select-a-plan">Sign Up</a>
+					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-700  rounded-xl" href="https://thepmo.co/select-a-plan">Sign Up</a>
 				</div>
 				<p class="my-4 text-xs text-center text-gray-400">
 					<span>Copyright © 2022</span>
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </video>
     </div>
 
-<p class= "pt-5 text-center text-light text-sm">A demo video for creating a property, adding units and  tenants. <p class="text-center text-light text-sm"><span class="font-semibold text-purple-700"><a href="select-a-plan">Subscribe</a></span> to The PMO for a full demo!</p></p>
+<p class= "pt-5 text-center text-light text-sm">A demo video for creating a property, adding units and  tenants. <p class="text-center text-light text-sm"><span class="font-semibold text-purple-700"><a href="https://thepmo.co/select-a-plan">Subscribe</a></span> to The PMO for a full demo!</p></p>
 </div>
     
 

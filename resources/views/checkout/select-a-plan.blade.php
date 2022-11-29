@@ -125,7 +125,7 @@
                         </div>
 
                         <div class="text-sm text-center">
-                            Already have an account? <a href="/login"
+                            Already have an account? <a href=https://thepmo.co/
                                 class="font-medium text-indigo-600 hover:text-indigo-500">Sign in. </a>
                         </div>
 

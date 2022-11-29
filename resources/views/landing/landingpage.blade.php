@@ -49,7 +49,7 @@ body, #nav {
 			<li><a class="text-md text-gray-400 hover:text-gray-500" href="blog">Articles</a></li>
 		
 		</ul>
-		<a id="button1"class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-white hover:bg-gray-300  rounded-xl transition duration-200" href="select-a-plan">Sign Up</a>
+		<a id="button1"class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-white hover:bg-gray-300  rounded-xl transition duration-200" href="https://thepmo.co/select-a-plan">Sign Up</a>
 		<a class="hidden lg:inline-block py-2 px-6  text-sm text-white hover:bg-gray-400 rounded-2xl transition duration-200" href="https://thepmo.co/">Sign In</a>
 	</nav>
 	<div class="navbar-menu relative z-50 hidden">
@@ -85,7 +85,7 @@ body, #nav {
 			<div class="mt-auto">
 				<div class="pt-6">
 					<a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="https://thepmo.co/">Sign in</a>
-					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-700  rounded-xl" href="select-a-plan">Sign Up</a>
+					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-700  rounded-xl" href="https://thepmo.co/select-a-plan">Sign Up</a>
 				</div>
 				<p class="my-4 text-xs text-center text-gray-400">
 					<span>Copyright © 2022</span>
@@ -202,7 +202,7 @@ body {
   background-color:#fdba74;
 }
 </style>
-              <button id= "button1"> <a href="select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
+              <button id= "button1"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
               <button> <a href="demopage" class="w-48 flex justify-center py-3 px-4 border border-gray-400 rounded-full shadow-sm text-sm font-medium text-white hover:bg-purple-300  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View Demo</a></button>            
             </div>
 
