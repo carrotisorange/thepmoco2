@@ -2,7 +2,7 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Utilities</h1>
+                <h1 class="text-3xl font-bold text-gray-700">Utilities / {{ $option }}</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <button
@@ -77,7 +77,13 @@
 
             </div>
             <div class="sm:col-span-1">
-                <label for="">Kw/H</label>
+                <label for="">
+                    @if($option == 'water')
+                    Cu/m
+                    @else
+                    Kw/H
+                    @endif
+                </label>
                 <input type="text" id="kwh" wire:model="kwh" wire:change="updateParameters"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>

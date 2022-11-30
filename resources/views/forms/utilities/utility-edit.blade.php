@@ -10,7 +10,13 @@
                 <x-th>PREVIOUS READING</x-th>
                 <x-th>CURRENT READING</x-th>
                 {{-- <x-th>CONSUMPTION</x-th> --}}
-                <x-th>KW/H</x-th>
+                <x-th>
+                    @if($option == 'water')
+                    Cu/m
+                    @else
+                    Kw/H
+                    @endif
+                </x-th>
                 <x-th>MIN CHARGE</x-th>
                 {{-- <x-th>AMOUNT DUE</x-th> --}}
                 {{-- <x-th></x-th> --}}
@@ -38,53 +44,57 @@
                         </a> --}}
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" type="date" wire:model="utilities.{{ $index }}.start_date"
-                            wire:change="updateUtilities({{ $item->id }})({{ $item->id }})" />
+                        <x-table-input form="edit-form" type="date" 
+                            wire:change="updateUtilities({{ $item->id }})"
+                            wire:model="utilities.{{ $index }}.start_date" />
                         @error('utilities.{{ $index }}.start_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" type="date" wire:model="utilities.{{ $index }}.end_date" 
-                        wire:change="updateUtilities({{ $item->id }})" />
+                        <x-table-input form="edit-form" type="date" wire:model="utilities.{{ $index }}.end_date"
+                            wire:change="updateUtilities({{ $item->id }})" />
                         @error('utilities.{{ $index }}.end_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:model="utilities.{{ $index }}.previous_reading" 
-                            wire:change="updateUtilities({{ $item->id }})"/>
+                           
+                            wire:change="updateUtilities({{ $item->id }})"
+                            wire:model="utilities.{{ $index }}.previous_reading" />
                         @error('utilities.{{ $index }}.previous_reading')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:model="utilities.{{ $index }}.current_reading" 
-                            wire:change="updateUtilities({{ $item->id }})"/>
+                          
+                            wire:change="updateUtilities({{ $item->id }})" 
+                            wire:model="utilities.{{ $index }}.current_reading"/>
                         @error('utilities.{{ $index }}.current_reading')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     {{-- <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:model="utilities.{{ $index }}.current_consumption" 
-                            readonly />
+                            wire:model="utilities.{{ $index }}.current_consumption" readonly />
                         @error('utilities.{{ $index }}.current_consumption')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td> --}}
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:model="utilities.{{ $index }}.kwh" wire:change="updateUtilities({{ $item->id }})" />
+                            wire:change="updateUtilities({{ $item->id }})" 
+                            wire:model="utilities.{{ $index }}.kwh"/>
                         @error('utilities.{{ $index }}.kwh')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:model="utilities.{{ $index }}.min_charge" wire:change="updateUtilities({{ $item->id }})"/>
+                            wire:change="updateUtilities({{ $item->id }})" 
+                            wire:model="utilities.{{ $index }}.min_charge"/>
                         @error('utilities.{{ $index }}.min_charge')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -96,12 +106,13 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td> --}}
-                 
+
                     {{-- <x-td>
-                        <a wire:loading wire:target="updateUtilities({{ $item->id }})" class="text-green-500 text-decoration-line: underline" href="#/">
+                        <a wire:loading wire:target="updateUtilities({{ $item->id }})"
+                            class="text-green-500 text-decoration-line: underline" href="#/">
                             Saving...
                         </a>
-                        
+
                         <button type="submit" wire:click="removeUtilities({{ $item->id }})"
                             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 

@@ -2,6 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
+            <x-th>UTILITY</x-th>
             <x-th>UNIT # </x-th>
             <x-th>START DATE</x-th>
             <x-th>END DATE </x-th>
@@ -19,6 +20,7 @@
             <x-th>
                 {{  $index+1 }}
             </x-th>
+            <x-td>{{ $item->type }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}">{{ $item->unit_name }}</a>

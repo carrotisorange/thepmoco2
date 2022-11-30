@@ -15,6 +15,8 @@ class UtilityEditComponent extends Component
 {
     use WithPagination;
 
+    public $option;
+
     public $search;
     public $start_date;
     public $end_date;
@@ -27,9 +29,10 @@ class UtilityEditComponent extends Component
 
     public $selectedAllUtilities = false;
 
-    public function mount($batch_no)
+    public function mount($batch_no, $option)
     {
         $this->batch_no = $batch_no;
+        $this->option = $option;
         $this->utilities = $this->get_utilities();
         $this->start_date = Carbon::now()->format('Y-m-d');
         $this->end_date = Carbon::now()->addMonth()->format('Y-m-d');
@@ -70,6 +73,7 @@ class UtilityEditComponent extends Component
     
     public function updateUtilities($id)
     {
+        sleep(1);
         
         try{
             $this->validate();
@@ -88,7 +92,6 @@ class UtilityEditComponent extends Component
             session()->flash('error');
         }
 
-       
     }
 
     public function get_utilities(){
@@ -100,6 +103,8 @@ class UtilityEditComponent extends Component
 
     public function updateParameters()
     {
+        sleep(1);
+
         Utility::where('property_uuid', Session::get('property'))
         ->where('batch_no', $this->batch_no)
         ->update([
@@ -128,22 +133,6 @@ class UtilityEditComponent extends Component
         return redirect('/property/'.Session::get('property').'/utilities')->with('success', 'Utilities are successfully posted!');
 
     }
-
-    // public function updateUtilities($id)
-    // {
-    //     sleep(1);
-
-    //     ddd($id);
-
-    //     Utility::where('id', $id)
-    //     ->update([
-    //         ''
-    //     ]);
-
-    //     $this->utilities = $this->get_utilities();
-
-    //     session()->flash('success', 'Utility is successfully removed');
-    // }
 
     public function removeUtilities($id)
     {

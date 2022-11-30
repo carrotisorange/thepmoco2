@@ -1,4 +1,4 @@
-<form method="POST" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
+<form id="updateTenant" method="POST" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
 
@@ -200,7 +200,11 @@
 
 
     <div class="mt-1 flex justify-end">
-        <button type="submit"
+        <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
+            href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/delete">
+            Delete
+        </a>
+        <button type="submit" form="updateTenant"
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
             <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

@@ -124,6 +124,12 @@ class TenantEditComponent extends Component
         }
     }
 
+    public function archiveTenant($tenant_uuid)
+    {
+        ddd($tenant_uuid);
+    }
+
+
      public function sendCredentials()
     {
         sleep(2);

@@ -5,7 +5,7 @@
                 <h1 class="text-3xl font-bold text-gray-700">Utilities</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button type="submit" wire:click="storeUtilities"
+                <button type="submit" wire:click="storeUtilities('water')"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 
                     <svg wire:loading wire:target="storeUtilities" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -16,7 +16,19 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    New
+                    Record Water Utilities
+                </button><button type="submit" wire:click="storeUtilities('electric')"
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                
+                    <svg wire:loading wire:target="storeUtilities" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        </circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                    </svg>
+                    Record Electric Utilities
                 </button>
                 {{-- <button wire:click="storeUtilities"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
@@ -77,18 +89,20 @@
 
         </div>
 
-        <div>
+        {{-- <div>
             <p class="mt-3 text-sm text-center text-gray-500">
                 Showing
                 <span class="font-medium">{{ $utilities->count() }}</span>
 
                 {{Str::plural('utility', $utilities->count())}}
             </p>
-        </div>
+        </div> --}}
 
         <div class="mt-3 -my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
+                <div class="mt-3">
+                    {{ $utilities->links() }}
+                </div>
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     <!-- Selected row actions, only show when rows are selected. -->
                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
@@ -98,7 +112,7 @@
                     @include('tables.utilities')
 
                 </div>
-                {{ $utilities->links() }}
+                
             </div>
         </div>
     </div>
