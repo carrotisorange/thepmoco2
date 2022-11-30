@@ -7,8 +7,6 @@
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
 
-
-
             <x-th>START
             </x-th>
             <x-th>END
@@ -38,8 +36,9 @@
 
         </tr>
     </thead>
-    @foreach ($contracts as $index => $item)
+
     <tbody class="bg-white divide-y divide-gray-200">
+        @foreach ($contracts as $index => $item)
         <tr>
 
             <x-td>
