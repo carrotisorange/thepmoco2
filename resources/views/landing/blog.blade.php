@@ -176,9 +176,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="" class="hover:underline">Anonymous</a>
               </p>
               <div class="flex space-x-1 text-sm text-gray-500">
-                <time datetime="2020-03-16">Date</time>
+                <time datetime="2020-03-16">10/22</time>
                 <span aria-hidden="true">&middot;</span>
-                <span>6 min read</span>
+                <span>less than 1 min read</span>
               </div>
             </div>
           </div>
