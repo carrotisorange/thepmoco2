@@ -15,7 +15,7 @@ use App\Models\Property;
 
 class TenantBillComponent extends Component
 {
-     use WithPagination;
+   use WithPagination;
 
     public $tenant;
 
@@ -25,7 +25,6 @@ class TenantBillComponent extends Component
 
      public function removeBills()
      {
-       
         if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
         {
             $this->selectedBills = [];
@@ -38,24 +37,6 @@ class TenantBillComponent extends Component
         $this->selectedBills = [];
 
         return back()->with('success','Bill is successfully removed.');
-     }
-
-     public function postBills()
-     {
-         try{
-            
-            sleep(1);
-
-            DB::beginTransaction();
-            
-            DB::commit();
-
-         }catch(\Exception $e)
-         { 
-            DB::rollback();
-
-            return back()->with('error','Cannot perform your action.');
-         }
      }
 
    public function payBills()
@@ -133,7 +114,6 @@ class TenantBillComponent extends Component
       }
    }
 
-
     public function render()
     {
 
@@ -143,7 +123,7 @@ class TenantBillComponent extends Component
       ->when($this->status, function($query){
          $query->where('status', $this->status);
       })
-      ->get();
+      ->paginate(10);
 
       $statuses = Bill::where('bills.property_uuid', Session::get('property'))
       ->select('status', DB::raw('count(*) as count'))
