@@ -21,7 +21,7 @@
     <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
-  
+
 
                 @can('treasury')
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
@@ -45,7 +45,9 @@
             <div class="basis-1/4 ml-12 text-right">
                 @can('accountowner')
                 @if($selectedBills)
-                <x-button class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
+                <x-button
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
                     Remove
                     bills ({{ count($selectedBills) }})
                 </x-button>
@@ -54,7 +56,7 @@
             </div>
         </div>
     </div>
-
+    {{ $bills->links() }}
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">
@@ -62,12 +64,11 @@
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <?php $ctr =1; ?>
                                 <thead class="bg-gray-50">
                                     <tr>
+                                        <x-th>#</x-th>
                                         <x-th>
-                                            {{--
-                                            <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
+                                          
                                         </x-th>
                                         <x-th>Bill #</x-th>
                                         <x-th>Unit</x-th>
@@ -80,9 +81,10 @@
                                         {{-- <x-th></x-th> --}}
                                     </tr>
                                 </thead>
-                                @forelse ($bills as $item)
+                                @foreach ($bills as $index => $item)
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     <tr>
+                                        <x-td>{{ $index+1 }}</x-td>
                                         <x-td>
                                             @if($item->status != 'paid')
                                             <x-input type="checkbox" wire:model="selectedBills"
@@ -123,21 +125,8 @@
                                         </x-td>
                                         <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
                                         <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
-                                        {{-- <x-td>
-                                            <form method="POST" action="/bill/{{ $item->id }}/delete">
-                                                @csrf
-                                                @method('delete')
-                                                <x-button onclick="confirmMessage()"><i
-                                                        class="fa-solid fa-trash-can"></i></x-button>
-                                            </form>
-                                        </x-td> --}}
-
-                                        @empty
-                                        <x-td>
-                                            No data found.
-                                        </x-td>
                                     </tr>
-                                    @endforelse
+                                    @endforeach
                                     <tr>
                                         <x-td>Total</x-td>
                                         <x-td></x-td>
@@ -146,8 +135,7 @@
                                         <x-td></x-td>
                                         <x-td>{{number_format($bills->sum('bill'),2) }}</x-td>
                                         <x-td>{{number_format($bills->sum('initial_payment'),2) }}</x-td>
-                                        <x-td>{{number_format($bills->sum('bill') - $bills->sum('initial_payment') ,2)
-                                            }}</x-td>
+                                        <x-td>{{number_format($bills->sum('bill') - $bills->sum('initial_payment') ,2)  }}</x-td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -6,9 +6,10 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <x-th>#</x-th>
+                <x-th>AR #</x-th>
                 <x-th>Date posted</x-th>
                 <x-th>Particular</x-th>
-                <x-th>Unit</x-th>
+                {{-- <x-th>Unit</x-th> --}}
                 <x-th>Period</x-th>
                 <x-th>Amount Due</x-th>
                 <x-th>Payment</x-th>
@@ -17,11 +18,12 @@
         <tbody>
             @foreach ($collections as $index => $bill)
             <tr>
+                <x-td>{{ $index+1 }}</x-td>
                 <x-td>{{ $bill->bill_no }}</x-td>
                 <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
                 </x-td>
                 <x-td>{{$bill->particular->particular }}</x-td>
-                <x-td>{{$bill->unit->unit }}</x-td>
+                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                 </x-td>
