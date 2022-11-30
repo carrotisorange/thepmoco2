@@ -190,7 +190,7 @@ body {
   <p class="text-lg font-light mt-10 text-indigo-200">The Property Manager Online provides a full-suite solution that allows rental business owners to run their operations smoothly and harmoniously with their tenants.</p>
  
 
-            <div class="mt-10 flex justify-end space-x-5">
+            <div class="mt-10 flex justify-center items-center space-x-5">
             <style>
 #button1 {
   background-color: #f97316;
@@ -236,7 +236,7 @@ body {
         <h1 class="p-5 text-white text-lg text-center font-semibold">Manage multiple properties in one seamless and unified system</h1>
           <img
             class="h-full w-full"
-            src="{{ asset('/brands/landing/dashboard_img.png') }}"
+            src="{{ asset('/brands/landing/portfolio_img.png') }}"
             alt="dashboard page"
           />
         </div>
@@ -244,7 +244,7 @@ body {
         <h1 class="p-5 text-white text-lg text-center font-semibold">A property dashboard for property performance metrics at a glance</h1>
           <img
             class="h-full w-full"
-            src="{{ asset('/brands/landing/portfolio_img.png') }}"
+            src="{{ asset('/brands/landing/dashboard_img.png') }}"
             alt="portfolio page"
           />
         </div>
@@ -291,8 +291,15 @@ body {
 
     
 
-    <!-- Gradient Feature Section -->
-    <div class="bg-white">
+    <!--  Feature Section -->
+    <style>
+
+#features {
+  background-image: url('/brands/landing/feature-bg.png');
+  background-repeat: no-repeat;
+}
+</style>
+    <div id="features">
       <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pt-24">
       
         <div class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-16">
@@ -589,7 +596,21 @@ body {
      <!-- TESTIMONIAL -->
 
      <section class="overflow-hidden bg-gray-50 py-12 md:py-20 lg:py-24">
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  
+
+  <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <div class="flex justify-center items-center ">
+      <div class="max-w-sm md:max-w-md lg:max-w-3xl">
+ <div class="">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+        
+
+        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <svg class="absolute top-full right-full translate-x-1/3 -translate-y-1/4 transform lg:translate-x-1/2 xl:-translate-y-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" role="img" aria-labelledby="svg-northcambridge">
       <title id="svg-northcambridge">North Cambridge</title>
       <defs>
@@ -625,6 +646,82 @@ body {
       </blockquote>
     </div>
   </div>
+
+
+        </div>
+        <div class="swiper-slide">
+        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <svg class="absolute top-full right-full translate-x-1/3 -translate-y-1/4 transform lg:translate-x-1/2 xl:-translate-y-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" role="img" aria-labelledby="svg-northcambridge">
+      <title id="svg-northcambridge">Martha</title>
+      <defs>
+        <pattern id="ad119f34-7694-4c31-947f-5c9d249b21f3" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+        </pattern>
+      </defs>
+      <rect width="404" height="404" fill="url(#ad119f34-7694-4c31-947f-5c9d249b21f3)" />
+    </svg>
+
+    <div class="relative">
+      <img class="mx-auto h-8"  src="{{ asset('/brands/clients/client-2.png') }}" alt="North Cambridge">
+      <blockquote class="mt-10">
+        <div class="mx-auto max-w-3xl text-center text-xl font-medium leading-9 text-gray-900">
+          <p>&ldquo;Helpful. Makes work faster and easier.&rdquo;</p>
+        </div>
+        <footer class="mt-8">
+          <div class="md:flex md:items-center md:justify-center">
+            <div class="md:flex-shrink-0">
+              <img class="mx-auto h-10 w-10 rounded-full" src="{{ asset('/brands/user.png') }}" alt="">
+            </div>
+            <div class="mt-3 text-center md:mt-0 md:ml-4 md:flex md:items-center">
+              <div class="text-base font-medium text-gray-900">Vanessa</div>
+
+              <svg class="mx-1 hidden h-5 w-5 text-indigo-400 md:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M11 0h3L9 20H6l5-20z" />
+              </svg>
+
+              <div class="text-base font-medium text-gray-500">Leasing Manager, Martha</div>
+            </div>
+          </div>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+        </div>
+        
+          
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+  </div>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper('.mySwiper', {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    </script>
+
+</div>
+    </div>
+
+
 </section>
 
 
