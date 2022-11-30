@@ -66,7 +66,7 @@ class MoveoutContractComponent extends Component
 
             app('App\Http\Controllers\NotificationController')->store('concern', 'has been approved to moveout', 'approved', Tenant::find($this->contract->tenant_uuid)->property->uuid);
 
-            return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid)->with('success', 'Contract has been moveout.');
+            return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Contract has been moveout.');
         }
        
     }

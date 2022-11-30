@@ -90,7 +90,7 @@
                             <a href="#/"
                                 class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
                                                                                                                                 bg-white hover:bg-black-50">
-                                Valid ID 2 is not available</a>
+                                Valid ID 1 is not available</a>
                             @endif
                             <br>
                             @if($tenant_details->photo_id_2)
@@ -104,8 +104,8 @@
                                 Valid ID 2 is not available</a>
                             @endif
                             <br>
-                            @if($tenant_details->photo_id_2)
-                            <a href="{{ asset('/storage/'.$tenant_details->photo_id_2) }}" target="_blank"
+                            @if($tenant_details->photo_id_3)
+                            <a href="{{ asset('/storage/'.$tenant_details->photo_id_3) }}" target="_blank"
                                 class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
                                                                                                                 bg-white hover:bg-gray-50">
                                 View valid ID 3</a>

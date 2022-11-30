@@ -15,8 +15,9 @@
             <x-th></x-th>
         </tr>
     </thead>
-    @foreach ($contracts as $index => $item)
+   
     <tbody class="bg-white divide-y divide-gray-200">
+        @foreach ($contracts as $index => $item)
         <tr>
             <x-td> {{ $index+1 }} </x-td>
             <x-td>

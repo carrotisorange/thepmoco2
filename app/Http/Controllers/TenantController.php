@@ -229,6 +229,6 @@ class TenantController extends Controller
 
     public function show_tenant_collections($tenant_uuid)
     {
-       return AcknowledgementReceipt::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(5);
+       return AcknowledgementReceipt::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(10);
     }
 }
