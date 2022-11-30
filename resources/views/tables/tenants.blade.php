@@ -35,20 +35,22 @@
                     </div>
                 </div>
             </x-td>
+
             <x-td>{{ $tenant->status }}</x-td>
+
             <x-td>
                 <?php $contracts = App\Models\Contract::where('tenant_uuid', $tenant->uuid)->get(); ?>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    @if($contracts->count())
-                    @foreach ($contracts->take(1) as $item)
-                    <a class="text-blue-500 text-decoration-line: underline"
-                        href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">
-                        {{ $item->unit->unit }}</a>
-                
-                    @endforeach
-                    @else
-                    NA
-                    @endif
+
+                @if($contracts->count())
+                @foreach ($contracts->take(1) as $item)
+                <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit->uuid }}">
+                    {{ $item->unit->unit }}</a>
+
+                @endforeach
+                @else
+                NA
+                @endif
             </x-td>
             <x-td>
                 @if($tenant->type)
@@ -65,9 +67,9 @@
                 @endif
             </x-td>
             <x-td>{{
-            $tenant->country->country.', '.$tenant->province->province.',
-            '.$tenant->city->city.',
-            '.$tenant->barangay }}</x-td>
+                $tenant->country->country.', '.$tenant->province->province.',
+                '.$tenant->city->city.',
+                '.$tenant->barangay }}</x-td>
         </tr>
         @endforeach
     </tbody>

@@ -17,7 +17,7 @@ class UtilityIndexComponent extends Component
 
     public $search;
 
-    public function storeUtilities()
+    public function storeUtilities($option)
     {
         sleep(1);
 
@@ -32,11 +32,12 @@ class UtilityIndexComponent extends Component
                 auth()->user()->id,
                 Carbon::now(),
                 Carbon::now()->addMonth(),
-                $batch_no
+                $batch_no,
+                $option
             );
         }
 
-        return redirect('/property/'.Session::get('property').'/utilities/'.$batch_no);
+        return redirect('/property/'.Session::get('property').'/utilities/'.$batch_no.'/'.$option);
     }
 
     public function render()
@@ -50,7 +51,9 @@ class UtilityIndexComponent extends Component
              // $query->orderBy($this->sortBy, $this->orderBy);
              $query->where('units.unit','like', '%'.$this->search.'%');
              })
-             ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
+            
+             ->orderBy('start_date', 'desc')
+              ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
             ->paginate(10)
         ]);
     }

@@ -16,6 +16,7 @@ use App\Models\Guardian;
 use App\Models\Bill;
 use App\Models\AcknowledgementReceipt;
 use App\Models\Concern;
+use Session;
 
 class TenantController extends Controller
 {
@@ -192,13 +193,13 @@ class TenantController extends Controller
      * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy($property_uuid, $tenant_uuid)
     {
-        $tenant = Tenant::where('uuid', $uuid);
-        if($tenant->delete()){
-        return back()->with('success', 'A tenant has been removed.');
-        }
-        return back()->with('error', 'Cannot complete your action.');
+        $tenant = Tenant::where('uuid', $tenant_uuid)->delete();
+
+         return redirect('/property/'.Session::get('property').'/tenant')->with('success', 'A tenant has been moved to archive.');
+
+
     }
 
     public function show_tenant_contracts($tenant_uuid)

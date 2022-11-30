@@ -34,7 +34,7 @@ class UtilityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($property_uuid, $unit_uuid, $user_id, $start_date, $end_date, $batch_no)
+    public function store($property_uuid, $unit_uuid, $user_id, $start_date, $end_date, $batch_no, $option)
     {
         Utility::create([
             'property_uuid' => $property_uuid,
@@ -42,7 +42,8 @@ class UtilityController extends Controller
             'user_id' => $user_id,
             'start_date' => $start_date,
             'end_date' => $end_date,
-            'batch_no' => $batch_no
+            'batch_no' => $batch_no,
+            'type' => $option
         ]);
     }
 
@@ -63,10 +64,11 @@ class UtilityController extends Controller
      * @param  \App\Models\Utility  $utility
      * @return \Illuminate\Http\Response
      */
-    public function edit($property_uuid, $batch_no)
+    public function edit($property_uuid, $batch_no, $option)
     {
        return view('utilities.edit',[
             'batch_no' => $batch_no,
+            'option' => $option
        ]);
     }
 
