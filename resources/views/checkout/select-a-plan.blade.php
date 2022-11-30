@@ -110,9 +110,9 @@
 
                         <div class="text-sm text-center">
                             By clicking the sign up below, you agree to the <a
-                                href="https://www.thepropertymanager.online/termsandconditions" target="_blank"
+                                href="terms" target="_blank"
                                 class="font-medium text-indigo-600 hover:text-indigo-500">Terms & Conditions</a> and <a
-                                href="https://www.thepropertymanager.online/privacypolicy" target="_blank"
+                                href="privacy" target="_blank"
                                 class="font-medium text-indigo-600 hover:text-indigo-500">Privacy
                                 Policy</a>
                         </div>
