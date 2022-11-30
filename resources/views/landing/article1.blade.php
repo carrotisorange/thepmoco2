@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
               class="h-14 w-14 rounded-full mr-2 object-cover" />
             <div>
               <p class="font-semibold text-gray-700 text-sm"> Anonymous </p>
-              <p class="font-semibold text-gray-600 text-xs"> Date </p>
+              <p class="font-semibold text-gray-600 text-xs"> October 2022 </p>
             </div>
           </div>
         </div>
