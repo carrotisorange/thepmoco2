@@ -28,6 +28,21 @@
                 @enderror
             </div>
 
+            <div class="col-span-2">
+                <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+
+                <select wire:model.lazy="gender" autocomplete="gender"
+                    class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">Select one</option>
+                    <option value="female" {{ 'female'==$status ? 'Select one' : 'selected' }}>female</option>
+                    <option value="male" {{ 'male'==$status ? 'Select one' : 'selected' }}>male</option>
+                </select>
+
+                @error('gender')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="col-span-6 sm:col-span-2">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" wire:model.lazy="email" autocomplete="email"
