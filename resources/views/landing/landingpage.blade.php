@@ -844,9 +844,9 @@ body {
             </div>
             <div>
 
-            <label for="Mobile" class="block text-sm font-medium text-gray-900">Mobile Number</label>
+            <label for="mobile-number" class="block text-sm font-medium text-gray-900">Mobile Number</label>
               <div class="mt-1">
-                <input id="Mobile" name="Mobile" type="Mobile" required autocomplete="Mobile" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input id="mobile-number" name="mobile-number" type="mobile-number" required autocomplete="Mobile" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
@@ -904,10 +904,10 @@ body {
         <p class="text-center text-xl font-semibold text-gray-500">Partnered with:</p>
         <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-4">
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-            <a href=""><img class="h-20" src="{{ asset('/brands/landing/digital-ocean.png') }}" alt="digital ocean"></a>
+            <a href="https://www.digitalocean.com/trust/certification-reports?fbclid=IwAR3qJ79YUNro9Px4ycCvcuCgGH7MVxbcrvQitnhlh4i51su4PuJsRyKr6T0"><img class="h-20" src="{{ asset('/brands/landing/digital-ocean.png') }}" alt="digital ocean"></a>
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/landing/aim-logo.png') }}" alt="aim loogo">
+          <img class="h-20" src="{{ asset('/brands/landing/aim-logo.png') }}" alt="aim logo">
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
           <img class="h-20" src="{{ asset('/brands/clients/client-3.png') }}" alt="Tuple">
