@@ -471,9 +471,20 @@ digital system, there will be transparency in business transactions, and efficie
               </div>
             </div>
             <div>
+
               <label for="last-name" class="block text-sm font-medium text-gray-900">Last name</label>
               <div class="mt-1">
                 <input type="text" name="last-name" id="last-name" required autocomplete="family-name" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+              </div>
+            </div>
+            <div>
+
+            <label for="sex" class="block text-sm font-medium text-gray-900">Sex</label>
+              <div class="mt-1">
+                <select name="sex" id="sex" required class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-sm text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                </select>
               </div>
             </div>
             <div>
@@ -485,9 +496,9 @@ digital system, there will be transparency in business transactions, and efficie
             </div>
             <div>
 
-            <label for="Mobile" class="block text-sm font-medium text-gray-900">Mobile Number</label>
+            <label for="mobile-number" class="block text-sm font-medium text-gray-900">Mobile Number</label>
               <div class="mt-1">
-                <input id="Mobile" name="Mobile" type="Mobile" required autocomplete="Mobile" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input id="mobile-number" name="mobile-number" type="mobile-number" required autocomplete="Mobile" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
