@@ -8,6 +8,7 @@ use DB;
 use Carbon\Carbon;
 use Session;
 use App\Models\Utility;
+use App\Models\Concern;
 
 class UnitEditComponent extends Component
 {
@@ -23,6 +24,7 @@ class UnitEditComponent extends Component
     public $discount;
     public $occupancy;
     public $is_the_unit_for_rent_to_tenant;
+    public $price;
 
     public function mount($unit_details)
     {
@@ -36,6 +38,7 @@ class UnitEditComponent extends Component
         $this->discount = $unit_details->discount;
         $this->occupancy = $unit_details->occupancy;
         $this->is_the_unit_for_rent_to_tenant = $unit_details->is_the_unit_for_rent_to_tenant;
+        $this->price = $unit_details->price;
     }
     
     protected function rules()
@@ -50,7 +53,8 @@ class UnitEditComponent extends Component
             'rent' => 'required',
             'discount' => 'required',
             'occupancy' => 'required',
-            'is_the_unit_for_rent_to_tenant' => 'required'
+            'is_the_unit_for_rent_to_tenant' => 'required',
+            'price' => 'required'
             ];
     }
 
@@ -113,7 +117,8 @@ class UnitEditComponent extends Component
             'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($this->unit_details->uuid),
             'total_collected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
-            'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->get()
+            'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->get(),
+            'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get()
         ]);
     }
 }

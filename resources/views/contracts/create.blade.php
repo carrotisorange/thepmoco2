@@ -189,7 +189,7 @@
 
             </div>
 
-            @livewire('contract-component', ['unit' => $unit, 'tenant' => $tenant])
+            @livewire('contract-store-component', ['unit' => $unit, 'tenant' => $tenant])
 
         </div>
     </div>

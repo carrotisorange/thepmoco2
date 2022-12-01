@@ -1,8 +1,6 @@
 <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
     <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
         <div class="lg:col-start-5 lg:col-span-9">
-
-
             <div class="flex justify-between">
 
                 <h1 class="text-3xl font-bold text-gray-900">{{ $unit_details->unit }}</h1>
@@ -54,30 +52,16 @@
                                 New guest
                             </a>
                         </li>
-                        {{-- <li>
-                            <a href="#/"
-                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                data-modal-toggle="add-building-modal">
-                                New building
-                            </a>
-                        </li> --}}
+
                     </ul>
                 </div>
-                {{-- <a
-                    href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create"
-                    class="flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Add
-                    a
-                    new tenant</a>
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create"
-                    class="flex text-right text-sm font-medium text-purple-500 hover:text-purple-700">Add
-                    a
-                    new owner</a> --}}
+
             </div>
 
         </div>
 
         <!-- Image gallery -->
-        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-span-3">
+        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3">
             <h2 class="sr-only">Images</h2>
 
             <div class="grid grid-cols-1 lg:gap-6">
@@ -95,7 +79,7 @@
             </div>
         </div>
 
-        <div class="mt-8 lg:col-span-8">
+        <div class="mt-8 lg:col-span-9">
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center grid grid-cols-5 gap-2 sm:grid-cols-5"
                     id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
@@ -134,21 +118,16 @@
                     <li role="presentation">
                         <button
                             class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
-                            id="utilities-tab" data-tabs-target="#utilities" type="button" role="tab"
-                            aria-controls="utilities" aria-selected="false">Utilities</button>
-                    </li>
-                    {{-- <li role="presentation">
-                        <button
-                            class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
-                            id="rooms-tab" data-tabs-target="#rooms" type="button" role="tab" aria-controls="rooms"
-                            aria-selected="false">Rooms</button>
+                            id="concerns-tab" data-tabs-target="#concerns" type="button" role="tab"
+                            aria-controls="concerns" aria-selected="false">Concerns</button>
                     </li>
                     <li role="presentation">
                         <button
                             class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
-                            id="furnitures-tab" data-tabs-target="#furnitures" type="button" role="tab"
-                            aria-controls="furnitures" aria-selected="false">Furnitures</button>
-                    </li> --}}
+                            id="utilities-tab" data-tabs-target="#utilities" type="button" role="tab"
+                            aria-controls="utilities" aria-selected="false">Utilities</button>
+                    </li>
+
                 </ul>
             </div>
             <div id="myTabContent">
@@ -161,7 +140,7 @@
 
                             <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6 mt-9">
 
-                                <div class="sm:col-span-6">
+                                <div class="sm:col-span-4">
                                     <div
                                         class="relative bg-white border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                         <label for="name" class="block text-xs font-medium text-gray-900">Unit
@@ -170,7 +149,26 @@
                                             value="{{ old('unit', $unit_details->unit) }}"
                                             class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                             placeholder="">
+
                                     </div>
+                                    @error('unit')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div
+                                        class="relative bg-white border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                        <label for="price" class="block text-xs font-medium text-gray-900">Purchase
+                                            amount</label>
+                                        <input type="number" wire:model="price"
+                                            value="{{ old('price', $unit_details->price) }}" step="0.001"
+                                            class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                            placeholder="">
+
+                                    </div>
+                                    @error('price')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -188,6 +186,9 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    @error('building_id')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -205,6 +206,9 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    @error('floor_id')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -222,6 +226,9 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    @error('category')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -234,6 +241,9 @@
                                             class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                             placeholder="">
                                     </div>
+                                    @error('size')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -247,6 +257,9 @@
                                             class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                             placeholder="">
                                     </div>
+                                    @error('occupancy')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -268,12 +281,15 @@
                                             </option>
                                         </select>
                                     </div>
+                                    @error('is_the_unit_for_rent_to_tenant')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <div
                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                        <label for="job-title"
+                                        <label for="status_id"
                                             class="block text-xs font-medium text-gray-900">Status</label>
                                         <select wire:model="status_id"
                                             class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
@@ -285,6 +301,9 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    @error('status_id')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -292,11 +311,14 @@
                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                         <label for="rent"
                                             class="block text-xs font-medium text-gray-900">Rent/Month/Tenant</label>
-                                        <input type="text" wire:model="rent"
+                                        <input type="number" wire:model="rent" step="0.001"
                                             value="{{old('rent', $unit_details->rent)}}"
                                             class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                             placeholder="">
                                     </div>
+                                    @error('rent')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -304,11 +326,14 @@
                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                         <label for="discount"
                                             class="block text-xs font-medium text-gray-900">Discount</label>
-                                        <input type="text" wire:model="discount"
+                                        <input type="number" wire:model="discount" step="0.001"
                                             value="{{old('discount', $unit_details->discount)}}"
                                             class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                             placeholder="">
                                     </div>
+                                    @error('discount')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mt-10 flex justify-end">
@@ -328,7 +353,23 @@
                 <div class="hidden rounded-lg dark:bg-gray-800" id="owners" role="tabpanel"
                     aria-labelledby="owners-tab">
                     @if($deed_of_sales->count())
-                    @include('portals.owners.tables.deedofsales')
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                            <div
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <!-- Selected row actions, only show when rows are selected. -->
+                                <div
+                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                </div>
+                                @include('portals.owners.tables.deedofsales')
+                            </div>
+
+                        </div>
+
+                    </div>
+
                     @else
                     <div class="mt-10 text-center">
                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -361,7 +402,23 @@
                 <div class="hidden rounded-lg dark:bg-gray-800" id="tenants" role="tabpanel"
                     aria-labelledby="tenants-tab">
                     @if($contracts->count())
-                    @include('portals.tenants.tables.contracts')
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                            <div
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <!-- Selected row actions, only show when rows are selected. -->
+                                <div
+                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                </div>
+                                @include('portals.tenants.tables.contracts')
+                            </div>
+
+                        </div>
+
+                    </div>
+
                     @else
                     <div class="mt-10 text-center">
                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -486,6 +543,7 @@
                                     <div class="ml-3 w-0 flex-1 pt-0.5">
 
                                         <p class="text-sm font-medium text-gray-900">Potential Gross Revenue per month
+                                            (Occupancy * Rent/month/tenant)
                                         </p>
                                         <p class="mt-1 text-2xl font-semibold text-gray-500">
                                             {{
@@ -494,18 +552,7 @@
                                             }}
                                         </p>
                                     </div>
-                                    {{-- <div class="ml-3 w-0 flex-1 pt-0.5">
 
-                                        <p class="text-sm font-medium text-gray-900">Total
-                                            Remaining Amount to get the ROI</p>
-                                        <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                            {{
-                                            App\Http\Controllers\CollectionController::shortNumber($unit_details->price
-                                            -
-                                            $total_collected_bills)
-                                            }}
-                                        </p>
-                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -603,18 +650,47 @@
                     </div>
 
                 </div>
-                 <div class="hidden rounded-lg dark:bg-gray-800" id="utilities" role="tabpanel"
-                    aria-labelledby="rooms-tab">
-                   @include('tables.utilities')
+                <div class="hidden rounded-lg dark:bg-gray-800" id="utilities" role="tabpanel"
+                    aria-labelledby="utilities-tab">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                            <div
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <!-- Selected row actions, only show when rows are selected. -->
+                                <div
+                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                </div>
+                                @include('tables.utilities')
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                {{-- <div class="hidden rounded-lg dark:bg-gray-800" id="rooms" role="tabpanel"
-                    aria-labelledby="rooms-tab">
-                    rooms
+                <div class="hidden rounded-lg dark:bg-gray-800" id="concerns" role="tabpanel"
+                    aria-labelledby="concerns-tab">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                            <div
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <!-- Selected row actions, only show when rows are selected. -->
+                                <div
+                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                </div>
+                                @include('tables.concerns')
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="hidden rounded-lg dark:bg-gray-800" id="furnitures" role="tabpanel"
-                    aria-labelledby="furnitures-tab">
-                    furnitures
-                </div> --}}
+
             </div>
         </div>
     </div>

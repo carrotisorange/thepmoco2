@@ -90,8 +90,33 @@
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                     </div>
 
-
                     <div class="col-span-2">
+                        <label for="birthdate" class="block text-sm font-medium text-gray-700">Birthdate</label>
+                        <input type="date" wire:model.lazy="birthdate" autocomplete="birthdate"
+                            value="{{ old('birthdate') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('birthdate')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="col-span-1">
+                        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                        <select wire:model.lazy="category" autocomplete="category"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            <option value="primary" {{ old('category')=='primary' ? 'selected' : 'Select one' }}>
+                                {{
+                                'primary' }}</option>
+                            <option value="co-tenant" {{ old('category')=='co-tenant' ? 'selected' : 'Select one' }}>{{
+                                'co-tenant' }}</option>
+                        </select>
+                        @error('category')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="col-span-1">
                         <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
                         <select wire:model.lazy="gender" autocomplete="gender"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -107,15 +132,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-2">
-                        <label for="birthdate" class="block text-sm font-medium text-gray-700">Birthdate</label>
-                        <input type="date" wire:model.lazy="birthdate" autocomplete="birthdate"
-                            value="{{ old('birthdate') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('birthdate')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
+
 
 
                     <div class="col-span-2">

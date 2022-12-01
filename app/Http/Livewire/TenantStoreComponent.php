@@ -12,7 +12,7 @@ use Session;
 
 use Livewire\Component;
 
-class TenantComponent extends Component
+class TenantStoreComponent extends Component
 {
     use WithFileUploads;
 
@@ -40,6 +40,7 @@ class TenantComponent extends Component
     public $occupation;
     public $employer_address;
     public $employer;
+    public $category;
 
     public $generateCredentials;
 
@@ -72,6 +73,7 @@ class TenantComponent extends Component
             'occupation' => 'nullable',
             'employer_address' => 'nullable',
             'employer' => 'nullable',
+            'category' => 'required'
             ];
     }
 
@@ -180,7 +182,7 @@ class TenantComponent extends Component
 
     public function render()
     {
-        return view('livewire.tenant-component',[
+        return view('livewire.tenant-store-component',[
             'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
             'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
             'countries' => app('App\Http\Controllers\CountryController')->index(),

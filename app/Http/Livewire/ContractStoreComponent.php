@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use Session;
 use App\Models\Interaction;
 
-class ContractComponent extends Component
+class ContractStoreComponent extends Component
 {
      use WithFileUploads;
 
@@ -159,7 +159,7 @@ class ContractComponent extends Component
 
       public function render()
       {
-        return view('livewire.contract-component',[
+        return view('livewire.contract-store-component',[
           'interactions' => Interaction::whereNotIn('id', ['8','9'])->get()
         ]);
       }
