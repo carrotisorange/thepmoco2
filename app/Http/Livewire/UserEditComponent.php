@@ -22,6 +22,7 @@ class UserEditComponent extends Component
     public $status;
     public $role_id;
     public $user_id;
+    public $gender;
 
     public $is_portfolio_create_allowed;
     public $is_portfolio_read_allowed;
@@ -68,6 +69,7 @@ class UserEditComponent extends Component
         $this->status = $user->status;
         $this->user_id = $user->id;
         $this->role_id = $user->role_id;
+        $this->gender = $user->gender;
 
         $this->is_portfolio_create_allowed = $user->is_portfolio_create_allowed;
         $this->is_portfolio_read_allowed = $user->is_portfolio_read_allowed;
@@ -114,6 +116,7 @@ class UserEditComponent extends Component
                 'mobile_number' => ['nullable', Rule::unique('users', 'mobile_number')->ignore($this->user->id, 'id')],
                 'role_id' => ['nullable', Rule::exists('roles', 'id')],
                 'status' => 'nullable',
+                'gender' => ['required'],
 
                 'is_portfolio_create_allowed' => 'nullable',
                 'is_portfolio_read_allowed' => 'nullable',
