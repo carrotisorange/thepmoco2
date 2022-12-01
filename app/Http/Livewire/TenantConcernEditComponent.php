@@ -24,6 +24,7 @@ class TenantConcernEditComponent extends Component
     public $tenant_uuid;
     public $unit_uuid;
     public $concern;
+    public $initial_assessment;
 
     public function mount($concern_details)
     {
@@ -41,6 +42,7 @@ class TenantConcernEditComponent extends Component
         $this->concern = $concern_details->concern;
         $this->assessed_at = $concern_details->assessed_at;
         $this->action_taken = $concern_details->action_taken;
+        $this->initial_assessment = $concern_details->initial_assessment;
     }
 
     protected function rules()
@@ -51,8 +53,9 @@ class TenantConcernEditComponent extends Component
             'assigned_to_id' => ['nullable'],
             'assessed_at' => ['nullable'],
             'category_id' => ['nullable'],
-            'urgency' => ['required'],
-            'status' => ['required']   
+            'urgency' => ['nullable'],
+            'status' => ['required'],
+            'initial_assessment' => 'nullable'
         ];
     }
 

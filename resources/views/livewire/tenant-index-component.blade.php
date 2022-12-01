@@ -158,17 +158,26 @@
             </div>
 
         </div>
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-1">
             <select id="status" wire:model="status"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                <option value="" selected>Filter tenant status</option>
+                <option value="" selected>Filter status</option>
                 @foreach ($statuses as $status)
                 <option value="{{ $status->status }}">{{ $status->status }}</option>
                 @endforeach
             </select>
 
         </div>
+        <div class="sm:col-span-1">
+            <select id="category" wire:model="category"
+                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="" selected>Filter category</option>
+                @foreach ($categories as $category)
+                <option value="{{ $category->category }}">{{ $category->category }}</option>
+                @endforeach
+            </select>
 
+        </div>
 
 
 

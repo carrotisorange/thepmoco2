@@ -2,7 +2,7 @@
     enctype="multipart/form-data">
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
-            <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {{-- <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <ol role="list" class="flex items-center space-x-4">
                     <li>
                         <div class="flex items-center">
@@ -11,7 +11,7 @@
                         </div>
                     </li>
                 </ol>
-            </nav>
+            </nav> --}}
             <div class="mt-5 px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
@@ -135,10 +135,10 @@
 
                             <select wire:model="urgency"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                                <option value="no" {{ $urgency=='no' ?'selected' : '' }}>
+                                <option value="no" {{ $urgency=='no' ?'selected' : 'Select one' }}>
                                     no
                                 </option>
-                                <option value="yes" {{ $urgency=='yes' ?'selected' : '' }}>
+                                <option value="yes" {{ $urgency=='yes' ?'selected' : 'Select one' }}>
                                     yes
                                 </option>
 
@@ -165,17 +165,17 @@
 
                         </div>
 
-                        <div class="col-span-3 sm:col-span-3">
+                        <div class="col-span-3 sm:col-span-2">
                             <label for="assessed_at" class="block text-sm font-medium text-gray-700">Concern assessed
                                 on</label>
-                            <input type="date" wire:model="assessed_at" autocomplete="assessed_at" readonly
+                            <input type="date" wire:model="assessed_at" autocomplete="assessed_at" 
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                             @error('assessed_at')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <div class="col-span-6 sm:col-span-3">
+                        <div class="col-span-6 sm:col-span-2">
                             <div>
                                 <label for="assessed_by_id" class="block text-sm font-medium text-gray-700">Assessed by:
                                 </label>
@@ -230,18 +230,18 @@
 
                         </div>
 
-                        <div class="col-span-3 sm:col-span-4">
+                        <div class="col-span-3 sm:col-span-6">
                             <fieldset>
                                 <div>
-                                    <label for="subject"
-                                        class="block text-sm font-medium text-gray-700">Subject
+                                    <label for="initial_assessment"
+                                        class="block text-sm font-medium text-gray-700">Results of the assessment
                                         
                                     </label>
                                     <div class="mt-1">
-                                        <textarea wire:model="subject" rows="3"
+                                        <textarea wire:model="initial_assessment" rows="3"
                                             class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
                                             placeholder="">{{ $subject }}</textarea>
-                                        @error('subject')
+                                        @error('initial_assessment')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                     </div>
