@@ -250,8 +250,14 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
 </div>
-        <div class="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
-
+        <div id=faq-2 class="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
+        <style>
+          #faq-2 {
+          background-image: url('/brands/landing/faq-bg-2.png');
+          background-repeat: no-repeat;
+          background-position: right;
+          }
+          </style>
           <div class="md:ml-auto md:w-1/2 md:pl-10">
           <p class="mt-2 text-3xl  text-white">How much does a property management system cost?</p>
             <p class="mt-10 text-md font-light text-gray-100">The cost of an online property management system is low-cost. It is designed to simplify property management work and reduce operating expenses. It is usually paid through monthly or annual subscription so that it can fit into most operating budgets of rental properties. </p>
