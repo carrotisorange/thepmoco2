@@ -34,8 +34,8 @@
                 <select wire:model.lazy="gender" autocomplete="gender"
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="">Select one</option>
-                    <option value="female" {{ 'female'==$status ? 'Select one' : 'selected' }}>female</option>
-                    <option value="male" {{ 'male'==$status ? 'Select one' : 'selected' }}>male</option>
+                    <option value="female" {{ 'female'==$gender ? 'Select one' : 'selected' }}>female</option>
+                    <option value="male" {{ 'male'==$gender ? 'Select one' : 'selected' }}>male</option>
                 </select>
 
                 @error('gender')
@@ -90,21 +90,20 @@
                 @enderror
             </div>
 
-            <div class="col-span-2">
+            {{-- <div class="col-span-2">
                 <label for="role_id" class="block text-sm font-medium text-gray-700">Role</label>
                 @if(auth()->user()->role_id === 5)
                 <select wire:model.lazy="role_id" autocomplete="role_id"
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     @foreach($roles as $role)
-                    <option value="{{ $role->id }}" {{ old('role_id', $user->role_id) == $role->id ? 'selected' :
-                        ''}}>{{ $role->role }}</option>
+                    <option value="{{ $role->id }}" {{ old('role_id', $user->role_id) == $role->id ? 'selected' : 'selected'}}>{{ $role->role }}</option>
                     @endforeach
                 </select>
                 @endif
                 @error('role_id')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
-            </div>
+            </div> --}}
             @endif
 
 

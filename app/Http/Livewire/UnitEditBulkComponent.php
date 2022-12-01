@@ -21,6 +21,11 @@ class UnitEditBulkComponent extends Component
     public $search;
     public $units;
 
+    public $category_id;
+    public $occupancy;
+    public $rent;
+    public $size;
+
     public $selectedUnits =[];
 
     public $selectedAllUnits = false;
@@ -28,7 +33,7 @@ class UnitEditBulkComponent extends Component
     public function mount($batch_no)
     {
         $this->batch_no = $batch_no;
-        $this->units = $this->get_units(Session::get('property'));
+        $this->units = $this->get_units();
     }
 
     protected function rules()
@@ -53,7 +58,7 @@ class UnitEditBulkComponent extends Component
     {   
         if($selectedAllUnits)
         {
-            $this->selectedUnits = $this->get_units(Session::get('property'))->pluck('uuid');
+            $this->selectedUnits = $this->get_units()->pluck('uuid');
 
         }else
         {
@@ -90,6 +95,23 @@ class UnitEditBulkComponent extends Component
         }
     }
 
+    public function updateUnitInfo(){
+
+        sleep(1);
+
+        Unit::where('property_uuid', Session::get('property_uuid'))
+        ->update([
+            'category_id' => $this->category_id,
+            'size' => $this->size,
+            'rent' => $this->rent,
+            'occupancy' => $this->occupancy
+        ]);
+
+        $this->units = $this->get_units();
+
+        session()->flash('success', 'Parameters are successfully saved!');
+    }
+
     public function removeUnits()
     {
         sleep(1);
@@ -104,7 +126,7 @@ class UnitEditBulkComponent extends Component
 
                 app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, -1, 5);
                 
-                $this->units = $this->get_units(Session::get('property'));
+                $this->units = $this->get_units();
 
                 session()->flash('success', count($this->selectedUnits).' Unit is successfully removed.');
             }
@@ -112,20 +134,20 @@ class UnitEditBulkComponent extends Component
          $this->selectedUnits = [];
     }
 
-    public function get_units($property_uuid)
+    public function get_units()
     {   
         return Unit::search($this->search)
-        ->where('property_uuid', $property_uuid)
+        ->where('property_uuid', Session::get('property'))
         ->orderBy('created_at', 'desc')
         ->get();
     }
 
     public function render()
     {
+
         return view('livewire.unit-edit-bulk-component',[
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(),
             'floors' => app('App\Http\Controllers\FloorController')->index(),
-            'units' => $this->get_units(Session::get('property')),
             'categories' => app('App\Http\Controllers\CategoryController')->index(),
         ]);
     }

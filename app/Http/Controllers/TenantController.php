@@ -195,10 +195,17 @@ class TenantController extends Controller
      */
     public function destroy($property_uuid, $tenant_uuid)
     {
-        $tenant = Tenant::where('uuid', $tenant_uuid)->delete();
+        $contracts = Tenant::find($tenant_uuid)->contracts->count();
+
+        if($contracts){
+           return back()->with('error', 'Cannot be deleted. Tenant has existing contracts');
+        }
+        else{
+           Tenant::where('uuid', $tenant_uuid)->delete();
+           
+        }
 
          return redirect('/property/'.Session::get('property').'/tenant')->with('success', 'A tenant has been moved to archive.');
-
 
     }
 
