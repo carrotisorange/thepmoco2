@@ -477,9 +477,17 @@ digital system, there will be transparency in business transactions, and efficie
               </div>
             </div>
             <div>
+
               <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
               <div class="mt-1">
                 <input id="email" name="email" type="email" required autocomplete="email" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+              </div>
+            </div>
+            <div>
+
+            <label for="Mobile" class="block text-sm font-medium text-gray-900">Mobile Number</label>
+              <div class="mt-1">
+                <input id="Mobile" name="Mobile" type="Mobile" required autocomplete="Mobile" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>

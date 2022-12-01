@@ -651,8 +651,8 @@ body {
         </div>
         <div class="swiper-slide">
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <svg class="absolute top-full right-full translate-x-1/3 -translate-y-1/4 transform lg:translate-x-1/2 xl:-translate-y-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" role="img" aria-labelledby="svg-northcambridge">
-      <title id="svg-northcambridge">Martha</title>
+    <svg class="absolute top-full right-full translate-x-1/3 -translate-y-1/4 transform lg:translate-x-1/2 xl:-translate-y-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" role="img" aria-labelledby="svg-martha">
+      <title id="svg-martha">Martha</title>
       <defs>
         <pattern id="ad119f34-7694-4c31-947f-5c9d249b21f3" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
           <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
@@ -662,7 +662,7 @@ body {
     </svg>
 
     <div class="relative">
-      <img class="mx-auto h-8"  src="{{ asset('/brands/clients/client-2.png') }}" alt="North Cambridge">
+      <img class="mx-auto h-10"  src="{{ asset('/brands/clients/client-3.png') }}" alt="Martha">
       <blockquote class="mt-10">
         <div class="mx-auto max-w-3xl text-center text-xl font-medium leading-9 text-gray-900">
           <p>&ldquo;Helpful. Makes work faster and easier.&rdquo;</p>
@@ -819,15 +819,34 @@ body {
               </div>
             </div>
             <div>
+
               <label for="last-name" class="block text-sm font-medium text-gray-900">Last name</label>
               <div class="mt-1">
                 <input type="text" name="last-name" id="last-name" required autocomplete="family-name" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
+
+            <label for="sex" class="block text-sm font-medium text-gray-900">Sex</label>
+              <div class="mt-1">
+                <select name="sex" id="sex" required class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-sm text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+            <div>
+
               <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
               <div class="mt-1">
                 <input id="email" name="email" type="email" required autocomplete="email" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+              </div>
+            </div>
+            <div>
+
+            <label for="Mobile" class="block text-sm font-medium text-gray-900">Mobile Number</label>
+              <div class="mt-1">
+                <input id="Mobile" name="Mobile" type="Mobile" required autocomplete="Mobile" class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
               </div>
             </div>
             <div>
