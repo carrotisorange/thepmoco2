@@ -41,6 +41,7 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'mobile_number' => ['required', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],    
+            'gender' => 'required'
         ]);
 
         $attributes['password'] = Hash::make($request->password);

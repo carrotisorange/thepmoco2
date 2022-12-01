@@ -9,7 +9,7 @@
             <x-th>PREVIOUS READING</x-th>
             <x-th>CURRENT READING</x-th>
             <x-th>CONSUMPTION</x-th>
-            <x-th>KW/H</x-th>
+            <x-th>RATE</x-th>
             <x-th>MIN CHARGE</x-th>
             <x-th>AMOUNT DUE</x-th>
         </tr>
