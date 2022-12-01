@@ -27,7 +27,7 @@
                                 class="text-xs">Based on the rent specified on <a class="text-blue-600"
                                     href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}"
                                     target="_blank">{{ $unit->unit }}</a>.</span>)</label>
-                        <input type="number" wire:model.lazy="rent" autocomplete="rent" readonly step="0.001"
+                        <input type="number" wire:model.lazy="rent" autocomplete="rent" step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('rent')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -40,7 +40,7 @@
                                     href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}"
                                     target="_blank">{{ $unit->unit
                                     }}</a>.</span>)</label>
-                        <input type="number" wire:model.lazy="discount" autocomplete="discount" readonly step="0.001"
+                        <input type="number" wire:model.lazy="discount" autocomplete="discount" step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('discount')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

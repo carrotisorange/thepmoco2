@@ -172,7 +172,7 @@
 
             </div>
             
-            @livewire('tenant-component', ['unit' => $unit])
+            @livewire('tenant-store-component', ['unit' => $unit])
 
         </div>
     </div>

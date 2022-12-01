@@ -6,11 +6,9 @@
                 #</x-th>
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
-
-            <x-th>START
-            </x-th>
-            <x-th>END
-            </x-th>
+            <x-th>CATEGORY</x-th>
+            <x-th>START </x-th>
+            <x-th>END </x-th>
             <x-th>RENT/MO</x-th>
             <x-th>STATUS</x-th>
             <x-th></x-th>
@@ -69,7 +67,7 @@
                     @endif
                 </div>
             </x-td>
-
+            <x-td>{{ $item->tenant->category }}</x-td>
 
             <x-td>
                 {{Carbon\Carbon::parse($item->start)->format('M d, Y')}}</x-td>
