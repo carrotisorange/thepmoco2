@@ -228,8 +228,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     <div class="relative bg-gray-500 ">
-        <div class="mx-auto max-w px-6 py-12 lg:py-32 lg:px-8 md:py-28 sm:py-20 sm:px-6 relative  bg-gray-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-        <div class="md:ml-auto md:pl-">
+        <div id=faq-1 class="mx-auto max-w px-6 py-12 lg:py-32 lg:px-8 md:py-28 sm:py-20 sm:px-6 relative  bg-gray-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+        <style>
+          #faq-1 {
+          background-image: url('/brands/landing/faq-bg-1.png');
+          background-repeat: no-repeat;
+          background-position: center;
+          }
+          </style>
+        <div class="md:ml-auto">
             
         <p class="mt-2 text-3xl  text-white">Who uses online property management system?</p>
           <p class="mt-10 text-md font-light  text-gray-100">
