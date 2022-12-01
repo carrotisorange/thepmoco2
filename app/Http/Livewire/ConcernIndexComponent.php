@@ -14,7 +14,6 @@ class ConcernIndexComponent extends Component
     use WithPagination;
 
     public $search;
-
     public $status;
     
     public function render()
@@ -25,12 +24,18 @@ class ConcernIndexComponent extends Component
             ->get();
 
         return view('livewire.concern-index-component',[
-            'concerns' => Concern::search($this->search)
+            'concerns' => 
+            Concern::search(Session::get('property'))
             ->orderBy('created_at', 'desc')
             ->where('property_uuid', Session::get('property'))
             ->when($this->status, function($query){
             $query->whereIn('status',[ $this->status]);
-            })->paginate(10),
+            })
+             ->when($this->search, function($query){
+            $query->where('reference_no','like', '%'.$this->search.'%');
+            
+            })
+            ->paginate(10),
             'statuses' => $statuses
         ]);
     }

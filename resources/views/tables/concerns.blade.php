@@ -3,11 +3,12 @@
         <tr>
             <x-th>#</x-th>
             <x-th>REFERENCE #</x-th>
+            <x-th>SUBJECT</x-th>
             <x-th>DATE REPORTED</x-th>
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
             <x-th>CATEGORY</x-th>
-            <x-th>SUBJECT</x-th>
+    
             <x-th>STATUS</x-th>
             <x-th></x-th>
         </tr>
@@ -17,6 +18,7 @@
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $concern->reference_no }}</x-td>
+            <x-td>{{ $concern->subject }}</x-td>
             <x-td>{{ Carbon\Carbon::parse($concern->created_at)->format('M d, Y') }}</x-td>
             <x-td>
                 <a href="/property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}/concerns"
@@ -28,7 +30,7 @@
                     }}</a>
             </x-td>
             <x-td>{{ $concern->category->category }}</x-td>
-            <x-td>{{ $concern->subject }}</x-td>
+          
             <x-td>{{ $concern->status }}</x-td>
             <x-td>
                 <a href="/property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}/concern/{{ $concern->id }}/edit"

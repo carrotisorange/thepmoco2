@@ -13,6 +13,7 @@ class TenantIndexComponent extends Component
 
     public $search = null;
     public $status;
+    public $category;
 
     public function render()
     {
@@ -22,17 +23,27 @@ class TenantIndexComponent extends Component
         ->groupBy('status')
         ->get();
 
+       $categories = Tenant::where('property_uuid', Session::get('property'))
+        ->select('category')
+        ->whereNotNull('category')
+        ->groupBy('category')
+        ->get();
+
         $tenants = Tenant::search($this->search)
         ->where('property_uuid', Session::get('property'))
         ->when($this->status, function($query){
           $query->where('status',$this->status);
         })
+         ->when($this->category, function($query){
+         $query->where('category',$this->category);
+         })
         ->orderBy('created_at', 'desc')
         ->paginate(10);
         
         return view('livewire.tenant-index-component', [
             'tenants' => $tenants,
-            'statuses' => $statuses
+            'statuses' => $statuses,
+            'categories' => $categories
         ]);
     }
 }

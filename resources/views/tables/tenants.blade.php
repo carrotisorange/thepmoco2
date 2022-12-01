@@ -3,6 +3,7 @@
         <tr>
             <x-th>#</x-th>
             <x-th>NAME</x-th>
+            <x-th>CATEGORY</x-th>
             <x-th>STATUS</x-th>
             <x-th>UNIT</x-th>
             <x-th>TYPE</x-th>
@@ -35,7 +36,7 @@
                     </div>
                 </div>
             </x-td>
-
+            <x-td>{{ $tenant->category }}</x-td>
             <x-td>{{ $tenant->status }}</x-td>
 
             <x-td>

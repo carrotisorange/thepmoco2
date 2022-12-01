@@ -33,10 +33,10 @@ class Concern extends Model
         return $this->belongsTo(ConcernCategory::class);
     }
 
-    public static function search($search)
+    public static function search($property_uuid)
     {
-        return empty($search)? static::query()
-        : static::where('reference_no','like', '%'.$search.'%');
+        return empty($property_uuid)? static::query()
+        : static::where('property_uuid', $property_uuid);
     }
 
 
