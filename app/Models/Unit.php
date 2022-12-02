@@ -70,7 +70,11 @@ class Unit extends Model
 
     public function contracts()
     {
-    return $this->hasMany(Contract::class);
+        return $this->hasMany(Contract::class);
+    }
+
+    public function concerns(){
+        return $this->hasMany(Concern::class);
     }
 
     public function utilities(){

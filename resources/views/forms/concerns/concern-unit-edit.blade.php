@@ -26,7 +26,7 @@
                     <div class="md:grid md:grid-cols-6 md:gap-6">
 
 
-                        <div class="col-span-3 sm:col-span-2">
+                        <div class="col-span-3 sm:col-span-3">
                             <label for="created_at" class="block text-sm font-medium text-gray-700">Concern reported
                                 on</label>
                             <input type="date" wire:model="created_at" autocomplete="created_at"
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-span-3 sm:col-span-2">
+                        {{-- <div class="col-span-3 sm:col-span-2">
                             <label for="tenant_uuid" class="block text-sm font-medium text-gray-700">Tenant</label>
                             <input type="text" wire:model="tenant_uuid" autocomplete="tenant_uuid"
                                 value="{{ $concern_details->tenant->tenant }}" readonly
@@ -46,9 +46,9 @@
                             @error('tenant_uuid')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
 
-                        <div class="col-span-3 sm:col-span-2">
+                        <div class="col-span-3 sm:col-span-3">
                             <label for="unit_uuid" class="block text-sm font-medium text-gray-700">Unit
                                 No.</label>
                             @error('unit_uuid')
@@ -80,6 +80,8 @@
                                         <a href="{{ asset('/storage/'.$concern_details->image) }}" target="_blank"
                                             class="text-indigo-600 hover:text-indigo-900">View
                                             Attachment</a>
+                                        @else
+                                            No image attached
                                         @endif
                                     </div>
 
@@ -168,7 +170,7 @@
                         <div class="col-span-3 sm:col-span-2">
                             <label for="assessed_at" class="block text-sm font-medium text-gray-700">Concern assessed
                                 on</label>
-                            <input type="date" wire:model="assessed_at" autocomplete="assessed_at" 
+                            <input type="date" wire:model="assessed_at" autocomplete="assessed_at"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                             @error('assessed_at')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -235,7 +237,7 @@
                                 <div>
                                     <label for="initial_assessment"
                                         class="block text-sm font-medium text-gray-700">Results of the assessment
-                                        
+
                                     </label>
                                     <div class="mt-1">
                                         <textarea wire:model="initial_assessment" rows="3"

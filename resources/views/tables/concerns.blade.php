@@ -8,7 +8,7 @@
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
             <x-th>CATEGORY</x-th>
-    
+
             <x-th>STATUS</x-th>
             <x-th></x-th>
         </tr>
@@ -25,16 +25,27 @@
                     class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->unit->unit }}</a>
           </x-td>
             <x-td>
+                @if($concern->tenant_uuid)
                 <a href=" /property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}/concerns"
                     class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->tenant->tenant
                     }}</a>
+                @else
+
+                @endif
+
             </x-td>
             <x-td>{{ $concern->category->category }}</x-td>
-          
+
             <x-td>{{ $concern->status }}</x-td>
             <x-td>
+                @if($concern->tenant_uuid)
                 <a href="/property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}/concern/{{ $concern->id }}/edit"
                     class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
+                @else
+                <a href=" /property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}/concern/{{ $concern->id }}/edit"
+                    class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
+                @endif
+
             </x-td>
         </tr>
         @endforeach
