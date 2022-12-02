@@ -42,6 +42,7 @@ use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\UnitEditBulkController;
+use App\Http\Controllers\UnitConcernController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
@@ -93,6 +94,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
             Route::patch('update', [UnitController::class, 'update']);
             Route::get('contracts', [UnitContractController::class, 'index']);
+            Route::get('concern/{random_str}/create', [UnitConcernController::class, 'create'])->name('unit');
+            Route::get('concern/{concern}/edit', [UnitConcernController::class, 'edit'])->name('unit');
+            Route::get('concerns', [UnitConcernController::class, 'index'])->name('unit');
 
             Route::prefix('tenant')->group(function(){
                 Route::get('{random_str}/create', [UnitContractController::class, 'create'])->name('unit');
