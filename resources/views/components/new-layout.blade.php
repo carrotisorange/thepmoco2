@@ -570,7 +570,7 @@
             @include('layouts.notifications')
             <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
                 {{ $slot }}
-                <div class="mb-10">
+                <div class="mb-12">
                     @include('layouts.footer')
                 </div>
             </main>
