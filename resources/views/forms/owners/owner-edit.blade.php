@@ -133,8 +133,8 @@
 
     </div>
     <div class="mt-5 flex justify-end">
-        @can('ownerportal')
-        <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/owner/unlock'"
+        {{--@can('ownerportal')
+         <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/owner/unlock'"
             class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Send access to owner portal
         </button>
@@ -169,7 +169,7 @@
         </button>
         
         @endif
-        @endcan
+        @endcan --}}
         <button type="submit"
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
