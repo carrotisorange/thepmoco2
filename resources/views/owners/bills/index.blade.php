@@ -30,8 +30,8 @@
 
             </div>
             @livewire('owner-bill-component', ['owner'=> $owner])
+            @include('modals.create-owner-bill')
+            @include('modals.create-particular')
+            @include('modals.export-owner-bill')
+            @include('modals.send-owner-bill')
 </x-new-layout>
-@include('modals.create-owner-bill')
-@include('modals.create-particular')
-@include('modals.export-owner-bill')
-@include('modals.send-owner-bill')

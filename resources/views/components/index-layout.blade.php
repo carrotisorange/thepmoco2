@@ -60,7 +60,7 @@
     </div>
     @include('layouts.footer')
 </body>
-@include('layouts.script')
+@include('layouts.scripts')
 @include('modals.popup-error')
 
 </html>

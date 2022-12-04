@@ -142,6 +142,6 @@
         </main>
     </div>
 </body>
-@include('layouts.script')
+@include('layouts.scripts')
 
 </html>

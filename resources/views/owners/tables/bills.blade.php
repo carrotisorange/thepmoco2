@@ -5,7 +5,7 @@
             <x-th></x-th>
             <x-th>BILL # </x-th>
             <x-th>DATE POSTED</x-th>
-            <x-th>NAME</x-th>
+    
             <x-th>UNIT</x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>PARTICULAR</x-th>
@@ -14,7 +14,7 @@
             <x-th>BALANCE </x-th>
         </tr>
     </thead>
-    @if($view === 'listView')
+
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($bills as $index => $item)
         <tr>
@@ -30,17 +30,7 @@
             <x-td>
                 {{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}
             </x-td>
-            <x-td>
-                @if($item->tenant_uuid)
-                <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills">{{
-                    $item->tenant->tenant}}</a>
-                @else
-                <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/bills">{{
-                    $item->owner->owner}}</a>
-                @endif
-            </x-td>
+            
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills">
@@ -90,7 +80,7 @@
         @endforeach
     </tbody>
 
-    @endif
+
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td> </x-td>

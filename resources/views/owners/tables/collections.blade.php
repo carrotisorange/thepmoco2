@@ -18,8 +18,8 @@
         @foreach($collections as $item)
         <tr>
             <x-td>{{ $item->ar_no }}</x-td>
-            <x-td>  {{ $item->bill_reference_no}}  </x-td>
-            <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}  </x-td>
+            <x-td> {{ $item->bill_reference_no}} </x-td>
+            <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} </x-td>
             <x-td>
                 @if($item->date_deposited)
                 {{ Carbon\Carbon::parse($item->date_deposited)->format('M d, Y') }}
@@ -49,36 +49,20 @@
                 {{ number_format($item->amount,2) }} ({{ $collections_count }})
             </x-td>
             <x-td>
-                @if($item->tenant_uuid)
-               <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view"
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view"
                     class="text-indigo-500 text-decoration-line: underline" target="_blank">View</a>
-                @else
-               <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/view"
-                    class="text-indigo-500 text-decoration-line: underline" target="_blank">View</a>
-                @endif
-               
             </x-td>
 
             <x-td>
-                @if($item->tenant_uuid)
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export"
-                    class="text-indigo-500 text-decoration-line: underline" target="_blank">Export</a>
-                @else
-                <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/export"
-                    class="text-indigo-500 text-decoration-line: underline" target="_blank">Export</a>
-                @endif
+                    class="text-indigo-500 text-decoration-line: underline">Export</a>
             </x-td>
 
             <x-td>
 
                 @if(!$item->attachment == null)
-                @if($item->tenant_uuid)
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment"
-                    class="text-indigo-500 text-decoration-line: underline" target="_blank">Attachment</a>
-                @else
-                <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/attachment"
-                    class="text-indigo-500 text-decoration-line: underline" target="_blank">Attachment</a>
-                @endif
+                    target="_blank" class="text-indigo-500 text-decoration-line: underline">Attachment</a>
                 @endif
             </x-td>
         </tr>
