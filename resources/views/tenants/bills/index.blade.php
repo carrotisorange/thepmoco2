@@ -29,10 +29,13 @@
                     Create Particular</a></button>
 
             </div>
+
             @livewire('tenant-bill-component', ['tenant'=> $tenant])
 
+            @include('modals.create-tenant-bill')
+            @include('modals.export-tenant-bill')
+            @include('modals.send-tenant-bill')
+            @include('modals.create-particular')
+
+
 </x-new-layout>
-@include('modals.create-tenant-bill')
-@include('modals.export-tenant-bill')
-@include('modals.send-tenant-bill')
-@include('modals.create-particular')

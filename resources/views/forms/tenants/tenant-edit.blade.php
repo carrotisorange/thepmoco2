@@ -9,8 +9,9 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="name" class="block text-xs font-medium text-gray-900">Tenant</label>
                 <input type="text" wire:model.lazy="tenant"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="">
-        
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+
             </div>
         </div>
 
@@ -199,11 +200,48 @@
 
 
 
-    <div class="mt-1 flex justify-end">
+    <div class="mt-5 flex justify-end">
         <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
             href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/delete">
             Delete
         </a>
+        @can('tenantportal')
+        <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/unlock'"
+            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Send access to tenant portal
+        </button>
+        @else
+        @if(!App\Models\User::where('email', $tenant_details->email)->count())
+        <button type="button" wire:click="sendCredentials"
+            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+            <svg wire:loading wire:target="sendCredentials" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                </circle>
+                <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                </path>
+            </svg>
+            Send access to tenant portal
+        </button>
+        @else
+        <button type="button" wire:click="removeCredentials"
+            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+            <svg wire:loading wire:target="removeCredentials" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                </circle>
+                <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                </path>
+            </svg>
+            Remove access to owner portal
+        </button>
+
+        @endif
+        @endcan
         <button type="submit" form="updateTenant"
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
@@ -218,10 +256,4 @@
             Update
         </button>
     </div>
-
-
-    </div>
-
-    </div>
-
 </form>

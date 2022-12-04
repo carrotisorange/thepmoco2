@@ -68,27 +68,27 @@
                         </div> --}}
                     </div>
                     {{-- @if(auth()->user()->role_id == '5')
-                        <div class="flex items-center m-10 h-12 w-auto py-3 bg-yellow-100 text-center rounded-md">
-                            
-                                <h1 class="flex-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                        class="inline-block w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                                    </svg>
-                            
-                            
-                                    <span class="font-medium text-red-500">{{
-                                        Carbon\Carbon::parse(auth()->user()->trial_ends_at)->diffInDays() }}
-                                        day </span>left of trial.
-                                    <span class="font-medium">Skip</span>
-                                    trial and
-                                    <span class="font-medium">unlock all features!</span>
-                                    <a href="/select-a-plan-free" class="text-sm font-light text-gray-500">Learn more.</a>
-                                </h1>
-                            
-                            
-                            </div>
+                    <div class="flex items-center m-10 h-12 w-auto py-3 bg-yellow-100 text-center rounded-md">
+
+                        <h1 class="flex-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="inline-block w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                            </svg>
+
+
+                            <span class="font-medium text-red-500">{{
+                                Carbon\Carbon::parse(auth()->user()->trial_ends_at)->diffInDays() }}
+                                day </span>left of trial.
+                            <span class="font-medium">Skip</span>
+                            trial and
+                            <span class="font-medium">unlock all features!</span>
+                            <a href="/select-a-plan-free" class="text-sm font-light text-gray-500">Learn more.</a>
+                        </h1>
+
+
+                    </div>
                     @else
 
                     @endif --}}
@@ -207,6 +207,6 @@
     </div>
     @include('layouts.footer')
 </body>
-@include('layouts.script')
+@include('layouts.scripts')
 
 </html>

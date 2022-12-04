@@ -53,6 +53,6 @@
 <body class="h-full overflow-y">
     @livewire('feature-checkout-component')
 </body>
-@include('layouts.script')
+@include('layouts.scripts')
 
 </html>

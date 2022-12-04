@@ -158,13 +158,15 @@
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
-                        <x-dropdown-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments">
+                        <x-dropdown-link
+                            href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments">
                             Payments
                         </x-dropdown-link>
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
-                        <x-dropdown-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/concerns">
+                        <x-dropdown-link
+                            href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/concerns">
                             Concerns
                         </x-dropdown-link>
                     </div>
@@ -255,7 +257,7 @@
             </main>
         </div>
     </div>>
-    @include('layouts.script')
+    @include('layouts.scripts')
 </body>
 
 </html>

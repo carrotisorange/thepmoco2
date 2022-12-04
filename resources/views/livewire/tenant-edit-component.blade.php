@@ -1,302 +1,240 @@
 <div>
     @include('layouts.notifications')
-    <div class="h-full w-full bg-no-repeat bg-cover" style="background-image: url('/brands/tenant_bg.png');">
-        <div class="mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
+            <div class="lg:col-start-5 lg:col-span-9">
+                <div class="flex justify-between">
 
-            <div class="pt-6 sm:pb-5">
+                    <h1 class="text-3xl font-bold text-gray-900">{{ $tenant_details->tenant }}</h1>
 
-                <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ol role="list" class="flex items-center space-x-4">
-                        <li>
-                            <div class="flex items-center">
-                                <a href="{{ url()->previous() }}"><img class="h-5 w-auto"
-                                        src="{{ asset('/brands/back-button.png') }}"></a>
-                            </div>
-                        </li>
-                    </ol>
-                </nav>
+                    <button
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                        id="dropdownButton" data-dropdown-toggle="tenantCreateDropdown" type="button">Add
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg></button>
 
-                <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
-                    <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
-                        <div class="lg:col-start-5 lg:col-span-9">
+                    <div id="tenantCreateDropdown"
+                        class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                        <ul class="py-1" aria-labelledby="dropdownButton">
+                            <li>
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/concern/create"
+                                    class=" block py-2 px-4 text-sm
+                                                    text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                    dark:text-gray-200 dark:hover:text-white">
+                                    New concern
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/units"
+                                    class=" block py-2 px-4 text-sm
+                                                                        text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                        dark:text-gray-200 dark:hover:text-white">
+                                    New contract
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/bills"
+                                    class=" block py-2 px-4 text-sm
+                                                                                                text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                                                dark:text-gray-200 dark:hover:text-white">
+                                    New bill
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/collections"
+                                    class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                                                dark:text-gray-200 dark:hover:text-white">
+                                    New collection
+                                </a>
+                            </li>
 
-                            <div class="flex justify-between">
-                                <h1 class="text-3xl font-bold text-white">{{ $tenant_details->tenant }}</h1>
-                                @can('tenantportal')
-                                <button type="button"
-                                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/unlock'"
-                                    class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                    Tenant Portal
-                                </button>
-                                @else
-                                @if(!App\Models\User::where('email', $tenant_details->email)->count())
-                                <button type="submit" wire:click="sendCredentials"
-                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-                                    <svg wire:loading wire:target="sendCredentials"
-                                        class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                            stroke-width="4">
-                                        </circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                        </path>
-                                    </svg>
-                                    Send access to tenant portal
-                                </button>
-                                @else
-                                <button type="submit" wire:click="removeCredentials"
-                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-                                    <svg wire:loading wire:target="removeCredentials"
-                                        class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                            stroke-width="4">
-                                        </circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                        </path>
-                                    </svg>
-                                    Remove access to tenant portal
-                                </button>
-
-                                @endif
-                                @endcan
-                            </div>
-
-                        </div>
-
-                        <!-- Image gallery -->
-                        <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-4  lg:row-span-3">
-                            <h2 class="sr-only">Images</h2>
-
-                            <div class="flex items-center justify-center mr-5">
-                                <img src="{{ asset('/brands/user.png') }}" alt="door"
-                                    class="h-56 lg:col-span-2 md:row-span-2 rounded-md">
-                            </div>
-                            {{-- <a href="#"
-                                class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change
-                                username </a>
-                            <a href="#"
-                                class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Change
-                                password</a> --}}
-                            @if($tenant_details->photo_id)
-                            <a href="{{ asset('/storage/'.$tenant_details->photo_id) }}" target="_blank" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
-                                                                        bg-white hover:bg-gray-50">
-                                View valid ID 1</a>
-                            @else
-                            <a href="#/"
-                                class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
-                                                                                                                                bg-white hover:bg-black-50">
-                                Valid ID 1 is not available</a>
-                            @endif
-                            <br>
-                            @if($tenant_details->photo_id_2)
-                            <a href="{{ asset('/storage/'.$tenant_details->photo_id_2) }}" target="_blank" class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
-                                                                                            bg-white hover:bg-gray-50">
-                                View valid ID 2</a>
-                            @else
-                            <a href="#/"
-                                class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
-                                                                                                            bg-white hover:bg-black-50">
-                                Valid ID 2 is not available</a>
-                            @endif
-                            <br>
-                            @if($tenant_details->photo_id_3)
-                            <a href="{{ asset('/storage/'.$tenant_details->photo_id_3) }}" target="_blank"
-                                class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
-                                                                                                                bg-white hover:bg-gray-50">
-                                View valid ID 3</a>
-                            @else
-                            <a href="#/"
-                                class="mt-10 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700
-                                                                                                                                bg-white hover:bg-black-50">
-                                Valid ID 3 is not available</a>
-                            @endif
-
-                        </div>
-
-                        <div class="mt-2 lg:col-span-9">
-                            @include('forms.tenants.tenant-edit')
-                        </div>
-
-                        <section class="mb-10">
-                            <h1 class="mt-10 text-xl font-bold text-black">Concerns</h1>
-                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-
-
-                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-                                    <div
-                                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                        <!-- Selected row actions, only show when rows are selected. -->
-                                        <div
-                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                                        </div>
-
-                                        @include('tables.concerns')
-
-                                    </div>
-
-                                    <div class="mt-8 flex justify-end">
-
-                                        <button type="button"
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/concern/create'"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                            New Concern
-                                        </button>
-
-                                    </div>
-                        </section>
-                        <section class="mb-10">
-                            <h1 class="mt-10 text-xl font-bold text-black">Contracts</h1>
-                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-
-
-                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-                                    <div
-                                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                        <!-- Selected row actions, only show when rows are selected. -->
-                                        <div
-                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                                        </div>
-
-                                        @include('portals.tenants.tables.contracts')
-
-                                    </div>
-
-                                    <div class="mt-8 flex justify-end">
-                                        @can('tenantportal')
-                                        <button type="button"
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/contract'"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                            New Contract
-                                        </button>
-                                        @else
-                                        <button type="button"
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/units'"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">New
-                                            Contract</button>
-                                        @endif
-                                    </div>
-                        </section>
-
-                        <section class="mb-10">
-                            <h1 class="text-xl font-bold text-black">Bills</h1>
-                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-
-
-                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-                                    <div
-                                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                        <!-- Selected row actions, only show when rows are selected. -->
-                                        <div
-                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                                        </div>
-                                        @include('portals.tenants.tables.bills')
-                                    </div>
-
-                                    <div class="mt-8 flex justify-end">
-                                        @can('accountreceivable')
-                                        <button type="button"
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/bill'"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                            View Bills
-                                        </button>
-                                        @else
-                                        <button type="button"
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid}}/bills'"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">View
-                                            Bills</button>
-                                        @endif
-                                    </div>
-                        </section>
-
-                        <section class="mb-10">
-                            <h1 class="text-xl font-bold text-black">Guardians</h1>
-                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-
-
-                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-                                    <div
-                                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                        <!-- Selected row actions, only show when rows are selected. -->
-                                        <div
-                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                                        </div>
-
-                                        @include('portals.tenants.tables.guardians')
-                                    </div>
-                        </section>
-                        <section class="mb-10">
-                            <h1 class="text-xl font-bold text-black">References</h1>
-                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-                                    <div
-                                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                        <!-- Selected row actions, only show when rows are selected. -->
-                                        <div
-                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                                        </div>
-
-                                        @include('portals.tenants.tables.references')
-                                    </div>
-                        </section>
-
-                        <section class="mb-10">
-                            <h1 class="text-xl font-bold text-black">Collections</h1>
-                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-
-
-                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-                                    <div
-                                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                        <!-- Selected row actions, only show when rows are selected. -->
-                                        <div
-                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                                        </div>
-                                        @include('portals.tenants.tables.collections')
-
-                                    </div>
-                                    <div class="mt-8 flex justify-end">
-                                        @can('accountreceivable')
-                                        <button type="button"
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/bill'"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                            View Collections
-                                        </button>
-                                        @else
-                                        <button type="button"
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/collections'"
-                                            class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                            View Collections</button>
-                                        @endif
-                                    </div>
-                        </section>
-
-
+                        </ul>
                     </div>
+
+                </div>
+
+            </div>
+
+            <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3">
+                <h2 class="sr-only">Images</h2>
+
+                <div class="grid grid-cols-1 lg:gap-6">
+                    <img src="{{ asset('/brands/avatar.png') }}" alt="door"
+                        class="lg:col-span-2 md:row-span-2 rounded-md">
+
+                    <div class="flex items-center justify-center ml-5">
+                        {{-- <a href="#"
+                            class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload
+
+                        </a> --}}
+                    </div>
+
+
                 </div>
             </div>
+
+            <div class="mt-8 lg:col-span-9">
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
+                        data-tabs-toggle="#myTabContent" role="tablist">
+                        <li class="mr-2" role="presentation">
+                            <button class="inline-block p-4 rounded-t-lg border-b-2" id="tenant-tab"
+                                data-tabs-target="#tenant" type="button" role="tab" aria-controls="tenant"
+                                aria-selected="false">Tenant</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="contracts-tab" data-tabs-target="#contracts" type="button" role="tab" aria-controls="contracts"
+                                aria-selected="false">Contracts</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="guardians-tab" data-tabs-target="#guardians" type="button" role="tab"
+                                aria-controls="guardians" aria-selected="false">Guardians</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="references-tab" data-tabs-target="#references" type="button" role="tab"
+                                aria-controls="references" aria-selected="false">References</button>
+                        </li>
+                        <li role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="concerns-tab" data-tabs-target="#concerns" type="button" role="tab"
+                                aria-controls="concerns" aria-selected="false">Concerns</button>
+                        </li>
+                        <li role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="bills-tab" data-tabs-target="#bills" type="button" role="tab"
+                                aria-controls="bills" aria-selected="false">Bills</button>
+                        </li>
+                        <li role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="collections-tab" data-tabs-target="#collections" type="button" role="tab" aria-controls="collections"
+                                aria-selected="false">Collections</button>
+                        </li>
+
+                    </ul>
+                </div>
+                <div id="myTabContent">
+                    <div class="p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tenant" role="tabpanel"
+                        aria-labelledby="tenant-tab">
+                        <div>
+                            @include('forms.tenants.tenant-edit')
+                        </div>
+                    </div>
+                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="contracts" role="tabpanel"
+                        aria-labelledby="contracts-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                    
+                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                    
+                                    </div>
+                                    @include('tenants.tables.contracts')
+                                </div>
+                    
+                            </div>
+                    
+                        </div>
+                    </div>
+                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="guardians" role="tabpanel"
+                        aria-labelledby="guardians-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                    </div>
+                                    @include('tenants.tables.guardians')
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="references" role="tabpanel"
+                        aria-labelledby="references-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                    </div>
+                                    @include('tenants.tables.references')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="concerns" role="tabpanel"
+                        aria-labelledby="concerns-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                    </div>
+                                    @include('tenants.tables.concerns')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="bills" role="tabpanel"
+                        aria-labelledby="bills-tab">
+                        <x-button onclick="window.location.href='/property/{{ $tenant_details->property_uuid }}/tenant/{{ $tenant_details->uuid }}/bills'">Pay Bills</x-button>
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                    
+                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                    
+                                    </div>
+                                    @include('tenants.tables.bills')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="collections" role="tabpanel" aria-labelledby="collections-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                    
+                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                    
+                                    </div>
+                                    @include('tenants.tables.collections')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
