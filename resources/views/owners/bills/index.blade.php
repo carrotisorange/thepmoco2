@@ -29,9 +29,12 @@
                     Create Particular</a></button>
 
             </div>
+
             @livewire('owner-bill-component', ['owner'=> $owner])
             @include('modals.create-owner-bill')
             @include('modals.create-particular')
             @include('modals.export-owner-bill')
             @include('modals.send-owner-bill')
+        </div>
+    </div>  
 </x-new-layout>
