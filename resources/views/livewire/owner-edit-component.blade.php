@@ -91,6 +91,12 @@
                         <li class="mr-2" role="presentation">
                             <button
                                 class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="employment-tab" data-tabs-target="#employment" type="button" role="tab"
+                                aria-controls="employment" aria-selected="false">Employment</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="units-tab" data-tabs-target="#units" type="button" role="tab" aria-controls="units"
                                 aria-selected="false">Units</button>
                         </li>
@@ -125,6 +131,71 @@
                         aria-labelledby="owner-tab">
                         <div>
                             @include('forms.owners.owner-edit')
+                        </div>
+                    </div>
+                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="employment" role="tabpanel"
+                        aria-labelledby="employment-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                                    </div>
+                                    <div class="sm:col-span-8">
+                                        <div
+                                            class="h-32 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="job-title"
+                                                class="block text-xs font-medium text-gray-900">Occupation</label>
+                                            <input type="text" wire:model.lazy="occupation"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('occupation')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+
+                                            <label for="job-title"
+                                                class="block text-xs font-medium text-gray-900">Employer</label>
+                                            <input type="text" wire:model.lazy="employer"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('employer')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+
+                                            <label for="job-title"
+                                                class="block text-xs font-medium text-gray-900">Employer Address</label>
+                                            <input type="text" wire:model.lazy="employer_address"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('employer_address')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <p class="mt-5 text-right">
+                                        <button type="submit" form="updateTenant"
+                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+                                            <svg wire:loading wire:target=""
+                                                class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                                    stroke-width="4">
+                                                </circle>
+                                                <path class="opacity-75" fill="currentColor"
+                                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                                </path>
+                                            </svg>
+                                            Update
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="units" role="tabpanel"

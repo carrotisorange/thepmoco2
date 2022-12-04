@@ -129,73 +129,7 @@
             </div>
         </div>
 
-        @if($tenant_details->type == 'studying')
-        <div class="sm:col-span-4">
-            <div
-                class="h-44 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="course" class="block text-xs font-medium text-gray-900">Course</label>
-                <input type="text" wire:model.lazy="course"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                @error('course')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-                <label for="year_level" class="block text-xs font-medium text-gray-900">Year
-                    Level</label>
-                <input type="text" wire:model.lazy="year_level"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-                @error('year_level')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-                <label for="school" class="block text-xs font-medium text-gray-900">School</label>
-                <input type="text" wire:model.lazy="school"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-                @error('school')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-                <label for="school_address" class="block text-xs font-medium text-gray-900">Address</label>
-                <input type="text" wire:model.lazy="school_address"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-                @error('school_address')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-        </div>
-        @else
-        <div class="sm:col-span-8">
-            <div
-                class="h-32 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Occupation</label>
-                <input type="text" wire:model.lazy="occupation"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-                @error('occupation')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Employer</label>
-                <input type="text" wire:model.lazy="employer"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-                @error('employer')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-                <label for="barangay" class="block text-xs font-medium text-gray-900">Address</label>
-                <input type="text" wire:model.lazy="barangay"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-                @error('barangay')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-            </div>
-        </div>
-        @endif
+      
     </div>
 
 
