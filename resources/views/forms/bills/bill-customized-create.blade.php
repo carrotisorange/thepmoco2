@@ -11,7 +11,7 @@
             Select a particular<span class="text-red-600">*</span>
         </x-label>
 
-        <x-form-select wire:model="particular_id" name="particular_id" id="particular_id">
+        <x-form-select name="particular_id" id="particular_id">
             <option value="">Select one</option>
             @foreach ($particulars as $particular)
             <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->
@@ -33,7 +33,7 @@
                 <x-label for="start">
                     Start
                 </x-label>
-                <x-form-input wire:model="start" id="start" type="date"
+                <x-form-input id="start" type="date"
                     value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start" />
 
                 @error('start')
@@ -44,7 +44,7 @@
                 <x-label for="end">
                     End
                 </x-label>
-                <x-form-input wire:model="end" id="end" type="date" name="end"
+                <x-form-input id="end" type="date" name="end"
                     value="{{ old('end', Carbon\Carbon::now()->addMonth()->format('Y-m-d')) }}" />
 
                 @error('end')
@@ -57,7 +57,7 @@
         <x-label for="due_date">
             Amount<span class="text-sm">(Optional)</span>
         </x-label>
-        <x-form-input wire:model="bill" id="bill" type="number" name="bill" value="{{ old('bill', 0) }}" required />
+        <x-form-input id="bill" type="number" name="bill" value="{{ old('bill', 0) }}" required />
         @error('bill')
         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
         @enderror

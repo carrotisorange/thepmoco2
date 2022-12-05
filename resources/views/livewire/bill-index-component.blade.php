@@ -37,6 +37,9 @@
         }
     </style>
     <div class="sm:flex sm:items-center">
+                @include('modals.create-particular')
+                @include('modals.create-express-bill')
+                @include('modals.create-customized-bill')
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
         </div>
@@ -68,15 +71,19 @@
                         </svg>
                     </span>
                 </button>
+
                 <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
               transition duration-150 ease-in-out origin-top min-w-32">
-                    {{-- <a href="#/" data-modal-toggle="create-particular-modal"
+              
+                {{-- <a href="#/" data-modal-toggle="create-particular"
                         class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                         Particular
                     </a> --}}
 
-                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                            data-modal-toggle="create-particular-modal">Particular</a></li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
+                            data-modal-toggle="create-particular">Particular</a>
+                        </li>
+                            
                     <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                         <button class="w-full text-left flex items-center outline-none focus:outline-none">
                             <span class="pr-1 flex-1">Bills</span>
@@ -88,10 +95,9 @@
                                 </svg>
                             </span>
                         </button>
-                        <ul class="bg-white border rounded-sm absolute top-0 right-0 
-              transition duration-150 ease-in-out origin-top-left
-              min-w-32
-              ">
+                        
+                        <ul class="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32">
+                            
                             <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                                 <button class="w-full text-left flex items-center outline-none focus:outline-none">
                                     <span class="pr-1 flex-1">Tenant</span>
@@ -104,16 +110,31 @@
                                         </svg>
                                     </span>
                                 </button>
-                                <ul class="bg-white border rounded-sm absolute top-0 right-0 
-                  transition duration-150 ease-in-out origin-top-left
-                  min-w-32
-                  ">
-                                    <li class="px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                            data-modal-toggle="create-express-bill-modal">Express Bills</a></li>
-                                    <li class="px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                            data-modal-toggle="create-customized-bill-modal">Customized Bills</a></li>
-                                </ul>
-                            </li>
+
+                        <ul class="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32">
+                        {{-- <a href="#/" data-modal-toggle="create-express-bill"
+                                class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Express Bill
+                            </a> --}}
+
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><button type="button"
+                            data-modal-toggle="create-express-bill-modal">
+                        Express Bill
+                        </button></li>
+                            
+                        {{-- <a href="#/" data-modal-toggle="create-customized-bill"
+                        class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        Customized Bill
+                        </a> --}}
+
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><button type="button"
+                            data-modal-toggle="create-customized-bill-modal">
+                        Customized Bill
+                        </button></li>
+                            
+                    </ul>
+                    </li>
+
                             {{-- <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                                 <button class="w-full text-left flex items-center outline-none focus:outline-none">
                                     <span class="pr-1 flex-1">Owner</span>
@@ -138,6 +159,7 @@
                         </ul>
                     </li>
                 </ul>
+                
             </div>
 
             {{-- <button
