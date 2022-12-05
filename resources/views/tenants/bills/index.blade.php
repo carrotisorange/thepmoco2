@@ -20,7 +20,7 @@
                                     <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                                 </svg>
                                     <button onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'" class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
-                                    {{ $tenant->tenant }} </a>
+                                    {{ $tenant->tenant }} </button>
                             </div>
                         </li>
 
@@ -63,11 +63,15 @@
                             Create Particular</a></button>
                     </div>
                 </div>
+            
+               
         </div>
+    </div>
+
             @livewire('tenant-bill-component', ['tenant'=> $tenant])
 
-</x-new-layout>
 @include('modals.create-tenant-bill')
 @include('modals.export-tenant-bill')
 @include('modals.send-tenant-bill')
 @include('modals.create-particular')
+</x-new-layout>
