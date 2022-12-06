@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use App\Models\User;
+use Session;
 
 class TenantEditComponent extends Component
 {
@@ -115,6 +116,8 @@ class TenantEditComponent extends Component
             DB::transaction(function () use ($validatedData){
                 $this->tenant_details->update($validatedData);
             });
+            
+            app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',3);
 
             session()->flash('success', 'Tenant details is successfully updated.');    
             
@@ -131,7 +134,7 @@ class TenantEditComponent extends Component
 
      public function sendCredentials()
     {
-        sleep(2);
+        sleep(1);
 
         if(!$this->email){
             session()->flash('error', 'The email address is required.');
@@ -161,15 +164,20 @@ class TenantEditComponent extends Component
           'tenant_uuid' => $this->tenant_details->uuid
         ]);
 
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'sends',18);
+       
+
        session()->flash('succcess', 'Access to tenant portal has been sent to email.');
     }
 
     public function removeCredentials()
     {
-        sleep(2);
+        sleep(1);
 
         User::where('email', $this->tenant_details->email)
         ->delete();
+        
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'removes', 18);
 
         session()->flash('success', 'Access to tenant portal has been removed.');
     }

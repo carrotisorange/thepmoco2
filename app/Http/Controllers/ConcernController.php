@@ -68,6 +68,8 @@ class ConcernController extends Controller
      */
     public function show($property_uuid, Concern $concern)
     {
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens one',13);
+        
         return view('concerns.show',[
             'concern' => $concern
         ]);

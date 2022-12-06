@@ -79,6 +79,8 @@ class PropertyEditComponent extends Component
               $this->update_property($validatedData, $request);
             });
 
+            app('App\Http\Controllers\ActivityController')->store($this->property_details->uuid, auth()->user()->id,'updates',1);
+
             return session()->flash('success', 'Property is successfully updated.');
 
         }catch(\Exception $e){

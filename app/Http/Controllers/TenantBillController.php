@@ -27,6 +27,8 @@ class TenantBillController extends Controller
 
     public function index(Property $property, Tenant $tenant)
     {            
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens', 10);
+       
         $bills = Tenant::find($tenant->uuid)
         ->bills()
         ->orderBy('bill_no','desc')

@@ -77,27 +77,10 @@ class UnitEditComponent extends Component
 
             DB::commit();
 
+            app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',2);
+
             session()->flash('success', 'Unit is successfully updated.');    
-            
-        }catch(\Exception $e){
-            DB::rollback();
-
-
-            //update the selected unit
-            $this->unit_details->update($validatedData);
-
-            //prompt user with a success message
-            session()->flash('success', 'Unit is successfully updated.');    
-            
-        }catch(\Exception $e){
-            //promote user with an error message
-
-            //update the selected unit
-            $this->unit_details->update($validatedData);
-
-            //prompt user with a success message
-            session()->flash('success', 'Unit is successfully updated.');    
-            
+                    
         }catch(\Exception $e){
 
             session()->flash('error');
