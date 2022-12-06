@@ -53,7 +53,6 @@ class TenantEditComponent extends Component
 
     public function mount($tenant_details)
     {
-        $this->tenant_details = $tenant_details;
         $this->bill_reference_no = $tenant_details->bill_reference_no;
         $this->tenant = $tenant_details->tenant;
         $this->email = $tenant_details->email;
@@ -188,8 +187,7 @@ class TenantEditComponent extends Component
             'contracts' => app('App\Http\Controllers\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
             'bills' => app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant_details->uuid),
             'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
-            'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($this->tenant_details->uuid),
-            'tenant' => Tenant::find($this->tenant_details->uuid),
+            'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($this->tenant_details->uuid)
          ]);
     }
 }
