@@ -198,7 +198,7 @@ class TenantController extends Controller
         $contracts = Tenant::find($tenant_uuid)->contracts->count();
 
         if($contracts){
-           return back()->with('error', 'Cannot be deleted. Tenant has existing contracts');
+           return back()->with('error', 'Cannot be deleted. dialects in the philippines in terms of Tenant has existing contracts');
         }
         else{
            Tenant::where('uuid', $tenant_uuid)->delete();

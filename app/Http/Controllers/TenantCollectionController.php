@@ -28,6 +28,8 @@ class TenantCollectionController extends Controller
      */
     public function index(Property $property, Tenant $tenant)
     {
+       app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
+
         return view('tenants.collections.index',[
          'tenant' => Tenant::find($tenant->uuid),
          'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($tenant->uuid),

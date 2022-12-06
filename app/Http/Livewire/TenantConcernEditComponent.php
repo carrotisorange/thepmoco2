@@ -66,7 +66,7 @@ class TenantConcernEditComponent extends Component
 
     public function submitForm()
     {
-       sleep(2);
+       sleep(1);
         
        $validatedData = $this->validate();
 
@@ -76,6 +76,7 @@ class TenantConcernEditComponent extends Component
             $this->concern_details->update($validatedData);
         });
 
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property'),auth()->user()->id,'updates', 13);
         session()->flash('success', 'Concern details is successfully updated.');
 
        }catch(\Exception $e){

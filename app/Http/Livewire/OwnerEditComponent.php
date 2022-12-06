@@ -134,15 +134,19 @@ class OwnerEditComponent extends Component
           'owner_uuid' => $this->owner_details->uuid
         ]);
 
-         session()->flash('succcess', 'Access to owner portal has been sent to email.');
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'sends', 19);
+       
+        session()->flash('succcess', 'Access to owner portal has been sent to email.');
     }
 
     public function removeCredentials()
     {
-        sleep(2);
+        sleep(1);
 
         User::where('email', $this->owner_details->email)
         ->delete();
+
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'removes', 19);
 
         session()->flash('success', 'Access to owner portal has been removed.');
     }

@@ -18,8 +18,6 @@ class PropertyShowComponent extends Component
     {
         app('App\Http\Controllers\PropertyController')->store_property_session($this->property);
 
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'opens',1);
-
         app('App\Http\Controllers\PropertyController')->save_unit_stats($this->property->uuid);
 
         return view('livewire.property-show-component',[

@@ -81,7 +81,7 @@ class PropertyController extends Controller
     }
 
     public function index()
-    {
+    {        
         $this->destroy_property_session();
 
         $this->is_user_allowed_to_access(auth()->user()->status);
@@ -137,6 +137,8 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),auth()->user()->id,true,true);
+
         $attributes = request()->validate([
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
@@ -154,7 +156,7 @@ class PropertyController extends Controller
 
         Property::create($attributes);
 
-        app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),auth()->user()->id,true,true);
+
 
         for($i=1; $i<=5; $i++){
             PropertyParticular::create([
@@ -493,6 +495,8 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {  
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
+
         $this->authorize('is_portfolio_read_allowed');
 
         return view('properties.show',[

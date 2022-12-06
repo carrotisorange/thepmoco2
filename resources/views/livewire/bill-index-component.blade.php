@@ -9,7 +9,7 @@
         }
 
         li:hover>ul {
-            transform: translatex(101%) scale(1)
+            transform: translatex(50%) scale(1)
         }
 
         li>button svg {
@@ -117,7 +117,7 @@
                                 Express Bill
                             </a> --}}
 
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><button type="button"
+                        <li class="rounded-sm px-2 py-1 hover:bg-gray-100"><button type="button"
                             data-modal-toggle="create-express-bill-modal">
                         Express Bill
                         </button></li>
@@ -127,7 +127,7 @@
                         Customized Bill
                         </a> --}}
 
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><button type="button"
+                        <li class="rounded-sm px-2 py-1 hover:bg-gray-100"><button type="button"
                             data-modal-toggle="create-customized-bill-modal">
                         Customized Bill
                         </button></li>

@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Feature;
 use App\Models\User;
 use Auth;
+use Session;
 use App\Models\Role;
 
 class UserEditComponent extends Component
@@ -175,6 +176,8 @@ class UserEditComponent extends Component
             DB::transaction(function () use ($validatedData){
                 $this->user->update($validatedData);
             });
+
+            app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',8);
 
             session()->flash('success', 'User details is successfully updated.');    
             

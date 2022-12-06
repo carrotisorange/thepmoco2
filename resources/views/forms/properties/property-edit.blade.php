@@ -191,12 +191,12 @@
             </div>
             <div class="pt-5">
                 <div class="flex justify-end">
-                    <button type="button" onclick="window.location.href='/property'"
-                        class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                   <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
+                        href="/property/">
                         Cancel
-                    </button>
+                    </a>
                     <x-form-button type="submit" wire:loading.remove wire:click="submitForm()" id="create-form">
-                        Submit
+                        Update
                     </x-form-button>
                 </div>
             </div>
