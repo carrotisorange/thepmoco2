@@ -257,7 +257,7 @@ seamlessly and harmoniously with their tenants.</p>
           <div class="md:ml-auto md:w-1/2 md:pl-10">
             
             <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Vision</p>
-            <p class="mt-3 text-lg text-gray-300">Tech enabled rental property communities.</p>
+            <p class="mt-3 text-lg text-gray-300">Thriving rental property communities thru technology enablement.</p>
             <div class="mt-8">
               <div class="inline-flex rounded-md shadow">
                 
@@ -331,7 +331,7 @@ seamlessly and harmoniously with their tenants.</p>
             
           <div class="mt-12 lg:col-start-1 lg:m-0 lg:pl-20">
           <div class="flex justify-center items-center">
-          <img class="mt-10 h-full lg:w-full md:w-auto sm:w-auto" src="{{ asset('/brands/landing/team-about.png') }}" alt="team vector">
+          <img class="mt-10 h-full lg:w-full md:w-auto sm:w-auto" src="{{ asset('/brands/landing/about-team.png') }}" alt="team vector">
           </div>
           </div>
 
@@ -347,11 +347,7 @@ Our team members have worked or belong to the industry of real estate management
 Information Technology industry. We believe that a transformative digital system is what the
 real estate management need to reduce and even eliminate many pain points of a rental
 property business.</p>
-<p  class="text-base text-gray-500 mt-5 ">
-The Philippines Real Estate Leasing Businesses with owned and leased properties employs
-more than 101,000 employees. Just like any business, the rental property business, the tenants,
-and those working in it will benefit in digitalizing business operations.
-</p>
+
 <p  class="text-base text-gray-500 mt-5 ">
 The PMO Team is establishing harmonious relationships between business owners,
 managers, and tenants to make thriving rental property communities. With a transformative
