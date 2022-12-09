@@ -11,7 +11,7 @@
     <div class="mx-auto mt-5 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
       <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article1"><img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt=""></a>
+          <a href="article1"><img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt="a desk with a keyboard, mouse, phone, and office supplies"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
@@ -28,7 +28,7 @@
             <div class="flex-shrink-0">
               <a href="">
                 <span class="sr-only">Anonymous</span>
-                <img class="h-16 w-16 rounded-full" src="{{ asset('/brands/landing/f-icon.png') }}" alt="">
+                <img class="h-16 w-16 rounded-full" src="{{ asset('/brands/landing/f-icon.webp') }}" alt="user vector icon">
               </a>
             </div>
             <div class="ml-3">
@@ -45,75 +45,9 @@
         </div>
       </div>
 
-      <div class="hidden flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt="">
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="#" class="hover:underline">Video</a>
-            </p>
-            <a href="#" class="mt-2 block">
-              <p class="text-xl font-semibold text-gray-900">How to use search engine optimization to drive sales</p>
-              <p class="mt-3 text-base text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.</p>
-            </a>
-          </div>
-          <div class="mt-6 flex items-center">
-            <div class="flex-shrink-0">
-              <a href="#">
-                <span class="sr-only">Brenna Goyette</span>
-                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-              </a>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium text-gray-900">
-                <a href="#" class="hover:underline">Brenna Goyette</a>
-              </p>
-              <div class="flex space-x-1 text-sm text-gray-500">
-                <time datetime="2020-03-10">Mar 10, 2020</time>
-                <span aria-hidden="true">&middot;</span>
-                <span>4 min read</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     
 
-      <div class="hidden flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt="">
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="#" class="hover:underline">Case Study</a>
-            </p>
-            <a href="#" class="mt-2 block">
-              <p class="text-xl font-semibold text-gray-900">Improve your customer experience</p>
-              <p class="mt-3 text-base text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.</p>
-            </a>
-          </div>
-          <div class="mt-6 flex items-center">
-            <div class="flex-shrink-0">
-              <a href="#">
-                <span class="sr-only">Daniela Metz</span>
-                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-              </a>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium text-gray-900">
-                <a href="#" class="hover:underline">Daniela Metz</a>
-              </p>
-              <div class="flex space-x-1 text-sm text-gray-500">
-                <time datetime="2020-02-12">Feb 12, 2020</time>
-                <span aria-hidden="true">&middot;</span>
-                <span>11 min read</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </div>

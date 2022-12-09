@@ -37,7 +37,7 @@ body {
    
   <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16 sm-px-0 ">
   <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-3xl sm:ml-12 sm:py-2 lg:-ml-5 mx-5">
-  <p class="text-lg font-light mt-10 text-indigo-200">The Property Manager Online provides a full-suite solution that allows rental business owners to run their operations smoothly and harmoniously with their tenants.</p>
+  <p class="text-lg font-light mt-10 text-white">The Property Manager Online provides a full-suite solution that allows rental business owners to run their operations smoothly and harmoniously with their tenants.</p>
  
 
             <div class="mt-10 flex justify-center items-center space-x-5">
@@ -74,32 +74,33 @@ body {
         <div class="swiper-slide">
         <h1 class="p-5 text-white text-lg text-center font-semibold">Manage multiple properties in one seamless and unified system</h1>
           <img
-            class="h-full w-full"
-            src="{{ asset('/brands/landing/portfolio_img.png') }}"
-            alt="dashboard page"
+            width="1920"
+            height="1080"
+            src="{{ asset('/brands/landing/portfolio_img.webp') }}"
+            alt="portfolio page showing 4 buildings"
           />
         </div>
         <div class="swiper-slide">
         <h1 class="p-5 text-white text-lg text-center font-semibold">A property dashboard for property performance metrics at a glance</h1>
           <img
-            class="h-full w-full"
-            src="{{ asset('/brands/landing/dashboard_img.png') }}"
-            alt="portfolio page"
+            width="1920"
+            height="1080"
+            src="{{ asset('/brands/landing/dashboard_img.webp') }}"
+            alt="a sample dashboard"
           />
         </div>
         <div class="swiper-slide">
         <h1 class="p-5 text-white text-lg text-center font-semibold">Easily collaborate with a centralized database for the management team</h1>
           <img
-            class="h-full w-full"
-            src="{{ asset('/brands/landing/employee_img.png') }}"
-            alt="personnel page"
+            width="1920"
+            height="1080"
+            src="{{ asset('/brands/landing/employee_img.webp') }}"
+            alt="a sample personnel page"
           />
           
         </div>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+      
     </div>
   </div>
   </div>
@@ -134,7 +135,7 @@ body {
     <style>
 
 #features {
-  background-image: url('/brands/landing/feature-bg.png');
+  background-image: url('/brands/landing/feature-bg.webp');
   background-repeat: no-repeat;
 }
 </style>
@@ -297,7 +298,7 @@ body {
 <div class="relative py-16 sm:py-24 lg:py-32" id="guide">
 <style>
 #guide {
-    background-color: #a08cc6;
+    background-color: #60478F;
 }
 </style>
         <div class="relative">
@@ -461,7 +462,7 @@ body {
     </svg>
 
     <div class="relative">
-      <img class="mx-auto h-8"  src="{{ asset('/brands/clients/client-2.png') }}" alt="North Cambridge">
+      <img class="mx-auto w-10 h-10"  src="{{ asset('/brands/clients/client-2.png') }}" alt="North Cambridge logo">
       <blockquote class="mt-10">
         <div class="mx-auto max-w-3xl text-center text-xl font-medium leading-9 text-gray-900">
           <p>&ldquo;It makes my life less stressful because the application provides an easy way for tenants to report concerns, and as I resolve the concern, it provides an option for them to monitor its status in real-time.&rdquo;</p>
@@ -469,7 +470,7 @@ body {
         <footer class="mt-8">
           <div class="md:flex md:items-center md:justify-center">
             <div class="md:flex-shrink-0">
-              <img class="mx-auto h-10 w-10 rounded-full" src="{{ asset('/brands/user.png') }}" alt="">
+              <img class="mx-auto h-10 w-10 rounded-full" src="{{ asset('/brands/landing/f-icon.webp') }}" alt="user icon">
             </div>
             <div class="mt-3 text-center md:mt-0 md:ml-4 md:flex md:items-center">
               <div class="text-base font-medium text-gray-900">Kate</div>
@@ -501,7 +502,7 @@ body {
     </svg>
 
     <div class="relative">
-      <img class="mx-auto h-10"  src="{{ asset('/brands/clients/client-3.png') }}" alt="Martha">
+      <img class="mx-auto w-20 h-20"  src="{{ asset('/brands/clients/client-3.png') }}" alt="Martha logo">
       <blockquote class="mt-10">
         <div class="mx-auto max-w-3xl text-center text-xl font-medium leading-9 text-gray-900">
           <p>&ldquo;Helpful. Makes work faster and easier.&rdquo;</p>
@@ -509,7 +510,7 @@ body {
         <footer class="mt-8">
           <div class="md:flex md:items-center md:justify-center">
             <div class="md:flex-shrink-0">
-              <img class="mx-auto h-10 w-10 rounded-full" src="{{ asset('/brands/user.png') }}" alt="">
+              <img class="mx-auto h-10 w-10 rounded-full" src="{{ asset('/brands/landing/f-icon.webp') }}" alt="user icon">
             </div>
             <div class="mt-3 text-center md:mt-0 md:ml-4 md:flex md:items-center">
               <div class="text-base font-medium text-gray-900">Vanessa</div>
@@ -743,16 +744,16 @@ body {
         <p class="text-center text-xl font-semibold text-gray-500">Partnered with:</p>
         <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-4">
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-            <a href="https://www.digitalocean.com/trust/certification-reports?fbclid=IwAR3qJ79YUNro9Px4ycCvcuCgGH7MVxbcrvQitnhlh4i51su4PuJsRyKr6T0"><img class="h-20" src="{{ asset('/brands/landing/digital-ocean.png') }}" alt="digital ocean"></a>
+            <a href="https://www.digitalocean.com/trust/certification-reports?fbclid=IwAR3qJ79YUNro9Px4ycCvcuCgGH7MVxbcrvQitnhlh4i51su4PuJsRyKr6T0"><img class="w-20 h-20" src="{{ asset('/brands/landing/digital-ocean.png') }}" alt="digital ocean logo"></a>
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/landing/aim-logo.png') }}" alt="aim logo">
+          <img class="w-30 h-20" src="{{ asset('/brands/landing/aim-logo.png') }}" alt="AIM logo">
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/clients/client-3.png') }}" alt="Tuple">
+          <img class="w-20 h-20" src="{{ asset('/brands/clients/client-3.png') }}" alt="martha logo">
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/clients/client-4.png') }}" alt="Tuple">
+          <img class="w-20 h-20" src="{{ asset('/brands/clients/client-4.png') }}" alt="cura logo">
           </div>
           
 

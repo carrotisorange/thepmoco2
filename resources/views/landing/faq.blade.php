@@ -22,7 +22,7 @@
     </div>
 
    <!-- Testimonial section -->
-   <div class=" pb-16 lg:z-10 lg:pb-0" style= "background-image: url('/brands/landing/faq-bg.png');">
+   <div class=" pb-16 lg:z-10 lg:pb-0" style= "background-image: url('/brands/landing/faq-bg.webp');" alt="a laptop, message icon, settings icon as background">
           <div class="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
             <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-xl lg:px-0 lg:py-20">
               <blockquote>
@@ -50,7 +50,7 @@
         <div class=" h-full w-full xl:grid xl:grid-cols-3">
 
           <div class="h-full xl:relative xl:col-start-3">
-            <img class="h-full w-full object-cover opacity-75 xl:absolute xl:inset-0" src="{{ asset('/brands/landing/faq-2.png') }}" alt="People working on laptops">
+            <img class="h-full w-full object-cover opacity-75 xl:absolute xl:inset-0" src="{{ asset('/brands/landing/faq-2.webp') }}" alt="person with laptop accessing thepmo.co">
             <div aria-hidden="true" class="absolute inset-x-0 top-0 xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
           </div>
         </div>
@@ -131,7 +131,7 @@
              
             </div>
         <div class="flex justify-center items-center">
-            <img class="w-96" src="{{ asset('/brands/landing/faqs-icons.png') }}">
+            <img class="w-96" src="{{ asset('/brands/landing/faqs-icons.webp')}}" alt="icons of checklist, message, users, properties, and graph chart">
         </div>
           </div>
           

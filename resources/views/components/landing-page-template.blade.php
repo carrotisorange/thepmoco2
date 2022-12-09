@@ -3,12 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="canonical" href="https://thepropertymanager.online" />
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="canonical" href="https://thepropertymanager.online" />
     <title>@yield('title')</title>
+
+    <meta name="description" content="A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.">
+    <meta name="keywords" content="Property,
+    Property Management,
+    Property manager,
+    Property management system,
+    Leasing,
+    Leasing management,
+    Leasing manager,
+    Leasing management system,
+    Real estate management,
+    Real estate manager,
+    Real estate management system,
+    Long-term lease,
+    Long-term Rental property,
+    Rental Property,
+    Rental property management system,
+    Real Property Technology,
+    Rental Property Technology,
+    Rental Property Business,
+    System as a service,
+    Condominium management system,
+    Association Management System,
+    Rental billing system,
+    property management system for hotels,
+    property management system in hotel,
+    leasing management software,
+    property leasing management,
+    property management software,
+    property management software systems,
+    property management companies,
+    Real Estate Technology,
+    online condominium management system,
+    association management system software">
+
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content= "Property Management System - The PMO Co">
+    <meta property="og:image" content="https://thepropertymanager.online/brands/landing/pmo-logo.webp"> 
+    <meta property="og:image" content="https://thepropertymanager.online/brands/favicon.ico"> 
+    <meta property="og:image:width" content="1240">          
+    <meta property="og:image:height" content="650">          
+
+    
+    <meta property="fb:app_id" content="The Property Manager"> 
+    <meta property="og:url" content="https://www.facebook.com/onlinepropertymanager"> 
+
+    <script type="application/ld+json">
+  {
+  "@context": "https://schema.org", 
+  "@type": "Saas Business",             
+  "name": "The PMO Co",            
+  "image": "https://thepropertymanager.online/brands/landing/pmo-logo.webp",          
+  "@id": "https://thepropertymanager.online/", 
+  "url": "https://thepropertymanager.online/",
+  "telephone": "(+63) 916 779 9750",                
+   "email": "sales@thepmo.co",	
+  "address": {
+    "@type": "PostalAddress",          
+    "streetAddress": "39 Engineers Hill", 
+    "addressLocality": "Baguio City",
+    "postalCode": "2600",
+    "addressCountry": "Philippines"
+  }
+  "sameAs" : [
+    "https://www.facebook.com/onlinepropertymanager",
+    "https://www.linkedin.com/company/the-pmo-co/",
+  ]
+
+
+</script>
+
+<!-- Google tag (gtag.js) --> 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-965275487"></script> 
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-965275487'); 
+gtag('config', 'AW-965275487');
+</script>
+
+<!-- Event snippet for Website traffic conversion page --> 
+<script> gtag('event', 'conversion', {'send_to': 'AW-965275487/zV6CCOm3wIQYEN_eo8wD'}); </script>
+
 </head>
 
 <style>
@@ -36,11 +118,11 @@ body {
   <html>
   <body>
  
-    <!-- component -->
+    <!-- navigation -->
 <body>
 	<nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-6 flex justify-between items-center">
 		<a class="text-3xl font-bold leading-none" href="/">
-    <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.png') }}" alt="pmo logo">
+    <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.webp') }}" alt="the pmo logo">
 		</a>
 		<div class="lg:hidden">
 			<button class="navbar-burger flex items-center text-white p-3">
@@ -50,17 +132,17 @@ body {
 				</svg>
 			</button>
 		</div>
-		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-			<li><a class="text-md text-gray-400 hover:text-gray-500" href="/">Home</a></li>
+		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-10">
+			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="/">Home</a></li>
 			
-			<li><a class="text-md text-gray-400 hover:text-gray-500" href="about">About Us</a></li>
+			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="about">About Us</a></li>
 			
-			<li><a class="text-md text-gray-400 hover:text-gray-500" href="faq">FAQs</a></li>
+			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
 			
-			<li><a class="text-md text-gray-400 hover:text-gray-500" href="blog">Articles</a></li>
+			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="blog">Articles</a></li>
 		
 		</ul>
-		<a id="button1"class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-white hover:bg-gray-300  rounded-xl transition duration-200" href="https://thepmo.co/select-a-plan">Sign Up</a>
+		<a id="button1"class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm font-bold text-white hover:bg-gray-300  rounded-xl transition duration-200" href="https://thepmo.co/select-a-plan">Sign Up</a>
 		<a class="hidden lg:inline-block py-2 px-6  text-sm text-white hover:bg-gray-400 rounded-2xl transition duration-200" href="https://thepmo.co/">Sign In</a>
 	</nav>
 	<div class="navbar-menu relative z-50 hidden">
@@ -68,7 +150,7 @@ body {
 		<nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
 			<div class="flex items-center mb-8">
 				<a class="mr-auto text-3xl font-bold leading-none" href="#">
-        <img class="h-10" src="{{ asset('/brands/favicon.ico') }}" alt="pmo logo">
+        <img class="h-20" src="{{ asset('/brands/full-logo.webp') }}" alt="the pmo logo">
 				</a>
 				<button class="navbar-close">
 					<svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,17 +160,17 @@ body {
 			</div>
 			<div>
 				<ul>
-					<li class="mb-1">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/">Home</a>
+					<li class="mb-1" tabindex="0">
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/" >Home</a>
 					</li>
-					<li class="mb-1">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="about">About Us</a>
+					<li class="mb-1" tabindex="0">
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="about" >About Us</a>
 					</li>
-					<li class="mb-1">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="faq">FAQs</a>
+					<li class="mb-1" tabindex="0">
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="faq" >FAQs</a>
 					</li>
-					<li class="mb-1">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog">Article</a>
+					<li class="mb-1" tabindex="0">
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog" >Article</a>
 					</li>
 					
 				</ul>

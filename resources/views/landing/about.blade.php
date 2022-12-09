@@ -3,7 +3,7 @@
 
     <div class ="min-h-screen">
     <div class="flex items-center justify-center">
-<img class="mt-10 h-full w-fit object-cover opacity-30" src="{{ asset('/brands/landing/buildings.png') }}" alt="pmo logo">
+<img class="mt-10 h-full w-fit object-cover opacity-30" src="{{ asset('/brands/landing/buildings.png') }}" alt="an outline of new york tall buildings">
         </div>
     <div>
          <div class="pt-5 pb-5 flex items-center justify-center">
@@ -28,16 +28,16 @@
         <p class="text-center text-xl font-semibold text-gray-500">Partnered with:</p>
         <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-4">
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-            <a href=""><img class="h-20" src="{{ asset('/brands/landing/digital-ocean.png') }}" alt="digital ocean"></a>
+            <a href=""><img class="h-20" src="{{ asset('/brands/landing/digital-ocean.png') }}" alt="digital ocean logo"></a>
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/landing/aim-logo.png') }}" alt="aim logo">
+          <img class="h-20" src="{{ asset('/brands/landing/aim-logo.png') }}" alt="asian institute of management logo">
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/clients/client-3.png') }}" alt="martha">
+          <img class="h-20" src="{{ asset('/brands/clients/client-3.png') }}" alt="martha logo">
           </div>
           <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-20" src="{{ asset('/brands/clients/client-4.png') }}" alt="cura">
+          <img class="h-20" src="{{ asset('/brands/clients/client-4.png') }}" alt="cura logo">
           </div>
           
 
@@ -83,7 +83,7 @@ seamlessly and harmoniously with their tenants.</p>
 
           <div class="lg:mt-20 sm:mt-0  lg:col-start-2 sm:pl-5 lg:pl-32">
           <div class="flex justify-center items-center">
-          <img class="h-72 w-fit" src="{{ asset('/brands/landing/about.png') }}" alt="pmo logo">
+          <img class="h-72 w-fit" src="{{ asset('/brands/landing/about.webp') }}" alt="a laptop mockup showing pmo dashboard">
           </div>
         </div>
         </div>
@@ -178,7 +178,7 @@ seamlessly and harmoniously with their tenants.</p>
             
           <div class="mt-12 lg:col-start-1 lg:m-0 lg:pl-20">
           <div class="flex justify-center items-center">
-          <img class="mt-10 h-full lg:w-full md:w-auto sm:w-auto" src="{{ asset('/brands/landing/about-team.png') }}" alt="team vector">
+          <img class="mt-10 h-full lg:w-full md:w-auto sm:w-auto" src="{{ asset('/brands/landing/about-team.webp') }}" alt="a vector, 4 people working">
           </div>
           </div>
 
