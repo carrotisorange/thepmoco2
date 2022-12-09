@@ -17,17 +17,17 @@
 
 <body>
 
-    <html class="h-full bg-gray-300s">
+    <html>
 
-    <body class="h-full">
+    <body class="h-min">
 
         <div class="hidden lg:block relative flex-1 items-center justify-center">
-            <img class="absolute inset-0 w-auto py-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt="">
+            <img class="absolute inset-0 w-auto pt-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt="">
             <img class="absolute inset-0 w-32 py-12 ml-10" src="{{ asset('/brands/logo_text.png') }}" alt="">
         </div>
-        <div class="min-h-full flex ">
-            <div class="mt-8 flex-1 flex flex-col py-2 px-4 sm:px-6 lg:flex-none lg:px-10 ">
-                <div class="mt-2 grid grid-cols-1 gap-y-6 gap-x-10 sm:grid-cols-2">
+        <div class="">
+            <div class="flex-1 flex flex-col py-2 px-4 sm:px-6 lg:flex-none lg:px-10 ">
+                <div class="grid grid-cols-1 gap-y-6 gap-x-10 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
                     <div class="w-full max-w-sm">
                         <div class="sm:col-span-1">
 
@@ -126,9 +126,9 @@
 
                         <div class="text-sm text-center">
                             By clicking the sign up below, you agree to the <a
-                                href="https://www.thepropertymanager.online/termsandconditions" target="_blank"
+                                href="https://www.thepropertymanager.online/terms" target="_blank"
                                 class="font-medium text-indigo-600 hover:text-indigo-500">Terms & Conditions</a> and <a
-                                href="https://www.thepropertymanager.online/privacypolicy" target="_blank"
+                                href="https://www.thepropertymanager.online/privacy" target="_blank"
                                 class="font-medium text-indigo-600 hover:text-indigo-500">Privacy
                                 Policy</a>
                         </div>
