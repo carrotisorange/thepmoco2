@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +39,6 @@ require __DIR__.'/checkout.php';
 //show this route if a user tries to access broken links
 Route::fallback(function () {
     return view('layouts.not-found');
-
-    
 });
 
 // Route::get('/landingpage', function(){
@@ -77,4 +77,17 @@ Route::get('/article1', function(){
 
 Route::get('/demopage', function(){
     return view('landing.demopage');
+});
+
+Route::post('/register', function(Request $request){
+
+    $attributes = $request->validate([
+    'name' => ['required', 'string', 'max:255'],
+    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    'mobile_number' => ['required', 'unique:users'],
+    ]);
+
+    User::create($attributes);
+
+    return back()->with('success', 'The form has been submitted!');
 });
