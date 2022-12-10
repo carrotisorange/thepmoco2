@@ -6,7 +6,7 @@
 
             </th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                BANK NAME
+                Bank
             </th>
             <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                 ACCOUNT NAME
