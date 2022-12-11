@@ -14,7 +14,7 @@ use App\Models\Feature;
 
 use Livewire\Component;
 
-class UserComponent extends Component
+class UserCreateComponent extends Component
 {
    use WithFileUploads;
 
@@ -111,7 +111,7 @@ class UserComponent extends Component
    protected function rules()
    {
       return [
-         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+         'email' => ['required', 'string', 'email', 'max:255'],
          'role_id' => ['required', Rule::exists('roles', 'id')],
       ];
    }
@@ -121,58 +121,83 @@ class UserComponent extends Component
       $this->validateOnly($propertyName);
    }
 
-   public function addUser()
+   public function storeUser()
    {
       sleep(1);
 
       $this->validate();
+   
+      if (User::where('email', $this->email)->exists()) {
 
-      try{
-         DB::transaction(function (){
-            //store a new user
-            $user_id =  app('App\Http\Controllers\UserController')->store(
-            'unnamed', 
-            $this->email,
-            Str::random(8),
-            auth()->user()->id, 
-            $this->email, 
-            $this->role_id,
-            $this->mobile_number, 
-            auth()->user()->discount_code,
-            auth()->user()->checkout_option,
-            auth()->user()->plan_id
+          $user = User::where('email', $this->email);
+
+          if(!$this->isUserExists($user)){
+             UserProperty::firstOrCreate([
+             'property_uuid' => Session::get('property'),
+             'user_id' => $user->get()->toArray()[0]['id'],
+             ]);
+          }else{
+             return back()->with('error', 'Email is already assigned to this property');
+          }
+
+      }else{
+         try{
+            DB::transaction(function (){
+               //store a new user
+               $user_id =  app('App\Http\Controllers\UserController')->store(
+               'unnamed', 
+               $this->email,
+               Str::random(8),
+               auth()->user()->id, 
+               $this->email, 
+               $this->role_id,
+               $this->mobile_number, 
+               auth()->user()->discount_code,
+               auth()->user()->checkout_option,
+               auth()->user()->plan_id
          );
 
             $this->set_user_restrictions($user_id);
 
             //store a new user and user property
-            app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),$user_id,false,false);
+            app('App\Http\Controllers\UserPropertyController')->store(
+               Session::get('property'),
+               $user_id,
+               false,
+               true
+            );
             
          });
          
-          if($this->createAnotherPersonnel)
-          {
-          //prompt user withe a sucess page
-          return redirect('/property/'.Session::get('property').'/user/'.Str::random(8).'/create')->with('success', 'User invite has been sent.');
-
-          }else{
-          //prompt user withe a sucess page
-          return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User invite has been sent.');
-          }
-
          }catch(\Exception $e)
          {
-    
             //prompt user with an error
             return back()->with('error');
          }
+      }
+
+        if($this->createAnotherPersonnel)
+        {
+        //prompt user withe a sucess page
+        return redirect('/property/'.Session::get('property').'/user/'.Str::random(8).'/create')->with('success', 'User
+        invite has been sent.');
+
+        }else{
+        //prompt user withe a sucess page
+        return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User invite has been sent.');
+        }
        
+     }
+
+     public function isUserExists($user){
+      return UserProperty::where('user_id', $user->get()->toArray()[0]['id'])
+      ->where('property_uuid', Session::get('property'))->exists();
      }
 
      public function render()
      {
-        return view('livewire.user-component',[
-         'roles' =>  app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(), 
+        return view('livewire.user-create-component',[
+         'roles' =>  app('App\Http\Controllers\RoleController')->get_roles(Session::get('property')), 
          'features' => Feature::all(),
         ]);
      }

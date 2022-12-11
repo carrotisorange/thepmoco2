@@ -25,7 +25,9 @@ class UtilityIndexComponent extends Component
         
         $batch_no = auth()->user()->id.Str::random(8);
 
+     
         for ($i=0; $i < $units->count(); $i++) { 
+            //store utilities
             app('App\Http\Controllers\UtilityController')->store(
                 $units->toArray()[$i]['property_uuid'], 
                 $units->toArray()[$i]['uuid'], 
@@ -35,6 +37,7 @@ class UtilityIndexComponent extends Component
                 $batch_no,
                 $option
             );
+
         }
 
         return redirect('/property/'.Session::get('property').'/utilities/'.$batch_no.'/'.$option);

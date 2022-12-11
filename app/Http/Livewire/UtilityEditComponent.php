@@ -81,7 +81,6 @@ class UtilityEditComponent extends Component
             DB::transaction(function () {
                 foreach ($this->utilities as $utility) {
                     $utility->save();
-
                     $this->utilities = $this->get_utilities();
                 }
             });
@@ -104,7 +103,6 @@ class UtilityEditComponent extends Component
     public function updateParameters()
     {
         sleep(1);
-
         Utility::where('property_uuid', Session::get('property'))
         ->where('batch_no', $this->batch_no)
         ->update([
@@ -123,7 +121,6 @@ class UtilityEditComponent extends Component
     public function postUtilities()
     {
         sleep(1);
-        
         Utility::where('property_uuid', Session::get('property'))
         ->where('batch_no', $this->batch_no)
         ->update([
