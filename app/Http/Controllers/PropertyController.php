@@ -499,11 +499,20 @@ class PropertyController extends Controller
 
         $this->authorize('is_portfolio_read_allowed');
 
+        $this->isUserApproved(auth()->user()->id);
+
         return view('properties.show',[
             'property' => $property,
         ]); 
     }
 
+    public function isUserApproved($user_id){
+        $user = UserProperty::where('user_id', $user_id)->get('is_approve');
+        if($user->toArray()[0]['is_approve'] == 0){
+           return abort(404);
+        }
+    }
+    
     public function save_unit_stats($property_uuid)
     {
         UnitStats::firstOrCreate([
