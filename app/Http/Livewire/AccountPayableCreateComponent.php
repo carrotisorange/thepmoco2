@@ -10,7 +10,7 @@ use Livewire\WithFileUploads;
 use DB;
 use Carbon\Carbon;
 
-class AccountPayableComponent extends Component
+class AccountPayableCreateComponent extends Component
 {
     use WithFileUploads;
 
@@ -100,7 +100,7 @@ class AccountPayableComponent extends Component
 
     public function render()
     {
-        return view('livewire.account-payable-component',[
+        return view('livewire.account-payable-create-component',[
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->show(Session::get('property')),
             'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property')),
             'billers' => app('App\Http\Controllers\PropertyBillerController')->show(Session::get('property')),
