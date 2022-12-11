@@ -8,7 +8,7 @@
                     <h1 class="text-3xl font-bold text-indigo-700 mb-5 mt-5 ">New Personnels</h1>
                 </div>
             </div>
-            @livewire('user-component')
+            @livewire('user-create-component')
 
         </div>
     </div>

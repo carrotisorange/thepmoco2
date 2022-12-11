@@ -1,4 +1,5 @@
-<form class="space-y-6" method="POST" wire:submit.prevent="addUser()" enctype="multipart/form-data">
+
+<form class="space-y-6" method="POST" wire:submit.prevent="storeUser()" enctype="multipart/form-data">
     <div class="px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-6 md:gap-6">
             <div class="sm:col-span-6">
@@ -134,11 +135,11 @@
                 href="/property/{{ Session::get('property') }}/user">
                 Cancel
             </a>
-            @if($role_id)
-            <button type="submit" wire:click="addUser()"
+            @if($email)
+            <button type="submit" wire:click="storeUser()"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
-                <svg wire:loading wire:target="addUser" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                <svg wire:loading wire:target="storeUser" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
                     </circle>

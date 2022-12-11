@@ -81,7 +81,7 @@
                                             class="text-indigo-600 hover:text-indigo-900">View
                                             Attachment</a>
                                         @else
-                                            No image attachedi
+                                            No image attached
                                         @endif
                                     </div>
 

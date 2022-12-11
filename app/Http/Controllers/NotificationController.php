@@ -23,7 +23,7 @@ class NotificationController extends Controller
 
     public function get_property_notifications($property_uuid)
     {
-        return Property::find($property_uuid)->notifications()->orderBy('created_at', 'desc')->limit(5)->get();
+        return Property::find($property_uuid)->notifications()->orderBy('created_at', 'desc')->limit(5)->paginate(10);
     }
 
     /**
