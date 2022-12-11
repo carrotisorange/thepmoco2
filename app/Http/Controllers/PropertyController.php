@@ -508,7 +508,7 @@ class PropertyController extends Controller
 
     public function isUserApproved($user_id){
         $user = UserProperty::where('user_id', $user_id)->get('is_approve');
-        if($user->toArray()[0]['is_approve'] == 0){
+        if($user->toArray()[0]['is_approve'] == '0'){
            return abort(404);
         }
     }
