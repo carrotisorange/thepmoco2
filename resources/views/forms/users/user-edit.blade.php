@@ -1,7 +1,7 @@
 <form class="space-y-6" method="POST" wire:submit.prevent="updateUser()" enctype="multipart/form-data">
     <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
         <div class="mt-5 sm:flex sm:items-center">
-            <div class="sm:flex-auto">
+            <div class="sm:flex-auto mt-5">
                 <h1 class="text-xl font-semibold text-gray-900">Personnel Access to the System</h1>
                 <p class="mt-2 text-sm text-gray-700">This section shows all the information that the personnel needs to
                     access the system.</p>
@@ -96,7 +96,8 @@
                 <select wire:model.lazy="role_id" autocomplete="role_id"
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     @foreach($roles as $role)
-                    <option value="{{ $role->id }}" {{ old('role_id', $user->role_id) == $role->id ? 'selected' : 'selected'}}>{{ $role->role }}</option>
+                    <option value="{{ $role->id }}" {{ old('role_id', $user->role_id) == $role->id ? 'selected' :
+                        'selected'}}>{{ $role->role }}</option>
                     @endforeach
                 </select>
                 @endif
@@ -135,7 +136,7 @@
         @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
-                <div class="sm:flex-auto">
+                <div class="sm:flex-auto mt-5">
                     <h1 class="text-xl font-semibold text-gray-900">Personnel Access To Properties</p>
                         <p class="mt-2 text-sm text-gray-700">This section shows a list of all the properties the
                             personnel has access to.</p>
@@ -181,12 +182,12 @@
                                             @if(auth()->user()->role_id == '5')
                                             @if($item->is_approve == '1')
                                             <a class="text-red-500 text-decoration-line: underline"
-                                                href="/property/{{ Session::get('property') }}/user_property/{{ $item->id }}/remove-access">
+                                                href="/property/{{ $item->property_uuid }}/user_property/{{ $item->id }}/remove-access">
                                                 Remove Access
                                             </a>
                                             @else
                                             <a class="text-green-500 text-decoration-line: underline"
-                                                href="/property/{{ Session::get('property') }}/user_property/{{ $item->id }}/restore-access">
+                                                href="/property/{{ $item->property_uuid }}/user_property/{{ $item->id }}/restore-access">
                                                 Restore Access
                                             </a>
                                             @endif
@@ -259,7 +260,7 @@
 
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
-                <div class="sm:flex-auto">
+                <div class="sm:flex-auto mt-5">
                     <h1 class="text-xl font-semibold text-gray-900">Personnel Restrictions to the System</h1>
                     <p class="mt-2 text-sm text-gray-700">This section shows a list of all the features and the
                         different
@@ -362,7 +363,7 @@
         @endif
 
 
-        <div class="flex justify-end mt-10">
+        <div class="flex justify-end">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                 href="{{ url()->previous() }}">
                 Cancel
@@ -381,5 +382,6 @@
                 </svg>
                 Update
             </button>
+        </div>
 
 </form>

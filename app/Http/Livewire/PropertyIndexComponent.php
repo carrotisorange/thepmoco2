@@ -6,17 +6,30 @@ use App\Models\UserProperty;
 use Auth;
 
 use Livewire\Component;
+use App\Models\Property;
+use Session;
+use DB;
 
 class PropertyIndexComponent extends Component
 {
     public $property;
     public $sortBy;
+    public $filterByPropertyType;
     
     public function render()
     {
+        $property_types = UserProperty::join('users', 'user_id', 'users.id')
+        ->join('properties', 'property_uuid', 'properties.uuid')
+        ->join('types', 'properties.type_id', 'types.id')
+        ->select('*', DB::raw('count(*) as count'))
+        ->where('user_id', Auth::user()->id)
+        ->groupBy('type_id')
+        ->get();
+
         return view('livewire.property-index-component',[
             'portforlio'=> $this->get_properties(Auth::user()->id),
-            'properties' => User::find(Auth::user()->id)->user_properties()->get()
+            'properties' => User::find(Auth::user()->id)->user_properties()->get(),
+            'property_types' => $property_types
         ]);
     }
 
@@ -32,6 +45,11 @@ class PropertyIndexComponent extends Component
         }) 
         ->when($this->sortBy, function($query){
         $query->orderBy('properties.'.$this->sortBy, 'desc');
-        })->paginate(4);
+        })
+         ->when($this->filterByPropertyType, function($query){
+         $query->where('type_id',$this->filterByPropertyType);
+         })->paginate(4);
     }
+
+  
 }
