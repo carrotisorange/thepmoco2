@@ -179,8 +179,8 @@
                                         </x-td>
                                         <x-td>{{ $item->created_at }}</x-td>
                                         <x-td>
-                                            @if(auth()->user()->role_id == '5')
-                                            @if($item->is_approve == '1')
+                                            @if(auth()->user()->role_id === 5)
+                                            @if($item->is_approve === 1)
                                             <a class="text-red-500 text-decoration-line: underline"
                                                 href="/property/{{ $item->property_uuid }}/user_property/{{ $item->id }}/remove-access">
                                                 Remove Access
@@ -359,7 +359,7 @@
                 </div>
             </div>
 
-        </div>
+        </div>  
         @endif
 
 

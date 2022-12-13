@@ -14,8 +14,8 @@ class Timestamp extends Model
         return $this->belongsTo(Property::class, 'property_uuid');
      }
 
-       public function user()
-       {
+   public function user()
+   {
        return $this->belongsTo(User::class, 'user_id');
-       }
+   }
 }

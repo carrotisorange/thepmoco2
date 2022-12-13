@@ -109,7 +109,7 @@
                                 Remove access to tenant portal
                             </button> --}}
                         <p class="mt-5 text-lg text-center text-gray-700">
-                            Uername/Email:
+                            Username/Email:
                             <span class="font-bold ">{{ App\Models\User::where('tenant_uuid', $tenant_details->uuid)->pluck('username') }}</span>
 
                         </p>

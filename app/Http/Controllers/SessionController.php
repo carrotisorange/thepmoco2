@@ -16,7 +16,7 @@ class SessionController extends Controller
          ->whereDate('created_at', Carbon::today())
          ->count();
 
-        if($sessions<=0) 
+        if($sessions == 0) 
         { 
             DB::table('sessions')->insert([
              'user_id' => auth()->user()->id,
