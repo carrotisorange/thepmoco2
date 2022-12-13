@@ -201,85 +201,111 @@
 
                                 </div>
                                 <h1 class="text-xl font-semibold text-gray-900">Restrictions</h1>
-                                <table class="min-w-full table-fixed divide-y divide-gray-300">
-                                    <thead class="bg-gray-50">
-                                        <tr>
-                                            <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
+                                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
-                                            </th>
-                                            <th scope="col"
-                                                class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                                Features
-                                            </th>
-                                            <th scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Create
-                                            </th>
-                                            <th scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Read
-                                            </th>
-                                            <th scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Update
-                                            </th>
-                                            <th scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Delete
-                                            </th>
+                                        <div
+                                            class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                            <!-- Selected row actions, only show when rows are selected. -->
+                                            <div
+                                                class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-200 bg-white">
-                                        @foreach ($features as $item)
-                                        <tr>
-                                            <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                                <!-- Selected row marker, only show when row is selected. -->
-                                                <div class="absolute inset-y-0 left-0 w-0.5 bg-indigo-600"></div>
+                                            </div>
 
-                                                {{-- <input type="checkbox"
-                                                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                                                --}}
-                                            </td>
-                                            <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                                            <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                                                {{ $item->feature }}
-                                            </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <input type="checkbox" wire:model="is_{{ $item->alias }}_create_allowed"
-                                                    class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <table class="min-w-full table-fixed divide-y divide-gray-300">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
 
-                                            </td>
-                                            @error('is_{{ $item->alias }}_create_allowed')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                                            Features
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Create
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Read
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Update
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Delete
+                                                        </th>
 
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <input type="checkbox" wire:model="is_{{ $item->alias }}_read_allowed"
-                                                    class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                            </td>
-                                            @error('is_{{ $item->alias }}_read_allowed')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-200 bg-white">
+                                                    @foreach ($features as $item)
+                                                    <tr>
+                                                        <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                                                            <!-- Selected row marker, only show when row is selected. -->
+                                                            <div class="absolute inset-y-0 left-0 w-0.5 bg-indigo-600">
+                                                            </div>
 
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <input type="checkbox" wire:model="is_{{ $item->alias }}_update_allowed"
-                                                    class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                            </td>
-                                            @error('is_{{ $item->alias }}_update_allowed')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                                            {{-- <input type="checkbox"
+                                                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
+                                                            --}}
+                                                        </td>
+                                                        <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                                                        <td
+                                                            class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+                                                            {{ $item->feature }}
+                                                        </td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            <input type="checkbox"
+                                                                wire:model="is_{{ $item->alias }}_create_allowed"
+                                                                class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
 
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <input type="checkbox" wire:model="is_{{ $item->alias }}_delete_allowed"
-                                                    class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                            </td>
+                                                        </td>
+                                                        @error('is_{{ $item->alias }}_create_allowed')
+                                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                        @enderror
 
-                                            @error('is_{{ $item->alias }}_delete_allowed')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            <input type="checkbox"
+                                                                wire:model="is_{{ $item->alias }}_read_allowed"
+                                                                class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                        </td>
+                                                        @error('is_{{ $item->alias }}_read_allowed')
+                                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                        @enderror
 
-                                        </tr>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            <input type="checkbox"
+                                                                wire:model="is_{{ $item->alias }}_update_allowed"
+                                                                class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                        </td>
+                                                        @error('is_{{ $item->alias }}_update_allowed')
+                                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                        @enderror
 
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            <input type="checkbox"
+                                                                wire:model="is_{{ $item->alias }}_delete_allowed"
+                                                                class="absolute -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                        </td>
+
+                                                        @error('is_{{ $item->alias }}_delete_allowed')
+                                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                        @enderror
+
+                                                    </tr>
+
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                         <div class="mt-5 flex justify-end">
@@ -310,9 +336,11 @@
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
-                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
-                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                    <div
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                                     </div>
                                     @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
@@ -381,9 +409,11 @@
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
-                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
-                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                    <div
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                                     </div>
 
@@ -404,26 +434,33 @@
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr>
                                                 <x-td>{{ $ctr++ }}</x-td>
-                                                <x-td>{{ Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('M d, Y')}}
+                                                <x-td>{{
+                                                    Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('M
+                                                    d, Y')}}
                                                 </x-td>
                                                 <x-td>{{ $session->user->name }}</x-td>
                                                 <x-td>{{ $session->user->role->role }}</x-td>
-                                                <x-td>{{Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('g:i A')}}
+                                                <x-td>
+                                                    {{Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('g:i
+                                                    A')}}
                                                 </x-td>
                                                 <x-td>
                                                     @if($session->updated_at != '')
-                                                   {{Carbon\Carbon::parse($session->updated_at)->timezone('Asia/Manila')->format('g:i A')}}
+                                                    {{Carbon\Carbon::parse($session->updated_at)->timezone('Asia/Manila')->format('g:i
+                                                    A')}}
                                                     @else
-                                                   NA
+                                                    NA
                                                     @endif
                                                 </x-td>
                                                 {{-- <x-td>
                                                     @if($session->updated_at != '')
-                                                    {{ Carbon\Carbon::createFromDate($session->updated_at)->diffInDays(Carbon\Carbon::createFromDate($session->created_at)) }} hrs
+                                                    {{
+                                                    Carbon\Carbon::createFromDate($session->updated_at)->diffInDays(Carbon\Carbon::createFromDate($session->created_at))
+                                                    }} hrs
                                                     @else
                                                     NA
                                                     @endif
-                                                  
+
                                                 </x-td> --}}
                                                 @empty
                                                 <x-td>No data found.</x-td>
@@ -432,7 +469,7 @@
                                         @endforelse
                                     </table>
                                 </div>
-                                {{-- {{ $sessions->links()  }} --}}
+                                {{-- {{ $sessions->links() }} --}}
                             </div>
                         </div>
                     </div>
