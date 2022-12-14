@@ -8,11 +8,16 @@ use Livewire\Component;
 use App\Models\Feature;
 use App\Models\User;
 use Auth;
-use Session;
 use App\Models\Role;
+use App\Models\Timestamp;
+use Session;
+use Livewire\WithPagination;
+
 
 class UserEditComponent extends Component
 {
+    use WithPagination;
+
     public $user;
 
     public $name;
@@ -177,12 +182,9 @@ class UserEditComponent extends Component
                 $this->user->update($validatedData);
             });
 
-            app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',8);
-
             session()->flash('success', 'User details is successfully updated.');    
             
         }catch(\Exception $e){
-          
             session()->flash('error');
         }
     }
@@ -193,6 +195,10 @@ class UserEditComponent extends Component
             'properties' => User::find($this->user->id)->user_properties()->get(),
             'all_properties' => User::find(auth()->user()->id)->user_properties()->get(),
             'roles' => app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(),
+             'sessions' => \App\Models\Session::where('user_id',auth()->user()->id)
+             ->orderBy('created_at', 'desc')
+             ->limit(10)
+             ->get()
         ]);
     }
 }

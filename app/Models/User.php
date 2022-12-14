@@ -149,6 +149,10 @@ class User extends Authenticatable implements MustVerifyEmail
       return $this->hasMany(Timestamp::class, 'user_id');
     }
 
+    public function sessions(){
+        return $this->hasMany(Session::class, 'user_id');
+    }
+
 
     public function user_properties()
     {

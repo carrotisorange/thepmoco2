@@ -112,70 +112,8 @@
     </div>
     @else
 
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900 font-pop">Welcome back, {{
+    <h2 class="text-2xl mt-5 font-bold tracking-tight text-gray-900 font-pop">Welcome back, {{
         auth()->user()->name }}!</h2>
-    {{-- <p class="mt-2 text-sm text-gray-700">Select a property.</p> --}}
-    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        <div class="sm:col-span-4">
-
-            <label for="default-search"
-                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-            <div class="relative w-full mb-5">
-                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </div>
-                <input type="text" id="property" wire:model="property"
-                    class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter a property name" required>
-
-            </div>
-
-        </div>
-
-        <div class="sm:col-span-2">
-            <select id="sortBy" wire:model="sortBy"
-                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                <option value="" selected>Sort property by</option>
-                <option value="property">name</option>
-                <option value="created_at">date created</option>
-            </select>
-
-        </div>
-
-
-    </div>
-    <div>
-        <p class="text-sm text-center text-gray-500">
-            Showing
-            <span class="font-medium">{{ $portforlio->count() }}</span>
-
-            {{Str::plural('property', $portforlio->count())}}
-        </p>
-    </div>
-    <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-        @foreach ($portforlio as $property)
-        <div class="group relative">
-            <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <a href="/property/{{ $property->property_uuid }}">
-                    <img src="{{ asset('/brands/property_page.png') }}" title="{{ $property->property }}" alt="building"
-                        class="w-40 object-center object-cover lg:w-full lg:h-full">
-                </a>
-            </div>
-            <h3 class="text-medium text-gray-700 font-semibold text-center">{{
-                $property->property }}</h3>
-        </div>
-        @endforeach
-    </div>
-
-
-    <div class="mt-5 mb-5">
-        {{ $portforlio->links() }}
-    </div>
-
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1>
@@ -202,11 +140,84 @@
 
         </div>
     </div>
+    {{-- <p class="mt-2 text-sm text-gray-700">Select a property.</p> --}}
+    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+        <div class="sm:col-span-4">
+
+            <label for="default-search"
+                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+            <div class="relative w-full mb-5">
+                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="text" id="property" wire:model="property"
+                    class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Enter a property name" required>
+
+            </div>
+
+        </div>
+
+        <div class="sm:col-span-1">
+            <select id="filterByPropertyType" wire:model="filterByPropertyType"
+                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="" selected>Filter property type</option>
+                @foreach ($property_types as $item)
+                <option value="{{ $item->type_id }}">{{ $item->type }}</option>
+                @endforeach
+            </select>
+
+        </div>
+
+        <div class="sm:col-span-1">
+            <select id="sortBy" wire:model="sortBy"
+                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="" selected>Sort property by</option>
+                <option value="property">name</option>
+                <option value="created_at">date created</option>
+            </select>
+
+        </div>
+
+
+    </div>
+    <div>
+        <p class="text-sm text-center text-gray-500">
+            Showing
+            <span class="font-medium"><b>{{ $portforlio->count() }}</b></span>
+
+            {{Str::plural('properties', $portforlio->count())}}
+        </p>
+    </div>
+    <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        @foreach ($portforlio as $property)
+        <div class="group relative">
+            <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                <a href="/property/{{ $property->property_uuid }}">
+                    <img src="{{ asset('/brands/property_page.png') }}" title="{{ $property->property }}" alt="building"
+                        class="w-40 object-center object-cover lg:w-full lg:h-full">
+                </a>
+            </div>
+            <h3 class="text-medium text-gray-700 font-semibold text-center">{{
+                $property->property }}</h3>
+        </div>
+        @endforeach
+    </div>
+
+
+    <div class="mt-5 mb-5">
+        {{ $portforlio->links() }}
+    </div>
+
     <div class="mt-8 flex flex-col">
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-9">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                    @include('admin.tables.portfolio')
+                    @include('tables.portforlio')
                 </div>
             </div>
         </div>

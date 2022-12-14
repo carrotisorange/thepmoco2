@@ -11,8 +11,7 @@ use DB;
 use Carbon\Carbon;
 use App\Models\Session;
 
-class AuthenticatedSessionController extends Controller
-{
+class AuthenticatedSessionController extends Controller{
     /**
      * Display the login view.
      *

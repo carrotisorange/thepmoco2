@@ -1,6 +1,5 @@
-<form class="space-y-8 divide-y divide-gray-200" wire:submit.prevent="submitForm()" method="POST" id="edit-form"
-    enctype="multipart/form-data">
-    @csrf
+<form class="space-y-6" method="POST" wire:submit.prevent="submitForm()" enctype="multipart/form-data">
+
     <div class=" space-y-8 divide-y divide-gray-200 sm:space-y-5">
         <div>
             <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
@@ -191,7 +190,7 @@
             </div>
             <div class="pt-5">
                 <div class="flex justify-end">
-                   <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
+                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                         href="/property/">
                         Cancel
                     </a>

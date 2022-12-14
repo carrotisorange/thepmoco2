@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Model::unguard();
+        
         Schema::defaultStringLength(191);
 
         Gate::define('admin', function(User $user){

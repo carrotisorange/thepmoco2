@@ -508,8 +508,9 @@ class PropertyController extends Controller
 
     public function isUserApproved($user_id){
         $user = UserProperty::where('user_id', $user_id)->get('is_approve');
+
         if($user->toArray()[0]['is_approve'] == '0'){
-           return abort(404);
+           return abort(401);
         }
     }
     
@@ -552,34 +553,34 @@ class PropertyController extends Controller
      */
     public function update(Request $request, Property $property)
     {
-        $attributes = request()->validate([
-        'property' => ['required', 'string', 'max:255'],
-        'description' => ['nullable'],
-        'type_id' => ['required', Rule::exists('types', 'id')],
-        'thumbnail' => 'image',
-        'status' => 'required',
-        'tenant_contract' => 'nullable|mimes:pdf',
-        'owner_contract' => 'nullable|mimes:pdf',
-        ]);
+        // $attributes = request()->validate([
+        //     'property' => ['required', 'string', 'max:255'],
+        //     'description' => ['nullable'],
+        //     'type_id' => ['required', Rule::exists('types', 'id')],
+        //     'thumbnail' => 'image',
+        //     'status' => 'required',
+        //     'tenant_contract' => 'nullable|mimes:pdf',
+        //     'owner_contract' => 'nullable|mimes:pdf',
+        // ]);
 
-        if(isset($attributes['thumbnail']))
-        {
-            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
-        }
+        // if(isset($attributes['thumbnail']))
+        // {
+        //     $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        // }
 
-        if(isset($attributes['tenant_contract']))
-        {
-            $attributes['tenant_contract'] = request()->file('tenant_contract')->store('tenant_contracts');
-        }
+        // if(isset($attributes['tenant_contract']))
+        // {
+        //     $attributes['tenant_contract'] = request()->file('tenant_contract')->store('tenant_contracts');
+        // }
         
-        if(isset($attributes['owner_contract']))
-        {
-        $attributes['owner_contract'] = request()->file('owner_contract')->store('owner_contracts');
-        }
+        // if(isset($attributes['owner_contract']))
+        // {
+        // $attributes['owner_contract'] = request()->file('owner_contract')->store('owner_contracts');
+        // }
 
-        $property_update($attributes);
+        // $property_update($attributes);
 
-        return back()->with('success', 'Property has been updated.');
+        // return back()->with('success', 'Property has been updated.');
     }
 
     /**
