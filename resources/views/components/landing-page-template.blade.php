@@ -81,15 +81,14 @@
 
 </script>
 
-<!-- Google tag (gtag.js) --> 
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P3GZPSF');</script>
+<!-- End Google Tag Manager -->
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-965275487"></script> 
-<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-965275487'); 
-gtag('config', 'AW-965275487');
-</script>
-
-<!-- Event snippet for Website traffic conversion page --> 
-<script> gtag('event', 'conversion', {'send_to': 'AW-965275487/zV6CCOm3wIQYEN_eo8wD'}); </script>
 
 </head>
 
@@ -117,6 +116,10 @@ body {
 
   <html>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3GZPSF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
  
     <!-- navigation -->
 <body>
