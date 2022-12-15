@@ -46,9 +46,9 @@ class PropertyController extends Controller
 
     public function store_property_session($property_uuid)
     {
-        Session::put('property', $property_uuid->uuid);
+        Session::put('property', $property_uuid);
 
-        Session::put('property_name', Property::find($property_uuid->uuid)->property);
+        Session::put('property_name', Property::find($property_uuid)->property);
         
     }
 
@@ -135,53 +135,43 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($validatedData)
     {
-        app('App\Http\Controllers\UserPropertyController')->store(Session::get('property'),auth()->user()->id,true,true);
+         $validatedData['uuid'] = Str::uuid();
 
-        $attributes = request()->validate([
-            'property' => 'required',
-            'type_id' => ['required', Rule::exists('types', 'id')],
-            'thumbnail' => 'required|image',
-            'description' => '',
-        ]);
+         $validatedData['mobile'] = auth()->user()->mobile;
+         $validatedData['email'] = auth()->user()->email;
 
-    try {
-        DB::beginTransaction();
+         if(!$validatedData['country_id'])
+         {
+            $validatedData['country_id'] = '247';
+         }
 
-        $property_uuid = Str::uuid();
+         if(!$validatedData['province_id'])
+         {
+            $validatedData['province_id'] = '4121';
+         }
 
-        $attributes['uuid']= $property_uuid;
-        $attributes['thumbnail'] = $request->file('thumbnail')->store('thumbnails');
+         if(!$validatedData['city_id'])
+         {
+            $validatedData['city_id'] = '48315';
+         }
 
-        Property::create($attributes);
+         if($validatedData['thumbnail']){
+             $validatedData['thumbnail'] = $validatedData->thumbnail->store('thumbnails');
+         }else{
+             $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
+         }
 
+        //  if($this->tenant_contract){
+        //     $validatedData['tenant_contract'] = $this->tenant_contract->store('tenant_contracts');
+        //  }
 
+        //  if($this->owner_contract){
+        //     $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
+        //  }
 
-        for($i=1; $i<=5; $i++){
-            PropertyParticular::create([
-                'property_uuid'=> $property_uuid,
-                'particular_id'=> $i,
-                'minimum_charge' => 0.00,
-                'due_date' => 28,
-                'surcharge' => 1
-            ]);
-        }
-
-        for($i=1; $i<=4; $i++){
-            PropertyRole::create([
-                'property_uuid'=> $property_uuid,
-                'role_id'=> $i,
-            ]);
-        }
-
-        DB::commit();
-
-    }catch (\Throwable $e) {
-            DB::rollback();
-        }
-
-    return redirect('/properties')->with('success', 'New property has been created.');
+        return Property::create($validatedData);
     }
 
     public function get_occupancy_rate_dates($value)

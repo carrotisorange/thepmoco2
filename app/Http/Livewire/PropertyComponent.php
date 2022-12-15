@@ -20,6 +20,7 @@ class PropertyComponent extends Component
      use WithFileUploads;
 
      public $property;
+     
      public $type_id;
      public $thumbnail;
      public $description;
@@ -69,29 +70,30 @@ class PropertyComponent extends Component
 
          $validatedData = $this->validate();
 
+         $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData);
+
          try {
 
-         $property_uuid = Str::uuid();
+         DB::transaction(function () use ($validatedData, $new_property){
 
-         DB::transaction(function () use ($validatedData, $property_uuid){
+            app('App\Http\Controllers\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1);
+
+            // $this->store_user_property($new_property->uuid->toString());
+
+            $this->store_particulars($new_property->uuid->toString());
+
+            $this->store_roles($new_property->uuid->toString());
+
+            app('App\Http\Controllers\PointController')->store($new_property->uuid->toString(), auth()->user()->id, 50, 6);
             
-            $property = $this->store_property($property_uuid, $validatedData);
+            app('App\Http\Controllers\PropertyController')->store_property_session($new_property->uuid->toString());
 
-            $this->store_user_property($property_uuid);
-
-            $this->store_particulars($property_uuid);
-
-            $this->store_roles($property_uuid);
-
-            app('App\Http\Controllers\PointController')->store($property_uuid, auth()->user()->id, 50, 6);
-            
-            app('App\Http\Controllers\PropertyController')->store_property_session($property);
+            return redirect('/property/'.$new_property->uuid->toString().'/success')->with('success', 'Property is successfully created.');
           
          });
          
-         return redirect('/property/'.$property_uuid.'/success')->with('success', 'Property is successfully created.');
-         
         }catch (\Throwable $e) {
+            ddd($e);
             return back()->with('error', 'Cannot perform your action.');
         }
      }
@@ -118,50 +120,9 @@ class PropertyComponent extends Component
 
      public function store_user_property($property_uuid)
      {
-       return UserProperty::create([
-       'property_uuid' => $property_uuid,
-       'user_id' => auth()->user()->id,
-       'is_account_owner' => true
-       ]);
+      
      }
 
-     public function store_property($property_uuid, $validatedData)
-     {
-         $validatedData['uuid'] = $property_uuid;
-         $validatedData['mobile'] = auth()->user()->mobile;
-         $validatedData['email'] = auth()->user()->email;
-
-         if(!$this->country_id)
-         {
-            $validatedData['country_id'] = '247';
-         }
-
-         if(!$this->province_id)
-         {
-            $validatedData['province_id'] = '4121';
-         }
-
-         if(!$this->city_id)
-         {
-            $validatedData['city_id'] = '48315';
-         }
-
-         if($this->thumbnail){
-             $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
-         }else{
-             $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
-         }
-
-         if($this->tenant_contract){
-            $validatedData['tenant_contract'] = $this->tenant_contract->store('tenant_contracts');
-         }
-
-         if($this->owner_contract){
-            $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
-         }
-
-        return Property::create($validatedData);
-     }
      public function render()
      {
         return view('livewire.property-component',[
