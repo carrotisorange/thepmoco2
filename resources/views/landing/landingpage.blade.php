@@ -37,7 +37,7 @@ body {
    
   <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16 sm-px-0 ">
   <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-3xl sm:ml-12 sm:py-2 lg:-ml-5 mx-5">
-  <p class="text-lg font-light mt-10 text-white">The Property Manager Online provides a full-suite solution that allows rental business owners to run their operations smoothly and harmoniously with their tenants.</p>
+  <p class="text-lg font-light mt-10 text-white">With The PMO Co’s Property Management System, you can easily streamline operations while saving time—and money more efficiently!</p>
  
 
             <div class="mt-10 flex justify-center items-center space-x-5">
@@ -128,7 +128,41 @@ body {
 </div>
     </div>
 
+    
+<style>
+#proud {
+  background-image: linear-gradient(to top, rgba(74,56,108,0), rgba(102,102,102));
 
+}
+</style>
+    <div id ="proud" class="min-h-full lg:grid  lg:grid-cols-2 lg:gap-8 lg:px-8 bg-gray-500">
+          
+            
+          <div class="mt-12 lg:col-start-1 lg:m-0 lg:pl-20">
+            <div class="py-20 mx-auto px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
+              <blockquote>
+                <div>
+                  
+                  <span class="text-2xl font-semibold text-indigo-100">We're proud to announce the release of our Property Management System.</span>  
+                  
+                </div>
+                <footer class="mt-6">
+                  
+                  
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+
+          <div class="lg:mt-20 sm:mt-0  lg:col-start-2 sm:pl-5 ">
+          <div class="flex justify-center items-center">
+          <p class="pb-10 px-7 text-sm font-light text-white">
+          The Property Management System is a product of The PMO Co, the property management system allows property managers and property owners to manage all aspects of their properties in one place. Having a property management system is like having a personal assistant. It's there for you when you need it, and it helps you make better decisions.
+          </p>
+          </div>
+        </div>
+        </div>
+      </div>
     
 
     <!--  Feature Section -->
@@ -137,12 +171,13 @@ body {
 #features {
   background-image: url('/brands/landing/feature-bg.webp');
   background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>
     <div id="features">
-      <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pt-24">
+      <div class="h-full mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:pt-10 sm:pb-10 lg:max-w-7xl lg:px-8 lg:pt-10">
       
-        <div class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-16">
+        <div class="gap-x-6 gap-y-12 sm:grid grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-16">
           <div>
             
           <div class="flex items-center justify-center">
@@ -160,8 +195,9 @@ body {
           <div class="flex justify-center items-center">
           <div class="max-w-xs">
 <div class="text-xs mt-6">
-              <p class=" mt-2">View bills and payment history, upload proof of payments of rent,
-              request for contract renewal or moveout, send concerns or issues to management.
+              <p class=" mt-2">With The Property Management System, you can manage all of your tenants&#39; rent payments and check
+up on them from anywhere in the world. You&#39;ll also be able to see when they&#39;re late on their rent, so
+you can take action right away. You can view their payment history and make payments.
               </p>
               
             </div>
@@ -184,10 +220,13 @@ body {
 
            
             <div class="flex justify-center items-center ">
+            <div class="max-w-xs">
           <div class="text-xs mt-6">
-              <p class="mt-2">Create bills and send directly to email or tenant portal</p> 
+              <p class="mt-2">You&#39;ll be able to track all of your bills and payments with one convenient portal so that all of your
+invoices and payments are in one place. You&#39;ll also be able to generate reports automatically that show
+what happened over time so you can get an overview of how things are going.</p> 
              
-            
+</div>
             </div>
   </div>
           </div>
@@ -208,7 +247,9 @@ body {
 <div class="flex justify-center items-center">
 <div class="max-w-xs">
 <div class="text-xs mt-6">
-<p class="mt-2">Request approval and payment for property expense that automatically gets recorded in cashflow reports</p>
+<p class="mt-2">With The Property Management System, you won&#39;t have to worry about keeping track of all of your
+expenses—we do that for you! Just plug in any number of expenses (like utilities or repairs) and we&#39;ll
+create a report showing how much money was spent on each one over time.</p>
   </div>
   </div>
             </div>
@@ -227,7 +268,8 @@ body {
 <div class="flex justify-center items-center">
 <div class="max-w-xs">
 <div class="text-xs mt-6">
-<p class="mt-2">Generate and export in system reports on cashflow from operations and property performance</p>
+<p class="mt-2">Without the decision support system, decision making would be difficult. The property management
+system helps you to make the right decision at right time with its system generated reports.</p>
             </div>
   </div>
   </div>
@@ -250,7 +292,9 @@ body {
 <div class="flex justify-center items-center">
 <div class="max-w-xs">
 <div class="text-xs mt-6">
-<p class="mt-2">For multiple properties managed under a portfolio, compare property metrics side by side like occupancy rate, collection efficiency, number of concerns received, etc.</p>
+<p class="mt-2">This dashboard shows all of your portfolio&#39;s current prices—and what they would be if they were sold
+off individually. With the property management system, you can manage multiple properties under one
+platform and compare the performance of properties.</p>
             </div>
           </div>
   </div>
@@ -273,7 +317,9 @@ body {
 <div class="flex justify-center items-center">
 <div class="max-w-xs">
 <div class="text-xs mt-6">
-<p class="mt-2">View individual unit performance, specifications, tenants, and other financial metrics.</p>
+<p class="mt-2">This portal allows you to manage units within your portfolio—and even take advantage of special offers
+for new units. It allows you to compare property metrics like frequency of occupancy, collection
+efficiency, number of concerns received, etc to improve performance and business growth.</p>
             </div>
           </div>
             </div>
@@ -303,7 +349,7 @@ body {
 </style>
         <div class="relative">
           <div class="flex justify-center items-center">
-         <h2 class="font-bold text-white text-3xl">Quick Start Guide</h2>
+         <h2 class="font-bold text-white text-3xl">Kickstarter Guide</h2>
          
 </div>
           <div class="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-5 lg:px-8">
@@ -324,8 +370,9 @@ body {
                   </p>
                   <a class="mt-2 block">
                     
-                    <p class="text-lg font-semibold text-purple-900">Register your property</p>
-                    <p class="mt-3 text-sm text-gray-500">Register your dorm, apartments, commercial spaces, residential units, condominums.</p>
+                    <p class="text-lg font-semibold text-purple-900">Registration</p>
+                    <p class="mt-3 text-sm text-gray-500">To kickstart the procedure register your condominiums, apartments, business spaces, residential units,
+and dormitory rooms.</p>
                   </a>
                 </div>
 
@@ -350,8 +397,9 @@ body {
                     <p class="text-xs text-gray-900">Step 2:</p>
                   </p>
                   <a class="mt-2 block">
-                    <p class="text-lg font-semibold text-purple-900">Add the units, rooms, or bed spaces</p>
-                    <p class="mt-3 text-sm text-gray-500">Set up the monthly rent, deposit requirements, room features, and more.</p>
+                    <p class="text-lg font-semibold text-purple-900">Property Details</p>
+                    <p class="mt-3 text-sm text-gray-500">Include all details of the property, room specifications, rent details, deposit requirements, and other
+related features of the property and rent.</p>
                   </a>
                 </div>
 </div>
@@ -373,8 +421,9 @@ body {
                     <p class="text-xs text-gray-900">Step 3:</p>
                   </p>
                   <a class="mt-2 block">
-                    <p class="text-lg font-semibold text-purple-900">Add your tenants</p>
-                    <p class="mt-3 text-sm text-gray-500">Input your tenants' names, contact details, contract period, and other necessary info.</p>
+                    <p class="text-lg font-semibold text-purple-900">Tenants’ Details.</p>
+                    <p class="mt-3 text-sm text-gray-500">Insert the tenant’s details like contact information, duration and terms of the contract, and other
+required information.</p>
                   </a>
                 </div>
               </div>
@@ -396,8 +445,9 @@ body {
                     <p class="text-xs text-gray-900">Step 4:</p>
                   </p>
                   <a class="mt-2 block">
-                    <p class="text-lg font-semibold text-purple-900">Manage your tenants</p>
-                    <p class="mt-3 text-sm text-gray-500">Here you can address their concerns and requests, create job orders, assign jobs, and monitor up to completion</p>
+                    <p class="text-lg font-semibold text-purple-900">Supervision and Management</p>
+                    <p class="mt-3 text-sm text-gray-500">Portal provides you with an interface where you can supervise and manage all concerns of tenants, job
+creation, and assignments, supervision of such tasks and monitor them up to completion.</p>
                   </a>
                 </div>
               </div>
@@ -419,8 +469,9 @@ body {
                     <p class="text-xs text-gray-900">Step 5:</p>
                   </p>
                   <a class="mt-2 block">
-                    <p class="text-lg font-semibold text-purple-900">Bill your tenants, collect rent & utilities</p>
-                    <p class="mt-3 text-sm text-gray-500">Automate billing for recurring charges. Set your billing date, and recurring bill amount, and tenants will be notified on the bill date.</p>
+                    <p class="text-lg font-semibold text-purple-900">Billing and Finance</p>
+                    <p class="mt-3 text-sm text-gray-500">Setup billing date, recurring charges, and recurring billing amount property management system will
+automate the billing system and intimate to tenant accordingly.</p>
                   </a>
                 </div>
               </div>

@@ -2,9 +2,17 @@
 @section('title','The PMO — FAQs')
         
         <div class="relative shadow-xl sm:overflow-hidden ">
-          
+        <style>
+          #everything {
+          background-image: url('/brands/landing/faq.jpg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+
+          }
+          </style>
             
-            <div class="absolute inset-0" style= "background-image: url('/brands/faq.jpg ');" ></div>
+            <div id ="everything" class="absolute inset-0" style= "background-image: url('/brands/faq.jpg ');" ></div>
           
           <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
             <h1 class="text-4xl font-bold tracking-tight sm:text-4xl lg:text-4xl">
@@ -21,10 +29,10 @@
       </div>
     </div>
 
-   <!-- Testimonial section -->
+   <!-- what is online rental section -->
    <div class=" pb-16 lg:z-10 lg:pb-0" style= "background-image: url('/brands/landing/faq-bg.webp');" alt="a laptop, message icon, settings icon as background">
           <div class="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
-            <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-xl lg:px-0 lg:py-20">
+            <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-4xl lg:px-0 lg:py-20">
               <blockquote>
                 <div>
                   <svg class="h-12 w-12 text-white opacity-25" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
@@ -33,7 +41,13 @@
                   <p class="mt-2 text-3xl font-xl text-gray-800">What is an <span class="font-bold">online rental property management system?</span></p>
                 </div>
                 <footer class="mt-6">
-                  <p class="text-base font-sm text-gray-500">It is a digital system to organize property data in one digital place that is cloud based and 	can be accessed online anytime and from anywhere with internet connectivity.</p>
+                  <p class="text-base font-sm text-gray-500">
+                  An online rental property management system is a software application that helps property owners to
+                  manage their rental properties. It allows you to do all the things you would normally be doing yourself,
+                  like collecting rent, checking the condition of appliances, making repairs, and even paying bills and taxes.
+                  Many online rental property management systems also have built-in accounting features that
+                  automatically track your money. <span class="font-bold">The PMO Co.</span> has this feature.
+                  </p>
                   
                 </footer>
               </blockquote>
@@ -44,23 +58,46 @@
 
     
       
-    <!-- Stats section -->
-    <div class="relative bg-gray-50">
+    <!-- why do section -->
+    <div class="relative bg-gray-900">
     <div class="absolute inset-x-0 bottom-0 xl:top-0 h-72 xl:h-full">
-        <div class=" h-full w-full xl:grid xl:grid-cols-3">
+        <div class=" h-full w-full xl:grid xl:grid-cols-6">
 
-          <div class="h-full xl:relative xl:col-start-3">
-            <img class="h-full w-full object-cover opacity-75 xl:absolute xl:inset-0" src="{{ asset('/brands/landing/faq-2.webp') }}" alt="person with laptop accessing thepmo.co">
-            <div aria-hidden="true" class="absolute inset-x-0 top-0 xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
+          <div class="sm:ml-0 lg:ml-24 h-full xl:relative xl:col-start-4 col-span-3">
+            <img class=" h-full w-full object-cover opacity-80 xl:absolute xl:inset-0" src="{{ asset('/brands/landing/faq-squares.png') }}" alt="person with laptop accessing thepmo.co">
+            <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32  xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
           </div>
         </div>
       </div>
-      <div class="mx-4 max-w-3xl px-4 sm:px-6 xl:grid-cols-2 xl:gap-x-8">
-        <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
+      <div class="mx-4 max-w-3xl px-5 sm:px-6  xl:gap-x-8">
+        <div class="relative sm:pl-0 lg:pl-20 pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
           
-          <p class="mt-12 text-3xl font-light tracking-tight text-gray-900">
+          <p class="mt-12 text-3xl font-light tracking-tight text-indigo-100">
           Why do <span class="font-bold">property managers</span> need an <span class="font-bold">online rental property management system?</span></p>
-          <p class="mt-5 mb-10 text-md text-gray-600 ">An online property management system is a better and simpler way of managing rental properties that replaces the tedious and repetitive manual processes of property managers managing a rental property like billing and collection management. </p>
+          
+          <p class="mt-5 mb-5 text-sm font-thin text-gray-300">
+          Online property management systems have become a necessity for property managers to have to
+          effectively run their businesses. Without a proper online property management system, a property
+          manager can&#39;t collect rent and manage their rental properties effectively.
+          </p>
+
+          <p class="mt-5 mb-5 text-sm font-thin text-gray-300">
+          Property management systems are also very important because they allow managers to stay updated on
+          everything that is going on at their properties. For example, if something needs repairing or
+          maintenance, they can log into their online rental property management system and see what needs
+          repair immediately. They will also be able to see how much rent each tenant has paid and when they
+          last paid it. If a tenant owes money, the manager can contact them through the online rental property
+          management system and get the money back right away. This way, the manager does not have to worry
+          about contacting tenants or dealing with collection calls from them.
+          </p>
+
+          <p class="mt-5 mb-5 text-sm font-thin text-gray-300">
+          They help to increase the efficiency of your business, while also providing you with a more detailed
+          picture of your rental property portfolio. Here are some of the benefits that a property management
+          system can provide:
+          </p>
+
+         
           
           <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
            
@@ -69,54 +106,111 @@
       </div>
     </div>
 
+    <!-- key features section -->
+<div class="relative bg-gray-white pb-10">
+        <div class="py-20 relative">
+        
+
+          <div class="relative mx-auto max-w-5xl sm:px-6 lg:px-0">
+          <!-- Content area -->
+          <div class="pt-8 sm:pt-8 lg:pt-8">
+            <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Key Features of a PMS:</h2>
+           
+
+          <div class="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
+            
+            <div class="flex flex-col overflow-hidden">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-2xl font-semibold text-purple-900">Centralized property management system.</p>
+                  <p class="mt-3 text-sm text-gray-500">This means that all the details about the property are stored in one place, making it easier for you to access the information at any time.</p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+          
+            <div class="flex flex-col overflow-hidden">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-2xl font-semibold text-purple-900">Efficient communication with tenants and landlords.</p>
+                  <p class="mt-3 text-sm text-gray-500">You can communicate with your tenants and landlords through email, text messages, or phone calls using this tool but it also allows you to see their responses right on the screen so that you know what they mean when they respond as quickly as possible – it’s faster than writing down notes!</p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+            
 
 
-    <div class="relative bg-gray-500 ">
-        <div id=faq-1 class="mx-auto max-w px-6 py-12 lg:py-32 lg:px-8 md:py-28 sm:py-20 sm:px-6 relative  bg-gray-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-        <style>
-          #faq-1 {
-          background-image: url('/brands/landing/faq-bg-1.png');
-          background-repeat: no-repeat;
-          background-position: center;
-          }
-          </style>
-        <div class="md:ml-auto">
-            
-        <p class="mt-2 text-3xl  text-white">Who uses online property management system?</p>
-          <p class="mt-10 text-md font-light  text-gray-100">
-          Professional property and leasing managers use an online system to increase efficiency in operating the property and communicating with their customers. Rental property owners use an online property management system to monitor their rental properties. Tenants use The PMO system to keep track of their bills and payments history and send their concerns to management.
-          </p>
-            
-            <div class="mt-8">
-              <div class="inline-flex rounded-md shadow">
+
+
+          </div>
+          
+
+</div>
+</div>     
+      </div>
+
+   
+<!-- who uses section -->
+<div class="relative overflow-hidden pt-16 pb-32 bg-gray-300">
+      <div aria-hidden="true" class="absolute inset-x-0 top-0 h-48"></div>
+      <div class="relative">
+        <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
+          <div class="mx-auto max-w-xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
+            <div>
+              
+              <div class="mt-6">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900">Who uses an online property management system?</h2>
+                <p class="mt-4 text-sm text-gray-700">The property management system (PMS) is a software program that can be used by real estate agents, managers, leasing managers, and owners. It allows them to maintain a database of high-quality property listings for sale or lease on the market. The PMS is also used by real estate agents who want to manage their listings.</p>
+                <p class="mt-4 text-sm text-gray-700">The property management system will help them keep track of their listings, manage their inventory, and effectively market their properties. It has many different features that make it easier for you to run your business.</p>
+                <p class="mt-4 text-sm text-gray-700">A large number of people in the real estate industry are using online property management systems today because they provide many benefits over traditional methods of doing business. This includes:</p>
+                <p class="mt-4 text-sm text-gray-700">Improved efficiency - With an online property management system, you can access more information about each property without having to call up each listing separately. You can also easily add new listings and update existing ones without having to do any manual work at all!</p>
+                <p class="mt-4 text-sm text-gray-700">Increased sales - Online property management system have made it easier for real estate agents to sell properties faster because they don't have to spend time looking through stacks of papers or sending out dozens of emails every day! This reduces the amount of time spent on the job which means more money for you!</p>
                 
               </div>
             </div>
-        </div>
-</div>
-        <div id=faq-2 class="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
-        <style>
-          #faq-2 {
-          background-image: url('/brands/landing/faq-bg-2.png');
-          background-repeat: no-repeat;
-          background-position: right;
-          }
-          </style>
-          <div class="md:ml-auto md:w-1/2 md:pl-10">
-          <p class="mt-2 text-3xl  text-white">How much does a property management system cost?</p>
-            <p class="mt-10 text-md font-light text-gray-100">The cost of an online property management system is low-cost. It is designed to simplify property management work and reduce operating expenses. It is usually paid through monthly or annual subscription so that it can fit into most operating budgets of rental properties. </p>
-            
-            <div class="mt-8">
-              <div class="inline-flex rounded-md shadow">
-                
-              </div>
+           
+
+            <!-- how much section -->
+
+          </div>
+          <div class="mt-12 sm:mt-16 lg:mt-0">
+            <div class="-mr-48 pl-4 sm:pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
+              <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none opacity-25 "  src="{{ asset('/brands/landing/test-2.jpg')}}" alt="Inbox user interface">
             </div>
           </div>
         </div>
       </div>
+      <div class="mt-24">
+        <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
+          <div class="mx-auto max-w-xl px-4 sm:px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-32 lg:px-0">
+            <div>
+              
+              <div class="mt-6">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900">How much does a property management system cost?</h2>
+                <p class="mt-4 text-sm text-gray-700">The price of a property management system varies based on many factors. The type of system, the number of users, and the size of your company all affect the cost and maintenance of the system.</p>
+                <p class="mt-4 text-sm text-gray-700">You should also consider how long you will use it, whether it's part-time or full-time, and whether there are any additional fees for features such as tenant reporting or email marketing.</p>
+                <p class="mt-4 text-sm text-gray-700">Most property management systems include basic features like accounting and billing, but they also offer more advanced features like tenant screening, mobile access, and online payment processing. Because they offer so many options, you'll need to determine which features are most important to you before selecting a system. Our property management system is low cost with the maximum features we can provide.</p>
+                
+              </div>
+            </div>
+          </div>
+          <div class="mt-12 sm:mt-16 lg:col-start-1 lg:mt-0">
+            <div class="-ml-48 pr-4 sm:pr-6 md:-ml-16 lg:relative lg:m-0 lg:h-full lg:px-0">
+              <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none opacity-25" src="{{ asset('/brands/landing/test-3.jpg') }}" alt="Customer profile user interface">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    
-<!-- Blog section -->
+<!-- features section -->
 <div class="relative bg-gray-white pb-10">
         <div class="py-20 relative">
         
@@ -126,23 +220,250 @@
           <div class="pt-8 sm:pt-8 lg:pt-8">
             <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">What are the features of an online rental property management system?</h2>
             <div class="mt-10 space-y-6 text-gray-500 text-center">
-              <p class="text-lg"> Features available in The PMO System include tenants contract management , concerns 	management, billing and collection management , cash flow reports, property dashboards, unit 	management, user roles management.
-</p>
-             
+              <p class="mx-5 text-lg"> 
+              Our goal is to help you save money and improve your business. We want to work with you to streamline
+              your processes and make sure that you&#39;re as efficient as possible.    
+              </p>
             </div>
-        <div class="flex justify-center items-center">
-            <img class="w-96" src="{{ asset('/brands/landing/faqs-icons.webp')}}" alt="icons of checklist, message, users, properties, and graph chart">
-        </div>
+
+          <div class="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-3 lg:px-8">
+            
+            <div class="flex flex-col overflow-hidden rounded-lg">
+            <div class="flex flex-1 flex-col justify-between bg-purple-100 p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-sm font-light text-purple-900">Manage tenants, payments, and bills</p>
+                  <p class="mt-3 text-sm text-gray-500"></p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+          
+            <div class="flex flex-col overflow-hidden rounded-lg">
+            <div class="flex flex-1 flex-col justify-between bg-gray-100 p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-sm font-light text-purple-900">Manage contracts with vendors and contractors</p>
+                  <p class="mt-3 text-sm text-gray-500"></p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+            <div class="flex flex-col overflow-hidden rounded-lg">
+            <div class="flex flex-1 flex-col justify-between bg-purple-100 p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-sm font-light text-purple-900">View reports on income and expenses.</p>
+                  <p class="mt-3 text-sm text-gray-500"></p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+
+
+
           </div>
           
 
 </div>
+</div>     
+      </div>
+
+      <!-- what is rms section -->
+   <div class=" pb-16 lg:z-10 lg:pb-0" style= "background-image: url('/brands/landing/faq-bg.webp');" alt="a laptop, message icon, settings icon as background">
+          <div class="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
+            <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-4xl lg:px-0 lg:py-20">
+              <blockquote>
+                <div>
+                  <svg class="h-12 w-12 text-white opacity-25" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                    <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                  </svg>
+                  <p class="mt-2 text-3xl font-xl text-gray-800">What is a <span class="font-bold">real estate management system?</span></p>
+                </div>
+                <footer class="mt-6">
+                  <p class="text-base font-sm text-gray-500">
+                  A real estate management system (or RMS) is a collection of software and hardware elements that bring together all of the information needed to manage a property, from one centralized location.
+                  </p>
+                  <p class="text-base font-sm text-gray-500">
+                  It includes everything from accounting to marketing, finance, and tenant management.
+                  </p>
+                  <p class="text-base font-sm text-gray-500">
+                  Real Estate Management Systems are used by property managers and leasing agents to automate many of their key processes, such as collecting rent payments, managing leases, and leasing renewals.
+                  </p>
+                  
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <!-- real estate section -->
+       <style>
+        #estate {
+          background-color: #5D5270 ;
+        }
+        </style>
+    <div id="estate" class="relative">
+    <div class="absolute inset-x-0 bottom-0 xl:top-0 h-72 xl:h-full">
+        <div class=" h-full w-full xl:grid xl:grid-cols-6">
+
+          <div class="h-full xl:relative xl:col-start-4 col-span-3">
+            
+            <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b  xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mx-4 max-w-3xl px-10 sm:px-6  xl:gap-x-8">
+        <div class="relative sm:pl-0 lg:pl-20 pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
+          
+          <p class="mt-12 text-3xl font-light tracking-tight text-indigo-100">
+          Real Estate Management in the Philippines</p>
+          
+          <p class="mt-5 mb-5 text-sm font-thin text-gray-300">
+          In the Philippines, real estate management still conducts their business utilizing manual procedures. They would gain from using a rental management system to digitalize their business operations.
+          </p>
+
+          <p class="mt-5 mb-5 text-sm font-thin text-gray-300">
+          The property management system is one of the most important parts of any real estate business. It ensures that the property is managed well and that it remains in good shape for the owner to enjoy. 
+          </p>
+
+          <p class="mt-5 mb-5 text-sm font-thin text-gray-300">
+          To run a successful property management business, you will need to have a good system in place. This can include setting up policies, procedures, and systems for doing things like paying rent on time and regularly checking up on your tenants, among other things. You should also have a good understanding of how taxes work so that you can collect them properly and pay them on time.
+          </p>
+          
+          <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- rms advantages section -->
+<div class="relative bg-gray-white pb-10">
+        <div class="py-20 relative">
+        
+
+          <div class="relative mx-auto max-w-9xl sm:px-6 lg:px-0">
+          <!-- Content area -->
+          <div class="pt-8 sm:pt-8 lg:pt-8">
+            <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">The advantages of using an RMS</h2>
+            <div class="mt-10 space-y-6 text-gray-500 text-center">
+            <div class="flex justify-center items-center">  
+            <p class="mx-5 text-center max-w-5xl text-lg"> 
+              The real estate management system is software that helps you to manage your property. The system can also be used by the owner of the property to manage it.    
+              </p>
+            </div>
+            </div>
+
+          <div class="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-4 lg:px-8">
+            
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-sm font-light text-purple-900">The user interface is simple and easy to use. It has an intuitive interface that makes it easy for both new users and experienced users to use.</p>
+                  <p class="mt-3 text-sm text-gray-500"></p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+          
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-sm font-light text-purple-900">The software provides reports on all aspects of the property, including rent history, profit and loss statement, etc. This allows you to get an overview of how your property is performing over time.</p>
+                  <p class="mt-3 text-sm text-gray-500"></p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-sm font-light text-purple-900">It allows you to keep track of all expenses related to your real estate business such as rental expenses, maintenance expenses, etc. You can also keep track of tax issues related to your business as well as calculate depreciation costs based on the amount of time that your building has been in use.</p>
+                  <p class="mt-3 text-sm text-gray-500"></p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6">
+              <div class="flex-1">
+                <a class="mt-2 block">
+                  
+                  <p class="text-sm font-light text-purple-900">The system allows you to keep track of any changes made to any aspect of your property such as changing its location or adding a new room or changing out any fixtures or appliances in the building.
+</p>
+                  <p class="mt-3 text-sm text-gray-500"></p>
+                </a>
+              </div>
+            </div>
+            </div>
+
+
+
+          </div>
+          
+
 </div>
+</div>     
+      </div>
 
-                
+      
+      <!-- asset management section -->
+   <div class=" pb-16 lg:z-10 lg:pb-0" style= "background-image: url('/brands/landing/faq-bg.webp');" alt="a laptop, message icon, settings icon as background">
+          <div class="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
+            <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-4xl lg:px-0 lg:py-20">
+              
+                <div>
+                  
+                  <h1 class="mt-2 text-3xl font-xl text-gray-800">What is the <span class="font-bold">asset management system in the Philippines?</span></h1>
+                </div>
+                <div class="mt-6">
+                  <p class="mb-5 text-base font-sm text-gray-500">
+                  A real estate management system (or RMS) is a collection of software and hardware elements that bring together all of the information needed to manage a property, from one centralized location.
+                  </p>
+                  <p class="mb-5 text-base font-sm text-gray-500">
+                  It includes everything from accounting to marketing, finance, and tenant management.
+                  </p>
+                  <p class="mb-5 text-base font-sm text-gray-500">
+                  Real Estate Management Systems are used by property managers and leasing agents to automate many of their key processes, such as collecting rent payments, managing leases, and leasing renewals.
+                  </p>
+                  
+                </div>
 
-
-       
+                <div>
+                  
+                  <h2 class="mt-2 text-xl font-xl text-gray-800">National Asset Management System: What Is It?</h2>
+                </div>
+                <div class="mt-6">
+                  <p class="mb-5 text-base font-sm text-gray-500">
+                  The concept of NAMS is not new. It has been introduced in several countries as one of their strategies for sustainable economic growth through the effective use of assets. According to a study conducted by World Bank, "the NAMS concept has gained popularity because it provides a platform for building a national asset base."
+                  </p>
+                  <p class="mb-5 text-base font-sm text-gray-500">
+                  According to this report published by World Bank, "the NAMS concept has gained popularity because it provides a platform for building a national asset base."
+                  </p>
+                  
+                  
+                </div>
+              
+            </div>
+          </div>
+        </div>
       </div>
 
       <div id="contactus">
