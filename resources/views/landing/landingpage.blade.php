@@ -37,7 +37,7 @@ body {
    
   <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16 sm-px-0 ">
   <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-3xl sm:ml-12 sm:py-2 lg:-ml-5 mx-5">
-  <p class="text-lg font-light mt-10 text-white">With The Property Manager Online, you can easily streamline operations smoothly and harmoniously with your tenants while saving time—and money!</p>
+  <p class="text-lg font-light mt-10 text-white">With The Property Manager Online, you can easily streamline rental property operations smoothly and harmoniously with your tenants while saving time and money!</p>
  
 
             <div class="mt-10 flex justify-center items-center space-x-5">
