@@ -28,8 +28,8 @@
                         </div>
                         <p class="pb-10 text-xs font-light text-gray-600">By submitting my personal information, I understand and agree that The PMO may collect, process, and retain my data pursuant to The PMO Co. <span class="text-purple-900 font-semibold"><a href="privacy">Privacy Policy.</a></span></p>
                         <div class="flex items-center justify-start w-full">
-                            <button id="buttonSubmit" type ="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-purple-600 bg-purple-500 rounded-2xl text-white px-8 py-2 text-sm">Submit</button>
-                            <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded-2xl px-8 py-2 text-sm"><a href="/">Cancel</a></button>
+                            <button type ="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-purple-600 bg-purple-500 rounded-2xl text-white px-8 py-2 text-sm" onclick="modalHandler(false)">Submit</button>
+                            <a href ="/" class =" focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded-2xl px-8 py-2 text-sm">Cancel</a>
                         </div>
                         
                     </div>
@@ -73,14 +73,8 @@
                     
                 }
             </script>
-<script>
-$("buttonSubmit").submit(function(e) {
-    e.preventDefault();
-    // Coding
-    $("modal").modal('hide'); //or  $('#IDModal').modal('hide');
-    return false;
-});
-</script>
+
+
 
         </dh-component>
         <!-- Code block ends -->
