@@ -28,7 +28,7 @@
                         </div>
                         <p class="pb-10 text-xs font-light text-gray-600">By submitting my personal information, I understand and agree that The PMO may collect, process, and retain my data pursuant to The PMO Co. <span class="text-purple-900 font-semibold"><a href="privacy">Privacy Policy.</a></span></p>
                         <div class="flex items-center justify-start w-full">
-                            <button type ="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-purple-600 bg-purple-500 rounded-2xl text-white px-8 py-2 text-sm" onclick="modalHandler(false)">Submit</button>
+                            <button type ="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-purple-600 bg-purple-500 rounded-2xl text-white px-8 py-2 text-sm"  onclick="modalHandler(false)">Submit</button>
                             <a href ="/" class =" focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded-2xl px-8 py-2 text-sm">Cancel</a>
                         </div>
                         
@@ -180,7 +180,7 @@
         <!-- Contact form -->
         <div class="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
           
-          <form action="#" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+        <form action="https://formsubmit.co/f694a11ef780365f3384eeda25acb3fc" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
             <div>
               <label for="first-name" class="block text-sm font-medium text-gray-900">First name</label>
               <div class="mt-1">
@@ -218,17 +218,17 @@
             <div class="mt-5">
             
                 
-            <ul><input type="checkbox"> Condominium Association</ul>
-            <ul><input type="checkbox"> Condominium Units</ul>
-            <ul><input type="checkbox"> Student Accomodation</ul>
-            <ul><input type="checkbox"> HOA</ul>
-            <ul><input type="checkbox"> Dormitory</ul>
-            <ul><input type="checkbox"> Commercial</ul>
-            <ul><input type="checkbox"> Self storage</ul>
-            <ul><input type="checkbox"> Senior Living</ul>
-            <ul><input type="checkbox"> Residential Apartments</ul>
-            <ul><input type="checkbox"> Bed and breakfast</ul>
-            <ul><input type="checkbox"> Transient</ul>
+            <ul><input type="checkbox" id="condominium-association"> Condominium Association</ul>
+            <ul><input type="checkbox" id="condominium-units"> Condominium Units</ul>
+            <ul><input type="checkbox" id="student-accomodation"> Student Accomodation</ul>
+            <ul><input type="checkbox" id="hoa"> HOA</ul>
+            <ul><input type="checkbox" id="dormitory"> Dormitory</ul>
+            <ul><input type="checkbox" id="commcercial"> Commercial</ul>
+            <ul><input type="checkbox" id="self-storage"> Self storage</ul>
+            <ul><input type="checkbox" id="senior-living"> Senior Living</ul>
+            <ul><input type="checkbox" id="residential-apartments"> Residential Apartments</ul>
+            <ul><input type="checkbox" id="bed-and-breakfast"> Bed and breakfast</ul>
+            <ul><input type="checkbox" id="transient"> Transient</ul>
            
             
           

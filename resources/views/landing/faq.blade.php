@@ -550,7 +550,7 @@
         <!-- Contact form -->
         <div class="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
           
-        <form action="https://formsubmit.co/b60b974aa1881c80c3064c504b2e3f41" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+        <form action="https://formsubmit.co/f694a11ef780365f3384eeda25acb3fc" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
             <div>
               <label for="first-name" class="block text-sm font-medium text-gray-900">First name</label>
               <div class="mt-1">
@@ -607,17 +607,17 @@
             <div class="mt-5">
             
                 
-            <ul><input type="checkbox" id="property type"> Condominium Association</ul>
-            <ul><input type="checkbox" id="property type"> Condominium Units</ul>
-            <ul><input type="checkbox" id="property type"> Student Accomodation</ul>
-            <ul><input type="checkbox" id="property type"> HOA</ul>
-            <ul><input type="checkbox" id="property type"> Dormitory</ul>
-            <ul><input type="checkbox" id="property type"> Commercial</ul>
-            <ul><input type="checkbox" id="property type"> Self storage</ul>
-            <ul><input type="checkbox" id="property type"> Senior Living</ul>
-            <ul><input type="checkbox" id="property type"> Residential Apartments</ul>
-            <ul><input type="checkbox" id="property type"> Bed and breakfast</ul>
-            <ul><input type="checkbox" id="property type"> Transient</ul>
+            <ul><input type="checkbox" id="condominium-association"> Condominium Association</ul>
+            <ul><input type="checkbox" id="condominium-units"> Condominium Units</ul>
+            <ul><input type="checkbox" id="student-accomodation"> Student Accomodation</ul>
+            <ul><input type="checkbox" id="hoa"> HOA</ul>
+            <ul><input type="checkbox" id="dormitory"> Dormitory</ul>
+            <ul><input type="checkbox" id="commcercial"> Commercial</ul>
+            <ul><input type="checkbox" id="self-storage"> Self storage</ul>
+            <ul><input type="checkbox" id="senior-living"> Senior Living</ul>
+            <ul><input type="checkbox" id="residential-apartments"> Residential Apartments</ul>
+            <ul><input type="checkbox" id="bed-and-breakfast"> Bed and breakfast</ul>
+            <ul><input type="checkbox" id="transient"> Transient</ul>
            
             
           
