@@ -51,7 +51,7 @@
     <div class="min-h-fit" id="about">
     <style>
 #about {
-  background-color: #4A386C;
+  background-color:  #5D5270;
 }
 </style>
         <div class=" lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-8 lg:px-8">

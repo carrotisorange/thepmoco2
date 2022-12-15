@@ -344,7 +344,7 @@ efficiency, number of concerns received, etc to improve performance and business
 <div class="relative py-16 sm:py-24 lg:py-32" id="guide">
 <style>
 #guide {
-    background-color: #60478F;
+    background-color: #5D5270;
 }
 </style>
         <div class="relative">
