@@ -55,7 +55,7 @@ class MoveoutContractComponent extends Component
 
             $this->contract->update($validatedData);
 
-            app('App\Http\Controllers\NotificationController')->store('concern', 'requested to moveout', 'pending', Tenant::find($this->contract->tenant_uuid)->property->uuid);
+            // app('App\Http\Controllers\NotificationController')->store('concern', 'requested to moveout', 'pending', Tenant::find($this->contract->tenant_uuid)->property->uuid);
 
             return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract moveout has been requested.');
 
@@ -64,7 +64,7 @@ class MoveoutContractComponent extends Component
 
             $this->contract->update($validatedData);
 
-            app('App\Http\Controllers\NotificationController')->store('concern', 'has been approved to moveout', 'approved', Tenant::find($this->contract->tenant_uuid)->property->uuid);
+            // app('App\Http\Controllers\NotificationController')->store('concern', 'has been approved to moveout', 'approved', Tenant::find($this->contract->tenant_uuid)->property->uuid);
 
             return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Contract has been moveout.');
         }

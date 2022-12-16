@@ -36,7 +36,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\GuestController;
-use App\Http\Controllers\NotificationController;
+// use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
@@ -63,7 +63,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
     //Route for notitication
-    Route::get('notification',[NotificationController::class, 'index']);
+    // Route::get('notification',[NotificationController::class, 'index']);
 
    
 

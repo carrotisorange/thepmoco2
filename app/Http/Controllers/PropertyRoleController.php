@@ -45,9 +45,13 @@ class PropertyRoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($property_uuid)
     {
-        //
+        for($i=1; $i<=9; $i++){ 
+         PropertyRole::create([ 'property_uuid'=> $property_uuid,
+            'role_id'=> $i,
+            ]);
+        }
     }
 
     /**

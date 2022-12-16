@@ -16,7 +16,7 @@ class PropertyShowComponent extends Component
 
     public function render()
     {
-        app('App\Http\Controllers\PropertyController')->store_property_session($this->property);
+        app('App\Http\Controllers\PropertyController')->store_property_session($this->property->uuid);
 
         app('App\Http\Controllers\PropertyController')->save_unit_stats($this->property->uuid);
 
@@ -46,7 +46,7 @@ class PropertyShowComponent extends Component
             'occupied_units' => app('App\Http\Controllers\UnitController')->get_property_units($this->property->uuid, 2, '', ''),
             'vacant_units' => app('App\Http\Controllers\UnitController')->get_property_units($this->property->uuid, 1,'', ''),
             'unlisted_units' => app('App\Http\Controllers\UnitController')->get_property_units($this->property->uuid, 1,'', 0),
-            'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications($this->property->uuid),
+            // 'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications($this->property->uuid),
             'total_collected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid,Carbon::now()->month,'paid'),
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_property_bills($this->property->uuid,Carbon::now()->month, 'unpaid'),
             'occupancy_rate_value' => app('App\Http\Controllers\PropertyController')->get_occupancy_rate_values($this->occupancyGraphValue),

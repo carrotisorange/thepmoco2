@@ -50,11 +50,16 @@ class PropertyParticularController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Property $property)
-    {
-
-
-    }
+     public function store($property_uuid){
+        for($i=1; $i<=8; $i++){ 
+            PropertyParticular::create([ 'property_uuid'=> $property_uuid,
+            'particular_id'=> $i,
+            'minimum_charge' => 0.00,
+            'due_date' => 28,
+            'surcharge' => 1
+           ]);
+      }
+     }
 
     /**
      * Display the specified resource.
