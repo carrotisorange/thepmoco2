@@ -1,6 +1,6 @@
 <x-new-layout>
     @section('title','Step 1 of Step 6 | Account Payables')
-    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 xl:py-10">
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
         {{-- stepper --}}
             
@@ -14,33 +14,31 @@
                     <div class="sm:col-span-3">
                         <label for="request" class="block text-sm font-medium text-gray-700">Request for: </label>
                             <select id="purchase" name="purchase" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                                <option>Purchase</option>
+                                <option value="">Purchase</option>
                             </select>
                     </div>
 
                     {{-- creation date --}}
                     <div class="sm:col-span-3">
-                        <label for="creation-date" class="block text-sm font-medium text-gray-700">Document Date:</label>
-                            <select id="creation-date" name="creation-date" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                                <option>Date</option>
-                            </select>
+                        <label for="creation-date" class="block text-sm font-medium text-gray-700">Creation Date:</label>
+                            <input type="text" id="creation-date" name="creation-date" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                     </div>
 
                     {{-- particular --}}
                     <div class="sm:col-span-3">
                         <label for="particular" class="block text-sm font-medium text-gray-700">Particular:</label>
                             <select id="particular" name="particular" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                                <option>Rent</option>
-                                <option>Rent</option>
-                                <option>Rent</option>
-                                <option>Rent</option>
+                                <option value="">Rent</option>
+                                <option value="">Rent</option>
+                                <option value="">Rent</option>
+                                <option value="">Rent</option>
                             </select>
                     </div>
 
                     {{-- requester's name --}}
                     <div class="sm:col-span-3">
-                        <label for="concern" class="block text-sm font-medium text-gray-700">Requester's Name:</label>
-                            <textarea id="concern" name="concern" rows="3" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></textarea>
+                        <label for="requester" class="block text-sm font-medium text-gray-700">Requester's Name:</label>
+                            <input type="text" id="requester" name="requester" rows="3" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                     </div>
 
                     {{-- cancel, next button --}}

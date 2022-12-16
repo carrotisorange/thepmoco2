@@ -1,6 +1,6 @@
 <x-new-layout>
     @section('title','Step 2 of Step 6 | Account Payables')
-    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 xl:py-10">
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
         {{-- stepper --}}
             
@@ -17,12 +17,10 @@
                             <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                 <div class="space-y-1 text-center">
                                     <div class="flex text-sm text-gray-600">
-                                        <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <label for="quotation_id" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                             <span>Upload a file</span>
-                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                                <input id="quotation_id" name="image" type="file" class="sr-only" wire:model="quotation_id">
                                         </label>
-                  
-                                        <p class="pl-1">or drag and drop</p>
                                     </div>
                                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                                 </div>
@@ -36,12 +34,10 @@
                             <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                 <div class="space-y-1 text-center">
                                     <div class="flex text-sm text-gray-600">
-                                        <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <label for="quotation_id" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                             <span>Upload a file</span>
-                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                                <input id="quotation_id" name="image" type="file" class="sr-only" wire:model="quotation_id">
                                         </label>
-                  
-                                        <p class="pl-1">or drag and drop</p>
                                     </div>
                                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                                 </div>
@@ -55,16 +51,14 @@
                             <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                 <div class="space-y-1 text-center">
                                     <div class="flex text-sm text-gray-600">
-                                        <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <label for="quotation_id" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                             <span>Upload a file</span>
-                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                                <input id="quotation_id" name="image" type="file" class="sr-only" wire:model="quotation_id">
                                         </label>
-                  
-                                        <p class="pl-1">or drag and drop</p>
                                     </div>
-                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>                                        
                                 </div>
-                            </div>
+                            </div>                           
                     </div>
 
                     {{-- cancel, next button --}}
