@@ -79,7 +79,7 @@
               
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-gray-500">Step 3:</span>
-                                        <span class="text-sm font-medium text-gray-500">Approval (Vendor)</span>
+                                        <span class="text-sm font-medium text-gray-500">Approval (Admin)</span>
                                     </span>
                                 </span>
                             </a>
@@ -139,7 +139,7 @@
               
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-gray-500">Step 5:</span>
-                                        <span class="text-sm font-medium text-gray-500">P.O Approval</span>
+                                        <span class="text-sm font-medium text-gray-500">Approval (Manager)</span>
                                     </span>
                                 </span>
                             </a>
