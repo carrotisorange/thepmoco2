@@ -1,8 +1,8 @@
 <form action="" enctype="multipart/form-data" wire:submit.prevent="submitForm()" method="POST">
     <div class="shadow sm:rounded-md sm:overflow-hidden">
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <div class="grid grid-cols-4 gap-6">
-                <div class="col-span-2 sm:col-span-6">
+            <div class="grid grid-cols-2 gap-6">
+                <div class="col-span-1">
                     <label for="start" class="block text-sm font-medium text-gray-700">Contracts starts on</label>
                     <input type="date" wire:model="start" autocomplete="start"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
@@ -10,7 +10,7 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-span-2 sm:col-span-6">
+                <div class="col-span-1">
                     <label for="end" class="block text-sm font-medium text-gray-700">Contract ends on</label>
                     <input type="date" wire:model="end" autocomplete="end"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
@@ -19,7 +19,7 @@
                     @enderror
                 </div>
 
-                <div class="col-span-2 sm:col-span-6">
+                <div class="col-span-2">
                     <label for="start" class="block text-sm font-medium text-gray-700">Rent/Month/Tenant</label>
                     <input type="number" wire:model="rent" autocomplete="rent"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
@@ -28,7 +28,7 @@
                     @enderror
                 </div>
 
-                <div class="col-span-2 sm:col-span-6">
+                <div class="col-span-1">
                     <label for="start" class="block text-sm font-medium text-gray-700">Tenant moves out on </label>
                     @if($contract_info->moveout_at)
                     {{ Carbon\Carbon::parse($contract_info->moveout_at)->format('M d, Y') }}
@@ -37,7 +37,7 @@
                     @endif
                 </div>
 
-                <div class="col-span-2 sm:col-span-6">
+                <div class="col-span-1">
                     <label for="start" class="block text-sm font-medium text-gray-700">Tenant's reason for moving out
                     </label>
                     @if($contract_info->moveout_reason)
@@ -47,7 +47,7 @@
                     @endif
                 </div>
 
-                <div class="sm:col-span-6">
+                <div class="col-span-2">
                     <label class="block text-sm font-medium text-gray-700"> Upload a contract
                     </label>
                     <div
