@@ -10,12 +10,12 @@
                 <h1 class="text-3xl font-bold text-gray-700">Contracts</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                <a class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500  px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
-                    class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a>
+                    class=" hover:text-indigo-900">Download Sample Lease Contract</a>
 
                 <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/unit'"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                     New</button>
 
             </div>
