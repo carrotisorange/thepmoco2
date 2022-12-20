@@ -513,6 +513,19 @@ Route::get('/roomtest', function(){
     return view('kommunal.roomtest');
 });
 
+Route::get('/signup', function(){
+    return view('kommunal.signup');
+});
+
+Route::get('/owner-signup', function(){
+    return view('kommunal.owner-signup');
+});
+
+Route::get('/signin', function(){
+    return view('kommunal.signin');
+});
+
+
 
 
 
