@@ -79,6 +79,10 @@ Route::get('/demopage', function(){
     return view('landing.demopage');
 });
 
+Route::get('/demo', function(){
+    return view('landing.demo');
+});
+
 Route::post('/register', function(Request $request){
 
     $attributes = $request->validate([
