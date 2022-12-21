@@ -4,7 +4,7 @@
 
 <dh-component>
             
-            <form id="" action="/register" method="POST">
+            <form id="" action="https://thepropertymanager.online/demo">
               @csrf
             <div class="py-12  transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
                 <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
