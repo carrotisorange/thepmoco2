@@ -525,6 +525,10 @@ Route::get('/signin', function(){
     return view('kommunal.signin');
 });
 
+Route::get('/upload-1', function(){
+    return view('kommunal.upload-1');
+});
+
 
 
 
