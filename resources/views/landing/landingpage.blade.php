@@ -157,7 +157,7 @@ body {
           <div class="lg:mt-20 sm:mt-0  lg:col-start-2 sm:pl-5 ">
           <div class="flex justify-center items-center">
           <p class="pb-10 px-7 text-sm font-light text-white">
-          The Property Management System is a product of The PMO Co, the property management system allows property managers and property owners to manage all aspects of their properties in one place. Having a property management system is like having a personal assistant. It's there for you when you need it, and it helps you make better decisions.
+          The Property Management Online System is a product of The PMO Co, the property management system allows property managers and property owners to manage all aspects of their properties in one place. Having a property management system is like having a personal assistant. It's there for you when you need it, and it helps you make better decisions.
           </p>
           </div>
         </div>
