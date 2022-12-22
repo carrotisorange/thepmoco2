@@ -16,7 +16,7 @@
             <img src="{{ asset('/brands/landing/f-icon.webp') }}" alt="user vector icon"
               class="h-14 w-14 rounded-full mr-2 object-cover" />
             <div>
-              <p class="font-semibold text-gray-700 text-sm"> Anonymous </p>
+              <p class="font-semibold text-gray-700 text-sm"> Muhammad Irfan </p>
               <p class="font-semibold text-gray-600 text-xs"> December 2022 </p>
             </div>
           </div>

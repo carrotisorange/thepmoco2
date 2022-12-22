@@ -27,13 +27,13 @@
           <div class="mt-6 flex items-center">
             <div class="flex-shrink-0">
               <a href="">
-                <span class="sr-only">Anonymous</span>
+                <span class="sr-only">Pamela Tecson</span>
                 <img class="h-16 w-16 rounded-full" src="{{ asset('/brands/landing/f-icon.webp') }}" alt="user vector icon">
               </a>
             </div>
             <div class="ml-3">
               <p class="text-sm font-medium text-gray-900">
-                <a href="" class="hover:underline">Anonymous</a>
+                <a href="" class="hover:underline">Pamela Tecson</a>
               </p>
               <div class="flex space-x-1 text-sm text-gray-500">
                 <time datetime="2020-03-16">10/22</time>
@@ -63,13 +63,13 @@
           <div class="mt-6 flex items-center">
             <div class="flex-shrink-0">
               <a href="">
-                <span class="sr-only">Anonymous</span>
+                <span class="sr-only">Muhammad Irfan</span>
                 <img class="h-16 w-16 rounded-full" src="{{ asset('/brands/landing/f-icon.webp') }}" alt="user vector icon">
               </a>
             </div>
             <div class="ml-3">
               <p class="text-sm font-medium text-gray-900">
-                <a href="" class="hover:underline">Anonymous</a>
+                <a href="" class="hover:underline">Muhammad Irfan</a>
               </p>
               <div class="flex space-x-1 text-sm text-gray-500">
                 <time datetime="2020-03-16">12/22</time>
