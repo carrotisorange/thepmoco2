@@ -75,6 +75,11 @@ Route::get('/article1', function(){
     return view('landing.article1');
 });
 
+Route::get('/article2', function(){
+    return view('landing.article2');
+});
+
+
 Route::get('/demopage', function(){
     return view('landing.demopage');
 });
