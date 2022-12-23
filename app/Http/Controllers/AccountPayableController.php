@@ -41,6 +41,32 @@ class AccountPayableController extends Controller
         ->get();
     }
 
+    public function create_step_1($property_uuid){
+        return view('accountpayables.create.step-1');
+    }
+
+    public function create_step_2($property_uuid){
+        return view('accountpayables.create.step-2');
+    }
+
+    public function create_step_3($property_uuid){
+        return view('accountpayables.create.step-3');
+    }
+
+    public function create_step_4($property_uuid){
+        return view('accountpayables.create.step-4');
+    }
+
+    public function create_step_5($property_uuid){
+        return view('accountpayables.create.step-5');
+    }
+
+    public function create_step_6($property_uuid){
+        return view('accountpayables.create.step-6');
+    }
+
+
+
     public function download($property_uuid, $id)
     {
         $accountPayable = AccountPayable::find($id);

@@ -1354,7 +1354,7 @@
 
 
                         <!-- component -->
-                        <div class="container flex mx-auto w-full items-center justify-center">
+                        {{-- <div class="container flex mx-auto w-full items-center justify-center">
 
                             <ul class="flex flex-col bg-indigo-200 p-4">
                                 @foreach ($notifications as $item)
@@ -1383,7 +1383,7 @@
 
                             </ul>
 
-                        </div>
+                        </div> --}}
 
                         <div class="flex justify-end pb-5 pr-5 gap-2">
                             <div

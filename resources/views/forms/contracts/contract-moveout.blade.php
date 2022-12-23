@@ -1,22 +1,22 @@
 <form action="#" method="POST" wire:submit.prevent="submitForm">
     <div class="shadow sm:rounded-md sm:overflow-hidden">
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <div class="grid grid-cols-6 gap-6">
+            <div class="grid grid-cols-2 gap-6">
 
-                <div class="col-span-3 sm:col-span-3">
+                <div class="">
                     <label for="moveout_at" class="block text-sm font-medium text-gray-700">Date of Moveout</label>
                     <input type="date" wire:model="moveout_at" 
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                 </div>
 
-                {{-- <div class="col-span-3 sm:col-span-2">
+                {{-- <div class="">
                     <label for="tenant" class="block text-sm font-medium text-gray-700">
                         Tenant</label>
                     <input type="text" wire:model="tenant" readonly
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                 </div> --}}
 
-                <div class="col-span-3 sm:col-span-3">
+                <div class="">
                     <label for="unit" class="block text-sm font-medium text-gray-700">Unit
                         No.</label>
                     <input type="text" wire:model="unit" readonly
@@ -28,7 +28,7 @@
 
 
 
-                <div class="sm:col-span-6">
+                <div class="col-span-2">
                     <label for="moveout_reason" class="block text-sm font-medium text-gray-700">Reason for
                         moveout:</label>
                     <div class="mt-1">

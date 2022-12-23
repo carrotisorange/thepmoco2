@@ -27,7 +27,7 @@ class PortalTenantController extends Controller
             'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts,
             'unpaid_bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid']),
             'concerns' => Tenant::findOrFail($user->tenant_uuid)->concerns,
-            'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications(Tenant::find($user->tenant_uuid)->property->uuid),
+            // 'notifications' => app('App\Http\Controllers\NotificationController')->get_property_notifications(Tenant::find($user->tenant_uuid)->property->uuid),
         ]);
     }
 

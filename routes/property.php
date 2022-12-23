@@ -36,7 +36,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\GuestController;
-use App\Http\Controllers\NotificationController;
+// use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
@@ -63,7 +63,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
     //Route for notitication
-    Route::get('notification',[NotificationController::class, 'index']);
+    // Route::get('notification',[NotificationController::class, 'index']);
 
    
 
@@ -287,7 +287,35 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
          Route::get('{id}/approve', 'approve');
          Route::get('{str_random}/create', 'create')->name('accountpayable');
+
+
+           //step 1
+           Route::get('{random_str}/step-1', 'create_step_1');
+           Route::post('step-1', 'store_step_1');
+
+          //step 2
+          Route::get('{random_str}/step-2', 'create_step_2');
+          Route::post('step-2', 'store_step_2');
+
+          //step 3
+          Route::get('{random_str}/step-3', 'create_step_3');
+          Route::post('step-3', 'store_step_3');
+
+          //step 4
+          Route::get('{random_str}/step-4', 'create_step_4');
+          Route::post('step-4', 'store_step_4');
+
+          //step 5
+          Route::get('{random_str}/step-5', 'create_step_5');
+          Route::post('step-5', 'store_step_5');
+
+          //step 6
+          Route::get('{random_str}/step-6', 'create_step_6');
+          Route::post('step-6', 'store_step_6');
         });
+
+      
+
     });
 
     //Routes for Concern

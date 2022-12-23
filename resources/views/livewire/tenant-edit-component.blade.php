@@ -62,11 +62,12 @@
                 <h2 class="sr-only">Images</h2>
 
                 <div class="grid grid-cols-1 lg:gap-6">
-                    <img src="{{ asset('/brands/avatar.png') }}" alt="door"
-                        class="lg:col-span-2 md:row-span-2 rounded-md">
+                    <div class="flex items-center justify-center">
+                        <img src="{{ asset('/brands/avatar.png') }}" alt="door"
+                            class="lg:col-span-2 md:row-span-2 rounded-md w-56 lg:w-full">
+                    </div>
 
-
-                    <div class="mt-5 flex items-center justify-center ml-5">
+                    <div class="mt-5 flex items-center justify-center">
                         <p class="mt-5 text-lg text-center text-gray-700">
                             @can('tenantportal')
                             <button type="button"
@@ -126,7 +127,7 @@
                 </div>
             </div>
 
-            <div class="mt-8 lg:col-span-9">
+            <div class="mt-8 lg:col-span-10">
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
@@ -202,7 +203,7 @@
                                     {{-- @if($tenant_details->type == 'studying') --}}
                                     <div class="sm:col-span-4">
                                         <div
-                                            class="h-44 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            class="h-44 bg-purple-100 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="course"
                                                 class="block text-xs font-medium text-gray-900">Course</label>
                                             <input type="text" wire:model.lazy="course"
@@ -242,9 +243,9 @@
                                     <div class="mt-5">
 
                                     </div>
-                                    <div class="sm:col-span-8">
+                                    <div class="sm:col-span-4">
                                         <div
-                                            class="h-32 bg-blue-50 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            class="h-32 bg-purple-100 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="job-title"
                                                 class="block text-xs font-medium text-gray-900">Occupation</label>
                                             <input type="text" wire:model.lazy="occupation"

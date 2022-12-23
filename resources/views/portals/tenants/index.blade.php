@@ -155,7 +155,8 @@
                 </div>
             </div>
 
-            <div class="bg-gray-50 px-5 py-3">
+            {{-- asdad --}}
+            {{-- <div class="bg-gray-50 px-5 py-3">
                 @forelse ($notifications->take(3)->get() as $item)
                 <div class="text-sm">
                     <div
@@ -211,14 +212,14 @@
                 @endforelse
 
             </div>
-{{-- 
+{{--  --}}
             <div button
                 class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
     text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 onclick="window.location.href='/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments'">
                 View
                 More</>
-            </div> --}}
+            </div> 
 
 
         </div>
