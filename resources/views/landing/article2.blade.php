@@ -5,7 +5,7 @@
 
       <div class="mt-10 mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative" style="height: 24em;">
         
-        <img src="{{ asset('/brands/landing/property-management-system-team.jpg') }}" alt="property management system" class="opacity-50 absolute left-0 top-0 w-full h-full z-0 object-cover" />
+        <img src="{{ asset('/brands/landing/article2.jpg') }}" alt="property management system, a team with laptops on desk" class="opacity-25 absolute left-0 top-0 w-full h-full z-0 object-cover" />
         <div class="p-4 pt-56 relative">
           <a href="#"
             class="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2">Article</a>
@@ -16,7 +16,7 @@
             <img src="{{ asset('/brands/landing/f-icon.webp') }}" alt="user vector icon"
               class="h-14 w-14 rounded-full mr-2 object-cover" />
             <div>
-              <p class="font-semibold text-gray-700 text-sm"> Muhammad Irfan </p>
+              <p class="font-semibold text-gray-700 text-sm"> Zafar Hussain </p>
               <p class="font-semibold text-gray-600 text-xs"> December 2022 </p>
             </div>
           </div>
