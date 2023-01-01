@@ -241,10 +241,10 @@ class OwnerComponent extends Component
         public function render()
         {
                 return view('livewire.owner-component',[
-                        'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
-                        'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
                         'countries' => app('App\Http\Controllers\CountryController')->index(),
-                        'relationships' => Relationship::all(),
+                        'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
+                        'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
+                        'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
                 ]);
         }
 }
