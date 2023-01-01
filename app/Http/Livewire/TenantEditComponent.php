@@ -132,18 +132,16 @@ class TenantEditComponent extends Component
     }
 
 
-     public function sendCredentials()
+    public function sendCredentials()
     {
-        sleep(1);
-
         if(!$this->email){
-            session()->flash('error', 'The email address is required.');
+            return back()->with('error', 'The email address is required.');
         }
 
         $count_user = User::where('email', $this->tenant_details->email)->count();
         if($count_user > 0)
         {
-             session()->flash('error', 'Credentials for this tenant has already been generated.');
+             return back()->with('error', 'Credentials for this tenant has already been generated.');
         }
 
          $user_id = app('App\Http\Controllers\UserController')->store(
@@ -167,7 +165,7 @@ class TenantEditComponent extends Component
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'sends',18);
        
 
-       session()->flash('succcess', 'Access to tenant portal has been sent to email.');
+       return back()->with('succcess', 'Access to tenant portal has been sent to email.');
     }
 
     public function removeCredentials()
