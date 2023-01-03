@@ -29,11 +29,13 @@ class UnitEditBulkComponent extends Component
     public $selectedUnits =[];
 
     public $selectedAllUnits = false;
+    public $property_uuid;
 
     public function mount($batch_no)
     {
         $this->batch_no = $batch_no;
         $this->units = $this->get_units();
+        $this->property_uuid = Session::get('property');
     }
 
     protected function rules()
@@ -146,9 +148,9 @@ class UnitEditBulkComponent extends Component
     {
 
         return view('livewire.unit-edit-bulk-component',[
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(),
-            'floors' => app('App\Http\Controllers\FloorController')->index(),
-            'categories' => app('App\Http\Controllers\CategoryController')->index(),
+            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property_uuid),
+            'floors' => app('App\Http\Controllers\FloorController')->index(null),
+            'categories' => app('App\Http\Controllers\CategoryController')->index(null),
         ]);
     }
 }
