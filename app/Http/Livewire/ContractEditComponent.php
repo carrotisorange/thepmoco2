@@ -37,7 +37,7 @@ class ContractEditComponent extends Component
             'contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
             'start' => 'required|date',
             'rent' => 'required',
-            'end' => 'required|date',
+            'end' => 'nullable',
             'status' => 'required'
         ];
     }

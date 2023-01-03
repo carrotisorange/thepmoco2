@@ -29,6 +29,18 @@
                         <option value="inactive" {{ old('status', $contract_info->
                             status) == 'inactive' ? 'selected' : 'selected' }}>
                             inactive
+                        </option><option value="pendingmovein" {{ old('status', $contract_info->
+                            status) == 'pendingmovein' ? 'selected' : 'selected' }}>
+                            pendingmovein
+                        </option>
+                        </option>
+                        <option value="pendingmoveout" {{ old('status', $contract_info->
+                            status) == 'pendingmoveout' ? 'selected' : 'selected' }}>
+                            pendingmoveout
+                        </option>
+                        <option value="reserved" {{ old('status', $contract_info->
+                            status) == 'reserved' ? 'selected' : 'selected' }}>
+                            reserved
                         </option>
                        
                     </select>
