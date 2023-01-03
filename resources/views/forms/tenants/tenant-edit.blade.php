@@ -139,7 +139,7 @@
                             {{-- @if($tenant_details->type == 'studying') --}}
                             
                                 <div
-                                    class="h-44 bg-purple-100 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                    class="h-44 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                     <label for="course"
                                         class="block text-xs font-medium text-gray-900">Course</label>
                                     <input type="text" wire:model.lazy="course"
@@ -181,7 +181,7 @@
                             </div>
                             
                                 <div
-                                    class="h-32 bg-purple-100 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                    class="h-32 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                     <label for="job-title"
                                         class="block text-xs font-medium text-gray-900">Occupation</label>
                                     <input type="text" wire:model.lazy="occupation"
