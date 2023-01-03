@@ -30,8 +30,7 @@
                             <span class="text-gray-500 group-hover:text-gray-900">02</span>
                         </span>
                         <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add units to
-                            your
-                            property</span>
+                            </span>
                     </span>
                 </a>
 
@@ -52,9 +51,7 @@
                             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
                             <span class="text-gray-500 group-hover:text-gray-900">03</span>
                         </span>
-                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add tenants
-                            to your
-                            property</span>
+                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add tenants</span>
                     </span>
                 </a>
 
@@ -78,8 +75,7 @@
                             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
                             <span class="text-gray-500 group-hover:text-gray-900">04</span>
                         </span>
-                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add personnels
-                            to help you manage your property.</span>
+                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add personnels</span>
                     </span>
                 </a>
             </li>

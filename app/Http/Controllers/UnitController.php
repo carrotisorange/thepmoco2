@@ -50,27 +50,6 @@ class UnitController extends Controller
        return redirect('/property/'.Session::get('property').'/unit');
     }
 
-    public function get_property_unit_statuses($property_uuid)
-    {
-        return Status::join('units', 'statuses.id', 'units.status_id')
-        ->select('status','statuses.id as status_id', DB::raw('count(*) as count'))
-        ->where('units.property_uuid', $property_uuid)
-        ->where('statuses.status','!=','NA')
-        ->groupBy('statuses.id')
-        ->get();
-    }
-
-    public function get_property_unit_buildings($property_uuid)
-    {
-        return PropertyBuilding::join('buildings', 'property_buildings.building_id', 'buildings.id')
-        ->join('units', 'buildings.id', 'units.building_id')
-        ->select('building','buildings.id as building_id', DB::raw('count(unit) as count'))
-        ->distinct()
-        ->where('property_buildings.property_uuid', $property_uuid)
-        ->where('buildings.building','!=','NA')
-        ->groupBy('buildings.id')
-        ->get();
-    }
 
     public function get_property_unit_floors($property_uuid)
     {
@@ -80,16 +59,6 @@ class UnitController extends Controller
            ->where('floors.floor','!=','NA')
            ->groupBy('floors.id')
           ->get();
-    }
-
-    public function get_property_unit_categories($property_uuid)
-    {
-        return Category::join('units', 'categories.id', 'units.category_id')
-        ->select('category','categories.id as category_id', DB::raw('count(*) as count'))
-        ->where('units.property_uuid', $property_uuid)
-        ->where('categories.category','!=','NA')
-        ->groupBy('categories.id')
-        ->get();
     }
 
     public function get_property_unit_rents($property_uuid)

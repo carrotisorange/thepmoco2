@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
+use DB;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index($property_uuid)
     {
-        return Category::where('id', '!=', 1)->get();
+        return Category::join('units', 'categories.id', 'units.category_id')
+         ->select('category','categories.id as category_id', DB::raw('count(*) as count'))
+         ->when($property_uuid, function($query, $property_uuid){
+          $query->where('units.property_uuid', $property_uuid);
+          })
+         ->where('categories.category','!=','NA')
+         ->groupBy('categories.id')
+         ->get();
     }
 }

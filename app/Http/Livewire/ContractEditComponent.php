@@ -18,6 +18,7 @@ class ContractEditComponent extends Component
     public $start;
     public $end;
     public $rent;
+    public $status;
 
     public $tenant;
 
@@ -27,6 +28,7 @@ class ContractEditComponent extends Component
         $this->rent = $contract_details->rent;
         $this->start = $contract_details->start;
         $this->end = $contract_details->end;
+        $this->status = $contract_details->status;
     }
     
     protected function rules()
@@ -35,7 +37,8 @@ class ContractEditComponent extends Component
             'contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
             'start' => 'required|date',
             'rent' => 'required',
-            'end' => 'required|date',
+            'end' => 'nullable',
+            'status' => 'required'
         ];
     }
 

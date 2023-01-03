@@ -4,13 +4,9 @@ namespace App\Http\Livewire;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use DB;
-use App\Models\Country;
-use App\Models\Province;
-use App\Models\City;
-use App\Models\Type;
 use Livewire\Component;
 
-class PropertyComponent extends Component
+class PropertyCreateComponent extends Component
 {
      use WithFileUploads;
 
@@ -94,11 +90,9 @@ class PropertyComponent extends Component
 
      public function render()
      {
-        return view('livewire.property-component',[
-         'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
-         'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
-          'countries' => Country::orderBy('country', 'ASC')->where('id', '!=', 247)->get(),
-         'types' => Type::orderBy('type')->get(),
+        return view('livewire.property-create-component',[
+         'countries' => app('App\Http\Controllers\CountryController')->index(),
+         'types' => app('App\Http\Controllers\TypeController')->index(),
         ]);
      }
 }

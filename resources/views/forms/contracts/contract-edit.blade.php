@@ -19,7 +19,37 @@
                     @enderror
                 </div>
 
-                <div class="col-span-2">
+                <div class="col-span-1">
+                    <label for="start" class="block text-sm font-medium text-gray-700">Status</label>
+                    <select wire:model="status" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md" required>
+                       <option value="active" {{ old('status', $contract_info->
+                            status) == 'active' ? 'selected' : 'selected' }}>
+                            active
+                        </option>
+                        <option value="inactive" {{ old('status', $contract_info->
+                            status) == 'inactive' ? 'selected' : 'selected' }}>
+                            inactive
+                        </option><option value="pendingmovein" {{ old('status', $contract_info->
+                            status) == 'pendingmovein' ? 'selected' : 'selected' }}>
+                            pendingmovein
+                        </option>
+                        </option>
+                        <option value="pendingmoveout" {{ old('status', $contract_info->
+                            status) == 'pendingmoveout' ? 'selected' : 'selected' }}>
+                            pendingmoveout
+                        </option>
+                        <option value="reserved" {{ old('status', $contract_info->
+                            status) == 'reserved' ? 'selected' : 'selected' }}>
+                            reserved
+                        </option>
+                       
+                    </select>
+                    @error('status')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="col-span-1">
                     <label for="start" class="block text-sm font-medium text-gray-700">Rent/Month/Tenant</label>
                     <input type="number" wire:model="rent" autocomplete="rent"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">

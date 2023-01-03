@@ -107,7 +107,7 @@
 
 
 
-                {{Str::plural('utility', $units->count())}}
+                {{Str::plural('unit', $units->count())}}
 
             <p class="text-center">
                 <a wire:loading wire:target="updateParameters" class="text-green-500 text-decoration-line: underline"

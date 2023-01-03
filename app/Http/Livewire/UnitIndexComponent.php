@@ -28,10 +28,12 @@ class UnitIndexComponent extends Component
     public $occupancy = [];
     public $sortBy;
     public $orderBy;
+    public $property_uuid;
 
     public function changeView($value)
     {
         $this->view = $value;
+        
     }
 
     public function clearFilters()
@@ -42,6 +44,10 @@ class UnitIndexComponent extends Component
         $this->status_id = '';
         $this->category_id = '';
         $this->building_id = '';
+    }
+
+    public function mount(){
+        $this->property_uuid = Session::get('property');
     }
 
     public function get_units($property_uuid)
@@ -92,12 +98,11 @@ class UnitIndexComponent extends Component
    public function render()
     {
         return view('livewire.unit-index-component',[
-            'units' => $this->get_units(Session::get('property')),
-            'statuses' => app('App\Http\Controllers\UnitController')->get_property_unit_statuses(Session::get('property')),
-            'categories' => app('App\Http\Controllers\UnitController')->get_property_unit_categories(Session::get('property')),
-            'buildings' => app('App\Http\Controllers\UnitController')->get_property_unit_buildings(Session::get('property')),
-            'floors' => app('App\Http\Controllers\UnitController')->get_property_unit_floors(Session::get('property')),
-            'categories' => app('App\Http\Controllers\UnitController')->get_property_unit_categories(Session::get('property')),
+            'units' => $this->get_units($this->property_uuid),
+            'statuses' => app('App\Http\Controllers\StatusController')->index($this->property_uuid),
+            'categories' => app('App\Http\Controllers\CategoryController')->index($this->property_uuid),
+            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property_uuid),
+            'floors' => app('App\Http\Controllers\FloorController')->index($this->property_uuid),
             'rents' => app('App\Http\Controllers\UnitController')->get_property_unit_rents(Session::get('property')),
             'discounts' => app('App\Http\Controllers\UnitController')->get_property_unit_discounts(Session::get('property')),
             'sizes' => app('App\Http\Controllers\UnitController')->get_property_unit_sizes(Session::get('property')),

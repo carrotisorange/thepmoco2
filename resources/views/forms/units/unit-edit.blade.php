@@ -59,8 +59,8 @@
                 <select wire:model="floor_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($floors as $floor)
-                    <option value="{{ $floor->id }}" {{ old('floor_id', $unit_details->
-                        floor_id) == $floor->id ? 'selected' : 'selected' }}>
+                    <option value="{{ $floor->floor_id }}" {{ old('floor_id', $unit_details->
+                        floor_id) == $floor->floor_id ? 'selected' : 'selected' }}>
                         {{ $floor->floor }}
                     </option>
                     @endforeach
@@ -78,8 +78,8 @@
                 <select wire:model="category_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category_id', $unit_details->
-                        category_id) == $category->id ? 'selected' : 'selected' }}>
+                    <option value="{{ $category->category_id }}" {{ old('category_id', $unit_details->
+                        category_id) == $category->category_id ? 'selected' : 'selected' }}>
                         {{ $category->category }}
                     </option>
                     @endforeach
@@ -149,8 +149,8 @@
                 <select wire:model="status_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($statuses as $status)
-                    <option value="{{ $status->id }}" {{ old('status_id', $unit_details->
-                        status_id) == $status->id ? 'selected' : 'selected' }}>
+                    <option value="{{ $status->status_id }}" {{ old('status_id', $unit_details->
+                        status_id) == $status->status_id ? 'selected' : 'selected' }}>
                         {{ $status->status }}
                     </option>
                     @endforeach
