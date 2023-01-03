@@ -1,7 +1,7 @@
 <div>
     @include('layouts.notifications')
-    <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
-        <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
+    <div class="min-h-screen mt-8 max-w-2xl mx-auto pb-56 sm:px-20 lg:max-w-7xl lg:px-8">
+        <div class="lg:grid lg:grid-cols-12  lg:gap-x-8">
             <div class="lg:col-start-5 lg:col-span-9">
                 <div class="flex justify-between">
 
@@ -136,12 +136,7 @@
                                 data-tabs-target="#tenant" type="button" role="tab" aria-controls="tenant"
                                 aria-selected="false">Tenant</button>
                         </li>
-                        <li class="mr-2" role="presentation">
-                            <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="educ_emp-tab" data-tabs-target="#educ_emp" type="button" role="tab"
-                                aria-controls="educ_emp" aria-selected="false">Educational/Employment</button>
-                        </li>
+                        
                         <li class="mr-2" role="presentation">
                             <button
                                 class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
@@ -182,14 +177,13 @@
                     </ul>
                 </div>
                 <div id="myTabContent">
-                    <div class="p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tenant" role="tabpanel"
+                    <div class="h-full p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tenant" role="tabpanel"
                         aria-labelledby="tenant-tab">
                         <div>
                             @include('forms.tenants.tenant-edit')
-                        </div>
-                    </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="educ_emp" role="tabpanel"
-                        aria-labelledby="educ_emp-tab">
+                            </div>
+
+                            <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
@@ -299,6 +293,11 @@
 
                         </div>
                     </div>
+                        </div>
+
+                        
+                    </div>
+                   
                     <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="contracts" role="tabpanel"
                         aria-labelledby="contracts-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
