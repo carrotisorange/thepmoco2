@@ -54,9 +54,9 @@
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article2" class="hover:underline">Article</a>
+              <a href="article3" class="hover:underline">Article</a>
             </p>
-            <a href="article2" class="mt-2 block">
+            <a href="article3" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">What are the benefits of a property management system for property managers?</p>
               <p class="mt-3 text-sm text-gray-500">
               A property management system can be a great tool for landlords and property managers. It can help you to manage your properties more efficiently,</p>
@@ -73,12 +73,31 @@
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article2" class="hover:underline">Article</a>
+              <a href="article4" class="hover:underline">Article</a>
             </p>
-            <a href="article2" class="mt-2 block">
+            <a href="article4" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">Secret Recipe For Brand Building As Small Business.</p>
               <p class="mt-3 text-sm text-gray-500">
               In today's marketplace, it's hard for small businesses to stand out from the crowd. But there is one thing that every small business has in common:</p>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
+          <a href="article5"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article5.jpg') }}" alt="three people looking laptop property management system"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="article5" class="hover:underline">Article</a>
+            </p>
+            <a href="article5" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">What do we offer as a SaaS company to property managers and owners in The Property Manager Online?</p>
+              <p class="mt-3 text-sm text-gray-500">
+              Property managers, real estate agents, and owners of property are always looking for ways to improve the efficiency with which they do their jobs.</p>
             </a>
           </div>
           
