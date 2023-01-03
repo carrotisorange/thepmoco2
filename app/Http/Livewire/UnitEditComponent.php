@@ -25,6 +25,7 @@ class UnitEditComponent extends Component
     public $occupancy;
     public $is_the_unit_for_rent_to_tenant;
     public $price;
+    public $property_uuid;
 
     public function mount($unit_details)
     {
@@ -39,6 +40,7 @@ class UnitEditComponent extends Component
         $this->occupancy = $unit_details->occupancy;
         $this->is_the_unit_for_rent_to_tenant = $unit_details->is_the_unit_for_rent_to_tenant;
         $this->price = $unit_details->price;
+        $this->property_uuid = Session::get('property');
     }
     
     protected function rules()
@@ -62,7 +64,7 @@ class UnitEditComponent extends Component
     {
         $this->validateOnly($propertyName);
     }
-
+    
     public function submitForm()
     {
         sleep(1);
@@ -90,10 +92,10 @@ class UnitEditComponent extends Component
     public function render()
     {
         return view('livewire.unit-edit-component',[
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(),
-            'floors' => app('App\Http\Controllers\FloorController')->index(),
-            'categories' => app('App\Http\Controllers\CategoryController')->index(),
-            'statuses' => app('App\Http\Controllers\StatusController')->index(),
+            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property_uuid),
+            'floors' => app('App\Http\Controllers\FloorController')->index(null),
+            'categories' => app('App\Http\Controllers\CategoryController')->index(null),
+            'statuses' => app('App\Http\Controllers\StatusController')->index(null),
             'guests' => app('App\Http\Controllers\GuestController')->show_unit_guests($this->unit_details->uuid),
             'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($this->unit_details->uuid),
             'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid),

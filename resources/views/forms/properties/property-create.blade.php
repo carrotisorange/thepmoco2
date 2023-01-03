@@ -1,6 +1,5 @@
 <div>
     <form class="space-y-3" method="POST" wire:submit.prevent="submitForm()">
-        @csrf
         <div class="pt-10">
             <div>
                 <h3 class="mb-10 mt-10 text-center text-4xl font-bold leading-6 text-gray-900">Create a property</h3>
@@ -84,7 +83,7 @@
 
 
                 <div class="sm:col-span-3">
-                    <label for="barangay" class="block text-sm font-medium text-gray-700"> Where is your property located? </label>
+                    <label for="barangay" class="block text-sm font-medium text-gray-700"> What is the address of your property? </label>
                     <div class="mt-5">
                         <input type="text" wire:model="barangay" autocomplete="barangay"
                             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border-gray-300 rounded-md">
