@@ -19,9 +19,21 @@
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $accountpayable->request_for }}</x-td>
-            <x-td>{{ $accountpayable->particular->particular }}</x-td>
+            <x-td>
+                @if($accountpayable->particular_id)
+                {{ $accountpayable->particular->particular }}
+                @else
+                {{ $accountpayable->particular }}
+                @endif
+            </x-td>
             <x-td>{{ $accountpayable->requester->name }}</x-td>
-            <x-td>{{ $accountpayable->biller->biller }}</x-td>
+            <x-td>
+                @if($accountpayable->biller_id)
+                {{ $accountpayable->biller->biller }}
+                @else
+
+                @endif
+            </x-td>
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             <x-td>
                 @if($accountpayable->approved_at != '0000-00-00 00:00:00')
@@ -32,7 +44,7 @@
             </x-td>
             <x-td>{{$accountpayable->status}}</x-td>
             <x-td>
-                <a href="{{ asset('/storage/'.$accountpayable->attachment) }}" target="_blank"
+                <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
                     class="text-blue-500 text-decoration-line: underline">View Attachment</a>
             </x-td>
             <x-td>

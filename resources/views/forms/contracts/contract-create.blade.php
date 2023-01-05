@@ -23,10 +23,7 @@
                     </div>
 
                     <div class="col-span-1">
-                        <label for="rent" class="block text-sm font-medium text-gray-700">Rent/month/tenant(<span
-                                class="text-xs">Based on the rent specified on <a class="text-blue-600"
-                                    href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}"
-                                    target="_blank">{{ $unit->unit }}</a>.</span>)</label>
+                        <label for="rent" class="block text-sm font-medium text-gray-700">Rent/month/tenant</label>
                         <input type="number" wire:model.lazy="rent" autocomplete="rent" step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('rent')
@@ -35,11 +32,7 @@
                     </div>
 
                     <div class="col-span-1">
-                        <label for="discount" class="block text-sm font-medium text-gray-700">Discount (<span
-                                class="text-xs">Based on the discount specified on <a class="text-blue-600"
-                                    href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}"
-                                    target="_blank">{{ $unit->unit
-                                    }}</a>.</span>)</label>
+                        <label for="discount" class="block text-sm font-medium text-gray-700">Discount </label>
                         <input type="number" wire:model.lazy="discount" autocomplete="discount" step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('discount')

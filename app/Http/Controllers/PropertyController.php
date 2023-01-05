@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use App\Models\Type;
-use Illuminate\Http\Request;
 use App\Models\UserProperty;
-use App\Models\PropertyParticular;
-use App\Models\PropertyRole;
-use Auth;
 use Session;
 use DB;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Bill;
 use App\Models\Contract;
@@ -26,12 +21,6 @@ use App\Models\AccountPayable;
 
 class PropertyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function show_list_of_all_tenants($property_uuid)
     {
         return Property::find($property_uuid)->tenants;
@@ -85,10 +74,6 @@ class PropertyController extends Controller
         $this->destroy_property_session();
 
         $this->is_user_allowed_to_access(auth()->user()->status);
-
-        // if(!$is_property_exist()){
-        //    return redirect('/property/'.Str::random(8).'/create');  
-        // }
         
         if(auth()->user()->role_id == '12')
         {
@@ -112,13 +97,6 @@ class PropertyController extends Controller
         }
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create($random_str)
     {
         $this->authorize('is_portfolio_create_allowed');
@@ -129,12 +107,7 @@ class PropertyController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store($validatedData)
     {
          $validatedData['uuid'] = Str::uuid();
@@ -162,14 +135,6 @@ class PropertyController extends Controller
          }else{
              $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
          }
-
-        //  if($this->tenant_contract){
-        //     $validatedData['tenant_contract'] = $this->tenant_contract->store('tenant_contracts');
-        //  }
-
-        //  if($this->owner_contract){
-        //     $validatedData['owner_contract'] = $this->owner_contract->store('owner_contracts');
-        //  }
 
         return Property::create($validatedData);
     }
@@ -536,51 +501,6 @@ class PropertyController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Property  $property
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Property $property)
-    {
-        // $attributes = request()->validate([
-        //     'property' => ['required', 'string', 'max:255'],
-        //     'description' => ['nullable'],
-        //     'type_id' => ['required', Rule::exists('types', 'id')],
-        //     'thumbnail' => 'image',
-        //     'status' => 'required',
-        //     'tenant_contract' => 'nullable|mimes:pdf',
-        //     'owner_contract' => 'nullable|mimes:pdf',
-        // ]);
-
-        // if(isset($attributes['thumbnail']))
-        // {
-        //     $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
-        // }
-
-        // if(isset($attributes['tenant_contract']))
-        // {
-        //     $attributes['tenant_contract'] = request()->file('tenant_contract')->store('tenant_contracts');
-        // }
-        
-        // if(isset($attributes['owner_contract']))
-        // {
-        // $attributes['owner_contract'] = request()->file('owner_contract')->store('owner_contracts');
-        // }
-
-        // $property_update($attributes);
-
-        // return back()->with('success', 'Property has been updated.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Property  $property
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($uuid)
     {
         $this->authorize('is_portfolio_delete_allowed');

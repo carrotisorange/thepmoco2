@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Unit;
-use App\Models\Interaction;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
 use DB;
@@ -77,7 +76,7 @@ class ContractMoveinComponent extends Component
             app('App\Http\Controllers\TenantController')->update_tenant_status($this->contract_details->tenant->uuid,'active');
 
             //store new point
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id,5, 1);
+            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id,4, 1);
                   
             if($this->sendContractToTenant)
             {
@@ -96,7 +95,6 @@ class ContractMoveinComponent extends Component
           });
             
         }catch (\Exception $e) {
-            ddd($e);
           session()->flash('error');
         }
     }
@@ -110,7 +108,7 @@ class ContractMoveinComponent extends Component
     {
         return view('livewire.contract-movein-component',[
             'unit' => Unit::find($this->contract_details->unit->uuid),
-            'interactions' => Interaction::whereNotIn('id', ['8','9'])->get()
+            'interactions' => app('App\Http\Controllers\InteractionController')->index(),
         ]);
     }
 }

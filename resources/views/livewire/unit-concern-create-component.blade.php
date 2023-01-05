@@ -79,9 +79,7 @@
 
 
                                         <div class="col-span-6">
-                                            <label class="block text-sm font-medium text-gray-700"> Please attach the
-                                                certificate of
-                                                membership
+                                            <label class="block text-sm font-medium text-gray-700"> Please attach an image of the concern
                                             </label>
                                             <div
                                                 class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
