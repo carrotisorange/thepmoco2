@@ -304,6 +304,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             //step 6
             Route::get('{random_str}/step-6', 'create_step_6')->name('accountpayable');
             Route::post('step-6', 'store_step_6');
+
+            //step 6
+            Route::get('{random_str}/request-status', 'create_request_status')->name('accountpayable');
+            Route::post('request-status', 'store_request_status');
         });
 
     });
