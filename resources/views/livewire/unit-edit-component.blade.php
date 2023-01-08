@@ -73,7 +73,7 @@
             <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3">
                 <h2 class="sr-only">Images</h2>
 
-                <div class="grid grid-cols-1 lg:gap-6">
+                <div class="grid grid-cols-2 lg:gap-6">
                     <img src="{{ asset('/brands/door_detail.png') }}" alt="door"
                         class="lg:col-span-2 md:row-span-2 rounded-md">
 
@@ -87,7 +87,7 @@
 
                 </div>
             </div>
-        
+
             <div class="mt-8 lg:col-span-9">
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
@@ -103,12 +103,7 @@
                                 id="owners-tab" data-tabs-target="#owners" type="button" role="tab"
                                 aria-controls="owners" aria-selected="false">Owners</button>
                         </li>
-                        <li class="mr-2" role="presentation">
-                            <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="financials-tab" data-tabs-target="#financials" type="button" role="tab"
-                                aria-controls="settings" aria-selected="false">Financials</button>
-                        </li>
+
                         <li role="presentation">
                             <button
                                 class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
@@ -138,6 +133,12 @@
                                 class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="bills-tab" data-tabs-target="#bills" type="button" role="tab" aria-controls="bills"
                                 aria-selected="false">Bills</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="financials-tab" data-tabs-target="#financials" type="button" role="tab"
+                                aria-controls="settings" aria-selected="false">Financials</button>
                         </li>
                     </ul>
                 </div>
@@ -266,17 +267,19 @@
                         aria-labelledby="bills-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    
-                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
-                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-                    
+                                    <div
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
                                     </div>
                                     @include('units.tables.bills')
                                 </div>
-                    
+
                             </div>
-                    
+
                         </div>
                     </div>
                 </div>

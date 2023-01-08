@@ -4,6 +4,7 @@
             <x-th>#</x-th>
       
             <x-th>TENANT</x-th>
+            <x-th>UNIT</x-th>
             <x-th>START</x-th>
             <x-th>END </x-th>
             <x-th>RENT/MO</x-th>
@@ -20,7 +21,12 @@
         @foreach ($contracts as $index => $item)
         <tr>
             <x-td> {{ $index+1 }} </x-td>
-           
+           <x-td>
+            <a class="text-blue-500 text-decoration-line: underline"
+                href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                {{ $item->unit->unit }}
+            </a>
+           </x-td>
             <x-td>
                 <div class="text-sm text-gray-900">
                     @if(auth()->user()->role_id == '8')

@@ -246,6 +246,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Bill
     Route::prefix('bill')->group(function(){
         Route::get('{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
+
+        Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
         //Route::get('drafts', [BillController::class, 'draft'])->name('bill');
         
         Route::prefix('{bill}')->group(function(){

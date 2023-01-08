@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Utility;
-use Illuminate\Http\Request;
+use DB;
 use App\Models\Property;
 use Session;
 
@@ -37,28 +37,33 @@ class UtilityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($property_uuid, $unit_uuid, $user_id, $start_date, $end_date, $batch_no, $option)
+    public function store($property_uuid, $unit_uuid, $previous_water_utility_reading, $previous_electric_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option)
     {
-        Utility::create([
+        if($option === 'electric')
+        {
+            $this->store_utilities_by_type($property_uuid, $unit_uuid, $previous_electric_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option);
+        }else{
+            $this->store_utilities_by_type($property_uuid, $unit_uuid, $previous_water_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option);
+        }
+       
+    }
+
+    public function store_utilities_by_type($property_uuid, $unit_uuid, $utility_type, $user_id, $start_date, $end_date, $batch_no, $option)
+    {
+        Utility::create(
+        [
             'property_uuid' => $property_uuid,
             'unit_uuid' => $unit_uuid,
+            'previous_reading' => $utility_type,
+            'current_reading' => $utility_type,
+            'current_consumption' => 0,
+            'total_amount_due' => 0,
             'user_id' => $user_id,
             'start_date' => $start_date,
             'end_date' => $end_date,
             'batch_no' => $batch_no,
             'type' => $option
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Utility  $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Utility $utility)
-    {
-        //
     }
 
     /**
@@ -82,19 +87,17 @@ class UtilityController extends Controller
      * @param  \App\Models\Utility  $utility
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Utility $utility)
+    public function update($property_uuid, $batch_no, $start_date, $end_date, $kwh, $min_charge)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Utility  $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Utility $utility)
-    {
-        //
+         Utility::where('property_uuid', $property_uuid)
+         ->where('batch_no', $batch_no)
+         ->update([
+                    'start_date' => $start_date,
+                    'end_date' => $end_date,
+                    'kwh' => $kwh,
+                    'min_charge' => $min_charge,
+                    'current_consumption' => DB::raw('current_reading-previous_reading'), 
+                    'total_amount_due' => DB::raw('((current_reading-previous_reading)*kwh)+'.$min_charge)
+         ]);
     }
 }

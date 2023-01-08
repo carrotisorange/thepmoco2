@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 use App\Models\Unit;
 use Carbon\Carbon;
 use Str;
-use DB;
 
 class UtilityIndexComponent extends Component
 {
@@ -17,11 +16,16 @@ class UtilityIndexComponent extends Component
 
     public $search;
 
+    public $property_uuid;
+
+    public function mount()
+    {
+        $this->property_uuid = Session::get('property');
+    }
+
     public function storeUtilities($option)
     {
-        sleep(1);
-
-        $units = Unit::where('property_uuid', Session::get('property'))->get();
+        $units = Unit::where('property_uuid', $this->property_uuid)->get();
         
         $batch_no = auth()->user()->id.Str::random(8);
 
@@ -31,6 +35,8 @@ class UtilityIndexComponent extends Component
             app('App\Http\Controllers\UtilityController')->store(
                 $units->toArray()[$i]['property_uuid'], 
                 $units->toArray()[$i]['uuid'], 
+                $units->toArray()[$i]['previous_water_utility_reading'],
+                $units->toArray()[$i]['previous_electric_utility_reading'],
                 auth()->user()->id,
                 Carbon::now(),
                 Carbon::now()->addMonth(),
@@ -40,7 +46,7 @@ class UtilityIndexComponent extends Component
 
         }
 
-        return redirect('/property/'.Session::get('property').'/utilities/'.$batch_no.'/'.$option);
+        return redirect('/property/'.$this->property_uuid.'/utilities/'.$batch_no.'/'.$option);
     }
 
     public function render()
@@ -49,14 +55,14 @@ class UtilityIndexComponent extends Component
             'utilities' => Utility::isposted()
             ->select('*', 'units.unit as unit_name' )
             ->join('units', 'utilities.unit_uuid', 'units.uuid')
-            ->where('utilities.property_uuid', Session::get('property'))
+            ->where('utilities.property_uuid', $this->property_uuid)
              ->when(($this->search), function($query){
-             // $query->orderBy($this->sortBy, $this->orderBy);
+             $query->orderBy('id', 'asc');
              $query->where('units.unit','like', '%'.$this->search.'%');
              })
             
-             ->orderBy('start_date', 'desc')
-              ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
+            ->orderBy('start_date', 'desc')
+            ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
             ->paginate(10)
         ]);
     }

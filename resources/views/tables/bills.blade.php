@@ -35,7 +35,7 @@
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills">{{
                     $item->tenant->tenant}}</a>
-                @else
+                @elseif($item->owner_uuid)
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/bills">{{
                     $item->owner->owner}}</a>

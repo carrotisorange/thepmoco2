@@ -9,6 +9,7 @@
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     type="button">Back
                 </button>
+                @if($this->start_date&&$this->end_date&&$this->kwh&&$this->min_charge)
                 <button type="submit" wire:click="postUtilities"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
@@ -22,6 +23,7 @@
                     </svg>
                     Post Utilities
                 </button>
+                @endif
                 {{-- @if($selectedUtilities)
                 <button type="submit" wire:click="removeUtilities()"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -41,9 +43,10 @@
 
             </div>
         </div>
+        {{-- @if(!$this->min_charge) --}}
 
         <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div class="sm:col-span-6">
+            {{-- <div class="sm:col-span-6">
 
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -61,17 +64,17 @@
 
                 </div>
 
-            </div>
+            </div> --}}
             <div class="sm:col-span-2">
                 <label for="">Start date</label>
-                <input type="date" id="start_date" wire:model="start_date" wire:change="updateParameters" 
+                <input type="date" id="start_date" wire:model="start_date"  wire:keyup="updateParameters"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for unit no..." required>
 
             </div>
             <div class="sm:col-span-2">
                 <label for="">End date</label>
-                <input type="date" id="end_date" wire:model="end_date" wire:change="updateParameters"
+                <input type="date" id="end_date" wire:model="end_date"  wire:keyup="updateParameters"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for unit no..." required>
 
@@ -84,37 +87,21 @@
                     Kw/H
                     @endif
                 </label>
-                <input type="text" id="kwh" wire:model="kwh" wire:change="updateParameters"
+                <input type="text" id="kwh" wire:model="kwh" wire:keyup="updateParameters"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
 
             </div>
             <div class="sm:col-span-1">
                 <label for="">Mininum Charge</label>
-                <input type="text" id="min_charge" wire:model="min_charge" wire:change="updateParameters"
+                <input type="text" id="min_charge" wire:model="min_charge" wire:keyup="updateParameters"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
 
             </div>
 
         </div>
-
-        <div>
-            <p class="mt-3 text-sm text-center text-gray-500">
-                Showing
-                <span class="font-medium">{{ $utilities->count() }}</span>
-
-               
-
-                {{Str::plural('utility', $utilities->count())}}
-
-                <p class="text-center">
-                    <a wire:loading wire:target="updateParameters" class="text-green-500 text-decoration-line: underline" href="#/">
-                        Saving...
-                    </a>
-                </p>
-            </p>
-        </div>
+        {{-- @endif --}}
 
         <div class="mt-3 -my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -125,7 +112,24 @@
 
                     </div>
 
+                    @if($this->start_date&&$this->end_date&&$this->kwh&&$this->min_charge)
+                    <div>
+                        <p class="mt-3 text-sm text-center text-gray-500">
+                            Showing
+                            <span class="font-medium">{{ $utilities->count() }}</span>
+
+                            {{Str::plural('utility', $utilities->count())}}
+
+                        <p class="text-center">
+                            <a wire:loading wire:target="updateParameters"
+                                class="text-green-500 text-decoration-line: underline" href="#/">
+                                Saving...
+                            </a>
+                        </p>
+                        </p>
+                    </div>
                     @include('forms.utilities.utility-edit')
+                    @endif
 
                 </div>
                 {{-- {{ $utilities->links() }} --}}

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bill;
-use Illuminate\Http\Request;
 use Session;
 use App\Models\Property;
 use App\Models\Unit;
@@ -28,6 +27,40 @@ class BillController extends Controller
         ]);
     }
 
+    public function store($property_uuid, $unit_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no){
+        Bill::updateOrCreate(
+        [   
+            'property_uuid' => $property_uuid,
+            'unit_uuid' => $unit_uuid,
+            'particular_id' => $particular_id,
+            'start' => $start_date,
+            'end' => $end_date, 
+            'batch_no' => $batch_no,
+        ]
+        ,
+        [
+            'unit_uuid' => $unit_uuid,
+            'particular_id' => $particular_id,
+            'start' => $start_date,
+            'end' => $end_date,
+            'bill' => $total_amount_due,
+            'batch_no' => $batch_no,
+            'property_uuid' => $property_uuid,
+            'bill_no'=> $this->get_latest_bill_no($property_uuid),
+            'user_id' => auth()->user()->id,
+            'due_date' => Carbon::parse($start_date)->addDays(7),
+         ]
+         );
+    }
+    
+    public function drafts($property_uuid,$batch_no){
+     
+        return view('bills.drafts', [
+            'property_uuid' => $property_uuid,
+            'batch_no' => $batch_no
+        ]);
+    }   
+
     public function create_new(Property $property, Tenant $tenant, Unit $unit){
         return view('bills.create-new',[
           'unit' => Unit::find($unit->uuid),
@@ -37,16 +70,6 @@ class BillController extends Controller
             'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($tenant->uuid),
         ]);
     }
-
-    // public function get_property_bills($property_uuid, $month){
-
-    //     return Property::find($property_uuid)->acknowledgementreceipts()
-    //     //->whereYear('created_at', Carbon::now()->format('Y'))
-    //      ->when($month, function ($query) use ($month) {
-    //      $query->whereMonth('created_at', $month);
-    //      })
-    //     ->sum('amount');
-    // }
 
     public function get_property_bills($property_uuid, $month, $status)
     {
