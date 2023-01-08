@@ -69,6 +69,15 @@ class AccountPayableController extends Controller
         return view('accountpayables.create.step-6');
     }
 
+    public function create_request_status($property_uuid){
+        return view('accountpayables.create.request-status');
+    }
+
+    public function create_request_comment($property_uuid){
+        return view('accountpayables.create.request-comment');
+    }
+
+
 
 
     public function download($property_uuid, $id)
