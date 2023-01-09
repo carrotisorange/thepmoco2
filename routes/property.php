@@ -314,6 +314,28 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             //comment page
             Route::get('{random_str}/request-comment', 'create_request_comment')->name('accountpayable');
             Route::post('request-comment', 'store_request_comment');
+
+            //pdf 
+
+            Route::get('{random_str}/step1', 'create_step1')->name('accountpayable');
+            Route::post('step1', 'store_step1');
+
+            Route::get('{random_str}/step2', 'create_step2')->name('accountpayable');
+            Route::post('step2', 'store_step2');
+
+            Route::get('{random_str}/step3', 'create_step3')->name('accountpayable');
+            Route::post('step3', 'store_step3');
+
+            Route::get('{random_str}/step4', 'create_step4')->name('accountpayable');
+            Route::post('step4', 'store_step4');
+
+            Route::get('{random_str}/step5', 'create_step5')->name('accountpayable');
+            Route::post('step5', 'store_step5');
+
+            Route::get('{random_str}/step6', 'create_step6')->name('accountpayable');
+            Route::post('step6', 'store_step6');            
+
+            
         });
         
 
