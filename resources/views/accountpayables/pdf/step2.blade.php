@@ -23,7 +23,7 @@
     <h3>Username:</h3>
     <h3>Position:</h3>
 
-    <h2 class="my-3">Request Details:</h2>
+    <h2 class="mt-7 mb-3 font-semibold">Request Details:</h2>
     <h4 class="my-3 text-sm">Quotation Attachment</h4>
     <h4 class="my-3 text-sm">Quotation Attachment</h4>
     <h4 class="my-3 text-sm">Quotation Attachment</h4>
