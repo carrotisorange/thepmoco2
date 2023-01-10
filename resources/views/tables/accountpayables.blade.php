@@ -21,7 +21,7 @@
             <x-td>{{ $accountpayable->request_for }}</x-td>
             <x-td>
                 @if($accountpayable->particular_id)
-                {{ $accountpayable->particular->particular }}
+                {{ $accountpayable->particular }}
                 @else
                 {{ $accountpayable->particular }}
                 @endif
