@@ -16,8 +16,19 @@
         }
 </style>
 
-<body class="mx-8 p-10 max-w-3xl">
-    <h2 class="mb-3 font-bold">Step 4</h2>
+<body class="m-5 p-10 max-w-3xl">
+<!-- header -->
+
+    <div class="flex justify-center text-center">
+        <p class="inline-flex text-sm">The PMO Residences | Account Payable</p>
+    </div>
+
+    <div class="flex justify-center text-center">
+        <p class="border-b-2 inline-flex text-sm font-bold">Philippines, Cordillera Administrative Region, Baguio, New Lucban</p>
+    </div>
+
+<!-- step -->
+    <h2 class="my-8 font-bold">Step 4</h2>
     <h1 class="mb-3">Request #</h1>
     <h3 class="mb-3">Status:</h3>
     <h3>Username:</h3>
@@ -32,5 +43,16 @@
     <h4 class="my-3 text-sm">Price:</h4>
     <h4 class="my-3 text-sm">Vendor Details:</h4>
     <h4 class="my-3 text-sm">Delivery Date:</h4>
+
+<!-- footer -->
+
+    <div class="mt-8 flex justify-center text-center">
+        <p class="inline-flex text-xs">For inquiries reach us at: <span class="font-bold underline"> demo@test.com</span></p>
+    </div>
+
+    <div class="mt-2 flex justify-center text-center">
+        <p class="inline-flex text-xs">The PMO Residences Copyright 2023</p>
+    </div>
+
 </body>
 </html>
