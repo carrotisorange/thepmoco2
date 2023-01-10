@@ -77,6 +77,31 @@ class AccountPayableController extends Controller
         return view('accountpayables.create.request-comment');
     }
 
+    //pdf
+
+    public function create_step1($property_uuid){
+        return view('accountpayables.pdf.step1');
+    }
+
+    public function create_step2($property_uuid){
+        return view('accountpayables.pdf.step2');
+    }
+
+    public function create_step3($property_uuid){
+        return view('accountpayables.pdf.step3');
+    }
+
+    public function create_step4($property_uuid){
+        return view('accountpayables.pdf.step4');
+    }
+
+    public function create_step5($property_uuid){
+        return view('accountpayables.pdf.step5');
+    }
+
+    public function create_step6($property_uuid){
+        return view('accountpayables.pdf.step6');
+    }
 
 
 
