@@ -185,9 +185,31 @@ class ContractController extends Controller
         ddd($validatedData);
     }
 
-    public function moveout(Property $property, Tenant $tenant, Contract $contract)
+    public function moveout_step_1(Property $property, Tenant $tenant, Contract $contract)
     {
-        return view('contracts.moveout', [
+        return view('contracts.moveouts.step-1', [
+            'contract' => $contract
+        ]);
+    }
+
+    public function moveout_step_2(Property $property, Tenant $tenant, Contract $contract)
+    {
+        return view('contracts.moveouts.step-2', [
+            'contract' => $contract
+        ]);
+    }
+
+
+    public function moveout_step_3(Property $property, Tenant $tenant, Contract $contract)
+    {
+        return view('contracts.moveouts.step-3', [
+            'contract' => $contract
+        ]);
+    }
+
+    public function moveout_step_4(Property $property, Tenant $tenant, Contract $contract)
+    {
+        return view('contracts.moveouts.step-4', [
             'contract' => $contract
         ]);
     }

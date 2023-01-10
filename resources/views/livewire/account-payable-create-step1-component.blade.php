@@ -2,7 +2,8 @@
 
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
-            <button type="button" class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Download Step</button>
+            <button type="button"
+                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Export</button>
         </div>
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
@@ -12,10 +13,12 @@
                 {{-- request for purchase --}}
                 <div class="sm:col-span-3">
                     <label for="request_for" class="block text-sm font-medium text-gray-700">Request for: </label>
-                    <select wire:model="request_for" 
+                    <select wire:model="request_for"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                        <option value=""selected></option>
-                        <option value="request_for">Purchase</option>
+                        <option value="" selected>Please select one</option>
+                        <option value="payment">Payment</option>
+                        <option value="purchase">Purchase</option>
+                        <option value="refund">Refund</option>
                     </select>
                     @error('request_for')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -56,8 +59,10 @@
 
                 {{-- cancel, next button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                    <button type="button"
-                        class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
+                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
+                        href="/property/{{ Session::get('property') }}/accountpayable">
+                        Cancel
+                    </a>
                     <button type="submit"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 

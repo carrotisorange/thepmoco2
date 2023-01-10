@@ -13,4 +13,9 @@ class Wallet extends Model
     {
         return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
+
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class, 'contract_uuid');
+    }
 }

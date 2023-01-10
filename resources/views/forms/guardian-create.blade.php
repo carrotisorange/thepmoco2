@@ -57,7 +57,7 @@
         </div>
         <div class="flex justify-end mt-10">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/reference/{{ $unit->uuid }}/create">
+                href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/reference/{{ Str::random(8) }}/create">
                 Skip
             </a>
             <button type="submit" 

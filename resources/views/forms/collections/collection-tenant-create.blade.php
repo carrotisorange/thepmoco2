@@ -31,7 +31,7 @@
                 </x-td>
                 <x-td>
                     <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden" value="{{ $bill->id }}" />
-                    <x-table-input form="edit-form" name="collection_amount_{{ $index }}" type="number" required
+                    <x-table-input form="edit-form" name="collection_amount_{{ $index }}" step="0.01" type="number" required 
                         value="{{ $bill->bill-$bill->initial_payment }}" />
                 </x-td>
             </tr>

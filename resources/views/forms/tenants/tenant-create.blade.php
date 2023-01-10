@@ -370,7 +370,7 @@
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
                     class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a> --}}
 
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit">
                     Cancel
                 </a>

@@ -193,7 +193,8 @@ class TenantEditComponent extends Component
             'contracts' => app('App\Http\Controllers\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
             'bills' => app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant_details->uuid),
             'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
-            'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($this->tenant_details->uuid)
+            'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($this->tenant_details->uuid),
+            'wallets' => app('App\Http\Controllers\WalletController')->get_deposits($this->tenant_details->uuid)
          ]);
     }
 }

@@ -12,7 +12,7 @@ use Session;
 
 use Livewire\Component;
 
-class TenantStoreComponent extends Component
+class TenantCreateComponent extends Component
 {
     use WithFileUploads;
 
@@ -101,7 +101,7 @@ class TenantStoreComponent extends Component
 
                 }
 
-            return redirect('/property/'.Session::get('property').'/tenant/'.$tenant_uuid.'/guardian/'.$this->unit->uuid.'/create')->with('success','Tenant is successfully created.');
+            return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success','Tenant is successfully created.');
       
             });
         
@@ -182,7 +182,7 @@ class TenantStoreComponent extends Component
 
     public function render()
     {
-        return view('livewire.tenant-store-component',[
+        return view('livewire.tenant-create-component',[
             'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
             'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
             'countries' => app('App\Http\Controllers\CountryController')->index(),

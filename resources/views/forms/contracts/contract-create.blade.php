@@ -108,7 +108,7 @@
 
                     </div>
 
-                    {{-- @if($sendContractToTenant) --}}
+                    @if($tenant->email)
                     <div class="mt-3 col-span-2">
                         <div class="form-check">
                             <input wire:model="sendContractToTenant"
@@ -120,7 +120,7 @@
                             </label>
                         </div>
                     </div>
-                    {{-- @endif --}}
+                    @endif
 
                 </div>
             </div>

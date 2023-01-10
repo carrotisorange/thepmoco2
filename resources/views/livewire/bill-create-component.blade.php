@@ -7,7 +7,7 @@
                     <div class="grid grid-cols-2 gap-6">
 
                         <div class="col-span-6">
-                            <label for="last-name" class="block text-sm font-medium text-gray-700">Select a bill you want to add.</label>
+                            <label for="last-name" class="block text-sm font-medium text-gray-700">Please a bill you want to add</label>
                             <select wire:model.lazy="particular_id" autocomplete="particular_id"
                                 class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Select one</option>
@@ -33,7 +33,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-span-1">
+                        <div class="col-span-2">
                             <label for="end" class="block text-sm font-medium text-gray-700">Bill Ends on</label>
                             <input type="date" wire:model.lazy="end" autocomplete="end"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
@@ -57,10 +57,7 @@
                 </div>
             </div>
             <div class="flex justify-end mt-10">
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}">
-                    Finish
-                </a>
+              
                 <button type="submit"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
@@ -74,6 +71,10 @@
                     </svg>
                     Save
                 </button>
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}">
+                    Finish
+                </a>
             </div>
         </div>
     </form>

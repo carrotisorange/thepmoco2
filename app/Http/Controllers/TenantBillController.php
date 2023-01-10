@@ -42,11 +42,13 @@ class TenantBillController extends Controller
             'tenant' => $tenant,  
             'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
             'unpaid_bills' => $this->get_tenant_balance($tenant->uuid),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
             'note_to_bill' => $property->note_to_bill,
         ]);
     }
+
+    
 
     public function show_tenant_bills($tenant_uuid)
     {

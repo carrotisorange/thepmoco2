@@ -9,7 +9,8 @@ use Livewire\WithFileUploads;
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
-use App\Models\Interaction;
+use Illuminate\Support\Str;
+use App\Models\Bill;
 
 class ContractCreateComponent extends Component
 {
@@ -79,6 +80,8 @@ class ContractCreateComponent extends Component
 
         app('App\Http\Controllers\ContractController')->store(auth()->user()->id, $contract_uuid, $this->property_uuid, $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'pendingmovein', 4, 'active', 5, 1, $this->referral, $this->sendContractToTenant);
 
+        $this->store_bill();
+
         if($this->contract)
         {
           Contract::where('uuid', $contract_uuid)->update(
@@ -92,8 +95,27 @@ class ContractCreateComponent extends Component
         {
           return redirect('/property/'.$this->property_uuid.'/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Contract is successfully created.');
         }else{
-            return redirect('/property/'.$this->property_uuid.'/tenant/'.$this->tenant->uuid.'/bill/'.$this->unit->uuid.'/create')->with('success', 'Contract is successfully created.');
+          return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/deposit/'.Str::random(8).'/create')->with('success', 'Contract is successfully created.');
+            // return redirect('/property/'.$this->property_uuid.'/tenant/'.$this->tenant->uuid.'/bill/'.$this->unit->uuid.'/create')->with('success', 'Contract is successfully created.');
         }
+      }
+
+      public function store_bill(){
+        Bill::create(
+            [
+                  'unit_uuid' => $this->unit->uuid,
+                  'tenant_uuid' => $this->tenant->uuid,
+                  'particular_id' => 1,
+                  'start' => $this->start,
+                  'end' => Carbon::parse($this->start)->addMonth(),
+                  'bill' => $this->rent,
+                  'property_uuid' => $this->property_uuid,
+                  'bill_no'=> app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property_uuid),
+                  'user_id' => auth()->user()->id,
+                  'due_date' => Carbon::parse($this->start)->addDays(7),
+                  'is_posted' => 1
+                  ]
+          );
       }
 
       public function removeContract()

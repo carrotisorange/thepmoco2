@@ -36,6 +36,7 @@
                     <select id="bill_to" wire:model="bill_to"
                         class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                         <option value="">Please select one</option>
+                        <option value="unit">unit</option>
                         <option value="owner">owner</option>
                         <option value="tenant">tenant</option>
                     

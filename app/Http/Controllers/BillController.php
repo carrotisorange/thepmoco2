@@ -21,13 +21,13 @@ class BillController extends Controller
         return view('bills.index',[
             'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->get(),
             'active_tenants' => Contract::where('property_uuid', Session::get('property'))->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
             'batch_no' => $batch_no,
             'drafts' => $drafts
         ]);
     }
 
-    public function store($property_uuid, $unit_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no){
+    public function store($property_uuid, $unit_uuid, $tenant_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $isPosted){
         Bill::updateOrCreate(
         [   
             'property_uuid' => $property_uuid,
@@ -49,6 +49,8 @@ class BillController extends Controller
             'bill_no'=> $this->get_latest_bill_no($property_uuid),
             'user_id' => auth()->user()->id,
             'due_date' => Carbon::parse($start_date)->addDays(7),
+            'is_posted' => $isPosted,
+            'tenant_uuid' => $tenant_uuid
          ]
          );
     }
@@ -61,11 +63,11 @@ class BillController extends Controller
         ]);
     }   
 
-    public function create_new(Property $property, Tenant $tenant, Unit $unit){
+    public function create_new(Property $property, Unit $unit, Tenant $tenant){
         return view('bills.create-new',[
           'unit' => Unit::find($unit->uuid),
           'tenant' => $tenant,
-          'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
+          'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
            'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
             'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($tenant->uuid),
         ]);
@@ -159,7 +161,7 @@ class BillController extends Controller
 
         $bills = Tenant::find($tenant->uuid)->bills;
        
-        $particulars = app('App\Http\Controllers\PropertyParticularController')->show(Session::get('property'));
+        $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
 
         return view('bills.create',[
             'unit' => $unit,

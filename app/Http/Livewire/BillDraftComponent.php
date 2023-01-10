@@ -51,8 +51,8 @@ class BillDraftComponent extends Component
                 //to be implemented
             }else{
                 foreach($this->bills as $bill){
-                if($bill->unit->contracts()->count()){
-                    $tenant_uuid = Contract::where('unit_uuid', $bill->unit_uuid)->where('status', 'active')->get()[0]['tenant_uuid'];
+                if($bill->unit->contracts()->where('status', 'active')->count()){
+                    $tenant_uuid = Contract::where('unit_uuid', $bill->unit_uuid)->get()[0]['tenant_uuid'];
 
                     Bill::where('batch_no', $this->batch_no)
                     ->where('property_uuid', $this->property_uuid)
@@ -71,9 +71,9 @@ class BillDraftComponent extends Component
                 }
             }
         }
-        }else{
+        }elseif($this->bill_to == 'owner'){
             foreach($this->bills as $bill){
-                if($bill->unit->deed_of_sales()->count()){
+                if($bill->unit->deed_of_sales()->where('status', 'active')->count()){
                     $owner_uuid = DeedOfSale::where('unit_uuid', $bill->unit_uuid)->where('status', 'active')->get()[0]['owner_uuid'];
 
                     Bill::where('batch_no', $this->batch_no)
@@ -92,6 +92,12 @@ class BillDraftComponent extends Component
                     ]);
                 }
             }
+        }else{
+            Bill::where('batch_no', $this->batch_no)
+                    ->where('property_uuid', $this->property_uuid)
+                    ->update([
+                        'is_posted' => 1
+            ]);
         }
         
     

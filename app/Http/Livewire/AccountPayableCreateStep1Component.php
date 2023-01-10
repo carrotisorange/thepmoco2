@@ -49,16 +49,24 @@ class AccountPayableCreateStep1Component extends Component
 
     public function store($property_uuid, $request_for, $created_at, $requester_id, $particular){
 
-         $accountpayable_id = AccountPayable::create([
-        'property_uuid' => $property_uuid,
-         'request_for' => $request_for,
-         'created_at' => $created_at,
-         'requester_id' => $requester_id,
-         'particular' => $particular
-         ])->id;
+         $accountpayable_id = AccountPayable::updateOrCreate(
+            [
+                'property_uuid' => $property_uuid,
+                'request_for' => $request_for,
+                'created_at' => $created_at,
+                'requester_id' => $requester_id,
+                'particular' => $particular
+            ]
+            ,
+            [
+                'property_uuid' => $property_uuid,
+                'request_for' => $request_for,
+                'created_at' => $created_at,
+                'requester_id' => $requester_id,
+                'particular' => $particular
+            ])->id;
 
-         return redirect('/property/'.$property_uuid.'/accountpayable/'.$accountpayable_id.'/step-2')
-         ->with('success', 'Step 1 is successfully accomplished!');
+         return redirect('/property/'.$property_uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');
     }
 
     public function render()
