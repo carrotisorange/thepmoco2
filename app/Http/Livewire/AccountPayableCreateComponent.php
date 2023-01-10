@@ -8,7 +8,6 @@ use Session;
 use App\Models\AccountPayable;
 use Livewire\WithFileUploads;
 use DB;
-use Carbon\Carbon;
 
 class AccountPayableCreateComponent extends Component
 {
@@ -101,7 +100,7 @@ class AccountPayableCreateComponent extends Component
     public function render()
     {
         return view('livewire.account-payable-create-component',[
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->show(Session::get('property')),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property')),
             'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property')),
             'billers' => app('App\Http\Controllers\PropertyBillerController')->show(Session::get('property')),
             'statuses' => $this->get_statuses()

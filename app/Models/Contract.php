@@ -45,8 +45,13 @@ class Contract extends Model
      }
 
     public function interaction()
-         {
+    {
          return $this->belongsTo(Interaction::class, 'interaction_id');
-         }
+    }
+
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class);
+    }
 
 }

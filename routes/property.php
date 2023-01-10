@@ -36,13 +36,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\GuestController;
-// use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\UnitEditBulkController;
 use App\Http\Controllers\UnitConcernController;
+use App\Http\Controllers\UnitInventoryController;
+use App\Http\Controllers\TenantGuardianController;
+use App\Http\Controllers\TenantReferenceController;
+use App\Http\Controllers\WalletController;
+use App\Http\Controllers\TenantWalletController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
@@ -60,12 +64,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
        
     //Route for contract
     Route::get('contract/{status?}',[ContractController::class, 'show_moveout_request'])->name('contract');
-
-
-    //Route for notitication
-    // Route::get('notification',[NotificationController::class, 'index']);
-
-   
 
     //Route for Building
     Route::prefix('/building')->group(function(){
@@ -109,6 +107,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{random_str}/create', [GuestController::class, 'create']);
                 Route::post('store', [GuestController::class, 'store']);
             });
+
+            Route::prefix('inventory')->group(function(){
+                Route::get('{random_str}/create', [UnitInventoryController::class, 'create'])->name('unit');
+            });
                 
             Route::prefix('owner')->group(function(){
                 Route::get('/', [OwnerController::class, 'index'])->scopeBindings();
@@ -151,11 +153,31 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         });
     });
 
+    //Routes for guardians
+    Route::get('/tenant/{tenant}/guardian/{random_str}/create', [TenantGuardianController::class, 'create']);
+
+    Route::get('/unit/{unit}/tenant/{tenant}/guardian/{random_str}/create', [GuardianController::class, 'create']);
+
+    //Routes for references
+    Route::get('/tenant/{tenant}/reference/{random_str}/create', [TenantReferenceController::class, 'create']);
+
+    Route::get('/unit/{unit}/tenant/{tenant}/reference/{random_str}/create', [ReferenceController::class, 'create']);
+
+    //Routes for wallets
+    Route::get('/unit/{unit}/tenant/{tenant}/contract/{contract}/deposit/{random_str}/create', [WalletController::class, 'create']);
+    Route::get('/tenant/{tenant}/wallet/{random_str}/create', [TenantWalletController::class, 'create']);
+
+    //Routes for bills
+    Route::get('unit/{unit}/tenant/{tenant}/bill/{random_str}/create', [BillController::class, 'create_new']);
+
+
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){
         Route::get('/', [TenantController::class, 'index'])->name('tenant');
         Route::get('/unlock', [TenantController::class, 'unlock'])->name('tenant');
         Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
+
+      
     
         Route::prefix('{tenant}')->group(function(){
             Route::get('bills', [TenantBillController::class, 'index'])->name('tenant');
@@ -203,7 +225,13 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::prefix('{contract}')->group(function(){
                     Route::get('renew', [ContractController::class, 'renew'])->name('tenant');
                     Route::get('edit', [ContractController::class, 'edit'])->name('tenant');
-                    Route::get('moveout', [ContractController::class, 'moveout'])->name('tenant');
+
+                    Route::get('moveout/step-1', [ContractController::class, 'moveout_step_1'])->name('tenant');
+                    Route::get('moveout/step-2', [ContractController::class, 'moveout_step_2'])->name('tenant');
+                    Route::get('moveout/step-3', [ContractController::class, 'moveout_step_3'])->name('tenant');
+                    Route::get('moveout/step-4', [ContractController::class, 'moveout_step_4'])->name('tenant');
+
+
                     Route::get('export', [ContractController::class, 'export']);
                     Route::get('transfer', [ContractController::class, 'transfer'])->name('tenant');
                     Route::get('movein', [ContractController::class, 'movein'])->name('tenant');
@@ -253,6 +281,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Bill
     Route::prefix('bill')->group(function(){
         Route::get('{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
+
+        Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
         //Route::get('drafts', [BillController::class, 'draft'])->name('bill');
         
         Route::prefix('{bill}')->group(function(){
@@ -282,39 +312,67 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Account Payable
     Route::prefix('accountpayable')->group(function(){
         Route::controller(AccountPayableController::class)->group(function () {
-         Route::get('{status:status?}', 'index')->name('accountpayable');
-         Route::get('{id}/attachment',  'download');
+            Route::get('{status:status?}', 'index')->name('accountpayable');
+            Route::get('{id}/attachment',  'download');
 
-         Route::get('{id}/approve', 'approve');
-         Route::get('{str_random}/create', 'create')->name('accountpayable');
+            Route::get('{id}/approve', 'approve');
+            Route::get('{str_random}/create', 'create')->name('accountpayable');
 
+            //step 1
+            Route::get('{random_str}/step-1', 'create_step_1')->name('accountpayable');
+            Route::post('step-1', 'store_step_1');
 
-           //step 1
-           Route::get('{random_str}/step-1', 'create_step_1');
-           Route::post('step-1', 'store_step_1');
+            //step 2
+            Route::get('{random_str}/step-2', 'create_step_2')->name('accountpayable');
+            Route::post('step-2', 'store_step_2');
 
-          //step 2
-          Route::get('{random_str}/step-2', 'create_step_2');
-          Route::post('step-2', 'store_step_2');
+            //step 3
+            Route::get('{random_str}/step-3', 'create_step_3')->name('accountpayable');
+            Route::post('step-3', 'store_step_3');
 
-          //step 3
-          Route::get('{random_str}/step-3', 'create_step_3');
-          Route::post('step-3', 'store_step_3');
+            //step 4
+            Route::get('{random_str}/step-4', 'create_step_4')->name('accountpayable');
+            Route::post('step-4', 'store_step_4');
 
-          //step 4
-          Route::get('{random_str}/step-4', 'create_step_4');
-          Route::post('step-4', 'store_step_4');
+            //step 5
+            Route::get('{random_str}/step-5', 'create_step_5')->name('accountpayable');
+            Route::post('step-5', 'store_step_5');
 
-          //step 5
-          Route::get('{random_str}/step-5', 'create_step_5');
-          Route::post('step-5', 'store_step_5');
+            //step 6
+            Route::get('{random_str}/step-6', 'create_step_6')->name('accountpayable');
+            Route::post('step-6', 'store_step_6');
 
-          //step 6
-          Route::get('{random_str}/step-6', 'create_step_6');
-          Route::post('step-6', 'store_step_6');
+            //request status sample
+            Route::get('{random_str}/request-status', 'create_request_status')->name('accountpayable');
+            Route::post('request-status', 'store_request_status');
+
+            //comment page
+            Route::get('{random_str}/request-comment', 'create_request_comment')->name('accountpayable');
+            Route::post('request-comment', 'store_request_comment');
+
+            //pdf 
+
+            Route::get('{random_str}/step1', 'create_step1')->name('accountpayable');
+            Route::post('step1', 'store_step1');
+
+            Route::get('{random_str}/step2', 'create_step2')->name('accountpayable');
+            Route::post('step2', 'store_step2');
+
+            Route::get('{random_str}/step3', 'create_step3')->name('accountpayable');
+            Route::post('step3', 'store_step3');
+
+            Route::get('{random_str}/step4', 'create_step4')->name('accountpayable');
+            Route::post('step4', 'store_step4');
+
+            Route::get('{random_str}/step5', 'create_step5')->name('accountpayable');
+            Route::post('step5', 'store_step5');
+
+            Route::get('{random_str}/step6', 'create_step6')->name('accountpayable');
+            Route::post('step6', 'store_step6');            
+
+            
         });
-
-      
+        
 
     });
 

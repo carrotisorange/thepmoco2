@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bill;
-use Illuminate\Http\Request;
 use Session;
 use App\Models\Property;
 use App\Models\Unit;
@@ -22,31 +21,57 @@ class BillController extends Controller
         return view('bills.index',[
             'active_contracts' => Contract::where('property_uuid', Session::get('property'))->where('status', 'active')->get(),
             'active_tenants' => Contract::where('property_uuid', Session::get('property'))->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
             'batch_no' => $batch_no,
             'drafts' => $drafts
         ]);
     }
 
-    public function create_new(Property $property, Tenant $tenant, Unit $unit){
+    public function store($property_uuid, $unit_uuid, $tenant_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $isPosted){
+        Bill::updateOrCreate(
+        [   
+            'property_uuid' => $property_uuid,
+            'unit_uuid' => $unit_uuid,
+            'particular_id' => $particular_id,
+            'start' => $start_date,
+            'end' => $end_date, 
+            'batch_no' => $batch_no,
+        ]
+        ,
+        [
+            'unit_uuid' => $unit_uuid,
+            'particular_id' => $particular_id,
+            'start' => $start_date,
+            'end' => $end_date,
+            'bill' => $total_amount_due,
+            'batch_no' => $batch_no,
+            'property_uuid' => $property_uuid,
+            'bill_no'=> $this->get_latest_bill_no($property_uuid),
+            'user_id' => auth()->user()->id,
+            'due_date' => Carbon::parse($start_date)->addDays(7),
+            'is_posted' => $isPosted,
+            'tenant_uuid' => $tenant_uuid
+         ]
+         );
+    }
+    
+    public function drafts($property_uuid,$batch_no){
+     
+        return view('bills.drafts', [
+            'property_uuid' => $property_uuid,
+            'batch_no' => $batch_no
+        ]);
+    }   
+
+    public function create_new(Property $property, Unit $unit, Tenant $tenant){
         return view('bills.create-new',[
           'unit' => Unit::find($unit->uuid),
           'tenant' => $tenant,
-          'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
+          'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
            'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
             'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($tenant->uuid),
         ]);
     }
-
-    // public function get_property_bills($property_uuid, $month){
-
-    //     return Property::find($property_uuid)->acknowledgementreceipts()
-    //     //->whereYear('created_at', Carbon::now()->format('Y'))
-    //      ->when($month, function ($query) use ($month) {
-    //      $query->whereMonth('created_at', $month);
-    //      })
-    //     ->sum('amount');
-    // }
 
     public function get_property_bills($property_uuid, $month, $status)
     {
@@ -136,7 +161,7 @@ class BillController extends Controller
 
         $bills = Tenant::find($tenant->uuid)->bills;
        
-        $particulars = app('App\Http\Controllers\PropertyParticularController')->show(Session::get('property'));
+        $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
 
         return view('bills.create',[
             'unit' => $unit,

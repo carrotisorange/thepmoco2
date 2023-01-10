@@ -38,7 +38,7 @@
                 {{ number_format($item->current_reading, 2) }}
             </x-td>
             <x-td>
-                {{ number_format($item->current_reading - $item->previous_reading, 2) }}
+                {{ number_format($item->current_consumption, 2) }}
             </x-td>
             <x-td>
                 {{ number_format($item->kwh, 2) }}
@@ -47,8 +47,7 @@
                 {{ number_format($item->min_charge, 2) }}
             </x-td>
             <x-td>
-                {{ number_format(((($item->current_reading - $item->previous_reading) * $item->kwh) +
-                $item->min_charge), 2) }}
+                {{ number_format(($item->total_amount_due), 2) }}
             </x-td>
         </tr>
         @endforeach

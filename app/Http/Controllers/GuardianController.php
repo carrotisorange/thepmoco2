@@ -27,7 +27,7 @@ class GuardianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Property $property, Tenant $tenant, Unit $unit)
+    public function create(Property $property, Unit $unit, Tenant $tenant)
     {
      
         return view('guardians.create',[
@@ -35,6 +35,7 @@ class GuardianController extends Controller
             'tenant' => $tenant,
         ]);
     }
+    
 
     /**
      * Store a newly created resource in storage.

@@ -8,6 +8,7 @@ use App\Models\Property;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Str;
 
 class AccountPayableController extends Controller
 {
@@ -45,8 +46,11 @@ class AccountPayableController extends Controller
         return view('accountpayables.create.step-1');
     }
 
-    public function create_step_2($property_uuid){
-        return view('accountpayables.create.step-2');
+    public function create_step_2($property_uuid, $accountpayable_id){
+    
+        return view('accountpayables.create.step-2', [
+           'accountpayable_id' => $accountpayable_id
+        ]);
     }
 
     public function create_step_3($property_uuid){
@@ -65,6 +69,39 @@ class AccountPayableController extends Controller
         return view('accountpayables.create.step-6');
     }
 
+    public function create_request_status($property_uuid){
+        return view('accountpayables.create.request-status');
+    }
+
+    public function create_request_comment($property_uuid){
+        return view('accountpayables.create.request-comment');
+    }
+
+    //pdf
+
+    public function create_step1($property_uuid){
+        return view('accountpayables.pdf.step1');
+    }
+
+    public function create_step2($property_uuid){
+        return view('accountpayables.pdf.step2');
+    }
+
+    public function create_step3($property_uuid){
+        return view('accountpayables.pdf.step3');
+    }
+
+    public function create_step4($property_uuid){
+        return view('accountpayables.pdf.step4');
+    }
+
+    public function create_step5($property_uuid){
+        return view('accountpayables.pdf.step5');
+    }
+
+    public function create_step6($property_uuid){
+        return view('accountpayables.pdf.step6');
+    }
 
 
     public function download($property_uuid, $id)
@@ -83,7 +120,7 @@ class AccountPayableController extends Controller
             'status' => 'approved'
         ]);
 
-        return back()->with('succes', 'Request is successfully approved.');
+        return back()->with('success', 'Request is successfully approved.');
     }
 
     /**
@@ -102,18 +139,23 @@ class AccountPayableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($request_for, $particular_id, $requester_id, $property_uuid, $biller_id, $amount)
-    {
-        AccountPayable::create([
-            'request_for' => $request_for,
-            'particular_id' => $particular_id,
-            'requester_id' => $requester_id,
-            'property_uuid' => $property_uuid,
-            'biller_id' => $biller_id,
-            'amount' => $amount,
-            //'attachment' => $attachment,
-        ]);
+    // public function store($request_for, $particular_id, $requester_id, $property_uuid, $biller_id, $amount)
+    // {
+    //     AccountPayable::create([
+    //         'request_for' => $request_for,
+    //         'particular_id' => $particular_id,
+    //         'requester_id' => $requester_id,
+    //         'property_uuid' => $property_uuid,
+    //         'biller_id' => $biller_id,
+    //         'amount' => $amount,
+    //         //'attachment' => $attachment,
+    //     ]);
 
+    // }
+
+    public function store($step, $property_uuid, $request_for, $created_at, $requester_id, $particular){
+           
+        
     }
 
     /**

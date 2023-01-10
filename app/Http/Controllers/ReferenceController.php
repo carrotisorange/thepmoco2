@@ -30,7 +30,7 @@ class ReferenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Property $property, Tenant $tenant, Unit $unit)
+    public function create(Property $property, Unit $unit, Tenant $tenant)
     {
          return view('references.create',[
           'unit' => Unit::find($unit->uuid),

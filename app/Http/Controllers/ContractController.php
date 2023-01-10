@@ -121,43 +121,43 @@ class ContractController extends Controller
         ]);
     }
 
-    public function store(Unit $unit, Tenant $tenant)
-    {   
-        $contract_attributes = request()->validate([
-            'start' => 'required|date',
-            'end' => 'required|date|after:start',
-            'rent' => 'required',
-            'discount' => 'required',
-            'interaction' => 'required'
-        ]);
+    public function store($user_id, $contract_uuid, $property_uuid, $start, $end, $interaction_id, $rent, $tenant_uuid, $unit_uuid, $contract_status, $unit_status, $tenant_status, $point, $action_id, $referral, $sendContractToTenant)
+    {      
+          Contract::create([
+            'user_id' => $user_id,
+            'uuid' => $contract_uuid,
+            'property_uuid' => $property_uuid,
+            'start' => $start,
+            'end' => $end,
+            'interaction_id' => $interaction_id,
+            'rent' => $rent,
+            'tenant_uuid' => $tenant_uuid,
+            'unit_uuid' => $unit_uuid,
+            'status' => $contract_status
+          ]);
 
-        $contract_uuid = Str::uuid();
+          //update status of the selected unit
+          app('App\Http\Controllers\UnitController')->update_unit_status($unit_uuid, $unit_status);
 
-        try {
-            DB::beginTransaction();
+          //update status of the tenant
+          app('App\Http\Controllers\TenantController')->update_tenant_status($tenant_uuid, $tenant_status);
+          
+          //store new point
+          app('App\Http\Controllers\PointController')->store($property_uuid, $user_id ,$point, $action_id);
 
-              $contract_attributes['uuid'] = $contract_uuid;
-              $contract_attributes['tenant_uuid'] = $tenant->uuid;
-              $contract_attributes['unit_uuid'] = $unit->uuid;
-              $contract_attributes['user_id'] = auth()->user()->id;
-              $contract_attributes['status'] = 'pendingmovein';
+          //store new referral
+          if($referral)
+          {
+            app('App\Http\Controllers\ReferralController')->store($referral, $contract_uuid, $property_uuid);
+          }
 
-              Contract::create($contract_attributes);
+          if($sendContractToTenant)
+          {
+            $tenant = Tenant::find($tenant_uuid);
+            $unit = Unit::find($unit_uuid);
 
-            //   Unit::where('uuid', $unit->uuid)->update([
-            //   'status_id' => 4
-            //   ]);
-
-            DB::commit();
-
-              return
-              redirect('/unit/'.$unit->uuid.'/tenant/'.$tenant->uuid.'/contract/'.$contract_uuid.'/bill/'.Str::random(8).'/create')->with('success','New
-              contract has been created.');
-
-        } catch (\Throwable $e) {
-            DB::rollback();
-           session()->flash('error');
-        }
+            app('App\Http\Controllers\TenantController')->send_mail_to_tenant($tenant->email, $tenant->tenant, Carbon::parse($start)->format('M d, Y'),Carbon::parse($end)->format('M d, Y'), $rent, $unit->unit);
+          }
     }
 
     public function edit(Property $property, Tenant $tenant, Contract $contract)
@@ -180,14 +180,36 @@ class ContractController extends Controller
         ]);
     }
 
-    public function update(Request $request, Contract $contract)
+    public function update($validatedData)
     {
-        //
+        ddd($validatedData);
     }
 
-    public function moveout(Property $property, Tenant $tenant, Contract $contract)
+    public function moveout_step_1(Property $property, Tenant $tenant, Contract $contract)
     {
-        return view('contracts.moveout', [
+        return view('contracts.moveouts.step-1', [
+            'contract' => $contract
+        ]);
+    }
+
+    public function moveout_step_2(Property $property, Tenant $tenant, Contract $contract)
+    {
+        return view('contracts.moveouts.step-2', [
+            'contract' => $contract
+        ]);
+    }
+
+
+    public function moveout_step_3(Property $property, Tenant $tenant, Contract $contract)
+    {
+        return view('contracts.moveouts.step-3', [
+            'contract' => $contract
+        ]);
+    }
+
+    public function moveout_step_4(Property $property, Tenant $tenant, Contract $contract)
+    {
+        return view('contracts.moveouts.step-4', [
             'contract' => $contract
         ]);
     }

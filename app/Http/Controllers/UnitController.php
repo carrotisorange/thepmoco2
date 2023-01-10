@@ -8,12 +8,8 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use App\Models\PropertyBuilding;
-use App\Models\Status;
 use App\Models\Floor;
 use DB;
-use App\Models\Guest;
-use App\Models\Category;
 use App\Models\Owner;
 
 use App\Models\Plan;
@@ -123,11 +119,6 @@ class UnitController extends Controller
            });
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create($batch_no)
     {
         $this->authorize('manager');
@@ -137,12 +128,6 @@ class UnitController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Property $property, Request $request, $batch_no)
     {   
         $plan_unit_limit =  Plan::find(auth()->user()->plan_id)->description;
@@ -177,12 +162,6 @@ class UnitController extends Controller
         is successully created.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
     public function show(Property $property, Unit $unit)
     {
          Session::forget('tenant_uuid');
@@ -197,14 +176,6 @@ class UnitController extends Controller
         ]);
 
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function update(Request $request, Property $property, Unit $unit)
     {
@@ -239,12 +210,6 @@ class UnitController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Property $property, Unit $unit)
     {
 

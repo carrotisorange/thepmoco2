@@ -5,10 +5,10 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use DB;
-use Carbon\Carbon;
 use Session;
 use App\Models\Utility;
 use App\Models\Concern;
+use App\Models\UnitInventory;
 
 class UnitEditComponent extends Component
 {
@@ -103,7 +103,8 @@ class UnitEditComponent extends Component
             'total_collected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
             'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->get(),
-            'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get()
+            'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get(),
+            // 'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->get()
         ]);
     }
 }

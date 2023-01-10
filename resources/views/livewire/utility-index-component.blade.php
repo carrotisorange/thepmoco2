@@ -5,9 +5,9 @@
                 <h1 class="text-3xl font-bold text-gray-700">Utilities</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button type="submit" wire:click="storeUtilities('water')"
+                {{-- <button type="submit" wire:click="storeUtilities('water')"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                
+
                     <svg wire:loading wire:target="storeUtilities" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
@@ -19,7 +19,7 @@
                     Record Water Utilities
                 </button><button type="submit" wire:click="storeUtilities('electric')"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                
+
                     <svg wire:loading wire:target="storeUtilities" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
@@ -29,11 +29,41 @@
                         </path>
                     </svg>
                     Record Electric Utilities
-                </button>
+                </button> --}}
                 {{-- <button wire:click="storeUtilities"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     type="button">New
                 </button> --}}
+                <div class="group inline-block">
+                    <button
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                        <span class="pr-1 font-semibold flex-1">New</span>
+                        <span>
+                            <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
+                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </span>
+                    </button>
+
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
+                                  transition duration-150 ease-in-out origin-top min-w-32">
+
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
+                                wire:click="storeUtilities('water')">Electric</a>
+                        </li>
+
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
+                                wire:click="storeUtilities('water')">Water</a>
+                        </li>
+
+
+                    </ul>
+                    </li>
+                    </ul>
+
+                </div>
 
             </div>
         </div>
@@ -112,7 +142,7 @@
                     @include('tables.utilities')
 
                 </div>
-                
+
             </div>
         </div>
     </div>

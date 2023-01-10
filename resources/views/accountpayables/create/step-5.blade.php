@@ -1,6 +1,9 @@
 <x-new-layout>
     @section('title','Step 5 of Step 6 | Account Payables')
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
+        <div class="flex justify-end">
+            <button type="button" class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Download Step</button>
+        </div>
     {{-- start of stepper --}}
         <div class="lg:border-t lg:border-b lg:border-gray-200">
             <nav class="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
@@ -242,7 +245,8 @@
 
                     {{-- reject, approve button --}}
                     <div class="col-start-6 flex items-center justify-end">
-                        <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reject</button>
+                        <a href="request-comment"><button type="button" class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Comment</button></a>
+                        <button type="button" class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reject</button>
                         <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="accountspayables2">Approve</a></button>
                     </div>
 

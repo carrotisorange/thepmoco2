@@ -15,7 +15,7 @@
             <x-th></x-th>
         </tr>
     </thead>
-   
+
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($contracts as $index => $item)
         <tr>
@@ -94,13 +94,18 @@
                 @endif
             </x-td>
             <x-td>
-                @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status ==
-                'pendingmoveout')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
+                @if($item->status == 'active' || $item->status == 'pendingmovein')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-1"
                     class="text-indigo-500 text-decoration-line: underline">Moveout</a>
                 @elseif($item->status == 'reserved')
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
                     class="text-indigo-500 text-decoration-line: underline">Movein</a>
+                @elseif($item->status == 'pendingmoveout')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-2"
+                    class="text-indigo-500 text-decoration-line: underline">Moveout</a>
+                @elseif($item->status == 'cleared')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-3"
+                    class="text-indigo-500 text-decoration-line: underline">Moveout</a>
                 @endif
             </x-td>
             <x-td>

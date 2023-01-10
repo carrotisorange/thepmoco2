@@ -33,7 +33,7 @@ class OwnerBillController extends Controller
             'owner' => $owner,
             'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
             'unpaid_bills' => $this->get_owner_balance($owner->uuid),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->show($property->uuid),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
             'units' => app('App\Http\Controllers\OwnerDeedOfSalesController')->show_deed_of_sales($owner->uuid),
             'note_to_bill' => $property->note_to_bill,
         ]);

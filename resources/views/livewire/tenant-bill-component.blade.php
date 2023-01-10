@@ -1,7 +1,6 @@
 <div>
-    Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Deposits: <b> {{
-        number_format(App\Models\Tenant::find($tenant->uuid)->collections()->where('is_deposit',
-        '1')->sum('collection'), 2) }}</b>
+    Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Security Deposit: <b> {{
+        number_format(App\Models\Tenant::find($tenant->uuid)->wallets()->sum('amount'), 2) }}</b>
 
     <div class="mt-5">
         @if($bills)
@@ -24,21 +23,17 @@
 
 
                 @can('treasury')
-                @if($total_unpaid_bills->sum('bill') && $selectedBills)
-                {{-- <x-button onclick="window.location.href='/property/{{ Session::get('property') }}/bill'">POa
-                </x-button> --}}
-                {{-- <x-button
-                    wire:click="$emit('openModal', 'collection-modal-component', {{ json_encode(['tenant' => $tenant->uuid, 'selectedBills' => $selectedBills, 'total' => $total]) }})">
-                    Create a payment
-                </x-button> --}}
-
-                <x-button wire:click="payBills">Pay Bills</x-button>
-                <div class="mt-5">
-                    <span>You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}}
-                        amounting to {{ number_format($total) }}</span>...
-                </div>
-
-                @endif
+                    @if($total_unpaid_bills->sum('bill') && $selectedBills)
+                    <x-button wire:click="payBills">Pay Bills</x-button>
+                    <div class="mt-5">
+                        <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill', count($selectedBills))}}
+                            amounting to <b>{{ number_format($total) }}</b></span>
+                    </div>
+                    @else
+                    <div class="mt-1">
+                        <b>Please check the bill you want to pay</b>
+                    </div>
+                    @endif
                 @endcan
 
             </div>

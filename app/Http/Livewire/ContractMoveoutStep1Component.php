@@ -3,13 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Contract;
 use Carbon\Carbon;
 use Session;
 use App\Models\Tenant;
-use App\Models\Notification;
+use DB;
 
-class MoveoutContractComponent extends Component
+class ContractMoveoutStep1Component extends Component
 {
     public $contract;
     public $sendContract;
@@ -19,6 +18,8 @@ class MoveoutContractComponent extends Component
     public $tenant;
     public $unit;
 
+    public $unpaid_bills;
+
     public function mount($contract)
     {
         $this->contract = $contract;
@@ -26,6 +27,7 @@ class MoveoutContractComponent extends Component
         $this->moveout_reason = $contract->moveout_reason;
         $this->tenant = $contract->tenant->tenant;
         $this->unit = $contract->unit->building->building.' '.$contract->unit->unit;
+        $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->sum(DB::raw('bill-initial_payment'));
     }
 
   
@@ -48,6 +50,8 @@ class MoveoutContractComponent extends Component
         sleep(1);
 
         $validatedData = $this->validate();
+
+       
    
         if(auth()->user()->role_id == '8'){
             
@@ -60,19 +64,26 @@ class MoveoutContractComponent extends Component
             return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract moveout has been requested.');
 
         }else{  
-            $validatedData['status'] = 'inactive';
+            if(!$this->unpaid_bills > 0){
+            
+                $validatedData['status'] = 'active';
 
-            $this->contract->update($validatedData);
+            } else{
+                $validatedData['status'] = 'pendingmoveout';
 
-            // app('App\Http\Controllers\NotificationController')->store('concern', 'has been approved to moveout', 'approved', Tenant::find($this->contract->tenant_uuid)->property->uuid);
 
-            return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Contract has been moveout.');
-        }
+            }   
+            
+        $this->contract->update($validatedData);
+
+         return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success', 'Step 1 of 4 has been accomplished!');        }
        
     }
 
     public function render()
     {
-        return view('livewire.moveout-contract-component');
+        return view('livewire.contract-moveout-step1-component',[
+            'unpaid_bills' => $this->unpaid_bills
+        ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 use App\Models\Guardian;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 use DB;
 use Session;
 
@@ -66,7 +67,7 @@ class GuardianComponent extends Component
 
         Guardian::create($validated_data);
 
-        return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/reference/'. $this->unit->uuid.'/create')
+        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/reference/'.Str::random(8).'/create')
         ->with('success', 'Guardian is successfully created.');
 
     }
