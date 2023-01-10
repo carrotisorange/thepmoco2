@@ -104,7 +104,7 @@ class UnitEditComponent extends Component
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
             'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->get(),
             'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get(),
-            'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->get()
+            // 'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->get()
         ]);
     }
 }

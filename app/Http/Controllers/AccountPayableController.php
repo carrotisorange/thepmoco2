@@ -104,7 +104,6 @@ class AccountPayableController extends Controller
     }
 
 
-
     public function download($property_uuid, $id)
     {
         $accountPayable = AccountPayable::find($id);
@@ -121,7 +120,7 @@ class AccountPayableController extends Controller
             'status' => 'approved'
         ]);
 
-        return back()->with('succes', 'Request is successfully approved.');
+        return back()->with('success', 'Request is successfully approved.');
     }
 
     /**
