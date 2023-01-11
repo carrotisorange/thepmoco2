@@ -4,48 +4,100 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
 <url>
   <loc>https://thepropertymanager.online/</loc>
-  <lastmod>2022-12-15T01:18:29+00:00</lastmod>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://thepropertymanager.online/about</loc>
-  <lastmod>2022-12-15T01:18:29+00:00</lastmod>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://thepropertymanager.online/faq</loc>
-  <lastmod>2022-12-15T01:18:29+00:00</lastmod>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/blog-1</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://thepropertymanager.online/blog</loc>
-  <lastmod>2022-12-15T01:18:29+00:00</lastmod>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://thepropertymanager.online/demopage</loc>
-  <lastmod>2022-12-15T01:18:29+00:00</lastmod>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://thepropertymanager.online/terms</loc>
-  <lastmod>2022-12-15T01:18:29+00:00</lastmod>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://thepropertymanager.online/privacy</loc>
-  <lastmod>2022-12-15T01:18:29+00:00</lastmod>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://thepropertymanager.online/article1</loc>
-  <lastmod>2022-12-15T01:18:29+00:00</lastmod>
+  <loc>https://thepropertymanager.online/blog-2</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
   <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/article1</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/article2</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/article3</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/article4</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/login</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/check-page</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/article5</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/article6</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/forgot-password</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://thepropertymanager.online/select-a-plan</loc>
+  <lastmod>2023-01-11T15:35:10+00:00</lastmod>
+  <priority>0.41</priority>
 </url>
 
 
