@@ -8,6 +8,7 @@ use App\Models\Property;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Spatie\Browsershot\Browsershot;
 use Str;
 
 class AccountPayableController extends Controller
@@ -53,20 +54,32 @@ class AccountPayableController extends Controller
         ]);
     }
 
-    public function create_step_3($property_uuid){
-        return view('accountpayables.create.step-3');
+    public function create_step_3($property_uuid, $accountpayable_id){
+    
+        return view('accountpayables.create.step-3', [
+           'accountpayable_id' => $accountpayable_id
+        ]);
     }
 
-    public function create_step_4($property_uuid){
-        return view('accountpayables.create.step-4');
+    public function create_step_4($property_uuid, $accountpayable_id){
+    
+        return view('accountpayables.create.step-4', [
+           'accountpayable_id' => $accountpayable_id
+        ]);
     }
 
-    public function create_step_5($property_uuid){
-        return view('accountpayables.create.step-5');
+    public function create_step_5($property_uuid, $accountpayable_id){
+    
+        return view('accountpayables.create.step-5', [
+           'accountpayable_id' => $accountpayable_id
+        ]);
     }
 
-    public function create_step_6($property_uuid){
-        return view('accountpayables.create.step-6');
+    public function create_step_6($property_uuid, $accountpayable_id){
+    
+        return view('accountpayables.create.step-6', [
+           'accountpayable_id' => $accountpayable_id
+        ]);
     }
 
     public function create_request_status($property_uuid){
@@ -79,8 +92,17 @@ class AccountPayableController extends Controller
 
     //pdf
 
-    public function create_step1($property_uuid){
-        return view('accountpayables.pdf.step1');
+    public function create_step1(Property $property, AccountPayable $accountPayable){
+        $html = view('accountpayables.pdf.step1',[
+            'property' => $property, 
+            'accountPayable' => $accountPayable
+        ])->render();
+
+        Browsershot::html('<h1>Hello world!!</h1>')->save('example.pdf');
+
+        // Browsershot::html($html)->save(storage_path('app/'.$accountPayable->id.'.pdf'));
+
+        return "Done";
     }
 
     public function create_step2($property_uuid){
@@ -132,74 +154,48 @@ class AccountPayableController extends Controller
     {
         return view('accountpayables.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store($request_for, $particular_id, $requester_id, $property_uuid, $biller_id, $amount)
-    // {
-    //     AccountPayable::create([
-    //         'request_for' => $request_for,
-    //         'particular_id' => $particular_id,
-    //         'requester_id' => $requester_id,
-    //         'property_uuid' => $property_uuid,
-    //         'biller_id' => $biller_id,
-    //         'amount' => $amount,
-    //         //'attachment' => $attachment,
-    //     ]);
-
-    // }
-
-    public function store($step, $property_uuid, $request_for, $created_at, $requester_id, $particular){
+    public function store_step_1($property_uuid, $request_for, $created_at, $requester_id, $particular){
            
-        
+    return AccountPayable::updateOrCreate(
+         [
+         'property_uuid' => $property_uuid,
+         'request_for' => $request_for,
+         'created_at' => $created_at,
+         'requester_id' => $requester_id,
+         'particular' => $particular
+         ]
+         ,
+         [
+         'property_uuid' => $property_uuid,
+         'request_for' => $request_for,
+         'created_at' => $created_at,
+         'requester_id' => $requester_id,
+         'particular' => $particular
+         ])->id; 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\AccountPayable  $accountPayable
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AccountPayable $accountPayable)
-    {
-        //
+    public function store_step_3($accountpayable_id, $status, $comment){
+        AccountPayable::where('id', $accountpayable_id)
+        ->update([
+        'status' => $status,
+        'approver_id' => auth()->user()->id,
+        'comment' => $comment
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AccountPayable  $accountPayable
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AccountPayable $accountPayable)
-    {
-        //
+    public function store_step_5($accountpayable_id, $status, $comment){
+        AccountPayable::where('id', $accountpayable_id)
+        ->update([
+        'status' => $status,
+        'approver2_id' => auth()->user()->id,
+        'comment2' => $comment,
+        'is_approved' => 1
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AccountPayable  $accountPayable
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AccountPayable $accountPayable)
-    {
-        //
-    }
+    public function show(Property $property, AccountPayable $accountPayable){
+        return abort(401);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\AccountPayable  $accountPayable
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(AccountPayable $accountPayable)
-    {
-        //
+        return view('accountpayables.show');
     }
 }

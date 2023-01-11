@@ -37,36 +37,21 @@ class AccountPayableCreateStep1Component extends Component
         $this->validateOnly($propertyName);
     }
 
+
+
     public function submitForm()
     {
         sleep(1);
 
         $this->validate();
 
-        $this->store($this->property_uuid, $this->request_for, $this->created_at, $this->requester_id, $this->particular);
+        $accountpayable_id = app('App\Http\Controllers\AccountPayableController')->store_step_1($this->property_uuid, $this->request_for, $this->created_at, $this->requester_id, $this->particular);
 
-    }
-
-    public function store($property_uuid, $request_for, $created_at, $requester_id, $particular){
-
-         $accountpayable_id = AccountPayable::updateOrCreate(
-            [
-                'property_uuid' => $property_uuid,
-                'request_for' => $request_for,
-                'created_at' => $created_at,
-                'requester_id' => $requester_id,
-                'particular' => $particular
-            ]
-            ,
-            [
-                'property_uuid' => $property_uuid,
-                'request_for' => $request_for,
-                'created_at' => $created_at,
-                'requester_id' => $requester_id,
-                'particular' => $particular
-            ])->id;
-
-         return redirect('/property/'.$property_uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');
+        if($this->request_for === 'purchase'){
+            return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');
+        }else{
+            return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$accountpayable_id.'/step-3')->with('success', 'Step 1 is successfully accomplished!');
+        }
     }
 
     public function render()

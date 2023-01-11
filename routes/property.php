@@ -312,8 +312,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Account Payable
     Route::prefix('accountpayable')->group(function(){
         Route::controller(AccountPayableController::class)->group(function () {
-            Route::get('{status:status?}', 'index')->name('accountpayable');
+            Route::get('/', 'index')->name('accountpayable');
+            Route::get('{accountPayable}', 'show')->name('accountpayable');
             Route::get('{id}/attachment',  'download');
+
+            Route::get('{accountPayable}/export/step-1', [AccountPayableController::class, 'export_step1']);
 
             Route::get('{id}/approve', 'approve');
             Route::get('{str_random}/create', 'create')->name('accountpayable');

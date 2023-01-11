@@ -7,6 +7,8 @@ use App\Models\AccountPayable;
 use Session;
 use Livewire\WithFileUploads;
 
+use function PHPSTORM_META\map;
+
 class AccountPayableCreateStep2Component extends Component
 {
     use WithFileUploads;
@@ -16,6 +18,11 @@ class AccountPayableCreateStep2Component extends Component
     public $quotation1;
     public $quotation2;
     public $quotation3;
+    public $vendor;
+    public $amount;
+    public $quantity;
+    public $selected_quotation;
+    
     public $property_uuid;
 
     public function mount(){
@@ -28,6 +35,10 @@ class AccountPayableCreateStep2Component extends Component
             'quotation1' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'quotation2' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'quotation3' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'vendor' => 'required',
+            'quantity' => 'required',
+            'amount' => 'required',
+            'selected_quotation' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
         ];
     }
 
@@ -62,13 +73,25 @@ class AccountPayableCreateStep2Component extends Component
             
         }     
 
-        if($this->quotation1){
+        if($this->quotation3){
             AccountPayable::where('id', $this->accountpayable_id)
             ->update([
-                'quotation3' => $this->quotation1->store('accountpayables'),
+                'quotation3' => $this->quotation3->store('accountpayables'),
             ]);
             
         }     
+
+        if($this->selected_quotation){
+            AccountPayable::where('id', $this->accountpayable_id)
+            ->update([
+                'selected_quotation' => $this->selected_quotation->store('accountpayables'),
+                'amount' => $this->amount,
+                'quantity' => $this->quantity,
+                'vendor' => $this->vendor
+            ]);
+            
+        }   
+
 
         return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-3')
         ->with('success', 'Step 2 is successfully accomplished!');
