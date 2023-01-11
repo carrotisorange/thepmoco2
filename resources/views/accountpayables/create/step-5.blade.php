@@ -2,7 +2,7 @@
     @section('title','Step 5 of Step 6 | Account Payables')
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         <div class="flex justify-end">
-            <button type="button" class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Download Step</button>
+            <button type="button" class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Download Step</button>
         </div>
     {{-- start of stepper --}}
         <div class="lg:border-t lg:border-b lg:border-gray-200">
@@ -19,7 +19,7 @@
                             
                                         <span class="flex-shrink-0">
                                         <!-- filled circle -->
-                                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600">
+                                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
                                         <!-- check icon -->
                                             <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
@@ -28,7 +28,7 @@
                                     </span>
                                     
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
-                                        <span class="text-sm font-medium text-indigo-600">Step 1:</span>
+                                        <span class="text-sm font-medium text-purple-600">Step 1:</span>
                                         <span class="text-sm font-medium text-gray-500">Internal Document</span>
                                     </span>
                                 </span>
@@ -46,7 +46,7 @@
                             
                                         <span class="flex-shrink-0">
                                         <!-- filled circle -->
-                                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600">
+                                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
                                         <!-- check icon -->
                                             <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
@@ -81,7 +81,7 @@
                             
                                         <span class="flex-shrink-0">
                                         <!-- filled circle -->
-                                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600">
+                                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
                                         <!-- check icon -->
                                             <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
@@ -116,7 +116,7 @@
                             
                                         <span class="flex-shrink-0">
                                         <!-- filled circle -->
-                                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600">
+                                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
                                         <!-- check icon -->
                                             <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
@@ -146,11 +146,11 @@
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Current Step -->
                             <a href="#" aria-current="step">
-                                <span class="absolute top-0 left-0 h-full w-1 bg-indigo-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
+                                <span class="absolute top-0 left-0 h-full w-1 bg-purple-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                     <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                         <span class="flex-shrink-0">
-                                            <span class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-indigo-600">
-                                            <span class="text-indigo-600">05</span>
+                                            <span class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-purple-600">
+                                            <span class="text-purple-600">05</span>
                                         </span>
                                     </span>
 
@@ -204,55 +204,7 @@
             </nav>
         </div>
         {{-- end of stepper --}}
-
-        <div class="mt-5 px-4 sm:px-6 lg:px-8">
-            {{-- start-step-5-form --}}
-            <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
-            
-                <div class="md:grid md:grid-cols-6 md:gap-6">
-
-                     {{-- material/service details --}}
-                     <div class="sm:col-span-3">
-                        <label for="service_details" class="block text-sm font-medium text-gray-700">Material/Service Details:</label>
-                            <input type="text" id="service_details" name="service_details" rows="3" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    </div>
-
-                    {{-- quantity --}}
-                    <div class="sm:col-span-3">
-                        <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
-                            <input type="text" id="quantity" name="quantity" rows="3" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    </div>
-
-
-                    {{-- price --}}
-                    <div class="sm:col-span-3">
-                        <label for="price" class="block text-sm font-medium text-gray-700">Price:</label>
-                            <input type="text" id="price" name="price" rows="3" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    </div>
-
-
-                    {{-- vendor details --}}
-                    <div class="sm:col-span-3">
-                        <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details:</label>
-                            <input type="text" id="vendor-details" name="vendor-details" rows="3" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    </div>
-
-                    {{-- quotation picture --}}
-                    <div class="sm:col-span-3">
-                        <label for="quotation" class="block text-sm font-medium text-gray-700">Quotation:</label>
-                            <input type="text" id="quotation" name="quotation" rows="3" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    </div>
-
-                    {{-- reject, approve button --}}
-                    <div class="col-start-6 flex items-center justify-end">
-                        <a href="request-comment"><button type="button" class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Comment</button></a>
-                        <button type="button" class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reject</button>
-                        <button type="submit" class="ml-3 inline-flex justif y-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="accountspayables2">Approve</a></button>
-                    </div>
-
-                </div>
-            </form>
-            {{-- end-step-5-form --}}
-        </div>          
+ 
+        @livewire('account-payable-create-step5-component', ['accountpayable_id' => $accountpayable_id])       
     </div>
 </x-new-layout>
