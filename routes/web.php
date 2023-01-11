@@ -59,8 +59,12 @@ Route::get('/support', function(){
     return view('landing.support');
 });
 
-Route::get('/blog', function(){
-    return view('landing.blog');
+Route::get('/blog-1', function(){
+    return view('landing.blog-1');
+});
+
+Route::get('/blog-2', function(){
+    return view('landing.blog-2');
 });
 
 Route::get('/terms', function(){
@@ -72,24 +76,29 @@ Route::get('/privacy', function(){
 });
 
 Route::get('/article1', function(){
-    return view('landing.article1');
+    return view('landing.articles.article1');
 });
 
 Route::get('/article2', function(){
-    return view('landing.article2');
+    return view('landing.articles.article2');
 });
 
 Route::get('/article3', function(){
-    return view('landing.article3');
+    return view('landing.articles.article3');
 });
 
 Route::get('/article4', function(){
-    return view('landing.article4');
+    return view('landing.articles.article4');
 });
 
 Route::get('/article5', function(){
-    return view('landing.article5');
+    return view('landing.articles.article5');
 });
+
+Route::get('/article6', function(){
+    return view('landing.articles.article6');
+});
+
 
 
 
@@ -100,6 +109,10 @@ Route::get('/demopage', function(){
 
 Route::get('/demo', function(){
     return view('landing.demo');
+});
+
+Route::get('/survey', function(){
+    return view('landing.survey');
 });
 
 Route::post('/register', function(Request $request){
