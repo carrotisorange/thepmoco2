@@ -151,7 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			
 			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
 			
-			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="blog">Articles</a></li>
+			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="blog-1">Articles</a></li>
 		
 		</ul>
 		<a id="button1"class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm font-bold text-white hover:bg-gray-300  rounded-xl transition duration-200" href="https://thepmo.co/select-a-plan">Sign Up</a>
