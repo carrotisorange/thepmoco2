@@ -1,8 +1,8 @@
 <form method="POST" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
-    <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8 mt-9">
-        <div class="sm:col-span-4">
+    <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">
+        <div class="sm:col-span-8">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="owner" class="block text-xs font-medium text-gray-900">Name of the unit owner
@@ -16,6 +16,32 @@
 
         <div class="sm:col-span-4">
             <div
+                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="job-title" class="block text-xs font-medium text-gray-900">Email
+                </label>
+                <input type="email" wire:model.lazy="email"
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+                @error('email')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+        <div class="sm:col-span-4">
+            <div
+                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="mobile_number" class="block text-xs font-medium text-gray-900">Mobile No</label>
+                <input type="text" wire:model.lazy="mobile_number"
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+                @error('mobile_number')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+        {{--
+        <div class="sm:col-span-4">
+            <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="name" class="block text-xs font-medium text-gray-900">Owner Reference No
                 </label>
@@ -24,7 +50,7 @@
                     placeholder="">
 
             </div>
-        </div>
+        </div> --}}
 
 
 
@@ -105,36 +131,49 @@
         </div>
 
 
+
         <div class="sm:col-span-4">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="job-title" class="block text-xs font-medium text-gray-900">Email
-                </label>
-                <input type="email" wire:model.lazy="email"
+                <label for="occupation" class="block text-xs font-medium text-gray-900">Occupation</label>
+                <input type="text" wire:model.lazy="occupation"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
-                @error('email')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-        </div>
-        <div class="sm:col-span-4">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="mobile_number" class="block text-xs font-medium text-gray-900">Mobile No</label>
-                <input type="text" wire:model.lazy="mobile_number"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-                @error('mobile_number')
+                @error('occupation')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
         </div>
 
+        <div class="sm:col-span-2">
+            <div
+                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="employer" class="block text-xs font-medium text-gray-900">Employer</label>
+                <input type="text" wire:model.lazy="employer"
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+                @error('employer')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
+        <div class="sm:col-span-2">
+            <div
+                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="employer_address" class="block text-xs font-medium text-gray-900">Address</label>
+                <input type="text" wire:model.lazy="occupation"
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+                @error('employer_address')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
     </div>
     <div class="mt-5 flex justify-end">
         {{--@can('ownerportal')
-         <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/owner/unlock'"
+        <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/owner/unlock'"
             class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Send access to owner portal
         </button>
@@ -142,7 +181,7 @@
         @if(!App\Models\User::where('email', $owner_details->email)->count())
         <button type="button" wire:click="sendCredentials"
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        
+
             <svg wire:loading wire:target="sendCredentials" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
@@ -156,7 +195,7 @@
         @else
         <button type="button" wire:click="removeCredentials"
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        
+
             <svg wire:loading wire:target="removeCredentials" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
@@ -167,7 +206,7 @@
             </svg>
             Remove access to owner portal
         </button>
-        
+
         @endif
         @endcan --}}
         <button type="submit"

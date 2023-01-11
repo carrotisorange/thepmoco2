@@ -13,7 +13,7 @@ use DB;
 use Session;
 use App\Models\Property;
 
-class TenantBillComponent extends Component
+class TenantBillCreateComponent extends Component
 {
    use WithPagination;
 
@@ -38,6 +38,10 @@ class TenantBillComponent extends Component
 
         return back()->with('success','Bill is successfully removed.');
      }
+
+   public function exportBills(){
+      
+   }
 
    public function payBills()
    {
@@ -123,7 +127,7 @@ class TenantBillComponent extends Component
       ->when($this->status, function($query){
          $query->where('status', $this->status);
       })
-      ->paginate(10);
+      ->get();
 
       $statuses = Bill::where('bills.property_uuid', Session::get('property'))
       ->select('status', DB::raw('count(*) as count'))
@@ -158,7 +162,7 @@ class TenantBillComponent extends Component
 
       $total_bills = Tenant::find($this->tenant->uuid)->bills->sum('bill');
 
-      return view('livewire.tenant-bill-component',[
+      return view('livewire.tenant-bill-create-component',[
          'bills' => $bills,
          'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
          'total_count' => $total_count,

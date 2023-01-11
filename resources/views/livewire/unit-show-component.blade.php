@@ -7,7 +7,7 @@
                 <div class="flex justify-between">
                     <h1 class="text-3xl font-bold text-gray-900">{{ $unit_details->unit }}</h1>
                     <button
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                         id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button">Add
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +79,7 @@
 
                     <div class="flex items-center justify-center ml-5">
                         {{-- <a href="#"
-                            class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload
+                            class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:purple">Upload
 
                         </a> --}}
                     </div>
@@ -149,19 +149,19 @@
                     </ul>
                 </div>
                 <div id="myTabContent">
-                    <div class="p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="unit" role="tabpanel"
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="unit" role="tabpanel"
                         aria-labelledby="unit-tab">
                         <div>
                             @include('forms.units.unit-edit')
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="inventories" role="tabpanel" aria-labelledby="inventories-tab">
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="inventories" role="tabpanel" aria-labelledby="inventories-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     
                                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
-                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
                     
                                     </div>
                                     @include('units.tables.inventories')
@@ -171,7 +171,7 @@
                     
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="owners" role="tabpanel"
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="owners" role="tabpanel"
                         aria-labelledby="owners-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -180,7 +180,7 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
                                     @include('units.tables.owners')
@@ -190,7 +190,7 @@
 
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="financials" role="tabpanel"
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="financials" role="tabpanel"
                         aria-labelledby="financials-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -199,7 +199,7 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
                                     @include('units.tables.financials')
@@ -209,7 +209,7 @@
 
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tenants" role="tabpanel"
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="tenants" role="tabpanel"
                         aria-labelledby="tenants-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -218,7 +218,7 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
                                     @include('units.tables.tenants')
@@ -228,7 +228,7 @@
 
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="guests" role="tabpanel"
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="guests" role="tabpanel"
                         aria-labelledby="guests-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -237,7 +237,7 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
                                     @include('units.tables.guests')
@@ -247,7 +247,7 @@
 
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="concerns" role="tabpanel"
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="concerns" role="tabpanel"
                         aria-labelledby="concerns-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -256,7 +256,7 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
                                     @include('units.tables.concerns')
@@ -266,7 +266,7 @@
 
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="utilities" role="tabpanel"
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="utilities" role="tabpanel"
                         aria-labelledby="utilities-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -275,7 +275,7 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
                                     @include('units.tables.utilities')
@@ -285,7 +285,7 @@
 
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="bills" role="tabpanel"
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="bills" role="tabpanel"
                         aria-labelledby="bills-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -294,7 +294,7 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
                                     @include('units.tables.bills')

@@ -1,73 +1,60 @@
 @if($wallets->count())
-<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+<table class="min-w-full table-fixed">
+    <thead class="">
+        <tr>
+            <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
+            </th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"> #
+            </th>
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                DESCRIPTION</th>
+            {{-- <x-th>UNIT</x-th> --}}
+            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                AMOUNT</th>
+            {{-- <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+            </th> --}}
+        </tr>
+    </thead>
+    @foreach ($wallets as $index => $item)
+    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+        <!-- Selected: "bg-gray-50" -->
+        <tr>
+            <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                <!-- Selected row marker, only show when row is selected. -->
+                {{--
+                <input type="checkbox"
+                    class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500 sm:left-6">
+                --}}
+            </td>
+            <!-- Selected: "text-purple-600", Not Selected: "text-gray-900" -->
+            <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+                {{ $index+1}}
+            </td>
 
-        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-            <!-- Selected row actions, only show when rows are selected. -->
-            <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $item->description }}
+            </td>
 
-            </div>
-            <table class="min-w-full table-fixed">
-                        <thead class="">
-                            <tr>
-                                <th scope="col" class="relative w-12 px-5 sm:w-16 sm:px-8">
-                                </th>
-                                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"> #
-                                </th>
-                                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                    DESCRIPTION</th>
-                                {{-- <x-th>UNIT</x-th> --}}
-                                <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                    AMOUNT</th>
-                                {{-- <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                </th> --}}
-                            </tr>
-                        </thead>
-                        @foreach ($wallets as $index => $item)
-                        <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-                            <!-- Selected: "bg-gray-50" -->
-                            <tr>
-                                <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                    <!-- Selected row marker, only show when row is selected. -->
-                                    {{--
-                                    <input type="checkbox"
-                                        class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6">
-                                    --}}
-                                </td>
-                                <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-                                <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                                    {{ $index+1}}
-                                </td>
-                              
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ $item->description }}
-                                </td>
+            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
-                                {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    
-                                </td> --}}
+            </td> --}}
 
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ $item->amount }}
-                                </td>
-                    
-                                {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="#/"
-                                        wire:click='remove({{ $item->id }})'>
-                                        Remove
-                                    </a>
-                                </td>
-                     --}}
-                            </tr>
-                    
-                        </tbody>
-                        @endforeach
-                    </table>
-        </div>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                {{ $item->amount }}
+            </td>
 
-    </div>
+            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="#/"
+                    wire:click='remove({{ $item->id }})'>
+                    Remove
+                </a>
+            </td>
+            --}}
+        </tr>
 
-</div>
+    </tbody>
+    @endforeach
+</table>
 
 @else
 <div class=" mt-10 text-center mb-10">
@@ -81,7 +68,7 @@
     <div class="mt-6">
         <button type="button"
             onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/wallet/{{ Str::random(8) }}/create'"
-            class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
             <!-- Heroicon name: mini/plus -->
             <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                 aria-hidden="true">

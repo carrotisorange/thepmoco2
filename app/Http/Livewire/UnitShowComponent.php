@@ -8,9 +8,8 @@ use DB;
 use Session;
 use App\Models\Utility;
 use App\Models\Concern;
-use App\Models\UnitInventory;
 
-class UnitEditComponent extends Component
+class UnitShowComponent extends Component
 {
     public $unit_details;
     //unit input fields
@@ -91,7 +90,7 @@ class UnitEditComponent extends Component
     
     public function render()
     {
-        return view('livewire.unit-edit-component',[
+        return view('livewire.unit-show-component',[
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property_uuid),
             'floors' => app('App\Http\Controllers\FloorController')->index(null),
             'categories' => app('App\Http\Controllers\CategoryController')->index(null),

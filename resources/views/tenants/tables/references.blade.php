@@ -1,38 +1,25 @@
 @if($references->count())
-<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
-        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-            <!-- Selected row actions, only show when rows are selected. -->
-            <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-            </div>
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <x-th> NAME</x-th>
-                        <x-th> RELATIONSHIP</x-th>
-                        <x-th> MOBILE</x-th>
-                        <x-th>EMAIL </x-th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach ($references as $reference)
-                    <tr>
-                        <x-td> {{ $reference->reference }} </x-td>
-                        <x-td> {{ $reference->relationship->relationship }}</x-td>
-                        <x-td> {{ $reference->mobile_number }} </x-td>
-                        <x-td> {{ $reference->email }} </x-td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-
-</div>
-
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
+        <tr>
+            <x-th> NAME</x-th>
+            <x-th> RELATIONSHIP</x-th>
+            <x-th> MOBILE</x-th>
+            <x-th>EMAIL </x-th>
+        </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+        @foreach ($references as $reference)
+        <tr>
+            <x-td> {{ $reference->reference }} </x-td>
+            <x-td> {{ $reference->relationship->relationship }}</x-td>
+            <x-td> {{ $reference->mobile_number }} </x-td>
+            <x-td> {{ $reference->email }} </x-td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 @else
 <div class="mt-10 text-center mb-10">
     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -45,7 +32,7 @@
     <div class="mt-6">
         <button type="button"
             onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/reference/{{ Str::random(8) }}/create'"
-            class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
             <!-- Heroicon name: mini/plus -->
             <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                 aria-hidden="true">
