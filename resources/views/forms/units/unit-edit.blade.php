@@ -2,7 +2,7 @@
     @csrf
     @method('PATCH')
 
-    <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6 mt-9">
+    <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
         <div class="sm:col-span-4">
             <div

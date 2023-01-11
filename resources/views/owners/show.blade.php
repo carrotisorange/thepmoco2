@@ -15,7 +15,7 @@
                             </li>
                         </ol>
                     </nav>
-                    @livewire('owner-edit-component', ['owner_details' => $owner_details])
+                    @livewire('owner-show-component', ['owner_details' => $owner_details])
                 </div>
             </div>
         </div>

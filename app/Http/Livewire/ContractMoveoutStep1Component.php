@@ -30,8 +30,6 @@ class ContractMoveoutStep1Component extends Component
         $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->sum(DB::raw('bill-initial_payment'));
     }
 
-  
-
     protected function rules()
     {
          return [
@@ -50,8 +48,6 @@ class ContractMoveoutStep1Component extends Component
         sleep(1);
 
         $validatedData = $this->validate();
-
-       
    
         if(auth()->user()->role_id == '8'){
             

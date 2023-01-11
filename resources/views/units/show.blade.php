@@ -14,7 +14,7 @@
                         </li>
                     </ol>
                 </nav>
-                @livewire('unit-edit-component', ['unit_details' => $unit_details])
+                @livewire('unit-show-component', ['unit_details' => $unit_details])
             </div>
         </div>
     </div>

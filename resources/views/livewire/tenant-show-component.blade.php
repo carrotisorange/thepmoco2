@@ -1,14 +1,14 @@
 <div>
     @include('layouts.notifications')
     <div class="min-h-screen mt-8 max-w-2xl mx-auto pb-56 sm:px-20 lg:max-w-7xl lg:px-8">
-        <div class="lg:grid lg:grid-cols-12  lg:gap-x-8">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
             <div class="lg:col-start-5 lg:col-span-9">
                 <div class="flex justify-between">
 
-                    <h1 class="text-3xl font-bold text-gray-900">{{ $tenant_details->tenant }}</h1>
+                    <h1 class="text-3xl font-bold text-black-900">{{ $tenant_details->tenant }}</h1>
 
                     <button
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                         id="dropdownButton" data-dropdown-toggle="tenantCreateDropdown" type="button">Add
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -94,21 +94,6 @@
                             </button>
                             @else
 
-                            {{-- <button type="button" wire:click="removeCredentials"
-                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-                                <svg wire:loading wire:target="removeCredentials"
-                                    class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4">
-                                    </circle>
-                                    <path class="opacity-75" fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                    </path>
-                                </svg>
-                                Remove access to tenant portal
-                            </button> --}}
                         <p class="mt-5 text-lg text-center text-gray-700">
                             Username/Email:
                             <span class="font-bold ">{{ App\Models\User::where('tenant_uuid',
@@ -184,21 +169,20 @@
                     </ul>
                 </div>
                 <div id="myTabContent">
-                    <div class="h-full p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tenant" role="tabpanel"
+                    <div class="h-full p-4 rounded-lg dark:bg-gray-800" id="tenant" role="tabpanel"
                         aria-labelledby="tenant-tab">
                         <div>
                             @include('forms.tenants.tenant-edit')
                         </div>
 
-                        <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800">
+                        <div class="hidden p-4 rounded-lg dark:bg-gray-800">
                             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                                     <div
                                         class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                         <!-- Selected row actions, only show when rows are selected. -->
-                                        <div
-                                            class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                         </div>
                                         {{-- @if($tenant_details->type == 'studying') --}}
@@ -306,16 +290,15 @@
 
                 </div>
 
-                <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="contracts" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="contracts" role="tabpanel"
                     aria-labelledby="contracts-tab">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                             <div
-                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
-                                <div
-                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
                                 @include('tenants.tables.contracts')
@@ -325,16 +308,15 @@
 
                     </div>
                 </div>
-                <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="guardians" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="guardians" role="tabpanel"
                     aria-labelledby="guardians-tab">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                             <div
-                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
-                                <div
-                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
                                 @include('tenants.tables.guardians')
@@ -345,15 +327,14 @@
                     </div>
                 </div>
 
-                <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="references" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="references" role="tabpanel"
                     aria-labelledby="references-tab">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                             <div
-                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
-                                <div
-                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
                                 @include('tenants.tables.references')
@@ -361,16 +342,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="concerns" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800 " id="concerns" role="tabpanel"
                     aria-labelledby="concerns-tab">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                             <div
-                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
-                                <div
-                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
                                 @include('tenants.tables.concerns')
@@ -378,7 +358,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="bills" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="bills" role="tabpanel"
                     aria-labelledby="bills-tab">
                     {{-- <x-button
                         onclick="window.location.href='/property/{{ $tenant_details->property_uuid }}/tenant/{{ $tenant_details->uuid }}/bills'">
@@ -387,10 +367,9 @@
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                             <div
-                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
-                                <div
-                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
                                 @include('tenants.tables.bills')
@@ -398,7 +377,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="wallets" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="wallets" role="tabpanel"
                     aria-labelledby="wallets-tab">
                     {{-- <x-button
                         onclick="window.location.href='/property/{{ $tenant_details->property_uuid }}/tenant/{{ $tenant_details->uuid }}/bills'">
@@ -407,10 +386,9 @@
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                             <div
-                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
-                                <div
-                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
                                 @include('tenants.tables.wallets')
@@ -418,16 +396,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="collections" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="collections" role="tabpanel"
                     aria-labelledby="collections-tab">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                             <div
-                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
-                                <div
-                                    class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
                                 @include('tenants.tables.collections')
@@ -440,5 +417,4 @@
         </div>
 
     </div>
-</div>
 </div>

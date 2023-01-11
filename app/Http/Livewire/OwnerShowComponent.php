@@ -12,7 +12,7 @@ use Session;
 
 use Livewire\Component;
 
-class OwnerEditComponent extends Component
+class OwnerShowComponent extends Component
 {
     use WithFileUploads;
 
@@ -202,7 +202,7 @@ class OwnerEditComponent extends Component
 
     public function render()
     {
-        return view('livewire.owner-edit-component',[
+        return view('livewire.owner-show-component',[
            'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
            'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
            'countries' => app('App\Http\Controllers\CountryController')->index(),

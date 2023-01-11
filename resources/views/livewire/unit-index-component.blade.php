@@ -161,7 +161,7 @@
     </div>
 
 
-    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+    <div class="mt-3 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-6">
 
             <label for="default-search"
@@ -177,11 +177,9 @@
                 <input type="text" id="text" wire:model="search"
                     class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for unit no" required>
-
             </div>
-
-
         </div>
+
         <div class="sm:col-span-2">
             <select id="building_id" wire:model="building_id"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
@@ -190,7 +188,6 @@
                 <option value="{{ $item->building_id }}">{{ $item->building }}</option>
                 @endforeach
             </select>
-
         </div>
 
         <div class="sm:col-span-1">
@@ -201,7 +198,6 @@
                 <option value="{{ $item->category_id }}">{{ $item->category }}</option>
                 @endforeach
             </select>
-
         </div>
 
 
@@ -213,7 +209,6 @@
                 <option value="{{ $item->status_id }}">{{ $item->status }}</option>
                 @endforeach
             </select>
-
         </div>
 
         <div class="sm:col-span-1">
@@ -226,7 +221,6 @@
                 <option value="rent">rent</option>
                 {{-- <option value="unit">unit</option> --}}
             </select>
-
         </div>
 
         <div class="sm:col-span-1">
@@ -235,13 +229,9 @@
                 <option value="" selected>Sorting order</option>
                 <option value="asc">ascending</option>
                 <option value="desc">descending</option>
-
             </select>
-
         </div>
-
     </div>
-
     <div class="mt-5">
         <p class="text-sm text-center text-gray-500">
             Showing
@@ -339,29 +329,19 @@
                             </div>
                         </a>
                         @endif
-
-
-
                         @endforeach
-
                     </div>
-
                 </div>
-
             </div>
-
             @else
             <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <!-- Selected row actions, only show when rows are selected. -->
                 <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
                 </div>
                 @include('tables.units')
-
             </div>
             @endif
         </div>
-
     </div>
     @endif
     @include('modals.create-unit')

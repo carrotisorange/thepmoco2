@@ -139,7 +139,7 @@
 
 
     <div
-        class="mb-5 bg-indigo-200 w-full shadow-md rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+        class="mb-5 bg-purple-200 w-full shadow-md rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
         <div class="p-4">
             <div class="flex items-start">
                 <div class="flex-shrink-0">

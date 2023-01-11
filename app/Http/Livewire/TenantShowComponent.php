@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 use App\Models\User;
 use Session;
 
-class TenantEditComponent extends Component
+class TenantShowComponent extends Component
 {
     use WithPagination;
 
@@ -51,6 +51,7 @@ class TenantEditComponent extends Component
     public $reference_email;
 
     public $view = 'listView';
+    
 
     public function mount($tenant_details)
     {
@@ -183,7 +184,7 @@ class TenantEditComponent extends Component
 
     public function render()
     {   
-            return view('livewire.tenant-edit-component',[
+            return view('livewire.tenant-show-component',[
             'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
             'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
             'countries' =>  app('App\Http\Controllers\CountryController')->index(),
