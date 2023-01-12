@@ -93,18 +93,20 @@
     @endif
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
+            <x-th>Total</x-th>
             <x-td> </x-td>
             <x-td> </x-td>
             <x-td> </x-td>
             <x-td> </x-td>
+            <x-td></x-td>
+            <x-td></x-td>
             <x-td> </x-td>
-            <x-td> </x-td>
-            <x-td>{{
-                number_format($bills->sum('bill'), 2) }} </x-td>
-            <x-td>{{
-                number_format($bills->sum('initial_payment'), 2) }} </x-td>
-            <x-td>{{
-                number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }} </x-td>
+            <x-th>{{
+                number_format($bills->sum('bill'), 2) }} </x-th>
+            <x-th>{{
+                number_format($bills->sum('initial_payment'), 2) }} </x-th>
+            <x-th>{{
+                number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }} </x-th>
         </tr>
     </tbody>
 </table>

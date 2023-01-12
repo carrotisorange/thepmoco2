@@ -333,6 +333,7 @@ class PropertyController extends Controller
     {
         return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
         ->where('property_uuid', Session::get('property'))
+        ->where('tenant_uuid')
         ->whereNotNull('tenant_uuid')
         ->groupBy('tenant_uuid')
         ->get();
@@ -461,15 +462,6 @@ class PropertyController extends Controller
         ]); 
     }
 
-    public function isUserApproved($user_id, $property_uuid){
-        $user = UserProperty::where('user_id', $user_id)
-        ->where('property_uuid', $property_uuid)
-        ->get('is_approve');
-
-        if($user->toArray()[0]['is_approve'] == '0'){
-           return abort(401);
-        }
-    }
     
     public function save_unit_stats($property_uuid)
     {
