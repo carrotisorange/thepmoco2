@@ -39,6 +39,8 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
+use App\Http\Controllers\PropertyContractController;
+use App\Http\Controllers\PropertyDashboardController;
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\UnitEditBulkController;
 use App\Http\Controllers\UnitConcernController;
@@ -47,23 +49,36 @@ use App\Http\Controllers\TenantGuardianController;
 use App\Http\Controllers\TenantReferenceController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TenantWalletController;
+use App\Http\Controllers\PropertyOwnerController;
+use App\Http\Controllers\PropertyPersonnelController;
+use App\Http\Controllers\PropertyUnitController;
+use App\Http\Controllers\PropertyTenantController;
+use App\Http\Controllers\PropertyConcernController;
+use App\Http\Controllers\PropertyBillController;
+use App\Http\Controllers\PropertyCollectionController;
+use App\Http\Controllers\PropertyAccountPayableController;
+use App\Http\Controllers\PropertyCashflowController;
+use App\Http\Controllers\PropertyUtilityController;
+
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property/{property}')->group(function(){
 
-        //Routes for Property
-        Route::controller(PropertyController::class)->group(function () {
-            Route::get('/', 'show')->name('dashboard');
-            Route::get('edit', 'edit');
-            Route::patch('update','update');
-            Route::get('delete', 'destroy');
-        });
+    //Routes for Property
+    Route::controller(PropertyController::class)->group(function () {
+        Route::get('edit', 'edit');
+        Route::patch('update','update');
+        Route::get('delete', 'destroy');
+    });
+
+    Route::get('/', [PropertyDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('user_property/{user_property}/remove-access',[UserPropertyController::class, 'remove_access']);
     Route::get('user_property/{user_property}/restore-access',[UserPropertyController::class, 'restore_access']);
        
     //Route for contract
-    Route::get('contract/{status?}',[ContractController::class, 'show_moveout_request'])->name('contract');
+    Route::get('contract/{status}',[ContractController::class, 'show_moveout_request'])->name('contract');
+    Route::get('contract', [PropertyContractController::class, 'index'])->name('contract');
 
     //Route for Building
     Route::prefix('/building')->group(function(){
@@ -72,14 +87,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Route for utilities
     Route::prefix('utilities')->group(function(){
-        Route::get('/',[UtilityController::class, 'index'])->name('utilities');
+        Route::get('/',[PropertyUtilityController::class, 'index'])->name('utilities');
         Route::get('/{batch_no}/{option}',[UtilityController::class, 'edit'])->name('utilities');
     });
 
 
     //Routes for Unit
     Route::prefix('unit')->group(function(){
-        Route::get('/', [UnitController::class, 'index'])->name('unit');
+        Route::get('/', [PropertyUnitController::class, 'index'])->name('unit');
         
             Route::post('{batch_no:batch_no}/store', [UnitController::class, 'store']);
             Route::get('{batch_no?}/edit', [UnitEditBulkController::class, 'edit']);
@@ -173,7 +188,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){
-        Route::get('/', [TenantController::class, 'index'])->name('tenant');
+        Route::get('/', [PropertyTenantController::class, 'index'])->name('tenant');
         Route::get('/unlock', [TenantController::class, 'unlock'])->name('tenant');
         Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
 
@@ -243,7 +258,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     //Routes for Owner
     Route::prefix('owner')->group(function(){
-        Route::get('/', [OwnerController::class, 'index'])->name('owner');
+        Route::get('/', [PropertyOwnerController::class, 'index'])->name('owner');
         Route::get('/unlock', [OwnerController::class, 'unlock'])->name('owner');
 
         Route::prefix('{owner}')->group(function(){
@@ -280,7 +295,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
   
     //Routes for Bill
     Route::prefix('bill')->group(function(){
-        Route::get('{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
+        Route::get('{batch_no?}/{drafts?}', [PropertyBillController::class, 'index'])->name('bill');
 
         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
         //Route::get('drafts', [BillController::class, 'draft'])->name('bill');
@@ -298,21 +313,26 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Cashflow
     Route::prefix('cashflow')->group(function(){
-        Route::get('/', [CashflowController::class, 'index'])->name('cashflow');
+        Route::get('/', [PropertyCashflowController::class, 'index'])->name('cashflow');
     });
 
 
     //Routes for Collection
     Route::prefix('collection')->group(function(){
-        Route::get('/', [AcknowledgementReceiptController::class, 'index'])->name('collection');
+        Route::get('/', [PropertyCollectionController::class, 'index'])->name('collection');
         Route::get('/{status}', [PaymentRequestController::class, 'index'])->name('collection');
 
     });
 
     //Routes for Account Payable
+
+
+
     Route::prefix('accountpayable')->group(function(){
+        Route::get('/', [PropertyAccountPayableController::class, 'index'])->name('accountpayable');
+
         Route::controller(AccountPayableController::class)->group(function () {
-            Route::get('/', 'index')->name('accountpayable');
+    
             Route::get('{accountPayable}', 'show')->name('accountpayable');
             Route::get('{id}/attachment',  'download');
 
@@ -381,13 +401,13 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Concern
     Route::prefix('concern')->group(function(){
-        Route::get('/', [ConcernController::class, 'index'])->name('concern');
+        Route::get('/', [PropertyConcernController::class, 'index'])->name('concern');
         Route::get('create', [ConcernController::class, 'create'])->name('concern');
     });
 
     //Routes for Team
     Route::prefix('user')->group(function(){
-        Route::get('/', [UserController::class, 'index'])->name('user');
+        Route::get('/', [PropertyPersonnelController::class, 'index'])->name('user');
         Route::get('{random_str}/create', [UserController::class, 'create'])->name('user');
 
 

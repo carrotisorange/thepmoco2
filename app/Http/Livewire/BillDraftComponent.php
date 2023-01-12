@@ -73,8 +73,8 @@ class BillDraftComponent extends Component
         }
         }elseif($this->bill_to == 'owner'){
             foreach($this->bills as $bill){
-                if($bill->unit->deed_of_sales()->where('status', 'active')->count()){
-                    $owner_uuid = DeedOfSale::where('unit_uuid', $bill->unit_uuid)->where('status', 'active')->get()[0]['owner_uuid'];
+           if($bill->unit->deed_of_sales()->where('status', 'active')->count()){
+           $owner_uuid = DeedOfSale::where('unit_uuid', $bill->unit_uuid)->get()[0]['owner_uuid'];
 
                     Bill::where('batch_no', $this->batch_no)
                     ->where('property_uuid', $this->property_uuid)

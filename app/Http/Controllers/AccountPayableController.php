@@ -22,12 +22,7 @@ class AccountPayableController extends Controller
     {
         app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',17);
 
-        return view('accountpayables.index',[
-            'accountpayables' => Property::find(Session::get('property'))->accountpayables()
-               ->when($status, function ($query) use ($status) {
-               $query->where('status', $status);
-               })->orderBy('created_at', 'desc')->get(),
-        ]);
+        return view('properties.accountpayables.index');
     }
 
     public function get_property_expenses($property_uuid, $daily, $monthly)

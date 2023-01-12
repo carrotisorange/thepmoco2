@@ -9,7 +9,7 @@ use App\Models\AccountPayable;
 
 class AccountPayableCreateStep1Component extends Component
 {
-    public $request_for;
+    public $request_for = 'purchase';
     public $created_at;
     public $requester_id;
     public $particular;

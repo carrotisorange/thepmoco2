@@ -69,15 +69,6 @@ class BillIndexComponent extends Component
         return back()->with('success','Bill is successfully removed.');
      }
 
-   public function resetFilters()
-   {
-      $this->status = [];
-      $this->start = '';
-      $this->end = '';
-      $this->particular_id = [];
-      $this->created_at = '';
-   }
-
    public function clearFilters()
    {
       $this->search = '';
@@ -112,7 +103,7 @@ class BillIndexComponent extends Component
           $query->where('particular_id', $this->particular_id);
           })
           ->whereBetween('created_at', [now()->subdays(30), now()])
-          ->get();
+          ->paginate(10);
       }elseif($this->posted_dates == 'quarterly'){
           return Bill::search($this->search, $this->posted_dates)
           ->orderBy('bill_no', 'desc')
@@ -128,7 +119,7 @@ class BillIndexComponent extends Component
           $query->where('particular_id', $this->particular_id);
           })
           ->whereBetween('created_at', [now()->subdays(90), now()])
-          ->get();
+           ->paginate(10);
       }else{
          return Bill::search($this->search, $this->posted_dates)
          ->orderBy('bill_no', 'desc')
