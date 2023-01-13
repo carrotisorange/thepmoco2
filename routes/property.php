@@ -185,6 +185,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for bills
     Route::get('unit/{unit}/tenant/{tenant}/bill/{random_str}/create', [BillController::class, 'create_new']);
 
+    //Routes for contract
+    Route::get('/unit/{unit}/tenant/{tenant}/contract/{contract}/movein/{random_str}/create', [ContractController::class, 'movein']);
+
 
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){

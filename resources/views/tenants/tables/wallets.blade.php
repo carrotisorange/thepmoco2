@@ -32,7 +32,7 @@
             </td>
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $item->description }}
+                {{ $item->bill }}
             </td>
 
             {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -40,7 +40,7 @@
             </td> --}}
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $item->amount }}
+                {{ $item->collection }}
             </td>
 
             {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

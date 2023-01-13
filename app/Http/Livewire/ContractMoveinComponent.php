@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Livewire\WithFileUploads;
 use DB;
 use Session;
+use Str;
 
 class ContractMoveinComponent extends Component
 {
@@ -88,8 +89,7 @@ class ContractMoveinComponent extends Component
                 return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant->uuid.'/contracts/')->with('success','Contract is successfully created.');
 
             }else{
-                  return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant->uuid.'/bill/'.
-                  $this->contract_details->unit->uuid.'/create')
+                  return redirect('/property/'.Session::get('property').'/unit/'.$this->contract_details->unit->uuid.'/tenant/'.$this->contract_details->tenant->uuid.'/bill/'.Str::random(8).'/create')
                   ->with('success', 'Contract is successfully created.');
             }
           });

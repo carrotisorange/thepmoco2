@@ -139,7 +139,7 @@
                                 </svg>
                             </div>
                         </li>
-
+{{-- 
                         <li class="relative overflow-hidden lg:flex-1">
                             <div class="border border-gray-200 overflow-hidden lg:border-0">
                                 <!-- Current Step -->
@@ -166,7 +166,7 @@
                                     <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
                                 </svg>
                             </div>
-                        </li>
+                        </li> --}}
 
                         <li class="relative overflow-hidden lg:flex-1">
                             <div class="border border-gray-200 overflow-hidden lg:border-0">
@@ -179,7 +179,7 @@
                                         <span class="flex-shrink-0">
                                             <span
                                                 class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
-                                                <span class="text-gray-500 group-hover:text-gray-900">06</span>
+                                                <span class="text-gray-500 group-hover:text-gray-900">05</span>
                                             </span>
                                         </span>
                                         <span class="mt-0.5 ml-4 min-w-0 flex flex-col">

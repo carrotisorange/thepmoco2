@@ -286,9 +286,10 @@ class ContractController extends Controller
         ]);
     }
 
-    public function movein(Property $property, Tenant $tenant, Contract $contract)
+    public function movein(Property $property, Unit $unit, Tenant $tenant, Contract $contract)
     {
         return view('contracts.movein', [
+            'unit' => $unit,
             'tenant' => $tenant,
             'contract' => $contract,
         ]);

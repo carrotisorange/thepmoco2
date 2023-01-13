@@ -91,6 +91,11 @@ class Property extends Model
         return $this->hasMany(Tenant::class);
     }
 
+    public function owners()
+    {
+        return $this->hasMany(Owner::class);
+    }
+    
     public function notifications()
     {
         return $this->hasMany(Notification::class);

@@ -2,7 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th></x-th>
-            <x-th></x-th>
+          
             <x-th>BILL # </x-th>
             <x-th>DATE POSTED</x-th>
             <x-th>NAME</x-th>
@@ -19,11 +19,7 @@
         @foreach ($bills as $index => $item)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
-            <x-td>
-                @if($item->status != 'paid')
-                <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
-                @endif
-            </x-td>
+            
             <x-td>
                 {{ $item->bill_no}}
             </x-td>

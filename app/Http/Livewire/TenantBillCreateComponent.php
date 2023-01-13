@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use DB;
 use Session;
 use App\Models\Property;
+use App\Models\Wallet;
 
 class TenantBillCreateComponent extends Component
 {
