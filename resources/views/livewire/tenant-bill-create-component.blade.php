@@ -4,16 +4,17 @@
 
     <div class="mt-5">
         @if($bills)
-        <x-form-select class="w-24" wire:model="status">
-            <option value="" {{ $status=="" ? 'selected' : 'Select one' }}>show all bills</option>
+        <label for="status" class="block text-sm font-medium text-gray-700">Filter bills</label>
+        <select wire:model.lazy="status" autocomplete="status"
+            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
             @foreach ($statuses as $item)
-            <option value="{{ $item->status }}" {{ $status==$item->status ? 'selected' : 'selected' }}> show {{
+            <option value="{{ $item->status }}" {{ $status==$item->status ? 'selected' : 'selected' }}> {{
                 $item->status }} bills
             </option>
             @endforeach
+        </select>
 
-
-        </x-form-select>
         @endif
     </div>
 
@@ -23,17 +24,18 @@
 
 
                 @can('treasury')
-                    @if($total_unpaid_bills->sum('bill') && $selectedBills)
-                    <x-button wire:click="payBills">Pay Bills</x-button>
-                    <div class="mt-5">
-                        <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill', count($selectedBills))}}
-                            amounting to <b>{{ number_format($total) }}</b></span>
-                    </div>
-                    @else
-                    <div class="mt-1">
-                        <b>Please check the bill you want to pay</b>
-                    </div>
-                    @endif
+                @if($total_unpaid_bills->sum('bill') && $selectedBills)
+                <x-button wire:click="payBills">Pay Bills</x-button>
+                <div class="mt-5">
+                    <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
+                        count($selectedBills))}}
+                        amounting to <b>{{ number_format($total) }}</b></span>
+                </div>
+                @else
+                <div class="mt-1">
+                    <b>Please check the bill you want to pay</b>
+                </div>
+                @endif
                 @endcan
 
             </div>
@@ -58,7 +60,7 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <?php $ctr =1; ?>
                                 <thead class="bg-gray-50">
                                     <tr>
@@ -71,7 +73,7 @@
                                         <x-th>Particular</x-th>
                                         <x-th>Period</x-th>
                                         <x-th>Amount Due</x-th>
-                            
+
                                         <x-th>Amount Paid</x-th>
                                         <x-th>Balance</x-th>
                                         {{-- <x-th></x-th> --}}
@@ -82,11 +84,13 @@
                                     <tr>
                                         <x-td>
                                             @if($item->status != 'paid')
-                                            <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
+                                            <x-input type="checkbox" wire:model="selectedBills"
+                                                value="{{ $item->id }}" />
                                             @endif
                                         </x-td>
                                         <x-td>{{ $item->bill_no }}</x-td>
-                                        <x-td> <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}"><b
+                                        <x-td> <a
+                                                href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}"><b
                                                     class="text-blue-600">{{ $item->unit->unit}} </b></a></x-td>
                                         <x-td>{{$item->particular->particular }}</x-td>
                                         <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
@@ -103,11 +107,12 @@
                                                 <i class="fa-solid fa-clock"></i>
                                             </span>
                                             @else
-                                            <span title="unpaid" class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                            <span title="unpaid"
+                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                 <i class="fa-solid fa-circle-xmark"></i>
                                             </span>
                                             @endif
-                            
+
                                             @if($item->description === 'movein charges' && $item->status==='unpaid')
                                             <span title="urgent"
                                                 class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
@@ -121,10 +126,11 @@
                                             <form method="POST" action="/bill/{{ $item->id }}/delete">
                                                 @csrf
                                                 @method('delete')
-                                                <x-button onclick="confirmMessage()"><i class="fa-solid fa-trash-can"></i></x-button>
+                                                <x-button onclick="confirmMessage()"><i
+                                                        class="fa-solid fa-trash-can"></i></x-button>
                                             </form>
                                         </x-td> --}}
-                            
+
                                         @empty
                                         <x-td>
                                             No data found.
