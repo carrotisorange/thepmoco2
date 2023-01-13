@@ -25,11 +25,12 @@ class UtilityIndexComponent extends Component
 
     public function storeUtilities($option)
     {
+        sleep(1);
+
         $units = Unit::where('property_uuid', $this->property_uuid)->get();
         
         $batch_no = auth()->user()->id.Str::random(8);
 
-     
         for ($i=0; $i < $units->count(); $i++) { 
             //store utilities
             app('App\Http\Controllers\UtilityController')->store(

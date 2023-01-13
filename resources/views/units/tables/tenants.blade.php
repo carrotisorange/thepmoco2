@@ -84,13 +84,18 @@
                 @endif
             </x-td>
             <x-td>
-                @if($item->status == 'active' || $item->status == 'pendingmovein' || $item->status ==
-                'pendingmoveout')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout"
-                    class="text-purple-500 text-decoration-line: underline">Moveout</a>
+                @if($item->status == 'active' || $item->status == 'pendingmovein')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-1"
+                    class="text-indigo-500 text-decoration-line: underline">Moveout</a>
                 @elseif($item->status == 'reserved')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein/{{ Str::random(8) }}/create"
                     class="text-purple-500 text-decoration-line: underline">Movein</a>
+                @elseif($item->status == 'pendingmoveout')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-2"
+                    class="text-indigo-500 text-decoration-line: underline">Moveout</a>
+                @elseif($item->status == 'cleared')
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-3"
+                    class="text-indigo-500 text-decoration-line: underline">Moveout</a>
                 @endif
             </x-td>
             <x-td>

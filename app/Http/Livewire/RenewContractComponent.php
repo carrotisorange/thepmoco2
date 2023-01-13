@@ -19,25 +19,23 @@ class RenewContractComponent extends Component
       use WithFileUploads;
 
       public $contract_details;
-      public $rent = 0.00;
+      public $rent;
       public $start;
       public $end;
 
-      public $discount= 0;
+      public $discount;
       public $contract;
       public $term;
-      public $sendContract;
+      public $sendContractToTenant = false;
 
 
       public function mount($contract_details)
       {
          $this->contract_details = $contract_details;
          $this->start = Carbon::parse($this->contract_details->start)->format('Y-m-d');
-         $this->end = Carbon::parse($this->contract_details->start)->addYear()->format('Y-m-d');
          $this->rent = $contract_details->rent;
          $this->discount = $contract_details->discount;
          $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
-         $this->sendContract = false;
       }
 
       public function hydrateTerm()
@@ -80,13 +78,14 @@ class RenewContractComponent extends Component
 
             });
 
-         if(auth()->user()->role_id == '8'){
-            return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
-         }else{
+         // if(auth()->user()->role_id == '8'){
+         //    return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
+         // }else{
             redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract is successfully renewed.');
-         }
+         // }
          
          } catch (\Throwable $e) {
+            ddd($e);
             return back()->with('error','Cannot complete your action.');
          }
    }
@@ -108,7 +107,7 @@ class RenewContractComponent extends Component
       'unit' => $this->contract_details->unit_uuid,
       ];
 
-      if($this->sendContract)
+      if($this->sendContractToTenant)
       {
          Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
       }
@@ -117,8 +116,8 @@ class RenewContractComponent extends Component
    public function update_current_contract($contract_uuid)
    {
         Contract::where('uuid', $contract_uuid)
-        ->update([
-        'status' => 'inactive'
+         ->update([
+         'status' => 'inactive'
         ]);
    }
    public function store_contract($validatedData)
@@ -151,13 +150,7 @@ class RenewContractComponent extends Component
             //$validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
          }
 
-
-       if(auth()->user()->role_id == '8'){
-          return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
-       }else{
-          redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract
-          is successfully renewed.');
-       }
+         Contract::create($validatedData);
 
       }
     

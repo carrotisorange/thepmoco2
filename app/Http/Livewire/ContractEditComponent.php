@@ -65,7 +65,7 @@ class ContractEditComponent extends Component
                     'contract' => $this->contract->store('contracts'),
                 ]);
            }
-           return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant_uuid);
+           return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts');
             //session()->flash('success', 'Tenant details is successfully updated.');
 
         }catch(\Exception $e)

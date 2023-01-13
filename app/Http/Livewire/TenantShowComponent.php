@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use App\Models\User;
 use Session;
+use App\Models\Collection;
 
 class TenantShowComponent extends Component
 {
@@ -195,7 +196,7 @@ class TenantShowComponent extends Component
             'bills' => app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant_details->uuid),
             'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
             'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($this->tenant_details->uuid),
-            'wallets' => app('App\Http\Controllers\WalletController')->get_deposits($this->tenant_details->uuid)
+            'wallets' => Collection::where('tenant_uuid', $this->tenant_details->uuid)->where('is_deposit', '1')->orderBy('id','desc')->get()
          ]);
     }
 }

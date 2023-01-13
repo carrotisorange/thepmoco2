@@ -2,18 +2,22 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Owners</h1>
+                <h1 class="text-3xl font-bold text-gray-500">Owners</h1>
             </div>
+            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/unit'"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                    <i class="fa-solid fa-plus"></i> &nbsp New owner
+                </button>
 
+            </div>
         </div>
 
+        <div class="mt-3">
+            @if(App\Models\Property::find(Session::get('property'))->owners()->count())
 
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="mt-3">
-                    {{ $owners->links() }}
-                </div>
-                <div class="sm:col-span-6 mb-10">
+            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                <div class="sm:col-span-6">
 
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -27,17 +31,23 @@
                         </div>
                         <input type="search" id="default-search" wire:model="search"
                             class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search..." required>
+                            placeholder="Search for name" required>
 
                     </div>
+
                 </div>
+
+
+
+            </div>
+            @endif
+            {{ $owners->links() }}
+        </div>
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
-
-                    @if($owners->count())
-
-                    @include('tables.owners')
-                    @else
+                    @if(!App\Models\Property::find(Session::get('property'))->owners()->count())
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
                             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -63,11 +73,13 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                    @include('tables.owners')
+
                     @endif
 
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>

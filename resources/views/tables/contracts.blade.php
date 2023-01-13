@@ -98,8 +98,8 @@
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-1"
                     class="text-indigo-500 text-decoration-line: underline">Moveout</a>
                 @elseif($item->status == 'reserved')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein"
-                    class="text-indigo-500 text-decoration-line: underline">Movein</a>
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/movein/{{ Str::random(8) }}/create"
+                    class="text-purple-500 text-decoration-line: underline">Movein</a>
                 @elseif($item->status == 'pendingmoveout')
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-2"
                     class="text-indigo-500 text-decoration-line: underline">Moveout</a>

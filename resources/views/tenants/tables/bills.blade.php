@@ -3,9 +3,9 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-            <x-th>
+            {{-- <x-th>
 
-            </x-th>
+            </x-th> --}}
             <x-th>Bill #</x-th>
 
             <x-th>Particular</x-th>
@@ -20,11 +20,11 @@
     @foreach ($bills as $index => $item)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-            <x-td>
+            {{-- <x-td>
                 @if($item->status != 'paid')
                 <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
                 @endif
-            </x-td>
+            </x-td> --}}
             <x-td>{{ $item->bill_no }}</x-td>
 
             <x-td>{{$item->particular->particular }}</x-td>
@@ -60,7 +60,7 @@
         @endforeach
         <tr>
             <x-td>Total</x-td>
-            <x-td></x-td>
+            
             <x-td></x-td>
             <x-td></x-td>
             <x-td>{{number_format($bills->sum('bill'),2) }}</x-td>
