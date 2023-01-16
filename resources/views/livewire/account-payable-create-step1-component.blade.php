@@ -11,7 +11,7 @@
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
                 {{-- request for purchase --}}
-                <div class="sm:col-span-3">
+                <div class="sm:col-span-2">
                     <label for="request_for" class="block text-sm font-medium text-gray-700">Request for: </label>
                     <select wire:model="request_for"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
@@ -26,7 +26,7 @@
                 </div>
 
                 {{-- creation date --}}
-                <div class="sm:col-span-3">
+                <div class="sm:col-span-2">
                     <label for="creation-date" class="block text-sm font-medium text-gray-700">Creation Date:</label>
                     <input type="date" wire:model="created_at" name="creation-date"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
@@ -35,18 +35,8 @@
                     @enderror
                 </div>
 
-                {{-- particular --}}
-                <div class="sm:col-span-3">
-                    <label for="particular" class="block text-sm font-medium text-gray-700">Particular:</label>
-                    <input type="text" wire:model="particular"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                    @error('particular')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
                 {{-- requester's name --}}
-                <div class="sm:col-span-3">
+                <div class="sm:col-span-2">
                     <label for="requester" class="block text-sm font-medium text-gray-700">Requester's Name:</label>
                     <select id="requester_id" wire:model="requester_id"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
@@ -56,6 +46,32 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
+
+                {{-- quantity --}}
+                <div class="sm:col-span-3">
+                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
+                    <input type="number" step="0.01" wire:model="quantity" rows="3"
+                        class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                    @error('quantity')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- particular --}}
+                <div class="sm:col-span-3">
+                 
+                    <label for="particular" class="block text-sm font-medium text-gray-700">Particular:</label>
+                    <div class="flex justify-end">
+                        <button class="text-xs text-purple-900">+ Add Particular</button>
+                    </div>
+                    <input type="text" wire:model="particular"
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                    @error('particular')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                
 
                 {{-- cancel, next button --}}
                 <div class="col-start-6 flex items-center justify-end">
