@@ -6,6 +6,7 @@ use Livewire\Component;
 use Session;
 use App\Models\UserProperty;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 
 class UserIndexComponent extends Component
 {
@@ -13,6 +14,12 @@ class UserIndexComponent extends Component
 
     public $search;
     public $status;
+
+   public function submitForm(){
+      sleep(2);
+      
+      return redirect('/property/'.Session::get('property').'/user/'.Str::random(8).'/create');
+   }
 
    public function render()
    {

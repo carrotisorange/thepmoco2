@@ -61,7 +61,7 @@ class BillCreateComponent extends Component
 
        try{
 
-         app('App\Http\Controllers\BillController')->store($this->property_uuid, $this->unit->uuid, $this->tenant->uuid, $this->particular_id, $this->start, $this->end, $this->bill, '', 1);
+         app('App\Http\Controllers\BillController')->store($this->property_uuid, $this->unit->uuid, $this->tenant->uuid,'', $this->particular_id, $this->start, $this->end, $this->bill, '', 1);
 
         $this->reset_form();
 

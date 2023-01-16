@@ -69,7 +69,7 @@ class UnitEditBulkComponent extends Component
     }
 
 
-    public function updateForm($unit_uuid)
+    public function updateForm()
     {
         sleep (1);
 
@@ -98,22 +98,22 @@ class UnitEditBulkComponent extends Component
         }
     }
 
-    public function updateUnitInfo(){
+    // public function updateUnitInfo(){
 
-        sleep(1);
+    //     sleep(1);
 
-        Unit::where('property_uuid', Session::get('property_uuid'))
-        ->update([
-            'category_id' => $this->category_id,
-            'size' => $this->size,
-            'rent' => $this->rent,
-            'occupancy' => $this->occupancy
-        ]);
+    //     Unit::where('property_uuid', Session::get('property_uuid'))
+    //     ->update([
+    //         'category_id' => $this->category_id,
+    //         'size' => $this->size,
+    //         'rent' => $this->rent,
+    //         'occupancy' => $this->occupancy
+    //     ]);
 
-        $this->units = $this->get_units();
+    //     $this->units = $this->get_units();
 
-        session()->flash('success', 'Parameters are successfully saved!');
-    }
+    //     session()->flash('success', 'Parameters are successfully saved!');
+    // }
 
     public function removeUnits()
     {

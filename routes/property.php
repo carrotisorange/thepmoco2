@@ -104,7 +104,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{batch_no}/create', [UnitController::class, 'create']);
             //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
 
-        Route::prefix('{unit}')->group(function(){
+        Route::prefix('{unit:uuid}')->group(function(){
             Route::get('delete', [UnitController::class, 'destroy']);
             Route::get('/', [UnitController::class, 'show'])->name('unit')->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);

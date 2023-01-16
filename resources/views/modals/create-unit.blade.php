@@ -16,7 +16,7 @@
             </div>
             <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST" action="/property/{{ Session::get('property') }}/unit/{{ Str::random(8) }}/store">
                 @csrf
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">How many units you want to create?</h3>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">How many units you want to add?</h3>
                 <div>
 
                     <input type="number" min="1" name="number_of_units" value="1"

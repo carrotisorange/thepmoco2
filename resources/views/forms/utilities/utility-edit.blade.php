@@ -3,7 +3,7 @@
         <thead class="bg-gray-50">
             <tr>
                 {{-- <x-th>#</x-th> --}}
-                <x-th>UNIT # </x-th>
+                <x-th>UNIT </x-th>
                 {{-- <x-th>START</x-th>
                 <x-th>END</x-th> --}}
                 <x-th>PREVIOUS READING</x-th>

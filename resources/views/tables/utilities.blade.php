@@ -3,7 +3,7 @@
         <tr>
             <x-th>#</x-th>
             <x-th>PARTICULAR</x-th>
-            <x-th>UNIT # </x-th>
+            <x-th>UNIT </x-th>
             <x-th>START DATE</x-th>
             <x-th>END DATE </x-th>
             <x-th>PREVIOUS READING</x-th>
