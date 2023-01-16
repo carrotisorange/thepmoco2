@@ -1,8 +1,10 @@
 <div>
-    <p class="text-center mb-5 text-red-800"><i class="fa-solid fa-triangle-exclamation"></i> Unpaid bills have to be settled to proceed.</p>
+   
 
-    <p>Security Deposit: <b>{{ number_format($deposits,2) }}</b></p>
+    {{-- <p>Security Deposit: <b>{{ number_format($deposits,2) }}</b></p> --}}
     @if($unpaid_bills->count())
+    <p class="text-center mb-5 text-red-800"><i class="fa-solid fa-triangle-exclamation"></i> Unpaid bills have to be
+        settled to proceed.</p>
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>

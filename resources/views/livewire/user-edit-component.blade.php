@@ -22,7 +22,7 @@
 
                     <div class="flex items-center justify-center ml-5">
                         {{-- <a href="#"
-                            class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Upload
+                            class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:">Upload
 
                         </a> --}}
                     </div>
@@ -59,7 +59,7 @@
                     </ul>
                 </div>
                 <div id="myTabContent">
-                    <div class="p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="user" role="tabpanel"
+                    <div class="p-4 rounded-lg" id="user" role="tabpanel"
                         aria-labelledby="user-tab">
                         <div>
                             <form class="space-y-6" method="POST" wire:submit.prevent="updateUser()"
@@ -191,7 +191,7 @@
                                                     @endif
                                                 </span>
                                                 <button type="button"
-                                                    class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                                    class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover: focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                                     Change
                                                 </button>
                                             </div>
@@ -208,12 +208,12 @@
                                             class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                             <!-- Selected row actions, only show when rows are selected. -->
                                             <div
-                                                class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                                class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                             </div>
 
                                             <table class="min-w-full table-fixed divide-y divide-gray-300">
-                                                <thead class="bg-gray-50">
+                                                <thead class="">
                                                     <tr>
                                                         <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
 
@@ -309,7 +309,7 @@
                             </form>
                         </div>
                         <div class="mt-5 flex justify-end">
-                            <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                            <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                                 href="{{ url()->previous() }}">
                                 Cancel
                             </a>
@@ -331,7 +331,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="properties" role="tabpanel"
+                    <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="properties" role="tabpanel"
                         aria-labelledby="properties-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -340,13 +340,13 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
                                     @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
 
                                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                        <thead class="bg-gray-50">
+                                        <thead class="">
                                             <tr>
                                                 <x-th>#</x-th>
                                                 <x-th>Property</x-th>
@@ -404,7 +404,7 @@
 
                         </div>
                     </div>
-                    <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="sessions" role="tabpanel"
+                    <div class="hidden p-4  rounded-lg dark:bg-gray-800" id="sessions" role="tabpanel"
                         aria-labelledby="sessions-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -413,13 +413,13 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
                                     <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
 
                                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                         <?php $ctr =1; ?>
-                                        <thead class="bg-gray-50">
+                                        <thead class="">
                                             <tr>
                                                 <x-th>#</x-th>
                                                 <x-th>Date</x-th>

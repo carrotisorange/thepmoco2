@@ -2,7 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
-            <x-th>UTILITY</x-th>
+            <x-th>PARTICULAR</x-th>
             <x-th>UNIT # </x-th>
             <x-th>START DATE</x-th>
             <x-th>END DATE </x-th>
@@ -12,6 +12,9 @@
             <x-th>RATE</x-th>
             <x-th>MIN CHARGE</x-th>
             <x-th>AMOUNT DUE</x-th>
+            <x-th>STATUS</x-th>
+            <x-th></x-th>
+  
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -49,6 +52,23 @@
             <x-td>
                 {{ number_format(($item->total_amount_due), 2) }}
             </x-td>
+            <x-td>
+                {{ $item->status }}
+            </x-td>
+            <x-td>
+                @if($item->status === 'unbilled')
+                
+              
+                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/utility/{{ $item->id }}"
+                        class="text-indigo-500 text-decoration-line: underline">Bill to tenant</a>
+                        |
+               
+                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/utility/{{ $item->id }}"
+                        class="text-indigo-500 text-decoration-line: underline">Bill to owner</a>
+                
+                @endif
+            </x-td>
+           
         </tr>
         @endforeach
     </tbody>

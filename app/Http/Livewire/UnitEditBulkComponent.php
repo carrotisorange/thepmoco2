@@ -68,12 +68,13 @@ class UnitEditBulkComponent extends Component
         }
     }
 
-    public function updateForm()
+
+    public function updateForm($unit_uuid)
     {
         sleep (1);
 
         try{
-               $this->validate();
+            $this->validate();
             //update the selected unit
             DB::transaction(function () {
                 foreach ($this->units as $unit) {

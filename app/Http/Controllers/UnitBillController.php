@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Unit;
 use App\Models\Property;
+use App\Models\Utility;
 
 class UnitBillController extends Controller
 {
@@ -20,5 +21,14 @@ class UnitBillController extends Controller
           'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($unit->uuid),
           'view' => 'listView'
          ]);
+    }
+
+    public function create(Property $property, Unit $unit, $type, Utility $utility){
+        return view('units.bills.create',[
+            'property' => $property,
+            'unit' => $unit, 
+            'type' => $type,
+            'utility' => $utility
+        ]);
     }
 }

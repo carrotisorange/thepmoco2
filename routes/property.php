@@ -91,13 +91,16 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/{batch_no}/{option}',[UtilityController::class, 'edit'])->name('utilities');
     });
 
+    //route for adding bill to unit based on the utility reading
+    Route::get('unit/{unit}/{type}/utility/{utility}', [UnitBillController::class, 'create'])->name('unit');
+
 
     //Routes for Unit
     Route::prefix('unit')->group(function(){
         Route::get('/', [PropertyUnitController::class, 'index'])->name('unit');
         
             Route::post('{batch_no:batch_no}/store', [UnitController::class, 'store']);
-            Route::get('{batch_no?}/edit', [UnitEditBulkController::class, 'edit']);
+            Route::get('{batch_no?}/edit', [UnitEditBulkController::class, 'edit'])->name('unit');
             Route::get('{batch_no}/create', [UnitController::class, 'create']);
             //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
 

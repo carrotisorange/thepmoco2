@@ -1,5 +1,5 @@
-<table class="min-w-full table-fixed">
-    <thead class="">
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
         <tr>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">#
             </th>
@@ -35,7 +35,7 @@
     </thead>
 
 
-    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+    <tbody class="bg-white divide-y divide-gray-200">
         <!-- Selected: "bg-gray-50" -->
         @foreach($units as $index => $unit )
         <tr>

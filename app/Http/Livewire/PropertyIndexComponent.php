@@ -8,6 +8,7 @@ use Auth;
 use Livewire\Component;
 use App\Models\Property;
 use Session;
+use Illuminate\Support\Str;
 use DB;
 
 class PropertyIndexComponent extends Component
@@ -31,6 +32,13 @@ class PropertyIndexComponent extends Component
             'properties' => User::find(Auth::user()->id)->user_properties()->get(),
             'property_types' => $property_types
         ]);
+    }
+
+    public function submitForm(){
+        
+        sleep(2);
+
+        return redirect('/property/'.Str::random(8).'/create');
     }
 
     public function get_properties($user_id)

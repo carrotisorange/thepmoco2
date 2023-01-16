@@ -45,48 +45,8 @@
             </div>
         </div>
 
-
-        {{-- <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-
-            <div class="sm:col-span-2">
-                <label for="">Start date</label>
-                <input type="date" id="start_date" wire:model="start_date" wire:keyup="updateParameters"
-                    class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search for unit no..." required>
-
-            </div>
-            <div class="sm:col-span-2">
-                <label for="">End date</label>
-                <input type="date" id="end_date" wire:model="end_date" wire:keyup="updateParameters"
-                    class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search for unit no..." required>
-
-            </div>
-
-            <div class="sm:col-span-1">
-                <label for="">Mininum Charge</label>
-                <input type="text" id="min_charge" wire:model="min_charge" wire:keyup="updateParameters"
-                    class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="" required>
-
-            </div>
-
-        </div> --}}
-
         <div class="mt-3 -my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                    <!-- Selected row actions, only show when rows are selected. -->
-                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                    </div>
-
-                    @include('forms.units.unit-edit-bulk')
-
-                </div>
-                {{-- {{ $units->links() }} --}}
-            </div>
+            @include('forms.units.unit-edit-bulk')
         </div>
     </div>
     @include('layouts.notifications')

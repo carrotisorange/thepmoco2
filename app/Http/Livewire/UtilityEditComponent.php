@@ -151,10 +151,11 @@ class UtilityEditComponent extends Component
         //store the previous utility reading to unit
          foreach ($this->utilities as $utility) {
             $this->update_unit($this->option, $utility->unit_uuid, $utility->current_reading);
-            $this->store_bill($utility->unit_uuid, $this->option, $this->start_date, $this->end_date, $utility->total_amount_due, $this->batch_no);
+            //$this->store_bill($utility->unit_uuid, $this->option, $this->start_date, $this->end_date, $utility->total_amount_due, $this->batch_no);
          }
 
-        return redirect('/property/'.$this->property_uuid.'/bill/batch/'.$this->batch_no.'/drafts')->with('success', 'Utilities are successfully posted!');
+        // return redirect('/property/'.$this->property_uuid.'/bill/batch/'.$this->batch_no.'/drafts')->with('success', 'Utilities are successfully posted!');
+        return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Utilities are successfully posted!');
 
     }
 
