@@ -99,6 +99,11 @@ Route::get('/article6', function(){
     return view('landing.articles.article6');
 });
 
+Route::get('/article7', function(){
+    return view('landing.articles.article7');
+});
+
+
 
 
 
