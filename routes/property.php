@@ -444,4 +444,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('roles', [PropertyRoleController::class, 'index']);
     });
+
+    // owner portal - unit detail
+    Route::get('/unitdetail', function(){
+        return view('portals.owners.unitdetail');
+    });
 });
