@@ -17,7 +17,10 @@ class UnitEditBulkComponent extends Component
 {
     use WithPagination;
 
+    public $property;
     public $batch_no;
+
+
     public $search;
     public $units;
 
@@ -82,14 +85,16 @@ class UnitEditBulkComponent extends Component
                 }
             });
 
+            $tenants_count = Tenant::where('property_uuid', $this->property->uuid)->count();
+
             //redirect user with a success message
-            if(Tenant::where('property_uuid', Session::get('property'))->count())
+            if($tenants_count)
             {
-                return redirect('/property/'.Session::get('property').'/unit')->with('success', count($this->units). ' unit is successfully updated.');
+                return redirect('/property/'.$this->property->uuid.'/unit/')->with('success', count($this->units). ' unit is successfully updated.');
             }
             else
             { 
-                return redirect('/property/'.Session::get('property').'/tenant')->with('success', count($this->units). ' unit is successfully updated.');
+                return redirect('/property/'.$this->property->uuid.'/tenant/')->with('success', count($this->units). ' unit is successfully updated.');
             }
 
         }catch(\Exception $e){
@@ -120,14 +125,14 @@ class UnitEditBulkComponent extends Component
         sleep(1);
 
         foreach($this->selectedUnits as $unit => $val){
-            if(Contract::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count() || Enrollee::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', Session::get('property'))->where('unit_uuid', $unit)->count())
+            if(Contract::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count())
             {
                session()->flash('error', 'Unit cannot be removed.');
             }
             else{
                 Unit::destroy($unit);
 
-                app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, -1, 5);
+                app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, -1, 5);
                 
                 $this->units = $this->get_units();
 
@@ -139,10 +144,16 @@ class UnitEditBulkComponent extends Component
 
     public function get_units()
     {   
-        return Unit::search($this->search)
-        ->where('property_uuid', Session::get('property'))
+        $units = Unit::search($this->search)
+        ->where('property_uuid', $this->property->uuid)
         ->orderBy('created_at', 'desc')
         ->get();
+
+        if($this->batch_no != 'all'){
+            $units = $units->where('batch_no', $this->batch_no); 
+        }
+
+        return $units;
     }
 
     public function render()

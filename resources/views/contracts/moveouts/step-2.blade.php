@@ -3,7 +3,7 @@
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         <div class="flex justify-end">
             {{-- <button type="button"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Download
+                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Download
                 Step</button> --}}
         </div>
         {{-- start of stepper --}}
@@ -24,7 +24,7 @@
                                     <span class="flex-shrink-0">
                                         <!-- filled circle -->
                                         <span
-                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600">
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
                                             <!-- check icon -->
                                             <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -36,7 +36,7 @@
                                     </span>
 
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
-                                        <span class="text-sm font-medium text-indigo-600">Step 1:</span>
+                                        <span class="text-sm font-medium text-purple-600">Step 1:</span>
                                         <span class="text-sm font-medium text-gray-500">Moveout Form</span>
                                     </span>
                                 </span>
@@ -49,13 +49,13 @@
                             <!-- Current Step -->
                             <a href="#" aria-current="step">
                                 <span
-                                    class="absolute top-0 left-0 h-full w-1 bg-indigo-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
+                                    class="absolute top-0 left-0 h-full w-1 bg-purple-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
                                         <span
-                                            class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-indigo-600">
-                                            <span class="text-indigo-600">02</span>
+                                            class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-purple-600">
+                                            <span class="text-purple-600">02</span>
                                         </span>
                                     </span>
 
@@ -98,7 +98,7 @@
 
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-gray-500">Step 3:</span>
-                                        <span class="text-sm font-medium text-gray-500">Request for refund</span>
+                                        <span class="text-sm font-medium text-gray-500">Moveout Clearance Form</span>
                                     </span>
                                 </span>
                             </a>
@@ -133,7 +133,7 @@
 
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-gray-500">Step 4:</span>
-                                        <span class="text-sm font-medium text-gray-500">Moveout Clearance Form</span>
+                                        <span class="text-sm font-medium text-gray-500">Request for Refund</span>
                                     </span>
                                 </span>
                             </a>

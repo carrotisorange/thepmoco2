@@ -51,14 +51,14 @@
                 <label for="">Start date</label>
                 <input type="date" id="start_date" wire:model="start_date" wire:keyup="updateParameters"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search for unit no..." required>
+                    placeholder="Search for unit" required>
 
             </div>
             <div class="sm:col-span-2">
                 <label for="">End date</label>
                 <input type="date" id="end_date" wire:model="end_date" wire:keyup="updateParameters"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search for unit no..." required>
+                    placeholder="Search for unit" required>
 
             </div>
             <div class="sm:col-span-1">

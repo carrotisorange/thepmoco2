@@ -156,8 +156,8 @@
                         <li role="presentation">
                             <button
                                 class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="wallets-tab" data-tabs-target="#wallets" type="button" role="tab"
-                                aria-controls="wallets" aria-selected="false">Wallets</button>
+                                id="deposits-tab" data-tabs-target="#deposits" type="button" role="tab"
+                                aria-controls="deposits" aria-selected="false">Deposits</button>
                         </li>
                         <li role="presentation">
                             <button
@@ -377,8 +377,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="wallets" role="tabpanel"
-                    aria-labelledby="wallets-tab">
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="deposits" role="tabpanel"
+                    aria-labelledby="deposits-tab">
                     {{-- <x-button
                         onclick="window.location.href='/property/{{ $tenant_details->property_uuid }}/tenant/{{ $tenant_details->uuid }}/bills'">
                         Pay Bills</x-button> --}}
@@ -391,7 +391,7 @@
                                 <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
-                                @include('tenants.tables.wallets')
+                                @include('tenants.tables.deposits')
                             </div>
                         </div>
                     </div>

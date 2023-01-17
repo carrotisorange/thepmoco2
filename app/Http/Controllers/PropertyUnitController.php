@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class PropertyUnitController extends Controller
 {
-    public function index(Property $property, $action=null)
+    public function index(Property $property, $batch_no=null)
     {   
         Session::forget('tenant_uuid');
 
@@ -17,6 +17,9 @@ class PropertyUnitController extends Controller
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
 
-        return view('properties.units.index');
+        return view('properties.units.index',[
+            'property' => $property,
+            'batch_no' => $batch_no
+        ]);
     }
 }

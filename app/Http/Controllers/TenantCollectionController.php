@@ -17,6 +17,7 @@ use App\Models\Bill;
 use \PDF;
 use Carbon\Carbon;
 use App\Models\Contract;
+use App\Models\Particular;
 
 class TenantCollectionController extends Controller
 {
@@ -247,9 +248,15 @@ class TenantCollectionController extends Controller
 
             $bill_id = $request->input("bill_id_".$i);
 
+            //$bill = Bill::find($bill_id);
+
             $total_amount_due = app('App\Http\Controllers\TenantBillController')->get_bill_balance($bill_id);
 
-            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form,);
+            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form);
+
+            // if($bill->particular_id == '3' || $bill->particular_id == '4'){
+            //       app('App\Http\Controllers\WalletController')->store($tenant->uuid, '', $collection, $bill->particular->particular);
+            // }
 
             if(($total_amount_due) <= $collection)
             {
