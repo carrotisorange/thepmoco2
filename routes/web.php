@@ -103,6 +103,10 @@ Route::get('/article7', function(){
     return view('landing.articles.article7');
 });
 
+Route::get('/article8', function(){
+    return view('landing.articles.article8');
+});
+
 
 
 
