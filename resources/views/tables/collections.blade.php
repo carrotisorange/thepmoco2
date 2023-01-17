@@ -2,7 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th> AR #</x-th>
-            <x-th> REFERENCE # </x-th>
+            <x-th> NAME</x-th>
             <x-th> DATE APPLIED</x-th>
             <x-th> DATE DEPOSITED</x-th>
             <x-th> MODE OF PAYMENT</x-th>
@@ -18,8 +18,18 @@
         @foreach($collections as $item)
         <tr>
             <x-td>{{ $item->ar_no }}</x-td>
-            <x-td>  {{ $item->bill_reference_no}}  </x-td>
-            <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}  </x-td>
+            <x-td>
+                @if($item->tenant_uuid)
+                <a class="text-blue-500 text-decoration-line: underline" target="_blank"
+                    href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/collections">{{
+                    $item->tenant->tenant}} </a> (T)
+                @elseif($item->owner_uuid)
+                <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/collections">{{
+                    $item->owner->owner}} </a> (O)
+                @endif
+            </x-td>
+            <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} </x-td>
             <x-td>
                 @if($item->date_deposited)
                 {{ Carbon\Carbon::parse($item->date_deposited)->format('M d, Y') }}
@@ -50,13 +60,13 @@
             </x-td>
             <x-td>
                 @if($item->tenant_uuid)
-               <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view"
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view"
                     class="text-indigo-500 text-decoration-line: underline" target="_blank">View</a>
                 @else
-               <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/view"
+                <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/view"
                     class="text-indigo-500 text-decoration-line: underline" target="_blank">View</a>
                 @endif
-               
+
             </x-td>
 
             <x-td>

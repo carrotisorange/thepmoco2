@@ -13,6 +13,9 @@ class UnitIndexComponent extends Component
 {
     use WithPagination;
 
+    public $property;
+    public $batch_no;
+
     //filter fields
     public $search = '';
     public $selectedUnits = [];
@@ -91,6 +94,9 @@ class UnitIndexComponent extends Component
       })
       ->when($this->occupancy, function($query){
       $query->where('occupancy', $this->occupancy);
+      })
+    ->when($this->batch_no, function($query){
+      $query->where('batch_no', $this->batch_no);
       })
       ->get();
     }

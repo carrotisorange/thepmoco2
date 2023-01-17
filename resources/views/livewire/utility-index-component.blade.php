@@ -73,7 +73,7 @@
                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                wire:click="storeUtilities('water')">Electric</a>
+                                wire:click="storeUtilities('electric')">Electric</a>
                         </li>
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
                                 wire:click="storeUtilities('water')">Water</a>
@@ -87,12 +87,14 @@
 
         </div>
 
+        <div class="mt-3">
+            {{ $utilities->links() }}
+        </div>
+
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="mt-3">
-                    {{ $utilities->links() }}
-                </div>
+
                 {{-- <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     <div class="sm:col-span-4">
 
@@ -168,7 +170,7 @@
                                                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                                wire:click="storeUtilities('water')">Electric</a>
+                                                wire:click="storeUtilities('electric')">Electric</a>
                                         </li>
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
                                                 wire:click="storeUtilities('water')">Water</a>

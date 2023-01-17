@@ -5,16 +5,17 @@
 
     <div class="mt-5">
         @if($bills)
-        <x-form-select class="w-24" wire:model="status">
-            <option value="" {{ $status=="" ? 'selected' : 'Select one' }}>show all bills</option>
+        <label for="status" class="block text-sm font-medium text-gray-700">Filter bills</label>
+        <select wire:model.lazy="status" autocomplete="status"
+            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
             @foreach ($statuses as $item)
-            <option value="{{ $item->status }}" {{ $status==$item->status ? 'selected' : 'selected' }}> show {{
+            <option value="{{ $item->status }}" {{ $status==$item->status ? 'selected' : 'selected' }}> {{
                 $item->status }} bills
             </option>
             @endforeach
+        </select>
 
-
-        </x-form-select>
         @endif
     </div>
 

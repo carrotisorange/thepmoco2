@@ -20,8 +20,7 @@
    
    
                <div class="">
-                  <label for="unit" class="block text-sm font-medium text-gray-700">Unit
-                     No.</label>
+                  <label for="unit" class="block text-sm font-medium text-gray-700">Unit</label>
                   <input type="text" wire:model="unit" readonly
                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                </div>

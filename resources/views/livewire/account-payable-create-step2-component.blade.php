@@ -1,5 +1,5 @@
 <div>
-    <div class="mt-5 px-4 sm:px-6 lg:px-8">
+    <div class=" mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end"> 
             <a href="/property/{{ $property_uuid }}/accountpayable/{{ $accountpayable_id }}/step1" target="_blank"
                 class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</a>
@@ -124,15 +124,6 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
-                    <input type="number" step="0.01" wire:model="quantity" rows="3"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('quantity')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="sm:col-span-2">
                     <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
                     <input type="number" step="0.01" wire:model="amount" rows="3"
                         class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
@@ -141,37 +132,22 @@
                     @enderror
                 </div>
 
-                <div class="sm:col-span-7">
+                <div class="sm:col-span-2">
                     <label class="block text-sm font-medium text-gray-700">Upload the selected Quotation</label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                        <div class="space-y-1 text-center">
-                            <div class="flex text-sm text-gray-600">
-                                <label for="selected_quotation"
-                                    class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span>Upload a file</span>
-                                    <input id="selected_quotation" wire:model="selected_quotation" type="file"
-                                        class="sr-only">
-                                    <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                                    @if($selected_quotation)
-                                    <span class="text-red-500 text-xs mt-2">
-                                        <a href="#/" wire:click="removeQuotation('selected_quotation')">Remove the
-                                            attachment
-                                            .</a></span>
-                                    @endif
-
-                                </label>
-
-                            </div>
-
-                            @error('selected_quotation')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                            @if ($selected_quotation)
-                            <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                    class="fa-solid fa-circle-check"></i></p>
-                            @endif
-                        </div>
+                    <button class="text-gray-700 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button" data-dropdown-toggle="dropdown">Select Quotation<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
+                        <ul class="py-1" aria-labelledby="dropdown">
+                            <li>
+                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Quotation 1</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Quotation 2</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Quotation 3</a>
+                            </li>
+        
+                        </ul>
                     </div>
                 </div>
 

@@ -46,8 +46,9 @@ class UtilityIndexComponent extends Component
             );
 
         }
-
+        
         return redirect('/property/'.$this->property_uuid.'/utilities/'.$batch_no.'/'.$option);
+
     }
 
     public function render()

@@ -74,8 +74,18 @@
                 <h2 class="sr-only">Images</h2>
 
                 <div class="grid grid-cols-2 lg:gap-6">
-                    <img src="{{ asset('/brands/door_detail.png') }}" alt="door"
-                        class="lg:col-span-2 md:row-span-2 rounded-md">
+
+                    @if($unit_details->status_id == '1')
+                  <img src="{{ asset('/brands/vacant.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md" />
+                    @elseif($unit_details->status_id == '2')
+                 <img src="{{ asset('/brands/occupied.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md" />
+                    @elseif($unit_details->status_id == '3')
+                   <img src="{{ asset('/brands/maintenance.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md" />
+                    @elseif($unit_details->status_id == '4' || ($unit_details->status_id == '6'))
+                   <img src="{{ asset('/brands/reserved.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md" />
+                    @else
+                   <img src="{{ asset('/brands/maintenance.png') }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md" />
+                    @endif
 
                     <div class="flex items-center justify-center ml-5">
                         {{-- <a href="#"
@@ -93,9 +103,7 @@
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
                         <li class="mr-2" role="presentation">
-                            <button class="inline-block p-4 rounded-t-lg border-b-2" id="unit-tab"
-                                data-tabs-target="#unit" type="button" role="tab" aria-controls="unit"
-                                aria-selected="false">Unit</button>
+                            <button class="inline-block p-4 rounded-t-lg border-b-2" id="unit-tab" data-tabs-target="#unit" type="button" role="tab" aria-controls="unit" aria-selected="false">Unit</button>
                         </li>
                         <li class="mr-2" role="presentation">
                             <button

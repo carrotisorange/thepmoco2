@@ -1,11 +1,11 @@
-<form class="mt-5 sm:pb-6 xl:pb-8" wire:submit.prevent="">
+<form class="mt-5 sm:pb-6 xl:pb-8">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>
-                <x-th>#</x-th>
-                <x-th>UNIT # </x-th>
-                <x-th>START</x-th>
-                <x-th>END</x-th>
+                {{-- <x-th>#</x-th> --}}
+                <x-th>UNIT </x-th>
+                {{-- <x-th>START</x-th>
+                <x-th>END</x-th> --}}
                 <x-th>PREVIOUS READING</x-th>
                 <x-th>CURRENT READING </x-th>
                 <x-th>CONSUMPTION</x-th>
@@ -19,9 +19,9 @@
             @foreach ($utilities as $index => $item)
             <div wire:key="utility-field-{{ $item->id }}">
                 <tr>
-                    <x-th>
+                    {{-- <x-th>
                         {{ $index+1 }}
-                    </x-th>
+                    </x-th> --}}
                     {{-- <x-td>
                         <div class="flex items-center">
                             <x-input type="checkbox" wire:model="selectedUtilities.{{ $item->id }}" />
@@ -35,21 +35,21 @@
                             {{ $item->unit_uuid }}
                         </a> --}}
                     </x-td>
-                    <x-td>
-                        <x-table-input form="edit-form" type="date" 
+                    {{-- <x-td> --}}
+                        <x-table-input form="edit-form" type="hidden" 
                             wire:change="updateUtilities({{ $item->id }})"
                             wire:model="utilities.{{ $index }}.start_date" readonly/>
                         @error('utilities.{{ $index }}.start_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                    </x-td>
-                    <x-td>
-                        <x-table-input form="edit-form" type="date" wire:model="utilities.{{ $index }}.end_date"
+                    {{-- </x-td> --}}
+                    {{-- <x-td> --}}
+                        <x-table-input form="edit-form" type="hidden" wire:model="utilities.{{ $index }}.end_date"
                             wire:change="updateUtilities({{ $item->id }})" readonly/>
                         @error('utilities.{{ $index }}.end_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                    </x-td>
+                    {{-- </x-td> --}}
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
                             wire:change="updateUtilities({{ $item->id }})"

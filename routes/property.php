@@ -91,17 +91,20 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/{batch_no}/{option}',[UtilityController::class, 'edit'])->name('utilities');
     });
 
+    //route for adding bill to unit based on the utility reading
+    Route::get('unit/{unit}/{type}/utility/{utility}', [UnitBillController::class, 'create'])->name('unit');
+
 
     //Routes for Unit
     Route::prefix('unit')->group(function(){
         Route::get('/', [PropertyUnitController::class, 'index'])->name('unit');
         
             Route::post('{batch_no:batch_no}/store', [UnitController::class, 'store']);
-            Route::get('{batch_no?}/edit', [UnitEditBulkController::class, 'edit']);
+            Route::get('{batch_no?}/edit', [UnitEditBulkController::class, 'edit'])->name('unit');
             Route::get('{batch_no}/create', [UnitController::class, 'create']);
             //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
 
-        Route::prefix('{unit}')->group(function(){
+        Route::prefix('{unit:uuid}')->group(function(){
             Route::get('delete', [UnitController::class, 'destroy']);
             Route::get('/', [UnitController::class, 'show'])->name('unit')->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
@@ -440,5 +443,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/owner_contract', [PropertyController::class, 'show_owner_contract']);
 
     Route::get('roles', [PropertyRoleController::class, 'index']);
+    });
+
+    // owner portal - unit detail
+    Route::get('/unitdetail', function(){
+        return view('portals.owners.unitdetail');
     });
 });

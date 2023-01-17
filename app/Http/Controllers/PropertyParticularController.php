@@ -23,16 +23,12 @@ class PropertyParticularController extends Controller
 
      public function store($property_uuid){
         for($i=1; $i<=8; $i++){ 
-           if($i==3|| $i==4){
-             
-           }else{
             PropertyParticular::create([ 'property_uuid'=> $property_uuid,
             'particular_id'=> $i,
             'minimum_charge' => 0.00,
             'due_date' => 28,
             'surcharge' => 1
             ]);
-           }
       }
      }
 }

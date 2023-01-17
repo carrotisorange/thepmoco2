@@ -8,6 +8,7 @@ use App\Models\Bill;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use DB;
+use App\Models\Particular;
 
 class BillCreateComponent extends Component
 {
@@ -61,16 +62,19 @@ class BillCreateComponent extends Component
 
        try{
 
-         app('App\Http\Controllers\BillController')->store($this->property_uuid, $this->unit->uuid, $this->tenant->uuid, $this->particular_id, $this->start, $this->end, $this->bill, '', 1);
+         app('App\Http\Controllers\BillController')->store($this->property_uuid, $this->unit->uuid, $this->tenant->uuid,'', $this->particular_id, $this->start, $this->end, $this->bill, '', 1);
 
+        if($this->particular_id === '3' || $this->particular_id === '4'){
+            app('App\Http\Controllers\WalletController')->store($this->tenant->uuid, '', $this->bill, Particular::find($this->particular_id)->particular);
+        }
+         
         $this->reset_form();
 
-        return session()->flash('success', 'Bill is successfully posted.');
+         return session()->flash('success', 'Bill is successfully posted.');
 
        }catch(\Exception $e)
        {
-        ddd($e);
-            session()->flash('error');
+         return session()->flash('error');
        }
 
     }

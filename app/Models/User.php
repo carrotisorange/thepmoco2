@@ -82,6 +82,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
         'plan_id' => null,
 
+        'is_portfolio_unlocked' => 1, 
+        'is_contract_unlocked' => 1,
+        'is_concern_unlocked' => 1,
+        'is_tenantportal_unlocked' => 1,
+        'is_ownerportal_unlocked' => 1,
+        'is_accountpayable_unlocked' => 1,
+        'is_accountreceivable_unlocked' => 1,
     ];
 
     public function roles()

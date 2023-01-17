@@ -29,7 +29,7 @@
 
 <!-- step -->
     <h2 class="my-8 font-bold">Step 3</h2>
-    <h1 class="mb-3">Request #</h1>
+    <h1 class="mb-3">Purchase Order</h1>
     <h3 class="mb-3">Status:</h3>
     <h3>Username:</h3>
     <h3>Position:</h3>
@@ -40,6 +40,9 @@
     <h4 class="text-sm my-3">Price:</h4>
     <h4 class="text-sm my-3">Vendor Details:</h4>
     <h4 class="text-sm my-3">Quotation Attachment</h4>
+
+    <h4 class="mt-7 mb-3 font-semibold">Prepared by:</h4>
+    <h4 class="mt-7 mb-3 font-semibold">Name of Approver:</h4>
 
 <!-- footer -->
 

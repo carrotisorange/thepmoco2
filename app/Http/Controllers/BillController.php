@@ -27,17 +27,19 @@ class BillController extends Controller
         ]);
     }
 
-    public function store($property_uuid, $unit_uuid, $tenant_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $isPosted){
-        Bill::updateOrCreate(
-        [   
-            'property_uuid' => $property_uuid,
-            'unit_uuid' => $unit_uuid,
-            'particular_id' => $particular_id,
-            'start' => $start_date,
-            'end' => $end_date, 
-            'batch_no' => $batch_no,
-        ]
-        ,
+    public function store($property_uuid, $unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $isPosted){
+        Bill::create(
+        // [   
+        //     'property_uuid' => $property_uuid,
+        //     'unit_uuid' => $unit_uuid,
+        //     'tenant_uuid' => $tenant_uuid,
+        //     'owner_uuid' => $owner_uuid,
+        //     'particular_id' => $particular_id,
+        //     'start' => $start_date,
+        //     'end' => $end_date, 
+        //     'batch_no' => $batch_no,
+        // ]
+        // ,
         [
             'unit_uuid' => $unit_uuid,
             'particular_id' => $particular_id,
@@ -50,7 +52,8 @@ class BillController extends Controller
             'user_id' => auth()->user()->id,
             'due_date' => Carbon::parse($start_date)->addDays(7),
             'is_posted' => $isPosted,
-            'tenant_uuid' => $tenant_uuid
+            'tenant_uuid' => $tenant_uuid,
+            'owner_uuid' => $owner_uuid
          ]
          );
     }
@@ -175,7 +178,7 @@ class BillController extends Controller
 
     public function show_unit_bills($unit_uuid)
     {
-        return Unit::findOrFail($unit_uuid)->bills()->orderBy('bill_no','desc')->paginate(5);
+        return Bill::where('unit_uuid', $unit_uuid)->get();
     }
     
     public function update_bill_amount_due($bill_id, $status)

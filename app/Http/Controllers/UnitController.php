@@ -134,18 +134,18 @@ class UnitController extends Controller
 
         $total_unit_created = Property::find(Session::get('property'))->units()->count();
 
-        if($plan_unit_limit <= $total_unit_created){
-            return back()->with('error', 'Sorry. You have reached your plan unit limit');
-        }
+        // if($plan_unit_limit <= $total_unit_created){
+        //     return back()->with('error', 'Sorry. You have reached your plan unit limit');
+        // }
 
         $request->validate([
             'number_of_units' => ['integer', 'required', 'min:1', 'gt:0']
         ]);
-
+        
        for($i=$request->number_of_units; $i>=1; $i--){
             Unit::create([
                 'uuid' => Str::uuid(),
-                'unit' => 'Unit '.$i,
+                'unit' => 'Unit '.$total_unit_created++,
                 'building_id' => '1',
                 'floor_id' => '1',
                 'property_uuid' => Session::get('property'),
@@ -158,8 +158,7 @@ class UnitController extends Controller
 
         app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, $request->number_of_units, 5);
         
-        return redirect('/property/'.Session::get('property').'/unit/'.$batch_no.'/edit')->with('success', $units.' unit
-        is successully created.');
+        return redirect('/property/'.Session::get('property').'/unit/'.$batch_no.'/edit')->with('success', $units.' unit is successully created.');
     }
 
     public function show(Property $property, Unit $unit)

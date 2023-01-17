@@ -7,7 +7,7 @@
 
             </x-th> --}}
             <x-th>Bill #</x-th>
-
+            <x-th>Tenant</x-th>
             <x-th>Particular</x-th>
             <x-th>Period</x-th>
             <x-th>Amount Due</x-th>
@@ -26,7 +26,15 @@
                 @endif
             </x-td> --}}
             <x-td>{{ $item->bill_no }}</x-td>
-
+            <x-td>
+                @if($item->tenant_uuid)
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}"
+                    class="text-purple-500 text-decoration-line: underline">{{ $item->tenant->tenant }}</a>
+                @elseif($item->owner_uuid)
+                <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}"
+                    class="text-purple-500 text-decoration-line: underline">{{ $item->owner->owner }}</a>
+                @endif
+            </x-td>
             <x-td>{{$item->particular->particular }}</x-td>
             <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
                 Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
@@ -60,7 +68,7 @@
         @endforeach
         <tr>
             <x-td>Total</x-td>
-            
+            <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
             <x-td>{{number_format($bills->sum('bill'),2) }}</x-td>

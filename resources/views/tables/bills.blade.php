@@ -1,8 +1,8 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-            <x-th></x-th>
-          
+            {{-- <x-th></x-th>
+           --}}
             <x-th>BILL # </x-th>
             <x-th>DATE POSTED</x-th>
             <x-th>NAME</x-th>
@@ -18,7 +18,7 @@
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($bills as $index => $item)
         <tr>
-            <x-td>{{ $index+1 }}</x-td>
+            {{-- <x-td>{{ $index+1 }}</x-td> --}}
             
             <x-td>
                 {{ $item->bill_no}}
@@ -30,11 +30,11 @@
                 @if($item->tenant_uuid)
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills">{{
-                    $item->tenant->tenant}}</a>
+                    $item->tenant->tenant}}</a> (T)
                 @elseif($item->owner_uuid)
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/bills">{{
-                    $item->owner->owner}}</a>
+                    $item->owner->owner}}</a> (O)
                 @endif
             </x-td>
             <x-td>
@@ -92,8 +92,8 @@
             <x-th>Total</x-th>
             <x-td> </x-td>
             <x-td> </x-td>
-            <x-td> </x-td>
-            <x-td> </x-td>
+  
+ 
             <x-td></x-td>
             <x-td></x-td>
             <x-td> </x-td>

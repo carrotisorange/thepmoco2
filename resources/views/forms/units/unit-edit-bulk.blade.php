@@ -2,8 +2,8 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>
-                <x-th>
-                    #</x-th>
+                {{-- <x-th>
+                    #</x-th> --}}
                 <x-th>
                     {{-- <div class="flex items-center">
                         <x-input wire:model="selectedAllUnits" type="checkbox" />
@@ -15,12 +15,12 @@
                 {{--<x-th>
                     Building
                 </x-th> --}}
-                <x-th>
+                {{-- <x-th>
                     Floor
                 </x-th>
                 <x-th>
                     Category
-                </x-th>
+                </x-th> --}}
                 <x-th>
                     Size (sqm)
                 </x-th>
@@ -37,9 +37,9 @@
             @foreach ($units as $index => $item)
             <div wire:key="unit-field-{{ $item->uuid }}">
                 <tr>
-                    <x-th>
+                    {{-- <x-th>
                         {{ $index+1 }}
-                    </x-th>
+                    </x-th> --}}
                     <x-td>
                         <div class="flex items-center">
                             <x-input form="edit-form" type="checkbox" wire:model="selectedUnits.{{ $item->uuid }}" />
@@ -65,14 +65,14 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                         </x-td> --}}
-                        <x-td>
+                        {{-- <x-td>
                             <x-table-select form="edit-form" wire:model="units.{{ $index }}.floor_id">
                                 <option value="">Select a floor</option>
                                 @foreach ($floors as $floor)
-                                <option value="{{ $floor->id }}" {{ $floor->id ==
-                                    'units'.$index.'floor_id'? 'selected' : '' }}>
+                                <option value="{{ $floor->id }}" {{ $floor->id === 'units'.$index.'floor_id'? 'selected' : 'selected' }}>
                                     {{ $floor->floor }}
                                 </option>
+                               
                                 @endforeach
                             </x-table-select>
                             @error('units.{{ $index }}.floor_id')
@@ -92,7 +92,7 @@
                             @error('units.{{ $index }}.category_id')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        </x-td>
+                        </x-td> --}}
                         <x-td>
                             <x-table-input form="edit-form" type="text" min="1" wire:model="units.{{ $index }}.size" />
                             @error('units.{{ $index }}.size')

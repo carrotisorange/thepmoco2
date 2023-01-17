@@ -1,5 +1,5 @@
 @if($utilities->count())
- <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
@@ -12,6 +12,9 @@
             <x-th>RATE</x-th>
             <x-th>MIN CHARGE</x-th>
             <x-th>AMOUNT DUE</x-th>
+            <x-th>STATUS</x-th>
+            <x-th></x-th>
+
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -44,13 +47,28 @@
                 @else
                 cum
                 @endif
-              
+
             </x-td>
             <x-td>
                 {{ number_format($item->min_charge, 2) }}
             </x-td>
             <x-td>
                 {{ number_format($item->total_amount_due,2) }}
+            </x-td>
+            <x-td>
+                {{ $item->status }}
+            </x-td>
+            <x-td>
+                @if($item->status === 'unbilled')
+
+
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/utility/{{ $item->id }}"
+                    class="text-indigo-500 text-decoration-line: underline">Bill to tenant</a>
+|
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/utility/{{ $item->id }}"
+                    class="text-indigo-500 text-decoration-line: underline">Bill to owner</a>
+
+                @endif
             </x-td>
         </tr>
         @endforeach
@@ -67,8 +85,7 @@
     <h3 class="mt-2 text-sm font-medium text-gray-900">No utilities</h3>
     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
     <div class="mt-6">
-        <button type="button"
-            onclick="window.location.href='/property/{{ Session::get('property') }}/utilities'"
+        <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/utilities'"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
             <!-- Heroicon name: mini/plus -->
             <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"

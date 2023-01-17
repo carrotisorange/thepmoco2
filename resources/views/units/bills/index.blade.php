@@ -13,5 +13,5 @@
                     Go back</a></button>
 
             </div>
-            @include('portals.tenants.tables.bills')
+            @include('units.tables.bills')
 </x-new-layout>

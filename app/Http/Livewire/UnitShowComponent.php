@@ -101,7 +101,7 @@ class UnitShowComponent extends Component
             'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($this->unit_details->uuid),
             'total_collected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
-            'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->get(),
+            'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->orderBy('type')->orderBy('created_at')->get(),
             'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get(),
             // 'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->get()
         ]);

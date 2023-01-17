@@ -96,7 +96,7 @@
                                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <x-th>#</x-th>
-                                        <x-th>UNIT # </x-th>
+                                        <x-th>UNIT </x-th>
                                         <x-th>START</x-th>
                                         <x-th>END </x-th>
                                         <x-th>PARTICULAR</x-th>

@@ -1,86 +1,93 @@
 <div>
     @if(!App\Models\UserProperty::where('user_id', Auth::user()->id)->count())
-    <nav aria-label="Progress">
-        <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-            <li class="relative md:flex md:flex-1">
-                <!-- Completed Step -->
-                <a href="#" class="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
-                    <span
-                        class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
-                        <span class="text-indigo-600">01</span>
-                    </span>
-                    <span class="ml-4 text-sm font-medium text-indigo-600">Create a property</span>
-                </a>
-
-                <!-- Arrow separator for lg screens and up -->
-                <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
-                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
-                            stroke-linejoin="round" />
-                    </svg>
-                </div>
-            </li>
-
-            <li class="relative md:flex md:flex-1">
-                <!-- Current Step -->
-                <a href="#" class="group flex items-center">
-                    <span class="flex items-center px-6 py-4 text-sm font-medium">
+    <div class="mt-10">
+        <nav aria-label="Progress">
+            <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+                <li class="relative md:flex md:flex-1">
+                    <!-- Completed Step -->
+                    <a href="#" class="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
                         <span
-                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                            <span class="text-gray-500 group-hover:text-gray-900">02</span>
+                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
+                            <span class="text-purple-500">01</span>
                         </span>
-                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add units to
+                        <span class="ml-4 text-sm font-medium text-purple-500">Create a property</span>
+                    </a>
+
+                    <!-- Arrow separator for lg screens and up -->
+                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
+                            preserveAspectRatio="none">
+                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </li>
+
+                <li class="relative md:flex md:flex-1">
+                    <!-- Current Step -->
+                    <a href="#" class="group flex items-center">
+                        <span class="flex items-center px-6 py-4 text-sm font-medium">
+                            <span
+                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                                <span class="text-gray-500 group-hover:text-gray-900">02</span>
                             </span>
-                    </span>
-                </a>
-
-                <!-- Arrow separator for lg screens and up -->
-                <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
-                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
-                            stroke-linejoin="round" />
-                    </svg>
-                </div>
-            </li>
-
-            <li class="relative md:flex md:flex-1">
-                <!-- Current Step -->
-                <a href="#" class="group flex items-center">
-                    <span class="flex items-center px-6 py-4 text-sm font-medium">
-                        <span
-                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                            <span class="text-gray-500 group-hover:text-gray-900">03</span>
+                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add units
+                            </span>
                         </span>
-                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add tenants</span>
-                    </span>
-                </a>
+                    </a>
 
+                    <!-- Arrow separator for lg screens and up -->
+                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
+                            preserveAspectRatio="none">
+                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </li>
 
-                <!-- Arrow separator for lg screens and up -->
-                <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
-                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
-                            stroke-linejoin="round" />
-                    </svg>
-                </div>
-            </li>
-
-
-
-            <li class="relative md:flex md:flex-1">
-                <!-- Upcoming Step -->
-                <a href="#" class="group flex items-center">
-                    <span class="flex items-center px-6 py-4 text-sm font-medium">
-                        <span
-                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                            <span class="text-gray-500 group-hover:text-gray-900">04</span>
+                <li class="relative md:flex md:flex-1">
+                    <!-- Current Step -->
+                    <a href="#" class="group flex items-center">
+                        <span class="flex items-center px-6 py-4 text-sm font-medium">
+                            <span
+                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                                <span class="text-gray-500 group-hover:text-gray-900">03</span>
+                            </span>
+                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
+                                tenants</span>
                         </span>
-                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add personnels</span>
-                    </span>
-                </a>
-            </li>
-        </ol>
-    </nav>
+                    </a>
+
+
+                    <!-- Arrow separator for lg screens and up -->
+                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
+                            preserveAspectRatio="none">
+                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </li>
+
+
+
+                <li class="relative md:flex md:flex-1">
+                    <!-- Upcoming Step -->
+                    <a href="#" class="group flex items-center">
+                        <span class="flex items-center px-6 py-4 text-sm font-medium">
+                            <span
+                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                                <span class="text-gray-500 group-hover:text-gray-900">04</span>
+                            </span>
+                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
+                                personnels</span>
+                        </span>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </div>
     {{-- <h2 class="text-2xl font-bold tracking-tight text-gray-900 font-pop">Welcome, {{
         auth()->user()->name }}!</h2> --}}
     <!-- This example requires Tailwind CSS v2.0+ -->
@@ -93,16 +100,28 @@
         <h3 class="mt-2 text-sm font-medium text-gray-900">No properties</h3>
         <p class="mt-1 text-sm text-gray-500">Get started by creating a new property.</p>
         <div class="mt-6">
-            <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/create'"
-                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                <!-- Heroicon name: solid/plus -->
+            <button type="button" wire:loading wire:target="submitForm" disabled
+                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Loading...
+            </button>
+            <button type="submit" wire:click="submitForm()" wire:loading.remove
+                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+                <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                    </circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
+                </svg>
                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                     fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd"
                         d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
                         clip-rule="evenodd" />
                 </svg>
-                New Property
+                Create your first property
             </button>
         </div>
     </div>
