@@ -7,7 +7,6 @@ use App\Models\AccountPayable;
 use Session;
 use Livewire\WithFileUploads;
 
-use function PHPSTORM_META\map;
 
 class AccountPayableCreateStep2Component extends Component
 {
@@ -20,7 +19,6 @@ class AccountPayableCreateStep2Component extends Component
     public $quotation3;
     public $vendor;
     public $amount;
-    public $quantity;
     public $selected_quotation;
     
     public $property_uuid;
@@ -36,9 +34,8 @@ class AccountPayableCreateStep2Component extends Component
             'quotation2' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'quotation3' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'vendor' => 'required',
-            'quantity' => 'required',
             'amount' => 'required',
-            'selected_quotation' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'selected_quotation' => 'required',
         ];
     }
 
@@ -63,17 +60,13 @@ class AccountPayableCreateStep2Component extends Component
             ->update([
                 'quotation1' => $this->quotation1->store('accountpayables'),
             ]);
-        }   
-        
-        if($this->quotation2){
+        }if($this->quotation2){
             AccountPayable::where('id', $this->accountpayable_id)
             ->update([
                 'quotation2' => $this->quotation1->store('accountpayables'),
             ]);
             
-        }     
-
-        if($this->quotation3){
+        }if($this->quotation3){
             AccountPayable::where('id', $this->accountpayable_id)
             ->update([
                 'quotation3' => $this->quotation3->store('accountpayables'),
@@ -81,17 +74,32 @@ class AccountPayableCreateStep2Component extends Component
             
         }     
 
-        if($this->selected_quotation){
+        if($this->selected_quotation === 'quotation1'){
             AccountPayable::where('id', $this->accountpayable_id)
-            ->update([
-                'selected_quotation' => $this->selected_quotation->store('accountpayables'),
-                'amount' => $this->amount,
-                'quantity' => $this->quantity,
-                'vendor' => $this->vendor
-            ]);
-            
-        }   
+              ->update([
+              'selected_quotation' => $this->quotation1->store('accountpayables'),
+              'amount' => $this->amount,
+              'vendor' => $this->vendor
+              ]);
+        }
 
+        if($this->selected_quotation === 'quotation2'){
+             AccountPayable::where('id', $this->accountpayable_id)
+              ->update([
+              'selected_quotation' => $this->quotation2->store('accountpayables'),
+              'amount' => $this->amount,
+              'vendor' => $this->vendor
+              ]);
+        }
+
+        if($this->selected_quotation === 'quotation3'){
+             AccountPayable::where('id', $this->accountpayable_id)
+              ->update([
+              'selected_quotation' => $this->quotation3->store('accountpayables'),
+              'amount' => $this->amount,
+              'vendor' => $this->vendor
+              ]);
+        }
 
         return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-3')
         ->with('success', 'Step 2 is successfully accomplished!');

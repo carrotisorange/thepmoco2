@@ -41,7 +41,7 @@ class AccountPayableCreateStep3Component extends Component
 
         app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable_id, 'approved by admin', $this->comment);
 
-        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-3')->with('success', 'Step 3 is successfully accomplished!');
+        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-4')->with('success', 'Step 3 is successfully accomplished!');
     }
 
     public function rejectRequest(){

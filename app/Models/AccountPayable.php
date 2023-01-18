@@ -14,6 +14,10 @@ class AccountPayable extends Model
         'status' => 'pending'
     ];
 
+    protected $casts = [
+        'particular' => 'array'
+    ];
+
     public function property()
     {
         return $this->belongsTo(Property::class, 'property_uuid');

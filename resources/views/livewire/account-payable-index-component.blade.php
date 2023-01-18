@@ -24,10 +24,10 @@
                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                href="/property/{{ Session::get('property') }}/accountpayable/{{ Str::random(8) }}/step-1"
+                                href="/property/{{ Session::get('property') }}/accountpayable/{{ 'purchase' }}/step-1"
                                 data-modal-toggle="create-particular-modal">purchase</a>
                         </li>
-                       
+
 
                     </ul>
 
@@ -114,7 +114,7 @@
                                                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property') }}/accountpayable/{{ Str::random(8) }}/step-1"
+                                                href="/property/{{ Session::get('property') }}/accountpayable/{{ 'purchase' }}/step-1"
                                                 data-modal-toggle="create-particular-modal">to purchase</a>
                                         </li>
                                         {{-- <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a

@@ -256,6 +256,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                     Route::get('export', [ContractController::class, 'export']);
                     Route::get('transfer', [ContractController::class, 'transfer'])->name('tenant');
                     Route::get('movein', [ContractController::class, 'movein'])->name('tenant');
+                    Route::get('moveout/export', [ContractController::class, 'export_moveout_form']);
                   
                 });
             });  
@@ -348,28 +349,25 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{str_random}/create', 'create')->name('accountpayable');
 
             //step 1
-            Route::get('{random_str}/step-1', 'create_step_1')->name('accountpayable');
-            Route::post('step-1', 'store_step_1');
+            Route::get('{request_for}/step-1', 'create_step_1')->name('accountpayable');
 
             //step 2
             Route::get('{random_str}/step-2', 'create_step_2')->name('accountpayable');
-            Route::post('step-2', 'store_step_2');
 
             //step 3
             Route::get('{random_str}/step-3', 'create_step_3')->name('accountpayable');
-            Route::post('step-3', 'store_step_3');
+    
 
             //step 4
             Route::get('{random_str}/step-4', 'create_step_4')->name('accountpayable');
-            Route::post('step-4', 'store_step_4');
 
             //step 5
             Route::get('{random_str}/step-5', 'create_step_5')->name('accountpayable');
-            Route::post('step-5', 'store_step_5');
+
 
             //step 6
             Route::get('{random_str}/step-6', 'create_step_6')->name('accountpayable');
-            Route::post('step-6', 'store_step_6');
+   
 
             //request status sample
             Route::get('{random_str}/request-status', 'create_request_status')->name('accountpayable');

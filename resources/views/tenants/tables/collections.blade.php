@@ -74,25 +74,7 @@
             </x-td>
         </tr>
         @endforeach
-        <tr>
-            <x-td>Total</x-td>
-            <x-td></x-td>
-            <x-td></x-td>
-            <x-td></x-td>
-            <x-td></x-td>
-            <x-td></x-td>
-            <x-td></x-td>
-            <?php
-                        $property_collections_count = App\Models\Collection::posted()->where('property_uuid', Session::get('property'))->count();
-                        ?>
-            <x-td>
-                {{ number_format($collections->sum('amount'), 2) }}
-            </x-td>
-            <x-td></x-td>
-            <x-td></x-td>
-            <x-td></x-td>
-            <x-td></x-td>
-        </tr>
+      
     </tbody>
 </table>
 @else

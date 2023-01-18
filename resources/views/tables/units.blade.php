@@ -40,7 +40,7 @@
         @foreach($units as $index => $unit )
         <tr>
             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $index+1 }}
+                {{-- {{ $index+1 }} --}}
             </td>
 
             <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">

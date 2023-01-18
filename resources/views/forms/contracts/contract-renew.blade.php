@@ -1,8 +1,16 @@
 <form class="space-y-6" wire:submit.prevent="submitForm()" enctype="multipart/form-data" method="POST">
-    <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="mt-1 px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-1 md:gap-6">
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <div class="grid grid-cols-2 gap-6">
+                    <div class="col-span-2">
+                        <label for="unit" class="block text-sm font-medium text-gray-700">Unit</label>
+                        <input type="text" wire:model.lazy="unit" autocomplete="unit" readonly
+                            class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('unit')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <div class="col-span-1">
                         <label for="start" class="block text-sm font-medium text-gray-700">Start of the contract</label>
                         <input type="date" wire:model.lazy="start" autocomplete="start"
@@ -74,9 +82,6 @@
 
                         @endif
                         @enderror
-
-
-
                     </div>
 
                     @if($contract_details->tenant->email)
@@ -98,8 +103,9 @@
         </div>
 
         <div class="flex justify-end mt-5">
-            <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="{{ url()->previous() }}">
-               Cancel
+            <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
+                href="{{ url()->previous() }}">
+                Cancel
             </a>
             <button type="submit"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

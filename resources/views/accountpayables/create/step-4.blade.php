@@ -92,7 +92,7 @@
               
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-gray-500">Step 3:</span>
-                                        <span class="text-sm font-medium text-gray-500">Approval (Admin)</span>
+                                        <span class="text-sm font-medium text-gray-500">Approval (manager)</span>
                                     </span>
                                 </span>
                             </a>
@@ -152,7 +152,7 @@
               
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-gray-500">Step 5:</span>
-                                        <span class="text-sm font-medium text-gray-500">Approval (Manager)</span>
+                                        <span class="text-sm font-medium text-gray-500">Approval (account payable)</span>
                                     </span>
                                 </span>
                             </a>

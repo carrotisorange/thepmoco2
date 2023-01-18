@@ -22,6 +22,7 @@ class RenewContractComponent extends Component
       public $rent;
       public $start;
       public $end;
+      public $unit;
 
       public $discount;
       public $contract;
@@ -34,6 +35,7 @@ class RenewContractComponent extends Component
          $this->contract_details = $contract_details;
          $this->start = Carbon::parse($this->contract_details->start)->format('Y-m-d');
          $this->rent = $contract_details->rent;
+         $this->unit  = $contract_details->unit->unit;
          $this->discount = $contract_details->discount;
          $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
       }

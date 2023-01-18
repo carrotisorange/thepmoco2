@@ -165,7 +165,7 @@
 
                 </div>
 
-                @can('admin')
+                @can('manager')
                 <div class="sm:col-span-6">
                     <textarea placeholder="Add your comment..." wire:model="comment"
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
@@ -179,14 +179,14 @@
                 </div>
                 @endcan
 
-                @if($accountpayable->status === 'approved by admin')
+                @if($accountpayable->status === 'approved by manager')
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-green-700"><i
                             class="fa-solid fa-circle-check"></i> Approved by: {{
                         $accountpayable->requester->name }} </label>
 
                 </div>
-                @elseif($accountpayable->status === 'rejected by admin')
+                @elseif($accountpayable->status === 'rejected by manager')
 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-red-700"><i
@@ -198,7 +198,7 @@
 
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                    @can('admin')
+                    @can('manager')
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                         href="#/" wire:click="rejectRequest()">
                         Reject
@@ -218,7 +218,7 @@
                         Approve
                     </button>
                     @else
-                    @if($accountpayable->status === 'approved by admin')
+                    @if($accountpayable->status === 'approved by manager')
                     <button
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 

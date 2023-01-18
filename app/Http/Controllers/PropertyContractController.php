@@ -13,7 +13,9 @@ class PropertyContractController extends Controller
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',5);
 
-        return view('properties.contracts.index');
+        return view('properties.contracts.index',[
+            'property' => $property
+        ]);
        
     }
 }
