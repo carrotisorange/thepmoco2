@@ -38,8 +38,11 @@ class AccountPayableController extends Controller
         ->get();
     }
 
-    public function create_step_1($property_uuid){
-        return view('accountpayables.create.step-1');
+    public function create_step_1(Property $property, $request_for){
+        return view('accountpayables.create.step-1',[
+            'property' => $property,
+            'request_for' =>  $request_for,
+        ]);
     }
 
     public function create_step_2($property_uuid, $accountpayable_id){
@@ -149,7 +152,7 @@ class AccountPayableController extends Controller
     {
         return view('accountpayables.create');
     }
-    public function store_step_1($property_uuid, $request_for, $created_at, $requester_id, $particular){
+    public function store_step_1($property_uuid, $request_for, $created_at, $requester_id, $particular, $quantity){
            
     return AccountPayable::updateOrCreate(
          [
@@ -165,7 +168,8 @@ class AccountPayableController extends Controller
          'request_for' => $request_for,
          'created_at' => $created_at,
          'requester_id' => $requester_id,
-         'particular' => $particular
+         'particular' => $particular,
+         'quantity' => $quantity
          ])->id; 
     }
 

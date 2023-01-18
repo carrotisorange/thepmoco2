@@ -1,6 +1,6 @@
 <div>
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-end"> 
+        <div class="flex justify-end">
             <a href="/property/{{ $property_uuid }}/accountpayable/{{ $accountpayable_id }}/step1" target="_blank"
                 class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</a>
         </div>
@@ -10,7 +10,7 @@
             <div class="md:grid md:grid-cols-6 md:gap-6">
                 <div class="sm:col-span-7">
                     <label for="" class="block text-sm font-medium text-gray-700">Please upload the quotations</label>
-               
+
                 </div>
 
                 <div class="sm:col-span-2">
@@ -115,7 +115,30 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="vendor" class="block text-sm font-medium text-gray-700">Name:</label>
+                    <label for="vendor" class="block text-sm font-medium text-gray-700">Select a quotation:</label>
+                    <select id="selected_quotation" wire:model="selected_quotation"
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                        @if($quotation1 && !$quotation2 && !$quotation3)
+                        <option value="quotation1">Quotation 1</option>
+                        @elseif($quotation1 && $quotation2 && !$quotation3)
+                        <option value="quotation1">Quotation 1</option>
+                        <option value="quotation2">Quotation 2</option>
+                        @elseif($quotation1 && $quotation2 && $quotation3)
+                        <option value="quotation1">Quotation 1</option>
+                        <option value="quotation2">Quotation 2</option>
+                        <option value="quotation3">Quotation 3</option>
+                        @else
+                        <option value="">Please select one</option>
+                        @endif
+
+                    </select>
+                    @error('selected_quotation')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="vendor" class="block text-sm font-medium text-gray-700">Name of the vendor:</label>
                     <input type="text" wire:model="vendor" rows="3"
                         class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                     @error('vendor')
@@ -124,7 +147,7 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
+                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount of the quotation</label>
                     <input type="number" step="0.01" wire:model="amount" rows="3"
                         class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                     @error('amount')
@@ -132,24 +155,6 @@
                     @enderror
                 </div>
 
-                <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700">Upload the selected Quotation</label>
-                    <button class="text-gray-700 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button" data-dropdown-toggle="dropdown">Select Quotation<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                    <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
-                        <ul class="py-1" aria-labelledby="dropdown">
-                            <li>
-                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Quotation 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Quotation 2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Quotation 3</a>
-                            </li>
-        
-                        </ul>
-                    </div>
-                </div>
 
 
 

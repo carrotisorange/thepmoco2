@@ -5,7 +5,9 @@
             @can('contract')
             @include('admin.restrictedpages.contract')
             @else
-            @livewire('contract-index-component')
+            @livewire('contract-index-component', [
+                'property' => $property
+            ])
             @endcan
         </div>
     </div>

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class UnitInventory extends Model
 {
     use HasFactory;
+
+    protected $table = 'unit_inventories';
+
+    protected $casts = [
+        'item' => 'array'
+    ];
 }

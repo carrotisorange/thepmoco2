@@ -9,10 +9,11 @@ use App\Models\AccountPayable;
 
 class AccountPayableCreateStep1Component extends Component
 {
-    public $request_for = 'purchase';
+    public $request_for;
     public $created_at;
     public $requester_id;
-    public $particular;
+    public $particular = [];
+    public $quantity;
     public $property_uuid;
     
     public function mount()
@@ -28,7 +29,8 @@ class AccountPayableCreateStep1Component extends Component
             'request_for' => 'required',
             'created_at' => 'required',
             'requester_id' => 'required',
-            'particular' => 'required'
+            'particular' => 'required',
+            'quantity' => 'required'
         ];
     }
 
@@ -37,7 +39,9 @@ class AccountPayableCreateStep1Component extends Component
         $this->validateOnly($propertyName);
     }
 
-
+    public function addParticular(){
+        ddd('adding more particulars');
+    }
 
     public function submitForm()
     {
@@ -45,7 +49,14 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->validate();
 
-        $accountpayable_id = app('App\Http\Controllers\AccountPayableController')->store_step_1($this->property_uuid, $this->request_for, $this->created_at, $this->requester_id, $this->particular);
+        $accountpayable_id = app('App\Http\Controllers\AccountPayableController')->store_step_1(
+            $this->property_uuid, 
+            $this->request_for, 
+            $this->created_at, 
+            $this->requester_id, 
+            $this->particular,
+            $this->quantity
+        );
 
         if($this->request_for === 'purchase'){
             return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');

@@ -8,7 +8,7 @@
                     <h1 class="text-3xl font-bold text-black-900">{{ $tenant_details->tenant }}</h1>
 
                     <button
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                         id="dropdownButton" data-dropdown-toggle="tenantCreateDropdown" type="button">Add
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -72,13 +72,13 @@
                             @can('tenantportal')
                             <button type="button"
                                 onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/unlock'"
-                                class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                 Send access to tenant portal
                             </button>
                             @else
                             @if(!App\Models\User::where('email', $tenant_details->email)->count())
                             <button type="button" wire:click="sendCredentials"
-                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
                                 <svg wire:loading wire:target="sendCredentials"
                                     class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -188,7 +188,7 @@
                                         {{-- @if($tenant_details->type == 'studying') --}}
                                         <div class="sm:col-span-4">
                                             <div
-                                                class="h-44 bg-purple-100 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                                class="h-44 bg-purple-100 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-purple-600 focus-within:border-purple-600">
                                                 <label for="course"
                                                     class="block text-xs font-medium text-gray-900">Course</label>
                                                 <input type="text" wire:model.lazy="course"
@@ -231,7 +231,7 @@
                                         </div>
                                         <div class="sm:col-span-4">
                                             <div
-                                                class="h-32 bg-purple-100 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                                class="h-32 bg-purple-100 relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-purple-600 focus-within:border-purple-600">
                                                 <label for="job-title"
                                                     class="block text-xs font-medium text-gray-900">Occupation</label>
                                                 <input type="text" wire:model.lazy="occupation"
@@ -265,7 +265,7 @@
                                     </div>
                                     <p class="text-right">
                                         <button type="submit" form="updateTenant"
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
                                             <svg wire:loading wire:target="submitForm"
                                                 class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

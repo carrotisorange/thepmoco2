@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Mail\SendContractToTenant;
+use App\Mail\sendContractToTenantToTenant;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
@@ -29,14 +30,14 @@ class TransferContractComponent extends Component
     public $discount;
     public $contract;
     public $term;
-    public $sendContract;
+    public $sendContractToTenant;
 
     public function mount()
     {
       $this->start = Carbon::now()->format('Y-m-d');
       $this->end = Carbon::now()->addYear()->format('Y-m-d');
       $this->term = Carbon::now()->addYear()->diffInMonths(Carbon::now()).' months';
-      $this->sendContract = false;
+      $this->sendContractToTenant = false;
     }
 
     public function hydrateTerm()
@@ -151,7 +152,7 @@ class TransferContractComponent extends Component
        'unit' => Unit::find($this->unit_uuid)->unit,
        ];
 
-      if($this->sendContract)
+      if($this->sendContractToTenant)
       {
         Mail::to($this->contract_details->tenant->email)->send(new SendContractToTenant($details));
       }

@@ -154,7 +154,7 @@
 
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
             {{-- start-step-3-form --}}
-            @livewire('contract-moveout-step3-component', ['contract' => $contract])
+            @livewire('contract-moveout-step3-component', ['property'=> $property, 'tenant' => $tenant ,'contract' => $contract])
             {{-- end-step-3-form --}}
         </div>
     </div>

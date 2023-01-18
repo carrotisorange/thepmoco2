@@ -3,8 +3,8 @@
         <i class="fa-solid fa-circle-check"></i>
         <h3 class="mt-2 text-sm font-medium text-gray-900">Tenant has been marked as cleared</h3>
         <p class="mt-1 text-sm text-gray-500">
-            <a class="text-blue-500 text-decoration-line: underline"
-                href="" wire:click="exportMoveoutClearanceForm()">Export Moveout Clearance Form</a>
+            {{-- <a class="text-blue-500 text-decoration-line: underline"
+                href="#" wire:click="exportMoveoutClearanceForm()">Export Moveout Clearance Form</a> --}}
         </p>
         <div class="mt-6">
             <button type="button" wire:click="submitForm()"

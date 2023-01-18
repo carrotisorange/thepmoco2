@@ -203,6 +203,8 @@ class ContractController extends Controller
     public function moveout_step_3(Property $property, Tenant $tenant, Contract $contract)
     {
         return view('contracts.moveouts.step-3', [
+            'property' => $property,
+            'tenant' => $tenant,
             'contract' => $contract
         ]);
     }
@@ -300,6 +302,10 @@ class ContractController extends Controller
         return view('contracts.new-contract',[
             'tenant' => $tenant
         ]);
+    }
+
+    public function export_moveout_form(Property $property, Tenant $tenant, Contract $contract){
+        return view('contracts.moveouts.clearance');
     }
 
     public function destroy()
