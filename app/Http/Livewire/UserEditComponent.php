@@ -10,9 +10,8 @@ use App\Models\User;
 use Auth;
 use App\Models\Role;
 use App\Models\Timestamp;
-use Session;
 use Livewire\WithPagination;
-
+use App\Models\Session;
 
 class UserEditComponent extends Component
 {
@@ -195,10 +194,7 @@ class UserEditComponent extends Component
             'properties' => User::find($this->user->id)->user_properties()->get(),
             'all_properties' => User::find(auth()->user()->id)->user_properties()->get(),
             'roles' => app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(),
-             'sessions' => \App\Models\Session::where('user_id',auth()->user()->id)
-             ->orderBy('created_at', 'desc')
-             ->limit(10)
-             ->get()
+            'sessions' => User::find($this->user->id)->sessions
         ]);
     }
 }
