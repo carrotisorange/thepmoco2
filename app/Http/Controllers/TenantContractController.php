@@ -34,7 +34,11 @@ class TenantContractController extends Controller
     {
         Session::put('tenant_uuid', $tenant->uuid);
          
-        return view('units.index');
+        return view('units.index', [
+            'property' => $property, 
+            'tenant' => $tenant,
+            'batch_no' => '',
+        ]);
     }
 
     public function show_tenant_contracts($tenant_uuid)
