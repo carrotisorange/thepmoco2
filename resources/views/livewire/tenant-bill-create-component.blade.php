@@ -40,7 +40,7 @@
 
             </div>
             <div class="basis-1/4 ml-12 text-right">
-                @can('accountowner')
+                @can('billing')
                 @if($selectedBills)
                 <x-button
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
