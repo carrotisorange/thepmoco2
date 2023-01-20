@@ -2,10 +2,13 @@
     @include('layouts.notifications')
     <div class="min-h-screen mt-8 max-w-2xl mx-auto pb-56 sm:px-20 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
+            <div class="lg:col-start-4 lg:col-span-9">
+                <h1 class="text-3xl font-bold text-black-900">{{ $tenant_details->tenant }}</h1>
+            </div>
             <div class="lg:col-start-5 lg:col-span-9">
-                <div class="flex justify-between">
+                <div class="flex justify-end">
 
-                    <h1 class="text-3xl font-bold text-black-900">{{ $tenant_details->tenant }}</h1>
+                    
 
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
@@ -117,50 +120,50 @@
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
                         <li class="mr-2" role="presentation">
-                            <button class="inline-block p-4 rounded-t-lg border-b-2" id="tenant-tab"
+                            <button class="font-bold inline-block p-4 rounded-t-lg border-b-2" id="tenant-tab"
                                 data-tabs-target="#tenant" type="button" role="tab" aria-controls="tenant"
                                 aria-selected="false">Tenant</button>
                         </li>
 
                         <li class="mr-2" role="presentation">
                             <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="contracts-tab" data-tabs-target="#contracts" type="button" role="tab"
                                 aria-controls="contracts" aria-selected="false">Contracts</button>
                         </li>
                         <li class="mr-2" role="presentation">
                             <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="guardians-tab" data-tabs-target="#guardians" type="button" role="tab"
                                 aria-controls="guardians" aria-selected="false">Guardians</button>
                         </li>
                         <li class="mr-2" role="presentation">
                             <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="references-tab" data-tabs-target="#references" type="button" role="tab"
                                 aria-controls="references" aria-selected="false">References</button>
                         </li>
                         <li role="presentation">
                             <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="concerns-tab" data-tabs-target="#concerns" type="button" role="tab"
                                 aria-controls="concerns" aria-selected="false">Concerns</button>
                         </li>
                         <li role="presentation">
                             <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="bills-tab" data-tabs-target="#bills" type="button" role="tab" aria-controls="bills"
                                 aria-selected="false">Bills</button>
                         </li>
                         <li role="presentation">
                             <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="deposits-tab" data-tabs-target="#deposits" type="button" role="tab"
                                 aria-controls="deposits" aria-selected="false">Deposits</button>
                         </li>
                         <li role="presentation">
                             <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="collections-tab" data-tabs-target="#collections" type="button" role="tab"
                                 aria-controls="collections" aria-selected="false">Collections</button>
                         </li>
@@ -371,7 +374,7 @@
                                 <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                 </div>
-                                @include('tenants.tables.bills')
+                                @include('tables.bills')
                             </div>
                         </div>
                     </div>

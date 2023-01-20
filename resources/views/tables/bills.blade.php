@@ -1,9 +1,10 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-            {{-- <x-th></x-th>
-           --}}
-            <x-th>BILL # </x-th>
+            @if($isPaymentAllowed)
+            <x-th></x-th>
+            @endif
+            <x-th>REFERENCE #</x-th>
             <x-th>DATE POSTED</x-th>
             <x-th>NAME</x-th>
             <x-th>UNIT</x-th>
@@ -18,11 +19,15 @@
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($bills as $index => $item)
         <tr>
-            {{-- <x-td>{{ $index+1 }}</x-td> --}}
-            
-            <x-td>
-                {{ $item->bill_no}}
-            </x-td>
+            @if($isPaymentAllowed)
+            <x-th>
+                @if($item->status != 'paid')
+                <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
+                @endif
+            </x-th>
+            @endif
+            <x-td>{{ $item->unit->unit.'-'.$item->bill_no}}</x-td>
+
             <x-td>
                 {{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}
             </x-td>
@@ -90,10 +95,13 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-th>Total</x-th>
+            @if($isPaymentAllowed)
+            <x-th></x-th>
+            @endif
+            <x-td></x-td>
             <x-td> </x-td>
-            <x-td> </x-td>
-  
- 
+
+
             <x-td></x-td>
             <x-td></x-td>
             <x-td> </x-td>

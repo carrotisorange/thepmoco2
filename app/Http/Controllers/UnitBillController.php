@@ -23,7 +23,8 @@ class UnitBillController extends Controller
          return view('units.bills.index',[
          'unit' => $unit,
           'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($unit->uuid),
-          'view' => 'listView'
+          'view' => 'listView',
+          'isPaymentAllowed' => false,
          ]);
     }
 

@@ -26,6 +26,10 @@ class UnitShowComponent extends Component
     public $price;
     public $property_uuid;
 
+    public $view = 'listView';
+
+    public $isPaymentAllowed = false;
+
     public function mount($unit_details)
     {
         $this->unit = $unit_details->unit;

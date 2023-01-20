@@ -305,7 +305,7 @@
                                         class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
-                                    @include('units.tables.bills')
+                                    @include('tables.bills')
                                 </div>
 
                             </div>

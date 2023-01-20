@@ -13,5 +13,5 @@
                     Go back</a></button>
 
             </div>
-            @include('units.tables.bills')
+            @include('tables.bills')
 </x-new-layout>
