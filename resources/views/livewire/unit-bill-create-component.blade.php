@@ -31,6 +31,16 @@
 
                             </div>
 
+                            @if($type==='tenant')
+
+                            <div class="col-span-2">
+                                <label for="particular_id" class="block text-sm font-medium text-gray-700">Bill Split (Divide the bill among the active tenants.)</label>
+                                <input type="text" value="Yes" readonly
+                                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                            
+                            </div>
+                            @endif
+
 
                         </div>
                     </div>

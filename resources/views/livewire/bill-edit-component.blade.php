@@ -1,51 +1,62 @@
 <div>
-    <div class="flex flex-row">
-        <div class="basis-1/2">
-            @if($bills->count())
-
-            <x-button wire:loading.remove wire:click="saveBills()">Save as Draft ({{ $bills->count() }})
-            </x-button>
-
-            <div wire:loading wire:target="saveBills">
-                Processing...
+    <div class="mt-10 px-4 sm:px-6 lg:px-8">
+        <div class="sm:flex sm:items-center">
+            <div class="sm:flex-auto">
+                <h1 class="text-3xl font-bold text-gray-500">Bulk Billing</h1>
             </div>
+            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                @if($bills->count())
 
-            <x-button wire:loading.remove wire:click="postBills()">Post Bills ({{ $bills->count() }})
-            </x-button>
+                {{-- <x-button wire:loading.remove wire:click="saveBills()">Save as Draft ({{ $bills->count() }})
+                </x-button>
 
-            <div wire:loading wire:target="postBills">
-                Processing...
+                <div wire:loading wire:target="saveBills">
+                    Processing...
+                </div> --}}
+                <button type="button" wire:loading.remove wire:click="postBills()"
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Post Bills ({{ $bills->count() }})
+                </button>
+
+                <button type="button" wire:loading wire:target="postBills" disabled
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Loading...
+                </button>
+
+                <button type="button" wire:loading wire:target="updateBill" disabled
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Loading...
+                </button>
+                @endif
+
+                @if($selectedBills)
+                <button type="button" wire:loading.remove onclick="confirmMessage()" wire:click="removeBills()"
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Remove Bills ({{ count($selectedBills) }})
+                </button>
+
+                <button type="button" wire:loading wire:target="removeBills" disabled
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Loading...
+                </button>
+
+
+                @endif
             </div>
-            @endif
         </div>
-        <div class="basis-1/2 ml-12 text-right">
-            @if($selectedBills)
-            <x-button wire:loading.remove onclick="confirmMessage()" wire:click="removeBills()">
-                Remove Bills ({{ count($selectedBills) }})
-            </x-button>
-            <div wire:loading wire:target="removeBills">
-                Processing...
-            </div>
-            @endif
-        </div>
-    </div>
 
-    <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="bg-white border-b border-gray-200">
-            <div class="flex flex-col">
-                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="mt-3">
 
-                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                            @include('forms.bills.bill-customized-edit')
-                        </div>
+            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                    <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5">
+
+                        @include('forms.bills.bill-customized-edit')
 
                     </div>
                 </div>
             </div>
-
         </div>
-
+        @include('layouts.notifications')
     </div>
-    @include('layouts.notifications')
-</div>

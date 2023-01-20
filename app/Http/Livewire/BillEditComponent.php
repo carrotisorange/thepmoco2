@@ -48,6 +48,8 @@ class BillEditComponent extends Component
 
     public function removeBills()
     {
+        sleep(1);
+
         foreach($this->selectedBills as $bill=>$val ){
             Bill::destroy($bill);
         }
@@ -60,31 +62,6 @@ class BillEditComponent extends Component
 
     }
 
-    public function saveBills()
-    {
-        sleep(1);
-
-        $validatedData = $this->validate();
-
-        try{
-            DB::transaction(function () use ($validatedData){
-                foreach ($this->bills as $bill) {
-                    $bill->save();
-                }
-            });
-        
-            $this->selectedBills = [];
-
-            return redirect('/property/'.Session::get('property').'/bill')->with('success', count($this->bills). ' bills are successfully saved as draft.');
-
-            // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
-
-        }catch(\Exception $e){
-            ddd($e);
-            return back()->with('error','Cannot perform the action. Please try again.');
-        }
-    }
-
     public function postBills()
     {
         sleep(1);
@@ -92,16 +69,42 @@ class BillEditComponent extends Component
         $validatedData = $this->validate();
 
         try{
-            DB::transaction(function () use ($validatedData){
-                Bill::where('property_uuid', Session::get('property'))
-                ->where('is_posted', false)
-                ->where('batch_no', $this->batch_no)
-                ->update([
-                    'is_posted' => true
-                ]);
-            });
+
+            Bill::where('batch_no', $this->batch_no)
+            //->where('property_uuid', Session::get('property '))
+            ->update([
+             'is_posted' => true,
+            ]);
 
             return redirect('/property/'.Session::get('property').'/bill/'.$this->batch_no)->with('success', count($this->bills). ' bills are successfully posted.');
+
+            // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
+
+        }catch(\Exception $e){
+            return back()->with('error','Cannot perform the action. Please try again.');
+        }
+    }
+
+    public function updateBill($id)
+    {
+        sleep(1);
+
+        $validatedData = $this->validate();
+
+        try{
+                foreach ($this->bills->where('id', $id) as $bill) {
+
+                     Bill::where('id', $id)
+                     ->update([
+                        'start' => $bill->start,
+                        'end' =>  $bill->end,
+                        'bill' => $bill->bill,
+                     ]);    
+
+                  $this->bills = $this->get_bills();
+                }
+
+           session()->flash('success', 'Saved');
 
         }catch(\Exception $e){  
             return back()->with('error','Cannot perform the action. Please try again.');
