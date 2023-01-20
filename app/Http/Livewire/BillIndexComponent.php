@@ -28,6 +28,8 @@ class BillIndexComponent extends Component
 
    public $view = 'listView';  
 
+   public $isPaymentAllowed = false;
+
    public $particular_id;
 
    public $posted_dates;

@@ -52,6 +52,8 @@ class TenantShowComponent extends Component
     public $reference_email;
 
     public $view = 'listView';
+
+    public $isPaymentAllowed = false;
     
 
     public function mount($tenant_details)

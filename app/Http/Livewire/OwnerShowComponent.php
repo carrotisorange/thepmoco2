@@ -36,6 +36,10 @@ class OwnerShowComponent extends Component
     public $employer_address;
     public $bill_reference_no;
 
+    public $view = 'listView';
+
+    public $isPaymentAllowed = false;
+
     public function mount($owner_details)
     {
         $this->owner = $owner_details->owner;
@@ -54,6 +58,7 @@ class OwnerShowComponent extends Component
         $this->occupation = $owner_details->occupation;
         $this->employer_address = $owner_details->employer_address;
         $this->bill_reference_no = $owner_details->bill_reference_no;
+    
     }
 
 
