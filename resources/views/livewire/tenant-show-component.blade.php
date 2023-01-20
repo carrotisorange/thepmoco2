@@ -2,7 +2,9 @@
     @include('layouts.notifications')
     <div class="min-h-screen mt-8 max-w-2xl mx-auto pb-56 sm:px-20 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
-        <h1 class="text-3xl font-bold text-black-900">{{ $tenant_details->tenant }}</h1>
+            <div class="lg:col-start-4 lg:col-span-9">
+                <h1 class="text-3xl font-bold text-black-900">{{ $tenant_details->tenant }}</h1>
+            </div>
             <div class="lg:col-start-5 lg:col-span-9">
                 <div class="flex justify-end">
 
