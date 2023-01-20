@@ -182,7 +182,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="faq" >FAQs</a>
 					</li>
 					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog" >Article</a>
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog-1" >Article</a>
 					</li>
 					
 				</ul>
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-base leading-relaxed">
+      <div class="px-4 lg:px-0 mt-24 text-gray-700 max-w-screen-md mx-auto text-base leading-relaxed">
 
       <p class="my-5">Training housekeeping staff is an important aspect of ensuring that guests have a positive
 experience and that the property is well-maintained.</p>
