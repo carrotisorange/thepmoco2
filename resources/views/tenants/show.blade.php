@@ -1,6 +1,6 @@
 <x-new-layout>
     @section('title', $tenant_details->tenant. ' | '. Session::get('property_name'))
-    <div class="h-full w-full bg-no-repeat bg-cover" style="background-image: url('/brands/tenant_bg.png');">
+    <div class="min-h-screen bg-no-repeat bg-cover" style="background-image: url('/brands/bg_tenant.png');">
         <div class="h-full w-full mb-20">
             <div class="max-w-full mx-auto sm:px-6">
                 <div class="pt-6 sm:pb-5">
