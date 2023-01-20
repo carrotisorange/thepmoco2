@@ -32,6 +32,10 @@ class OwnerDeedOfSalesController extends Controller
     {
         Session::put('owner_uuid', $owner->uuid);
         
-        return view('units.index');
+          return view('units.index', [
+            'property' => $property, 
+            'owner' => $owner,
+            'batch_no' => '',
+        ]);
     }
 }

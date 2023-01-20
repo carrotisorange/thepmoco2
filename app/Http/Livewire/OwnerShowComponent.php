@@ -213,7 +213,8 @@ class OwnerShowComponent extends Component
             'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid),
             'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get(),
             'bills' => Owner::findOrFail($this->owner_details->uuid)->bills,
-            'collections' => Owner::findOrFail($this->owner_details->uuid)->collections
+            'collections' => Owner::findOrFail($this->owner_details->uuid)->collections,
+            'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
         ]);
     }
 }
