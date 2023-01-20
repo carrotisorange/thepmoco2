@@ -118,11 +118,10 @@
                                 </svg>
                                 Remove access to owner portal
                             </button> --}}
+
                         <p class="mt-5 text-lg text-center text-gray-700">
-                            Uername/Email:
-                            <span class="font-bold ">{{ App\Models\User::where('owner_uuid',
-                                $owner_details->uuid)->pluck('username')
-                                }}</span>
+                           
+                            Username: <br><span class="font-bold ">{{ $username }}</span>
 
                         </p>
 
