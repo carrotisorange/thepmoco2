@@ -447,4 +447,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/unitdetail', function(){
         return view('portals.owners.unitdetail');
     });
+
+    // calendar
+    Route::get('/calendar', function(){
+        return view('calendar.calendar');
+    });
+
+    Route::get('/year', function(){
+        return view('calendar.year');
+    });
+
 });
