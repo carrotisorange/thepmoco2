@@ -135,11 +135,8 @@
                     Type</label>
                 <select wire:model="type"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                    <option value="studying" {{ old('type')=='studying' ? 'selected' : 'Select one' }}>
-                        {{
-                        'studying' }}</option>
-                    <option value="working" {{ old('type')=='working' ? 'selected' : 'Select one' }}>{{
-                        'working' }}</option>
+                    <option value="studying" {{ $type=='studying' ? 'selected' : 'Select one' }}>{{'studying' }}</option>
+                    <option value="working" {{ $type=='working' ? 'selected' : 'Select one' }}>{{'working' }}</option>
 
                 </select>
 
@@ -199,7 +196,7 @@
             </div>
         </div>
 
-        @else
+        @elseif($type==='working')
 
         <div class="sm:col-span-4">
             <div

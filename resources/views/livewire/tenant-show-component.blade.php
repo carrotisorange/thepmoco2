@@ -94,11 +94,10 @@
                             </button>
                             @else
 
-                        <p class="mt-5 text-lg text-center text-gray-700">
-                            Username/Email:
-                            <span class="font-bold ">{{ App\Models\User::where('tenant_uuid',
-                                $tenant_details->uuid)->pluck('username') }}</span>
-
+                       <p class="mt-5 text-lg text-center text-gray-700">
+                        
+                            Username: <br><span class="font-bold ">{{ $username }}</span>
+                        
                         </p>
 
                         @endif
