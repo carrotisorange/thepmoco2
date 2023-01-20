@@ -3,7 +3,7 @@
 
       <div class="mt-10 mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative" style="height: 24em;">
         
-        <img src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt="a desk with a keyboard, mouse, phone, and office supplies" class="opacity-50 absolute left-0 top-0 w-full h-full z-0 object-cover" />
+        <img src="{{ asset('/brands/landing/article1.avif') }}" alt="a desk with a keyboard, mouse, phone, and office supplies" class="opacity-50 absolute left-0 top-0 w-full h-full z-0 object-cover" />
         <div class="p-4 pt-56 relative">
           <a href="#"
             class="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2">Article</a>
