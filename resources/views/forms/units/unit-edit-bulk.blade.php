@@ -1,4 +1,4 @@
-<form class="mt-5 sm:pb-6 xl:pb-8" id="edit-form" wire:submit.prevent="updateForm()">
+<form class="mt-5 sm:pb-6 xl:pb-8" id="edit-form" wire:submit.prevent="updateUnit()">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>
@@ -108,7 +108,7 @@
                         </x-td>
                         <x-td>
                             <x-table-input form="edit-form" type="number" min="1"
-                                wire:model="units.{{ $index }}.occupancy" />
+                                wire:model="units.{{ $index }}.occupancy" />    
                             @error('units.{{ $index }}.occupancy')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror

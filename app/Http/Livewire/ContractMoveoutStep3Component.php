@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Contract;
 use Session;
 use Spatie\Browsershot\Browsershot;
+use App\Models\Tenant;
 
 class ContractMoveoutStep3Component extends Component
 {
@@ -30,10 +31,6 @@ class ContractMoveoutStep3Component extends Component
 
         return 'success';
 
-        //  Contract::where('uuid', $this->contract->uuid)
-        //  ->update([
-        //  'status' => 'inactive'
-        //  ]);
         
      
     
@@ -48,8 +45,30 @@ class ContractMoveoutStep3Component extends Component
     public function submitForm(){
         
         sleep(1);
+        
+         Contract::where('uuid', $this->contract->uuid)
+         ->update([
+         'status' => 'inactive'
+         ]);
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->request_for.'/step-1')->with('success', 'Step 3 of 4 has been accomplished!');        
+         $contracts = Tenant::find($this->contract->tenant_uuid)->contracts->where('status', 'active')->count();
+
+         if(!$contracts){
+            Tenant::where('uuid', $this->contract->tenant_uuid)
+            ->update([
+                'status' => 'inactive'
+            ]);
+         }
+         
+         $deposits = Tenant::find($this->contract->tenant_uuid)->bills->whereIn('particular_id',[3,4] )->whereIn('status', ['unpaid', 'partially_paid'])->count();
+
+         if($deposits){
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->request_for.'/step-1')->with('success', 'Step 3 of 4 has been accomplished!');     
+         }else{
+            return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Tenant has been moved out!');     
+         }
+
+           
     }
 
     public function render()
