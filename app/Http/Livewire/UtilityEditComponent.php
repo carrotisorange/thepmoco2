@@ -87,10 +87,12 @@ class UtilityEditComponent extends Component
                      ]);    
 
                     //$this->utilities = $this->get_utilities();
+
+                     session()->flash('success', 'Utilities are successfully saved!');
                 }
             // });
 
-                  session()->flash('success', 'Utilities are successfully saved!');
+                 
 
         }catch(\Exception $e){
        
@@ -126,11 +128,13 @@ class UtilityEditComponent extends Component
                         'total_amount_due' => $this ->min_charge,
         ]);    
 
+          session()->flash('success', 'Parameters are successfully saved!');
+
         //             //$this->utilities = $this->get_utilities();
      }
         // app('App\Http\Controllers\UtilityController')->update($this->property_uuid, $this->batch_no, $this->start_date, $this->end_date, $this->kwh, $this->min_charge);
 
-        session()->flash('success', 'Parameters are successfully saved!');
+      
 
     }
 

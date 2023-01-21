@@ -2,30 +2,15 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
-            <div class="sm:flex sm:items-center">
+            {{-- <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
                     <h1 class="text-3xl font-bold text-gray-700">Concerns</h1>
                     <a href="#"
                         class="flex justify-end text-sm font-medium text-purple-500 hover:text-purple-700">Change to
                         request</a>
                 </div>
-            </div>
-            <!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
+            </div> --}}
+
             <div>
                 <div class="flex justify-center mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 

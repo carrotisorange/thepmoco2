@@ -194,6 +194,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //force moveout
     Route::post('/contract/{contract}/moveout/force', [ContractController::class, 'force_moveout']);
 
+    Route::get('/unit/{unit}/guest/{guest}/movein', [GuestController::class, 'movein']);
+
+
+    Route::get('/unit/{unit}/guest/{guest}/moveout', [GuestController::class, 'moveout']);
 
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){

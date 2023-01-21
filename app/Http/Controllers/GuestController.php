@@ -6,6 +6,7 @@ use App\Models\Guest;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Unit;
+use Carbon\Carbon;
 use DB;
 
 class GuestController extends Controller
@@ -69,9 +70,26 @@ class GuestController extends Controller
      * @param  \App\Models\Guest  $guest
      * @return \Illuminate\Http\Response
      */
-    public function edit(Guest $guest)
+    public function movein(Property $property, Unit $unit, Guest $guest)
     {
-        //
+        Guest::where('uuid', $guest->uuid)
+        ->update([
+            'status' => 'active',
+            'movein_at' => Carbon::now()
+        ]);
+
+        return redirect('/property/'.$property->uuid.'/unit/'.$unit->uuid)->with('success', 'Guest has been moved in successfully!');
+    }
+
+    public function moveout(Property $property, Unit $unit, Guest $guest)
+    {      
+        Guest::where('uuid', $guest->uuid)
+        ->update([
+            'status' => 'inactive',
+            'moveout_at' => Carbon::now()
+        ]);
+
+        return redirect('/property/'.$property->uuid.'/unit/'.$unit->uuid)->with('success', 'Guest has been moved in successfully!');
     }
 
     /**

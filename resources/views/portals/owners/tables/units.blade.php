@@ -11,10 +11,10 @@
             <x-th>
                 FLOOR</x-th>
             <x-th>
-                STATUS</x-th>
+               UNIT STATUS</x-th>
 
             <x-th>
-                CONTRACT</x-th>
+                CURRENT CONTRACT</x-th>
             <x-th>
                 RENT</x-th>
             <x-th>
@@ -33,10 +33,13 @@
                 $index+1 }}
             </x-td>
             <x-td>
-                {{ $unit->unit->property->property }}
+               
+              {{ $unit->unit->property->property }}
             </x-td>
             <x-td>
-                {{ $unit->unit->unit }}
+                <a href="/{{auth()->user()->role_id}}/owner/{{ auth()->user()->username }}/unit/{{ $unit->unit->uuid }}/guests"
+                    class="text-indigo-500 text-decoration-line: underline">{{ $unit->unit->unit }}</a>
+              
             </x-td>
             <x-td>
                 {{ $unit->unit->floor->floor}}

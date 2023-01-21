@@ -6,6 +6,7 @@ use App\Models\AcknowledgementReceipt;
 use App\Models\User;
 use App\Models\Owner;
 use App\Models\Bill;
+use App\Models\Unit;
 
 class OwnerPortalController extends Controller
 {
@@ -24,11 +25,21 @@ class OwnerPortalController extends Controller
         ]);
     }
 
+     public function show_guests($role_id, User $user, Unit $unit)
+    {
+        return view('portals.owners.guests',[
+            'guests' => Unit::findOrFail($unit->uuid)->guests,
+            'unit' => $unit,
+        ]);
+    }
+
+
     public function show_bills($role_id, User $user)
     {
         return view('portals.owners.bills',[
             'bills' => Owner::findOrFail($user->owner_uuid)->bills,
-            'view' => 'listView'
+            'view' => 'listView',
+            'isPaymentAllowed' => false 
         ]);
     }
 

@@ -79,6 +79,10 @@ class Unit extends Model
         return $this->hasMany(Concern::class);
     }
 
+    public function guests(){
+        return $this->hasMany(Guest::class);
+    }
+
     public function utilities(){
         return $this->hasMany(Utility::class);
     }

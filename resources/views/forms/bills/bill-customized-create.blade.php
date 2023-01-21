@@ -33,8 +33,8 @@
                 <x-label for="start">
                     Start
                 </x-label>
-                <x-form-input id="start" type="date"
-                    value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start" />
+                <x-form-input id="start" type="date" value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}"
+                    name="start" />
 
                 @error('start')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -64,7 +64,7 @@
     </div>
     <p class="text-right">
         <x-button>
-            Create
+            Confirm
         </x-button>
     </p>
 </form>

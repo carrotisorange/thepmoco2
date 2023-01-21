@@ -1,5 +1,5 @@
 <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
-    <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-1 md:gap-6">
             <div class="mt-5 md:mt-0 md:col-span-3">
                 <div class="grid grid-cols-6 gap-6">
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="col-span-3">
-                        <label for="movein_at" class="block text-sm font-medium text-gray-700">Movein </label>
+                        <label for="movein_at" class="block text-sm font-medium text-gray-700">Expected Movein Date </label>
                         <input type="date" wire:model.lazy="movein_at" autocomplete="movein_at"
                             class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('movein_at')
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="col-span-3">
-                        <label for="moveout_at" class="block text-sm font-medium text-gray-700">Moveout</label>
+                        <label for="moveout_at" class="block text-sm font-medium text-gray-700">Expected Moveout Date</label>
                         <input type="date" wire:model.lazy="moveout_at" autocomplete="moveout_at"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('moveout_at')
@@ -59,7 +59,7 @@
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
                     class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a> --}}
 
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit/{{ $unit_uuid }}">
                     Cancel
                 </a>
@@ -76,7 +76,7 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    Next
+                    Finish
                 </button>
             </div>
         </div>
