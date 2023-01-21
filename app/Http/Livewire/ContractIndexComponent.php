@@ -27,7 +27,7 @@ class ContractIndexComponent extends Component
             ->when($this->status, function($query){
             $query->where('status',$this->status);
             })
-            ->paginate(10),
+            ->get(),
             'statuses' => $statuses
         ]);
     }

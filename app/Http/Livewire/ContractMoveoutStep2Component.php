@@ -8,6 +8,7 @@ use Session;
 use App\Models\Tenant;
 use DB;
 use App\Models\Contract;
+use Illuminate\Http\Request;
 
 class ContractMoveoutStep2Component extends Component
 {
@@ -29,8 +30,18 @@ class ContractMoveoutStep2Component extends Component
             'status' => 'cleared'
         ]);
 
-        return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Step 2 of 4 has been accomplished!');        }
-    
+        Tenant::where('uuid', $this->contract->tenant_uuid)
+        ->update([
+            'status' => 'cleared'
+        ]);
+
+        return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Step 2 of 4 has been accomplished!');        
+    }
+
+    public function exitModal(){
+
+        return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success', 'Force moveout was cancelled!');  
+    }
 
     public function render()
     {

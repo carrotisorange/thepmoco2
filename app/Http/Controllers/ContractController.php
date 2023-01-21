@@ -312,4 +312,21 @@ class ContractController extends Controller
     {
          $this->authorize('is_contract_delete_allowed');
     }
+
+    public function force_moveout(Request $request, Property $property, Contract $contract){
+
+        Contract::where('uuid', $contract->uuid)
+        ->update([
+            'status' => 'forcedmoveout',
+            'remarks' => $request->remarks
+        ]);
+
+        Tenant::where('uuid', $contract->tenant_uuid)
+        ->update([
+            'status' => 'forcedmoveout'
+        ]);
+
+        return redirect('/property/'.$property->uuid.'/tenant/'.$contract->tenant_uuid.'/contract/'.$contract->uuid.'/moveout/step-3')->with('success','Step 2 of 4 has been accomplished!');
+
+    }
 }

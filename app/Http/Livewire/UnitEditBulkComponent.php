@@ -72,7 +72,7 @@ class UnitEditBulkComponent extends Component
     }
 
 
-    public function updateForm()
+    public function updateUnit()
     {
         sleep (1);
 
