@@ -21,7 +21,7 @@
         @foreach ($utilities as $index => $item)
         <tr>
             <x-th>
-                {{ $item->unit->unit.'-'.$item->utility->id }}
+                {{ $item->unit->unit.'-'.$item->id }}
             </x-th>
             <x-td>{{ $item->type }}</x-td>
 
