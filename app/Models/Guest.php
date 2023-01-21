@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Guest extends Model
 {
     use HasFactory;
+
+    public $incrementing = false;
+
+    protected $primaryKey = 'uuid';
+    
+    protected $attributes = [
+        'status' => 'pending'
+    ];
 }

@@ -12,7 +12,7 @@
                 <div class="w-full md:w-full px-3">
                     <x-label>Remarks <span class="text-red-600">*</span></x-label>
 
-                    <x-form-textarea name="remarks" />
+                    <x-form-textarea name="remarks" required />
 
                 </div>
             </div>

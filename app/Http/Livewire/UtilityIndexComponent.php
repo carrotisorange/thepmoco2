@@ -18,6 +18,10 @@ class UtilityIndexComponent extends Component
 
     public $property_uuid;
 
+    public $status;
+
+    public $type;
+
     public function mount()
     {
         $this->property_uuid = Session::get('property');
@@ -53,19 +57,40 @@ class UtilityIndexComponent extends Component
 
     public function render()
     {
+
+          $statuses = Utility::where('property_uuid', $this->property_uuid)
+          ->select('status')
+          ->whereNotNull('status')
+          ->groupBy('status')
+          ->get();
+
+        $types = Utility::where('property_uuid', $this->property_uuid)
+          ->select('type')
+          ->whereNotNull('type')
+          ->groupBy('type')
+          ->get();
+
         return view('livewire.utility-index-component',[
             'utilities' => Utility::isposted()
             ->select('*', 'units.unit as unit_name' )
             ->join('units', 'utilities.unit_uuid', 'units.uuid')
             ->where('utilities.property_uuid', $this->property_uuid)
+             ->when($this->status, function($query){
+             $query->where('status',$this->status);
+             }) 
+              ->when($this->type, function($query){
+              $query->where('utilities.type',$this->type);
+              })
+             
              ->when(($this->search), function($query){
-             $query->orderBy('id', 'asc');
              $query->where('units.unit','like', '%'.$this->search.'%');
              })
             
             ->orderBy('start_date', 'desc')
             ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
-            ->paginate(10)
+            ->paginate(10),
+            'statuses' => $statuses,
+            'types' => $types
         ]);
     }
 }

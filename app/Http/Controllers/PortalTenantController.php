@@ -43,6 +43,7 @@ class PortalTenantController extends Controller
         return view('portals.tenants.bills',[
             'tenant' => Tenant::findOrFail($user->tenant_uuid),
             'unpaid_bills' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($user->tenant_uuid),
+            ''
         ]);
     }
 

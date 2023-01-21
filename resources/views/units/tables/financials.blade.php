@@ -1,7 +1,5 @@
 <div class="text-sm">
-
-    <div
-        class="mb-5 bg-blue-50 h-full w-full shadow-md rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+    <div class="mb-5 bg-blue-50 h-full w-full shadow-md rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
         <div class="p-4">
             <div class="flex items-start">
                 <div class="flex-shrink-0">

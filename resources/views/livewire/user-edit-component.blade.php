@@ -59,8 +59,7 @@
                     </ul>
                 </div>
                 <div id="myTabContent">
-                    <div class="p-4 rounded-lg" id="user" role="tabpanel"
-                        aria-labelledby="user-tab">
+                    <div class="p-4 rounded-lg" id="user" role="tabpanel" aria-labelledby="user-tab">
                         <div>
                             <form class="space-y-6" method="POST" wire:submit.prevent="updateUser()"
                                 enctype="multipart/form-data">
@@ -211,7 +210,7 @@
                                                 class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                             </div>
-
+                                            @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
                                             <table class="min-w-full table-fixed divide-y divide-gray-300">
                                                 <thead class="">
                                                     <tr>
@@ -301,12 +300,14 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
 
+
                             </form>
+
                         </div>
                         <div class="mt-5 flex justify-end">
                             <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
@@ -339,8 +340,7 @@
                                 <div
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
-                                    <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
                                     @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
@@ -412,8 +412,7 @@
                                 <div
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     <!-- Selected row actions, only show when rows are selected. -->
-                                    <div
-                                        class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
 
