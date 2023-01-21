@@ -9,7 +9,7 @@
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
                     class=" hover:text-indigo-900"><i class="fa-solid fa-download"></i> &nbsp Sample Lease Contract</a>
 
-                <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/unit'"
+                <button type="button" data-modal-toggle="instructions-create-contract-modal" 
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-plus"></i>&nbsp New Contract</button>
 
@@ -95,4 +95,5 @@
             </div>
         </div>
     </div>
+    @include('modals.instructions.create-contract-modal')
 </div>

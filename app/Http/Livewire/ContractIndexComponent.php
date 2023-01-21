@@ -12,7 +12,12 @@ class ContractIndexComponent extends Component
     public $property;
 
     public $status;
-    // public $search;
+    
+    public function redirectToUnitSelectionPage(){
+        sleep(2);
+
+        return redirect('/property/'.Session::get('property').'/unit');
+    }
 
     public function render()
     {   

@@ -15,6 +15,12 @@ class TenantIndexComponent extends Component
     public $status;
     public $category;
 
+    public function redirectToUnitSelectionPage(){
+        sleep(2);
+
+        return redirect('/property/'.Session::get('property').'/unit');
+    }
+
     public function render()
     {
         $statuses =  Tenant::where('property_uuid', Session::get('property'))
