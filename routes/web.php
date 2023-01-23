@@ -67,6 +67,11 @@ Route::get('/blog-2', function(){
     return view('landing.blog-2');
 });
 
+Route::get('/blog-3', function(){
+    return view('landing.blog-3');
+});
+
+
 Route::get('/terms', function(){
     return view('landing.terms');
 });
@@ -106,6 +111,11 @@ Route::get('/article7', function(){
 Route::get('/article8', function(){
     return view('landing.articles.article8');
 });
+
+Route::get('/article9', function(){
+    return view('landing.articles.article9');
+});
+
 
 
 
