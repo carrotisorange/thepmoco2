@@ -122,7 +122,7 @@
 
         <div class="mt-5 p-2">
             <p class="text-right">
-                <x-button form="edit-form">
+               <x-button form="edit-form" onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
                     Confirm Payment
                 </x-button>
             </p>

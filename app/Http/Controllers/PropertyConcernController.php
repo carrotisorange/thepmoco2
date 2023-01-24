@@ -13,6 +13,8 @@ class PropertyConcernController extends Controller
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',13);
 
-        return view('properties.concerns.index');
+        return view('properties.concerns.index',[
+            'property' => $property
+        ]);
     }
 }
