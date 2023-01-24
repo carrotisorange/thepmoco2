@@ -40,6 +40,7 @@ class ContractController extends Controller
 
     public function get_property_contracts($property_uuid, $status, $dateBeforeExpiration, $movein, $moveout)
     {
+
         return Property::find($property_uuid)->contracts()
         ->when($status, function ($query) use ($status) {
           $query->where('status', $status);

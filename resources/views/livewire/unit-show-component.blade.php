@@ -175,6 +175,7 @@
                         </div>
                     </div>
                     <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="inventories" role="tabpanel" aria-labelledby="inventories-tab">
+                       
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     

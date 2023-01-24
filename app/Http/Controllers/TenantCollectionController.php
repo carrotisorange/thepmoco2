@@ -242,7 +242,7 @@ class TenantCollectionController extends Controller
       
          for($i=0; $i<=$counter; $i++)
          {
-            $collection = (int) $request->input("collection_amount_".$i);
+            $collection = (double) $request->input("collection_amount_".$i);
 
             $form = $request->form;
 

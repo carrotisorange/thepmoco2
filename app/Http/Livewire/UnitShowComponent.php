@@ -8,6 +8,8 @@ use DB;
 use Session;
 use App\Models\Utility;
 use App\Models\Concern;
+use Illuminate\Support\Str;
+use App\Models\UnitInventory;
 
 class UnitShowComponent extends Component
 {
@@ -67,6 +69,13 @@ class UnitShowComponent extends Component
     {
         $this->validateOnly($propertyName);
     }
+
+    public function redirectToTheCreateUnitInventoryPage(){
+        
+        sleep(2);
+
+        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
+    }
     
     public function submitForm()
     {
@@ -107,7 +116,7 @@ class UnitShowComponent extends Component
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
             'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->orderBy('type')->orderBy('created_at')->get(),
             'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get(),
-            // 'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->get()
+            'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->get()
         ]);
     }
 }

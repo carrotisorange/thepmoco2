@@ -226,7 +226,7 @@ class UserController extends Controller
     
        if($user->id === auth()->user()->id || auth()->user()->role_id === 5){
 
-         //app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
+        //app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
 
            return view('users.edit', [
             'user' => $user,
