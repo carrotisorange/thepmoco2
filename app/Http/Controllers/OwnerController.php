@@ -15,17 +15,6 @@ use App\Models\Guest;
 
 class OwnerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Property $property)
-    {
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',4);
-
-        return view('owners.index');
-    }
 
     public function show_owner_collections($owner_uuid)
     {

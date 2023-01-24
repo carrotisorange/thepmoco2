@@ -1,4 +1,4 @@
-<div id="create-tenant-bill-modal" tabindex="-1" aria-hidden="true"
+<div id="create-owner-bill" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
     <div class="relative p-4 w-full max-w-md h-full md:h-auto">
 

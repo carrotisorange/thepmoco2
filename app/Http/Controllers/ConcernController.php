@@ -10,20 +10,6 @@ use App\Models\ConcernCategory;
 
 class ConcernController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($property_uuid)
-    {
-        $this->authorize('is_concern_read_allowed');
-
-        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',13);
-
-        return view('concerns.index');
-    }
-    
     public function get_property_concerns($property_uuid, $status, $duration)
     {
         return Property::find($property_uuid)->concerns()

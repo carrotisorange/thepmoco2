@@ -20,23 +20,6 @@ use Session;
 
 class TenantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Property $property)
-    {
-        //store activity for opening tenant page.
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',3);
-
-        //retrieve all tenants associated to the current property.
-        $list_of_all_the_tenants = app('App\Http\Controllers\PropertyController')->show_list_of_all_tenants($property->uuid);
-
-        return view('tenants.index',[
-            'tenants'=>$list_of_all_the_tenants
-        ]);
-    }
 
     public function get_property_tenants($property_uuid, $duration)
     {

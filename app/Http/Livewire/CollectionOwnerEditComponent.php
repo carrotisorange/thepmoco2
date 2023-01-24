@@ -38,8 +38,8 @@ class CollectionOwnerEditComponent extends Component
       return [
        'created_at' => 'required|date',
        'form' => 'required',
-       'attachment' => 'image|max:1024',
-        'proof_of_payment' => 'image|max:1024',
+         'attachment' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+         'proof_of_payment' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
       ];
     }
 
@@ -47,6 +47,11 @@ class CollectionOwnerEditComponent extends Component
     {
         $this->validateOnly($propertyName);
     }
+
+    public function removeAttachment($attachment){
+        $this->$attachment  = '';
+    }
+
 
     public function get_bills()
     {

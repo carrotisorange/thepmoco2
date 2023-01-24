@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PropertyController;
-use App\Http\Controllers\CashflowController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\UnitContractController;
@@ -12,7 +11,6 @@ use App\Http\Controllers\TenantBillController;
 use App\Http\Controllers\TenantCollectionController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\TenantContractController;
-use App\Http\Controllers\AcknowledgementReceiptController;
 use App\Http\Controllers\ConcernController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\TimestampController;
@@ -291,6 +289,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);
             Route::get('bills', [OwnerBillController::class, 'index'])->name('owner');
+            Route::get('collection/{batch_no?}', [OwnerCollectionController::class,'destroy']);
             Route::post('bill/store', [OwnerBillController::class, 'store']);
             Route::get('bill/export', [OwnerBillController::class, 'export']);
             Route::get('bill/send', [OwnerBillController::class, 'send']);

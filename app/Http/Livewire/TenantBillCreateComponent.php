@@ -50,6 +50,8 @@ class TenantBillCreateComponent extends Component
 
    public function payBills()
    {
+      sleep(2);
+
       $collection_ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
 
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;

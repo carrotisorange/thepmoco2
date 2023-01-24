@@ -15,27 +15,29 @@ class ConcernIndexComponent extends Component
 
     public $search;
     public $status;
+    public $property;
     
     public function render()
     {
-        $statuses= Concern::where('property_uuid', Session::get('property'))
+        $concerns = Concern::search($this->property->uuid)
+        ->orderBy('created_at', 'desc')
+        ->where('property_uuid', $this->property->uuid)
+        ->when($this->status, function($query){
+        $query->whereIn('status',[ $this->status]);
+        })
+        ->when($this->search, function($query){
+        $query->where('reference_no','like', '%'.$this->search.'%');
+
+        })
+        ->paginate(10);
+
+        $statuses= Concern::where('property_uuid', $this->property->uuid)
             ->select('status', DB::raw('count(*) as count'))
             ->groupBy('status')
             ->get();
 
         return view('livewire.concern-index-component',[
-            'concerns' => 
-            Concern::search(Session::get('property'))
-            ->orderBy('created_at', 'desc')
-            ->where('property_uuid', Session::get('property'))
-            ->when($this->status, function($query){
-            $query->whereIn('status',[ $this->status]);
-            })
-             ->when($this->search, function($query){
-            $query->where('reference_no','like', '%'.$this->search.'%');
-            
-            })
-            ->paginate(10),
+            'concerns' => $concerns,
             'statuses' => $statuses
         ]);
     }

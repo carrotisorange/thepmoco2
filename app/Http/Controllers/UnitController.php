@@ -16,22 +16,6 @@ use App\Models\Plan;
 
 class UnitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Property $property)
-    {   
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
-
-        Session::forget('tenant_uuid');
-
-        Session::forget('owner_uuid');
-
-        return view('units.index');
-    }
-
     public function update_unit_occupancy_info(Property $property, Unit $unit, Owner $owner)
     {
         return view('occupancy.create',[
