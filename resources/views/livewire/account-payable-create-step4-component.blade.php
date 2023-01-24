@@ -10,6 +10,39 @@
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
+                <div class="sm:col-span-6">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
+
+                </div>
+
+                <div class="sm:col-span-6">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <x-th>#</x-th>
+                                <x-th>ITEM </x-th>
+                                <x-th>QUANTITY</x-th>
+                                <x-th></x-th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <x-th>{{ $accountpayable->id }}</x-th>
+                                <x-td>
+                                    @foreach($accountpayable->particular as $particular)
+                                    {{ $particular }} <br>
+                                    @endforeach
+                                </x-td>
+                                <x-td>
+                                    @foreach($accountpayable->quantity as $quantity)
+                                    {{ $quantity }} <br>
+                                    @endforeach
+                                </x-td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 {{-- request for purchase --}}
                 <div class="sm:col-span-3">
                     <label for="request" class="block text-sm font-medium text-gray-700">Request for: </label>
@@ -25,12 +58,7 @@
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                 </div>
 
-                {{-- particular --}}
-                <div class="sm:col-span-3">
-                    <label for="particular" class="block text-sm font-medium text-gray-700">Particular:</label>
-                    <input type="text" value="{{ $accountpayable->particular }}" readonly
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                </div>
+
 
                 {{-- requester's name --}}
                 <div class="sm:col-span-3">
@@ -40,12 +68,7 @@
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                 </div>
 
-                {{-- quantity --}}
-                <div class="sm:col-span-3">
-                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
-                    <input type="text" value="{{ $accountpayable->quantity }}" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                </div>
+
 
 
                 {{-- price --}}

@@ -12,8 +12,19 @@ class AccountPayableCreateStep1Component extends Component
     public $request_for;
     public $created_at;
     public $requester_id;
-    public $particular = [];
+
+    //particulars
+    public $particular;
+    public $particular1;
+    public $particular2;
+    public $particular3;
+    public $particular4;
     public $quantity;
+    public $quantity1;
+    public $quantity2;
+    public $quantity3;
+    public $quantity4;
+
     public $property_uuid;
     
     public function mount()
@@ -30,17 +41,13 @@ class AccountPayableCreateStep1Component extends Component
             'created_at' => 'required',
             'requester_id' => 'required',
             'particular' => 'required',
-            'quantity' => 'required'
+            'quantity' => 'required|gt:0'
         ];
     }
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
-    }
-
-    public function addParticular(){
-        ddd('adding more particulars');
     }
 
     public function submitForm()
@@ -54,9 +61,18 @@ class AccountPayableCreateStep1Component extends Component
             $this->request_for, 
             $this->created_at, 
             $this->requester_id, 
-            $this->particular,
-            $this->quantity
+            '',
+            ''
         );
+
+        $particulars = json_encode([$this->particular, $this->particular1,$this->particular2, $this->particular3, $this->particular4], 0, 512);
+        $quantities = json_encode([$this->quantity, $this->quantity1,$this->quantity2, $this->quantity3, $this->quantity4], 0, 512);
+
+        AccountPayable::where('id', $accountpayable_id)
+        ->update([
+            'particular' => $particulars,
+            'quantity' => $quantities
+        ]);
 
         if($this->request_for === 'purchase'){
             return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');

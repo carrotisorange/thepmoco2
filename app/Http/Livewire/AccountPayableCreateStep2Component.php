@@ -34,7 +34,7 @@ class AccountPayableCreateStep2Component extends Component
             'quotation2' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'quotation3' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'vendor' => 'required',
-            'amount' => 'required',
+            'amount' => 'required|gt:0',
             'selected_quotation' => 'required',
         ];
     }

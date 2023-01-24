@@ -4,7 +4,7 @@
             <x-th>#</x-th>
             <x-th>REQUESTED ON</x-th>
             <x-th>REQUEST FOR</x-th>
-            <x-th>PARTICULAR</x-th>
+            <x-th>PARTICULARS</x-th>
             <x-th>REQUESTED BY</x-th>
             {{-- <x-th>BILLER</x-th> --}}
             <x-th>AMOUNT</x-th>
@@ -20,45 +20,19 @@
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $accountpayable->request_for }}</x-td>
             <x-td>
-                @if($accountpayable->particular_id)
-                {{ $accountpayable->particular }}
-                @else
-                {{ $accountpayable->particular }}
-                @endif
+               @foreach (array_slice($accountpayable->particular, 0, 2) as $particular)
+                    {{ $particular.',' }}
+               @endforeach
             </x-td>
             <x-td>{{ $accountpayable->requester->name }}</x-td>
-            {{-- <x-td>
-                @if($accountpayable->biller_id)
-                {{ $accountpayable->biller->biller }}
-                @else
-
-                @endif
-            </x-td> --}}
+            
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
-            {{-- <x-td>
-                @if($accountpayable->approved_at != '0000-00-00 00:00:00')
-                {{ Carbon\Carbon::parse($accountpayable->approved_at)->format('M d, Y') }}
-                @else
-                NA
-                @endif
-            </x-td> --}}
+            
             <x-td>{{$accountpayable->status}}</x-td>
-            {{-- <x-td>
-                <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
-                    class="text-blue-500 text-decoration-line: underline">View Attachment</a>
-            </x-td>
+           
             <x-td>
-                @if($accountpayable->status != 'approved')
-                @can('manager')
-                <a href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable->id }}/approve"
-                    class="text-blue-500 text-decoration-line: underline">Approve</a>
-                @endcan
-                @else
-                @endif
-            </x-td> --}}
-            <x-td>
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}" 
-                    class="text-blue-500 text-decoration-line: underline">View</a>
+                {{-- <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                    class="text-blue-500 text-decoration-line: underline">View</a> --}}
             </x-td>
         </tr>
         @endforeach

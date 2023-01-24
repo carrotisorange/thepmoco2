@@ -15,7 +15,8 @@ class AccountPayable extends Model
     ];
 
     protected $casts = [
-        'particular' => 'array'
+        'particular' => 'array',
+        'quantity' => 'array'
     ];
 
     public function property()

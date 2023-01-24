@@ -114,29 +114,44 @@
                 </div>
 
                 <div class="sm:col-span-6">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
+
+                </div>
+
+                <div class="sm:col-span-6">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <x-th>#</x-th>
+                                <x-th>ITEM </x-th>
+                                <x-th>QUANTITY</x-th>
+                                <x-th></x-th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <x-th>{{ $accountpayable->id }}</x-th>
+                                <x-td>
+                                    @foreach($accountpayable->particular as $particular)
+                                    {{ $particular }} <br>
+                                    @endforeach
+                                </x-td>
+                                <x-td>
+                                    @foreach($accountpayable->quantity as $quantity)
+                                    {{ $quantity }} <br>
+                                    @endforeach
+                                </x-td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
 
                 </div>
 
-                {{-- material/service details --}}
-                <div class="sm:col-span-3">
-                    <label for="service_details" class="block text-sm font-medium text-gray-700">Particular</label>
-                    <input type="text" value="{{ $accountpayable->particular }}" name="particular" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('particular')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
 
-                {{-- quantity --}}
-                <div class="sm:col-span-3">
-                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
-                    <input type="number" value="{{ $accountpayable->quantity }}" name="quantity" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('quantity')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
 
 
                 {{-- price --}}
@@ -199,7 +214,7 @@
 
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                    @can('accountpayable')
+                  
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                         href="#/" wire:click="rejectRequest()">
                         Reject
@@ -218,7 +233,7 @@
                         </svg>
                         Approve
                     </button>
-                    @else
+                    {{-- @else
                     @if($accountpayable->status === 'approved by account payable')
                     <button
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
@@ -235,7 +250,7 @@
                         Next
                     </button>
                     @endif
-                    @endcan
+                    @endcan --}}
                 </div>
 
             </div>

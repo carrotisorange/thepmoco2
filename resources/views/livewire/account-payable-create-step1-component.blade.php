@@ -49,7 +49,8 @@
                 </div>
 
                 <div class="sm:col-span-6">
-                    <label for="particular" class="block text-sm font-medium text-gray-700"><b>Please add the particulars</b></label>
+                    <label for="particular" class="block text-sm font-medium text-gray-700"><b>Please add the
+                            particulars</b></label>
                 </div>
 
                 <div class="sm:col-span-6">
@@ -60,7 +61,7 @@
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead class="bg-gray-50">
                                     <tr>
-
+                                        <x-th>#</x-th>
                                         <x-th>ITEM </x-th>
                                         <x-th>QUANTITY</x-th>
                                         <x-th></x-th>
@@ -68,29 +69,39 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     <tr>
+                                        <x-td>1</x-td>
                                         <x-td>
-                                            <input type="text" wire:model="particular" rows="3"
+                                            <input type="text" wire:model="particular"
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                             @error('particular')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </x-td>
                                         <x-td>
-                                            <input type="number" step="0.001" min="1" wire:model="quantity" rows="3"
+                                            <input type="number" step="0.001" min="1" wire:model="quantity"
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                             @error('quantity')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </x-td>
-                                        <x-td>
-                                            {{-- <button type="button" wire:click="addParticular()"
-                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-
-                                                Add
-                                            </button> --}}
-                                        </x-td>
                                     </tr>
+                                    @for ($i = 1; $i <= 4; $i++) 
+                                    <tr>
+                                        <x-td>{{ $i+1 }}</x-td>
+                                        <x-td>
+                                            <input type="text" wire:model="particular{{ $i }}"
+                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                            
+                                        </x-td>
+                                        <x-td>
+                                            <input type="number" step="0.001" min="1" wire:model="quantity{{ $i }}"
+                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                          
+                                        </x-td>
+
+                                        </tr>
+                                        @endfor
+
                                 </tbody>
                             </table>
                         </form>
