@@ -99,10 +99,10 @@
             Tenant: {{ $tenant }}
         </p>
         <p>
-            Bills to be Paid: {{ number_format($bills->sum('bill'), 2) }}
+            Bills to be Paid: {{ number_format($bills->sum('bill')-$bills->sum('initial_payment'), 2) }}
         </p>
         <p>
-            <b>Bills to be Paid After Due Date: {{ number_format(($bills->sum('bill') +$penalty), 2) }}</b>
+            <b>Bills to be Paid After Due Date: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment') + $penalty), 2) }}</b>
         </p>
         <br>
         <p>
