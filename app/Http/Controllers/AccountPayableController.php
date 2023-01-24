@@ -13,17 +13,6 @@ use Str;
 
 class AccountPayableController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($property_uuid, $status=null)
-    {
-        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',17);
-
-        return view('properties.accountpayables.index');
-    }
 
     public function get_property_expenses($property_uuid, $daily, $monthly)
     {

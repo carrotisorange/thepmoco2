@@ -19,7 +19,6 @@ class ConcernIndexComponent extends Component
     
     public function render()
     {
-
         $concerns = Concern::search($this->property->uuid)
         ->orderBy('created_at', 'desc')
         ->where('property_uuid', $this->property->uuid)

@@ -71,6 +71,12 @@ class UnitInventoryComponent extends Component
         session()->flash('success', 'New Inventory row is added successfully!');
     }
 
+    public function redirectToTheUnitPage(){
+        
+        sleep(2);
+
+        return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid);
+    }
     
     public function get_inventories(){
         return UnitInventory::where('unit_uuid', $this->unitDetails->uuid)

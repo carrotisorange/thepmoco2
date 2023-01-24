@@ -10,14 +10,6 @@ use Carbon\Carbon;
 
 class CollectionController extends Controller
 {
-    public function index()
-    {
-        $collections = Property::find(Session::get('property'))->acknowledgementreceipts;
-
-        return view('collections.index',[
-            'collections'=> $collections,
-        ]);
-    }
 
     public function get_property_collections($property_uuid, $daily, $monthly)
     {

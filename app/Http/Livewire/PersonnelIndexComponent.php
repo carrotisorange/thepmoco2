@@ -8,7 +8,7 @@ use App\Models\UserProperty;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 
-class UserIndexComponent extends Component
+class PersonnelIndexComponent extends Component
 {
     use WithPagination;
 
@@ -35,7 +35,7 @@ class UserIndexComponent extends Component
         })
      ->paginate(10);
       
-     return view('livewire.user-index-component', [
+     return view('livewire.personnel-index-component', [
         'personnels' => $personnels,
         'statuses' => app('App\Http\Controllers\UserPropertyController')->get_user_statuses(Session::get('property')),
       ]);
