@@ -353,7 +353,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{accountPayable}/export/step-1', [AccountPayableController::class, 'export_step1']);
 
             Route::get('{id}/approve', 'approve');
-            Route::get('{str_random}/create', 'create')->name('accountpayable');
+            //Route::get('{str_random}/create', 'create')->name('accountpayable');
 
             //step 1
             Route::get('{request_for}/step-1', 'create_step_1')->name('accountpayable');

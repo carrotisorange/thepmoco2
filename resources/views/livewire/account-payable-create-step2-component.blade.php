@@ -21,7 +21,8 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation1"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span>Upload a file</span>
+                                    <span wire:loading.remove>Upload a file</span>
+                                    <span wire:loading>Loading...</span>
                                     <input id="quotation1" wire:model="quotation1" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($quotation1)
@@ -53,7 +54,8 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation2"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span>Upload a file</span>
+                                    <span wire:loading.remove>Upload a file</span>
+                                    <span wire:loading>Loading...</span>
                                     <input id="quotation2" wire:model="quotation2" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($quotation2)
@@ -85,7 +87,8 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation3"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span>Upload a file</span>
+                                    <span wire:loading.remove>Upload a file</span>
+                                    <span wire:loading>Loading...</span>
                                     <input id="quotation3" wire:model="quotation3" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($quotation3)

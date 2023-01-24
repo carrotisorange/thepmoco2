@@ -10,30 +10,43 @@
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
+                <div class="sm:col-span-6">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
+
+                </div>
+
+                <div class="sm:col-span-6">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <x-th>#</x-th>
+                                <x-th>ITEM </x-th>
+                                <x-th>QUANTITY</x-th>
+                                <x-th></x-th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <x-th>{{ $accountpayable->id }}</x-th>
+                                <x-td>
+                                    @foreach($accountpayable->particular as $particular)
+                                    {{ $particular }} <br>
+                                    @endforeach
+                                </x-td>
+                                <x-td>
+                                    @foreach($accountpayable->quantity as $quantity)
+                                    {{ $quantity }} <br>
+                                    @endforeach
+                                </x-td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
 
-                </div>
-
-                {{-- material/service details --}}
-                <div class="sm:col-span-3">
-                    <label for="service_details" class="block text-sm font-medium text-gray-700">Particular</label>
-                    <input type="text" value="{{ $accountpayable->particular }}" name="particular" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('particular')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                {{-- quantity --}}
-                <div class="sm:col-span-3">
-                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
-                    <input type="number" value="{{ $accountpayable->quantity }}" name="quantity" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('quantity')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
                 </div>
 
 
@@ -81,12 +94,14 @@
 
                 <div class="sm:col-span-7">
                     <label class="block text-sm font-medium text-gray-700">Upload the payment</label>
-                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div
+                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
                                 <label for="attachment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span>Upload a file</span>
+                                    <span wire:loading.remove>Upload a file</span>
+                                    <span wire:loading>Loading...</span>
                                     <input id="attachment" wire:model="attachment" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($attachment)
@@ -95,16 +110,17 @@
                                             attachment
                                             .</a></span>
                                     @endif
-                
+
                                 </label>
-                
+
                             </div>
-                
+
                             @error('attachment')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                             @if ($attachment)
-                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                                    class="fa-solid fa-circle-check"></i></p>
                             @endif
                         </div>
                     </div>
@@ -115,7 +131,7 @@
 
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                  
+
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                         href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable_id }}/step-5">
                         Back
@@ -123,9 +139,8 @@
                     <button
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
-                        <svg wire:loading wire:target="submitForm"
-                            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24">
+                        <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
                             </circle>
                             <path class="opacity-75" fill="currentColor"
@@ -134,7 +149,7 @@
                         </svg>
                         Finish
                     </button>
-                   
+
                 </div>
 
             </div>

@@ -91,7 +91,6 @@
                     </div>
                 </div>
 
-
                 <div class="sm:col-span-6">
                     <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
                     <div
@@ -114,30 +113,43 @@
                 </div>
 
                 <div class="sm:col-span-6">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
+                
+                </div>
+
+                <div class="sm:col-span-6">
+                    <table class="w-full text-lg text-left text-gray-500 dark:text-gray-400">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <x-th>#</x-th>
+                                <x-th>ITEM </x-th>
+                                <x-th>QUANTITY</x-th>
+                                <x-th></x-th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <x-th>{{ $accountpayable->id }}</x-th>
+                                <x-td class>
+                                    @foreach($accountpayable->particular as $particular)
+                                        {{ $particular }} <br>
+                                    @endforeach
+                                </x-td>
+                                <x-td>
+                                    @foreach($accountpayable->quantity as $quantity)
+                                    {{ $quantity }} <br>
+                                    @endforeach
+                                </x-td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
 
                 </div>
-
-                {{-- material/service details --}}
-                <div class="sm:col-span-3">
-                    <label for="service_details" class="block text-sm font-medium text-gray-700">Particular</label>
-                    <input type="text" value="{{ $accountpayable->particular }}" name="particular" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('particular')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                {{-- quantity --}}
-                <div class="sm:col-span-3">
-                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
-                    <input type="number" value="{{ $accountpayable->quantity }}" name="quantity" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('quantity')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
 
                 {{-- price --}}
                 <div class="sm:col-span-3">
@@ -191,7 +203,7 @@
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-red-700"><i
                             class="fa-solid fa-triangle-exclamation"></i> Rejected by: {{
-                     $accountpayable->requester->name }} </label>
+                        $accountpayable->requester->name }} </label>
 
                 </div>
                 @endif
