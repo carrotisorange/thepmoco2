@@ -14,7 +14,6 @@ class CreateUnitInventories extends Migration
     public function up()
     {
         Schema::create('unit_inventories', function (Blueprint $table) {
-            $table->id();
             $table->string('item');
             $table->integer('quantity');
             $table->foreignUuid('unit_uuid')->constrained();
