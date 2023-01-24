@@ -268,8 +268,24 @@ class OwnerCollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Property $property, Owner $owner, $batch_no)
     {
-        //
+
+        Collection::where('owner_uuid', $owner->uuid)
+        ->when($batch_no, function ($query) use ($batch_no) {
+        $query->where('batch_no', $batch_no);
+        })
+        ->where('is_posted', 0)
+        ->delete();
+
+        Bill::where('owner_uuid', $owner->uuid)
+        ->when($batch_no, function ($query) use ($batch_no) {
+        $query->where('batch_no', $batch_no);
+        })
+        ->update([
+        'batch_no' => null
+        ]);
+
+        return redirect('/property/'.Session::get('property').'/owner/'.$owner->uuid.'/bills');
     }
 }

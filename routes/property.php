@@ -291,6 +291,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);
             Route::get('bills', [OwnerBillController::class, 'index'])->name('owner');
+            Route::get('collection/{batch_no?}', [OwnerCollectionController::class,'destroy']);
             Route::post('bill/store', [OwnerBillController::class, 'store']);
             Route::get('bill/export', [OwnerBillController::class, 'export']);
             Route::get('bill/send', [OwnerBillController::class, 'send']);

@@ -99,7 +99,14 @@
 
                 @can('treasury')
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
-                <x-button wire:click="payBills">Pay Bills</x-button>
+                <button type="button" wire:click="payBills" wire:loading.remove
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Pay Bills
+                </button>
+                <button type="button" wire:loading wire:target="payBills" disabled
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Loading...
+                </button>
                 <div class="mt-5">
                     <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
                         count($selectedBills))}}

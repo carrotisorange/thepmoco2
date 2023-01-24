@@ -1,7 +1,81 @@
 <div>
-    Reference # : <b> {{ $owner->bill_reference_no }}</b>, Deposits: <b> {{
-        number_format(App\Models\Owner::find($owner->uuid)->collections()->where('is_deposit',
-        '1')->sum('collection'), 2) }}</b>
+    <div class="my-5 px-4 sm:px-6 lg:px-8">
+        <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
+
+            <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
+                <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
+
+                    <li class="flex">
+                        <div class="flex items-center">
+                            <button onclick="window.location.href='/property/{{ Session::get('property') }}/owner'"
+                                class="text-lg font-medium text-gray-500 hover:text-gray-700" aria-current="page">
+                                Owners</button>
+                        </div>
+                    </li>
+
+                    <li class="flex">
+                        <div class="flex items-center">
+                            <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44"
+                                preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true">
+                                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                            </svg>
+                            <button
+                                onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}'"
+                                class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
+                                {{ $owner->owner }} </button>
+                        </div>
+                    </li>
+
+                    <li class="flex">
+                        <div class="flex items-center">
+                            <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44"
+                                preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true">
+                                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                            </svg>
+                            <button
+                                onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/bills'"
+                                class="ml-4 text-lg font-bold text-gray-700 hover:text-gray-700" aria-current="page">
+                                Bills</button>
+                        </div>
+
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
+                <div class="sm:my-10 md:my-5 lg:my-0">
+
+                    @if($total_unpaid_bills->count())
+                    <button type="button" data-modal-toggle="export-owner-bill"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export
+                        Bills ({{
+                        App\Models\Owner::find($owner->uuid)->bills()->where('status', '!=','paid')->count()
+                        }})</a></button>
+
+                    <button type="button" data-modal-toggle="send-owner-bill"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send
+                        Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->where('status',
+                        '!=', 'paid')->count() }})</a></button>
+                    @endif
+
+
+                    <button type="button" data-modal-toggle="create-owner-bill"
+                        class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                        Create Bill</a></button>
+
+                    <button type="button" data-modal-toggle="create-particular-modal"
+                        class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                        Create Particular</a></button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    {{-- Reference # : <b> {{ $owner->bill_reference_no }}</b>, Security Deposit: <b> {{
+        number_format(App\Models\Owner::find($owner->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
 
     <div class="mt-5">
         @if($bills)
@@ -23,24 +97,35 @@
         <div class="flex flex-row">
             <div class="basis-3/4">
 
-
                 @can('treasury')
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
-
-                <x-button wire:click="payBills">Pay Bills</x-button>
+                <button type="button" wire:click="payBills" wire:loading.remove
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Pay Bills
+                </button>
+                <button type="button" wire:loading wire:target="payBills" disabled
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Loading...
+                </button>
                 <div class="mt-5">
-                    <span>You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}}
-                        amounting to {{ number_format($total) }}</span>...
+                    <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
+                        count($selectedBills))}}
+                        amounting to <b>{{ number_format($total) }}</b></span>
                 </div>
-
+                @else
+                <div class="mt-1">
+                    <b>Please check the bill you want to pay</b>
+                </div>
                 @endif
                 @endcan
 
             </div>
             <div class="basis-1/4 ml-12 text-right">
-                @can('accountowner')
+                @can('billing')
                 @if($selectedBills)
-                <x-button title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
+                <x-button
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
                     Remove
                     bills ({{ count($selectedBills) }})
                 </x-button>
@@ -49,103 +134,14 @@
             </div>
         </div>
     </div>
-
+    {{-- {{ $bills->links() }} --}}
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <?php $ctr =1; ?>
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <x-th>
-                                            {{--
-                                            <x-input id="" wire:model="selectAll" type="checkbox" /> --}}
-                                        </x-th>
-                                        <x-th>Bill #</x-th>
-                                        <x-th>Unit</x-th>
-                                        <x-th>Particular</x-th>
-                                        <x-th>Period</x-th>
-                                        <x-th>Amount Due</x-th>
-
-                                        <x-th>Amount Paid</x-th>
-                                        <x-th>Balance</x-th>
-                                        {{-- <x-th></x-th> --}}
-                                    </tr>
-                                </thead>
-                                @forelse ($bills as $item)
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
-                                        <x-td>
-                                            @if($item->status != 'paid')
-                                            <x-input type="checkbox" wire:model="selectedBills"
-                                                value="{{ $item->id }}" />
-                                            @endif
-                                        </x-td>
-                                        <x-td>{{ $item->bill_no }}</x-td>
-                                        <x-td> <a
-                                                href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}"><b
-                                                    class="text-blue-600">{{ $item->unit->unit}} </b></a></x-td>
-                                        <x-td>{{$item->particular->particular }}</x-td>
-                                        <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
-                                            Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
-                                        <x-td>{{number_format($item->bill,2) }}
-                                            @if($item->status === 'paid')
-                                            <span title="paid"
-                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                <i class="fa-solid fa-circle-check"></i>
-                                            </span>
-                                            @elseif($item->status === 'partially_paid')
-                                            <span title="partially_paid"
-                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                <i class="fa-solid fa-clock"></i>
-                                            </span>
-                                            @else
-                                            <span title="unpaid"
-                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                <i class="fa-solid fa-circle-xmark"></i>
-                                            </span>
-                                            @endif
-
-                                            @if($item->description === 'movein charges' && $item->status==='unpaid')
-                                            <span title="urgent"
-                                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                <i class="fa-solid fa-bolt"></i>
-                                            </span>
-                                            @endif
-                                        </x-td>
-                                        <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
-                                        <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
-                                        {{-- <x-td>
-                                            <form method="POST" action="/bill/{{ $item->id }}/delete">
-                                                @csrf
-                                                @method('delete')
-                                                <x-button onclick="confirmMessage()"><i
-                                                        class="fa-solid fa-trash-can"></i></x-button>
-                                            </form>
-                                        </x-td> --}}
-
-                                        @empty
-                                        <x-td>
-                                            No data found.
-                                        </x-td>
-                                    </tr>
-                                    @endforelse
-                                    <tr>
-                                        <x-td>Total</x-td>
-                                        <x-td></x-td>
-                                        <x-td></x-td>
-                                        <x-td></x-td>
-                                        <x-td></x-td>
-                                        <x-td>{{number_format($bills->sum('bill'),2) }}</x-td>
-                                        <x-td>{{number_format($bills->sum('initial_payment'),2) }}</x-td>
-                                        <x-td>{{number_format($bills->sum('bill') - $bills->sum('initial_payment') ,2)
-                                            }}</x-td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            @include('tables.bills')
                         </div>
                     </div>
                 </div>
