@@ -91,7 +91,7 @@ class OwnerController extends Controller
 
         Session::forget('tenant_uuid');
 
-         return view('owners.show',[
+        return view('owners.show',[
             'owner_details' => $owner,
         ]);
     }

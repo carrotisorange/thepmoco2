@@ -11,7 +11,4 @@ class UnitInventory extends Model
 
     protected $table = 'unit_inventories';
 
-    protected $casts = [
-        'item' => 'array'
-    ];
 }
