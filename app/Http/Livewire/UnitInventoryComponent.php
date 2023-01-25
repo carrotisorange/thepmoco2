@@ -71,6 +71,14 @@ class UnitInventoryComponent extends Component
         session()->flash('success', 'New Inventory row is added successfully!');
     }
 
+    public function removeUnitInventory($id){
+        sleep(2);
+
+        UnitInventory::where('id', $id)->delete();
+        
+        session()->flash('success', 'Inventory is successfully removed!');
+    }
+
     public function redirectToTheUnitPage(){
         
         sleep(2);

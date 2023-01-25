@@ -15,7 +15,7 @@
                 <i class="fa-solid fa-plus"></i> &nbsp New Inventory
             </button>
 
-            <button type="button" wire:loading disabled
+            <button type="button" wire:loading disabled 
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                 Loading...
             </button>
@@ -66,10 +66,14 @@
                                     @enderror
                                 </x-td>
                                 <x-td>
-                                    {{-- <button type="button" data-modal-toggle="create-unit-modal"
-                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                        <i class="fa-solid fa-plus"></i> &nbsp New unit
-                                    </button> --}}
+                                    <button type="button" wire:click="removeUnitInventory({{ $inventory->id }})" wire:loading.remove
+                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                          Remove
+                                    </button>
+                                    <button type="button" wire:loading disabled wire:target="removeUnitInventory"
+                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                        Loading...
+                                    </button>
                                 </x-td>
                             </tr>
                         </div>
