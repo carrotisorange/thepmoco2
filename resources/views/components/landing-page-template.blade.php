@@ -297,6 +297,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   <a href="faq" class="text-base text-gray-500 hover:text-gray-900">FAQs</a>
                 </li>
 
+                <li>
+                  <a href="job" class="text-base text-gray-500 hover:text-gray-900">Jobs</a>
+                </li>
+
                
 
                 
