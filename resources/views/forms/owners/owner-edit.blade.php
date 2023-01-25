@@ -7,7 +7,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="owner" class="block text-xs font-medium text-gray-900">Name of the unit owner
                 </label>
-                <input type="text" wire:model.lazy="owner"
+                <input type="text" wire:model="owner"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
 
@@ -19,7 +19,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">Email
                 </label>
-                <input type="email" wire:model.lazy="email"
+                <input type="email" wire:model="email"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('email')
@@ -31,7 +31,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="mobile_number" class="block text-xs font-medium text-gray-900">Mobile No</label>
-                <input type="text" wire:model.lazy="mobile_number"
+                <input type="text" wire:model="mobile_number"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('mobile_number')
@@ -45,7 +45,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="name" class="block text-xs font-medium text-gray-900">Owner Reference No
                 </label>
-                <input type="text" wire:model.lazy="bill_reference_no" readonly
+                <input type="text" wire:model="bill_reference_no" readonly
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
 
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <div class="sm:col-span-2">
+        {{-- <div class="sm:col-span-2">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">City</label>
@@ -110,18 +110,16 @@
                 @error('city_id')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
-                {{-- <input type="text" wire:model.lazy="city_id" value="{{ $owner_details->city->city }}"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder=""> --}}
-            </div>
-        </div>
 
-        <div class="sm:col-span-2">
+            </div>
+        </div> --}}
+
+        <div class="sm:col-span-4">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">
                     Address</label>
-                <input type="text" wire:model.lazy="barangay"
+                <input type="text" wire:model="barangay"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('barangay')
@@ -136,7 +134,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="occupation" class="block text-xs font-medium text-gray-900">Occupation</label>
-                <input type="text" wire:model.lazy="occupation"
+                <input type="text" wire:model="occupation"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('occupation')
@@ -149,7 +147,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="employer" class="block text-xs font-medium text-gray-900">Employer</label>
-                <input type="text" wire:model.lazy="employer"
+                <input type="text" wire:model="employer"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('employer')
@@ -162,7 +160,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="employer_address" class="block text-xs font-medium text-gray-900">Address</label>
-                <input type="text" wire:model.lazy="occupation"
+                <input type="text" wire:model="employer_address"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('employer_address')

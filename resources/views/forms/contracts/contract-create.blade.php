@@ -61,7 +61,7 @@
                     <div class="col-span-2">
                         <label for="referral" class="block text-sm font-medium text-gray-700">Name of the referral<span
                                 class="text-xs"></label>
-                        <input type="text" wire:model.lazy="referral" autocomplete="referral" 
+                        <input type="text" wire:model.lazy="referral" autocomplete="referral"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('referral')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -80,7 +80,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="image"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Attach a contract</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="image" name="image" type="file" class="sr-only"
                                             wire:model="contract">
                                     </label>
