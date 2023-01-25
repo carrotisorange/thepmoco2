@@ -345,6 +345,20 @@
 
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
 
+                    <!-- Calendar -->
+                    
+                    <x-nav-link>
+
+                        <span class="sr-only">Calendar</span>
+                        <img class="h-7 w-auto" src="{{ asset('/brands/calendar.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    
+
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Calendar</div>
+
                     <!-- Tenants -->
                     @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/tenant"
@@ -580,6 +594,22 @@
                     @endif
 
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Utilities</div>
+
+                    <!-- Guest -->
+                    
+                    <x-nav-link>
+
+                        <span class="sr-only">Guest</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/guest.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    
+
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Guest</div>
+
+                    
                 </div>
             </nav>
             @include('layouts.notifications')
