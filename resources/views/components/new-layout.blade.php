@@ -21,15 +21,23 @@
                             </a>
                         </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
                             <h1 class="text-xl py-5 tracking-tight font-bold leading-tight text-gray-900">
                                 @if (Session::has('property'))
                                 {{ App\Models\Property::find(Session::get('property'))->property.'
                                 '.App\Models\Property::find(Session::get('property'))->type->type }}
                                 @endif
                             </h1>
-
+                            <!-- help icon -->
+                            <div class="py-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-gray-500 w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                </svg>
+                            </div>
                         </div>
+
+                        
+
                         {{-- {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link href="/users" :active="request()->routeIs('user')">
                                 <i class="fa-solid fa-user"></i>&nbspUser
@@ -37,9 +45,16 @@
                         </div> --}}
                     </div>
                     @auth
+                        
+
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <!-- notification bell -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-gray-500 w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                            </svg>
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
+                                    
                                 <button
                                     class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
 
