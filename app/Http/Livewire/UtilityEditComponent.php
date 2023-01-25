@@ -103,9 +103,10 @@ class UtilityEditComponent extends Component
 
     public function get_utilities(){
      
-        return Utility::where('property_uuid', $this->property_uuid)
-        ->where('batch_no', $this->batch_no)
-        ->orderBy('id', 'desc')
+        return Utility::where('utilities.property_uuid', $this->property_uuid)
+        ->join('units', 'utilities.unit_uuid', 'units.uuid')
+        ->where('utilities.batch_no', $this->batch_no)
+        ->orderByRaw('LENGTH(unit) ASC')->orderBy('unit', 'asc')
         ->get();
     }
 

@@ -28,7 +28,7 @@
                         </div>
                     </x-td> --}}
                     <x-td>
-                        <x-table-input form="edit-form" type="text" value="{{ $item->unit->unit }}" readonly />
+                        <x-table-input form="edit-form" type="text" value="{{ $item->unit }}" readonly />
 
                         {{-- <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                             href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/bills">
