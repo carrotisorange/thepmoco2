@@ -455,12 +455,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     // calendar
-    Route::get('/calendar', function(){
-        return view('calendar.calendar');
+    Route::get('/unit-calendar', function(){
+        return view('calendar.unit-calendar');
     });
 
-    Route::get('/year', function(){
-        return view('calendar.year');
+    Route::get('/week-view', function(){
+        return view('calendar.week-view');
     });
 
 });
