@@ -1,6 +1,6 @@
 <x-landing-page-template>
 @section('title','The PMO — Article')
-
+@section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 <div class="mx-10 mt-4 flex justify-end items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 ">
 	<span class="block">Page 3 of 3</span>
 	<div class="space-x-1">

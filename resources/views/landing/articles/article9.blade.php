@@ -1,5 +1,6 @@
 <x-landing-page-template>
 @section('title','How to reduce digitalization pain points')
+@section('description', 'How to overcome digitalization challenges as a property owner')
 <!-- start article -->
 <div class="sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
 

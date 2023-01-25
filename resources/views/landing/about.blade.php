@@ -1,6 +1,6 @@
 <x-landing-page-template>
 @section('title','The PMO — About')
-
+@section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
     <div class ="min-h-screen">
     <div class="flex items-center justify-center">
 <img class="mt-10 h-full w-fit object-cover opacity-30" src="{{ asset('/brands/landing/buildings.png') }}" alt="an outline of new york tall buildings">

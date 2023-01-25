@@ -1,6 +1,6 @@
 <x-landing-page-template>
 @section('title','How The PMO Started')
-
+@section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 <div class="sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
 
   <div class="col-span-1">
