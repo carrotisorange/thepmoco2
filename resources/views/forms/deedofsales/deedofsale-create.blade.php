@@ -1,5 +1,5 @@
 <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
-    <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="mt-1 px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-1 md:gap-6">
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <div class="grid grid-cols-2 gap-6">
@@ -12,7 +12,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="title"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Attach a file</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="title" type="file" class="sr-only" wire:model="title">
                                     </label>
 
@@ -20,7 +21,8 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($title)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeAttachment('title')">Remove the uploaded title.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('title')">Remove the uploaded
+                                        title.</a></span>
                                 @endif
 
                             </div>
@@ -44,7 +46,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="tax_declaration"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Attach a file</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="tax_declaration" type="file" class="sr-only"
                                             wire:model="tax_declaration">
                                     </label>
@@ -53,7 +56,8 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($tax_declaration)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeAttachment('tax_declaration')">Remove the uploaded tax declaration.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('tax_declaration')">Remove the uploaded
+                                        tax declaration.</a></span>
                                 @endif
                             </div>
 
@@ -79,7 +83,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="file-deed_of_sales"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Attach a file</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="file-deed_of_sales" type="file" class="sr-only"
                                             wire:model="deed_of_sales">
                                     </label>
@@ -88,7 +93,8 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($deed_of_sales)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeAttachment('deed_of_sales')">Remove the uploaded deed of sale.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('deed_of_sales')">Remove the uploaded deed
+                                        of sale.</a></span>
                                 @endif
                             </div>
 
@@ -113,7 +119,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="contract_to_sell"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Attach a file</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="contract_to_sell" type="file" class="sr-only"
                                             wire:model="contract_to_sell">
                                     </label>
@@ -122,7 +129,8 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($contract_to_sell)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeAttachment('contract_to_sell')">Remove the uploaded contract to sell.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('contract_to_sell')">Remove the uploaded
+                                        contract to sell.</a></span>
                                 @endif
                             </div>
 
@@ -148,7 +156,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="certificate_of_membership"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Attach a file</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="certificate_of_membership" type="file" class="sr-only"
                                             wire:model="certificate_of_membership">
                                     </label>
@@ -157,7 +166,8 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($certificate_of_membership)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeAttachment('certificate_of_membership')">Remove the uploaded certificate of membership.</a></span>
+                                    <a href="#/" wire:click="removeAttachment('certificate_of_membership')">Remove the
+                                        uploaded certificate of membership.</a></span>
                                 @endif
                             </div>
 
