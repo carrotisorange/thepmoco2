@@ -1,4 +1,4 @@
-<x-new-layout>
+
 	
     
     <link rel="dns-prefetch" href="//unpkg.com" />
@@ -335,4 +335,4 @@
         </ol>
     </div>
 
-  </x-new-layout>
+ 

@@ -1,4 +1,4 @@
-<x-new-layout>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -93,4 +93,3 @@ table tbody th {
 </style>
 </html>
 
-</x-new-layout>
