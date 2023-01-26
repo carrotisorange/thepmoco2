@@ -57,6 +57,7 @@ use App\Http\Controllers\PropertyCollectionController;
 use App\Http\Controllers\PropertyAccountPayableController;
 use App\Http\Controllers\PropertyCashflowController;
 use App\Http\Controllers\PropertyUtilityController;
+use App\Http\Controllers\PropertyGuestController;
 
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
@@ -92,6 +93,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //route for adding bill to unit based on the utility reading
     Route::get('unit/{unit}/{type}/utility/{utility}', [UnitBillController::class, 'create'])->name('unit');
 
+    Route::prefix('guest')->group(function(){
+        Route::get('/', [PropertyGuestController::class, 'index'])->name('guest');
+    });
 
     //Routes for Unit
     Route::prefix('unit')->group(function(){
@@ -120,6 +124,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             });
 
             Route::prefix('guest')->group(function(){
+                
                 Route::get('{random_str}/create', [GuestController::class, 'create']);
                 Route::post('store', [GuestController::class, 'store']);
             });

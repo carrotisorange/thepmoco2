@@ -76,6 +76,41 @@ class UnitShowComponent extends Component
 
         return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
     }
+
+    public function redirectToTheCreateOwnerPage(){
+        
+        sleep(2);
+
+        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/owner/'.Str::random(8).'/create');
+    }
+
+    public function redirectToTheCreateTenantPage(){
+        
+        sleep(2);
+
+        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/tenant/'.Str::random(8).'/create');
+    }
+
+    public function redirectToTheCreateGuestPage(){
+        
+        sleep(2);
+
+        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/guest/'.Str::random(8).'/create');
+    }
+
+    public function redirectToTheCreateUtilitiesPage(){
+        
+        sleep(2);
+
+        return redirect('/property/'.$this->property_uuid.'/utilities/');
+    }
+
+    public function redirectToTheCreateConcernPage(){
+        
+        sleep(2);
+
+        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
+    }
     
     public function submitForm()
     {

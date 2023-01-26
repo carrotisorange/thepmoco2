@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\UnitInventory;
+use Carbon\Carbon;
 
 class UnitInventoryComponent extends Component
 {
@@ -42,6 +43,7 @@ class UnitInventoryComponent extends Component
                     'item' => $inventory->item,
                     'quantity' => $inventory->quantity,
                     'remarks' => $inventory->remarks,
+                    'updated_at' => Carbon::now()
                 ]);
 
                 
