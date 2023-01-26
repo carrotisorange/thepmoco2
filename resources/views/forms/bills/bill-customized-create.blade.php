@@ -2,9 +2,9 @@
     action="/property/{{ Session::get('property') }}/bill/customized/{{ $active_contracts->count() }}/store">
     @csrf
     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Configure your customized bills</h3>
-    <p class="text-sm font-medium text-gray-900 dark:text-white">You're about to create <b>{{
-            $active_contracts->count() }}</b> bills for <b>{{ $active_tenants->count('tenant_uuid') }}</b>
-        active tenants. You may still modify these bills when you click <b>CONFIRM</b>.`
+    <p class="text-sm font-medium text-gray-900 dark:text-white">You're about to create <b class="font-bold text-lg text-red-500">{{
+            $active_contracts->count() }}</b> bills for <b class="font-bold text-lg text-red-500">{{ $active_tenants->count('tenant_uuid') }}</b>
+        active tenants <b class="font-bold text-lg text-red-500">ONLY.</b> You may still modify these bills when you click <b>CONFIRM</b>.`
     </p>
     <div class="mt-5">
         <x-label for="particular_id">
