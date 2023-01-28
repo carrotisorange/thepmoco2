@@ -5,14 +5,10 @@
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
+
             <button type="button" wire:click="redirectToTheUnitPage" wire:loading.remove
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                 <i class="fa-solid fa-circle-left"></i> &nbsp Go back to Unit
-            </button>
-
-            <button type="button" wire:click="exportUnitInventory" wire:loading.remove
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                <i class="fa-solid fa-download"></i> &nbsp Export Inventory
             </button>
 
             <button type="button" wire:click="addNewUnitInventory" wire:loading.remove
@@ -20,7 +16,7 @@
                 <i class="fa-solid fa-plus"></i> &nbsp New Item
             </button>
 
-            <button type="button" wire:loading disabled 
+            <button type="button" wire:loading disabled
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                 Loading...
             </button>
@@ -37,6 +33,7 @@
                             <x-th>ITEM </x-th>
                             <x-th>QUANTITY</x-th>
                             <x-th>REMARKS</x-th>
+                            {{-- <x-th>IMAGE</x-th> --}}
                             <x-th></x-th>
                         </tr>
                     </thead>
@@ -70,15 +67,25 @@
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td>
+                                {{-- <x-td>
+                                    <input type="file" wire:model="inventories.{{ $index }}.image"
+                                        wire:keyup="updateUnitInventory({{ $inventory->id }})"
+                                        class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                    @error('inventories.{{ $index }}.remarks')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </x-td> --}}
                                 <x-td>
-                                    <button type="button" wire:click="removeUnitInventory({{ $inventory->id }})" wire:loading.remove
+                                    <button type="button" wire:click="removeUnitInventory({{ $inventory->id }})"
+                                        wire:loading.remove
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                          Remove
+                                        <i class="fa-solid fa-trash"></i>&nbsp; Remove
                                     </button>
                                     <button type="button" wire:loading disabled wire:target="removeUnitInventory"
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         Loading...
                                     </button>
+                                    @include('layouts.notifications')
                                 </x-td>
                             </tr>
                         </div>
@@ -86,7 +93,13 @@
                     </tbody>
                 </table>
             </form>
+
         </div>
     </div>
-    @include('layouts.notifications')
+
+    <button type="button" wire:click="redirectToTheUnitPage" wire:loading.remove
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                <i class="fa-solid fa-circle-check"></i> &nbsp Save
+            </button>
+
 </div>

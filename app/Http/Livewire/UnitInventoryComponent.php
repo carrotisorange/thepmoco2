@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\UnitInventory;
+use Carbon\Carbon;
 
 class UnitInventoryComponent extends Component
 {
@@ -29,10 +30,6 @@ class UnitInventoryComponent extends Component
     }
 
     public function updateUnitInventory($id){
-        
-        // sleep(1);
-
-        // $this->validate();
 
        try{
             foreach ($this->inventories->where('id', $id) as $inventory) {
@@ -42,12 +39,13 @@ class UnitInventoryComponent extends Component
                     'item' => $inventory->item,
                     'quantity' => $inventory->quantity,
                     'remarks' => $inventory->remarks,
+                    'updated_at' => Carbon::now()
                 ]);
 
-                
+            session()->flash('success', 'Inventory is successfully updated!');
             }
 
-            session()->flash('success', 'Inventory is successfully updated!');
+           
             
        }catch(\Exception $e){
             session()->flash('error', $e);
@@ -72,7 +70,8 @@ class UnitInventoryComponent extends Component
     }
 
     public function removeUnitInventory($id){
-        sleep(2);
+
+        sleep(1);
 
         UnitInventory::where('id', $id)->delete();
         

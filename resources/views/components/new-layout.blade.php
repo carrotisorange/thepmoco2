@@ -29,14 +29,15 @@
                                 @endif
                             </h1>
                             <!-- help icon -->
-                            <div class="py-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-gray-500 w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                            <button title="help" class="py-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" text-purple-500 w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                                 </svg>
-                            </div>
+                            </button>
                         </div>
 
-                        
+
 
                         {{-- {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link href="/users" :active="request()->routeIs('user')">
@@ -45,16 +46,18 @@
                         </div> --}}
                     </div>
                     @auth
-                        
+
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <!-- notification bell -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-gray-500 w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                            </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="text-gray-500 w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                        </svg>
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
-                                    
+
                                 <button
                                     class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
 
@@ -147,8 +150,21 @@
                             Units
                         </x-dropdown-link>
                         @endif
-
                     </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/calendar">
+                            Calendar
+                        </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Calendar
+                        </x-dropdown-link>
+                        @endif
+                    
+                    </div>
+
                     <div class="pt-2 pb-3 space-y-1">
                         @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/tenant">
@@ -169,6 +185,18 @@
                         @else
                         <x-dropdown-link href="/property/">
                             Contracts
+                        </x-dropdown-link>
+                        @endif
+
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/guest/">
+                            Guests
+                        </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Guests
                         </x-dropdown-link>
                         @endif
 
@@ -345,6 +373,30 @@
 
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
 
+                    <!-- Calendar -->
+
+                    <!-- Units -->
+                    @if(Session::get('property'))
+                    <x-nav-link href="/property/{{ Session::get('property') }}/calendar"
+                        :active="request()->routeIs('calendar')">
+                        <span class="sr-only">Calendar</span>
+                        <img class="h-7 w-auto" src="{{ asset('/brands/calendar.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('calendar')">
+                        <span class="sr-only">Unit</span>
+                        <img class="h-7 w-auto" src="{{ asset('/brands/calendar.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </x-nav-link>
+                    @endif
+
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Calendar</div>
+
                     <!-- Tenants -->
                     @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/tenant"
@@ -388,6 +440,31 @@
                     @endif
 
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Contracts</div>
+
+                    <!-- Guest -->
+
+                    @if(Session::get('property'))
+                    <x-nav-link href="/property/{{ Session::get('property') }}/guest"
+                        :active="request()->routeIs('guest')">
+
+                        <span class="sr-only">Guests</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/guest.png') }}" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('guests')">
+
+                        <span class="sr-only">Utilities</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/utilities-gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </x-nav-link>
+                    @endif
+
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Guests</div>
 
                     <!-- Owners -->
                     @if(Session::get('property'))
@@ -580,6 +657,10 @@
                     @endif
 
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Utilities</div>
+
+
+
+
                 </div>
             </nav>
             @include('layouts.notifications')

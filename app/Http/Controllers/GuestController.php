@@ -19,7 +19,10 @@ class GuestController extends Controller
 
     public function show_unit_guests($unit_uuid)
     {
-       return Guest::where('unit_uuid', $unit_uuid)->orderBy('created_at','desc')->get();
+       return Guest::join('units', 'unit_uuid', 'units.uuid')
+       ->where('unit_uuid', $unit_uuid)
+       ->orderBy('guests.created_at', 'asc')
+       ->paginate(10);
     }
 
     /**

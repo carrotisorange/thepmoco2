@@ -16,4 +16,14 @@ class Guest extends Model
     protected $attributes = [
         'status' => 'pending'
     ];
+
+    public function unit(){
+        return $this->belongsTo(Unit::class, 'unit_uuid');
+    }
+
+    public static function search($search)
+    {
+        return empty($search)? static::query()
+      : static::where('guest','like', '%'.$search.'%');
+    }
 }

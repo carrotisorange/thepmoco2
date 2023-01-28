@@ -34,7 +34,7 @@
                     </div>
 
 
-                    <div class="col-span-2">
+                    <div class="col-span-3">
                         <label for="country_id" class="block text-sm font-medium text-gray-700">Country</label>
                         <select wire:model.lazy="country_id" autocomplete="country_id"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -50,7 +50,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-3">
                         <label for="province_id" class="block text-sm font-medium text-gray-700">Province</label>
                         <select wire:model.lazy="province_id" autocomplete="province_id"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -66,7 +66,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-2">
+                    {{-- <div class="col-span-2">
                         <label for="city_id" class="block text-sm font-medium text-gray-700">City</label>
                         <select wire:model.lazy="city_id" autocomplete="city_id"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -80,7 +80,7 @@
                         @error('city_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="col-span-6">
                         <label for="barangay" class="block text-sm font-medium text-gray-700">
@@ -257,7 +257,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="photo_id"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Upload a file</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="photo_id" name="image" type="file" class="sr-only"
                                             wire:model="photo_id">
                                     </label>
@@ -288,7 +289,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="photo_id_2"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Upload a file</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="photo_id_2" name="image" type="file" class="sr-only"
                                             wire:model="photo_id_2">
                                     </label>
@@ -319,7 +321,8 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="photo_id_3"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Upload a file</span>
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
                                         <input id="photo_id_3" name="image" type="file" class="sr-only"
                                             wire:model="photo_id_3">
                                     </label>

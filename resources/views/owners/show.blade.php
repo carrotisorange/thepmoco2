@@ -1,7 +1,7 @@
 <x-new-layout>
     @section('title', $owner_details->owner. ' | '. Session::get('property_name'))
-    <div class="h-full w-full bg-no-repeat bg-cover" style="background-image: url('/brands/tenant_bg.png');">
-        <div class="mt-8">
+    <div class="min-h-screen bg-no-repeat bg-cover" style="background-image: url('/brands/bg_tenant.png');">
+        <div class="">
             <div class="max-w-full mx-auto sm:px-6">
                 <div class="pt-6 sm:pb-5">
                     <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

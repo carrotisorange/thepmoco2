@@ -354,7 +354,7 @@
             <div class="flex justify-end">
 
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                    target="_blank" href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}">
+                    href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}">
                     Cancel
                 </a>
                 <button type="submit"

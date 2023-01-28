@@ -2,38 +2,21 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>
-                {{-- <x-th>#</x-th> --}}
                 <x-th>UNIT </x-th>
-                {{-- <x-th>START</x-th>
-                <x-th>END</x-th> --}}
                 <x-th>PREVIOUS READING</x-th>
                 <x-th>CURRENT READING </x-th>
                 <x-th>CONSUMPTION</x-th>
                 <x-th>RATE</x-th>
                 <x-th>MIN CHARGE</x-th>
                 <x-th>AMOUNT DUE</x-th>
-                {{-- <x-th>GENERATE BILL?</x-th> --}}
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
             @foreach ($utilities as $index => $item)
             <div wire:key="utility-field-{{ $item->id }}">
                 <tr>
-                    {{-- <x-th>
-                        {{ $index+1 }}
-                    </x-th> --}}
-                    {{-- <x-td>
-                        <div class="flex items-center">
-                            <x-input type="checkbox" wire:model="selectedUtilities.{{ $item->id }}" />
-                        </div>
-                    </x-td> --}}
                     <x-td>
                         <x-table-input form="edit-form" type="text" value="{{ $item->unit }}" readonly />
-
-                        {{-- <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                            href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/bills">
-                            {{ $item->unit_uuid }}
-                        </a> --}}
                     </x-td>
                     {{-- <x-td> --}}
                         <x-table-input form="edit-form" type="hidden" 

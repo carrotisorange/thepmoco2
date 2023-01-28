@@ -16,6 +16,5 @@ class PropertyContractController extends Controller
         return view('properties.contracts.index',[
             'property' => $property
         ]);
-       
     }
 }

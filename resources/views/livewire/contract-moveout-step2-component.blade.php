@@ -122,6 +122,7 @@
                 <x-td> </x-td>
                 <x-td> </x-td>
                 <x-td> </x-td>
+                <x-td></x-td>
                 <x-td> </x-td>
                 <x-td>{{
                     number_format($unpaid_bills->sum('bill'), 2) }} </x-td>

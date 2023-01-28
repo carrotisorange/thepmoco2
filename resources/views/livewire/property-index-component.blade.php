@@ -127,28 +127,36 @@
     </div>
     @else
 
-    <h2 class="text-2xl mt-5 font-bold tracking-tight text-gray-900 font-pop">Welcome back, {{
-        auth()->user()->name }}!</h2>
+    {{-- <h2 class="text-2xl mt-5 font-bold tracking-tight text-gray-900 font-pop">Welcome back, {{
+        auth()->user()->name }}!</h2> --}}
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1>
+            <h2 class="text-2xl mt-5 font-bold tracking-tight text-gray-900 font-pop">Welcome back, {{
+                auth()->user()->name }}!</h2>
+            {{-- <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1> --}}
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-            <button type="button" onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portfolio'"
+            <button type="button" wire:click="exportportfolio" wire:loading.remove
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                Export Portfolio
+              <i class="fa-solid fa-download"></i> &nbsp  Export Portfolio
             </button>
 
+            <button type="button" wire:loading disabled
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                Loading...
+            </button>
 
-            @can('portfolio')
+            {{-- @can('portfolio')
             <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/unlock'"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                <i class="fa-solid fa-circle-plus"></i> &nbsp; New
                 property</button>
-            @else
-            <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/create'"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">New
+            @else --}}
+            <button type="button" wire:click="createNewProperty" wire:loading.remove
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+               <i class="fa-solid fa-circle-plus"></i> &nbsp; New
                 property</button>
-            @endcan
+            {{-- @endcan --}}
             {{-- <button type="button"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</button>
             --}}
@@ -200,16 +208,19 @@
 
 
     </div>
-    <div>
+    {{-- <div>
         <p class="text-sm text-center text-gray-500">
             Showing
-            <span class="font-medium"><b>{{ $portforlio->count() }}</b></span>
+            <span class="font-medium"><b>{{ $portfolio->count() }}</b></span>
 
-            {{Str::plural('properties', $portforlio->count())}}
+            {{Str::plural('properties', $portfolio->count())}}
         </p>
+    </div> --}}
+    <div class="mt-5 mb-5">
+        {{ $portfolio->links() }}
     </div>
     <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-        @foreach ($portforlio as $property)
+        @foreach ($portfolio as $property)
         <div class="group relative">
             <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                 <a href="/property/{{ $property->property_uuid }}">
@@ -224,15 +235,13 @@
     </div>
 
 
-    <div class="mt-5 mb-5">
-        {{ $portforlio->links() }}
-    </div>
+
 
     <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-9">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                    @include('tables.portforlio')
+                    @include('tables.portfolio')
                 </div>
             </div>
         </div>

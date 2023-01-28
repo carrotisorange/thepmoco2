@@ -75,14 +75,12 @@ class Owner extends Model
         return $this->hasMany(Collection::class);
     }
 
-
-
-      public static function search($search)
-      {
-      return empty($search)? static::query()
+    public static function search($search)
+    {
+        return empty($search)? static::query()
       : static::where('owner','like', '%'.$search.'%')
     //   ->orWhere('mobile_number','like', '%'.$search.'%')
     //   ->orWhere('email','like', '%'.$search.'%')
       ;
-      }
+    }
 }

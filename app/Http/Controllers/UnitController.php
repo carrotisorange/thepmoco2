@@ -116,7 +116,7 @@ class UnitController extends Controller
     {   
         $plan_unit_limit =  Plan::find(auth()->user()->plan_id)->description;
 
-        $total_unit_created = Property::find(Session::get('property'))->units()->count();
+        $total_unit_created = Property::find(Session::get('property'))->units()->count() + 1;
 
         // if($plan_unit_limit <= $total_unit_created){
         //     return back()->with('error', 'Sorry. You have reached your plan unit limit');

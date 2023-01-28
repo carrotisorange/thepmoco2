@@ -17,7 +17,7 @@
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
-                    <div class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <div class="mb-10 relative overflow-hidden ring-opacity-5 md:rounded-lg">
                         <!-- Selected row actions, only show when rows are selected. -->
                         <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
@@ -112,8 +112,8 @@
                                         </div>
 
                                     </div>
-                                    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                        <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                                    <div class="px-4 py-3 text-right sm:px-6">
+                                        <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                                             href="{{ url()->previous() }}">
                                             Cancel
                                         </a>
