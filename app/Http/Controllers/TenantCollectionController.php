@@ -17,7 +17,7 @@ use App\Models\Bill;
 use \PDF;
 use Carbon\Carbon;
 use App\Models\Contract;
-use App\Models\Particular;
+use App\Models\Wallet;
 
 class TenantCollectionController extends Controller
 {
@@ -60,8 +60,6 @@ class TenantCollectionController extends Controller
 
          try {
 
-            DB::beginTransaction();
-
             $collection = $request->collection;
             
             $unpaid_bills_id = Bill::where('reference_no', $tenant->bill_reference_no)
@@ -100,8 +98,6 @@ class TenantCollectionController extends Controller
                    }while($collection>=$unpaid_bills_bill[$i]);
                 }
 
-                DB::commit();
-
                 return back()->with('success','Collections has been saved.');
             }
 
@@ -109,9 +105,7 @@ class TenantCollectionController extends Controller
 
          }
          catch(\Exception $e)
-         {
-            DB::rollback();
-            
+         {  
             return back()->with('error','Cannot perform the action. Please try again.');
          }
     }
@@ -235,7 +229,6 @@ class TenantCollectionController extends Controller
 
      public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
      {
-
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
 
          $counter = $this->get_selected_bills_count($batch_no);
@@ -248,15 +241,22 @@ class TenantCollectionController extends Controller
 
             $bill_id = $request->input("bill_id_".$i);
 
-            //$bill = Bill::find($bill_id);
-
             $total_amount_due = app('App\Http\Controllers\TenantBillController')->get_bill_balance($bill_id);
 
-            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form);
+            $bill = Bill::find($bill_id);
 
-            // if($bill->particular_id == '3' || $bill->particular_id == '4'){
-            //       app('App\Http\Controllers\WalletController')->store($tenant->uuid, '', $collection, $bill->particular->particular);
-            // }
+            //store the deposit to tenant's wallet
+            if($bill->particular_id == '3' || $bill->particular_id == '4'){
+                  app('App\Http\Controllers\WalletController')->store(
+                     $tenant->uuid,
+                     '',
+                     $collection,
+                     $bill->particular->particular
+                  );
+            } 
+            
+            //store the collection
+            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form);
 
             if(($total_amount_due) <= $collection)
             {

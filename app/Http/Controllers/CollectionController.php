@@ -7,6 +7,8 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use Session;
 use Carbon\Carbon;
+use App\Models\Bill;
+use App\Models\Wallet;
 
 class CollectionController extends Controller
 {
@@ -26,6 +28,7 @@ class CollectionController extends Controller
     
     public function update($ar_no, $bill_id, $collection, $form)
     {
+
        Collection::where('bill_id', $bill_id)
          ->update([
           'ar_no' => $ar_no,
@@ -33,6 +36,7 @@ class CollectionController extends Controller
           'form' => $form,
           'is_posted' => true
          ]);
+
     }
 
     function shortNumber($number = null)

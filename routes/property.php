@@ -255,6 +255,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                     Route::get('moveout/step-1', [ContractController::class, 'moveout_step_1'])->name('tenant');
                     Route::get('moveout/step-2', [ContractController::class, 'moveout_step_2'])->name('tenant');
                     Route::get('moveout/step-3', [ContractController::class, 'moveout_step_3'])->name('tenant');
+                    Route::get('moveout/step-3/export', [ContractController::class, 'export_clearance_form'])->name('tenant');
                     Route::get('moveout/step-4', [ContractController::class, 'moveout_step_4'])->name('tenant');
 
 
