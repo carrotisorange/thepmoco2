@@ -28,10 +28,22 @@ class PropertyIndexComponent extends Component
         ->get();
 
         return view('livewire.property-index-component',[
-            'portforlio'=> $this->get_properties(Auth::user()->id),
+            'portfolio'=> $this->get_properties(Auth::user()->id),
             'properties' => User::find(Auth::user()->id)->user_properties()->get(),
             'property_types' => $property_types
         ]);
+    }
+
+    public function exportportfolio(){
+        sleep(2);
+
+        return redirect('/user/'.auth()->user()->id.'/export/portfolio');
+    }
+
+    public function createNewProperty(){
+        sleep(2);
+
+        return redirect('/property/'.Str::random(8).'/create');
     }
 
     public function submitForm(){
