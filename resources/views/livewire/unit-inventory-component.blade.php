@@ -38,7 +38,7 @@
                             <x-th>ITEM </x-th>
                             <x-th>QUANTITY</x-th>
                             <x-th>REMARKS</x-th>
-                            <x-th>IMAGE</x-th>
+                            {{-- <x-th>IMAGE</x-th> --}}
                             <x-th></x-th>
                         </tr>
                     </thead>
@@ -72,14 +72,14 @@
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td>
-                                <x-td>
+                                {{-- <x-td>
                                     <input type="file" wire:model="inventories.{{ $index }}.image"
                                         wire:keyup="updateUnitInventory({{ $inventory->id }})"
                                         class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                     @error('inventories.{{ $index }}.remarks')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
-                                </x-td>
+                                </x-td> --}}
                                 <x-td>
                                     <button type="button" wire:click="removeUnitInventory({{ $inventory->id }})"
                                         wire:loading.remove
