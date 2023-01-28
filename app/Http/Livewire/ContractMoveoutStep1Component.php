@@ -72,7 +72,8 @@ class ContractMoveoutStep1Component extends Component
             
         $this->contract->update($validatedData);
 
-         return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success', 'Step 1 of 4 has been accomplished!');        }
+         return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success', 'Step 1 of 4 has been accomplished!');        
+        }
        
     }
 

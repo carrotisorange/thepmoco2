@@ -85,10 +85,10 @@
 
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             @if($accountpayable->status != 'approved')
-            @can('manager')
+            {{-- @can('manager') --}}
             <a href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable->id }}/approve"
                 class="text-indigo-600 hover:text-indigo-900">Approve</a>
-            @endcan
+            {{-- @endcan --}}
             @else
 
             @endif

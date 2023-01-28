@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Unit;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class UnitInventoryController extends Controller
 {
@@ -30,5 +31,32 @@ class UnitInventoryController extends Controller
             'unit' => $unit,
             'batch_no' => $batch_no,
         ]);
+    }
+
+    public function export(Property $property, Unit $unit){
+        
+        $data = [
+            'unit' => $unit,
+            'inventories' => UnitInventory::where('unit_uuid', $unit->uuid)
+            ->get()
+        ];
+
+        $pdf = \PDF::loadView('inventories.export', $data);
+
+         $pdf->output();
+
+         $canvas = $pdf->getDomPDF()->getCanvas();
+
+         $height = $canvas->get_height();
+         $width = $canvas->get_width();
+
+         $canvas->set_opacity(.2,"Multiply");
+
+         $canvas->set_opacity(.2);
+
+         $canvas->page_text($width/5, $height/2, $property->property, null,
+         55, array(0,0,0),2,2,-30);
+
+        return $pdf->download($unit->unit.'-'.Carbon::now()->format('M d, Y').'-unit-inventory.pdf');
     }
 }

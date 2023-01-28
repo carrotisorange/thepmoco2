@@ -210,6 +210,33 @@ class ContractController extends Controller
         ]);
     }
 
+    public function export_clearance_form(Property $property, Tenant $tenant, Contract $contract){
+
+         $data = [
+            'contract' => $contract
+        ];
+
+        $pdf = \PDF::loadView('contracts.moveouts.clearance', $data);
+
+         $pdf->output();
+
+         $canvas = $pdf->getDomPDF()->getCanvas();
+
+         $height = $canvas->get_height();
+         $width = $canvas->get_width();
+
+         $canvas->set_opacity(.2,"Multiply");
+
+         $canvas->set_opacity(.2);
+
+         $canvas->page_text($width/5, $height/2, $property->property, null,
+         55, array(0,0,0),2,2,-30);
+
+        return $pdf->download($contract->uuid.'.pdf');
+
+    }
+
+
     public function moveout_step_4(Property $property, Tenant $tenant, Contract $contract)
     {
         return view('contracts.moveouts.step-4', [

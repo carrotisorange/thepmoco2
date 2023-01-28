@@ -1,8 +1,8 @@
 <x-new-layout>
     @section('title','Account Payables | '. Session::get('property_name'))
-    @can('accountpayable')
+    {{-- @can('accountpayable')
         @include('admin.restrictedpages.accountpayable')
-    @else
+    @else --}}
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
@@ -36,5 +36,5 @@
             </div>
         </div>
     </div>
-    @endcan
+    {{-- @endcan --}}
 </x-new-layout>
