@@ -10,6 +10,7 @@ use App\Models\Utility;
 use App\Models\Concern;
 use Illuminate\Support\Str;
 use App\Models\UnitInventory;
+use App\Models\Unit;
 
 class UnitShowComponent extends Component
 {
@@ -134,6 +135,28 @@ class UnitShowComponent extends Component
 
             session()->flash('error');
         }
+    }
+
+    public function deleteUnit(){
+
+        sleep(2);
+
+        $tenants = Unit::find($this->unit_details->uuid)->contracts()->count();
+
+        $owners = Unit::find($this->unit_details->uuid)->deed_of_sales()->count();
+
+        $guests = Unit::find($this->unit_details->uuid)->guests()->count();
+
+        if($tenants || $owners || $guests)
+        {
+            return back()->with('error', 'This unit cannot be deleted!');
+        }else{
+            Unit::where('uuid', $this->unit_details->uuid)->delete();
+
+             session()->flash('success', 'Unit is successfully deleted.');
+          }
+
+        ddd($this->unit_details->uuid);
     }
     
     public function render()
