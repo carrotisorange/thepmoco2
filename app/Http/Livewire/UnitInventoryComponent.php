@@ -79,6 +79,12 @@ class UnitInventoryComponent extends Component
         session()->flash('success', 'Inventory is successfully removed!');
     }
 
+    public function exportUnitInventory(){
+        sleep(2);
+
+        return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/inventory/export');
+    }
+
     public function redirectToTheUnitPage(){
         
         sleep(2);
