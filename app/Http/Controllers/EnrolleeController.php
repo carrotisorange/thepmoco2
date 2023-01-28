@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\SendContractMailToOwner;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Enrollee;
@@ -10,7 +9,6 @@ use App\Models\Unit;
 use Illuminate\Support\Str;
 use DB;
 use Carbon\Carbon;
-use App\Models\Point;
 use App\Models\Property;
 use Session;
 

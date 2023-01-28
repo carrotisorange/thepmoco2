@@ -1,8 +1,8 @@
 <x-new-layout>
     @section('title','Contracts | '. Session::get('property_name'))
-    @can('contract')
+    {{-- @can('contract')
     @include('admin.restrictedpages.contract')
-    @else
+    @else --}}
 
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
@@ -41,6 +41,6 @@
     <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
 
     </div>
-    @endcan
+    {{-- @endcan --}}
 
 </x-new-layout>

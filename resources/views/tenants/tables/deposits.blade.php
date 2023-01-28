@@ -1,4 +1,4 @@
-@if($wallets->count())
+{{-- @if($wallets->count()) --}}
 <table class="min-w-full table-fixed">
     <thead class="">
         <tr>
@@ -94,7 +94,7 @@
     </tbody>
 </table>
 
-@else
+{{-- @else
 <div class=" mt-10 text-center mb-10">
     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
         aria-hidden="true">
@@ -117,4 +117,4 @@
         </button>
     </div>
 </div>
-@endif
+@endif --}}

@@ -4,8 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Contract;
-use Session;
-use Spatie\Browsershot\Browsershot;
 use App\Models\Tenant;
 
 class ContractMoveoutStep3Component extends Component
@@ -16,35 +14,17 @@ class ContractMoveoutStep3Component extends Component
 
     public $request_for = 'refund';
 
-
     public function exportMoveoutClearanceForm(){
-        // $html = view('contracts.moveouts.clearance')->render();
 
-      $html = view('accountpayables.pdf.step1')->render();
-      
-        Browsershot::html($html)->save('example.pdf');
-
-
-        // Browsershot::url('https://google.com')->save('example.pdf');
-
-        // Browsershot::html($html)->save('example.pdf');
-
-        return 'success';
-
-        
-     
+        sleep(2);
+       
+        return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3/export')->with('success', 'Tenant has been moved out!');        
     
-
-
-        // Browsershot::html($html)->save(storage_path('app/'.$accountPayable->id.'.pdf'));
-
-         
-
     }
 
     public function submitForm(){
         
-        sleep(1);
+        sleep(2);
         
          Contract::where('uuid', $this->contract->uuid)
          ->update([
