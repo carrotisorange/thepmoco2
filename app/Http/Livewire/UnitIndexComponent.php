@@ -6,6 +6,7 @@ use App\Models\Unit;
 use App\Models\Property;
 use Session;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 
 use Livewire\Component;
 
@@ -32,6 +33,11 @@ class UnitIndexComponent extends Component
     public $sortBy;
     public $orderBy;
     public $property_uuid;
+    public $limitDisplayTo = 10;
+
+    public $totalUnitsCount;
+
+    public $numberOfUnitsToBeCreated;
 
     public function changeView($value)
     {
@@ -47,10 +53,12 @@ class UnitIndexComponent extends Component
         $this->status_id = '';
         $this->category_id = '';
         $this->building_id = '';
+        $this->limitDisplayTo = 10;
     }
 
     public function mount(){
         $this->property_uuid = Session::get('property');
+        $this->totalUnitsCount = Property::find(Session::get('property'))->units->count();
     }
 
     public function get_units($property_uuid)
@@ -98,7 +106,7 @@ class UnitIndexComponent extends Component
     ->when($this->batch_no, function($query){
       $query->where('batch_no', $this->batch_no);
       })
-      ->get();
+      ->paginate($this->limitDisplayTo);
     }
 
    public function render()

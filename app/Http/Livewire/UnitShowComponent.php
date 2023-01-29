@@ -8,8 +8,12 @@ use DB;
 use Session;
 use App\Models\Utility;
 use App\Models\Concern;
+use App\Models\DeedOfSale;
 use Illuminate\Support\Str;
 use App\Models\UnitInventory;
+use App\Models\Guest;
+use App\Models\Contract;
+use App\Models\Bill;
 use App\Models\Unit;
 
 class UnitShowComponent extends Component
@@ -115,7 +119,7 @@ class UnitShowComponent extends Component
     
     public function submitForm()
     {
-        sleep(1);
+        sleep(2);
        
         $validatedData = $this->validate();
          
@@ -139,26 +143,26 @@ class UnitShowComponent extends Component
 
     public function deleteUnit(){
 
+        sleep(3);
+
+        UnitInventory::where('unit_uuid', $this->unit_details->uuid)->delete();
+        DeedOfSale::where('unit_uuid', $this->unit_details->uuid)->delete();
+        Contract::where('unit_uuid', $this->unit_details->uuid)->delete();
+        Guest::where('unit_uuid', $this->unit_details->uuid)->delete();
+        Concern::where('unit_uuid', $this->unit_details->uuid)->delete();
+        Utility::where('unit_uuid', $this->unit_details->uuid)->delete();
+        Bill::where('unit_uuid', $this->unit_details->uuid)->delete();
+        Unit::where('uuid', $this->unit_details->uuid)->delete();
+
+        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Unit is successfully deleted!');
+    }
+
+     public function exportUnitInventory(){
         sleep(2);
 
-        $tenants = Unit::find($this->unit_details->uuid)->contracts()->count();
-
-        $owners = Unit::find($this->unit_details->uuid)->deed_of_sales()->count();
-
-        $guests = Unit::find($this->unit_details->uuid)->guests()->count();
-
-        if($tenants || $owners || $guests)
-        {
-            return back()->with('error', 'This unit cannot be deleted!');
-        }else{
-            Unit::where('uuid', $this->unit_details->uuid)->delete();
-
-             session()->flash('success', 'Unit is successfully deleted.');
-          }
-
-        ddd($this->unit_details->uuid);
+        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid.'/inventory/export');
     }
-    
+
     public function render()
     {
         return view('livewire.unit-show-component',[
