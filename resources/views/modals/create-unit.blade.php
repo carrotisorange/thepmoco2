@@ -1,36 +1,44 @@
-<div id="create-unit-modal" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
-    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <div class="flex justify-end p-2">
-                <button type="button"
-                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                    data-modal-toggle="create-unit-modal">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
-            <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST" action="/property/{{ Session::get('property') }}/unit/{{ Str::random(8) }}/store">
+<div>
+    <x-modal-component>
+        <x-slot name="id">
+            create-unit-modal
+        </x-slot>
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST" action="/property/{{ Session::get('property')}}/unit/{{ Str::random(8)}}/store">
                 @csrf
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">How many units you want to add?</h3>
-                <div>
+                <div
+                    class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                    <div>
+                        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+                            <!-- Heroicon name: outline/check -->
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-5">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new unit
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">How many units you want to add to your property?</p>
+                            </div>
 
-                    <input type="number" min="1" name="number_of_units" value="1"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        required="">
+                            <input type="number" min="1" name="number_of_units" value="1"
+                                class="mt-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        </div>
+                    </div>
+                    <div class="mt-5 sm:mt-6">
+
+
+                        <button type="submit"
+                            class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                            <i class="fa-solid fa-arrow-right"></i>&nbsp Confirm
+                        </button>
+                        {{-- <button type="button" wire:loading wire:target="redirectToUnitBulkEditPage" disabled
+                            class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                            Loading...
+                        </button> --}}
+                    </div>
                 </div>
-
-                <div>
-                    <p class="text-right">
-                        <x-form-button>Create</x-form-button>
-                    </p>
-                </div>
-
             </form>
         </div>
-    </div>
+    </x-modal-component>
 </div>
+

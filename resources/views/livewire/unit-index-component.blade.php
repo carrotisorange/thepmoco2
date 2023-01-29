@@ -66,13 +66,13 @@
                             </div>
                             <input type="search" id="default-search" wire:model="search"
                                 class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for name" required>
+                                placeholder="Search for unit" required>
 
                         </div>
 
                     </div>
 
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-1">
                         <select id="building_id" wire:model="building_id"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="">Filter unit building</option>
@@ -107,11 +107,11 @@
                         <select id="small" wire:model="sortBy"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="unit" selected>Sort unit by</option>
-
+                            <option value="created_at">date created</option>
                             <option value="floor_id">floor</option>
                             <option value="occupancy">occupancy</option>
                             <option value="rent">rent</option>
-                            {{-- <option value="unit">unit</option> --}}
+                            <option value="unit">unit</option>
                         </select>
                     </div>
 
@@ -123,19 +123,25 @@
                             <option value="desc">descending</option>
                         </select>
                     </div>
+                    <div class="sm:col-span-1">
+                        <select id="small" wire:model="limitDisplayTo"
+                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option value="" selected>Limit display to</option>
+                            @for ($i = 1; $i <= $totalUnitsCount; $i++)
+                                @if($i%10===0)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endif
+                            @endfor
+                        </select>
+                    </div>
                 </div>
                 <div class="mt-5">
-                    <p class="text-sm text-center text-gray-500">
-                        Showing
-                        <span class="font-medium">{{ $units->count() }}</span>
-
-                        {{Str::plural('unit', $units->count())}}
-                    </p>
+                    {{ $units->links() }}
                 </div>
 
             </div>
             @endif
-            {{-- {{ $units->links() }} --}}
+
         </div>
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -268,31 +274,31 @@
                         <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                             @foreach ($units as $unit)
                             @if(Session::get('tenant_uuid'))
-                                {{-- @if(Session::get('action')) --}}
-                                    <a
-                                        href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/create">
-                                        <div class="hover:bg-purple-200">
-                                            @if($unit->status_id == '1')
-                                            <img src="{{ asset('/brands/vacant.png') }}"
-                                                class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                            @elseif($unit->status_id == '2')
-                                            <img src="{{ asset('/brands/occupied.png') }}"
-                                                class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                            @elseif($unit->status_id == '3')
-                                            <img src="{{ asset('/brands/maintenance.png') }}"
-                                                class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    
-                                            @elseif($unit->status_id == '4' || ($unit->status_id == '6'))
-                                            <img src="{{ asset('/brands/reserved.png') }}"
-                                                class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                            @else
-                                            <img src="{{ asset('/brands/maintenance.png') }}"
-                                                class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                            @endif
-                                            <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                        </div>
-                                    </a>
-                                {{-- @endif --}}
+                            {{-- @if(Session::get('action')) --}}
+                            <a
+                                href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/create">
+                                <div class="hover:bg-purple-200">
+                                    @if($unit->status_id == '1')
+                                    <img src="{{ asset('/brands/vacant.png') }}"
+                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                    @elseif($unit->status_id == '2')
+                                    <img src="{{ asset('/brands/occupied.png') }}"
+                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                    @elseif($unit->status_id == '3')
+                                    <img src="{{ asset('/brands/maintenance.png') }}"
+                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+
+                                    @elseif($unit->status_id == '4' || ($unit->status_id == '6'))
+                                    <img src="{{ asset('/brands/reserved.png') }}"
+                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                    @else
+                                    <img src="{{ asset('/brands/maintenance.png') }}"
+                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                    @endif
+                                    <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                                </div>
+                            </a>
+                            {{-- @endif --}}
                             @elseif(Session::get('owner_uuid'))
                             <a
                                 href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
