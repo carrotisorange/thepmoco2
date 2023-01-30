@@ -466,8 +466,13 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         return view('calendar.unit-calendar');
     });
 
-    Route::get('/week-view', function(){
-        return view('calendar.week-view');
+    Route::get('/master-calendar', function(){
+        return view('calendar.master-calendar');
     });
 
+    Route::get('/guest-creation', function(){
+        return view('calendar.guest-creation');
+    });
+
+    
 });
