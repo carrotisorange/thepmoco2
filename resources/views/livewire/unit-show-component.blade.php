@@ -546,7 +546,7 @@
                                         class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
-                                    @if($utilities->count())
+                                    @if($bills->count())
                                     @include('tables.bills')
                                     @else
                                     <div class="mt-10 text-center mb-10">

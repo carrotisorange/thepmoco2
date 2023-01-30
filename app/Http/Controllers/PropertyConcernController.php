@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Concern;
 
 class PropertyConcernController extends Controller
 {
@@ -17,4 +18,9 @@ class PropertyConcernController extends Controller
             'property' => $property
         ]);
     }
+
+    public function destroy($unit_uuid){
+        Concern::where('unit_uuid', $unit_uuid)->delete();
+    }
+
 }

@@ -145,14 +145,13 @@ class UnitShowComponent extends Component
 
         sleep(3);
 
-        UnitInventory::where('unit_uuid', $this->unit_details->uuid)->delete();
-        DeedOfSale::where('unit_uuid', $this->unit_details->uuid)->delete();
-        Contract::where('unit_uuid', $this->unit_details->uuid)->delete();
-        Guest::where('unit_uuid', $this->unit_details->uuid)->delete();
-        Concern::where('unit_uuid', $this->unit_details->uuid)->delete();
-        Utility::where('unit_uuid', $this->unit_details->uuid)->delete();
-        Bill::where('unit_uuid', $this->unit_details->uuid)->delete();
-        Unit::where('uuid', $this->unit_details->uuid)->delete();
+        app('App\Http\Controllers\PropertyUnitController')->destroy($this->unit_details->uuid);
+        app('App\Http\Controllers\PropertyContractController')->destroy($this->unit_details->uuid);
+        app('App\Http\Controllers\PropertyDeedOfSaleController')->destroy($this->unit_details->uuid);
+        app('App\Http\Controllers\PropertyUtilityController')->destroy($this->unit_details->uuid);
+        app('App\Http\Controllers\PropertyGuestController')->destroy($this->unit_details->uuid);
+        app('App\Http\Controllers\PropertyConcernController')->destroy($this->unit_details->uuid);
+        app('App\Http\Controllers\PropertyBillController')->destroy($this->unit_details->uuid);
 
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Unit is successfully deleted!');
     }

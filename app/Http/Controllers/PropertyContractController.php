@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Contract;
 
 class PropertyContractController extends Controller
 {
@@ -16,5 +17,9 @@ class PropertyContractController extends Controller
         return view('properties.contracts.index',[
             'property' => $property
         ]);
+    }
+
+    public function destroy($unit_uuid){
+        Contract::where('unit_uuid', $unit_uuid)->delete();
     }
 }

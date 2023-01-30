@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Guest;
 
 class PropertyGuestController extends Controller
 {
@@ -14,6 +15,10 @@ class PropertyGuestController extends Controller
         return view('properties.guests.index',[
             'property' => $property
         ]);
+    }
+
+    public function destroy($unit_uuid){
+        Guest::where('unit_uuid', $unit_uuid)->delete();
     }
     
 }

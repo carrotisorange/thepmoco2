@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Session;
+use App\Models\Unit;
 
 class PropertyUnitController extends Controller
 {
@@ -19,5 +20,9 @@ class PropertyUnitController extends Controller
             'property' => $property,
             'batch_no' => $batch_no
         ]);
+    }
+
+    public function destroy($unit_uuid){
+        Unit::where('uuid', $unit_uuid)->delete();
     }
 }
