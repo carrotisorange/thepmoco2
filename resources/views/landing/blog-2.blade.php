@@ -31,6 +31,25 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
+          <a href="article6"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article6.jpg') }}" alt="three people looking laptop property management system"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="article6" class="hover:underline">Article</a>
+            </p>
+            <a href="article6" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">Why Digitalization is the best strategy for 2023</p>
+              <p class="mt-3 text-sm text-gray-500">
+              Digitalization is a strategic approach to business that seeks to leverage the power of digital technologies to achieve business objectives.</p>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+
+    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
           <a href="article5"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article5.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -87,24 +106,7 @@
       </div>
 
       
-    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <a href="article2"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article2.jpg') }}" alt="three people looking laptop property management system"></a>
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="article2" class="hover:underline">Article</a>
-            </p>
-            <a href="article2" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">How to use a leasing management system to improve operational efficiency?</p>
-              <p class="mt-3 text-sm text-gray-500">
-              If you've ever tried to manage a property, you know how hard it can be. From accounting for rent payments to tracking expenses, there are just so many things that need to get done.</p>
-            </a>
-          </div>
-            
-        </div>
-      </div>
+    
 
     
 

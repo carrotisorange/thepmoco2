@@ -120,6 +120,9 @@ Route::get('/article9', function(){
     return view('landing.articles.article9');
 });
 
+Route::get('/article10', function(){
+    return view('landing.articles.article10');
+});
 
 
 
