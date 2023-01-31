@@ -121,7 +121,6 @@
 
             </div>
             <div class="basis-1/4 ml-12 text-right">
-                @can('billing')
                 @if($selectedBills)
                 <x-button
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -130,7 +129,6 @@
                     bills ({{ count($selectedBills) }})
                 </x-button>
                 @endif
-                @endcan
             </div>
         </div>
     </div>

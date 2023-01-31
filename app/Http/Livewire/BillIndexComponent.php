@@ -28,7 +28,7 @@ class BillIndexComponent extends Component
 
    public $view = 'listView';  
 
-   public $isPaymentAllowed = false;
+   public $isPaymentAllowed = true;
 
    public $particular_id;
 
@@ -56,6 +56,8 @@ class BillIndexComponent extends Component
 
    public function removeBills()
      {
+
+      sleep(2);
        
         if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
         {
@@ -64,7 +66,7 @@ class BillIndexComponent extends Component
             return back()->with('error', 'Bill cannnot be deleted.');
         }
 
-        //Bill::destroy($this->selectedBills);
+        Bill::destroy($this->selectedBills);
 
         $this->selectedBills = [];
 

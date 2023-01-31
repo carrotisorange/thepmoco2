@@ -238,15 +238,18 @@
                         <div class="basis-3/4">
                         </div>
                         <div class="basis-1/4 ml-12 text-right">
-                            @can('accountowner')
+                            <button type="button" wire:loading disabled
+                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Loading...
+                            </button>
                             @if($selectedBills)
-                            <x-button title="remove selected bills" onclick="confirmMessage()"
-                                wire:click="removeBills()">
+                            <button type="button" wire:loading.remove wire:click="removeBills"
+                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                 Remove
                                 bills ({{ count($selectedBills) }})
-                            </x-button>
+                            </button>
                             @endif
-                            @endcan
+
                         </div>
                     </div>
                 </div>
