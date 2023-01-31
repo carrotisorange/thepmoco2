@@ -5,7 +5,7 @@
 
         <div class="pt-6 sm:pb-5">
 
-            @livewire('unit-inventory-component', ['unitDetails' => $unit, 'batch_no' => $batch_no])
+            @livewire('unit-inventory-component', ['unitDetails' => $unit, 'batch_no' => $batch_no, 'ismovein' => $ismovein])
 
         </div>
     </div>

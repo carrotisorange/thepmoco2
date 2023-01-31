@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Contract;
+use App\Models\Unit;
+use App\Models\Tenant;
 
 class PropertyContractController extends Controller
 {
@@ -21,5 +23,11 @@ class PropertyContractController extends Controller
 
     public function destroy($unit_uuid){
         Contract::where('unit_uuid', $unit_uuid)->delete();
+    }
+
+    public function show(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
+        return view('properties.contracts.show',[
+            'contract' => $contract
+        ]);
     }
 }

@@ -51,13 +51,14 @@ class BillController extends Controller
         ]);
     }   
 
-    public function create_new(Property $property, Unit $unit, Tenant $tenant){
+    public function create_new(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
         return view('bills.create-new',[
           'unit' => Unit::find($unit->uuid),
           'tenant' => $tenant,
           'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
-           'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
-            'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($tenant->uuid),
+        'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
+        'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($tenant->uuid),
+        'contract' => $contract
         ]);
     }
 

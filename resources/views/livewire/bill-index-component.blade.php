@@ -44,9 +44,10 @@
                 @if($search || $status || $particular_id || $posted_dates)
                 <button wire:click="clearFilters()"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    type="button">Clear Filters
+                    type="button"><i class="fa-solid fa-delete-left"></i> &nbsp; Clear Filters
                 </button>
                 @endif
+                &nbsp;
                 <div class="group inline-block">
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -157,12 +158,12 @@
                 @if($view === 'listView')
                 <button wire:click="changeView('agingSummaryView')"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    type="button">View Aging Summary
+                    type="button"><i class="fa-solid fa-image"></i> &nbsp; View Aging Summary
                 </button>
                 @else
                 <button wire:click="changeView('listView')"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    type="button">View List
+                    type="button"><i class="fa-solid fa-list"></i> &nbsp; View List
                 </button>
                 @endif
 
@@ -173,9 +174,7 @@
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="mt-3">
-                    {{ $bills->links() }}
-                </div>
+
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     <div class="sm:col-span-6">
 
@@ -243,6 +242,7 @@
                                 Loading...
                             </button>
                             @if($selectedBills)
+                            
                             <button type="button" wire:loading.remove wire:click="removeBills"
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                 Remove
@@ -252,6 +252,9 @@
 
                         </div>
                     </div>
+                </div>
+                <div class="mt-3">
+                    {{ $bills->links() }}
                 </div>
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 

@@ -8,6 +8,8 @@ use App\Models\Property;
 use App\Models\Unit;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Models\Tenant;
+use App\Models\Contract;
 
 class UnitInventoryController extends Controller
 {
@@ -30,6 +32,18 @@ class UnitInventoryController extends Controller
         return view('inventories.create',[
             'unit' => $unit,
             'batch_no' => $batch_no,
+            'ismovein' => false
+        ]);
+    }
+
+    public function movein_create(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
+
+        return view('inventories.movein-create', [
+            'property' => $property,
+            'unit' => $unit,
+            'tenant' => $tenant, 
+            'contract' => $contract,
+            'ismovein' => true
         ]);
     }
 

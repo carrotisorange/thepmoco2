@@ -240,8 +240,17 @@ class ContractController extends Controller
     public function moveout_step_4(Property $property, Tenant $tenant, Contract $contract)
     {
         return view('contracts.moveouts.step-4', [
-            'contract' => $contract
+            'property' => $property,
+            'contract' => $contract,
+            'tenant' => $tenant
         ]);
+    }
+
+    public function moveout_step_5(Property $property, Tenant $tenant, Contract $contract)
+    {
+    return view('contracts.moveouts.step-5', [
+    'contract' => $contract
+    ]);
     }
 
     public function renew(Property $property, Tenant $tenant, Contract $contract)

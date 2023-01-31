@@ -66,7 +66,7 @@ class UnitShowComponent extends Component
             'discount' => 'required',
             'occupancy' => 'required',
             'is_the_unit_for_rent_to_tenant' => 'required',
-            'price' => 'required'
+            'price' => 'nullable'
             ];
     }
 
@@ -160,6 +160,11 @@ class UnitShowComponent extends Component
         sleep(2);
 
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid.'/inventory/export');
+    }
+
+    public function closeModal(){
+        
+        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid);
     }
 
     public function render()

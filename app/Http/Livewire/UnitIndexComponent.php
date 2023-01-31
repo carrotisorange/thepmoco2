@@ -33,7 +33,7 @@ class UnitIndexComponent extends Component
     public $sortBy;
     public $orderBy;
     public $property_uuid;
-    public $limitDisplayTo = 10;
+    public $limitDisplayTo;
 
     public $totalUnitsCount;
 
@@ -110,6 +110,7 @@ class UnitIndexComponent extends Component
     }
 
     public function editUnits(){
+      
       sleep(2);
 
       return redirect('/property/'.Session::get('property').'/unit/all/edit');

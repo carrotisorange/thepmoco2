@@ -1,7 +1,7 @@
 <div>
     <x-modal-component>
         <x-slot name="id">
-            warning-destroy-unit-modal
+            warning-destroy-bill-modal
         </x-slot>
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
@@ -16,8 +16,10 @@
                         </h3>
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">When you delete this unit, all data that are associated
-                                with will be deleted as well. <br> This includes, inventories, owners, tenants, guests,
-                                concerns, utilities, bills, and financials.</p>
+                                with
+                                will be deleted as well. <br> This includes, inventories, owners, tenants, guests,
+                                concerns,
+                                utilities, bills, and financials.</p>
                         </div>
                         <div class="mt-2">
                             <p class="text-md text-gray-500">Are you sure you want to delete this unit?</p>
