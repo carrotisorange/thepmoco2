@@ -336,7 +336,7 @@
                                     </div>
                                     @if($contracts->count())
 
-                                    @include('units.tables.tenants')
+                                    @include('tables.contracts')
 
                                     @else
                                     <div class="mt-10 text-center mb-10">

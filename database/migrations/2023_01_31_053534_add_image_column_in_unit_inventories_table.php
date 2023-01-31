@@ -14,7 +14,7 @@ class AddImageColumnInUnitInventoriesTable extends Migration
     public function up()
     {
         Schema::table('unit_inventories', function (Blueprint $table) {
-            $table->boolean('image')->nullable();
+            $table->string('image')->nullable();
         });
     }
 

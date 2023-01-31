@@ -19,7 +19,7 @@
                     New
                     </a></button> --}}
             </div>
-            @include('portals.tenants.tables.contracts')
+            @include('tables.contracts')
 </x-new-layout>
 @include('tenants.contracts.create')
 @include('modals.popup-error')

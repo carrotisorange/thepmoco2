@@ -69,9 +69,9 @@
                                 </x-td>
                                 {{-- <x-td>
                                     <input type="file" wire:model="inventories.{{ $index }}.image"
-                                        wire:keyup="updateUnitInventory({{ $inventory->id }})"
+                                        wire:change="uploadImage({{ $inventory->id }})"
                                         class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                                    @error('inventories.{{ $index }}.remarks')
+                                    @error('inventories.{{ $index }}.image')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td> --}}
@@ -97,9 +97,13 @@
         </div>
     </div>
 
-    <button type="button" wire:click="redirectToTheUnitPage" wire:loading.remove
-        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-        <i class="fa-solid fa-circle-check"></i> &nbsp Save
-    </button>
+    <p class="text-right">
+        @if($inventories->count())
+        <button type="button" wire:click="redirectToTheUnitPage" wire:loading.remove
+            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+            <i class="fa-solid fa-circle-check"></i> &nbsp Save
+        </button>
+        @endif
+    </p>
 
 </div>

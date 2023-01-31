@@ -109,6 +109,12 @@ class UnitIndexComponent extends Component
       ->paginate($this->limitDisplayTo);
     }
 
+    public function editUnits(){
+      sleep(2);
+
+      return redirect('/property/'.Session::get('property').'/unit/all/edit');
+    }
+
    public function render()
     {
         return view('livewire.unit-index-component',[

@@ -6,7 +6,7 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($sortBy || $orderBy || $search || $status_id || $category_id || $building_id)
-                <button type="button" wire:click="clearFilters()"
+                <button type="button" wire:click="clearFilters()" wire:loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-delete-left"></i> &nbsp
                     Clear Filters
@@ -19,14 +19,14 @@
                 </button>
 
                 @if($view === 'list')
-                <button type="button" wire:click="changeView('thumbnail')"
+                <button type="button" wire:click="changeView('thumbnail')" wire:loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-image"></i> &nbsp
                     View as Thumbnail
 
                 </button>
                 @else
-                <button type="button" wire:click="changeView('list')"
+                <button type="button" wire:click="changeView('list')" wire:loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-list"></i> &nbsp
                     View as List
@@ -34,9 +34,14 @@
                 </button>
                 @endif
 
+                <button type="button" wire:loading disabled
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                    Loading...
+
+                </button>
+
                 @if($units->count())
-                <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit/all/edit'"
+                <button type="button" wire:click="editUnits" wire:loading.remove 
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-pen-to-square"></i> &nbsp Edit
                     Units</button>
@@ -127,11 +132,10 @@
                         <select id="small" wire:model="limitDisplayTo"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="" selected>Limit display to</option>
-                            @for ($i = 1; $i <= $totalUnitsCount; $i++)
-                                @if($i%10===0)
-                                    <option value="{{ $i }}">{{ $i }}</option>
+                            @for ($i = 1; $i <= $totalUnitsCount; $i++) @if($i%10===0) <option value="{{ $i }}">{{ $i }}
+                                </option>
                                 @endif
-                            @endfor
+                                @endfor
                         </select>
                     </div>
                 </div>

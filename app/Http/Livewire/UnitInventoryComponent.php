@@ -5,9 +5,13 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\UnitInventory;
 use Carbon\Carbon;
+use Livewire\WithFileUploads;
+
 
 class UnitInventoryComponent extends Component
 {
+    use WithFileUploads;
+
     public $unitDetails;
 
     public $batch_no;
