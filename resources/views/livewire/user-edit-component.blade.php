@@ -199,8 +199,11 @@
 
 
                                 </div>
+
+                                @if(auth()->user()->role_id === 9 || auth()->user()->role_id === 10)
                                 <h1 class="text-xl font-semibold text-gray-900">Restrictions</h1>
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    
                                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                                         <div
@@ -210,7 +213,6 @@
                                                 class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                             </div>
-                                            @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
                                             <table class="min-w-full table-fixed divide-y divide-gray-300">
                                                 <thead class="">
                                                     <tr>
@@ -300,11 +302,10 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
-
+                                @endif
 
                             </form>
 
