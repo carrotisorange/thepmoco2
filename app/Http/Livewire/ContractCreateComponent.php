@@ -63,6 +63,8 @@ class ContractCreateComponent extends Component
 
       public function makeReservation()
       {
+        sleep(2);
+
         $contract_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
 
         app('App\Http\Controllers\ContractController')->store(auth()->user()->id, $contract_uuid, $this->property_uuid, $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'reserved', 4, 'reserved', 1, 1, $this->referral, $this->sendContractToTenant);
@@ -95,7 +97,7 @@ class ContractCreateComponent extends Component
         {
           return redirect('/property/'.$this->property_uuid.'/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Contract is successfully created.');
         }else{
-          return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Contract is successfully created.');
+          return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/inventory/create')->with('success', 'Contract is successfully created.');
             // return redirect('/property/'.$this->property_uuid.'/tenant/'.$this->tenant->uuid.'/bill/'.$this->unit->uuid.'/create')->with('success', 'Contract is successfully created.');
         }
       }

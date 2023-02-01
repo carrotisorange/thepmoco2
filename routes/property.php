@@ -79,6 +79,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('contract/{status}',[ContractController::class, 'show_moveout_request'])->name('contract');
     Route::get('contract', [PropertyContractController::class, 'index'])->name('contract');
 
+
     //Route for Building
     Route::prefix('/building')->group(function(){
         Route::post('{random_str}/store',[BuildingController::class, 'store']);
@@ -133,6 +134,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{random_str}/create', [UnitInventoryController::class, 'create'])->name('unit');
                 Route::get('export', [UnitInventoryController::class, 'export'])->name('unit');
             });
+
+            Route::get('/tenant/{tenant}/contract/{contract}/inventory/create', [UnitInventoryController::class, 'movein_create'])->name('unit');
                 
             Route::prefix('owner')->group(function(){
                 Route::get('/', [OwnerController::class, 'index'])->scopeBindings();
@@ -190,10 +193,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/tenant/{tenant}/wallet/{random_str}/create', [TenantWalletController::class, 'create']);
 
     //Routes for bills
-    Route::get('unit/{unit}/tenant/{tenant}/bill/{random_str}/create', [BillController::class, 'create_new']);
+    Route::get('unit/{unit}/tenant/{tenant}/contract/{contract}/bill/{random_str}/create', [BillController::class, 'create_new']);
 
     //Routes for contract
     Route::get('/unit/{unit}/tenant/{tenant}/contract/{contract}/movein/{random_str}/create', [ContractController::class, 'movein']);
+    Route::get('/unit/{unit}/tenant/{tenant}/contract/{contract}', [PropertyContractController::class, 'show'])->name('contract');
 
     //force moveout
     Route::post('/contract/{contract}/moveout/force', [ContractController::class, 'force_moveout']);
@@ -263,6 +267,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                     Route::get('moveout/step-3', [ContractController::class, 'moveout_step_3'])->name('tenant');
                     Route::get('moveout/step-3/export', [ContractController::class, 'export_clearance_form'])->name('tenant');
                     Route::get('moveout/step-4', [ContractController::class, 'moveout_step_4'])->name('tenant');
+                    Route::get('moveout/step-5', [ContractController::class, 'moveout_step_5'])->name('tenant');
 
 
                     Route::get('export', [ContractController::class, 'export']);
@@ -466,8 +471,13 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         return view('calendar.unit-calendar');
     });
 
-    Route::get('/week-view', function(){
-        return view('calendar.week-view');
+    Route::get('/master-calendar', function(){
+        return view('calendar.master-calendar');
     });
 
+    Route::get('/guest-creation', function(){
+        return view('calendar.guest-creation');
+    });
+
+    
 });

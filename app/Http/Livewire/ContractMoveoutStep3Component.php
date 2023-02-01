@@ -3,56 +3,50 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Contract;
+use Carbon\Carbon;
+use Session;
 use App\Models\Tenant;
+use DB;
+use App\Models\Contract;
+use Illuminate\Http\Request;
 
 class ContractMoveoutStep3Component extends Component
 {
-    public $property;
-    public $tenant;
     public $contract;
 
-    public $request_for = 'refund';
+    public $unpaid_bills;
 
-    public function exportMoveoutClearanceForm(){
-
-        sleep(2);
-       
-        return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3/export')->with('success', 'Tenant has been moved out!');        
-    
+    public function mount($contract)
+    {
+        $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->get();
     }
 
-    public function submitForm(){
-        
-        sleep(2);
-        
-         Contract::where('uuid', $this->contract->uuid)
-         ->update([
-         'status' => 'inactive'
-         ]);
+    public function submitForm()
+    {
+        sleep(1);
 
-         $contracts = Tenant::find($this->contract->tenant_uuid)->contracts->where('status', 'active')->count();
+        Contract::where('uuid', $this->contract->uuid)
+        ->update([
+            'status' => 'cleared'
+        ]);
 
-         if(!$contracts){
-            Tenant::where('uuid', $this->contract->tenant_uuid)
-            ->update([
-                'status' => 'inactive'
-            ]);
-         }
-         
-         $deposits = Tenant::find($this->contract->tenant_uuid)->bills->whereIn('particular_id',[3,4] )->whereIn('status', ['unpaid', 'partially_paid'])->count();
+        Tenant::where('uuid', $this->contract->tenant_uuid)
+        ->update([
+            'status' => 'cleared'
+        ]);
 
-         if($deposits){
-            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->request_for.'/step-1')->with('success', 'Step 3 of 4 has been accomplished!');     
-         }else{
-            return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Tenant has been moved out!');     
-         }
+        return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Step 2 of 4 has been accomplished!');        
+    }
 
-           
+    public function exitModal(){
+
+        return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Force moveout was cancelled!');  
     }
 
     public function render()
     {
-        return view('livewire.contract-moveout-step3-component');
+        return view('livewire.contract-moveout-step3-component',[
+            'deposits' => Contract::find($this->contract->uuid)->wallets()->sum('amount')
+        ]);
     }
 }

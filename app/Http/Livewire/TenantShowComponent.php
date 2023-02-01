@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Tenant;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use DB;
@@ -135,6 +135,35 @@ class TenantShowComponent extends Component
         ddd($tenant_uuid);
     }
 
+    public function redirectToTheCreateGuardianPage(){
+        sleep(2);
+
+        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
+    }
+
+    public function redirectToTheCreateReferencePage(){
+        sleep(2);
+
+        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
+    }
+
+    public function redirectToTheCreateConcernPage(){
+        sleep(2);
+
+        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/concern/create');
+    }
+
+    public function redirectToTheCreateBillPage(){
+        sleep(2);
+
+        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/bills');
+    }
+
+    public function redirectToTheCreateContractPage(){
+        sleep(2);
+
+        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/units');
+    }
 
     public function sendCredentials()
     {

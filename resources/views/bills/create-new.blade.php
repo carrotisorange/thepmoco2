@@ -179,7 +179,7 @@
                                             </span>
                                         </span>
                                         <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                                            <span class="text-sm font-medium text-gray-900">Deposit Information
+                                            <span class="text-sm font-medium text-gray-900">Unit Inventory
                                             </span>
 
                                         </span>
@@ -195,6 +195,8 @@
                                 </svg>
                             </div>
                         </li>
+
+
 
                         <li class="relative overflow-hidden lg:flex-1">
                             <div class="border border-gray-200 overflow-hidden lg:border-0">
@@ -234,7 +236,7 @@
             </div>
 
 
-            @livewire('bill-create-component', ['tenant' => $tenant, 'unit' => $unit])
+            @livewire('bill-create-component', [ 'unit' => $unit,'tenant' => $tenant,  'contract'=> $contract])
         </div>
 
 

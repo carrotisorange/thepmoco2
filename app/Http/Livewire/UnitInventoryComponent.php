@@ -5,14 +5,25 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\UnitInventory;
 use Carbon\Carbon;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
+
 
 class UnitInventoryComponent extends Component
 {
+    use WithFileUploads;
+
     public $unitDetails;
 
     public $batch_no;
 
     public $inventories;
+
+    public $ismovein;
+
+    public $tenant;
+
+    public $contract;
 
     protected function rules()
     {
@@ -44,8 +55,6 @@ class UnitInventoryComponent extends Component
 
             session()->flash('success', 'Inventory is successfully updated!');
             }
-
-           
             
        }catch(\Exception $e){
             session()->flash('error', $e);
@@ -84,6 +93,18 @@ class UnitInventoryComponent extends Component
         sleep(2);
 
         return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid);
+    }
+
+    public function submitForm(){
+        sleep(1);
+
+
+        UnitInventory::where('unit_uuid', $this->unitDetails->uuid)
+        ->update([
+            'contract_uuid' => $this->contract->uuid
+        ]);
+
+        return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Unit Inventory is successfully created.');
     }
     
     public function get_inventories(){

@@ -10,6 +10,6 @@
         <x-button onclick="window.location.href='{{ url()->previous() }}'">Go back to unit </x-button>
     </x-slot>
 
-    @include('portals.tenants.tables.contracts')
+    @include('tables.contracts')
 
 </x-index-layout>

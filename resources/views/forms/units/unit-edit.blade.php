@@ -109,7 +109,7 @@
                 <label for="job-title" class="block text-xs font-medium text-gray-900">Occupancy
                     (No of allowable
                     tenants)</label>
-                <input type="text" wire:model="occupancy" value="{{old('occupancy', $unit_details->occupancy)}}"
+                <input type="number" min="1" wire:model="occupancy" value="{{old('occupancy', $unit_details->occupancy)}}"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
             </div>

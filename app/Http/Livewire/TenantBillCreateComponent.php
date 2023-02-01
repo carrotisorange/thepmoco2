@@ -34,10 +34,10 @@ class TenantBillCreateComponent extends Component
         {
             $this->selectedBills = [];
 
-            return back()->with('error', 'Bill cannnot be deleted.');
+            return back()->with('error', 'Bill cannot be deleted.');
         }
 
-        //Bill::destroy($this->selectedBills);
+        Bill::destroy($this->selectedBills);
 
         $this->selectedBills = [];
 
