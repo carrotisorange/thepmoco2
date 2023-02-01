@@ -15,6 +15,7 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
+            <x-th></x-th>
 
         </tr>
     </thead>
@@ -79,6 +80,11 @@
                 @else
                 No contract was uploaded.
                 @endif
+            </x-td>
+            <x-td>
+                <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}"
+                    class="text-purple-500 text-decoration-line: underline">
+                    View</a>
             </x-td>
             <x-td>
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/edit"

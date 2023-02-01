@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class ContractShowComponent extends Component
 {
+    public $contract;
+    
     public function render()
     {
         return view('livewire.contract-show-component');
