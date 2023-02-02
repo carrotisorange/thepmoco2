@@ -228,8 +228,7 @@
                         class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </a>
             </div>
-            <h3 class="text-medium text-gray-700 font-semibold text-center">{{
-                $property->property }}</h3>
+           <h3 class="text-center mt-2">{{ $property->property }}</h3>
         </div>
         @endforeach
     </div>

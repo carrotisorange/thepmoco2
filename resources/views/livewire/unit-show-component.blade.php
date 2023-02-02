@@ -10,7 +10,13 @@
                 <div class="flex justify-end">
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
-                        id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button">Add
+                        id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button">
+                        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                        </svg>
+                        Add
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -31,7 +37,7 @@
                                     New tenant
                                 </a>
                                 @else
-                                <a href="#/" data-modal-toggle="popup-error-modal" class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                <a href="#/" data-modal-toggle="warning-create-tenant-modal" class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                     dark:text-gray-200 dark:hover:text-white">
                                     New tenant
                                 </a>
@@ -71,13 +77,13 @@
                         <button
                             class="ml-2 inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                             type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="text-white w-6 h-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="text-white w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
                             </svg>
                             Calendar
-                           
+
                         </button>
                     </a>
                 </div>
@@ -336,7 +342,7 @@
                                     </div>
                                     @if($contracts->count())
 
-                                    @include('units.tables.tenants')
+                                    @include('tables.contracts')
 
                                     @else
                                     <div class="mt-10 text-center mb-10">
@@ -368,8 +374,6 @@
                                         </div>
                                     </div>
                                     @endif
-
-                                    @include('modals.popup-error')
 
                                 </div>
 
@@ -546,7 +550,7 @@
                                         class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
-                                    @if($utilities->count())
+                                    @if($bills->count())
                                     @include('tables.bills')
                                     @else
                                     <div class="mt-10 text-center mb-10">
@@ -584,5 +588,5 @@
             </div>
         </div>
     </div>
-
+    @include('modals.warnings.create-tenant-modal')
 </div>

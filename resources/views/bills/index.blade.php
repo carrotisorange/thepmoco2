@@ -126,4 +126,5 @@
     @include('modals.create-particular')
     @include('modals.create-express-bill')
     @include('modals.create-customized-bill')
+
 </x-new-layout>

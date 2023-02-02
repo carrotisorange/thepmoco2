@@ -33,63 +33,6 @@
                         @enderror
                     </div>
 
-
-                    <div class="col-span-3">
-                        <label for="country_id" class="block text-sm font-medium text-gray-700">Country</label>
-                        <select wire:model.lazy="country_id" autocomplete="country_id"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="">Select one</option>
-                            @foreach ($countries as $country)
-                            <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
-                                'selected': 'Select one'
-                                }}>{{ $country->country }}</option>
-                            @endforeach
-                        </select>
-                        @error('country_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="col-span-3">
-                        <label for="province_id" class="block text-sm font-medium text-gray-700">Province</label>
-                        <select wire:model.lazy="province_id" autocomplete="province_id"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="">Select one</option>
-                            @foreach ($provinces as $province)
-                            <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
-                                'selected': 'Select one'
-                                }}>{{ $province->province }}</option>
-                            @endforeach
-                        </select>
-                        @error('province_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    {{-- <div class="col-span-2">
-                        <label for="city_id" class="block text-sm font-medium text-gray-700">City</label>
-                        <select wire:model.lazy="city_id" autocomplete="city_id"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="">Select one</option>
-                            @foreach ($cities as $city)
-                            <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
-                                'selected': 'Select one'
-                                }}>{{ $city->city }}</option>
-                            @endforeach
-                        </select>
-                        @error('city_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div> --}}
-
-                    <div class="col-span-6">
-                        <label for="barangay" class="block text-sm font-medium text-gray-700">
-                            Address</label>
-                        <input type="text" wire:model.lazy="barangay" autocomplete="barangay"
-                            value="{{ old('barangay') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                    </div>
-
                     <div class="col-span-2">
                         <label for="birthdate" class="block text-sm font-medium text-gray-700">Birthdate</label>
                         <input type="date" wire:model.lazy="birthdate" autocomplete="birthdate"
@@ -157,6 +100,64 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
+
+
+                    <div class="col-span-3">
+                        <label for="country_id" class="block text-sm font-medium text-gray-700">Country</label>
+                        <select wire:model.lazy="country_id" autocomplete="country_id"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            @foreach ($countries as $country)
+                            <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
+                                'selected': 'Select one'
+                                }}>{{ $country->country }}</option>
+                            @endforeach
+                        </select>
+                        @error('country_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="col-span-3">
+                        <label for="province_id" class="block text-sm font-medium text-gray-700">Province</label>
+                        <select wire:model.lazy="province_id" autocomplete="province_id"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
+                                'selected': 'Select one'
+                                }}>{{ $province->province }}</option>
+                            @endforeach
+                        </select>
+                        @error('province_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- <div class="col-span-2">
+                        <label for="city_id" class="block text-sm font-medium text-gray-700">City</label>
+                        <select wire:model.lazy="city_id" autocomplete="city_id"
+                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select one</option>
+                            @foreach ($cities as $city)
+                            <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
+                                'selected': 'Select one'
+                                }}>{{ $city->city }}</option>
+                            @endforeach
+                        </select>
+                        @error('city_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div> --}}
+
+                    <div class="col-span-6">
+                        <label for="barangay" class="block text-sm font-medium text-gray-700">
+                            Address</label>
+                        <input type="text" wire:model.lazy="barangay" autocomplete="barangay"
+                            value="{{ old('barangay') }}"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    </div>
+
                     <div class="col-span-6">
                         <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
                         <select wire:model.lazy="type" autocomplete="type"
@@ -364,33 +365,31 @@
                 </div>
             </div>
             <div class="flex justify-end mt-2">
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                    target="_blank" href="create/export">
-                    Download Tenant Information Sheet
-                </a>
+              
 
-                {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
-                    class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a> --}}
+                    class="text-indigo-600 hover:text-indigo-900">Export Sample Lease Contract</a>
 
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit">
                     Cancel
                 </a>
 
-
-                <button type="submit"
+                {{-- <button type="button" wire:loading.remove wire:click="exportTenantInformationSheet"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Tenant Information Sheet
+                </button> --}}
 
-                    <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                        </circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
+
+                <button type="submit" wire:loading.remove
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Next
+                </button>
+
+                <button type="button" wire:loading disabled
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Loading...
                 </button>
             </div>
         </div>

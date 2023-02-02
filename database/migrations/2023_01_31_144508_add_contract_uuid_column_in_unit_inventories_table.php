@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddImageColumnInUnitInventoriesTable extends Migration
+class AddContractUuidColumnInUnitInventoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddImageColumnInUnitInventoriesTable extends Migration
     public function up()
     {
         Schema::table('unit_inventories', function (Blueprint $table) {
-            $table->boolean('image')->nullable();
+            $table->foreignUuid('contract_uuid')->constrained()->nullable();
         });
     }
 

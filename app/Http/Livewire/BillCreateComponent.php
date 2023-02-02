@@ -21,7 +21,13 @@ class BillCreateComponent extends Component
     public $bill;
     public $unit_uuid;
 
+    public $contract;
+
     public $property_uuid;
+
+    public $view = 'listView';
+
+    public $isPaymentAllowed = false;
 
     public function mount($unit)
     {
@@ -83,6 +89,12 @@ class BillCreateComponent extends Component
     {
         $this->particular_id = '';
         $this->bill = '';
+    }
+
+    public function redirectToContractShowPage(){
+        sleep(2);
+
+        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid);
     }
 
     public function render()
