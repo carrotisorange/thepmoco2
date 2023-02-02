@@ -30,6 +30,9 @@ class TenantBillCreateComponent extends Component
 
      public function removeBills()
      {
+
+         sleep(2);
+
         if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
         {
             $this->selectedBills = [];
