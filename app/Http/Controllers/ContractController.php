@@ -363,7 +363,7 @@ class ContractController extends Controller
             'status' => 'forcedmoveout'
         ]);
 
-        return redirect('/property/'.$property->uuid.'/tenant/'.$contract->tenant_uuid.'/contract/'.$contract->uuid.'/moveout/step-3')->with('success','Step 2 of 4 has been accomplished!');
+        return redirect('/property/'.$property->uuid.'/tenant/'.$contract->tenant_uuid.'/contract/'.$contract->uuid.'/moveout/step-4')->with('success','Step 2 of 4 has been accomplished!');
 
     }
 }

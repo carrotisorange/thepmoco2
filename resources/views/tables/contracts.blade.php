@@ -9,7 +9,7 @@
             <x-th>END </x-th>
             <x-th>RENT/MO</x-th>
             <x-th>STATUS</x-th>
-            <x-th>CONTRACT</x-th>
+            {{-- <x-th>CONTRACT</x-th> --}}
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
@@ -73,14 +73,14 @@
                     </span>
                     @endif
             </x-td>
-            <x-td>
+            {{-- <x-td>
                 @if(!$item->contract == null)
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->contract }}/contract"
                     target="_blank" class="text-purple-500 text-decoration-line: underline">Contract</a>
                 @else
                 No contract was uploaded.
                 @endif
-            </x-td>
+            </x-td> --}}
             <x-td>
                 <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}"
                     class="text-purple-500 text-decoration-line: underline">
