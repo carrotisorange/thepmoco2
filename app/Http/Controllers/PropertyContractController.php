@@ -27,7 +27,8 @@ class PropertyContractController extends Controller
 
     public function show(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
         return view('properties.contracts.show',[
-            'contract' => $contract
+            'contract' => $contract,
+            'tenant' => $tenant
         ]);
     }
 }

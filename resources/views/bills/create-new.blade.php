@@ -245,4 +245,5 @@
 
     </div>
     @include('modals.create-particular')
+
 </x-new-layout>

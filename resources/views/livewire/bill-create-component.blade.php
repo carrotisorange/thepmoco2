@@ -1,5 +1,21 @@
 <div>
     @include('layouts.notifications')
+
+    <div class="mt-10 mb-10">
+        <p class="text-right">
+            <button type="button" wire:click="redirectToContractShowPage" wire:loading.remove
+                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+                <i class="fa-solid fa-arrow-right"></i>&nbsp Finish
+            </button>
+        </p>
+        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+            @if($bills->count())
+            @include('tables.bills')
+            @endif
+        </div>
+    </div>
+    
     <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
         <div class="mt-1 px-4 py-5 sm:rounded-lg sm:p-6">
             <div class="md:grid md:grid-cols-1 md:gap-6">
@@ -75,15 +91,9 @@
                     Save
                 </button>
 
-                <button type="button" wire:click="redirectToContractShowPage" wire:loading.remove
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-                    Finish
-                </button>
-
                 <button type="button" disabled wire:loading
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                
+
                     Loading...
                 </button>
 
@@ -94,11 +104,5 @@
             </div>
         </div>
     </form>
-    <div class="mb-10">
-        <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-            @if($bills->count())
-            @include('tables.bills')
-            @endif
-        </div>
-    </div>
+
 </div>
