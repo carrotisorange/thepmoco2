@@ -219,21 +219,13 @@ class TenantCollectionController extends Controller
       ];
      }
 
-     public function get_selected_bills_count($batch_no)
-     {
-        return Collection::where('property_uuid', Session::get('property'))
-         ->where('batch_no', $batch_no)
-         ->where('is_posted', false)
-         ->max('id');
-     }
-
      public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
      {
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
 
-         $counter = $this->get_selected_bills_count($batch_no);
+         $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid);
       
-         for($i=0; $i<=$counter; $i++)
+         for($i=0; $i<$counter; $i++)
          {
             $collection = (double) $request->input("collection_amount_".$i);
 
@@ -245,15 +237,17 @@ class TenantCollectionController extends Controller
 
             $bill = Bill::find($bill_id);
 
+            //ddd($bill->particular_id);
+
             //store the deposit to tenant's wallet
-            if($bill->particular_id == '3' || $bill->particular_id == '4'){
-                  app('App\Http\Controllers\WalletController')->store(
-                     $tenant->uuid,
-                     '',
-                     $collection,
-                     $bill->particular->particular
-                  );
-            } 
+            // if($bill->particular_id === '3' || $bill->particular_id === '4'){
+            //       app('App\Http\Controllers\WalletController')->store(
+            //          $tenant->uuid,
+            //          '',
+            //          $collection,
+            //          $bill->particular->particular
+            //       );
+            // } 
             
             //store the collection
             app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form);
@@ -306,6 +300,15 @@ class TenantCollectionController extends Controller
    
          return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/collections')->with('success', 'Payment is successfully created.');
      }
+
+      public function get_selected_bills_count($batch_no, $tenant_uuid)
+      {
+      return Collection::where('property_uuid', Session::get('property'))
+      ->where('tenant_uuid',$tenant_uuid)
+      ->where('batch_no', $batch_no)
+      ->where('is_posted', false)
+      ->max('id');
+      }
 
      public function send_payment_to_tenant($tenant, $ar_no, $form, $payment_made, $user, $role, $collection)
      {

@@ -398,4 +398,5 @@
         </div>
     </div>
     @include('modals.popup-error')
+    @include('layouts.notifications')
 </div>
