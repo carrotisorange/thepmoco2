@@ -291,6 +291,19 @@
 
                     <div class="pt-2 pb-3 space-y-1">
                         @if(Session::get('property'))
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/utilities">
+                            Utilities
+                        </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/property/">
+                            Utilities
+                        </x-dropdown-link>
+                        @endif
+
+                    </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
                         <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
                             Profile
                         </x-dropdown-link>
