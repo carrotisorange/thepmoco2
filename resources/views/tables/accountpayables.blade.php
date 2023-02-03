@@ -3,9 +3,10 @@
         <tr>
             <x-th>#</x-th>
             <x-th>REQUESTED ON</x-th>
+            <x-th>REQUESTED BY</x-th>
             <x-th>REQUEST FOR</x-th>
             <x-th>PARTICULARS</x-th>
-            <x-th>REQUESTED BY</x-th>
+           
             {{-- <x-th>BILLER</x-th> --}}
             <x-th>AMOUNT</x-th>
             {{-- <x-th>APPROVED ON</x-th> --}}
@@ -18,13 +19,15 @@
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
+            <x-td>{{ $accountpayable->requester->name }}</x-td>
             <x-td>{{ $accountpayable->request_for }}</x-td>
             <x-td>
-               @foreach (array_slice($accountpayable->particular, 0, 2) as $particular)
-                    {{ $particular.',' }}
-               @endforeach
+                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
+                @foreach ($particulars as $particular)
+                    {{ $particular->item }},
+                @endforeach
             </x-td>
-            <x-td>{{ $accountpayable->requester->name }}</x-td>
+           
             
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             

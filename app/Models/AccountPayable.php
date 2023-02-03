@@ -14,11 +14,6 @@ class AccountPayable extends Model
         'status' => 'pending'
     ];
 
-    protected $casts = [
-        'particular' => 'array',
-        'quantity' => 'array'
-    ];
-
     public function property()
     {
         return $this->belongsTo(Property::class, 'property_uuid');
@@ -37,5 +32,9 @@ class AccountPayable extends Model
     public function biller()
     {
         return $this->belongsTo(PropertyBiller::class, 'biller_id');
+    }
+
+    public function particulars(){
+        return $this->hasMany(AccountPayableParticular::class, 'batch_no');
     }
 }

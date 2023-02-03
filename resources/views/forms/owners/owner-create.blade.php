@@ -251,7 +251,7 @@
                                 value="{{ old('hasAuthorizedRepresentative'), $hasAuthorizedRepresentative }}"
                                 id="flexCheckChecked">
                             <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
-                                Is the owner has an authorized representative?
+                                Does the owner has an authorized representative?
                             </label>
 
                         </div>

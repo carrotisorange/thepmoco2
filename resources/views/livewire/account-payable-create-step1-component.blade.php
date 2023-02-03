@@ -1,9 +1,6 @@
 <div>
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
-        {{-- <div class="flex justify-end">
-            <button type="button" wire:click="exportStep1()"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button>
-        </div> --}}
+
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
 
@@ -54,8 +51,17 @@
                 </div>
 
                 <div class="sm:col-span-6">
-                    <div
-                        class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <div class="flex justify-end">
+                        <button type="button" wire:loading.remove wire:click="addNewParticular"
+                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                            New Particular
+                        </button>
+                        <button type="button" wire:loading disabled wire:target="addNewParticular"
+                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                            Loading...
+                        </button>
+                    </div>
+                    <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5 md:rounded-lg">
 
                         <form class="mt-5 sm:pb-6 xl:pb-8">
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -64,89 +70,86 @@
                                         <x-th>#</x-th>
                                         <x-th>ITEM </x-th>
                                         <x-th>QUANTITY</x-th>
+                                        @if($request_for === 'payment')
+                                        <x-th>Price</x-th>
+                                        @endif
                                         <x-th></x-th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
-                                        <x-td>1</x-td>
-                                        <x-td>
-                                            <input type="text" wire:model="particular"
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                                            @error('particular')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
-                                        </x-td>
-                                        <x-td>
-                                            <input type="number" step="0.001" min="1" wire:model="quantity"
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                                            @error('quantity')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
-                                        </x-td>
-                                    </tr>
-                                    @for ($i = 1; $i <= 4; $i++) 
-                                    <tr>
-                                        <x-td>{{ $i+1 }}</x-td>
-                                        <x-td>
-                                            <input type="text" wire:model="particular{{ $i }}"
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                                            
-                                        </x-td>
-                                        <x-td>
-                                            <input type="number" step="0.001" min="1" wire:model="quantity{{ $i }}"
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                                          
-                                        </x-td>
-
+                                    @foreach($particulars as $index => $particular)
+                                    <div wire:key="particular-field-{{ $particular->id }}">
+                                        <tr>
+                                            <x-td>{{ $index+1 }}</x-td>
+                                            <x-td>
+                                                <input type="text" wire:model="particulars.{{ $index }}.item"
+                                                    wire:keyup="updateParticular({{ $particular->id }})"
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                @error('particulars.{{ $index }}.item')
+                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                @enderror
+                                            </x-td>
+                                            <x-td>
+                                                <input type="number" wire:model="particulars.{{ $index }}.quantity"
+                                                    wire:keyup="updateParticular({{ $particular->id }})"
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                @error('particulars.{{ $index }}.quantity')
+                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                @enderror
+                                            </x-td>
+                                            @if($request_for === 'payment')
+                                            <x-td>
+                                                <input type="number" step="0.001" wire:model="particulars.{{ $index }}.price"
+                                                    wire:keyup="updateParticular({{ $particular->id }})"
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                @error('particulars.{{ $index }}.price')
+                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                @enderror
+                                            </x-td>
+                                            @endif
+                                            <x-td>
+                                                <button type="button"
+                                                    wire:click="removeParticular({{ $particular->id }})"
+                                                    wire:loading.remove wire:target="removeParticular"
+                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                                    <i class="fa-solid fa-trash"></i>&nbsp; Remove
+                                                </button>
+                                                <button type="button" wire:loading disabled
+                                                    wire:target="removeParticular" wire:target="removeParticular"
+                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                                    Loading...
+                                                </button>
+                                                @include('layouts.notifications')
+                                            </x-td>
                                         </tr>
-                                        @endfor
-
+                                    </div>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </form>
+
                     </div>
                 </div>
 
-                {{--
-                <div class="sm:col-span-2">
-                    <label for="particular" class="block text-sm font-medium text-gray-700">Item:</label>
-                    <input type="text" wire:model="particular" rows="3"
-                        class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('particular')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
 
-
-                <div class="sm:col-span-2">
-                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
-                    <input type="number" step="0.001" min="1" wire:model="quantity" rows="3"
-                        class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('quantity')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-                --}}
-
-
-                {{-- cancel, next button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property') }}/accountpayable">
+                    <button type="submit" wire:loading.remove wire:click="cancelRequest" wire:target="cancelRequest"
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Cancel
-                    </a>
-                    <button type="submit"
+                    </button>
+                    <button type="submit" wire:loading wire:target="cancelRequest"
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    
+                        Loading...
+                    </button>
+                    <button type="submit" wire:loading wire:target="submitForm"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
-                        <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                            </circle>
-                            <path class="opacity-75" fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                            </path>
-                        </svg>
+                        Loading...
+                    </button>
+                    <button type="submit" wire:loading.remove wire:target="submitForm"
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+
                         Next
                     </button>
                 </div>

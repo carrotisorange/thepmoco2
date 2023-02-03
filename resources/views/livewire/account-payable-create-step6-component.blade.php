@@ -22,23 +22,32 @@
                                 <x-th>#</x-th>
                                 <x-th>ITEM </x-th>
                                 <x-th>QUANTITY</x-th>
-                                <x-th></x-th>
+                                @if($accountpayable->request_for === 'payment')
+                                <x-th>Price</x-th>
+                                @endif
+
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <x-th>{{ $accountpayable->id }}</x-th>
-                                <x-td>
-                                    @foreach($accountpayable->particular as $particular)
-                                    {{ $particular }} <br>
-                                    @endforeach
-                                </x-td>
-                                <x-td>
-                                    @foreach($accountpayable->quantity as $quantity)
-                                    {{ $quantity }} <br>
-                                    @endforeach
-                                </x-td>
-                            </tr>
+                            @foreach($particulars as $index => $particular)
+                            <div wire:key="particular-field-{{ $particular->id }}">
+                                <tr>
+                                    <x-td>{{ $index+1 }}</x-td>
+                                    <x-td>
+                                        {{ $particular->item }}
+                                    </x-td>
+                                    <x-td>
+                                        {{ $particular->quantity }}
+                                    </x-td>
+                                    @if($accountpayable->request_for === 'payment')
+                                    <x-td>
+                                        {{ $particular->price }}
+                                    </x-td>
+                                    @endif
+
+                                </tr>
+                            </div>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -71,27 +80,27 @@
                     @enderror
                 </div>
 
+               @if($accountpayable->request_for === 'purchase')
                 <div class="sm:col-span-6">
                     <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
                                 <label for="selected_quotation"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span><a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}"
-                                            target="_blank" class="text-blue-500 text-decoration-line: underline">View
+                                    <span><a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}" target="_blank"
+                                            class="text-blue-500 text-decoration-line: underline">View
                                             Attachment</a></span>
-
-
+                
+                
                                 </label>
-
+                
                             </div>
-
+                
                         </div>
                     </div>
                 </div>
-
+               @endif
                 <div class="sm:col-span-7">
                     <label class="block text-sm font-medium text-gray-700">Upload the payment</label>
                     <div
