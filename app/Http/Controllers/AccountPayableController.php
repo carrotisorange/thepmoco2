@@ -9,7 +9,7 @@ use Session;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Spatie\Browsershot\Browsershot;
-use Str;
+use Illuminate\Support\Str;
 
 class AccountPayableController extends Controller
 {
@@ -141,24 +141,16 @@ class AccountPayableController extends Controller
     {
         return view('accountpayables.create');
     }
-    public function store_step_1($property_uuid, $request_for, $created_at, $requester_id, $particular, $quantity){
+    public function store_step_1($property_uuid, $request_for, $created_at, $requester_id, $batch_no, $amount){
            
     return AccountPayable::updateOrCreate(
-         [
-         'property_uuid' => $property_uuid,
-         'request_for' => $request_for,
-         'created_at' => $created_at,
-         'requester_id' => $requester_id,
-         'particular' => $particular
-         ]
-         ,
-         [
-         'property_uuid' => $property_uuid,
-         'request_for' => $request_for,
-         'created_at' => $created_at,
-         'requester_id' => $requester_id,
-         'particular' => $particular,
-         'quantity' => $quantity
+        [
+            'property_uuid' => $property_uuid,
+            'request_for' => $request_for,
+            'created_at' => $created_at,
+            'requester_id' => $requester_id,
+            'batch_no' => $batch_no,
+            'amount' => $amount
          ])->id; 
     }
 

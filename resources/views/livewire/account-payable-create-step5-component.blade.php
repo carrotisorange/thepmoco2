@@ -8,6 +8,7 @@
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="approveRequest()" method="POST">
 
+            @if($accountpayable->request_for === 'purchase')
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
                 <div class="sm:col-span-2">
@@ -112,6 +113,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
@@ -125,23 +127,32 @@
                                 <x-th>#</x-th>
                                 <x-th>ITEM </x-th>
                                 <x-th>QUANTITY</x-th>
-                                <x-th></x-th>
+                                @if($accountpayable->request_for === 'payment')
+                                <x-th>Price</x-th>
+                                @endif
+
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <x-th>{{ $accountpayable->id }}</x-th>
-                                <x-td>
-                                    @foreach($accountpayable->particular as $particular)
-                                    {{ $particular }} <br>
-                                    @endforeach
-                                </x-td>
-                                <x-td>
-                                    @foreach($accountpayable->quantity as $quantity)
-                                    {{ $quantity }} <br>
-                                    @endforeach
-                                </x-td>
-                            </tr>
+                            @foreach($particulars as $index => $particular)
+                            <div wire:key="particular-field-{{ $particular->id }}">
+                                <tr>
+                                    <x-td>{{ $index+1 }}</x-td>
+                                    <x-td>
+                                        {{ $particular->item }}
+                                    </x-td>
+                                    <x-td>
+                                        {{ $particular->quantity }}
+                                    </x-td>
+                                    @if($accountpayable->request_for === 'payment')
+                                    <x-td>
+                                        {{ $particular->price }}
+                                    </x-td>
+                                    @endif
+
+                                </tr>
+                            </div>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -214,7 +225,7 @@
 
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                  
+
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                         href="#/" wire:click="rejectRequest()">
                         Reject

@@ -114,33 +114,42 @@
 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
-                
+
                 </div>
 
                 <div class="sm:col-span-6">
-                    <table class="w-full text-lg text-left text-gray-500 dark:text-gray-400">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="bg-gray-50">
                             <tr>
                                 <x-th>#</x-th>
                                 <x-th>ITEM </x-th>
                                 <x-th>QUANTITY</x-th>
-                                <x-th></x-th>
+                                @if($accountpayable->request_for === 'payment')
+                                <x-th>Price</x-th>
+                                @endif
+
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <x-th>{{ $accountpayable->id }}</x-th>
-                                <x-td class>
-                                    @foreach($accountpayable->particular as $particular)
-                                        {{ $particular }} <br>
-                                    @endforeach
-                                </x-td>
-                                <x-td>
-                                    @foreach($accountpayable->quantity as $quantity)
-                                    {{ $quantity }} <br>
-                                    @endforeach
-                                </x-td>
-                            </tr>
+                            @foreach($particulars as $index => $particular)
+                            <div wire:key="particular-field-{{ $particular->id }}">
+                                <tr>
+                                    <x-td>{{ $index+1 }}</x-td>
+                                    <x-td>
+                                        {{ $particular->item }}
+                                    </x-td>
+                                    <x-td>
+                                        {{ $particular->quantity }}
+                                    </x-td>
+                                    @if($accountpayable->request_for === 'payment')
+                                    <x-td>
+                                        {{ $particular->price }}
+                                    </x-td>
+                                    @endif
+
+                                </tr>
+                            </div>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -6,6 +6,7 @@ use Livewire\Component;
 use Carbon\Carbon;
 use Session;
 use App\Models\AccountPayable;
+use App\Models\AccountPayableParticular;
 
 class AccountPayableCreateStep3Component extends Component
 {
@@ -57,8 +58,11 @@ class AccountPayableCreateStep3Component extends Component
 
     public function render()
     {
-        return view('livewire.account-payable-create-step3-component',[
-            'accountpayable' => AccountPayable::find($this->accountpayable_id)
-        ]);
+       $accountpayable = AccountPayable::find($this->accountpayable_id);
+
+       return view('livewire.account-payable-create-step3-component',[
+       'accountpayable' => $accountpayable,
+       'particulars' => AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()
+       ]);
     }
 }
