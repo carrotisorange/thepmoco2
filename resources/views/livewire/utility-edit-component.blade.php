@@ -80,12 +80,12 @@
 
         </div>
 
-        <p class="text-center mt-10 mb-10">
+        {{-- <p class="text-center mt-10 mb-10">
             <button type="button" wire:loading  disabled wire:target="updateParameters"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Loading...
             </button>
-        </p>
+        </p> --}}
         {{-- @endif --}}
 
         <div class="mt-3 -my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -93,7 +93,7 @@
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
 
-                @if($this->start_date&&$this->end_date&&$this->kwh&&$this->min_charge)
+                @if($this->start_date&&$this->end_date&&$this->kwh)
                 <div>
                     <p class="mt-3 text-sm text-center text-gray-500">
                         Showing

@@ -11,6 +11,18 @@
                 <x-th>AMOUNT DUE</x-th>
             </tr>
         </thead>
+        <tbody>
+            <tr>
+                <x-td>TOTAL </x-td>
+                <x-td>{{ number_format($utilities->sum('previous_reading'), 2) }}</x-td>
+                <x-td>{{ number_format($utilities->sum('current_reading'), 2) }}</x-td>
+                <x-td>{{ number_format($utilities->sum('current_consumption'), 2) }}</x-td>
+                <x-td></x-td>
+                <x-td></x-td>
+                <x-td>{{ number_format($utilities->sum('total_amount_due'), 2) }}</x-td>
+
+            </tr>
+        </tbody>
         <tbody class="bg-white divide-y divide-gray-200">
             @foreach ($utilities as $index => $item)
             <div wire:key="utility-field-{{ $item->id }}">
@@ -115,8 +127,10 @@
                     </x-td>
 
                 </tr>
+               
             </div>
             @endforeach
+           
         </tbody>
     </table>
 </form>
