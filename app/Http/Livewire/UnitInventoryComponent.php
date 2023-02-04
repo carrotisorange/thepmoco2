@@ -96,19 +96,28 @@ class UnitInventoryComponent extends Component
     }
 
     public function submitForm(){
-        sleep(1);
+        sleep(2);
 
+        // UnitInventory::where('unit_uuid', $this->unitDetails->uuid)
+        // ->update([
+        //     'contract_uuid' => $this->contract->uuid
+        // ]);
 
-        UnitInventory::where('unit_uuid', $this->unitDetails->uuid)
-        ->update([
-            'contract_uuid' => $this->contract->uuid
-        ]);
+        foreach($this->inventories as $key => $inventory )
+        {
+            $inventory->replicate()->fill(
+                [
+                    'contract_uuid' => $this->contract->uuid
+                ]
+            )->save();
+       }
 
         return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Unit Inventory is successfully created.');
     }
     
     public function get_inventories(){
         return UnitInventory::where('unit_uuid', $this->unitDetails->uuid)
+        ->where('contract_uuid', '')
         ->orderBy('created_at', 'desc')
         ->get();
     }

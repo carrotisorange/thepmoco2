@@ -14,4 +14,6 @@ class ContractShowComponent extends Component
     {
         return view('livewire.contract-show-component');
     }
+
+    
 }

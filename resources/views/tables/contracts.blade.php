@@ -15,11 +15,9 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
-            <x-th></x-th>
-
+            {{-- <x-th></x-th> --}}
         </tr>
     </thead>
-
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($contracts as $index => $item)
         <tr>
@@ -118,12 +116,12 @@
                     class="text-purple-500 text-decoration-line: underline">Moveout</a>
                 @endif
             </x-td>
-            <x-td>
+            {{-- <x-td>
                 @if($item->status == 'pendingmovein')
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills"
                     class="text-purple-500 text-decoration-line: underline">Pay Bills</a>
                 @endif
-            </x-td>
+            </x-td> --}}
         </tr>
         @endforeach
     </tbody>
