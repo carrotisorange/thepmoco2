@@ -52,7 +52,6 @@ class AccountPayableCreateStep2Component extends Component
     public function downloadInternalDocument(){
         sleep(2);
 
-
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step1/export');
 
     }
@@ -60,18 +59,18 @@ class AccountPayableCreateStep2Component extends Component
     public function store(){
 
         if($this->quotation1){
-            AccountPayable::where('id', $this->accountpayable_id)
+            AccountPayable::where('id', $this->accountpayable->id)
             ->update([
                 'quotation1' => $this->quotation1->store('accountpayables'),
             ]);
         }if($this->quotation2){
-            AccountPayable::where('id', $this->accountpayable_id)
+            AccountPayable::where('id', $this->accountpayable->id)
             ->update([
                 'quotation2' => $this->quotation1->store('accountpayables'),
             ]);
             
         }if($this->quotation3){
-            AccountPayable::where('id', $this->accountpayable_id)
+            AccountPayable::where('id', $this->accountpayable->id)
             ->update([
                 'quotation3' => $this->quotation3->store('accountpayables'),
             ]);
@@ -79,7 +78,7 @@ class AccountPayableCreateStep2Component extends Component
         }     
 
         if($this->selected_quotation === 'quotation1'){
-            AccountPayable::where('id', $this->accountpayable_id)
+            AccountPayable::where('id', $this->accountpayable->id)
               ->update([
               'selected_quotation' => $this->quotation1->store('accountpayables'),
               'amount' => $this->amount,
@@ -88,7 +87,7 @@ class AccountPayableCreateStep2Component extends Component
         }
 
         if($this->selected_quotation === 'quotation2'){
-             AccountPayable::where('id', $this->accountpayable_id)
+             AccountPayable::where('id', $this->accountpayable->id)
               ->update([
               'selected_quotation' => $this->quotation2->store('accountpayables'),
               'amount' => $this->amount,
@@ -97,7 +96,7 @@ class AccountPayableCreateStep2Component extends Component
         }
 
         if($this->selected_quotation === 'quotation3'){
-             AccountPayable::where('id', $this->accountpayable_id)
+             AccountPayable::where('id', $this->accountpayable->id)
               ->update([
               'selected_quotation' => $this->quotation3->store('accountpayables'),
               'amount' => $this->amount,
@@ -105,8 +104,7 @@ class AccountPayableCreateStep2Component extends Component
               ]);
         }
 
-        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-3')
-        ->with('success', 'Step 2 is successfully accomplished!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Step 2 is successfully accomplished!');
     }
 
     public function removeQuotation($quotation)
