@@ -71,8 +71,14 @@
 
                 <div class="grid grid-cols-1 lg:gap-6">
                     <div class="flex items-center justify-center">
+                        @if($tenant_details->photo_id)
+                        <img src="{{ asset('/storage/'.$tenant_details->photo_id) }}" alt="door"
+                            class="lg:col-span-2 md:row-span-2 rounded-md w-56 lg:w-full">
+                        @else
                         <img src="{{ asset('/brands/avatar.png') }}" alt="door"
                             class="lg:col-span-2 md:row-span-2 rounded-md w-56 lg:w-full">
+                        @endif
+
                     </div>
 
                     <div class="mt-5 flex items-center justify-center">
