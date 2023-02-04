@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountPayable;
+use App\Models\AccountPayableParticular;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use Session;
@@ -34,10 +35,39 @@ class AccountPayableController extends Controller
         ]);
     }
 
-    public function create_step_2($property_uuid, $accountpayable_id){
+    public function download_step_1(Property $property, AccountPayable $accountpayable){
+
+        $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
+         
+        $data = [
+            'accountpayable' => $accountpayable,
+            'particulars' => $particulars
+         ];
+
+         $pdf = \PDF::loadView('accountpayables.pdf.step1', $data);
+
+         $pdf->output();
+
+         $canvas = $pdf->getDomPDF()->getCanvas();
+
+         $height = $canvas->get_height();
+         $width = $canvas->get_width();
+
+         $canvas->set_opacity(.2,"Multiply");
+
+         $canvas->set_opacity(.2);
+
+         $canvas->page_text($width/5, $height/2, $property->property, null,
+         55, array(0,0,0),2,2,-30);
+
+         return $pdf->download($property->property.'-accountpayable.pdf');
+    }
+
+    public function create_step_2(Property $property, AccountPayable $accountpayable){
     
         return view('accountpayables.create.step-2', [
-           'accountpayable_id' => $accountpayable_id
+            'property' => $property,
+            'accountpayable' => $accountpayable
         ]);
     }
 
@@ -145,6 +175,11 @@ class AccountPayableController extends Controller
            
     return AccountPayable::updateOrCreate(
         [
+            'batch_no' => $batch_no,
+            'property_uuid' => $property_uuid,
+            'request_for' => $request_for
+        ]
+        ,[
             'property_uuid' => $property_uuid,
             'request_for' => $request_for,
             'created_at' => $created_at,

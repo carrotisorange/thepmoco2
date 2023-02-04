@@ -1,61 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <title>Step 1</title>
+    <style>
+        /** Define the margins of your page **/
+        @page {
+            margin: 100px 25px;
+        }
+
+        header,
+        h5 {
+            position: fixed;
+            top: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+
+            /** Extra personal styles **/
+            background-color: ;
+            color: black;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+
+            /** Extra personal styles **/
+            background-color: #;
+            color: black;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        p,
+            {
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+
+        table,
+        th,
+        td {
+            margin-right: 80px;
+            margin-left: 50px;
+            border: 1px black;
+        }
+
+        th,
+        td {
+            padding: 10px";
+
+        }
+    </style>
 </head>
 
+<body>
+    <!-- Define header and footer blocks before your content -->
+    <header>
+        {{ Session::get('property_name') }} | Account Payable
+        <br>
+        <h5>{{ App\Models\Property::find(Session::get('property'))->country->country }},
+            {{ App\Models\Property::find(Session::get('property'))->province->province }},
+            {{ App\Models\Property::find(Session::get('property'))->city->city }},
+            {{ App\Models\Property::find(Session::get('property'))->barangay }}
+            <hr>
+            <br>
+        </h5>
 
-<!-- footer -->
+    </header>
 
-<style>
-    body {
-    font-family: 'Poppins';
-        }
-</style>
+    <footer>
+        <h5>
+            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
+            {{ App\Models\Property::find(Session::get('property'))->mobile }}
+        </h5>
+        {{ Session::get('property_name') }} Copyright &copy;
+        <?php echo date("Y");?>
+    </footer>
 
-<body class="m-5 p-10 max-w-3xl">
+    <main>
+        <br>
+        <p>
+            Reference #: {{ $accountpayable->batch_no }}
+        </p>
+        <p>
+            Date requested: {{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
 
-<!-- header -->
+        <p>
+            Request for : {{ $accountpayable->request_for }}
+        </p>
 
-    <div class="flex justify-center text-center">
-        <p class="inline-flex text-sm">The PMO Residences | Account Payable</p>
-    </div>
+        <p>
+            Requested by: {{ $accountpayable->requester->name}}
+        </p>
 
-    <div class="flex justify-center text-center">
-        <p class="border-b-2 inline-flex text-sm font-bold">Philippines, Cordillera Administrative Region, Baguio, New Lucban</p>
-    </div>
+        <p>Status: {{ $accountpayable->status }}</p>
+        
+        <p>
+            Particulars
+        </p>
 
-<!-- step -->
+        <table class="">
 
-    <h2 class="my-8 font-bold">Step 1</h2>
-    <h1 class="mb-3">Request #</h1>
-    <h3 class="mb-3">Status:</h3>
-    <h3>Username:</h3>
-    <h3>Position:</h3>
+            <thead class="bg-gray-50">
+                <tr>
+                <tr>
+                    <x-th>#</x-th>
+                    <x-th>ITEM </x-th>
+                    <x-th>QUANTITY</x-th>
+                    @if($accountpayable->request_for === 'payment')
+                    <x-th>Price</x-th>
+                    @endif
 
-    <h2 class="mt-7 mb-3 font-semibold">Request Details:</h2>
-    <h4 class="my-3 text-sm">Request for: Purchase</h4>
-    <h4 class="my-3 text-sm">Creation Date:</h4>
-    <h4 class="my-3 text-sm">Particular:</h4>
-    <h4 class="my-3 text-sm">Requester's Name:</h4>
+                </tr>
+                </tr>
+            </thead>
+            @foreach ($particulars as $index => $particular)
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <x-td>{{ $index+1 }}</x-td>
+                    <x-td>
+                        {{ $particular->item }}
+                    </x-td>
+                    <x-td>
+                        {{ $particular->quantity }}
+                    </x-td>
+                    @if($accountpayable->request_for === 'payment')
+                    <x-td>
+                        {{ $particular->price }}
+                    </x-td>
+                    @endif
 
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
 
-    <h4 class="mt-7 mb-3 font-semibold">Prepared by:</h4>
-
-<!-- footer -->
-
-    <div class="mt-8 flex justify-center text-center">
-        <p class="inline-flex text-xs">For inquiries reach us at: <span class="font-bold underline"> demo@test.com</span></p>
-    </div>
-
-    <div class="mt-2 flex justify-center text-center">
-        <p class="inline-flex text-xs">The PMO Residences Copyright 2023</p>
-    </div>
-
+    </main>
 </body>
+
 </html>

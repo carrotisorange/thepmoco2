@@ -266,7 +266,7 @@ class ContractController extends Controller
          ]);
     }
 
-        public function export(Property $property, Tenant $tenant, Contract $contract)
+    public function export(Property $property, Tenant $tenant, Contract $contract)
     {
         $reference_no = Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
         ->select('*', 'bills.status as bill_status', 'bills.id as bill_id')
