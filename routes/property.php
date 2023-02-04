@@ -108,6 +108,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
 
         Route::prefix('{unit:uuid}')->group(function(){
+            Route::get('/contract/{contract}/inventory/export', [UnitInventoryController::class, 'export_movein']);
             Route::get('delete', [UnitController::class, 'destroy']);
             Route::get('/', [UnitController::class, 'show'])->name('unit')->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
@@ -133,6 +134,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::prefix('inventory')->group(function(){
                 Route::get('{random_str}/create', [UnitInventoryController::class, 'create'])->name('unit');
                 Route::get('export', [UnitInventoryController::class, 'export'])->name('unit');
+          
             });
 
             Route::get('/tenant/{tenant}/contract/{contract}/inventory/create', [UnitInventoryController::class, 'movein_create'])->name('unit');

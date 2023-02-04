@@ -46,7 +46,7 @@
         {{-- @if(!$this->min_charge) --}}
 
         <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            
+
             <div class="sm:col-span-2">
                 <label for="">Start date</label>
                 <input type="date" id="start_date" wire:model="start_date" wire:keyup="updateParameters"
@@ -63,7 +63,7 @@
             </div>
             <div class="sm:col-span-1">
                 <label for="">
-                  Rate
+                    Rate
                 </label>
                 <input type="text" id="kwh" wire:model="kwh" wire:keyup="updateParameters"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -81,7 +81,7 @@
         </div>
 
         {{-- <p class="text-center mt-10 mb-10">
-            <button type="button" wire:loading  disabled wire:target="updateParameters"
+            <button type="button" wire:loading disabled wire:target="updateParameters"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Loading...
             </button>
@@ -110,10 +110,11 @@
                     </p> --}}
                     </p>
 
-                     @include('forms.utilities.utility-edit')
-                    @endif
+                    @include('forms.utilities.utility-edit')
+
 
                 </div>
+                @endif
                 {{-- {{ $utilities->links() }} --}}
             </div>
         </div>

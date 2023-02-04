@@ -17,17 +17,22 @@
             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                 <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Tenant</dt>
-                    <dd class="mt-1 text-sm text-gray-900">{{ $contract->tenant->tenant }}</dd>
+                    <dd class="mt-1 text-sm text-gray-900"><a class="text-blue-500 text-decoration-line: underline"
+                            href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant->uuid }}">{{
+                            $contract->tenant->tenant }}</a></dd>
+                </div>
+                <div class="sm:col-span-1">
+                    <dt class="text-sm font-medium text-gray-500">Unit</dt>
+                    <dd class="mt-1 text-sm text-gray-900"><a class="text-blue-500 text-decoration-line: underline"
+                            href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit->uuid }}">{{
+                            $contract->unit->unit }}</a></dd>
                 </div>
                 <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Contract</dt>
                     <dd class="mt-1 text-sm text-gray-900">{{Carbon\Carbon::parse($contract->start)->format('M d, Y')}}
                         - {{Carbon\Carbon::parse($contract->end)->format('M d, Y')}}</dd>
                 </div>
-                <div class="sm:col-span-1">
-                    <dt class="text-sm font-medium text-gray-500">Email address</dt>
-                    <dd class="mt-1 text-sm text-gray-900">{{ $contract->tenant->email }}</dd>
-                </div>
+
                 <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Rent/month</dt>
                     <dd class="mt-1 text-sm text-gray-900">{{ number_format($contract->rent, 2) }}</dd>
@@ -149,7 +154,7 @@
                                     <span class="ml-2 w-0 flex-1 truncate">Unit Inventory</span>
                                 </div>
                                 <div class="ml-4 flex-shrink-0">
-                                    <a href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit_uuid }}/inventory/export"
+                                    <a href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit_uuid }}/contract/{{ $contract->uuid }}/inventory/export"
                                         class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
                                 </div>
                             </li>
