@@ -41,7 +41,7 @@ class CollectionIndexComponent extends Component
     public function get_ars()
     {
         return AcknowledgementReceipt::search($this->search)
-        ->orderBy('ar_no', 'asc')
+        ->orderBy('ar_no', 'desc')
         ->where('property_uuid', Session::get('property'))
         ->when($this->start, function($query){
             $query->whereDate('created_at', $this->start);

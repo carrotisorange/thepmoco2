@@ -11,7 +11,7 @@
             <x-th> AMOUNT PAID</x-th>
             <x-th></x-th>
             <x-th></x-th>
-            <x-th></x-th>
+            {{-- <x-th></x-th> --}}
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -69,7 +69,7 @@
 
             </x-td>
 
-            <x-td>
+            {{-- <x-td>
                 @if($item->tenant_uuid)
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export"
                     class="text-indigo-500 text-decoration-line: underline" target="_blank">Export</a>
@@ -77,7 +77,7 @@
                 <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/export"
                     class="text-indigo-500 text-decoration-line: underline" target="_blank">Export</a>
                 @endif
-            </x-td>
+            </x-td> --}}
 
             <x-td>
 
