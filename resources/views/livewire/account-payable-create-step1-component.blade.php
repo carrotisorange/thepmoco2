@@ -56,7 +56,7 @@
                             class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                             New Particular
                         </button>
-                        <button type="button" wire:loading disabled wire:target="addNewParticular"
+                        <button type="button" wire:loading disabled wire:target="addNewParticular" disabled
                             class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                             Loading...
                         </button>
@@ -99,7 +99,8 @@
                                             </x-td>
                                             @if($request_for === 'payment')
                                             <x-td>
-                                                <input type="number" step="0.001" wire:model="particulars.{{ $index }}.price"
+                                                <input type="number" step="0.001"
+                                                    wire:model="particulars.{{ $index }}.price"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.price')
@@ -112,7 +113,7 @@
                                                     wire:click="removeParticular({{ $particular->id }})"
                                                     wire:loading.remove wire:target="removeParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                                    <i class="fa-solid fa-trash"></i>&nbsp; Remove
+                                                    Remove
                                                 </button>
                                                 <button type="button" wire:loading disabled
                                                     wire:target="removeParticular" wire:target="removeParticular"
@@ -137,12 +138,12 @@
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Cancel
                     </button>
-                    <button type="submit" wire:loading wire:target="cancelRequest"
+                    <button type="submit" wire:loading wire:target="cancelRequest" disabled
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    
+
                         Loading...
                     </button>
-                    <button type="submit" wire:loading wire:target="submitForm"
+                    <button type="submit" wire:loading wire:target="submitForm" disabled
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
                         Loading...

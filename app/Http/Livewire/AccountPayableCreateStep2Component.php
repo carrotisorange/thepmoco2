@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\AccountPayable;
-use Session;
 use Livewire\WithFileUploads;
 
 
@@ -12,7 +11,7 @@ class AccountPayableCreateStep2Component extends Component
 {
     use WithFileUploads;
     
-    public $accountpayable_id;
+    public $accountpayable;
 
     public $quotation1;
     public $quotation2;
@@ -21,11 +20,8 @@ class AccountPayableCreateStep2Component extends Component
     public $amount;
     public $selected_quotation;
     
-    public $property_uuid;
+    public $property;
 
-    public function mount(){
-        $this->property_uuid = Session::get('property');
-    }
 
     protected function rules()
     {
@@ -51,6 +47,14 @@ class AccountPayableCreateStep2Component extends Component
         $this->validate();
 
         $this->store();
+    }
+
+    public function downloadInternalDocument(){
+        sleep(2);
+
+
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step1/export');
+
     }
 
     public function store(){

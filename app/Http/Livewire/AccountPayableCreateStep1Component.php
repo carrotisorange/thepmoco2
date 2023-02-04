@@ -19,15 +19,13 @@ class AccountPayableCreateStep1Component extends Component
 
     public $particulars;
 
-    public $property_uuid;
+    public $property;
     
     public function mount()
     {
         $this->requester_id = auth()->user()->id;
         $this->created_at = Carbon::now()->format('Y-m-d');
-        $this->property_uuid = Session::get('property');
         $this->batch_no = Str::random(8);
-
     }
 
      protected function rules()
@@ -51,8 +49,12 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->validate();
 
+        if(!$this->get_particulars()->count()){
+            return back()->with('success', 'Please add at least 1 particular to proceed');
+        }
+
         $accountpayable_id = app('App\Http\Controllers\AccountPayableController')->store_step_1(
-            $this->property_uuid,
+            $this->property->uuid,
             $this->request_for,
             $this->created_at,
             $this->requester_id,
@@ -61,9 +63,9 @@ class AccountPayableCreateStep1Component extends Component
         );
 
         if($this->request_for === 'purchase'){
-            return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');
         }else{
-            return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$accountpayable_id.'/step-4')->with('success', 'Step 1 is successfully accomplished!');
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-4')->with('success', 'Step 1 is successfully accomplished!');
         }
     }
 
@@ -91,9 +93,12 @@ class AccountPayableCreateStep1Component extends Component
     }
 
     public function cancelRequest(){
+
+        sleep(2);
+
         AccountPayableParticular::where('batch_no', $this->batch_no)->orWhere('item', '')->delete();
 
-        session()->flash('success', 'Request is successfully canceled!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable')->with('success', 'Request is successfully canceled!');
     }
 
     public function updateParticular($id){

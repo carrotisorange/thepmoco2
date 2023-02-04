@@ -361,30 +361,31 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{accountPayable}', 'show')->name('accountpayable');
             Route::get('{id}/attachment',  'download');
 
-            Route::get('{accountPayable}/export/step-1', [AccountPayableController::class, 'export_step1']);
+            // Route::get('{accountPayable}/export/step-1', [AccountPayableController::class, 'export_step1']);
 
             Route::get('{id}/approve', 'approve');
             //Route::get('{str_random}/create', 'create')->name('accountpayable');
 
             //step 1
-            Route::get('{request_for}/step-1', 'create_step_1')->name('accountpayable');
+            Route::get('{accountpayable}/step-1', 'create_step_1')->name('accountpayable');
+            Route::get('{accountpayable}/step1/export', 'download_step_1');
 
             //step 2
-            Route::get('{random_str}/step-2', 'create_step_2')->name('accountpayable');
+            Route::get('{accountpayable}/step-2', 'create_step_2')->name('accountpayable');
 
             //step 3
-            Route::get('{random_str}/step-3', 'create_step_3')->name('accountpayable');
+            Route::get('{accountpayable}/step-3', 'create_step_3')->name('accountpayable');
     
 
             //step 4
-            Route::get('{random_str}/step-4', 'create_step_4')->name('accountpayable');
+            Route::get('{accountpayable}/step-4', 'create_step_4')->name('accountpayable');
 
             //step 5
-            Route::get('{random_str}/step-5', 'create_step_5')->name('accountpayable');
+            Route::get('{accountpayable}/step-5', 'create_step_5')->name('accountpayable');
 
 
             //step 6
-            Route::get('{random_str}/step-6', 'create_step_6')->name('accountpayable');
+            Route::get('{accountpayable}/step-6', 'create_step_6')->name('accountpayable');
    
 
             //request status sample
