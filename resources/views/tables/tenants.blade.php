@@ -20,7 +20,7 @@
                     <div class="h-10 w-10 flex-shrink-0">
 
                         <img onerror="this.onerror=null;this.src='{{ asset('/brands/avatar.png') }}';"
-                            class="h-10 w-10 rounded-full" src="{{ asset('/storage/'.$tenant->photo_id) }}" alt="">
+                            class="h-10 w-10 rounded-full" src="{{ asset('/storage/'.$tenant->photo_id) }}" alt="tenant image">
 
                     </div>
                     <div class="ml-4">

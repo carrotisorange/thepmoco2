@@ -17,7 +17,7 @@
             @if(App\Models\Property::find(Session::get('property'))->tenants()->count())
 
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-2">
 
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -43,6 +43,17 @@
                         <option value="" selected>Filter category</option>
                         @foreach ($categories as $category)
                         <option value="{{ $category->category }}">{{ $category->category }}</option>
+                        @endforeach
+                    </select>
+
+                </div>
+
+                <div class="sm:col-span-2">
+                    <select id="status" wire:model="status"
+                        class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <option value="" selected>Filter status</option>
+                        @foreach ($statuses as $status)
+                        <option value="{{ $status->status }}">{{ $status->status }}</option>
                         @endforeach
                     </select>
 
@@ -174,8 +185,7 @@
                         <h3 class="mt-2 text-sm font-medium text-gray-900">No tenants</h3>
                         <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                         <div class="mt-6">
-                            <button type="button"
-                               data-modal-toggle="instructions-create-tenant-modal"
+                            <button type="button" data-modal-toggle="instructions-create-tenant-modal"
                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                 <!-- Heroicon name: mini/plus -->
                                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
