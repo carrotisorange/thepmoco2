@@ -12,20 +12,25 @@
                 <x-th>
                     Unit
                 </x-th>
-                {{--<x-th>
-                    Building
-                </x-th> --}}
-                {{-- <x-th>
+
+                <x-th>
                     Floor
+                </x-th>
+
+                <x-th>
+                    Status
                 </x-th>
                 <x-th>
                     Category
-                </x-th> --}}
+                </x-th>
                 <x-th>
                     Size (sqm)
                 </x-th>
                 <x-th>
-                    Rent/Month/Tenant
+                    Rent Type
+                </x-th>
+                <x-th>
+                    Rent/month
                 </x-th>
                 <x-th>
                     Occupancy
@@ -51,68 +56,88 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
-                    {{-- <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                        <x-table-select form="edit-form" wire:model="units.{{ $index }}.building_id">
-                            <option value="">Select a building </option>
-                            @foreach ($buildings as $building)
-                            <option value="{{ $building->id }}" {{ $building->id ==
-                                'units'.$index.'building_id'? 'selected' : '' }}>
-                                {{ $building->building }}
+
+                    <x-td>
+                        <x-table-select form="edit-form" wire:model="units.{{ $index }}.floor_id">
+                            <option value="">Select a floor</option>
+                            @foreach ($floors as $floor)
+                            <option value="{{ $floor->floor_id }}" {{ $floor->floor_id === 'units'.$index.'floor_id'?
+                                'selected'
+                                : 'selected' }}>
+                                {{ $floor->floor }}
+                            </option>
+
+                            @endforeach
+                        </x-table-select>
+                        @error('units.{{ $index }}.floor_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+
+                    <x-td>
+                        <x-table-select form="edit-form" wire:model="units.{{ $index }}.status_id">
+                            <option value="">Select a status</option>
+                            @foreach ($statuses as $status)
+                            <option value="{{ $status->status_id }}" {{ 'units' .$index.'status_id'===$status->
+                                status_id? 'selected' : 'selected' }}>{{ $status->status }}
                             </option>
                             @endforeach
                         </x-table-select>
-                        @error('units.{{ $index }}.building_id')
+                        @error('units.{{ $index }}.status_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                        </x-td> --}}
-                        {{-- <x-td>
-                            <x-table-select form="edit-form" wire:model="units.{{ $index }}.floor_id">
-                                <option value="">Select a floor</option>
-                                @foreach ($floors as $floor)
-                                <option value="{{ $floor->id }}" {{ $floor->id === 'units'.$index.'floor_id'? 'selected' : 'selected' }}>
-                                    {{ $floor->floor }}
-                                </option>
-                               
-                                @endforeach
-                            </x-table-select>
-                            @error('units.{{ $index }}.floor_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </x-td>
-                        <x-td>
-                            <x-table-select form="edit-form" wire:model="units.{{ $index }}.category_id">
-                                <option value="">Select a category</option>
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ $category->id ==
-                                    'units'.$index.'category_id'? 'selected' : '' }}>
-                                    {{ $category->category }}
-                                </option>
-                                @endforeach
-                            </x-table-select>
-                            @error('units.{{ $index }}.category_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </x-td> --}}
-                        <x-td>
-                            <x-table-input form="edit-form" type="text" min="1" wire:model="units.{{ $index }}.size" />
-                            @error('units.{{ $index }}.size')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </x-td>
-                        <x-td>
-                            <x-table-input form="edit-form" min="0" type="number"
-                                wire:model="units.{{ $index }}.rent" />
-                            @error('units.{{ $index }}.rent')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </x-td>
-                        <x-td>
-                            <x-table-input form="edit-form" type="number" min="1"
-                                wire:model="units.{{ $index }}.occupancy" />    
-                            @error('units.{{ $index }}.occupancy')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </x-td>
+                    </x-td>
+                    <x-td>
+                        <x-table-select form="edit-form" wire:model="units.{{ $index }}.category_id">
+                            <option value="">Select a category</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->category_id }}" {{ 'units' .$index.'category_id'===$category->
+                                id? 'selected' : 'selected' }}>
+                                {{ $category->category }}
+                            </option>
+                            @endforeach
+                        </x-table-select>
+                        @error('units.{{ $index }}.category_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+                    <x-td>
+                        <x-table-input form="edit-form" type="text" min="1" wire:model="units.{{ $index }}.size" />
+                        @error('units.{{ $index }}.size')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+                    <x-td>
+                        <x-table-select form="edit-form" wire:model="units.{{ $index }}.rent_type">
+                            <option value="">Select a rent type</option>
+                            <option value="rent_per_tenant" {{ 'units' .$index.'rent_type'==='rent_per_tenant'
+                                ? 'selected' : '' }}>
+                                rent_per_tenant
+                            </option>
+                            <option value="rent_per_unit" {{ 'units' .$index.'rent_type'==='rent_per_unit' ? 'selected'
+                                : '' }}>
+                                rent_per_unit
+                            </option>
+
+
+                        </x-table-select>
+                        @error('units.{{ $index }}.rent_type')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+                    <x-td>
+                        <x-table-input form="edit-form" min="0" type="number" wire:model="units.{{ $index }}.rent" />
+                        @error('units.{{ $index }}.rent')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+                    <x-td>
+                        <x-table-input form="edit-form" type="number" min="1"
+                            wire:model="units.{{ $index }}.occupancy" />
+                        @error('units.{{ $index }}.occupancy')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
                 </tr>
             </div>
 

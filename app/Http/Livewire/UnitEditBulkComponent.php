@@ -32,13 +32,11 @@ class UnitEditBulkComponent extends Component
     public $selectedUnits =[];
 
     public $selectedAllUnits = false;
-    public $property_uuid;
 
     public function mount($batch_no)
     {
         $this->batch_no = $batch_no;
         $this->units = $this->get_units();
-        $this->property_uuid = Session::get('property');
     }
 
     protected function rules()
@@ -50,7 +48,9 @@ class UnitEditBulkComponent extends Component
             'units.*.category_id' => ['nullable', Rule::exists('categories', 'id')],
             'units.*.rent' => 'nullable',
             'units.*.size' => 'nullable',
-            'units.*.occupancy' => 'nullable'
+            'units.*.occupancy' => 'nullable',
+            'units.*.status_id' => ['nullable', Rule::exists('statuses', 'id')],
+            'units.*.rent_type' => 'nullable',
         ];
     }
 
@@ -74,7 +74,7 @@ class UnitEditBulkComponent extends Component
 
     public function updateUnit()
     {
-        sleep (1);
+        sleep (2);
 
         try{
             $this->validate();
@@ -98,27 +98,10 @@ class UnitEditBulkComponent extends Component
             }
 
         }catch(\Exception $e){
-           
+           ddd($e);
             session()->flash('error');
         }
     }
-
-    // public function updateUnitInfo(){
-
-    //     sleep(1);
-
-    //     Unit::where('property_uuid', Session::get('property_uuid'))
-    //     ->update([
-    //         'category_id' => $this->category_id,
-    //         'size' => $this->size,
-    //         'rent' => $this->rent,
-    //         'occupancy' => $this->occupancy
-    //     ]);
-
-    //     $this->units = $this->get_units();
-
-    //     session()->flash('success', 'Parameters are successfully saved!');
-    // }
 
     public function removeUnits()
     {
@@ -158,11 +141,11 @@ class UnitEditBulkComponent extends Component
 
     public function render()
     {
-
         return view('livewire.unit-edit-bulk-component',[
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property_uuid),
+            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property->uuid),
             'floors' => app('App\Http\Controllers\FloorController')->index(null),
             'categories' => app('App\Http\Controllers\CategoryController')->index(null),
+            'statuses' => app('App\Http\Controllers\StatusController')->index(null),
         ]);
     }
 }
