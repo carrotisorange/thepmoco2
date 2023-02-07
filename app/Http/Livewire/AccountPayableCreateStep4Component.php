@@ -13,12 +13,14 @@ class AccountPayableCreateStep4Component extends Component
     public $accountpayable_id;
 
     public $delivery_at;
+    public $vendor;
 
     public $property_uuid;
     
     public function mount()
     {
         $this->property_uuid = Session::get('property');
+        $this->vendor = AccountPayable::find($this->accountpayable_id)->vendor;
     }
 
     protected function rules()
@@ -41,7 +43,8 @@ class AccountPayableCreateStep4Component extends Component
 
         AccountPayable::where('id', $this->accountpayable_id)
         ->update([
-            'delivery_at' => $this->delivery_at
+            'delivery_at' => $this->delivery_at,
+            'vendor' => $this->vendor
         ]);
 
         return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-5')->with('success', 'Step 4 is successfully accomplished!');
