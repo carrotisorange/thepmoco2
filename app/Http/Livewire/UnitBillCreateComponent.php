@@ -22,7 +22,11 @@ class UnitBillCreateComponent extends Component
     public $end;
     public $bill;
     public $unit_uuid;
+    public $total_amount_due;
 
+    public function mount(){
+       $this->total_amount_due =  $this->utility->total_amount_due;
+    }
     public function submitForm(){
         
         sleep(1);
@@ -57,12 +61,16 @@ class UnitBillCreateComponent extends Component
 
           Utility::where('id', $this->utility->id)
           ->update(
-            ['status' => 'billed to '. $this->type
-          ]);
+            [
+                'status' => 'billed to '. $this->type,
+                'total_amount_due' => $this->total_amount_due
+            ]
+        );
 
         return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/bills')->with('success', 'The bill is successfully posted');
 
         }catch(\Exception $e){
+        
             ddd($e);
         }
 

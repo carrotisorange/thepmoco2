@@ -2,6 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
+            <x-th>REFERENCE #</x-th>
             <x-th>UTILITY</x-th>
             <x-th>UNIT </x-th>
             <x-th>START DATE</x-th>
@@ -20,6 +21,7 @@
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($utilities as $index => $item)
         <tr>
+            <x-th>{{ $index+1 }}</x-th>
             <x-th>
                 {{  $item->unit.'-'.$item->id }}
             </x-th>
