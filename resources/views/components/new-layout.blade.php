@@ -6,6 +6,7 @@
 </head>
 
 <body class="h-full overflow-hidden font-body">
+    @include('layouts.notifications')
     <div class="flex h-full flex-col">
         <!-- Top nav-->
         <nav x-data="{ open: false }" class="bg-white p-3 border-b border-gray-100">
@@ -30,7 +31,8 @@
                             </h1>
                             <!-- help icon -->
                             <button title="help" class="py-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" text-purple-500 w-5 h-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class=" text-purple-500 w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                                 </svg>
@@ -162,7 +164,7 @@
                             Calendar
                         </x-dropdown-link>
                         @endif
-                    
+
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
@@ -278,12 +280,12 @@
 
                     <div class="pt-2 pb-3 space-y-1">
                         @if(Session::get('property'))
-                        <x-dropdown-link href="/property/{{ Session::get('property') }}/cashflow">
-                            Cashflows
+                        <x-dropdown-link href="/property/{{ Session::get('property') }}/financial">
+                            Financials
                         </x-dropdown-link>
                         @else
                         <x-dropdown-link href="/property/">
-                            Cashflows
+                            Financials
                         </x-dropdown-link>
                         @endif
 
@@ -623,21 +625,21 @@
 
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Account <br> Payables</div>
 
-                    <!-- Cashflow -->
+                    <!-- Financials -->
                     @if(Session::get('property'))
-                    <x-nav-link href="/property/{{ Session::get('property') }}/cashflow"
-                        :active="request()->routeIs('cashflow')">
+                    <x-nav-link href="/property/{{ Session::get('property') }}/financial"
+                        :active="request()->routeIs('financial')">
 
-                        <span class="sr-only">Cashflows</span>
+                        <span class="sr-only">Financials</span>
                         <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </x-nav-link>
                     @else
-                    <x-nav-link href="/property/" :active="request()->routeIs('cashflow')">
+                    <x-nav-link href="/property/" :active="request()->routeIs('financial')">
 
-                        <span class="sr-only">Cashflows</span>
+                        <span class="sr-only">Financials</span>
                         <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -645,7 +647,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Cashflows</div>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Financials</div>
 
                     <!-- Utilities -->
                     @if(Session::get('property'))
@@ -676,14 +678,16 @@
 
                 </div>
             </nav>
-            @include('layouts.notifications')
+
             <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
                 {{ $slot }}
+
                 <div class="mb-12">
                     @include('layouts.footer')
                 </div>
             </main>
         </div>
+
     </div>
     @include('layouts.scripts')
 </body>
