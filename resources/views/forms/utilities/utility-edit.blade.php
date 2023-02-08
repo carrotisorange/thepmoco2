@@ -48,16 +48,16 @@
                     </x-td> --}}
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:keyup="updateUtilities({{ $item->id }})"
-                            wire:model="utilities.{{ $index }}.previous_reading" />
+                            wire:keyup="updateUtilities({{ $item->id }})" 
+                            wire:model.debounce.1000ms="utilities.{{ $index }}.previous_reading" />
                         @error('utilities.{{ $index }}.previous_reading')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:keyup="updateUtilities({{ $item->id }})"
-                            wire:model="utilities.{{ $index }}.current_reading" />
+                            wire:keyup="updateUtilities({{ $item->id }})" 
+                            wire:model.debounce.1000ms="utilities.{{ $index }}.current_reading" />
                         @error('utilities.{{ $index }}.current_reading')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -127,10 +127,10 @@
                     </x-td>
 
                 </tr>
-               
+
             </div>
             @endforeach
-           
+
         </tbody>
     </table>
 </form>

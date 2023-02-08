@@ -9,6 +9,8 @@ use Livewire\WithPagination;
 use App\Models\Unit;
 use Carbon\Carbon;
 use Str;
+use DB;
+use App\Models\Property;
 
 class UtilityIndexComponent extends Component
 {
@@ -22,9 +24,16 @@ class UtilityIndexComponent extends Component
 
     public $type;
 
+    public $start_date;
+
+    public $limitDisplayTo = 10;
+
+    public $totalUtilitiesCount;
+
     public function mount()
     {
         $this->property_uuid = Session::get('property');
+        $this->totalUtilitiesCount = Property::find(Session::get('property'))->utilities->count();
     }
 
     public function storeUtilities($option)
@@ -70,27 +79,40 @@ class UtilityIndexComponent extends Component
           ->groupBy('type')
           ->get();
 
+          $dates = Utility::where('property_uuid', $this->property_uuid)
+          ->select('start_date')
+          ->whereNotNull('start_date')
+          ->groupBy('start_date')
+          ->get();
+
+          $utilities = Utility::isposted()
+          ->select('*', 'units.unit as unit_name' )
+          ->join('units', 'utilities.unit_uuid', 'units.uuid')
+          ->where('utilities.property_uuid', $this->property_uuid)
+          ->when($this->status, function($query){
+          $query->where('status',$this->status);
+          })
+          ->when($this->type, function($query){
+          $query->where('utilities.type',$this->type);
+          })
+
+          ->when(($this->search), function($query){
+          $query->where('units.unit','like', '%'.$this->search.'%');
+          })
+
+        ->when(($this->start_date), function($query){
+            $query->whereDate('utilities.start_date', $this->start_date);
+        })
+
+          ->orderBy('start_date', 'desc')
+          ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
+          ->paginate($this->limitDisplayTo);
+
         return view('livewire.utility-index-component',[
-            'utilities' => Utility::isposted()
-            ->select('*', 'units.unit as unit_name' )
-            ->join('units', 'utilities.unit_uuid', 'units.uuid')
-            ->where('utilities.property_uuid', $this->property_uuid)
-             ->when($this->status, function($query){
-             $query->where('status',$this->status);
-             }) 
-              ->when($this->type, function($query){
-              $query->where('utilities.type',$this->type);
-              })
-             
-             ->when(($this->search), function($query){
-             $query->where('units.unit','like', '%'.$this->search.'%');
-             })
-            
-            ->orderBy('start_date', 'desc')
-            ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
-            ->paginate(10),
+            'utilities' => $utilities,
             'statuses' => $statuses,
-            'types' => $types
+            'types' => $types,
+            'dates' => $dates
         ]);
     }
 }

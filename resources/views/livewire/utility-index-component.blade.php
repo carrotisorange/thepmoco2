@@ -90,7 +90,7 @@
 
 
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div class="sm:col-span-2">
+            <div class="sm:col-span-6">
 
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -111,7 +111,19 @@
             </div>
 
             <div class="sm:col-span-2">
-                <select id="small" wire:model="type"
+                <select id="start_date" wire:model="start_date"
+                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <option value="">Filter date</option>
+                    @foreach ($dates as $date)
+                    <option value="{{ $date->start_date }}">{{ Carbon\Carbon::parse($date->start_date)->format('M d, Y')
+                        }}</option>
+                    @endforeach
+                </select>
+
+            </div>
+
+            <div class="sm:col-span-2">
+                <select id="type" wire:model="type"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="">Filter utility</option>
                     @foreach ($types as $item)
@@ -121,7 +133,7 @@
 
             </div>
 
-            <div class="sm:col-span-2">
+            <div class="sm:col-span-1">
                 <select id="small" wire:model="status"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="">Filter status</option>
@@ -130,6 +142,19 @@
                     @endforeach
                 </select>
 
+            </div>
+
+            <div class="sm:col-span-1">
+                <select id="small" wire:model="limitDisplayTo"
+                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <option value="" selected>Limit display to</option>
+                    @for ($i = 1; $i <= $totalUtilitiesCount; $i++) 
+                        @if($i%10===0) <option value="{{ $i }}">
+                            {{ $i }}
+                        </option>
+                        @endif
+                    @endfor
+                </select>
             </div>
 
         </div>
@@ -159,7 +184,7 @@
                                     d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                             </svg>
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No utilities</h3>
-                            <p class="mt-1 text-sm text-gray-500">Get started by creating a new utilities</p>
+                            <p class="mt-1 text-sm text-gray-500">Get started by creating new utilities</p>
                             <div class="mt-6">
                                 <button type="button" wire:loading wire:target="storeUtilities" disabled
                                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

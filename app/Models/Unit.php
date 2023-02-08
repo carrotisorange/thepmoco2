@@ -32,7 +32,8 @@ class Unit extends Model
         'occupancy' => 1,
         'is_enrolled' => 0,
         'is_the_unit_for_rent_to_tenant' => 1,
-        'floor_id' => 1
+        'floor_id' => 1,
+        'rent_type' => 'rent_per_unit'
     ];
 
     public function category()

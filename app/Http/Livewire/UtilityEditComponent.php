@@ -8,6 +8,7 @@ use Session;
 use App\Models\Utility;
 use App\Models\Unit;
 use App\Models\UtilityParameter;
+use App\Models\Property;
 
 class UtilityEditComponent extends Component
 {
@@ -30,6 +31,7 @@ class UtilityEditComponent extends Component
     public $batch_no;
 
     public $property_uuid;
+
 
     public function mount($batch_no, $option)
     {

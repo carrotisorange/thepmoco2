@@ -16,7 +16,7 @@
                             <div class="col-span-2">
                                 <label for="mobile_number" class="block text-sm font-medium text-gray-700">Amount
                                     Due</label>
-                                <input type="text" value="{{ $utility->total_amount_due }}" readonly
+                                <input type="text" wire:model="total_amount_due" 
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                                 @error('mobile_number')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

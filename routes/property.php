@@ -55,7 +55,7 @@ use App\Http\Controllers\PropertyConcernController;
 use App\Http\Controllers\PropertyBillController;
 use App\Http\Controllers\PropertyCollectionController;
 use App\Http\Controllers\PropertyAccountPayableController;
-use App\Http\Controllers\PropertyCashflowController;
+use App\Http\Controllers\PropertyFinancialController;
 use App\Http\Controllers\PropertyUtilityController;
 use App\Http\Controllers\PropertyGuestController;
 
@@ -339,8 +339,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     //Routes for Cashflow
-    Route::prefix('cashflow')->group(function(){
-        Route::get('/', [PropertyCashflowController::class, 'index'])->name('cashflow');
+    Route::prefix('financial')->group(function(){
+        Route::get('/', [PropertyFinancialController::class, 'index'])->name('financial');
+        Route::get('export/{filter}', [PropertyFinancialController::class, 'export']);
     });
 
 
