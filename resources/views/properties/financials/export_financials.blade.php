@@ -61,7 +61,7 @@
 <body>
     <!-- Define header and footer blocks before your content -->
     <header>
-        {{ Session::get('property_name') }} | Cashflow from Operations
+        {{ Session::get('property_name') }} | Financial Reports
         <br>
         <h5>{{ App\Models\Property::find(Session::get('property'))->country->country }},
             {{ App\Models\Property::find(Session::get('property'))->province->province }},
@@ -89,41 +89,53 @@
         </p>
 
         <p>
-        <table class="">
-
+        <table class="min-w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">
                 <tr>
-                    <x-th>#</x-th>
-                    <x-th>DATE</x-th>
-                    <x-th>DESCRIPTION</x-th>
-                    <x-th>CASHIN</x-th>
-                    <x-th>CASHOUT</x-th>
+                    <th scope="col"
+                        class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                        Description</th>
+                    <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Value</th>
+
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($accountpayables->union($collections) as $index => $cashflow)
+            <tbody class="divide-y divide-gray-200 bg-white">
                 <tr>
-                    <x-td>{{ $index+1 }}</x-td>
-                    <x-td>{{ $cashflow->date }}</x-td>
-                    <x-td>{{ $cashflow->label }}</x-td>
-                    <x-td>
-                        @if($cashflow->label == 'INCOME')
-                        {{ number_format($cashflow->amount, 2) }}
-                        @endif
-                    </x-td>
-                    <x-td>
-                        @if($cashflow->label == 'EXPENSE')
-                        {{ number_format($cashflow->amount, 2) }}
-                        @endif
-                    </x-td>
+                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                        Potential Gross Rent (total rent amount of rent per unit)
+                    </td>
+                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                        number_format($potential_gross_rent, 2) }}</td>
+
                 </tr>
-                @endforeach
+
                 <tr>
-                    <x-td>Total</x-td>
-                    <x-td></x-td>
-                    <x-td></x-td>
-                    <x-td>{{ number_format($cashflows->where('label', 'INCOME')->sum('amount'), 2) }}</x-td>
-                    <x-td>{{ number_format($cashflows->where('label', 'EXPENSE')->sum('amount'), 2) }}</x-td>
+                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                        Less Vacancy (total rent amount of vacant units)
+                    </td>
+                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                        number_format($less_vacancy, 2)
+                        }}</td>
+
+                </tr>
+
+                <tr>
+                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                        Effective Gross Rent (total rent amount of occupied units)
+                    </td>
+                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                        number_format($effective_gross_rent, 2) }}</td>
+
+                </tr>
+                <tr>
+                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                        Collected Rent (all paid rent)
+                    </td>
+                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                        number_format($collected_rent,
+                        2) }}</td>
+
                 </tr>
             </tbody>
         </table>
