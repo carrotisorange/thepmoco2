@@ -15,13 +15,6 @@ use App\Models\Tenant;
 
 class PropertyBillCustomizedController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
     public function store(Request $request, $property_uuid, $bill_count)
     {
         $attributes = request()->validate([

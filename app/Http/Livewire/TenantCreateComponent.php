@@ -106,8 +106,8 @@ class TenantCreateComponent extends Component
             });
         
        }catch(\Exception $e)
-       {
-            return back()->with('error');
+       { 
+            return back()->with('error', $e);
        }
 
     }

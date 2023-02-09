@@ -14,17 +14,6 @@ class BillController extends Controller
 {
     public function store($property_uuid, $unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $isPosted){
         Bill::create(
-        // [   
-        //     'property_uuid' => $property_uuid,
-        //     'unit_uuid' => $unit_uuid,
-        //     'tenant_uuid' => $tenant_uuid,
-        //     'owner_uuid' => $owner_uuid,
-        //     'particular_id' => $particular_id,
-        //     'start' => $start_date,
-        //     'end' => $end_date, 
-        //     'batch_no' => $batch_no,
-        // ]
-        // ,
         [
             'unit_uuid' => $unit_uuid,
             'particular_id' => $particular_id,
