@@ -10,7 +10,7 @@
                 </p> --}}
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button type="button" wire:click="downloadFinancialReports" wire:loading.remove
+                {{-- <button type="button" wire:click="downloadFinancialReports" wire:loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-download"></i> &nbsp
                     Download
@@ -21,7 +21,7 @@
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Loading...
                 
-                </button>
+                </button> --}}
             </div>
         </div>
         <div class="mt-8 flex flex-col">
