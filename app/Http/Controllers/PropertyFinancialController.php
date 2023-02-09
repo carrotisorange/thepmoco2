@@ -67,6 +67,62 @@ class PropertyFinancialController extends Controller
        }else{
             return $this->exportFinancial($property, $type, $filter);
        }
+
+      
+    }
+
+
+    public function exportFinancial($property, $type, $filter){
+         $data = [
+              'total_occupancy' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_occupancy($property),
+
+              'total_occupancy_rent' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_occupancy_rent($property),
+
+              'total_vacancy' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_vacancy($property),
+
+              'total_vacancy_rent' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_vacancy_rent($property),
+
+              'total_occupied' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_occupied($property),
+
+              'total_occupied_rent' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_occupied_rent($property),
+
+              'potential_gross_rent' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_occupancy($property) *
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_occupancy_rent($property),
+
+              'less_vacancy' =>   app('App\Http\Controllers\PropertyFinancialController')->get_total_vacancy($property) *
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_vacancy_rent($property),
+
+              'effective_gross_rent' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_occupied($property) *
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_occupied_rent($property),
+
+              'collected_rent' =>
+              app('App\Http\Controllers\PropertyFinancialController')->get_total_collected_rent($property),
+          ];
+
+          $pdf = \PDF::loadView('properties.financials.export_financials', $data);
+
+          $pdf->output();
+
+          $canvas = $pdf->getDomPDF()->getCanvas();
+
+          $height = $canvas->get_height();
+          $width = $canvas->get_width();
+
+          $canvas->set_opacity(.2,"Multiply");
+
+          $canvas->set_opacity(.2);
+
+          $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+
+          return $pdf->download($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
     }
 
     public function exportCashflow($property, $type, $filter){
@@ -122,5 +178,33 @@ class PropertyFinancialController extends Controller
           $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
 
           return $pdf->download($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
+    }
+
+    public function get_total_occupancy($property){
+       return Property::find($property->uuid)->units->sum('occupancy');
+    }
+
+    public function get_total_occupancy_rent($property){
+        return Property::find($property->uuid)->units->sum('rent');
+    }
+
+    public function get_total_vacancy($property){
+        return Property::find($property->uuid)->units->where('status_id','!=' ,2)->sum('occupancy');
+    }
+
+    public function get_total_vacancy_rent($property){
+        return Property::find($property->uuid)->units->where('status_id', '!=', 2)->sum('rent');
+    }
+
+    public function get_total_occupied($property){
+        return Property::find($property->uuid)->units->where('status_id' ,2)->sum('occupancy');
+    }
+
+    public function get_total_occupied_rent($property){
+        return Property::find($property->uuid)->units->where('status_id', 2)->sum('rent');
+    }
+
+    public function get_total_collected_rent($property){
+        return Property::find($property->uuid)->acknowledgementreceipts()->whereYear('created_at', Carbon::now()->year)->sum('amount');
     }
 }
