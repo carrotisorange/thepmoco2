@@ -129,6 +129,7 @@
                                 <x-th>QUANTITY</x-th>
                                 @if($accountpayable->request_for === 'payment')
                                 <x-th>Price</x-th>
+                                <x-th>Total</x-th>
                                 @endif
 
                             </tr>
@@ -148,6 +149,9 @@
                                     <x-td>
                                         {{ $particular->price }}
                                     </x-td>
+                                    <x-td>
+                                        {{ number_format($particular->price * $particular->quantity, 2) }}
+                                    </x-td>
                                     @endif
 
                                 </tr>
@@ -157,10 +161,42 @@
                     </table>
                 </div>
 
+                <div class="sm:col-span-3">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Requester:</label>
+                    <input type="text" value="{{ $accountpayable->requester->name }}" name="vendor"
+                        readonly
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                    @error('selected_vendor')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-3">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Due Date:</label>
+                    <input type="text" value="{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}"
+                        name="vendor" readonly
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                    @error('selected_vendor')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-3">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Due Date:</label>
+                    <input type="text" value="{{ Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}"
+                        name="vendor" readonly
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                    @error('selected_vendor')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
 
                 </div>
+
+
 
 
 

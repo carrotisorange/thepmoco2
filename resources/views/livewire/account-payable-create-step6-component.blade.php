@@ -24,6 +24,7 @@
                                 <x-th>QUANTITY</x-th>
                                 @if($accountpayable->request_for === 'payment')
                                 <x-th>Price</x-th>
+                                <x-th>Total</x-th>
                                 @endif
 
                             </tr>
@@ -42,6 +43,9 @@
                                     @if($accountpayable->request_for === 'payment')
                                     <x-td>
                                         {{ $particular->price }}
+                                    </x-td>
+                                    <x-td>
+                                        {{ number_format($particular->price * $particular->quantity, 2) }}
                                     </x-td>
                                     @endif
 
@@ -80,27 +84,28 @@
                     @enderror
                 </div>
 
-               @if($accountpayable->request_for === 'purchase')
+                @if($accountpayable->request_for === 'purchase')
                 <div class="sm:col-span-6">
                     <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
-                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div
+                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
                                 <label for="selected_quotation"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span><a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}" target="_blank"
-                                            class="text-blue-500 text-decoration-line: underline">View
+                                    <span><a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}"
+                                            target="_blank" class="text-blue-500 text-decoration-line: underline">View
                                             Attachment</a></span>
-                
-                
+
+
                                 </label>
-                
+
                             </div>
-                
+
                         </div>
                     </div>
                 </div>
-               @endif
+                @endif
                 <div class="sm:col-span-7">
                     <label class="block text-sm font-medium text-gray-700">Upload the payment</label>
                     <div
