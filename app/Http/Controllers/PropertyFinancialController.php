@@ -61,48 +61,66 @@ class PropertyFinancialController extends Controller
         ->get();
     }
 
-    public function export(Property $property, $filter){
+    public function export(Property $property, $type, $filter){
+       if($type === 'cashflow'){
+            return $this->exportCashflow($property, $type, $filter);
+       }else{
+            return $this->exportFinancial($property, $type, $filter);
+       }
+    }
 
-         if($filter == 'monthly')
-        {
-            $collections = app('App\Http\Controllers\PropertyFinancialController')->getCollections('DATE_FORMAT(created_at, "%b-%Y") as date');
+    public function exportCashflow($property, $type, $filter){
+          if($filter == 'monthly')
+          {
+            $collections =
+            app('App\Http\Controllers\PropertyFinancialController')->getCollections('DATE_FORMAT(created_at, "%b-%Y") as
+            date');
 
-            $accountpayables = app('App\Http\Controllers\PropertyFinancialController')->getExpenses('DATE_FORMAT(created_at, "%b-%Y") as date');
+            $accountpayables =
+            app('App\Http\Controllers\PropertyFinancialController')->getExpenses('DATE_FORMAT(created_at, "%b-%Y") as
+            date');
 
-        }elseif($filter == 'yearly'){
-            $collections = app('App\Http\Controllers\PropertyFinancialController')->getCollections('DATE_FORMAT(created_at, "%Y") as date');
+            }elseif($filter == 'yearly'){
+            $collections =
+            app('App\Http\Controllers\PropertyFinancialController')->getCollections('DATE_FORMAT(created_at, "%Y") as
+            date');
 
-            $accountpayables = app('App\Http\Controllers\PropertyFinancialController')->getExpenses('DATE_FORMAT(created_at, "%Y") as date');
-        }else
-        {
-            $collections = app('App\Http\Controllers\PropertyFinancialController')->getCollections('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
+            $accountpayables =
+            app('App\Http\Controllers\PropertyFinancialController')->getExpenses('DATE_FORMAT(created_at, "%Y") as date');
+            }else
+            {
+            $collections =
+            app('App\Http\Controllers\PropertyFinancialController')->getCollections('DATE_FORMAT(created_at, "%d-%b-%Y")
+            as date');
 
-            $accountpayables = app('App\Http\Controllers\PropertyFinancialController')->getExpenses('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
-        }
-        
-        $cashflows = $collections->merge($accountpayables);
+            $accountpayables =
+            app('App\Http\Controllers\PropertyFinancialController')->getExpenses('DATE_FORMAT(created_at, "%d-%b-%Y") as
+            date');
+          }
 
-        $data = [
-           'accountpayables' => $accountpayables,
-           'collections' => $collections,
-           'cashflows' => $cashflows
-        ];
+          $cashflows = $collections->merge($accountpayables);
 
-        $pdf = \PDF::loadView('properties.financials.export', $data);
+          $data = [
+          'accountpayables' => $accountpayables,
+          'collections' => $collections,
+          'cashflows' => $cashflows
+          ];
 
-         $pdf->output();
+          $pdf = \PDF::loadView('properties.financials.export_cashflows', $data);
 
-         $canvas = $pdf->getDomPDF()->getCanvas();
+          $pdf->output();
 
-         $height = $canvas->get_height();
-         $width = $canvas->get_width();
+          $canvas = $pdf->getDomPDF()->getCanvas();
 
-         $canvas->set_opacity(.2,"Multiply");
+          $height = $canvas->get_height();
+          $width = $canvas->get_width();
 
-         $canvas->set_opacity(.2);
+          $canvas->set_opacity(.2,"Multiply");
 
-         $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+          $canvas->set_opacity(.2);
 
-        return $pdf->download($property->property.'-'.Carbon::now()->format('M d, Y').'-financial-reports.pdf');
+          $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+
+          return $pdf->download($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
     }
 }

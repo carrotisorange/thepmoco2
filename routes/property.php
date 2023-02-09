@@ -341,7 +341,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Cashflow
     Route::prefix('financial')->group(function(){
         Route::get('/', [PropertyFinancialController::class, 'index'])->name('financial');
-        Route::get('export/{filter}', [PropertyFinancialController::class, 'export']);
+        Route::get('{type}/export/{filter}', [PropertyFinancialController::class, 'export']);
     });
 
 
