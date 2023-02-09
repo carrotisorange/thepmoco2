@@ -126,6 +126,7 @@
                                 <x-th>QUANTITY</x-th>
                                 @if($accountpayable->request_for === 'payment')
                                 <x-th>Price</x-th>
+                                <x-th>Total</x-th>
                                 @endif
 
                             </tr>
@@ -144,6 +145,9 @@
                                     @if($accountpayable->request_for === 'payment')
                                     <x-td>
                                         {{ $particular->price }}
+                                    </x-td>
+                                    <x-td>
+                                        {{ number_format($particular->price * $particular->quantity, 2) }}
                                     </x-td>
                                     @endif
 

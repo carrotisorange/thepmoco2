@@ -171,7 +171,7 @@ class AccountPayableController extends Controller
     {
         return view('accountpayables.create');
     }
-    public function store_step_1($property_uuid, $request_for, $created_at, $requester_id, $batch_no, $amount){
+    public function store_step_1($property_uuid, $request_for, $created_at, $due_date, $requester_id, $batch_no, $amount){
            
     return AccountPayable::updateOrCreate(
         [
@@ -183,6 +183,7 @@ class AccountPayableController extends Controller
             'property_uuid' => $property_uuid,
             'request_for' => $request_for,
             'created_at' => $created_at,
+            'due_date' => $due_date,
             'requester_id' => $requester_id,
             'batch_no' => $batch_no,
             'amount' => $amount

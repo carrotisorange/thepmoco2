@@ -11,7 +11,7 @@
                 </div>
 
                 {{-- request for purchase --}}
-                <div class="sm:col-span-2">
+                <div class="sm:col-span-6">
                     <label for="request_for" class="block text-sm font-medium text-gray-700">Request for: </label>
                     <select wire:model="request_for"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
@@ -25,10 +25,19 @@
 
                 {{-- creation date --}}
                 <div class="sm:col-span-2">
-                    <label for="creation-date" class="block text-sm font-medium text-gray-700">Creation Date:</label>
-                    <input type="date" wire:model="created_at" name="creation-date"
+                    <label for="created_at" class="block text-sm font-medium text-gray-700">Request Date:</label>
+                    <input type="date" wire:model="created_at" name="created_at"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                     @error('created_at')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="due_date" class="block text-sm font-medium text-gray-700">Due Date:</label>
+                    <input type="date" wire:model="due_date" name="due_date"
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                    @error('due_date')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
@@ -72,6 +81,7 @@
                                         <x-th>QUANTITY</x-th>
                                         @if($request_for === 'payment')
                                         <x-th>Price</x-th>
+                                        <x-th>Total</x-th>
                                         @endif
                                         <x-th></x-th>
                                     </tr>
@@ -106,6 +116,12 @@
                                                 @error('particulars.{{ $index }}.price')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
+                                            </x-td>
+                                            <x-td>
+                                                <input type="number" value="{{ $particular->quantity * $particular->price }}"
+                                                  readonly
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                               
                                             </x-td>
                                             @endif
                                             <x-td>

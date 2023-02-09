@@ -13,6 +13,7 @@ class AccountPayableCreateStep1Component extends Component
 {
     public $request_for;
     public $created_at;
+    public $due_date;
     public $requester_id;
 
     public $batch_no;
@@ -25,6 +26,7 @@ class AccountPayableCreateStep1Component extends Component
     {
         $this->requester_id = auth()->user()->id;
         $this->created_at = Carbon::now()->format('Y-m-d');
+        $this->due_date = Carbon::now()->format('Y-m-d');
         $this->batch_no = Str::random(8);
     }
 
@@ -57,9 +59,10 @@ class AccountPayableCreateStep1Component extends Component
             $this->property->uuid,
             $this->request_for,
             $this->created_at,
+            $this->due_date,
             $this->requester_id,
             $this->batch_no,
-            $this->get_particulars()->sum('price')
+            $this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity')
         );
 
         if($this->request_for === 'purchase'){

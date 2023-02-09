@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="sm:col-span-6">
-                   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="bg-gray-50">
                             <tr>
                                 <x-th>#</x-th>
@@ -24,8 +24,9 @@
                                 <x-th>QUANTITY</x-th>
                                 @if($accountpayable->request_for === 'payment')
                                 <x-th>Price</x-th>
+                                <x-th>Total</x-th>
                                 @endif
-                                
+
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -37,14 +38,17 @@
                                         {{ $particular->item }}
                                     </x-td>
                                     <x-td>
-                                       {{ $particular->quantity }}
+                                        {{ $particular->quantity }}
                                     </x-td>
                                     @if($accountpayable->request_for === 'payment')
                                     <x-td>
                                         {{ $particular->price }}
                                     </x-td>
+                                    <x-td>
+                                        {{ number_format($particular->price * $particular->quantity, 2) }}
+                                    </x-td>
                                     @endif
-                                   
+
                                 </tr>
                             </div>
                             @endforeach
@@ -53,17 +57,25 @@
                 </div>
 
                 {{-- request for purchase --}}
-                <div class="sm:col-span-3">
+                <div class="sm:col-span-6">
                     <label for="request" class="block text-sm font-medium text-gray-700">Request for: </label>
                     <input type="text" value="{{ $accountpayable->request_for }}" readonly
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                 </div>
 
+
                 {{-- creation date --}}
                 <div class="sm:col-span-3">
-                    <label for="creation-date" class="block text-sm font-medium text-gray-700">Creation Date:</label>
+                    <label for="creation-date" class="block text-sm font-medium text-gray-700">Request Date:</label>
                     <input type="text" value="{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}"
                         readonly
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                </div>
+
+                <div class="sm:col-span-3">
+                    <label for="due_date" class="block text-sm font-medium text-gray-700">Due Date:</label>
+                    <input type="text" value="{{ Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}"
+                        
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                 </div>
 
