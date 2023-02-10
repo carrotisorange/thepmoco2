@@ -31,6 +31,47 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
+          <a href="article8"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article8.jpg') }}" alt="three people looking laptop property management system"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="article8" class="hover:underline">Article</a>
+            </p>
+            <a href="article8" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">Importance of having a Housekeeping Program for Rental Properties</p>
+              <p class="mt-3 text-sm text-gray-500">
+              Training housekeeping staff is an important aspect of ensuring that guests have a positive
+experience and that the property is well-maintained.</p>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+
+    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
+          <a href="article7"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article7.jpg') }}" alt="three people looking laptop property management system"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="article7" class="hover:underline">Article</a>
+            </p>
+            <a href="article7" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">How To Improve Tenant Retention Rates:</p>
+              <p class="mt-3 text-sm text-gray-500">
+              10 steps on how to improve tenant retention rates!</p>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+
+    
+
+    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
           <a href="article6"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article6.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -68,43 +109,7 @@
       </div>
 
 
-    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <a href="article4"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article4.jpg') }}" alt="three people looking laptop property management system"></a>
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="article4" class="hover:underline">Article</a>
-            </p>
-            <a href="article4" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">Secret Recipe For Brand Building As Small Business.</p>
-              <p class="mt-3 text-sm text-gray-500">
-              In today's marketplace, it's hard for small businesses to stand out from the crowd. But there is one thing that every small business has in common:</p>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      
-    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <a href="article3"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article3.jpg') }}" alt="three people looking laptop property management system"></a>
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="article3" class="hover:underline">Article</a>
-            </p>
-            <a href="article3" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">What are the benefits of a property management system for property managers?</p>
-              <p class="mt-3 text-sm text-gray-500">
-              A property management system can be a great tool for landlords and property managers. It can help you to manage your properties more efficiently,</p>
-            </a>
-          </div>
-        </div>
-      </div>
-
+    
       
     
 

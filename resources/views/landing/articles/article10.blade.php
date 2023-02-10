@@ -1,6 +1,6 @@
 <x-landing-page-template>
 @section('title','Why Designing Beautiful Rentable Spaces Has Over All Positive Results')
-@section('description', 'How to overcome digitalization challenges as a property owner')
+@section('description', 'Why designing rentable space has positive impact result')
 <!-- start article -->
 <div class="sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
 

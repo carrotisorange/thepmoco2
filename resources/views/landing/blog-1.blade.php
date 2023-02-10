@@ -30,6 +30,44 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
+          <a href="article12"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article12.jpg') }}" alt="three people looking laptop property management system"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="article12" class="hover:underline">Article</a>
+            </p>
+            <a href="article12" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">How Digital Systems Improve Tenant Retention and Satisfaction</p>
+              <p class="mt-3 text-sm text-gray-500">
+              When you own a building, you want to make sure that it is running smoothly. You also want to keep your tenants happy and satisfied so that they don't move out. By using digital systems</p>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+
+    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
+          <a href="article11"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article11.jpg') }}" alt="three people looking laptop property management system"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="article11" class="hover:underline">Article</a>
+            </p>
+            <a href="article11" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">How an Online Property Management System Instantly Improves Business Profitability for Landlords</p>
+              <p class="mt-3 text-sm text-gray-500">
+              If you own a rental property, you're probably familiar with the challenges of managing it. You'll have bad tenants, late payments, and sometimes even need to evict people from your space. In order to run your business effectively,</p>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+
+    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
           <a href="article10"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article10.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -60,45 +98,6 @@
               <p class="text-base font-semibold text-gray-900">How to reduce digitalization pain points</p>
               <p class="mt-3 text-sm text-gray-500">
               The digitalization of business has introduced a whole new set of challenges for many organizations.</p>
-            </a>
-          </div>
-          
-        </div>
-      </div>
-
-    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <a href="article8"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article8.jpg') }}" alt="three people looking laptop property management system"></a>
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="article8" class="hover:underline">Article</a>
-            </p>
-            <a href="article8" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">Importance of having a Housekeeping Program for Rental Properties</p>
-              <p class="mt-3 text-sm text-gray-500">
-              Training housekeeping staff is an important aspect of ensuring that guests have a positive
-experience and that the property is well-maintained.</p>
-            </a>
-          </div>
-          
-        </div>
-      </div>
-
-    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <a href="article7"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article7.jpg') }}" alt="three people looking laptop property management system"></a>
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="article7" class="hover:underline">Article</a>
-            </p>
-            <a href="article7" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">How To Improve Tenant Retention Rates:</p>
-              <p class="mt-3 text-sm text-gray-500">
-              10 steps on how to improve tenant retention rates!</p>
             </a>
           </div>
           
