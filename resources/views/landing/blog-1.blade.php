@@ -4,12 +4,7 @@
 <div class="mx-10 mt-4 flex justify-end items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 ">
 	<span class="block">Page 1 of 3</span>
 	<div class="space-x-1">
-		<a href="blog-1"><button title="previous" type="button" class="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow">
-			<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4">
-				<polyline points="15 18 9 12 15 6"></polyline>
-			</svg>
-		</button>
-    </a>
+		
 
 		<a href="blog-2"><button title="next" type="button" class="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow">
 			<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4">
