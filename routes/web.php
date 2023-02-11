@@ -132,6 +132,11 @@ Route::get('/article12', function(){
     return view('landing.articles.article12');
 });
 
+Route::get('/article13', function(){
+    return view('landing.articles.article13');
+});
+
+
 
 
 
