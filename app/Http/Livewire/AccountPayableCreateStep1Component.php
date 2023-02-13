@@ -8,9 +8,12 @@ use Session;
 use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 
 class AccountPayableCreateStep1Component extends Component
 {
+    use WithFileUploads;
+
     public $request_for;
     public $created_at;
     public $due_date;
@@ -36,6 +39,7 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.item' => 'nullable',
             'particulars.*.quantity' => 'nullable',
             'particulars.*.price' => 'nullable',
+            'particulars.*.file' => 'nullable',
         ];
     }
 
@@ -64,6 +68,7 @@ class AccountPayableCreateStep1Component extends Component
             $this->batch_no,
             $this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity')
         );
+
 
         if($this->request_for === 'purchase'){
             return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');
@@ -113,8 +118,16 @@ class AccountPayableCreateStep1Component extends Component
                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
                     'price' => $particular->price,
-                    'batch_no' => $this->batch_no
+                    'batch_no' => $this->batch_no,
                 ]);
+
+                // if($particular->file){
+                //     AccountPayableParticular::where('batch_no', $this->batch_no)
+                //     ->where('id', $id)
+                //     ->update([
+                //         'file' => $particular->file->store('accountpayableparticulars'),
+                //     ]);
+                // }
 
             session()->flash('success', 'Inventory is successfully updated!');
             }
