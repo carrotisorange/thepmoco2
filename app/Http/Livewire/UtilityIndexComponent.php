@@ -38,7 +38,7 @@ class UtilityIndexComponent extends Component
 
     public function storeUtilities($option)
     {   
-        set_time_limit(300);
+        set_time_limit(1000);
 
         $units = Unit::where('property_uuid', $this->property_uuid)->get();
         
