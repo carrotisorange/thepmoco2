@@ -364,7 +364,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                     </x-nav-link>
-                    <div class="font-bold leading-3 ml-0 text-xs text-gray-400 mt-10">Dashboard</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-gray-900 mt-10">Dashboard</div>
 
                     <!-- Units -->
                     @if(Session::get('property'))
@@ -386,7 +386,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Units</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Units</div>
 
                     <!-- Calendar -->
 
@@ -410,7 +410,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Calendar</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Calendar</div>
 
                     <!-- Tenants -->
                     @if(Session::get('property'))
@@ -432,7 +432,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Tenants</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Tenants</div>
 
                     <!-- Contracts -->
                     @if(Session::get('property'))
@@ -454,7 +454,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Contracts</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Contracts</div>
 
                     <!-- Guest -->
 
@@ -479,7 +479,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Guests</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Guests</div>
 
                     <!-- Owners -->
                     @if(Session::get('property'))
@@ -501,7 +501,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Owners</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Owners</div>
 
                     <!-- Personnels -->
                     @if(Session::get('property'))
@@ -525,7 +525,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Personnels</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Personnels</div>
 
                     <!-- Concerns -->
                     @if(Session::get('property'))
@@ -549,7 +549,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Concerns</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Concerns</div>
 
 
                     <!-- Bills -->
@@ -574,7 +574,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Bills</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Bills</div>
 
 
                     <!-- Collection -->
@@ -599,7 +599,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Collections</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Collections</div>
 
                     <!-- Account Payable -->
                     @if(Session::get('property'))
@@ -623,7 +623,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Account <br> Payables</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Account <br> Payables</div>
 
                     <!-- Financials -->
                     @if(Session::get('property'))
@@ -647,7 +647,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Financials</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Financials</div>
 
                     <!-- Utilities -->
                     @if(Session::get('property'))
@@ -671,7 +671,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Utilities</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Utilities</div>
 
 
 
