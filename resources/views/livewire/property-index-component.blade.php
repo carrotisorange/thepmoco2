@@ -136,7 +136,14 @@
             {{-- <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1> --}}
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-            <button type="button" wire:click="exportportfolio" wire:loading.remove
+            @if($search || $sortBy || $filterByPropertyType)
+            <button type="button" wire:click="clearFilters"
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                 &nbsp; Clear
+                Filters</button>
+            @endif
+
+            <button type="button" wire:click="exportPortfolio" wire:loading.remove
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
               <i class="fa-solid fa-download"></i> &nbsp  Export Portfolio
             </button>
@@ -146,20 +153,10 @@
                 Loading...
             </button>
 
-            {{-- @can('portfolio')
-            <button type="button" onclick="window.location.href='/property/{{ Str::random(8) }}/unlock'"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                <i class="fa-solid fa-circle-plus"></i> &nbsp; New
-                property</button>
-            @else --}}
             <button type="button" wire:click="createNewProperty" wire:loading.remove
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                <i class="fa-solid fa-circle-plus"></i> &nbsp; New
                 property</button>
-            {{-- @endcan --}}
-            {{-- <button type="button"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</button>
-            --}}
 
         </div>
     </div>
@@ -177,7 +174,7 @@
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </div>
-                <input type="text" id="property" wire:model="property"
+                <input type="text" id="search" wire:model="search"
                     class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter a property name" required>
 

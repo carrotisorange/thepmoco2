@@ -15,7 +15,7 @@ use App\Models\Tenant;
 
 class PropertyBillCustomizedController extends Controller
 {
-    public function store(Request $request, $property_uuid, $bill_count)
+    public function store(Request $request, Property $property, $bill_count)
     {
         $attributes = request()->validate([
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
@@ -25,23 +25,24 @@ class PropertyBillCustomizedController extends Controller
             'bill' => 'nullable|numeric'
         ]);
 
-        $tenant_uuid = Contract::where('property_uuid', Session::get('property'))
+        $tenant_uuid = Contract::where('property_uuid', $property->uuid)
         ->where('contracts.status','active')
         ->pluck('tenant_uuid');
 
-        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
+        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($property->uuid);
 
         $batch_no = app('App\Http\Controllers\BillController')->generate_bill_batch_no($bill_no);
 
         try{
-            for($i=0; $i<$bill_count; $i++){ $unit_uuid=Contract::where('property_uuid', Session::get('property')) ->
-                where('contracts.status','active')
+            for($i=0; $i<$bill_count; $i++){ 
+                $unit_uuid=Contract::where('property_uuid', $property->uuid)
+                ->where('contracts.status','active')
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('unit_uuid');
 
                 $reference_no = Tenant::find($tenant_uuid[$i]);
 
-                $rent = Contract::where('property_uuid', Session::get('property'))
+                $rent = Contract::where('property_uuid', $property->uuid)
                 ->where('contracts.status','active')
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('rent');
@@ -58,18 +59,16 @@ class PropertyBillCustomizedController extends Controller
                 $attributes['reference_no'] = $reference_no->bill_reference_no;
                 $attributes['user_id'] = auth()->user()->id;
                 $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
-                $attributes['property_uuid'] = Session::get('property');
+                $attributes['property_uuid'] = $property->uuid;
                 $attributes['batch_no'] = $batch_no;
 
-                Bill::create($attributes);
+                    Bill::create($attributes);
                 }
 
-                return redirect('/property/'.Session::get('property').'/bill/customized/'.$batch_no.'/edit')->with('success', $bill_count.' bill is successfully created.');
+                return redirect('/property/'.$property->uuid.'/bill/customized/'.$batch_no.'/edit')->with('success', $bill_count.' bill is successfully created.');
 
             }catch(\Exception $e)
             {
-                DB::rollback();
-
                 return back('error')->with('success', 'Cannot perform your action.');
             }
     }

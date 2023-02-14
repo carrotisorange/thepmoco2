@@ -80,7 +80,7 @@
                     <div class="sm:col-span-1">
                         <select id="building_id" wire:model="building_id"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter unit building</option>
+                            <option value="">Filter building</option>
                             @foreach ($buildings as $item)
                             <option value="{{ $item->building_id }}">{{ $item->building }}</option>
                             @endforeach
@@ -90,7 +90,7 @@
                     <div class="sm:col-span-1">
                         <select id="category_id" wire:model="category_id"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter unit category</option>
+                            <option value="">Filter category</option>
                             @foreach ($categories as $item)
                             <option value="{{ $item->category_id }}">{{ $item->category }}</option>
                             @endforeach
@@ -101,7 +101,7 @@
                     <div class="sm:col-span-1">
                         <select id="status_id" wire:model="status_id"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter unit status</option>
+                            <option value="">Filter status</option>
                             @foreach ($statuses as $item)
                             <option value="{{ $item->status_id }}">{{ $item->status }}</option>
                             @endforeach
@@ -111,7 +111,7 @@
                     <div class="sm:col-span-1">
                         <select id="small" wire:model="sortBy"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="unit" selected>Sort unit by</option>
+                            <option value="unit" selected>Sort by</option>
                             <option value="created_at">date created</option>
                             <option value="floor_id">floor</option>
                             <option value="occupancy">occupancy</option>
@@ -132,8 +132,10 @@
                         <select id="small" wire:model="limitDisplayTo"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="" selected>Limit display to</option>
-                            @for ($i = 1; $i <= $totalUnitsCount; $i++) @if($i%10===0) <option value="{{ $i }}">{{ $i }}
-                                </option>
+                            @for ($i = 1; $i <= $totalUnitsCount; $i++) 
+                            @if($i%10===0 || $i==$totalUnitsCount) 
+                            <option value="{{ $i }}">{{ $i }}
+                              </option>
                                 @endif
                                 @endfor
                         </select>

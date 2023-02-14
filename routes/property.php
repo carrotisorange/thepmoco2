@@ -353,11 +353,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     //Routes for Account Payable
-
-
-
     Route::prefix('accountpayable')->group(function(){
         Route::get('/', [PropertyAccountPayableController::class, 'index'])->name('accountpayable');
+        Route::get('export/{property_uuid?}/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [PropertyAccountPayableController::class, 'export']);
 
         Route::controller(AccountPayableController::class)->group(function () {
     

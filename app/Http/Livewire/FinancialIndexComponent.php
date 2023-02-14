@@ -63,13 +63,15 @@ class FinancialIndexComponent extends Component
 
         $total_occupied_rent = app('App\Http\Controllers\PropertyFinancialController')->get_total_occupied_rent($this->property);
 
-        $potential_gross_rent = $total_occupancy * $total_occupancy_rent;
+        $potential_gross_rent = $total_occupancy_rent;
 
-        $less_vacancy = $total_vacancy * $total_vacancy_rent;
+        $less_vacancy = $total_vacancy_rent;
 
-        $effective_gross_rent = $total_occupied * $total_occupied_rent;
+        $effective_gross_rent = $total_occupied_rent;
 
         $collected_rent = app('App\Http\Controllers\PropertyFinancialController')->get_total_collected_rent($this->property);
+
+        $billed_rent = app('App\Http\Controllers\PropertyFinancialController')->get_total_billed_rent($this->property);
 
         return view('livewire.financial-index-component',[
               'cashflows' => $cashflows,
@@ -78,7 +80,8 @@ class FinancialIndexComponent extends Component
               'potential_gross_rent' => $potential_gross_rent,
               'less_vacancy' => $less_vacancy,
               'effective_gross_rent' => $effective_gross_rent,
-              'collected_rent' => $collected_rent
+              'collected_rent' => $collected_rent, 
+              'billed_rent' => $billed_rent
 
         ]);
     }

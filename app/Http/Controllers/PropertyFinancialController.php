@@ -207,4 +207,9 @@ class PropertyFinancialController extends Controller
     public function get_total_collected_rent($property){
         return Property::find($property->uuid)->acknowledgementreceipts()->whereYear('created_at', Carbon::now()->year)->sum('amount');
     }
+
+    public function get_total_billed_rent($property){
+        return Property::find($property->uuid)->bills()->whereYear('created_at', Carbon::now()->year)->sum('bill');
+    }
 }
+

@@ -5,7 +5,20 @@
                 <h1 class="text-3xl font-bold text-gray-700">Account Payables</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
+                @if($created_at || $status || $request_for || $limitDisplayTo)
+                <button type="button" wire:click="clearFilters"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                    Clear Filters
+                </button> &nbsp;
+                @endif
+                {{-- <button type="button" wire:click="exportAccountPayables" wire:loading.remove
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                    Export
+                </button>
+                <button type="button" wire:target="exportAccountPayables" wire:loading disabled
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                    Loading...
+                </button> --}}
                 <div class="group inline-block">
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -44,6 +57,48 @@
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="mt-3 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-2">
+                        <select id="created_at" wire:model="created_at"
+                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option value="">Requested on</option>
+                            @foreach ($dates as $date)
+                            <option value="{{ $date->created_at }}">{{
+                                Carbon\Carbon::parse($date->created_at)->format('M d, Y')
+                                }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <select id="status" wire:model="status"
+                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option value="">Filter status</option>
+                            @foreach ($statuses as $status)
+                            <option value="{{ $status->status }}">{{ $status->status }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <select id="request_for" wire:model="request_for"
+                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option value="">Filter type</option>
+                            @foreach ($types as $type)
+                            <option value="{{ $type->request_for }}">{{ $type->request_for }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <select id="limitDisplayTo" wire:model="limitDisplayTo"
+                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option value="" selected>Limit display to</option>
+                            @for ($i = 1; $i <= $totalAccountPayableCount; $i++) @if($i%10===0 ||
+                                $i==$totalAccountPayableCount) <option value="{{ $i }}">{{ $i }} </option>
+                                @endif
+                                @endfor
+                        </select>
+                    </div>
+
+                </div>
                 <div class="mt-3">
                     {{ $accountpayables->links() }}
                 </div>
@@ -125,7 +180,7 @@
                                                 href="/property/{{ Session::get('property') }}/accountpayable/{{ 'purchase' }}/step-1"
                                                 data-modal-toggle="create-particular-modal"> purchase</a>
                                         </li>
-                                     
+
                                     </ul>
 
                                 </div>

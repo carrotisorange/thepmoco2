@@ -73,6 +73,7 @@ class UtilityEditComponent extends Component
     
     public function updateUtilities($id)
     {
+    
         try{
             $this->validate();
 

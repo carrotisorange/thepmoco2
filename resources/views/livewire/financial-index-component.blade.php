@@ -14,13 +14,13 @@
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-download"></i> &nbsp
                     Download
-                
+
                 </button>
-                
+
                 <button type="button" wire:loading disabled wire:target="downloadFinancialReports"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Loading...
-                
+
                 </button>
             </div>
         </div>
@@ -36,7 +36,10 @@
                                         Description</th>
                                     <th scope="col"
                                         class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        Value</th>
+                                        Monthly</th>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        Yearly</th>
 
                                 </tr>
                             </thead>
@@ -45,7 +48,10 @@
                                     <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                                         Potential Gross Rent (total rent amount of rent per unit)
                                     </td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ number_format($potential_gross_rent, 2) }}</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($potential_gross_rent, 2) }}</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($potential_gross_rent*12, 2) }}</td>
 
                                 </tr>
 
@@ -53,7 +59,10 @@
                                     <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                                         Less Vacancy (total rent amount of vacant units)
                                     </td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ number_format($less_vacancy, 2) }}</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($less_vacancy, 2) }}</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($less_vacancy*12, 2) }}</td>
 
                                 </tr>
 
@@ -61,15 +70,31 @@
                                     <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                                         Effective Gross Rent (total rent amount of occupied units)
                                     </td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ number_format($effective_gross_rent, 2) }}</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($effective_gross_rent, 2) }}</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($effective_gross_rent*12, 2) }}</td>
 
+                                </tr>
+                                <tr>
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                        Billed Rent (all posted rent)
+                                    </td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($billed_rent, 2) }}</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($billed_rent*12, 2) }}</td>
+                                
                                 </tr>
                                 <tr>
                                     <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                                         Collected Rent (all paid rent)
                                     </td>
-                                  <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ number_format($collected_rent, 2) }}</td>
-                                
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($collected_rent, 2) }}</td>
+                                               <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                                        number_format($collected_rent*12, 2) }}</td>
+
                                 </tr>
                             </tbody>
                         </table>

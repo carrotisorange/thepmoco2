@@ -6,11 +6,12 @@
             <x-th>REQUESTED BY</x-th>
             <x-th>REQUEST FOR</x-th>
             <x-th>PARTICULARS</x-th>
-           
+
             {{-- <x-th>BILLER</x-th> --}}
-            <x-th>AMOUNT</x-th>
+
             {{-- <x-th>APPROVED ON</x-th> --}}
             <x-th>STATUS</x-th>
+            <x-th>AMOUNT</x-th>
             <x-th></x-th>
         </tr>
     </thead>
@@ -24,20 +25,29 @@
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
                 @foreach ($particulars as $particular)
-                    {{ $particular->item }},
+                {{ $particular->item }},
                 @endforeach
             </x-td>
-           
-            
-            <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
-            
+
+
+
             <x-td>{{$accountpayable->status}}</x-td>
-           
+            <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             <x-td>
                 {{-- <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">View</a> --}}
             </x-td>
+
         </tr>
         @endforeach
+        <tr>
+            <x-td>Total</x-td>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-td>{{ number_format($accountpayables->sum('amount'), 2) }}</x-td>
+        </tr>
     </tbody>
 </table>
