@@ -91,7 +91,7 @@
                         <x-table-select form="edit-form" wire:model="units.{{ $index }}.category_id">
                             <option value="">Select a category</option>
                             @foreach ($categories as $category)
-                            <option value="{{ $category->category_id }}" {{ 'units' .$index.'category_id'===$category->
+                            <option value="{{ $category->id }}" {{ 'units' .$index.'category_id'===$category->
                                 id? 'selected' : 'selected' }}>
                                 {{ $category->category }}
                             </option>
