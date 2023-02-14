@@ -13,7 +13,7 @@ use DB;
 
 class PropertyIndexComponent extends Component
 {
-    public $property;
+    public $search;
     public $sortBy;
     public $filterByPropertyType;
     
@@ -23,18 +23,26 @@ class PropertyIndexComponent extends Component
         ->join('properties', 'property_uuid', 'properties.uuid')
         ->join('types', 'properties.type_id', 'types.id')
         ->select('*', DB::raw('count(*) as count'))
-        ->where('user_id', Auth::user()->id)
+        ->where('user_id', auth()->user()->id)
         ->groupBy('type_id')
         ->get();
 
+        $properties = User::find(auth()->user()->id)->user_properties()->get();
+
         return view('livewire.property-index-component',[
-            'portfolio'=> $this->get_properties(Auth::user()->id),
-            'properties' => User::find(Auth::user()->id)->user_properties()->get(),
+            'portfolio'=> $this->get_properties(auth()->user()->id),
+            'properties' => $properties,
             'property_types' => $property_types
         ]);
     }
 
-    public function exportportfolio(){
+    public function clearFilters(){
+        $this->search = null;
+        $this->sortBy = null;
+        $this->filterByPropertyType = null;
+    }
+
+    public function exportPortfolio(){
         sleep(2);
 
         return redirect('/user/'.auth()->user()->id.'/export/portfolio');
@@ -60,8 +68,8 @@ class PropertyIndexComponent extends Component
         ->join('properties', 'property_uuid', 'properties.uuid')
         ->select('*')
         ->where('user_id', Auth::user()->id)
-        ->when($this->property, function($query){
-        $query->where('property','like', '%'.$this->property.'%');
+        ->when($this->search, function($query){
+        $query->where('property','like', '%'.$this->search.'%');
         }) 
         ->when($this->sortBy, function($query){
         $query->orderBy('properties.'.$this->sortBy, 'desc');

@@ -82,6 +82,7 @@
                                         @if($request_for === 'payment')
                                         <x-th>Price</x-th>
                                         <x-th>Total</x-th>
+                                        {{-- <x-th>Upload file</x-th> --}}
                                         @endif
                                         <x-th></x-th>
                                     </tr>
@@ -118,12 +119,21 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <input type="number" value="{{ $particular->quantity * $particular->price }}"
-                                                  readonly
+                                                <input type="number"
+                                                    value="{{ $particular->quantity * $particular->price }}" readonly
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                                               
+
                                             </x-td>
-                                            @endif
+                                            {{-- <x-td>
+                                                <input type="file"
+                                                    wire:model="particulars.{{ $index }}.price"
+                                                    wire:keyup="updateParticular({{ $particular->id }})"
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                @error('particulars.{{ $index }}.price')
+                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                @enderror
+                                            </x-td> --}}
+                                             @endif
                                             <x-td>
                                                 <button type="button"
                                                     wire:click="removeParticular({{ $particular->id }})"
