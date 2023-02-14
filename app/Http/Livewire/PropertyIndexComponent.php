@@ -24,6 +24,7 @@ class PropertyIndexComponent extends Component
         ->join('types', 'properties.type_id', 'types.id')
         ->select('*', DB::raw('count(*) as count'))
         ->where('user_id', auth()->user()->id)
+        ->where('properties.status', 'active')
         ->groupBy('type_id')
         ->get();
 
@@ -68,6 +69,7 @@ class PropertyIndexComponent extends Component
         ->join('properties', 'property_uuid', 'properties.uuid')
         ->select('*')
         ->where('user_id', Auth::user()->id)
+        ->where('properties.status', 'active')
         ->when($this->search, function($query){
         $query->where('property','like', '%'.$this->search.'%');
         }) 

@@ -40,6 +40,8 @@
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/bills">{{
                     $item->owner->owner}}</a> (O)
+                @else
+                NA
                 @endif
             </x-td>
             <x-td>

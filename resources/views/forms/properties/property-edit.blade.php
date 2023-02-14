@@ -187,6 +187,30 @@
                         @enderror
                     </div>
                 </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                        Status
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <select name="status" id="ownership" autocomplete="status" wire:model.lazy="status"
+                                class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
+                                <option value="active" {{ old('active')=='active' ? 'selected'
+                                    : 'Select one' }}>
+                                    Active</option>
+                                <option value="Inactive" {{ old('inactive')=='inactive' ? 'selected'
+                                    : 'Select one' }}>
+                                    Inactive
+                                    </option>
+                            </select>
+                        </div>
+                        @error('status')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                </div>
             </div>
             <div class="pt-5">
                 <div class="flex justify-end">

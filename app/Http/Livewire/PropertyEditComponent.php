@@ -26,6 +26,7 @@ class PropertyEditComponent extends Component
     public $province_id;
     public $city_id;
     public $barangay;
+    public $status;
 
     public $email;
     public $mobile;
@@ -59,7 +60,8 @@ class PropertyEditComponent extends Component
            'status' => ['required'],
             'email' => ['required'],
             'mobile' => ['required'],
-            'ownership' => ['required']
+            'ownership' => ['required'],
+            'status' => ['required']
         ];
     }
 
