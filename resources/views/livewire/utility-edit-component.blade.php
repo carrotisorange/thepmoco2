@@ -44,14 +44,14 @@
 
             <div class="sm:col-span-2">
                 <label for="">Start date</label>
-                <input type="date" id="start_date" wire:model="start_date" wire:keyup="updateParameters"
+                <input type="date" id="start_date" wire:model="start_date"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for unit" required>
 
             </div>
             <div class="sm:col-span-2">
                 <label for="">End date</label>
-                <input type="date" id="end_date" wire:model="end_date" wire:keyup="updateParameters"
+                <input type="date" id="end_date" wire:model="end_date"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for unit" required>
 
@@ -60,27 +60,35 @@
                 <label for="">
                     Rate
                 </label>
-                <input type="text" id="kwh" wire:model="kwh" wire:keyup="updateParameters"
+                <input type="text" id="kwh" wire:model="kwh"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
 
             </div>
             <div class="sm:col-span-1">
                 <label for="">Mininum Charge</label>
-                <input type="text" id="min_charge" wire:model="min_charge" wire:keyup="updateParameters"
+                <input type="text" id="min_charge" wire:model="min_charge"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
 
             </div>
+            <div class="sm:col-span-6">
+                
+                <p class="text-right">
+                    <button type="button" wire:click="updateParameters" wire:loading.remove
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Save
+                    </button>
+                    <button type="button" wire:loading disabled wire:target="updateParameters"
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Loading...
+                    </button>
+                </p>
+            </div>
 
         </div>
 
-        <p class="text-center mt-10 mb-10">
-            <button type="button" wire:loading disabled wire:target="updateParameters"
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Loading...
-            </button>
-        </p>
+     
         {{-- @endif --}}
 
         <div class="mt-3 -my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

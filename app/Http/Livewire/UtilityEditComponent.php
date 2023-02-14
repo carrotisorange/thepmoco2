@@ -73,7 +73,6 @@ class UtilityEditComponent extends Component
     
     public function updateUtilities($id)
     {
-    
         try{
             $this->validate();
 
@@ -94,8 +93,6 @@ class UtilityEditComponent extends Component
                      session()->flash('success', 'Utilities are successfully saved!');
                 }
             // });
-
-                 
 
         }catch(\Exception $e){
        
@@ -123,13 +120,13 @@ class UtilityEditComponent extends Component
 
         //update utilities
         foreach ($this->utilities as $utility) {
-                     Utility::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)
+                    Utility::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)
                      ->update([
                         'start_date' => $this->start_date,
                         'end_date' => $this->end_date, 
                         'min_charge' => $this->min_charge,
                         'kwh' => $this->kwh,
-                        'total_amount_due' => $this ->min_charge,
+                        'total_amount_due' => $this->min_charge,
         ]);    
 
         session()->flash('success', 'Parameters are successfully saved!');

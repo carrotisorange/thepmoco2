@@ -72,11 +72,9 @@
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                                       transition duration-150 ease-in-out origin-top min-w-32">
 
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                wire:click="storeUtilities('electric')">Electric</a>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/" data-modal-toggle="instructions-create-utility-electric-modal">Electric</a>
                         </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                wire:click="storeUtilities('water')">Water</a>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/" data-modal-toggle="instructions-create-utility-water-modal">Water</a>
                         </li>
 
                     </ul>
@@ -208,12 +206,10 @@
                                     <ul
                                         class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                                                                       transition duration-150 ease-in-out origin-top min-w-32">
-
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                                wire:click="storeUtilities('electric')">Electric</a>
+                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/" data-modal-toggle="instructions-create-utility-electric-modal">Electric</a>
                                         </li>
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                                wire:click="storeUtilities('water')">Water</a>
+                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/" data-modal-toggle="instructions-create-utility-water-modal"
+                                             >Water</a>
                                         </li>
 
                                     </ul>
@@ -230,4 +226,6 @@
             </div>
         </div>
     </div>
+    @include('modals.instructions.create-utility-electric-modal')
+    @include('modals.instructions.create-utility-water-modal')
 </div>
