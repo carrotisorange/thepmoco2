@@ -64,10 +64,10 @@ class ParticularController extends Controller
           ->pluck('id')
           ->first();
 
-        if($property_particular)
-        {
-            return back()->with('error', 'Particular already exists.');
-        }
+        // if($property_particular)
+        // {
+        //     return back()->with('error', 'Particular already exists.');
+        // }
 
         if($particular){
              try {

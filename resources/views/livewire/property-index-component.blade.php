@@ -217,7 +217,7 @@
         {{ $portfolio->links() }}
     </div>
     <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-        @foreach ($portfolio as $property)
+        @foreach ($portfolio->where('status', 'active') as $property)
         <div class="group relative">
             <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                 <a href="/property/{{ $property->property_uuid }}">
