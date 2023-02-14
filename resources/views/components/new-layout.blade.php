@@ -623,7 +623,8 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Account <br> Payables</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Account <br> Payables
+                    </div>
 
                     <!-- Financials -->
                     @if(Session::get('property'))
@@ -680,14 +681,14 @@
             </nav>
 
             <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-                {{ $slot }}
-
+                <div class="mt-3">
+                    {{ $slot }}
+                </div>
                 <div class="mb-12">
                     @include('layouts.footer')
                 </div>
             </main>
         </div>
-
     </div>
     @include('layouts.scripts')
 </body>

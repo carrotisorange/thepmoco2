@@ -5,7 +5,7 @@
             @can('accountpayable')
             @include('admin.restrictedpages.accountpayable')
             @else
-            @livewire('account-payable-index-component')
+            @livewire('account-payable-index-component', ['property' => $property])
             @endcan
         </div>
     </div>

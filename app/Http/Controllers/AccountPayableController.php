@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 
 class AccountPayableController extends Controller
 {
-
+  
     public function get_property_expenses($property_uuid, $daily, $monthly)
     {
         return Property::find($property_uuid)->accountpayables()
