@@ -24,6 +24,24 @@
       </a>
     </div>
 
+    <!-- Article 14 -->
+    <div class="my-5">
+      <a href="article14" class="grid grid-cols-4 rounded-sm">
+
+        <!-- Icon -->
+        <div class="col-span-1">
+        <img src="{{ asset('/brands/landing/article14.jpg') }}" class="h-full w-full">
+        </div>
+  
+        <!-- Title -->
+        <div class="col-span-3">
+          <p class="ml-1 underline text-gray-700 text-xs">How Smart Landlords Keep Tenants Happy So They Don't Move Out</p>
+        </div>
+  
+
+      </a>
+    </div>
+
     <!-- Article 13 -->
     <div class="my-5">
       <a href="article13" class="grid grid-cols-4 rounded-sm">

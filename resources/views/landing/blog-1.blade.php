@@ -22,6 +22,26 @@
   <div class="relative mx-auto max-w-6xl">
     
     <div class="mx-auto mt-3 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-4">
+    
+
+    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
+          <a href="article14"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article14.jpg') }}" alt="asian family"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="article14" class="hover:underline">Article</a>
+            </p>
+            <a href="article14" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">How Smart Landlords Keep Tenants Happy So They Don't Move Out</p>
+              <p class="mt-3 text-sm text-gray-500">
+              Landlords are the hardest people to deal with, right? They're always asking for more money, they never clean up after themselves, and</p>
+            </a>
+          </div>
+          
+        </div>
+      </div>
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
@@ -80,24 +100,7 @@
         </div>
       </div>
 
-    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <a href="article10"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article10.jpg') }}" alt="three people looking laptop property management system"></a>
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="article10" class="hover:underline">Article</a>
-            </p>
-            <a href="article10" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">Why Designing Beautiful Rentable Spaces Has Over All Positive Results</p>
-              <p class="mt-3 text-sm text-gray-500">
-              Renting a space is a great way to earn some extra money, but it can be challenging if you don’t know what you’re doing. </p>
-            </a>
-          </div>
-          
-        </div>
-      </div>
+    
 
     
 
