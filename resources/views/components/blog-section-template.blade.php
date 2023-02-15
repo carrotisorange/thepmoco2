@@ -3,7 +3,7 @@
 
 
 <div class="col-span-1">
-  <div class=" bg-gray-100 p-2 hidden lg:block lg:visible ml-10 mt-10 max-w-xl">
+  <div class=" bg-gray-50 rounded-md p-2 hidden lg:block lg:visible ml-10 mt-10 max-w-xl">
  
     <div class="my-5">
       <a class="grid grid-cols-4 rounded-sm">

@@ -75,6 +75,10 @@ Route::get('/blog-3', function(){
     return view('landing.blog-3');
 });
 
+Route::get('/blog-4', function(){
+    return view('landing.blog-4');
+});
+
 
 Route::get('/terms', function(){
     return view('landing.terms');
