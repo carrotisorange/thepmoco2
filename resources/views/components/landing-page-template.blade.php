@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </li>
 
                 <li>
-                  <a href="blog" class="text-base text-gray-500 hover:text-gray-900">Articles</a>
+                  <a href="blog-1" class="text-base text-gray-500 hover:text-gray-900">Articles</a>
                 </li>
 
                 
