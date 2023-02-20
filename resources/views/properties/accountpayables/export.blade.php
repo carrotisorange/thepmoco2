@@ -38,15 +38,15 @@
 
         p,
             {
-            margin-right: 50px;
-            margin-left: 50px;
+            margin-right: 20px;
+            margin-left: 20px;
         }
 
         table,
         th,
         td {
-            margin-right: 80px;
-            margin-left: 50px;
+            margin-right: 10px;
+            margin-left: 10px;
             border: 1px black;
         }
 
@@ -83,26 +83,23 @@
     </footer>
 
     <main>
+        <br>
 
-        <p>
-            Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
-
-        <p>
         <table>
             <thead>
                 <tr>
-                    <x-th>#</x-th>
-                    <x-th>REQUESTED ON</x-th>
-                    <x-th>REQUESTED BY</x-th>
-                    <x-th>REQUEST FOR</x-th>
-                    <x-th>PARTICULARS</x-th>
+                    <x-td>#</x-td>
+                    <x-td>REQUESTED ON</x-td>
+                    <x-td>REQUESTED BY</x-td>
+                    <x-td>REQUEST FOR</x-td>
+                    <x-td>PARTICULARS</x-td>
 
                     {{-- <x-th>BILLER</x-th> --}}
 
                     {{-- <x-th>APPROVED ON</x-th> --}}
-                    <x-th>STATUS</x-th>
-                    <x-th>AMOUNT</x-th>
-                    <x-th></x-th>
+                    {{-- <x-th>STATUS</x-th> --}}
+                    <x-td>AMOUNT</x-td>
+                    <x-td></x-td>
                 </tr>
             </thead>
             <tbody class="">
@@ -121,7 +118,7 @@
 
 
 
-                    <x-td>{{$accountpayable->status}}</x-td>
+                    {{-- <x-td>{{$accountpayable->status}}</x-td> --}}
                     <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
                     <x-td>
                         {{-- <a
@@ -132,20 +129,20 @@
                 </tr>
                 @endforeach
                 <tr>
-                    <x-td>Total</x-td>
+                    <x-th>Total</x-th>
                     <x-th></x-th>
                     <x-th></x-th>
+        
                     <x-th></x-th>
                     <x-th></x-th>
-                    <x-th></x-th>
-                    <x-td>{{ number_format($accountpayables->sum('amount'), 2) }}</x-td>
+                    <x-th>{{ number_format($accountpayables->sum('amount'), 2) }}</x-th>
                 </tr>
             </tbody>
         </table>
-        </p>
+
 
         <p>
-            Recorded by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
+            Exported by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
         </p>
 
 

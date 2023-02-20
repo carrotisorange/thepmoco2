@@ -55,6 +55,7 @@ use App\Http\Controllers\PropertyConcernController;
 use App\Http\Controllers\PropertyBillController;
 use App\Http\Controllers\PropertyCollectionController;
 use App\Http\Controllers\PropertyAccountPayableController;
+use App\Http\Controllers\PropertyCalendarController;
 use App\Http\Controllers\PropertyFinancialController;
 use App\Http\Controllers\PropertyUtilityController;
 use App\Http\Controllers\PropertyGuestController;
@@ -98,6 +99,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [PropertyGuestController::class, 'index'])->name('guest');
     });
 
+
+    //Routes for calendar
+    Route::get('calendar', [PropertyCalendarController::class, 'index'])->name('calendar');
+
     //Routes for Unit
     Route::prefix('unit')->group(function(){
         Route::get('/', [PropertyUnitController::class, 'index'])->name('unit');
@@ -110,7 +115,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::prefix('{unit:uuid}')->group(function(){
             Route::get('/contract/{contract}/inventory/export', [UnitInventoryController::class, 'export_movein']);
             Route::get('delete', [UnitController::class, 'destroy']);
-            Route::get('/', [UnitController::class, 'show'])->name('unit')->scopeBindings();
+            Route::get('/', [PropertyUnitController::class, 'show'])->name('unit')->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
             Route::patch('update', [UnitController::class, 'update']);
             Route::get('contracts', [UnitContractController::class, 'index']);
@@ -323,6 +328,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Bill
     Route::prefix('bill')->group(function(){
         Route::get('{batch_no?}/{drafts?}', [PropertyBillController::class, 'index'])->name('bill');
+        Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [PropertyBillController::class, 'export']);
 
         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
         //Route::get('drafts', [BillController::class, 'draft'])->name('bill');
@@ -355,7 +361,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Account Payable
     Route::prefix('accountpayable')->group(function(){
         Route::get('/', [PropertyAccountPayableController::class, 'index'])->name('accountpayable');
-        Route::get('export/{property_uuid?}/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [PropertyAccountPayableController::class, 'export']);
+        Route::get('export/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [PropertyAccountPayableController::class, 'export']);
 
         Route::controller(AccountPayableController::class)->group(function () {
     

@@ -16,7 +16,7 @@ class PropertyIndexComponent extends Component
     public $search;
     public $sortBy;
     public $filterByPropertyType;
-    public $limitDisplayTo;
+    public $limitDisplayTo = 4;
 
     public $totalPropertyCount;
 

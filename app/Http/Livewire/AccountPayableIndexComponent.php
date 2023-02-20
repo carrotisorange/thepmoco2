@@ -35,7 +35,7 @@ class AccountPayableIndexComponent extends Component
     public function exportAccountPayables(){
       sleep(2);
       
-       return redirect('/property/'.$this->property->uuid.'/accountpayable/export/'.$this->property->uuid.'/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
+       return redirect('/property/'.$this->property->uuid.'/accountpayable/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
     }
 
     public function render()

@@ -11,14 +11,14 @@
                     Clear Filters
                 </button> &nbsp;
                 @endif
-                {{-- <button type="button" wire:click="exportAccountPayables" wire:loading.remove
+                <button type="button" wire:click="exportAccountPayables" wire:loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Export
                 </button>
                 <button type="button" wire:target="exportAccountPayables" wire:loading disabled
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Loading...
-                </button> --}}
+                </button>
                 <div class="group inline-block">
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -100,7 +100,7 @@
 
                 </div>
                 <div class="mt-3">
-                    {{ $accountpayables->links() }}
+                    {{-- {{ $accountpayables->links() }} --}}
                 </div>
                 {{-- <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     <div class="sm:col-span-4">
