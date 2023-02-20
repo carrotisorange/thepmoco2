@@ -182,7 +182,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="faq" >FAQs</a>
 					</li>
 					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog-1" >Article</a>
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog-1">Articles</a>
 					</li>
 					
 				</ul>
@@ -320,11 +320,6 @@ document.addEventListener('DOMContentLoaded', function() {
                   <a href="privacy" class="text-base text-gray-500 hover:text-gray-900">Privacy Policy</a>
                 </li>
 
-                
-
-               
-
-              
               </ul>
             </div>
             
