@@ -145,21 +145,6 @@ class UnitController extends Controller
         return redirect('/property/'.Session::get('property').'/unit/'.$batch_no.'/edit')->with('success', $units.' unit is successully created.');
     }
 
-    public function show(Property $property, Unit $unit)
-    {
-         Session::forget('tenant_uuid');
-
-         Session::forget('owner_uuid');
-
-         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
-
-        return view('units.show',[
-            'unit_details' => $unit,
-            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
-        ]);
-
-    }
-
     public function update(Request $request, Property $property, Unit $unit)
     {
         $attributes = request()->validate([

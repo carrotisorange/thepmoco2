@@ -14,6 +14,8 @@ class BillIndexComponent extends Component
 {
    use WithPagination;
 
+   public $property;
+
    public $search = null;
 
    public $active_contracts;
@@ -81,14 +83,14 @@ class BillIndexComponent extends Component
       $this->status = '';
    }
 
-   public function deleteBills()
-   {
-      Bill::destroy($this->selectedBills);
+   // public function deleteBills()
+   // {
+   //    Bill::destroy($this->selectedBills);
 
-      $this->selectedBills = [];
+   //    $this->selectedBills = [];
 
-      $this->bills = $this->get_bills();
-   }
+   //    $this->bills = $this->get_bills();
+   // }
 
    public function get_bills()
    {
@@ -233,6 +235,12 @@ class BillIndexComponent extends Component
       ->groupBy('period_covered_end')
       ->orderBy('end')
       ->get();
+   }
+
+   public function exportBills(){
+      sleep(2);
+      
+      return redirect('/property/'.Session::get('property').'/bill/export/status/'.$this->status.'/particular/'.$this->particular_id.'/date/'.$this->posted_dates);
    }
 
 }

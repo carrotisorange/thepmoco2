@@ -18,7 +18,9 @@ class TenantIndexComponent extends Component
     public function redirectToUnitSelectionPage(){
         sleep(2);
 
-        return redirect('/property/'.Session::get('property').'/unit');
+        $action = 'addNewTenant';
+
+        return redirect('/property/'.Session::get('property').'/unit/action/'.$action);
     }
 
     public function render()

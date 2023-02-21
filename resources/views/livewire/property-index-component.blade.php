@@ -139,30 +139,30 @@
             @if($search || $sortBy || $filterByPropertyType)
             <button type="button" wire:click="clearFilters"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                 &nbsp; Clear
+                &nbsp; Clear
                 Filters</button>
             @endif
 
             <button type="button" wire:click="exportPortfolio" wire:loading.remove
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-              <i class="fa-solid fa-download"></i> &nbsp  Export Portfolio
+                <i class="fa-solid fa-download"></i> &nbsp Export Portfolio
             </button>
 
-            <button type="button" wire:loading disabled
+            <button type="button" wire:loading disabled 
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                 Loading...
             </button>
 
             <button type="button" wire:click="createNewProperty" wire:loading.remove
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-               <i class="fa-solid fa-circle-plus"></i> &nbsp; New
+                <i class="fa-solid fa-circle-plus"></i> &nbsp; New
                 property</button>
 
         </div>
     </div>
     {{-- <p class="mt-2 text-sm text-gray-700">Select a property.</p> --}}
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        <div class="sm:col-span-4">
+        <div class="sm:col-span-3">
 
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -176,7 +176,7 @@
                 </div>
                 <input type="text" id="search" wire:model="search"
                     class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter a property name" required>
+                    placeholder="Search for property" required>
 
             </div>
 
@@ -203,6 +203,19 @@
 
         </div>
 
+        <div class="sm:col-span-1">
+            <select id="limitDisplayTo" wire:model="limitDisplayTo"
+                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="" selected>Limit display to</option>
+                @for ($i = 1; $i <= $totalPropertyCount; $i++) 
+                    @if($i%4==0 || $i==$totalPropertyCount) 
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endif
+                @endfor
+            </select>
+
+        </div>
+
 
     </div>
     {{-- <div>
@@ -225,7 +238,8 @@
                         class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </a>
             </div>
-           <h3 class="text-center mt-2">{{ $property->property }}</h3>
+            <h3 class="text-center mt-2"><a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $property->property_uuid }}">{{ $property->property }}</a></h3>
         </div>
         @endforeach
     </div>

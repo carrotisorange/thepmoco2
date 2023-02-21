@@ -24,7 +24,9 @@ class PropertyAccountPayableController extends Controller
     }
 
     public function get_accountpayables($property_uuid, $status, $created_at, $request_for, $limitDisplayTo){
-        return Property::find($property_uuid)->accountpayables()
+
+        return Property::find(Session::get('property'))->accountpayables()
+     
         ->when($status, function ($query, $status) {
         $query->where('status', $status);
         })
@@ -34,13 +36,13 @@ class PropertyAccountPayableController extends Controller
         ->when($request_for, function ($query, $request_for) {
         $query->where('request_for', $request_for);
         })
-        ->orderBy('created_at', 'desc')->paginate($limitDisplayTo);
+        ->orderBy('created_at', 'desc')->get();
     }
 
     public function export($property_uuid, $status=null, $created_at=null, $request_for=null, $limitDisplayTo=null){
       
         $data = [
-          'accountpayables' => $this->get_accountpayables($property_uuid, $status, $created_at, $request_for, $limitDisplayTo),
+          'accountpayables' => Property::find($property_uuid)->accountpayables
           ];
 
           $pdf = \PDF::loadView('properties.accountpayables.export', $data);
@@ -58,7 +60,7 @@ class PropertyAccountPayableController extends Controller
 
           $canvas->page_text($width/5, $height/2, Session::get('property'), null, 55, array(0,0,0),2,2,-30);
 
-          return $pdf->stream(Session::get('property').'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
+          return $pdf->download(Session::get('property').'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
         
     }
 

@@ -4,40 +4,44 @@
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 Property
             </td>
-            @foreach ($properties as $property)
+            @foreach ($portfolio->where('status', 'active') as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->property }} <a href="/property/{{ $property->property->uuid }}/edit"><i
+                {{ $property->property }} <a href="/property/{{ $property->property_uuid }}/edit"><i
                         class="fa-solid fa-pen-to-square"></i></a>
             </th>
             @endforeach
         </tr>
     </thead>
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 Type</td>
-            @foreach ($properties as $property)
+            @foreach ($portfolio->where('status', 'active') as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->type->type }}
+                {{ $property->type }}
             </th>
             @endforeach
         </tr>
     </tbody>
 
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 Personnel</td>
-            @foreach ($properties as $property)
+            @foreach ($portfolio->where('status', 'active') as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->property_users()->count() }}
+                {{ App\Models\Property::find($property->uuid)->property_users()->count() }}
             </th>
             @endforeach
         </tr>
     </tbody>
+
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -45,12 +49,14 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->units->count() }}
+                {{ App\Models\Property::find($property->uuid)->units()->count() }}
             </th>
             @endforeach
 
         </tr>
     <tbody>
+
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -58,12 +64,14 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->units->where('status_id', 2)->count() }}
+                {{ App\Models\Property::find($property->uuid)->units->where('status_id', 2)->count() }}
             </th>
             @endforeach
 
         </tr>
     <tbody>
+
+       
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -71,12 +79,14 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->units->where('status_id', 1)->count() }}
+                {{ App\Models\Property::find($property->uuid)->units->where('status_id', 1)->count() }}
             </th>
             @endforeach
 
         </tr>
     </tbody>
+
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -84,12 +94,14 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->units->where('status_id', 4)->count() }}
+                {{ App\Models\Property::find($property->uuid)->units->where('status_id', 4)->count() }}
             </th>
             @endforeach
 
         </tr>
     </tbody>
+
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -98,12 +110,14 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->units->where('status_id', 3)->count() }}
+                {{ App\Models\Property::find($property->uuid)->units->where('status_id', 3)->count() }}
             </th>
             @endforeach
 
         </tr>
     </tbody>
+
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -112,12 +126,14 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->units->where('status_id', 6)->count() }}
+                {{ App\Models\Property::find($property->uuid)->units->where('status_id', 6)->count() }}
             </th>
             @endforeach
 
         </tr>
     </tbody>
+
+    
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -125,12 +141,13 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->units->where('status_id', 5)->count() }}
+                {{ App\Models\Property::find($property->uuid)->units->where('status_id', 5)->count() }}
             </th>
             @endforeach
 
         </tr>
     </tbody>
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -139,7 +156,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->tenants->count() }}
+                {{ App\Models\Property::find($property->uuid)->tenants->count() }}
             </th>
             @endforeach
         </tr>
@@ -151,8 +168,8 @@
                 Occupancy Rate
             </td>
             @foreach ($properties as $property)
-            @if($property->property->units->count())
-            <?php $occupancy_rate = $property->property->units->where('status_id', 2)->count()/$property->property->units->count() * 100; ?>
+            @if(App\Models\Property::find($property->uuid)->units->count())
+            <?php $occupancy_rate = App\Models\Property::find($property->uuid)->units->where('status_id', 2)->count()/App\Models\Property::find($property->uuid)->units->count() * 100; ?>
             @else
             <?php $occupancy_rate = 0;?>
             @endif
@@ -163,19 +180,21 @@
             @endforeach
         </tr>
     </tbody>
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                Bills For Collection
+                Posted Bills
             </td>
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ number_format($property->property->bills->sum('bill'), 2) }}
+                {{ number_format(App\Models\Property::find($property->uuid)->bills->sum('bill'), 2) }}
             </th>
             @endforeach
         </tr>
     </tbody>
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -184,11 +203,12 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ number_format($property->property->collections->sum('collection'), 2) }}
+                {{ number_format(App\Models\Property::find($property->uuid)->collections->sum('collection'), 2) }}
             </th>
             @endforeach
         </tr>
     </tbody>
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
@@ -197,23 +217,22 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ number_format($property->property->bills->whereIn('status', ['unpaid',
-                'partially_paid'])->sum('bill') -
-                $property->property->bills->whereIn('status', ['unpaid',
-                'partially_paid'])->sum('initial_payment'), 2) }}
+                {{ number_format(App\Models\Property::find($property->uuid)->bills->whereIn('status', ['unpaid','partially_paid'])->sum('bill') -
+                App\Models\Property::find($property->uuid)->bills->whereIn('status', ['unpaid','partially_paid'])->sum('initial_payment'), 2) }}
             </th>
             @endforeach
         </tr>
     </tbody>
+
     <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 Collection Efficiency
             </td>
             @foreach ($properties as $property)
-            @if($property->property->bills->count())
+            @if(App\Models\Property::find($property->uuid)->bills->count())
             <?php $collection_efficiency = 
-                                            $property->property->collections->sum('collection') / $property->property->bills->sum('bill'); ?>
+                                            App\Models\Property::find($property->uuid)->collections->sum('collection') / App\Models\Property::find($property->uuid)->bills->sum('bill'); ?>
             @else
             <?php $collection_efficiency = 0;?>
             @endif
@@ -233,22 +252,24 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->bills->whereIn('status', ['unpaid',
+                {{ App\Models\Property::find($property->uuid)->bills->whereIn('status', ['unpaid',
                 'partially_paid'])->count() -
-                $property->property->bills->whereIn('status', ['unpaid',
+                App\Models\Property::find($property->uuid)->bills->whereIn('status', ['unpaid',
                 'partially_paid'])->count() }}
             </th>
             @endforeach
         </tr>
     </tbody>
-    <tbody class="divide-y divide-gray-200 bg-white">
+
+
+            <tbody class="divide-y divide-gray-200 bg-white">
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 Contracts</td>
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->contracts->count() }}
+                {{ App\Models\Property::find($property->uuid)->contracts->count() }}
             </th>
             @endforeach
         </tr>
@@ -260,7 +281,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->contracts->where('status','active')->count() }}
+                {{ App\Models\Property::find($property->uuid)->contracts->where('status','active')->count() }}
             </th>
             @endforeach
         </tr>
@@ -272,7 +293,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->contracts->where('end','<=',Carbon\Carbon::now()->
+                {{ App\Models\Property::find($property->uuid)->contracts->where('end','<=',Carbon\Carbon::now()->
                     addMonth())->count() }}
             </th>
             @endforeach
@@ -285,7 +306,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->contracts->where('status','inactive')->count() }}
+                {{ App\Models\Property::find($property->uuid)->contracts->where('status','inactive')->count() }}
             </th>
             @endforeach
         </tr>
@@ -298,7 +319,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->concerns->count() }}
+                {{ App\Models\Property::find($property->uuid)->concerns->count() }}
             </th>
             @endforeach
         </tr>
@@ -311,7 +332,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->concerns->where('status','pending')->count() }}
+                {{ App\Models\Property::find($property->uuid)->concerns->where('status','pending')->count() }}
             </th>
             @endforeach
         </tr>
@@ -324,9 +345,9 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ $property->property->concerns->where('status','closed')->count() }}
+                {{ App\Models\Property::find($property->uuid)->concerns->where('status','closed')->count() }}
             </th>
             @endforeach
         </tr>
-    </tbody>
+    </tbody> 
 </table>

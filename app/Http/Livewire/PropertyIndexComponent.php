@@ -16,7 +16,14 @@ class PropertyIndexComponent extends Component
     public $search;
     public $sortBy;
     public $filterByPropertyType;
-    
+    public $limitDisplayTo = 4;
+
+    public $totalPropertyCount;
+
+    public function mount(){
+        $this->totalPropertyCount = UserProperty::where('user_id', auth()->user()->id)->count();
+    }
+
     public function render()
     {
         $property_types = UserProperty::join('users', 'user_id', 'users.id')
@@ -28,11 +35,11 @@ class PropertyIndexComponent extends Component
         ->groupBy('type_id')
         ->get();
 
-        $properties = User::find(auth()->user()->id)->user_properties()->get();
-
+        // $properties = User::find(auth()->user()->id)->user_properties()->get();
+        
         return view('livewire.property-index-component',[
             'portfolio'=> $this->get_properties(auth()->user()->id),
-            'properties' => $properties,
+            'properties' => $this->get_properties(auth()->user()->id),
             'property_types' => $property_types
         ]);
     }
@@ -41,6 +48,7 @@ class PropertyIndexComponent extends Component
         $this->search = null;
         $this->sortBy = null;
         $this->filterByPropertyType = null;
+        $this->limitDisplayTo = null;
     }
 
     public function exportPortfolio(){
@@ -67,8 +75,9 @@ class PropertyIndexComponent extends Component
         // return User::find(Auth::user()->id)->user_properties()->paginate(4);
         return UserProperty::join('users', 'user_id', 'users.id')
         ->join('properties', 'property_uuid', 'properties.uuid')
+        ->join('types', 'type_id', 'types.id')
         ->select('*')
-        ->where('user_id', Auth::user()->id)
+        ->where('user_id', auth()->user()->id)
         ->where('properties.status', 'active')
         ->when($this->search, function($query){
         $query->where('property','like', '%'.$this->search.'%');
@@ -78,7 +87,7 @@ class PropertyIndexComponent extends Component
         })
          ->when($this->filterByPropertyType, function($query){
          $query->where('type_id',$this->filterByPropertyType);
-         })->paginate(4);
+         })->paginate($this->limitDisplayTo);
     }
 
   
