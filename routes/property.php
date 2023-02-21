@@ -99,6 +99,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [PropertyGuestController::class, 'index'])->name('guest');
     });
 
+    Route::get('/unit/{unit}/guest/{guest}/movein', [PropertyGuestController::class, 'movein']);
+
+
+    Route::get('/unit/{unit}/guest/{guest}/moveout', [PropertyGuestController::class, 'moveout']);
+
 
     //Routes for calendar
     Route::get('calendar', [PropertyCalendarController::class, 'index'])->name('calendar');
@@ -209,10 +214,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //force moveout
     Route::post('/contract/{contract}/moveout/force', [ContractController::class, 'force_moveout']);
 
-    Route::get('/unit/{unit}/guest/{guest}/movein', [GuestController::class, 'movein']);
-
-
-    Route::get('/unit/{unit}/guest/{guest}/moveout', [GuestController::class, 'moveout']);
 
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){

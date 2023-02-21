@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Guest;
+use App\Models\Unit;
+use Carbon\Carbon;
 
 class PropertyGuestController extends Controller
 {
@@ -15,6 +17,28 @@ class PropertyGuestController extends Controller
         return view('properties.guests.index',[
             'property' => $property
         ]);
+    }
+
+     public function movein(Property $property, Unit $unit, Guest $guest)
+    {
+        Guest::where('uuid', $guest->uuid)
+        ->update([
+            'status' => 'active',
+            'movein_at' => Carbon::now()
+        ]);
+
+        return redirect('/property/'.$property->uuid.'/unit/'.$unit->uuid)->with('success', 'Guest has been moved in successfully!');
+    }
+
+    public function moveout(Property $property, Unit $unit, Guest $guest)
+    {      
+        Guest::where('uuid', $guest->uuid)
+        ->update([
+            'status' => 'inactive',
+            'moveout_at' => Carbon::now()
+        ]);
+
+        return redirect('/property/'.$property->uuid.'/unit/'.$unit->uuid)->with('success', 'Guest has been moved in successfully!');
     }
 
     public function destroy($unit_uuid){

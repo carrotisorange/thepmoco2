@@ -17,6 +17,9 @@ class GuestComponent extends Component
     public $movein_at;
     public $moveout_at;
 
+    public $vehicle_details;
+    public $plate_number;
+
     public function mount($unitDetails)
     {
         $this->unit_uuid = $unitDetails->uuid;
@@ -30,6 +33,8 @@ class GuestComponent extends Component
             'mobile_number' => 'nullable',
             'movein_at' => 'required|date',
             'moveout_at' => 'required|date|after:movein_at',
+            'vehicle_details' => 'nullable',
+            'plate_number' => 'nullable',
         ];
     }
 
@@ -49,7 +54,7 @@ class GuestComponent extends Component
             
             $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
                
-            app('App\Http\Controllers\GuestController')->store($guest_uuid, $this->unit_uuid, $this->guest, $this->email, $this->mobile_number, $this->movein_at, $this->moveout_at);
+            app('App\Http\Controllers\GuestController')->store($guest_uuid, $this->unit_uuid, $this->guest, $this->email, $this->mobile_number, $this->movein_at, $this->moveout_at, $this->vehicle_details, $this->plate_number);
 
             return redirect('/property/'.Session::get('property').'/unit/'.$this->unit_uuid)->with('success','Guest is successfully created.');
       

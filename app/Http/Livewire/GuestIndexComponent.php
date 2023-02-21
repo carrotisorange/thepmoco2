@@ -23,11 +23,7 @@ class GuestIndexComponent extends Component
     public function render()
     {
         return view('livewire.guest-index-component', [
-        'guests' => Guest::search($this->search)
-        ->join('units', 'unit_uuid', 'units.uuid')
-        ->where('property_uuid', Session::get('property'))
-        ->orderBy('guests.created_at', 'asc')
-        ->paginate(10)
+        'guests' => Guest::where('property_uuid', Session::get('property'))->paginate(10)
     ]);
     }
 }
