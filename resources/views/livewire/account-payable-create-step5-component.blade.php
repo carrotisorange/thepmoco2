@@ -1,4 +1,4 @@
-<div>
+<div class="mb-20">
 
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
