@@ -34,8 +34,8 @@
             <x-td>{{$accountpayable->status}}</x-td>
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             <x-td>
-                {{-- <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                    class="text-blue-500 text-decoration-line: underline">View</a> --}}
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-2"
+                    class="text-blue-500 text-decoration-line: underline">View</a>
             </x-td>
 
         </tr>

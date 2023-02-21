@@ -137,7 +137,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::prefix('guest')->group(function(){
                 
-                Route::get('{random_str}/create', [GuestController::class, 'create']);
+                Route::get('{random_str}/create', [GuestController::class, 'create'])->name('guest');
                 Route::post('store', [GuestController::class, 'store']);
             });
 
