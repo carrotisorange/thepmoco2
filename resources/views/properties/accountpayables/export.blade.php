@@ -97,7 +97,7 @@
                     {{-- <x-th>BILLER</x-th> --}}
 
                     {{-- <x-th>APPROVED ON</x-th> --}}
-                    {{-- <x-th>STATUS</x-th> --}}
+                    <x-td>STATUS</x-td>
                     <x-td>AMOUNT</x-td>
                     <x-td></x-td>
                 </tr>
@@ -118,7 +118,7 @@
 
 
 
-                    {{-- <x-td>{{$accountpayable->status}}</x-td> --}}
+                    <x-td>{{$accountpayable->status}}</x-td>
                     <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
                     <x-td>
                         {{-- <a
