@@ -26,23 +26,23 @@ class PropertyAccountPayableController extends Controller
     public function get_accountpayables($property_uuid, $status, $created_at, $request_for, $limitDisplayTo){
 
         return Property::find(Session::get('property'))->accountpayables()
-        ->where('status', 'pending')
-        // ->when($status, function ($query, $status) {
-        // $query->where('status', $status);
-        // })
-        // ->when(($created_at), function($query, $created_at){
-        // $query->whereDate('created_at', $created_at );
-        // })
-        // ->when($request_for, function ($query, $request_for) {
-        // $query->where('request_for', $request_for);
-        // })
+     
+        ->when($status, function ($query, $status) {
+        $query->where('status', $status);
+        })
+        ->when(($created_at), function($query, $created_at){
+        $query->whereDate('created_at', $created_at );
+        })
+        ->when($request_for, function ($query, $request_for) {
+        $query->where('request_for', $request_for);
+        })
         ->orderBy('created_at', 'desc')->get();
     }
 
     public function export($property_uuid, $status=null, $created_at=null, $request_for=null, $limitDisplayTo=null){
       
         $data = [
-          'accountpayables' => $this->get_accountpayables($property_uuid, $status, $created_at, $request_for, $limitDisplayTo),
+          'accountpayables' => Property::find($property_uuid)->accountpayables
           ];
 
           $pdf = \PDF::loadView('properties.accountpayables.export', $data);
