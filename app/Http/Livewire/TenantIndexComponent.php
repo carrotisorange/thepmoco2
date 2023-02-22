@@ -20,7 +20,7 @@ class TenantIndexComponent extends Component
 
         $action = 'addNewTenant';
 
-        return redirect('/property/'.Session::get('property').'/unit/action/'.$action);
+        return redirect('/property/'.Session::get('property').'/unit/');
     }
 
     public function render()

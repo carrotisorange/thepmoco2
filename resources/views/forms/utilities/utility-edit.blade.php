@@ -86,6 +86,7 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
+                    
                     {{-- <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
                             wire:model="utilities.{{ $index }}.total_amount_due" readonly />
