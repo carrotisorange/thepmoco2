@@ -2,6 +2,77 @@
 
 @section('title','The PMO — Home')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
+
+
+<!-- pop up modal -->
+          <dh-component>         
+            <div class="py-12 bg-transparent transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
+                <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-4xl">
+                    <div class="relative py-3 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+                      
+                      <div class="bg-white dark:bg-gray-800 px-3 md:px-4 py-12 flex flex-col justify-center items-center">
+                        <div role="img" aria-label="Luxe. Logo.">
+                          <img src="{{ asset('/brands/favicon.ico') }}">
+                        </div>
+                        <h1 class="mt-8 md:mt-12 text-3xl lg:text-4xl font-semibold leading-10 text-center text-gray-800 text-center md:w-9/12 lg:w-7/12 dark:text-white">Welcome to The Property Manager Online!</h1>
+                        <p class="mt-10 text-lg leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold">Free trial</span> until full setup ready.</p>
+                        <p class="mt-3 text-base leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold text-purple-700 text-lg">No credit card required,</span> no strings attached</p>
+                        <div class="mt-12 md:mt-14 w-full flex justify-center">
+                          <a href="https://thepmo.co/select-a-plan"><button class="dark:text-white dark:border-white w-full sm:w-auto border border-gray-800 text-base font-medium text-gray-800 py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-purple-900 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Start my Free Trial</button></a>
+                        </div>
+                      </div>
+                    
+                      <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" onclick="modalHandler()" aria-label="close modal" role="button">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                        
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                        
+              <script>
+            
+                let modal = document.getElementById("modal");
+                function modalHandler(val) {
+                    if (val) {
+                        fadeIn(modal);
+                    } else {
+                        fadeOut(modal);
+                    }
+                }
+                function fadeOut(el) {
+                    el.style.opacity = 1;
+                    (function fade() {
+                        if ((el.style.opacity -= 0.1) < 0) {
+                            el.style.display = "none";
+                        } else {
+                            requestAnimationFrame(fade);
+                        }
+                    })();
+                }
+                function fadeIn(el, display) {
+                    el.style.opacity = 0;
+                    el.style.display = display || "flex";
+                    (function fade() {
+                        let val = parseFloat(el.style.opacity);
+                        if (!((val += 0.2) > 1)) {
+                            el.style.opacity = val;
+                            requestAnimationFrame(fade);
+                        }
+                    })();
+                }
+              </script>
+            
+          </dh-component>
+            
+        <!-- end of pop up modal -->
+
+ 
+
 <div class="sm:block lg:flex md:flex min-h-screen">
 
 <style>
@@ -13,6 +84,8 @@ body {
   color: #fb923c;
 }
 </style>
+
+
 
   <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-48 ">
     <div class="w-full">
