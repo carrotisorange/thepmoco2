@@ -42,7 +42,7 @@
                                     </x-td>
                                     @if($accountpayable->request_for === 'payment')
                                     <x-td>
-                                        {{ $particular->price }}
+                                        {{ number_format($particular->price, 2) }}
                                     </x-td>
                                     <x-td>
                                         {{ number_format($particular->price * $particular->quantity, 2) }}

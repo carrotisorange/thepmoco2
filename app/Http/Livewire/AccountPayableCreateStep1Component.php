@@ -66,7 +66,7 @@ class AccountPayableCreateStep1Component extends Component
             $this->due_date,
             $this->requester_id,
             $this->batch_no,
-            $this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity')
+            ($this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity'))/$this->get_particulars()->count()
         );
 
 
