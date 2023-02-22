@@ -200,7 +200,7 @@
 
                                 </div>
 
-                                @if(auth()->user()->role_id === 9 || auth()->user()->role_id === 10)
+                                @if(auth()->user()->role_id != 7 || auth()->user()->role_id != 8)
                                 <h1 class="text-xl font-semibold text-gray-900">Restrictions</h1>
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     
