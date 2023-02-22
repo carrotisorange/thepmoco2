@@ -4,8 +4,8 @@
             <x-th>#</x-th>
             <x-th>DATE</x-th>
             <x-th>DESCRIPTION</x-th>
-            <x-th>CASHIN</x-th>
-            <x-th>CASHOUT</x-th>
+            <x-th>CASHIN FLOW</x-th>
+            <x-th>CASHOUT FLOW</x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
