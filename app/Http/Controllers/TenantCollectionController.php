@@ -18,6 +18,7 @@ use \PDF;
 use Carbon\Carbon;
 use App\Models\Contract;
 use App\Models\Wallet;
+use Google\Service\Pubsub\AcknowledgeRequest;
 
 class TenantCollectionController extends Controller
 {
@@ -327,6 +328,12 @@ class TenantCollectionController extends Controller
       //  {
       //    return Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
       //  }
+     }
+
+     public function destroy_collection_from_tenant_page($tenant_uuid){
+         Collection::where('tenant_uuid', $tenant_uuid)->delete();
+
+         AcknowledgementReceipt::where('tenant_uuid', $tenant_uuid)->delete();
      }
 
      public function destroy(Property $property, Tenant $tenant, $batch_no)

@@ -25,9 +25,6 @@ class PropertyUnitController extends Controller
     
     public function show(Property $property, Unit $unit, $action=null)
     {        
-        //  Session::forget('tenant_uuid');
-
-        //  Session::forget('owner_uuid');
 
          app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
 

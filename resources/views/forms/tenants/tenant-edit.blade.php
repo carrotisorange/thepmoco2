@@ -4,7 +4,7 @@
 
     <div class="h-full grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">
 
-        <div class="sm:col-span-6">
+        <div class="sm:col-span-4">
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="tenant" class="block text-xs font-medium text-gray-900">Full Name</label>
@@ -32,6 +32,25 @@
                     </option>
                 </select>
                 @error('status')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
+        <div class="sm:col-span-2">
+            <div
+                class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="category" class="block text-xs font-medium text-gray-900">Category</label>
+                <select wire:model="category"
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+                    <option value="primary" {{ old('category', $category)=='primary' ? 'selected' : 'selected' }}>
+                        primary
+                    </option>
+                    <option value="secondary" {{ old('category', $category)=='secondary' ? 'selected' : 'selected' }}>
+                        secondary
+                    </option>
+                </select>
+                @error('category')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
@@ -263,11 +282,15 @@
     </div>
 
     <div class="mt-5 flex justify-end">
-        <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
+        {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
             href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/delete">
             Delete
-        </a>
-
+        </a> --}}
+        <button type="button" data-modal-toggle="warning-destroy-tenant-modal"
+            class="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            <i class="fa-solid fa-trash"></i>&nbsp; Delete
+        </button>
+        &nbsp;
         <button type="button" wire:loading.remove wire:click="submitForm()"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
             <i class="fa-solid fa-check"></i> &nbsp; Update
@@ -278,3 +301,4 @@
         </button>
     </div>
 </form>
+@include('modals.warnings.destroy-tenant-modal')

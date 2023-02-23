@@ -11,7 +11,7 @@ class TenantIndexComponent extends Component
 {
     use WithPagination;
 
-    public $search = null;
+    public $search;
     public $status;
     public $category;
 
@@ -21,6 +21,12 @@ class TenantIndexComponent extends Component
         $action = 'addNewTenant';
 
         return redirect('/property/'.Session::get('property').'/unit/');
+    }
+
+    public function clearFilters(){
+        $this->search = null;
+        $this->status = null;
+        $this->category = null;
     }
 
     public function render()

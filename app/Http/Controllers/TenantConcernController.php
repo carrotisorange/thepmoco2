@@ -36,4 +36,8 @@ class TenantConcernController extends Controller
         ]);
     }
 
+    public function destroy($tenant_uuid){
+        Concern::where('tenant_uuid', $tenant_uuid)->delete();
+    }
+
 }

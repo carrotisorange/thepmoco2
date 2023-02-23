@@ -16,18 +16,19 @@
         @foreach ($units as $index => $unit)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
-            <x-td>@if(Session::get('tenant_uuid'))
+            <x-td>
+                @if(Session::get('tenant_uuid'))
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">{{
-                    $unit->unit }}</class=>
+                    $unit->unit }}</a>
                 @elseif(Session::get('owner_uuid'))
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/{{ Str::random(8) }}/create">{{
-                    $unit->unit }}</>
+                    $unit->unit }}<a />
                 @else
                 <a class="text-blue-500 text-decoration-line: underline"
-                href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}">{{ $unit->unit
-                    }}</class=>
+                        href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}">{{ $unit->unit
+                        }}</a>
                 @endif
             </x-td>
             <x-td>{{ $unit->status->status}}</x-td>

@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use Session;
+use App\Models\Tenant;
 
 class PropertyTenantController extends Controller
 {
     public function index(Property $property)
     {
-        
-        Session::forget('action');
+        Session::forget('tenant_uuid');
 
         //store activity for opening tenant page.
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',3);
@@ -22,5 +22,9 @@ class PropertyTenantController extends Controller
         return view('properties.tenants.index',[
             'tenants'=>$tenants
         ]);
+    }
+
+    public function destroy($tenant_uuid){
+       Tenant::where('uuid', $tenant_uuid)->delete();
     }
 }

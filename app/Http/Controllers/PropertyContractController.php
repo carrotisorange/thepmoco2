@@ -21,8 +21,9 @@ class PropertyContractController extends Controller
         ]);
     }
 
-    public function destroy($unit_uuid){
-        Contract::where('unit_uuid', $unit_uuid)->delete();
+    public function destroy($unit_uuid, $tenant_uuid){
+        Contract::where('unit_uuid', $unit_uuid)
+        ->orWhere('tenant_uuid', $tenant_uuid)->delete();
     }
 
     public function show(Property $property, Unit $unit, Tenant $tenant, Contract $contract){

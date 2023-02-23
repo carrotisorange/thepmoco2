@@ -16,7 +16,7 @@ class ContractIndexComponent extends Component
     public function redirectToUnitSelectionPage(){
         sleep(2);
 
-        // Session::put('action', 'addnewcontract');
+        // Session::put('tenant_uuid', $tenant->uuid);
 
         return redirect('/property/'.Session::get('property').'/tenant');
     }

@@ -34,7 +34,6 @@ class TenantContractController extends Controller
     {
         Session::put('tenant_uuid', $tenant->uuid);
 
-         
         return view('units.index', [
             'property' => $property, 
             'tenant' => $tenant,
