@@ -16,14 +16,14 @@
                         </h3>
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">Before you can create a new contract, first you need to
-                                select a unit.</p>
+                                select an existing tenant.</p>
                         </div>
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
                     <button type="button" wire:click="redirectToUnitSelectionPage" wire:loading.remove
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                        <i class="fa-solid fa-arrow-right"></i>&nbsp Select a unit
+                        <i class="fa-solid fa-arrow-right"></i>&nbsp Select a tenant
                     </button>
                     <button type="button" wire:loading wire:target="redirectToUnitSelectionPage" disabled
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">

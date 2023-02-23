@@ -4,8 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Property;
-use Session;
 use App\Models\Contract;
+use Session;
 
 class ContractIndexComponent extends Component
 {
@@ -16,7 +16,9 @@ class ContractIndexComponent extends Component
     public function redirectToUnitSelectionPage(){
         sleep(2);
 
-        return redirect('/property/'.Session::get('property').'/unit');
+        // Session::put('action', 'addnewcontract');
+
+        return redirect('/property/'.Session::get('property').'/tenant');
     }
 
     public function render()

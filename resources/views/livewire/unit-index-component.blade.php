@@ -280,7 +280,6 @@
                         <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                             @foreach ($units as $unit)
                             @if(Session::get('tenant_uuid'))
-                            {{-- @if(Session::get('action')) --}}
                             <a
                                 href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/create">
                                 <div class="hover:bg-purple-200">

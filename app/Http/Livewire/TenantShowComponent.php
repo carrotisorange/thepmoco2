@@ -102,6 +102,7 @@ class TenantShowComponent extends Component
             'occupation' => 'nullable',
             'employer_address' => 'nullable',
             'employer' => 'nullable',
+            'status' => 'nullable'
             ];
     }
 
