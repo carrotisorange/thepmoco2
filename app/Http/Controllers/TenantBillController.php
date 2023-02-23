@@ -172,4 +172,8 @@ class TenantBillController extends Controller
             'note_to_bill' => $note,
         ];
     }
+
+    public function destroy($tenant_uuid){
+        Bill::where('tenant_uuid', $tenant_uuid)->delete();
+    }
 }

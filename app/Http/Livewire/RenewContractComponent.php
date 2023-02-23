@@ -52,7 +52,7 @@ class RenewContractComponent extends Component
             'end' => 'required|date|after:start',
             'rent' => 'required',
             'discount' => 'required',
-            'contract' => 'nullable|mimes:pdf'
+            'contract' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
          ];
       }
 

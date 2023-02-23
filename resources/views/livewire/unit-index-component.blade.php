@@ -41,7 +41,7 @@
                 </button>
 
                 @if($units->count())
-                <button type="button" wire:click="editUnits" wire:loading.remove 
+                <button type="button" wire:click="editUnits" wire:loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-pen-to-square"></i> &nbsp Edit
                     Units</button>
@@ -132,10 +132,9 @@
                         <select id="small" wire:model="limitDisplayTo"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="" selected>Limit display to</option>
-                            @for ($i = 1; $i <= $totalUnitsCount; $i++) 
-                            @if($i%10==0 || $i==$totalUnitsCount) 
-                            <option value="{{ $i }}">{{ $i }}
-                              </option>
+                            @for ($i = 1; $i <= $totalUnitsCount; $i++) @if($i%10==0 || $i==$totalUnitsCount) <option
+                                value="{{ $i }}">{{ $i }}
+                                </option>
                                 @endif
                                 @endfor
                         </select>
@@ -280,9 +279,8 @@
                         <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                             @foreach ($units as $unit)
                             @if(Session::get('tenant_uuid'))
-                            {{-- @if(Session::get('action')) --}}
                             <a
-                                href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Str::random(8) }}/create">
+                                href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">
                                 <div class="hover:bg-purple-200">
                                     @if($unit->status_id == '1')
                                     <img src="{{ asset('/brands/vacant.png') }}"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
 use App\Models\Property;
+use App\Models\Guardian;
 
 class TenantGuardianController extends Controller
 {
@@ -14,4 +15,9 @@ class TenantGuardianController extends Controller
             'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
         ]);
     }
+
+    public function destroy($tenant_uuid){
+        Guardian::where('tenant_uuid', $tenant_uuid)->delete();
+    }
+    
 }

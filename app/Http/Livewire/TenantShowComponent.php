@@ -40,6 +40,7 @@ class TenantShowComponent extends Component
     public $occupation;
     public $employer_address;
     public $employer;
+    public $category;
 
     public $guardian;
     public $guardian_relationship_id;
@@ -79,6 +80,7 @@ class TenantShowComponent extends Component
         $this->employer_address = $tenant_details->employer_address;
         $this->employer = $tenant_details->employer;
         $this->photo_id = $tenant_details->photo_id;
+        $this->category = $tenant_details->category;
     }
 
     protected function rules()
@@ -102,6 +104,8 @@ class TenantShowComponent extends Component
             'occupation' => 'nullable',
             'employer_address' => 'nullable',
             'employer' => 'nullable',
+            'status' => 'required',
+            'category' => 'required'
             ];
     }
 
@@ -211,6 +215,24 @@ class TenantShowComponent extends Component
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'removes', 18);
 
         session()->flash('success', 'Access to tenant portal has been removed.');
+    }
+
+    public function deleteTenant(){
+        sleep(3);
+
+        app('App\Http\Controllers\PropertyContractController')->destroy(null, $this->tenant_details->uuid);
+        app('App\Http\Controllers\TenantGuardianController')->destroy($this->tenant_details->uuid);
+        app('App\Http\Controllers\TenantReferenceController')->destroy($this->tenant_details->uuid);
+        app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
+        app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
+        app('App\Http\Controllers\TenantBillController')->destroy($this->tenant_details->uuid);
+        app('App\Http\Controllers\TenantCollectionController')->destroy_collection_from_tenant_page($this->tenant_details->uuid);
+        
+        app('App\Http\Controllers\PropertyTenantController')->destroy($this->tenant_details->uuid);
+
+
+      return redirect('/property/'.$this->tenant_details->property_uuid.'/tenant/')->with('success', 'Tenant is successfully deleted!');
+ 
     }
 
 

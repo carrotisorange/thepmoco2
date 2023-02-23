@@ -33,7 +33,7 @@ class TenantContractController extends Controller
     public function create(Property $property, Tenant $tenant)
     {
         Session::put('tenant_uuid', $tenant->uuid);
-         
+
         return view('units.index', [
             'property' => $property, 
             'tenant' => $tenant,
