@@ -2,16 +2,14 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
+            <x-th>BATCH NO</x-th>
             <x-th>REQUESTED ON</x-th>
             <x-th>REQUESTED BY</x-th>
             <x-th>REQUEST FOR</x-th>
             <x-th>PARTICULARS</x-th>
-
-            {{-- <x-th>BILLER</x-th> --}}
-
-            {{-- <x-th>APPROVED ON</x-th> --}}
             <x-th>STATUS</x-th>
             <x-th>AMOUNT</x-th>
+            <x-th></x-th>
             <x-th></x-th>
         </tr>
     </thead>
@@ -19,6 +17,7 @@
         @foreach($accountpayables as $index => $accountpayable)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ $accountpayable->batch_no }}</x-td>
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $accountpayable->requester->name }}</x-td>
             <x-td>{{ $accountpayable->request_for }}</x-td>
@@ -37,6 +36,13 @@
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-2"
                     class="text-blue-500 text-decoration-line: underline">View</a>
             </x-td>
+            <x-td>
+                <a href="#/" wire:click="deleteAccountPayable({{ $accountpayable->id }})" wire:loading.remove
+                    class="text-red-500 text-decoration-line: underline">Delete</a>
+
+                <a href="#/" wire:loading wire:target="deleteAccountPayable({{ $accountpayable->id }})"
+                    class="text-red-500 text-decoration-line: underline">Loading...</a>
+            </x-td>
 
         </tr>
         @endforeach
@@ -47,7 +53,10 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
+            <x-th></x-th>
             <x-td>{{ number_format($accountpayables->sum('amount'), 2) }}</x-td>
+            <x-th></x-th>
+
         </tr>
     </tbody>
 </table>
