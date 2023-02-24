@@ -140,7 +140,7 @@ Route::get('/article13', function(){
     return view('landing.articles.article13');
 });
 
-Route::get('/How-Smart-Landlords-Keep-Tenants-Happy', function(){
+Route::get('/article14', function(){
     return view('landing.articles.article14');
 });
 
