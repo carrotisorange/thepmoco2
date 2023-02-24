@@ -88,7 +88,8 @@ Route::get('/privacy', function(){
     return view('landing.privacy');
 });
 
-Route::get('/article1', function(){
+// articles
+Route::get('/How-The-PMO-Started', function(){
     return view('landing.articles.article1');
 });
 
