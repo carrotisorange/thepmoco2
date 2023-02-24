@@ -9,7 +9,7 @@
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     type="button">Back
                 </button>
-                @if($this->start_date&&$this->end_date&&$this->kwh&&$this->min_charge)
+                @if($this->start_date&&$this->end_date)
                 <button type="submit" wire:click="postUtilities" wire:loading.remove
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Post Utilities
