@@ -132,7 +132,7 @@
                     <x-th>Total</x-th>
                     <x-th></x-th>
                     <x-th></x-th>
-        
+                    <x-th></x-th>
                     <x-th></x-th>
                     <x-th></x-th>
                     <x-th>{{ number_format($accountpayables->sum('amount'), 2) }}</x-th>
