@@ -7,6 +7,7 @@ use App\Models\Property;
 use Session;
 use Livewire\WithPagination;
 use App\Models\AccountPayable;
+use App\Models\AccountPayableParticular;
 
 class AccountPayableIndexComponent extends Component
 {
@@ -32,6 +33,18 @@ class AccountPayableIndexComponent extends Component
       $this->limitDisplayTo = null;
     }
 
+    public function deleteAccountPayable($accountpayableId){
+      sleep(1);
+
+      $batch_no = AccountPayable::find($accountpayableId)->batch_no;
+
+      AccountPayable::where('batch_no', $batch_no)->delete();
+
+      AccountPayableParticular::where('batch_no', $batch_no)->delete();
+
+      return back()->with('success', 'Account payable is deleted successfully!');
+
+    }
     public function exportAccountPayables(){
       sleep(2);
       
