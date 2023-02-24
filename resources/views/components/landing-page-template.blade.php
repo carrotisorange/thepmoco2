@@ -52,7 +52,7 @@
     <meta property="og:image:width" content="1240">          
     <meta property="og:image:height" content="650">          
 
-    
+    <!-- facebook -->
     <meta property="fb:app_id" content="The Property Manager"> 
     <meta property="og:url" content="https://www.facebook.com/onlinepropertymanager"> 
 

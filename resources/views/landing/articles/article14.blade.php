@@ -1,6 +1,14 @@
 <x-landing-page-template>
 @section('title','How Smart Landlords Keep Tenants Happy So They Don&#39;t Move Out')
 @section('description', 'How to keep tenants happy')
+
+<meta property="og:url"                content="https://thepropertymanager.online"/>
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="How Smart Landlords Keep Tenants Happy So They Don&#39;t Move Out" />
+<meta property="og:description"        content="Landlords are the hardest people to deal with, right? They&#39;re always asking for more money,
+they never clean up after themselves, and they make you feel like you&#39;re doing their job when
+really they should be paying you." />
+<meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 <!-- start article -->
 <x-blog-section-template>
 </x-blog-section-template>
