@@ -3,6 +3,13 @@
 @section('title','The PMO — Home')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 
+<style>
+  #modal-bg{
+    background-image: url('/brands/landing/modal-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
 
 <!-- pop up modal -->
           <dh-component>         
@@ -10,15 +17,15 @@
                 <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-4xl">
                     <div class="relative py-3 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                       
-                      <div class="bg-white dark:bg-gray-800 px-3 md:px-4 py-12 flex flex-col justify-center items-center">
+                      <div id ="modal-bg" class=" dark:bg-gray-800 px-3 md:px-4 py-12 flex flex-col justify-center items-center">
                         <div role="img" aria-label="Luxe. Logo.">
                           <img src="{{ asset('/brands/favicon.ico') }}">
                         </div>
                         <h1 class="mt-8 md:mt-12 text-3xl lg:text-4xl font-semibold leading-10 text-center text-gray-800 text-center md:w-9/12 lg:w-7/12 dark:text-white">Welcome to The Property Manager Online!</h1>
                         <p class="mt-10 text-lg leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold">Free trial</span> until full setup ready.</p>
-                        <p class="mt-3 text-base leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold text-purple-700 text-lg">No credit card required,</span> no strings attached</p>
+                        <p class="mt-3 mb-8 text-base leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold text-purple-700 text-lg">No credit card required,</span> no strings attached</p>
                         <div class="mt-12 md:mt-14 w-full flex justify-center">
-                          <a href="https://thepmo.co/select-a-plan"><button class="dark:text-white dark:border-white w-full sm:w-auto border border-gray-800 text-base font-medium text-gray-800 py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-purple-900 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Start my Free Trial</button></a>
+                          <a href="https://thepmo.co/select-a-plan"><button class="bg-purple-900 dark:text-white dark:border-white w-full sm:w-auto border border-purple-800 text-base font-medium text-white py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-purple-600 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Start my Free Trial</button></a>
                         </div>
                       </div>
                     
