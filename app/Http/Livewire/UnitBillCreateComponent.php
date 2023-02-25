@@ -26,12 +26,11 @@ class UnitBillCreateComponent extends Component
 
     public function mount(){
        $this->total_amount_due =  $this->utility->total_amount_due;
+       $this->particular_id=$this->get_particular_id($this->utility->type);
     }
     public function submitForm(){
         
         sleep(1);
-
-     
 
         try{
             if($this->type==='tenant'){
@@ -42,7 +41,7 @@ class UnitBillCreateComponent extends Component
 
                 $tenant = Tenant::find($contract['tenant_uuid']);
 
-                app('App\Http\Controllers\BillController')->store($tenant->property_uuid, $this->unit->uuid, $tenant->uuid, '',6, $this->utility->start_date, $this->utility->end_date, $this->utility->total_amount_due/$contracts->count(), '', 1);
+                app('App\Http\Controllers\BillController')->store($tenant->property_uuid, $this->unit->uuid, $tenant->uuid, '',$this->particular_id, $this->utility->start_date, $this->utility->end_date, $this->utility->total_amount_due/$contracts->count(), '', 1);
                 
             }
             }else{
@@ -53,7 +52,7 @@ class UnitBillCreateComponent extends Component
 
                 $owner = Owner::find($deedofsale['owner_uuid']);
 
-                app('App\Http\Controllers\BillController')->store($owner->property_uuid, $this->unit->uuid, '',$owner->uuid, 6, $this->utility->start_date, $this->utility->end_date, $this->utility->total_amount_due/$deedofsales->count(), '', 1);
+                app('App\Http\Controllers\BillController')->store($owner->property_uuid, $this->unit->uuid, '',$owner->uuid, $this->particular_id, $this->utility->start_date, $this->utility->end_date, $this->utility->total_amount_due/$deedofsales->count(), '', 1);
                 
             }
             }
@@ -67,7 +66,8 @@ class UnitBillCreateComponent extends Component
             ]
         );
 
-        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/bills')->with('success', 'The bill is successfully posted');
+        // return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/bills')->with('success', 'The bill is successfully posted');
+        return redirect('/property/'.$this->property->uuid.'/utilities/')->with('success', 'The bill is successfully posted');
 
         }catch(\Exception $e){
         
@@ -75,9 +75,19 @@ class UnitBillCreateComponent extends Component
         }
 
     }
+
+    public function get_particular_id($type){
+        if($type === 'electric'){
+            return 6;
+        }else{
+            return 5;
+        }
+    }
     
     public function render()
     {
+        // ddd($this->get_particular_id($this->utility->type));
+
         return view('livewire.unit-bill-create-component');
     }
 }

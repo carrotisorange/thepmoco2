@@ -124,7 +124,7 @@
 
             <tr>
                 @if ($item->bill-$item->initial_payment > 0)
-                <td>{{ $item->bill_no }}</td>
+                <td>{{ $item->unit->unit.'-'.$item->bill_no}}</td>
                 <td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</td>
                 <td>{{ $item->unit->unit }}</td>
                 <td>{{ $item->particular->particular }}</td>

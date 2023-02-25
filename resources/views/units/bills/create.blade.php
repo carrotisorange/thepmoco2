@@ -6,7 +6,7 @@
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
                     <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">{{ $unit->unit }} /
-                        Bills</h1>
+                        Bills / {{ $type }}</h1>
                 </div>
             </div>
             @livewire('unit-bill-create-component', ['property' => $property, 'unit' => $unit, 'type' => $type, 'utility' => $utility])

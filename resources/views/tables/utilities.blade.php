@@ -61,11 +61,11 @@
                 @if($item->status === 'unbilled')
                 
               
-                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/utility/{{ $item->id }}"
+                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/tenant/utility/{{ $item->id }}" target="_blank"
                         class="text-indigo-500 text-decoration-line: underline">Bill to tenant</a>
                         |
                
-                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/utility/{{ $item->id }}"
+                    <a href="/property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/owner/utility/{{ $item->id }}" target="_blank"
                         class="text-indigo-500 text-decoration-line: underline">Bill to owner</a>
                 
                 @endif
