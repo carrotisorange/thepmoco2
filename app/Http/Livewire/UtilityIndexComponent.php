@@ -91,6 +91,7 @@ class UtilityIndexComponent extends Component
           $utilities = Utility::isposted()
           ->select('*', 'units.unit as unit_name' )
           ->join('units', 'utilities.unit_uuid', 'units.uuid')
+          ->where('is_posted', 1)
           ->where('utilities.property_uuid', $this->property_uuid)
           ->when($this->status, function($query){
           $query->where('status',$this->status);
