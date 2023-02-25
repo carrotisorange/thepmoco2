@@ -93,55 +93,55 @@ Route::get('/How-The-PMO-Started', function(){
     return view('landing.articles.article1');
 });
 
-Route::get('/article2', function(){
+Route::get('/How-to-use-a-leasing-management-system-to-improve-operational-efficiency', function(){
     return view('landing.articles.article2');
 });
 
-Route::get('/article3', function(){
+Route::get('/What-are-the-benefits-of-a-property-management-system-for-property-managers', function(){
     return view('landing.articles.article3');
 });
 
-Route::get('/article4', function(){
+Route::get('/Secret-Recipe-For-Brand-Building-As-Small-Business', function(){
     return view('landing.articles.article4');
 });
 
-Route::get('/article5', function(){
+Route::get('/What-do-we-offer-as-a-SaaS-company-to-property-managers-and-owners', function(){
     return view('landing.articles.article5');
 });
 
-Route::get('/article6', function(){
+Route::get('/Why-Digitalization-is-the-best-strategy-for-2023', function(){
     return view('landing.articles.article6');
 });
 
-Route::get('/article7', function(){
+Route::get('/How-To-Improve-Tenant-Retention-Rates', function(){
     return view('landing.articles.article7');
 });
 
-Route::get('/article8', function(){
+Route::get('/Importance-of-having-a-Housekeeping-Program-for-Rental-Properties', function(){
     return view('landing.articles.article8');
 });
 
-Route::get('/article9', function(){
+Route::get('/How-to-reduce-digitalization-pain-points', function(){
     return view('landing.articles.article9');
 });
 
-Route::get('/article10', function(){
+Route::get('/Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results', function(){
     return view('landing.articles.article10');
 });
 
-Route::get('/article11', function(){
+Route::get('/How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords', function(){
     return view('landing.articles.article11');
 });
 
-Route::get('/article12', function(){
+Route::get('/How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction', function(){
     return view('landing.articles.article12');
 });
 
-Route::get('/article13', function(){
+Route::get('/How-to-Improve-Building-Security-to-Make-Residents-Feel-Safe', function(){
     return view('landing.articles.article13');
 });
 
-Route::get('/article14', function(){
+Route::get('/How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out', function(){
     return view('landing.articles.article14');
 });
 

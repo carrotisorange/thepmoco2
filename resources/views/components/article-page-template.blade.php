@@ -47,7 +47,6 @@
            
 
     <!-- facebook -->
-    <meta property="fb:app_id" content="Article"> 
     <meta property="og:url"                content="@yield('og-url')">
     <meta property="og:type"               content="article">
     <meta property="og:title"              content="@yield('og-title')">

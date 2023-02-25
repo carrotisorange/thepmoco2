@@ -1,6 +1,6 @@
 <x-article-page-template>
 @section('title','How The PMO Started')
-@section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
+
 
 @section('og-url','https://thepropertymanager.online')
 @section('og-title','How The PMO Started')

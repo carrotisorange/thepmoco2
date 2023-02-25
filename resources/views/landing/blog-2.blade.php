@@ -31,14 +31,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article10"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article10.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article10.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article10" class="hover:underline">Article</a>
+              <a href="Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results" class="hover:underline">Article</a>
             </p>
-            <a href="article10" class="mt-2 block">
+            <a href="Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">Why Designing Beautiful Rentable Spaces Has Over All Positive Results</p>
               <p class="mt-3 text-sm text-gray-500">
               Renting a space is a great way to earn some extra money, but it can be challenging if you don’t know what you’re doing. </p>
@@ -51,14 +51,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article9"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article9.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="How-to-reduce-digitalization-pain-points"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article9.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article9" class="hover:underline">Article</a>
+              <a href="How-to-reduce-digitalization-pain-points" class="hover:underline">Article</a>
             </p>
-            <a href="article9" class="mt-2 block">
+            <a href="How-to-reduce-digitalization-pain-points" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">How to reduce digitalization pain points</p>
               <p class="mt-3 text-sm text-gray-500">
               The digitalization of business has introduced a whole new set of challenges for many organizations.</p>
@@ -70,14 +70,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article8"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article8.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="Importance-of-having-a-Housekeeping-Program-for-Rental-Properties"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article8.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article8" class="hover:underline">Article</a>
+              <a href="Importance-of-having-a-Housekeeping-Program-for-Rental-Properties" class="hover:underline">Article</a>
             </p>
-            <a href="article8" class="mt-2 block">
+            <a href="Importance-of-having-a-Housekeeping-Program-for-Rental-Properties" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">Importance of having a Housekeeping Program for Rental Properties</p>
               <p class="mt-3 text-sm text-gray-500">
               Training housekeeping staff is an important aspect of ensuring that guests have a positive
@@ -90,14 +90,14 @@ experience and that the property is well-maintained.</p>
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article7"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article7.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="How-To-Improve-Tenant-Retention-Rates"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article7.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article7" class="hover:underline">Article</a>
+              <a href="How-To-Improve-Tenant-Retention-Rates" class="hover:underline">Article</a>
             </p>
-            <a href="article7" class="mt-2 block">
+            <a href="How-To-Improve-Tenant-Retention-Rates" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">How To Improve Tenant Retention Rates:</p>
               <p class="mt-3 text-sm text-gray-500">
               10 steps on how to improve tenant retention rates!</p>

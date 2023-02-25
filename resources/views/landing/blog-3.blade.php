@@ -31,14 +31,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article6"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article6.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="Why-Digitalization-is-the-best-strategy-for-2023"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article6.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article6" class="hover:underline">Article</a>
+              <a href="Why-Digitalization-is-the-best-strategy-for-2023" class="hover:underline">Article</a>
             </p>
-            <a href="article6" class="mt-2 block">
+            <a href="Why-Digitalization-is-the-best-strategy-for-2023" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">Why Digitalization is the best strategy for 2023</p>
               <p class="mt-3 text-sm text-gray-500">
               Digitalization is a strategic approach to business that seeks to leverage the power of digital technologies to achieve business objectives.</p>
@@ -50,14 +50,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article5"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article5.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="What-do-we-offer-as-a-SaaS-company-to-property-managers-and-owners"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article5.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article5" class="hover:underline">Article</a>
+              <a href="What-do-we-offer-as-a-SaaS-company-to-property-managers-and-owners" class="hover:underline">Article</a>
             </p>
-            <a href="article5" class="mt-2 block">
+            <a href="What-do-we-offer-as-a-SaaS-company-to-property-managers-and-owners" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">What do we offer as a SaaS company to property managers and owners in The Property Manager Online?</p>
               <p class="mt-3 text-sm text-gray-500">
               Property managers, real estate agents, and owners of property are always looking for ways to improve the efficiency with which they do their jobs.</p>
@@ -70,14 +70,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article4"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article4.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="Secret-Recipe-For-Brand-Building-As-Small-Business"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article4.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article4" class="hover:underline">Article</a>
+              <a href="Secret-Recipe-For-Brand-Building-As-Small-Business" class="hover:underline">Article</a>
             </p>
-            <a href="article4" class="mt-2 block">
+            <a href="Secret-Recipe-For-Brand-Building-As-Small-Business" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">Secret Recipe For Brand Building As Small Business.</p>
               <p class="mt-3 text-sm text-gray-500">
               In today's marketplace, it's hard for small businesses to stand out from the crowd. But there is one thing that every small business has in common:</p>
@@ -89,14 +89,14 @@
       
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article3"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article3.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article3.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article3" class="hover:underline">Article</a>
+              <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="hover:underline">Article</a>
             </p>
-            <a href="article3" class="mt-2 block">
+            <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">What are the benefits of a property management system for property managers?</p>
               <p class="mt-3 text-sm text-gray-500">
               A property management system can be a great tool for landlords and property managers. It can help you to manage your properties more efficiently,</p>

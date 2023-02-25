@@ -26,14 +26,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article14"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article14.jpg') }}" alt="asian family"></a>
+          <a href="How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article14.jpg') }}" alt="asian family"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article14" class="hover:underline">Article</a>
+              <a href="How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out" class="hover:underline">Article</a>
             </p>
-            <a href="article14" class="mt-2 block">
+            <a href="How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">How Smart Landlords Keep Tenants Happy So They Don't Move Out</p>
               <p class="mt-3 text-sm text-gray-500">
               Landlords are the hardest people to deal with, right? They're always asking for more money, they never clean up after themselves, and</p>
@@ -45,14 +45,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article13"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article13.jpeg') }}" alt="three people looking laptop property management system"></a>
+          <a href="How-to-Improve-Building-Security-to-Make-Residents-Feel-Safe"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article13.jpeg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article13" class="hover:underline">Article</a>
+              <a href="How-to-Improve-Building-Security-to-Make-Residents-Feel-Safe" class="hover:underline">Article</a>
             </p>
-            <a href="article13" class="mt-2 block">
+            <a href="How-to-Improve-Building-Security-to-Make-Residents-Feel-Safe" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">How to Improve Building Security to Make Residents Feel Safe</p>
               <p class="mt-3 text-sm text-gray-500">
               Improving building security can involve a variety of measures, some of which include:</p>
@@ -64,14 +64,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article12"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article12.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article12.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article12" class="hover:underline">Article</a>
+              <a href="How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction" class="hover:underline">Article</a>
             </p>
-            <a href="article12" class="mt-2 block">
+            <a href="How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">How Digital Systems Improve Tenant Retention and Satisfaction</p>
               <p class="mt-3 text-sm text-gray-500">
               When you own a building, you want to make sure that it is running smoothly. You also want to keep your tenants happy and satisfied so that they don't move out. By using digital systems</p>
@@ -83,14 +83,14 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
-          <a href="article11"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article11.jpg') }}" alt="three people looking laptop property management system"></a>
+          <a href="How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article11.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
           <div class="flex-1">
             <p class="text-sm font-medium text-indigo-600">
-              <a href="article11" class="hover:underline">Article</a>
+              <a href="How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords" class="hover:underline">Article</a>
             </p>
-            <a href="article11" class="mt-2 block">
+            <a href="How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords" class="mt-2 block">
               <p class="text-base font-semibold text-gray-900">How an Online Property Management System Instantly Improves Business Profitability for Landlords</p>
               <p class="mt-3 text-sm text-gray-500">
               If you own a rental property, you're probably familiar with the challenges of managing it. You'll have bad tenants, late payments, and sometimes even need to evict people from your space. In order to run your business effectively,</p>

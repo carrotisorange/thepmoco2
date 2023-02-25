@@ -26,7 +26,7 @@
 
     <!-- Article 14 -->
     <div class="my-5">
-      <a href="article14" class="grid grid-cols-4 rounded-sm">
+      <a href="/How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -44,7 +44,7 @@
 
     <!-- Article 13 -->
     <div class="my-5">
-      <a href="article13" class="grid grid-cols-4 rounded-sm">
+      <a href="How-to-Improve-Building-Security-to-Make-Residents-Feel-Safe" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -62,7 +62,7 @@
 
     <!-- Article 12 -->
     <div class="my-5">
-      <a href="article12" class="grid grid-cols-4 rounded-sm">
+      <a href="How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -80,7 +80,7 @@
 
     <!-- Article 11 -->
     <div class="my-5">
-      <a href="article11" class="grid grid-cols-4 rounded-sm">
+      <a href="How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -98,7 +98,7 @@
 
     <!-- Article 10 -->
     <div class="my-5">
-      <a href="article10" class="grid grid-cols-4 rounded-sm">
+      <a href="Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -116,7 +116,7 @@
 
      <!-- Article 9 -->
      <div class="my-5">
-      <a href="article9" class="grid grid-cols-4 rounded-sm">
+      <a href="How-to-reduce-digitalization-pain-points" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -134,7 +134,7 @@
 
     <!-- Article 8 -->
     <div class="my-5">
-      <a href="article8" class="grid grid-cols-4 rounded-sm">
+      <a href="Importance-of-having-a-Housekeeping-Program-for-Rental-Properties" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -149,9 +149,9 @@
 
       </a>
     </div>
-
+  <!-- Article 7 -->
     <div class="my-5">
-      <a href="article7" class="grid grid-cols-4 rounded-sm">
+      <a href="How-To-Improve-Tenant-Retention-Rates" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -167,9 +167,9 @@
       </a>
     </div>
 
-    <!-- Card 1 -->
+    <!-- Article 6 -->
     <div class="my-5">
-        <a href="article6" class="grid grid-cols-4 rounded-sm">
+        <a href="Why-Digitalization-is-the-best-strategy-for-2023" class="grid grid-cols-4 rounded-sm">
 
           <!-- Icon -->
           <div class="col-span-1">
@@ -185,9 +185,9 @@
         </a>
       </div>
 
-    <!-- Card 1 -->
+    <!-- Article 5 -->
     <div class="my-5">
-        <a href="article5" class="grid grid-cols-4 rounded-sm">
+        <a href="What-do-we-offer-as-a-SaaS-company-to-property-managers-and-owners" class="grid grid-cols-4 rounded-sm">
 
           <!-- Icon -->
           <div class="col-span-1">
@@ -203,9 +203,9 @@
         </a>
       </div>
 
-    <!-- Card 1 -->
+    <!-- Article 4 -->
     <div class="my-5">
-      <a href="article4" class="grid grid-cols-4 rounded-sm">
+      <a href="Secret-Recipe-For-Brand-Building-As-Small-Business" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -221,9 +221,9 @@
       </a>
     </div>
 
-    <!-- Card 1 -->
+    <!-- Article 3 -->
     <div class="my-5">
-      <a href="article3" class="grid grid-cols-4 rounded-sm">
+      <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -239,9 +239,9 @@
       </a>
     </div>
 
-    <!-- Card 1 -->
+   <!-- Article 2 -->
     <div class="my-5">
-      <a href="article2" class="grid grid-cols-4 rounded-sm">
+      <a href="How-to-use-a-leasing-management-system-to-improve-operational-efficiency" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
@@ -257,9 +257,9 @@
       </a>
     </div>
 
-    <!-- Card 1 -->
+    <!-- Article 1 -->
     <div class="my-5">
-      <a href="article1" class="grid grid-cols-4 rounded-sm">
+      <a href="How-The-PMO-Started" class="grid grid-cols-4 rounded-sm">
 
         <!-- Icon -->
         <div class="col-span-1">
