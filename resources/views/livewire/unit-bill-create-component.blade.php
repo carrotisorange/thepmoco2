@@ -9,10 +9,10 @@
                                 <label for="particular_id"
                                     class="block text-sm font-medium text-gray-700">Particular </label>
                                 @if($particular_id == '5')
-                                <input type="text" value="water" 
+                                <input type="text" value="water" readonly
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                                 @else
-                                <input type="text" value="electric"
+                                <input type="text" value="electric" readonly
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                                 @endif
 
