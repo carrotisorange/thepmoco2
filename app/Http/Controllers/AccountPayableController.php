@@ -212,6 +212,6 @@ class AccountPayableController extends Controller
     public function show(Property $property, AccountPayable $accountPayable){
         return abort(401);
 
-        return view('accountpayables.show');
+       
     }
 }

@@ -366,7 +366,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [PropertyAccountPayableController::class, 'index'])->name('accountpayable');
         Route::get('export/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [PropertyAccountPayableController::class, 'export']);
 
-        Route::controller(AccountPayableController::class)->group(function () {
+        Route::controller(PropertyAccountPayableController::class)->group(function () {
     
             Route::get('{accountPayable}', 'show')->name('accountpayable');
             Route::get('{id}/attachment',  'download');
