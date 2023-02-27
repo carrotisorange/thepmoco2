@@ -7,8 +7,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="canonical" href="https://thepropertymanager.online"/>
-  
+
     <title>@yield('title')</title>
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="Property,
