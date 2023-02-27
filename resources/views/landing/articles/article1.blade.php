@@ -1,6 +1,11 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','How The PMO Started')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
+
+@section('og-url','https://thepropertymanager.online/How-The-PMO-Started')
+@section('og-title','How The PMO Started')
+@section('og-description','See How The PMO Started read more')
+@section('og-image','https://ia.media-imdb.com/images/rock.jpg')
 
 <!-- start article -->
 <x-blog-section-template>
@@ -54,4 +59,4 @@
 </div>
 </div>
 
-</x-landing-page-template>
+</x-article-page-template>

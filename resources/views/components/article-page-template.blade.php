@@ -53,6 +53,7 @@
     <meta property="og:description"        content="@yield('og-description')">
     <meta property="og:image"              content="@yield('og-image')">
 
+    <meta property="fb:app_id" content="The Property Manager"> 
     <script type="application/ld+json">
 
 

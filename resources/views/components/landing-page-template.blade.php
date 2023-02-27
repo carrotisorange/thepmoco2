@@ -42,19 +42,7 @@
     property management companies,
     Real Estate Technology,
     online condominium management system,
-    association management system software">
-
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content= "Property Management System - The PMO Co">
-    <meta property="og:image" content="https://thepropertymanager.online/brands/landing/pmo-logo.webp"> 
-    <meta property="og:image" content="https://thepropertymanager.online/brands/favicon.ico"> 
-    <meta property="og:image:width" content="1240">          
-    <meta property="og:image:height" content="650">          
-
-    <!-- facebook -->
-    <meta property="fb:app_id" content="The Property Manager"> 
-    <meta property="og:url" content="https://www.facebook.com/onlinepropertymanager"> 
+    association management system software"> 
 
     <script type="application/ld+json">
   {
