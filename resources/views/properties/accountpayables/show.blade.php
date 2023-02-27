@@ -4,6 +4,10 @@
         <div class="max-full mx-auto sm:px-6">
             <div class="mt-5 mb-5">
                 <p class="text-right">
+                    {{-- <button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/export/'"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                        type="button">Export
+                    </button> --}}
                     <button onclick="window.location.href='{{ url()->previous() }}'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                         type="button">Back
@@ -81,7 +85,7 @@
                             </table>
                         </div>
 
-
+                        @if($accountpayable->request_for === 'purchase')
                         <div class="sm:col-span-6">
                             <dt class="text-sm font-medium text-gray-500">Uploaded Quotations</dt>
                             <dd class="mt-1 text-sm text-gray-900">
@@ -186,6 +190,7 @@
                                 </ul>
                             </dd>
                         </div>
+                        @endif
 
 
                     </dl>
