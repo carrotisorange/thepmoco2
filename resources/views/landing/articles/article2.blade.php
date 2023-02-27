@@ -4,7 +4,7 @@
 
 @section('og-url','https://thepropertymanager.online/How-to-use-a-leasing-management-system-to-improve-operational-efficiency')
 @section('og-title','How to use a leasing management system to improve operational efficiency?')
-@section('og-description','If you've ever tried to manage a property, you know how hard it can be, read more...')
+@section('og-description','If you have ever tried to manage a property, you know how hard it can be, read more...')
 @section('og-image','https://images.pexels.com/photos/7652039/pexels-photo-7652039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
 
 
