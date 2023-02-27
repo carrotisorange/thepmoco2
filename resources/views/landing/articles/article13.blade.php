@@ -1,6 +1,12 @@
 <x-landing-page-template>
 @section('title','How to Improve Building Security to Make Residents Feel Safe')
-@section('description', 'Improve building security for residents safety')
+@section('description', 'Improve Building Security for residents safety')
+
+@section('og-url','https://thepropertymanager.online/How-to-Improve-Building-Security-to-Make-Residents-Feel-Safe')
+@section('og-title','How to Improve Building Security to Make Residents Feel Safe')
+@section('og-description','Improving building security can involve a variety of measures, some of which include: read more...')
+@section('og-image','https://images.pexels.com/photos/279810/pexels-photo-279810.jpeg')
+
 <!-- start article -->
 <x-blog-section-template>
 </x-blog-section-template>
