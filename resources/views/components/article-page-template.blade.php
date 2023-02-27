@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     
-
+    <title>@yield('title')</title>
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="Property,
     Property Management,
@@ -52,10 +52,6 @@
     <meta property="og:title"              content="@yield('og-title')">
     <meta property="og:description"        content="@yield('og-description')">
     <meta property="og:image"              content="@yield('og-image')">
-
-    <meta property="fb:app_id" content="The Property Manager"> 
-    <script type="application/ld+json">
-
 
 
 </script>
