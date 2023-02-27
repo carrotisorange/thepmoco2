@@ -1,6 +1,14 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','How to reduce digitalization pain points')
 @section('description', 'How to overcome digitalization challenges as a property owner')
+
+@section('og-url','https://thepropertymanager.online/How-to-reduce-digitalization-pain-points')
+@section('og-title','How to reduce digitalization pain points')
+@section('og-description','The digitalization of business has introduced a whole new set of challenges for many organizations. As
+technology changes, read more...')
+@section('og-image','https://images.pexels.com/photos/6517347/pexels-photo-6517347.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+
+
 <!-- start article -->
 <x-blog-section-template>
 </x-blog-section-template>
@@ -78,7 +86,7 @@ something like, &quot;That sounds excellent.&quot;
 
     <x-ad-section-template>
     </x-ad-section-template>
-    
+
       <p class="pb-6">
       It is crucial to have a culture of openness and collaboration. Everyone needs to be on the same page, so
 it&#39;s important to promote this among all stakeholders involved in your project. It is also necessary that
@@ -159,4 +167,4 @@ digitalize processes and invest in digitalization.
 
       </div>
 </div>
-</x-landing-page-template>
+</x-article-page-template>
