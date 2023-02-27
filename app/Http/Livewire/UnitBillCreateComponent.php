@@ -22,6 +22,7 @@ class UnitBillCreateComponent extends Component
     public $end;
     public $bill;
     public $unit_uuid;
+    public $isBillSplit = false;
     public $total_amount_due;
 
     public function mount(){
@@ -29,7 +30,7 @@ class UnitBillCreateComponent extends Component
        $this->particular_id=$this->get_particular_id($this->utility->type);
     }
     public function submitForm(){
-        
+
         sleep(1);
 
         try{
@@ -39,9 +40,15 @@ class UnitBillCreateComponent extends Component
                 
                 foreach($contracts as $contract){
 
-                $tenant = Tenant::find($contract['tenant_uuid']);
+                if($this->isBillSplit === 'yes'){
+                    $amount = $this->utility->total_amount_due/$contracts->count();
+                }else{
+                    $amount = $this->utility->total_amount_due;
+                }
 
-                app('App\Http\Controllers\BillController')->store($tenant->property_uuid, $this->unit->uuid, $tenant->uuid, '',$this->particular_id, $this->utility->start_date, $this->utility->end_date, $this->utility->total_amount_due/$contracts->count(), '', 1);
+                 $tenant = Tenant::find($contract['tenant_uuid']);
+
+                app('App\Http\Controllers\BillController')->store($tenant->property_uuid, $this->unit->uuid, $tenant->uuid, '',$this->particular_id, $this->utility->start_date, $this->utility->end_date, $amount, '', 1);
                 
             }
             }else{
@@ -50,9 +57,15 @@ class UnitBillCreateComponent extends Component
                 
                 foreach($deedofsales as $deedofsale){
 
-                $owner = Owner::find($deedofsale['owner_uuid']);
+                if($this->isBillSplit === 'yes'){
+                    $amount = $this->utility->total_amount_due/$deedofsales->count();
+                }else{
+                    $amount = $this->utility->total_amount_due;
+                }
 
-                app('App\Http\Controllers\BillController')->store($owner->property_uuid, $this->unit->uuid, '',$owner->uuid, $this->particular_id, $this->utility->start_date, $this->utility->end_date, $this->utility->total_amount_due/$deedofsales->count(), '', 1);
+                 $owner = Owner::find($deedofsale['owner_uuid']);
+
+                app('App\Http\Controllers\BillController')->store($owner->property_uuid, $this->unit->uuid, '',$owner->uuid, $this->particular_id, $this->utility->start_date, $this->utility->end_date, $amount, '', 1);
                 
             }
             }
@@ -67,7 +80,8 @@ class UnitBillCreateComponent extends Component
         );
 
         // return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/bills')->with('success', 'The bill is successfully posted');
-        return redirect('/property/'.$this->property->uuid.'/utilities/')->with('success', 'The bill is successfully posted');
+        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/'.$this->type.'/utility/'.$this->utility->id.'/success')->with('success', 'The bill is
+        successfully posted');
 
         }catch(\Exception $e){
         
