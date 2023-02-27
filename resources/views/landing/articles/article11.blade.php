@@ -1,10 +1,10 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','How an Online Property Management System Instantly Improves Business Profitability for Landlords')
 @section('description', 'Online Property System improves a business for landlords')
 
 @section('og-url','https://thepropertymanager.online/How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords')
 @section('og-title','If you own a rental property, you&#39;re probably familiar with the challenges of managing it. You&#39;ll
-have bad tenantsread more...')
+have bad tenants read more...')
 @section('og-image','https://images.pexels.com/photos/129494/pexels-photo-129494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
 <!-- start article -->
 <x-blog-section-template>
@@ -193,4 +193,4 @@ highly recommend trying an automated solution like ours!
 
       </div>
 </div>
-</x-landing-page-template>
+</x-article-page-template>
