@@ -1,6 +1,12 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','Importance of having a Housekeeping Program for Rental Properties')
 @section('description', ' As a property manager or landlord, be aware of the importance of having a housekeeping program for rental properties')
+
+@section('og-url','https://thepropertymanager.online/Importance-of-having-a-Housekeeping-Program-for-Rental-Properties')
+@section('og-title','Importance of having a Housekeeping Program for Rental Properties')
+@section('og-description','Training housekeeping staff is an important aspect of ensuring that guests have a positive
+experience and that the property is well-maintained, read more...')
+@section('og-image','https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
 
 <!-- start article -->
 <x-blog-section-template>
@@ -69,4 +75,4 @@ best.</li>
 <!-- end article -->
 </main>
   
-</x-landing-page-template>
+</x-article-page-template>
