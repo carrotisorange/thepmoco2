@@ -1,4 +1,4 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','How to Improve Building Security to Make Residents Feel Safe')
 @section('description', 'Improve Building Security for residents safety')
 
@@ -78,4 +78,4 @@ security measures are effective and up-to-date.</li>
      
       </div>
 </div>
-</x-landing-page-template>
+</x-article-page-template>
