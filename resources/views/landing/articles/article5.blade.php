@@ -4,7 +4,7 @@
 
 @section('og-url','https://thepropertymanager.online/What-do-we-offer-as-a-SaaS-company-to-property-managers-and-owners')
 @section('og-title','What do we offer as a SaaS company to property managers and owners in The Property Manager Online?')
-@section('og-description','s a property manager or landlord, the benefits you can have using the property manager online make us unique, read more...')
+@section('og-description','As a property manager or landlord, the benefits you can have using the property manager online make us unique, read more...')
 @section('og-image','https://blockheadtechnologies.com/wp-content/uploads/magic-keyboard-1109543-980x653.jpg')
 <!-- start article -->
   

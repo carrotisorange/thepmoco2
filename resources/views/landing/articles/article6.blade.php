@@ -1,7 +1,11 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','Why Digitalization is the best strategy for 2023')
 @section('description', ' As a property manager or landlord, digitalization is the best strategy in 2023 for managing your properties')
 
+@section('og-url','https://thepropertymanager.online/Why-Digitalization-is-the-best-strategy-for-2023')
+@section('og-title','Why Digitalization is the best strategy for 2023')
+@section('og-description','Digitalization is a strategic approach to business that seeks to leverage the power of digital technologies to achieve business objectives. In short, read more...')
+@section('og-image','https://storage.googleapis.com/unbiased-www-production-backend/uploads/media/news/0001/03/thumb_2459_news_standard.jpeg')
 <!-- start article -->
 <x-blog-section-template>
 </x-blog-section-template>
@@ -90,7 +94,7 @@ technology.
     <p class="pb-6">
     With digitalization, you can enhance employee productivity by providing them with:
     </p>
-    
+
     <x-ad-section-template>
     </x-ad-section-template>
 
@@ -200,4 +204,4 @@ want your organization to change and then set out to create it.
 <!-- end article -->
 </main>
   
-</x-landing-page-template>
+</x-article-page-template>
