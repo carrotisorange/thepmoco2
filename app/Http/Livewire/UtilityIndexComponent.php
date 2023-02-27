@@ -32,11 +32,20 @@ class UtilityIndexComponent extends Component
 
     public $totalUnitsCount;
 
+
     public function mount()
     {
         $this->property_uuid = Session::get('property');
         $this->totalUtilitiesCount = Property::find(Session::get('property'))->utilities->count();
         $this->totalUnitsCount = Property::find($this->property_uuid)->units()->count();
+    }
+
+    public function clearFilters(){
+        $this->search = null;
+        $this->start_date = null;
+        $this->type = null;
+        $this->status = null;
+        $this->limitDisplayTo = 10;
     }
 
     public function storeUtilities($option)

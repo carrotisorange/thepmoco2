@@ -1,8 +1,5 @@
 <div>
     <style>
-        /* since nested groupes are not supported we have to use 
-                                 regular css for the nested dropdowns 
-                              */
         li>ul {
             transform: translatex(100%) scale(0)
         }
@@ -41,7 +38,10 @@
                 <h1 class="text-3xl font-bold text-gray-700">Utilities</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
+                <button type="button" wire:click="clearFilters"
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Clear Filters
+                </button>
                 <button type="button" wire:loading wire:target="storeUtilities" disabled
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Loading...
@@ -72,9 +72,11 @@
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                                       transition duration-150 ease-in-out origin-top min-w-32">
 
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/" data-modal-toggle="instructions-create-utility-electric-modal">Electric</a>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
+                                data-modal-toggle="instructions-create-utility-electric-modal">Electric</a>
                         </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/" data-modal-toggle="instructions-create-utility-water-modal">Water</a>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
+                                data-modal-toggle="instructions-create-utility-water-modal">Water</a>
                         </li>
 
                     </ul>
@@ -100,7 +102,7 @@
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </div>
-                    <input type="search" id="default-search" wire:model="search"
+                    <input type="search" id="search" wire:model="search"
                         class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for unit..." required>
 
@@ -146,12 +148,11 @@
                 <select id="small" wire:model="limitDisplayTo"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="" selected>Limit display to</option>
-                    @for ($i = 1; $i <= $totalUtilitiesCount; $i++) 
-                        @if($i%10===0) <option value="{{ $i }}">
-                            {{ $i }}
+                    @for ($i = 1; $i <= $totalUtilitiesCount; $i++) @if($i%10===0) <option value="{{ $i }}">
+                        {{ $i }}
                         </option>
                         @endif
-                    @endfor
+                        @endfor
                 </select>
             </div>
 
@@ -206,10 +207,11 @@
                                     <ul
                                         class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                                                                       transition duration-150 ease-in-out origin-top min-w-32">
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/" data-modal-toggle="instructions-create-utility-electric-modal">Electric</a>
+                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
+                                                data-modal-toggle="instructions-create-utility-electric-modal">Electric</a>
                                         </li>
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/" data-modal-toggle="instructions-create-utility-water-modal"
-                                             >Water</a>
+                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
+                                                data-modal-toggle="instructions-create-utility-water-modal">Water</a>
                                         </li>
 
                                     </ul>

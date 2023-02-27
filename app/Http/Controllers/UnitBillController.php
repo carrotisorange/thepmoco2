@@ -50,4 +50,11 @@ class UnitBillController extends Controller
             'utility' => $utility
         ]);
     }
+
+    public function success(Property $property, Unit $unit, $type, Utility $utility){
+        return view('units.bills.success', [
+            'unit' => $unit,
+            'utility' => $utility
+        ]);
+    }
 }

@@ -94,6 +94,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //route for adding bill to unit based on the utility reading
     Route::get('unit/{unit}/{type}/utility/{utility}', [UnitBillController::class, 'create'])->name('unit');
+    
+    Route::get('unit/{unit}/{type}/utility/{utility}/success', [UnitBillController::class, 'success'])->name('unit');
 
     Route::prefix('guest')->group(function(){
         Route::get('/', [PropertyGuestController::class, 'index'])->name('guest');
