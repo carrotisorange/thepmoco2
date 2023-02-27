@@ -43,6 +43,10 @@ the importance of paying attention to detail, such as making sure all surfaces a
 and all linens are properly folded.</li>
       <li class="p-5">Teach proper use of chemicals and equipment: Proper use of chemicals and equipment
 is essential for safety and to avoid damage to the hotel’s property.</li>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+
       <li class="p-5">Teach teamwork and communication: Housekeeping staff should be taught how to
 work as a team and to communicate effectively with their colleagues, supervisors and
 guests.</li>

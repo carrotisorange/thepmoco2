@@ -89,6 +89,8 @@ rats!).</li>
 maintenance if there are any problems with yours.</li>
     </ul>
      
+    <x-ad-section-template>
+    </x-ad-section-template>
 
     <h3 class="font-semibold text-xl pb-6">
     Pay attention to details.
@@ -105,6 +107,8 @@ impossible to solve!</li>
 how best to serve the needs of your tenants and keep them happy with their living
 situation.</li>
     </ul>
+
+
 
     <h3 class="font-semibold text-xl pb-6">
     More than just being a landlord, you need to be a good

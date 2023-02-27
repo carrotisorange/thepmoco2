@@ -50,6 +50,10 @@ risky for bad elements to get into.</li>
       <li class="pl-5 py-2"><span class="font-bold">Physical barriers:</span> Installing physical barriers, such as fencing,
 bollards, or security gates, can prevent unauthorized vehicles, and
 pedestrians from accessing the building.</li>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+
       <li class="pl-5 py-2"><span class="font-bold">Alarms:</span> Installing an alarm system can alert authorities and
 building occupants if a crime or emergency occurs.</li>
       <li class="pl-5 py-2"><span class="font-bold">Training for employees:</span>Regular training for employees on

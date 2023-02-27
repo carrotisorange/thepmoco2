@@ -72,6 +72,9 @@
     The best way for you as a small business entrepreneur to do this is by asking yourself questions like: What are people saying about my brand? How does it compare with other brands on a scale from 1-10 (10 being best)? And finally: Is there anything I could be doing better within my organization so that I can make sure I'm providing better customer service than anyone else in this niche?
     </p>
 
+    <x-ad-section-template>
+    </x-ad-section-template>
+    
     <h3 class="font-semibold text-xl pb-6">
       Third, create a brand story that focuses on how you help or support customers through those challenges.
     </h3>

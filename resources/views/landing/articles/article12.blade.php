@@ -65,6 +65,9 @@ how digital systems can help you target your audience and create a unique brand 
 apartment community or building.
     </p>
 
+    <x-ad-section-template>
+    </x-ad-section-template>
+    
     <p class="pb-6">
     By using social media platforms like Facebook and Twitter, you&#39;ll be able to keep up with what&#39;s
 going on in the community--and engage with current residents who live there now as well as

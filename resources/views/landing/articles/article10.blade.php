@@ -100,6 +100,10 @@ inside all day long!
     <h3 class="font-semibold text-xl pb-6">
     As a tenant, one should take care of a few more things when designing a rental place
     </h3>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+    
       <p class="pb-6">
       The tenant&#39;s personal space is a place to keep your stuff. This can be a desk, bookcase, or closet. The
 landlord will not want you to have things on the walls because they&#39;re expensive to replace when they

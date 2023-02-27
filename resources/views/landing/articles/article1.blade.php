@@ -38,6 +38,10 @@
       <p class="pb-6">
           Here’s where we need to innovate and rejuvenate.
       </p>
+
+      <x-ad-section-template>
+      </x-ad-section-template>
+
       <p class="pb-6">
           But the good old days are long gone; we need to advance and adapt to the technological evolution! And before you know it, we have built The PMO for all landlords and professional property managers out there who, like us, want to make work easier and better. 
       </p>

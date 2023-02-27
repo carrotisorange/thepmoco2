@@ -75,6 +75,10 @@ something like, &quot;That sounds excellent.&quot;
     <h3 class="font-semibold text-xl pb-6">
     Promote transparency and collaboration
     </h3>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+    
       <p class="pb-6">
       It is crucial to have a culture of openness and collaboration. Everyone needs to be on the same page, so
 it&#39;s important to promote this among all stakeholders involved in your project. It is also necessary that

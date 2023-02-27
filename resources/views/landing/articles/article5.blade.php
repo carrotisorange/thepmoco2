@@ -53,6 +53,9 @@
     The Property Manager Online gives your team the tools they need to do just that. It streamlines the entire process from start-up through maintenance—so there’s no need for any of them (or any other staff members) outside of the office who can help with set-up or training on new systems. Plus, there's little or no learning curve involved; our platform is easy to use so no learning curve was required either!
     </p>
 
+    <x-ad-section-template>
+    </x-ad-section-template>
+
       <h3 class="mt-3 font-semibold text-xl pb-6">
       Support, outreach, and spread thru word-of-mouth
       </h3>

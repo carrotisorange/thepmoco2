@@ -96,6 +96,9 @@ their space--and even report on how much is owed monthly when it comes time for 
 next payment.
     </p>
 
+    <x-ad-section-template>
+    </x-ad-section-template>
+    
     <p class="pb-6">
     Property management software helps keep track of maintenance issues in real-time as well as
 manage all aspects of the business from one place like managing tenants concerns, expenses,

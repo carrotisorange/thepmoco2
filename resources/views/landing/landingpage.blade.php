@@ -21,7 +21,7 @@
                         <div role="img" aria-label="Luxe. Logo.">
                           <img src="{{ asset('/brands/favicon.ico') }}">
                         </div>
-                        <h1 class="mt-8 md:mt-12 text-3xl lg:text-4xl font-semibold leading-10 text-center text-gray-800 text-center md:w-9/12 lg:w-7/12 dark:text-white">Welcome to The Property Manager Online!</h1>
+                        <h1 class="mt-8 md:mt-12 text-3xl lg:text-4xl font-semibold leading-10 text-center text-gray-800 text-center md:w-9/12 lg:w-7/12 dark:text-white">Welcome to The Property Manager Online</h1>
                         <p class="mt-10 text-lg leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold">Free trial</span> until full setup ready.</p>
                         <p class="mt-3 mb-8 text-base leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold text-purple-700 text-lg">No credit card required,</span> no strings attached</p>
                         <div class="mt-12 md:mt-14 w-full flex justify-center">

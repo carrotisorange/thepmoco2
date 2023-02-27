@@ -63,6 +63,10 @@
       <h3 class="mt-3 font-semibold text-xl pb-6">
       Rental accounting made simple
         </h3>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+
     <p class="pb-6">
     One of the most important aspects of the property management system is accounting. Without good accounting, your business can't grow or succeed at all. You need to know what's going on with your properties and how much money is coming in from them so that you can make informed decisions about how best to grow or expand your operations.
     </p>

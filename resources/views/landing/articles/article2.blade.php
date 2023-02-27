@@ -68,10 +68,13 @@
        <p class="pb-6">
        With a work order system, you can: - Keep track of all maintenance and repairs in one place - Track the status of each order as it is completed and assigned to different staff members
       </p>
-        <ul class="pb-6>">
-        <li>- Monitor the progress of a work order by date and status - Review all maintenance requests from your tenants</li>
-        <li>- Assign work orders to specific maintenance staff - Track the status of each order as it is completed and assigned to different staff members</li>
-        <li>- Monitor the progress of a work order by date and status - Review all maintenance requests from your tenants - Assign work orders to specific maintenance staff - Track the status of each order as it is completed and assigned to different staff members</li>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+        <ul class="pb-6 list-disc">
+        <li>Monitor the progress of a work order by date and status - Review all maintenance requests from your tenants</li>
+        <li>Assign work orders to specific maintenance staff - Track the status of each order as it is completed and assigned to different staff members</li>
+        <li>Monitor the progress of a work order by date and status - Review all maintenance requests from your tenants - Assign work orders to specific maintenance staff - Track the status of each order as it is completed and assigned to different staff members</li>
       </ul>
 
       <h3 class="mt-3 font-semibold text-xl pb-6">

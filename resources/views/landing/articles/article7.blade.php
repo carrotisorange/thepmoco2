@@ -35,6 +35,8 @@
       <li class="p-5">Offer amenities: Amenities such as a gym, pool, or community room can make the property more desirable, and encourage tenants to renew their leases. </li>
       <li class="p-5">Offer incentives for renewals: Offering incentives such as discounted rent or waived fees for tenants who renew their leases can encourage them to stay. </li>
       <li class="p-5">Create a sense of community: Encourage social interaction among tenants through events or activities, this can help create a sense of community and make tenants feel more connected to the property.</li>
+      <x-ad-section-template>
+      </x-ad-section-template>
       <li class="p-5">Be transparent and fair in rent increase: Be upfront about any upcoming rent increases and be fair in your pricing.</li>
       <li class="p-5">Keep the property clean and well-maintained: A clean and well-maintained property can create a positive impression and make tenants more likely to renew their leases. </li>
       <li class="p-5">Be flexible with lease terms: Be open to negotiating lease terms with tenants, such as allowing them to have pets or making other concessions. </li>

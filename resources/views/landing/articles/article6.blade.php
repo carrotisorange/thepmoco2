@@ -90,6 +90,9 @@ technology.
     <p class="pb-6">
     With digitalization, you can enhance employee productivity by providing them with:
     </p>
+    
+    <x-ad-section-template>
+    </x-ad-section-template>
 
     <ul class= "list-disc">
     <li class="pb-6">Better communication – With improved communication channels and technologies like
