@@ -1,6 +1,11 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','How Smart Landlords Keep Tenants Happy So They Don&#39;t Move Out')
 @section('description', 'How to keep tenants happy')
+
+@section('og-url','https://thepropertymanager.online/How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out')
+@section('og-title','How Smart Landlords Keep Tenants Happy So They Don&#39;t Move Out')
+@section('og-description','Landlords are the hardest people to deal with, right? They&#39;re always asking for more money, read more...')
+@section('og-image','https://images.pexels.com/photos/5998706/pexels-photo-5998706.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
 
 <!-- start article -->
 <x-blog-section-template>
@@ -139,4 +144,4 @@ you&#39;ll have no problems getting new tenants!</p>
     
       </div>
 </div>
-</x-landing-page-template>
+</x-article-page-template>
