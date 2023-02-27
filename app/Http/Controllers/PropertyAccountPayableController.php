@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use Session;
 use App\Models\AccountPayable;
+use App\Models\AccountPayableParticular;
 use Carbon\Carbon;
 
 class PropertyAccountPayableController extends Controller
@@ -83,5 +84,12 @@ class PropertyAccountPayableController extends Controller
         ->select('request_for')
         ->groupBy('request_for')
         ->get();
+    }
+
+    public function show(Property $property, AccountPayable $accountPayable){
+        return view('properties.accountpayables.show',[
+            'accountpayable' => $accountPayable,
+            'particulars' => AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get()
+        ]);
     }
 }
