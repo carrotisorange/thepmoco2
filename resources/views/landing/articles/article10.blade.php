@@ -1,6 +1,12 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','Why Designing Beautiful Rentable Spaces Has Over All Positive Results')
 @section('description', 'Why designing rentable space has positive impact result')
+
+@section('og-url','https://thepropertymanager.online/Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results')
+@section('og-title','Why Designing Beautiful Rentable Spaces Has Over All Positive Results')
+@section('og-description',' A bad design costs money and can even make your tenants unhappy. Here are some
+tips and tricks for making your rental property beautiful: read more...')
+@section('og-image','https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
 <!-- start article -->
 
 <x-blog-section-template>
@@ -103,7 +109,7 @@ inside all day long!
 
     <x-ad-section-template>
     </x-ad-section-template>
-    
+
       <p class="pb-6">
       The tenant&#39;s personal space is a place to keep your stuff. This can be a desk, bookcase, or closet. The
 landlord will not want you to have things on the walls because they&#39;re expensive to replace when they
@@ -218,4 +224,4 @@ property, so if you need space now, it might be time to start looking.
 
       </div>
 </div>
-</x-landing-page-template>
+</x-article-page-template>
