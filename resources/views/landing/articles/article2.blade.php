@@ -1,9 +1,13 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','Leasing management system user guide')
 @section('description', 'A leasing management system is a tool that can help leasing managers to improve operational efficiency and save time and money.')
 
- 
-    
+@section('og-url','https://thepropertymanager.online/How-to-use-a-leasing-management-system-to-improve-operational-efficiency')
+@section('og-title','How to use a leasing management system to improve operational efficiency?')
+@section('og-description','If you've ever tried to manage a property, you know how hard it can be, read more...')
+@section('og-image','https://images.pexels.com/photos/7652039/pexels-photo-7652039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+
+
 <!-- start article -->
 <x-blog-section-template>
 </x-blog-section-template>
@@ -114,4 +118,4 @@
     <!-- article end -->
 </main>
   
-      </x-landing-page-template>
+      </x-article-page-template>
