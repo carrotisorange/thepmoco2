@@ -20,6 +20,7 @@
 	</div>
 </div>
 
+
 <div class="relative  px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-5 lg:pb-28">
   <div class="absolute inset-0">
     <div class="h-1/3 bg-white sm:h-2/3"></div>
@@ -28,6 +29,24 @@
     
     <div class="mx-auto mt-3 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-4">
 
+    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
+          <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article3.jpg') }}" alt="three people looking laptop property management system"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="hover:underline">Article</a>
+            </p>
+            <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">What are the benefits of a property management system for property managers?</p>
+              <p class="mt-3 text-sm text-gray-500">
+              A property management system can be a great tool for landlords and property managers. It can help you to manage your properties more efficiently,</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
           <a href="How-to-use-a-leasing-management-system-to-improve-operational-efficiency"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article2.jpg') }}" alt="three people looking laptop property management system"></a>

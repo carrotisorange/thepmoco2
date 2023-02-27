@@ -145,6 +145,10 @@ Route::get('/How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out', func
     return view('landing.articles.article14');
 });
 
+Route::get('/Is-a-vacation-rental-more-profitable-than-a-long-term-rental-property', function(){
+    return view('landing.articles.article15');
+});
+
 
 
 

@@ -31,6 +31,25 @@
 
     <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
         <div class="flex-shrink-0">
+          <a href="How-To-Improve-Tenant-Retention-Rates"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article7.jpg') }}" alt="three people looking laptop property management system"></a>
+        </div>
+        <div class="flex flex-1 flex-col justify-between bg-white p-6">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-indigo-600">
+              <a href="How-To-Improve-Tenant-Retention-Rates" class="hover:underline">Article</a>
+            </p>
+            <a href="How-To-Improve-Tenant-Retention-Rates" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">How To Improve Tenant Retention Rates:</p>
+              <p class="mt-3 text-sm text-gray-500">
+              10 steps on how to improve tenant retention rates!</p>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+
+    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+        <div class="flex-shrink-0">
           <a href="Why-Digitalization-is-the-best-strategy-for-2023"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article6.jpg') }}" alt="three people looking laptop property management system"></a>
         </div>
         <div class="flex flex-1 flex-col justify-between bg-white p-6">
@@ -87,23 +106,7 @@
       </div>
 
       
-    <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div class="flex-shrink-0">
-          <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers"><img class="h-48 w-full object-cover" src="{{ asset('/brands/landing/article3.jpg') }}" alt="three people looking laptop property management system"></a>
-        </div>
-        <div class="flex flex-1 flex-col justify-between bg-white p-6">
-          <div class="flex-1">
-            <p class="text-sm font-medium text-indigo-600">
-              <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="hover:underline">Article</a>
-            </p>
-            <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">What are the benefits of a property management system for property managers?</p>
-              <p class="mt-3 text-sm text-gray-500">
-              A property management system can be a great tool for landlords and property managers. It can help you to manage your properties more efficiently,</p>
-            </a>
-          </div>
-        </div>
-      </div>
+    
 
 
     
