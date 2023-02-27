@@ -1,6 +1,12 @@
-<x-landing-page-template>
+<x-article-page-template>
 @section('title','How Digital Systems Improve Tenant Retention and Satisfaction')
 @section('description', 'Improve tenant satisfaction with property management digital systems')
+
+@section('og-url','https://thepropertymanager.online/How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction')
+@section('og-title','How Digital Systems Improve Tenant Retention and Satisfaction')
+@section('og-description','When you own a building, you want to make sure that it is running smoothly. You also want to
+keep your tenants happy and satisfied so that read more...')
+@section('og-image','https://images.pexels.com/photos/4473775/pexels-photo-4473775.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
 <!-- start article -->
 <x-blog-section-template>
 </x-blog-section-template>
@@ -67,7 +73,7 @@ apartment community or building.
 
     <x-ad-section-template>
     </x-ad-section-template>
-    
+
     <p class="pb-6">
     By using social media platforms like Facebook and Twitter, you&#39;ll be able to keep up with what&#39;s
 going on in the community--and engage with current residents who live there now as well as
@@ -150,4 +156,4 @@ from an apartment complex.
 
       </div>
 </div>
-</x-landing-page-template>
+</x-article-page-template>
