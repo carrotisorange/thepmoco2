@@ -44,7 +44,7 @@
                             <tr>
                                 <x-td>{{ $index+1 }}</x-td>
                                 <x-td>
-                                    <input type="text" wire:model="inventories.{{ $index }}.item"
+                                    <input type="text" wire:model.debounce.500ms="inventories.{{ $index }}.item"
                                         wire:keyup="updateUnitInventory({{ $inventory->id }})"
                                         class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                     @error('inventories.{{ $index }}.item')
@@ -53,7 +53,7 @@
                                 </x-td>
                                 <x-td>
                                     <input type="number" step="0.001" min="1"
-                                        wire:model="inventories.{{ $index }}.quantity"
+                                        wire:model.debounce.500ms="inventories.{{ $index }}.quantity"
                                         wire:keyup="updateUnitInventory({{ $inventory->id }})"
                                         class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                     @error('inventories.{{ $index }}.quantity')
@@ -61,7 +61,7 @@
                                     @enderror
                                 </x-td>
                                 <x-td>
-                                    <input type="text" wire:model="inventories.{{ $index }}.remarks"
+                                    <input type="text" wire:model.debounce.500ms="inventories.{{ $index }}.remarks"
                                         wire:keyup="updateUnitInventory({{ $inventory->id }})"
                                         class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                     @error('inventories.{{ $index }}.remarks')
