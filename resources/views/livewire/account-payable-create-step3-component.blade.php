@@ -2,8 +2,8 @@
 
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
-            <button type="button"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button>
+            {{-- <button type="button"
+                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button> --}}
         </div>
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="approveRequest()" method="POST">

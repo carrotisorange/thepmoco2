@@ -11,6 +11,7 @@
             <x-th>AMOUNT</x-th>
             <x-th></x-th>
             <x-th></x-th>
+            <x-th></x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -42,6 +43,10 @@
                 @endif
             </x-td>
             <x-td>
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download"
+                    class="text-blue-500 text-decoration-line: underline">Export</a>
+            </x-td>
+            <x-td>
                 <a href="#/" wire:click="deleteAccountPayable({{ $accountpayable->id }})" wire:loading.remove
                     class="text-red-500 text-decoration-line: underline">Delete</a>
 
@@ -57,9 +62,11 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
+         
             <x-th></x-th>
             <x-th></x-th>
             <x-td>{{ number_format($accountpayables->sum('amount'), 2) }}</x-td>
+            <x-th></x-th>
             <x-th></x-th>
 
         </tr>

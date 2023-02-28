@@ -60,7 +60,7 @@ class AccountPayableController extends Controller
          $canvas->page_text($width/5, $height/2, $property->property, null,
          55, array(0,0,0),2,2,-30);
 
-         return $pdf->download($property->property.'-accountpayable.pdf');
+         return $pdf->stream($property->property.'-accountpayable.pdf');
     }
 
     public function create_step_2(Property $property, AccountPayable $accountpayable){

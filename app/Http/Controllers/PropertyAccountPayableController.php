@@ -37,7 +37,7 @@ class PropertyAccountPayableController extends Controller
         ->when($request_for, function ($query, $request_for) {
         $query->where('request_for', $request_for);
         })
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('id', 'desc')->get();
     }
 
     public function export($property_uuid, $status=null, $created_at=null, $request_for=null, $limitDisplayTo=null){
@@ -91,5 +91,29 @@ class PropertyAccountPayableController extends Controller
             'accountpayable' => $accountPayable,
             'particulars' => AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get()
         ]);
+    }
+
+    public function download(Property $property, AccountPayable $accountPayable){
+       $data = [
+        'accountpayable' => $accountPayable,
+        'particulars' => AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get()
+       ];
+
+       $pdf = \PDF::loadView('properties.accountpayables.download', $data);
+
+       $pdf->output();
+
+       $canvas = $pdf->getDomPDF()->getCanvas();
+
+       $height = $canvas->get_height();
+       $width = $canvas->get_width();
+
+       $canvas->set_opacity(.2,"Multiply");
+
+       $canvas->set_opacity(.2);
+
+       $canvas->page_text($width/5, $height/2,$accountPayable->property->property, null, 55, array(0,0,0),2,2,-30);
+
+       return $pdf->download($accountPayable->property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
     }
 }

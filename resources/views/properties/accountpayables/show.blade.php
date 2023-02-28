@@ -4,10 +4,10 @@
         <div class="max-full mx-auto sm:px-6">
             <div class="mt-5 mb-5">
                 <p class="text-right">
-                    {{-- <button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/export/'"
+                    <button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download/'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                         type="button">Export
-                    </button> --}}
+                    </button>
                     <button onclick="window.location.href='{{ url()->previous() }}'"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                         type="button">Back
@@ -22,9 +22,14 @@
                 <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
                     <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-4">
                         <div class="sm:col-span-1">
-                            <dt class="text-sm font-medium text-gray-500">Requested On</dt>
+                            <dt class="text-sm font-medium text-gray-500">Request Date</dt>
                             <dd class="mt-1 text-sm text-gray-900">{{
                                 Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</dd>
+                        </div>
+                        <div class="sm:col-span-1">
+                            <dt class="text-sm font-medium text-gray-500">Due Date</dt>
+                            <dd class="mt-1 text-sm text-gray-900">{{
+                                Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}</dd>
                         </div>
 
                         <div class="sm:col-span-1">
@@ -36,6 +41,8 @@
                             <dt class="text-sm font-medium text-gray-500">Request For</dt>
                             <dd class="mt-1 text-sm text-gray-900">{{ $accountpayable->request_for }}</dd>
                         </div>
+
+             
 
                         <div class="sm:col-span-1">
                             <dt class="text-sm font-medium text-gray-500">Status</dt>
