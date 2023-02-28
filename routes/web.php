@@ -63,6 +63,10 @@ Route::get('/support', function(){
     return view('landing.support');
 });
 
+Route::get('/blog', function(){
+    return view('landing.blog');
+});
+
 Route::get('/blog-1', function(){
     return view('landing.blog-1');
 });
