@@ -13,17 +13,17 @@
 
 <!-- pop up modal -->
           <dh-component>         
-            <div class="py-12 bg-transparent transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
-                <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-4xl">
-                    <div class="relative py-3 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+            <div class="py-12 rounded-lg shadow  bg-gray-700 bg-opacity-75 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
+                <div role="alert" class="container mx-auto  max-w-2xl">
+                    <div class="relative py-3 px-5 md:px-10 shadow-2xl bg-white ">
                       
-                      <div id ="modal-bg" class=" dark:bg-gray-800 px-3 md:px-4 py-12 flex flex-col justify-center items-center">
-                        <div role="img" aria-label="Luxe. Logo.">
+                      <div id ="modal-bg" class="px-3 md:px-4 py-6 flex flex-col justify-center items-center">
+                        <div role="img" aria-label="PMO Logo">
                           <img src="{{ asset('/brands/favicon.ico') }}">
                         </div>
-                        <h1 class="mt-8 md:mt-12 text-3xl lg:text-4xl font-semibold leading-10 text-center text-gray-800 text-center md:w-9/12 lg:w-7/12 dark:text-white">Welcome to The Property Manager Online</h1>
-                        <p class="mt-10 text-lg leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold">Free trial</span> until full setup ready.</p>
-                        <p class="mt-3 mb-8 text-base leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold text-purple-700 text-lg">No credit card required,</span> no strings attached</p>
+                        <h1 class="mt-8 md:mt-12 text-xl lg:text-2xl font-semibold  text-gray-800 text-center   dark:text-white">Welcome to The Property Manager Online</h1>
+                        <p class="mt-10 text-md leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold text-xl">Free trial</span> until full setup ready.</p>
+                        <p class="mt-3 mb-3 text-base leading-normal text-center text-gray-600 md:w-9/12 dark:text-white"><span class="font-bold text-purple-700 text-lg">No credit card required,</span> no strings attached</p>
                         <div class="mt-12 md:mt-14 w-full flex justify-center">
                           <a href="https://thepmo.co/select-a-plan"><button class="bg-purple-900 dark:text-white dark:border-white w-full sm:w-auto border border-purple-800 text-base font-medium text-white py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-purple-600 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Start my Free Trial</button></a>
                         </div>
