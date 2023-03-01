@@ -15,7 +15,7 @@
           <dh-component>         
             <div class="py-12 rounded-lg shadow  bg-gray-700 bg-opacity-75 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
                 <div role="alert" class="container mx-auto  max-w-2xl">
-                    <div class="relative py-3 px-5 md:px-10 shadow-2xl bg-white ">
+                    <div class="mt-24 relative py-3 px-5 md:px-10 shadow-2xl bg-white ">
                       
                       <div id ="modal-bg" class="px-3 md:px-4 py-6 flex flex-col justify-center items-center">
                         <div role="img" aria-label="PMO Logo">
