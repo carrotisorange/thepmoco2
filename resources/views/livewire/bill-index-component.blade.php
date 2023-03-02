@@ -252,12 +252,13 @@
                                 Loading...
                             </button> --}}
                             @if($selectedBills)
-                            
+                            @can('is_account_receivable_delete_allowed')
                             <button type="button" wire:loading.remove wire:click="removeBills"
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                 Remove
                                 bills ({{ count($selectedBills) }})
                             </button>
+                            @endif
                             @endif
 
                         </div>
