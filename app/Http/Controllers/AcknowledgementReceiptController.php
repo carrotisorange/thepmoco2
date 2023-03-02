@@ -45,6 +45,8 @@ class AcknowledgementReceiptController extends Controller
         'proof_of_payment' => $proof_of_payment->store('proof_of_payments')
         ]);
         }
+
+        return $ar_id;
      
     }
 

@@ -54,6 +54,10 @@ class ConcernController extends Controller
      */
     public function show($property_uuid, Concern $concern)
     {
+        $this->authorize('is_concern_read_allowed');
+
+        $this->authorize('is_concern_update_allowed');
+
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens one',13);
         
         return view('concerns.show',[

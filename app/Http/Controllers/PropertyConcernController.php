@@ -20,6 +20,9 @@ class PropertyConcernController extends Controller
     }
 
     public function destroy($unit_uuid){
+
+        $this->authorize('is_concern_delete_allowed');
+
         Concern::where('unit_uuid', $unit_uuid)->delete();
     }
 

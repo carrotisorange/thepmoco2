@@ -20,76 +20,40 @@ use App\Models\Collection;
 use App\Models\AccountPayable;
 
 class PropertyController extends Controller
-{
-    public function show_list_of_all_tenants($property_uuid)
-    {
-        return Property::find($property_uuid)->tenants;
-    }
-
-    
-    public function destroy_property_session()
-    {
-        Session::forget('property');
-        Session::forget('property_name');
-    }
-
-    public function store_property_session($property_uuid)
-    {
-        Session::put('property', $property_uuid);
-
-        Session::put('property_name', Property::find($property_uuid)->property);
-        
-    }
-
-    public function unlock($property_uuid)
-    {
-        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',20);
-
-        return view('admin.restrictedpages.portfolio');
-    }
-
-    public function is_property_exist()
-    {
-        if(!User::find(auth()->user()->id)->user_properties->count()){
-            return true; 
-        }else{ 
-            return false; 
-        } 
-    }
-
-    public function generate_uuid()
-    {
-        return Str::uuid();
-    }
-
-    public function is_user_allowed_to_access($status)
-    {
-        if($status === 'banned'){
-            abort(403);
-        }
-    }
-
+{   
     public function index()
     {        
         $this->destroy_property_session();
 
         $this->is_user_allowed_to_access(auth()->user()->status);
+
+        $current_user_role_id = auth()->user()->role_id;
+
+        $current_user_username = auth()->user()->username;
+
+        $sales = '12';
+
+        $dev = '10';
+
+        $tenant = '8';
+
+        $owner = '7';
         
-        if(auth()->user()->role_id == '12')
+        if($current_user_role_id == $sales)
         {
             return redirect('/dashboard/sales');
         }
-        elseif(auth()->user()->role_id == '10')
+        elseif($current_user_role_id == $dev)
         {   
            return redirect('/dashboard/dev');
         }
-        elseif(auth()->user()->role_id == '8')
+        elseif($current_user_role_id == $tenant)
         {
-            return redirect(auth()->user()->role_id.'/tenant/'.auth()->user()->username.'/contracts');
+            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/contracts');
         }
-        elseif(auth()->user()->role_id == '7')
+        elseif($current_user_role_id == $owner)
         {
-            return redirect(auth()->user()->role_id.'/owner/'.auth()->user()->username.'/units');
+            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/units');
         }
         else
         {
@@ -451,9 +415,9 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {  
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
-
         $this->authorize('is_portfolio_read_allowed');
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
 
         $this->isUserApproved(auth()->user()->id, $property->uuid);
 
@@ -478,12 +442,6 @@ class PropertyController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Property  $property
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Property $property)
     { 
         $this->authorize('is_portfolio_update_allowed');
@@ -528,4 +486,48 @@ class PropertyController extends Controller
             'property' => Property::find($uuid),
         ]);
      }
+
+     //other functions
+
+         public function destroy_property_session()
+    {
+        Session::forget('property');
+        Session::forget('property_name');
+    }
+
+    public function store_property_session($property_uuid)
+    {
+        Session::put('property', $property_uuid);
+
+        Session::put('property_name', Property::find($property_uuid)->property);
+        
+    }
+
+    public function unlock($property_uuid)
+    {
+        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',20);
+
+        return view('admin.restrictedpages.portfolio');
+    }
+
+    public function is_property_exist()
+    {
+        if(!User::find(auth()->user()->id)->user_properties->count()){
+            return true; 
+        }else{ 
+            return false; 
+        } 
+    }
+
+    public function generate_uuid()
+    {
+        return Str::uuid();
+    }
+
+    public function is_user_allowed_to_access($status)
+    {
+        if($status === 'banned'){
+            abort(403);
+        }
+    }
 }

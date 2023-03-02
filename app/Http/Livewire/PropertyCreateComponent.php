@@ -55,7 +55,7 @@ class PropertyCreateComponent extends Component
         $this->validateOnly($propertyName);
      }
 
-     public function submitForm()
+     public function create()
      {
          sleep(2);
 
@@ -82,10 +82,14 @@ class PropertyCreateComponent extends Component
             }); 
 
         }catch (\Throwable $e) {
-
             return back()->with('error', 'Cannot perform your action.');
-
         }
+     }
+
+     public function cancel(){
+      sleep(2);
+
+      return redirect('/property');
      }
 
      public function render()
