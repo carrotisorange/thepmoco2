@@ -25,8 +25,6 @@ class UnitContractController extends Controller
 
     public function create(Property $property, Unit $unit){
         
-        $this->authorize('managerandadmin');
-
         return view('tenants.create', [
             'unit' => $unit
         ]);

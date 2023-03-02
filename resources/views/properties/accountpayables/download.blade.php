@@ -106,7 +106,7 @@
                 </p>
                 <p>
                     Delivery Date: {{
-                    Carbon\Carbon::parse($accountpayable->delivery_at)->format('M d, Y') }}
+                    Carbon\Carbon::parse($accountpayable->delivery_att)->format('M d, Y') }}
                 </p>
 
                 <br>

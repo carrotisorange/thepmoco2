@@ -15,6 +15,7 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
+            <x-th></x-th>
             {{-- <x-th></x-th> --}}
         </tr>
     </thead>
@@ -115,6 +116,10 @@
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-3"
                     class="text-purple-500 text-decoration-line: underline">Moveout</a>
                 @endif
+            </x-td>
+            <x-td>
+                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/delete"
+                    class="text-red-500 text-decoration-line: underline">Delete</a>
             </x-td>
             {{-- <x-td>
                 @if($item->status == 'pendingmovein')

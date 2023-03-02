@@ -28,8 +28,6 @@ class OwnerController extends Controller
      */
     public function create(Property $property, Unit $unit)
     {
-        $this->authorize('manager');
-
         return view('owners.create', [
             'unit' => $unit,
         ]);

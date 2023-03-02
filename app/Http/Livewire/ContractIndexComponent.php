@@ -21,6 +21,10 @@ class ContractIndexComponent extends Component
         return redirect('/property/'.Session::get('property').'/tenant');
     }
 
+    public function clearFilters(){
+        $this->status = null;
+    }
+
     public function render()
     {   
         $statuses = Contract::where('property_uuid', $this->property->uuid)
@@ -29,12 +33,14 @@ class ContractIndexComponent extends Component
         ->groupBy('status')
         ->get();
 
+        $contracts = Property::find($this->property->uuid)->contracts()
+        ->when($this->status, function($query){
+        $query->where('status',$this->status);
+        })
+        ->paginate(10);
+
         return view('livewire.contract-index-component',[
-            'contracts' => Property::find($this->property->uuid)->contracts()
-            ->when($this->status, function($query){
-            $query->where('status',$this->status);
-            })
-            ->get(),
+            'contracts' => $contracts,
             'statuses' => $statuses
         ]);
     }

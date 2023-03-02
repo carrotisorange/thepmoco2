@@ -69,7 +69,8 @@ class ContractCreateComponent extends Component
 
         app('App\Http\Controllers\ContractController')->store(auth()->user()->id, $contract_uuid, $this->property_uuid, $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'reserved', 4, 'reserved', 1, 1, $this->referral, $this->sendContractToTenant);
 
-        return redirect('/property/'.$this->property_uuid.'/tenant/'.$this->tenant->uuid)->with('success', 'Tenant is marked as reserved.');
+        return
+        redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid)->with('success','Tenant is marked as reserved.');
       }
 
       public function submitForm()

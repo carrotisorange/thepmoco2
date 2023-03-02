@@ -97,7 +97,7 @@
         <div class="flex flex-row">
             <div class="basis-3/4">
 
-                @can('treasury')
+                @can('is_account_receivable_create_allowed')
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
                 <button type="button" wire:click="payBills" wire:loading.remove
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -126,12 +126,13 @@
                     Loading...
                 </button>
                 @if($selectedBills)
-
+                @can('is_account_receivable_delete_allowed')
                 <button type="button" wire:loading.remove wire:click="removeBills"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                     Remove
                     bills ({{ count($selectedBills) }})
                 </button>
+                @endif
                 @endif
             </div>
         </div>

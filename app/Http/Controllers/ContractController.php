@@ -345,9 +345,13 @@ class ContractController extends Controller
         return view('contracts.moveouts.clearance');
     }
 
-    public function destroy()
+    public function destroy(Property $property, Tenant $tenant, Contract $contract)
     {
-         $this->authorize('is_contract_delete_allowed');
+        $this->authorize('is_contract_delete_allowed');
+
+        Contract::where('uuid', $contract->uuid)->delete();
+
+        return back()->with('success', 'Contract is successfully deleted!');
     }
 
     public function force_moveout(Request $request, Property $property, Contract $contract){

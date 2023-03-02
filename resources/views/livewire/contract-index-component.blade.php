@@ -5,11 +5,17 @@
                 <h1 class="text-3xl font-bold text-gray-500">Contracts</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                @if($status)
+                <button type="button" wire:click="clearFilters"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                    Clear Filters</button>
+                @endif
+
                 <a class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500  px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
                     class=" hover:text-indigo-900"><i class="fa-solid fa-download"></i> &nbsp Sample Lease Contract</a>
 
-                <button type="button" data-modal-toggle="instructions-create-contract-modal" 
+                <button type="button" data-modal-toggle="instructions-create-contract-modal"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-plus"></i>&nbsp New Contract</button>
 
@@ -17,7 +23,7 @@
         </div>
 
         <div class="mt-3">
-            {{-- {{ $contracts->links() }} --}}
+            {{ $contracts->links() }}
         </div>
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             {{-- <div class="sm:col-span-4">
@@ -74,8 +80,7 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No contracts</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new contract</p>
                             <div class="mt-6">
-                                <button type="button"
-                                    data-modal-toggle="instructions-create-contract-modal"
+                                <button type="button" data-modal-toggle="instructions-create-contract-modal"
                                     class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                     <!-- Heroicon name: mini/plus -->
                                     <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"

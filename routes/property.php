@@ -284,6 +284,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                     Route::get('transfer', [ContractController::class, 'transfer'])->name('tenant');
                     Route::get('movein', [ContractController::class, 'movein'])->name('tenant');
                     Route::get('moveout/export', [ContractController::class, 'export_moveout_form']);
+                    Route::get('delete', [ContractController::class, 'destroy']);
                   
                 });
             });  

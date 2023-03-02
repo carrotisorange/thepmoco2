@@ -27,6 +27,9 @@ class PropertyContractController extends Controller
     }
 
     public function show(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
+
+        $this->authorize('is_contract_read_allowed');
+
         return view('properties.contracts.show',[
             'contract' => $contract,
             'tenant' => $tenant

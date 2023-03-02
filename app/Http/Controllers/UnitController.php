@@ -105,8 +105,6 @@ class UnitController extends Controller
 
     public function create($batch_no)
     {
-        $this->authorize('manager');
-
         return view('units.create',[
             'batch_no' => $batch_no,
         ]);
