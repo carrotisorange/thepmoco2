@@ -38,15 +38,16 @@
     </a>
 </div>
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-
+            
+            
             <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article16.jpeg') }}" alt="3 vacation homes in an island" alt="">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">
                 <a href="10-Tips-to-increase-occupancy-rate-and-profitability-for-vacation-homes" class="mt-2 block">
-                    <p class="text-base font-semibold text-gray-900">Is a vacation rental more profitable than a long-term rental property</p>
+                    <p class="text-base font-semibold text-gray-900">10 Tips to increase occupancy rate and profitability for vacation homes</p>
                     <p class="mt-3 text-sm text-gray-500">
-                    If you're a business owner, it's easy to get wrapped up in the day-to-day operations of your company. </p>
+                    If you're a business owner, it's easy to get wrapped up in the day-to-day operations of your company.</p>
                 </a>    
                     <span class="text-sm text-gray-500 dark:text-gray-300">2 March 2023</span>
                 </div>
