@@ -10,7 +10,7 @@
         <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">Articles</h1>
 
         <div class="mx-10 flex justify-end items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 ">
-	    <span class="block">Page 1 of 4</span>
+	    <span class="block">Page 1 of 2</span>
 		
 
     <!-- <a href="#" class="flex items-center px-4 py-2 mx-1 text-gray-500 bg-white rounded-md cursor-not-allowed dark:bg-gray-800 dark:text-gray-600">
@@ -38,6 +38,20 @@
     </a>
 </div>
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+
+            <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article16.jpeg') }}" alt="3 vacation homes in an island" alt="">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="10-Tips-to-increase-occupancy-rate-and-profitability-for-vacation-homes" class="mt-2 block">
+                    <p class="text-base font-semibold text-gray-900">Is a vacation rental more profitable than a long-term rental property</p>
+                    <p class="mt-3 text-sm text-gray-500">
+                    If you're a business owner, it's easy to get wrapped up in the day-to-day operations of your company. </p>
+                </a>    
+                    <span class="text-sm text-gray-500 dark:text-gray-300">2 March 2023</span>
+                </div>
+            </div>
+
             <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article15.jpeg') }}" alt="pool view with palm trees" alt="">
 
@@ -129,23 +143,12 @@
                 </div>
             </div>
 
-            <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article8.jpg') }}" alt="person with broom and dustpan">
-
-                <div class="flex flex-col justify-between py-6 lg:mx-6">
-                <a href="Importance-of-having-a-Housekeeping-Program-for-Rental-Properties" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">Importance of having a Housekeeping Program for Rental Properties</p>
-              <p class="mt-3 text-sm text-gray-500">
-              Training housekeeping staff is an important aspect of ensuring that guests have a positive experience and that the property is well-maintained.</p>
-            </a>
-                    <span class="text-sm text-gray-500 dark:text-gray-300">2 February 2023</span>
-                </div>
-            </div>
+            
 
         </div>
 
         <div class="mx-10 mt-5 flex justify-end items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 ">
-	    <span class="block">Page 1 of 4</span>
+	    <span class="block">Page 1 of 2</span>
 		
 
     <!-- <a href="#" class="flex items-center px-4 py-2 mx-1 text-gray-500 bg-white rounded-md cursor-not-allowed dark:bg-gray-800 dark:text-gray-600">

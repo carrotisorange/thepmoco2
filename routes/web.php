@@ -153,7 +153,9 @@ Route::get('/Is-a-vacation-rental-more-profitable-than-a-long-term-rental-proper
     return view('landing.articles.article15');
 });
 
-
+Route::get('/10-Tips-to-increase-occupancy-rate-and-profitability-for-vacation-homes', function(){
+    return view('landing.articles.article16');
+});
 
 
 
