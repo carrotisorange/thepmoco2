@@ -5,17 +5,17 @@
                 <h1 class="text-3xl font-bold text-gray-700">Utilities / {{ $option }}</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button onclick="window.location.href='/property/{{ Session::get('property') }}/utilities'"
+                <button wire:click="returnToUtilitiesPage" wire:loading.remove
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    type="button">Back
+                    type="button">Go back and delete utilities
                 </button>
-                @if($showUtilities)
+      
                 <button type="submit" wire:click="postUtilities" wire:loading.remove
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Post Utilities
                 </button>
-                @endif
-                <button type="button" wire:loading wire:target="postUtilities" disabled
+              
+                <button type="button" wire:loading disabled
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Loading...
                 </button>
@@ -40,7 +40,7 @@
         </div>
         {{-- @if(!$this->min_charge) --}}
 
-        <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+        {{-- <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
             <div class="sm:col-span-2">
                 <label for="">Start date</label>
@@ -73,9 +73,9 @@
 
             </div>
             <div class="sm:col-span-6">
-                
+
                 <p class="text-right">
-                    <button type="button" wire:click="updateParameters" wire:loading.remove
+                    <button type="button" data-modal-toggle="instructions-update-utility-parameter-modal"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Save Parameters
                     </button>
@@ -86,17 +86,14 @@
                 </p>
             </div>
 
-        </div>
-
-     
-        {{-- @endif --}}
+        </div> --}}
 
         <div class="mt-3 -my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
 
-                @if($showUtilities)
+                {{-- @if($showUtilities) --}}
                 <div>
                     <p class="mt-3 text-sm text-center text-gray-500">
                         Showing
@@ -104,23 +101,17 @@
 
                         {{Str::plural('utility', $utilities->count())}}
 
-                        {{--
-                    <p class="text-center">
-                        <a wire:loading wire:target="updateParameters"
-                            class="text-green-500 text-decoration-line: underline" href="#/">
-                            Saving...
-                        </a>
-                    </p> --}}
                     </p>
 
                     @include('forms.utilities.utility-edit')
 
 
                 </div>
-                @endif
+                {{-- @endif --}}
                 {{-- {{ $utilities->links() }} --}}
             </div>
         </div>
     </div>
     @include('layouts.notifications')
+    @include('modals.instructions.update-utility-parameter-modal')
 </div>
