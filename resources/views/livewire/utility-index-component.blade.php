@@ -44,12 +44,8 @@
                     Clear Filters
                 </button>
                 @endif
-                <button type="button" wire:loading wire:target="storeUtilities" disabled
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Loading...
-                </button>
 
-                <div class="group inline-block" wire:loading.remove>
+                <div class="group inline-block">
                     <span>
                         <button
                             class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -187,11 +183,8 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No utilities</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating new utilities</p>
                             <div class="mt-6">
-                                <button type="button" wire:loading wire:target="storeUtilities" disabled
-                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Loading...
-                                </button>
-                                <div class="group inline-block" wire:loading.remove>
+
+                                <div class="group inline-block">
                                     <button
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i> &nbsp

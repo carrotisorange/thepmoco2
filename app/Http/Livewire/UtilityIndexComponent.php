@@ -103,18 +103,21 @@ class UtilityIndexComponent extends Component
           $statuses = Utility::where('property_uuid', $this->property_uuid)
           ->select('status')
           ->whereNotNull('status')
+          ->where('is_posted', 1)
           ->groupBy('status')
           ->get();
 
         $types = Utility::where('property_uuid', $this->property_uuid)
           ->select('type')
           ->whereNotNull('type')
+             ->where('is_posted', 1)
           ->groupBy('type')
           ->get();
 
           $dates = Utility::where('property_uuid', $this->property_uuid)
           ->select('start_date')
           ->whereNotNull('start_date')
+             ->where('is_posted', 1)
           ->groupBy('start_date')
           ->get();
 
