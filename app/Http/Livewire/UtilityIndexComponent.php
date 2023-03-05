@@ -24,7 +24,7 @@ class UtilityIndexComponent extends Component
 
     public $type;
 
-    public $start_date;
+    public $date_created;
 
     public $limitDisplayTo = 10;
 
@@ -33,6 +33,7 @@ class UtilityIndexComponent extends Component
     public $totalUnitsCount;
 
     public $kwh;
+    public $start_date;
     public $end_date;
     public $min_charge;
 
@@ -48,7 +49,7 @@ class UtilityIndexComponent extends Component
 
     public function clearFilters(){
         $this->search = null;
-        $this->start_date = null;
+        $this->date_created = null;
         $this->type = null;
         $this->status = null;
         $this->limitDisplayTo = 10;
