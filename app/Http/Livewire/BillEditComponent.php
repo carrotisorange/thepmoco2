@@ -76,7 +76,7 @@ class BillEditComponent extends Component
              'is_posted' => true,
             ]);
 
-            return redirect('/property/'.Session::get('property').'/bill/'.$this->batch_no)->with('success', count($this->bills). ' bills are successfully posted.');
+            return redirect('/property/'.Session::get('property').'/bill/'.$this->batch_no)->with('success', 'Success!');
 
             // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
 

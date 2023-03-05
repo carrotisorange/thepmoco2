@@ -232,7 +232,7 @@ class OwnerCollectionController extends Controller
 
          app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
          
-         return redirect('/property/'.Session::get('property').'/owner/'.$owner->uuid.'/collections')->with('success', 'Payment is successfully created.');
+         return redirect('/property/'.Session::get('property').'/owner/'.$owner->uuid.'/collections')->with('success', 'Success!');
 
     }
 

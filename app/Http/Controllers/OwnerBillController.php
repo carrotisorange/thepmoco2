@@ -136,7 +136,7 @@ class OwnerBillController extends Controller
 
         Mail::to($request->email)->send(new SendBillToOwner($data));
 
-        return back()->with('success', 'Unpaid bills is successfully sent');
+        return back()->with('success', 'Success!');
     }
 
     public function generate_pdf($data, $property)

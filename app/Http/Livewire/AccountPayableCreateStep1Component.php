@@ -56,7 +56,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->validate();
 
         if(!$this->get_particulars()->count()){
-            return back()->with('success', 'Please add at least 1 particular to proceed');
+            return back()->with('success','Success!');
         }
 
         $accountpayable_id = app('App\Http\Controllers\AccountPayableController')->store_step_1(
@@ -71,9 +71,9 @@ class AccountPayableCreateStep1Component extends Component
 
 
         if($this->request_for === 'purchase'){
-            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Step 1 is successfully accomplished!');
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Success!');
         }else{
-            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-4')->with('success', 'Step 1 is successfully accomplished!');
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-4')->with('success', 'Success!');
         }
     }
 
@@ -106,7 +106,7 @@ class AccountPayableCreateStep1Component extends Component
 
         AccountPayableParticular::where('batch_no', $this->batch_no)->orWhere('item', '')->delete();
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable')->with('success', 'Request is successfully canceled!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable')->with('success','Success!');
     }
 
     public function updateParticular($id){

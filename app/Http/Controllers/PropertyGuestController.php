@@ -27,7 +27,7 @@ class PropertyGuestController extends Controller
             'movein_at' => Carbon::now()
         ]);
 
-        return back()->with('success', 'Guest has been moved in successfully!');
+        return back()->with('success', 'Success!');
     }
 
     public function moveout(Property $property, Unit $unit, Guest $guest)
@@ -38,7 +38,7 @@ class PropertyGuestController extends Controller
             'moveout_at' => Carbon::now()
         ]);
 
-        return back()->with('success', 'Guest has been moved in successfully!');
+        return back()->with('success', 'Success!');
     }
 
     public function destroy($unit_uuid){

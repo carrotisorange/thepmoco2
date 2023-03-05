@@ -44,7 +44,7 @@ class TenantBillCreateComponent extends Component
 
         $this->selectedBills = [];
 
-        return back()->with('success','Bill is successfully removed.');
+        return back()->with('success', 'Success!');
      }
 
    public function exportBills(){
@@ -110,7 +110,7 @@ class TenantBillCreateComponent extends Component
 
           $this->selectedBills = [];
 
-          return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success','Bill is successfully marked as unpaid.');
+          return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success', 'Success!');
 
      }
 

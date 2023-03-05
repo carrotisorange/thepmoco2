@@ -74,7 +74,7 @@ class UnitConcernEditComponent extends Component
             $this->concern_details->update($validatedData);
         });
 
-        session()->flash('success', 'Concern details is successfully updated.');
+        session()->flash('success', 'Success!');
 
        }catch(\Exception $e){
         session()->flash('error');

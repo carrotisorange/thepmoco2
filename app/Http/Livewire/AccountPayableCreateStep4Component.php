@@ -50,7 +50,7 @@ class AccountPayableCreateStep4Component extends Component
             'due_date' => $this->due_date
         ]);
 
-        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-5')->with('success', 'Step 4 is successfully accomplished!');
+        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-5')->with('success', 'Success!');
     }
 
     public function render()

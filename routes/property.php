@@ -90,10 +90,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('utilities')->group(function(){
         Route::get('/',[PropertyUtilityController::class, 'index'])->name('utilities');
         Route::get('/{batch_no}/{option}',[UtilityController::class, 'edit'])->name('utilities');
+        
     });
 
     //route for adding bill to unit based on the utility reading
     Route::get('unit/{unit}/{type}/utility/{utility}', [UnitBillController::class, 'create'])->name('unit');
+    Route::get('unit/{unit}/utility/{utility}/edit', [UnitBillController::class, 'edit'])->name('unit');
     
     Route::get('unit/{unit}/{type}/utility/{utility}/success', [UnitBillController::class, 'success'])->name('unit');
 

@@ -30,6 +30,6 @@ class SubscribeController extends Controller
          'status' => 'subscribed'
          ]);
 
-         return redirect('/#Subscribes')->with('success', 'You are now signed up for our newsletter.');
+         return redirect('/#Subscribes')->with('success', 'Success!');
     }
 }

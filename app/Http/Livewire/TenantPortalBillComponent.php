@@ -39,7 +39,7 @@ class TenantPortalBillComponent extends Component
             'status' => 'pending',
         ]);
 
-        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments_request/'.$batch_no)->with('success', 'Payment request has been processed.');
+        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments_request/'.$batch_no)->with('success', 'Success!');
     }
 
 

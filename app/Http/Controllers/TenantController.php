@@ -139,7 +139,7 @@ class TenantController extends Controller
             DB::beginTransaction();
             $tenant->update($attributes);
             DB::commit();
-            return back()->with('success', 'Tenant has been updated.');
+            return back()->with('success', 'Success!');
         }catch(\Exception $e){
             DB::rollback();
             
@@ -188,7 +188,7 @@ class TenantController extends Controller
            
         }
 
-         return redirect('/property/'.Session::get('property').'/tenant')->with('success', 'A tenant has been moved to archive.');
+         return redirect('/property/'.Session::get('property').'/tenant')->with('success', 'Success!');
 
     }
 

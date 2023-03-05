@@ -104,7 +104,7 @@ class AccountPayableCreateStep2Component extends Component
               ]);
         }
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Step 2 is successfully accomplished!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
 
     public function removeQuotation($quotation)

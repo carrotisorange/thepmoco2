@@ -9,7 +9,7 @@
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     type="button">Back
                 </button>
-                @if($this->start_date&&$this->end_date)
+                @if($showUtilities)
                 <button type="submit" wire:click="postUtilities" wire:loading.remove
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Post Utilities
@@ -96,7 +96,7 @@
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
 
-                @if($this->start_date&&$this->end_date&&$this->kwh)
+                @if($showUtilities)
                 <div>
                     <p class="mt-3 text-sm text-center text-gray-500">
                         Showing

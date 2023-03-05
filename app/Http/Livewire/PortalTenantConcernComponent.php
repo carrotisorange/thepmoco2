@@ -51,7 +51,8 @@ class PortalTenantConcernComponent extends Component
 
        $this->store_notification();
 
-        return redirect('/'.$this->user->role_id.'/tenant/'. auth()->user()->username .'/concerns/'.$concern_id.'/success')->with('success','Concern is reported successfully.');
+        return redirect('/'.$this->user->role_id.'/tenant/'. auth()->user()->username
+        .'/concerns/'.$concern_id.'/success')->with('success', 'Success!');
     }
 
     public function store_concern($validatedData)

@@ -140,7 +140,7 @@ class UnitController extends Controller
 
         app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, $request->number_of_units, 5);
         
-        return redirect('/property/'.Session::get('property').'/unit/'.$batch_no.'/edit')->with('success', $units.' unit is successully created.');
+        return redirect('/property/'.Session::get('property').'/unit/'.$batch_no.'/edit')->with('success', 'Success!');
     }
 
     public function update(Request $request, Property $property, Unit $unit)
@@ -165,7 +165,7 @@ class UnitController extends Controller
 
         $unit->update($attributes);
 
-        return back()->with('success', 'Unit is successfully updated.');
+        return back()->with('success', 'Success!');
     }
 
     public function update_unit_status($unit_uuid, $status_id)
@@ -189,7 +189,7 @@ class UnitController extends Controller
         }else{
             Unit::where('uuid', $unit->uuid)->delete();
 
-            return redirect('/property/'.Session::get('property').'/unit')->with('success', 'A unit is successfully deleted!');
+            return redirect('/property/'.Session::get('property').'/unit')->with('success', 'Success!');
         }
        
     }

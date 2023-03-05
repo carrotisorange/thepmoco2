@@ -159,7 +159,7 @@ class AccountPayableController extends Controller
             'status' => 'approved'
         ]);
 
-        return back()->with('success', 'Request is successfully approved.');
+        return back()->with('success', 'Success!');
     }
 
     /**

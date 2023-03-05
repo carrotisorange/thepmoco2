@@ -156,7 +156,7 @@ class PortalTenantController extends Controller
     {
        PaymentRequest::where('batch_no', $batch_no)->delete();
 
-      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/bills/')->with('success', 'Payment request has been discarded.');
+      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/bills/')->with('success', 'Success!');
     }  
 
     public function payment_request_update(Request $request, $role_id, User $user, $batch_no)
@@ -181,8 +181,7 @@ class PortalTenantController extends Controller
                 'property_uuid' => Session::get('property') 
             ]);
 
-         return redirect('/property/'.Session::get('property').'/collection/approved')->with('success', 'Payment has
-         been declined!');
+         return redirect('/property/'.Session::get('property').'/collection/approved')->with('success', 'Success!');
         }
          else{
     
@@ -207,7 +206,7 @@ class PortalTenantController extends Controller
       } 
 
       return redirect(auth()->user()->role_id.'/tenant/'.
-      auth()->user()->username.'/payments/declined')->with('success', 'Proof of payment has been uploaded.');
+      auth()->user()->username.'/payments/declined')->with('success', 'Success!');
 
 
     }  
@@ -232,7 +231,7 @@ class PortalTenantController extends Controller
                 'property_uuid' => Session::get('property') 
             ]);
 
-        return redirect('/property/'.Session::get('property').'/collection/declined')->with('success', 'Payment has been declined!');
+        return redirect('/property/'.Session::get('property').'/collection/declined')->with('success', 'Success!');
     }
 
 

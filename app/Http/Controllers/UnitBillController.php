@@ -57,4 +57,12 @@ class UnitBillController extends Controller
             'utility' => $utility
         ]);
     }
+
+    public function edit(Property $property, Unit $unit, Utility $utility){
+        return view('units.bills.edit',[
+            'property' => $property,
+            'unit' => $unit,
+            'utility' => $utility
+        ]);
+    }
 }

@@ -15,6 +15,7 @@
             <x-th>AMOUNT DUE</x-th>
             <x-th>STATUS</x-th>
             <x-th></x-th>
+            <x-th></x-th>
 
         </tr>
     </thead>
@@ -71,6 +72,10 @@
                 </span>
                 @endif
 
+            </x-td>
+            <x-td>
+               <a href=" /property/{{ $item->property_uuid }}/unit/{{ $item->unit_uuid }}/utility/{{ $item->id }}/edit"
+                    class="text-blue-500 text-decoration-line: underline" target="_blank"">Edit</a>
             </x-td>
             <x-td>
 

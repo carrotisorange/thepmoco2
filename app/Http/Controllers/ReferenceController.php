@@ -62,7 +62,7 @@ class ReferenceController extends Controller
 
            DB::commit();
 
-           return back()->with('success', 'Reference has been created.');
+           return back()->with('success', 'Success!');
 
            }catch(\Exception $e)
            {
@@ -115,6 +115,6 @@ class ReferenceController extends Controller
      {
         Reference::destroy($reference_id);
 
-        return back()->with('success', 'Reference has been removed.');
+        return back()->with('success', 'Success!');
      }
 }

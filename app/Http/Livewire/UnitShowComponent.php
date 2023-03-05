@@ -136,7 +136,7 @@ class UnitShowComponent extends Component
 
             app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',2);
 
-            session()->flash('success', 'Unit is successfully updated.');    
+            session()->flash('success', 'Success!');
                     
         }catch(\Exception $e){
 
@@ -156,7 +156,7 @@ class UnitShowComponent extends Component
         app('App\Http\Controllers\PropertyBillController')->destroy($this->unit_details->uuid);
         app('App\Http\Controllers\PropertyUnitController')->destroy($this->unit_details->uuid);
 
-        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Unit is successfully deleted!');
+        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Success!');
     }
 
      public function exportUnitInventory(){
@@ -172,6 +172,13 @@ class UnitShowComponent extends Component
 
     public function render()
     {
+          $utilities = Utility::isposted()
+          ->select('*', 'units.unit as unit_name' )
+          ->join('units', 'utilities.unit_uuid', 'units.uuid')
+          ->where('is_posted', 1)
+          ->where('utilities.unit_uuid', $this->unit_details->uuid)
+          ->get();
+
         return view('livewire.unit-show-component',[
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property_uuid),
             'floors' => app('App\Http\Controllers\FloorController')->index(null),
@@ -183,7 +190,7 @@ class UnitShowComponent extends Component
             'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($this->unit_details->uuid),
             'total_collected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
-            'utilities' => Utility::where('unit_uuid', $this->unit_details->uuid)->orderBy('type')->where('is_posted', 1)->orderBy('created_at')->get(),
+            'utilities' => $utilities,
             'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get(),
             'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->where('contract_uuid', '')->get()
         ]);

@@ -80,8 +80,7 @@ class UnitBillCreateComponent extends Component
         );
 
         // return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/bills')->with('success', 'The bill is successfully posted');
-        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/'.$this->type.'/utility/'.$this->utility->id.'/success')->with('success', 'The bill is
-        successfully posted');
+        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/'.$this->type.'/utility/'.$this->utility->id.'/success')->with('success', 'Success!');
 
         }catch(\Exception $e){
         
