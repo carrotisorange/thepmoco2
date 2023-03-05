@@ -38,10 +38,12 @@
                 <h1 class="text-3xl font-bold text-gray-700">Utilities</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                @if($date_created || $search || $type || $status)
                 <button type="button" wire:click="clearFilters"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Clear Filters
                 </button>
+                @endif
                 <button type="button" wire:loading wire:target="storeUtilities" disabled
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Loading...
@@ -111,7 +113,7 @@
             </div>
 
             <div class="sm:col-span-2">
-                <select id="start_date" wire:model="start_date"
+                <select id="date_created" wire:model="date_created"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="">Filter date</option>
                     @foreach ($dates as $date)
