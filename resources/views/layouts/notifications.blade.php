@@ -7,14 +7,14 @@
 
 @if(session()->has('error'))
 <div x-data="{show: true}" x-init="setTimeout(()=> show=false, 4000)" x-show="show"
-    class="fixed bg-red-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+    class="fixed bg-red-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-md">
     <p><i class="fa-solid fa-circle-xmark"></i> {{ session('error') }}</p>
 </div>
 @endif
 
 @if (count($errors) > 0)
 <div x-data="{show: true}" x-init="setTimeout(()=> show=false, 4000)" x-show="show"
-    class="fixed bg-red-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+    class="fixed bg-red-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-md">
     <p><i class="fa-solid fa-circle-xmark"></i> Something's wrong with your input. </p>
 </div>
 @endif

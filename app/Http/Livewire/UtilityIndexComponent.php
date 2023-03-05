@@ -32,12 +32,18 @@ class UtilityIndexComponent extends Component
 
     public $totalUnitsCount;
 
+    public $kwh;
+    public $end_date;
+    public $min_charge;
+
 
     public function mount()
     {
         $this->property_uuid = Session::get('property');
         $this->totalUtilitiesCount = Property::find(Session::get('property'))->utilities->count();
         $this->totalUnitsCount = Property::find($this->property_uuid)->units()->count();
+        $this->start_date = Carbon::now()->format('Y-m-d');
+        $this->end_date = Carbon::now()->addMonth()->format('Y-m-d');
     }
 
     public function clearFilters(){
@@ -48,8 +54,20 @@ class UtilityIndexComponent extends Component
         $this->limitDisplayTo = 10;
     }
 
+    protected function rules()
+    {
+        return [
+                 'start_date' => 'required|date',
+                 'end_date' => 'required|date|after:start_date',
+                'kwh' => 'required',
+                'min_charge' => 'required'
+            ];
+    }
+
     public function storeUtilities($option)
     {   
+        $this->validate();
+
         set_time_limit(1000);
 
         $units = Unit::where('property_uuid', $this->property_uuid)->get();
@@ -64,10 +82,12 @@ class UtilityIndexComponent extends Component
                 $units->toArray()[$i]['previous_water_utility_reading'],
                 $units->toArray()[$i]['previous_electric_utility_reading'],
                 auth()->user()->id,
-                Carbon::now(),
-                Carbon::now()->addMonth(),
+                $this->start_date,
+                $this->end_date,
                 $batch_no,
-                $option
+                $option,
+                $this->kwh,
+                $this->min_charge,
             );
 
         }

@@ -10,18 +10,18 @@ use Session;
 class UtilityController extends Controller
 {
     
-    public function store($property_uuid, $unit_uuid, $previous_water_utility_reading, $previous_electric_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option)
+    public function store($property_uuid, $unit_uuid, $previous_water_utility_reading, $previous_electric_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option, $rate, $min_charge)
     {
         if($option === 'electric')
         {
-            $this->store_utilities_by_type($property_uuid, $unit_uuid, $previous_electric_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option);
+            $this->store_utilities_by_type($property_uuid, $unit_uuid, $previous_electric_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option, $rate, $min_charge);
         }else{
-            $this->store_utilities_by_type($property_uuid, $unit_uuid, $previous_water_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option);
+            $this->store_utilities_by_type($property_uuid, $unit_uuid, $previous_water_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option, $rate, $min_charge);
         }
        
     }
 
-    public function store_utilities_by_type($property_uuid, $unit_uuid, $utility_type, $user_id, $start_date, $end_date, $batch_no, $option)
+    public function store_utilities_by_type($property_uuid, $unit_uuid, $utility_type, $user_id, $start_date, $end_date, $batch_no, $option, $rate, $min_charge)
     {
         Utility::create(
         [
@@ -35,7 +35,9 @@ class UtilityController extends Controller
             'start_date' => $start_date,
             'end_date' => $end_date,
             'batch_no' => $batch_no,
-            'type' => $option
+            'type' => $option,
+            'kwh' => $rate,
+            'min_charge' => $min_charge
         ]);
     }
 

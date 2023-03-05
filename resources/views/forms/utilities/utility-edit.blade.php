@@ -72,51 +72,23 @@
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:change="updateUtilities({{ $item->id }})" wire:model="utilities.{{ $index }}.kwh"
-                            readonly />
+                            wire:keyup="updateUtilities({{ $item->id }})" 
+                            wire:model.debounce.500ms="utilities.{{ $index }}.kwh" />
+                 
                         @error('utilities.{{ $index }}.kwh')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:change="updateUtilities({{ $item->id }})"
-                            wire:model="utilities.{{ $index }}.min_charge" readonly />
+                          wire:keyup="updateUtilities({{ $item->id }})" 
+                        wire:model.debounce.500ms="utilities.{{ $index }}.min_charge" />
+                        
                         @error('utilities.{{ $index }}.min_charge')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     
-                    {{-- <x-td>
-                        <x-table-input form="edit-form" type="number" step="0.001"
-                            wire:model="utilities.{{ $index }}.total_amount_due" readonly />
-                        @error('utilities.{{ $index }}.total_amount_due')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </x-td> --}}
-
-                    {{-- <x-td>
-                        <a wire:loading wire:target="updateUtilities({{ $item->id }})"
-                            class="text-green-500 text-decoration-line: underline" href="#/">
-                            Saving...
-                        </a>
-
-                        <button type="submit" wire:click="removeUtilities({{ $item->id }})"
-                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-                            <svg wire:loading wire:target="removeUtilities"
-                                class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                    stroke-width="4">
-                                </circle>
-                                <path class="opacity-75" fill="currentColor"
-                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                </path>
-                            </svg>
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </x-td> --}}
 
                     <x-td>
                         <x-table-input form="edit-form" type="number" step="0.001"

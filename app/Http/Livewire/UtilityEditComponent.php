@@ -31,9 +31,6 @@ class UtilityEditComponent extends Component
 
     public $property_uuid;
 
-    public $showUtilities = false;
-
-
     public function mount($batch_no, $option)
     {
         $this->batch_no = $batch_no;
@@ -42,13 +39,13 @@ class UtilityEditComponent extends Component
 
         $this->property_uuid = Session::get('property');
         
-        $this->start_date =  UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('start_date')->last();
+        // $this->start_date =  UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('start_date')->last();
 
-        $this->end_date = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('end_date')->last();
+        // $this->end_date = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('end_date')->last();
 
-        $this->min_charge = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('min_charge')->last();
+        // $this->min_charge = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('min_charge')->last();
 
-        $this->kwh = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('value')->last();
+        // $this->kwh = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('value')->last();
     }
 
     protected function rules()
@@ -71,9 +68,23 @@ class UtilityEditComponent extends Component
         $this->validateOnly($propertyName);
 
     }
+
+    public function returnToUtilitiesPage(){
+
+        sleep(2);
+
+        
+        Utility::where('property_uuid', $this->property_uuid)
+        ->where('batch_no', $this->batch_no)
+        ->delete();
+
+        return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Sucess');
+    }
     
     public function updateUtilities($id)
     {
+        // ddd($this->kwh);
+        
         try{
             $this->validate();
 
@@ -85,8 +96,10 @@ class UtilityEditComponent extends Component
                      ->update([
                         'previous_reading' => $utility->previous_reading,
                         'current_reading' => $utility->current_reading,
+                        'kwh' => $utility->kwh,
+                        'min_charge' => $utility->min_charge,
                         'current_consumption' => ($utility->current_reading - $utility->previous_reading),
-                        'total_amount_due' => (($utility->current_reading - $utility->previous_reading) * $this->kwh) + $utility->min_charge,
+                        'total_amount_due' => (($utility->current_reading - $utility->previous_reading) * $utility->kwh) + $utility->min_charge,
                      ]);    
 
                     //$this->utilities = $this->get_utilities();
@@ -111,31 +124,36 @@ class UtilityEditComponent extends Component
         ->get();
     }
 
-    public function updateParameters()
-    {
-        $this->showUtilities = true;
-        //destroy previous utility parameters
-        app('App\Http\Controllers\UtilityParameterController')->destroy($this->batch_no, $this->property_uuid);
+  
+
+    // public function updateParameters()
+    // {
+    //     if(!$this->start_date || !$this->end_date){
+    //         $this->showUtilities = false;
+    //         return back()->with('error', 'Error');
+    //     }
+
+    //     $this->showUtilities = true;
+    //     //destroy previous utility parameters
+    //     app('App\Http\Controllers\UtilityParameterController')->destroy($this->batch_no, $this->property_uuid);
         
-        //store new utility parameters
-        app('App\Http\Controllers\UtilityParameterController')->store($this->batch_no, $this->property_uuid, $this->start_date, $this->end_date, $this->option, $this->kwh, $this->min_charge);
+    //     //store new utility parameters
+    //     app('App\Http\Controllers\UtilityParameterController')->store($this->batch_no, $this->property_uuid, $this->start_date, $this->end_date, $this->option, $this->kwh, $this->min_charge);
 
-        //update utilities
-        foreach ($this->utilities as $utility) {
-                    Utility::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)
-                     ->update([
-                        'start_date' => $this->start_date,
-                        'end_date' => $this->end_date, 
-                        'min_charge' => $this->min_charge,
-                        'kwh' => $this->kwh,
-                        'total_amount_due' => $this->min_charge,
-        ]);    
+    //     //update utilities
+    //     foreach ($this->utilities as $utility) {
+    //                 Utility::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)
+    //                  ->update([
+    //                     'start_date' => $this->start_date,
+    //                     'end_date' => $this->end_date, 
+    //                     'min_charge' => $this->min_charge,
+    //                     'kwh' => $this->kwh,
+    //                     'total_amount_due' => $this->min_charge,
+    //     ]);    
 
-        session()->flash('success', 'Success!');
-     }
-        // app('App\Http\Controllers\UtilityController')->update($this->property_uuid, $this->batch_no, $this->start_date, $this->end_date, $this->kwh, $this->min_charge);
-
-    }
+    //     session()->flash('success', 'Success!');
+    //  }
+    // }
 
     public function postUtilities()
     {
@@ -154,10 +172,8 @@ class UtilityEditComponent extends Component
         //store the previous utility reading to unit
          foreach ($this->utilities as $utility) {
             $this->update_unit($this->option, $utility->unit_uuid, $utility->current_reading);
-            //$this->store_bill($utility->unit_uuid, $this->option, $this->start_date, $this->end_date, $utility->total_amount_due, $this->batch_no);
          }
 
-        // return redirect('/property/'.$this->property_uuid.'/bill/batch/'.$this->batch_no.'/drafts')->with('success', 'Utilities are successfully posted!');
         return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Success!');
 
     }
