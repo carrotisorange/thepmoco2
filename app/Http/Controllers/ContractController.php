@@ -351,7 +351,7 @@ class ContractController extends Controller
 
         Contract::where('uuid', $contract->uuid)->delete();
 
-        return back()->with('success', 'Contract is successfully deleted!');
+        return back()->with('success', 'Success!');
     }
 
     public function force_moveout(Request $request, Property $property, Contract $contract){

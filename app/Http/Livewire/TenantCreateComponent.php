@@ -101,7 +101,7 @@ class TenantCreateComponent extends Component
 
                 }
 
-            return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success','Tenant is successfully created.');
+            return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success', 'Success!');
       
             });
         

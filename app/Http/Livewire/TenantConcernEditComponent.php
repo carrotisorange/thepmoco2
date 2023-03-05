@@ -77,7 +77,8 @@ class TenantConcernEditComponent extends Component
         });
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'),auth()->user()->id,'updates', 13);
-        session()->flash('success', 'Concern details is successfully updated.');
+        
+        session()->flash('success', 'Success!');
 
        }catch(\Exception $e){
         session()->flash('error');

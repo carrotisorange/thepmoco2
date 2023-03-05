@@ -181,7 +181,7 @@ class UserEditComponent extends Component
                 $this->user->update($validatedData);
             });
 
-            session()->flash('success', 'User details is successfully updated.');    
+            session()->flash('success', 'Success!');
             
         }catch(\Exception $e){
             session()->flash('error');

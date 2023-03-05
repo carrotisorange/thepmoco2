@@ -85,13 +85,13 @@ class PropertyBillExpressController extends Controller
 
             DB::commit();
 
-            return redirect('/property/'.Session::get('property').'/bill/'.$batch_no)->with('success', $bill_count.' bill is successfully created.');
+            return redirect('/property/'.Session::get('property').'/bill/'.$batch_no)->with('success', 'Success!');
 
         }catch(\Exception $e)
         {   
             DB::rollback();
 
-            return back('error')->with('success', 'Cannot perform your action.');
+            return back('error')->with('error', 'Cannot perform your action.');
         }
     }
 }

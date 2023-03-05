@@ -94,7 +94,7 @@ class DeedOfSaleEditComponent extends Component
                 ]);
            }
 
-            session()->flash('success', 'Documents have been successfully updated.');
+            session()->flash('success', 'Success!');
 
         }catch(\Exception $e)
         {

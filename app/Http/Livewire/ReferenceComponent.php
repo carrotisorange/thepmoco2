@@ -56,7 +56,7 @@ class ReferenceComponent extends Component
                  $this->store_reference($validatedData);
             });
        
-            return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.Str::random(8).'/create')->with('success', 'Reference is successfully created.');
+            return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.Str::random(8).'/create')->with('success', 'Success!');
         }
         catch(\Exception $e)
         {
@@ -78,7 +78,7 @@ class ReferenceComponent extends Component
     {
         app('App\Http\Controllers\ReferenceController')->destroy($reference_id);
 
-        return back()->with('success', 'Reference is successfully removed');
+        return back()->with('success', 'Success!');
     }
 
     public function render()

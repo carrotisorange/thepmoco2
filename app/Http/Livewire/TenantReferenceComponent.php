@@ -64,7 +64,7 @@ class TenantReferenceComponent extends Component
 
         Reference::create($validated_data);
 
-        return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid)->with('success', 'Reference is successfully created.');
+        return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid)->with('success', 'Success!');
 
     }
 

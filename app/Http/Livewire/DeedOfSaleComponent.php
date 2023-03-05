@@ -67,7 +67,8 @@ class DeedOfSaleComponent extends Component
             // if(Session::get('owner_uuid')){
             //     return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
             // }else{
-                return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Documents are successfully uploaded.');
+                return
+                redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Success!');
             // }
             
         }catch(\Exception $e)

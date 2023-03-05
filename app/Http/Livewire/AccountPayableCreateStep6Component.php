@@ -52,7 +52,7 @@ class AccountPayableCreateStep6Component extends Component
             
         }    
 
-        return redirect('/property/'.$this->property_uuid.'/accountpayable/')->with('success', 'Step 6 is successfully accomplished!');
+        return redirect('/property/'.$this->property_uuid.'/accountpayable/')->with('success', 'Success!');
     }
 
     public function removeAttachment(){

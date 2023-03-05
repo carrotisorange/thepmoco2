@@ -139,7 +139,7 @@ class OwnerComponent extends Component
                                 //method to create a new point
                                 app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id,4, 1);
 
-                        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Owner is created successfully.');
+                        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Success!');
         
                         });
     

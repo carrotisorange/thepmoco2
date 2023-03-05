@@ -97,7 +97,7 @@ class OwnerShowComponent extends Component
         {
             $this->update_owner($validatedData);
        
-            session()->flash('success','Owner is successfully updated.');
+            session()->flash('success','Success!');
 
         }catch(\Exception $e)
         {  
@@ -154,7 +154,7 @@ class OwnerShowComponent extends Component
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'removes', 19);
 
-        session()->flash('success', 'Access to owner portal has been removed.');
+        session()->flash('success', 'Success!');
     }
 
     public function update_owner($validatedData)
@@ -194,7 +194,7 @@ class OwnerShowComponent extends Component
        
         app('App\Http\Controllers\UserController')->send_email($user->role_id,$user->email, $user->username, $new_password);
 
-        session()->flash('success','A new password has been sent to owners email.');
+        session()->flash('success','Success!');
     }
 
     
@@ -202,7 +202,7 @@ class OwnerShowComponent extends Component
         {
                 Representative::destroy($id);
 
-                return back()->with('success', 'Representative is successfully removed');
+                return back()->with('success', 'Success!');
         }
 
     public function render()

@@ -179,12 +179,11 @@ class UserCreateComponent extends Component
         if($this->createAnotherPersonnel)
         {
         //prompt user withe a sucess page
-        return redirect('/property/'.Session::get('property').'/user/'.Str::random(8).'/create')->with('success', 'User
-        invite has been sent.');
+        return redirect('/property/'.Session::get('property').'/user/'.Str::random(8).'/create')->with('success', 'Success!');
 
         }else{
         //prompt user withe a sucess page
-        return redirect('/property/'.Session::get('property').'/user/')->with('success', 'User invite has been sent.');
+        return redirect('/property/'.Session::get('property').'/user/')->with('success', 'Success!');
         }
        
      }
@@ -251,6 +250,6 @@ class UserCreateComponent extends Component
 
          UserProperty::where('user_id', $id)->delete();
 
-         return back()->with('success', 'User is successfully removed.');
+         return back()->with('success', 'Success!');
      }
 }

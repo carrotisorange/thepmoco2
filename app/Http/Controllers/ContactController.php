@@ -26,6 +26,6 @@ class ContactController extends Controller
 
           Mail::to('thepropertymanagernoreply@gmail.com')->send(new ReceiveContactMail($details));
 
-          return redirect('/#contact')->with('success', 'Your email has been sent.');
+          return redirect('/#contact')->with('success', 'Success!');
     }
 }

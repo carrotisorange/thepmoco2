@@ -53,7 +53,8 @@ class UnitConcernCreateComponent extends Component
 
     //    $this->store_notification();
 
-        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/concern/'.$concern_id.'/edit')->with('success','Concern is reported successfully.');
+        return
+        redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/concern/'.$concern_id.'/edit')->with('success','Success!');
     }
 
     public function store_concern($validatedData)

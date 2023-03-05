@@ -499,7 +499,7 @@
 
                                     </div>
                                     @if($utilities->count())
-                                    @include('units.tables.utilities')
+                                    @include('tables.utilities')
                                     @else
                                     <div class="mt-10 text-center mb-10">
                                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"

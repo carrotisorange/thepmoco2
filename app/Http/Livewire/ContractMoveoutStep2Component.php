@@ -25,7 +25,7 @@ class ContractMoveoutStep2Component extends Component
     {
         sleep(1);
 
-        return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Step 2 of 5 has been accomplished!');        
+        return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Success!');        
     }
 
     public function render()

@@ -127,7 +127,7 @@ class TenantShowComponent extends Component
             
             app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',3);
 
-            session()->flash('success', 'Tenant details is successfully updated.');    
+            session()->flash('success', 'Success!');
             
         }catch(\Exception $e){
             session()->flash('error');
@@ -214,7 +214,7 @@ class TenantShowComponent extends Component
         
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'removes', 18);
 
-        session()->flash('success', 'Access to tenant portal has been removed.');
+        session()->flash('success', 'Success!');
     }
 
     public function deleteTenant(){
@@ -231,7 +231,7 @@ class TenantShowComponent extends Component
         app('App\Http\Controllers\PropertyTenantController')->destroy($this->tenant_details->uuid);
 
 
-      return redirect('/property/'.$this->tenant_details->property_uuid.'/tenant/')->with('success', 'Tenant is successfully deleted!');
+      return redirect('/property/'.$this->tenant_details->property_uuid.'/tenant/')->with('success', 'Success!');
  
     }
 

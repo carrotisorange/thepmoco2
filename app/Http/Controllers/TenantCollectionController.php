@@ -299,9 +299,9 @@ class TenantCollectionController extends Controller
 
          $this->send_payment_to_tenant($tenant, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
    
-         // return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/collections')->with('success', 'Payment is successfully created.');
+         return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/collections')->with('success', 'Success!');
 
-         return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/ar/'.$ar_id.'/view')->with('success', 'Payment is successfully created.');
+         // return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/ar/'.$ar_id.'/view')->with('success', 'Payment is successfully created.');
      }
 
       public function get_selected_bills_count($batch_no, $tenant_uuid)

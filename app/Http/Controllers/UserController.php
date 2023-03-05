@@ -176,7 +176,7 @@ class UserController extends Controller
     {
         app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
 
-        return back()->with('success', 'User invite is successfully sent.');
+        return back()->with('success', 'Success!');
     }
 
     /**
@@ -252,7 +252,7 @@ class UserController extends Controller
 
         $user->update($attributes);
 
-        return redirect('/user/'.$user->username.'/edit')->with('success', 'Profile is successfully updated.');
+        return redirect('/user/'.$user->username.'/edit')->with('success', 'Success!');
     }
 
     /**

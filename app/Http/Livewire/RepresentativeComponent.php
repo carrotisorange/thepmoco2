@@ -60,7 +60,8 @@ class RepresentativeComponent extends Component
             $this->store_representative($validatedData);
           });
 
-          return redirect('/property/'.Session::get('property').'/owner/'.$this->owner->uuid)->with('success','Representative is successfully created.');
+          return
+          redirect('/property/'.Session::get('property').'/owner/'.$this->owner->uuid)->with('success','Success!');
 
        }catch(\Exception $e)
        {

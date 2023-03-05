@@ -90,11 +90,11 @@ class UnitEditBulkComponent extends Component
             //redirect user with a success message
             if($tenants_count)
             {
-                return redirect('/property/'.$this->property->uuid.'/unit/')->with('success', count($this->units). ' unit is successfully updated.');
+                return redirect('/property/'.$this->property->uuid.'/unit/')->with('success', 'Success!');
             }
             else
             { 
-                return redirect('/property/'.$this->property->uuid.'/tenant/')->with('success', count($this->units). ' unit is successfully updated.');
+                return redirect('/property/'.$this->property->uuid.'/tenant/')->with('success', 'Success!');
             }
 
         }catch(\Exception $e){
@@ -119,7 +119,7 @@ class UnitEditBulkComponent extends Component
                 
                 $this->units = $this->get_units();
 
-                session()->flash('success', count($this->selectedUnits).' Unit is successfully removed.');
+                session()->flash('success', 'Success!');
             }
         }
          $this->selectedUnits = [];

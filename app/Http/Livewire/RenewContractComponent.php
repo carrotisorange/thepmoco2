@@ -83,7 +83,7 @@ class RenewContractComponent extends Component
          // if(auth()->user()->role_id == '8'){
          //    return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
          // }else{
-            redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Contract is successfully renewed.');
+            redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Success!');
          // }
          
          } catch (\Throwable $e) {

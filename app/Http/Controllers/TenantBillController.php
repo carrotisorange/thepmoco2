@@ -156,7 +156,7 @@ class TenantBillController extends Controller
 
         Mail::to($request->email)->send(new SendBillToTenant($data));
 
-        return back()->with('success', 'Unpaid bills is successfully sent');
+        return back()->with('success', 'Success!');
     }
 
     public function get_bill_data($tenant, $due_date, $penalty, $note)

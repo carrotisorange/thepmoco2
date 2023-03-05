@@ -53,7 +53,7 @@ class UnitInventoryComponent extends Component
                     'updated_at' => Carbon::now()
                 ]);
 
-            session()->flash('success', 'Inventory is successfully updated!');
+            session()->flash('success', 'Success!');
             }
             
        }catch(\Exception $e){
@@ -75,7 +75,7 @@ class UnitInventoryComponent extends Component
             ]
         );
 
-        session()->flash('success', 'New Inventory row is added successfully!');
+        session()->flash('success', 'Success!');
     }
 
     public function removeUnitInventory($id){
@@ -84,7 +84,7 @@ class UnitInventoryComponent extends Component
 
         UnitInventory::where('id', $id)->delete();
         
-        session()->flash('success', 'Inventory is successfully removed!');
+        session()->flash('success', 'Success!');
     }
 
 
@@ -112,7 +112,7 @@ class UnitInventoryComponent extends Component
             )->save();
        }
 
-        return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Unit Inventory is successfully created.');
+        return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Success!');
     }
     
     public function get_inventories(){

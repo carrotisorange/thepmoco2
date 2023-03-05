@@ -42,7 +42,7 @@ class AccountPayableIndexComponent extends Component
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-      return back()->with('success', 'Account payable is deleted successfully!');
+      return back()->with('success', 'Success!');
 
     }
     public function exportAccountPayables(){

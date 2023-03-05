@@ -67,7 +67,7 @@ class BankComponent extends Component
                }
            });
 
-         return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/occupancy/create')->with('success', 'Bank is successfully created.');
+         return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/occupancy/create')->with('success', 'Success!');
       }
       catch(\Exception $e)
       {

@@ -61,7 +61,7 @@ class GuardianController extends Controller
 
             DB::commit();
 
-            return back()->with('success', 'Guardian has been created.');
+            return back()->with('success','Success!');
 
          }catch(\Exception $e)
          {
@@ -116,6 +116,6 @@ class GuardianController extends Controller
     
        Guardian::destroy($guardian_id);
 
-       return back()->with('success', 'Guardian has been removed.');
+       return back()->with('success', 'Success!');
     }
 }

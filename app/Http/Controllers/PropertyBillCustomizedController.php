@@ -65,11 +65,11 @@ class PropertyBillCustomizedController extends Controller
                     Bill::create($attributes);
                 }
 
-                return redirect('/property/'.$property->uuid.'/bill/customized/'.$batch_no.'/edit')->with('success', $bill_count.' bill is successfully created.');
+                return redirect('/property/'.$property->uuid.'/bill/customized/'.$batch_no.'/edit')->with('success', 'Success!');
 
             }catch(\Exception $e)
             {
-                return back('error')->with('success', 'Cannot perform your action.');
+                return back('error')->with('error', 'Cannot perform your action.');
             }
     }
     public function edit(Property $property, $batch_no)
@@ -99,6 +99,6 @@ class PropertyBillCustomizedController extends Controller
             $bill->save();
         }
         
-        return redirect('/property/'.Session::get('property').'/bills')->with('success', $bills.' bills have been updated.');
+        return redirect('/property/'.Session::get('property').'/bills')->with('success','Success!');
     }
 }

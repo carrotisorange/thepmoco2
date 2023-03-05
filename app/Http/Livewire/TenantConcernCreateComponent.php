@@ -55,7 +55,8 @@ class TenantConcernCreateComponent extends Component
 
     //    $this->store_notification();
 
-        return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/concern/'.$concern_id.'/edit')->with('success','Concern is reported successfully.');
+        return
+        redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/concern/'.$concern_id.'/edit')->with('success','Success!');
     }
 
     public function store_concern($validatedData)

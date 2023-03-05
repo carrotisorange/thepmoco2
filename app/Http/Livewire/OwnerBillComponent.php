@@ -34,14 +34,14 @@ class OwnerBillComponent extends Component
         {
             $this->selectedBills = [];
 
-            return back()->with('error', 'Bill cannnot be deleted.');
+            return back()->with('error', 'Bill cannot be deleted.');
         }
 
         //Bill::destroy($this->selectedBills);
 
         $this->selectedBills = [];
 
-        return back()->with('success','Bill is successfully removed.');
+        return back()->with('success', 'Success!');
      }
 
      public function postBills()
@@ -121,7 +121,7 @@ class OwnerBillComponent extends Component
 
           $this->selectedBills = [];
 
-          return redirect('/owner/'.$this->owner->uuid.'/bills')->with('success','Bill is successfully marked as unpaid.');
+          return redirect('/owner/'.$this->owner->uuid.'/bills')->with('success','Success!');
 
      }
 

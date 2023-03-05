@@ -101,7 +101,7 @@ class BillDraftComponent extends Component
         }
         
     
-        return redirect('/property/'.$this->property_uuid.'/bill')->with('success', 'Bills have been successfully posted!');
+        return redirect('/property/'.$this->property_uuid.'/bill')->with('success', 'Success!');
     }
 
     public function render()

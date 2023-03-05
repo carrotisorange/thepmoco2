@@ -57,7 +57,7 @@ class ContractMoveoutStep1Component extends Component
 
             // app('App\Http\Controllers\NotificationController')->store('concern', 'requested to moveout', 'pending', Tenant::find($this->contract->tenant_uuid)->property->uuid);
 
-            return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract moveout has been requested.');
+            return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Success!');
 
         }else{  
             if(!$this->unpaid_bills > 0){
@@ -72,7 +72,7 @@ class ContractMoveoutStep1Component extends Component
             
         $this->contract->update($validatedData);
 
-         return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success', 'Step 1 of 4 has been accomplished!');        
+         return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success', 'Success!');        
         }
        
     }

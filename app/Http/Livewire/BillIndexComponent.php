@@ -72,7 +72,7 @@ class BillIndexComponent extends Component
 
         $this->selectedBills = [];
 
-        return back()->with('success','Bill is successfully removed.');
+        return back()->with('success', 'Success!');
      }
 
    public function clearFilters()
@@ -162,7 +162,7 @@ class BillIndexComponent extends Component
 
       $this->selectedBills = [];
 
-      return redirect('/property/'.Session::get('property').'/bills')->with('success','Bill is successfully marked as unpaid.');
+      return redirect('/property/'.Session::get('property').'/bills')->with('success','Success!');
         
    }
 

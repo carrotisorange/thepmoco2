@@ -8,7 +8,6 @@ use Session;
 use App\Models\Utility;
 use App\Models\Unit;
 use App\Models\UtilityParameter;
-use App\Models\Property;
 
 class UtilityEditComponent extends Component
 {
@@ -31,6 +30,8 @@ class UtilityEditComponent extends Component
     public $batch_no;
 
     public $property_uuid;
+
+    public $showUtilities = false;
 
 
     public function mount($batch_no, $option)
@@ -90,7 +91,7 @@ class UtilityEditComponent extends Component
 
                     //$this->utilities = $this->get_utilities();
 
-                     session()->flash('success', 'Utilities are successfully saved!');
+                     session()->flash('success', 'Success!');
                 }
             // });
 
@@ -112,6 +113,7 @@ class UtilityEditComponent extends Component
 
     public function updateParameters()
     {
+        $this->showUtilities = true;
         //destroy previous utility parameters
         app('App\Http\Controllers\UtilityParameterController')->destroy($this->batch_no, $this->property_uuid);
         
@@ -129,9 +131,7 @@ class UtilityEditComponent extends Component
                         'total_amount_due' => $this->min_charge,
         ]);    
 
-        session()->flash('success', 'Parameters are successfully saved!');
-
-        //             //$this->utilities = $this->get_utilities();
+        session()->flash('success', 'Success!');
      }
         // app('App\Http\Controllers\UtilityController')->update($this->property_uuid, $this->batch_no, $this->start_date, $this->end_date, $this->kwh, $this->min_charge);
 
@@ -158,7 +158,7 @@ class UtilityEditComponent extends Component
          }
 
         // return redirect('/property/'.$this->property_uuid.'/bill/batch/'.$this->batch_no.'/drafts')->with('success', 'Utilities are successfully posted!');
-        return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Utilities are successfully posted!');
+        return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Success!');
 
     }
 
