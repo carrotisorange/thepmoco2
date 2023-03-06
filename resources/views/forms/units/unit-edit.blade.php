@@ -185,11 +185,11 @@
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="rent" class="block text-xs font-medium text-gray-900">
-                @if($rent_type === 'rent_per_tenant')
+                    @if($rent_type === 'rent_per_tenant')
                     Rent/Tenant/Month
-                @else
+                    @else
                     Rent/Unit/Month
-                @endif
+                    @endif
                 </label>
                 <input type="number" wire:model="rent" step="0.001" value="{{old('rent', $unit_details->rent)}}"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
@@ -216,7 +216,10 @@
         @endif
     </div>
     <div class="mt-10 flex justify-end">
-       
+       <button type="button" data-modal-toggle="warning-destroy-unit-modal"
+            class="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            <i class="fa-solid fa-trash"></i>&nbsp; Delete
+        </button>
 
         &nbsp
         <button type="button" wire:loading.remove wire:click="submitForm()"
