@@ -114,6 +114,37 @@
                     @enderror
                 </div>
 
+                <div class="sm:col-span-6">
+                    <label for="vendor" class="block text-sm font-medium text-gray-700">Bank Details</label>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="bank" class="block text-sm font-medium text-gray-700">Bank</label>
+                    <input type="text" wire:model="bank"
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                    @error('bank')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="bank_name" class="block text-sm font-medium text-gray-700">Bank Name</label>
+                    <input type="text" wire:model="bank_name"
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                    @error('bank_name')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="bank_account" class="block text-sm font-medium text-gray-700">Bank Account</label>
+                    <input type="text" wire:model="bank_account"
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                    @error('bank_account')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 {{-- cancel & next button --}}
                 <div class="col-start-6 flex items-center justify-end">
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"

@@ -109,6 +109,18 @@
                     Carbon\Carbon::parse($accountpayable->delivery_att)->format('M d, Y') }}
                 </p>
 
+                <p>
+                    Bank: {{ $accountpayable->bank }}
+                </p>
+
+                <p>
+                    Bank Name: {{ $accountpayable->bank_name }}
+                </p>
+
+                <p>
+                    Bank Account: {{ $accountpayable->bank_account }}
+                </p>
+
                 <br>
                 <p>Particulars</p>
                 <table>

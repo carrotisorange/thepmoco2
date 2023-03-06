@@ -1,9 +1,9 @@
 <div>
-
+@include('layouts.notifications')
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
-            <button type="button"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button>
+            {{-- <button type="button"
+                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button> --}}
         </div>
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
@@ -107,7 +107,7 @@
                 </div>
                 @endif
                 <div class="sm:col-span-7">
-                    <label class="block text-sm font-medium text-gray-700">Upload the payment</label>
+                    <label class="block text-sm font-medium text-gray-700">Upload the proof of payment</label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -146,9 +146,9 @@
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
 
-                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable_id }}/step-5">
-                        Back
+                    <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                        href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable_id }}">
+                        Skip
                     </a>
                     <button
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">

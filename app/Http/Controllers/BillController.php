@@ -120,7 +120,7 @@ class BillController extends Controller
 
     public function get_latest_bill_no($property_uuid)
     {
-        return Property::find($property_uuid)->bills->max('bill_no')+1;
+        return sprintf('%08d',Property::find($property_uuid)->bills->max('bill_no')+1);
     }
 
     public function generate_bill_reference_no($type, $bill_no)

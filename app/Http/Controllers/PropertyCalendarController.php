@@ -46,6 +46,6 @@ class PropertyCalendarController extends Controller
 
         // ]);
 
-        return redirect('/property/'.Session::get('property').'/unit/'.$request->unit_uuid.'/tenant/'.Str::random(8).'/create');
+        return redirect('/property/'.Session::get('property').'/unit/'.$request->unit_uuid.'/guest/'.Str::random(8).'/create');
     }
 }

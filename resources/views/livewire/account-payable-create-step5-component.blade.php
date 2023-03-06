@@ -217,6 +217,40 @@
                 </div>
 
                 <div class="sm:col-span-6">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Bank Details</label>
+
+                </div>
+
+                {{-- vendor details --}}
+                <div class="sm:col-span-3">
+                    <label for="bank" class="block text-sm font-medium text-gray-700">Bank:</label>
+                    <input type="text" value="{{ $accountpayable->bank }}" name="vendor" readonly
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                    @error('bank')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- price --}}
+                <div class="sm:col-span-3">
+                    <label for="bank_name" class="block text-sm font-medium text-gray-700">Bank Name:</label>
+                    <input type="text" value="{{ $accountpayable->bank_name }}" name="amount" readonly
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                    @error('bank_name')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-3">
+                    <label for="bank_account" class="block text-sm font-medium text-gray-700">Bank Account:</label>
+                    <input type="text" value="{{ $accountpayable->bank_account }}" name="amount" readonly
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                    @error('bank_account')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Comment</label>
 
                 </div>

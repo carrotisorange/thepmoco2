@@ -122,9 +122,4 @@
             @livewire('bill-index-component', ['property'=>$property ,'active_contracts' => $active_contracts, 'active_tenants' => $active_tenants, 'batch_no' => $batch_no])
         </div>
     </div>
-    {{-- @endcan --}}
-    @include('modals.create-particular')
-    @include('modals.create-express-bill')
-    @include('modals.create-customized-bill')
-
 </x-new-layout>

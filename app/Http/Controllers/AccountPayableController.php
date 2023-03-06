@@ -211,8 +211,8 @@ class AccountPayableController extends Controller
 
      public function show(Property $property, AccountPayable $accountPayable){
         return view('properties.accountpayables.show',[
-        'accountpayable' => $accountPayable,
-        'particulars' => AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get()
+            'property' => $property,
+            'accountpayable' => $accountPayable,
         ]);
      }
 }
