@@ -25,11 +25,11 @@
         2
     </a>
 
-    <!-- <a href="blog-3" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
+    <a href="blog-3" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
         3
     </a>
 
-    <a href="blog-4" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
+    <!-- <a href="blog-4" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
         4
     </a> -->
 
@@ -41,7 +41,20 @@
             
             
             <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article16.jpeg') }}" alt="3 vacation homes in an island" alt="">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article17.jpg') }}" alt="businessman signing a contract">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="How-to-Choose-the-Right-Property-Management-Company" class="mt-2 block">
+                    <p class="text-base font-semibold text-gray-900">How to Choose the right Property Management Company</p>
+                    <p class="mt-3 text-sm text-gray-500">
+                    Choosing the right property management company can make a significant difference in the success of your investment</p>
+                </a>    
+                    <span class="text-sm text-gray-500 dark:text-gray-300">6 March 2023</span>
+                </div>
+            </div>
+
+            <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article16.jpeg') }}" alt="3 vacation homes in an island">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">
                 <a href="10-Tips-to-increase-occupancy-rate-and-profitability-for-vacation-homes" class="mt-2 block">
@@ -131,18 +144,7 @@
                 </div>
             </div>
 
-            <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article9.jpg') }}" alt="aged man writing infront of computer">
-
-                <div class="flex flex-col justify-between py-6 lg:mx-6">
-                <a href="How-to-reduce-digitalization-pain-points" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">How to reduce digitalization pain points</p>
-              <p class="mt-3 text-sm text-gray-500">
-              The digitalization of business has introduced a whole new set of challenges for many organizations.</p>
-            </a>
-                    <span class="text-sm text-gray-500 dark:text-gray-300">6 February 2023</span>
-                </div>
-            </div>
+            
 
             
 
@@ -164,11 +166,11 @@
         2
     </a>
 
-    <!-- <a href="blog-3" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
+    <a href="blog-3" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
         3
     </a>
 
-    <a href="blog-4" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
+    <!-- <a href="blog-4" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
         4
     </a> -->
 

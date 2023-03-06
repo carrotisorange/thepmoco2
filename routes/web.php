@@ -157,7 +157,9 @@ Route::get('/10-Tips-to-increase-occupancy-rate-and-profitability-for-vacation-h
     return view('landing.articles.article16');
 });
 
-
+Route::get('/How-to-Choose-the-Right-Property-Management-Company', function(){
+    return view('landing.articles.article17');
+});
 
 
 
