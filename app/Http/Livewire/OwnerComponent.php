@@ -45,23 +45,21 @@ class OwnerComponent extends Component
         public $representative_relationship_id;
         public $representative_valid_id;
 
-        public $generateCredentials;
+        public $generateCredentials = false;
 
-        public $hasAuthorizedRepresentative;
+        public $hasAuthorizedRepresentative = false;
 
         public function mount($unit)
         {
                 $this->unit = $unit;
-                $this->generateCredentials = false;
                 $this->country_id = '173';
-                $this->hasAuthorizedRepresentative = false;
         }
 
         protected function rules()
         {
                 return [
                         'owner' => 'required',
-                        'email' => ['nullable', 'string', 'email', 'max:255', 'unique:owners', 'unique:users'],
+                        'email' => ['nullable', 'string', 'email', 'max:255'],
                         'mobile_number' => 'nullable',
                         'gender' => 'required',
                         'civil_status' => 'nullable',
@@ -94,7 +92,7 @@ class OwnerComponent extends Component
 
         public function submitForm()
         {
-                sleep(1);
+                sleep(2);
 
                 $validatedData = $this->validate();
 
@@ -146,7 +144,7 @@ class OwnerComponent extends Component
                 }
                 catch(\Exception $e)
                 {                        
-                        return back()->with('error');
+                        ddd($e);
                 }
         }
 
