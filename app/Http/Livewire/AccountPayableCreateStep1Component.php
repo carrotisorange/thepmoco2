@@ -30,7 +30,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->requester_id = auth()->user()->id;
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->due_date = Carbon::now()->format('Y-m-d');
-        $this->batch_no = Str::random(8);
+        $this->batch_no = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->count());
     }
 
      protected function rules()
@@ -56,7 +56,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->validate();
 
         if(!$this->get_particulars()->count()){
-            return back()->with('success','Success!');
+            return back()->with('error','Error!');
         }
 
         $accountpayable_id = app('App\Http\Controllers\AccountPayableController')->store_step_1(

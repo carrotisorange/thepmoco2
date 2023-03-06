@@ -34,6 +34,7 @@ class AccountPayableIndexComponent extends Component
     }
 
     public function deleteAccountPayable($accountpayableId){
+
       sleep(1);
 
       $batch_no = AccountPayable::find($accountpayableId)->batch_no;
