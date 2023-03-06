@@ -175,7 +175,7 @@ class BillIndexComponent extends Component
 
    public function storeParticular(){
       
-      $particular = Particular::
+      $particular_id = Particular::
       where('particular', strtolower($this->new_particular))
       ->pluck('id')
       ->first();
@@ -189,20 +189,20 @@ class BillIndexComponent extends Component
          ]
          );
 
-         if($particular){
+         if($particular_id){
                 PropertyParticular::updateOrCreate(
                 [
                 'property_uuid' => $this->property->uuid,
-                'particular_id' => $particular
+                'particular_id' => $particular_id
                 ],
                 [
                 'property_uuid' => $this->property->uuid,
-                'particular_id' => $particular
+                'particular_id' => $particular_id
                 ]
                 );
          }
 
-         session()->flash('success', 'Saved');
+         session()->flash('success', 'Success!');
        
    }
 

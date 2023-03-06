@@ -7,11 +7,11 @@
             <div
                 class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
                 <div>
-                   
+
                     <div class="mt-3 text-center sm:mt-5">
                         <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new particular
                         </h3>
-                       
+
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
@@ -23,6 +23,11 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
+                @if(session()->has('success'))
+                <div class="mt-1 bg-green-500 text-white py-1 px-1 rounded-xl bottom-3 right-3 text-sm">
+                    <p><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</p>
+                </div>
+                @endif
                 <div class="mt-5 sm:mt-6">
                     <button type="button" wire:click="storeParticular" wire:loading.remove
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
