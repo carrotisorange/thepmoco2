@@ -119,12 +119,14 @@
     @else
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
-            @livewire('bill-index-component', ['active_contracts' => $active_contracts, 'active_tenants' =>
-            $active_tenants, 'batch_no' => $batch_no])
+            @livewire('bill-index-component', [
+            'property' => $property, 
+            'active_contracts' => $active_contracts, 
+            'active_tenants' => $active_tenants, 
+            'batch_no' => $batch_no])
         </div>
     </div>
     @endif
     @include('modals.create-particular')
     @include('modals.create-express-bill')
-    @include('modals.create-customized-bill')
 </x-new-layout>

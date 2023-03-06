@@ -41,7 +41,7 @@
                 <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                @if($search || $status || $particular_id || $posted_dates)
+                @if($search || $status || $particular || $posted_dates)
                 <button wire:click="clearFilters()"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     type="button"><i class="fa-solid fa-delete-left"></i> &nbsp; Clear Filters
@@ -65,91 +65,13 @@
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                               transition duration-150 ease-in-out origin-top min-w-32">
 
-                        {{-- <a href="#/" data-modal-toggle="create-particular-modal"
-                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            Particular
-                        </a> --}}
-
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                data-modal-toggle="create-particular-modal">Particular</a>
-                        </li>
 
                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                            <button class="w-full text-left flex items-center outline-none focus:outline-none">
-                                <span class="pr-1 flex-1">Bills</span>
-                                <span class="mr-auto">
-                                    <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                    </svg>
-                                </span>
+                            <button type="button" data-modal-toggle="instructions-create-bill-modal">
+                                Tenant
                             </button>
 
-                            <ul
-                                class="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32">
 
-                                <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                    <button class="w-full text-left flex items-center outline-none focus:outline-none">
-                                        <span class="pr-1 flex-1">Tenant</span>
-                                        <span class="mr-auto">
-                                            <svg class="fill-current h-4 w-4
-                                            transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                            </svg>
-                                        </span>
-                                    </button>
-
-                                    <ul
-                                        class="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32">
-                                        {{-- <a href="#/" data-modal-toggle="create-express-bill"
-                                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                            Express Bill
-                                        </a> --}}
-                                        {{--
-                                        <li class="rounded-sm px-2 py-1 hover:bg-gray-100"><button type="button"
-                                                data-modal-toggle="create-express-bill-modal">
-                                                Express Bill
-                                            </button></li> --}}
-
-                                        {{-- <a href="#/" data-modal-toggle="create-customized-bill"
-                                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                            Customized Bill
-                                        </a> --}}
-
-                                        <li class="rounded-sm px-2 py-1 hover:bg-gray-100"><button type="button"
-                                                data-modal-toggle="create-customized-bill-modal">
-                                                Customized Bill
-                                            </button></li>
-
-                                    </ul>
-                                </li>
-
-                                {{-- <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                    <button class="w-full text-left flex items-center outline-none focus:outline-none">
-                                        <span class="pr-1 flex-1">Owner</span>
-                                        <span class="mr-auto">
-                                            <svg class="fill-current h-4 w-4
-                                                                        transition duration-150 ease-in-out"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                    <ul class="bg-white border rounded-sm absolute top-0 right-0 
-                                                              transition duration-150 ease-in-out origin-top-left
-                                                              min-w-32
-                                                              ">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Express Bills</li>
-                                        <li class="px-3 py-1 hover:bg-gray-100">Customized Bills</li>
-                                    </ul>
-                                </li> --}}
-
-                            </ul>
                         </li>
                     </ul>
 
@@ -218,7 +140,7 @@
 
                     </div>
                     <div class="sm:col-span-2">
-                        <select id="particular_id" wire:model="particular_id"
+                        <select id="particular" wire:model="particular"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="">Filter bill particulars</option>
                             @foreach ($particulars as $item)
@@ -303,96 +225,14 @@
                                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                                               transition duration-150 ease-in-out origin-top min-w-32">
 
-                                        {{-- <a href="#/" data-modal-toggle="create-particular-modal"
-                                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                            Particular
-                                        </a> --}}
 
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                                data-modal-toggle="create-particular-modal">Particular</a>
-                                        </li>
 
                                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                            <button
-                                                class="w-full text-left flex items-center outline-none focus:outline-none">
-                                                <span class="pr-1 flex-1">Bills</span>
-                                                <span class="mr-auto">
-                                                    <svg class="fill-current h-4 w-4
-                                                        transition duration-150 ease-in-out"
-                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                    </svg>
-                                                </span>
+                                            <button type="button" data-modal-toggle="instructions-create-bill-modal">
+                                                Tenant
                                             </button>
 
-                                            <ul
-                                                class="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32">
 
-                                                <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                                    <button
-                                                        class="w-full text-left flex items-center outline-none focus:outline-none">
-                                                        <span class="pr-1 flex-1">Tenant</span>
-                                                        <span class="mr-auto">
-                                                            <svg class="fill-current h-4 w-4
-                                                            transition duration-150 ease-in-out"
-                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                                <path
-                                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                            </svg>
-                                                        </span>
-                                                    </button>
-
-                                                    <ul
-                                                        class="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32">
-                                                        {{-- <a href="#/" data-modal-toggle="create-express-bill"
-                                                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                            Express Bill
-                                                        </a> --}}
-                                                        {{--
-                                                        <li class="rounded-sm px-2 py-1 hover:bg-gray-100"><button
-                                                                type="button"
-                                                                data-modal-toggle="create-express-bill-modal">
-                                                                Express Bill
-                                                            </button></li> --}}
-
-                                                        {{-- <a href="#/" data-modal-toggle="create-customized-bill"
-                                                            class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                            Customized Bill
-                                                        </a> --}}
-
-                                                        <li class="rounded-sm px-2 py-1 hover:bg-gray-100"><button
-                                                                type="button"
-                                                                data-modal-toggle="create-customized-bill-modal">
-                                                                Customized Bill
-                                                            </button></li>
-
-                                                    </ul>
-                                                </li>
-
-                                                {{-- <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                                    <button
-                                                        class="w-full text-left flex items-center outline-none focus:outline-none">
-                                                        <span class="pr-1 flex-1">Owner</span>
-                                                        <span class="mr-auto">
-                                                            <svg class="fill-current h-4 w-4
-                                                                                        transition duration-150 ease-in-out"
-                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                                <path
-                                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                            </svg>
-                                                        </span>
-                                                    </button>
-                                                    <ul class="bg-white border rounded-sm absolute top-0 right-0 
-                                                                              transition duration-150 ease-in-out origin-top-left
-                                                                              min-w-32
-                                                                              ">
-                                                        <li class="px-3 py-1 hover:bg-gray-100">Express Bills</li>
-                                                        <li class="px-3 py-1 hover:bg-gray-100">Customized Bills</li>
-                                                    </ul>
-                                                </li> --}}
-
-                                            </ul>
                                         </li>
                                     </ul>
 
@@ -410,4 +250,6 @@
     </div>
     @include('modals.popup-error')
     @include('layouts.notifications')
+    @include('modals.instructions.create-bill-modal')
+    @include('modals.instructions.create-particular-modal')
 </div>
