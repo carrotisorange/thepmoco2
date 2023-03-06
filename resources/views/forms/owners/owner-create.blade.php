@@ -101,19 +101,18 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="photo_id"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Upload a file</span>
-                                        <input id="photo_id" name="image" type="file" class="sr-only"
+                                        <span wire:loading.remove>Upload a file</span>
+                                        <span wire:loading>Loading...</span>
+                                        <input id="photo_id" name="photo_id" type="file" class="sr-only"
                                             wire:model="photo_id">
                                     </label>
-
                                 </div>
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($photo_id)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removePhotoId()">Remove the uploaded photo.</a></span>
+                                    <a href="#/" wire:click="removePhotoId()">Remove the attachment.</a></span>
                                 @endif
                             </div>
-
 
 
                         </div>
