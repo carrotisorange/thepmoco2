@@ -37,14 +37,22 @@
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">View and edit</a>
-                @else
-                @if($accountpayable->request_for === 'purchase')
+                @elseif($accountpayable->status === 'pending')
+
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-2"
                     class="text-blue-500 text-decoration-line: underline">View and edit</a>
-                @else
+                @elseif($accountpayable->status === 'prepared')
+
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
+                    class="text-blue-500 text-decoration-line: underline">View and edit</a>
+                @elseif($accountpayable->status === 'approved by manager')
+
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-4"
                     class="text-blue-500 text-decoration-line: underline">View and edit</a>
-                @endif
+                @elseif($accountpayable->status === 'approved by ap')
+
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
+                    class="text-blue-500 text-decoration-line: underline">View and edit</a>
                 @endif
             </x-td>
             <x-td>
