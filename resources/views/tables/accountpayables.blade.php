@@ -53,7 +53,7 @@
                 @elseif($accountpayable->status === 'approved by ap')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
-                    class="text-blue-500 text-decoration-line: underline">Vie</a>
+                    class="text-blue-500 text-decoration-line: underline">View</a>
                 @else
                
                 @endif
