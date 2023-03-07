@@ -58,7 +58,7 @@ class BillEditComponent extends Component
 
         $this->bills = $this->get_bills();
 
-         session()->flash('success', count($this->selectedBills). ' bill is successfully removed.');
+         session()->flash('success', 'Success!');
 
     }
 

@@ -97,7 +97,7 @@ class AccountPayableCreateStep1Component extends Component
         
         AccountPayableParticular::where('id', $id)->delete();
 
-        session()->flash('success', 'Inventory is successfully removed!');
+        session()->flash('success','Success!');
     }
 
     public function cancelRequest(){
