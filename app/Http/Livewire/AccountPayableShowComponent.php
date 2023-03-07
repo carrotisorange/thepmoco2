@@ -23,7 +23,25 @@ class AccountPayableShowComponent extends Component
             'status' => $this->status
         ]);
 
-        return back()->with('success', 'Success');
+        if($this->status === 'pending'){
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        }
+        elseif($this->status === 'released'){
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id)->with('success', 'Success!');
+        }
+        elseif($this->status === 'prepared'){
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
+        }
+        elseif($this->status === 'approved by manager'){
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
+        }
+        elseif($this->status === 'approved by ap'){
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
+        }
+        else{
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id)->with('success', 'Success!');        
+        }
+       
     }
 
     public function render()

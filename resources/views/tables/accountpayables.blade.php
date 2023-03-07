@@ -12,6 +12,7 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
+            <x-th></x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -36,27 +37,30 @@
             <x-td>
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                    class="text-blue-500 text-decoration-line: underline">View and edit</a>
+                    class="text-blue-500 text-decoration-line: underline">View</a>
                 @elseif($accountpayable->status === 'pending')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-2"
-                    class="text-blue-500 text-decoration-line: underline">View and edit</a>
+                    class="text-blue-500 text-decoration-line: underline">View</a>
                 @elseif($accountpayable->status === 'prepared')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
-                    class="text-blue-500 text-decoration-line: underline">View and edit</a>
+                    class="text-blue-500 text-decoration-line: underline">View</a>
                 @elseif($accountpayable->status === 'approved by manager')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-4"
-                    class="text-blue-500 text-decoration-line: underline">View and edit</a>
+                    class="text-blue-500 text-decoration-line: underline">View</a>
                 @elseif($accountpayable->status === 'approved by ap')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
-                    class="text-blue-500 text-decoration-line: underline">View and edit</a>
+                    class="text-blue-500 text-decoration-line: underline">Vie</a>
                 @else
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                    class="text-blue-500 text-decoration-line: underline">View and edit</a>
+               
                 @endif
+            </x-td>
+            <x-td>
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                    class="text-blue-500 text-decoration-line: underline">Edit</a>
             </x-td>
             <x-td>
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download"
