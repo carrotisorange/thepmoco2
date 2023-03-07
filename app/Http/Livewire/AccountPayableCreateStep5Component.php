@@ -40,7 +40,7 @@ class AccountPayableCreateStep5Component extends Component
 
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->store_step_5($this->accountpayable_id, 'approved by manager', $this->comment2);
+        app('App\Http\Controllers\AccountPayableController')->store_step_5($this->accountpayable_id, 'approved by ap', $this->comment2);
 
         return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-6')->with('success', 'Success!');
     }
@@ -51,7 +51,7 @@ class AccountPayableCreateStep5Component extends Component
 
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->store_step_5($this->accountpayable_id, 'rejected by manager', $this->comment2);
+        app('App\Http\Controllers\AccountPayableController')->store_step_5($this->accountpayable_id, 'rejected by ap', $this->comment2);
 
         return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-6')->with('success', 'Success!');
     }
