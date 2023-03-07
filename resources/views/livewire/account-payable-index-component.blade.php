@@ -148,7 +148,7 @@
                                     stroke-width="2"
                                     d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                             </svg>
-                            <h3 class="mt-2 text-sm font-medium text-gray-900">No requests</h3>
+                            <h3 class="mt-2 text-sm font-medium text-gray-900">No pending requests found</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new request</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
@@ -163,6 +163,14 @@
                                                 <path
                                                     d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                             </svg>
+                                        </span>
+                                    </button>
+                                    or
+                                    <button wire:click="clearFilters"
+                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                        <span class="pr-1 font-semibold flex-1"> &nbsp
+                                            Show All Requests</span>
+
                                         </span>
                                     </button>
 

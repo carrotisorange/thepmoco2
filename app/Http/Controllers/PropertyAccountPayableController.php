@@ -44,7 +44,7 @@ class PropertyAccountPayableController extends Controller
       
         $data = [
           'accountpayables' => Property::find($property_uuid)->accountpayables
-          ];
+        ];
 
           $pdf = \PDF::loadView('properties.accountpayables.export', $data);
 
@@ -59,7 +59,8 @@ class PropertyAccountPayableController extends Controller
 
           $canvas->set_opacity(.2);
 
-          $canvas->page_text($width/5, $height/2, Session::get('property'), null, 55, array(0,0,0),2,2,-30);
+          $canvas->page_text($width/5, $height/2, Property::find($property_uuid)->property, null, 55,
+          array(0,0,0),2,2,-30);
 
           return $pdf->download(Session::get('property').'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
         
