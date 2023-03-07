@@ -23,17 +23,17 @@
             <select wire:model="status" wire:change="changeAccountPayableStatus"
                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 <option value="pending" {{ old('status', $status)=='pending' ? 'selected' : 'selected' }}>
-                    pending - continue to adding quotations
+                    pending - add/edit quotations
                 </option>
                 <option value="prepared" {{ old('status', $status)=='prepared' ? 'selected' : 'selected' }}>
-                    prepared - continue to approve quotations
+                    prepared - approve quotations
                 </option>
                 <option value="approved by manager" {{ old('status', $status)=='approved by manager' ? 'selected'
                     : 'selected' }}>
-                    approved by manager - continue to purchase order
+                    approved by manager - create purchase order
                 </option>
                 <option value="approved by ap" {{ old('status', $status)=='approved by ap' ? 'selected' : 'selected' }}>
-                    approved by ap - continue to add payment
+                    approved by ap - upload payment
                 </option>
                 <option value="released" {{ old('status', $status)=='released' ? 'selected' : 'selected' }}>
                     released
