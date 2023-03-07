@@ -30,7 +30,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->requester_id = auth()->user()->id;
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->due_date = Carbon::now()->format('Y-m-d');
-        $this->batch_no = auth()->user()->id .'-'.sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->count());
+        $this->batch_no = AccountPayable::count().'-'.sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->count());
     }
 
      protected function rules()
