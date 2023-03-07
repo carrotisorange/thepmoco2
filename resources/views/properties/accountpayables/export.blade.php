@@ -47,7 +47,7 @@
         td {
             margin-right: 10px;
             margin-left: 10px;
-            border: 1px black;
+            border: 0px black;
         }
 
         th,
@@ -88,7 +88,7 @@
         <table>
             <thead>
                 <tr>
-                    <x-td>#</x-td>
+                    <x-td>BATCH NO</x-td>
                     <x-td>REQUESTED ON</x-td>
                     <x-td>REQUESTED BY</x-td>
                     <x-td>REQUEST FOR</x-td>
@@ -99,13 +99,13 @@
                     {{-- <x-th>APPROVED ON</x-th> --}}
                     <x-td>STATUS</x-td>
                     <x-td>AMOUNT</x-td>
-                    <x-td></x-td>
+                 
                 </tr>
             </thead>
             <tbody class="">
                 @foreach($accountpayables as $index => $accountpayable)
                 <tr>
-                    <x-td>{{ $index+1 }}</x-td>
+                    <x-td>{{ $accountpayable->batch_no }}</x-td>
                     <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
                     <x-td>{{ $accountpayable->requester->name }}</x-td>
                     <x-td>{{ $accountpayable->request_for }}</x-td>
@@ -120,22 +120,20 @@
 
                     <x-td>{{$accountpayable->status}}</x-td>
                     <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
-                    <x-td>
-                        {{-- <a
-                            href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                            class="text-blue-500 text-decoration-line: underline">View</a> --}}
-                    </x-td>
+                  
 
                 </tr>
                 @endforeach
+                <hr>
                 <tr>
-                    <x-th>Total</x-th>
+                    <x-td>Total</x-td>
                     <x-th></x-th>
                     <x-th></x-th>
                     <x-th></x-th>
                     <x-th></x-th>
                     <x-th></x-th>
-                    <x-th>{{ number_format($accountpayables->sum('amount'), 2) }}</x-th>
+                    <x-td>{{ number_format($accountpayables->sum('amount'), 2) }}</x-td>
+                  
                 </tr>
             </tbody>
         </table>

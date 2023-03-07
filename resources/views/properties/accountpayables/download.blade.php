@@ -85,6 +85,9 @@
     <main>
         <br>
         <p>
+            Batch No: {{ $accountpayable->batch_no }}
+        </p>
+        <p>
             Requested on: {{
             Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
         </p>
