@@ -38,7 +38,7 @@
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">View and edit</a>
                 @else
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-4"
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-4not yet released"
                     class="text-blue-500 text-decoration-line: underline">View and edit</a>
                 @endif
             </x-td>
