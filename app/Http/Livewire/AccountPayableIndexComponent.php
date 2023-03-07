@@ -12,7 +12,7 @@ class AccountPayableIndexComponent extends Component
 {
     public $property;
 
-    public $status =  'pending';
+    public $status =  'not yet released';
     public $created_at;
     public $request_for;
     public $limitDisplayTo;
@@ -53,7 +53,6 @@ class AccountPayableIndexComponent extends Component
 
     public function render()
     {
-    
         return view('livewire.account-payable-index-component',[
           'accountpayables' => app('App\Http\Controllers\PropertyAccountPayableController')->get_accountpayables($this->property->uuid, $this->status, $this->created_at, $this->request_for, $this->limitDisplayTo),
           'statuses' => app('App\Http\Controllers\PropertyAccountPayableController')->get_statuses($this->property),
