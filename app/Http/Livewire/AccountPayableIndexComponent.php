@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Property;
-use Session;
 use Livewire\WithPagination;
 use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
@@ -13,7 +12,7 @@ class AccountPayableIndexComponent extends Component
 {
     public $property;
 
-    public $status;
+    public $status =  'pending';
     public $created_at;
     public $request_for;
     public $limitDisplayTo;
@@ -47,7 +46,7 @@ class AccountPayableIndexComponent extends Component
 
     }
     public function exportAccountPayables(){
-      sleep(2);
+       sleep(2);
       
        return redirect('/property/'.$this->property->uuid.'/accountpayable/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
     }
