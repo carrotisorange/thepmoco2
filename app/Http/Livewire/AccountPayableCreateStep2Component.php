@@ -82,7 +82,8 @@ class AccountPayableCreateStep2Component extends Component
               ->update([
               'selected_quotation' => $this->quotation1->store('accountpayables'),
               'amount' => $this->amount,
-              'vendor' => $this->vendor
+              'vendor' => $this->vendor,
+              'status' => 'prepared'
               ]);
         }
 
@@ -91,7 +92,8 @@ class AccountPayableCreateStep2Component extends Component
               ->update([
               'selected_quotation' => $this->quotation2->store('accountpayables'),
               'amount' => $this->amount,
-              'vendor' => $this->vendor
+              'vendor' => $this->vendor,
+               'status' => 'prepared'
               ]);
         }
 
@@ -100,7 +102,8 @@ class AccountPayableCreateStep2Component extends Component
               ->update([
               'selected_quotation' => $this->quotation3->store('accountpayables'),
               'amount' => $this->amount,
-              'vendor' => $this->vendor
+              'vendor' => $this->vendor,
+               'status' => 'prepared'
               ]);
         }
 
