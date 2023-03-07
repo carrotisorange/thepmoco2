@@ -39,7 +39,7 @@ class BankComponent extends Component
          'is_the_property_on_loan' => 'nullable',
          'financing_company' => ['required_if:is_the_property_on_loan,true'],
          'price' => 'nullable',
-         'turnover_at' => 'required|date',
+         'turnover_at' => 'nullable|date',
       ];
    }
 
