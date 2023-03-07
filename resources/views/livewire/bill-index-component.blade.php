@@ -1,8 +1,5 @@
 <div>
-    <style>
-        /* since nested groupes are not supported we have to use 
-                                 regular css for the nested dropdowns 
-                              */
+    {{-- <style>
         li>ul {
             transform: translatex(100%) scale(0)
         }
@@ -34,7 +31,7 @@
         .min-w-32 {
             min-width: 8rem
         }
-    </style>
+    </style> --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -248,7 +245,6 @@
             </div>
         </div>
     </div>
-    @include('modals.popup-error')
     @include('layouts.notifications')
     @include('modals.instructions.create-bill-modal')
     @include('modals.instructions.create-particular-modal')
