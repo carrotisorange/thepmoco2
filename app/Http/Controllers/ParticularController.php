@@ -80,7 +80,7 @@ class ParticularController extends Controller
 
                 DB::commit();
 
-             return back()->with('success', 'Particular is successfully created.');
+             return back()->with('success', 'Success!');
              } catch (\Throwable $e) {
         
                 DB::rollback();

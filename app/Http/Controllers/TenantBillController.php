@@ -106,7 +106,7 @@ class TenantBillController extends Controller
 
             DB::commit();
 
-            return back()->with('success','Bill is successfully posted.');
+            return back()->with('success','Success!');
         }
         catch(\Exception $e)
         {
