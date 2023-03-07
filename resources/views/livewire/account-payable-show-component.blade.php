@@ -10,13 +10,40 @@
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                 type="button">Export
             </button>
-            <button
-            onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable'"
+            <button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable'"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                 type="button">Back
             </button>
 
         </div>
+    </div>
+    <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+        <h3 class="text-base font-semibold leading-6 text-gray-900">Status</h3>
+        <p class="mt-1 text-sm text-gray-500">
+            <select wire:model="status" wire:change="changeAccountPayableStatus"
+                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+                <option value="pending" {{ old('status', $status)=='pending' ? 'selected' : 'selected' }}>
+                    pending - continue to adding quotations
+                </option>
+                <option value="prepared" {{ old('status', $status)=='prepared' ? 'selected' : 'selected' }}>
+                    prepared - continue to approve quotations
+                </option>
+                <option value="approved by manager" {{ old('status', $status)=='approved by manager' ? 'selected'
+                    : 'selected' }}>
+                    approved by manager - continue to purchase order
+                </option>
+                <option value="approved by ap" {{ old('status', $status)=='approved by ap' ? 'selected' : 'selected' }}>
+                    approved by ap - continue to add payment
+                </option>
+                <option value="released" {{ old('status', $status)=='released' ? 'selected' : 'selected' }}>
+                    released
+                </option>
+                <option value="not yet released" {{ old('status', $status)=='not yet released' ? 'selected' : 'selected'
+                    }}>
+                    not yet released
+                </option>
+            </select>
+        </p>
     </div>
     <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
         <h3 class="text-base font-semibold leading-6 text-gray-900">Batch No</h3>
@@ -40,21 +67,7 @@
         <h3 class="text-base font-semibold leading-6 text-gray-900">Request For</h3>
         <p class="mt-1 text-sm text-gray-500">{{ $accountpayable->request_for }}</p>
     </div>
-    <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-        <h3 class="text-base font-semibold leading-6 text-gray-900">Status</h3>
-        <p class="mt-1 text-sm text-gray-500">
-            <select wire:model="status" wire:change="changeAccountPayableStatus"
-                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                <option value="released" {{ old('status', $status)=='released' ? 'selected' : 'selected' }}>
-                    released
-                </option>
-                <option value="not yet released" {{ old('status', $status)=='not yet released' ? 'selected' : 'selected'
-                    }}>
-                    not yet released
-                </option>
-            </select>
-        </p>
-    </div>
+
     <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
         <h3 class="text-base font-semibold leading-6 text-gray-900">Bank</h3>
         <p class="mt-1 text-sm text-gray-500">{{ $accountpayable->bank }}</p>
