@@ -17,7 +17,6 @@
 <!-- Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-
 {{-- Fontawesome --}}
 <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
 
@@ -31,12 +30,6 @@
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 {{-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> --}}
-
-{{-- <script>
-    $(document).ready(function(){
-        $("#myModal").modal('show');
-    });
-</script> --}}
 
 @yield('styles')
 

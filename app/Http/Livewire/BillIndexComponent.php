@@ -13,7 +13,6 @@ use Livewire\WithPagination;
 use App\Models\Contract;
 use App\Models\Tenant;
 use App\Models\Particular;
-use Session;
 use App\Models\PropertyParticular;
 
 class BillIndexComponent extends Component
@@ -58,6 +57,12 @@ class BillIndexComponent extends Component
        $this->start = Carbon::now()->format('Y-m-d');
        $this->end = Carbon::now()->addMonth()->format('Y-m-d');
        $this->bill = 0;
+   }
+
+   public function redirectToUnitsPage(){
+      sleep(2);
+
+      return redirect('/property/'.$this->property->uuid.'/unit/');
    }
 
    public function updatedSelectAllBills($value)

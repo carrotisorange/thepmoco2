@@ -15,6 +15,7 @@
                         <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create bills
                         </h3>
                         <div class="mt-2">
+                            @if($active_contracts->count())
                             <p class="text-sm text-gray-500">You're about to create <b
                                     class="font-bold text-lg text-red-500">{{
                                     $active_contracts->count() }}</b> bills for <b
@@ -24,10 +25,15 @@
                                 these bills when you click
                                 <b>CONFIRM
                             </p>
+                            @else
+                            <p class="text-sm text-gray-500">
+                                There are no active contracts found. To continue adding bills, please add a tenant using the button below.
+                            </p>
+                            @endif
                         </div>
                     </div>
                 </div>
-
+                @if($active_contracts->count())
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="">Select a particular</label>
                     <select wire:model="particular_id"
@@ -86,11 +92,26 @@
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                         <i class="fa-solid fa-arrow-right"></i>&nbsp Confirm
                     </button>
+
                     <button type="button" wire:loading wire:target="storeBills" disabled
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                         Loading...
                     </button>
                 </div>
+
+                @else
+                <div class="mt-5 sm:mt-6">
+                    <button type="button" wire:click="redirectToUnitsPage" wire:loading.remove
+                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                        <i class="fa-solid fa-arrow-right"></i>&nbsp Add Tenant
+                    </button>
+                    <button type="button" wire:loading wire:target="redirectToUnitsPage" disabled
+                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                        Loading...
+                    </button>
+                </div>
+
+                @endif
             </div>
         </div>
     </x-modal-component>
