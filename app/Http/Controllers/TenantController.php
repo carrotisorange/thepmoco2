@@ -41,10 +41,6 @@ class TenantController extends Controller
         ]);
     }
 
-    public function unlock(Property $property)
-    {
-        return view('admin.restrictedpages.tenantportal');
-    }
 
     /**
      * Display the specified resource.
@@ -52,18 +48,7 @@ class TenantController extends Controller
      * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property, Tenant $tenant)
-    {
-        //store activity for opening a particular tenant.
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
-
-        $list_of_all_relationships = app('App\Http\Controllers\RelationshipController')->index();
-
-        return view('tenants.show',[
-            'tenant_details' => $tenant,
-            'relationships' => $list_of_all_relationships
-        ]);
-    }
+    
 
     public function show_all_guardians($tenant_uuid)
     {
@@ -75,36 +60,6 @@ class TenantController extends Controller
         return Tenant::find($tenant_uuid)->references()->paginate(5);
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tenant  $tenant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tenant $tenant)
-    {   
-        //  if(auth()->user()->role->id == 3 || auth()->user()->role->id == 2)
-        //  {
-        //     return redirect('/tenant/'.$tenant->uuid.'/bills');
-        //  }
-        //  else{
-        //      return view('tenants.edit',[
-        //      'tenant_details' => $tenant,
-        //      'references' => Tenant::find($tenant->uuid)->references,
-        //      'guardians' => Tenant::find($tenant->uuid)->guardians,
-        //      'relationships' => Relationship::all()
-        //      ]);
-        //  } 
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tenant  $tenant
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Tenant $tenant)
     {
         $attributes = request()->validate([
@@ -169,28 +124,6 @@ class TenantController extends Controller
         Mail::to($email)->send(new SendContractToTenant($details));
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Tenant  $tenant
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($property_uuid, $tenant_uuid)
-    {
-        $contracts = Tenant::find($tenant_uuid)->contracts->count();
-
-        if($contracts){
-           return back()->with('error', 'Cannot be deleted. dialects in the philippines in terms of Tenant has existing contracts');
-        }
-        else{
-           Tenant::where('uuid', $tenant_uuid)->delete();
-           
-        }
-
-         return redirect('/property/'.Session::get('property').'/tenant')->with('success', 'Success!');
-
-    }
 
     public function show_tenant_contracts($tenant_uuid)
     {

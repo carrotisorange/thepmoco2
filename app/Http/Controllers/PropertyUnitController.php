@@ -35,6 +35,14 @@ class PropertyUnitController extends Controller
 
     }
 
+     public function edit(Property $property, $batch_no)
+    {
+        return view('units.edit-bulk',[
+            'property' => $property, 
+            'batch_no' => $batch_no,
+        ]);
+    }
+
     public function destroy($unit_uuid){
         Unit::where('uuid', $unit_uuid)->delete();
     }

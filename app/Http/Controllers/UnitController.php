@@ -6,7 +6,6 @@ use App\Models\Unit;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Session;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\Floor;
 use DB;
@@ -103,44 +102,9 @@ class UnitController extends Controller
            });
     }
 
-    public function create($batch_no)
-    {
-        return view('units.create',[
-            'batch_no' => $batch_no,
-        ]);
-    }
-
     public function store(Property $property, Request $request, $batch_no)
     {   
-        $plan_unit_limit =  Plan::find(auth()->user()->plan_id)->description;
 
-        $total_unit_created = Property::find(Session::get('property'))->units()->count() + 1;
-
-        // if($plan_unit_limit <= $total_unit_created){
-        //     return back()->with('error', 'Sorry. You have reached your plan unit limit');
-        // }
-
-        $request->validate([
-            'number_of_units' => ['integer', 'required', 'min:1', 'gt:0']
-        ]);
-        
-       for($i=$request->number_of_units; $i>=1; $i--){
-            Unit::create([
-                'uuid' => Str::uuid(),
-                'unit' => 'Unit '.$total_unit_created++,
-                'building_id' => '1',
-                'floor_id' => '1',
-                'property_uuid' => Session::get('property'),
-                'user_id' => auth()->user()->id,
-                'batch_no' => $batch_no
-            ]);
-       }
-
-        $units = Unit::where('batch_no', $batch_no)->count();
-
-        app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, $request->number_of_units, 5);
-        
-        return redirect('/property/'.Session::get('property').'/unit/'.$batch_no.'/edit')->with('success', 'Success!');
     }
 
     public function update(Request $request, Property $property, Unit $unit)

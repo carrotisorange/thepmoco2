@@ -33,11 +33,6 @@ class OwnerController extends Controller
         ]);
     }
 
-    public function unlock(Property $property)
-    {
-        return view('admin.restrictedpages.ownerportal');
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -72,16 +67,7 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property, Owner $owner)
-    {
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
-
-        Session::forget('tenant_uuid');
-
-        return view('owners.show',[
-            'owner_details' => $owner,
-        ]);
-    }
+  
 
     public function show_owner_representatives($owner_uuid)
     {

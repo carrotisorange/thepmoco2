@@ -6,7 +6,6 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\UnitContractController;
-use App\Http\Controllers\TenantController;
 use App\Http\Controllers\TenantBillController;
 use App\Http\Controllers\TenantCollectionController;
 use App\Http\Controllers\OwnerController;
@@ -25,8 +24,6 @@ use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\RepresentativeController;
 use App\Http\Controllers\DeedOfSaleController;
-use App\Http\Controllers\PropertyBillCustomizedController;
-use App\Http\Controllers\PropertyBillExpressController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\UnitEnrolleeController;
@@ -40,7 +37,6 @@ use App\Http\Controllers\OwnerCollectionController;
 use App\Http\Controllers\PropertyContractController;
 use App\Http\Controllers\PropertyDashboardController;
 use App\Http\Controllers\UtilityController;
-use App\Http\Controllers\UnitEditBulkController;
 use App\Http\Controllers\UnitConcernController;
 use App\Http\Controllers\UnitInventoryController;
 use App\Http\Controllers\TenantGuardianController;
@@ -122,18 +118,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Unit
     Route::prefix('unit')->group(function(){
         Route::get('/', [PropertyUnitController::class, 'index'])->name('unit');
+        Route::get('{batch_no?}/edit', [PropertyUnitController::class, 'edit'])->name('unit');
+        Route::get('{unit:uuid}', [PropertyUnitController::class, 'show'])->name('unit')->scopeBindings();
         
-            Route::post('{batch_no:batch_no}/store', [UnitController::class, 'store']);
-            Route::get('{batch_no?}/edit', [UnitEditBulkController::class, 'edit'])->name('unit');
-            Route::get('{batch_no}/create', [UnitController::class, 'create']);
-            //Route::patch('{batch_no}/update', [UnitController::class, 'bulk_update']);
-
         Route::prefix('{unit:uuid}')->group(function(){
             Route::get('/contract/{contract}/inventory/export', [UnitInventoryController::class, 'export_movein']);
-            Route::get('delete', [UnitController::class, 'destroy']);
-            Route::get('/', [PropertyUnitController::class, 'show'])->name('unit')->scopeBindings();
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
-            Route::patch('update', [UnitController::class, 'update']);
             Route::get('contracts', [UnitContractController::class, 'index']);
             Route::get('concern/{random_str}/create', [UnitConcernController::class, 'create'])->name('unit');
             Route::get('concern/{concern}/edit', [UnitConcernController::class, 'edit'])->name('unit');
@@ -229,10 +219,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){
         Route::get('/', [PropertyTenantController::class, 'index'])->name('tenant');
-        Route::get('/unlock', [TenantController::class, 'unlock'])->name('tenant');
-        Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
-
-      
+        Route::get('/unlock', [PropertyTenantController::class, 'unlock'])->name('tenant');
+        Route::get('{tenant:uuid}', [PropertyTenantController::class, 'show'])->name('tenant');
     
         Route::prefix('{tenant}')->group(function(){
             Route::get('bills', [TenantBillController::class, 'index'])->name('tenant-bill');
@@ -242,11 +230,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('payment_requests/{payment_request}',[PaymentRequestController::class, 'show'])->name('tenant');
             Route::get('collection/{batch_no?}', [TenantCollectionController::class,'destroy']);
             Route::get('contracts', [TenantContractController::class,'index']);
-            Route::get('delete', [TenantController::class, 'destroy']);
             Route::post('bill/store', [TenantBillController::class, 'store']);
             Route::get('bill/export', [TenantBillController::class, 'export']);
             Route::get('bill/send', [TenantBillController::class, 'send']);
-            //Route::get('collection/store', [TenantCollectionController::class, 'store']);
             Route::get('ar/{ar}/export', [TenantCollectionController::class, 'export']);
             Route::get('ar/{ar}/view', [TenantCollectionController::class, 'view']);
             Route::get('ar/{ar}/attachment', [TenantCollectionController::class, 'attachment']);
@@ -302,8 +288,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     //Routes for Owner
     Route::prefix('owner')->group(function(){
-        Route::get('/', [PropertyOwnerController::class, 'index'])->name('owner');
-        Route::get('/unlock', [OwnerController::class, 'unlock'])->name('owner');
+        Route::get('/', [PropertyOwnerController::class, 'index'])->name('owner')->scopeBindings();
+        Route::get('/unlock', [PropertyOwnerController::class, 'unlock'])->name('owner');
+        Route::get('{owner:uuid}', [PropertyOwnerController::class, 'show'])->name('owner');
+
+
+
 
         Route::prefix('{owner}')->group(function(){
             Route::prefix('representative')->group(function(){
@@ -314,7 +304,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('create', [BankController::class, 'create'])->name('owner');
             });        
             
-            Route::get('/', [OwnerController::class, 'show'])->name('owner');
+          
            
             Route::get('unit', [OwnerDeedOfSalesController::class, 'create']);
 
@@ -342,18 +332,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('bill')->group(function(){
         Route::get('{batch_no?}/{drafts?}', [PropertyBillController::class, 'index'])->name('bill');
         Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [PropertyBillController::class, 'export']);
+        Route::get('customized/{batch_no}/edit',[PropertyBillController::class,'edit'])->name('bill');
 
         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
-        //Route::get('drafts', [BillController::class, 'draft'])->name('bill');
-        
-        Route::prefix('{bill}')->group(function(){
-            Route::delete('delete', [BillController::class, 'destroy']);
-        });
-
-        Route::post('express/{bill_count}/store',[ PropertyBillExpressController::class, 'store']);
-        Route::post('customized/{bill_count}/store',[PropertyBillCustomizedController::class,'store']);
-        Route::get('customized/{batch_no}/edit',[PropertyBillCustomizedController::class,'edit'])->name('bill');
-        Route::patch('customized/batch/{batch_no}',[PropertyBillCustomizedController::class,'update']);
       
     });
 

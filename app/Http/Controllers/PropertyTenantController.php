@@ -22,6 +22,19 @@ class PropertyTenantController extends Controller
         ]);
     }
 
+    public function show(Property $property, Tenant $tenant)
+    {
+        //store activity for opening a particular tenant.
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
+
+        $list_of_all_relationships = app('App\Http\Controllers\RelationshipController')->index();
+
+        return view('tenants.show',[
+            'tenant_details' => $tenant,
+            'relationships' => $list_of_all_relationships
+        ]);
+    }
+
     public function destroy($tenant_uuid){
        Tenant::where('uuid', $tenant_uuid)->delete();
     }
@@ -31,5 +44,10 @@ class PropertyTenantController extends Controller
     public function get_property_tenants($property_uuid)
     {
         return Property::find($property_uuid)->tenants;
+    }
+
+    public function unlock(Property $property)
+    {
+        return view('admin.restrictedpages.tenantportal');
     }
 }

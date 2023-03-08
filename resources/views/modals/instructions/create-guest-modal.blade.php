@@ -15,7 +15,7 @@
                         <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new guest
                         </h3>
                         <div class="mt-2">
-                            <p class="text-sm text-gray-500">Before you can create a new contract, first you need to
+                            <p class="text-sm text-gray-500">Before you can create a new guest, first you need to
                                 select a unit.</p>
                         </div>
                     </div>
