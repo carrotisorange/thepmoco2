@@ -6,6 +6,7 @@ use App\Models\Property;
 use App\Models\Contract;
 use Session;
 use App\Models\Bill;
+use App\Models\Particular;
 
 class PropertyBillController extends Controller
 {
@@ -22,6 +23,19 @@ class PropertyBillController extends Controller
             'batch_no' => $batch_no,
             'drafts' => $drafts,
             'property' => $property
+        ]);
+    }
+
+    public function edit(Property $property, $batch_no)
+    {
+        $particulars = Particular::join('property_particulars', 'particulars.id',
+        'property_particulars.particular_id')
+        ->where('property_uuid', Session::get('property'))
+        ->get();
+
+        return view('bills.edit', [
+            'batch_no' => $batch_no,
+            'particulars' => $particulars
         ]);
     }
 

@@ -15,10 +15,10 @@ class TenantIndexComponent extends Component
     public $status;
     public $category;
 
+    public $action = 'addNewTenant';
+
     public function redirectToUnitSelectionPage(){
         sleep(2);
-
-        $action = 'addNewTenant';
 
         return redirect('/property/'.Session::get('property').'/unit/');
     }

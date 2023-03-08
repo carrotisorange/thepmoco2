@@ -37,7 +37,7 @@ class PropertyAccountPayableController extends Controller
         ->when($request_for, function ($query, $request_for) {
         $query->where('request_for', $request_for);
         })
-        ->orderBy('id', 'desc')->get();
+        ->orderBy('id', 'desc')->paginate($limitDisplayTo);
     }
 
     public function export($property_uuid, $status=null, $created_at=null, $request_for=null, $limitDisplayTo=null){

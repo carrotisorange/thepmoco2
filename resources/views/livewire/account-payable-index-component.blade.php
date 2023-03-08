@@ -27,15 +27,15 @@
                             Request</span>
                         <span>
                             <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                            transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20">
+                                                        transition duration-150 ease-in-out"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                             </svg>
                         </span>
                     </button>
 
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-                                      transition duration-150 ease-in-out origin-top min-w-32">
+                                                  transition duration-150 ease-in-out origin-top min-w-32">
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
                                 href="/property/{{ Session::get('property') }}/accountpayable/{{ 'payment' }}/step-1"
                                 data-modal-toggle="create-particular-modal">payment</a>
@@ -52,91 +52,51 @@
                 </div>
 
             </div>
-
+            
+        </div>
+       
+        <div class="mt-3">
+            {{ $accountpayables->links() }}
         </div>
 
+        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+            <div class="sm:col-span-2">
+                <select id="status" wire:model="status"
+                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <option value="">Filter status</option>
+                    @foreach ($statuses as $status)
+                    <option value="{{ $status->status }}">{{ $status->status }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="sm:col-span-2">
+                <select id="request_for" wire:model="request_for"
+                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <option value="">Filter type</option>
+                    @foreach ($types as $type)
+                    <option value="{{ $type->request_for }}">{{ $type->request_for }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="sm:col-span-2">
+                <select id="limitDisplayTo" wire:model="limitDisplayTo"
+                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <option value="" selected>Limit display to</option>
+                    @for ($i = 1; $i <= $totalAccountPayableCount; $i++) @if($i%10===0 || $i==$totalAccountPayableCount)
+                        <option value="{{ $i }}">{{ $i }} </option>
+                        @endif
+                        @endfor
+                </select>
+            </div>
 
+        </div>
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="mt-3 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-2">
-                        <select id="created_at" wire:model="created_at"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Requested on</option>
-                            @foreach ($dates as $date)
-                            <option value="{{ $date->created_at }}">{{
-                                Carbon\Carbon::parse($date->created_at)->format('M d, Y')
-                                }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="sm:col-span-2">
-                        <select id="status" wire:model="status"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter status</option>
-                            @foreach ($statuses as $status)
-                            <option value="{{ $status->status }}">{{ $status->status }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="sm:col-span-1">
-                        <select id="request_for" wire:model="request_for"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter type</option>
-                            @foreach ($types as $type)
-                            <option value="{{ $type->request_for }}">{{ $type->request_for }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="sm:col-span-1">
-                        <select id="limitDisplayTo" wire:model="limitDisplayTo"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="" selected>Limit display to</option>
-                            @for ($i = 1; $i <= $totalAccountPayableCount; $i++) @if($i%10===0 ||
-                                $i==$totalAccountPayableCount) <option value="{{ $i }}">{{ $i }} </option>
-                                @endif
-                                @endfor
-                        </select>
-                    </div>
 
-                </div>
-                <div class="mt-3">
-                    {{-- {{ $accountpayables->links() }} --}}
-                </div>
-                {{-- <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
-
-                        <label for="default-search"
-                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-                        <div class="relative w-full mb-5">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </div>
-                            <input type="search" id="default-search" wire:model="search"
-                                class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for reference no" required>
-
-                        </div>
-
-                    </div>
-
-                    <div class="sm:col-span-2">
-                        <select id="small" wire:model="status"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter status</option>
-                            @foreach ($statuses as $item)
-                            <option value="{{ $item->status }}">{{ $item->status }}</option>
-                            @endforeach
-                        </select>
-
-                    </div>
-
-                </div> --}}
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+
+                    </div>
                     @if($accountpayables->count())
                     @include('tables.accountpayables')
                     @else
@@ -158,7 +118,7 @@
                                             New Request</span>
                                         <span>
                                             <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                                                            transition duration-150 ease-in-out"
+                                                                                            transition duration-150 ease-in-out"
                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                 <path
                                                     d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
@@ -176,7 +136,7 @@
 
                                     <ul
                                         class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-                                                                      transition duration-150 ease-in-out origin-top min-w-32">
+                                                                                      transition duration-150 ease-in-out origin-top min-w-32">
 
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
                                                 href="/property/{{ Session::get('property') }}/accountpayable/{{ 'payment' }}/step-1"
