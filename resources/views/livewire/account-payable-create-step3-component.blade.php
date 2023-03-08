@@ -3,7 +3,8 @@
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
             {{-- <button type="button"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button> --}}
+                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button>
+            --}}
         </div>
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="approveRequest()" method="POST">
@@ -18,9 +19,20 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="selected_quotation"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span><a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
+                                    <span>
+
+                                        @if($accountpayable->quotation1)
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
                                             class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a></span>
+                                            Quotation/Bill</a>
+                                        @else
+
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
+                                            quotation/bill
+                                            was uploaded</a>
+                                        @endif
+
+                                    </span>
 
 
                                 </label>
@@ -44,10 +56,11 @@
                                         @if($accountpayable->quotation2)
                                         <a href="{{ asset('/storage/'.$accountpayable->quotation2) }}" target="_blank"
                                             class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a>
+                                            Quotation/Bill</a>
                                         @else
 
-                                        <a href="#" class="text-red-500 text-decoration-line: underline">No quotation
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
+                                            Quotation/Bill
                                             was uploaded</a>
                                         @endif
 
@@ -74,10 +87,11 @@
                                         @if($accountpayable->quotation3)
                                         <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank"
                                             class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a>
+                                            Quotation/Bill</a>
                                         @else
 
-                                        <a href="#" class="text-red-500 text-decoration-line: underline">No quotation
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
+                                            Quotation/Bill
                                             was uploaded</a>
                                         @endif
 
@@ -91,6 +105,7 @@
                     </div>
                 </div>
 
+                @if($accountpayable->request_for === 'purchase')
                 <div class="sm:col-span-6">
                     <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
                     <div
@@ -99,9 +114,20 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="selected_quotation"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span><a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}"
+                                    <span>
+
+                                        @if($accountpayable->selected_quotation)
+                                        <a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}"
                                             target="_blank" class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a></span>
+                                            Selected Quotation</a>
+                                        @else
+
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No Selected
+                                            Quotation
+                                            was uploaded</a>
+                                        @endif
+
+                                    </span>
 
 
                                 </label>
@@ -111,6 +137,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
@@ -164,6 +191,16 @@
 
                 </div>
 
+                {{-- vendor details --}}
+                <div class="sm:col-span-3">
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Name:</label>
+                    <input type="text" value="{{ $accountpayable->vendor }}" name="vendor" readonly
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                    @error('selected_vendor')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 {{-- price --}}
                 <div class="sm:col-span-3">
                     <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
@@ -175,16 +212,7 @@
                 </div>
 
 
-                {{-- vendor details --}}
-                <div class="sm:col-span-3">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor:</label>
-                    <input type="text" value="{{ $accountpayable->vendor }}" name="vendor" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('selected_vendor')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
+              
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Comment</label>
 

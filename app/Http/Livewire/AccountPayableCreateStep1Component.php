@@ -69,12 +69,7 @@ class AccountPayableCreateStep1Component extends Component
             ($this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity'))/$this->get_particulars()->count()
         );
 
-
-        if($this->request_for === 'purchase'){
-            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Success!');
-        }else{
-            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-4')->with('success', 'Success!');
-        }
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Success!');
     }
 
     public function get_particulars(){
