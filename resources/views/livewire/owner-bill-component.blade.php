@@ -97,7 +97,7 @@
         <div class="flex flex-row">
             <div class="basis-3/4">
 
-                @can('treasury')
+
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
                 <button type="button" wire:click="payBills" wire:loading.remove
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -117,11 +117,11 @@
                     <b>Please check the bill you want to pay</b>
                 </div>
                 @endif
-                @endcan
+
 
             </div>
             <div class="basis-1/4 ml-12 text-right">
-    
+
                 @if($selectedBills)
                 <x-button
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -130,7 +130,7 @@
                     bills ({{ count($selectedBills) }})
                 </x-button>
                 @endif
-               
+
             </div>
         </div>
     </div>
