@@ -16,12 +16,12 @@
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
                 <div class="sm:col-span-7">
-                    <label for="" class="block text-sm font-medium text-gray-700">Please upload the quotations</label>
+                    <label for="" class="block text-sm font-medium text-gray-700">Please upload the quotations/bills</label>
 
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700"> Quotation 1</label>
+                    <label class="block text-sm font-medium text-gray-700"> Quotation/Bill 1</label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700"> Quotation 2 </label>
+                    <label class="block text-sm font-medium text-gray-700"> Quotation/Bill 2 </label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700"> Quotation 3</label>
+                    <label class="block text-sm font-medium text-gray-700"> Quotation/Bill 3</label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -119,51 +119,55 @@
                     </div>
                 </div>
 
+        
+                @if($accountpayable->request_for === 'purchase')
                 <div class="sm:col-span-7">
-                    <label for="" class="block text-sm font-medium text-gray-700">Selected Vendor Details:</label>
+                                <label for="" class="block text-sm font-medium text-gray-700">Selected Vendor Details:</label>
+                            
+                            </div>
+                            
+                            <div class="sm:col-span-2">
+                                <label for="vendor" class="block text-sm font-medium text-gray-700">Select a quotation:</label>
+                                <select id="selected_quotation" wire:model="selected_quotation"
+                                    class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                    @if($quotation1 && !$quotation2 && !$quotation3)
+                                    <option value="quotation1">Quotation 1</option>
+                                    @elseif($quotation1 && $quotation2 && !$quotation3)
+                                    <option value="quotation1">Quotation 1</option>
+                                    <option value="quotation2">Quotation 2</option>
+                                    @elseif($quotation1 && $quotation2 && $quotation3)
+                                    <option value="quotation1">Quotation 1</option>
+                                    <option value="quotation2">Quotation 2</option>
+                                    <option value="quotation3">Quotation 3</option>
+                                    @else
+                                    <option value="">Please select one</option>
+                                    @endif
+                            
+                                </select>
+                                @error('selected_quotation')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            
+                            <div class="sm:col-span-2">
+                                <label for="vendor" class="block text-sm font-medium text-gray-700">Name of the vendor:</label>
+                                <input type="text" wire:model="vendor" rows="3"
+                                    class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                @error('vendor')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            
+                            <div class="sm:col-span-2">
+                                <label for="amount" class="block text-sm font-medium text-gray-700">Amount of the quotation</label>
+                                <input type="number" step="0.01" wire:model="amount" rows="3"
+                                    class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                @error('amount')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="vendor" class="block text-sm font-medium text-gray-700">Select a quotation:</label>
-                    <select id="selected_quotation" wire:model="selected_quotation"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                        @if($quotation1 && !$quotation2 && !$quotation3)
-                        <option value="quotation1">Quotation 1</option>
-                        @elseif($quotation1 && $quotation2 && !$quotation3)
-                        <option value="quotation1">Quotation 1</option>
-                        <option value="quotation2">Quotation 2</option>
-                        @elseif($quotation1 && $quotation2 && $quotation3)
-                        <option value="quotation1">Quotation 1</option>
-                        <option value="quotation2">Quotation 2</option>
-                        <option value="quotation3">Quotation 3</option>
-                        @else
-                        <option value="">Please select one</option>
-                        @endif
-
-                    </select>
-                    @error('selected_quotation')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="vendor" class="block text-sm font-medium text-gray-700">Name of the vendor:</label>
-                    <input type="text" wire:model="vendor" rows="3"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('vendor')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount of the quotation</label>
-                    <input type="number" step="0.01" wire:model="amount" rows="3"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('amount')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
+                @endif
 
 
 

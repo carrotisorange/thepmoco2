@@ -124,11 +124,13 @@
         </table>
         </p>
     </div>
-    @if($accountpayable->request_for === 'purchase')
+ 
     <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-        <h3 class="text-base font-semibold leading-6 text-gray-900">Uploaded Quotations</h3>
+        <h3 class="text-base font-semibold leading-6 text-gray-900">Uploaded Quotations/Bills</h3>
         <p class="mt-1 text-sm text-gray-500">
         <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
+            @if($accountpayable->request_for === 'purchase')
+           
             <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
                 <div class="flex w-0 flex-1 items-center">
                     <!-- Heroicon name: mini/paper-clip -->
@@ -151,6 +153,7 @@
                     @endif
                 </div>
             </li>
+            @endif
             <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
                 <div class="flex w-0 flex-1 items-center">
                     <!-- Heroicon name: mini/paper-clip -->
@@ -160,7 +163,7 @@
                             d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z"
                             clip-rule="evenodd" />
                     </svg>
-                    <span class="ml-2 w-0 flex-1 truncate">Quotation 1</span>
+                    <span class="ml-2 w-0 flex-1 truncate">Quotation/Bill 1</span>
                 </div>
                 <div class="ml-4 flex-shrink-0">
                     @if($accountpayable->quotation1)
@@ -168,7 +171,7 @@
                         class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
                     @else
                     <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">No
-                        quotation
+                        Quotation/Bill
                         was uploaded</a>
                     @endif
                 </div>
@@ -182,7 +185,7 @@
                             d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z"
                             clip-rule="evenodd" />
                     </svg>
-                    <span class="ml-2 w-0 flex-1 truncate">Quotation 2</span>
+                    <span class="ml-2 w-0 flex-1 truncate">Quotation/Bill 2</span>
                 </div>
                 <div class="ml-4 flex-shrink-0">
                     @if($accountpayable->quotation2)
@@ -190,7 +193,7 @@
                         class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
                     @else
                     <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">No
-                        quotation
+                        Quotation/Bill
                         was uploaded</a>
                     @endif
                 </div>
@@ -204,7 +207,7 @@
                             d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z"
                             clip-rule="evenodd" />
                     </svg>
-                    <span class="ml-2 w-0 flex-1 truncate">Quotation 3</span>
+                    <span class="ml-2 w-0 flex-1 truncate">Quotation/Bill 3</span>
                 </div>
                 <div class="ml-4 flex-shrink-0">
                     @if($accountpayable->quotation3)
@@ -212,7 +215,7 @@
                         class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
                     @else
                     <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">No
-                        quotation
+                        Quotation/Bill
                         was uploaded</a>
                     @endif
                 </div>
@@ -221,5 +224,5 @@
         </ul>
         </p>
     </div>
-    @endif
+   
 </div>

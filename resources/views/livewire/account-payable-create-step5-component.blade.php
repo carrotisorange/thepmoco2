@@ -198,7 +198,7 @@
 
                 {{-- vendor details --}}
                 <div class="sm:col-span-3">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor:</label>
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Name:</label>
                     <input type="text" value="{{ $accountpayable->vendor }}" name="vendor" readonly
                         class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                     @error('selected_vendor')

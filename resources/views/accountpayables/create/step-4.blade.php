@@ -57,7 +57,7 @@
               
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-gray-500">Step 2</span>
-                                        <span class="text-sm font-medium text-gray-500">Quotation</span>
+                                        <span class="text-sm font-medium text-gray-500">Quotation/Bill</span>
                                     </span>
                                 </span>
                             </a>
