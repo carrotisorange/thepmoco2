@@ -82,11 +82,12 @@ class PropertyCreateComponent extends Component
             }); 
 
         }catch (\Throwable $e) {
-            return back()->with('error', 'Cannot perform your action.');
+            return back()->with('error', $e);
         }
      }
 
      public function cancel(){
+      
       sleep(2);
 
       return redirect('/property');

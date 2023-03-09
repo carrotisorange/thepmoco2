@@ -160,18 +160,13 @@
             Cancel
          </button>
 
-         {{-- <button type="button" wire:loading disabled wire:target="cancel"
-            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            Loading...
-         </button> --}}
-
          <button type="button" wire:loading disabled 
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Loading...
          </button>
 
          @if($barangay)
-         <button type="submit" wire:click="create" wire:loading.remove
+         <button type="button" wire:click="create" wire:loading.remove
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Create
          </button>
