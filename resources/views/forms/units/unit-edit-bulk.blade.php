@@ -1,13 +1,9 @@
-<form class="mt-5 sm:pb-6 xl:pb-8" id="edit-form" wire:submit.prevent="updateUnit()">
+<form wire:submit.prevent="updateForm()">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>
-                {{-- <x-th>
-                    #</x-th> --}}
                 <x-th>
-                    {{-- <div class="flex items-center">
-                        <x-input wire:model="selectedAllUnits" type="checkbox" />
-                    </div> --}}
+
                 </x-th>
                 <x-th>
                     Unit
@@ -42,16 +38,16 @@
             @foreach ($units as $index => $item)
             <div wire:key="unit-field-{{ $item->uuid }}">
                 <tr>
-                    {{-- <x-th>
-                        {{ $index+1 }}
-                    </x-th> --}}
+
                     <x-td>
                         <div class="flex items-center">
                             <x-input form="edit-form" type="checkbox" wire:model="selectedUnits.{{ $item->uuid }}" />
                         </div>
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" type="text" wire:model="units.{{ $index }}.unit" />
+                        <x-table-input form="edit-form" type="text" 
+                        wire:model.debounce.500ms="units.{{ $index }}.unit"
+                        wire:keyup="updateUnit({{ $item->uuid }})" />
                         @error('units.{{ $index }}.unit')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror

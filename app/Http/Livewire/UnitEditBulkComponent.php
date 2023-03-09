@@ -59,7 +59,7 @@ class UnitEditBulkComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function updatedSelectedAllUnits($selectedAllUnits)
+    public function updatedSelectAllUnits($selectedAllUnits)
     {   
         if($selectedAllUnits)
         {

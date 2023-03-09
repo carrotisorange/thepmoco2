@@ -1,37 +1,4 @@
 <div>
-    {{-- <style>
-        li>ul {
-            transform: translatex(100%) scale(0)
-        }
-
-        li:hover>ul {
-            transform: translatex(50%) scale(1)
-        }
-
-        li>button svg {
-            transform: rotate(-90deg)
-        }
-
-        li:hover>button svg {
-            transform: rotate(-270deg)
-        }
-
-        .group:hover .group-hover\:scale-100 {
-            transform: scale(1)
-        }
-
-        .group:hover .group-hover\:-rotate-180 {
-            transform: rotate(180deg)
-        }
-
-        .scale-0 {
-            transform: scale(0)
-        }
-
-        .min-w-32 {
-            min-width: 8rem
-        }
-    </style> --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -244,8 +211,8 @@
 
             </div>
         </div>
+        @include('layouts.notifications')
+        @include('modals.instructions.create-bill-modal')
+        @include('modals.instructions.create-particular-modal')
     </div>
-    @include('layouts.notifications')
-    @include('modals.instructions.create-bill-modal')
-    @include('modals.instructions.create-particular-modal')
 </div>
