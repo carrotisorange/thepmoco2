@@ -27,24 +27,11 @@ class TenantBillController extends Controller
 
     public function index(Property $property, Tenant $tenant)
     {            
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens', 10);
-       
-        $bills = Tenant::find($tenant->uuid)
-        ->bills()
-        ->orderBy('bill_no','desc')
-        ->get();
-
-        Collection::where('tenant_uuid', $tenant->uuid)
-         ->where('is_posted', 0)
-         ->delete();
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
 
         return view('tenants.bills.index',[
             'tenant' => $tenant,  
-            'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-            'unpaid_bills' => $this->get_tenant_balance($tenant->uuid),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
-            'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
-            'note_to_bill' => $property->note_to_bill,
+            'property' => $property,
         ]);
     }
 
@@ -63,57 +50,6 @@ class TenantBillController extends Controller
     public function get_tenant_balance($tenant_uuid)
     {
         return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
-    }
-
-    public function store(Request $request, Property $property, Tenant $tenant)
-    {
-
-        $attributes = request()->validate([
-            'bill' => 'required|numeric|min:1',
-            'particular_id' => ['required', Rule::exists('particulars', 'id')],
-            'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
-            'start' => 'required|date',
-            'end' => 'required|date|after:start',
-        ]);
-
-        try {
-            DB::beginTransaction();
-            
-            $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($property->uuid);
-            
-            $attributes['bill_no']= $bill_no;
-
-            if($request->particular_id == 8)
-            {
-              $attributes['bill'] = -($request->bill);
-            }
-
-            $attributes['reference_no']= $tenant->bill_reference_no;
-
-            $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
-
-            $attributes['user_id'] = auth()->user()->id;
-
-            $attributes['property_uuid'] = $property->uuid;
-
-            $attributes['tenant_uuid'] = $tenant->uuid;
-
-            $attributes['is_posted'] = true;
-
-            Bill::create($attributes);
-
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 1, 3);
-
-            DB::commit();
-
-            return back()->with('success','Success!');
-        }
-        catch(\Exception $e)
-        {
-            DB::rollback();
-            
-            return back()->with('error','Cannot perform the action. Please try again.');
-        }
     }
 
     public function export(Request $request, Property $property, Tenant $tenant)

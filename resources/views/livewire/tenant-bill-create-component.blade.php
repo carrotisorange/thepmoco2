@@ -61,13 +61,13 @@
                     @endif
 
 
-                    <button type="button" data-modal-toggle="create-tenant-bill"
+                    <button type="button" data-modal-toggle="instructions-create-tenant-bill-modal"
                         class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                         Create Bill</a></button>
 
-                    <button type="button" data-modal-toggle="create-particular-modal"
+                    {{-- <button type="button" data-modal-toggle="instructions-create-particular-modal"
                         class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                        Create Particular</a></button>
+                        Create Particular</a></button> --}}
                 </div>
             </div>
 
@@ -137,7 +137,7 @@
             </div>
         </div>
     </div>
-    {{-- {{ $bills->links() }} --}}
+
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">
@@ -152,4 +152,8 @@
         </div>
     </div>
     @include('layouts.notifications')
+    @include('modals.instructions.create-tenant-bill-modal')
+    @include('modals.export-tenant-bill')
+    @include('modals.send-tenant-bill')
+    @include('modals.instructions.create-particular-modal')
 </div>

@@ -230,7 +230,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('payment_requests/{payment_request}',[PaymentRequestController::class, 'show'])->name('tenant');
             Route::get('collection/{batch_no?}', [TenantCollectionController::class,'destroy']);
             Route::get('contracts', [TenantContractController::class,'index']);
-            Route::post('bill/store', [TenantBillController::class, 'store']);
+            // Route::post('bill/store', [TenantBillController::class, 'store']);
             Route::get('bill/export', [TenantBillController::class, 'export']);
             Route::get('bill/send', [TenantBillController::class, 'send']);
             Route::get('ar/{ar}/export', [TenantCollectionController::class, 'export']);

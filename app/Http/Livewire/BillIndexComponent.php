@@ -195,7 +195,7 @@ class BillIndexComponent extends Component
          );
 
          if($particular_id){
-                PropertyParticular::updateOrCreate(
+         PropertyParticular::updateOrCreate(
                 [
                 'property_uuid' => $this->property->uuid,
                 'particular_id' => $particular_id
@@ -208,7 +208,6 @@ class BillIndexComponent extends Component
          }
 
          session()->flash('success', 'Success!');
-       
    }
 
    protected function rules()
@@ -275,9 +274,6 @@ class BillIndexComponent extends Component
             {
                 session()->flash('error', $e);
             }
-
-      
-
    }
 
    public function delete_collection()
@@ -303,11 +299,9 @@ class BillIndexComponent extends Component
       $period_covered_starts = $this->get_period_covered_starts();
 
       $period_covered_ends = $this->get_period_covered_ends();
-
-      $bills = $this->get_bills();
          
       return view('livewire.bill-index-component', [
-         'bills' => $bills,
+         'bills' => $this->get_bills(),
          'statuses' =>  $this->get_statuses(),
          'particulars' => $particulars,
          'dates_posted' => $dates_posted,
