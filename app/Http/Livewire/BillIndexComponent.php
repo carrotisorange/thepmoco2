@@ -185,6 +185,8 @@ class BillIndexComponent extends Component
       ->pluck('id')
       ->first();
 
+      
+
       Particular::updateOrCreate(
          [
             'particular' => $this->new_particular
@@ -195,7 +197,7 @@ class BillIndexComponent extends Component
          );
 
          if($particular_id){
-                PropertyParticular::updateOrCreate(
+         PropertyParticular::updateOrCreate(
                 [
                 'property_uuid' => $this->property->uuid,
                 'particular_id' => $particular_id
@@ -208,7 +210,6 @@ class BillIndexComponent extends Component
          }
 
          session()->flash('success', 'Success!');
-       
    }
 
    protected function rules()

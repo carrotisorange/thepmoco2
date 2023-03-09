@@ -8,47 +8,144 @@ use App\Models\Bill;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Collection;
+use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use DB;
 use Session;
 use App\Models\Property;
-use App\Models\Wallet;
+use App\Models\Particular;
+use App\Models\PropertyParticular;
+
 
 class TenantBillCreateComponent extends Component
 {
    use WithPagination;
 
-    public $tenant;
+   public $property;
+   public $tenant;
 
-     public $selectedBills = [];
-     public $selectAll = false;  
-     public $status;
+   public $selectedBills = [];
+   public $selectAll = false;  
+   public $status;
 
-     public $view = 'listView';
+   public $particular_id;
+   public $unit_uuid;
+   public $start;
+   public $end;
+   public $bill;
 
-     public $isPaymentAllowed = true;
+   public $view = 'listView';
 
-     public function removeBills()
-     {
+   public $isPaymentAllowed = true;
 
-         sleep(2);
+   public $new_particular;
 
-        if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
+   public function removeBills()
+   {
+      sleep(2);
+
+      if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
+      {
+         $this->selectedBills = [];
+
+         return back()->with('error', 'Bill cannot be deleted.');
+      }
+
+      Bill::destroy($this->selectedBills);
+
+      $this->selectedBills = [];
+
+      return back()->with('success', 'Success!');
+   }
+
+   public function mount(){
+      $this->start = Carbon::now()->format('Y-m-d');
+      $this->end = Carbon::now()->addMonth()->format('Y-m-d');
+   }
+
+   protected function rules()
+   {
+      return [
+         'particular_id' => ['required', Rule::exists('particulars', 'id')],
+         'start' => 'required|date',
+         'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
+         'end' => 'required|date|after:start',
+         'bill' => 'required|numeric|min:1',
+      ];
+   }
+
+   public function updated($propertyName)
+   {
+      $this->validateOnly($propertyName);
+   }
+
+   public function storeBill(){
+
+      sleep(2);
+
+      $this->validate();
+
+      try {
+
+         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property->uuid);
+
+         Bill::create([
+            'bill_no' => $bill_no,
+            'unit_uuid' => $this->unit_uuid,
+            'particular_id' => $this->particular_id,
+            'start' => $this->start,
+            'end' => $this->end,
+            'bill' => $this->bill,
+            'reference_no' => $this->tenant->reference_no,
+            'due_date' => Carbon::parse($this->start)->addDays(7),
+            'user_id' => auth()->user()->id,
+            'property_uuid' => $this->property->uuid,
+            'tenant_uuid' => $this->tenant->uuid,
+            'is_posted' => true
+         ]);
+
+            // app('App\Http\Controllers\BillController')->store(Session::get('property'), auth()->user()->id, 1, 3);
+
+            app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, 1, 3);
+
+            return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant->uuid.'/bills')->with('success','Success!');
+      }
+        catch(\Exception $e)
         {
-            $this->selectedBills = [];
-
-            return back()->with('error', 'Bill cannot be deleted.');
+            return back()->with('error',$e);
         }
+   }
 
-        Bill::destroy($this->selectedBills);
-
-        $this->selectedBills = [];
-
-        return back()->with('success', 'Success!');
-     }
-
-   public function exportBills(){
+      public function storeParticular(){
       
+      $particular_id = Particular::
+      where('particular', strtolower($this->new_particular))
+      ->pluck('id')
+      ->first();
+
+      Particular::updateOrCreate(
+         [
+            'particular' => $this->new_particular
+         ],
+         [
+            'particular' => $this->new_particular
+         ]
+         );
+
+         if($particular_id){
+         PropertyParticular::updateOrCreate(
+                [
+                'property_uuid' => $this->property->uuid,
+                'particular_id' => $particular_id
+                ],
+                [
+                'property_uuid' => $this->property->uuid,
+                'particular_id' => $particular_id
+                ]
+                );
+         }
+
+         session()->flash('success', 'Success!');
    }
 
    public function payBills()
@@ -170,8 +267,6 @@ class TenantBillCreateComponent extends Component
       ->whereIn('status', ['paid', 'partially_paid'])
       ->count();
 
-      $total_bills = Tenant::find($this->tenant->uuid)->bills->sum('bill');
-
       return view('livewire.tenant-bill-create-component',[
          'bills' => $bills,
          'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
@@ -179,7 +274,12 @@ class TenantBillCreateComponent extends Component
          'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'total_bills' => $bills,
-         'statuses' => $statuses
+         'statuses' => $statuses,
+         'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+         'unpaid_bills' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($this->tenant->uuid),
+         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
+         'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
+         'note_to_bill' => $this->property->note_to_bill,
         ]);
     }
 }
