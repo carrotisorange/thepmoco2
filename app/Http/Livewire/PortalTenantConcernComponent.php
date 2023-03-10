@@ -73,14 +73,14 @@ class PortalTenantConcernComponent extends Component
 
     public function store_notification()
     {
-           Notification::create([
-           'type' => 'concern',
-           'user_id' => $this->user->id,
-           'details' => 'reported a concern.',
-           'status' => 'pending',
-           'role_id' => $this->user->role_id,
-           'property_uuid' => Tenant::find($this->user->tenant_uuid)->property->uuid
-           ]);
+        //    Notification::create([
+        //    'type' => 'concern',
+        //    'user_id' => $this->user->id,
+        //    'details' => 'reported a concern.',
+        //    'status' => 'pending',
+        //    'role_id' => $this->user->role_id,
+        //    'property_uuid' => Tenant::find($this->user->tenant_uuid)->property->uuid
+        //    ]);
     }
 
     public function render()
