@@ -190,12 +190,13 @@ class AccountPayableController extends Controller
          ])->id; 
     }
 
-    public function store_step_3($accountpayable_id, $status, $comment){
+    public function store_step_3($accountpayable_id, $status, $comment, $vendor){
         AccountPayable::where('id', $accountpayable_id)
         ->update([
         'status' => $status,
         'approver_id' => auth()->user()->id,
-        'comment' => $comment
+        'comment' => $comment,
+        'vendor' => $vendor
         ]);
     }
 

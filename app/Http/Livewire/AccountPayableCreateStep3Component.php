@@ -13,6 +13,7 @@ class AccountPayableCreateStep3Component extends Component
     public $accountpayable_id;
 
     public $comment;
+    public $vendor;
 
     public $property_uuid;
     
@@ -20,7 +21,8 @@ class AccountPayableCreateStep3Component extends Component
     {
         $this->comment = AccountPayable::find($this->accountpayable_id)->comment;
         $this->property_uuid = Session::get('property');
-    }
+        $this->vendor = AccountPayable::find($this->accountpayable_id)->vendor; 
+     }
 
     protected function rules()
     {
@@ -40,7 +42,7 @@ class AccountPayableCreateStep3Component extends Component
 
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable_id, 'approved by manager', $this->comment);
+        app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable_id, 'approved by manager', $this->comment, $this->vendor);
 
         return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-4')->with('success', 'Success!');
     }
@@ -51,7 +53,7 @@ class AccountPayableCreateStep3Component extends Component
 
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable_id, 'rejected by manager', $this->comment);
+        app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable_id, 'rejected by manager', $this->comment, $this->vendor);
 
         return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-3')->with('success', 'Success!');
     }
