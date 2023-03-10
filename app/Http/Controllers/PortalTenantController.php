@@ -6,13 +6,9 @@ use App\Models\User;
 use App\Models\Tenant;
 use \PDF;
 use App\Models\Bill;
-use App\Models\ConcernCategory;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Models\Concern;
-use App\Models\Unit;
 use Illuminate\Support\Facades\Storage;
-use Str;
 use App\Models\PaymentRequest;
 use Session;
 use Carbon\Carbon;
@@ -172,14 +168,14 @@ class PortalTenantController extends Controller
             'user_id' => $user->id
         ]);
 
-            Notification::create([
-                'type' => 'payment request',
-                'user_id' => $user->id,
-                'details' => 'approved a payment request.',
-                'status' => 'approved',
-                'role_id' => $role_id,
-                'property_uuid' => Session::get('property') 
-            ]);
+                // Notification::create([
+                //     'type' => 'payment request',
+                //     'user_id' => $user->id,
+                //     'details' => 'approved a payment request.',
+                //     'status' => 'approved',
+                //     'role_id' => $role_id,
+                //     'property_uuid' => Session::get('property') 
+                // ]);
 
          return redirect('/property/'.Session::get('property').'/collection/approved')->with('success', 'Success!');
         }
@@ -194,14 +190,14 @@ class PortalTenantController extends Controller
         'mode_of_payment' => $request->mode_of_payment,
       ]);
 
-          Notification::create([
-          'type' => 'payment request',
-          'user_id' => $user->id,
-          'details' => 'uploaded a proof of payment.',
-          'status' => 'pending',
-            'role_id' => $role_id,
-          'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
-          ]);
+        //   Notification::create([
+        //   'type' => 'payment request',
+        //   'user_id' => $user->id,
+        //   'details' => 'uploaded a proof of payment.',
+        //   'status' => 'pending',
+        //     'role_id' => $role_id,
+        //   'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
+        //   ]);
 
       } 
 
@@ -222,14 +218,14 @@ class PortalTenantController extends Controller
             'user_id' => $user->id
         ]);
 
-           Notification::create([
-                'type' => 'payment request',
-                'user_id' => $user->id,
-                'details' => 'approved a payment request.',
-                'status' => 'declined',
-                'role_id' => $role_id,
-                'property_uuid' => Session::get('property') 
-            ]);
+        //    Notification::create([
+        //         'type' => 'payment request',
+        //         'user_id' => $user->id,
+        //         'details' => 'approved a payment request.',
+        //         'status' => 'declined',
+        //         'role_id' => $role_id,
+        //         'property_uuid' => Session::get('property') 
+        //     ]);
 
         return redirect('/property/'.Session::get('property').'/collection/declined')->with('success', 'Success!');
     }

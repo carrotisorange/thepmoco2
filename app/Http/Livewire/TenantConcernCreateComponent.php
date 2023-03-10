@@ -77,14 +77,14 @@ class TenantConcernCreateComponent extends Component
 
     public function store_notification()
     {
-           Notification::create([
-           'type' => 'concern',
-           'user_id' => auth()->user()->id,
-           'details' => 'reported a concern.',
-           'status' => 'pending',
-           'role_id' => auth()->user()->role_id,
-           'property_uuid' => Session::get('property')
-           ]);
+        //    Notification::create([
+        //    'type' => 'concern',
+        //    'user_id' => auth()->user()->id,
+        //    'details' => 'reported a concern.',
+        //    'status' => 'pending',
+        //    'role_id' => auth()->user()->role_id,
+        //    'property_uuid' => Session::get('property')
+        //    ]);
     }
 
     public function render()
