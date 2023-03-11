@@ -255,19 +255,19 @@
 
                 </div>
 
-                @can('accountpayable')
+                {{-- @can('accountpayable') --}}
                 <div class="sm:col-span-6">
                     <textarea placeholder="Add your comment..." wire:model="comment2"
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
 
                 </div>
-                @else
+                {{-- @else
                 <div class="sm:col-span-6">
                     <textarea placeholder="Add your comment..." wire:model="comment2" readonly
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
 
                 </div>
-                @endcan
+                @endcan --}}
 
 
                 @if($accountpayable->status === 'approved by account payable')

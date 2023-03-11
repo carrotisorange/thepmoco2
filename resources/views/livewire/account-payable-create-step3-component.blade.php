@@ -251,7 +251,7 @@
 
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                    @can('manager')
+                    
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                         href="#/" wire:click="rejectRequest()">
                         Reject
@@ -270,8 +270,8 @@
                         </svg>
                         Approve
                     </button>
-                    @else
-                    @if($accountpayable->status === 'approved by manager')
+                   
+                    {{-- @if($accountpayable->status === 'approved by manager')
                     <button
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
@@ -286,8 +286,8 @@
                         </svg>
                         Next
                     </button>
-                    @endif
-                    @endcan
+                    @endif --}}
+               
                 </div>
 
             </div>
