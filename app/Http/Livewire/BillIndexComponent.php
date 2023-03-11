@@ -54,8 +54,8 @@ class BillIndexComponent extends Component
    public function mount($batch_no)
    {
       $this->batch_no = $batch_no;
-       $this->start = Carbon::now()->format('Y-m-d');
-       $this->end = Carbon::now()->addMonth()->format('Y-m-d');
+      //  $this->start = Carbon::now()->format('Y-m-d');
+      //  $this->end = Carbon::now()->addMonth()->format('Y-m-d');
        $this->bill = 0;
    }
 
@@ -252,12 +252,15 @@ class BillIndexComponent extends Component
 
             $attributes['unit_uuid']= $unit_uuid[0];
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
+
                if($this->particular_id == 1)
                {
-                    $attributes['bill'] = $rent[0];
-                }elseif($this->particular_id == 8){
-                    $attributes['bill'] = -($this->bill);
-                }
+                  $attributes['bill'] = $rent[0];
+               }
+                
+               if($this->particular_id == 8){
+                  $attributes['bill'] = -($this->bill);
+               }
                 $attributes['bill_no'] = $bill_no++;
                 $attributes['reference_no'] = $reference_no->bill_reference_no;
                 $attributes['user_id'] = auth()->user()->id;
