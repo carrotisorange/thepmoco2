@@ -175,7 +175,7 @@ class UnitShowComponent extends Component
           $utilities = Utility::isposted()
           ->select('*', 'units.unit as unit_name' )
           ->join('units', 'utilities.unit_uuid', 'units.uuid')
-          ->where('is_posted', 1)
+        //   ->where('is_posted', 1)
           ->where('utilities.unit_uuid', $this->unit_details->uuid)
           ->get();
 
