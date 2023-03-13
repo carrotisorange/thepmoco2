@@ -78,23 +78,57 @@
 
         </div>
     </div>
-    Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Security Deposit: <b> {{
-        number_format(App\Models\Tenant::find($tenant->uuid)->wallets()->sum('amount'), 2) }}</b>
+    {{-- Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Security Deposit: <b> {{
+        number_format(App\Models\Tenant::find($tenant->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
 
-    <div class="mt-5">
-        @if($bills)
-        <label for="status" class="block text-sm font-medium text-gray-700">Filter bills</label>
-        <select wire:model.lazy="status" autocomplete="status"
-            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+        <div class="sm:col-span-2">
+            @if($bills)
+            <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
+            <select wire:model.lazy="status" autocomplete="status"
+                class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                @foreach ($statuses as $item)
+                <option value="{{ $item->status }}" {{ $status==$item->status ? 'selected' : 'selected' }}> {{
+                    $item->status }} bills
+                </option>
+                @endforeach
+            </select>
 
-            @foreach ($statuses as $item)
-            <option value="{{ $item->status }}" {{ $status==$item->status ? 'selected' : 'selected' }}> {{
-                $item->status }} bills
-            </option>
-            @endforeach
-        </select>
+            @endif
 
-        @endif
+        </div>
+        <div class="sm:col-span-2">
+            @if($bills)
+            <label for="unit" class="block text-sm font-medium text-gray-700">Filter units</label>
+            <select wire:model.lazy="unit" autocomplete="unit"
+                class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                @foreach ($units as $unit)
+                <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
+                    'selected': 'Select one'
+                    }}>{{ $unit->unit->unit }}</option>
+
+                @endforeach
+            </select>
+
+            @endif
+
+        </div>
+        <div class="sm:col-span-2">
+            @if($bills)
+            <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
+            <select wire:model.lazy="particular" autocomplete="particular"
+                class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+                <option value="">Filter bill particulars</option>
+                @foreach ($particulars as $item)
+                <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
+                @endforeach
+            </select>
+
+            @endif
+
+        </div>
+
     </div>
 
     <div class="mt-5">
@@ -160,4 +194,5 @@
     @include('modals.export-tenant-bill')
     @include('modals.send-tenant-bill')
     @include('modals.instructions.create-particular-modal')
+    @include('modals.create-particular')
 </div>

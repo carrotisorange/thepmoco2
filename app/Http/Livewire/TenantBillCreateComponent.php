@@ -40,6 +40,10 @@ class TenantBillCreateComponent extends Component
 
    public $new_particular;
 
+   //filters
+   public $particular;
+   public $unit;
+
    public function removeBills()
    {
       sleep(2);
@@ -69,7 +73,7 @@ class TenantBillCreateComponent extends Component
          'particular_id' => ['required', Rule::exists('particulars', 'id')],
          'start' => 'required|date',
          'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
-         'end' => 'required|date|after:start',
+         // 'end' => 'required|date|after:start',
          'bill' => 'required|numeric|min:1',
       ];
    }
@@ -104,7 +108,7 @@ class TenantBillCreateComponent extends Component
             'is_posted' => true
          ]);
 
-            // app('App\Http\Controllers\BillController')->store(Session::get('property'), auth()->user()->id, 1, 3);
+            // app('App\Http\Controllers\BillController')->store($this->property->uuid, auth()->user()->id, 1, 3);
 
             app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, 1, 3);
 
@@ -152,7 +156,7 @@ class TenantBillCreateComponent extends Component
    {
       sleep(2);
 
-      $collection_ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
+      $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
 
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
 
@@ -160,7 +164,7 @@ class TenantBillCreateComponent extends Component
         $collection_id =  Collection::insertGetId([
             'tenant_uuid' => $this->tenant->uuid,
             'unit_uuid' => Bill::find($this->selectedBills[$i])->unit_uuid,
-            'property_uuid' => Session::get('property'),
+            'property_uuid' => $this->property->uuid,
             'user_id' => auth()->user()->id,
             'bill_id' => Bill::find($this->selectedBills[$i])->id,
             'bill_reference_no' => Tenant::find($this->tenant->uuid)->bill_reference_no,
@@ -188,7 +192,7 @@ class TenantBillCreateComponent extends Component
          }
       }
 
-      return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
+      return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
    }
 
      public function unpayBills()
@@ -234,12 +238,20 @@ class TenantBillCreateComponent extends Component
       ->when($this->status, function($query){
          $query->where('status', $this->status);
       })
+       ->when($this->particular, function($query){
+       $query->where('particular_id', $this->particular);
+       })
+        ->when($this->unit, function($query){
+        $query->where('unit_uuid', $this->unit);
+        })
       ->get();
 
-      $statuses = Bill::where('bills.property_uuid', Session::get('property'))
+      $statuses = Bill::where('bills.property_uuid', $this->property->uuid)
       ->select('status', DB::raw('count(*) as count'))
       ->groupBy('status')
       ->get();
+
+
 
       $unpaid_bills = Tenant::find($this->tenant->uuid)
       ->bills()
@@ -267,6 +279,8 @@ class TenantBillCreateComponent extends Component
       ->whereIn('status', ['paid', 'partially_paid'])
       ->count();
 
+      $particulars = app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid);
+
       return view('livewire.tenant-bill-create-component',[
          'bills' => $bills,
          'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
@@ -280,6 +294,7 @@ class TenantBillCreateComponent extends Component
          'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
          'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
          'note_to_bill' => $this->property->note_to_bill,
+         'particulars' => $particulars
         ]);
     }
 }

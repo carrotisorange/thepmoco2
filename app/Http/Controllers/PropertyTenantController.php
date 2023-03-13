@@ -30,6 +30,7 @@ class PropertyTenantController extends Controller
         $list_of_all_relationships = app('App\Http\Controllers\RelationshipController')->index();
 
         return view('tenants.show',[
+            'property' => $property,
             'tenant_details' => $tenant,
             'relationships' => $list_of_all_relationships
         ]);
