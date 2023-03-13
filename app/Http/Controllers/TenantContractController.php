@@ -43,7 +43,7 @@ class TenantContractController extends Controller
 
     public function show_tenant_contracts($tenant_uuid)
     {
-        return Tenant::find($tenant_uuid)->contracts;
+        return Tenant::find($tenant_uuid)->contracts()->groupBy('unit_uuid')->get();
     }
 
 

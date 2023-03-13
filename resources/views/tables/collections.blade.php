@@ -21,11 +21,11 @@
             <x-td>
                 @if($item->tenant_uuid)
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/collections">{{
+                    href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">{{
                     $item->tenant->tenant}} </a> (T)
                 @elseif($item->owner_uuid)
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/collections">{{
+                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}">{{
                     $item->owner->owner}} </a> (O)
                 @endif
             </x-td>
@@ -68,17 +68,6 @@
                 @endif
 
             </x-td>
-
-            {{-- <x-td>
-                @if($item->tenant_uuid)
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/export"
-                    class="text-indigo-500 text-decoration-line: underline" target="_blank">Export</a>
-                @else
-                <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/export"
-                    class="text-indigo-500 text-decoration-line: underline" target="_blank">Export</a>
-                @endif
-            </x-td> --}}
-
             <x-td>
 
                 @if(!$item->attachment == null)

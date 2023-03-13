@@ -34,11 +34,11 @@
             <x-td>
                 @if($item->tenant_uuid)
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills">{{
+                    href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">{{
                     $item->tenant->tenant}}</a> (T)
                 @elseif($item->owner_uuid)
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/bills">{{
+                    href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}">{{
                     $item->owner->owner}}</a> (O)
                 @else
                 NA
@@ -46,7 +46,7 @@
             </x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills">
+                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
                     {{ $item->unit->unit}}
                 </a>
             </x-td>

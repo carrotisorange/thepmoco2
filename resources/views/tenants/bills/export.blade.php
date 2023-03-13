@@ -68,7 +68,7 @@
             {{ App\Models\Property::find(Session::get('property'))->city->city }},
             {{ App\Models\Property::find(Session::get('property'))->barangay }}
             <hr>
-     <br>      
+            <br>
         </h5>
 
     </header>
@@ -84,7 +84,7 @@
 
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
-       
+
         <p>
             Reference #: {{ $reference_no }}
         </p>
@@ -102,7 +102,8 @@
             Bills to be Paid: {{ number_format($bills->sum('bill')-$bills->sum('initial_payment'), 2) }}
         </p>
         <p>
-            <b>Bills to be Paid After Due Date: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment') + $penalty), 2) }}</b>
+            <b>Bills to be Paid After Due Date: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment') +
+                $penalty), 2) }}</b>
         </p>
         <br>
         <p>
@@ -127,7 +128,7 @@
                 <td>{{ $item->unit->unit.'-'.$item->bill_no}}</td>
                 <td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</td>
                 <td>{{ $item->unit->unit }}</td>
-                <td>{{ $item->particular->particular }}</td>
+                <td>{{ substr_replace($item->particular->particular, "...", 15) }}</td>
                 <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
                 <td>{{ number_format(($item->bill-$item->initial_payment),2) }}</td>

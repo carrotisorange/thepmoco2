@@ -17,6 +17,7 @@ class TenantShowComponent extends Component
 
     use WithFileUploads;
 
+    public $property;
     public $tenant_details;
     
     public $tenant;
@@ -123,54 +124,51 @@ class TenantShowComponent extends Component
         try{
             DB::transaction(function () use ($validatedData){
                 $this->tenant_details->update($validatedData);
+
+                app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'updates',3);
+
+                session()->flash('success', 'Success!');
             });
             
-            app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',3);
-
-            session()->flash('success', 'Success!');
-            
         }catch(\Exception $e){
-            session()->flash('error');
+            session()->flash('error', $e);
         }
-    }
-
-    public function archiveTenant($tenant_uuid)
-    {
-        ddd($tenant_uuid);
     }
 
     public function redirectToTheCreateGuardianPage(){
         sleep(2);
 
-        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
+        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateReferencePage(){
         sleep(2);
 
-        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
+        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateConcernPage(){
         sleep(2);
 
-        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/concern/create');
+        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/concern/create');
     }
 
     public function redirectToTheCreateBillPage(){
         sleep(2);
 
-        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/bills');
+        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/bills');
     }
 
     public function redirectToTheCreateContractPage(){
         sleep(2);
 
-        return redirect('/property/'. Session::get('property').'/tenant/'.$this->tenant_details->uuid.'/units');
+        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/units');
     }
 
     public function sendCredentials()
     {
+        sleep(2);
+
         if(!$this->email){
             return back()->with('error', 'The email address is required.');
         }
@@ -199,10 +197,10 @@ class TenantShowComponent extends Component
           'tenant_uuid' => $this->tenant_details->uuid
         ]);
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'sends',18);
+        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'sends',18);
        
 
-       return back()->with('succcess', 'Access to tenant portal has been sent to email.');
+       return back()->with('success', 'Access to tenant portal has been sent to email.');
     }
 
     public function removeCredentials()
@@ -212,12 +210,13 @@ class TenantShowComponent extends Component
         User::where('email', $this->tenant_details->email)
         ->delete();
         
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'removes', 18);
+        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'removes', 18);
 
         session()->flash('success', 'Success!');
     }
 
     public function deleteTenant(){
+
         sleep(3);
 
         app('App\Http\Controllers\PropertyContractController')->destroy(null, $this->tenant_details->uuid);
