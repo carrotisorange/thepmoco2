@@ -9,6 +9,7 @@ use DB;
 
 class CollectionIndexComponent extends Component
 {
+    public $property;
     public $search = null;
     public $start = [];
     public $end = [];
@@ -25,7 +26,7 @@ class CollectionIndexComponent extends Component
     {
         $collections = $this->get_ars();
 
-        $mode_of_payments = AcknowledgementReceipt::where('property_uuid', Session::get('property'))
+        $mode_of_payments = AcknowledgementReceipt::where('property_uuid', $this->property->uuid)
         ->select('mode_of_payment', DB::raw('count(*) as count'))
         ->groupBy('mode_of_payment')
         ->get();
@@ -42,7 +43,7 @@ class CollectionIndexComponent extends Component
     {
         return AcknowledgementReceipt::search($this->search)
         ->orderBy('ar_no', 'desc')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', $this->property->uuid)
         ->when($this->start, function($query){
             $query->whereDate('created_at', $this->start);
         })
