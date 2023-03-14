@@ -54,13 +54,13 @@ class TenantBillController extends Controller
 
     public function export(Request $request, Property $property, Tenant $tenant)
     {
-       app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
-       $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
+        $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
     
-       $pdf = $this->generate_pdf($data, $property);
+        $pdf = $this->generate_pdf($data, $property);
 
-       return $pdf->download($tenant->tenant.'-soa.pdf');
+        return $pdf->download(Carbon::now()->format('M d, Y').'-'.$tenant->tenant.'-soa.pdf');
     }
 
     public function generate_pdf($data, $property)
@@ -79,7 +79,7 @@ class TenantBillController extends Controller
 
         $canvas->set_opacity(.2);
 
-        $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+        $canvas->page_text($width/5, $height/2, substr_replace($property->property, "", 18), null, 50, array(0,0,0),1,1,-30);
 
         return $pdf;
     }

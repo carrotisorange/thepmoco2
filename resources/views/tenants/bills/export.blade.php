@@ -85,9 +85,9 @@
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
 
-        <p>
+        {{-- <p>
             Reference #: {{ $reference_no }}
-        </p>
+        </p> --}}
 
         <p>
             Date: {{ Carbon\Carbon::now()->format('M d, Y') }}

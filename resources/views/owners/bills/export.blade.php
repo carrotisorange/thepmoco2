@@ -84,10 +84,10 @@
 
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
-
+{{-- 
         <p>
             Reference #: {{ $reference_no }}
-        </p>
+        </p> --}}
 
         <p>
             Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
@@ -102,7 +102,7 @@
             Bills to be Paid: {{ number_format($bills->sum('bill')-$bills->sum('initial_payment'), 2) }}
         </p>
         <p>
-            <b>Bills to be Paid After Due Date: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment') + $penalty), 2) }}</b>
+            <b class="text-red">Bills to be Paid After Due Date: {{ number_format(($bills->sum('bill')-$bills->sum('initial_payment') + $penalty), 2) }}</b>
         </p>
         <br>
         <p>
