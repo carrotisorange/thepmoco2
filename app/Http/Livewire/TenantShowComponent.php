@@ -224,7 +224,7 @@ class TenantShowComponent extends Component
         app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'sends',18);
        
 
-       return back()->with('success', 'Access to tenant portal has been sent to email.');
+       return back()->with('success', 'Success');
     }
 
     public function removeCredentials()

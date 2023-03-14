@@ -28,6 +28,7 @@ class PropertyOwnerController extends Controller
         Session::forget('tenant_uuid');
 
         return view('owners.show',[
+            'property' => $property,
             'owner_details' => $owner,
         ]);
     }

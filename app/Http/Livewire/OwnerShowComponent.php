@@ -9,12 +9,15 @@ use App\Models\User;
 use App\Models\Representative;
 use App\Models\Owner;
 use Session;
+use Carbon\Carbon;
 
 use Livewire\Component;
 
 class OwnerShowComponent extends Component
 {
     use WithFileUploads;
+
+    public $property;
 
     public $owner_details;
 
@@ -106,43 +109,64 @@ class OwnerShowComponent extends Component
 
     }
 
-     public function sendCredentials()
+    public function sendCredentials()
     {
-        sleep(1);
+        sleep(2);
 
-        if($this->email === null){
-            return back()->with('error', 'The email address is required.');
-
+        if(!$this->email){
+            session()->flash('error', 'The email address is required.');
         }
 
-        $count_user = User::where('email', $this->email)->count();
+        $count_user = User::where('email', $this->owner_details->email)->count();
 
         if($count_user > 0)
         {
-            session()->flash('error', 'Credentials for this owner has already been generated.');
+             session()->flash('error', 'Credentials for this owner has already been generated.');
         }
 
-         $user_id = app('App\Http\Controllers\UserController')->store(
-            $this->owner,
-            $this->email,
-            app('App\Http\Controllers\UserController')->generate_temporary_username(),
-            auth()->user()->external_id,
-            $this->email,
-            7, //owner
-            $this->mobile_number,
-            "none",
-            auth()->user()->checkoutoption_id,
-            auth()->user()->plan_id,
-         );
+        $temporary_password =  app('App\Http\Controllers\UserController')->generate_temporary_username();
 
-        User::where('id', $user_id)
+        $user_id = User::updateOrCreate(
+            [
+                'email' => $this->email
+            ],
+            [
+                'name' => $this->owner,
+                'mobile_number' => $this->mobile_number,
+                'email' => $this->email,
+                'role_id' => 8,
+                'username' => $this->email,
+                'password' => Hash::make($temporary_password),
+                'external_id' => auth()->user()->external_id,
+                'checkoutoption_id' => auth()->user()->checkoutoption_id,
+                'plan_id' => auth()->user()->plan_id,
+                'discount_code' => "none",
+                'trial_ends_at' => Carbon::now()->addMonth(),
+                'created_at' => Carbon::now(),
+                'email_verified_at' => Carbon::now()
+            ]
+        );
+
+        User::where('id', $user_id->id)
           ->update([
           'owner_uuid' => $this->owner_details->uuid
         ]);
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'sends', 19);
+        if($user_id->role_id == '5')
+        {
+            User::where('id', $user_id)
+            ->update([
+                'password' => null,
+                'account_owner_id' => $user_id,
+            ]);
+        }else{
+            app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
+        }
+
+        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'sends',17);
        
-        session()->flash('succcess', 'Access to owner portal has been sent to email.');
+
+       return back()->with('success', 'Success');
     }
 
     public function removeCredentials()
@@ -152,7 +176,7 @@ class OwnerShowComponent extends Component
         User::where('email', $this->owner_details->email)
         ->delete();
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'removes', 19);
+        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'removes', 19);
 
         session()->flash('success', 'Success!');
     }
