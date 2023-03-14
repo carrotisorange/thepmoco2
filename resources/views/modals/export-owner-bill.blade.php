@@ -25,7 +25,7 @@
                         <x-label for="due_date">
                             Due Date
                         </x-label>
-                        <x-form-input id="due_date" type="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                        <x-form-input id="due_date" type="date" value="{{ Carbon\Carbon::now()->addDay(7)->format('Y-m-d') }}"
                             name="due_date" />
 
                         @error('due_date')
