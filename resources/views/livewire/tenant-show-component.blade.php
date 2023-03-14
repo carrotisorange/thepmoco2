@@ -83,20 +83,20 @@
 
                     <div class="mt-5 flex items-center justify-center">
                         <p class="mt-5 text-lg text-center text-gray-700">
-                            @if(!App\Models\User::where('email', $tenant_details->email)->count())
+                            {{-- @if(!App\Models\User::where('email', $tenant_details->email)->count()) --}}
                             <button type="button" wire:click="sendCredentials" wire:loading.remove
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                Send access to tenant portal
+                                Send access to tenant
                             </button>
                             <button type="button" disabled wire:target="sendCredentials" wire:loading 
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                 Loading...
                             </button>
-                            @else
+                            {{-- @else
                         <p class="mt-5 text-lg text-center text-gray-700">
                             Username: <br><span class="font-bold ">{{ $username }}</span>
                         </p>
-                        @endif
+                        @endif --}}
                         </p>
                     </div>
 

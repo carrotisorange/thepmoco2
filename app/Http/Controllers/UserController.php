@@ -139,7 +139,7 @@ class UserController extends Controller
 
     public function generate_temporary_username()
     {
-        return Str::random(12);
+        return Str::random(8);
     }
     
     public function update_user_tenant_uuid($user_id, $tenant_uuid)
