@@ -73,7 +73,7 @@ class OwnerBillController extends Controller
             'particular_id' => ['required', Rule::exists('particulars', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'start' => 'required|date',
-            // 'end' => 'required|date|after:start',
+            'end' => 'nullable|date|after:start',
         ]);
 
         try {

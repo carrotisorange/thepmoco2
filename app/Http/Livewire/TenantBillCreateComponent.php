@@ -73,7 +73,7 @@ class TenantBillCreateComponent extends Component
          'particular_id' => ['required', Rule::exists('particulars', 'id')],
          'start' => 'required|date',
          'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
-         // 'end' => 'required|date|after:start',
+         'end' => 'nullable|date|after:start',
          'bill' => 'required|numeric|min:1',
       ];
    }
