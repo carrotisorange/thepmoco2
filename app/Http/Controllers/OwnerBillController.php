@@ -125,7 +125,7 @@ class OwnerBillController extends Controller
     
        $pdf = $this->generate_pdf($data, $property);
 
-       return $pdf->download($owner->owner.'-soa.pdf');
+       return $pdf->download(Carbon::now()->format('M d, Y').'-'.$owner->owner.'-soa.pdf');
     }
 
     public function send(Request $request, Property $property, Owner $owner)
@@ -155,7 +155,7 @@ class OwnerBillController extends Controller
 
         $canvas->set_opacity(.2);
 
-        $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+        $canvas->page_text($width/5, $height/2, substr_replace($property->property, "", 18), null, 50, array(0,0,0),1,1,-30);
 
         return $pdf;
     }
