@@ -10,6 +10,8 @@ use Livewire\WithPagination;
 use App\Models\User;
 use Session;
 use App\Models\Wallet;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class TenantShowComponent extends Component
 {
@@ -170,32 +172,54 @@ class TenantShowComponent extends Component
         sleep(2);
 
         if(!$this->email){
-            return back()->with('error', 'The email address is required.');
+            session()->flash('error', 'The email address is required.');
         }
 
         $count_user = User::where('email', $this->tenant_details->email)->count();
+
         if($count_user > 0)
         {
-             return back()->with('error', 'Credentials for this tenant has already been generated.');
+             session()->flash('error', 'Credentials for this tenant has already been generated.');
         }
 
-         $user_id = app('App\Http\Controllers\UserController')->store(
-            $this->tenant,
-            $this->email,
-            app('App\Http\Controllers\UserController')->generate_temporary_username(),
-            auth()->user()->external_id,
-            $this->email,
-            8, //tenant
-            $this->mobile_number,
-            "none",
-            auth()->user()->checkoutoption_id,
-            auth()->user()->plan_id,
-         );
+        $temporary_password =  app('App\Http\Controllers\UserController')->generate_temporary_username();
 
-        User::where('id', $user_id)
+        $user_id = User::updateOrCreate(
+            [
+                'email' => $this->email
+            ],
+            [
+                'name' => $this->tenant,
+                'mobile_number' => $this->mobile_number,
+                'email' => $this->email,
+                'role_id' => 8,
+                'username' => $this->email,
+                'password' => Hash::make($temporary_password),
+                'external_id' => auth()->user()->external_id,
+                'checkoutoption_id' => auth()->user()->checkoutoption_id,
+                'plan_id' => auth()->user()->plan_id,
+                'discount_code' => "none",
+                'trial_ends_at' => Carbon::now()->addMonth(),
+                'created_at' => Carbon::now(),
+                'email_verified_at' => Carbon::now()
+            ]
+        );
+
+        User::where('id', $user_id->id)
           ->update([
           'tenant_uuid' => $this->tenant_details->uuid
         ]);
+
+        if($user_id->role_id == '5')
+        {
+            User::where('id', $user_id)
+            ->update([
+                'password' => null,
+                'account_owner_id' => $user_id,
+            ]);
+        }else{
+            app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
+        }
 
         app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'sends',18);
        
