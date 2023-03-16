@@ -6,6 +6,7 @@ use App\Models\AcknowledgementReceipt;
 use Livewire\Component;
 use Session;
 use DB;
+use Carbon\Carbon;
 
 class CollectionIndexComponent extends Component
 {
@@ -14,7 +15,13 @@ class CollectionIndexComponent extends Component
     public $start = [];
     public $end = [];
 
+    public $date;
+
     public $mode_of_payment;
+
+    public function mount(){
+        $this->date = Carbon::now()->format('Y-m-d');
+    }
 
     public function resetFilters()
     {
@@ -37,6 +44,12 @@ class CollectionIndexComponent extends Component
             'mode_of_payments' => $mode_of_payments
 
         ]);
+    }
+
+    public function exportDCR(){
+        sleep(2);
+
+        return redirect('/property/'.$this->property->uuid .'/dcr/'.$this->date);
     }
 
     public function get_ars()
