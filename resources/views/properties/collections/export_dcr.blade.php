@@ -33,26 +33,26 @@
             background-color: #;
             color: black;
             text-align: center;
-            line-height: 35px;
+            line-height: 30px;
         }
 
         p,
             {
-            margin-right: 50px;
-            margin-left: 50px;
+            margin-right: 5px;
+            margin-left: 5px;
         }
 
         table,
         th,
         td {
-            margin-right: 80px;
+            margin-right: 30px;
             margin-left: 50px;
             border: 1px black;
         }
 
         th,
         td {
-            padding: 10px";
+            padding: 6px";
 
         }
     </style>
@@ -85,10 +85,10 @@
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
         <p>
-            Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
+            Date: {{ Carbon\Carbon::parse($date)->format('M d, Y') }}
         </p>
 
-        <p>
+     
         <table class="">
 
             <tr>
@@ -110,9 +110,9 @@
                 {{-- <td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</td> --}}
                 <td>{{ $item->unit->unit }}</td>
                 @if($item->tenant_uuid)
-                <td>{{ substr_replace($item->tenant->tenant, "...", 13) }}</td>
+                <td>{{ substr_replace($item->tenant->tenant, "...", 10) }}</td>
                 @else
-                <td>{{ substr_replace($item->owner->owner, "...", 13) }}</td>
+                <td>{{ substr_replace($item->owner->owner, "...", 10) }}</td>
                 @endif
                 <td>{{ substr_replace($item->bill->particular->particular, "...", 13) }}</td>
                 <td>{{ Carbon\Carbon::parse($item->bill->start)->format('M d,
@@ -123,7 +123,7 @@
 
             @endforeach
         </table>
-        </p>
+ 
 
         <p>
             Prepared by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}

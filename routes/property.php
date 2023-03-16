@@ -345,7 +345,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
 
-    Route::get('dcr', [PropertyCollectionController::class, 'export_dcr']);
+    Route::get('dcr/{date}', [PropertyCollectionController::class, 'export_dcr']);
     
     //Routes for Collection
     Route::prefix('collection')->group(function(){
