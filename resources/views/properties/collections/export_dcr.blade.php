@@ -110,13 +110,13 @@
                 {{-- <td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</td> --}}
                 <td>{{ $item->unit->unit }}</td>
                 @if($item->tenant_uuid)
-                <td>{{ substr_replace($item->tenant->tenant, "...", 10) }}</td>
+                <td>{{ substr_replace($item->tenant->tenant, "", 10) }}</td>
                 @elseif($item->owner_uuid)
-                <td>{{ substr_replace($item->owner->owner, "...", 10) }}</td>
+                <td>{{ substr_replace($item->owner->owner, "", 10) }}</td>
                 @else
                 <td>NA</td>
                 @endif
-                <td>{{ substr_replace($item->bill->particular->particular, "...", 13) }}</td>
+                <td>{{ substr_replace($item->bill->particular->particular, "", 13) }}</td>
                 <td>{{ Carbon\Carbon::parse($item->bill->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($item->bill->end)->format('M d, Y') }} </td>
                 <td>{{ number_format($item->collection,2) }}</td>
