@@ -92,6 +92,7 @@
         <table class="">
 
             <tr>
+                <th>#</th>
                 <th>AR #</th>
                 <th>Bill #</th>
                 <th>Unit</th>
@@ -102,9 +103,10 @@
                 <th>Amount</th>
             </tr>
 
-            @foreach($collections as $item)
+            @foreach($collections as $index => $item)
 
             <tr>
+                <td>{{ $index+1 }}</td>
                 <td>{{ $item->ar_no }}</td>
                 <td>{{ $item->bill->bill_no }}</td>
                 {{-- <td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</td> --}}
