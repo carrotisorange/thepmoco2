@@ -111,8 +111,10 @@
                 <td>{{ $item->unit->unit }}</td>
                 @if($item->tenant_uuid)
                 <td>{{ substr_replace($item->tenant->tenant, "...", 10) }}</td>
-                @else
+                @elseif($item->owner_uuid)
                 <td>{{ substr_replace($item->owner->owner, "...", 10) }}</td>
+                @else
+                <td>NA</td>
                 @endif
                 <td>{{ substr_replace($item->bill->particular->particular, "...", 13) }}</td>
                 <td>{{ Carbon\Carbon::parse($item->bill->start)->format('M d,
