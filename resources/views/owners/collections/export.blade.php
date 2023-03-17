@@ -84,9 +84,9 @@
 
     <!-- Wrap the content of your PDF inside a main tag -->
     <main>
-        <p>
+        {{-- <p>
             Reference #: {{ $reference_no }}
-        </p>
+        </p> --}}
         <p>
             AR #: {{ $ar_no }}
         </p>
@@ -97,7 +97,9 @@
             Amount Paid: {{ number_format($amount, 2) }}
         </p>
         <p>
-            Owner: {{ $owner }}
+            Unit: @foreach ($units as $unit)
+                {{ $unit->unit->unit }}
+            @endforeach
         </p>
 
         <p>

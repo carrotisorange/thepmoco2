@@ -10,6 +10,7 @@ use Session;
 use App\Models\Bill;
 use App\Models\Collection;
 use App\Models\AcknowledgementReceipt;
+use App\Models\DeedOfSale;
 use App\Models\User;
 use \PDF;
 
@@ -75,7 +76,7 @@ class OwnerCollectionController extends Controller
         return view('owners.collections.edit',[
          'collections' => $collections,
          'owner' => $owner,
-         'batch_no' => $batch_no
+         'batch_no' => $batch_no,
       ]);
     }
 
@@ -103,6 +104,7 @@ class OwnerCollectionController extends Controller
             $ar->created_at, 
             $owner->bill_reference_no, 
             $owner->owner,
+            DeedOfSale::where('owner_uuid', $owner->uuid)->get(),
             $ar->mode_of_payment,
             User::find($ar->user_id)->name,
             User::find($ar->user_id)->role->role,
@@ -145,12 +147,13 @@ class OwnerCollectionController extends Controller
 
      }
 
-    public function get_collection_data($payment_made, $reference_no, $owner, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $property, $date_deposited, $collections, $balance)
+    public function get_collection_data($payment_made, $reference_no, $owner, $units, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $property, $date_deposited, $collections, $balance)
      {
       return [
          'created_at' => $payment_made,
          'reference_no' => $reference_no,
          'owner' => $owner,
+         'units' => $units,
          'mode_of_payment' => $mode_of_payment,
          'user' => $user,
          'role' => $role,
@@ -244,6 +247,7 @@ class OwnerCollectionController extends Controller
             $ar->created_at, 
             $owner->bill_reference_no, 
             $owner->owner,
+            DeedOfSale::where('owner_uuid', $owner->uuid)->get(),
             $ar->mode_of_payment,
             User::find($ar->user_id)->name,
             User::find($ar->user_id)->role->role,
