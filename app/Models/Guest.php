@@ -22,6 +22,10 @@ class Guest extends Model
         return $this->belongsTo(Unit::class, 'unit_uuid');
     }
 
+    public function property(){
+        return $this->belongsTo(Property::class, 'property_uuid');
+    }
+
     public static function search($search)
     {
         return empty($search)? static::query()

@@ -11,9 +11,10 @@ use Str;
 class PropertyCalendarController extends Controller
 {
     public function index(Property $property){
+
         return view('properties.calendars.index',[
             'property' => $property,
-            'units' => Property::find($property->uuid)->units
+            'units' => Property::find($property->uuid)->units,
         ]);
     }
 

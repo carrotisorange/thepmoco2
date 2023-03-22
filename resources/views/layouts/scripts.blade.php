@@ -2,19 +2,19 @@
 
 @include('layouts.notifications')
 
-<script>
+{{-- <script>
   function confirmMessage() {
       alert("Are you sure you want to perform this action?");
     }
-</script>
+</script> --}}
 
 @livewireScripts()
 
-<script>
+{{-- <script>
   window.addEventListener('closeModal', event => {
     $("#modalForm").modal('hide');
 })
-</script>
+</script> --}}
 
 @livewire('livewire-ui-modal')
 
