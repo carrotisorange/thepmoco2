@@ -49,7 +49,7 @@ class UnitUtilityEditComponent extends Component
 
 
 
-        return redirect('/property/'.$this->property->uuid.'/utilities')->with('success', 'Success');
+        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->utility->unit->uuid)->with('success', 'Success');
     }
 
     

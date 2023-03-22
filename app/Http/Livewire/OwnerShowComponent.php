@@ -10,6 +10,7 @@ use App\Models\Representative;
 use App\Models\Owner;
 use Session;
 use Carbon\Carbon;
+use App\Models\Bill;
 
 use Livewire\Component;
 
@@ -241,7 +242,7 @@ class OwnerShowComponent extends Component
             'deed_of_sales' => app('App\Http\Controllers\OwnerController')->show_owner_deed_of_sales($this->owner_details->uuid),
             'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid),
             'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get(),
-            'bills' => Owner::findOrFail($this->owner_details->uuid)->bills,
+            'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->get(),
             'collections' => Owner::findOrFail($this->owner_details->uuid)->collections,
             'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
         ]);
