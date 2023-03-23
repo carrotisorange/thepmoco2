@@ -8,7 +8,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="tenant" class="block text-xs font-medium text-gray-900">Full Name</label>
-                <input type="text" wire:model.lazy="tenant"
+                <input type="text" wire:model.debounce.500ms.lazy="tenant"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('tenant')
@@ -22,7 +22,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="status" class="block text-xs font-medium text-gray-900">Status</label>
-                <select wire:model="status"
+                <select wire:model.debounce.500ms="status"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     <option value="active" {{ old('status', $status)=='active' ? 'selected' : 'selected' }}>
                         active
@@ -41,7 +41,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="category" class="block text-xs font-medium text-gray-900">Category</label>
-                <select wire:model="category"
+                <select wire:model.debounce.500ms="category"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     <option value="primary" {{ old('category', $category)=='primary' ? 'selected' : 'selected' }}>
                         primary
@@ -61,7 +61,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="name" class="block text-xs font-medium text-gray-900">Tenant
                     Reference No</label>
-                <input type="text" wire:model.lazy="bill_reference_no" readonly
+                <input type="text" wire:model.debounce.500ms.lazy="bill_reference_no" readonly
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
 
@@ -72,7 +72,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="mobile_number" class="block text-xs font-medium text-gray-900">Mobile #</label>
-                <input type="text" wire:model.lazy="mobile_number"
+                <input type="text" wire:model.debounce.500ms.lazy="mobile_number"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('mobile_number')
@@ -86,7 +86,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="email" class="block text-xs font-medium text-gray-900">Email
                 </label>
-                <input type="email" wire:model.lazy="email"
+                <input type="email" wire:model.debounce.500ms.lazy="email"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('email')
@@ -100,7 +100,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="country_id" class="block text-xs font-medium text-gray-900">Country
                 </label>
-                <select wire:model="country_id"
+                <select wire:model.debounce.500ms="country_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($countries as $country)
                     <option value="{{ $country->id }}" {{ old('country_id', $tenant_details->
@@ -120,7 +120,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="province_id" class="block text-xs font-medium text-gray-900">Province</label>
-                <select wire:model="province_id"
+                <select wire:model.debounce.500ms="province_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($provinces as $province)
                     <option value="{{ $province->id }}" {{ old('province_id', $tenant_details->
@@ -139,7 +139,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="city_id" class="block text-xs font-medium text-gray-900">City</label>
-                <select wire:model="city_id"
+                <select wire:model.debounce.500ms="city_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($cities as $city)
                     <option value="{{ $city->id }}" {{ old('city_id', $tenant_details->
@@ -160,7 +160,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="barangay" class="block text-xs font-medium text-gray-900">
                     Address</label>
-                <input type="text" wire:model.lazy="barangay"
+                <input type="text" wire:model.debounce.500ms.lazy="barangay"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('barangay')
@@ -174,7 +174,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="type" class="block text-xs font-medium text-gray-900">
                     Type</label>
-                <select wire:model="type"
+                <select wire:model.debounce.500ms="type"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     <option value="studying" {{ old('type', $type)=='studying' ? 'selected' : 'selected' }}>
                         studying
@@ -196,7 +196,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="course" class="block text-xs font-medium text-gray-900">Course</label>
-                <input type="text" wire:model.lazy="course"
+                <input type="text" wire:model.debounce.500ms.lazy="course"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @error('course')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -208,7 +208,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="year_level" class="block text-xs font-medium text-gray-900">Year Level</label>
-                <input type="text" wire:model.lazy="year_level"
+                <input type="text" wire:model.debounce.500ms.lazy="year_level"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @error('year_level')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -220,7 +220,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="school" class="block text-xs font-medium text-gray-900">School</label>
-                <input type="text" wire:model.lazy="school"
+                <input type="text" wire:model.debounce.500ms.lazy="school"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @error('school')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -232,7 +232,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="school_address" class="block text-xs font-medium text-gray-900">Address</label>
-                <input type="text" wire:model.lazy="school_address"
+                <input type="text" wire:model.debounce.500ms.lazy="school_address"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @error('school_address')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -246,7 +246,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="occupation" class="block text-xs font-medium text-gray-900">Occupation</label>
-                <input type="text" wire:model.lazy="occupation"
+                <input type="text" wire:model.debounce.500ms.lazy="occupation"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @error('occupation')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -258,7 +258,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="employer" class="block text-xs font-medium text-gray-900">Employer</label>
-                <input type="text" wire:model.lazy="employer"
+                <input type="text" wire:model.debounce.500ms.lazy="employer"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @error('employer')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -270,7 +270,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="employer_address" class="block text-xs font-medium text-gray-900">Address</label>
-                <input type="text" wire:model.lazy="employer_address"
+                <input type="text" wire:model.debounce.500ms.lazy="employer_address"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @error('employer_address')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
