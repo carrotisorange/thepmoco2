@@ -27,6 +27,8 @@
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}">{{
                     $item->owner->owner}} </a> (O)
+                @else
+                NA
                 @endif
             </x-td>
             <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} </x-td>

@@ -222,6 +222,7 @@ class TenantCollectionController extends Controller
 
      public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
      {
+
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
 
          $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid);
@@ -326,10 +327,10 @@ class TenantCollectionController extends Controller
          'balance' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($tenant->uuid)
        ];
 
-      // if($tenant->email)
-      //  {
-      //    return Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
-      //  }
+      if($tenant->email)
+       {
+         return Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
+       }
      }
 
      public function destroy_collection_from_tenant_page($tenant_uuid){

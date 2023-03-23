@@ -63,7 +63,7 @@
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
+                    {{-- <div class="sm:col-span-4">
 
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -81,12 +81,20 @@
 
                         </div>
 
+                    </div> --}}
+                    <div class="sm:col-span-3">
+                        {{-- <select id="duration" wire:model="duration"
+                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option value="">Filter durations </option>
+                           
+                        </select> --}}
+
                     </div>
 
-                    <div class="sm:col-span-2">
-                        <select id="small" wire:model="mode_of_payment"
+                    <div class="sm:col-span-3">
+                        <select id="mode_of_payment" wire:model="mode_of_payment"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter mode of payment </option>
+                            <option value="">Filter mode of payments </option>
                             @foreach ($mode_of_payments as $item)
                             <option value="{{ $item->mode_of_payment }}">{{ $item->mode_of_payment }}</option>
                             @endforeach
