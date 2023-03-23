@@ -119,6 +119,12 @@
                         <li class="mr-2" role="presentation">
                             <button
                                 class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="spouse-tab" data-tabs-target="#spouse" type="button" role="tab"
+                                aria-controls="spouse" aria-selected="false">Spouse</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="representatives-tab" data-tabs-target="#representatives" type="button" role="tab"
                                 aria-controls="representatives" aria-selected="false">Representatives</button>
                         </li>
@@ -178,6 +184,22 @@
 
                                     </div>
                                     @include('owners.tables.representatives')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden p-4  rounded-lg dark:bg-gray-800" id="spouse" role="tabpanel"
+                        aria-labelledby="spouse-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
+
+                                    </div>
+                                    @include('owners.tables.spouse')
                                 </div>
                             </div>
                         </div>
