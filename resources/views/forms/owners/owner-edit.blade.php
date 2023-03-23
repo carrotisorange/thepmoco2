@@ -7,7 +7,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="owner" class="block text-xs font-medium text-gray-900">Name of the unit owner
                 </label>
-                <input type="text" wire:model="owner"
+                <input type="text" wire:model.debounce.500ms="owner"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
 
@@ -19,7 +19,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">Email
                 </label>
-                <input type="email" wire:model="email"
+                <input type="email" wire:model.debounce.500ms="email"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('email')
@@ -31,7 +31,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="mobile_number" class="block text-xs font-medium text-gray-900">Mobile No</label>
-                <input type="text" wire:model="mobile_number"
+                <input type="text" wire:model.debounce.500ms="mobile_number"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('mobile_number')
@@ -45,7 +45,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="name" class="block text-xs font-medium text-gray-900">Owner Reference No
                 </label>
-                <input type="text" wire:model="bill_reference_no" readonly
+                <input type="text" wire:model.debounce.500ms="bill_reference_no" readonly
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
 
@@ -59,7 +59,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="country_id" class="block text-xs font-medium text-gray-900">Country
                 </label>
-                <select wire:model="country_id"
+                <select wire:model.debounce.500ms="country_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($countries as $country)
                     <option value="{{ $country->id }}" {{ old('country_id', $owner_details->
@@ -79,7 +79,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">Province</label>
-                <select wire:model="province_id"
+                <select wire:model.debounce.500ms="province_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($provinces as $province)
                     <option value="{{ $province->id }}" {{ old('province_id', $owner_details->
@@ -98,7 +98,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">City</label>
-                <select wire:model="city_id"
+                <select wire:model.debounce.500ms="city_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($cities as $city)
                     <option value="{{ $city->id }}" {{ old('city_id', $owner_details->
@@ -119,7 +119,7 @@
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="job-title" class="block text-xs font-medium text-gray-900">
                     Address</label>
-                <input type="text" wire:model="barangay"
+                <input type="text" wire:model.debounce.500ms="barangay"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('barangay')
@@ -134,7 +134,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="occupation" class="block text-xs font-medium text-gray-900">Occupation</label>
-                <input type="text" wire:model="occupation"
+                <input type="text" wire:model.debounce.500ms="occupation"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('occupation')
@@ -147,7 +147,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="employer" class="block text-xs font-medium text-gray-900">Employer</label>
-                <input type="text" wire:model="employer"
+                <input type="text" wire:model.debounce.500ms="employer"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('employer')
@@ -160,7 +160,7 @@
             <div
                 class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="employer_address" class="block text-xs font-medium text-gray-900">Address</label>
-                <input type="text" wire:model="employer_address"
+                <input type="text" wire:model.debounce.500ms="employer_address"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
                 @error('employer_address')
