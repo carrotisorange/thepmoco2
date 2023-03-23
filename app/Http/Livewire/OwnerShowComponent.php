@@ -11,6 +11,7 @@ use App\Models\Owner;
 use Session;
 use Carbon\Carbon;
 use App\Models\Bill;
+use App\Models\Spouse;
 
 use Livewire\Component;
 
@@ -245,6 +246,7 @@ class OwnerShowComponent extends Component
             'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->get(),
             'collections' => Owner::findOrFail($this->owner_details->uuid)->collections,
             'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
+            'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get()
         ]);
     }
 }
