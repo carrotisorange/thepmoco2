@@ -172,12 +172,14 @@ class UnitShowComponent extends Component
 
     public function render()
     {
-          $utilities = Utility::isposted()
-          ->select('*', 'units.unit as unit_name' )
-          ->join('units', 'utilities.unit_uuid', 'units.uuid')
-        //   ->where('is_posted', 1)
-          ->where('utilities.unit_uuid', $this->unit_details->uuid)
-          ->get();
+              $utilities = Utility::isposted()
+              ->select('*', 'units.unit as unit_name' )
+              ->join('units', 'utilities.unit_uuid', 'units.uuid')
+              ->where('is_posted', 1)
+              ->where('utilities.unit_uuid', $this->unit_details->uuid)
+              ->orderBy('start_date', 'desc')
+              ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
+              ->get();
 
         return view('livewire.unit-show-component',[
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property_uuid),
