@@ -69,6 +69,12 @@ class AccountPayableCreateStep1Component extends Component
             ($this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity'))/$this->get_particulars()->count()
         );
 
+        AccountPayable::where('id', $accountpayable_id)
+        ->update([
+          'approver_id' => null,
+          'approver2_id' => null
+        ]);
+
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Success!');
     }
 
