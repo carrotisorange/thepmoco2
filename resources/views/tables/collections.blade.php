@@ -84,7 +84,7 @@
             </x-td>
         </tr>
         @endforeach
-        {{-- <tr>
+        <tr>
             <x-td>Total</x-td>
             <x-td></x-td>
             <x-td></x-td>
@@ -101,6 +101,6 @@
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
-        </tr> --}}
+        </tr>
     </tbody>
 </table>
