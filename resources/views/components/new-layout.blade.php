@@ -86,9 +86,9 @@
                                     Profile
                                 </x-dropdown-link>
 
-                                <x-dropdown-link href="/chatify" target="_blank">
+                                {{-- <x-dropdown-link href="/chatify" target="_blank">
                                     Chat
-                                </x-dropdown-link>
+                                </x-dropdown-link> --}}
                                 @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
                                 <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
                                     Subscriptions
@@ -142,6 +142,18 @@
                         </x-dropdown-link>
                         @endif
                     </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        @if(Session::get('property'))
+                        <x-dropdown-link href="/chatify">
+                            Messages
+                        </x-dropdown-link>
+                        @else
+                        <x-dropdown-link href="/chatify/">
+                            Messages
+                        </x-dropdown-link>
+                        @endif
+                    </div>
+
                     <div class="pt-2 pb-3 space-y-1">
                         @if(Session::get('property'))
                         <x-dropdown-link href="/property/{{ Session::get('property') }}/unit">
@@ -365,6 +377,29 @@
                             d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                     </x-nav-link>
                     <div class="font-bold leading-3 ml-0 text-xs text-gray-900 mt-10">Dashboard</div>
+
+                    <!-- Units -->
+                    @if(Session::get('property'))
+                    <x-nav-link href="/chatify" :active="request()->routeIs('chatify')">
+                        <span class="sr-only">Messages</span>
+                        {{-- <img class="h-10 w-auto" src="{{ asset('/brands/units_gr.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"> --}}
+                     <i class="fa-solid fa-comments"></i>
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </x-nav-link>
+                    @else
+                    <x-nav-link href="/property/" :active="request()->routeIs('chatify')">
+                        <span class="sr-only">Messages</span>
+                        {{-- <img class="h-10 w-auto" src="{{ asset('/brands/units_gr.png') }}" fill="none" --}} 
+                        <i class="fa-solid fa-comments"></i>
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </x-nav-link>
+                    @endif
+
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Messages</div>
 
                     <!-- Units -->
                     @if(Session::get('property'))
@@ -623,7 +658,8 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Account <br> Payables</div>
+                    <div class="font-bold leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Account <br> Payables
+                    </div>
 
                     <!-- Financials -->
                     @if(Session::get('property'))
