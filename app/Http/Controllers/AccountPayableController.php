@@ -186,7 +186,7 @@ class AccountPayableController extends Controller
             'due_date' => $due_date,
             'requester_id' => $requester_id,
             'batch_no' => $batch_no,
-            'amount' => $amount
+            'amount' => $amount,
          ])->id; 
     }
 

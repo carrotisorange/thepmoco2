@@ -121,7 +121,7 @@ class BillIndexComponent extends Component
           $query->where('particular_id', $this->particular);
           })
           ->whereBetween('created_at', [now()->subdays(30), now()])
-          ->paginate(10);
+          ->get();
       }elseif($this->posted_dates == 'quarterly'){
           return Bill::search($this->search, $this->posted_dates)
           ->orderBy('bill_no', 'desc')
@@ -137,7 +137,7 @@ class BillIndexComponent extends Component
           $query->where('particular_id', $this->particular);
           })
           ->whereBetween('created_at', [now()->subdays(90), now()])
-           ->paginate(10);
+           ->get();
       }else{
          return Bill::search($this->search, $this->posted_dates)
          ->orderBy('bill_no', 'desc')
@@ -152,7 +152,7 @@ class BillIndexComponent extends Component
          ->when($this->particular, function($query){
          $query->where('particular_id', $this->particular);
          })
-         ->paginate(10);
+         ->get();
       }
      
    }

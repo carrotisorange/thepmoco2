@@ -65,6 +65,6 @@ class CollectionIndexComponent extends Component
          })
         ->when($this->end, function($query){
             $query->orWhereDate('created_at', $this->end);
-        })->paginate(10);
+        })->get();
     }
 }

@@ -150,9 +150,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-3">
+                {{-- <div class="mt-3">
                     {{ $bills->links() }}
-                </div>
+                </div> --}}
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
 
