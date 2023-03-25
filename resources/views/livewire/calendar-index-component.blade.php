@@ -83,7 +83,7 @@
 
     @section('scripts')
     <script type="text/javascript">
-    // console.log($events);
+    console.log($events);
         $(document).ready(function() {
                                                           $.ajaxSetup({
                                                               headers: {
