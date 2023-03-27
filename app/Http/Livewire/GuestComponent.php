@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Session;
 use DB;
+use Carbon\Carbon;
 
 class GuestComponent extends Component
 {
@@ -23,6 +24,7 @@ class GuestComponent extends Component
     public function mount($unitDetails)
     {
         $this->unit_uuid = $unitDetails->uuid;
+        $this->movein_at = Carbon::now()->format('Y-m-d');
     }
 
     protected function rules()
