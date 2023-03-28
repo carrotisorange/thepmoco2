@@ -19,6 +19,7 @@ class PropertyCalendarController extends Controller
 
         foreach($bookings as $booking){
             $events[] = [
+                'id' => $booking->uuid,
                 'title' => $booking->guest,
                 // 'unit' => $booking->unit->unit,
                 'start' => $booking->movein_at,
@@ -54,5 +55,21 @@ class PropertyCalendarController extends Controller
         ]);
 
         return response()->json($guest);
+    }
+
+    public function update(Request $request, $id){
+       $guest = Guest::find($id);
+       if(!$guest){
+        return response()->json([
+            'error'=>'Unable to locate the event'
+        ],404);
+       }
+
+       $guest->update([
+        'movein_at' => $request->movein_at,
+        'moveout_at' => $request->moveout_at
+       ]);
+
+       return response()->json('Guest Updated!');
     }
 }
