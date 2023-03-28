@@ -96,7 +96,7 @@
                                 movein_at, moveout_at
                             },
                             success:function(response){
-                                console.log(response)
+                                swal("Success", "Guest Updated!", "success");
                             },
                             error:function(error){
                                 console.log(error)
