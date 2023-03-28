@@ -30,6 +30,23 @@ class PropertyGuestController extends Controller
         return back()->with('success', 'Success!');
     }
 
+    public function update(Request $request ,$uuid)
+    {
+
+        $booking = Guest::find($uuid);
+        if(! $booking) {
+            return response()->json([
+                'error' => 'Unable to locate the event'
+            ], 404);
+        }
+        $booking->update([
+            'start' => $request->start,
+            'end' => $request->end,
+        ]);
+
+        return response()->json('Event updated');
+    }
+
     public function moveout(Property $property, Unit $unit, Guest $guest)
     {      
         Guest::where('uuid', $guest->uuid)
