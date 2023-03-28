@@ -26,14 +26,14 @@ class UtilityIndexComponent extends Component
 
     public $date_created;
 
-    public $limitDisplayTo = 10;
+    public $limitDisplayTo;
 
     public $totalUtilitiesCount;
 
     public $totalUnitsCount;
 
     public $kwh;
-    public $start_date;
+    public $filter_date;
     public $end_date;
     public $min_charge;
 
@@ -45,6 +45,7 @@ class UtilityIndexComponent extends Component
         $this->totalUnitsCount = Property::find($this->property_uuid)->units()->count();
         $this->start_date = Carbon::now()->format('Y-m-d');
         $this->end_date = Carbon::now()->addMonth()->format('Y-m-d');
+        $this->limitDisplayTo = 10;
     }
 
     public function clearFilters(){
@@ -124,10 +125,9 @@ class UtilityIndexComponent extends Component
           $utilities = Utility::isposted()
           ->select('*', 'units.unit as unit_name' )
           ->join('units', 'utilities.unit_uuid', 'units.uuid')
-          ->where('is_posted', 1)
           ->where('utilities.property_uuid', $this->property_uuid)
           ->when($this->status, function($query){
-          $query->where('status',$this->status);
+          $query->where('utilities.status',$this->status);
           })
           ->when($this->type, function($query){
           $query->where('utilities.type',$this->type);
@@ -137,8 +137,8 @@ class UtilityIndexComponent extends Component
           $query->where('units.unit','like', '%'.$this->search.'%');
           })
 
-        ->when(($this->start_date), function($query){
-            $query->whereDate('utilities.start_date', $this->start_date);
+        ->when(($this->filter_date), function($query){
+            $query->whereDate('utilities.start_date', $this->filter_date);
         })
 
           ->orderBy('start_date', 'desc')
