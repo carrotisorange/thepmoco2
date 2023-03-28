@@ -107,8 +107,8 @@ class BillIndexComponent extends Component
    public function get_bills()
    {
       if($this->posted_dates == 'monthly'){
-          return Bill::search($this->search, $this->posted_dates)
-          ->orderBy('bill_no', 'desc')
+          return Bill::
+          orderBy('bill_no', 'desc')
           ->where('property_uuid', $this->property->uuid)
           ->where('is_posted', 1)
           ->when($this->status, function($query){
@@ -123,12 +123,11 @@ class BillIndexComponent extends Component
           ->whereBetween('created_at', [now()->subdays(30), now()])
           ->get();
       }elseif($this->posted_dates == 'quarterly'){
-          return Bill::search($this->search, $this->posted_dates)
-          ->orderBy('bill_no', 'desc')
+          return Bill::orderBy('bill_no', 'desc')
           ->where('property_uuid', $this->property->uuid)
           ->where('is_posted', 1)
           ->when($this->status, function($query){
-          $query->whereIn('status', [$this->status]);
+          $query->where('status', [$this->status]);
           })
            ->when($this->batch_no, function($query){
            $query->where('batch_no', $this->batch_no);
@@ -139,12 +138,11 @@ class BillIndexComponent extends Component
           ->whereBetween('created_at', [now()->subdays(90), now()])
            ->get();
       }else{
-         return Bill::search($this->search, $this->posted_dates)
-         ->orderBy('bill_no', 'desc')
+         return Bill::orderBy('bill_no', 'desc')
          ->where('property_uuid', $this->property->uuid)
          ->where('is_posted', 1)
          ->when($this->status, function($query){
-         $query->whereIn('status', [$this->status]);
+         $query->where('status', [$this->status]);
          })
           ->when($this->batch_no, function($query){
           $query->where('batch_no', $this->batch_no);
@@ -295,6 +293,7 @@ class BillIndexComponent extends Component
 
    public function render()
    {
+
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid);
 
       $dates_posted = $this->get_posted_dates(); 
@@ -316,7 +315,6 @@ class BillIndexComponent extends Component
    public function get_statuses()
    {
       return Bill::where('bills.property_uuid', $this->property->uuid)
-      ->select('status', DB::raw('count(*) as count'))
       ->groupBy('status')
       ->get();
    }
