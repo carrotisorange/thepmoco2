@@ -19,7 +19,7 @@ class PropertyCalendarController extends Controller
 
         foreach($bookings as $booking){
             $events[] = [
-                'title' => $booking->guest.' @ '.$booking->unit->unit,
+                'title' => $booking->guest,
                 // 'unit' => $booking->unit->unit,
                 'start' => $booking->movein_at,
                 'end' => $booking->moveout_at,
@@ -37,26 +37,22 @@ class PropertyCalendarController extends Controller
     public function store(Request $request){
 
        $validated = $request->validate([
-            'movein_at' => 'required|date',
-            'moveout_at' => 'required|date|after:start',
             'guest' => 'required|string',
-            'unit_uuid' => 'required'
+            'movein_at' => 'required',
+            'moveout_at' => 'required|after:movein_at',
+            'unit_uuid' => 'required',
+            'property_uuid' => 'required'
         ]);
 
-       Guest::create([
+        $guest  = Guest::create([
             'uuid' => app('App\Http\Controllers\PropertyController')->generate_uuid(),
+            'guest' => $request->guest,
             'movein_at' => $request->movein_at,
             'moveout_at' => $request->moveout_at,
-            'guest' => $request->guest,
             'unit_uuid' => $request->unit_uuid,
-            'no_of_guests' => $request->no_of_guests,
-            'vehicle_details' => $request->vehicle_details,
-            'plate_number' => $request->plate_number,
-            'property_uuid' => Session::get('property')
+            'property_uuid' => $request->property_uuid
         ]);
 
-       return back()->with('success', 'Success!');
-
-        // return redirect('/property/'.Session::get('property').'/unit/'.$request->unit_uuid.'/guest/'.Str::random(8).'/create');
+        return response()->json($guest);
     }
 }

@@ -46,7 +46,7 @@ class AccountPayableCreateStep6Component extends Component
             AccountPayable::where('id', $this->accountpayable_id)
             ->update([
                 'attachment' => $this->attachment->store('accountpayables'),
-                'status' => 'not yet released'
+                'status' => 'released'
                 
             ]);
             

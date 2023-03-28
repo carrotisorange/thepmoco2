@@ -15,6 +15,7 @@ class CalendarIndexComponent extends Component
 
         return view('livewire.calendar-index-component',[
             'units' => $units,
+            'property' => $this->property
         ]);
     }
 }

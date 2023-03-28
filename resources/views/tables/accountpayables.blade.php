@@ -55,12 +55,14 @@
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
                     class="text-blue-500 text-decoration-line: underline">View</a>
                 @else
-               
+
                 @endif
             </x-td>
             <x-td>
+                @if(!$accountpayable->status==='released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">Edit</a>
+                @endif
             </x-td>
             <x-td>
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download"
@@ -68,8 +70,10 @@
             </x-td>
 
             <x-td>
+                @if(!$accountpayable->status==='released')
                 <a href="#/" wire:click="deleteAccountPayable({{ $accountpayable->id }})" wire:loading.remove
                     class="text-red-500 text-decoration-line: underline">Delete</a>
+                @endif
 
                 <a href="#/" wire:loading wire:target="deleteAccountPayable({{ $accountpayable->id }})"
                     class="text-red-500 text-decoration-line: underline">Loading...</a>
