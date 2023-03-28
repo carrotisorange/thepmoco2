@@ -35,6 +35,7 @@
             <x-td>{{$accountpayable->status}}</x-td>
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             <x-td>
+
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">View</a>
@@ -54,23 +55,24 @@
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
                     class="text-blue-500 text-decoration-line: underline">View</a>
-                @else
-
                 @endif
+
             </x-td>
             <x-td>
-                @if(!$accountpayable->status==='released')
+                @if($accountpayable->status!='released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">Edit</a>
                 @endif
             </x-td>
             <x-td>
+                @if($accountpayable->status==='released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download"
                     class="text-blue-500 text-decoration-line: underline">Export</a>
+                @endif
             </x-td>
 
             <x-td>
-                @if(!$accountpayable->status==='released')
+                @if($accountpayable->status!='released')
                 <a href="#/" wire:click="deleteAccountPayable({{ $accountpayable->id }})" wire:loading.remove
                     class="text-red-500 text-decoration-line: underline">Delete</a>
                 @endif
