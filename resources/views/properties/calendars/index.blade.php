@@ -60,13 +60,16 @@
                                 guest, movein_at, moveout_at, unit_uuid, property_uuid,
                             },
                             success:function(response){
+                                $('#bookingModal').modal('hide')
                                 $('#calendar').fullCalendar('renderEvent',{
+                                    // 'id': response.event_id,
                                     'title':response.guest,
-                                    'start':response.start,
-                                    'end':response.end
+                                    'start':response.movein_at,
+                                    'end':response.moveout_at,
+                                    // 'color': response.color,
+                                    // 'time': response.time
                                 });
 
-                                console.log(response.guest);
                             },
                             error:function(error){
                                 if(error.responseJSON.errors) {
@@ -79,12 +82,27 @@
 
 
                 },
-                editable: false,
-                // eventDrop: function(event){
-                //     var id = event.id;
-                //     var start = moment(start).format('YYYY-MM-DD');
-                //     var end = moment(end).format('YYYY-MM-DD');
-                // }
+                editable: true,
+                eventDrop: function(event){
+                    var id = event.id;
+                    var movein_at = moment(event.start).format('YYYY-MM-DD');
+                    var moveout_at = moment(event.end).format('YYYY-MM-DD');
+
+                    $.ajax({
+                            url:"{{ route('calendar.update', '') }}" + '/' + id,
+                            type:"PATCH",
+                            dataType: 'json',
+                            data:{
+                                movein_at, moveout_at
+                            },
+                            success:function(response){
+                                console.log(response)
+                            },
+                            error:function(error){
+                                console.log(error)
+                            }
+                        });
+                }
             })
         });
     </script>
