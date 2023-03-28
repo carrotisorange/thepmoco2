@@ -61,7 +61,7 @@ class PropertyCalendarController extends Controller
        $guest = Guest::find($id);
        if(!$guest){
         return response()->json([
-            'error'=>'Unable to locate the event'
+            'error'=>'Unable to locate the guest'
         ],404);
        }
 
@@ -71,5 +71,20 @@ class PropertyCalendarController extends Controller
        ]);
 
        return response()->json('Guest Updated!');
+    }
+
+   public function destroy($id)
+    {
+        $guest = Guest::find($id);
+
+        if(!$guest) {
+            return response()->json([
+                'error' => 'Unable to locate the guest'
+            ], 404);
+        }
+        
+        $guest->delete();
+        
+        return $id;
     }
 }

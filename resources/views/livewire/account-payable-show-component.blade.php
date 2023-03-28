@@ -22,16 +22,7 @@
         <p class="mt-1 text-sm text-gray-500">
             <select wire:model="status" wire:change="changeAccountPayableStatus"
                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                <option value="pending" {{ old('status', $status)=='pending' ? 'selected' : 'selected' }}>
-                    pending - add/edit quotations
-                </option>
-                <option value="prepared" {{ old('status', $status)=='prepared' ? 'selected' : 'selected' }}>
-                    prepared - approve quotations
-                </option>
-                <option value="approved by manager" {{ old('status', $status)=='approved by manager' ? 'selected'
-                    : 'selected' }}>
-                    approved by manager - create purchase order
-                </option>
+                @if(auth()->user()->role_id === 4)
                 <option value="approved by ap" {{ old('status', $status)=='approved by ap' ? 'selected' : 'selected' }}>
                     approved by ap - upload payment
                 </option>
@@ -42,6 +33,19 @@
                     }}>
                     not yet released
                 </option>
+                @else
+                <option value="pending" {{ old('status', $status)=='pending' ? 'selected' : 'selected' }}>
+                    pending - add/edit quotations
+                </option>
+                <option value="prepared" {{ old('status', $status)=='prepared' ? 'selected' : 'selected' }}>
+                    prepared - approve quotations
+                </option>
+                <option value="approved by manager" {{ old('status', $status)=='approved by manager' ? 'selected'
+                    : 'selected' }}>
+                    approved by manager - create purchase order
+                </option>
+                @endif
+
             </select>
         </p>
     </div>
@@ -124,13 +128,13 @@
         </table>
         </p>
     </div>
- 
+
     <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
         <h3 class="text-base font-semibold leading-6 text-gray-900">Uploaded Quotations/Bills</h3>
         <p class="mt-1 text-sm text-gray-500">
         <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
             @if($accountpayable->request_for === 'purchase')
-           
+
             <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
                 <div class="flex w-0 flex-1 items-center">
                     <!-- Heroicon name: mini/paper-clip -->
@@ -228,36 +232,36 @@
 
 
     <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-            <h3 class="text-base font-semibold leading-6 text-gray-900">Uploaded Deposit Slip</h3>
-            <p class="mt-1 text-sm text-gray-500">
-            <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-               
-        
-                <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                    <div class="flex w-0 flex-1 items-center">
-                        <!-- Heroicon name: mini/paper-clip -->
-                        <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                            fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd"
-                                d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="ml-2 w-0 flex-1 truncate">Deposit Slip</span>
-                    </div>
-                    <div class="ml-4 flex-shrink-0">
-                        @if($accountpayable->attachment)
-                        <a href="{{ asset('/storage/'.$accountpayable->attachment) }}" target="_blank"
-                            class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
-                        @else
-                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">No
-                            deposit slip
-                            was uploaded</a>
-                        @endif
-                    </div>
-                </li>
-        
-            </ul>
-            </p>
-        </div>
-   
+        <h3 class="text-base font-semibold leading-6 text-gray-900">Uploaded Deposit Slip</h3>
+        <p class="mt-1 text-sm text-gray-500">
+        <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
+
+
+            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                <div class="flex w-0 flex-1 items-center">
+                    <!-- Heroicon name: mini/paper-clip -->
+                    <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="ml-2 w-0 flex-1 truncate">Deposit Slip</span>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                    @if($accountpayable->attachment)
+                    <a href="{{ asset('/storage/'.$accountpayable->attachment) }}" target="_blank"
+                        class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+                    @else
+                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">No
+                        deposit slip
+                        was uploaded</a>
+                    @endif
+                </div>
+            </li>
+
+        </ul>
+        </p>
+    </div>
+
 </div>
