@@ -11,7 +11,7 @@ class GuestIndexComponent extends Component
 {
     use WithPagination;
 
-    public $search = null;
+    public $uuid;
 
     public function redirectToUnitSelectionPage(){
 
@@ -23,7 +23,9 @@ class GuestIndexComponent extends Component
     public function render()
     {
         return view('livewire.guest-index-component', [
-        'guests' => Guest::where('property_uuid', Session::get('property'))->paginate(10)
+        'guests' => Guest::where('property_uuid', Session::get('property'))
+        ->where('uuid','like', '%'.$this->uuid.'%')
+        ->paginate(10)
     ]);
     }
 }
