@@ -33,6 +33,7 @@ class UnitShowComponent extends Component
     public $price;
     public $property_uuid;
     public $rent_type;
+    public $transient_rent;
 
     public $view = 'listView';
 
@@ -53,6 +54,7 @@ class UnitShowComponent extends Component
         $this->price = $unit_details->price;
         $this->property_uuid = Session::get('property');
         $this->rent_type = $unit_details->rent_type;
+        $this->transient_rent = $unit_details->transient_rent;
     }
     
     protected function rules()
@@ -69,7 +71,8 @@ class UnitShowComponent extends Component
             'occupancy' => 'required',
             'is_the_unit_for_rent_to_tenant' => 'required',
             'price' => 'nullable',
-            'rent_type' => 'required'
+            'rent_type' => 'required',
+            'transient_rent' => 'required'
             ];
     }
 

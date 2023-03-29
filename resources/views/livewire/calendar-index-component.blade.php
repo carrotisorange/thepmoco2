@@ -55,7 +55,7 @@
                                                 <option value="">Select a unit</option>
                                                 @foreach ($units as $unit )
                                                 <option value="{{ $unit->uuid }}">{{ $unit->unit }} - {{
-                                                    $unit->status->status }}</option>
+                                                    $unit->status->status }} - {{ number_format($unit->transient_rent, 2) }}/night</option>
                                                 @endforeach
                                             </select>
                                             <span id="unitUuidError" class="text-danger"></span>
@@ -73,7 +73,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="button" id="saveBtn" class="btn btn-primary">Book</button>
+                                            <button type="button" onclick="this.disabled = true;" id="saveBtn" class="btn btn-primary">Book</button>
                                         </div>
                                     </div>
                                 {{-- </form> --}}

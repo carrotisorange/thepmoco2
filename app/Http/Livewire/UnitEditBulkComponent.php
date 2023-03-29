@@ -28,6 +28,7 @@ class UnitEditBulkComponent extends Component
     public $occupancy;
     public $rent;
     public $size;
+    public $transient_rent;
 
     public $selectedUnits =[];
 
@@ -51,6 +52,7 @@ class UnitEditBulkComponent extends Component
             'units.*.occupancy' => 'nullable',
             'units.*.status_id' => ['nullable', Rule::exists('statuses', 'id')],
             'units.*.rent_type' => 'nullable',
+            'units.*.transient_rent' => 'nullable',
         ];
     }
 
