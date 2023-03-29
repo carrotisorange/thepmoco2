@@ -8,8 +8,8 @@
             <x-th>Email</x-th>
             <x-th>Price</x-th>
             <x-th>Status</x-th>
-            <x-th>Movein Date</x-th>
-            <x-th>Moveout Date</x-th>
+            <x-th>Checkin</x-th>
+            <x-th>Checkout</x-th>
             <x-th>Vehicle</x-th>
             <x-th>Plate Number</x-th>
             <x-th></x-th>
