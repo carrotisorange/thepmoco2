@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendWelcomeMailToGuest;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Booking;
 use Session;
 use Str;
 use App\Models\Guest;
+use Illuminate\Support\Facades\Mail;
 
 class PropertyCalendarController extends Controller
 {
@@ -20,7 +22,7 @@ class PropertyCalendarController extends Controller
         foreach($bookings as $booking){
             $events[] = [
                 'id' => $booking->uuid,
-                'title' => $booking->guest,
+                'title' => $booking->guest.' @ '.$booking->unit->unit,
                 // 'unit' => $booking->unit->unit,
                 'start' => $booking->movein_at,
                 'end' => $booking->moveout_at,
@@ -39,6 +41,8 @@ class PropertyCalendarController extends Controller
 
        $validated = $request->validate([
             'guest' => 'required|string',
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'mobile_number' => 'required',
             'movein_at' => 'required',
             'moveout_at' => 'required|after:movein_at',
             'unit_uuid' => 'required',
@@ -48,13 +52,33 @@ class PropertyCalendarController extends Controller
         $guest  = Guest::create([
             'uuid' => app('App\Http\Controllers\PropertyController')->generate_uuid(),
             'guest' => $request->guest,
+            'email' => $request->email,
+            'mobile_number' => $request->mobile_number,
             'movein_at' => $request->movein_at,
             'moveout_at' => $request->moveout_at,
             'unit_uuid' => $request->unit_uuid,
             'property_uuid' => $request->property_uuid
         ]);
 
+
+        $this->send_mail_to_guest($guest);
+
+
         return response()->json($guest);
+    }
+
+    public function send_mail_to_guest($guest)
+      {
+        $details =[
+          'guest' => $guest->guest,
+          'start' => $guest->movein_at,
+          'end' => $guest->moveut_at,
+          'unit' => $guest->unit->unit,
+          'rent' => 0,
+          'email' => $guest->email,
+        ];
+
+         Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));
     }
 
     public function update(Request $request, $id){
@@ -86,5 +110,9 @@ class PropertyCalendarController extends Controller
         $guest->delete();
         
         return $id;
+    }
+
+    public function show($id){
+        return redirect('/property/'.Session::get('property').'/guest/'.$id);
     }
 }

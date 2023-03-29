@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -47,6 +48,8 @@
 
                     $('#saveBtn').click(function(){
                         var guest = $('#guest').val();
+                        var email = $('#email').val();
+                        var mobile_number = $('#mobile_number').val();
                         var property_uuid = $('#property_uuid').val();
                         var unit_uuid = $('#unit_uuid').val();
                         var movein_at = moment(start).format('YYYY-MM-DD');
@@ -57,7 +60,7 @@
                             type:"POST",
                             dataType: 'json',
                             data:{
-                                guest, movein_at, moveout_at, unit_uuid, property_uuid,
+                                guest, email, mobile_number, movein_at, moveout_at, unit_uuid, property_uuid,
                             },
                             success:function(response){
                                 $('#bookingModal').modal('hide')
@@ -76,6 +79,8 @@
                             error:function(error){
                                 if(error.responseJSON.errors) {
                                     $('#guestError').html(error.responseJSON.errors.guest);
+                                    $('#emailError').html(error.responseJSON.errors.email);
+                                    $('#mobileNumberError').html(error.responseJSON.errors.mobile_number);
                                     $('#unitUuidError').html(error.responseJSON.errors.unit_uuid);
                                 }
                             }
@@ -125,7 +130,10 @@
                             });
                         }
                 }
-            })
+            });
+            $("#bookingModal").on("hidden.bs.modal", function(){
+            $("#saveBtn").unbind();
+            });
         });
     </script>
     @endsection

@@ -40,6 +40,16 @@
                                             <span id="guestError" class="text-danger"></span>
                                             <br>
 
+                                            <label for="">Email</label>
+                                            <input type="email" name="email" id="email" class="form-control">
+                                            <span id="emailError" class="text-danger"></span>
+                                            <br>
+
+                                            <label for="">Mobile Number</label>
+                                            <input type="text" name="mobile_number" id="mobile_number" class="form-control">
+                                            <span id="mobileNumberError" class="text-danger"></span>
+                                            <br>
+
                                             <label for="">Unit</label>
                                             <select class="form-control" name="unit_uuid" id="unit_uuid" required>
                                                 <option value="">Select a unit</option>
