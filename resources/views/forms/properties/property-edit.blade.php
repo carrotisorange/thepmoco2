@@ -101,6 +101,40 @@
                 </div>
 
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="telephone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                        Telephone
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <input type="text" name="telephone" id="mobile" autocomplete="telephone"
+                                value="{{old('telephone', $telephone)}}" wire:model.lazy="telephone"
+                                class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
+                        </div>
+                        @error('telephone')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="facebook_page" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                        Facebook Page
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <input type="text" name="facebook_page" id="facebook_page" autocomplete="facebook_page"
+                                value="{{old('facebook_page', $facebook_page)}}" wire:model.lazy="facebook_page"
+                                class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
+                        </div>
+                        @error('facebook_page')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label for="ownership" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                         Country
                     </label>
@@ -196,13 +230,11 @@
                         <div class="max-w-lg flex rounded-md shadow-sm">
                             <select name="status" id="ownership" autocomplete="status" wire:model.lazy="status"
                                 class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
-                                <option value="active" {{ old('active')=='active' ? 'selected'
-                                    : 'Select one' }}>
+                                <option value="active" {{ old('active')=='active' ? 'selected' : 'Select one' }}>
                                     Active</option>
-                                <option value="Inactive" {{ old('inactive')=='inactive' ? 'selected'
-                                    : 'Select one' }}>
+                                <option value="Inactive" {{ old('inactive')=='inactive' ? 'selected' : 'Select one' }}>
                                     Inactive
-                                    </option>
+                                </option>
                             </select>
                         </div>
                         @error('status')

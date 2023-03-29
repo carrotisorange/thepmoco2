@@ -31,6 +31,8 @@ class PropertyEditComponent extends Component
     public $email;
     public $mobile;
     public $ownership;
+    public $facebook_page;
+    public $telephone;
 
     public function mount($property_details)
     {
@@ -44,6 +46,8 @@ class PropertyEditComponent extends Component
         $this->email = $property_details->email;
         $this->mobile = $property_details->mobile;
         $this->ownership = $property_details->ownership;
+        $this->facebook_page = $property_details->facebook_page;
+        $this->telephone = $property_details->telephone;
     }
 
     protected function rules()
@@ -61,7 +65,9 @@ class PropertyEditComponent extends Component
             'email' => ['required'],
             'mobile' => ['required'],
             'ownership' => ['required'],
-            'status' => ['required']
+            'status' => ['required'],
+            'facebook_page' => 'required',
+            'telephone' => 'required'
         ];
     }
 
