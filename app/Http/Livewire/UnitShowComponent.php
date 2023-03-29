@@ -11,10 +11,7 @@ use App\Models\Concern;
 use App\Models\DeedOfSale;
 use Illuminate\Support\Str;
 use App\Models\UnitInventory;
-use App\Models\Guest;
-use App\Models\Contract;
-use App\Models\Bill;
-use App\Models\Unit;
+
 
 class UnitShowComponent extends Component
 {
@@ -34,6 +31,7 @@ class UnitShowComponent extends Component
     public $property_uuid;
     public $rent_type;
     public $transient_rent;
+    public $transient_discount;
 
     public $view = 'listView';
 
@@ -55,6 +53,7 @@ class UnitShowComponent extends Component
         $this->property_uuid = Session::get('property');
         $this->rent_type = $unit_details->rent_type;
         $this->transient_rent = $unit_details->transient_rent;
+        $this->transient_discount = $unit_details->transient_discount;
     }
     
     protected function rules()
@@ -72,7 +71,8 @@ class UnitShowComponent extends Component
             'is_the_unit_for_rent_to_tenant' => 'required',
             'price' => 'nullable',
             'rent_type' => 'required',
-            'transient_rent' => 'required'
+            'transient_rent' => 'required',
+            'transient_discount' => 'required'
             ];
     }
 

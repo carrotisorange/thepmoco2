@@ -93,6 +93,10 @@ class TenantBillCreateComponent extends Component
 
          $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property->uuid);
 
+         if($this->particular_id === '8'){
+            $this->bill *=-1;
+         }
+         
          Bill::create([
             'bill_no' => $bill_no,
             'unit_uuid' => $this->unit_uuid,
