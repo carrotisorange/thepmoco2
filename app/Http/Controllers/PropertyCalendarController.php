@@ -53,6 +53,7 @@ class PropertyCalendarController extends Controller
             'uuid' => app('App\Http\Controllers\PropertyController')->generate_uuid(),
             'guest' => $request->guest,
             'email' => $request->email,
+            'mobile_number' => $request->mobile_number,
             'movein_at' => $request->movein_at,
             'moveout_at' => $request->moveout_at,
             'unit_uuid' => $request->unit_uuid,
