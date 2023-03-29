@@ -64,6 +64,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::post('calendar/store', [PropertyCalendarController::class, 'store'])->name('calendar.store');
     Route::patch('calendar/update/{id}', [PropertyCalendarController::class, 'update'])->name('calendar.update');
     Route::delete('calendar/destroy/{id}', [PropertyCalendarController::class, 'destroy'])->name('calendar.destroy');
+    Route::get('calendar/show/{id}', [PropertyCalendarController::class, 'show'])->name('calendar.show');
 
     Route::prefix('/property/{property}')->group(function(){
 
