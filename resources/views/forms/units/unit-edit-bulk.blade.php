@@ -29,6 +29,9 @@
                     Rent/month
                 </x-th>
                 <x-th>
+                    Rent/day
+                </x-th>
+                <x-th>
                     Occupancy
                 </x-th>
             </tr>
@@ -124,6 +127,12 @@
                     <x-td>
                         <x-table-input form="edit-form" min="0" type="number" wire:model="units.{{ $index }}.rent" />
                         @error('units.{{ $index }}.rent')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+                    <x-td>
+                        <x-table-input form="edit-form" min="0" type="number" wire:model="units.{{ $index }}.transient_rent" />
+                        @error('units.{{ $index }}.transient_rent')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>

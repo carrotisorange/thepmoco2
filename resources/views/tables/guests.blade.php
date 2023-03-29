@@ -6,6 +6,7 @@
             <x-th>Unit</x-th>
             <x-th>Mobile</x-th>
             <x-th>Email</x-th>
+            <x-th>Price</x-th>
             <x-th>Status</x-th>
             <x-th>Movein Date</x-th>
             <x-th>Moveout Date</x-th>
@@ -25,6 +26,7 @@
                     class="text-indigo-500 text-decoration-line: underline">{{ $item->unit->unit }}</a></x-td>
             <x-td>{{ $item->mobile_number }}</x-td>
             <x-td>{{ $item->email }}</x-td>
+            <x-td>{{ number_format($item->price, 2) }}</x-td>
             <x-td>{{ $item->status }}</x-td>
             <x-td>
                 {{Carbon\Carbon::parse($item->movein_at)->format('M d, Y')}}</x-td>

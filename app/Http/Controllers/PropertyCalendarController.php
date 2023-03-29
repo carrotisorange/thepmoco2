@@ -10,6 +10,7 @@ use Session;
 use Str;
 use App\Models\Guest;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Unit;
 
 class PropertyCalendarController extends Controller
 {
@@ -39,6 +40,8 @@ class PropertyCalendarController extends Controller
 
     public function store(Request $request){
 
+        sleep(2);
+        
        $validated = $request->validate([
             'guest' => 'required|string',
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -49,6 +52,10 @@ class PropertyCalendarController extends Controller
             'property_uuid' => 'required'
         ]);
 
+        $start = strtotime($request->movein_at); // convert to timestamps
+        $end = strtotime($request->moveout_at); // convert to timestamps
+        $days = (int)(($end - $start)/86400);
+
         $guest  = Guest::create([
             'uuid' => app('App\Http\Controllers\PropertyController')->generate_uuid(),
             'guest' => $request->guest,
@@ -57,25 +64,34 @@ class PropertyCalendarController extends Controller
             'movein_at' => $request->movein_at,
             'moveout_at' => $request->moveout_at,
             'unit_uuid' => $request->unit_uuid,
-            'property_uuid' => $request->property_uuid
+            'property_uuid' => $request->property_uuid,
+            'price' => Unit::find($request->unit_uuid)->transient_rent * $days
         ]);
 
 
         $this->send_mail_to_guest($guest);
-
 
         return response()->json($guest);
     }
 
     public function send_mail_to_guest($guest)
       {
+        $property = Property::find($guest->property_uuid);
+        
         $details =[
+          'uuid' => $guest->uuid,
           'guest' => $guest->guest,
-          'start' => $guest->movein_at,
-          'end' => $guest->moveut_at,
-          'unit' => $guest->unit->unit,
-          'rent' => 0,
+        //   'start' => $guest->movein_at,
+        //   'end' => $guest->moveout_at,
+        //   'unit' => $guest->unit->unit,
+        //   'price' => $guest->price,
           'email' => $guest->email,
+          'property_name' => $property->property,
+          'property_mobile' => $property->mobile,
+          'property_facebook_page' => $property->facebook_page,
+          'property_telephone' => $property->telephone,
+          'property_email' => $property->email,
+          'property_address' => $property->barangay.', '.$property->city->city.', '.$property->province->province.' '.$property->country->country
         ];
 
          Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));

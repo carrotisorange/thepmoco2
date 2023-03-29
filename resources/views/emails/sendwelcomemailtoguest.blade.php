@@ -1,25 +1,35 @@
 @component('mail::message')
-# Dear Mr / Mrs {{ $details['guest'] }}
+# Dear Mr / Mrs {{ $details['guest'] }},
 
 <br>
-A very warm welcome to {{ Session::get('property_name') }}. It is indeed a pleasure to have you staying with us.
+Thank you for choosing {{ $details['property_name'] }}. It is our pleasure to confirm 
+the following reservation. Please be advise us if any changes need to be made to this reservation ny calling us at {{ $details['property_mobile'] }}.
 <br><br>
-The Management and staff are pleased to be your hosts. I look forward to demonstrating services and skills distinctive
-and special to {{ Session::get('property_name') }}, which is fully equipped with fine dining and business facilities to cater to
-our guests.
-<br><br>
-Our well-trained staffs eagerly await to serve and provide you with a truly memorable stay at our hotel.
-<br><br>
-May I take this opportunity to thank you for having chosen {{ Session::get('property_name') }} for your current stay.
-<br><br>
-Your room is <b>{{ $details['unit'] }}</b> and your stay starts on <b>{{ Carbon\Carbon::parse($details['start'])->format('M d, Y') }}</b> and ends on <b>{{ Carbon\Carbon::parse($details['end'])->format('M d, Y') }}</b> amounting 
-to (Please inquire at the lobby).
-<br>
-<br>
+@component('mail::table')
+| Reservation Details |             | Policies     |           |          |       
+| --------------------|-------------|--------------|-----------|----------|
+| Confirmation Number |{{ $details['uuid'] }} | Check-In Time    |  2pm   |
+|                     |                       | Check-Out Time   |  12NN  |
+| Guest Name          | Lead Guest: {{ $details['guest'] }} | Additional Charge of PHP 200.00 per hour will be applied for extra hours beyond our check out time. | 
+|                     |                                     | Note: All Deposits are non-refundable but we do offer unlimited rebookings as long as the new date is available. |
+|                     |                                     | Cancellation must be made at least 3 days prior to arrival. |
+| Address             |                                     | Not recommended |
+@endcomponent
+
+<p class="text-center">
+    Address: {{  $details['property_address'] }}
+    <br>
+    Telephone: {{ $details['property_telephone'] }}
+    <br>
+    Mobile: {{ $details['property_mobile'] }}
+    <br>
+    Facebook Page: {{ $details['property_facebook_page'] }}
+    <br>
+    Email: {{ $details['property_email'] }}
+</p>
 Sincerely,
 <br>
 {{ auth()->user()->name }}
 <br>
-{{ auth()->user()->role->role }} 
 
 @endcomponent
