@@ -203,10 +203,25 @@
         <div class="sm:col-span-1">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="discount" class="block text-xs font-medium text-gray-900">Discount/Month</label>
+                <input type="number" wire:model="discount" step="0.001"
+                    value="{{old('discount', $unit_details->discount)}}"
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+            </div>
+            @error('discount')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="sm:col-span-1">
+            <div
+                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="rent" class="block text-xs font-medium text-gray-900">
                     Rent/Unit/Day
                 </label>
-                <input type="number" wire:model="transient_rent" step="0.001" value="{{old('transient_rent', $unit_details->transient_rent)}}"
+                <input type="number" wire:model="transient_rent" step="0.001"
+                    value="{{old('transient_rent', $unit_details->transient_rent)}}"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
             </div>
@@ -218,16 +233,19 @@
         <div class="sm:col-span-1">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="discount" class="block text-xs font-medium text-gray-900">Discount</label>
-                <input type="number" wire:model="discount" step="0.001"
-                    value="{{old('discount', $unit_details->discount)}}"
+                <label for="transient_discount" class="block text-xs font-medium text-gray-900">
+                    Discount/Day
+                </label>
+                <input type="number" wire:model="transient_discount" step="0.001"
+                    value="{{old('transient_discount', $unit_details->transient_discount)}}"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
             </div>
-            @error('discount')
+            @error('transient_discount')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
+
         @endif
     </div>
     <div class="mt-10 flex justify-end">

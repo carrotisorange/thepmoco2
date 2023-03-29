@@ -259,6 +259,7 @@ class BillIndexComponent extends Component
                if($this->particular_id == 8){
                   $attributes['bill'] = -($this->bill);
                }
+               
                 $attributes['bill_no'] = $bill_no++;
                 $attributes['reference_no'] = $reference_no->bill_reference_no;
                 $attributes['user_id'] = auth()->user()->id;

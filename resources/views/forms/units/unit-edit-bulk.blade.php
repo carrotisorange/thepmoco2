@@ -26,11 +26,15 @@
                     Rent Type
                 </x-th>
                 <x-th>
-                    Rent/month
+                    Rent/Mon
                 </x-th>
                 <x-th>
-                    Rent/day
+                    Discount/Mon
                 </x-th>
+                <x-th>
+                    Rent/Day
+                </x-th>
+                <x-th>Discount/Day</x-th>
                 <x-th>
                     Occupancy
                 </x-th>
@@ -48,9 +52,8 @@
                         </div>
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" type="text" 
-                        wire:model.debounce.500ms="units.{{ $index }}.unit"
-                        wire:keyup="updateUnit({{ $item->uuid }})" />
+                        <x-table-input form="edit-form" type="text" wire:model.debounce.500ms="units.{{ $index }}.unit"
+                            wire:keyup="updateUnit({{ $item->uuid }})" />
                         @error('units.{{ $index }}.unit')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -131,8 +134,23 @@
                         @enderror
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" min="0" type="number" wire:model="units.{{ $index }}.transient_rent" />
+                        <x-table-input form="edit-form" min="0" type="number"
+                            wire:model="units.{{ $index }}.discount" />
+                        @error('units.{{ $index }}.discount')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+                    <x-td>
+                        <x-table-input form="edit-form" min="0" type="number"
+                            wire:model="units.{{ $index }}.transient_rent" />
                         @error('units.{{ $index }}.transient_rent')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+                    <x-td>
+                        <x-table-input form="edit-form" min="0" type="number"
+                            wire:model="units.{{ $index }}.transient_discount" />
+                        @error('units.{{ $index }}.transient_discount')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
