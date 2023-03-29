@@ -65,7 +65,7 @@ class PropertyCalendarController extends Controller
             'moveout_at' => $request->moveout_at,
             'unit_uuid' => $request->unit_uuid,
             'property_uuid' => $request->property_uuid,
-            'price' => Unit::find($request->unit_uuid)->transient_rent * $days
+            'price' => (Unit::find($request->unit_uuid)->transient_rent * $days) - Unit::find($request->unit_uuid)->discount,
         ]);
 
 
