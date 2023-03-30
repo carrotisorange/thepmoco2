@@ -33,6 +33,10 @@ class Collection extends Model
         return $this->belongsTo(Owner::class, 'owner_uuid');
     }
 
+    public function guest(){
+        return $this->belongsTo(Guest::class, 'guest_uuid');
+    }
+
     public function scopePosted($query)
     {
         return $query->where('is_posted', true);

@@ -19,6 +19,13 @@ class PropertyGuestController extends Controller
         ]);
     }
 
+    public function show (Property $property, Guest $guest){
+        return view('properties.guests.show', [
+            'property' => $property,
+            'guest_details' => $guest
+        ]);
+    }
+
      public function movein(Property $property, Unit $unit, Guest $guest)
     {
         Guest::where('uuid', $guest->uuid)

@@ -230,9 +230,9 @@
                 Collection Efficiency
             </td>
             @foreach ($properties as $property)
-            @if(App\Models\Property::find($property->uuid)->bills->count())
+            @if(App\Models\Property::find($property->uuid)->bills->count() > 1)
             <?php $collection_efficiency = 
-                                            App\Models\Property::find($property->uuid)->collections->sum('collection') / App\Models\Property::find($property->uuid)->bills->sum('bill'); ?>
+                App\Models\Property::find($property->uuid)->collections->sum('collection') / App\Models\Property::find($property->uuid)->bills->sum('bill'); ?>
             @else
             <?php $collection_efficiency = 0;?>
             @endif

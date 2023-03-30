@@ -233,13 +233,13 @@
         @foreach ($portfolio->where('status', 'active') as $property)
         <div class="group relative">
             <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <a href="/property/{{ $property->property_uuid }}">
+                <a href="/property/{{ $property->property_uuid }}/calendar">
                     <img src="{{ asset('/brands/property_page.png') }}" title="{{ $property->property }}" alt="building"
                         class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </a>
             </div>
             <h3 class="text-center mt-2"><a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $property->property_uuid }}">{{ $property->property }}</a></h3>
+                    href="/property/{{ $property->property_uuid }}/calendar">{{ $property->property }}</a></h3>
         </div>
         @endforeach
     </div>

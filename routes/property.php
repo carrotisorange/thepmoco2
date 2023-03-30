@@ -105,6 +105,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::prefix('guest')->group(function(){
         Route::get('/', [PropertyGuestController::class, 'index'])->name('guest');
+        Route::get('{guest:uuid}', [PropertyGuestController::class, 'show']);
     });
 
     Route::get('/unit/{unit}/guest/{guest}/movein', [PropertyGuestController::class, 'movein']);
