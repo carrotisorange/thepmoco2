@@ -26,6 +26,14 @@ class Guest extends Model
         return $this->belongsTo(Property::class, 'property_uuid');
     }
 
+    public function bills(){
+        return $this->hasMany(Bill::class);
+    }
+
+    public function collections(){
+        return $this->hasMany(Collection::class);
+    }
+
     public static function search($search)
     {
         return empty($search)? static::query()

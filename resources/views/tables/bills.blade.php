@@ -40,6 +40,10 @@
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}">{{
                     $item->owner->owner}}</a> (O)
+                @elseif($item->guest_uuid)
+                <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}">{{
+                    $item->guest->guest}}</a> (G)
                 @else
                 NA
                 @endif

@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use App\Mail\SendWelcomeMailToGuest;
 use Illuminate\Http\Request;
 use App\Models\Property;
-use App\Models\Booking;
+use App\Models\Bill;
 use Session;
-use Str;
 use App\Models\Guest;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Unit;
+use Carbon\Carbon;
 
 class PropertyCalendarController extends Controller
 {
     public function index(Property $property){
        
+        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+
+        app('App\Http\Controllers\PropertyController')->save_unit_stats($property->uuid);
+                
         $events = array();
 
         $bookings = Property::find($property->uuid)->guests;
@@ -56,22 +60,62 @@ class PropertyCalendarController extends Controller
         $end = strtotime($request->moveout_at); // convert to timestamps
         $days = (int)(($end - $start)/86400);
 
-        $guest  = Guest::create([
-            'uuid' => app('App\Http\Controllers\PropertyController')->generate_uuid(),
-            'guest' => $request->guest,
-            'email' => $request->email,
-            'mobile_number' => $request->mobile_number,
-            'movein_at' => $request->movein_at,
-            'moveout_at' => $request->moveout_at,
-            'unit_uuid' => $request->unit_uuid,
-            'property_uuid' => $request->property_uuid,
-            'price' => (Unit::find($request->unit_uuid)->transient_rent * $days) - Unit::find($request->unit_uuid)->transient_discount,
-        ]);
+        $price = (Unit::find($request->unit_uuid)->transient_rent * $days) -
+        Unit::find($request->unit_uuid)->transient_discount;
 
+        $guest = $this->store_guest(
+            app('App\Http\Controllers\PropertyController')->generate_uuid(),
+            $request->guest,
+            $request->email,
+            $request->mobile_number,
+            $request->movein_at,
+            $request->moveout_at,
+            $request->unit_uuid,
+            $request->property_uuid,
+            $price
+        );
+
+        $particular_id = 1; //rent 
+
+        $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
 
         $this->send_mail_to_guest($guest);
 
         return response()->json($guest);
+    }
+
+    public function store_guest($guest_uuid, $guest, $email, $mobile_number, $movein_at, $moveout_at, $unit_uuid, $property_uuid, $price){
+        
+        $guest = Guest::create([
+            'uuid' => $guest_uuid,
+            'guest' => $guest,
+            'email' => $email,
+            'mobile_number' => $mobile_number,
+            'movein_at' => $movein_at,
+            'moveout_at' => $moveout_at,
+            'unit_uuid' => $unit_uuid,
+            'property_uuid' => $property_uuid,
+            'price' => $price,
+        ]);
+
+        return $guest;
+    }
+
+    public function store_bill($property_uuid, $unit_uuid, $particular_id, $start, $end, $bill, $guest_uuid){
+         Bill::create([
+            'bill_no' => app('App\Http\Controllers\BillController')->get_latest_bill_no($property_uuid),
+            'unit_uuid' => $unit_uuid,
+            'particular_id' => $particular_id,
+            'start' => $start,
+            'end' => $end,
+            'bill' => $bill,
+            'reference_no' => null,
+            'due_date' => Carbon::parse($start)->addDays(7),
+            'user_id' => auth()->user()->id,
+            'property_uuid' => $property_uuid,
+            'guest_uuid' => $guest_uuid,
+            'is_posted' => true
+         ]);
     }
 
     public function send_mail_to_guest($guest)
