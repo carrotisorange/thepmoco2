@@ -36,7 +36,7 @@ class GuestBillCreateComponent extends Component
 
    public $view = 'listView';
 
-   public $isPaymentAllowed = false;
+   public $isPaymentAllowed = true;
 
    public $new_particular;
 
