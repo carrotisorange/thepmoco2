@@ -81,7 +81,15 @@ class PropertyCalendarController extends Controller
 
         $this->send_mail_to_guest($guest);
 
+        $this->update_unit($request->unit_uuid);
+
         return response()->json($guest);
+    }
+
+    public function update_unit($unit_uuid){
+        Unit::where('uuid', $unit_uuid)->update([
+            'status_id' => 4
+        ]);
     }
 
     public function store_guest($guest_uuid, $guest, $email, $mobile_number, $movein_at, $moveout_at, $unit_uuid, $property_uuid, $price){
@@ -135,7 +143,8 @@ class PropertyCalendarController extends Controller
           'property_facebook_page' => $property->facebook_page,
           'property_telephone' => $property->telephone,
           'property_email' => $property->email,
-          'property_address' => $property->barangay.', '.$property->city->city.', '.$property->province->province.' '.$property->country->country
+          'property_address' => $property->barangay.', '.$property->city->city.', '.$property->province->province.' '.$property->country->country,
+          'note_to_transient' => $property->note_to_transient
         ];
 
          Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));

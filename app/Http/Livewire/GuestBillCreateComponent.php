@@ -63,8 +63,8 @@ class GuestBillCreateComponent extends Component
    }
 
    public function mount(){
-      $this->start = Carbon::now()->format('Y-m-d');
-      $this->end = Carbon::now()->addMonth()->format('Y-m-d');
+      $this->start = Carbon::parse($this->guest->movein_at)->format('Y-m-d');
+      $this->end = Carbon::parse($this->guest->moveout_at)->format('Y-m-d');
    }
 
    protected function rules()
@@ -73,7 +73,7 @@ class GuestBillCreateComponent extends Component
          'particular_id' => ['required', Rule::exists('particulars', 'id')],
          'start' => 'required|date',
          // 'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
-         'end' => 'nullable|date|after:start',
+         'end' => 'nullable|date',
          'bill' => 'required|numeric|min:1',
       ];
    }
