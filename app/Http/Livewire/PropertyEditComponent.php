@@ -33,6 +33,8 @@ class PropertyEditComponent extends Component
     public $ownership;
     public $facebook_page;
     public $telephone;
+    public $note_to_bill;
+    public $note_to_transient;
 
     public function mount($property_details)
     {
@@ -48,6 +50,8 @@ class PropertyEditComponent extends Component
         $this->ownership = $property_details->ownership;
         $this->facebook_page = $property_details->facebook_page;
         $this->telephone = $property_details->telephone;
+        $this->note_to_bill = $property_details->note_to_bill;
+        $this->note_to_transient = $property_details->note_to_transient;
     }
 
     protected function rules()
@@ -67,7 +71,9 @@ class PropertyEditComponent extends Component
             'ownership' => ['required'],
             'status' => ['required'],
             'facebook_page' => 'required',
-            'telephone' => 'required'
+            'telephone' => 'required',
+            'note_to_bill' => 'nullable',
+            'note_to_transient' => 'nullable'
         ];
     }
 

@@ -28,6 +28,8 @@
                                 @if (Session::has('property'))
                                 {{ App\Models\Property::find(Session::get('property'))->property.'
                                 '.App\Models\Property::find(Session::get('property'))->type->type }}
+                                &nbsp;
+                                <a href="/property/{{ Session::get('property') }}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
                                 @endif
                             </h1>
                             <!-- help icon -->

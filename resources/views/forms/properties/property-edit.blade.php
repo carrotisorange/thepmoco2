@@ -5,7 +5,7 @@
             <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                        Name
+                        Property
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-2">
                         <div class="max-w-lg flex rounded-md shadow-sm">
@@ -132,6 +132,38 @@
                         @enderror
                     </div>
 
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="note_to_transient" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                        Notes to transient
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <input type="text" name="note_to_transient" id="note_to_transient" autocomplete="note_to_transient"
+                                value="{{old('note_to_transient', $note_to_transient)}}" wire:model.lazy="note_to_transient"
+                                class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
+                        </div>
+                        @error('note_to_transient')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="note_to_bill" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                        Notes to exported SOA
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <input type="text" name="note_to_bill" id="note_to_bill" autocomplete="note_to_bill"
+                                value="{{old('note_to_bill', $note_to_bill)}}" wire:model.lazy="note_to_bill"
+                                class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
+                        </div>
+                        @error('note_to_bill')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">

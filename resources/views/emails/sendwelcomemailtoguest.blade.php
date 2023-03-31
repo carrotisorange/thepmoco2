@@ -10,9 +10,7 @@ the following reservation. Please be advise us if any changes need to be made to
 | --------------------|-------------|--------------|-----------|----------|
 | Confirmation Number |{{ $details['uuid'] }} | Check-In Time    |  2pm   |
 |                     |                       | Check-Out Time   |  12NN  |
-| Guest Name          | Lead Guest: {{ $details['guest'] }} | Additional Charge of PHP 200.00 per hour will be applied for extra hours beyond our check out time. | 
-|                     |                                     | Note: All Deposits are non-refundable but we do offer unlimited rebookings as long as the new date is available. |
-|                     |                                     | Cancellation must be made at least 3 days prior to arrival. |
+| Guest Name          | Lead Guest: {{ $details['guest'] }} |  | {{ $details['note_to_transient'] }}
 | Address             |                                     | Not recommended |
 @endcomponent
 
