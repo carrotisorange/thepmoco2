@@ -110,7 +110,7 @@
                 <div class="mt-5">
                     <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
                         count($selectedBills))}}
-                        amounting to <b>{{ number_format($total) }}</b></span>
+                        amounting to <b>{{ number_format($total, 2) }}</b></span>
                 </div>
                 @else
                 <div class="mt-1">

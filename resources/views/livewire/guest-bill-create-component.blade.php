@@ -44,24 +44,24 @@
                 </ol>
             </nav>
 
-            {{-- <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
+            <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
                 <div class="sm:my-10 md:my-5 lg:my-0">
 
-                    @if($total_unpaid_bills->count())
-                    <button type="button" data-modal-toggle="export-tenant-bill"
+                    {{-- @if($total_unpaid_bills->count())
+                    <button type="button" data-modal-toggle="export-guest-bill"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export
                         Bills ({{
-                        App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=','paid')->count()
+                        App\Models\Guest::find($guest->uuid)->bills()->where('status', '!=','paid')->count()
                         }})</a></button>
 
-                    <button type="button" data-modal-toggle="send-tenant-bill"
+                    <button type="button" data-modal-toggle="send-guest-bill"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send
-                        Bills ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status',
+                        Bills ({{ App\Models\Guest::find($guest->uuid)->bills()->where('status',
                         '!=', 'paid')->count() }})</a></button>
-                    @endif
+                    @endif --}}
 
 
-                    <button type="button" data-modal-toggle="instructions-create-tenant-bill-modal"
+                    <button type="button" data-modal-toggle="instructions-create-guest-bill-modal"
                         class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                         Create Bill</a></button>
 
@@ -69,7 +69,7 @@
                         class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                         Create Particular</a></button>
                 </div>
-            </div> --}}
+            </div>
 
 
         </div>
@@ -77,8 +77,8 @@
     {{-- Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Security Deposit: <b> {{
         number_format(App\Models\Tenant::find($tenant->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
 
-    {{-- <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        <div class="sm:col-span-2">
+    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+        <div class="sm:col-span-3">
             @if($bills)
             <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
             <select wire:model.lazy="status" autocomplete="status"
@@ -93,23 +93,8 @@
             @endif
 
         </div>
-        <div class="sm:col-span-2">
-            @if($bills)
-            <label for="unit" class="block text-sm font-medium text-gray-700">Filter units</label>
-            <select wire:model.lazy="unit" autocomplete="unit"
-                class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                @foreach ($units as $unit)
-                <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
-                    'selected': 'Select one'
-                    }}>{{ $unit->unit->unit }}</option>
-
-                @endforeach
-            </select>
-
-            @endif
-
-        </div>
-        <div class="sm:col-span-2">
+      
+        <div class="sm:col-span-3">
             @if($bills)
             <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
             <select wire:model.lazy="particular" autocomplete="particular"
@@ -125,9 +110,9 @@
 
         </div>
 
-    </div> --}}
+    </div>
 
-    {{-- <div class="mt-5">
+    <div class="mt-5">
         <div class="flex flex-row">
             <div class="basis-3/4">
 
@@ -144,7 +129,7 @@
                 <div class="mt-5">
                     <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
                         count($selectedBills))}}
-                        amounting to <b>{{ number_format($total) }}</b></span>
+                        amounting to <b>{{ number_format($total, 2) }}</b></span>
                 </div>
                 @else
                 <div class="mt-1">
@@ -170,7 +155,7 @@
                 @endif
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
@@ -185,12 +170,12 @@
             </div>
         </div>
     </div>
-    {{-- @include('layouts.notifications')
-    @include('modals.instructions.create-tenant-bill-modal')
-    @include('modals.export-tenant-bill')
-    @include('modals.send-tenant-bill')
+    @include('layouts.notifications')
+    @include('modals.instructions.create-guest-bill-modal')
+    @include('modals.export-guest-bill')
+    @include('modals.send-guest-bill')
     @include('modals.instructions.create-particular-modal')
-    @include('modals.create-particular') --}}
-</div><div>
-    {{-- Stop trying to control. --}}
+    @include('modals.create-particular')
+</div>
+<div>
 </div>

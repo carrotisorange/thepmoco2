@@ -32,6 +32,14 @@ class PropertyGuestController extends Controller
             'guest' => $guest,
         ]);
     }
+    
+    public function store_collections(Property $property, Guest $guest, $batch_no){
+        return view('properties.guests.store-collections',[
+            'property' => $property, 
+            'guest' => $guest
+        ]);
+    }
+
 
      public function movein(Property $property, Unit $unit, Guest $guest)
     {

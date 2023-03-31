@@ -11,7 +11,6 @@ use App\Models\Collection;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use DB;
-use Session;
 use App\Models\Property;
 use App\Models\Particular;
 use App\Models\PropertyParticular;
