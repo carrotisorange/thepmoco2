@@ -110,26 +110,26 @@
                             }
                         });
                 },
-                eventClick: function(event){
-                    var id = event.id;
-                        if(confirm('Are you sure want to remove it')){
-                            $.ajax({
-                                url:"{{ route('calendar.destroy', '') }}" +'/'+ id,
-                                type:"DELETE",
-                                dataType:'json',
-                                success:function(response)
-                                {
-                                    console.log('asdasdad')
-                                    $('#calendar').fullCalendar('removeEvents', response);
-                                    swal("Success!", "Event Deleted!", "success");
-                                },
-                                error:function(error)
-                                {
-                                    console.log(error)
-                                }
-                            });
-                        }
-                }
+                // eventClick: function(event){
+                //     var id = event.id;
+                //         if(confirm('Are you sure want to remove it')){
+                //             $.ajax({
+                //                 url:"{{ route('calendar.destroy', '') }}" +'/'+ id,
+                //                 type:"DELETE",
+                //                 dataType:'json',
+                //                 success:function(response)
+                //                 {
+                //                     console.log('asdasdad')
+                //                     $('#calendar').fullCalendar('removeEvents', response);
+                //                     swal("Success!", "Event Deleted!", "success");
+                //                 },
+                //                 error:function(error)
+                //                 {
+                //                     console.log(error)
+                //                 }
+                //             });
+                //         }
+                // }
             });
             $("#bookingModal").on("hidden.bs.modal", function(){
             $("#saveBtn").unbind();
