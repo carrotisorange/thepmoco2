@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 use DB; 
 use Carbon\Carbon;
 use App\Models\Guest;
+use App\Models\AcknowledgementReceipt;
 
 class GuestShowComponent extends Component
 {
@@ -93,7 +94,7 @@ class GuestShowComponent extends Component
         return view('livewire.guest-show-component',[
             'units' => Property::find($this->property->uuid)->units,
             'bills' => Guest::find($this->guest_details->uuid)->bills,
-            'collections' => Guest::find($this->guest_details->uuid)->collections
+            'collections' => AcknowledgementReceipt::where('guest_uuid', $this->guest_details->uuid)->orderBy('id','desc')->paginate(5)
         ]);
     }
 }
