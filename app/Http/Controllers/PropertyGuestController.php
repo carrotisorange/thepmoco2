@@ -26,6 +26,21 @@ class PropertyGuestController extends Controller
         ]);
     }
 
+    public function show_bills(Property $property, Guest $guest){
+        return view('properties.guests.show-bills',[
+            'property' => $property,
+            'guest' => $guest,
+        ]);
+    }
+    
+    public function store_collections(Property $property, Guest $guest, $batch_no){
+        return view('properties.guests.store-collections',[
+            'property' => $property, 
+            'guest' => $guest
+        ]);
+    }
+
+
      public function movein(Property $property, Unit $unit, Guest $guest)
     {
         Guest::where('uuid', $guest->uuid)
