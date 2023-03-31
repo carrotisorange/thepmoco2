@@ -136,7 +136,7 @@
 
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label for="note_to_transient" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                        Notes to transient
+                        Notes to the welcome email to guest
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-2">
                         <div class="max-w-lg flex rounded-md shadow-sm">
@@ -152,7 +152,7 @@
 
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label for="note_to_bill" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                        Notes to exported SOA
+                       Notes to the Statements of Account (SOA) (export, send through email)
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-2">
                         <div class="max-w-lg flex rounded-md shadow-sm">
