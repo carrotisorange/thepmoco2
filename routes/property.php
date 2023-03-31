@@ -109,6 +109,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{guest:uuid}/bills', [PropertyGuestController::class, 'show_bills']);
         Route::get('{guest:uuid}/bills/{batch_no}/pay', [PropertyGuestController::class, 'store_collections']);
         Route::patch('{guest:uuid}/bills/{batch_no}/pay/update', [PropertyGuestController::class, 'update_collections']);
+        Route::get('{guest:uuid}/ar/{ar}/view', [PropertyGuestController::class, 'show_collections']);
     });
 
     Route::get('/unit/{unit}/guest/{guest}/movein', [PropertyGuestController::class, 'movein']);

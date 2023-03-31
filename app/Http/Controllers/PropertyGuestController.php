@@ -14,6 +14,7 @@ use App\Models\AcknowledgementReceipt;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPaymentToTenant;
+use \PDF;
 
 class PropertyGuestController extends Controller
 {
@@ -166,6 +167,75 @@ class PropertyGuestController extends Controller
     {
         return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');
     }
+
+    public function show_collections(Property $property, Guest $guest, AcknowledgementReceipt $ar)
+     {          
+         $balance = $this->get_guest_balance($ar->guest_uuid);
+
+         $data = $this->get_collection_data(
+            $ar->created_at, 
+            $guest->uuid, 
+            $guest->guest,
+            $ar->mode_of_payment,
+            User::find($ar->user_id)->name,
+            User::find($ar->user_id)->role->role,
+            $ar->ar_no,
+            $ar->amount,
+            $ar->cheque_no,
+            $ar->bank,
+            $property,
+            $ar->date_deposited,
+            Collection::where('guest_uuid',$ar->guest_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
+            $balance
+         );
+
+        $pdf = $this->generate_pdf($property, $data);
+
+        return $pdf->stream($guest->guest.'-ar.pdf');
+     }
+
+      public function generate_pdf(Property $property, $data)
+     {
+
+         $pdf = PDF::loadView('properties.guests.export-collections', $data);
+
+         $pdf->output();
+               
+         $canvas = $pdf->getDomPDF()->getCanvas();
+
+         $height = $canvas->get_height();
+         
+         $width = $canvas->get_width();
+
+         $canvas->set_opacity(.2,"Multiply");
+
+         $canvas->set_opacity(.2);
+
+         $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+
+         return $pdf;
+
+     }
+
+      public function get_collection_data($payment_made, $reference_no, $tenant, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $property, $date_deposited, $collections, $balance)
+     {
+      return [
+         'created_at' => $payment_made,
+         'reference_no' => $reference_no,
+         'tenant' => $tenant,
+         'mode_of_payment' => $mode_of_payment,
+         'user' => $user,
+         'role' => $role,
+         'ar_no' => $ar_no,
+         'amount' => $amount,
+         'cheque_no' => $cheque_no,
+         'bank' => $bank,
+         'property' => $property,
+         'date_deposited' => $date_deposited,
+         'collections' => $collections,
+         'balance' => $balance
+      ];
+     }
 
 
      public function movein(Property $property, Unit $unit, Guest $guest)

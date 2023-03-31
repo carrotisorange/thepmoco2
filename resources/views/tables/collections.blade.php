@@ -64,8 +64,11 @@
                 @if($item->tenant_uuid)
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/view"
                     class="text-indigo-500 text-decoration-line: underline" target="_blank">View</a>
-                @else
+                @elseif($item->owner_uuid)
                 <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/view"
+                    class="text-indigo-500 text-decoration-line: underline" target="_blank">View</a>
+                @elseif($item->guest_uuid)
+                <a href="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}/ar/{{ $item->id }}/view"
                     class="text-indigo-500 text-decoration-line: underline" target="_blank">View</a>
                 @endif
 
@@ -75,6 +78,12 @@
                 @if(!$item->attachment == null)
                 @if($item->tenant_uuid)
                 <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/ar/{{ $item->id }}/attachment"
+                    class="text-indigo-500 text-decoration-line: underline" target="_blank">Attachment</a>
+                @elseif($item->owner_uuid)
+                <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/attachment"
+                    class="text-indigo-500 text-decoration-line: underline" target="_blank">Attachment</a>
+                @elseif($item->guest_uuid)
+                <a href="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}/ar/{{ $item->id }}/attachment"
                     class="text-indigo-500 text-decoration-line: underline" target="_blank">Attachment</a>
                 @else
                 <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/ar/{{ $item->id }}/attachment"
