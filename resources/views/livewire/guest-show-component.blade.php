@@ -20,7 +20,7 @@
                     <div id="ownerCreateDropdown"
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
-                          <li>
+                            <li>
                                 <a href="/property/{{ $guest_details->property->uuid }}/guest/{{ $guest_details->uuid }}/bills"
                                     class=" block py-2 px-4 text-sm
                                                                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
@@ -28,14 +28,14 @@
                                     New bills
                                 </a>
                             </li>
-                         {{--   <li>
-                                <a href="/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/representative/create"
-                                    class=" block py-2 px-4 text-sm
+                            <li>
+                                <a href="#/" data-modal-toggle="create-additional-guest-modal" class=" block py-2 px-4 text-sm
                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                     dark:text-gray-200 dark:hover:text-white">
-                                    New representative
+                                    New additional guest
                                 </a>
                             </li>
+                            {{--
                             <li>
                                 <a href="/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bank/create"
                                     class=" block py-2 px-4 text-sm
@@ -98,15 +98,23 @@
                         <li class="mr-2" role="presentation">
                             <button
                                 class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="additional_guests-tab" data-tabs-target="#additional_guests" type="button"
+                                role="tab" aria-controls="additional_guests" aria-selected="false">Additional
+                                Guests</button>
+                        </li>
+
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="bills-tab" data-tabs-target="#bills" type="button" role="tab" aria-controls="bills"
                                 aria-selected="false">Bills</button>
                         </li>
 
-                          <li class="mr-2" role="presentation">
+                        <li class="mr-2" role="presentation">
                             <button
                                 class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="collections-tab" data-tabs-target="#collections" type="button" role="tab" aria-controls="collections"
-                                aria-selected="false">Collections</button>
+                                id="collections-tab" data-tabs-target="#collections" type="button" role="tab"
+                                aria-controls="collections" aria-selected="false">Collections</button>
                         </li>
 
                     </ul>
@@ -130,7 +138,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="sm:col-span-8">
+                                    <div class="sm:col-span-4">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="guest" class="block text-xs font-medium text-gray-900">Name of
@@ -146,6 +154,28 @@
                                     <div class="sm:col-span-4">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="unit_uuid" class="block text-xs font-medium text-gray-900">Unit
+                                            </label>
+                                            <select wire:model.debounce.500ms="unit_uuid"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+                                                @foreach($units as $unit)
+                                                <option value="{{ $unit->uuid }}" {{ old('unit_uuid', $guest_details->
+                                                    unit_uuid) == $unit->uuid ? 'selected' : '' }}>
+                                                    {{ $unit->unit }} - {{
+                                                    $unit->status->status }} - {{ number_format($unit->transient_rent,
+                                                    2) }}/night
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                            @error('unit_uuid')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-3">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="job-title" class="block text-xs font-medium text-gray-900">Email
                                             </label>
                                             <input type="email" wire:model.debounce.500ms="email"
@@ -156,7 +186,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="sm:col-span-4">
+                                    <div class="sm:col-span-3">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="mobile_number"
@@ -199,30 +229,8 @@
                                     <div class="sm:col-span-2">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                            <label for="unit_uuid" class="block text-xs font-medium text-gray-900">Unit
-                                            </label>
-                                            <select wire:model.debounce.500ms="unit_uuid"
-                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                                                @foreach($units as $unit)
-                                                <option value="{{ $unit->uuid }}" {{ old('unit_uuid', $guest_details->
-                                                    unit_uuid) == $unit->uuid ? 'selected' : '' }}>
-                                                    {{ $unit->unit }} - {{
-                                                    $unit->status->status }} - {{ number_format($unit->transient_rent,
-                                                    2) }}/night
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('unit_uuid')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="sm:col-span-2">
-                                        <div
-                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="movein_at"
-                                                class="block text-xs font-medium text-gray-900">Checkin Date</label>
+                                                class="block text-xs font-medium text-gray-900">Arrival Date</label>
                                             <input type="date" wire:model.debounce.500ms="movein_at"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                                 placeholder="">
@@ -235,8 +243,22 @@
                                     <div class="sm:col-span-2">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="arrival_time"
+                                                class="block text-xs font-medium text-gray-900">Time</label>
+                                            <input type="time" wire:model.debounce.500ms="arrival_time"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('arrival_time')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-2">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="moveout_at"
-                                                class="block text-xs font-medium text-gray-900">Checkout Date</label>
+                                                class="block text-xs font-medium text-gray-900">Arrival Date</label>
                                             <input type="date" wire:model.debounce.500ms="moveout_at"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                                 placeholder="">
@@ -249,18 +271,19 @@
                                     <div class="sm:col-span-2">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                            <label for="no_of_guests" class="block text-xs font-medium text-gray-900">No
-                                                of Guests</label>
-                                            <input type="number" wire:model.debounce.500ms="no_of_guests"
+                                            <label for="departure_time"
+                                                class="block text-xs font-medium text-gray-900">Time</label>
+                                            <input type="time" wire:model.debounce.500ms="departure_time"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                                 placeholder="">
-                                            @error('no_of_guests')
+                                            @error('departure_time')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
 
-                                    <div class="sm:col-span-3">
+
+                                    <div class="sm:col-span-4">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="vehicle_details"
@@ -274,7 +297,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sm:col-span-3">
+                                    <div class="sm:col-span-4">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="plate_number"
@@ -287,6 +310,78 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                    <div class="sm:col-span-8">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="special_request"
+                                                class="block text-xs font-medium text-gray-900">Special Request</label>
+                                            <input type="text" wire:model.debounce.500ms="special_request"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('special_request')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-8">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="flight_itinerary"
+                                                class="block text-xs font-medium text-gray-900">Flight Itinerary</label>
+                                            <input type="text" wire:model.debounce.500ms="flight_itinerary"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('flight_itinerary')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-4">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="no_of_guests" class="block text-xs font-medium text-gray-900">No
+                                                of Guests</label>
+                                            <input type="number" min="1" wire:model.debounce.500ms="no_of_guests"
+                                                readonly
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-2">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="no_of_senior_citizens"
+                                                class="block text-xs font-medium text-gray-900">No
+                                                of Senior Citizen</label>
+                                            <input type="number" min="1"
+                                                wire:model.debounce.500ms="no_of_senior_citizens" readonly
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-2">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="no_of_children"
+                                                class="block text-xs font-medium text-gray-900">No
+                                                of Children</label>
+                                            <input type="number" min="1" wire:model.debounce.500ms="no_of_children"
+                                                readonly
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                                 <div class="mt-5 flex justify-end">
 
@@ -300,6 +395,24 @@
                                     </button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+
+                    <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="additional_guests" role="tabpanel"
+                        aria-labelledby="additional_guests-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
+
+                                    </div>
+
+                                    @include('tables.additional-guests')
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -343,4 +456,5 @@
 
         </div>
     </div>
+    @include('modals.create-additional-guest-modal')
 </div>
