@@ -54,9 +54,9 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.quantity' => 'nullable',
             'particulars.*.price' => 'nullable',
             'particulars.*.file' => 'nullable',
-            'quotation1' => 'required | mimes:jpg,bmp,png,pdf,docx | max:102400',
-            'quotation2' => 'nullable | mimes:jpg,bmp,png,pdf,docx | max:102400',
-            'quotation3' => 'nullable | mimes:jpg,bmp,png,pdf,docx | max:102400',
+            'quotation1' => 'required | max:102400',
+            'quotation2' => 'nullable | max:102400',
+            'quotation3' => 'nullable | max:102400',
             'selected_quotation' => ['required_with:quotation1'],
         ];
     }
