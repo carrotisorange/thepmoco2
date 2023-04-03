@@ -150,7 +150,7 @@ class PropertyGuestController extends Controller
 
     public function get_guest_balance($guest_uuid)
     {
-        return Bill::where('guest_uuid', $guest_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
+        return Bill::where('guest_uuid', $guest_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->orderBy('bill_no','desc')->get();
     }
 
     public function get_selected_bills_count($batch_no, $guest_uuid)

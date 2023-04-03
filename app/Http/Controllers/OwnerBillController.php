@@ -47,7 +47,7 @@ class OwnerBillController extends Controller
 
     public function get_owner_balance($owner_uuid)
     {
-        return Bill::where('owner_uuid', $owner_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
+        return Bill::where('owner_uuid', $owner_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->orderBy('bill_no','desc')->get();
     }
 
     /**

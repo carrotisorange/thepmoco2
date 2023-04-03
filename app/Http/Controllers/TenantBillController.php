@@ -49,7 +49,7 @@ class TenantBillController extends Controller
 
     public function get_tenant_balance($tenant_uuid)
     {
-        return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
+        return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->orderBy('bill_no','desc')->get();
     }
 
     public function export(Request $request, Property $property, Tenant $tenant)
