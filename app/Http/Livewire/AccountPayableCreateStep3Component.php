@@ -14,6 +14,7 @@ class AccountPayableCreateStep3Component extends Component
 
     public $comment;
     public $vendor;
+    public $delivery_at;
 
     public $property_uuid;
     
@@ -22,6 +23,7 @@ class AccountPayableCreateStep3Component extends Component
         $this->comment = AccountPayable::find($this->accountpayable_id)->comment;
         $this->property_uuid = Session::get('property');
         $this->vendor = AccountPayable::find($this->accountpayable_id)->vendor; 
+        $this->delivery_at = AccountPayable::find($this->accountpayable_id)->delivery_at;
      }
 
     protected function rules()
@@ -36,6 +38,14 @@ class AccountPayableCreateStep3Component extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function downloadInternalDocument(){
+        sleep(2);
+
+        return
+        redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step1/export');
+
+    }
+
     public function approveRequest()
     {
         sleep(1);
@@ -44,7 +54,7 @@ class AccountPayableCreateStep3Component extends Component
 
         app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable_id, 'approved by manager', $this->comment, $this->vendor);
 
-        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-4')->with('success', 'Success!');
+        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-5')->with('success', 'Success!');
     }
 
     public function rejectRequest(){

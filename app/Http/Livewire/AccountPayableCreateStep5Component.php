@@ -13,6 +13,8 @@ class AccountPayableCreateStep5Component extends Component
     public $accountpayable_id;
 
     public $comment2;
+    public $vendor;
+    public $delivery_at;
 
     public $property_uuid;
     
@@ -20,6 +22,8 @@ class AccountPayableCreateStep5Component extends Component
     {
         $this->comment2 = AccountPayable::find($this->accountpayable_id)->comment2;
         $this->property_uuid = Session::get('property');
+        $this->vendor = AccountPayable::find($this->accountpayable_id)->vendor; 
+        $this->delivery_at = AccountPayable::find($this->accountpayable_id)->delivery_at;
     }
 
     protected function rules()

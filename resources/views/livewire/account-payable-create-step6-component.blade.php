@@ -1,9 +1,10 @@
 <div>
-@include('layouts.notifications')
+    @include('layouts.notifications')
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
             {{-- <button type="button"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button> --}}
+                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button>
+            --}}
         </div>
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
@@ -64,27 +65,27 @@
 
 
                 {{-- price --}}
-                <div class="sm:col-span-3">
+                {{-- <div class="sm:col-span-3">
                     <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
                     <input type="number" step="0.01" value="{{ $accountpayable->amount }}" name="amount" readonly
                         class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                     @error('amount')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
 
 
                 {{-- vendor details --}}
-                <div class="sm:col-span-3">
+                {{-- <div class="sm:col-span-3">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor:</label>
                     <input type="text" value="{{ $accountpayable->vendor }}" name="vendor" readonly
                         class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                     @error('selected_vendor')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
 
-                @if($accountpayable->request_for === 'purchase')
+
                 <div class="sm:col-span-6">
                     <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
                     <div
@@ -95,7 +96,7 @@
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
                                     <span><a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}"
                                             target="_blank" class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a></span>
+                                            Selected Quotation</a></span>
 
 
                                 </label>
@@ -105,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
+
                 <div class="sm:col-span-7">
                     <label class="block text-sm font-medium text-gray-700">Upload the proof of payment</label>
                     <div
