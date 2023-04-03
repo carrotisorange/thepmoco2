@@ -39,4 +39,8 @@ class Guest extends Model
         return empty($search)? static::query()
       : static::where('guest','like', '%'.$search.'%');
     }
+
+    public function additional_guests(){
+        return $this->hasMany(AdditionalGuest::class);
+    }
 }
