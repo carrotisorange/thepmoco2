@@ -1,15 +1,31 @@
-<div class="mb-20">
+<div>
+    @if(!$accountpayable->requester_id === auth()->user()->id)
+    <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div class="text-center">
+            {{-- <p class="text-base font-semibold text-indigo-600"></p> --}}
+            <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl"><i
+                    class="fa-solid fa-hourglass-start"></i></h1>
+            <p class="mt-6 text-base leading-7 text-gray-600">The request has been sent to the account payable.</p>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+                <button type="button" wire:loading.remove wire:click="downloadInternalDocument"
+                    wire:target="downloadInternalDocument"
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    Export Request
+                </button>
+
+
+            </div>
+        </div>
+    </main>
+    @else
 
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
-            <button type="button"
-                onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download'"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button>
+
         </div>
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="approveRequest()" method="POST">
 
-            @if($accountpayable->request_for === 'purchase')
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
                 <div class="sm:col-span-2">
@@ -20,9 +36,20 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="selected_quotation"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span><a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
+                                    <span>
+
+                                        @if($accountpayable->quotation1)
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
                                             class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a></span>
+                                            Quotation/Bill</a>
+                                        @else
+
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
+                                            quotation/bill
+                                            was uploaded</a>
+                                        @endif
+
+                                    </span>
 
 
                                 </label>
@@ -46,10 +73,11 @@
                                         @if($accountpayable->quotation2)
                                         <a href="{{ asset('/storage/'.$accountpayable->quotation2) }}" target="_blank"
                                             class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a>
+                                            Quotation/Bill</a>
                                         @else
 
-                                        <a href="#" class="text-red-500 text-decoration-line: underline">No quotation
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
+                                            Quotation/Bill
                                             was uploaded</a>
                                         @endif
 
@@ -76,10 +104,11 @@
                                         @if($accountpayable->quotation3)
                                         <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank"
                                             class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a>
+                                            Quotation/Bill</a>
                                         @else
 
-                                        <a href="#" class="text-red-500 text-decoration-line: underline">No quotation
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
+                                            Quotation/Bill
                                             was uploaded</a>
                                         @endif
 
@@ -93,7 +122,6 @@
                     </div>
                 </div>
 
-
                 <div class="sm:col-span-6">
                     <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
                     <div
@@ -102,9 +130,20 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="selected_quotation"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span><a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}"
+                                    <span>
+
+                                        @if($accountpayable->selected_quotation)
+                                        <a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}"
                                             target="_blank" class="text-blue-500 text-decoration-line: underline">View
-                                            Attachment</a></span>
+                                            Selected Quotation</a>
+                                        @else
+
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No Selected
+                                            Quotation
+                                            was uploaded</a>
+                                        @endif
+
+                                    </span>
 
 
                                 </label>
@@ -114,7 +153,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
@@ -162,34 +200,6 @@
                     </table>
                 </div>
 
-                <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Requester:</label>
-                    <input type="text" value="{{ $accountpayable->requester->name }}" name="vendor" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('selected_vendor')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Request Date:</label>
-                    <input type="text" value="{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}"
-                        name="vendor" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('selected_vendor')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Due Date:</label>
-                    <input type="text" value="{{ Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}"
-                        name="vendor" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('selected_vendor')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
@@ -199,82 +209,47 @@
                 {{-- vendor details --}}
                 <div class="sm:col-span-3">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Name:</label>
-                    <input type="text" value="{{ $accountpayable->vendor }}" name="vendor" readonly
+                    <input type="text" wire:model="vendor" readonly
                         class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                     @error('selected_vendor')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-
-                {{-- price --}}
                 <div class="sm:col-span-3">
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
-                    <input type="number" step="0.01" value="{{ $accountpayable->amount }}" name="amount" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('amount')
+                    <label for="delivery-date" class="block text-sm font-medium text-gray-700">Delivery Date:</label>
+                    <input type="date" wire:model="delivery_at" readonly
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                    @error('delivery_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Bank Details</label>
 
-                </div>
-
-                {{-- vendor details --}}
-                <div class="sm:col-span-3">
-                    <label for="bank" class="block text-sm font-medium text-gray-700">Bank:</label>
-                    <input type="text" value="{{ $accountpayable->bank }}" name="vendor" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('bank')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                {{-- price --}}
-                <div class="sm:col-span-3">
-                    <label for="bank_name" class="block text-sm font-medium text-gray-700">Bank Name:</label>
-                    <input type="text" value="{{ $accountpayable->bank_name }}" name="amount" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('bank_name')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="bank_account" class="block text-sm font-medium text-gray-700">Bank Account:</label>
-                    <input type="text" value="{{ $accountpayable->bank_account }}" name="amount" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('bank_account')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Comment</label>
 
                 </div>
 
-                {{-- @can('accountpayable') --}}
+                @can('manager')
                 <div class="sm:col-span-6">
-                    <textarea placeholder="Add your comment..." wire:model="comment2"
+                    <textarea placeholder="Add your comment..." wire:model="comment"
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
 
                 </div>
-                {{-- @else
+                @else
                 <div class="sm:col-span-6">
-                    <textarea placeholder="Add your comment..." wire:model="comment2" readonly
+                    <textarea placeholder="Add your comment..." wire:model="comment" readonly
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
 
                 </div>
-                @endcan --}}
+                @endcan
 
-
-                @if($accountpayable->status === 'approved by account payable')
+                @if($accountpayable->status === 'approved by manager')
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-green-700"><i
                             class="fa-solid fa-circle-check"></i> Approved by: {{
-                        App\Models\User::find($accountpayable->approver2_id)->name }} </label>
+                        $accountpayable->requester->name }} </label>
 
                 </div>
                 @elseif($accountpayable->status === 'rejected by manager')
@@ -282,7 +257,7 @@
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-red-700"><i
                             class="fa-solid fa-triangle-exclamation"></i> Rejected by: {{
-                        App\Models\User::find($accountpayable->approver2_id)->name }} </label>
+                        $accountpayable->requester->name }} </label>
 
                 </div>
                 @endif
@@ -308,28 +283,11 @@
                         </svg>
                         Approve
                     </button>
-                    {{-- @else
-                    @if($accountpayable->status === 'approved by account payable')
-                    <button
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
-                        <svg wire:loading wire:target="approveRequest"
-                            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                            </circle>
-                            <path class="opacity-75" fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                            </path>
-                        </svg>
-                        Next
-                    </button>
-                    @endif
-                    @endcan --}}
                 </div>
 
             </div>
         </form>
         {{-- end-step-1-form --}}
     </div>
+    @endif
 </div>

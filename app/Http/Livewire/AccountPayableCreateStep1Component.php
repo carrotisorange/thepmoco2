@@ -24,6 +24,19 @@ class AccountPayableCreateStep1Component extends Component
     public $particulars;
 
     public $property;
+
+    public $vendor;
+    public $delivery_at;
+
+    public $bank;
+    public $bank_account;
+    public $bank_name;
+
+    public $quotation1;
+    public $quotation2;
+    public $quotation3;
+    public $amount;
+    public $selected_quotation;
     
     public function mount()
     {
@@ -31,6 +44,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->due_date = Carbon::now()->format('Y-m-d');
         $this->batch_no = AccountPayable::count().'-'.sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->count());
+        // $this->amount = ($this->get_particulars()->sum('price') *$this->get_particulars()->sum('quantity'))/$this->get_particulars()->count();
     }
 
      protected function rules()
@@ -40,6 +54,10 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.quantity' => 'nullable',
             'particulars.*.price' => 'nullable',
             'particulars.*.file' => 'nullable',
+            'quotation1' => 'required | max:102400',
+            'quotation2' => 'nullable | max:102400',
+            'quotation3' => 'nullable | max:102400',
+            'selected_quotation' => ['required_with:quotation1'],
         ];
     }
 
@@ -59,15 +77,26 @@ class AccountPayableCreateStep1Component extends Component
             return back()->with('error','Error!');
         }
 
-        $accountpayable_id = app('App\Http\Controllers\AccountPayableController')->store_step_1(
-            $this->property->uuid,
-            $this->request_for,
-            $this->created_at,
-            $this->due_date,
-            $this->requester_id,
-            $this->batch_no,
-            ($this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity'))/$this->get_particulars()->count()
-        );
+         $accountpayable_id = AccountPayable::updateOrCreate(
+        [
+            'batch_no' => $this->batch_no,
+            'property_uuid' => $this->property->uuid,
+            'request_for' => $this->request_for
+        ]
+        ,[
+            'property_uuid' => $this->property->uuid,
+            'request_for' => $this->request_for,
+            'created_at' => $this->created_at,
+            'due_date' => $this->due_date,
+            'requester_id' => $this->requester_id,
+            'batch_no' => $this->batch_no,
+            'amount' =>  ($this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity'))/$this->get_particulars()->count(),
+            'vendor' => $this->vendor,
+            'bank' => $this->bank,
+            'bank_name' => $this->bank_name, 
+            'bank_account' => $this->bank_account,
+            'delivery_at' => $this->delivery_at
+         ])->id; 
 
         AccountPayable::where('id', $accountpayable_id)
         ->update([
@@ -75,7 +104,54 @@ class AccountPayableCreateStep1Component extends Component
           'approver2_id' => null
         ]);
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-2')->with('success', 'Success!');
+             if($this->quotation1){
+            AccountPayable::where('id', $accountpayable_id)
+            ->update([
+                'quotation1' => $this->quotation1->store('accountpayables'),
+            ]);
+        }if($this->quotation2){
+            AccountPayable::where('id', $accountpayable_id)
+            ->update([
+                'quotation2' => $this->quotation1->store('accountpayables'),
+            ]);
+            
+        }if($this->quotation3){
+            AccountPayable::where('id', $accountpayable_id)
+            ->update([
+                'quotation3' => $this->quotation3->store('accountpayables'),
+            ]);
+            
+        }     
+
+        if($this->selected_quotation === 'quotation1'){
+            AccountPayable::where('id', $accountpayable_id)
+              ->update([
+              'selected_quotation' => $this->quotation1->store('accountpayables'),
+              'vendor' => $this->vendor,
+              'status' => 'pending'
+              ]);
+        }
+
+        if($this->selected_quotation === 'quotation2'){
+             AccountPayable::where('id', $accountpayable_id)
+              ->update([
+              'selected_quotation' => $this->quotation2->store('accountpayables'),
+              'vendor' => $this->vendor,
+               'status' => 'pending'
+              ]);
+        }
+
+        if($this->selected_quotation === 'quotation3'){
+             AccountPayable::where('id', $accountpayable_id)
+              ->update([
+              'selected_quotation' => $this->quotation3->store('accountpayables'),
+              'amount' => $this->amount,
+              'vendor' => $this->vendor,
+               'status' => 'pending'
+              ]);
+        }
+
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-3')->with('success', 'Success!');
     }
 
     public function get_particulars(){
@@ -90,7 +166,7 @@ class AccountPayableCreateStep1Component extends Component
 
         app('App\Http\Controllers\AccountPayableParticularController')->store($this->batch_no);
 
-        session()->flash('success', 'New particular is successfully added!');
+        session()->flash('success', 'Success!');
     }
 
     public function removeParticular($id){
@@ -122,21 +198,19 @@ class AccountPayableCreateStep1Component extends Component
                     'batch_no' => $this->batch_no,
                 ]);
 
-                // if($particular->file){
-                //     AccountPayableParticular::where('batch_no', $this->batch_no)
-                //     ->where('id', $id)
-                //     ->update([
-                //         'file' => $particular->file->store('accountpayableparticulars'),
-                //     ]);
-                // }
-
-            session()->flash('success', 'Inventory is successfully updated!');
+            session()->flash('success', 'Success');
             }
             
        }catch(\Exception $e){
-            ddd($e);
+            session()->flash('error', $e);
        }
     }
+
+    public function removeQuotation($quotation)
+    {
+        $this->$quotation = '';
+    }
+    
     
 
     public function render()
