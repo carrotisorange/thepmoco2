@@ -117,6 +117,7 @@ class BillIndexComponent extends Component
          ->where('property_uuid', $this->property->uuid)
          ->where('bill', '>','initial_payment')
          ->whereNotNull('tenant_uuid')
+         ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
          ->groupBy('tenant_uuid')
          ->orderBy('balance', 'desc')
          ->get();
