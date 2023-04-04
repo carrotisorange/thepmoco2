@@ -298,6 +298,7 @@ class PropertyController extends Controller
         $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
         ->where('property_uuid', Session::get('property'))
         ->where('bill', '>','initial_payment')
+        ->where('start', '<=', Carbon::now()->subMonth()->toDateTimeString())
         ->whereNotNull('tenant_uuid')
         ->groupBy('tenant_uuid')
         ->orderBy('balance', 'desc')
@@ -312,6 +313,7 @@ class PropertyController extends Controller
         ->where('property_uuid', Session::get('property'))
         ->where('bill', '>','initial_payment')
         ->whereNotNull('owner_uuid')
+             ->where('start', '<=', Carbon::now()->subMonth()->toDateTimeString())
         ->groupBy('owner_uuid')
         ->orderBy('balance', 'desc')
         ->get();
@@ -324,6 +326,7 @@ class PropertyController extends Controller
         $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, guest_uuid')
         ->where('property_uuid', Session::get('property'))
         ->where('bill', '>','initial_payment')
+        ->where('start', '<=', Carbon::now()->subMonth()->toDateTimeString())
         ->whereNotNull('guest_uuid')
         ->groupBy('guest_uuid')
         ->orderBy('balance', 'desc')
