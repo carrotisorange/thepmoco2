@@ -43,7 +43,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->requester_id = auth()->user()->id;
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->due_date = Carbon::now()->format('Y-m-d');
-        $this->batch_no = AccountPayable::count().'-'.sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->count()).'-'.auth()->user()->id;
+        $this->batch_no = AccountPayable::count().'-'.sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->count()).'-'.Str::random(3);
         // $this->amount = ($this->get_particulars()->sum('price') *$this->get_particulars()->sum('quantity'))/$this->get_particulars()->count();
     }
 
@@ -53,6 +53,7 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.item' => 'nullable',
             'particulars.*.quantity' => 'nullable',
             'particulars.*.price' => 'nullable',
+            'particulars.*.total' => 'nullable',
             'particulars.*.file' => 'nullable',
             'quotation1' => 'required | max:102400',
             'quotation2' => 'nullable | max:102400',
@@ -69,7 +70,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function submitForm()
     {
-        sleep(2);
+        sleep(1);
 
         $this->validate();
 
@@ -90,7 +91,7 @@ class AccountPayableCreateStep1Component extends Component
             'due_date' => $this->due_date,
             'requester_id' => $this->requester_id,
             'batch_no' => $this->batch_no,
-            'amount' =>  ($this->get_particulars()->sum('price') * $this->get_particulars()->sum('quantity'))/$this->get_particulars()->count(),
+            'amount' => $this->get_particulars()->sum('total'),
             'vendor' => $this->vendor,
             'bank' => $this->bank,
             'bank_name' => $this->bank_name, 
@@ -162,7 +163,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function addNewParticular(){
 
-        sleep(2);
+        sleep(1);
 
         app('App\Http\Controllers\AccountPayableParticularController')->store($this->batch_no);
 
@@ -170,7 +171,7 @@ class AccountPayableCreateStep1Component extends Component
     }
 
     public function removeParticular($id){
-        sleep(2);
+        sleep(1);
         
         AccountPayableParticular::where('id', $id)->delete();
 
@@ -179,7 +180,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function cancelRequest(){
 
-        sleep(2);
+        sleep(1);
 
         AccountPayableParticular::where('batch_no', $this->batch_no)->orWhere('item', '')->delete();
 
@@ -196,9 +197,10 @@ class AccountPayableCreateStep1Component extends Component
                     'quantity' => $particular->quantity,
                     'price' => $particular->price,
                     'batch_no' => $this->batch_no,
+                    'total' => $particular->quantity * $particular->price,
                 ]);
 
-            session()->flash('success', 'Success');
+            session()->flash('success', 'Success!');
             }
             
        }catch(\Exception $e){
