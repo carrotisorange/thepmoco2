@@ -466,6 +466,9 @@
 
                     <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="bills" role="tabpanel"
                         aria-labelledby="bills-tab">
+                        <x-button
+                            onclick="window.location.href='/property/{{ $guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills'">
+                            Pay Bills</x-button>
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
