@@ -41,15 +41,12 @@
                     class="text-blue-500 text-decoration-line: underline">View</a>
                 @elseif($accountpayable->status === 'pending')
 
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-2"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
-                @elseif($accountpayable->status === 'prepared')
-
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
                     class="text-blue-500 text-decoration-line: underline">View</a>
+              
                 @elseif($accountpayable->status === 'approved by manager')
 
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-4"
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
                     class="text-blue-500 text-decoration-line: underline">View</a>
                 @elseif($accountpayable->status === 'approved by ap')
 
