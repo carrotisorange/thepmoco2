@@ -241,7 +241,7 @@ class TenantShowComponent extends Component
 
     public function deleteTenant(){
 
-        sleep(3);
+        sleep(2);
 
         app('App\Http\Controllers\PropertyContractController')->destroy(null, $this->tenant_details->uuid);
         app('App\Http\Controllers\TenantGuardianController')->destroy($this->tenant_details->uuid);

@@ -68,7 +68,7 @@ class OwnerComponent extends Component
                         'employer_address' => 'nullable',
                         'country_id' => ['nullable', Rule::exists('countries', 'id')],
                         'province_id' => ['nullable', Rule::exists('provinces', 'id')],
-                        'city_id' => ['nullable', Rule::exists('cities', 'id')],
+                        // 'city_id' => ['nullable', Rule::exists('cities', 'id')],
                         'barangay' => ['nullable'],
                         'photo_id' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
 

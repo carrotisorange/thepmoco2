@@ -10,7 +10,6 @@ class PropertyDashboardController extends Controller
 {
     public function index(Property $property)
     {        
-
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
 
         $this->authorize('is_portfolio_read_allowed');

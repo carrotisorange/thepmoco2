@@ -106,7 +106,7 @@ class UnitShowComponent extends Component
         
         sleep(2);
 
-        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/guest/'.Str::random(8).'/create');
+        return redirect('/property/'.$this->property_uuid.'/calendar');
     }
 
     public function redirectToTheCreateUtilitiesPage(){

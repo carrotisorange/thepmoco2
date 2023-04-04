@@ -44,7 +44,6 @@ class AccountPayableCreateStep1Component extends Component
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->due_date = Carbon::now()->format('Y-m-d');
         $this->batch_no = AccountPayable::count().'-'.sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->count()).'-'.Str::random(3);
-        // $this->amount = ($this->get_particulars()->sum('price') *$this->get_particulars()->sum('quantity'))/$this->get_particulars()->count();
     }
 
      protected function rules()

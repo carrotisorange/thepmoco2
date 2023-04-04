@@ -74,8 +74,16 @@
                 <h2 class="sr-only">Images</h2>
 
                 <div class="grid grid-cols-1 lg:gap-6">
-                    <img src="{{ asset('/brands/avatar.png') }}" alt="door"
-                        class="lg:col-span-2 md:row-span-2 rounded-md">
+                    <div class="flex items-center justify-center">
+                        @if($owner_details->photo_id)
+                        <img src="{{ asset('/storage/'.$owner_details->photo_id) }}" alt="door"
+                            class="lg:col-span-2 md:row-span-2 rounded-md w-56 lg:w-full">
+                        @else
+                        <img src="{{ asset('/brands/avatar.png') }}" alt="door"
+                            class="lg:col-span-2 md:row-span-2 rounded-md w-56 lg:w-full">
+                        @endif
+
+                    </div>
 
                     <div class="mt-5 flex items-center justify-center">
                         <p class="mt-5 text-lg text-center text-gray-700">

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire;
+
+use App\Models\AcknowledgementReceipt;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
@@ -11,7 +13,9 @@ use App\Models\Owner;
 use Session;
 use Carbon\Carbon;
 use App\Models\Bill;
+use App\Models\DeedOfSale;
 use App\Models\Spouse;
+use App\Models\Collection;
 
 use Livewire\Component;
 
@@ -115,8 +119,8 @@ class OwnerShowComponent extends Component
     {
         sleep(2);
 
-        if(!$this->email){
-            session()->flash('error', 'The email address is required.');
+        if(!$this->owner_details->email){
+            return back()->with('error', 'Error');
         }
 
         $count_user = User::where('email', $this->owner_details->email)->count();
@@ -230,6 +234,20 @@ class OwnerShowComponent extends Component
 
                 return back()->with('success', 'Success!');
         }
+
+    public function deleteOwner(){
+        sleep(2);
+
+        DeedOfSale::where('owner_uuid', $this->owner_details->uuid)->delete();
+        Spouse::where('owner_uuid', $this->owner_details->uuid)->delete();
+        Representative::where('owner_uuid', $this->owner_details->uuid)->delete();
+        Bill::where('owner_uuid', $this->owner_details->uuid)->delete();
+        Collection::where('owner_uuid', $this->owner_details->uuid)->delete();
+        AcknowledgementReceipt::where('owner_uuid', $this->owner_details->uuid)->delete();
+
+        return redirect('/property/'.$this->owner_details->property_uuid.'/owner/')->with('success', 'Success!');
+
+    }
 
     public function render()
     {

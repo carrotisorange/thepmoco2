@@ -1149,6 +1149,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="mt-20 lg: lg:my-24 sm:my-10  col-span-2">
                     <div class="bg-gray-200 rounded-lg shadow-md w-full">
                         <div class="flex justify-end items-end pr-5 pt-6">
@@ -1171,7 +1172,7 @@
                         <div class="container flex mx-auto w-full items-center justify-center">
 
                             <ul class="flex flex-col bg-gray-200 p-4">
-                                @foreach ($delinquents as $item)
+                                @foreach ($delinquent_tenants as $item)
                                 <a href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant->uuid }}/bills">
                                     <li class="border-gray-400 flex flex-row mb-2">
                                         <div
@@ -1188,9 +1189,10 @@
 
                                             </div>
                                             <div class="flex-1 pl-1 mr-16">
-                                                <div class="font-medium">{{ $item->tenant->tenant }}</div>
+                                                <div class="font-medium">{{ $item->tenant->tenant }} (T)</div>
                                                 <div class="font-light">{{
-                                                    App\Http\Controllers\CollectionController::shortNumber($item->balance)
+                                                    App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
+                                                    2))
                                                     }}</div>
                                             </div>
 
@@ -1202,7 +1204,78 @@
                             </ul>
 
 
+
                         </div>
+
+                        <div class="container flex mx-auto w-full items-center justify-center">
+
+                            <ul class="flex flex-col bg-gray-200 p-4">
+                                @foreach ($delinquent_owners as $item)
+                                <a href="/property/{{ $property->uuid }}/owner/{{ $item->owner->uuid }}/bills">
+                                    <li class="border-gray-400 flex flex-row mb-2">
+                                        <div
+                                            class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                            <div
+                                                class="flex flex-col rounded-md w-10 h-10 bg-gray-200 justify-center items-center mr-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="currentColor" class="w-6 h-6">
+                                                    <path fill-rule="evenodd"
+                                                        d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+
+
+                                            </div>
+                                            <div class="flex-1 pl-1 mr-16">
+                                                <div class="font-medium">{{ $item->owner->owner }} (O)</div>
+                                                <div class="font-light">{{
+                                                    App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
+                                                    2))
+                                                    }}</div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </a>
+                                @endforeach
+
+                            </ul>
+                        </div>
+
+                        {{-- <div class="container flex mx-auto w-full items-center justify-center">
+
+                            <ul class="flex flex-col bg-gray-200 p-4">
+                                @foreach ($delinquent_guests as $item)
+                                <a href="/property/{{ $property->uuid }}/guest/{{ $item->guest->uuid }}/bills">
+                                    <li class="border-gray-400 flex flex-row mb-2">
+                                        <div
+                                            class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                            <div
+                                                class="flex flex-col rounded-md w-10 h-10 bg-gray-200 justify-center items-center mr-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="currentColor" class="w-6 h-6">
+                                                    <path fill-rule="evenodd"
+                                                        d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+
+
+                                            </div>
+                                            <div class="flex-1 pl-1 mr-16">
+                                                <div class="font-medium">{{ $item->guest->guest }} (O)</div>
+                                                <div class="font-light">{{
+                                                    App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
+                                                    2))
+                                                    }}</div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </a>
+                                @endforeach
+
+                            </ul>
+                        </div> --}}
 
 
                     </div>
