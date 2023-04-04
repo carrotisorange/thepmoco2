@@ -15,6 +15,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPaymentToTenant;
 use \PDF;
+use App\Models\AdditionalGuest;
 
 class PropertyGuestController extends Controller
 {
@@ -279,6 +280,31 @@ class PropertyGuestController extends Controller
 
     public function destroy($unit_uuid){
         Guest::where('unit_uuid', $unit_uuid)->delete();
+    }
+
+    public function export(Property $property, Guest $guest){
+        $data = [
+            'guest' => $guest,
+            'additional_guests' => AdditionalGuest::where('guest_uuid', $guest->uuid)->get(),
+        ];
+
+        $pdf = \PDF::loadView('properties.guests.export', $data);
+
+         $pdf->output();
+
+         $canvas = $pdf->getDomPDF()->getCanvas();
+
+         $height = $canvas->get_height();
+         $width = $canvas->get_width();
+
+         $canvas->set_opacity(.2,"Multiply");
+
+         $canvas->set_opacity(.2);
+
+         $canvas->page_text($width/5, $height/2, $property->property, null,
+         55, array(0,0,0),2,2,-30);
+
+        return $pdf->download($guest->unit->unit.'-'.Carbon::now()->format('M d, Y').'-guest-info.pdf');
     }
     
 }
