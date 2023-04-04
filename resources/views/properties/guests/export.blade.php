@@ -159,7 +159,7 @@
         </p>
 
         <p>
-           No of Person with Disability: {{ $guest->no_of_person_with_disability }}
+            No of Person with Disability: {{ $guest->no_of_person_with_disability }}
         </p>
 
         <p>
@@ -169,7 +169,8 @@
         <p>
             <b>Additional Guests</b>
         </p>
-    
+
+        @if($additional_guests->count()>0)
         <table class="">
 
             <tr>
@@ -184,7 +185,9 @@
             </tr>
             @endforeach
         </table>
-    
+        @else
+        <p>None</p>
+        @endif
 
         <p>
             Prepared by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
