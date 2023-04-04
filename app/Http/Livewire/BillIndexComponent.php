@@ -48,7 +48,11 @@ class BillIndexComponent extends Component
    public $particular_id;
    public $bill;
 
+   public $bill_type;
+
    public $new_particular;
+
+   public $filter_bill_to;
 
 
    public function mount($batch_no)
@@ -102,62 +106,91 @@ class BillIndexComponent extends Component
       $this->particular = ''; 
       $this->posted_dates = '';
       $this->status = '';
+      $this->bill_type = '';
    }
 
    public function get_bills()
    {
-      if($this->posted_dates == 'monthly'){
-          return Bill::
-          orderBy('bill_no', 'desc')
-          ->where('property_uuid', $this->property->uuid)
-          ->where('is_posted', 1)
-          ->when($this->status, function($query){
-          $query->whereIn('status', [$this->status]);
-          })
-         ->when($this->batch_no, function($query){
-          $query->where('batch_no', $this->batch_no);
-          })
-          ->when($this->particular, function($query){
-          $query->where('particular_id', $this->particular);
-          })
-          ->whereBetween('created_at', [now()->subdays(30), now()])
-          ->get();
-      }elseif($this->posted_dates == 'quarterly'){
-          return Bill::orderBy('bill_no', 'desc')
-          ->where('property_uuid', $this->property->uuid)
-          ->where('is_posted', 1)
-          ->when($this->status, function($query){
-          $query->where('status', [$this->status]);
-          })
-           ->when($this->batch_no, function($query){
-           $query->where('batch_no', $this->batch_no);
-           })
-          ->when($this->particular, function($query){
-          $query->where('particular_id', $this->particular);
-          })
-          ->whereBetween('created_at', [now()->subdays(90), now()])
-           ->get();
-      }else{
-         return Bill::orderBy('bill_no', 'desc')
+      if($this->filter_bill_to === 'delinquent')
+      {
+         return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid, owner_uuid, guest_uuid, particular_id, bill, initial_payment, created_at, unit_uuid')
          ->where('property_uuid', $this->property->uuid)
-         ->where('is_posted', 1)
-         ->when($this->status, function($query){
-         $query->where('status', [$this->status]);
-         })
-          ->when($this->batch_no, function($query){
-          $query->where('batch_no', $this->batch_no);
-          })
-         ->when($this->particular, function($query){
-         $query->where('particular_id', $this->particular);
-         })
+         ->where('bill', '>','initial_payment')
+         ->whereNotNull('tenant_uuid')
+         ->groupBy('tenant_uuid')
+         ->orderBy('balance', 'desc')
          ->get();
+
+      }else{
+               if($this->posted_dates == 'monthly'){
+               return Bill::
+               orderBy('bill_no', 'desc')
+               ->where('property_uuid', $this->property->uuid)
+               ->where('is_posted', 1)
+               ->when($this->status, function($query){
+               $query->whereIn('status', [$this->status]);
+               })
+               ->when($this->bill_type, function($query){
+               $query->whereNotNull($this->bill_type);
+               })
+               ->when($this->batch_no, function($query){
+               $query->where('batch_no', $this->batch_no);
+               })
+               ->when($this->particular, function($query){
+               $query->where('particular_id', $this->particular);
+               })
+               ->whereBetween('created_at', [now()->subdays(30), now()])
+               ->get();
+               }elseif($this->posted_dates == 'quarterly'){
+               return Bill::orderBy('bill_no', 'desc')
+               ->where('property_uuid', $this->property->uuid)
+               ->where('is_posted', 1)
+               ->when($this->status, function($query){
+               $query->where('status', [$this->status]);
+               })
+               ->when($this->bill_type, function($query){
+               $query->whereNotNull($this->bill_type);
+               })
+               ->when($this->batch_no, function($query){
+               $query->where('batch_no', $this->batch_no);
+               })
+               ->when($this->particular, function($query){
+               $query->where('particular_id', $this->particular);
+               })
+               ->whereBetween('created_at', [now()->subdays(90), now()])
+               ->get();
+               }else{
+               return Bill::orderBy('bill_no', 'desc')
+               ->where('property_uuid', $this->property->uuid)
+               ->where('is_posted', 1)
+               ->when($this->status, function($query){
+               $query->where('status', [$this->status]);
+               })
+               ->when($this->bill_type, function($query){
+               $query->whereNotNull($this->bill_type);
+               })
+               ->when($this->batch_no, function($query){
+               $query->where('batch_no', $this->batch_no);
+               })
+               ->when($this->particular, function($query){
+               $query->where('particular_id', $this->particular);
+               })
+               ->get();
+               }
       }
-     
    }
 
    public function changeView($view)
     {
         $this->view = $view;
+    }
+
+    public function viewDelinquents(){
+      if($this->filter_bill_to === 'delinquent'){
+         $this->filter_bill_to = '';
+      }else{
+         $this->filter_bill_to = 'delinquent';
+      }
     }
 
    public function unpayBills()

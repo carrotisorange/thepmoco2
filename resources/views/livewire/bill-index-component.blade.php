@@ -5,7 +5,7 @@
                 <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                @if($search || $status || $particular || $posted_dates)
+                @if($search || $status || $particular || $posted_dates || $bill_type)
                 <button wire:click="clearFilters()"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     type="button"><i class="fa-solid fa-delete-left"></i> &nbsp; Clear Filters
@@ -40,6 +40,16 @@
                     </ul>
 
                 </div>
+
+                <button wire:click="viewDelinquents"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    @if($filter_bill_to === 'delinquent')
+                    View All
+                    @else
+                    View Delinquents
+                    @endif
+                </button>
 
                 @if($view === 'listView')
                 <button wire:click="changeView('agingSummaryView')"
@@ -92,7 +102,18 @@
 
                     </div> --}}
 
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-1">
+                        <select id="bill_type" wire:model="bill_type"
+                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option value="">Filter bill type</option>
+                            <option value="guest_uuid">Guest</option>
+                            <option value="owner_uuid">Owner</option>
+                            <option value="tenant_uuid">Tenant</option>
+                        </select>
+
+                    </div>
+
+                    <div class="sm:col-span-1">
                         <select id="status" wire:model="status"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="">Filter bill status</option>
@@ -103,7 +124,7 @@
                         </select>
 
                     </div>
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-1">
                         <select id="particular" wire:model="particular"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="">Filter bill particulars</option>
@@ -114,7 +135,7 @@
                         </select>
 
                     </div>
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-1">
                         <select id="posted_dates" wire:model="posted_dates"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="">Filter bill dates</option>
@@ -153,6 +174,12 @@
                 {{-- <div class="mt-3">
                     {{ $bills->links() }}
                 </div> --}}
+
+                <div class="mt-3">
+                    <p class="text-center">
+                        <span class="text-blue-300 text-xs">Showing {{ $bills->count() }} bills...</span>
+                    </p>
+                </div>
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
 

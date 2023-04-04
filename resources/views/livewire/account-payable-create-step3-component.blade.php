@@ -171,10 +171,10 @@
                                 <x-th>#</x-th>
                                 <x-th>ITEM </x-th>
                                 <x-th>QUANTITY</x-th>
-                                @if($accountpayable->request_for === 'payment')
+                                {{-- @if($accountpayable->request_for === 'payment') --}}
                                 <x-th>Price</x-th>
                                 <x-th>Total</x-th>
-                                @endif
+                                {{-- @endif --}}
 
                             </tr>
                         </thead>
@@ -189,14 +189,14 @@
                                     <x-td>
                                         {{ $particular->quantity }}
                                     </x-td>
-                                    @if($accountpayable->request_for === 'payment')
+                                    {{-- @if($accountpayable->request_for === 'payment') --}}
                                     <x-td>
                                         {{ $particular->price }}
                                     </x-td>
                                     <x-td>
                                         {{ number_format($particular->price * $particular->quantity, 2) }}
                                     </x-td>
-                                    @endif
+                                    {{-- @endif --}}
 
                                 </tr>
                             </div>

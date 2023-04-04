@@ -166,10 +166,10 @@
                                 <x-th>#</x-th>
                                 <x-th>ITEM </x-th>
                                 <x-th>QUANTITY</x-th>
-                                @if($accountpayable->request_for === 'payment')
+                                {{-- @if($accountpayable->request_for === 'payment') --}}
                                 <x-th>Price</x-th>
                                 <x-th>Total</x-th>
-                                @endif
+                                {{-- @endif --}}
 
                             </tr>
                         </thead>
@@ -184,14 +184,14 @@
                                     <x-td>
                                         {{ $particular->quantity }}
                                     </x-td>
-                                    @if($accountpayable->request_for === 'payment')
+                                    {{-- @if($accountpayable->request_for === 'payment') --}}
                                     <x-td>
                                         {{ $particular->price }}
                                     </x-td>
                                     <x-td>
                                         {{ number_format($particular->price * $particular->quantity, 2) }}
                                     </x-td>
-                                    @endif
+                                    {{-- @endif --}}
 
                                 </tr>
                             </div>
@@ -231,21 +231,21 @@
 
                 </div>
 
-                @can('manager')
+                {{-- @can('manager') --}}
                 <div class="sm:col-span-6">
-                    <textarea placeholder="Add your comment..." wire:model="comment"
+                    <textarea placeholder="Add your comment2..." wire:model="comment2"
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
 
                 </div>
-                @else
+                {{-- @else
                 <div class="sm:col-span-6">
-                    <textarea placeholder="Add your comment..." wire:model="comment" readonly
+                    <textarea placeholder="Add your comment2..." wire:model="comment2" readonly
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
 
                 </div>
-                @endcan
+                @endcan --}}
 
-                @if($accountpayable->status === 'approved by manager')
+                {{-- @if($accountpayable->status === 'approved by manager')
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-green-700"><i
                             class="fa-solid fa-circle-check"></i> Approved by: {{
@@ -260,7 +260,7 @@
                         $accountpayable->requester->name }} </label>
 
                 </div>
-                @endif
+                @endif --}}
 
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">

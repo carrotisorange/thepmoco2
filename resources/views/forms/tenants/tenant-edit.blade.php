@@ -282,10 +282,6 @@
     </div>
 
     <div class="mt-5 flex justify-end">
-        {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-            href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/delete">
-            Delete
-        </a> --}}
         <button type="button" data-modal-toggle="warning-destroy-tenant-modal"
             class="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
             <i class="fa-solid fa-trash"></i>&nbsp; Delete

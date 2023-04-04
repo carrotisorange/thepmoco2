@@ -19,7 +19,8 @@
     </div>
     <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
         <h3 class="text-base font-semibold leading-6 text-gray-900">Status</h3>
-        <p class="mt-1 text-sm text-gray-500">
+        <p class="mt-1 text-sm text-gray-500">{{ $accountpayable->status }}</p>
+        {{-- <p class="mt-1 text-sm text-gray-500">
             <select wire:model="status" wire:change="changeAccountPayableStatus"
                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @if(auth()->user()->role_id === 4)
@@ -47,7 +48,7 @@
                 @endif
 
             </select>
-        </p>
+        </p> --}}
     </div>
     <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
         <h3 class="text-base font-semibold leading-6 text-gray-900">Batch No</h3>

@@ -295,12 +295,41 @@ class PropertyController extends Controller
 
     public function get_tenant_delinquents()
     {
-        return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
+        $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
         ->where('property_uuid', Session::get('property'))
-        ->where('tenant_uuid')
+        ->where('bill', '>','initial_payment')
         ->whereNotNull('tenant_uuid')
         ->groupBy('tenant_uuid')
+        ->orderBy('balance', 'desc')
         ->get();
+
+        return ($bills);
+    }
+
+    public function get_owner_delinquents()
+    {
+        $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, owner_uuid')
+        ->where('property_uuid', Session::get('property'))
+        ->where('bill', '>','initial_payment')
+        ->whereNotNull('owner_uuid')
+        ->groupBy('owner_uuid')
+        ->orderBy('balance', 'desc')
+        ->get();
+
+        return ($bills);
+    }
+
+    public function get_guest_delinquents()
+    {
+        $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, guest_uuid')
+        ->where('property_uuid', Session::get('property'))
+        ->where('bill', '>','initial_payment')
+        ->whereNotNull('guest_uuid')
+        ->groupBy('guest_uuid')
+        ->orderBy('balance', 'desc')
+        ->get();
+
+        return ($bills);
     }
     
 
