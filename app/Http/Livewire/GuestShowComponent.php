@@ -154,6 +154,12 @@ class GuestShowComponent extends Component
 
     }
 
+    public function exportGuest(){
+        sleep(2);
+
+        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid.'/export');
+    }
+
     public function render()
     {
         return view('livewire.guest-show-component',[
