@@ -3,7 +3,8 @@
     <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div class="text-center">
             {{-- <p class="text-base font-semibold text-indigo-600"></p> --}}
-            <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl"><i class="fa-solid fa-hourglass-start"></i></h1>
+            <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl"><i
+                    class="fa-solid fa-hourglass-start"></i></h1>
             <p class="mt-6 text-base leading-7 text-gray-600">The request has been sent to the manager.</p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
                 <button type="button" wire:loading.remove wire:click="downloadInternalDocument"
@@ -12,7 +13,10 @@
                     Export Request
                 </button>
 
-              
+                <button type="button" disabled wire:target="downloadInternalDocument" wire:loading
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    Loading...
+                </button>
             </div>
         </div>
     </main>
@@ -121,7 +125,7 @@
                     </div>
                 </div>
 
-           
+
                 <div class="sm:col-span-6">
                     <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
                     <div
@@ -210,7 +214,7 @@
                 {{-- vendor details --}}
                 <div class="sm:col-span-3">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Name:</label>
-                    <input type="text"  wire:model="vendor" readonly
+                    <input type="text" wire:model="vendor" readonly
                         class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                     @error('selected_vendor')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
