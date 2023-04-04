@@ -129,34 +129,34 @@
                 <table>
                     <thead>
                         <tr>
-                            <x-th>#</x-th>
-                            <x-th>ITEM </x-th>
-                            <x-th>QUANTITY</x-th>
-                            @if($accountpayable->request_for === 'payment')
-                            <x-th>PRICE</x-th>
-                            <x-th>TOTAL</x-th>
-                            @endif
+                            <th>#</th>
+                            <th>ITEM </th>
+                            <th>QUANTITY</th>
+                          
+                            <th>PRICE</th>
+                            <th>TOTAL</th>
+                       
 
                         </tr>
                     </thead>
                     <tbody class="">
                         @foreach($particulars as $index => $particular)
                         <tr>
-                            <x-td>{{ $index+1 }}</x-td>
-                            <x-td>
+                            <td>{{ $index+1 }}</td>
+                            <td>
                                 {{ $particular->item }}
-                            </x-td>
-                            <x-td>
+                            </td>
+                            <td>
                                 {{ $particular->quantity }}
-                            </x-td>
-                            @if($accountpayable->request_for === 'payment')
-                            <x-td>
+                            </td>
+                           
+                            <td>
                                 {{ number_format($particular->price, 2) }}
-                            </x-td>
-                            <x-td>
+                            </td>
+                            <td>
                                 {{ number_format($particular->price * $particular->quantity, 2) }}
-                            </x-td>
-                            @endif
+                            </td>
+                           
                         </tr>
                         @endforeach
 
