@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sm:col-span-4">
+                                    <div class="sm:col-span-2">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="unit_uuid" class="block text-xs font-medium text-gray-900">Unit
@@ -168,6 +168,21 @@
                                                 @endforeach
                                             </select>
                                             @error('unit_uuid')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-2">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="price" class="block text-xs font-medium text-gray-900">Total
+                                                Bill
+                                            </label>
+                                            <input type="number" wire:model.debounce.500ms="price" min="0"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('price')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -339,30 +354,17 @@
                                         </div>
                                     </div>
 
-                                    <div class="sm:col-span-4">
+                                    <div class="sm:col-span-2">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="no_of_guests" class="block text-xs font-medium text-gray-900">No
                                                 of Guests</label>
-                                            <input type="number" min="1" wire:model.debounce.500ms="no_of_guests"
-                                                readonly
+                                            <input type="number" min="0" wire:model.debounce.500ms="no_of_guests"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                                 placeholder="">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="sm:col-span-2">
-                                        <div
-                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                            <label for="no_of_senior_citizens"
-                                                class="block text-xs font-medium text-gray-900">No
-                                                of Senior Citizen</label>
-                                            <input type="number" min="1"
-                                                wire:model.debounce.500ms="no_of_senior_citizens" readonly
-                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                                                placeholder="">
-
+                                            @error('no_of_guests')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -371,12 +373,45 @@
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="no_of_children"
                                                 class="block text-xs font-medium text-gray-900">No
-                                                of Children</label>
-                                            <input type="number" min="1" wire:model.debounce.500ms="no_of_children"
-                                                readonly
+                                                of Senior Citizens</label>
+                                            <input type="number" min="0" wire:model.debounce.500ms="no_of_children"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                                 placeholder="">
+                                            @error('flight_itinerary')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
 
+                                    <div class="sm:col-span-2">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="no_of_senior_citizens"
+                                                class="block text-xs font-medium text-gray-900">No
+                                                of Senior Citizens</label>
+                                            <input type="number" min="0"
+                                                wire:model.debounce.500ms="no_of_senior_citizens"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('no_of_senior_citizens')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-2">
+                                        <div
+                                            class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                            <label for="no_of_person_with_disability"
+                                                class="block text-xs font-medium text-gray-900">No of person with
+                                                disability</label>
+                                            <input type="number" min="0"
+                                                wire:model.debounce.500ms="no_of_person_with_disability"
+                                                class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                                                placeholder="">
+                                            @error('no_of_person_with_disability')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -384,7 +419,11 @@
 
                                 </div>
                                 <div class="mt-5 flex justify-end">
-
+                                    <button type="button" data-modal-toggle="warning-destroy-guest-modal"
+                                        class="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                        Delete
+                                    </button>
+                                    &nbsp;
                                     <button type="submit" wire:loading.remove wire:target="updateGuest"
                                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Update
@@ -457,4 +496,5 @@
         </div>
     </div>
     @include('modals.create-additional-guest-modal')
+    @include('modals.warnings.destroy-guest-modal')
 </div>

@@ -29,7 +29,7 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-
+{{-- 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="birthdate">Birthdate</label>
                 <input type="date" id="birthdate" wire:model="birthdate"
@@ -64,7 +64,7 @@
                 @error('disability')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
-            </div>
+            </div> --}}
 
 
             <div class="mt-5 sm:mt-6">

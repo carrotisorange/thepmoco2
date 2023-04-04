@@ -84,6 +84,8 @@ class PropertyCalendarController extends Controller
         $this->update_unit($request->unit_uuid);
 
         return response()->json($guest);
+
+        // return redirect('/property/'.$request->property_uuid.'/guest/'.$guest->uuid)->with('success', 'Success!');
     }
 
     public function update_unit($unit_uuid){
@@ -122,7 +124,8 @@ class PropertyCalendarController extends Controller
             'user_id' => auth()->user()->id,
             'property_uuid' => $property_uuid,
             'guest_uuid' => $guest_uuid,
-            'is_posted' => true
+            'is_posted' => true,
+            'description' => 'movein charges'
          ]);
     }
 

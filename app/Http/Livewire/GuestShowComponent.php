@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use App\Models\Guest;
 use App\Models\AcknowledgementReceipt;
 use App\Models\AdditionalGuest;
+use App\Models\Bill;
+use App\Models\Collection;
 
 class GuestShowComponent extends Component
 {
@@ -31,13 +33,17 @@ class GuestShowComponent extends Component
     public $vehicle_details;
     public $plate_number;
     public $special_request;
-    public $price;
     public $flight_itinerary;
+    public $price;
 
     public $additional_guest;
     public $birthdate;
     public $has_disability;
     public $disability;
+
+    public $no_of_children;
+    public $no_of_senior_citizens;
+    public $no_of_person_with_disability;
 
 
     public $view = 'listView';
@@ -62,6 +68,10 @@ class GuestShowComponent extends Component
         $this->departure_time = $guest_details->departure_time;
         $this->special_request = $guest_details->special_request;
         $this->flight_itinerary = $guest_details->flight_itinerary;
+        $this->no_of_children = $guest_details->no_of_children;
+        $this->no_of_senior_citizens = $guest_details->no_of_senior_citizens;
+        $this->no_of_person_with_disability = $guest_details->no_of_person_with_disability;
+        $this->price = $guest_details->price;
     }
 
     protected function rules()
@@ -81,7 +91,11 @@ class GuestShowComponent extends Component
             'arrival_time' => 'required',
             'departure_time' => 'required',
             'special_request' => 'nullable',
-            'flight_itinerary' => 'nullable'
+            'flight_itinerary' => 'nullable',
+            'no_of_person_with_disability' => 'nullable',
+            'no_of_children' => 'nullable',
+            'no_of_senior_citizens' => 'nullable',
+            'price' => 'nullable'
         ];
     }
 
@@ -112,19 +126,32 @@ class GuestShowComponent extends Component
 
         sleep(2);
 
-        if(!$this->additional_guest || !$this->birthdate || !$this->has_disability){
+        if(!$this->additional_guest){
             return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');
         }
 
         AdditionalGuest::create([
             'additional_guest' => $this->additional_guest, 
-            'birthdate' => $this->birthdate,
-            'has_disability' => $this->has_disability,
-            'disability' => $this->disability,
+            // 'birthdate' => $this->birthdate,
+            // 'has_disability' => $this->has_disability,
+            // 'disability' => $this->disability,
             'guest_uuid' => $this->guest_details->uuid
         ]);
 
           return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
+    }
+
+    public function deleteGuest(){
+        sleep(2);
+
+        AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->delete();
+        Bill::where('guest_uuid', $this->guest_details->uuid)->delete();
+        Collection::where('guest_uuid', $this->guest_details->uuid)->delete();
+        AcknowledgementReceipt::where('guest_uuid', $this->guest_details->uuid)->delete();
+        Guest::where('uuid', $this->guest_details->uuid)->delete();
+
+        return redirect('/property/'.$this->property->uuid.'/guest/')->with('success', 'Success!');
+
     }
 
     public function render()
