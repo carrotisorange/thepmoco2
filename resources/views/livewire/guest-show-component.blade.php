@@ -282,7 +282,7 @@
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="moveout_at"
-                                                class="block text-xs font-medium text-gray-900">Arrival Date</label>
+                                                class="block text-xs font-medium text-gray-900">Departure Date</label>
                                             <input type="date" wire:model.debounce.500ms="moveout_at"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                                 placeholder="">
