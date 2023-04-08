@@ -200,10 +200,10 @@
 
                                 </div>
 
-                                @if(auth()->user()->role_id != 7 || auth()->user()->role_id != 8)
+                                @if(auth()->user()->role_id == '9') 
                                 <h1 class="text-xl font-semibold text-gray-900">Restrictions</h1>
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                    
+
                                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                                         <div
@@ -305,11 +305,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endif
+
 
                             </form>
 
                         </div>
+                        @endif
                         <div class="mt-5 flex justify-end">
                             <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                                 href="{{ url()->previous() }}">
@@ -333,6 +334,7 @@
                             </button>
                         </div>
                     </div>
+
                     <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="properties" role="tabpanel"
                         aria-labelledby="properties-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -344,7 +346,7 @@
                                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
-                                    @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
+
 
                                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                         <thead class="">
@@ -398,13 +400,14 @@
 
 
 
-                                    @endif
+
                                 </div>
 
                             </div>
 
                         </div>
                     </div>
+
                     <div class="hidden p-4  rounded-lg dark:bg-gray-800" id="sessions" role="tabpanel"
                         aria-labelledby="sessions-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -478,17 +481,18 @@
         </div>
 
     </div>
-    {{-- <div>
-        @section('title', $user->name)
-        @include('layouts.notifications')
-        <div>
-            <div class="md:grid md:grid-cols-3 md:gap-6">
-                <div class="mt-5 md:col-span-12 md:mt-0">
+</div>
+{{-- <div>
+    @section('title', $user->name)
+    @include('layouts.notifications')
+    <div>
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="mt-5 md:col-span-12 md:mt-0">
 
-                    @include('forms.users.user-edit')
+                @include('forms.users.user-edit')
 
-                </div>
             </div>
         </div>
+    </div>
 
-    </div> --}}
+</div> --}}
