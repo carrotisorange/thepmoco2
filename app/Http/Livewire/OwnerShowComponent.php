@@ -140,7 +140,7 @@ class OwnerShowComponent extends Component
                 'name' => $this->owner,
                 'mobile_number' => $this->mobile_number,
                 'email' => $this->email,
-                'role_id' => 8,
+                'role_id' => 7,
                 'username' => $this->email,
                 'password' => Hash::make($temporary_password),
                 'external_id' => auth()->user()->external_id,
