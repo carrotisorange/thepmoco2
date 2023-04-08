@@ -105,7 +105,7 @@
             $property_collections_count = App\Models\Collection::posted()->where('property_uuid', Session::get('property'))->count();
         ?>
             <x-td>
-                {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
+                {{ number_format($collections->sum('amount'), 2) }} 
             </x-td>
             <x-td></x-td>
             <x-td></x-td>
@@ -113,3 +113,5 @@
         </tr>
     </tbody>
 </table>
+
+{{-- ({{ $property_collections_count }}) --}}
