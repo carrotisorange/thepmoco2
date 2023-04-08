@@ -55,7 +55,7 @@ class PropertyController extends Controller
         {
             return redirect($current_user_role_id.'/owner/'.$current_user_username.'/units');
         }
-        else
+        elseif($current_user_role_id != ['12', '10', '8', '7'])
         {
             return view('properties.index');
         }
