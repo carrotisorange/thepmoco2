@@ -104,7 +104,7 @@ class UnitIndexComponent extends Component
       return Unit::search($this->search)
       ->when(((!$this->sortBy) && (!$this->orderBy)), function($query){
       // $query->orderBy($this->sortBy, $this->orderBy);
-        $query ->orderByRaw('LENGTH(unit) ASC')->orderBy('unit', 'asc');
+      $query ->orderByRaw('LENGTH(unit) ASC')->orderBy('unit', 'asc');
       })
        ->when(($this->sortBy && $this->orderBy), function($query){
         // $query->orderBy($this->sortBy, $this->orderBy);
