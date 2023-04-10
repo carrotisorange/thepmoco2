@@ -190,15 +190,15 @@ class PropertyGuestController extends Controller
             $balance
          );
 
-        $pdf = $this->generate_pdf($property, $data);
+        $pdf = $this->generate_pdf($property, $data, 'properties.guests.export-collections');
 
         return $pdf->stream($guest->guest.'-ar.pdf');
      }
 
-      public function generate_pdf(Property $property, $data)
+      public function generate_pdf(Property $property, $data, $folder_path)
      {
 
-         $pdf = PDF::loadView('properties.guests.export-collections', $data);
+         $pdf = PDF::loadView($folder_path, $data);
 
          $pdf->output();
                
@@ -305,6 +305,30 @@ class PropertyGuestController extends Controller
          55, array(0,0,0),2,2,-30);
 
         return $pdf->download($guest->unit->unit.'-'.Carbon::now()->format('M d, Y').'-guest-info.pdf');
+    }
+
+    public function export_bill(Request $request, Property $property, Guest $guest){
+
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+
+        $data = $this->get_bill_data($guest, $request->due_date, $request->penalty, $request->note_to_bill);
+    
+        $pdf = $this->generate_pdf($property, $data, 'properties.guests.export-bills');
+
+        return $pdf->download(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
+    }
+
+    public function get_bill_data($guest, $due_date, $penalty, $note)
+    {
+        return $data = [
+            'guest' => $guest->guest,
+            'due_date' => $due_date,
+            'penalty' => $penalty,
+            'user' => User::find(auth()->user()->id)->name,
+            'role' => User::find(auth()->user()->id)->role->role,
+            'bills' => $this->get_guest_balance($guest->uuid),
+            'note_to_bill' => $note,
+        ];
     }
     
 }

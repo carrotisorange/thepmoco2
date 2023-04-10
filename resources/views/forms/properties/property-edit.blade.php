@@ -52,7 +52,7 @@
                             <select name="type_id" id="type_id" autocomplete="type_id" wire:model.lazy="type_id"
                                 class="flex-1 block w-full focus:ring-purple-500 focus:border-purple-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
                                 @foreach($types as $type)
-                                <option value="{{ $type->id }}" {{ old('type_id', $property_details->type_id) ==
+                              <option value="{{ $type->id }}" {{ old('type_id', $property_details->type_id) ==
                                     $type->id ?
                                     'selected' : ''
                                     }}>{{ $type->type }}</option>

@@ -54,10 +54,11 @@ class TenantBillController extends Controller
 
     public function export(Request $request, Property $property, Tenant $tenant)
     {
-        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid,
+        $request->note_to_bill);
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
-    
+
         $pdf = $this->generate_pdf($data, $property);
 
         return $pdf->download(Carbon::now()->format('M d, Y').'-'.$tenant->tenant.'-soa.pdf');

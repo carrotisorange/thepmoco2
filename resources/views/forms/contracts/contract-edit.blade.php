@@ -21,15 +21,18 @@
 
                 <div class="col-span-1">
                     <label for="start" class="block text-sm font-medium text-gray-700">Status</label>
-                    <select wire:model="status" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md" required>
-                       <option value="active" {{ old('status', $contract_info->
+                    <select wire:model="status"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md"
+                        required>
+                        <option value="active" {{ old('status', $contract_info->
                             status) == 'active' ? 'selected' : 'selected' }}>
                             active
                         </option>
                         <option value="inactive" {{ old('status', $contract_info->
                             status) == 'inactive' ? 'selected' : 'selected' }}>
                             inactive
-                        </option><option value="pendingmovein" {{ old('status', $contract_info->
+                        </option>
+                        <option value="pendingmovein" {{ old('status', $contract_info->
                             status) == 'pendingmovein' ? 'selected' : 'selected' }}>
                             pendingmovein
                         </option>
@@ -42,7 +45,7 @@
                             status) == 'reserved' ? 'selected' : 'selected' }}>
                             reserved
                         </option>
-                       
+
                     </select>
                     @error('status')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
