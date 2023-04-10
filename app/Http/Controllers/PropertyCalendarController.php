@@ -184,7 +184,7 @@ class PropertyCalendarController extends Controller
         return $id;
     }
 
-    public function show($id){
-        return redirect('/property/'.Session::get('property').'/guest/'.$id);
+    public function show($uuid){
+        return Guest::find($uuid);
     }
 }

@@ -28,6 +28,13 @@
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/bills"
+                                    class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                                                                            dark:text-gray-200 dark:hover:text-white">
+                                    New collection
+                                </a>
+                            </li>
+                            <li>
                                 <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/concern/create"
                                     class=" block py-2 px-4 text-sm
                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
@@ -44,20 +51,14 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/bills"
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/guardian/{{ Str::random(8) }}/create"
                                     class=" block py-2 px-4 text-sm
                                                                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                                 dark:text-gray-200 dark:hover:text-white">
-                                    New bill
+                                    New guardian
                                 </a>
                             </li>
-                            <li>
-                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/bills"
-                                    class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-                                                                                                dark:text-gray-200 dark:hover:text-white">
-                                    New collection
-                                </a>
-                            </li>
+
 
                         </ul>
                     </div>
@@ -88,7 +89,7 @@
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                 Send access to tenant
                             </button>
-                            <button type="button" disabled wire:target="sendCredentials" wire:loading 
+                            <button type="button" disabled wire:target="sendCredentials" wire:loading
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                 Loading...
                             </button>

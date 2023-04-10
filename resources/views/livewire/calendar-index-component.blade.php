@@ -33,10 +33,11 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <input type="hidden" name="property_uuid" id="property_uuid" value="{{ $property->uuid }}" class="form-control" required>
+                                            <input type="hidden" name="property_uuid" id="property_uuid"
+                                                value="{{ $property->uuid }}" class="form-control" required>
 
                                             <label for="">Guest</label>
-                                            <input type="text" name="guest" id="guest"class="form-control">
+                                            <input type="text" name="guest" id="guest" class="form-control">
                                             <span id="guestError" class="text-danger"></span>
                                             <br>
 
@@ -46,7 +47,8 @@
                                             <br>
 
                                             <label for="">Mobile Number</label>
-                                            <input type="text" name="mobile_number" id="mobile_number" class="form-control">
+                                            <input type="text" name="mobile_number" id="mobile_number"
+                                                class="form-control">
                                             <span id="mobileNumberError" class="text-danger"></span>
                                             <br>
 
@@ -55,17 +57,20 @@
                                                 <option value="">Select a unit</option>
                                                 @foreach ($units as $unit )
                                                 <option value="{{ $unit->uuid }}">{{ $unit->unit }} - {{
-                                                    $unit->status->status }} - {{ number_format($unit->transient_rent, 2) }}/night</option>
+                                                    $unit->status->status }} - {{ number_format($unit->transient_rent,
+                                                    2) }}/night</option>
                                                 @endforeach
                                             </select>
                                             <span id="unitUuidError" class="text-danger"></span>
                                             {{-- <br>
                                             <label for="">Start</label>
-                                            <input type="date" name="movein_at" id="movein_at" class="form-control" required>
+                                            <input type="date" name="movein_at" id="movein_at" class="form-control"
+                                                required>
                                             <span id="startError" class="text-danger"></span>
                                             <br>
                                             <label for="">End</label>
-                                            <input type="date" name="moveout_at" id="moveout_at" class="form-control" required>
+                                            <input type="date" name="moveout_at" id="moveout_at" class="form-control"
+                                                required>
                                             <span id="endError" class="text-danger"></span>
                                             <br> --}}
 
@@ -73,10 +78,38 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="button" onclick="this.disabled = true;" id="saveBtn" class="btn btn-primary">Book</button>
+                                            <button type="button" onclick="this.disabled = true;" id="saveBtn"
+                                                class="btn btn-primary">Book</button>
                                         </div>
                                     </div>
-                                {{-- </form> --}}
+                                    {{--
+                                </form> --}}
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="showGuestModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                {{-- <form action="" method="POST">
+                                    @csrf --}}
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Show Guest Information</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        {{-- <div class="modal-body">
+
+                                        </div> --}}
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" onclick="this.disabled = true;" id="confirmBtn"
+                                                class="btn btn-primary">Proceed</button>
+                                        </div>
+                                    </div>
+                                    {{--
+                                </form> --}}
                             </div>
                         </div>
                     </div>
