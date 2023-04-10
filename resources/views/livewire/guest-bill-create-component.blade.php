@@ -47,18 +47,20 @@
             <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
                 <div class="sm:my-10 md:my-5 lg:my-0">
 
-                    {{-- @if($total_unpaid_bills->count())
+                    @if($total_unpaid_bills->count())
                     <button type="button" data-modal-toggle="export-guest-bill"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export
                         Bills ({{
                         App\Models\Guest::find($guest->uuid)->bills()->where('status', '!=','paid')->count()
                         }})</a></button>
 
+                    @endif
+                    {{--
                     <button type="button" data-modal-toggle="send-guest-bill"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send
                         Bills ({{ App\Models\Guest::find($guest->uuid)->bills()->where('status',
                         '!=', 'paid')->count() }})</a></button>
-                    @endif --}}
+                    --}}
 
 
                     <button type="button" data-modal-toggle="instructions-create-guest-bill-modal"
@@ -93,7 +95,7 @@
             @endif
 
         </div>
-      
+
         <div class="sm:col-span-3">
             @if($bills)
             <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
