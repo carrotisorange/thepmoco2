@@ -281,11 +281,15 @@ class TenantShowComponent extends Component
         return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant_details->uuid)->with('success', 'Success!');
     }
 
-    public function update_guardian(){
+    public function delete_guardian($id){
 
-        sleep(2);
+        sleep(1);
+
+        Guardian::where('id', $id)
+        ->delete();
         
-        ddd('updating');
+        return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant_details->uuid)->with('success',
+        'Success!');
     }
 
 
