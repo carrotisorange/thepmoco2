@@ -37,9 +37,9 @@
         }
 
         p,
-            {
-            margin-right: 50px;
-            margin-left: 50px;
+        {
+        margin-right: 50px;
+        margin-left: 50px;
         }
 
         table,
@@ -99,7 +99,7 @@
         </p>
 
         <p>Status: {{ $accountpayable->status }}</p>
-        
+
         <p>
             Particulars
         </p>
@@ -110,6 +110,7 @@
                 <tr>
                 <tr>
                     <x-th>#</x-th>
+                    <x-th>UNIT</x-th>
                     <x-th>ITEM </x-th>
                     <x-th>QUANTITY</x-th>
                     {{-- @if($accountpayable->request_for === 'payment') --}}
@@ -124,6 +125,13 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 <tr>
                     <x-td>{{ $index+1 }}</x-td>
+                    <x-td>
+                        @if($particular->unit_uuid)
+                        {{ App\Models\Unit::find($particular->unit_uuid)->unit }}
+                        @else
+                        NA
+                        @endif
+                    </x-td>
                     <x-td>
                         {{ $particular->item }}
                     </x-td>

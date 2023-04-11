@@ -123,4 +123,8 @@ class Unit extends Model
     public function scopeOccupied($query){
         return $query->where('status_id', 2);
     }
+
+    public function account_payable_particulars(){
+        return $this->hasMany(AccountPayableParticular::class);
+    }
 }

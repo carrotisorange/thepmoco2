@@ -9,6 +9,7 @@ use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use App\Models\Property;
 
 class AccountPayableCreateStep1Component extends Component
 {
@@ -54,6 +55,7 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.price' => 'nullable',
             'particulars.*.total' => 'nullable',
             'particulars.*.file' => 'nullable',
+            'particulars.*.unit_uuid' => 'nullable',
             'quotation1' => 'required | max:102400',
             'quotation2' => 'nullable | max:102400',
             'quotation3' => 'nullable | max:102400',
@@ -192,6 +194,7 @@ class AccountPayableCreateStep1Component extends Component
                 AccountPayableParticular::where('batch_no', $this->batch_no)
                 ->where('id', $id)
                 ->update([
+                    'unit_uuid' => $particular->unit_uuid,
                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
                     'price' => $particular->price,
@@ -211,13 +214,13 @@ class AccountPayableCreateStep1Component extends Component
     {
         $this->$quotation = '';
     }
-    
-    
 
     public function render()
     {
         $this->particulars = $this->get_particulars();
 
-        return view('livewire.account-payable-create-step1-component');
+        return view('livewire.account-payable-create-step1-component',[
+            'units' => Property::find($this->property->uuid)->units
+        ]);
     }
 }

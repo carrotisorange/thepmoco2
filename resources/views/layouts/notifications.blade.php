@@ -20,6 +20,5 @@
     @foreach ($errors->all() as $error)
     <p><i class="fa-solid fa-circle-xmark"></i> {{ $error }} </p>
     @endforeach
-
 </div>
 @endif
