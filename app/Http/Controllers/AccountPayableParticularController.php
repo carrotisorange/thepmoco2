@@ -12,4 +12,8 @@ class AccountPayableParticularController extends Controller
         'batch_no' => $batch_no
     ]);
   }
+
+  public function unit(){
+    return $this->belongsTo(Unit::class, 'unit_uuid');
+  }
 }

@@ -88,6 +88,7 @@
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <x-th>#</x-th>
+                                        <x-th>UNIT</x-th>
                                         <x-th>ITEM </x-th>
                                         <x-th>QUANTITY</x-th>
                                         {{-- @if($request_for === 'payment') --}}
@@ -103,6 +104,21 @@
                                     <div wire:key="particular-field-{{ $particular->id }}">
                                         <tr>
                                             <x-td>{{ $index+1 }}</x-td>
+                                            <x-td>
+                                                <select wire:model.debounce.1000ms="particulars.{{ $index }}.unit_uuid"
+                                                    wire:change="updateParticular({{ $particular->id }})"
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                    <option value="" selected>Select a unit</option>
+                                                    @foreach ($units as $unit)
+                                                    <option value="{{ $unit->uuid }}" {{ 'particulars' .$index.'unit_uuid'===$unit->uuid? 'selected' : '' }}>{{ $unit->unit }}
+                                                    </option>
+                                                @endforeach
+                                                </select>
+
+                                                @error('particulars.{{ $index }}.unit_uuid')
+                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                @enderror
+                                            </x-td>
                                             <x-td>
                                                 <input type="text"
                                                     wire:model.debounce.1000ms="particulars.{{ $index }}.item"
@@ -368,15 +384,6 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-
-                {{-- <div class="sm:col-span-2">
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Total Amount</label>
-                    <input type="number" step="0.01" rows="3" value="{{ $particulars->sum('price')* $particulars->sum('quantity')}}" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('amount')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div> --}}
 
                 <div class="sm:col-span-3">
                     <label for="delivery-date" class="block text-sm font-medium text-gray-700">Delivery Date</label>
