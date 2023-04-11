@@ -1,7 +1,7 @@
 <div>
     <div class="p-8 bg-white border-b border-gray-200">
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
-            <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
+            <div class=" mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
                 <div class="md:grid md:grid-cols-1 md:gap-6">
                     <div class="mt-5 md:mt-0 md:col-span-2">
                         <div class="grid grid-cols-2 gap-6">

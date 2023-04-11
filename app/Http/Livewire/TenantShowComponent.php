@@ -12,6 +12,7 @@ use Session;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use App\Models\Guardian;
 
 class TenantShowComponent extends Component
 {
@@ -108,7 +109,7 @@ class TenantShowComponent extends Component
             'employer_address' => 'nullable',
             'employer' => 'nullable',
             'status' => 'required',
-            'category' => 'required'
+            'category' => 'required',
             ];
     }
 
@@ -256,6 +257,35 @@ class TenantShowComponent extends Component
 
       return redirect('/property/'.$this->tenant_details->property_uuid.'/tenant/')->with('success', 'Success!');
  
+    }
+
+    public function store_guardian(){
+
+        sleep(2);
+
+        $validatedData = $this->validate([
+            'guardian' => 'required',
+            'guardian_relationship_id' => ['required', Rule::exists('relationships', 'id')],
+            'guardian_mobile_number' => 'required',
+            'guardian_email' => ['nullable','email']
+        ]);
+
+        Guardian::create([
+            'tenant_uuid' => $this->tenant_details->uuid,
+            'guardian' => $this->guardian,
+            'email' => $this->guardian_email,
+            'mobile_number' => $this->guardian_mobile_number,
+            'relationship_id' => $this->guardian_relationship_id
+        ]);
+
+        return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant_details->uuid)->with('success', 'Success!');
+    }
+
+    public function update_guardian(){
+
+        sleep(2);
+        
+        ddd('updating');
     }
 
 

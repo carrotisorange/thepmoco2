@@ -51,13 +51,21 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="#/" data-modal-toggle="create-guardian-modal"
+                                    class=" block py-2 px-4 text-sm
+                                                                                text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                                dark:text-gray-200 dark:hover:text-white">
+                                    New guardian
+                                </a>
+                            </li>
+                            {{-- <li>
                                 <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/guardian/{{ Str::random(8) }}/create"
                                     class=" block py-2 px-4 text-sm
                                                                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                                 dark:text-gray-200 dark:hover:text-white">
                                     New guardian
                                 </a>
-                            </li>
+                            </li> --}}
 
 
                         </ul>
@@ -346,7 +354,7 @@
 
                                 </div>
                                 @if($guardians->count())
-                                @include('tenants.tables.guardians')
+                                @include('tables.guardians')
                                 @else
                                 <div class="mt-10 text-center mb-10">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -626,4 +634,6 @@
         </div>
 
     </div>
+    @include('modals.create-guardian-modal')
+    @include('modals.edit-guardian-modal')
 </div>
