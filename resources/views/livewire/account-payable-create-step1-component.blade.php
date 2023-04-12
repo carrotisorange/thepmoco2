@@ -105,7 +105,7 @@
                                         <tr>
                                             <x-td>{{ $index+1 }}</x-td>
                                             <x-td>
-                                                <select wire:model.debounce.1000ms="particulars.{{ $index }}.unit_uuid"
+                                                <select wire:model.debounce.4000ms="particulars.{{ $index }}.unit_uuid"
                                                     wire:change="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                     <option value="" selected>Select a unit</option>
@@ -121,7 +121,7 @@
                                             </x-td>
                                             <x-td>
                                                 <input type="text"
-                                                    wire:model.debounce.1000ms="particulars.{{ $index }}.item"
+                                                    wire:model.debounce.4000ms="particulars.{{ $index }}.item"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.item')
@@ -130,7 +130,7 @@
                                             </x-td>
                                             <x-td>
                                                 <input type="number"
-                                                    wire:model.debounce.1000ms="particulars.{{ $index }}.quantity"
+                                                    wire:model.debounce.4000ms="particulars.{{ $index }}.quantity"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.quantity')
@@ -140,7 +140,7 @@
                                             {{-- @if($request_for === 'payment') --}}
                                             <x-td>
                                                 <input type="number" step="0.001"
-                                                    wire:model.debounce.1000ms="particulars.{{ $index }}.price"
+                                                    wire:model.debounce.5000ms="particulars.{{ $index }}.price"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.price')
