@@ -105,9 +105,7 @@
         </p>
 
         <table class="">
-
             <thead class="bg-gray-50">
-                <tr>
                 <tr>
                     <x-th>#</x-th>
                     <x-th>UNIT</x-th>
@@ -117,16 +115,14 @@
                     <x-th>PRICE</x-th>
                     {{-- @endif --}}
                     <x-th>TOTAL</x-th>
-
-                </tr>
                 </tr>
             </thead>
-            @foreach ($particulars as $index => $particular)
             <tbody class="bg-white divide-y divide-gray-200">
+                @foreach ($particulars as $index => $particular)
                 <tr>
                     <x-td>{{ $index+1 }}</x-td>
                     <x-td>
-                       @if($particular->unit_uuid)
+                        @if($particular->unit_uuid)
                         {{ App\Models\Unit::find($particular->unit_uuid)->unit }}
                         @else
                         NA
@@ -144,10 +140,27 @@
                     </x-td>
                     {{-- @endif --}}
                     <x-td>{{ number_format($particular->quantity * $particular->price, 2) }}</x-td>
+                </tr>
 
+                @endforeach
+                <tr>
+                    <x-td>Total</x-td>
+                    <x-td></x-td>
+                    <x-td>
+
+                    </x-td>
+                    <x-td>
+
+                    </x-td>
+
+                    <x-td>
+
+                    </x-td>
+                    <x-td>
+                        {{ number_format($particulars->sum('total'), 2) }}
+                    </x-td>
                 </tr>
             </tbody>
-            @endforeach
         </table>
 
     </main>

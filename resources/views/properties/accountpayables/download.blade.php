@@ -165,6 +165,23 @@
 
                         </tr>
                         @endforeach
+                        <tr>
+                            <td>Total</td>
+                            <td></td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                            
+                            </td>
+
+                            <td>
+                               
+                            </td>
+                            <td>
+                               {{ number_format($particulars->sum('total'), 2) }}
+                            </td>
+                        </tr>
 
                     </tbody>
                 </table>

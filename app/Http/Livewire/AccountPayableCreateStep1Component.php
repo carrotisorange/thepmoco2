@@ -136,41 +136,10 @@ class AccountPayableCreateStep1Component extends Component
           AccountPayable::where('id', $this->accountpayable->id)
               ->update([
              'selected_quotation' => $this->selected_quotation,
-              'amount' => $this->amount,
+              'amount' => AccountPayableParticular::where('batch_no', $this->batch_no)->sum('total'),
               'vendor' => $this->vendor,
               ]);
 
-        //     if($this->selected_quotation === 'quotation1'){
-        //     AccountPayable::where('id', $this->accountpayable->id)
-        //       ->update([
-        //          'selected_quotation' => $this->quotation1,
-        //     //   'selected_quotation' => $this->quotation1->store('accountpayables'),
-        //       'vendor' => $this->vendor,
-        //       'status' => 'pending'
-        //       ]);
-        // }
-
-        // if($this->selected_quotation === 'quotation2'){
-        //      AccountPayable::where('id', $this->accountpayable->id)
-        //       ->update([
-        //     //   'selected_quotation' => $this->quotation2->store('accountpayables'),
-        //      'selected_quotation' => $this->quotation2,
-        //       'vendor' => $this->vendor,
-        //        'status' => 'pending'
-        //       ]);
-        // }
-
-        // if($this->selected_quotation === 'quotation3'){
-        //      AccountPayable::where('id', $this->accountpayable->id)
-        //       ->update([
-        //     //   'selected_quotation' => $this->quotation3->store('accountpayables'),
-        //      'selected_quotation' => $this->quotation3,
-        //       'amount' => $this->amount,
-        //       'vendor' => $this->vendor,
-        //        'status' => 'pending'
-        //       ]);
-
-        // }
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }

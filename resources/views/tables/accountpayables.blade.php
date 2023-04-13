@@ -10,7 +10,7 @@
             <x-th>STATUS</x-th>
             <x-th>AMOUNT</x-th>
             <x-th></x-th>
-            <x-th></x-th>
+            {{-- <x-th></x-th> --}}
             <x-th></x-th>
             <x-th></x-th>
         </tr>
@@ -47,7 +47,7 @@
 
                 @elseif($accountpayable->status === 'pending')
 
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
                     class="text-blue-500 text-decoration-line: underline">View</a>
 
                 @elseif($accountpayable->status === 'approved by manager')
@@ -61,7 +61,7 @@
                 @endif
 
             </x-td>
-            <x-td>
+            {{-- <x-td>
                 @if($accountpayable->status!='released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">Edit</a>
@@ -72,7 +72,7 @@
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download"
                     class="text-blue-500 text-decoration-line: underline">Export</a>
                 @endif
-            </x-td>
+            </x-td> --}}
 
             <x-td>
                 @if($accountpayable->status!='released')
