@@ -37,9 +37,9 @@
         }
 
         p,
-            {
-            margin-right: 20px;
-            margin-left: 20px;
+        {
+        margin-right: 20px;
+        margin-left: 20px;
         }
 
         table,
@@ -130,12 +130,13 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>UNIT</th>
                             <th>ITEM </th>
                             <th>QUANTITY</th>
-                          
+
                             <th>PRICE</th>
                             <th>TOTAL</th>
-                       
+
 
                         </tr>
                     </thead>
@@ -143,20 +144,25 @@
                         @foreach($particulars as $index => $particular)
                         <tr>
                             <td>{{ $index+1 }}</td>
+                            <td>@if($particular->unit_uuid)
+                                {{ App\Models\Unit::find($particular->unit_uuid)->unit }}
+                                @else
+                                NA
+                                @endif</td>
                             <td>
                                 {{ $particular->item }}
                             </td>
                             <td>
                                 {{ $particular->quantity }}
                             </td>
-                           
+
                             <td>
                                 {{ number_format($particular->price, 2) }}
                             </td>
                             <td>
                                 {{ number_format($particular->price * $particular->quantity, 2) }}
                             </td>
-                           
+
                         </tr>
                         @endforeach
 

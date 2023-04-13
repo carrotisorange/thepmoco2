@@ -39,11 +39,17 @@
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">View</a>
+                @elseif($accountpayable->status === 'unknown')
+
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
+                    class="text-blue-500 text-decoration-line: underline">View</a>
+
+
                 @elseif($accountpayable->status === 'pending')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
                     class="text-blue-500 text-decoration-line: underline">View</a>
-              
+
                 @elseif($accountpayable->status === 'approved by manager')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"

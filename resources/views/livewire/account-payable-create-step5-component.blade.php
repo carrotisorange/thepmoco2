@@ -132,12 +132,25 @@
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
                                     <span>
 
-                                        @if($accountpayable->selected_quotation)
-                                        <a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}"
-                                            target="_blank" class="text-blue-500 text-decoration-line: underline">View
-                                            Selected Quotation</a>
-                                        @else
+                                        @if($accountpayable->selected_quotation == 'quotation1')
 
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
+                                            class="text-blue-500 text-decoration-line: underline">View
+                                            Selected Quotation</a>
+
+                                        @elseif($accountpayable->selected_quotation == 'quotation2')
+
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
+                                            class="text-blue-500 text-decoration-line: underline">View
+                                            Selected Quotation</a>
+
+                                        @elseif($accountpayable->selected_quotation == 'quotation3')
+
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank"
+                                            class="text-blue-500 text-decoration-line: underline">View
+                                            Selected Quotation</a>
+
+                                        @else
                                         <a href="#" class="text-red-500 text-decoration-line: underline">No Selected
                                             Quotation
                                             was uploaded</a>
@@ -164,6 +177,7 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <x-th>#</x-th>
+                                <x-th>UNIT</x-th>
                                 <x-th>ITEM </x-th>
                                 <x-th>QUANTITY</x-th>
                                 {{-- @if($accountpayable->request_for === 'payment') --}}
@@ -178,6 +192,13 @@
                             <div wire:key="particular-field-{{ $particular->id }}">
                                 <tr>
                                     <x-td>{{ $index+1 }}</x-td>
+                                    <x-td>
+                                        @if($particular->unit_uuid)
+                                        {{ App\Models\Unit::find($particular->unit_uuid)->unit }}
+                                        @else
+                                        NA
+                                        @endif
+                                    </x-td>
                                     <x-td>
                                         {{ $particular->item }}
                                     </x-td>

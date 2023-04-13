@@ -206,7 +206,7 @@ class UserController extends Controller
     public function edit(User $user)
     {        
     
-       if($user->id === auth()->user()->id || auth()->user()->role_id === 5){
+       if($user->id === auth()->user()->id || auth()->user()->role_id === 5 || auth()->user()->role_id === 9){
 
         //app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
 

@@ -131,7 +131,7 @@
                                     </div>
                                     @endif
 
-                                    @if(auth()->user()->role_id == 5)
+                                    @if(auth()->user()->role_id == 5 || auth()->user()->role_id == 9) 
                                     <div class="col-span-2">
                                         <label for="status"
                                             class="block text-sm font-medium text-gray-700">Status</label>
@@ -154,10 +154,10 @@
                                         @enderror
                                     </div>
 
-                                    {{-- <div class="col-span-2">
+                                    <div class="col-span-2">
                                         <label for="role_id"
                                             class="block text-sm font-medium text-gray-700">Role</label>
-                                        @if(auth()->user()->role_id === 5)
+                                        {{-- @if(auth()->user()->role_id === 5) --}}
                                         <select wire:model.lazy="role_id" autocomplete="role_id"
                                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                             @foreach($roles as $role)
@@ -166,11 +166,11 @@
                                                 'selected'}}>{{ $role->role }}</option>
                                             @endforeach
                                         </select>
-                                        @endif
+                                        {{-- @endif --}}
                                         @error('role_id')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
-                                    </div> --}}
+                                    </div>
                                     @endif
 
 

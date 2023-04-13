@@ -123,6 +123,6 @@
         </div>
         {{-- end of stepper --}}
         
-        @livewire('account-payable-create-step1-component',['property' => $property, 'request_for' => $request_for])
+        @livewire('account-payable-create-step1-component',['property' => $property, 'accountpayable' => $accountpayable])
     </div>
 </x-new-layout>

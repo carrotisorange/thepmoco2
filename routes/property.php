@@ -383,10 +383,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             //Route::get('{str_random}/create', 'create')->name('accountpayable');
 
             //step 1
-            Route::get('{accountpayable}/step-1', 'create_step_1')->name('accountpayable');
+            Route::get('{accountpayable}/{batch_no}/store', 'store')->name('accountpayable');
             Route::get('{accountpayable}/step1/export', 'download_step_1');
 
             //step 2
+            Route::get('{accountpayable}/step-1', 'create_step_1')->name('accountpayable');
+
             Route::get('{accountpayable}/step-2', 'create_step_2')->name('accountpayable');
 
             //step 3
