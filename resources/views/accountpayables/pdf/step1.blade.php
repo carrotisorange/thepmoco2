@@ -126,7 +126,7 @@
                 <tr>
                     <x-td>{{ $index+1 }}</x-td>
                     <x-td>
-                        @if($particular->unit_uuid)
+                       @if($particular->unit_uuid)
                         {{ App\Models\Unit::find($particular->unit_uuid)->unit }}
                         @else
                         NA

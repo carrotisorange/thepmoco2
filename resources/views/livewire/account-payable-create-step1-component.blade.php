@@ -1,4 +1,13 @@
 <div>
+    @section('styles')
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+    </style>
+    @endsection
     @include('layouts.notifications')
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
 
@@ -97,6 +106,7 @@
                                         {{-- <x-th>Upload file</x-th> --}}
                                         {{-- @endif --}}
                                         <x-th></x-th>
+                                        <x-th></x-th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -105,14 +115,16 @@
                                         <tr>
                                             <x-td>{{ $index+1 }}</x-td>
                                             <x-td>
-                                                <select wire:model.debounce.1000ms="particulars.{{ $index }}.unit_uuid"
+                                                <select wire:model="particulars.{{ $index }}.unit_uuid"
                                                     wire:change="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($units as $unit)
-                                                    <option value="{{ $unit->uuid }}" {{ 'particulars' .$index.'unit_uuid'===$unit->uuid? 'selected' : '' }}>{{ $unit->unit }}
+                                                    <option value="{{ $unit->uuid }}" {{ 'particulars'
+                                                        .$index.'unit_uuid'===$unit->uuid? 'selected' : '' }}>{{
+                                                        $unit->unit }}
                                                     </option>
-                                                @endforeach
+                                                    @endforeach
                                                 </select>
 
                                                 @error('particulars.{{ $index }}.unit_uuid')
@@ -121,7 +133,7 @@
                                             </x-td>
                                             <x-td>
                                                 <input type="text"
-                                                    wire:model.debounce.1000ms="particulars.{{ $index }}.item"
+                                                    wire:model="particulars.{{ $index }}.item"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.item')
@@ -130,7 +142,7 @@
                                             </x-td>
                                             <x-td>
                                                 <input type="number"
-                                                    wire:model.debounce.1000ms="particulars.{{ $index }}.quantity"
+                                                    wire:model="particulars.{{ $index }}.quantity"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.quantity')
@@ -140,7 +152,7 @@
                                             {{-- @if($request_for === 'payment') --}}
                                             <x-td>
                                                 <input type="number" step="0.001"
-                                                    wire:model.debounce.1000ms="particulars.{{ $index }}.price"
+                                                    wire:model="particulars.{{ $index }}.price"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.price')
@@ -153,6 +165,18 @@
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
 
                                             </x-td>
+                                            <x-td>
+                                                {{-- <button type="button"
+                                                    wire:click="updateParticular({{ $particular->id }})" wire:loading.remove
+                                                    wire:target="updateParticular" 
+                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                                    Save
+                                                </button>
+                                                <button type="button" wire:loading disabled wire:target="updateParticular" 
+                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                                    Loading...
+                                                </button> --}}
+                                            </x-td>
 
                                             {{-- @endif --}}
                                             <x-td>
@@ -162,8 +186,7 @@
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Remove
                                                 </button>
-                                                <button type="button" wire:loading disabled
-                                                    wire:target="removeParticular" wire:target="removeParticular"
+                                               <button type="button" wire:loading disabled wire:target="removeParticular" wire:target="removeParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Loading...
                                                 </button>

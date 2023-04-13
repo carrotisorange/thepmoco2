@@ -28,11 +28,30 @@ class AccountPayableController extends Controller
         ->get();
     }
 
-    public function create_step_1(Property $property, $request_for){
-        return view('accountpayables.create.step-1',[
-            'property' => $property,
-            'request_for' =>  $request_for,
+    public function store(Property $property, $request_for, $batch_no){
+
+        $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'unknown')->count()).'-'.$batch_no;
+
+        $account_payable = AccountPayable::updateOrCreate(
+            [
+                'batch_no' => $generated_batch_no,
+                'property_uuid' => $property->uuid,
+                'request_for' => $request_for,
+                'requester_id' => auth()->user()->id,
+                'status' => 'unknown'
+            ]
+            ,
+            [
+            'property_uuid' => $property->uuid,
+            'requester_id' => auth()->user()->id,
+            'batch_no' => $generated_batch_no,
+            'request_for' => $request_for,
+            'created_at' => Carbon::now(),
+            'status' => 'unknown'
         ]);
+
+        return redirect('/property/'.$property->uuid.'/accountpayable/'.$account_payable->id.'/step-1')->with('success', 'Success!');
+
     }
 
     public function download_step_1(Property $property, AccountPayable $accountpayable){
@@ -63,12 +82,20 @@ class AccountPayableController extends Controller
          return $pdf->download($property->property.'-accountpayable.pdf');
     }
 
-    public function create_step_2(Property $property, AccountPayable $accountpayable){
+      public function create_step_1(Property $property, AccountPayable $accountpayable){
     
-        return view('accountpayables.create.step-2', [
+        return view('accountpayables.create.step-1', [
             'property' => $property,
             'accountpayable' => $accountpayable
         ]);
+    }
+
+    public function create_step_2(Property $property, AccountPayable $accountpayable){
+
+    return view('accountpayables.create.step-2', [
+    'property' => $property,
+    'accountpayable' => $accountpayable
+    ]);
     }
 
     public function create_step_3($property_uuid, $accountpayable_id){

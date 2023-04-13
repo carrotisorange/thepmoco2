@@ -12,7 +12,6 @@ class AccountPayable extends Model
 
     protected $attributes = [
         'is_approved'=> false,
-        'status' => 'pending'
     ];
 
     public function property()

@@ -93,12 +93,12 @@
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>#</x-th>
+                    <x-th>UNIT</x-th>
                     <x-th>ITEM </x-th>
                     <x-th>QUANTITY</x-th>
-                    @if($accountpayable->request_for === 'payment')
-                    <x-th>Price</x-th>
-                    <x-th>Total</x-th>
-                    @endif
+                    <x-th>PRICE</x-th>
+                    <x-th>TOTAL</x-th>
+
 
                 </tr>
             </thead>
@@ -108,19 +108,25 @@
                     <tr>
                         <x-td>{{ $index+1 }}</x-td>
                         <x-td>
+                            @if($particular->unit_uuid)
+                            {{ App\Models\Unit::find($particular->unit_uuid)->unit }}
+                            @else
+                            NA
+                            @endif
+                        </x-td>
+                        <x-td>
                             {{ $particular->item }}
                         </x-td>
                         <x-td>
                             {{ $particular->quantity }}
                         </x-td>
-                        @if($accountpayable->request_for === 'payment')
                         <x-td>
                             {{ $particular->price }}
                         </x-td>
                         <x-td>
                             {{ number_format($particular->price * $particular->quantity, 2) }}
                         </x-td>
-                        @endif
+
 
                     </tr>
                 </div>
@@ -148,14 +154,31 @@
                     <span class="ml-2 w-0 flex-1 truncate">Selected Quotation</span>
                 </div>
                 <div class="ml-4 flex-shrink-0">
-                    @if($accountpayable->selected_quotation)
-                    <a href="{{ asset('/storage/'.$accountpayable->selected_quotation) }}" target="_blank"
-                        class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
-                    @else
-                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">No
-                        quotation
-                        was uploaded</a>
-                    @endif
+                    <span>
+
+                        @if($accountpayable->selected_quotation == 'quotation1')
+
+                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
+                            class="font-medium text-indigo-600 hover:text-indigo-500">
+                        </a>
+
+                        @elseif($accountpayable->selected_quotation == 'quotation2')
+
+                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
+                            class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+
+                        @elseif($accountpayable->selected_quotation == 'quotation3')
+
+                        <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank"
+                            class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+
+                        @else
+                        <a href="#" class="font-medium text-red-600 hover:text-red-500">No Selected
+                            Quotation
+                            was uploaded</a>
+                        @endif
+
+                    </span>
                 </div>
             </li>
             @endif

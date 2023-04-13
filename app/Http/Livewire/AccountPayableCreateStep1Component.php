@@ -15,6 +15,8 @@ class AccountPayableCreateStep1Component extends Component
 {
     use WithFileUploads;
 
+    public $accountpayable;
+
     public $request_for;
     public $created_at; 
     public $due_date;
@@ -39,12 +41,23 @@ class AccountPayableCreateStep1Component extends Component
     public $amount;
     public $selected_quotation;
     
-    public function mount()
+    public function mount($accountpayable)
     {
+        $this->request_for = $accountpayable->request_for;
+        $this->batch_no = $accountpayable->batch_no;
         $this->requester_id = auth()->user()->id;
-        $this->created_at = Carbon::now()->format('Y-m-d');
-        $this->due_date = Carbon::now()->format('Y-m-d');
-        $this->batch_no = AccountPayable::count().'-'.sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->count()).'-'.Str::random(3);
+        $this->created_at = Carbon::parse($this->created_at)->format('Y-m-d');
+        $this->due_date = Carbon::parse($this->due_date)->format('Y-m-d');
+        $this->quotation1 = $accountpayable->quotation1;
+        $this->quotation2 = $accountpayable->quotation2;
+        $this->quotation3 = $accountpayable->quotation3;
+        $this->selected_quotation = $accountpayable->selected_quotation;
+        $this->bank = $accountpayable->bank;
+        $this->bank_account = $accountpayable->bank_account;
+        $this->bank_name =$accountpayable->bank_name;
+        $this->vendor = $accountpayable->vendor;
+        $this->delivery_at = Carbon::parse($this->delivery_at)->format('Y-m-d');
+
     }
 
      protected function rules()
@@ -79,81 +92,87 @@ class AccountPayableCreateStep1Component extends Component
             return back()->with('error','Error!');
         }
 
-         $accountpayable_id = AccountPayable::updateOrCreate(
-        [
-            'batch_no' => $this->batch_no,
-            'property_uuid' => $this->property->uuid,
-            'request_for' => $this->request_for
-        ]
-        ,[
-            'property_uuid' => $this->property->uuid,
+        AccountPayable::where('id', $this->accountpayable->id)
+        ->update([
             'request_for' => $this->request_for,
-            'created_at' => $this->created_at,
-            'due_date' => $this->due_date,
-            'requester_id' => $this->requester_id,
-            'batch_no' => $this->batch_no,
-            'amount' => $this->get_particulars()->sum('total'),
-            'vendor' => $this->vendor,
-            'bank' => $this->bank,
-            'bank_name' => $this->bank_name, 
-            'bank_account' => $this->bank_account,
-            'delivery_at' => $this->delivery_at
-         ])->id; 
+             'created_at' => $this->created_at,
+             'due_date' => $this->due_date,
+             'requester_id' => $this->requester_id,
+             'amount' => $this->get_particulars()->sum('total'),
+             'vendor' => $this->vendor,
+             'bank' => $this->bank,
+             'bank_name' => $this->bank_name,
+             'bank_account' => $this->bank_account,
+             'delivery_at' => $this->delivery_at,
+             'status' => 'pending'
+        ]);
 
-        AccountPayable::where('id', $accountpayable_id)
+        AccountPayable::where('id', $this->accountpayable->id)
         ->update([
           'approver_id' => null,
           'approver2_id' => null
         ]);
 
-             if($this->quotation1){
-            AccountPayable::where('id', $accountpayable_id)
-            ->update([
-                'quotation1' => $this->quotation1->store('accountpayables'),
-            ]);
-        }if($this->quotation2){
-            AccountPayable::where('id', $accountpayable_id)
-            ->update([
-                'quotation2' => $this->quotation1->store('accountpayables'),
-            ]);
-            
-        }if($this->quotation3){
-            AccountPayable::where('id', $accountpayable_id)
-            ->update([
-                'quotation3' => $this->quotation3->store('accountpayables'),
-            ]);
-            
-        }     
+        if($this->quotation1 && $this->accountpayable->quotation1 != $this->quotation1){
+        AccountPayable::where('id', $this->accountpayable->id)
+        ->update([
+        'quotation1' => $this->quotation1->store('accountpayables'),
+        ]);
 
-        if($this->selected_quotation === 'quotation1'){
-            AccountPayable::where('id', $accountpayable_id)
-              ->update([
-              'selected_quotation' => $this->quotation1->store('accountpayables'),
-              'vendor' => $this->vendor,
-              'status' => 'pending'
-              ]);
+        } if($this->quotation2 && $this->accountpayable->quotation2 != $this->quotation2){
+        AccountPayable::where('id', $this->accountpayable->id)
+        ->update([
+        'quotation2' => $this->quotation2->store('accountpayables'),
+        ]);
+
+        } if($this->quotation3 && $this->accountpayable->quotation3 != $this->quotation3){
+        AccountPayable::where('id', $this->accountpayable->id)
+        ->update([
+        'quotation3' => $this->quotation3->store('accountpayables'),
+        ]);
+
         }
 
-        if($this->selected_quotation === 'quotation2'){
-             AccountPayable::where('id', $accountpayable_id)
+          AccountPayable::where('id', $this->accountpayable->id)
               ->update([
-              'selected_quotation' => $this->quotation2->store('accountpayables'),
-              'vendor' => $this->vendor,
-               'status' => 'pending'
-              ]);
-        }
-
-        if($this->selected_quotation === 'quotation3'){
-             AccountPayable::where('id', $accountpayable_id)
-              ->update([
-              'selected_quotation' => $this->quotation3->store('accountpayables'),
+             'selected_quotation' => $this->selected_quotation,
               'amount' => $this->amount,
               'vendor' => $this->vendor,
-               'status' => 'pending'
               ]);
-        }
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$accountpayable_id.'/step-3')->with('success', 'Success!');
+        //     if($this->selected_quotation === 'quotation1'){
+        //     AccountPayable::where('id', $this->accountpayable->id)
+        //       ->update([
+        //          'selected_quotation' => $this->quotation1,
+        //     //   'selected_quotation' => $this->quotation1->store('accountpayables'),
+        //       'vendor' => $this->vendor,
+        //       'status' => 'pending'
+        //       ]);
+        // }
+
+        // if($this->selected_quotation === 'quotation2'){
+        //      AccountPayable::where('id', $this->accountpayable->id)
+        //       ->update([
+        //     //   'selected_quotation' => $this->quotation2->store('accountpayables'),
+        //      'selected_quotation' => $this->quotation2,
+        //       'vendor' => $this->vendor,
+        //        'status' => 'pending'
+        //       ]);
+        // }
+
+        // if($this->selected_quotation === 'quotation3'){
+        //      AccountPayable::where('id', $this->accountpayable->id)
+        //       ->update([
+        //     //   'selected_quotation' => $this->quotation3->store('accountpayables'),
+        //      'selected_quotation' => $this->quotation3,
+        //       'amount' => $this->amount,
+        //       'vendor' => $this->vendor,
+        //        'status' => 'pending'
+        //       ]);
+
+        // }
+
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
 
     public function get_particulars(){
@@ -220,7 +239,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->particulars = $this->get_particulars();
 
         return view('livewire.account-payable-create-step1-component',[
-            'units' => Property::find($this->property->uuid)->units
+            'units' => Property::find($this->property->uuid)->units,
         ]);
     }
 }
