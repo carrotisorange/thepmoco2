@@ -381,7 +381,7 @@
                     </x-nav-link>
                     <div class="font-medium leading-3 ml-0 text-xs text-gray-900 mt-10">Dashboard</div>
 
-                    <!-- Units -->
+                    <!-- Messages -->
                 
                     <x-nav-link href="/chatify" target="_blank" :active="request()->routeIs('chatify')">
                         <span class="sr-only">Messages</span>
@@ -412,7 +412,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Units</div>
+                    <div class="font-medium leading-3 -ml-2 text-xs text-center text-gray-900 mt-10">Units</div>
 
                     <!-- Calendar -->
 
@@ -600,7 +600,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Bills</div>
+                    <div class="font-medium leading-3 -ml-2 text-xs text-center text-gray-900 mt-10">Bills</div>
 
 
                     <!-- Collection -->
