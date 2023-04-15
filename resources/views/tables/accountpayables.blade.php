@@ -42,13 +42,13 @@
                 @elseif($accountpayable->status === 'unknown')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
+                    class="text-blue-500 text-decoration-line: underline">Edit</a>
 
 
                 @elseif($accountpayable->status === 'pending')
 
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
+                    class="text-blue-500 text-decoration-line: underline">Edit</a>
 
                 @elseif($accountpayable->status === 'approved by manager')
 
@@ -75,7 +75,7 @@
             </x-td> --}}
 
             <x-td>
-                @if($accountpayable->status!='released')
+                @if($accountpayable->requester_id === auth()->user()->id || $accountpayable->status!='released')
                 <a href="#/" wire:click="deleteAccountPayable({{ $accountpayable->id }})" wire:loading.remove
                     class="text-red-500 text-decoration-line: underline">Delete</a>
                 @endif
