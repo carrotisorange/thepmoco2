@@ -126,11 +126,16 @@
                         <x-td>
                             {{ number_format($particular->price * $particular->quantity, 2) }}
                         </x-td>
-
-
                     </tr>
                 </div>
                 @endforeach
+                <tr>
+                   <x-td>Total</x-td>
+                   <x-th></x-th>
+                   <x-th></x-th>
+                   <x-th></x-th>
+                   <x-th></x-th>
+                   <x-td>{{ number_format($particulars->sum('total'), 2) }}</x-td>
             </tbody>
         </table>
         </p>
