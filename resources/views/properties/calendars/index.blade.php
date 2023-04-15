@@ -13,6 +13,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        body{
+            font-family: "Poppins";
+           
+        }
+        .fc-state-default {
+	        background-color: #E5E1E8;
+        }
+
+        .fc-event {
+            position: relative; /* for resize handle and other inner positioning */
+            display: block; /* make the <a> tag block */
+            font-size: .85em;
+            line-height: 2;
+            border-radius: 6px;
+            border: 1px solid #4D346F; /* default BORDER color */
+            font-weight: normal; /* undo jqui's ui-widget-header bold */
+        }
+            
+        .fc-event,
+        .fc-event-dot {
+            background-color: #4D346F; /* default BACKGROUND color */
+        }
+        
+        .fc-unthemed td.fc-today {
+            background: #EDE3FF;
+        }
+
+    </style>
+
     @endsection
 
     @section('title','Calendar | '. $property->property)

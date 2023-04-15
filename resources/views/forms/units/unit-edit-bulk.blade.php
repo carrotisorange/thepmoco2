@@ -26,15 +26,18 @@
                     Rent Type
                 </x-th>
                 <x-th>
-                    Rent/Mon
+                    Rent Duration
                 </x-th>
                 <x-th>
-                    Discount/Mon
+                    Rent
                 </x-th>
                 <x-th>
+                    Discount
+                </x-th>
+                {{-- <x-th>
                     Rent/Day
                 </x-th>
-                <x-th>Discount/Day</x-th>
+                <x-th>Discount/Day</x-th> --}}
                 <x-th>
                     Occupancy
                 </x-th>
@@ -123,10 +126,29 @@
 
 
                         </x-table-select>
-                        @error('units.{{ $index }}.rent_type')
+                        @error('units.{{ $index }}.rent_duration')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
+                    <x-td>
+                        <x-table-select form="edit-form" wire:model="units.{{ $index }}.rent_duration">
+                            <option value="">Select a rent type</option>
+                            <option value="transient" {{ 'units' .$index.'rent_duration'==='transient' ? 'selected' : ''
+                                }}>
+                                transient
+                            </option>
+                            <option value="long_term" {{ 'units' .$index.'rent_duration'==='long_term' ? 'selected' : ''
+                                }}>
+                                long_term
+                            </option>
+
+
+                        </x-table-select>
+                        @error('units.{{ $index }}.rent_duration')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </x-td>
+                    @if('units'.$index .'rent_duration' == 'long_term')
                     <x-td>
                         <x-table-input form="edit-form" min="0" type="number" wire:model="units.{{ $index }}.rent" />
                         @error('units.{{ $index }}.rent')
@@ -140,6 +162,7 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
+                    @else
                     <x-td>
                         <x-table-input form="edit-form" min="0" type="number"
                             wire:model="units.{{ $index }}.transient_rent" />
@@ -154,6 +177,7 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
+                    @endif
                     <x-td>
                         <x-table-input form="edit-form" type="number" min="1"
                             wire:model="units.{{ $index }}.occupancy" />

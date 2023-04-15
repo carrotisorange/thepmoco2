@@ -57,6 +57,7 @@ class UnitEditBulkComponent extends Component
             'units.*.rent_type' => 'nullable',
             'units.*.transient_rent' => 'nullable',
             'units.*.transient_discount' => 'nullable',
+            'units.*.rent_duration' => 'nullable',
         ];
     }
 

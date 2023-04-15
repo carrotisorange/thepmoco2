@@ -1,13 +1,5 @@
 <div>
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
-        <div class="sm:flex sm:items-center">
-            <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500">Calendar</h1>
-            </div>
-            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-            </div>
-        </div>
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
@@ -87,31 +79,7 @@
                             </div>
                         </div>
 
-                        <div class="modal fade" id="showGuestModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                {{-- <form action="" method="POST">
-                                    @csrf --}}
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Show Guest Information</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        {{-- <div class="modal-body">
-
-                                        </div> --}}
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="button" onclick="this.disabled = true;" id="confirmBtn"
-                                                class="btn btn-primary">Proceed</button>
-                                        </div>
-                                    </div>
-                                    {{--
-                                </form> --}}
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

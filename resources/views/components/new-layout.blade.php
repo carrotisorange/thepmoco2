@@ -24,22 +24,19 @@
                         </div>
 
                         <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
-                            <h1 class="text-xl py-5 tracking-tight font-bold leading-tight text-gray-900">
+                            <h1 class="text-xl py-5 tracking-tight font-semibold leading-tight text-gray-700">
                                 @if (Session::has('property'))
                                 {{ App\Models\Property::find(Session::get('property'))->property.'
                                 '.App\Models\Property::find(Session::get('property'))->type->type }}
                                 &nbsp;
-                                <a href="/property/{{ Session::get('property') }}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="inline-block" href="/property/{{ Session::get('property') }}/edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-purple-700 w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                    </svg>
+                                </a>
                                 @endif
                             </h1>
-                            <!-- help icon -->
-                            <button title="help" class="py-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class=" text-purple-500 w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                </svg>
-                            </button>
+                            
                         </div>
 
 
@@ -54,9 +51,17 @@
 
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <!-- help icon -->
+                        <button title="help" class="py-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                </svg>
+                            </button>
                         <!-- notification bell -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="text-gray-500 w-5 h-5">
+                            stroke="currentColor" class="text-gray-500 w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                         </svg>
@@ -381,7 +386,7 @@
                     </x-nav-link>
                     <div class="font-medium leading-3 ml-0 text-xs text-gray-900 mt-10">Dashboard</div>
 
-                    <!-- Units -->
+                    <!-- Messages -->
                 
                     <x-nav-link href="/chatify" target="_blank" :active="request()->routeIs('chatify')">
                         <span class="sr-only">Messages</span>
@@ -412,7 +417,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Units</div>
+                    <div class="font-medium leading-3 -ml-2 text-xs text-center text-gray-900 mt-10">Units</div>
 
                     <!-- Calendar -->
 
@@ -600,7 +605,7 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Bills</div>
+                    <div class="font-medium leading-3 -ml-2 text-xs text-center text-gray-900 mt-10">Bills</div>
 
 
                     <!-- Collection -->
