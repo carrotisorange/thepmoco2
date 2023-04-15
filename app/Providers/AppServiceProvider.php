@@ -118,10 +118,6 @@ class AppServiceProvider extends ServiceProvider
             return (auth()->user()->is_ownerportal_unlocked == '0' && auth()->user()->user_type == '1');
         });
 
-        Gate::define('accountpayable', function (User $user){
-            return (auth()->user()->is_accountpayable_unlocked == '0' && auth()->user()->user_type == '1');
-        });
-
         Gate::define('accountreceivable', function (User $user){
             return (auth()->user()->is_accountreceivable_unlocked == '0' && auth()->user()->user_type == '1');
         });
