@@ -1,5 +1,5 @@
 <div>
-    @if($accountpayable->requester_id === auth()->user()->id && auth()->user()->role_id != 9)
+    @cannot('manager')
     <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div class="text-center">
             {{-- <p class="text-base font-semibold text-indigo-600"></p> --}}
@@ -315,5 +315,5 @@
         </form>
         {{-- end-step-1-form --}}
     </div>
-    @endif
+    @endcannot
 </div>

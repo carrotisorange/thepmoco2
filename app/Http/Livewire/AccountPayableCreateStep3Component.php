@@ -65,7 +65,7 @@ class AccountPayableCreateStep3Component extends Component
 
         app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable_id, 'rejected by manager', $this->comment, $this->vendor);
 
-        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-3')->with('success', 'Success!');
+        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-5')->with('success', 'Success!');
     }
 
     public function render()
