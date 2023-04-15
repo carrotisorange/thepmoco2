@@ -32,6 +32,7 @@ class UnitShowComponent extends Component
     public $rent_type;
     public $transient_rent;
     public $transient_discount;
+    public $rent_duration;
 
     public $view = 'listView';
 
@@ -54,6 +55,7 @@ class UnitShowComponent extends Component
         $this->rent_type = $unit_details->rent_type;
         $this->transient_rent = $unit_details->transient_rent;
         $this->transient_discount = $unit_details->transient_discount;
+        $this->rent_duration = $unit_details->rent_duration;
     }
     
     protected function rules()
@@ -70,9 +72,10 @@ class UnitShowComponent extends Component
             'occupancy' => 'required',
             'is_the_unit_for_rent_to_tenant' => 'required',
             'price' => 'nullable',
-            'rent_type' => 'required',
-            'transient_rent' => 'required',
-            'transient_discount' => 'required'
+            'rent_type' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
+            'transient_rent' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
+            'transient_discount' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
+            'rent_duration' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
             ];
     }
 
