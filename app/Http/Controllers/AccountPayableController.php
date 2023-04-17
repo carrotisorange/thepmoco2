@@ -30,6 +30,8 @@ class AccountPayableController extends Controller
 
     public function store(Property $property, $request_for, $batch_no){
 
+        $this->authorize('is_account_payable_create_allowed');
+
         $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'unknown')->count()).'-'.$batch_no;
 
         $account_payable = AccountPayable::updateOrCreate(
@@ -83,7 +85,7 @@ class AccountPayableController extends Controller
     }
 
       public function create_step_1(Property $property, AccountPayable $accountpayable){
-    
+
         return view('accountpayables.create.step-1', [
             'property' => $property,
             'accountpayable' => $accountpayable
@@ -100,6 +102,8 @@ class AccountPayableController extends Controller
 
     public function create_step_3($property_uuid, $accountpayable_id){
     
+        $this->authorize('manager');
+
         return view('accountpayables.create.step-3', [
            'accountpayable_id' => $accountpayable_id
         ]);
@@ -113,14 +117,18 @@ class AccountPayableController extends Controller
     }
 
     public function create_step_5($property_uuid, $accountpayable_id){
-    
+        
+        $this->authorize('accountpayable');
+
         return view('accountpayables.create.step-5', [
            'accountpayable_id' => $accountpayable_id
         ]);
     }
 
     public function create_step_6($property_uuid, $accountpayable_id){
-    
+
+        $this->authorize('accountpayable');
+
         return view('accountpayables.create.step-6', [
            'accountpayable_id' => $accountpayable_id
         ]);
@@ -199,6 +207,10 @@ class AccountPayableController extends Controller
         return view('accountpayables.create');
     }
     public function store_step_1($property_uuid, $request_for, $created_at, $due_date, $requester_id, $batch_no, $amount){
+
+        return 'asd';
+
+    $this->authorize('is_account_payable_create_allowed');
            
     return AccountPayable::updateOrCreate(
         [
