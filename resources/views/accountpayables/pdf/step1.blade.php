@@ -109,6 +109,7 @@
                 <tr>
                     <x-th>#</x-th>
                     <x-th>UNIT</x-th>
+                    <x-th>VENDOR </x-th>
                     <x-th>ITEM </x-th>
                     <x-th>QUANTITY</x-th>
                     {{-- @if($accountpayable->request_for === 'payment') --}}
@@ -128,8 +129,14 @@
                         NA
                         @endif
                     </x-td>
+                    <x-td>@if($particular->vendor_id)
+                        {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }}
+                        @else
+                        NA
+                        @endif
+                    </x-td>
                     <x-td>
-                        {{ $particular->item }}
+                        {{ substr_replace($particular->item, "...", 10) }}
                     </x-td>
                     <x-td>
                         {{ number_format($particular->quantity, 2) }}
@@ -156,6 +163,7 @@
                     <x-td>
 
                     </x-td>
+                    <x-td> </x-td>
                     <x-td>
                         {{ number_format($particulars->sum('total'), 2) }}
                     </x-td>

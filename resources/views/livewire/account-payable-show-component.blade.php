@@ -94,11 +94,13 @@
                 <tr>
                     <x-th>#</x-th>
                     <x-th>UNIT</x-th>
+                    <x-th>VENDOR</x-th>
                     <x-th>ITEM </x-th>
                     <x-th>QUANTITY</x-th>
-                    <x-th>PRICE</x-th>
-                    <x-th>TOTAL</x-th>
-
+                    {{-- @if($accountpayable->request_for === 'payment') --}}
+                    <x-th>Price</x-th>
+                    <x-th>Total</x-th>
+                    {{-- @endif --}}
 
                 </tr>
             </thead>
@@ -115,27 +117,39 @@
                             @endif
                         </x-td>
                         <x-td>
+                            @if($particular->vendor_id)
+                            {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }}
+                            @else
+                            NA
+                            @endif
+                        </x-td>
+                        <x-td>
                             {{ $particular->item }}
                         </x-td>
                         <x-td>
                             {{ $particular->quantity }}
                         </x-td>
+                        {{-- @if($accountpayable->request_for === 'payment') --}}
                         <x-td>
                             {{ $particular->price }}
                         </x-td>
                         <x-td>
                             {{ number_format($particular->price * $particular->quantity, 2) }}
                         </x-td>
+                        {{-- @endif --}}
+
                     </tr>
                 </div>
                 @endforeach
                 <tr>
-                   <x-td>Total</x-td>
-                   <x-th></x-th>
-                   <x-th></x-th>
-                   <x-th></x-th>
-                   <x-th></x-th>
-                   <x-td>{{ number_format($particulars->sum('total'), 2) }}</x-td>
+                    <x-td>Total</x-td>
+                    <x-td></x-td>
+                    <x-td></x-td>
+                    <x-td></x-td>
+                    <x-td></x-td>
+                    <x-td></x-td>
+                    <x-td>{{ number_format($particulars->sum('total'),2) }}</x-td>
+                </tr>
             </tbody>
         </table>
         </p>

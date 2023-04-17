@@ -30,11 +30,11 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <!-- Selected: "bg-gray-50" -->
         <tr>
-            <x-td>Total</x-td>
+            <x-td><b>Total</b></x-td>
             <x-td></x-td>
             <x-td></x-td>
-            <x-td>{{ number_format($cashflows->where('label', 'INCOME')->sum('amount'), 2) }}</x-td>
-            <x-td>{{ number_format($cashflows->where('label', 'EXPENSE')->sum('amount'), 2) }}</x-td>
+            <x-td><b>{{ number_format($cashflows->where('label', 'INCOME')->sum('amount'), 2) }}</b></x-td>
+            <x-td><b>{{ number_format($cashflows->where('label', 'EXPENSE')->sum('amount'), 2) }}</b></x-td>
         </tr>
     </tbody>
 </table>

@@ -37,9 +37,9 @@
         }
 
         p,
-            {
-            margin-right: 50px;
-            margin-left: 50px;
+        {
+        margin-right: 50px;
+        margin-left: 50px;
         }
 
         table,
@@ -128,12 +128,32 @@
                         number_format($effective_gross_rent, 2) }}</td>
 
                 </tr>
+
+                <tr>
+                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                        Billed Rent (all posted rent)
+                    </td>
+                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                        number_format($billed_rent,
+                        2) }}</td>
+
+                </tr>
                 <tr>
                     <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                         Collected Rent (all paid rent)
                     </td>
                     <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
                         number_format($collected_rent,
+                        2) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                        Actual Revenue Collected (all payments collected)
+                    </td>
+                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{
+                        number_format($actual_revenue_collected,
                         2) }}</td>
 
                 </tr>

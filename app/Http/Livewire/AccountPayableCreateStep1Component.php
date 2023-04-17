@@ -10,6 +10,7 @@ use App\Models\AccountPayableParticular;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use App\Models\Property;
+use App\Models\PropertyBiller;
 
 class AccountPayableCreateStep1Component extends Component
 {
@@ -40,12 +41,14 @@ class AccountPayableCreateStep1Component extends Component
     public $quotation3;
     public $amount;
     public $selected_quotation;
+
+    public $biller;
     
     public function mount($accountpayable)
     {
         $this->request_for = $accountpayable->request_for;
         $this->batch_no = $accountpayable->batch_no;
-        $this->requester_id = auth()->user()->id;
+        $this->requester_id = $accountpayable->requester_id;
         $this->created_at = Carbon::parse($this->created_at)->format('Y-m-d');
         $this->due_date = Carbon::parse($this->due_date)->format('Y-m-d');
         $this->quotation1 = $accountpayable->quotation1;
@@ -69,6 +72,7 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.total' => 'nullable',
             'particulars.*.file' => 'nullable',
             'particulars.*.unit_uuid' => 'nullable',
+            'particulars.*.vendor_id' => 'nullable',
             'quotation1' => 'required | max:102400',
             'quotation2' => 'nullable | max:102400',
             'quotation3' => 'nullable | max:102400',
@@ -159,6 +163,31 @@ class AccountPayableCreateStep1Component extends Component
         session()->flash('success', 'Success!');
     }
 
+    public function storeVendor(){
+        sleep(2);
+
+        $this->validate([
+            'biller' => 'required'
+        ]);
+
+        PropertyBiller::updateOrCreate(
+        [
+             'property_uuid' => $this->property->uuid,
+             'biller' => $this->biller
+        ],
+            
+        [
+            'property_uuid' => $this->property->uuid,
+            'biller' => $this->biller
+        ]);
+        
+       $this->reset(['biller']);
+       
+       $this->dispatchBrowserEvent('close-modal');
+
+        return back()->with('success', 'Success!');
+    }
+
     public function removeParticular($id){
         sleep(1);
         
@@ -183,6 +212,7 @@ class AccountPayableCreateStep1Component extends Component
                 ->where('id', $id)
                 ->update([
                     'unit_uuid' => $particular->unit_uuid,
+                    'vendor_id' => $particular->vendor_id,
                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
                     'price' => $particular->price,
@@ -209,6 +239,7 @@ class AccountPayableCreateStep1Component extends Component
 
         return view('livewire.account-payable-create-step1-component',[
             'units' => Property::find($this->property->uuid)->units,
+            'vendors' => Property::find($this->property->uuid)->billers
         ]);
     }
 }

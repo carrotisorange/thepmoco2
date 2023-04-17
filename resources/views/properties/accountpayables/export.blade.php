@@ -112,7 +112,7 @@
                     <x-td>
                         <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
                         @foreach ($particulars as $particular)
-                        {{ $particular->item }},
+                       {{ substr_replace($particular->item, "...", 8) }},
                         @endforeach
                     </x-td>
 
@@ -140,7 +140,7 @@
 
 
         <p>
-            Exported by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
+            Prepared by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
         </p>
 
 

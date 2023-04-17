@@ -24,7 +24,7 @@ class PropertyFinancialController extends Controller
         $accountpayables = DB::table('account_payables')
         ->select('id',DB::raw('DATE_FORMAT(created_at, "%d-%b-%Y") as date') ,DB::raw('sum(amount) as amount'), DB::raw("'EXPENSE' as label"))
         ->where('property_uuid', Session::get('property'))
-        ->where('status', 'approved')
+        ->where('status', 'released')
         ->groupBy('date')
         ->orderBy('created_at', 'desc')
         ->get();
@@ -55,7 +55,7 @@ class PropertyFinancialController extends Controller
         ->select('id',DB::raw($filter) ,DB::raw('sum(amount) as amount'),
         DB::raw("'EXPENSE' as label"))
         ->where('property_uuid', Session::get('property'))
-        ->where('status', 'approved')
+        ->where('status', 'released')
         ->groupBy('date')
         ->orderBy('created_at', 'desc')
         ->get();
@@ -105,6 +105,12 @@ class PropertyFinancialController extends Controller
 
               'collected_rent' =>
               app('App\Http\Controllers\PropertyFinancialController')->get_total_collected_rent($property),
+
+                'billed_rent' =>
+                app('App\Http\Controllers\PropertyFinancialController')->get_total_billed_rent($property),
+
+                'actual_revenue_collected' =>
+                app('App\Http\Controllers\PropertyFinancialController')->get_actual_revenue_collected($property),
           ];
 
           $pdf = \PDF::loadView('properties.financials.export_financials', $data);
@@ -205,11 +211,16 @@ class PropertyFinancialController extends Controller
     }
 
     public function get_total_collected_rent($property){
-        return Property::find($property->uuid)->acknowledgementreceipts()->whereYear('created_at', Carbon::now()->year)->sum('amount');
+        return Property::find($property->uuid)->bills()->where('is_posted', 1)->wherein('status', ['paid', 'partially_paid'])
+        ->whereYear('created_at', Carbon::now()->year)
+        ->sum('initial_payment');
     }
 
     public function get_total_billed_rent($property){
         return Property::find($property->uuid)->bills()->where('is_posted', 1)->whereYear('created_at', Carbon::now()->year)->sum('bill');
     }
-}
 
+    public function get_actual_revenue_collected($property){
+        return Property::find($property->uuid)->collections()->where('is_posted', 1)->whereYear('updated_at', Carbon::now()->year)->sum('collection');
+    }
+}

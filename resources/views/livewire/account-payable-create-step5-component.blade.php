@@ -178,6 +178,7 @@
                             <tr>
                                 <x-th>#</x-th>
                                 <x-th>UNIT</x-th>
+                                <x-th>VENDOR</x-th>
                                 <x-th>ITEM </x-th>
                                 <x-th>QUANTITY</x-th>
                                 {{-- @if($accountpayable->request_for === 'payment') --}}
@@ -200,6 +201,13 @@
                                         @endif
                                     </x-td>
                                     <x-td>
+                                        @if($particular->vendor_id)
+                                        {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }}
+                                        @else
+                                        NA
+                                        @endif
+                                    </x-td>
+                                    <x-td>
                                         {{ $particular->item }}
                                     </x-td>
                                     <x-td>
@@ -217,17 +225,25 @@
                                 </tr>
                             </div>
                             @endforeach
+                            <tr>
+                                <x-td>Total</x-td>
+                                <x-td></x-td>
+                                <x-td></x-td>
+                                <x-td></x-td>
+                                <x-td></x-td>
+                                <x-td></x-td>
+                                <x-td>{{ number_format($particulars->sum('total'),2) }}</x-td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-
+{{-- 
                 <div class="sm:col-span-6">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
 
                 </div>
 
-                {{-- vendor details --}}
                 <div class="sm:col-span-3">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Name:</label>
                     <input type="text" wire:model="vendor" readonly
@@ -243,7 +259,7 @@
                     @error('delivery_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
 
 
 
