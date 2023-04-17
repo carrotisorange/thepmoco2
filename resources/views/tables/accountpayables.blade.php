@@ -35,30 +35,31 @@
             <x-td>{{$accountpayable->status}}</x-td>
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             <x-td>
+                @can('manager')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
+                    class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                @elsecan('accountpayable')
+                  <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
+                    class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                @elsecan('admin')
+                    @if($accountpayable->status === 'released')
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                        class="text-blue-500 text-decoration-line: underline">View</a>
+                    @else
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
+                        class="text-blue-500 text-decoration-line: underline">Edit</a>
+                    @endif
+                @else
+                    @if($accountpayable->status === 'released')
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                        class="text-blue-500 text-decoration-line: underline">View</a>
+                    @else
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
+                        class="text-blue-500 text-decoration-line: underline">Edit</a>
+                    @endif
+                @endcan
 
-                @if($accountpayable->status === 'released')
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
-                @elseif($accountpayable->status === 'unknown')
 
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                    class="text-blue-500 text-decoration-line: underline">Edit</a>
-
-
-                @elseif($accountpayable->status === 'pending')
-
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                    class="text-blue-500 text-decoration-line: underline">Edit</a>
-
-                @elseif($accountpayable->status === 'approved by manager')
-
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
-                @elseif($accountpayable->status === 'approved by ap')
-
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
-                @endif
 
             </x-td>
             {{-- <x-td>

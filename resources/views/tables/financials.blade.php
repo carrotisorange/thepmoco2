@@ -6,7 +6,7 @@
             <x-th>DESCRIPTION</x-th>
             <x-th>CASHIN FLOW</x-th>
             <x-th>CASHOUT FLOW</x-th>
-           
+            <x-th>REVENUE</x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -25,7 +25,8 @@
                 {{ number_format($cashflow->amount, 2) }}
                 @endif
             </x-td>
-            
+            <x-td></x-td>
+
         </tr>
         @endforeach
     </tbody>
@@ -37,6 +38,12 @@
             <x-td></x-td>
             <x-td><b>{{ number_format($cashflows->where('label', 'INCOME')->sum('amount'), 2) }}</b></x-td>
             <x-td><b>{{ number_format($cashflows->where('label', 'EXPENSE')->sum('amount'), 2) }}</b></x-td>
+            @php
+                $income = $cashflows->where('label', 'INCOME')->sum('amount');
+                $expense = $cashflows->where('label', 'EXPENSE')->sum('amount')
+            @endphp
+
+            <x-td><b>{{ number_format($income-$expense, 2) }}</b></x-td>
         </tr>
     </tbody>
 </table>
