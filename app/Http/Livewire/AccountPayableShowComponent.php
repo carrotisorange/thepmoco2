@@ -44,6 +44,20 @@ class AccountPayableShowComponent extends Component
        
     }
 
+     public function deleteAccountPayable($accountpayableId){
+
+      sleep(1);
+
+      $batch_no = AccountPayable::find($accountpayableId)->batch_no;
+
+      AccountPayable::where('batch_no', $batch_no)->delete();
+
+      AccountPayableParticular::where('batch_no', $batch_no)->delete();
+
+    return redirect('/property/'.$this->property->uuid.'/accountpayable/')->with('success', 'Success!');   
+
+    }
+
     public function render()
     {
         return view('livewire.account-payable-show-component',[
