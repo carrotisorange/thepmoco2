@@ -12,7 +12,7 @@
             <x-th></x-th>
             {{-- <x-th></x-th> --}}
             <x-th></x-th>
-            <x-th></x-th>
+            {{-- <x-th></x-th> --}}
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -74,7 +74,7 @@
                 @endif
             </x-td> --}}
 
-            <x-td>
+            {{-- <x-td>
                 @if($accountpayable->requester_id === auth()->user()->id || $accountpayable->status!='released')
                 <a href="#/" wire:click="deleteAccountPayable({{ $accountpayable->id }})" wire:loading.remove
                     class="text-red-500 text-decoration-line: underline">Delete</a>
@@ -82,12 +82,12 @@
 
                 <a href="#/" wire:loading wire:target="deleteAccountPayable({{ $accountpayable->id }})"
                     class="text-red-500 text-decoration-line: underline">Loading...</a>
-            </x-td>
+            </x-td> --}}
 
         </tr>
         @endforeach
         <tr>
-            <x-td>Total</x-td>
+            <x-td><b>Total</b></x-td>
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
@@ -95,7 +95,7 @@
 
             <x-th></x-th>
             <x-th></x-th>
-            <x-td>{{ number_format($accountpayables->sum('amount'), 2) }}</x-td>
+            <x-td><b>{{ number_format($accountpayables->sum('amount'), 2) }}</b></x-td>
             <x-th></x-th>
             <x-th></x-th>
 

@@ -6,6 +6,7 @@
             <x-th>DESCRIPTION</x-th>
             <x-th>CASHIN FLOW</x-th>
             <x-th>CASHOUT FLOW</x-th>
+           
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -24,6 +25,7 @@
                 {{ number_format($cashflow->amount, 2) }}
                 @endif
             </x-td>
+            
         </tr>
         @endforeach
     </tbody>
