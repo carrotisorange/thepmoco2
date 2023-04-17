@@ -36,11 +36,21 @@
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             <x-td>
                 @can('manager')
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
-                    class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                    @if($accountpayable->status === 'released')
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                        class="text-blue-500 text-decoration-line: underline">View</a>
+                    @else
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
+                        class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                    @endif
                 @elsecan('accountpayable')
-                  <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
-                    class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                    @if($accountpayable->status === 'released')
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                        class="text-blue-500 text-decoration-line: underline">View</a>
+                    @else
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
+                        class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                    @endif
                 @elsecan('admin')
                     @if($accountpayable->status === 'released')
                     <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
