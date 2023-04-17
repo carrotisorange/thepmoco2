@@ -181,11 +181,7 @@ class AccountPayableCreateStep1Component extends Component
             'biller' => $this->biller
         ]);
         
-       $this->reset(['biller']);
-       
-       $this->dispatchBrowserEvent('close-modal');
-
-        return back()->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
     }
 
     public function removeParticular($id){
@@ -200,7 +196,11 @@ class AccountPayableCreateStep1Component extends Component
 
         sleep(1);
 
-        AccountPayableParticular::where('batch_no', $this->batch_no)->orWhere('item', '')->delete();
+       $batch_no = AccountPayable::find($this->accountpayable->id)->batch_no;
+
+        AccountPayable::where('batch_no', $batch_no)->delete();
+
+        AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable')->with('success','Success!');
     }
@@ -233,13 +233,27 @@ class AccountPayableCreateStep1Component extends Component
         $this->$quotation = '';
     }
 
+    public function deleteAccountPayable($accountpayableId){
+
+      sleep(1);
+
+      $batch_no = AccountPayable::find($accountpayableId)->batch_no;
+
+      AccountPayable::where('batch_no', $batch_no)->delete();
+
+      AccountPayableParticular::where('batch_no', $batch_no)->delete();
+
+    return redirect('/property/'.$this->property->uuid.'/accountpayable/')->with('success', 'Success!');   
+
+    }
+
     public function render()
     {
         $this->particulars = $this->get_particulars();
 
         return view('livewire.account-payable-create-step1-component',[
             'units' => Property::find($this->property->uuid)->units,
-            'vendors' => Property::find($this->property->uuid)->billers
+            'vendors' => Property::find($this->property->uuid)->billers,
         ]);
     }
 }

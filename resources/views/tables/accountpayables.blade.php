@@ -10,9 +10,8 @@
             <x-th>STATUS</x-th>
             <x-th>AMOUNT</x-th>
             <x-th></x-th>
-            {{-- <x-th></x-th> --}}
             <x-th></x-th>
-            {{-- <x-th></x-th> --}}
+            <x-th></x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -29,48 +28,51 @@
                 {{ $particular->item }},
                 @endforeach
             </x-td>
-
-
-
             <x-td>{{$accountpayable->status}}</x-td>
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             <x-td>
                 @can('manager')
-                    @if($accountpayable->status === 'released')
-                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                        class="text-blue-500 text-decoration-line: underline">View</a>
-                    @else
-                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
-                        class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
-                    @endif
-                @elsecan('accountpayable')
-                    @if($accountpayable->status === 'released')
-                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                        class="text-blue-500 text-decoration-line: underline">View</a>
-                    @else
-                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
-                        class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
-                    @endif
-                @elsecan('admin')
-                    @if($accountpayable->status === 'released')
-                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                        class="text-blue-500 text-decoration-line: underline">View</a>
-                    @else
-                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                        class="text-blue-500 text-decoration-line: underline">Edit</a>
-                    @endif
+                @if($accountpayable->status === 'released')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                    class="text-blue-500 text-decoration-line: underline">View</a>
                 @else
-                    @if($accountpayable->status === 'released')
-                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                        class="text-blue-500 text-decoration-line: underline">View</a>
-                    @else
-                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                        class="text-blue-500 text-decoration-line: underline">Edit</a>
-                    @endif
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
+                    class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                @endif
+                @elsecan('accountpayable')
+                @if($accountpayable->status === 'released')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                    class="text-blue-500 text-decoration-line: underline">View</a>
+                @elseif($accountpayable->status === 'approved by ap')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
+                    class="text-blue-500 text-decoration-line: underline">Uppload Payment   </a>
+                @else
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
+                    class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                @endif
+                @elsecan('admin')
+                @if($accountpayable->status === 'released')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                    class="text-blue-500 text-decoration-line: underline">View</a>
+                @else
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
+                    class="text-blue-500 text-decoration-line: underline">Edit</a>
+                @endif
+                @else
+                @if($accountpayable->status === 'released')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                    class="text-blue-500 text-decoration-line: underline">View</a>
+                @else
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
+                    class="text-blue-500 text-decoration-line: underline">Edit</a>
+                @endif
                 @endcan
-
-
-
+            </x-td>
+            <x-td>
+                @if($accountpayable->status === 'released')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation"
+                    class="text-blue-500 text-decoration-line: underline">Liquidation</a>
+                @endif
             </x-td>
             {{-- <x-td>
                 @if($accountpayable->status!='released')
@@ -94,7 +96,6 @@
                 <a href="#/" wire:loading wire:target="deleteAccountPayable({{ $accountpayable->id }})"
                     class="text-red-500 text-decoration-line: underline">Loading...</a>
             </x-td> --}}
-
         </tr>
         @endforeach
         <tr>
@@ -103,13 +104,11 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
-
             <x-th></x-th>
             <x-th></x-th>
             <x-td><b>{{ number_format($accountpayables->sum('amount'), 2) }}</b></x-td>
             <x-th></x-th>
             <x-th></x-th>
-
         </tr>
     </tbody>
 </table>
