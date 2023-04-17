@@ -49,6 +49,10 @@ class Property extends Model
         return $this->hasMany(Unit::class);
     }
 
+    public function billers(){
+        return $this->hasMany(PropertyBiller::class);
+    }
+
 
 
      public function points()

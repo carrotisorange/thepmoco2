@@ -131,6 +131,7 @@
                         <tr>
                             <th>#</th>
                             <th>UNIT</th>
+                            <th>VENDOR</th>
                             <th>ITEM </th>
                             <th>QUANTITY</th>
 
@@ -148,9 +149,18 @@
                                 {{ App\Models\Unit::find($particular->unit_uuid)->unit }}
                                 @else
                                 NA
-                                @endif</td>
+                                @endif
+                            </td>
                             <td>
-                                {{ $particular->item }}
+                                @if($particular->vendor_id)
+                                {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }}
+                                @else
+                                NA
+                                @endif
+                            </td>
+                    
+                            <td>
+                                {{ substr_replace($particular->item, "...", 10) }}
                             </td>
                             <td>
                                 {{ $particular->quantity }}
@@ -168,18 +178,13 @@
                         <tr>
                             <td>Total</td>
                             <td></td>
+                            <td> </td>
+                         
+                            <td></td>
+                            <td> </td>
+                            <td></td>
                             <td>
-                                
-                            </td>
-                            <td>
-                            
-                            </td>
-
-                            <td>
-                               
-                            </td>
-                            <td>
-                               {{ number_format($particulars->sum('total'), 2) }}
+                                {{ number_format($particulars->sum('total'), 2) }}
                             </td>
                         </tr>
 

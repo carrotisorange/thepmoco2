@@ -3,8 +3,8 @@
     <style>
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+            -webkit-appearance: none;
+            margin: 0;
         }
     </style>
     @endsection
@@ -64,7 +64,7 @@
                     <label for="requester" class="block text-sm font-medium text-gray-700">Requester's Name</label>
                     <select id="requester_id" wire:model="requester_id"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                        <option value="{{ $requester_id }}">{{ auth()->user()->name }}</option>
+                        <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
                     </select>
                     @error('requester_id')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -78,7 +78,12 @@
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         Add new particular
                     </button>
-                    <button type="button" wire:loading disabled wire:target="addNewParticular" disabled
+
+                    <button type="button" data-modal-toggle="instructions-create-vendor-modal" wire:loading.remove
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        Add new vendor
+                    </button>
+                    <button type="button" wire:loading disabled
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         Loading...
                     </button>
@@ -98,6 +103,7 @@
                                     <tr>
                                         <x-th>#</x-th>
                                         <x-th>UNIT</x-th>
+                                        <x-th>VENDOR</x-th>
                                         <x-th>ITEM </x-th>
                                         <x-th>QUANTITY</x-th>
                                         {{-- @if($request_for === 'payment') --}}
@@ -132,8 +138,24 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <input type="text"
-                                                    wire:model="particulars.{{ $index }}.item"
+                                                <select wire:model="particulars.{{ $index }}.vendor_id"
+                                                    wire:change="updateParticular({{ $particular->id }})"
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                    <option value="" selected>Select a unit</option>
+                                                    @foreach ($vendors as $vendor)
+                                                    <option value="{{ $vendor->id }}" {{ 'particulars'
+                                                        .$index.'vendor_id'===$vendor->id? 'selected' : '' }}>{{
+                                                        $vendor->biller }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+
+                                                @error('particulars.{{ $index }}.unit_uuid')
+                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                @enderror
+                                            </x-td>
+                                            <x-td>
+                                                <input type="text" wire:model="particulars.{{ $index }}.item"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.item')
@@ -141,8 +163,7 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <input type="number"
-                                                    wire:model="particulars.{{ $index }}.quantity"
+                                                <input type="number" wire:model="particulars.{{ $index }}.quantity"
                                                     wire:keyup="updateParticular({{ $particular->id }})"
                                                     class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.quantity')
@@ -167,12 +188,13 @@
                                             </x-td>
                                             <x-td>
                                                 {{-- <button type="button"
-                                                    wire:click="updateParticular({{ $particular->id }})" wire:loading.remove
-                                                    wire:target="updateParticular" 
+                                                    wire:click="updateParticular({{ $particular->id }})"
+                                                    wire:loading.remove wire:target="updateParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Save
                                                 </button>
-                                                <button type="button" wire:loading disabled wire:target="updateParticular" 
+                                                <button type="button" wire:loading disabled
+                                                    wire:target="updateParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Loading...
                                                 </button> --}}
@@ -186,7 +208,8 @@
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Remove
                                                 </button>
-                                               <button type="button" wire:loading disabled wire:target="removeParticular" wire:target="removeParticular"
+                                                <button type="button" wire:loading disabled
+                                                    wire:target="removeParticular" wire:target="removeParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Loading...
                                                 </button>
@@ -441,7 +464,9 @@
                 </div>
 
             </div>
+            @include('modals.instructions.create-vendor-modal')
         </form>
-        {{-- end-step-1-form --}}
+       
     </div>
+
 </div>
