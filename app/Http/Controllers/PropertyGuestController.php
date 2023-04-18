@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Property;
 use App\Models\Guest;
 use App\Models\Unit;
@@ -115,10 +116,10 @@ class PropertyGuestController extends Controller
 
         if(!$request->proof_of_payment == null)
         {
-        AcknowledgementReceipt::where('id', $ar_id)
-        ->update([
-        'proof_of_payment' => $request->roof_of_payment->store('proof_of_payments')
-        ]);
+            AcknowledgementReceipt::where('id', $ar_id)
+            ->update([
+            'proof_of_payment' => $request->proof_of_payment->store('proof_of_payments')
+            ]);
         }
 
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
@@ -162,6 +163,13 @@ class PropertyGuestController extends Controller
       ->where('is_posted', false)
       ->max('id');
       }
+
+    public function view_attachment(Property $property, Guest $guest, AcknowledgementReceipt $ar)
+   {
+      $attachment = $ar->attachment;
+
+      return Storage::download(($attachment), 'AR_'.$ar->ar_no.'_'.$ar->guest->guest.'.png');
+   }
 
       
     public function get_bill_balance($bill_id)

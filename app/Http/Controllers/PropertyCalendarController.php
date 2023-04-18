@@ -22,7 +22,7 @@ class PropertyCalendarController extends Controller
                 
         $events = array();
 
-        $bookings = Property::find($property->uuid)->guests;
+        $bookings = Property::find($property->uuid)->guests->where('status', '!=', 'cancelled');
 
         foreach($bookings as $booking){
             $events[] = [
