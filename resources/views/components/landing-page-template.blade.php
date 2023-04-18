@@ -49,7 +49,7 @@
     <meta property="og:type"               content="website">
     <meta property="og:title"              content="The Property Manager Online">
     <meta property="og:description"        content="Increase transparency, and efficiency in rental property operations with a simple and easy to use system for leasing and property management.">
-    <meta property="og:image"              content="https://thepropertymanager.online/brands/favicon.ico">
+    <meta property="og:image"              content="https://thepropertymanager.online/brands/full-logo.png">
 
     
 
