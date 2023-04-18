@@ -51,30 +51,7 @@
     <meta property="og:description"        content="Increase transparency, and efficiency in rental property operations with a simple and easy to use system for leasing and property management.">
     <meta property="og:image"              content="https://thepropertymanager.online/brands/favicon.ico">
 
-    <script type="application/ld+json">
-  {
-  "@context": "https://schema.org", 
-  "@type": "Saas Business",             
-  "name": "The PMO Co",            
-  "image": "https://thepropertymanager.online/brands/landing/pmo-logo.webp",          
-  "@id": "https://thepropertymanager.online/", 
-  "url": "https://thepropertymanager.online/",
-  "telephone": "(+63) 916 779 9750",                
-   "email": "sales@thepmo.co",	
-  "address": {
-    "@type": "PostalAddress",          
-    "streetAddress": "39 Engineers Hill", 
-    "addressLocality": "Baguio City",
-    "postalCode": "2600",
-    "addressCountry": "Philippines"
-  }
-  "sameAs" : [
-    "https://www.facebook.com/onlinepropertymanager",
-    "https://www.linkedin.com/company/the-pmo-co/",
-  ]
-
-
-</script>
+    
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
