@@ -204,21 +204,21 @@
                                                 class="block text-xs font-medium text-gray-900">Status</label>
                                             <select wire:model.debounce.500ms="status"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                                                <option value="pending" {{ old('status', $status)=='pending' ? 'selected'
+                                                <option value="checked-in" {{ old('status', $status)=='checked-in' ? 'selected'
                                                     : 'Select one' }}>
-                                                    pending
+                                                    checked-in
                                                 </option>
-                                                <option value="active" {{ old('status', $status)=='active' ? 'selected'
+                                                <option value="checked-out" {{ old('status', $status)=='checked-out' ? 'selected'
                                                     : 'Select one' }}>
-                                                    active
+                                                    checked-out
                                                 </option>
                                                 <option value="cancelled" {{ old('status', $status)=='cancelled'
                                                     ? 'selected' : 'Select one' }}>
                                                     cancelled
                                                 </option>
-                                                <option value="inactive" {{ old('status', $status)=='inactive'
+                                                <option value="reserved" {{ old('status', $status)=='reserved'
                                                     ? 'selected' : 'Select one' }}>
-                                                    inactive
+                                                    reserved
                                                 </option>
                                             </select>
                                             @error('status')

@@ -6,14 +6,14 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($search || $status || $particular || $posted_dates || $bill_type)
-                <button wire:click="clearFilters()"
+                <button wire:click="clearFilters()" wire.loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     type="button"><i class="fa-solid fa-delete-left"></i> &nbsp; Clear Filters
                 </button>
                 @endif
                 &nbsp;
                 <div class="group inline-block">
-                    <button
+                    <button wire.loading.remove
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i> &nbsp New
                             bill</span>
@@ -42,7 +42,7 @@
 
                 </div>
 
-                <button wire:click="viewDelinquents"
+                <button wire:click="viewDelinquents" wire.loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     type="button">
                     @if($filter_bill_to === 'delinquent')
@@ -53,12 +53,12 @@
                 </button>
 
                 @if($view === 'listView')
-                <button wire:click="changeView('agingSummaryView')"
+                <button wire:click="changeView('agingSummaryView')" wire.loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     type="button"><i class="fa-solid fa-image"></i> &nbsp; View Aging Summary
                 </button>
                 @else
-                <button wire:click="changeView('listView')"
+                <button wire:click="changeView('listView')" wire.loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     type="button"><i class="fa-solid fa-list"></i> &nbsp; View List
                 </button>
@@ -69,10 +69,10 @@
                     type="button">Export
                 </button>
 
-                <button wire:target="exportBills" wire:loading disabled
+                --}} <button wire:loading disabled
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                     type="button">Loading...
-                </button> --}}
+                </button>
 
             </div>
 
@@ -106,7 +106,7 @@
                     <div class="sm:col-span-1">
                         <select id="bill_type" wire:model="bill_type"
                             class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter bill type</option>
+                            <option value="">Filter bill to</option>
                             <option value="guest_uuid">Guest</option>
                             <option value="owner_uuid">Owner</option>
                             <option value="tenant_uuid">Tenant</option>
@@ -147,18 +147,27 @@
                         </select>
 
                     </div>
+                    <div class="sm:col-span-1">
+
+                        {{-- @if($selectedBills)
+                        @can('is_account_receivable_delete_allowed')
+                        <button type="button" wire:loading.remove wire:click="removeBills"
+                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Remove
+                            bills ({{ count($selectedBills) }})
+                        </button>
+                        @endif
+                        @endif --}}
+                    </div>
 
                 </div>
 
-                <div class="mt-5">
+                {{-- <div class="mt-5">
                     <div class="flex flex-row">
                         <div class="basis-3/4">
                         </div>
                         <div class="basis-1/4 ml-12 text-right">
-                            {{-- <button type="button" wire:loading disabled
-                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Loading...
-                            </button> --}}
+
                             @if($selectedBills)
                             @can('is_account_receivable_delete_allowed')
                             <button type="button" wire:loading.remove wire:click="removeBills"
@@ -171,7 +180,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 {{-- <div class="mt-3">
                     {{ $bills->links() }}
                 </div> --}}
@@ -202,7 +211,8 @@
                                 <div class="group inline-block">
                                     <button
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                        <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i> &nbsp
+                                        <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i>
+                                            &nbsp
                                             New bill</span>
                                         <span>
                                             <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180

@@ -18,7 +18,7 @@ class Guest extends Model
     protected $primaryKey = 'uuid';
     
     protected $attributes = [
-        'status' => 'pending'
+        'status' => 'reserved'
     ];
 
     public function searchableAs()

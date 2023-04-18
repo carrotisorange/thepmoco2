@@ -45,7 +45,13 @@ class PropertyBillController extends Controller
         Bill::where('unit_uuid', $unit_uuid)->delete();
     }
 
-    public function export(Property $property, $status=null, $particular=null, $date=null){
-        ddd($date);
+    public function confirm_bill_deletion(Property $property, $batch_no, $bills_count){
+        $bills = Bill::where('property_uuid', $property->uuid)->where('batch_no', $batch_no)->get();
+
+        return view('properties.bills.confirm-deletion', [
+            'bills' => $bills,
+            'view' => 'listView',
+            'isPaymentAllowed' => false,
+        ]);
     }
 }

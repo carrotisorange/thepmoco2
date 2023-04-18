@@ -6,12 +6,12 @@
             @endif
             <x-th>REFERENCE #</x-th>
             <x-th>DATE POSTED</x-th>
-            <x-th>NAME</x-th>
+            <x-th>BILL TO</x-th>
             <x-th>UNIT</x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>PARTICULAR</x-th>
             <x-th>AMOUNT DUE</x-th>
-            <x-th>AMOUNT PAID</x-th>
+            <x-th>INITIAL PAYMENT</x-th>
             <x-th>BALANCE </x-th>
         </tr>
     </thead>
@@ -29,19 +29,19 @@
             <x-td>{{ $item->unit->unit.'-'.$item->bill_no}}</x-td>
 
             <x-td>
-                {{ Carbon\Carbon::parse($item->created_at)->format('M d, y') }}
+                {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
             </x-td>
             <x-td>
                 @if($item->tenant_uuid)
-                <a class="text-blue-500 text-decoration-line: underline" target="_blank"
+                <a title="tenant" class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">{{
                     $item->tenant->tenant}}</a> (T)
                 @elseif($item->owner_uuid)
-                <a class="text-blue-500 text-decoration-line: underline"
+                <a title="owner" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}">{{
                     $item->owner->owner}}</a> (O)
                 @elseif($item->guest_uuid)
-                <a class="text-blue-500 text-decoration-line: underline"
+                <a title="guest" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}">{{
                     $item->guest->guest}}</a> (G)
                 @else
@@ -55,8 +55,7 @@
                 </a>
             </x-td>
             <x-td>
-                {{ Carbon\Carbon::parse($item->start)->format('M d,
-                y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}
+                {{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}
             </x-td>
             <x-td>
                 {{ $item->particular->particular}}
@@ -100,23 +99,18 @@
     @endif
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
-            <x-td>Total</x-td>
+            <x-td><b>Total</b></x-td>
             @if($isPaymentAllowed)
             <x-td></x-td>
             @endif
             <x-td></x-td>
             <x-td> </x-td>
-
-
             <x-td></x-td>
             <x-td></x-td>
             <x-td> </x-td>
-            <x-td>{{
-                number_format($bills->sum('bill'), 2) }} </x-td>
-            <x-td>{{
-                number_format($bills->sum('initial_payment'), 2) }} </x-td>
-            <x-td>{{
-                number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }} </x-td>
+            <x-td><b>{{ number_format($bills->sum('bill'), 2) }}</b> </x-td>
+            <x-td><b>{{ number_format($bills->sum('initial_payment'), 2) }}</b> </x-td>
+            <x-td><b>{{ number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}</b> </x-td>
         </tr>
     </tbody>
 </table>
