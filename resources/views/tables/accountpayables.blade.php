@@ -50,7 +50,7 @@
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
                     class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
                 @endif
-                @elsecan('admin')
+                @elsecan('ancillary')
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">View</a>

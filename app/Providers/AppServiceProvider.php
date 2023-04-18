@@ -38,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
             auth()->user()->role_id === 5 );
         });
 
+         Gate::define('ancillary', function(User $user){
+            return auth()->user()->role_id === 14 || auth()->user()->role_id === 5;
+        });
+
         Gate::define('billing', function(User $user){
             return (auth()->user()->role_id === 2 || 
             auth()->user()->role_id === 5 );

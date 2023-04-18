@@ -208,8 +208,6 @@ class AccountPayableController extends Controller
     }
     public function store_step_1($property_uuid, $request_for, $created_at, $due_date, $requester_id, $batch_no, $amount){
 
-        return 'asd';
-
     $this->authorize('is_account_payable_create_allowed');
            
     return AccountPayable::updateOrCreate(
