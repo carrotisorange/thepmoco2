@@ -11,7 +11,7 @@ class GuestIndexComponent extends Component
 {
     use WithPagination;
 
-    public $uuid;
+    public $guest;
 
     public $status;
 
@@ -26,7 +26,7 @@ class GuestIndexComponent extends Component
     {
         return view('livewire.guest-index-component', [
         'guests' => Guest::where('property_uuid', Session::get('property'))
-         ->where('uuid','like', '%'.$this->uuid.'%')
+         ->where('guest','like', '%'.$this->guest.'%')
          ->when($this->status, function($query){
          $query->where('status',$this->status);
          })

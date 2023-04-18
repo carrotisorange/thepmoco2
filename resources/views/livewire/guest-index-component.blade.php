@@ -7,6 +7,10 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/calendar'"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                   <i class="fa-solid fa-calendar-days"></i> &nbsp; View Guests in Calendar
+                </button>
+                <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/calendar'"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     <i class="fa-solid fa-plus"></i> &nbsp New guest
                 </button>
 
@@ -14,12 +18,10 @@
         </div>
 
         <div class="mt-3">
-
-
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div class="sm:col-span-3">
 
-                    <label for="uuid"
+                    <label for="guest"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                     <div class="relative w-full mb-5">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -29,9 +31,9 @@
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </div>
-                        <input type="search" id="uuid" wire:model="uuid"
+                        <input type="search" id="guest" wire:model="guest"
                             class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search for confirmation no" required>
+                            placeholder="Search for guest name" required>
 
                     </div>
 

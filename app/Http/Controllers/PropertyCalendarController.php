@@ -19,6 +19,8 @@ class PropertyCalendarController extends Controller
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         app('App\Http\Controllers\PropertyController')->save_unit_stats($property->uuid);
+
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
                 
         $events = array();
 

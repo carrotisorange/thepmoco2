@@ -14,6 +14,8 @@ class PropertyFinancialController extends Controller
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',20);
 
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
         $collections = DB::table('acknowledgement_receipts')
         ->select('id',DB::raw('DATE_FORMAT(created_at, "%d-%b-%Y") as date') ,DB::raw('sum(amount) as amount'), DB::raw("'INCOME' as label"))
         ->where('property_uuid', Session::get('property'))

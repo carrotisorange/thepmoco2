@@ -11,10 +11,12 @@ use App\Models\Particular;
 class PropertyBillController extends Controller
 {
     public function index(Property $property, $batch_no=null, $drafts=0){
-
-        $this->authorize('is_account_receivable_read_allowed');
                 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
+
+        $this->authorize('is_account_receivable_read_allowed');
+        
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
         return view('properties.bills.index',[
             'active_contracts' => Contract::where('property_uuid', $property->uuid)->where('status', 'active')->get(),

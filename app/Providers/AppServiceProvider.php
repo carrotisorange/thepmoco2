@@ -32,10 +32,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Gate::define('admin', function(User $user){
-            return (auth()->user()->role_id === 1) || 
-            (auth()->user()->username === 'pamelatecson' ||
-            (auth()->user()->username === 'nc_manager') || 
-            auth()->user()->role_id === 5 );
+            return (auth()->user()->role_id === 1) || auth()->user()->role_id === 5;
         });
 
          Gate::define('ancillary', function(User $user){
@@ -43,23 +40,19 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('billing', function(User $user){
-            return (auth()->user()->role_id === 2 || 
-            auth()->user()->role_id === 5 );
+            return (auth()->user()->role_id === 2 || auth()->user()->role_id === 5 );
         });
 
         Gate::define('treasury', function(User $user){
-            return (auth()->user()->role_id === 3 || 
-            auth()->user()->role_id === 5 );
+            return (auth()->user()->role_id === 3 || auth()->user()->role_id === 5 );
         });
 
         Gate::define('accountpayable', function(User $user){
-            return (auth()->user()->role_id === 4 || 
-            auth()->user()->role_id === 5 );
+            return (auth()->user()->role_id === 4 || auth()->user()->role_id === 5 );
         });
 
         Gate::define('accountowner', function(User $user){
-            return (auth()->user()->role_id === 5) || 
-            (auth()->user()->username === 'pamelatecson');
+            return (auth()->user()->role_id === 5);
         });
 
         Gate::define('unitowner', function(User $user){
@@ -71,24 +64,16 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('manager', function(User $user){
-            return (auth()->user()->role_id === 9) || 
-            (auth()->user()->username === 'landley' || 
-            (auth()->user()->username === 'nc_admin')||
-            auth()->user()->role_id === 5 );
+            return auth()->user()->role_id === 9;
         });
 
         Gate::define('managerandadmin', function(User $user){
-            return (auth()->user()->role_id === 1) || 
-            (auth()->user()->role_id === 9) || 
-            (auth()->user()->username === 'landley' ||
-             auth()->user()->role_id ===  5);
+            return auth()->user()->role_id === 1 || auth()->user()->role_id === 9 || auth()->user()->role_id ===  5;
         });
 
-          Gate::define('accountownerandmanager', function(User $user){
-          return (auth()->user()->role_id === 5) || 
-          (auth()->user()->role_id === 9) || 
-          (auth()->user()->username === 'landley' );
-          });
+        Gate::define('accountownerandmanager', function(User $user){
+          return auth()->user()->role_id === 5 || auth()->user()->role_id === 9;
+        });
 
         Gate::define('dev', function(User $user){
             return (auth()->user()->role_id == '10');
