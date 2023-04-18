@@ -28,14 +28,15 @@
 
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                               transition duration-150 ease-in-out origin-top min-w-32">
-
-
                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                             <button type="button" data-modal-toggle="instructions-create-bill-modal">
                                 Tenant
                             </button>
-
-
+                        </li>
+                        <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
+                            <button type="button" data-modal-toggle="instructions-create-bill-modal">
+                                Owner
+                            </button>
                         </li>
                     </ul>
 
