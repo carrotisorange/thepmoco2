@@ -20,6 +20,10 @@ class AcknowledgementReceipt extends Model
         return $this->belongsTo(Tenant::class, 'tenant_uuid');
     }
 
+    public function guest(){
+        return $this->belongsTo(Guest::class, 'guest_uuid');
+    }
+
     public function owner()
     {
         return $this->belongsTo(Owner::class, 'owner_uuid');

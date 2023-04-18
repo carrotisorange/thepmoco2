@@ -69,10 +69,10 @@
                 @endcan
             </x-td>
             <x-td>
-                {{-- @if($accountpayable->status === 'released')
+                @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation"
                     class="text-blue-500 text-decoration-line: underline">Liquidation</a>
-                @endif --}}
+                @endif
             </x-td>
             {{-- <x-td>
                 @if($accountpayable->status!='released')

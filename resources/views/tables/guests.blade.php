@@ -33,9 +33,11 @@
             <x-td>{{ number_format($item->price, 2) }} ({{ $days }} night/s)</x-td>
             <x-td>{{ $item->status }}</x-td>
             <x-td>
-                {{Carbon\Carbon::parse($item->movein_at)->format('M d, Y')}}</x-td>
-            <x-td>{{Carbon\Carbon::parse($item->moveout_at)->format('M
-                d, Y')}}</x-td>
+                {{Carbon\Carbon::parse($item->movein_at)->format('M d, Y')}} @ {{ Carbon\Carbon::parse($item->arrival_time)->format('H:i:s') }}
+            </x-td>
+            <x-td>
+                {{Carbon\Carbon::parse($item->moveout_at)->format('M d, Y')}} @ {{ Carbon\Carbon::parse($item->departure_time)->format('H:i:s') }}
+            </x-td>
             {{-- <x-td>{{ $item->vehicle_details }}</x-td>
             <x-td>{{ $item->plate_number }}</x-td> --}}
             {{-- <x-td>

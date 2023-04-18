@@ -13,6 +13,8 @@ class GuestIndexComponent extends Component
 
     public $uuid;
 
+    public $status;
+
     public function redirectToUnitSelectionPage(){
 
         sleep(2);
@@ -24,7 +26,10 @@ class GuestIndexComponent extends Component
     {
         return view('livewire.guest-index-component', [
         'guests' => Guest::where('property_uuid', Session::get('property'))
-        ->where('uuid','like', '%'.$this->uuid.'%')
+         ->where('uuid','like', '%'.$this->uuid.'%')
+         ->when($this->status, function($query){
+         $query->where('status',$this->status);
+         })
         ->paginate(10)
     ]);
     }

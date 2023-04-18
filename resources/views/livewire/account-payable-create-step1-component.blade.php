@@ -127,8 +127,8 @@
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($units as $unit)
                                                     <option value="{{ $unit->uuid }}" {{ 'particulars'
-                                                        .$index.'unit_uuid'===$unit->uuid? 'selected' : '' }}>{{
-                                                        $unit->unit }}
+                                                        .$index.'unit_uuid'===$unit->uuid? 'selected' : '' }}>
+                                                        {{ $unit->building->building .'-'.$unit->unit }}
                                                     </option>
                                                     @endforeach
                                                 </select>

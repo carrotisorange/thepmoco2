@@ -110,6 +110,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{guest:uuid}/bills/{batch_no}/pay', [PropertyGuestController::class, 'store_collections']);
         Route::patch('{guest:uuid}/bills/{batch_no}/pay/update', [PropertyGuestController::class, 'update_collections']);
         Route::get('{guest:uuid}/ar/{ar}/view', [PropertyGuestController::class, 'show_collections']);
+        Route::get('{guest:uuid}/ar/{ar}/attachment', [PropertyGuestController::class, 'view_attachment']);
         Route::get('{guest:uuid}/export', [PropertyGuestController::class, 'export']);
         Route::get('{guest:uuid}/bill/export', [PropertyGuestController::class, 'export_bill']);
     });

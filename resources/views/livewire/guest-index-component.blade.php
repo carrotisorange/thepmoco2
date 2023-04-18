@@ -14,10 +14,10 @@
         </div>
 
         <div class="mt-3">
-           
+
 
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                <div class="sm:col-span-6">
+                <div class="sm:col-span-3">
 
                     <label for="uuid"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -37,8 +37,21 @@
 
                 </div>
 
+                <div class="sm:col-span-3">
+                    <select id="status" wire:model="status"
+                        class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <option value="">Filter status</option>
+                        <option value="active">Active</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="pending">Pending</option>
+                        <option value="inactive">Inactive</option>
+
+                    </select>
+
+                </div>
+
             </div>
-     
+
             {{ $guests->links() }}
         </div>
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -57,7 +70,8 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No guests</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new guest</p>
                             <div class="mt-6">
-                                <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/calendar'"
+                                <button type="button"
+                                    onclick="window.location.href='/property/{{ Session::get('property') }}/calendar'"
                                     class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                     <!-- Heroicon name: mini/plus -->
                                     <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
