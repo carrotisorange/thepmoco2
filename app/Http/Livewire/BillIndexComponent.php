@@ -14,6 +14,7 @@ use App\Models\Contract;
 use App\Models\Tenant;
 use App\Models\Particular;
 use App\Models\PropertyParticular;
+use Illuminate\Support\Str;
 
 class BillIndexComponent extends Component
 {
@@ -83,22 +84,31 @@ class BillIndexComponent extends Component
    }
 
    public function removeBills()
-     {
+   {
       sleep(2);
+
+      $random_str = Str::random(8);
        
-        if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
-        {
-            $this->selectedBills = [];
+      // if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
+      // {
+      //    $this->selectedBills = [];
 
-            return back()->with('error', 'Bill cannnot be deleted.');
-        }
+      //    return back()->with('error', 'Bill cannot be deleted.');
+      // }
 
-        Bill::destroy($this->selectedBills);
+      $bills = Bill::whereIn('id', $this->selectedBills)->get();
 
-        $this->selectedBills = [];
+      Bill::where('property_uuid', $this->property->uuid)->whereIn('id', $this->selectedBills)
+      ->update([
+         'batch_no' => $random_str
+      ]);
 
-        return back()->with('success', 'Success!');
-     }
+      //Bill::destroy($this->selectedBills);
+
+      // return back()->with('success', 'Success!');
+
+      return redirect('/property/'.$this->property->uuid.'/bill/'.$random_str.'/delete/'.$bills->count());
+   }
 
    public function clearFilters()
    {

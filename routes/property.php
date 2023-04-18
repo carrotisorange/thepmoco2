@@ -344,6 +344,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{batch_no?}/{drafts?}', [PropertyBillController::class, 'index'])->name('bill');
         Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [PropertyBillController::class, 'export']);
         Route::get('customized/{batch_no}/edit',[PropertyBillController::class,'edit'])->name('bill');
+        Route::get('{random_str}/delete/{count}', [PropertyBillController::class, 'confirm_bill_deletion'])->name('bill');
 
         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
       

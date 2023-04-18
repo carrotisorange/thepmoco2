@@ -140,8 +140,7 @@
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="is_the_unit_for_rent_to_tenant" class="block text-xs font-medium text-gray-900">Is the
-                    unit for rent to
-                    tenant? </label>
+                    unit for rent? </label>
                 <select wire:model="is_the_unit_for_rent_to_tenant"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     <option value="1" {{ old('is_the_unit_for_rent_to_tenant', $is_the_unit_for_rent_to_tenant)==1
@@ -181,8 +180,6 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-
         <div class="sm:col-span-6">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
