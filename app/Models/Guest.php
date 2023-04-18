@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Guest extends Model
 {
+    use Searchable;
+
     use HasFactory, SoftDeletes;
 
     public $incrementing = false;
@@ -17,6 +20,11 @@ class Guest extends Model
     protected $attributes = [
         'status' => 'pending'
     ];
+
+    public function searchableAs()
+    {
+        return 'guest';
+    }
 
     public function unit(){
         return $this->belongsTo(Unit::class, 'unit_uuid');
@@ -32,12 +40,6 @@ class Guest extends Model
 
     public function collections(){
         return $this->hasMany(Collection::class);
-    }
-
-    public static function search($search)
-    {
-        return empty($search)? static::query()
-      : static::where('guest','like', '%'.$search.'%');
     }
 
     public function additional_guests(){

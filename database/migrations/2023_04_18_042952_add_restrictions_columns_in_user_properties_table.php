@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsApproveColumnToUserPropertiesTable extends Migration
+class AddRestrictionsColumnsInUserPropertiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddIsApproveColumnToUserPropertiesTable extends Migration
     public function up()
     {
         Schema::table('user_properties', function (Blueprint $table) {
-            $table->boolean('is_approved')->nullable()->default(false);
-            $table->foreignId('role_id')->constrained()->nullable();
+            //
         });
     }
 

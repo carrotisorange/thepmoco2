@@ -14,6 +14,8 @@ class PropertyUnitController extends Controller
 
         Session::forget('owner_uuid');
 
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
 
         return view('properties.units.index',[

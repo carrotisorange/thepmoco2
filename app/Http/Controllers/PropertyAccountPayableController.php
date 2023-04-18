@@ -13,9 +13,11 @@ class PropertyAccountPayableController extends Controller
 {
     public function index(Property $property, $status=null)
     {
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',17);
+
         $this->authorize('is_account_payable_read_allowed');
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',17);
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
         return view('properties.accountpayables.index',[
             'accountpayables' => Property::find($property->uuid)->accountpayables()

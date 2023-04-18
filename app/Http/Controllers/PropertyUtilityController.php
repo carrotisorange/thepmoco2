@@ -13,6 +13,8 @@ class PropertyUtilityController extends Controller
     {
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',21);
 
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
         return view('properties.utilities.index');
     }
 
