@@ -3,6 +3,7 @@
         <tr>
             <x-th>#</x-th>
             <x-th>Property</x-th>
+            <x-th>User</x-th>
             <x-th>Type</x-th>
             <x-th>Status</x-th>
             <x-th>Assigned on</x-th>
@@ -17,6 +18,7 @@
             <x-td><a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ $item->property->uuid }}">{{
                     $item->property->property }}</a></x-td>
+            <x-td>{{ $item->user->name }}</x-td>
             <x-td>{{ $item->property->type->type }}</x-td>
             <x-td>
                 @if($item->is_approved == '0')

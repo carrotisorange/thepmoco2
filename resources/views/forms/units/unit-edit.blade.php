@@ -186,16 +186,17 @@
         <div class="sm:col-span-6">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="rent_type" class="block text-xs font-medium text-gray-900">Rent Duration
+                <label for="rent_duration" class="block text-xs font-medium text-gray-900">Rent Duration
                 </label>
                 <select wire:model="rent_duration"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+                    <option value="">Select one</option>
                     <option value="transient" {{ old('rent_duration', $rent_duration)=='transient' ? 'selected'
-                        : 'selected' }}>
+                        : 'Select one' }}>
                         transient
                     </option>
                     <option value="long_term" {{ old('rent_duration', $rent_duration)=='long_term' ? 'selected'
-                        : 'selected' }}>
+                        : 'Select one' }}>
                         long_term
                     </option>
                 </select>
