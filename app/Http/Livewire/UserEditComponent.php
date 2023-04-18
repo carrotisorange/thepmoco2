@@ -194,7 +194,7 @@ class UserEditComponent extends Component
             'properties' => User::find($this->user->id)->user_properties()->get(),
             'all_properties' => User::find(auth()->user()->id)->user_properties()->get(),
             'roles' => app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(),
-            'sessions' => User::find($this->user->id)->sessions()->orderBy('created_at', 'desc')
+            'sessions' => User::find($this->user->id)->sessions()->orderBy('created_at', 'desc')->get()
         ]);
     }
 }
