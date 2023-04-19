@@ -59,6 +59,10 @@ Route::get('/job', function(){
     return view('landing.job');
 });
 
+Route::get('/owner-corner', function(){
+    return view('landing.owner-corner');
+});
+
 Route::get('/support', function(){
     return view('landing.support');
 });
