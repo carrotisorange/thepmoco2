@@ -155,7 +155,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::prefix('inventory')->group(function(){
                 Route::get('{random_str}/create', [UnitInventoryController::class, 'create'])->name('unit');
-                Route::get('export', [UnitInventoryController::class, 'export'])->name('unit');
+                Route::get('{unit_inventory}', [UnitInventoryController::class, 'upload_image'])->name('unit');
+                Route::get('{random_str}/export', [UnitInventoryController::class, 'export'])->name('unit');
           
             });
 

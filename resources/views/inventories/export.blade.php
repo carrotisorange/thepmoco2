@@ -1,6 +1,8 @@
 <html>
 
 <head>
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /** Define the margins of your page **/
         @page {
@@ -37,9 +39,9 @@
         }
 
         p,
-            {
-            margin-right: 50px;
-            margin-left: 50px;
+        {
+        margin-right: 50px;
+        margin-left: 50px;
         }
 
         table,
@@ -89,16 +91,18 @@
         </p>
 
         <p>
-            Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
+            List of the inventories: as of {{ Carbon\Carbon::now()->format('M d, Y') }}
 
         <p>
+
+            <br>
         <table class="">
 
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>#</x-th>
+                    <x-th>Image</x-th>
                     <x-th>Item</x-th>
-
                     <x-th>Quantity</x-th>
                     <x-th>Remarks</x-th>
                     <x-th>Added on</x-th>
@@ -109,9 +113,11 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 <tr>
                     <x-td>{{ $index+1 }}</x-td>
-                    <x-td>{{ $item->item }}</x-td>
+                    <x-td><img class="mx-auto h-20 w-20 rounded-full" src="{{ public_path('/storage/'.$item->image) }}"
+                            alt="" /></x-td>
+                    <x-td>{{ substr_replace($item->item, "...", 10) }}</x-td>
                     <x-td>{{ $item->quantity }}</x-td>
-                    <x-td>{{ $item->remarks }}</x-td>
+                    <x-td>{{ substr_replace($item->remarks, "...", 20) }}</x-td>
                     <x-td>{{Carbon\Carbon::parse($item->created_at)->format('M d, Y')}}</x-td>
                     <x-td>{{Carbon\Carbon::parse($item->updated_at)->format('M d, Y')}}</x-td>
                 </tr>
@@ -119,7 +125,7 @@
             @endforeach
         </table>
         </p>
-       
+
         <p>
             Recorded by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
         </p>

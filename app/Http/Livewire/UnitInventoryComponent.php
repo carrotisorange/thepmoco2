@@ -63,6 +63,14 @@ class UnitInventoryComponent extends Component
 
     }
 
+    
+    public function uploadImage($id){
+        
+        sleep(2);
+
+        return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/inventory/'.$id);
+    }
+
     public function addNewUnitInventory(){
 
         sleep(1);
