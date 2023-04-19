@@ -138,8 +138,8 @@ class PropertyCalendarController extends Controller
         $details =[
           'uuid' => $guest->uuid,
           'guest' => $guest->guest,
-        //   'start' => $guest->movein_at,
-        //   'end' => $guest->moveout_at,
+          'checkin_date' => $guest->movein_at,
+          'checkout_date' => $guest->moveout_at,
         //   'unit' => $guest->unit->unit,
         //   'price' => $guest->price,
           'email' => $guest->email,

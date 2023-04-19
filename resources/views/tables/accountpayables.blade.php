@@ -3,6 +3,8 @@
         <tr>
             <x-th>#</x-th>
             <x-th>BATCH NO</x-th>
+            <x-th>UNIT</x-th>
+            <x-th>VENDOR</x-th>
             <x-th>REQUESTED ON</x-th>
             <x-th>REQUESTED BY</x-th>
             <x-th>REQUEST FOR</x-th>
@@ -19,6 +21,27 @@
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $accountpayable->batch_no }}</x-td>
+            <x-td>
+                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
+                @foreach ($particulars as $particular)
+                    @if($particular->unit_uuid)
+                        {{ App\Models\Unit::find($particular->unit_uuid)->unit }},
+                    @else
+                        NA
+                    @endif
+                @endforeach
+
+            </x-td>
+            <x-td>
+               <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
+                @foreach ($particulars as $particular)
+                    @if($particular->vendor_id)
+                        {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }},
+                    @else
+                        NA
+                    @endif
+                @endforeach
+            </x-td>
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $accountpayable->requester->name }}</x-td>
             <x-td>{{ $accountpayable->request_for }}</x-td>
@@ -45,7 +68,7 @@
                     class="text-blue-500 text-decoration-line: underline">View</a>
                 @elseif($accountpayable->status === 'approved by ap')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
-                    class="text-blue-500 text-decoration-line: underline">Uppload Payment   </a>
+                    class="text-blue-500 text-decoration-line: underline">Uppload Payment </a>
                 @else
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
                     class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
@@ -100,6 +123,8 @@
         @endforeach
         <tr>
             <x-td><b>Total</b></x-td>
+            <x-th></x-th>
+            <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>

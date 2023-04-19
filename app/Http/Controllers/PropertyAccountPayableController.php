@@ -50,7 +50,7 @@ class PropertyAccountPayableController extends Controller
           'accountpayables' => Property::find($property_uuid)->accountpayables
         ];
 
-          $pdf = \PDF::loadView('properties.accountpayables.export', $data);
+          $pdf = \PDF::loadView('properties.accountpayables.export', $data)->setPaper('a4', 'landscape');
 
         $pdf->output();
 
