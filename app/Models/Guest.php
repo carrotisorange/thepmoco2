@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Scout\Searchable;
+// use Laravel\Scout\Searchable;
 
 class Guest extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     use HasFactory, SoftDeletes;
 
@@ -21,10 +21,10 @@ class Guest extends Model
         'status' => 'reserved'
     ];
 
-    public function searchableAs()
-    {
-        return 'guest';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'guest';
+    // }
 
     public function unit(){
         return $this->belongsTo(Unit::class, 'unit_uuid');
