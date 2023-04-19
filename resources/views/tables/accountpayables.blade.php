@@ -27,7 +27,7 @@
                     @if($particular->unit_uuid)
                         {{ App\Models\Unit::find($particular->unit_uuid)->unit }},
                     @else
-                        NA
+                      
                     @endif
                 @endforeach
 
@@ -38,7 +38,7 @@
                     @if($particular->vendor_id)
                         {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }},
                     @else
-                        NA
+                       
                     @endif
                 @endforeach
             </x-td>
