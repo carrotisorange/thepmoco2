@@ -168,7 +168,7 @@ class UnitShowComponent extends Component
      public function exportUnitInventory(){
         sleep(2);
 
-        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid.'/inventory/export');
+        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/export');
     }
 
     public function closeModal(){

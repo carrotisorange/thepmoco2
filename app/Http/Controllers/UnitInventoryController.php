@@ -55,7 +55,7 @@ class UnitInventoryController extends Controller
             ->get()
         ];
 
-        $pdf = \PDF::loadView('inventories.export', $data);
+        $pdf = \PDF::loadView('inventories.export', $data)->setPaper('a4', 'landscape');
 
          $pdf->output();
 
@@ -99,5 +99,12 @@ class UnitInventoryController extends Controller
          55, array(0,0,0),2,2,-30);
 
         return $pdf->download($unit->unit.'-'.Carbon::now()->format('M d, Y').'-unit-inventory.pdf');
+    }
+
+    public function upload_image(Property $property, Unit $unit, UnitInventory $unit_inventory){
+        return view('inventories.upload-image',[
+            'unit' => $unit,
+            'unit_inventory' => $unit_inventory
+        ]);
     }
 }

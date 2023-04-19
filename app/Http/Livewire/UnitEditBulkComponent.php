@@ -105,7 +105,6 @@ class UnitEditBulkComponent extends Component
             }
 
         }catch(\Exception $e){
-           ddd($e);
             session()->flash('error');
         }
     }
