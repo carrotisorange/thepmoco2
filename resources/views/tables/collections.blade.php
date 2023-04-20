@@ -1,8 +1,9 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
+            <x-th>#</x-th>
             <x-th> AR #</x-th>
-            <x-th> NAME</x-th>
+            <x-th> BILL TO</x-th>
             <x-th> DATE APPLIED</x-th>
             <x-th> DATE DEPOSITED</x-th>
             <x-th> MODE OF PAYMENT</x-th>
@@ -15,8 +16,9 @@
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-        @foreach($collections as $item)
+        @foreach($collections as $index => $item)
         <tr>
+            <x-td><b>{{ $index+1 }}</b></x-td>
             <x-td>{{ $item->ar_no }}</x-td>
             <x-td>
                 @if($item->tenant_uuid)
@@ -27,6 +29,10 @@
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}">{{
                     $item->owner->owner}} </a> (O)
+                @elseif($item->guest_uuid)
+                <a class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}">{{
+                    $item->guest->guest}} </a> (G)
                 @else
                 NA
                 @endif
@@ -94,7 +100,8 @@
         </tr>
         @endforeach
         <tr>
-            <x-td>Total</x-td>
+            <x-td><b>Total</b></x-td>
+            <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
@@ -105,7 +112,7 @@
             $property_collections_count = App\Models\Collection::posted()->where('property_uuid', Session::get('property'))->count();
         ?>
             <x-td>
-                {{ number_format($collections->sum('amount'), 2) }} 
+                <b>{{ number_format($collections->sum('amount'), 2) }}</b>
             </x-td>
             <x-td></x-td>
             <x-td></x-td>

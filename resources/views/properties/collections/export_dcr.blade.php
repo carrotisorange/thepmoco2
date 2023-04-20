@@ -37,9 +37,9 @@
         }
 
         p,
-            {
-            margin-right: 5px;
-            margin-left: 5px;
+        {
+        margin-right: 5px;
+        margin-left: 5px;
         }
 
         table,
@@ -54,6 +54,14 @@
         td {
             padding: 6px";
 
+        }
+
+        ,
+        .center {
+            margin: auto;
+            width: 80%;
+
+            padding: 10px;
         }
     </style>
 </head>
@@ -83,12 +91,12 @@
     </footer>
 
     <!-- Wrap the content of your PDF inside a main tag -->
-    <main>
+    <main class="center">
         <p>
             Date: {{ Carbon\Carbon::parse($date)->format('M d, Y') }}
         </p>
 
-     
+
         <table class="">
 
             <tr>
@@ -97,7 +105,7 @@
                 <th>Bill #</th>
                 <th>Unit</th>
                 {{-- <th>Date</th> --}}
-                <th>Name</th>
+                <th>Bill To</th>
                 <th>Particulars</th>
                 <th>Period Covered</th>
                 <th>Amount</th>
@@ -111,14 +119,18 @@
                 <td>{{ $item->bill->bill_no }}</td>
                 {{-- <td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</td> --}}
                 <td>{{ $item->unit->unit }}</td>
-                @if($item->tenant_uuid)
-                <td>{{ substr_replace($item->tenant->tenant, "", 10) }}</td>
-                @elseif($item->owner_uuid)
-                <td>{{ substr_replace($item->owner->owner, "", 10) }}</td>
-                @else
-                <td>NA</td>
-                @endif
-                <td>{{ substr_replace($item->bill->particular->particular, "", 13) }}</td>
+                <td>
+                    @if($item->tenant_uuid)
+                    {{ $item->tenant->tenant}} (T)
+                    @elseif($item->owner_uuid)
+                    {{ $item->owner->owner}} (O)
+                    @elseif($item->guest_uuid)
+                    {{ $item->guest->guest}} (G)
+                    @else
+                    NA
+                    @endif
+                </td>
+                <td>{{ $item->bill->particular->particular }}</td>
                 <td>{{ Carbon\Carbon::parse($item->bill->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($item->bill->end)->format('M d, Y') }} </td>
                 <td>{{ number_format($item->collection,2) }}</td>
@@ -126,8 +138,18 @@
             </tr>
 
             @endforeach
+            <tr>
+                <td><b>Total</b> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>{{ number_format($collections->sum('collection'), 2) }}</b> </td>
+            </tr>
         </table>
- 
+
 
         <p>
             Prepared by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}

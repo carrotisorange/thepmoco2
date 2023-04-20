@@ -85,21 +85,21 @@
     <main>
         <br>
         <p>
-            Batch No: {{ $accountpayable->batch_no }}
+            <b>Batch No:</b> {{ $accountpayable->batch_no }}
         </p>
         <p>
-            Requested on: {{
+            <b>Requested on:</b> {{
             Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
         </p>
         <p>
-            Due date: {{
+            <b>Due date:</b> {{
             Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}
         </p>
         <p>
-            Requested by: {{ $accountpayable->requester->name }}
+            <b>Requested by:</b> {{ $accountpayable->requester->name }}
         </p>
         <p>
-            Request for: {{ $accountpayable->request_for }}< </p>
+            <b>Request for:</b> {{ $accountpayable->request_for }}< </p>
                 <p>
                     Amount: {{ number_format($accountpayable->amount, 2) }}
                 </p>
@@ -125,7 +125,7 @@
                 </p>
 
                 <br>
-                <p>Particulars</p>
+                <p><b>Particulars:</b></p>
                 <table>
                     <thead>
                         <tr>
@@ -134,11 +134,8 @@
                             <th>VENDOR</th>
                             <th>ITEM </th>
                             <th>QUANTITY</th>
-
                             <th>PRICE</th>
                             <th>TOTAL</th>
-
-
                         </tr>
                     </thead>
                     <tbody class="">
@@ -158,7 +155,6 @@
                                 NA
                                 @endif
                             </td>
-                    
                             <td>
                                 {{ substr_replace($particular->item, "...", 10) }}
                             </td>
@@ -176,15 +172,15 @@
                         </tr>
                         @endforeach
                         <tr>
-                            <td>Total</td>
+                            <td><b>Total</b></td>
                             <td></td>
                             <td> </td>
-                         
+
                             <td></td>
                             <td> </td>
                             <td></td>
                             <td>
-                                {{ number_format($particulars->sum('total'), 2) }}
+                                <b>{{ number_format($particulars->sum('total'), 2) }}</b>
                             </td>
                         </tr>
 

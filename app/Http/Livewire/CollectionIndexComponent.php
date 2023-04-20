@@ -19,6 +19,8 @@ class CollectionIndexComponent extends Component
 
     public $mode_of_payment;
 
+    public $bill_type;
+
     public function mount(){
         $this->date = Carbon::now()->format('Y-m-d');
     }
@@ -63,6 +65,9 @@ class CollectionIndexComponent extends Component
          ->when($this->mode_of_payment, function($query){
          $query->where('mode_of_payment', $this->mode_of_payment);
          })
+        ->when($this->bill_type, function($query){
+           $query->whereNotNull($this->bill_type);
+        })
         ->when($this->end, function($query){
             $query->orWhereDate('created_at', $this->end);
         })->get();
