@@ -152,7 +152,7 @@ seamlessly and harmoniously with their tenants.</p>
 
             <p>
               <span class="block text-2xl font-bold text-white">I</span>
-              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Innovavtion</span> in Business Reporting</span>
+              <span class="mt-1 block text-base text-gray-300"><span class="font-medium text-white">Innovation</span> in Business Reporting</span>
             </p>
 
             <p>
