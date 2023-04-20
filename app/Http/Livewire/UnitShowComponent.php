@@ -67,15 +67,17 @@ class UnitShowComponent extends Component
             'status_id' => ['required', Rule::exists('statuses', 'id')],
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'size' => 'required',
-            'rent' => 'required',
-            'discount' => 'required',
+            
             'occupancy' => 'required',
             'is_the_unit_for_rent_to_tenant' => 'required',
             'price' => 'nullable',
             'rent_type' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
-            'transient_rent' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
-            'transient_discount' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
             'rent_duration' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
+            'transient_rent' => ['required_if:rent_duration,transient'],
+            'transient_discount' => ['required_if:rent_duration,transient'],
+            'rent' => ['required_if:rent_duration,long_term'],
+            'discount' => ['required_if:rent_duration,long_term'],
+          
             ];
     }
 
