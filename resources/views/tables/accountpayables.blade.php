@@ -22,7 +22,7 @@
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $accountpayable->batch_no }}</x-td>
             <x-td>
-                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
+                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
                 @foreach ($particulars as $particular)
                     @if($particular->unit_uuid)
                         {{ App\Models\Unit::find($particular->unit_uuid)->unit }},
@@ -33,7 +33,7 @@
 
             </x-td>
             <x-td>
-               <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
+               <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
                 @foreach ($particulars as $particular)
                     @if($particular->vendor_id)
                         {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }},

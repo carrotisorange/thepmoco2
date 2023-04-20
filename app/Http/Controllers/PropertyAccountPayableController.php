@@ -28,7 +28,7 @@ class PropertyAccountPayableController extends Controller
         ]);
     }
 
-    public function get_accountpayables($property_uuid, $status, $created_at, $request_for, $limitDisplayTo){
+    public function get_accountpayables($property_uuid, $status, $created_at, $request_for, $limitDisplayTo, $search){
 
         return Property::find(Session::get('property'))->accountpayables()
      
@@ -40,6 +40,9 @@ class PropertyAccountPayableController extends Controller
         })
         ->when($request_for, function ($query, $request_for) {
         $query->where('request_for', $request_for);
+        })
+        ->when($search, function ($query, $search) {
+        $query->where('batch_no','like', '%'.$search.'%');
         })
         ->orderBy('id', 'desc')->paginate($limitDisplayTo);
     }
@@ -66,7 +69,7 @@ class PropertyAccountPayableController extends Controller
           $canvas->page_text($width/5, $height/2, Property::find($property_uuid)->property, null, 55,
           array(0,0,0),2,2,-30);
 
-          return $pdf->download(Session::get('property').'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
+          return $pdf->download(Property::find($property_uuid)->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
         
     }
 
@@ -120,5 +123,9 @@ class PropertyAccountPayableController extends Controller
        $canvas->page_text($width/5, $height/2,$accountPayable->property->property, null, 55, array(0,0,0),2,2,-30);
 
        return $pdf->download($accountPayable->property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
+    }
+
+    public function create_liquidation(Property $property, AccountPayable $accountPayable){
+        ddd($accountPayable);
     }
 }

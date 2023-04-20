@@ -16,6 +16,7 @@ class AccountPayableIndexComponent extends Component
     public $created_at;
     public $request_for;
     public $limitDisplayTo;
+    public $search;
 
     public $totalAccountPayableCount;
 
@@ -32,7 +33,6 @@ class AccountPayableIndexComponent extends Component
       $this->limitDisplayTo = null;
     }
 
-   
     public function exportAccountPayables(){
        sleep(2);
       
@@ -42,7 +42,7 @@ class AccountPayableIndexComponent extends Component
     public function render()
     {
         return view('livewire.account-payable-index-component',[
-          'accountpayables' => app('App\Http\Controllers\PropertyAccountPayableController')->get_accountpayables($this->property->uuid, $this->status, $this->created_at, $this->request_for, $this->limitDisplayTo),
+          'accountpayables' => app('App\Http\Controllers\PropertyAccountPayableController')->get_accountpayables($this->property->uuid, $this->status, $this->created_at, $this->request_for, $this->limitDisplayTo, $this->search),
           'statuses' => app('App\Http\Controllers\PropertyAccountPayableController')->get_statuses($this->property),
           'dates' => app('App\Http\Controllers\PropertyAccountPayableController')->get_dates($this->property),
           'types' => app('App\Http\Controllers\PropertyAccountPayableController')->get_types($this->property),

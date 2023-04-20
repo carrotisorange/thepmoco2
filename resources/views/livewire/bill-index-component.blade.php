@@ -185,9 +185,9 @@
                     {{ $bills->links() }}
                 </div> --}}
 
-                <div class="mt-3">
+              <div class="mt-3">
                     <p class="text-center">
-                        <span class="text-blue-300 text-xs">Showing {{ $bills->count() }} bills...</span>
+                        <span class="text-blue-300 text-sm">Showing {{ $bills->count() }} bills...</span>
                     </p>
                 </div>
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">

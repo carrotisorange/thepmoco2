@@ -81,7 +81,7 @@ class AccountPayableController extends Controller
          $canvas->page_text($width/5, $height/2, $property->property, null,
          55, array(0,0,0),2,2,-30);
 
-         return $pdf->download($property->property.'-accountpayable.pdf');
+        return $pdf->download($property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
     }
 
       public function create_step_1(Property $property, AccountPayable $accountpayable){
@@ -102,7 +102,7 @@ class AccountPayableController extends Controller
 
     public function create_step_3($property_uuid, $accountpayable_id){
     
-        $this->authorize('manager');
+        // $this->authorize('manager');
 
         return view('accountpayables.create.step-3', [
            'accountpayable_id' => $accountpayable_id
