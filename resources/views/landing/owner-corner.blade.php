@@ -24,11 +24,12 @@
 
         
                         <div class="col-span-3 sm:col-span-3 lg:col-span-1">
-                          <label for="sex" class="block text-sm font-medium text-gray-900">Sex</label>
-                          <select name="sex" id="sex" required class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-sm text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                          <label for="gender" class="block text-sm font-medium text-gray-900">Gender</label>
+                          <select name="gender" id="gender" required class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-sm text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                           <option value="select">Select</option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
+                          <option value="female">Prefer not to say</option>
                           </select>
                         </div>
 
@@ -97,7 +98,7 @@
                           <select name="property-status" id="property-status" required class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-sm text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                           <option value="select">Select</option>
                           <option value="vacant">Vacant</option>
-                          <option value="tenanted">Tenanated</option>
+                          <option value="tenanted">Tenanted</option>
                           </select>
                         </div>
 
@@ -121,7 +122,7 @@
 
                         <div class="col-span-3 mt-5 text-base font-medium">
                               <ul><input type="checkbox" id="interested" required>
-                              I am interested with your property management services for my property above. Please contact me regarding this.  
+                              I have read and understood the <a href="terms" class="underline text-purple-900">Terms and Conditions</a> and <a href="privacy" class="underline text-purple-900">Privacy Policy.</a>  
                               </ul>
                         </div>
                     
