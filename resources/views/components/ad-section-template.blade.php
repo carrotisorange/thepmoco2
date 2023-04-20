@@ -1,5 +1,5 @@
-<div class="mb-8 bg-purple-50">
-      <div class="mx-auto max-w-4xl py-16 px-4 sm:px-6 sm:py-24 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
+<div class="my-8 bg-purple-50">
+      <div class="mx-auto max-w-4xl py-7 px-4 sm:px-6 sm:py-7 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
         <h2 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
           <span class="block">Organize your rental property operations,</span>
           <span class="-mb-1 block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text pb-1 text-transparent">create an account for free!</span>

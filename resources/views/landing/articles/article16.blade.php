@@ -57,15 +57,19 @@
                 <li>Make sure all windows are closed tight; this will help keep out unwanted pests like mosquitoes or flies while also preventing unwanted noise coming into rooms through windows overlooking neighbors’ yards where they may be congregating outside and make it feel awkward for your guests. </li>
             </ul>    
 
-        <li class="pb-6 mt-10 font-bold">Increase the number of recurring visitors</li>
+        <x-enrollment-ad>
+        </x-enrollment-ad>
+
+        <li class="pb-6 mt-10 font-bold">Provide comfortable furniture for your guests</li>
         <p>Furniture is one of the most important factors in creating an inviting environment. The furniture you provide should be comfortable, stylish, and functional. Furniture should also be appropriate for the theme of your property and its surrounding community. If you have a beach house, for example, you would want to avoid having chairs made out of wooden planks that resemble driftwood or driftwood-like materials like shells or coral reefs. Use real shells or real wood!</p>
         <p class="mt-5">In addition to providing comfortable seating options, make sure there’s plenty of common space around your home so guests can lounge comfortably while they wait for their turn at playing games with each other or watching television shows on Netflix—something we all love doing!
         </p>
 
+        
+
         <li class="pb-6 mt-10 font-bold">Invite friends and family over for a party</li>
 
-        <x-ad-section-template>
-        </x-ad-section-template>
+        
 
         <p>This is a great way to increase occupancy and profit. Your friends and family will love having a place to stay while they are visiting, so invite them over on the weekend or during the holidays. Make sure that you have enough food for everyone, including drinks (and maybe even some snacks). You can also set up a theme for your party in order for it to be more memorable for guests</p>
         <p class="mt-5 mb-6">Make sure that you have music playing throughout the night; this will help create an atmosphere where people feel comfortable socializing with each other. If you're hosting at home, then consider adding decorations such as balloons or streamers across walls behind couches or chairs where people could sit down together during meals instead of being crowded around tables where there's no room.
@@ -82,9 +86,14 @@
         <li class="pb-6 mt-10 font-bold">Add amenities that guests will enjoy, such as a pool or hot tub.</li>
         <p class="mb-6">Offer amenities that guests will enjoy: If there are things like a Jacuzzi tub or pool table located within the property (or close by), consider offering these extras as incentives for early booking or longer stays! You'll find that most people enjoy having some time away from home while still enjoying all the conveniences needed during their stay: cable television or internet service included. You might also want to consider purchasing one of those portable basketball hoops so people can play their favorite game while hanging out in the evening after dinner has been served!</p>
 
+        <x-ad-section-template>
+        </x-ad-section-template>
+        
+        
         <li class="pb-6 mt-10 font-bold">Bonfire and grill. </li>
         <p class="mb-6">A fire pit is another great way to add some fun to your backyard. Think about how much time it takes to pack up and haul all of the wood from your cabin back home! You can buy a gas-powered one at most hardware stores. If you already have an outdoor grill out there, consider adding some extra seating by installing a bench around so guests can sit while they wait for their food to cook on-site (and perhaps even play some ping pong in between bites).</p>
 
+        
         <li class="pb-6 mt-10 font-bold">Offer discounts for early booking and stay longer.</li>
         <p>Offering discounts for early booking and staying longer is a great way to encourage people to book your vacation home. You can offer discounts for people who book for longer periods of time, such as week long stays.</p>
         <p class="mt-5 mb-6">Offer discounts for groups of more than four people. If you have a large family reunion coming in, consider offering an additional discount for families with children under 12 years old.

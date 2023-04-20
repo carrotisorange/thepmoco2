@@ -51,13 +51,15 @@
         <p>Once you have a list of potential property management companies, check their credentials. Are they licensed? Are they members of professional associations such as the National Association of Residential Property Managers (NARPM) or the Institute of Real Estate Management (IREM)? These credentials can provide you with an idea of their professionalism and expertise.
         </p>
 
+        <x-enrollment-ad>
+        </x-enrollment-ad>
+
+
         <li class="pb-6 mt-10 font-bold">Interview the property management company</li>
         <p class="mb-10">Once you have narrowed down your list, schedule interviews with each of the property management companies. Ask them about their experience, their processes, and their fees. You should also ask for references from other property owners they have worked with.
         </p>
 
-        <x-ad-section-template>
-        </x-ad-section-template>
-
+        
         <li class="pb-6 mt-10 font-bold">Review the contract</li>
         <p>Before you sign a contract with a property management company, review it carefully. Make sure you understand the fees, the responsibilities of the property management company, and the terms of the contract.
         </p>
@@ -65,6 +67,9 @@
         <li class="pb-6 mt-10 font-bold">Communication</li>
         <p>Communication is essential in any business relationship. Choose a property management company that is responsive, communicates well, and provides you with regular updates on your property.
         </p>
+
+        <x-ad-section-template>
+        </x-ad-section-template>
 
         <p class="pb-6 mt-10 mb-6">By following these steps, you can choose the right property management company to help you.
         </p>
