@@ -126,6 +126,8 @@ class PropertyAccountPayableController extends Controller
     }
 
     public function create_liquidation(Property $property, AccountPayable $accountPayable){
-        ddd($accountPayable);
+        return view('properties.accountpayables.create-liquidation',[
+            'property' => $property
+        ]);
     }
 }
