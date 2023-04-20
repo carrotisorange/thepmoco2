@@ -60,6 +60,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->bank_name =$accountpayable->bank_name;
         $this->vendor = $accountpayable->vendor;
         $this->delivery_at = Carbon::parse($this->delivery_at)->format('Y-m-d');
+        $this->particulars = $this->get_particulars();
 
     }
 
@@ -160,7 +161,9 @@ class AccountPayableCreateStep1Component extends Component
 
         app('App\Http\Controllers\AccountPayableParticularController')->store($this->batch_no);
 
-        session()->flash('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+
+        // session()->flash('success', 'Success!');
     }
 
     public function storeVendor(){
@@ -181,7 +184,9 @@ class AccountPayableCreateStep1Component extends Component
             'biller' => $this->biller
         ]);
         
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+        session()->flash('success', 'Success!');
+        
+        // return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
     }
 
     public function removeParticular($id){
@@ -189,7 +194,7 @@ class AccountPayableCreateStep1Component extends Component
         
         AccountPayableParticular::where('id', $id)->delete();
 
-        session()->flash('success','Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
     }
 
     public function cancelRequest(){
@@ -249,7 +254,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function render()
     {
-        $this->particulars = $this->get_particulars();
+        // $this->particulars = $this->get_particulars();
 
         return view('livewire.account-payable-create-step1-component',[
             'units' => Property::find($this->property->uuid)->units,
