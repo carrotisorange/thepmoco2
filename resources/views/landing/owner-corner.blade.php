@@ -29,7 +29,7 @@
                           <option value="select">Select</option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
-                          <option value="female">Prefer not to say</option>
+                          <option value="others">Prefer not to say</option>
                           </select>
                         </div>
 
