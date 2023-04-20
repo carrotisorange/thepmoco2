@@ -34,6 +34,9 @@
 
       <div class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
 
+      <x-enrollment-ad>
+        </x-enrollment-ad>
+        
       <p class="pb-6">
           When we first started out as property managers, we followed the old-school methods. During leasing procedures, we used the traditional way of paper and pen to sign up tenant info sheets, contracts, billing statements, and receipts. It took an entire day to process a single report! 
       </p>

@@ -52,6 +52,10 @@
             <li>performance reviews</li>
             <li class="mt-3">- what they've paid previously and when is the next due date - how much money is due</li>
         </ul>
+
+        <x-enrollment-ad>
+        </x-enrollment-ad>
+
       </p>
       <p class="pb-6">
       If you have a lot of tenants, this can be quite a process. In addition to the time it takes to gather all the information together, there are also technical hurdles to overcome when trying to share data between systems.
@@ -73,8 +77,7 @@
        With a work order system, you can: - Keep track of all maintenance and repairs in one place - Track the status of each order as it is completed and assigned to different staff members
       </p>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+ 
         <ul class="pb-6 list-disc">
         <li>Monitor the progress of a work order by date and status - Review all maintenance requests from your tenants</li>
         <li>Assign work orders to specific maintenance staff - Track the status of each order as it is completed and assigned to different staff members</li>
@@ -84,6 +87,10 @@
       <h3 class="mt-3 font-semibold text-xl pb-6">
       Improve the accounting process.
         </h3>
+
+        <x-ad-section-template>
+    </x-ad-section-template>
+    
     <p class="pb-6">
     As you are managing your properties, the first thing that you should look for is a property management system. The reason for this is simple: it will help you keep track of all the information and ensure that everything is being done correctly.
       </p>

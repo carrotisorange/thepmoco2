@@ -38,12 +38,15 @@
       <li class="p-5">Improve communication: Regular communication with tenants and prompt response to maintenance requests can help build trust and satisfaction.</li>
       <li class="p-5">Address maintenance issues promptly: Regularly scheduled maintenance can prevent small issues from becoming bigger problems, and prompt response to maintenance requests can help prevent dissatisfaction. </li>
       <li class="p-5">Offer amenities: Amenities such as a gym, pool, or community room can make the property more desirable, and encourage tenants to renew their leases. </li>
+        <x-enrollment-ad>
+        </x-enrollment-ad>
       <li class="p-5">Offer incentives for renewals: Offering incentives such as discounted rent or waived fees for tenants who renew their leases can encourage them to stay. </li>
       <li class="p-5">Create a sense of community: Encourage social interaction among tenants through events or activities, this can help create a sense of community and make tenants feel more connected to the property.</li>
-      <x-ad-section-template>
-      </x-ad-section-template>
+      
       <li class="p-5">Be transparent and fair in rent increase: Be upfront about any upcoming rent increases and be fair in your pricing.</li>
       <li class="p-5">Keep the property clean and well-maintained: A clean and well-maintained property can create a positive impression and make tenants more likely to renew their leases. </li>
+      <x-ad-section-template>
+      </x-ad-section-template>
       <li class="p-5">Be flexible with lease terms: Be open to negotiating lease terms with tenants, such as allowing them to have pets or making other concessions. </li>
       <li class="p-5">Offer online services: Offer online services such as online rent payments, maintenance requests, and lease renewals to make it easier for tenants to interact with your property. The Property Manager Online can help you with this. </li>
       <li class="p-5">Get feedback and act on it: Ask for feedback and act on it, this will show tenants you care about their satisfaction and are willing to make improvements.</li>

@@ -50,6 +50,9 @@
       <h3 class="font-semibold text-xl pb-6">
       Fast implementation and quick ROI
       </h3>
+
+      <x-enrollment-ad>
+        </x-enrollment-ad>
     <p class="pb-6">
     As a property manager, you know how important it is to get your properties rented quickly. And if you want to make sure that happens, your tenants need to get up and running as soon as possible.
     </p>
@@ -57,8 +60,7 @@
     The Property Manager Online gives your team the tools they need to do just that. It streamlines the entire process from start-up through maintenance—so there’s no need for any of them (or any other staff members) outside of the office who can help with set-up or training on new systems. Plus, there's little or no learning curve involved; our platform is easy to use so no learning curve was required either!
     </p>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+   
 
       <h3 class="mt-3 font-semibold text-xl pb-6">
       Support, outreach, and spread thru word-of-mouth
@@ -85,6 +87,9 @@
     <h3 class="font-semibold text-xl pb-6">
     Property Managers who use our software can do all of their work in one place and reach all of their clients without the need for multiple programs.
     </h3>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
       <p class="pb-6">
       As a property manager, you know that managing properties is an extremely time-consuming task. There’s so much to do and so many things going on at once that it can be hard to keep up with all of the details. The Property Manager Online software makes it easy for property managers to manage their clients directly from one place without having to go through different platforms or apps.
      </p>

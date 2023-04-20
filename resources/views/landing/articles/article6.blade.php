@@ -70,6 +70,10 @@ service, which will help you to increase the number of customers who buy from yo
     Another way is by improving conversion rates and increasing revenue through better marketing
 strategies and new business opportunities.
     </p>
+
+    <x-enrollment-ad>
+    </x-enrollment-ad>
+
     <p class="pb-6">
     Finally, if you have already built up a strong presence online but can&#39;t seem to get more profit
 out of it, then maybe it&#39;s time for some digitalization!
@@ -95,8 +99,7 @@ technology.
     With digitalization, you can enhance employee productivity by providing them with:
     </p>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+
 
     <ul class= "list-disc">
     <li class="pb-6">Better communication – With improved communication channels and technologies like
@@ -152,6 +155,10 @@ with each other via chat or video calls whenever needed.
       <h3 class="font-semibold text-xl pb-6">
       Improved Innovation
     </h3>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+    
       <p class="pb-6">
       Digitalization allows you to innovate more quickly, better, and at a lower cost. It’s important for
 companies to understand the impact digitalization can have on innovation because this is a key
@@ -165,6 +172,8 @@ manufacturing, or even healthcare to create new products faster than ever before
 data analysis techniques such as machine learning or artificial intelligence (AI). These advances
 have allowed companies:
       </p>  
+
+   
 
       <ul class= "list-disc">
     <li class="pb-6">To respond more quickly when there are changes in demand;</li>

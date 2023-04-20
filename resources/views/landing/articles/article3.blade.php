@@ -51,6 +51,8 @@
       This also means that problems are easier to troubleshoot: if someone reports issues with a particular unit  (e.g., “My neighbor's dog barks all night long”), instead of having them go through each individual account trying to identify where this might be coming from, you can simply look at all your records and figure out which unit/address has been reported about most frequently by tenants over time—and deal with those first before moving on any further issues affecting other units in the building overall.
       </p>
      
+      <x-enrollment-ad>
+        </x-enrollment-ad>
 
       <h3 class="font-semibold text-xl pb-6">
       Easy and instant communication between tenants, owners, and maintenance team. 
@@ -70,8 +72,7 @@
       Rental accounting made simple
         </h3>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+   
 
     <p class="pb-6">
     One of the most important aspects of the property management system is accounting. Without good accounting, your business can't grow or succeed at all. You need to know what's going on with your properties and how much money is coming in from them so that you can make informed decisions about how best to grow or expand your operations.
@@ -93,6 +94,10 @@
       <h3 class="font-semibold text-xl pb-6">
       Tenancy applications, agreements, and renewals are made easier with online forms
         </h3>
+
+        <x-ad-section-template>
+    </x-ad-section-template>
+    
         <p class="pb-6">
         Tenancy applications, agreements, and renewals can be made easier in a property management system with online forms. Online forms can be filled out on the go, allowing you to submit them even when your office is closed.
         </p>

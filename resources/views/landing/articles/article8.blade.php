@@ -47,11 +47,14 @@ room, making a bed, or learning how to use cleaning equipment. </li>
       <li class="p-5">Emphasize the importance of attention to detail: Housekeeping staff should be taught
 the importance of paying attention to detail, such as making sure all surfaces are clean
 and all linens are properly folded.</li>
+
+        <x-enrollment-ad>
+        </x-enrollment-ad>
+
       <li class="p-5">Teach proper use of chemicals and equipment: Proper use of chemicals and equipment
 is essential for safety and to avoid damage to the hotel’s property.</li>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+ 
 
       <li class="p-5">Teach teamwork and communication: Housekeeping staff should be taught how to
 work as a team and to communicate effectively with their colleagues, supervisors and
@@ -59,6 +62,10 @@ guests.</li>
       <li class="p-5">Teach the policies and procedures: Housekeeping staff should be familiar with the
 hotel’s policies and procedures, including those related to guest complaints and lost and
 found items.</li>
+
+      <x-ad-section-template>
+    </x-ad-section-template>
+
       <li class="p-5">Provide ongoing training and development: Ongoing training and development is
 important to keep staff up-to-date with new procedures and technologies.</li>
       <li class="p-5">Reward and recognize good performance, it will encourage staff to continue to do their

@@ -60,6 +60,10 @@
     <p class="pb-6">
     The first step to Brand Building is to define your brand in terms of a story, not just in terms of a logo or other element.
     </p>
+
+      <x-enrollment-ad>
+        </x-enrollment-ad>
+
        <p class="pb-6">
        A brand story should be simple and easy to understand, memorable, consistent across all marketing materials (including TV shows and radio ads), and memorable but not too long.
        </p>
@@ -76,8 +80,7 @@
     The best way for you as a small business entrepreneur to do this is by asking yourself questions like: What are people saying about my brand? How does it compare with other brands on a scale from 1-10 (10 being best)? And finally: Is there anything I could be doing better within my organization so that I can make sure I'm providing better customer service than anyone else in this niche?
     </p>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+    
 
     <h3 class="font-semibold text-xl pb-6">
       Third, create a brand story that focuses on how you help or support customers through those challenges.
@@ -99,6 +102,9 @@
     <p class="pb-6">
     As you're planning your brand, think about how it can be seen in a variety of formats: on your website – The Property Manager Online, in print ads, at trade shows and conventions, on billboards, or in TV ads. You should also consider how each medium will impact the overall tone of voice you use when communicating with customers: print ads may be serious while TV commercials are more playful or funny depending on what's going on in each ad campaign (for example, if there's an event happening at a convention).
     </p>
+    <x-ad-section-template>
+    </x-ad-section-template>
+        
     <p class="pb-6">
     These different forms serve as "visual cues" for customers so that they know what kind of experience they're getting before buying anything from you--and this makes them more likely to buy from you because they'll have already formed an emotional connection with “you” as part of their purchase decision process!
     </p>
