@@ -47,6 +47,10 @@ locations throughout the building can deter criminal activity and
 assist in investigations if a crime occurs. CCTV cameras in
 commercial properties is now a requirement for business permit and
 license issuance in some cities.</li>
+
+  <x-enrollment-ad>
+  </x-enrollment-ad>
+
       <li class="pl-5 py-2"><span class="font-bold">Lighting:</span> Adequate lighting, both inside and outside the building,
 can help improve security by deterring criminals and making it
 easier to identify them if they do approach. Well lit front, back, sides
@@ -57,11 +61,14 @@ risky for bad elements to get into.</li>
 bollards, or security gates, can prevent unauthorized vehicles, and
 pedestrians from accessing the building.</li>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+    
 
       <li class="pl-5 py-2"><span class="font-bold">Alarms:</span> Installing an alarm system can alert authorities and
 building occupants if a crime or emergency occurs.</li>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+
       <li class="pl-5 py-2"><span class="font-bold">Training for employees:</span>Regular training for employees on
 security awareness, emergency procedures, and how to identify and
 report suspicious behavior can help improve the overall security of

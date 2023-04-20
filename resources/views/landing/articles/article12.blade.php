@@ -63,6 +63,10 @@ have time between now and then until after business hours tomorrow morning...
     <h3 class="font-semibold text-xl pb-6">
     Improve your marketing.
     </h3>
+
+    <x-enrollment-ad>
+        </x-enrollment-ad>
+
       <p class="pb-6">
       You can also use digital marketing tools to improve your tenant retention and satisfaction. For
 example, you might send a personalized email newsletter to new residents, or create an
@@ -71,8 +75,7 @@ how digital systems can help you target your audience and create a unique brand 
 apartment community or building.
     </p>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+    
 
     <p class="pb-6">
     By using social media platforms like Facebook and Twitter, you&#39;ll be able to keep up with what&#39;s
@@ -95,7 +98,7 @@ be able to use digital forms in the same way that they would any other form--wit
 fill out a long piece of paper and send it off manually (or paying extra for it).
     </p>
 
-    
+   
     <p class="pb-6">
     Digital systems are also more efficient than old systems because they allow you to process
 forms faster than before; this means that you&#39;ll get back results more quickly, which can help
@@ -109,6 +112,11 @@ you make decisions more quickly too!
     <ul class="pb-6 list-disc">
       <li class="pl-5 py-2">Digital systems help you to improve your building process and increase tenant
 satisfaction by building a better experience for them.</li>
+
+  <x-ad-section-template>
+    </x-ad-section-template>
+    
+
       <li class="pl-5 py-2">Tenants are more likely to stay in your building if they are satisfied with the experience
 they have had.</li>
     </ul>

@@ -51,6 +51,9 @@
       Flexibility.
       </h3>
 
+      <x-enrollment-ad>
+        </x-enrollment-ad>
+
     <p class="pb-6 mt-10">
     Due to the limited guest visits, you won't have to deal with a difficult renter for too long. Increasing prices and keeping up with other businesses is simpler during the tourist season. Without long-term tenants, the process of getting the house ready for sale is also simpler. According to the rules of your state, the terms of the lease must be complied with.
     </p>
@@ -67,9 +70,7 @@
     A rental property is an investment. 
       </h3>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
-
+    
     <p class="pb-6 mt-10">
     So it's best to rent out your property. When it comes to making money, the best way is to rent out your property when it's not costing you anything except time.
 This means that if you have a long-term rental property, don't try to get any income from it until after taxes are paid and all other bills have been paid in full. You may be able to make some money from renting out the property during the summer months or on weekends when no one else wants the space—but only if those conditions are met.
@@ -85,6 +86,10 @@ This means that if you have a long-term rental property, don't try to get any in
     Vacation rentals are typically more profitable than long-term rentals because they have lower vacancy rates and a lower overall cost of ownership.
     Vacation rentals often have a lower vacancy rate than long-term properties because they're new, while older properties may be harder to sell during the peak season. This means that you'll have less work on your hands when it comes to managing your vacation rental property, which can be an advantage if you're thinking about buying one!
     </p>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+
 
     <h3 class="font-semibold text-xl pb-6">
     You can often make more money with less work. 

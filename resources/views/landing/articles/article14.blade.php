@@ -72,6 +72,9 @@ some of these people may not be able to make rent even if everything else goes s
     Don&#39;t give tenants the runaround.
       </h3>
 
+      <x-enrollment-ad>
+        </x-enrollment-ad>
+     
     <p class="pb-6 mt-10">
     The first thing you should know about tenants is that they are not always right. They may be
 unreasonable, but you can use this to your advantage by making it clear how long it will take for
@@ -94,9 +97,7 @@ rats!).</li>
 maintenance if there are any problems with yours.</li>
     </ul>
      
-    <x-ad-section-template>
-    </x-ad-section-template>
-
+   
     <h3 class="font-semibold text-xl pb-6">
     Pay attention to details.
     </h3>
@@ -119,6 +120,12 @@ situation.</li>
     More than just being a landlord, you need to be a good
 landlord.
     </h3>
+
+   
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+
 
     <p class="pb-6 mt-10">Being a good landlord is about more than just being a landlord; it&#39;s about making sure that your
 tenants are happy and comfortable in your rental unit.</p>

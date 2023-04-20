@@ -72,6 +72,9 @@ the area looks at night time or during the day, or go on Yelp and read reviews f
 there already.
     </p>
 
+    <x-enrollment-ad>
+        </x-enrollment-ad>
+
     <p class="pb-6">
     Then once you know who your ideal clientele is, think about where they go in person (if not online) - if
 it&#39;s near bars/restaurants, etc., then maybe don&#39;t focus so much on making sure your interior looks great
@@ -107,8 +110,6 @@ inside all day long!
     As a tenant, one should take care of a few more things when designing a rental place
     </h3>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
 
       <p class="pb-6">
       The tenant&#39;s personal space is a place to keep your stuff. This can be a desk, bookcase, or closet. The
@@ -133,6 +134,7 @@ fun! But it can also be bad if you don&#39;t think about what kind of sharing yo
 affecting the other people in your life.
 Here are some tips for sharing spaces effectively:
     </p>
+    
     
 
     <ul class="pb-6 list-disc">
@@ -181,6 +183,10 @@ businesses such as yours to grow and prosper over time.
     Here are a few tips to take into account when designing a rentable property.
     </h3>
 
+    <x-ad-section-template>
+    </x-ad-section-template>
+
+    
     <ul class="pb-6 list-disc">
       <li class="pl-5 py-2">Consider the space&#39;s target demographic before anything else. What will the area be used for
 and who are you trying to draw? You can then modify the design to better suit their

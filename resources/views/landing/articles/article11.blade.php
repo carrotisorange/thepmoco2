@@ -81,6 +81,10 @@ There are a few reasons why:
       <li class="pl-5 py-2">They&#39;re not user-friendly or easy to navigate. If you&#39;re not already familiar with how an
 online property management system works, then it can be challenging to figure out
 what you need to do with it and how to apply it to your company&#39;s benefit.</li>
+
+        <x-enrollment-ad>
+        </x-enrollment-ad>
+
       <li class="pl-5 py-2">The information they provide isn&#39;t always accurate or up-to-date (or both). If the
 information provided isn&#39;t accurate or up-to-date, then landlords won&#39;t trust the data
 
@@ -102,9 +106,7 @@ their space--and even report on how much is owed monthly when it comes time for 
 next payment.
     </p>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
-
+    
     <p class="pb-6">
     Property management software helps keep track of maintenance issues in real-time as well as
 manage all aspects of the business from one place like managing tenants concerns, expenses,
@@ -126,6 +128,7 @@ software systems also offer many benefits that can help your business grow:
     </p>
 
 
+
     <ul class="pb-6 list-disc">
       <li class="pl-5 py-2">Online property management systems are easy to use and have many features.</li>
       <li class="pl-5 py-2">They&#39;re secure and reliable; they save you time by eliminating the need for daily paper
@@ -139,6 +142,11 @@ confusion over who pays what bills on time (and when).</li>
     <h3 class="font-semibold text-xl pb-6">
     Online property management systems make more money.
     </h3>
+
+    
+    <x-ad-section-template>
+    </x-ad-section-template>
+    
       <p class="pb-6">
       If you&#39;re a property manager, an online property management system is going to make more
 money than you would if you were running it from scratch. That&#39;s because it saves time, money,

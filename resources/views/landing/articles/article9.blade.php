@@ -68,6 +68,10 @@ environment.
       <li class="p-5">Define the problem. Before you start on a solution, it’s important to define the problem you&#39;re
 trying to solve. This will help you determine what success looks like and how much time and
 effort will be required.</li>
+
+<x-enrollment-ad>
+        </x-enrollment-ad>
+
       <li class="p-5">Set goals before starting. Goals are more than just “I want this outcome”—they need specific
 dates, times, resources (people), and results (measurable achievements). For example: “I want
 my team&#39;s efficiency in customer service calls improved by 20% within six months.&quot;</li>
@@ -84,8 +88,7 @@ something like, &quot;That sounds excellent.&quot;
     Promote transparency and collaboration
     </h3>
 
-    <x-ad-section-template>
-    </x-ad-section-template>
+  
 
       <p class="pb-6">
       It is crucial to have a culture of openness and collaboration. Everyone needs to be on the same page, so
@@ -123,6 +126,10 @@ teaching the appropriate skills for each task at hand.&quot;</li>
     <h3 class="font-semibold text-xl pb-6">
     Agree on a common vocabulary
     </h3>
+
+    <x-ad-section-template>
+    </x-ad-section-template>
+    
       <p class="pb-6">
       Before you can begin to think about solutions, you need to define the problem. It&#39;s easy to get
 sidetracked when trying to solve digitalization pain points and forget that the biggest challenge is
