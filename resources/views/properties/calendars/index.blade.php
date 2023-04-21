@@ -14,33 +14,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
-        body{
+        body {
             font-family: "Poppins";
-           
+
         }
+
         .fc-state-default {
-	        background-color: #E5E1E8;
+            background-color: #E5E1E8;
         }
 
         .fc-event {
-            position: relative; /* for resize handle and other inner positioning */
-            display: block; /* make the <a> tag block */
+            position: relative;
+            /* for resize handle and other inner positioning */
+            display: block;
+            /* make the <a> tag block */
             font-size: .85em;
             line-height: 2;
             border-radius: 6px;
-            border: 1px solid #4D346F; /* default BORDER color */
-            font-weight: normal; /* undo jqui's ui-widget-header bold */
+            border: 1px solid #4D346F;
+            /* default BORDER color */
+            font-weight: normal;
+            /* undo jqui's ui-widget-header bold */
         }
-            
+
         .fc-event,
         .fc-event-dot {
-            background-color: #4D346F; /* default BACKGROUND color */
+            background-color: #4D346F;
+            /* default BACKGROUND color */
         }
-        
+
         .fc-unthemed td.fc-today {
             background: #EDE3FF;
         }
-
     </style>
 
     @endsection
@@ -75,8 +80,11 @@
                 selectHelper: true,
                 select: function(start, end, allDays){
                     $('#bookingModal').modal('toggle');
-
+                  
                     $('#saveBtn').click(function(){
+                        document.getElementById("saveBtn").innerHTML = "Loading...";
+                        // document.getElementById("saveBtn").setAttribute("disabled", true);
+                        
                         var guest = $('#guest').val();
                         var email = $('#email').val();
                         var mobile_number = $('#mobile_number').val();
@@ -84,6 +92,7 @@
                         var unit_uuid = $('#unit_uuid').val();
                         var movein_at = moment(start).format('YYYY-MM-DD');
                         var moveout_at = moment(end).format('YYYY-MM-DD');
+               
                         
                         $.ajax({
                             url:"{{ route('calendar.store') }}",
@@ -95,23 +104,31 @@
                             success:function(response){
                                 $('#bookingModal').modal('hide')
                                 $('#calendar').fullCalendar('renderEvent',{
-                                    // 'id': response.event_id,
+                                    'id': response.uuid,
                                     'title':response.guest,
                                     'start':response.movein_at,
                                     'end':response.moveout_at,
-                                    // 'color': response.color,
-                                    // 'time': response.time
                                 });
 
                                 swal("Success!", "Guest Created!", "success");
 
+                                document.getElementById("saveBtn").innerHTML = "Book";
+                                document.getElementById("guest").value = "";
+                                document.getElementById("email").value = "";
+                                document.getElementById("mobile_number").value = "";
+                                document.getElementById("unit_uuid").value = "";
+               
                             },
-                            error:function(error){
+                            error:function(error){     
                                 if(error.responseJSON.errors) {
+                                    // document.getElementById("saveBtn").setAttribute("disabled", true);
+                                    document.getElementById("saveBtn").innerHTML = "Book";
+                                    
                                     $('#guestError').html(error.responseJSON.errors.guest);
                                     $('#emailError').html(error.responseJSON.errors.email);
                                     $('#mobileNumberError').html(error.responseJSON.errors.mobile_number);
                                     $('#unitUuidError').html(error.responseJSON.errors.unit_uuid);
+
                                 }
                             }
                         });
@@ -142,30 +159,6 @@
                 },
                 eventClick: function(event){
                     window.location.href = "guest/"+event.id;
-                    // $('#showGuestModal').modal('toggle');
-                    // var id = event.id
-                 
-                    // $('#confirmBtn').click(function(){
-                    //   window.location.href = "guest/"+id;
-                    // });
-                    // ;
-                    //     if(confirm('Are you sure want to remove it')){
-                    //         $.ajax({
-                    //             url:"{{ route('calendar.destroy', '') }}" +'/'+ id,
-                    //             type:"DELETE",
-                    //             dataType:'json',
-                    //             success:function(response)
-                    //             {
-                    //                 console.log('asdasdad')
-                    //                 $('#calendar').fullCalendar('removeEvents', response);
-                    //                 swal("Success!", "Event Deleted!", "success");
-                    //             },
-                    //             error:function(error)
-                    //             {
-                    //                 console.log(error)
-                    //             }
-                    //         });
-                    //     }
                 }
             });
             $("#bookingModal").on("hidden.bs.modal", function(){
