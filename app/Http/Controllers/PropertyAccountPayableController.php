@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use Session;
 use App\Models\AccountPayable;
+use App\Models\AccountPayableLiquidation;
 use App\Models\AccountPayableLiquidationParticular;
 use App\Models\AccountPayableParticular;
 use Carbon\Carbon;
@@ -130,18 +131,22 @@ class PropertyAccountPayableController extends Controller
 
         $particulars = AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get();
 
+        if(!AccountPayableLiquidationParticular::where('batch_no', $accountPayable->batch_no)->count()){
+
         foreach($particulars as $particular) {
-            AccountPayableLiquidationParticular::updateOrCreate(
+            AccountPayableLiquidationParticular::create(
+                // [
+                //     'batch_no' => $particular->batch_no,
+                //     'unit_uuid' => $particular->unit_uuid,
+                //     'vendor_id' => $particular->vendor_id,
+                //     'created_at' => $particular->created_at,
+                //     // 'item' => $particular->item,
+                //     // 'quantity' => $particular->quantity,
+                //     // 'price' => $particular->price,
+                // ],
                 [
                     'batch_no' => $particular->batch_no,
-                    'unit_uuid' => $particular->unit_uuid,
-                    'vendor_id' => $particular->vendor_id,
-                    'item' => $particular->item,
-                    'quantity' => $particular->quantity,
-                    'price' => $particular->price,
-                ],
-                [
-                    'batch_no' => $particular->batch_no,
+                    'created_at' => $particular->created_at,
                     'unit_uuid' => $particular->unit_uuid,
                     'vendor_id' => $particular->vendor_id,
                     'item' => $particular->item,
@@ -149,7 +154,8 @@ class PropertyAccountPayableController extends Controller
                     'price' => $particular->price,
                     'total' => $particular->quantity * $particular->price
                 ]
-            );
+                );
+            }
         }
 
         return view('properties.accountpayables.create-liquidation',[

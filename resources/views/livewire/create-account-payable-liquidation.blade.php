@@ -195,7 +195,7 @@
 
                                         </x-td>
                                         <x-td>
-                                            <button type="button" wire:click="removeParticular({{ $particular->id }})"
+                                            {{-- <button type="button" wire:click="removeParticular({{ $particular->id }})"
                                                 wire:loading.remove wire:target="removeParticular"
                                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                 Remove
@@ -204,7 +204,7 @@
                                                 wire:target="removeParticular"
                                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                 Loading...
-                                            </button>
+                                            </button> --}}
                                             @include('layouts.notifications')
                                         </x-td>
                                         <x-td>
@@ -240,7 +240,7 @@
                             class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Total</label>
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
                             <input id="total" name="total" type="number" step="0.001" autocomplete="total"
-                                wire:model="total" readonly
+                                readonly value="{{ App\Models\AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total') }}"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                             @error('total')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
