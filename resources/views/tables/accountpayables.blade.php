@@ -24,22 +24,22 @@
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
                 @foreach ($particulars as $particular)
-                    @if($particular->unit_uuid)
-                        {{ App\Models\Unit::find($particular->unit_uuid)->unit }},
-                    @else
-                      
-                    @endif
+                @if($particular->unit_uuid)
+                {{ App\Models\Unit::find($particular->unit_uuid)->unit }},
+                @else
+
+                @endif
                 @endforeach
 
             </x-td>
             <x-td>
-               <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
+                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
                 @foreach ($particulars as $particular)
-                    @if($particular->vendor_id)
-                        {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }},
-                    @else
-                       
-                    @endif
+                @if($particular->vendor_id)
+                {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }},
+                @else
+
+                @endif
                 @endforeach
             </x-td>
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
@@ -93,8 +93,12 @@
             </x-td>
             <x-td>
                 @if($accountpayable->status === 'released')
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation"
-                    class="text-blue-500 text-decoration-line: underline">Liquidation</a>
+                <form
+                    action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation"
+                    method="POST">
+                    @csrf
+                    <button type="submit" class="text-blue-500 text-decoration-line: underline">Liquidation</button>
+                </form>
                 @endif
             </x-td>
             {{-- <x-td>
