@@ -41,18 +41,18 @@
 
                                             <label for="">Guest</label>
                                             <input type="text" name="guest" id="guest" class="form-control">
-                                            <span id="guestError" class="text-danger"></span>
+                                            <span id="guestError" class="text-danger text-sm"></span>
                                             <br>
 
                                             <label for="">Email</label>
                                             <input type="email" name="email" id="email" class="form-control">
-                                            <span id="emailError" class="text-danger"></span>
+                                            <span id="emailError" class="text-danger text-sm"></span>
                                             <br>
 
                                             <label for="">Mobile Number</label>
                                             <input type="text" name="mobile_number" id="mobile_number"
                                                 class="form-control">
-                                            <span id="mobileNumberError" class="text-danger"></span>
+                                            <span id="mobileNumberError" class="text-danger text-sm"></span>
                                             <br>
 
                                             <label for="">Unit</label>
@@ -64,7 +64,14 @@
                                                     2) }}/night</option>
                                                 @endforeach
                                             </select>
-                                            <span id="unitUuidError" class="text-danger"></span>
+                                            <span id="unitUuidError" class="text-danger text-sm"></span>
+                                            <br>
+                                            {{-- <label for="">Do you want to send welcome email to the guest?</label>
+                                            <select class="form-control" name="is_send_email" id="is_send_email">
+                                                <option value="no">no</option>
+                                                <option value="yes">yes</option>
+                                            </select> --}}
+                                            
                                             {{-- <br>
                                             <label for="">Start</label>
                                             <input type="date" name="movein_at" id="movein_at" class="form-control"
@@ -81,8 +88,9 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="button" onclick="this.disabled = true;" id="saveBtn"
+                                            <button type="button" id="saveBtn"
                                                 class="btn btn-primary">Book</button>
+                                          
                                         </div>
                                     </div>
                                     {{--

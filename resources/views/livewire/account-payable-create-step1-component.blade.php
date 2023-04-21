@@ -150,7 +150,7 @@
                                                     @endforeach
                                                 </select>
 
-                                                @error('particulars.{{ $index }}.unit_uuid')
+                                                @error('particulars.{{ $index }}.vendor_id')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
                                             </x-td>

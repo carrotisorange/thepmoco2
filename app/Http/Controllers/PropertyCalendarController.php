@@ -81,7 +81,9 @@ class PropertyCalendarController extends Controller
 
         $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
 
-        $this->send_mail_to_guest($guest);
+    //    if($request->is_send_email === 'no'){
+         $this->send_mail_to_guest($guest);
+    //    }
 
         $this->update_unit($request->unit_uuid);
 
@@ -98,16 +100,25 @@ class PropertyCalendarController extends Controller
 
     public function store_guest($guest_uuid, $guest, $email, $mobile_number, $movein_at, $moveout_at, $unit_uuid, $property_uuid, $price){
         
-        $guest = Guest::create([
-            'uuid' => $guest_uuid,
-            'guest' => $guest,
-            'email' => $email,
-            'mobile_number' => $mobile_number,
-            'movein_at' => $movein_at,
-            'moveout_at' => $moveout_at,
-            'unit_uuid' => $unit_uuid,
-            'property_uuid' => $property_uuid,
-            'price' => $price,
+        $guest = Guest::updateOrCreate(
+            [
+                'unit_uuid' => $unit_uuid,
+                'property_uuid' => $property_uuid,
+                'guest' => $guest,
+                'movein_at' => $movein_at,
+                'moveout_at' => $moveout_at,
+            ]
+            ,
+            [
+                'uuid' => $guest_uuid,
+                'guest' => $guest,
+                'email' => $email,
+                'mobile_number' => $mobile_number,
+                'movein_at' => $movein_at,
+                'moveout_at' => $moveout_at,
+                'unit_uuid' => $unit_uuid,
+                'property_uuid' => $property_uuid,
+                'price' => $price,
         ]);
 
         return $guest;

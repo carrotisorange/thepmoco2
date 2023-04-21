@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use Session;
 use App\Models\AccountPayable;
+use App\Models\AccountPayableLiquidationParticular;
 use App\Models\AccountPayableParticular;
 use Carbon\Carbon;
 
@@ -126,8 +127,34 @@ class PropertyAccountPayableController extends Controller
     }
 
     public function create_liquidation(Property $property, AccountPayable $accountPayable){
+
+        $particulars = AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get();
+
+        foreach($particulars as $particular) {
+            AccountPayableLiquidationParticular::updateOrCreate(
+                [
+                    'batch_no' => $particular->batch_no,
+                    'unit_uuid' => $particular->unit_uuid,
+                    'vendor_id' => $particular->vendor_id,
+                    'item' => $particular->item,
+                    'quantity' => $particular->quantity,
+                    'price' => $particular->price,
+                ],
+                [
+                    'batch_no' => $particular->batch_no,
+                    'unit_uuid' => $particular->unit_uuid,
+                    'vendor_id' => $particular->vendor_id,
+                    'item' => $particular->item,
+                    'quantity' => $particular->quantity,
+                    'price' => $particular->price,
+                    'total' => $particular->quantity * $particular->price
+                ]
+            );
+        }
+
         return view('properties.accountpayables.create-liquidation',[
-            'property' => $property
+            'property' => $property,
+            'accountpayable' => $accountPayable,
         ]);
     }
 }
