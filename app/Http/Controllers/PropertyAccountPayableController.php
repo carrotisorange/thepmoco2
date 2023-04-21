@@ -138,7 +138,7 @@ class PropertyAccountPayableController extends Controller
                     'vendor_id' => $particular->vendor_id,
                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
-                    'price' => $particular->price
+                    'price' => $particular->price,
                 ],
                 [
                     'batch_no' => $particular->batch_no,
@@ -147,6 +147,7 @@ class PropertyAccountPayableController extends Controller
                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
                     'price' => $particular->price,
+                    'total' => $particular->quantity * $particular->price
                 ]
             );
         }

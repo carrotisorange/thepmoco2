@@ -33,13 +33,13 @@ class CreateAccountPayableLiquidation extends Component
     public function mount($accountpayable){
         $this->created_at = Carbon::parse(AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('created_at')->first())->format('Y-m-d');
         $this->batch_no = $accountpayable->batch_no;
-        $this->particulars = AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->get();
+        $this->particulars = $this->get_particulars();
         $this->prepared_by = auth()->user()->id;
 
         $this->name = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('name')->first();
         $this->department = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('department')->first();
         $this->unit_uuid = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('unit_uuid')->first();
-        $this->total = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total');
+        $this->total = AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
         $this->cash_advance = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cash_advance')->first();
         $this->cv_number = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cv_number')->first();
         $this->total_type = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_type')->first();
@@ -77,7 +77,6 @@ class CreateAccountPayableLiquidation extends Component
         $this->validateOnly($propertyName);
 
     }
-
 
     public function storeAccountPayableLiquidation(){
         sleep(2);
@@ -129,7 +128,17 @@ class CreateAccountPayableLiquidation extends Component
        }
     }
 
+    public function removeParticular($id){
+        sleep(1);
+        
+        AccountPayableLiquidationParticular::where('id', $id)->delete();
 
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation')->with('success', 'Success!');
+    }
+
+    public function get_particulars(){
+        return AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->get();
+    }
 
     public function render()
     {
