@@ -24,7 +24,7 @@
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Name</label>
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
                         <input id="name" name="name" type="name" autocomplete="name" wire:model="name"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                         @error('name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -37,7 +37,7 @@
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
                         <input id="department" name="department" type="department" autocomplete="department"
                             wire:model="department"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                         @error('department')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -62,7 +62,7 @@
                     <label for="unit" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Unit</label>
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
                         <select wire:model="unit_uuid" {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                            class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
+                            class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-12 sm:text-sm border border-gray-700 rounded-md">
                             <option value="" selected>Select a unit</option>
                             @foreach ($units as $unit)
                             <option value="{{ $unit->uuid }}" {{ 'particulars' .$unit_uuid===$unit->uuid?
@@ -85,7 +85,7 @@
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
                         <input id="batch_no" name="batch_no" type="batch_no" autocomplete="batch_no"
                             wire:model="batch_no" readonly
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                         @error('batch_no')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
