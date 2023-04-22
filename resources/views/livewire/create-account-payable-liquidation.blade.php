@@ -62,7 +62,7 @@
                     <label for="unit" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Unit</label>
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
                         <select wire:model="unit_uuid" {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                            class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                            class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                             <option value="" selected>Select a unit</option>
                             @foreach ($units as $unit)
                             <option value="{{ $unit->uuid }}" {{ 'particulars' .$unit_uuid===$unit->uuid?
@@ -134,7 +134,7 @@
                                         <x-td>{{ $index+1 }}</x-td>
                                         {{-- <x-td>
                                             <input type="date" wire:model="particulars.{{ $index }}.created_at"
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
 
                                         </x-td> --}}
 
@@ -156,7 +156,7 @@
                                         <x-td>
                                             <input type="text" wire:model="particulars.{{ $index }}.or_number" {{--
                                                 wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
 
                                             @error('particulars.{{ $index }}.or_number')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -165,7 +165,7 @@
                                         <x-td>
                                             <input type="text" wire:model="particulars.{{ $index }}.item" readonly {{--
                                                 wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                             @error('particulars.{{ $index }}.item')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -173,7 +173,7 @@
                                         <x-td>
                                             <input type="number" wire:model="particulars.{{ $index }}.quantity" {{--
                                                 wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                             @error('particulars.{{ $index }}.quantity')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -183,7 +183,7 @@
                                             <input type="number" step="0.001"
                                                 wire:model="particulars.{{ $index }}.price" {{--
                                                 wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                             @error('particulars.{{ $index }}.price')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -191,7 +191,7 @@
                                         <x-td>
                                             <input type="number"
                                                 value="{{ $particular->quantity * $particular->price }}" readonly
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
 
                                         </x-td>
                                         <x-td>
