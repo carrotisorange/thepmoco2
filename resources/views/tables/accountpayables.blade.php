@@ -92,7 +92,7 @@
                 @endcan
             </x-td>
             <x-td>
-                @if($accountpayable->status === 'released')
+                @if($accountpayable->status === 'released' && $accountpayable->request_for === 'purchase')
                 <form
                     action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation"
                     method="POST">

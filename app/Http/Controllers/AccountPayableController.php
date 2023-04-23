@@ -118,7 +118,7 @@ class AccountPayableController extends Controller
 
     public function create_step_5($property_uuid, $accountpayable_id){
         
-        $this->authorize('accountpayable');
+        // $this->authorize('accountpayable');
 
         return view('accountpayables.create.step-5', [
            'accountpayable_id' => $accountpayable_id
