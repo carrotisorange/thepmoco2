@@ -24,7 +24,7 @@
                 <div class="sm:col-span-6">
                     <label for="request_for" class="block text-sm font-medium text-gray-700">Request for</label>
                     <select wire:model="request_for"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
 
                         <option value="payment" {{ old('request_for', $request_for)=='payment' ? 'selected' : 'selected'
                             }}>
@@ -44,7 +44,7 @@
                 <div class="sm:col-span-2">
                     <label for="created_at" class="block text-sm font-medium text-gray-700">Request Date</label>
                     <input type="date" wire:model="created_at" name="created_at"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
                     @error('created_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -53,7 +53,7 @@
                 <div class="sm:col-span-2">
                     <label for="due_date" class="block text-sm font-medium text-gray-700">Due Date</label>
                     <input type="date" wire:model="due_date" name="due_date"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
                     @error('due_date')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -63,7 +63,7 @@
                 <div class="sm:col-span-2">
                     <label for="requester" class="block text-sm font-medium text-gray-700">Requester's Name</label>
                     <select id="requester_id" wire:model="requester_id"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
                         <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
                     </select>
                     @error('requester_id')
@@ -123,7 +123,7 @@
                                             <x-td>
                                                 <select wire:model="particulars.{{ $index }}.unit_uuid"
                                                     {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($units as $unit)
                                                     <option value="{{ $unit->uuid }}" {{ 'particulars'
@@ -140,7 +140,7 @@
                                             <x-td>
                                                 <select wire:model="particulars.{{ $index }}.vendor_id"
                                                     {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($vendors as $vendor)
                                                     <option value="{{ $vendor->id }}" {{ 'particulars'
@@ -157,7 +157,7 @@
                                             <x-td>
                                                 <input type="text" wire:model="particulars.{{ $index }}.item"
                                                     {{-- wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.item')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -165,7 +165,7 @@
                                             <x-td>
                                                 <input type="number" wire:model="particulars.{{ $index }}.quantity"
                                                     {{-- wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.quantity')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -175,7 +175,7 @@
                                                 <input type="number" step="0.001"
                                                     wire:model="particulars.{{ $index }}.price"
                                                     {{-- wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                                 @error('particulars.{{ $index }}.price')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -183,7 +183,7 @@
                                             <x-td>
                                                 <input type="number"
                                                     value="{{ $particular->quantity * $particular->price }}" readonly
-                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
 
                                             </x-td>
                                             <x-td>
@@ -402,7 +402,7 @@
                 <div class="sm:col-span-6">
                     <label for="vendor" class="block text-sm font-medium text-gray-700">Select a quotation:</label>
                     <select id="selected_quotation" wire:model="selected_quotation"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                         @if($quotation1 && !$quotation2 && !$quotation3)
                         <option value="quotation1">Quotation 1</option>
                         @elseif($quotation1 && $quotation2 && !$quotation3)
@@ -425,7 +425,7 @@
                 <div class="sm:col-span-3">
                     <label for="vendor" class="block text-sm font-medium text-gray-700">Name of the vendor</label>
                     <input type="text" wire:model="vendor" rows="3"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                     @error('vendor')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -434,7 +434,7 @@
                 <div class="sm:col-span-3">
                     <label for="delivery-date" class="block text-sm font-medium text-gray-700">Delivery Date</label>
                     <input type="date" wire:model="delivery_at"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
                     @error('delivery_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror

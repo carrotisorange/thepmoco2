@@ -10,7 +10,7 @@ use App\Models\Property;
 use App\Models\AccountPayableLiquidationParticular;
 use Database\Factories\AccountPayableLiquidationFactory;
 
-class CreateAccountPayableLiquidation extends Component
+class CreateAccountPayableLiquidationStep1Component extends Component
 {
     public $property;
     public $accountpayable;
@@ -104,6 +104,8 @@ class CreateAccountPayableLiquidation extends Component
                 'approved_by' => $this->approved_by
         ]);
 
+        $this->particulars = $this->get_particulars();
+
         return back()->with('success', 'Success!');
     }
 
@@ -115,6 +117,8 @@ class CreateAccountPayableLiquidation extends Component
                 ->update([
                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
+                    'unit_uuid' => $particular->unit_uuid,
+                    'vendor_id' => $particular->vendor_id,
                     'price' => $particular->price,
                     'or_number' => $particular->or_number,
                     'total' => $particular->quantity * $particular->price,
@@ -133,17 +137,40 @@ class CreateAccountPayableLiquidation extends Component
         
         AccountPayableLiquidationParticular::where('id', $id)->delete();
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation')->with('success', 'Success!');
+        $this->particulars = $this->get_particulars();
+
+        return back()->with('success', 'Success!');
     }
 
     public function get_particulars(){
         return AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->get();
     }
 
+    public function storeNewItem(){
+        sleep(2);
+
+        AccountPayableLiquidationParticular::create(
+        [
+         'batch_no' => $this->accountpayable->batch_no,
+         'created_at' => Carbon::now(),
+         'unit_uuid' => '',
+         'vendor_id' => '',
+         'item' => '',
+         'quantity' => '',
+         'price' => '',
+         'total' => ''
+        ]);
+
+        $this->particulars = $this->get_particulars();
+
+        return back()->with('success', 'Success!');
+    }
+
     public function render()
     {
-        return view('livewire.create-account-payable-liquidation',[
+        return view('livewire.create-account-payable-liquidation-step1-component',[
             'units' => Property::find($this->property->uuid)->units,
+            'vendors' => Property::find($this->property->uuid)->billers,
         ]);
     }
 }

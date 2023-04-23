@@ -131,7 +131,7 @@
                 <div class="sm:col-span-2">
                     <label for="vendor" class="block text-sm font-medium text-gray-700">Select a quotation:</label>
                     <select id="selected_quotation" wire:model="selected_quotation"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                         @if($quotation1 && !$quotation2 && !$quotation3)
                         <option value="quotation1">Quotation 1</option>
                         @elseif($quotation1 && $quotation2 && !$quotation3)
@@ -154,7 +154,7 @@
                 <div class="sm:col-span-2">
                     <label for="vendor" class="block text-sm font-medium text-gray-700">Name of the vendor:</label>
                     <input type="text" wire:model="vendor" rows="3"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                     @error('vendor')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -163,7 +163,7 @@
                 <div class="sm:col-span-2">
                     <label for="amount" class="block text-sm font-medium text-gray-700">Amount of the quotation</label>
                     <input type="number" step="0.01" wire:model="amount" rows="3"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                     @error('amount')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror

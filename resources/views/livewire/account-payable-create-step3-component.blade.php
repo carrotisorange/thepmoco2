@@ -253,7 +253,7 @@
                 <div class="sm:col-span-3">
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Name:</label>
                     <input type="text" wire:model="vendor" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                     @error('selected_vendor')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -261,7 +261,7 @@
                 <div class="sm:col-span-3">
                     <label for="delivery-date" class="block text-sm font-medium text-gray-700">Delivery Date:</label>
                     <input type="date" wire:model="delivery_at" readonly
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
                     @error('delivery_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror

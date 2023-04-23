@@ -45,7 +45,11 @@
                             <tr>
                                 <x-td>{{ $index+1 }}</x-td>
                                 <x-td>
+                                  @if($inventory->image)
                                   <img class="mx-auto h-20 w-20 rounded-full" src="{{ asset('/storage/'.$inventory->image) }}" alt="" />
+                                @else
+                                <img class="mx-auto h-20 w-20 rounded-full" src="{{ asset('/brands/avatar.png') }}"" alt="" />
+                                  @endif
                                 </x-td>
                                 <x-td>
                                     <input type="text" wire:model.debounce.500ms="inventories.{{ $index }}.item"

@@ -135,15 +135,6 @@ class PropertyAccountPayableController extends Controller
 
         foreach($particulars as $particular) {
             AccountPayableLiquidationParticular::create(
-                // [
-                //     'batch_no' => $particular->batch_no,
-                //     'unit_uuid' => $particular->unit_uuid,
-                //     'vendor_id' => $particular->vendor_id,
-                //     'created_at' => $particular->created_at,
-                //     // 'item' => $particular->item,
-                //     // 'quantity' => $particular->quantity,
-                //     // 'price' => $particular->price,
-                // ],
                 [
                     'batch_no' => $particular->batch_no,
                     'created_at' => $particular->created_at,
