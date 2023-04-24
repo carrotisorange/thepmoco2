@@ -195,7 +195,7 @@
                                         </x-td>
                                         <x-td>
                                             <input type="number"
-                                                value="{{ $particular->quantity * $particular->price }}" readonly
+                                                value="{{ (int)$particular->quantity * (int)$particular->price }}" readonly
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
 
                                         </x-td>

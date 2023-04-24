@@ -36,7 +36,6 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         $this->batch_no = $accountpayable->batch_no;
         $this->particulars = $this->get_particulars();
         $this->prepared_by = auth()->user()->id;
-
         $this->name = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('name')->first();
         $this->department = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('department')->first();
         $this->unit_uuid = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('unit_uuid')->first();
@@ -69,7 +68,6 @@ class CreateAccountPayableLiquidationStep1Component extends Component
             'cv_number' => 'nullable',
             'cash_advance' => 'required',
             'total_type' => 'nullable',
-           
             'prepared_by' => 'nullable',
             'return_type' => ['required_if:total_type,refund'],
             'total_amount' => ['required_if:total_type,refund'],
