@@ -55,7 +55,7 @@ class TenantCreateComponent extends Component
     {
         return [
             'tenant' => 'required',
-            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tenants', 'unique:users'],
+            'email' => ['nullable', 'string', 'email', 'max:255'],
             'mobile_number' => 'nullable',
             'gender' => 'required',
             'civil_status' => 'nullable',
@@ -93,13 +93,13 @@ class TenantCreateComponent extends Component
                
                 $tenant_uuid = $this->store_tenant($validatedData);
 
-                if($this->generateCredentials)
-                {
-                    $user_id = $this->store_user();
+                // if($this->generateCredentials)
+                // {
+                //     $user_id = $this->store_user();
 
-                    app('App\Http\Controllers\UserController')->update_user_tenant_uuid($user_id, $tenant_uuid);
+                //     app('App\Http\Controllers\UserController')->update_user_tenant_uuid($user_id, $tenant_uuid);
 
-                }
+                // }
 
             return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success', 'Success!');
       
