@@ -138,12 +138,12 @@ class AccountPayableCreateStep1Component extends Component
 
         }
 
-          AccountPayable::where('id', $this->accountpayable->id)
+        AccountPayable::where('id', $this->accountpayable->id)
               ->update([
              'selected_quotation' => $this->selected_quotation,
               'amount' => AccountPayableParticular::where('batch_no', $this->batch_no)->sum('total'),
               'vendor' => $this->vendor,
-              ]);
+        ]);
 
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');

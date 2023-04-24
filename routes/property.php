@@ -55,6 +55,7 @@ use App\Http\Controllers\PropertyCalendarController;
 use App\Http\Controllers\PropertyFinancialController;
 use App\Http\Controllers\PropertyUtilityController;
 use App\Http\Controllers\PropertyGuestController;
+use App\Http\Controllers\PropertyLiquidationController;
 
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
@@ -373,7 +374,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('export/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [PropertyAccountPayableController::class, 'export']);
 
         Route::get('{accountPayable}', [PropertyAccountPayableController::class, 'show'])->name('accountpayable');
-        Route::post('{accountPayable}/liquidation', [PropertyAccountPayableController::class, 'create_liquidation'])->name('accountpayable');
+        Route::post('{accountPayable}/liquidation/step-1', [PropertyLiquidationController::class, 'step1'])->name('accountpayable');
+        Route::get('{accountPayable}/liquidation/step-2', [PropertyLiquidationController::class, 'step2'])->name('accountpayable');
+        
         Route::get('{accountPayable}/download', [PropertyAccountPayableController::class, 'download']);
 
         Route::controller(AccountPayableController::class)->group(function () {

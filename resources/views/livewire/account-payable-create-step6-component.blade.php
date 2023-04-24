@@ -197,7 +197,7 @@
                 <div class="col-start-6 flex items-center justify-end">
 
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable_id }}">
+                        href="/property/{{ Session::get('property') }}/accountpayable/{{ $accountpayable->id }}">
                         Skip
                     </a>
                     <button

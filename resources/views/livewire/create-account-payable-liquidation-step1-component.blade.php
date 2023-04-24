@@ -1,100 +1,95 @@
 <div>
     <div class="mx-10">
-        <div class="sm:flex sm:items-center">
-            <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500">Liquidation Form</h1>
-            </div>
-
-            <div class="mt-8">
-                <div class="max-full mx-auto sm:px-6">
-                    <button type="button" wire:click="" wire:loading.remove
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        Go back to Account Payables
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div>
-            <div
-                class="mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
-                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Name</label>
-                    <div class="mt-2 sm:col-start-3 sm:mt-0">
-                        <input id="name" name="name" type="name" autocomplete="name" wire:model="name"
-                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                        @error('name')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+        <div class="px-4 sm:px-6 lg:px-8">
+                    <div class="sm:flex sm:items-center">
+                        <div class="mt-5 sm:flex-auto">
+                            <h1 class="text-base font-semibold leading-6 text-gray-900">Liquidation Details</h1>
+                
+                        </div>
+                    </div>
+                    <div class="mt-8 flow-root">
+                        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <table class="min-w-full divide-y divide-gray-300">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Batch No
+                                            </th>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {{ $batch_no }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Date
+                                                created
+                                            </th>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                         <input id="created_at" name="created_at" type="date" wire:model="created_at" autocomplete="date-liquidation"
+                                        class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                                        @error('created_at')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                                </td>
+                                        </tr>
+                                       
+                                        <tr>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name
+                                            </th>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                <input id="name" name="name" type="name" autocomplete="name" wire:model="name"
+                                                    class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                                                @error('name')
+                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                @enderror
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                                Department/Section
+                                            </th>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                           <input id="department" name="department" type="department" autocomplete="department" wire:model="department"
+                                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                                        @error('department')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Unit
+                                            </th>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                               <select wire:model="unit_uuid" 
+                                                    class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
+                                                    <option value="" selected>Select a unit</option>
+                                                    @foreach ($units as $unit)
+                                                    <option value="{{ $unit->uuid }}" {{ 'particulars' .$unit_uuid===$unit->uuid?
+                                                        'selected' : '' }}>
+                                                        {{ $unit->building->building .'-'.$unit->unit }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                
+                                                @error('unit_uuid')
+                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                                @enderror
+                                            </td>
+                                        </tr>
+                                       
+                                    </thead>
+                
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                    <label for="department"
-                        class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Department/Section</label>
-                    <div class="mt-2 sm:col-start-3 sm:mt-0">
-                        <input id="department" name="department" type="department" autocomplete="department"
-                            wire:model="department"
-                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                        @error('department')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                    <label for="date-liquidation"
-                        class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Date
-                        of Liquidation</label>
-                    <div class="mt-2 sm:col-start-3 sm:mt-0">
-                        <input id="created_at" name="created_at" type="date" wire:model="created_at"
-                            autocomplete="date-liquidation"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                        @error('created_at')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                    <label for="unit" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Unit</label>
-                    <div class="mt-2 sm:col-start-3 sm:mt-0">
-                        <select wire:model="unit_uuid" {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                            class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-12 sm:text-sm border border-gray-700 rounded-md">
-                            <option value="" selected>Select a unit</option>
-                            @foreach ($units as $unit)
-                            <option value="{{ $unit->uuid }}" {{ 'particulars' .$unit_uuid===$unit->uuid?
-                                'selected' : '' }}>
-                                {{ $unit->building->building .'-'.$unit->unit }}
-                            </option>
-                            @endforeach
-                        </select>
-
-                        @error('unit_uuid')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-
-                    </div>
-                </div>
-
-                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                    <label for="batch-no" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Batch
-                        #</label>
-                    <div class="mt-2 sm:col-start-3 sm:mt-0">
-                        <input id="batch_no" name="batch_no" type="batch_no" autocomplete="batch_no"
-                            wire:model="batch_no" readonly
-                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                        @error('batch_no')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-
-
-
+    </div>
+    
             <div class="px-6 pt-5 flex justify-end items-center">
                 <button type="button" wire:click="storeNewItem" wire:loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -115,7 +110,7 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <x-th>#</x-th>
-                                    {{-- <x-th>DATE</x-th> --}}
+                          
                                     <x-th>UNIT</x-th>
                                     <x-th>VENDOR</x-th>
                                     <x-th>OR NUMBER </x-th>
@@ -132,15 +127,10 @@
                                 <div wire:key="particular-field-{{ $particular->id }}">
                                     <tr>
                                         <x-td>{{ $index+1 }}</x-td>
-                                        {{-- <x-td>
-                                            <input type="date" wire:model="particulars.{{ $index }}.created_at"
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
-
-                                        </x-td> --}}
+                                   
 
                                         <x-td>
-                                            <select wire:model="particulars.{{ $index }}.unit_uuid" {{--
-                                                wire:change="updateParticular({{ $particular->id }})" --}}
+                                            <select wire:model="particulars.{{ $index }}.unit_uuid"     wire:change="updateParticular({{ $particular->id }})" --}}
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                                 <option value="" selected>Select a unit</option>
                                                 @foreach ($units as $unit)
@@ -157,8 +147,7 @@
 
                                         </x-td>
                                         <x-td>
-                                            <select wire:model="particulars.{{ $index }}.vendor_id" {{--
-                                                wire:change="updateParticular({{ $particular->id }})" --}}
+                                            <select wire:model="particulars.{{ $index }}.vendor_id" 
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                                 <option value="" selected>Select a unit</option>
                                                 @foreach ($vendors as $vendor)
@@ -174,8 +163,7 @@
                                             @enderror
                                         </x-td>
                                         <x-td>
-                                            <input type="text" wire:model="particulars.{{ $index }}.or_number" {{--
-                                                wire:keyup="updateParticular({{ $particular->id }})" --}}
+                                            <input type="text" wire:model="particulars.{{ $index }}.or_number" 
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
 
                                             @error('particulars.{{ $index }}.or_number')
@@ -183,26 +171,23 @@
                                             @enderror
                                         </x-td>
                                         <x-td>
-                                            <input type="text" wire:model="particulars.{{ $index }}.item" {{--
-                                                wire:keyup="updateParticular({{ $particular->id }})" --}}
+                                            <input type="text" wire:model="particulars.{{ $index }}.item"
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                             @error('particulars.{{ $index }}.item')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </x-td>
                                         <x-td>
-                                            <input type="number" wire:model="particulars.{{ $index }}.quantity" {{--
-                                                wire:keyup="updateParticular({{ $particular->id }})" --}}
+                                            <input type="number" wire:model="particulars.{{ $index }}.quantity" 
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                             @error('particulars.{{ $index }}.quantity')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </x-td>
-                                        {{-- @if($request_for === 'payment') --}}
+  
                                         <x-td>
                                             <input type="number" step="0.001"
-                                                wire:model="particulars.{{ $index }}.price" {{--
-                                                wire:keyup="updateParticular({{ $particular->id }})" --}}
+                                                wire:model="particulars.{{ $index }}.price" 
                                                 class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
                                             @error('particulars.{{ $index }}.price')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -239,8 +224,6 @@
                                             </button>
                                         </x-td>
 
-                                        {{-- @endif --}}
-
                                     </tr>
                                 </div>
                                 @endforeach
@@ -257,7 +240,7 @@
                 <div class="cols-start-3 mt-10 space-y-3 0 pb-3 sm:space-y-0 sm:divide-y sm:pb-0">
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-3">
                         <label for="name"
-                            class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Total</label>
+                            class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Liquidation Total</label>
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
                             <input id="total" name="total" type="number" step="0.001" autocomplete="total" readonly
                                 value="{{ App\Models\AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total') }}"
@@ -289,17 +272,17 @@
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                         <label for="total_type"
-                            class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Total</label>
+                            class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Return/Refund</label>
                         <select wire:model="total_type" {{-- wire:change="updateParticular({{ $particular->id }})" --}}
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300
                             placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
                             <option value="" selected>Select one</option>
                             <option value="refund" {{ $total_type==='refund' ? 'selected' : '' }}>
-                                refund
+                                Refund
                             </option>
 
                             <option value="return" {{ $total_type==='return' ? 'selected' : '' }}>
-                                return
+                                Return
                             </option>
 
 
@@ -307,9 +290,35 @@
                         @error('total_type')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
+                       
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            <input id="total_amount" name="total_amount" type="number" step="0.001"
-                                autocomplete="total_amount" wire:model="total_amount"
+                            <select wire:model="return_type" {{-- wire:change="updateParticular({{ $particular->id }})" --}}
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300
+                                                        placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
+                                <option value="" selected>Select one</option>
+                                <option value="petty_cash" {{ $return_type==='petty_cash' ? 'selected' : '' }}>
+                                    Petty Cash
+                                </option>
+                            
+                                <option value="reimbursement" {{ $return_type==='reimbursement' ? 'selected' : '' }}>
+                                    Reimbursement
+                                </option>
+                            
+                            
+                            </select>
+                            @error('return_type')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                        <label for="total_amount" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Total Return/Refund</label>
+                       
+                    
+                        <div class="mt-2 sm:col-start-3 sm:mt-0">
+                            <input id="total_amount" name="total_amount" type="number" step="0.001" autocomplete="total_amount"
+                                wire:model="total_amount"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                             @error('total_amount')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -321,7 +330,7 @@
 
 
                 <!-- approval section -->
-                <div class="mt-5 p-5 border flex justify-between text-sm">
+                {{-- <div class="mt-5 p-5 border flex justify-between text-sm">
                     <div>
                         Prepared by:
                         <input id="prepared_by" name="prepared_by" type="text" value="{{ auth()->user()->name }}"
@@ -351,7 +360,7 @@
                     </div>
 
 
-                </div>
+                </div> --}}
 
                 <div>
                     <p class="mt-5 px-6 text-right">
@@ -377,5 +386,3 @@
 
             </div>
         </div>
-    </div>
-</div>

@@ -125,12 +125,13 @@ class AccountPayableController extends Controller
         ]);
     }
 
-    public function create_step_6($property_uuid, $accountpayable_id){
+    public function create_step_6(Property $property, AccountPayable $accountpayable){
 
         $this->authorize('accountpayable');
 
         return view('accountpayables.create.step-6', [
-           'accountpayable_id' => $accountpayable_id
+            'property' => $property,
+           'accountpayable' => $accountpayable,
         ]);
     }
 

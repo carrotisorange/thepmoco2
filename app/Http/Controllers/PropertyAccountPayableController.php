@@ -127,31 +127,4 @@ class PropertyAccountPayableController extends Controller
        return $pdf->download($accountPayable->property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
     }
 
-    public function create_liquidation(Property $property, AccountPayable $accountPayable){
-
-        $particulars = AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get();
-
-        if(!AccountPayableLiquidationParticular::where('batch_no', $accountPayable->batch_no)->count()){
-
-        foreach($particulars as $particular) {
-            AccountPayableLiquidationParticular::create(
-                [
-                    'batch_no' => $particular->batch_no,
-                    'created_at' => $particular->created_at,
-                    'unit_uuid' => $particular->unit_uuid,
-                    'vendor_id' => $particular->vendor_id,
-                    'item' => $particular->item,
-                    'quantity' => $particular->quantity,
-                    'price' => $particular->price,
-                    'total' => $particular->quantity * $particular->price
-                ]
-                );
-            }
-        }
-
-        return view('properties.accountpayables.create-liquidation',[
-            'property' => $property,
-            'accountpayable' => $accountPayable,
-        ]);
-    }
 }
