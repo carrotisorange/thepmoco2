@@ -1,4 +1,13 @@
 <div>
+    @section('styles')
+        <style>
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        </style>
+        @endsection
     <div class="mx-10">
         <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
@@ -52,8 +61,18 @@
                                                 Department/Section
                                             </th>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                           <input id="department" name="department" type="department" autocomplete="department" wire:model="department"
-                                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                                                <select wire:model="department"
+                                                    class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
+                                                    <option value="" selected>Select a unit</option>
+                                                    @foreach ($departments as $department)
+                                                    <option value="{{ $department->role }}" {{ $department===$department->role?
+                                                        'selected' : '' }}>
+                                                       {{ $department->role }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                           {{-- <input id="department" name="department" type="department" autocomplete="department" wire:model="department"
+                                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" /> --}}
                                         @error('department')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
@@ -88,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-    </div>
+   
     
             <div class="px-6 pt-5 flex justify-end items-center">
                 <button type="button" wire:click="storeNewItem" wire:loading.remove
@@ -103,9 +122,9 @@
             </div>
 
             <!-- table -->
-            <div class="sm:col-span-8 ">
-                <div class="mb-5 mt-2 relative overflow-x-auto ring-opacity-5 md:rounded-lg">
-                    <form class="mt-5 sm:pb-6 xl:pb-8">
+         <div class="sm:col-span-6">
+                        <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5 md:rounded-lg">
+                 
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -118,7 +137,7 @@
                                     <x-th>QUANTITY</x-th>
                                     <x-th>AMOUNT</x-th>
                                     <x-th>TOTAL</x-th>
-
+                                    <x-th></x-th>
                                     <x-th></x-th>
                                 </tr>
                             </thead>
@@ -127,7 +146,6 @@
                                 <div wire:key="particular-field-{{ $particular->id }}">
                                     <tr>
                                         <x-td>{{ $index+1 }}</x-td>
-                                   
 
                                         <x-td>
                                             <select wire:model="particulars.{{ $index }}.unit_uuid"     wire:change="updateParticular({{ $particular->id }})" --}}
@@ -194,10 +212,7 @@
                                             @enderror
                                         </x-td>
                                         <x-td>
-                                            <input type="number"
-                                                value="{{ (int)$particular->quantity * (int)$particular->price }}" readonly
-                                                class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
-
+                                           {{ number_format((int)$particular->quantity * (int)$particular->price, 2) }}
                                         </x-td>
                                         <x-td>
                                             <button type="button" wire:click="removeParticular({{ $particular->id }})"
@@ -229,8 +244,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </form>
-
+        
                 </div>
             </div>
 
@@ -239,29 +253,26 @@
             <div>
                 <div class="cols-start-3 mt-10 space-y-3 0 pb-3 sm:space-y-0 sm:divide-y sm:pb-0">
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-3">
-                        <label for="name"
+                        <label for="total"
                             class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Liquidation Total</label>
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            <input id="total" name="total" type="number" step="0.001" autocomplete="total" readonly
-                                value="{{ App\Models\AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total') }}"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                            @error('total')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           {{ number_format(App\Models\AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total'),2) }}
                         </div>
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="department" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Cash
+                        <label for="cash_advance" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Cash
                             Advance</label>
-                        <input id="cv_number" name="cv_number" step="0.001" type="number" placeholder="CV NUMBER"
+                            CV Number: {{ $accountpayableliquidation }}
+                        {{-- <input id="cash_advance" name="cash_advance" step="0.001" type="number" placeholder="CV NUMBER"
                             autocomplete="cv_number" wire:model="cv_number"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                         @error('cv_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            <input id="cash_advance" name="cash_advance" type="cash_advance" step="0.001"
+                         
+                            <input id="cash_advance" name="cash_advance" type="number" step="0.001"
                                 autocomplete="cash_advance" wire:model="cash_advance"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                             @error('cash_advance')
@@ -317,12 +328,14 @@
                        
                     
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            <input id="total_amount" name="total_amount" type="number" step="0.001" autocomplete="total_amount"
+                            {{ number_format((int)App\Models\AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total') -
+                            (int)$this->cash_advance, 2)}}
+                            {{-- <input id="total_amount" name="total_amount" type="number" step="0.001" autocomplete="total_amount"
                                 wire:model="total_amount"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                             @error('total_amount')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                            @enderror --}}
                         </div>
                     </div>
                 </div>
@@ -383,6 +396,6 @@
 
                 <!-- /approval section -->
 
-
+</div>
             </div>
         </div>

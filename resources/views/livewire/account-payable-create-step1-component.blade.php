@@ -91,9 +91,6 @@
                 @endif
 
                 <div class="sm:col-span-6">
-                    <div class="flex justify-end">
-
-                    </div>
                     <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5 md:rounded-lg">
 
                         <form class="mt-5 sm:pb-6 xl:pb-8">
@@ -106,11 +103,10 @@
                                         <x-th>VENDOR</x-th>
                                         <x-th>ITEM </x-th>
                                         <x-th>QUANTITY</x-th>
-                                        {{-- @if($request_for === 'payment') --}}
+                                     
                                         <x-th>Price</x-th>
                                         <x-th>Total</x-th>
-                                        {{-- <x-th>Upload file</x-th> --}}
-                                        {{-- @endif --}}
+                                      
                                         <x-th></x-th>
                                         <x-th></x-th>
                                     </tr>
@@ -181,10 +177,7 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <input type="number"
-                                                    value="{{ $particular->quantity * $particular->price }}" readonly
-                                                    class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
-
+                                             {{ number_format((int) $particular->quantity * (int)$particular->price,2)}}
                                             </x-td>
                                             <x-td>
                                                 <button type="button"
@@ -218,6 +211,7 @@
                                         </tr>
                                     </div>
                                     @endforeach
+                                   
                                 </tbody>
                             </table>
                             @else
