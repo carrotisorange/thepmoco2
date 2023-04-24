@@ -3,8 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Carbon\Carbon;
-use Session;
 use App\Models\AccountPayable;
 use Livewire\WithFileUploads;
 use App\Models\AccountPayableParticular;
@@ -13,21 +11,21 @@ class AccountPayableCreateStep6Component extends Component
 {
     use WithFileUploads;
 
-    public $accountpayable_id;
+    public $property;
+
+    public $accountpayable;
 
     public $attachment;
-
-    public $property_uuid;
     
-    public function mount()
+    public function mount($accountpayable)
     {
-        $this->property_uuid = Session::get('property');
+        $this->attachment = $accountpayable->attachment;
     }
 
     protected function rules()
     {
          return [
-             'attachment' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
+             'attachment' => 'required |max:10240',
         ];
     }
 
@@ -38,12 +36,12 @@ class AccountPayableCreateStep6Component extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        sleep(2);
 
         $this->validate();
 
-        if($this->attachment){
-            AccountPayable::where('id', $this->accountpayable_id)
+        if($this->attachment != $this->accountpayable->attachment){
+            AccountPayable::where('id', $this->accountpayable->id)
             ->update([
                 'attachment' => $this->attachment->store('accountpayables'),
                 'status' => 'released'
@@ -51,8 +49,10 @@ class AccountPayableCreateStep6Component extends Component
             ]);
             
         }    
+        
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/')->with('success', 'Success!');
 
-        return redirect('/property/'.$this->property_uuid.'/accountpayable/')->with('success', 'Success!');
+        //  return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-1')->with('success', 'Success!');
     }
 
     public function removeAttachment(){
@@ -61,11 +61,8 @@ class AccountPayableCreateStep6Component extends Component
 
     public function render()
     {
-        $accountpayable = AccountPayable::find($this->accountpayable_id);
-
         return view('livewire.account-payable-create-step6-component',[
-        'accountpayable' => $accountpayable,
-        'particulars' => AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()
+            'particulars' => AccountPayableParticular::where('batch_no', $this->accountpayable->batch_no)->get()
         ]);
     }
 }

@@ -23,6 +23,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
     public $total;
     public $cash_advance;
     public $cv_number;
+    public $return_type;
     public $total_type;
     public $total_amount;
     public $noted_by;
@@ -44,6 +45,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         $this->cv_number = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cv_number')->first();
         $this->total_type = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_type')->first();
         $this->total_amount = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_amount')->first();
+        $this->return_type =  AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('return_type')->first();
         $this->noted_by = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('noted_by')->first();
         $this->approved_by = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('approved_by')->first();
     }
@@ -67,8 +69,10 @@ class CreateAccountPayableLiquidationStep1Component extends Component
             'cv_number' => 'nullable',
             'cash_advance' => 'required',
             'total_type' => 'nullable',
-            'total_amount' => 'nullable',
+           
             'prepared_by' => 'nullable',
+            'return_type' => ['required_if:total_type,refund'],
+            'total_amount' => ['required_if:total_type,refund'],
         ];
     }
 
@@ -101,12 +105,11 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 'cash_advance' => $this->cash_advance,
                 'prepared_by' => $this->prepared_by,
                 'noted_by' => $this->noted_by,
-                'approved_by' => $this->approved_by
+                'approved_by' => $this->approved_by,
+                'return_type' => $this->return_type,
         ]);
 
-        $this->particulars = $this->get_particulars();
-
-        return back()->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Success!');
     }
 
     public function updateParticular($id){

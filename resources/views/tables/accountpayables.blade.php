@@ -94,7 +94,7 @@
             <x-td>
                 @if($accountpayable->status === 'released' && $accountpayable->request_for === 'purchase')
                 <form
-                    action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation"
+                    action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1"
                     method="POST">
                     @csrf
                     <button type="submit" class="text-blue-500 text-decoration-line: underline">Liquidation</button>
