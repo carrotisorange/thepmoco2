@@ -5,10 +5,10 @@ namespace App\Http\Livewire;
 use App\Models\AccountPayableLiquidation;
 use Livewire\Component;
 use Carbon\Carbon;
-use App\Models\AccountPayableParticular;
+use App\Models\AccountPayable;
 use App\Models\Property;
 use App\Models\AccountPayableLiquidationParticular;
-use Database\Factories\AccountPayableLiquidationFactory;
+use App\Models\Role;
 
 class CreateAccountPayableLiquidationStep1Component extends Component
 {
@@ -41,7 +41,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         $this->unit_uuid = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('unit_uuid')->first();
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
         $this->cash_advance = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cash_advance')->first();
-        $this->cv_number = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cv_number')->first();
+        $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status', '!=', 'unknown')->count());
         $this->total_type = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_type')->first();
         $this->total_amount = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_amount')->first();
         $this->return_type =  AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('return_type')->first();
@@ -66,7 +66,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
             'batch_no' => 'required',
             'total' => 'required',
             'cv_number' => 'nullable',
-            'cash_advance' => 'required',
+            'cash_advance' => 'nullable',
             'total_type' => 'nullable',
             'prepared_by' => 'nullable',
             'return_type' => ['required_if:total_type,refund'],
@@ -99,7 +99,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 'total' => $this->total,
                 'cv_number' => $this->cv_number,
                 'total_type' => $this->total_type,
-                'total_amount' => $this->total_amount,
+                'total_amount' => $this->total-$this->cash_advance,
                 'cash_advance' => $this->cash_advance,
                 'prepared_by' => $this->prepared_by,
                 'noted_by' => $this->noted_by,
@@ -172,6 +172,8 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         return view('livewire.create-account-payable-liquidation-step1-component',[
             'units' => Property::find($this->property->uuid)->units,
             'vendors' => Property::find($this->property->uuid)->billers,
+            'departments' => Role::whereNotIn('id', [5, 7, 8, 10, 12, 13])->get(),
+            'accountpayableliquidation' => AccountPayableLiquidation::where('batch_no', $this->accountpayable->batch_no)->pluck('cv_number')->first()
         ]);
     }
 }

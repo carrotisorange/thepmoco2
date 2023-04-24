@@ -10,6 +10,6 @@ class AccountPayableLiquidation extends Model
     use HasFactory;
 
     protected $attributes = [
-        'total' => 0
+        'total' => 0,
     ];
 }

@@ -27,7 +27,8 @@ class PropertyLiquidationController extends Controller
                         'item' => $particular->item,
                         'quantity' => $particular->quantity,
                         'price' => $particular->price,
-                        'total' => $particular->quantity * $particular->price
+                        'total' => $particular->quantity * $particular->price,
+                        'cv_number' => sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'unknown')->count())
                     ]
                     );
                 }
@@ -40,7 +41,6 @@ class PropertyLiquidationController extends Controller
         }else{
             return redirect('/property/'.$property->uuid.'/accountpayable/'.$accountPayable->id.'/liquidation/step-2');
         }
-
 
     }
 
