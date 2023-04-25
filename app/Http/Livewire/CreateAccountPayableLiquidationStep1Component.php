@@ -105,6 +105,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 'noted_by' => $this->noted_by,
                 'approved_by' => $this->approved_by,
                 'return_type' => $this->return_type,
+                'cv_number' => sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status','!=', 'unknown')->count())
         ]);
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Success!');

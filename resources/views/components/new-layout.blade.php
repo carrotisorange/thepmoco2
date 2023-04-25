@@ -5,9 +5,7 @@
     @include('layouts.head')
 </head>
 
-
 <body class="h-full overflow-hidden font-body">
-    @include('layouts.notifications')
     <div class="flex h-full flex-col">
         <!-- Top nav-->
         <nav x-data="{ open: false }" class="bg-white p-3 border-b border-gray-100">
@@ -39,17 +37,8 @@
                             
                         </div>
 
-
-
-                        {{-- {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link href="/users" :active="request()->routeIs('user')">
-                                <i class="fa-solid fa-user"></i>&nbspUser
-                            </x-nav-link>
-                        </div> --}}
                     </div>
                     @auth
-
-
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <!-- help icon -->
                         <button title="help" class="py-5">
@@ -419,8 +408,6 @@
 
                     <div class="font-medium leading-3 -ml-2 text-xs text-center text-gray-900 mt-10">Units</div>
 
-                    <!-- Calendar -->
-
                     <!-- Units -->
                     @if(Session::get('property'))
                     <x-nav-link href="/property/{{ Session::get('property') }}/calendar"
@@ -713,9 +700,11 @@
 
             <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
                 <div class="mt-3">
+                    @include('layouts.notifications')
                     {{ $slot }}
                 </div>
                 <div class="mb-12">
+                   
                     @include('layouts.footer')
                 </div>
             </main>
@@ -723,5 +712,4 @@
     </div>
     @include('layouts.scripts')
 </body>
-
 </html>
