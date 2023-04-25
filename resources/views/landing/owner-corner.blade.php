@@ -130,7 +130,7 @@
                     
                       <div class="col-span-3 sm:flex sm:justify-end">
                         <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-full border border-transparent bg-purple-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Submit</button>
-                        <input type="hidden" name="_next" value="https://thepropertymanager.online/demo">
+                       
                       </div>
                     </form>
                   </div>
