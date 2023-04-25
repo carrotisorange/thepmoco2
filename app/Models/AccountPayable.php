@@ -29,6 +29,16 @@ class AccountPayable extends Model
         return $this->belongsTo(User::class, 'requester_id');
     }
 
+    public function approver_1()
+    {
+        return $this->belongsTo(User::class, 'approver_id');
+    }
+
+    public function approver_2()
+    {
+        return $this->belongsTo(User::class, 'approver2_id');
+    }
+
     public function biller()
     {
         return $this->belongsTo(PropertyBiller::class, 'biller_id');
