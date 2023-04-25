@@ -149,16 +149,16 @@
 
 <!-- owner corner -->
 
-          <div id ="owner" class="pb-8 min-h-full lg:grid  lg:grid-cols-2 lg:gap-8 lg:px-8 bg-white">
+          <div id ="owner" class="mt-0 sm:mt-0 lg:-mt-56  min-h-full lg:grid  lg:grid-cols-2 lg:gap-8 lg:px-8 bg-white">
             
             <div class="lg:col-start-1 lg:m-0 lg:pl-20">
-              <div class="py-20 px-5 sm:px-20 md:px-20 lg:px-0 sm:max-w-2xl  lg:max-w-none  lg:py-20 flex items-center justify-center">
+              <div class="pb-5 px-5 sm:px-20 md:px-20 lg:px-0 sm:max-w-xl  lg:max-w-none  flex items-center justify-center">
                 <span class="text-2xl font-semibold text-gray-700">Turn your property into an income generating <br>real asset!</span>  
                 <img src="{{ asset('/brands/owner-section.png') }}" class="w-72">
               </div>
             </div>
 
-            <div class="sm:pl-20 px-5 sm:px-20 md:px-20 lg:px-20 lg:py-36 sm:mt-0  lg:col-start-2">
+            <div class="sm:pl-20 px-5 sm:px-20 md:px-20 lg:px-20 lg:py-10 sm:mt-0  lg:col-start-2">
 
               <div class="flex justify-center items-center">
                 <p class="pb-10 text-base font-light text-gray-700">
