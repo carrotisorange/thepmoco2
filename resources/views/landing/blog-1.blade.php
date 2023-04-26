@@ -39,6 +39,18 @@
 </div>
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             
+            <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article18.jpeg') }}" alt="businessman signing a contract">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="How-to-be-great-and-effective-at-rental-property-operations" class="mt-2 block">
+                    <p class="text-base font-semibold text-gray-900">How to be great and effective at rental property operations</p>
+                    <p class="mt-3 text-sm text-gray-500">
+                    Being great at rental property operations involves a combination of skills, knowledge, and experience. Here are some tips to help you excel in this field.</p>
+                </a>    
+                    <span class="text-sm text-gray-500 dark:text-gray-300">26 April 2023</span>
+                </div>
+            </div>
             
             <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article17.jpg') }}" alt="businessman signing a contract">
@@ -131,18 +143,7 @@
                 </div>
             </div>
 
-            <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article10.jpg') }}" alt="living room with sofa and coffee table">
-
-                <div class="flex flex-col justify-between py-6 lg:mx-6">
-                <a href="Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">Why Designing Beautiful Rentable Spaces Has Over All Positive Results</p>
-              <p class="mt-3 text-sm text-gray-500">
-              Renting a space is a great way to earn some extra money, but it can be challenging if you don’t know what you’re doing. </p>
-            </a>
-                    <span class="text-sm text-gray-500 dark:text-gray-300">9 February 2023</span>
-                </div>
-            </div>
+            
 
             
 

@@ -230,6 +230,10 @@ Route::get('/How-to-Choose-the-Right-Property-Management-Company', function(){
     return view('landing.articles.article17');
 });
 
+Route::get('/How-to-be-great-and-effective-at-rental-property-operations', function(){
+    return view('landing.articles.article18');
+});
+
 
 
 

@@ -40,6 +40,19 @@
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 
             <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article2.jpg') }}" alt="4 people in a meeting with 2 laptops">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="How-to-use-a-leasing-management-system-to-improve-operational-efficiency" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">How to use a leasing management system to improve operational efficiency?</p>
+              <p class="mt-3 text-sm text-gray-500">
+              If you've ever tried to manage a property, you know how hard it can be. From accounting for rent payments to tracking expenses, there are just so many things that need to get done.</p>
+            </a>
+                    <span class="text-sm text-gray-500 dark:text-gray-300">2 January 2023</span>
+                </div>
+            </div>
+        
+            <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article1.avif') }}" alt="desk showing a keyboard, smartphone, and office supplies">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">

@@ -24,6 +24,23 @@
       </a>
     </div>
     
+    <!-- Article 18 -->
+    <div class="my-5">
+      <a href="/How-to-be-great-and-effective-at-rental-property-operations" class="grid grid-cols-4 rounded-sm">
+
+        <!-- Icon -->
+        <div class="col-span-1">
+        <img src="{{ asset('/brands/landing/article18.jpeg') }}" class="h-full w-full">
+        </div>
+  
+        <!-- Title -->
+        <div class="col-span-3">
+          <p class="ml-1 underline text-gray-700 text-xs">How to be great and effective at rental property operations</p>
+        </div>
+  
+
+      </a>
+    </div>
 
     <!-- Article 17 -->
     <div class="my-5">
