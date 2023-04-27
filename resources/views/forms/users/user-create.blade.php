@@ -3,7 +3,7 @@
     <div class="px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-6 md:gap-6">
             <div class="sm:col-span-6">
-                <label for="role_id" class="block text-sm font-medium text-gray-700">Select a position:</label>
+                <label for="role_id" class="block text-sm font-medium text-gray-700">Select a role:</label>
                 <select wire:model="role_id"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                     <option value="">Select an personnel role</option>
@@ -18,11 +18,11 @@
                 @enderror
 
             </div>
-            @if($role_id)
+           
             <div class="sm:col-span-6">
                 <label for="concern" class="block text-sm font-medium text-gray-700">Email:</label>
                 <div class="mt-1">
-                    <input wire:model="email"
+                    <input wire:model.debounce.1000ms="email"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md"></input>
                     @error('email')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -30,10 +30,9 @@
                 </div>
 
             </div>
-            @endif
+           
         </div>
 
-        @if($email)
         <div class="mt-5 sm:col-span-6">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
@@ -128,7 +127,6 @@
                 </div>
             </div>
         </div>
-        @endif
 
         <div class="flex justify-end mt-10">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
