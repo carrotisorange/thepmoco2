@@ -1207,7 +1207,7 @@
 
                         </div>
 
-                        <div class="container flex mx-auto w-full items-center justify-center">
+                        {{-- <div class="container flex mx-auto w-full items-center justify-center">
 
                             <ul class="flex flex-col bg-gray-200 p-4">
                                 @foreach ($delinquent_owners as $item)
@@ -1240,7 +1240,7 @@
                                 @endforeach
 
                             </ul>
-                        </div>
+                        </div> --}}
 
                         {{-- <div class="container flex mx-auto w-full items-center justify-center">
 
