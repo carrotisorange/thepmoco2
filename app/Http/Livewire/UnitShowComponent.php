@@ -15,6 +15,8 @@ use App\Models\UnitInventory;
 
 class UnitShowComponent extends Component
 {
+    public $property;
+    
     public $unit_details;
     //unit input fields
     public $unit;
@@ -28,7 +30,6 @@ class UnitShowComponent extends Component
     public $occupancy;
     public $is_the_unit_for_rent_to_tenant;
     public $price;
-    public $property_uuid;
     public $rent_type;
     public $transient_rent;
     public $transient_discount;
@@ -51,7 +52,6 @@ class UnitShowComponent extends Component
         $this->occupancy = $unit_details->occupancy;
         $this->is_the_unit_for_rent_to_tenant = $unit_details->is_the_unit_for_rent_to_tenant;
         $this->price = $unit_details->price;
-        $this->property_uuid = Session::get('property');
         $this->rent_type = $unit_details->rent_type;
         $this->transient_rent = $unit_details->transient_rent;
         $this->transient_discount = $unit_details->transient_discount;
@@ -90,42 +90,42 @@ class UnitShowComponent extends Component
         
         sleep(2);
 
-        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
+        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateOwnerPage(){
         
         sleep(2);
 
-        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/owner/'.Str::random(8).'/create');
+        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/owner/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateTenantPage(){
         
         sleep(2);
 
-        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/tenant/'.Str::random(8).'/create');
+        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/tenant/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateGuestPage(){
         
         sleep(2);
 
-        return redirect('/property/'.$this->property_uuid.'/calendar');
+        return redirect('/property/'.$this->property->uuid.'/calendar');
     }
 
     public function redirectToTheCreateUtilitiesPage(){
         
         sleep(2);
 
-        return redirect('/property/'.$this->property_uuid.'/utilities/');
+        return redirect('/property/'.$this->property->uuid.'/utilities/');
     }
 
     public function redirectToTheCreateConcernPage(){
         
         sleep(2);
 
-        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
+        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
     }
     
     public function submitForm()
@@ -190,7 +190,7 @@ class UnitShowComponent extends Component
               ->get();
 
         return view('livewire.unit-show-component',[
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property_uuid),
+            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->unit_details->property_uuid),
             'floors' => app('App\Http\Controllers\FloorController')->index(null),
             'categories' => app('App\Http\Controllers\CategoryController')->index(null),
             'statuses' => app('App\Http\Controllers\StatusController')->index(null),

@@ -31,6 +31,7 @@ class PropertyUnitController extends Controller
          app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
 
         return view('units.show',[
+            'property' => $property,
             'unit_details' => $unit,
             'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
         ]);
