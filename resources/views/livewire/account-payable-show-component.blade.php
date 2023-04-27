@@ -5,11 +5,10 @@
             <h1 class="text-3xl font-bold text-gray-500">Account Payables</h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-            <button
-                onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download/'"
+            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download/" target="_blank"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                 type="button">Export
-            </button>
+            </a>
             @can('is_account_payable_delete_allowed')
             <button wire:click="deleteAccountPayable({{ $accountpayable->id }})" wire:loading.remove
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto"
@@ -92,7 +91,7 @@
                                             {{ $accountpayable->requester->name }}
                                         </td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Status
                                         </th>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -120,7 +119,7 @@
                                             NA
                                             @endif
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     
                                 </thead>
                             </table>
