@@ -41,16 +41,30 @@
                     <div class="grid grid-cols-2 gap-4 px-8 pb-8">
                         <div class="">
                             <label class="text-xs font-semibold" for="cardNumber">Long Term Rent</label>
-                            <input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text">
+                   
                         </div>
+                            <?php 
+                                $long_term_rent = ($unit_details->rent*$unit_details->occupancy);    
+                            ?>
+                            {{
+                                App\Http\Controllers\CollectionController::shortNumber($long_term_rent)
+                            }}
                         <div class="">
                             <label class="text-xs font-semibold" for="cardNumber">Daily Rent</label>
-                            <input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text">
+                           
                         </div>
+                        <?php 
+                            $daily_term_rent = ($unit_details->transient_rent*30);    
+                        ?>
+                        {{
+                        App\Http\Controllers\CollectionController::shortNumber($daily_term_rent)
+                        }}
                         <div class="cols-2">
                             <label class="text-xs font-semibold" for="cardNumber">Rent Revenue</label>
                         </div>
-                        <input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text">
+                        {{
+                        App\Http\Controllers\CollectionController::shortNumber($daily_term_rent + $long_term_rent)
+                        }}
                     </div>
                 </div>
 
@@ -88,13 +102,14 @@
             <div class="flex items-center px-8 py-5 border-b">
                 <div class="w-0 flex-1 pt-0.5">
                     <p class="text-sm font-medium text-gray-900">Potential Gross Revenue per month
-                        (Occupancy * Rent/month/tenant)
+                       
                     </p>
                     <p class="mt-1 text-xl font-semibold text-gray-500">
+                        <?php 
+                            $gross_revenue = ($unit_details->rent*$unit_details->occupancy) + ($unit_details->transient_rent*30);    
+                        ?>
                         {{
-                        App\Http\Controllers\CollectionController::shortNumber($unit_details->rent
-                        *
-                        $unit_details->occupancy)
+                            App\Http\Controllers\CollectionController::shortNumber($gross_revenue)
                         }}
                     </p>
                 </div>
@@ -105,9 +120,11 @@
                     <p class="text-sm font-medium text-gray-900">Total Bills for Collection
                     </p>
                     <p class="mt-1 text-xl font-semibold text-gray-500">
+                        <?php 
+                            $bills_for_collection = $total_uncollected_bills+ $total_collected_bills;    
+                        ?>
                         {{
-                        App\Http\Controllers\CollectionController::shortNumber($total_uncollected_bills
-                        + $total_collected_bills)
+                        App\Http\Controllers\CollectionController::shortNumber($bills_for_collection)
                         }}
                     </p>
                 </div>

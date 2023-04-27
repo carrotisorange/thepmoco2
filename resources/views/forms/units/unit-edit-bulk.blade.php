@@ -1,3 +1,4 @@
+@include('layouts.notifications')
 <form wire:submit.prevent="updateForm()">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
