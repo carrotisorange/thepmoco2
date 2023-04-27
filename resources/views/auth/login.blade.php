@@ -14,6 +14,11 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <title>Sign in | The Property Manager</title>
+<style>
+    body{
+        font-family: Poppins;
+    }
+</style>
 </head>
 
 <body>
@@ -22,12 +27,13 @@
         <div class="flex-1 flex flex-col justify-center py-2 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div class="mx-auto w-full max-w-sm lg:w-96">
 
-                <div>
-                    <img class="mt-10 mb-5 h-48 w-auto" src="{{ asset('/brands/logo_cropped.png') }}" alt="Workflow">
-                    <h2 class="mb-10 text-center mt-2 text-2xl tracking-tight font-semibold text-gray-500">Sign in to
-                        your account</h2>
+                <div class="flex justify-center items-center">
+                    <img class="mt-10 mb-5 h-32 w-auto" src="{{ asset('/brands/logo_cropped.png') }}" alt="Workflow">
+                    
 
                 </div>
+                <h2 class="mb-10 text-center mt-2 text-2xl tracking-tight font-semibold text-gray-700">Sign in to
+                        your account</h2>
 
                 <div class="mt-5">
                     <div>
