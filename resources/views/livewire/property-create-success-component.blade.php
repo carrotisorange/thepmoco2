@@ -1,8 +1,10 @@
 <div>
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="flex justify-center items-center">
+            <h2 class="max-w-xl p-10 text-center text-2xl font-medium tracking-tight text-gray-900 font-pop">You've
+            successfully created <br> <span class="font-semibold text-purple-900">{{ $property->property .' '. $property->type->type }}!</span></h2>
+        </div>
 
-        <h2 class="p-10 text-center text-3xl font-bold tracking-tight text-gray-900 font-pop">You've
-            successfully created {{ $property->property .' '. $property->type->type }}!</h2>
         <div class=" flex items-center justify-center">
             <img class="h-48 w-auto" src="{{ asset('/brands/success_property.png') }}">
         </div>
