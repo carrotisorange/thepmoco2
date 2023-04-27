@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
-use Illuminate\Http\Request;
 use App\Models\Property;
-use Session;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Spatie\Browsershot\Browsershot;
-use Illuminate\Support\Str;
 
 class AccountPayableController extends Controller
 {
@@ -65,7 +62,7 @@ class AccountPayableController extends Controller
             'particulars' => $particulars
          ];
 
-         $pdf = \PDF::loadView('accountpayables.pdf.step1', $data);
+         $pdf = \PDF::loadView('accountpayables.pdf.step1', $data)->setPaper('a4', 'landscape');
 
          $pdf->output();
 
@@ -81,7 +78,7 @@ class AccountPayableController extends Controller
          $canvas->page_text($width/5, $height/2, $property->property, null,
          55, array(0,0,0),2,2,-30);
 
-        return $pdf->download($property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
+        return $pdf->stream($property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
     }
 
       public function create_step_1(Property $property, AccountPayable $accountpayable){

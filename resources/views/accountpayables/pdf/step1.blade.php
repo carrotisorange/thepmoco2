@@ -104,7 +104,7 @@
             Particulars
         </p>
 
-        <table class="">
+        <table class="text-center">
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>#</x-th>
@@ -136,7 +136,7 @@
                         @endif
                     </x-td>
                     <x-td>
-                        {{ substr_replace($particular->item, "...", 10) }}
+                        {{$particular->item }}
                     </x-td>
                     <x-td>
                         {{ number_format($particular->quantity, 2) }}
