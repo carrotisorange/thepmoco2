@@ -103,14 +103,22 @@
                                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Approver 1 (Manager)
                                         </th>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ $accountpayable->approver_1->name }}
+                                           @if($accountpayable->approver_id)
+                                            {{ $accountpayable->approver_id->name }} 
+                                           @else
+                                            NA
+                                           @endif
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Approver 2 (Account Payable)
                                         </th>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ $accountpayable->approver_2->name }}
+                                            @if($accountpayable->approver2_id)
+                                            {{ $accountpayable->approver2_id->name }}
+                                            @else
+                                            NA
+                                            @endif
                                         </td>
                                     </tr>
                                     
