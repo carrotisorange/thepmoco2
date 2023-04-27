@@ -3,3 +3,5 @@
 
     @livewire('property-create-success-component', ['property' => $property])
 </x-new-layout-base>
+
+

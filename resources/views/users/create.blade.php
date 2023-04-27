@@ -8,8 +8,7 @@
                     <h1 class="text-3xl font-bold text-indigo-700 mb-5 mt-5 ">New Personnels</h1>
                 </div>
             </div>
-            @livewire('user-create-component')
-
+            @livewire('user-create-component',['property' => $property])
         </div>
     </div>
 </x-new-layout>

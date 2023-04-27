@@ -82,7 +82,11 @@ class UserController extends Controller
      */
     public function create(Property $property, $random_str)
     {
-        return view('users.create');
+        $this->authorize('manager');
+
+        return view('users.create',[
+            'property' => $property
+        ]);
     }
 
     public function is_trial_expired($date)
