@@ -46,7 +46,7 @@
             <x-td>{{ $accountpayable->requester->name }}</x-td>
             <x-td>{{ $accountpayable->request_for }}</x-td>
             <x-td>
-                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
+                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(3)->get() ;?>
                 @foreach ($particulars as $particular)
                 {{ $particular->item }},
                 @endforeach
@@ -68,7 +68,7 @@
                     class="text-blue-500 text-decoration-line: underline">View</a>
                 @elseif($accountpayable->status === 'approved by ap')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
-                    class="text-blue-500 text-decoration-line: underline">Uppload Payment </a>
+                    class="text-blue-500 text-decoration-line: underline">Upload Payment </a>
                 @else
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
                     class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
@@ -92,6 +92,12 @@
                 @endcan
             </x-td>
             <x-td>
+                @if($accountpayable->status==='pending' || $accountpayable->status==='unknown')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export" target="_blank"
+                    class="text-blue-500 text-decoration-line: underline">Export</a>
+                @endif
+            </x-td>
+            <x-td>
                 @if($accountpayable->status === 'released' && $accountpayable->request_for === 'purchase')
                 <form
                     action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1"
@@ -107,12 +113,8 @@
                     class="text-blue-500 text-decoration-line: underline">Edit</a>
                 @endif
             </x-td>
-            <x-td>
-                @if($accountpayable->status==='released')
-                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/download"
-                    class="text-blue-500 text-decoration-line: underline">Export</a>
-                @endif
-            </x-td> --}}
+            --}}
+          
 
             {{-- <x-td>
                 @if($accountpayable->requester_id === auth()->user()->id || $accountpayable->status!='released')

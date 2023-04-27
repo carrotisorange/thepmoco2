@@ -36,7 +36,7 @@ class PropertyCollectionController extends Controller
         ];
 
 
-        $pdf = \PDF::loadView('properties.collections.export_dcr', $data)->setPaper('a4', 'landscape');;
+        $pdf = \PDF::loadView('properties.collections.export_dcr', $data)->setPaper('a4', 'landscape');
 
          $pdf->output();
 

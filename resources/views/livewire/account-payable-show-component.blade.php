@@ -104,7 +104,7 @@
                                         </th>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                            @if($accountpayable->approver_id)
-                                            {{ $accountpayable->approver_id->name }} 
+                                            {{ App\Models\User::find($accountpayable->approver_id)->name }}
                                            @else
                                             NA
                                            @endif
@@ -115,7 +115,7 @@
                                         </th>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             @if($accountpayable->approver2_id)
-                                            {{ $accountpayable->approver2_id->name }}
+                                            {{ App\Models\User::find($accountpayable->approver2_id)->name }}
                                             @else
                                             NA
                                             @endif
