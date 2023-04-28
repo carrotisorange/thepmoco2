@@ -212,7 +212,7 @@
                                             @enderror
                                         </x-td>
                                         <x-td>
-                                           {{ number_format((int)$particular->quantity * (int)$particular->price, 2) }}
+                                           {{ number_format((double)$particular->quantity * (double)$particular->price, 2) }}
                                         </x-td>
                                       
                                         <x-td>
