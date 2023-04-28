@@ -26,7 +26,7 @@ class UnitBillCreateComponent extends Component
     public $total_amount_due;
 
     public function mount(){
-       $this->total_amount_due =  $this->utility->total_amount_due;
+       $this->total_amount_due = round($this->utility->total_amount_due, 2);
        $this->particular_id=$this->get_particular_id($this->utility->type);
     }
     public function submitForm(){
