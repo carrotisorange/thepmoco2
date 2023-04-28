@@ -171,6 +171,7 @@
                     @if($utilities->count())
 
                     @include('tables.utilities')
+                    <br><br><br>
                     @else
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
