@@ -125,7 +125,7 @@
                                     </div>
                                     @endif
 
-                                    @can('manager')
+                                    @can('accountownerandmanager')
                                     <div class="col-span-2">
                                         <label for="status"
                                             class="block text-sm font-medium text-gray-700">Status</label>
@@ -169,7 +169,7 @@
 
                                 </div>
 
-                                @can('manager')
+                                @can('accountownerandmanager')
                                 <h1 class="text-xl font-semibold text-gray-900">Restrictions</h1>
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 

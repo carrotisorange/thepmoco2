@@ -82,7 +82,7 @@ class UserController extends Controller
      */
     public function create(Property $property, $random_str)
     {
-        $this->authorize('manager');
+        $this->authorize('accountownerandmanager');
 
         return view('users.create',[
             'property' => $property
