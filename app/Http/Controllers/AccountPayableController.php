@@ -62,7 +62,7 @@ class AccountPayableController extends Controller
             'particulars' => $particulars
          ];
 
-         $pdf = \PDF::loadView('accountpayables.pdf.step1', $data)->setPaper('a4', 'landscape');
+         $pdf = \PDF::loadView('accountpayables.pdf.step1', $data);
 
          $pdf->output();
 
