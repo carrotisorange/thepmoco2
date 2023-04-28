@@ -125,7 +125,7 @@ class UnitShowComponent extends Component
         
         sleep(2);
 
-        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
+        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
     }
     
     public function submitForm()
