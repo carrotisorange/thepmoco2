@@ -2,9 +2,9 @@
     <div class="mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-1 md:gap-6">
             <div class="mt-5 md:mt-0 md:col-span-3">
-                <div class="grid grid-cols-6 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-6 gap-6">
 
-                    <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6 lg:col-span-2">
                         <label for="tenant" class="block text-sm font-medium text-gray-700">Full
                             Name</label>
                         <input type="text" wire:model.lazy="tenant" autocomplete="tenant"
@@ -14,7 +14,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6 lg:col-span-2">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" wire:model.lazy="email" autocomplete="email"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
@@ -23,7 +23,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6 lg:col-span-2">
                         <label for="mobile_number" class="block text-sm font-medium text-gray-700">Mobile</label>
                         <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
                             value="{{ old('mobile_number') }}"
@@ -33,7 +33,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-6 lg:col-span-2">
                         <label for="birthdate" class="block text-sm font-medium text-gray-700">Birthdate</label>
                         <input type="date" wire:model.lazy="birthdate" autocomplete="birthdate"
                             value="{{ old('birthdate') }}"
@@ -43,7 +43,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-1">
+                    <div class="col-span-6 lg:col-span-1">
                         <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
                         <select wire:model.lazy="category" autocomplete="category"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -59,7 +59,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-1">
+                    <div class="col-span-6 lg:col-span-1">
                         <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
                         <select wire:model.lazy="gender" autocomplete="gender"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -78,7 +78,7 @@
 
 
 
-                    <div class="col-span-2">
+                    <div class="col-span-6 lg:col-span-2">
                         <label for="civil_status" class="block text-sm font-medium text-gray-700">Civil
                             Status</label>
                         <select wire:model.lazy="civil_status" autocomplete="civil_status"
@@ -102,7 +102,7 @@
                     </div>
 
 
-                    <div class="col-span-3">
+                    <div class="col-span-6 lg:col-span-2">
                         <label for="country_id" class="block text-sm font-medium text-gray-700">Country</label>
                         <select wire:model.lazy="country_id" autocomplete="country_id"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -118,7 +118,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-3">
+                    <div class="col-span-6 lg:col-span-2">
                         <label for="province_id" class="block text-sm font-medium text-gray-700">Province</label>
                         <select wire:model.lazy="province_id" autocomplete="province_id"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -150,7 +150,7 @@
                         @enderror
                     </div> --}}
 
-                    <div class="col-span-6">
+                    <div class="col-span-6 lg:col-span-2">
                         <label for="barangay" class="block text-sm font-medium text-gray-700">
                             Address</label>
                         <input type="text" wire:model.lazy="barangay" autocomplete="barangay"
@@ -247,12 +247,17 @@
 
                     </div>
                     @endif
+
                     <div class="col-span-6">
 
                         <label class="block text-sm font-medium text-gray-700"> Upload Tenant ID (i.e.,
-                            Government-issued ID, school ID, employee ID)
-                        </label>
-                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                                Government-issued ID, school ID, employee ID)
+                            </label>
+                    </div>
+
+                    <div class="col-span-6 lg:col-span-2">
+
+                        <div class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
 
                                 <div class="flex text-sm text-gray-600">
@@ -283,8 +288,8 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-6">
-                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                    <div class="col-span-6 lg:col-span-2">
+                        <div class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
 
                                 <div class="flex text-sm text-gray-600">
@@ -315,8 +320,8 @@
                         @enderror
                     </div>
 
-                    <div class="col-span-6">
-                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                    <div class="col-span-6 lg:col-span-2">
+                        <div class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
 
                                 <div class="flex text-sm text-gray-600">
