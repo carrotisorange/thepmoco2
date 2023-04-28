@@ -1,5 +1,14 @@
 <x-new-layout>
     @section('title','Accounts Payable')
+    @section('styles')
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    @endsection
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         {{-- start of stepper --}}
         <div class="lg:border-t lg:border-b lg:border-gray-200">
@@ -121,7 +130,6 @@
                 </ol>
             </nav>
         </div>
-        {{-- end of stepper --}}
         
         @livewire('account-payable-create-step1-component',['property' => $property, 'accountpayable' => $accountpayable])
     </div>
