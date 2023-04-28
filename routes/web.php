@@ -35,6 +35,15 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
+// help
+Route::get('/help', function(){
+    return view('help.help');
+});
+
+Route::get('/calendar-demo', function(){
+    return view('help.calendar-demo');
+});
+
 //show this route if a user tries to access broken links
 Route::fallback(function () {
     return view('layouts.not-found');
