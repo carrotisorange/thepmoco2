@@ -39,6 +39,18 @@
 </div>
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             
+             <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article11.jpg') }}" alt="apartment building with multiple windows">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">How an Online Property Management System Instantly Improves Business Profitability for Landlords</p>
+              <p class="mt-3 text-sm text-gray-500">
+              If you own a rental property, you're probably familiar with the challenges of managing it. </p>
+            </a>
+                    <span class="text-sm text-gray-500 dark:text-gray-300">13 February 2023</span>
+                </div>
+            </div>
 
             <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article10.jpg') }}" alt="living room with sofa and coffee table">
@@ -133,18 +145,7 @@
                 </div>
             </div>
 
-            <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article3.jpg') }}" alt="4 people in a meeting">
-
-                <div class="flex flex-col justify-between py-6 lg:mx-6">
-                <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">What are the benefits of a property management system for property managers?</p>
-              <p class="mt-3 text-sm text-gray-500">
-              A property management system can be a great tool for landlords and property managers. It can help you to manage your properties more efficiently,</p>
-            </a>
-                    <span class="text-sm text-gray-500 dark:text-gray-300">16 January 2023</span>
-                </div>
-            </div>
+            
 
             
 

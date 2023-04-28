@@ -234,6 +234,10 @@ Route::get('/How-to-be-great-and-effective-at-rental-property-operations', funct
     return view('landing.articles.article18');
 });
 
+Route::get('/How-to-Maximize-Profits-and-Minimize-Stress-when-Managing-Rental-Properties', function(){
+    return view('landing.articles.article19');
+});
+
 
 
 

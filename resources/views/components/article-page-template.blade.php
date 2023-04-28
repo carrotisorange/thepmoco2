@@ -120,13 +120,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</button>
 		</div>
 		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-10">
-			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="/">Home</a></li>
+			<li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/">Home</a></li>
 			
-			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="about">About Us</a></li>
+			<li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="about">About Us</a></li>
 			
-			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
+			<li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
 			
-			<li><a class="text-lg text-gray-200 hover:text-gray-400" href="blog-1">Articles</a></li>
+			<li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="blog-1">Articles</a></li>
+
+      <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="owner-corner">Property Owners Corner</a></li>
 		
 		</ul>
 		<a id="button1"class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm font-bold text-white hover:bg-gray-300  rounded-xl transition duration-200" href="https://thepmo.co/select-a-plan">Sign Up</a>
@@ -146,18 +148,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</button>
 			</div>
 			<div>
-				<ul>
+      <ul>
 					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/" >Home</a>
+						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/" >Home</a>
 					</li>
 					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="about" >About Us</a>
+						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="about" >About Us</a>
 					</li>
 					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="faq" >FAQs</a>
+						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="faq" >FAQs</a>
 					</li>
 					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog-1">Articles</a>
+						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog-1">Articles</a>
+					</li>
+          <li class="mb-1" tabindex="0">
+						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="owner-corner">Property Owners Corner</a>
 					</li>
 					
 				</ul>

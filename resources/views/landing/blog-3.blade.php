@@ -40,6 +40,19 @@
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 
             <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article3.jpg') }}" alt="4 people in a meeting">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="What-are-the-benefits-of-a-property-management-system-for-property-managers" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">What are the benefits of a property management system for property managers?</p>
+              <p class="mt-3 text-sm text-gray-500">
+              A property management system can be a great tool for landlords and property managers. It can help you to manage your properties more efficiently,</p>
+            </a>
+                    <span class="text-sm text-gray-500 dark:text-gray-300">16 January 2023</span>
+                </div>
+            </div>
+
+            <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article2.jpg') }}" alt="4 people in a meeting with 2 laptops">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">
