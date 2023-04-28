@@ -1,6 +1,6 @@
 <div>
     <div class="mx-10">
-        @can('manager')
+        @can('accountownerandmanager')
         <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="mt-5 sm:flex-auto">

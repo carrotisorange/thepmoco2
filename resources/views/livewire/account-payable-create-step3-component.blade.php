@@ -1,5 +1,5 @@
 <div>
-    @cannot('manager')
+    @cannot('accountownerandmanager')
     <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div class="text-center">
             {{-- <p class="text-base font-semibold text-indigo-600"></p> --}}
@@ -274,7 +274,7 @@
 
                 </div>
 
-                @can('manager')
+                @can('accountownerandmanager')
                 <div class="sm:col-span-6">
                     <textarea placeholder="Add your comment..." wire:model="comment"
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>

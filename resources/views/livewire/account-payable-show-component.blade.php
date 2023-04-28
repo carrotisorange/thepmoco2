@@ -77,13 +77,7 @@
                                             {{ Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Delivery Date on
-                                        </th>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ Carbon\Carbon::parse($accountpayable->delivery_at)->format('M d, Y') }}
-                                        </td>
-                                    </tr>
+                                    
                                     <tr>
                                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Requested by
                                         </th>
@@ -126,6 +120,42 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="sm:flex sm:items-center">
+                                    <div class="mt-5 sm:flex-auto">
+                                        <h1 class="text-base font-semibold leading-6 text-gray-900">Vendor Details</h1>
+                                
+                                    </div>
+                                </div>
+                                <div class="mt-8 flow-root">
+                                    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                            <table class="min-w-full divide-y divide-gray-300">
+                                                <thead>
+                                
+                                                    <tr>
+                                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                                            Vendor
+                                                        </th>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            {{ $accountpayable->vendor }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Delivery Date on
+                                                        </th>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            {{ Carbon\Carbon::parse($accountpayable->delivery_at)->format('M d, Y') }}
+                                                        </td>
+                                                    </tr>
+                                                   
+                                
+                                                </thead>
+                                
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
 
                 <div class="sm:flex sm:items-center">
                                     <div class="mt-5 sm:flex-auto">

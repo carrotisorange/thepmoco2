@@ -54,7 +54,7 @@
             <x-td>{{$accountpayable->status}}</x-td>
             <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
             <x-td>
-                @can('manager')
+                @can('accountownerandmanager')
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
                     class="text-blue-500 text-decoration-line: underline">View</a>
