@@ -85,23 +85,42 @@
     <main>
         <br>
         <p>
-            Reference #: {{ $accountpayable->batch_no }}
+           <b>Batch No:</b> {{ $accountpayable->batch_no }}
         </p>
         <p>
-            Date requested: {{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
-
+            <b>Request for:</b> {{ $accountpayable->request_for }}
+        </p>
         <p>
-            Request for : {{ $accountpayable->request_for }}
+            <b>Requested Amount:</b> {{ number_format($accountpayable->amount, 2) }}
+        </p>
+        <p>
+           <b>Requested on:</b> {{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
+        </p>
+        <p>
+            <b>Due Date on:</b> {{ Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}
+        </p>
+       
+        <p>
+           <b>Requested by:</b> {{ $accountpayable->requester->name}}
+        </p>
+        <p>
+            <b>Status:</b> {{ $accountpayable->status }}
         </p>
 
+        <p><b>Vendor:</b> {{ $accountpayable->vendor }}</p>
+
         <p>
-            Requested by: {{ $accountpayable->requester->name}}
+            <b>Delivery Date on:</b> {{ Carbon\Carbon::parse($accountpayable->delivery_at)->format('M d, Y') }}
         </p>
+        
+        <p><b>Bank:</b> {{ $accountpayable->bank }}</p>
 
-        <p>Status: {{ $accountpayable->status }}</p>
+        <p><b>Bank Name:</b> {{ $accountpayable->bank_name }}</p>
+
+        <p><b>Bank Account:</b> {{ $accountpayable->bank_account }}</p>
 
         <p>
-            Particulars
+            <b>Particulars</b>
         </p>
 
         <table class="text-center">
