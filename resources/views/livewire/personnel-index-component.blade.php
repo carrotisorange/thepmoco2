@@ -5,7 +5,7 @@
                 <h1 class="text-3xl font-bold text-gray-700">Personnels</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                @can('manager')
+                @can('accountownerandmanager')
                 <button type="submit" wire:click="submitForm"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
