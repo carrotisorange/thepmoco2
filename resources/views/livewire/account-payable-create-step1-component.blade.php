@@ -1,16 +1,6 @@
 <div>
-    @section('styles')
-    <style>
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
-    @endsection
     @include('layouts.notifications')
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
-
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
 
@@ -103,8 +93,8 @@
                                         <x-th>VENDOR</x-th>
                                         <x-th>ITEM </x-th>
                                         <x-th>QUANTITY</x-th>
-                                        <x-th>Price</x-th>
-                                        <x-th>Total</x-th>
+                                        <x-th>PRICE</x-th>
+                                        <x-th>TOTAL</x-th>
                                         <x-th></x-th>
                                         <x-th></x-th>
                                     </tr>
@@ -175,7 +165,7 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                             {{ number_format((int) $particular->quantity * (int)$particular->price,2)}}
+                                             {{ number_format((double) $particular->quantity * (double)$particular->price,2)}}
                                             </x-td>
                                             <x-td>
                                                 <button type="button"
@@ -456,9 +446,9 @@
                 </div>
 
             </div>
-            @include('modals.instructions.create-vendor-modal')
+
         </form>
        
     </div>
-
+@include('modals.instructions.create-vendor-modal')
 </div>
