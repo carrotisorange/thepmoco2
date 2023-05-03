@@ -16,7 +16,7 @@ class SalesPortalController extends Controller
     public function show_all_users()
     {
         return view('dashboard.sales.users',[
-            'users' => User::orderBy('id', 'desc')->whereNotIn('role_id', [7,8, 10, 12])->get()
+            'users' => User::orderBy('id', 'desc')->get()
         ]);
     }
 

@@ -14,14 +14,14 @@
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>#</x-th>
-                    <x-th>Created</x-th>
+                    <x-th>Created On</x-th>
                     <x-th>Name</x-th>
                     <x-th>Role</x-th>
                     <x-th>Mobile</x-th>
                     <x-th>Email</x-th>
-                    <x-th>Property</x-th>
+                    <x-th>Property Count</x-th>
 
-                    <x-th>Trial ends</x-th>
+                    <x-th>Trial ends On</x-th>
                 </tr>
             </thead>
             @foreach ($users as $index => $user)
