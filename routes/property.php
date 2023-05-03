@@ -340,6 +340,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         });      
     });
 
+    Route::get('/guest/{guest}/bill/{bill}/edit', [PropertyBillController::class, 'edit_bill'])->name('bill');
   
     //Routes for Bill
     Route::prefix('bill')->group(function(){
@@ -349,6 +350,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{random_str}/delete/{count}', [PropertyBillController::class, 'confirm_bill_deletion'])->name('bill');
 
         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
+       
       
     });
 
