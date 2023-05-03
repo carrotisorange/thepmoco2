@@ -44,6 +44,10 @@ Route::get('/calendar-demo', function(){
     return view('help.calendar-demo');
 });
 
+Route::get('/guest-demo', function(){
+    return view('help.guest-demo');
+});
+
 //show this route if a user tries to access broken links
 Route::fallback(function () {
     return view('layouts.not-found');
