@@ -2,11 +2,9 @@
 
 <head>
     <style>
-        /** Define the margins of your page **/
         @page {
             margin: 100px 25px;
         }
-
         header,
         h5 {
             position: fixed;
@@ -55,7 +53,6 @@
             padding: 6px";
 
         }
-
         ,
         .center {
             margin: auto;
@@ -65,7 +62,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- Define header and footer blocks before your content -->
     <header>
@@ -78,9 +74,7 @@
             <hr>
             <br>
         </h5>
-
     </header>
-
     <footer>
         <h5>
             For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
@@ -89,16 +83,11 @@
         {{ Session::get('property_name') }} Copyright &copy;
         <?php echo date("Y");?>
     </footer>
-
-    <!-- Wrap the content of your PDF inside a main tag -->
     <main class="center">
         <p>
             Date: {{ Carbon\Carbon::parse($date)->format('M d, Y') }}
         </p>
-
-
         <table class="">
-
             <tr>
                 <th>#</th>
                 <th>AR #</th>
@@ -110,9 +99,7 @@
                 <th>Period Covered</th>
                 <th>Amount</th>
             </tr>
-
             @foreach($collections as $index => $item)
-
             <tr>
                 <td>{{ $index+1 }}</td>
                 <td>{{ $item->ar_no }}</td>
@@ -134,9 +121,7 @@
                 <td>{{ Carbon\Carbon::parse($item->bill->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($item->bill->end)->format('M d, Y') }} </td>
                 <td>{{ number_format($item->collection,2) }}</td>
-
             </tr>
-
             @endforeach
             <tr>
                 <td><b>Total</b> </td>
@@ -149,12 +134,9 @@
                 <td><b>{{ number_format($collections->sum('collection'), 2) }}</b> </td>
             </tr>
         </table>
-
-
         <p>
             Prepared by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
         </p>
-
     </main>
 </body>
 
