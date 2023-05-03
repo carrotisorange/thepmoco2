@@ -36,7 +36,7 @@ class PropertyCollectionController extends Controller
         ];
 
 
-        $pdf = \PDF::loadView('properties.collections.export_dcr', $data)->setPaper('a4', 'landscape');
+        $pdf = \PDF::loadView('properties.collections.export_dcr', $data);
 
          $pdf->output();
 
@@ -52,6 +52,6 @@ class PropertyCollectionController extends Controller
          $canvas->page_text($width/5, $height/2, substr_replace($property->property, "", 18), null, 50,
          array(0,0,0),1,1,-30);
 
-        return $pdf->download($property->property.'-'.Carbon::parse($date)->format('M d,Y').'-dcr.pdf');
+        return $pdf->stream($property->property.'-'.Carbon::parse($date)->format('M d,Y').'-dcr.pdf');
     }
 }

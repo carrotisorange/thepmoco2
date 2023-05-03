@@ -7,7 +7,7 @@ use Session;
 use App\Models\Bill;
 use DB;
 
-class BillEditComponent extends Component
+class BillBulkEditComponent extends Component
 {
     public $batch_no;
     public $bills;
@@ -121,6 +121,6 @@ class BillEditComponent extends Component
 
     public function render()
     {
-        return view('livewire.bill-edit-component');
+        return view('livewire.bill-bulk-edit-component');
     }
 }

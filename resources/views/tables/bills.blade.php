@@ -13,6 +13,7 @@
             <x-th>AMOUNT DUE</x-th>
             <x-th>INITIAL PAYMENT</x-th>
             <x-th>BALANCE </x-th>
+            <x-th></x-th>
         </tr>
     </thead>
     @if($view === 'listView')
@@ -91,6 +92,16 @@
             </x-td>
             <x-td>
                 {{ number_format(($item->bill-$item->initial_payment), 2) }}
+            </x-td>
+            <x-td>
+              @can('manager')
+                @if($item->guest_uuid)
+                <a title="guest" class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}/bill/{{ $item->id }}/edit">Edit</a>
+                @else
+                NA
+                @endif
+              @endcan
             </x-td>
         </tr>
         @endforeach

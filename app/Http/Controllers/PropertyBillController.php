@@ -7,6 +7,7 @@ use App\Models\Contract;
 use Session;
 use App\Models\Bill;
 use App\Models\Particular;
+use App\Models\Guest;
 
 class PropertyBillController extends Controller
 {
@@ -52,6 +53,12 @@ class PropertyBillController extends Controller
             'bills' => $bills,
             'view' => 'listView',
             'isPaymentAllowed' => false,
+        ]);
+    }
+
+    public function edit_bill(Property $property, Guest $guest, Bill $bill){
+        return view('properties.bills.edit', [
+            'bill' => $bill
         ]);
     }
 }
