@@ -58,6 +58,7 @@ class PropertyBillController extends Controller
 
     public function edit_bill(Property $property, Guest $guest, Bill $bill){
         return view('properties.bills.edit', [
+            'property' => $property,
             'bill' => $bill
         ]);
     }

@@ -18,14 +18,14 @@
             <thead class="bg-gray-50">
                 <tr>
                     <x-th>ID</x-th>
-                    <x-th>Created</x-th>
+                    <x-th>Created On</x-th>
                     <x-th>Name</x-th>
                     {{-- <x-th>Contact</x-th> --}}
                     <x-th>Property</x-th>
                     <x-th>Plan</x-th>
                     <x-th>Checkout</x-th>
                     <x-th>Code</x-th>
-                    <x-th>Trial ends</x-th>
+                    <x-th>Trial ends On</x-th>
                 </tr>
             </thead>
             @foreach ($users as $user)

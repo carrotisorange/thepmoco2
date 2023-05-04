@@ -95,11 +95,11 @@
             </x-td>
             <x-td>
               @can('manager')
-                @if($item->guest_uuid)
+                @if($item->guest_uuid && $item->status == 'unpaid')
                 <a title="guest" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}/bill/{{ $item->id }}/edit">Edit</a>
                 @else
-                NA
+                
                 @endif
               @endcan
             </x-td>
