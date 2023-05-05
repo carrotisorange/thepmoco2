@@ -1,13 +1,20 @@
 <?php
 
 return [
-
     /*
     |-------------------------------------
     | Messenger display name
     |-------------------------------------
     */
     'name' => env('CHATIFY_NAME', 'Chatify Messenger'),
+
+    /*
+    |-------------------------------------
+    | The disk on which to store added
+    | files and derived images by default.
+    |-------------------------------------
+    */
+    'storage_disk_name' => env('CHATIFY_STORAGE_DISK', 'public'),
 
     /*
     |-------------------------------------
@@ -36,7 +43,7 @@ return [
         'app_id' => env('PUSHER_APP_ID'),
         'options' => [
             'cluster' => env('PUSHER_APP_CLUSTER'),
-            'encrypted' => true,
+            'encrypted' => false,
         ],
     ],
 
@@ -52,6 +59,20 @@ return [
 
     /*
     |-------------------------------------
+    | Gravatar
+    |
+    | imageset property options:
+    | [ 404 | mp | identicon (default) | monsterid | wavatar ]
+    |-------------------------------------
+    */
+    'gravatar' => [
+        'enabled' => false,
+        'image_size' => 200,
+        'imageset' => 'identicon'
+    ],
+
+    /*
+    |-------------------------------------
     | Attachments
     |-------------------------------------
     */
@@ -60,7 +81,7 @@ return [
         'download_route_name' => 'attachments.download',
         'allowed_images' => (array) ['png','jpg','jpeg','gif'],
         'allowed_files' => (array) ['zip','rar','txt'],
-        'max_upload_size' => 150, // MB
+        'max_upload_size' => env('CHATIFY_MAX_FILE_SIZE', 150), // MB
     ],
 
     /*

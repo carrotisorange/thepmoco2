@@ -24,13 +24,13 @@ class UserController extends Controller
     {
         if($export_option == 'portfolio'){
 
-            $portfolio = User::find(Auth::user()->id)->user_properties()->limit(3)->get();
+            $portfolio = User::find(Auth::user()->id)->user_properties()->limit(6)->get();
 
             $data = $this->get_data($portfolio);
 
             $pdf = $this->generate_pdf($data, $export_option);
 
-            return $pdf->download(Carbon::now().'-'.auth()->user()->name.'-portfolio.pdf');
+            return $pdf->stream(Carbon::now().'-'.auth()->user()->name.'-portfolio.pdf');
         }elseif($export_option == 'property')
         {
             $property = Property::find(Session::get('property'));
@@ -39,7 +39,7 @@ class UserController extends Controller
 
             $pdf = $this->generate_pdf($data, $export_option);
 
-            return $pdf->download(Carbon::now().'-'.auth()->user()->name.'-property.pdf');
+            return $pdf->stream(Carbon::now().'-'.auth()->user()->name.'-property.pdf');
         }
 
     }

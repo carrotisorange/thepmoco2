@@ -11,6 +11,10 @@ use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use App\Models\Property;
 use App\Models\PropertyBiller;
+use App\Notifications\SendAccountPayableStep2NotificationToManager;
+use Illuminate\Support\Facades\Notification;
+use App\Models\UserProperty;
+use App\Models\User;
 
 class AccountPayableCreateStep1Component extends Component
 {
@@ -145,6 +149,16 @@ class AccountPayableCreateStep1Component extends Component
               'vendor' => $this->vendor,
         ]);
 
+        $manager = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->pluck('user_id')->first();
+
+        $content = $this->accountpayable;
+
+        if($manager){
+            $email_manager = User::find($manager)->email;
+
+            Notification::route('mail', $email_manager)->notify(new SendAccountPayableStep2NotificationToManager($content));
+    
+        }
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }

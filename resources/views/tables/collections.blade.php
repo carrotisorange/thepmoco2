@@ -37,7 +37,7 @@
                 NA
                 @endif
             </x-td>
-            <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} </x-td>
+            <x-td> {{ Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }} </x-td>
             <x-td>
                 @if($item->date_deposited)
                 {{ Carbon\Carbon::parse($item->date_deposited)->format('M d, Y') }}

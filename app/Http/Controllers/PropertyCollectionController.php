@@ -28,13 +28,12 @@ class PropertyCollectionController extends Controller
 
     public function export_dcr(Property $property, $date){
 
-        $collections = Property::find($property->uuid)->collections()->whereDate('updated_at', $date)->orderBy('ar_no')->get();
+        $collections = Property::find($property->uuid)->collections()->whereDate('updated_at', $date)->where('is_posted',1)->orderBy('ar_no')->distinct()->get();
 
         $data = [
             'collections' => $collections,
             'date' => $date
         ];
-
 
         $pdf = \PDF::loadView('properties.collections.export_dcr', $data);
 

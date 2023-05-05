@@ -7,12 +7,13 @@
             <x-th>VENDOR</x-th>
             <x-th>REQUESTED ON</x-th>
             <x-th>REQUESTED BY</x-th>
-            <x-th>REQUEST FOR</x-th>
+            {{-- <x-th>REQUEST FOR</x-th> --}}
             <x-th>PARTICULARS</x-th>
             <x-th>STATUS</x-th>
             <x-th>AMOUNT</x-th>
             <x-th></x-th>
             <x-th></x-th>
+            {{-- <x-th></x-th> --}}
             <x-th></x-th>
         </tr>
     </thead>
@@ -44,7 +45,7 @@
             </x-td>
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $accountpayable->requester->name }}</x-td>
-            <x-td>{{ $accountpayable->request_for }}</x-td>
+            {{-- <x-td>{{ $accountpayable->request_for }}</x-td> --}}
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(3)->get() ;?>
                 @foreach ($particulars as $particular)
@@ -57,56 +58,73 @@
                 @can('accountownerandmanager')
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
+                    class="text-blue-500 text-decoration-line: underline">View Request</a>
                 @else
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
-                    class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                    class="text-blue-500 text-decoration-line: underline">Approve/Reject Request</a>
                 @endif
                 @elsecan('accountpayable')
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
+                    class="text-blue-500 text-decoration-line: underline">View Request</a>
                 @elseif($accountpayable->status === 'approved by ap')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
                     class="text-blue-500 text-decoration-line: underline">Upload Payment </a>
                 @else
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
-                    class="text-blue-500 text-decoration-line: underline">Approve/Reject</a>
+                    class="text-blue-500 text-decoration-line: underline">Approve/Reject Request</a>
                 @endif
                 @elsecan('ancillary')
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
+                    class="text-blue-500 text-decoration-line: underline">View Request</a>
                 @else
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                    class="text-blue-500 text-decoration-line: underline">Edit</a>
+                    class="text-blue-500 text-decoration-line: underline">Edit Request</a>
                 @endif
                 @else
                 @if($accountpayable->status === 'released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                    class="text-blue-500 text-decoration-line: underline">View</a>
+                    class="text-blue-500 text-decoration-line: underline">View Request</a>
                 @else
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                    class="text-blue-500 text-decoration-line: underline">Edit</a>
+                    class="text-blue-500 text-decoration-line: underline">Edit Request</a>
                 @endif
                 @endcan
             </x-td>
             <x-td>
                 @if($accountpayable->status==='pending' || $accountpayable->status==='unknown')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export" target="_blank"
-                    class="text-blue-500 text-decoration-line: underline">Export</a>
+                    class="text-blue-500 text-decoration-line: underline">Export Request</a>
                 @endif
             </x-td>
             <x-td>
-                @if($accountpayable->status === 'released' && $accountpayable->request_for === 'purchase')
-                <form
-                    action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1"
-                    method="POST">
-                    @csrf
-                    <button type="submit" class="text-blue-500 text-decoration-line: underline">Liquidation</button>
-                </form>
+                @if($accountpayable->status === 'released')
+                    @if(App\Models\AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->where('approved_by', '!=', '')->count())
+                    <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
+                        target="_blank" class="text-blue-500 text-decoration-line: underline">View Liquidation</a>
+                
+                    @else
+                    <form
+                        action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1"
+                        method="POST">
+                        @csrf
+                        <button type="submit" class="text-blue-500 text-decoration-line: underline">Create Liquidation</button>
+                    </form>
+                    @endif
                 @endif
             </x-td>
+            {{-- <x-td>
+                @if($accountpayable->status === 'released')
+                @if(App\Models\AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->where('approved_by', '!=',
+                '')->count())
+               <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/export"
+                    target="_blank" class="text-blue-500 text-decoration-line: underline">Export Liquidation</a>
+     
+                @endif
+                @endif
+               
+            </x-td> --}}
             {{-- <x-td>
                 @if($accountpayable->status!='released')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
@@ -133,11 +151,12 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
-            <x-th></x-th>
+         
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
             <x-td><b>{{ number_format($accountpayables->sum('amount'), 2) }}</b></x-td>
+        
             <x-th></x-th>
             <x-th></x-th>
         </tr>

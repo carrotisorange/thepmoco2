@@ -7,6 +7,8 @@ use App\Models\Property;
 use App\Models\AccountPayableParticular;
 use App\Models\AccountPayable;
 use App\Models\AccountPayableLiquidationParticular;
+use PDF;
+use Carbon\Carbon;
 
 class PropertyLiquidationController extends Controller
 {
@@ -49,5 +51,31 @@ class PropertyLiquidationController extends Controller
             'property' => $property,
             'accountpayable' => $accountPayable
         ]);
+    }
+
+    public function export(Property $property, AccountPayable $accountPayable){
+
+        $data = [
+            'property' => $property,
+           'accountpayable' => $accountPayable,
+           'particulars' => AccountPayableLiquidationParticular::where('batch_no', $accountPayable->batch_no)->get()
+        ];
+
+        $pdf = \PDF::loadView('properties.liquidations.export', $data);
+
+        $pdf->output();
+
+        $canvas = $pdf->getDomPDF()->getCanvas();
+
+        $height = $canvas->get_height();
+        $width = $canvas->get_width();
+
+        $canvas->set_opacity(.2,"Multiply");
+
+        $canvas->set_opacity(.2);
+
+        $canvas->page_text($width/5, $height/2,$property->property, null, 55,array(0,0,0),2,2,-30);
+
+        return $pdf->stream($property->property.'-'.$accountPayable->batch_no.'liquidation.pdf');
     }
 }

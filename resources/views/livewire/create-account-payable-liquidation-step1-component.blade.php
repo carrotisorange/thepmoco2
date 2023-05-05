@@ -378,7 +378,7 @@
                 <div>
                     <p class="mt-5 px-6 text-right">
                         <button type="button"
-                            onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'"
+                            onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'" wire:loading.remove
                             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                             Cancel
                         </button>

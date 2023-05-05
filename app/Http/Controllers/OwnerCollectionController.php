@@ -263,7 +263,7 @@ class OwnerCollectionController extends Controller
 
         $pdf = $this->generate_pdf($property, $data);
 
-        return $pdf->download($owner->owner.'-ar.pdf');
+        return $pdf->stream($owner->owner.'-ar.pdf');
      }
 
     /**

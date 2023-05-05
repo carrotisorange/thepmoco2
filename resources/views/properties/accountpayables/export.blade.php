@@ -1,172 +1,78 @@
-<html>
+@extends('layouts.export')
+@section('title', 'Account Payables')
+@section('content')
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
+        <tr>
+            <x-th>#</x-th>
+            <x-th>BATCH NO</x-th>
+            <x-th>UNIT</x-th>
+            <x-th>VENDOR</x-th>
+            <x-th>REQUESTED ON</x-th>
+            <x-th>REQUESTED BY</x-th>
+            {{-- <x-th>REQUEST FOR</x-th> --}}
+            <x-th>PARTICULARS</x-th>
+            <x-th>STATUS</x-th>
+            <x-th>AMOUNT</x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+        </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+        @foreach($accountpayables as $index => $accountpayable)
+        <tr>
+            <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ $accountpayable->batch_no }}</x-td>
+            <x-td>
+                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
+                @foreach ($particulars as $particular)
+                @if($particular->unit_uuid)
+                {{ App\Models\Unit::find($particular->unit_uuid)->unit }},
+                @else
 
-<head>
-    <style>
-        /** Define the margins of your page **/
-        @page {
-            margin: 100px 25px;
-        }
-
-        header,
-        h5 {
-            position: fixed;
-            top: -60px;
-            left: 0px;
-            right: 0px;
-            height: 50px;
-
-            /** Extra personal styles **/
-            background-color: ;
-            color: black;
-            text-align: center;
-            line-height: 35px;
-        }
-
-        footer {
-            position: fixed;
-            bottom: -60px;
-            left: 0px;
-            right: 0px;
-            height: 50px;
-
-            /** Extra personal styles **/
-            background-color: #;
-            color: black;
-            text-align: center;
-            line-height: 35px;
-        }
-
-        p,
-        {
-        margin-right: 20px;
-        margin-left: 20px;
-        }
-
-        table,
-        th,
-        td {
-            margin-right: 10px;
-            margin-left: 10px;
-            border: 0px black;
-        }
-
-        th,
-        td {
-            padding: 10px";
-
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Define header and footer blocks before your content -->
-    <header>
-        {{ Session::get('property_name') }} | Account Payables
-        <br>
-        <h5>{{ App\Models\Property::find(Session::get('property'))->country->country }},
-            {{ App\Models\Property::find(Session::get('property'))->province->province }},
-            {{ App\Models\Property::find(Session::get('property'))->city->city }},
-            {{ App\Models\Property::find(Session::get('property'))->barangay }}
-            <hr>
-            <br>
-        </h5>
-
-    </header>
-
-    <footer>
-        <h5>
-            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
-            {{ App\Models\Property::find(Session::get('property'))->mobile }}
-        </h5>
-        {{ Session::get('property_name') }} Copyright &copy;
-        <?php echo date("Y");?>
-    </footer>
-
-    <main>
-        <br>
-
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="bg-gray-50">
-                <tr>
-                    <x-th>#</x-th>
-                    <x-th>BATCH NO</x-th>
-                    <x-th>UNIT</x-th>
-                    <x-th>VENDOR</x-th>
-                    <x-th>REQUESTED ON</x-th>
-                    <x-th>REQUESTED BY</x-th>
-                    <x-th>REQUEST FOR</x-th>
-                    <x-th>PARTICULARS</x-th>
-                    <x-th>STATUS</x-th>
-                    <x-th>AMOUNT</x-th>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($accountpayables as $index => $accountpayable)
-                <tr>
-                    <x-td>{{ $index+1 }}</x-td>
-                    <x-td>{{ $accountpayable->batch_no }}</x-td>
-                    <x-td>
-                        <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
-                        @foreach ($particulars as $particular)
-                        @if($particular->unit_uuid)
-                        {{ App\Models\Unit::find($particular->unit_uuid)->unit }},
-                        @else
-
-                        @endif
-                        @endforeach
-
-                    </x-td>
-                    <x-td>
-                        <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
-                        @foreach ($particulars as $particular)
-                        @if($particular->vendor_id)
-                        {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }},
-                        @else
-
-                        @endif
-                        @endforeach
-                    </x-td>
-                    <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
-                    <x-td>{{ $accountpayable->requester->name }}</x-td>
-                    <x-td>{{ $accountpayable->request_for }}</x-td>
-                    <x-td>
-                        <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
-                        @foreach ($particulars as $particular)
-                        {{ $particular->item }},
-                        @endforeach
-                    </x-td>
-                    <x-td>{{$accountpayable->status}}</x-td>
-                    <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
-
-                </tr>
+                @endif
                 @endforeach
-                <tr>
-                    <x-td><b>Total</b></x-td>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                    <x-th></x-th>
-                    <x-td><b>{{ number_format($accountpayables->sum('amount'), 2) }}</b></x-td>
-                    <x-th></x-th>
-                </tr>
-            </tbody>
-        </table>
 
+            </x-td>
+            <x-td>
+                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
+                @foreach ($particulars as $particular)
+                @if($particular->vendor_id)
+                {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }},
+                @else
 
-        <p>
-            Prepared by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
-        </p>
+                @endif
+                @endforeach
+            </x-td>
+            <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
+            <x-td>{{ $accountpayable->requester->name }}</x-td>
+            {{-- <x-td>{{ $accountpayable->request_for }}</x-td> --}}
+            <x-td>
+                <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get() ;?>
+                @foreach ($particulars as $particular)
+                {{ $particular->item }},
+                @endforeach
+            </x-td>
+            <x-td>{{$accountpayable->status}}</x-td>
+            <x-td>{{ number_format($accountpayable->amount, 2) }}</x-td>
 
+        </tr>
+        @endforeach
+        <tr>
+            <x-td><b>Total</b></x-td>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-td><b>{{ number_format($accountpayables->sum('amount'), 2) }}</b></x-td>
+            <x-th></x-th>
+        </tr>
+    </tbody>
+</table>
 
-
-    </main>
-</body>
-
-</html>
+@endsection

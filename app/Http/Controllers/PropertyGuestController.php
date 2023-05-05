@@ -314,7 +314,7 @@ class PropertyGuestController extends Controller
          $canvas->page_text($width/5, $height/2, $property->property, null,
          55, array(0,0,0),2,2,-30);
 
-        return $pdf->download($guest->unit->unit.'-'.Carbon::now()->format('M d, Y').'-guest-info.pdf');
+        return $pdf->stream($guest->unit->unit.'-'.Carbon::now()->format('M d, Y').'-guest-info.pdf');
     }
 
     public function export_bill(Request $request, Property $property, Guest $guest){
@@ -325,7 +325,7 @@ class PropertyGuestController extends Controller
     
         $pdf = $this->generate_pdf($property, $data, 'properties.guests.export-bills');
 
-        return $pdf->download(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
+        return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
     }
 
     public function get_bill_data($guest, $due_date, $penalty, $note)

@@ -97,12 +97,12 @@ class AccountPayableController extends Controller
     ]);
     }
 
-    public function create_step_3($property_uuid, $accountpayable_id){
-    
-        // $this->authorize('manager');
+    public function create_step_3(Property $property, AccountPayable $accountpayable){
+
 
         return view('accountpayables.create.step-3', [
-           'accountpayable_id' => $accountpayable_id
+            'property' => $property,
+            'accountpayable' => $accountpayable
         ]);
     }
 
@@ -180,7 +180,7 @@ class AccountPayableController extends Controller
     {
         $accountPayable = AccountPayable::find($id);
 
-        return Storage::download(($accountPayable->attachment),'AP_'.$accountPayable->id.'_'.$accountPayable->created_at.'.png');
+        return Storage::stream(($accountPayable->attachment),'AP_'.$accountPayable->id.'_'.$accountPayable->created_at.'.png');
     }
 
     public function approve($property_uuid, $id)

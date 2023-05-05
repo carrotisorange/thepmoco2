@@ -125,7 +125,7 @@ class OwnerBillController extends Controller
     
        $pdf = $this->generate_pdf($data, $property);
 
-       return $pdf->download(Carbon::now()->format('M d, Y').'-'.$owner->owner.'-soa.pdf');
+       return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$owner->owner.'-soa.pdf');
     }
 
     public function send(Request $request, Property $property, Owner $owner)
