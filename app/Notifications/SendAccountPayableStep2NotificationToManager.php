@@ -47,7 +47,7 @@ class SendAccountPayableStep2NotificationToManager extends Notification
                     ->subject('Account Payable Notifications')
                     ->from(auth()->user()->email)
                     ->line('You have a pending approval.')
-                    ->action('Notification Action', url('/property/'.$this->content->property_uuid).'/accountpayable/'.$this->content->id.'/step-3')
+                    ->action('Click here to proceed', url('/property/'.$this->content->property_uuid).'/accountpayable/'.$this->content->id.'/step-3')
                     ->line('Thank you for using our The Property Manager Online!');
     }
 
