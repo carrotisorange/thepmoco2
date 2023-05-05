@@ -42,7 +42,7 @@ class PropertyCreated extends Notification
     {
         return (new MailMessage)
                     ->line('Congratulations!')
-                    ->action('Notification Action', url('/thepmo.co'))
+                    ->action('Click here to proceed', url('/thepmo.co'))
                     ->line('Thank you for using our application!');
     }
 

@@ -47,7 +47,7 @@ class SendAccountPayableStep4NotificationToAdmin extends Notification
                     ->subject('Account Payable Notifications')
                     ->from(auth()->user()->email)
                     ->line('Your request has been approved and released.')
-                    ->action('Notification Action',
+                    ->action('Click here to proceed',
                     url('/property/'.$this->content->property_uuid).'/accountpayable/'.$this->content->id)
                     ->line('Thank you for using our The Property Manager Online!');
     }
