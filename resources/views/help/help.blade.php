@@ -61,23 +61,23 @@
                                         <!-- <tr class="relative transform scale-100
                                             text-xs py-1 border-b-2 border-gray-300 cursor-default">
                                             <td class="px-2 py-5 whitespace-no-wrap">
-                                                <a href="calendar-demo" class="leading-5 text-gray-900 text-base underline font-medium">How to Create Utilities Meter Reading and Billing
+                                                <a href="utilities-demo" class="leading-5 text-gray-900 text-base underline font-medium">How to Create Utilities Meter Reading and Billing
                                                 </a>
             
                                             </td>
-                                        </tr>
+                                        </tr> -->
 
                                         <tr class="relative transform scale-100
                                             text-xs py-1 border-b-2 border-gray-300 cursor-default">
              
             
                                             <td class="px-2 py-5 whitespace-no-wrap">
-                                                <a href="calendar-demo" class="leading-5 text-gray-900 text-base underline font-medium">How to Add Additional Personnels
+                                                <a href="personnel-demo" class="leading-5 text-gray-900 text-base underline font-medium">How to Add Additional Personnels
                                                 </a>
             
                                             </td>
             
-                                        </tr> -->
+                                        </tr>  
 
                                     </tbody>
                                 </table>
