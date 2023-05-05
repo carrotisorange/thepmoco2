@@ -71,7 +71,7 @@ class UnitInventoryController extends Controller
          $canvas->page_text($width/5, $height/2, $property->property, null,
          55, array(0,0,0),2,2,-30);
 
-        return $pdf->download($unit->unit.'-'.Carbon::now()->format('M d, Y').'-unit-inventory.pdf');
+        return $pdf->stream($unit->unit.'-'.Carbon::now()->format('M d, Y').'-unit-inventory.pdf');
     }
 
      public function export_movein(Property $property, Unit $unit, Contract $contract){
@@ -98,7 +98,7 @@ class UnitInventoryController extends Controller
          $canvas->page_text($width/5, $height/2, $property->property, null,
          55, array(0,0,0),2,2,-30);
 
-        return $pdf->download($unit->unit.'-'.Carbon::now()->format('M d, Y').'-unit-inventory.pdf');
+        return $pdf->stream($unit->unit.'-'.Carbon::now()->format('M d, Y').'-unit-inventory.pdf');
     }
 
     public function upload_image(Property $property, Unit $unit, UnitInventory $unit_inventory){

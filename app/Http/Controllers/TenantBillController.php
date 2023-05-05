@@ -61,7 +61,7 @@ class TenantBillController extends Controller
 
         $pdf = $this->generate_pdf($data, $property);
 
-        return $pdf->download(Carbon::now()->format('M d, Y').'-'.$tenant->tenant.'-soa.pdf');
+        return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$tenant->tenant.'-soa.pdf');
     }
 
     public function generate_pdf($data, $property)

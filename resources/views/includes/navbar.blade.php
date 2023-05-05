@@ -251,7 +251,7 @@
         <x-nav-link href="/property/{{ Session::get('property') }}/accountpayable"
             :active="request()->routeIs('accountpayable')">
 
-            <span class="sr-only">Account <br> Payables </span>
+            <span class="sr-only">Request for<br> Purchases </span>
             <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -260,7 +260,7 @@
         @else
         <x-nav-link href="/property/" :active="request()->routeIs('accountpayable')">
 
-            <span class="sr-only">Account <br> Payables </span>
+            <span class="sr-only">Request for<br> Purchases </span>
             <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -268,7 +268,7 @@
         </x-nav-link>
         @endif
 
-        <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Account <br> Payables
+        <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Request for<br> Purchases
         </div>
 
         <!-- Financials -->

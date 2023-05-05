@@ -55,7 +55,7 @@ class PropertyAccountPayableController extends Controller
           'accountpayables' => Property::find($property_uuid)->accountpayables
         ];
 
-          $pdf = \PDF::loadView('properties.accountpayables.export', $data)->setPaper('a4', 'landscape');
+          $pdf = \PDF::loadView('properties.accountpayables.export', $data);
 
         $pdf->output();
 
@@ -71,7 +71,7 @@ class PropertyAccountPayableController extends Controller
           $canvas->page_text($width/5, $height/2, Property::find($property_uuid)->property, null, 55,
           array(0,0,0),2,2,-30);
 
-          return $pdf->download(Property::find($property_uuid)->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
+          return $pdf->stream(Property::find($property_uuid)->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
         
     }
 
@@ -109,7 +109,7 @@ class PropertyAccountPayableController extends Controller
         'particulars' => AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get()
        ];
 
-       $pdf = \PDF::loadView('properties.accountpayables.download', $data)->setPaper('a4', 'landscape');
+       $pdf = \PDF::loadView('properties.accountpayables.download', $data);
 
        $pdf->output();
 

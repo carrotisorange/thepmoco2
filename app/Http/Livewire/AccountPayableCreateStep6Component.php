@@ -6,6 +6,10 @@ use Livewire\Component;
 use App\Models\AccountPayable;
 use Livewire\WithFileUploads;
 use App\Models\AccountPayableParticular;
+use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
+use Illuminate\Support\Facades\Notification;
+use App\Models\UserProperty;
+use App\Models\User;
 
 class AccountPayableCreateStep6Component extends Component
 {
@@ -49,10 +53,20 @@ class AccountPayableCreateStep6Component extends Component
             ]);
             
         }    
-        
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/')->with('success', 'Success!');
 
-        //  return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-1')->with('success', 'Success!');
+        $requester = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->pluck('user_id')->first();
+
+        $content = $this->accountpayable;
+
+        if($requester){
+            $requester_email = User::find($requester)->email;
+
+            Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
+    
+        }
+        
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id)->with('success', 'Success!');
+
     }
 
     public function removeAttachment(){

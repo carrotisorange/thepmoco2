@@ -58,7 +58,7 @@ class PortalTenantController extends Controller
 
         $pdf = $this->generate_pdf($data);
 
-        return $pdf->download($tenant->tenant.'-soa.pdf');
+        return $pdf->stream($tenant->tenant.'-soa.pdf');
     }
 
     public function get_bill_data($tenant)

@@ -7,11 +7,16 @@
                     class="fa-solid fa-hourglass-start"></i></h1>
             <p class="mt-6 text-base leading-7 text-gray-600">The request has been sent to the manager.</p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-                <button type="button" wire:loading.remove wire:click="downloadInternalDocument"
-                    wire:target="downloadInternalDocument"
+                <a href="/property/{{ $property->uuid }}/accountpayable/" wire:loading.remove
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                   See all request for purchase
+                </a>
+
+                <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export" wire:loading.remove
+                    target="_blank"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                     View Request
-                </button>
+                </a>
 
                 <button type="button" disabled wire:target="downloadInternalDocument" wire:loading
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">

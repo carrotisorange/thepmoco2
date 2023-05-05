@@ -130,7 +130,7 @@ class PropertyFinancialController extends Controller
 
           $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
 
-          return $pdf->download($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
+          return $pdf->stream($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
     }
 
     public function exportCashflow($property, $type, $filter){
@@ -185,7 +185,7 @@ class PropertyFinancialController extends Controller
 
           $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
 
-          return $pdf->download($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
+          return $pdf->stream($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
     }
 
     public function get_total_occupancy($property){

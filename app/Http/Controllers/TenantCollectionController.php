@@ -134,7 +134,7 @@ class TenantCollectionController extends Controller
 
         $pdf = $this->generate_pdf($property, $data);
 
-        return $pdf->download($tenant->tenant.'-ar.pdf');
+        return $pdf->stream($tenant->tenant.'-ar.pdf');
      }
 
      public function view(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)

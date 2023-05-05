@@ -177,7 +177,8 @@ class UserCreateComponent extends Component
                'property_uuid' => $this->property->uuid,
                'user_id' => $user->id,
                'is_account_owner' => false,
-               'is_approved' => true
+               'is_approved' => true,
+               'role_id' => $this->role_id
             ]
          );
 

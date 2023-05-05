@@ -2,7 +2,7 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Account Payables</h1>
+                <h1 class="text-3xl font-bold text-gray-700">Request for Purchases</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
@@ -12,15 +12,17 @@
                     Clear Filters
                 </button> &nbsp;
                 @endif
-                <button type="button" wire:click="exportAccountPayables" wire:loading.remove
+                <a href="/property/{{$property->uuid}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{ $limitDisplayTo }}"  wire:loading.remove target="_blank"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Export All
-                </button>
-                <button type="button" wire:loading disabled
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    Loading...
-                </button>
-                <div class="group inline-block">
+                </a>
+                <a href="/property/{{ Session::get('property') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store"
+                                  
+                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                New Request
+                                </a>
+              
+                {{-- <div class="group inline-block">
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i> &nbsp New
@@ -47,7 +49,7 @@
 
                     </ul>
 
-                </div>
+                </div> --}}
 
             </div>
 
@@ -62,7 +64,7 @@
                 <input id="search" wire:model="search" placeholder="Search for batch no..."
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
             </div>
-            <div class="sm:col-span-2">
+            <div class="sm:col-span-3">
                 <select id="status" wire:model="status"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="">Filter status</option>
@@ -71,7 +73,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="sm:col-span-2">
+            {{-- <div class="sm:col-span-2">
                 <select id="request_for" wire:model="request_for"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="">Filter type</option>
@@ -79,8 +81,8 @@
                     <option value="{{ $type->request_for }}">{{ $type->request_for }}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="sm:col-span-2">
+            </div> --}}
+            <div class="sm:col-span-3">
                 <select id="limitDisplayTo" wire:model="limitDisplayTo"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="" selected>Limit display to</option>
