@@ -2,50 +2,50 @@
 @section('title', 'Liquidation')
 @section('content')
 <p>
-    Batch No: {{ $accountpayable->batch_no }}
+    <b>Batch No:</b> {{ $accountPayableLiquidation->batch_no }}
 </p>
 
 <p>
-    Created on: {{
-    Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
+   <b>Created on:</b> {{
+    Carbon\Carbon::parse($accountPayableLiquidation->created_at)->format('M d, Y') }}
 </p>
 
 <p>
-    Prepared by: 
+   <b>Prepared by:</b>
 
-    @if($accountpayable->prepared_by)
-    {{App\Models\User::find($accountpayable->prepared_by)->name }}
+    @if($accountPayableLiquidation->prepared_by)
+    {{App\Models\User::find($accountPayableLiquidation->prepared_by)->name }}
     @else
     NA
     @endif
 </p>
 
 <p>
-    Name: {{ $accountpayable->name }}
+    <b>Name:</b> {{ $accountPayableLiquidation->name }}
 </p>
 
 <p>
-    Department/Section:{{  $accountpayable->department }}
+    <b>Department/Section:</b>{{  $accountPayableLiquidation->department }}
 </p>
 
 <p>
-    Unit: 
-    @if($accountpayable->unit_uuid)
-    {{ App\Models\Unit::find($accountpayable->unit_uuid)->unit }}
+    <b>Unit:</b>
+    @if($accountPayableLiquidation->unit_uuid)
+    {{ App\Models\Unit::find($accountPayableLiquidation->unit_uuid)->unit }}
     @else
     NA
     @endif
 </p>
 
 <p>
-    Approved By: @if($accountpayable->approved_by)
-    {{ App\Models\User::find($accountpayable->approved_by)->name }}
+    <b>Approved By:</b> @if($accountPayableLiquidation->approved_by)
+    {{ App\Models\User::find($accountPayableLiquidation->approved_by)->name }}
     @else
     NA
     @endif
 </p>
 <p>
-    Particulars
+    <b>Particulars</b>
 </p>
 <p>
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

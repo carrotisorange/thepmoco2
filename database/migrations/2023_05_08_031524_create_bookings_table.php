@@ -14,11 +14,12 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
-            $table->string('guest');
+            $table->uuid('uuid')->unique();
+            $table->foreignUuid('guest_uuid')->constrained();
+            $table->string('status');
             $table->foreignUuid('unit_uuid')->constrained();
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->timestamp('movein_at')->nullable();
+            $table->timestamp('moveout_at')->nullable();
             $table->timestamps();
         });
     }
