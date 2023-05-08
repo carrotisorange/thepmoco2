@@ -1,5 +1,5 @@
 @extends('layouts.export')
-@section('title', 'Account Payables')
+@section('title', 'Accounts Payable')
 @section('content')
     <div class="mx-10">
         <div class="px-4 sm:px-6 lg:px-8">

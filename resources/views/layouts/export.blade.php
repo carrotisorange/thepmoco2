@@ -94,10 +94,7 @@
     <br>
     <h5>
         @yield('title')
-        {{-- {{ App\Models\Property::find(Session::get('property'))->country->country }},
-        {{ App\Models\Property::find(Session::get('property'))->province->province }},
-        {{ App\Models\Property::find(Session::get('property'))->city->city }},
-        {{ App\Models\Property::find(Session::get('property'))->barangay }} --}}
+       
         <hr>
         <br>
     </h5>
@@ -116,7 +113,7 @@
     <main class="center">
         @yield('content')
         <p>
-            Prepared by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
+            Printed by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
         </p>
     </main>
 </body>

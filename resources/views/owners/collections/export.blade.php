@@ -162,11 +162,7 @@
             @endforeach
         </table>
         </p>
-        <p>
-            Prepared by: {{ $user }},<br> {{ $role }}
-        </p>
-
-
+       
     </main>
 </body>
 
