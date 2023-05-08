@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\AccountPayableParticular;
 use App\Models\AccountPayable;
+use App\Models\AccountPayableLiquidation;
 use App\Models\AccountPayableLiquidationParticular;
 use PDF;
 use Carbon\Carbon;
@@ -53,11 +54,11 @@ class PropertyLiquidationController extends Controller
         ]);
     }
 
-    public function export(Property $property, AccountPayable $accountPayable){
+    public function export(Property $property, AccountPayable $accountPayable, AccountPayableLiquidation $accountPayableLiquidation){
 
         $data = [
-            'property' => $property,
-           'accountpayable' => $accountPayable,
+           'property' => $property,
+           'accountPayableLiquidation' => AccountPayableLiquidation::where('batch_no', $accountPayable->batch_no)->first(),
            'particulars' => AccountPayableLiquidationParticular::where('batch_no', $accountPayable->batch_no)->get()
         ];
 

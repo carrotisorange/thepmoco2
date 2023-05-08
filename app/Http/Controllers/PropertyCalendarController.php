@@ -45,10 +45,9 @@ class PropertyCalendarController extends Controller
     }
 
     public function store(Request $request){
-
         sleep(2);
         
-       $validated = $request->validate([
+        $validated = $request->validate([
             'guest' => 'required|string',
             'email' => ['required', 'string', 'email', 'max:255'],
             'mobile_number' => 'required',
