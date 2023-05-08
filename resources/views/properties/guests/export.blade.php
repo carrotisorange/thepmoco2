@@ -100,8 +100,5 @@
     @else
     <p>None</p>
     @endif
-    
-    <p>
-        Prepared by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
-    </p>
+ 
 @endsection
