@@ -16,10 +16,12 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->uuid('uuid')->unique();
             $table->foreignUuid('guest_uuid')->constrained();
+            $table->foreignUuid('property_uuid')->constrained();
             $table->string('status');
             $table->foreignUuid('unit_uuid')->constrained();
             $table->timestamp('movein_at')->nullable();
             $table->timestamp('moveout_at')->nullable();
+            $table->double('price')->nullable();
             $table->timestamps();
         });
     }

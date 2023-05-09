@@ -129,6 +129,10 @@ class Property extends Model
         return $this->hasMany(Guest::class);
     }
 
+    public function bookings(){
+        return $this->hasMany(Booking::class);
+    }
+
     public function referrals()
         {
         return $this->hasMany(Referral::class);

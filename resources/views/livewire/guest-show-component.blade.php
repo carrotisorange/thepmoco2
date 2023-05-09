@@ -5,10 +5,9 @@
             <div class="lg:col-start-4 lg:col-span-9">
                 <h1 class="text-3xl font-bold text-gray-900">{{ $guest_details->guest }}</h1>
             </div>
-
             <div class="lg:col-start-5 lg:col-span-9">
                 <div class="flex justify-end">
-                    <a href="/property/{{ $property->uuid }}/guest/{{ $guest_details->uuid }}/export" wire:loading.remove target="_blank"
+                    <a href="/property/{{ $property->uuid }}/guest/{{ $guest_details->uuid }}/booking" wire:loading.remove target="_blank"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         <i class="fa-solid fa-download"></i> &nbsp; Export
                     </a>
@@ -37,11 +36,18 @@
                                     New bills
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="#/" data-modal-toggle="create-additional-guest-modal" class=" block py-2 px-4 text-sm
                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                     dark:text-gray-200 dark:hover:text-white">
                                     New additional guest
+                                </a>
+                            </li> --}}
+                            <li>
+                                <a href="#/" data-modal-toggle="create-booking-modal" class=" block py-2 px-4 text-sm
+                                                                                text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                                dark:text-gray-200 dark:hover:text-white">
+                                    New booking
                                 </a>
                             </li>
 
@@ -62,8 +68,6 @@
                     <div class="mt-5 flex items-center justify-center">
 
                     </div>
-
-
                 </div>
             </div>
 
@@ -80,9 +84,9 @@
                         <li class="mr-2" role="presentation">
                             <button
                                 class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="additional_guests-tab" data-tabs-target="#additional_guests" type="button"
-                                role="tab" aria-controls="additional_guests" aria-selected="false">Additional
-                                Guests</button>
+                                id="bookings-tab" data-tabs-target="#bookings" type="button"
+                                role="tab" aria-controls="bookings" aria-selected="false">Bookings
+                                </button>
                         </li>
 
                         <li class="mr-2" role="presentation">
@@ -120,11 +124,11 @@
 
                                         </div>
                                     </div>
-                                    <div class="sm:col-span-4">
+                                    <div class="sm:col-span-8">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                            <label for="guest" class="block text-xs font-medium text-gray-900">Name of
-                                                the guest
+                                            <label for="guest" class="block text-xs font-medium text-gray-900">
+                                                 Guest
                                             </label>
                                             <input type="text" wire:model.debounce.500ms="guest"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
@@ -133,7 +137,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sm:col-span-2">
+                                    {{-- <div class="sm:col-span-2">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="unit_uuid" class="block text-xs font-medium text-gray-900">Unit
@@ -153,9 +157,9 @@
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="sm:col-span-2">
+                                    {{-- <div class="sm:col-span-2">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="price" class="block text-xs font-medium text-gray-900">Movein Total Bills
@@ -167,9 +171,9 @@
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="sm:col-span-3">
+                                    <div class="sm:col-span-4">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="job-title" class="block text-xs font-medium text-gray-900">Email
@@ -182,7 +186,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="sm:col-span-3">
+                                    <div class="sm:col-span-4">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="mobile_number"
@@ -196,7 +200,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sm:col-span-2">
+                                    {{-- <div class="sm:col-span-2">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="status"
@@ -280,10 +284,10 @@
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
 
 
-                                    <div class="sm:col-span-4">
+                                    {{-- <div class="sm:col-span-4">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="vehicle_details"
@@ -399,7 +403,7 @@
                                             @enderror
                                         </div>
                                     </div>
-
+ --}}
 
 
                                 </div>
@@ -422,8 +426,8 @@
                         </div>
                     </div>
 
-                    <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="additional_guests" role="tabpanel"
-                        aria-labelledby="additional_guests-tab">
+                    <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="bookings" role="tabpanel"
+                        aria-labelledby="bookings-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
@@ -433,8 +437,8 @@
                                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
                                     </div>
-                                    @if($additional_guests->count())
-                                    @include('tables.additional-guests')
+                                    @if($bookings->count())
+                                    @include('tables.bookings')
                                     @else
                                     <div class="mt-10 text-center mb-10">
                                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -443,7 +447,7 @@
                                                 stroke-linejoin="round" stroke-width="2"
                                                 d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                                         </svg>
-                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No additional guests</h3>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No bookings</h3>
                                         <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                         <div class="mt-6">
                                             <button type="button" data-modal-toggle="create-additional-guest-modal"
@@ -454,7 +458,7 @@
                                                     <path
                                                         d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                                                 </svg>
-                                                Add an additional guest
+                                                Add another booking
                                             </button>
 
                                         </div>
@@ -509,5 +513,6 @@
         </div>
     </div>
     @include('modals.create-additional-guest-modal')
+    @include('modals.create-booking-modal')
     @include('modals.warnings.destroy-guest-modal')
 </div>
