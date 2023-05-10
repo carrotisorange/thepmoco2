@@ -17,6 +17,8 @@ class PropertyCalendarController extends Controller
 {
     public function index(Property $property){
 
+    app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+
         return view('properties.calendars.pending',[
             'property' => $property,
             'units' => Property::find($property->uuid)->units,
