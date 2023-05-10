@@ -12,6 +12,7 @@ use App\Models\AcknowledgementReceipt;
 use App\Models\AdditionalGuest;
 use App\Models\Bill;
 use App\Models\Collection;
+use App\Models\Booking;
 
 class GuestShowComponent extends Component
 {
@@ -45,11 +46,9 @@ class GuestShowComponent extends Component
     public $no_of_senior_citizens;
     public $no_of_person_with_disability;
 
-
     public $view = 'listView';
 
     public $isPaymentAllowed = false;
-    
     
     public function mount($guest_details){
         $this->uuid = $guest_details->uuid;
@@ -59,7 +58,7 @@ class GuestShowComponent extends Component
         $this->status = $guest_details->status;
         $this->unit_uuid = $guest_details->unit_uuid;
         $this->movein_at = Carbon::parse($guest_details->movein_at)->format('Y-m-d');
-        $this->moveout_at = Carbon::parse($guest_details->moveout_at)->format('Y-m-d');
+        // $this->moveout_at = Carbon::parse($guest_details->moveout_at)->format('Y-m-d');
         $this->no_of_guests= AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->count();
         $this->vehicle_details = $guest_details->vehicle_details;
         $this->plate_number = $guest_details->plate_number;
@@ -88,8 +87,8 @@ class GuestShowComponent extends Component
             'vehicle_details' => 'nullable',
             'plate_number' => 'nullable',
             'price' => 'required',
-            'arrival_time' => 'required',
-            'departure_time' => 'required',
+            'arrival_time' => 'nullable',
+            'departure_time' => 'nullable',
             'special_request' => 'nullable',
             'flight_itinerary' => 'nullable',
             'no_of_person_with_disability' => 'nullable',
@@ -160,13 +159,29 @@ class GuestShowComponent extends Component
         return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid.'/export');
     }
 
+    public function storeBooking(){
+        sleep(2);
+
+        Booking::create([
+            'uuid' => app('App\Http\Controllers\PropertyController')->generate_uuid(),
+            'unit_uuid' => $this->unit_uuid,
+            'movein_at' => $this->movein_at,
+            'moveout_at' => $this->moveout_at,
+            'property_uuid' => $this->property->uuid,
+            'guest_uuid' => $this->guest_details->uuid
+        ]);
+
+        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
+    }
+
     public function render()
     {
         return view('livewire.guest-show-component',[
             'units' => Property::find($this->property->uuid)->units,
             'bills' => Guest::find($this->guest_details->uuid)->bills,
             'collections' => AcknowledgementReceipt::where('guest_uuid', $this->guest_details->uuid)->orderBy('id','desc')->paginate(5),
-            'additional_guests' => AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->get()
+            'additional_guests' => AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->get(),
+            'bookings' => Booking::where('guest_uuid', $this->guest_details->uuid)->get(),
         ]);
     }
 }

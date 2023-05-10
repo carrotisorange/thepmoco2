@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Booking;
 
 class BookingSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class BookingSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Booking::factory(10)->create();
     }
 }

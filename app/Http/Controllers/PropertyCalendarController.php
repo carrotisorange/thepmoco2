@@ -11,6 +11,7 @@ use App\Models\Guest;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Unit;
 use Carbon\Carbon;
+use App\Models\Booking;
 
 class PropertyCalendarController extends Controller
 {
@@ -24,12 +25,14 @@ class PropertyCalendarController extends Controller
                 
         $events = array();
 
-        $bookings = Property::find($property->uuid)->guests->where('status', '!=', 'cancelled');
+        // $bookings = Property::find($property->uuid)->guests->where('status', '!=', 'cancelled');
+
+        $bookings = Property::find($property->uuid)->bookings->where('status', '!=', 'cancelled');
 
         foreach($bookings as $booking){
             $events[] = [
-                'id' => $booking->uuid,
-                'title' => $booking->guest.' @ '.$booking->unit->unit,
+                'id' => $booking->guest_uuid,
+                'title' => $booking->guest->guest,
                 // 'unit' => $booking->unit->unit,
                 'start' => $booking->movein_at,
                 'end' => $booking->moveout_at,
@@ -64,8 +67,12 @@ class PropertyCalendarController extends Controller
         $price = (Unit::find($request->unit_uuid)->transient_rent * $days) -
         Unit::find($request->unit_uuid)->transient_discount;
 
+        $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+
+        $booking_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+       
         $guest = $this->store_guest(
-            app('App\Http\Controllers\PropertyController')->generate_uuid(),
+            $guest_uuid,
             $request->guest,
             $request->email,
             $request->mobile_number,
@@ -73,6 +80,16 @@ class PropertyCalendarController extends Controller
             $request->moveout_at,
             $request->unit_uuid,
             $request->property_uuid,
+            $price
+        );
+
+        $this->store_booking(
+            $booking_uuid,
+            $guest->uuid,
+            $request->unit_uuid,
+            $request->property_uuid,
+            $request->movein_at,
+            $request->moveout_at,
             $price
         );
 
@@ -94,6 +111,27 @@ class PropertyCalendarController extends Controller
     public function update_unit($unit_uuid){
         Unit::where('uuid', $unit_uuid)->update([
             'status_id' => 4
+        ]);
+    }
+
+    public function store_booking($booking_uuid, $guest_uuid, $unit_uuid, $property_uuid, $movein_at, $moveout_at, $price){
+        Booking::updateOrCreate(
+        [
+            'movein_at' => $movein_at,
+            'moveout_at' => $moveout_at,
+            'price' => $price,
+            'unit_uuid' => $unit_uuid,
+            'property_uuid' => $property_uuid,
+        ]
+        ,    
+        [
+            'uuid' => $booking_uuid,
+            'guest_uuid' => $guest_uuid,
+            'unit_uuid' => $unit_uuid,
+            'property_uuid' => $property_uuid,
+            'movein_at' => $movein_at,
+            'moveout_at' => $moveout_at,
+            'price' => $price,
         ]);
     }
 
@@ -166,7 +204,7 @@ class PropertyCalendarController extends Controller
     }
 
     public function update(Request $request, $id){
-       $guest = Guest::find($id);
+       $guest = Booking::where('guest_uuid', $id);
        if(!$guest){
         return response()->json([
             'error'=>'Unable to locate the guest'

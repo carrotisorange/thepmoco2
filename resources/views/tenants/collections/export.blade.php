@@ -1,5 +1,5 @@
 @extends('layouts.export')
-@section('title', 'Collections')
+@section('title', 'Acknowledgement Receipt')
 @section('content')
 <p>
     Reference #: {{ $reference_no }}
