@@ -16,6 +16,12 @@ use App\Models\Booking;
 class PropertyCalendarController extends Controller
 {
     public function index(Property $property){
+
+        return view('properties.calendars.pending',[
+            'property' => $property,
+            'units' => Property::find($property->uuid)->units,
+            // 'events' => $events,
+        ]);
        
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
