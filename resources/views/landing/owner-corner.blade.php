@@ -6,7 +6,7 @@
                   <!-- Contact form -->
                   <div class="py-10 px-6 sm:px-10">
                     
-                    <form action="https://formsubmit.co/f694a11ef780365f3384eeda25acb3fc" method="POST" class="mt-6 gap-y-6 grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 sm:gap-x-8">
+                    <form action="https://formsubmit.co/cheskaoraleelacio@thepmo.co" method="POST" class="mt-6 gap-y-6 grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 sm:gap-x-8">
                       
                         <div class="col-span-3 sm:col-span-3 lg:col-span-1">
                             <label for="first-name" class="block text-sm font-medium text-gray-900">First name</label>

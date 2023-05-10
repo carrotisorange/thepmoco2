@@ -714,7 +714,7 @@
                         <svg class="h-6 w- flex-shrink-0 text-indigo-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                         </svg>
-                        <p class="ml-3">sales@thepmo.co</span>
+                        <p class="ml-3">cheskaoraleelacio@thepmo.co</span>
                       </dd>
                     <ul role="list" class="mt-8 flex space-x-12">
                       <li>
@@ -734,7 +734,7 @@
                   <!-- Contact form -->
                   <div class="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
                     
-                    <form action="https://formsubmit.co/f694a11ef780365f3384eeda25acb3fc" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                    <form action="https://formsubmit.co/cheskaoraleelacio@thepmo.co" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                       <div>
                         <label for="first-name" class="block text-sm font-medium text-gray-900">First name</label>
                         <div class="mt-1">
@@ -784,25 +784,27 @@
                       </div>
 
                       <div class="sm:col-span-2">
-                        <label for="property type" class="block text-sm font-medium text-gray-700"> Property Type: </label>
-                        <div class="mt-5">                 
-                          <ul><input type="checkbox" id="condominium-association"> Condominium Association</ul>
-                          <ul><input type="checkbox" id="condominium-units"> Condominium Units</ul>
-                          <ul><input type="checkbox" id="student-accomodation"> Student Accomodation</ul>
-                          <ul><input type="checkbox" id="hoa"> HOA</ul>
-                          <ul><input type="checkbox" id="dormitory"> Dormitory</ul>
-                          <ul><input type="checkbox" id="commcercial"> Commercial</ul>
-                          <ul><input type="checkbox" id="self-storage"> Self storage</ul>
-                          <ul><input type="checkbox" id="senior-living"> Senior Living</ul>
-                          <ul><input type="checkbox" id="residential-apartments"> Residential Apartments</ul>
-                          <ul><input type="checkbox" id="bed-and-breakfast"> Bed and breakfast</ul>
-                          <ul><input type="checkbox" id="transient"> Transient</ul>
+                        <label for="property-type" class="block text-sm font-medium text-gray-900">Property Type:</label>
+                          <select name="property-type" id="property-type" required class="bg-gray-100 block w-full rounded-md border-gray-300 py-3 px-4 text-sm text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                          <option value="select">Select</option>
+                          <option value="Condominium association">Condominium Association</option>
+                          <option value="Condominium units">Condominium Units</option>
+                          <option value="Student accomodation">Student Accomodation</option>
+                          <option value="HOA">HOA</option>
+                          <option value="Dormitory">Dormitory</option>
+                          <option value="Commerical">Commercial</option>
+                          <option value="Self Storage">Self Storage</option>
+                          <option value="Senior Living">Senior Living</option>
+                          <option value="Residential Apartments">Residential Apartments</option>
+                          <option value="Bed and Breakfast">Bed and breakfast</option>
+                          <option value="Transient">Transient</option>
+                          </select>
                         </div>
-                      </div>
-                      
-                      <div class="sm:col-span-2 sm:flex sm:justify-end">
-                        <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-full border border-transparent bg-purple-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send</button>
-                      </div>
+
+                        <div class="col-span-3 sm:flex sm:justify-end">
+                          <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-full border border-transparent bg-purple-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Submit</button>
+                        </div>
+                      </div>                     
                     </form>
                   </div>
 
