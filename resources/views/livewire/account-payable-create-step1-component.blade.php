@@ -107,7 +107,7 @@
                                             <x-td>
                                                 <select wire:model="particulars.{{ $index }}.unit_uuid"
                                                     {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-56 sm:text-sm border border-gray-700  rounded-md">
+                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($units as $unit)
                                                     <option value="{{ $unit->uuid }}" {{ 'particulars'
@@ -124,7 +124,7 @@
                                             <x-td>
                                                 <select wire:model="particulars.{{ $index }}.vendor_id"
                                                     {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-56 sm:text-sm border border-gray-700  rounded-md">
+                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($vendors as $vendor)
                                                     <option value="{{ $vendor->id }}" {{ 'particulars'
