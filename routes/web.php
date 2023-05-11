@@ -52,6 +52,10 @@ Route::get('/personnel-demo', function(){
     return view('help.personnel-demo');
 });
 
+Route::get('/bill-delete-demo', function(){
+    return view('help.bill-delete-demo');
+});
+
 //show this route if a user tries to access broken links
 Route::fallback(function () {
     return view('layouts.not-found');
