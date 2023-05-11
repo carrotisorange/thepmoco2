@@ -33,11 +33,11 @@
                                 Tenant
                             </button>
                         </li>
-                        <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
+                        {{-- <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                             <button type="button" data-modal-toggle="instructions-create-bill-modal">
                                 Owner
                             </button>
-                        </li>
+                        </li> --}}
                     </ul>
 
                 </div>

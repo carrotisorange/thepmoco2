@@ -37,6 +37,7 @@ class PropertyBillController extends Controller
         ->get();
 
         return view('bills.edit', [
+            'property' => $property,
             'batch_no' => $batch_no,
             'particulars' => $particulars
         ]);
