@@ -94,7 +94,7 @@
                 @endcan
             </x-td>
             <x-td>
-                @if($accountpayable->status==='pending' || $accountpayable->status==='unknown')
+                @if(auth()->user()->id === $accountpayable->requester_id && ($accountpayable->status==='pending' || $accountpayable->status==='unknown'))
                     <a href="#/" wire:click="deleteAccountPayable({{ $accountpayable->id }})" wire:loading.remove
                     class="text-red-500 text-decoration-line: underline">Delete Request</a>
                 @endif

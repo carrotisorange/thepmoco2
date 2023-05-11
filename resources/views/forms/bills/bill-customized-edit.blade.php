@@ -2,8 +2,9 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>
-                <x-th>
+                <x-th>#
                 </x-th>
+                <x-th></x-th>
                 <x-th>Reference #</x-th>
                 <x-th>Tenant</x-th>
                 <x-th>Unit</x-th>
@@ -17,6 +18,7 @@
             @forelse ($bills as $index => $bill)
             <div wire:key="bill-field-{{ $bill->id }}">
                 <tr>
+                    <x-td>{{ $index+1 }}</x-td>
                     <x-td>
                         <div class="flex items-center">
                             <x-input type="checkbox" wire:model="selectedBills.{{ $bill->id }}" />
