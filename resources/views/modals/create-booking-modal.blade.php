@@ -26,9 +26,11 @@
                <select wire:model.debounce.500ms="unit_uuid"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @foreach($units as $unit)
-                    <option value="{{ $unit->uuid }}" {{ $unit_uuid == $unit->uuid ? 'selected' : '' }}>
-                        {{ $unit->unit }} - {{$unit->status->status }} - {{ number_format($unit->transient_rent, 2) }}/night
-                    </option>
+                   <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid?
+                    'selected'
+                    : 'selected' }}>
+                    {{ $unit->unit }}
+                </option>
                     @endforeach
                 </select>
                 @error('unit_uuid')
