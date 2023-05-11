@@ -73,7 +73,6 @@
                 </ol>
             </nav>
         </div>
-        @livewire('create-account-payable-liquidation-step2-component', ['property'=> $property, 'accountpayable' =>
-        $accountpayable])
+        @livewire('create-account-payable-liquidation-step2-component', ['property'=> $property, 'accountpayable' =>$accountpayable])
     </div>
 </x-new-layout>

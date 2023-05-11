@@ -50,7 +50,7 @@ class AccountPayableCreateStep1Component extends Component
     
     public function mount($accountpayable)
     {
-        $this->request_for = $accountpayable->request_for;
+        $this->request_for = 'payment/purchase';
         $this->batch_no = $accountpayable->batch_no;
         $this->requester_id = $accountpayable->requester_id;
         $this->created_at = Carbon::parse($this->created_at)->format('Y-m-d');
