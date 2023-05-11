@@ -105,12 +105,17 @@
                         target="_blank" class="text-blue-500 text-decoration-line: underline">View Liquidation</a>
                 
                     @else
-                    <form
-                        action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1"
-                        method="POST">
-                        @csrf
-                        <button type="submit" class="text-blue-500 text-decoration-line: underline">Create Liquidation</button>
-                    </form>
+                        @cannot('manager')
+                        <form
+                            action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1"
+                            method="POST">
+                            @csrf
+                            <button type="submit" class="text-blue-500 text-decoration-line: underline">Create Liquidation</button>
+                        </form>
+                        @else
+                        <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
+                            target="_blank" class="text-blue-500 text-decoration-line: underline">Approve/Reject Liquidation</a>
+                        @endcannot
                     @endif
                 @endif
             </x-td>

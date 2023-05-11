@@ -13,7 +13,9 @@
                 {{-- request for purchase --}}
                 <div class="sm:col-span-6">
                     <label for="request_for" class="block text-sm font-medium text-gray-700">Request for</label>
-                    <select wire:model="request_for"
+                    <input type="text" wire:model="request_for" name="request_for" readonly
+                            class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
+                    {{-- <select wire:model="request_for"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
 
                         <option value="payment" {{ old('request_for', $request_for)=='payment' ? 'selected' : 'selected'
@@ -24,7 +26,7 @@
                             : 'selected' }}>
                             purchase
                         </option>
-                    </select>
+                    </select> --}}
                     @error('request_for')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
