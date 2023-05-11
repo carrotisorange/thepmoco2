@@ -41,7 +41,7 @@ class PropertyCalendarController extends Controller
         foreach($bookings as $booking){
             $events[] = [
                 'id' => $booking->guest_uuid,
-                'title' => $booking->guest->guest,
+                'title' => $booking->unit->unit,
                 // 'unit' => $booking->unit->unit,
                 'start' => $booking->movein_at,
                 'end' => $booking->moveout_at,

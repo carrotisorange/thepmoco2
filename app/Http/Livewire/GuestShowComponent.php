@@ -55,22 +55,22 @@ class GuestShowComponent extends Component
         $this->guest = $guest_details->guest;
         $this->mobile_number = $guest_details->mobile_number;
         $this->email = $guest_details->email;
-        $this->status = $guest_details->status;
-        $this->unit_uuid = $guest_details->unit_uuid;
-        $this->movein_at = Carbon::parse($guest_details->movein_at)->format('Y-m-d');
-        // $this->moveout_at = Carbon::parse($guest_details->moveout_at)->format('Y-m-d');
-        $this->no_of_guests= AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->count();
-        $this->vehicle_details = $guest_details->vehicle_details;
-        $this->plate_number = $guest_details->plate_number;
-        $this->price = $guest_details->price;
-        $this->arrival_time = $guest_details->arrival_time;
-        $this->departure_time = $guest_details->departure_time;
-        $this->special_request = $guest_details->special_request;
-        $this->flight_itinerary = $guest_details->flight_itinerary;
-        $this->no_of_children = $guest_details->no_of_children;
-        $this->no_of_senior_citizens = $guest_details->no_of_senior_citizens;
-        $this->no_of_person_with_disability = $guest_details->no_of_person_with_disability;
-        $this->price = $guest_details->price;
+        // $this->status = $guest_details->status;
+        //  $this->unit_uuid = $guest_details->unit_uuid;
+        // $this->movein_at = Carbon::parse($guest_details->movein_at)->format('Y-m-d');
+        //  $this->moveout_at = Carbon::parse($guest_details->moveout_at)->format('Y-m-d');
+        // $this->no_of_guests= AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->count();
+        // $this->vehicle_details = $guest_details->vehicle_details;
+        // $this->plate_number = $guest_details->plate_number;
+        // $this->price = $guest_details->price;
+        // $this->arrival_time = $guest_details->arrival_time;
+        // $this->departure_time = $guest_details->departure_time;
+        // $this->special_request = $guest_details->special_request;
+        // $this->flight_itinerary = $guest_details->flight_itinerary;
+        // $this->no_of_children = $guest_details->no_of_children;
+        // $this->no_of_senior_citizens = $guest_details->no_of_senior_citizens;
+        // $this->no_of_person_with_disability = $guest_details->no_of_person_with_disability;
+        // $this->price = $guest_details->price;
     }
 
     protected function rules()
