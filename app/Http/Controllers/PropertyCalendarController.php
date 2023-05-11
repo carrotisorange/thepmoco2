@@ -19,11 +19,11 @@ class PropertyCalendarController extends Controller
 
     app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
-        return view('properties.calendars.pending',[
-            'property' => $property,
-            'units' => Property::find($property->uuid)->units,
-            // 'events' => $events,
-        ]);
+        // return view('properties.calendars.pending',[
+        //     'property' => $property,
+        //     'units' => Property::find($property->uuid)->units,
+        //     // 'events' => $events,
+        // ]);
        
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
@@ -36,6 +36,7 @@ class PropertyCalendarController extends Controller
         // $bookings = Property::find($property->uuid)->guests->where('status', '!=', 'cancelled');
 
         $bookings = Property::find($property->uuid)->bookings->where('status', '!=', 'cancelled');
+
 
         foreach($bookings as $booking){
             $events[] = [
