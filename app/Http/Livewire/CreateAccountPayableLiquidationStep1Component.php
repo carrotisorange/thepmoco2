@@ -69,8 +69,8 @@ class CreateAccountPayableLiquidationStep1Component extends Component
             'cash_advance' => 'nullable',
             'total_type' => 'nullable',
             'prepared_by' => 'nullable',
-            'return_type' => ['required_if:total_type,refund'],
-            'total_amount' => ['required_if:total_type,refund'],
+            'return_type' => ['nullable'],
+            'total_amount' => ['nullable'],
         ];
     }
 

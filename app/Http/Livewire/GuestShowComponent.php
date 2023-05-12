@@ -160,6 +160,7 @@ class GuestShowComponent extends Component
     }
 
     public function storeBooking(){
+        
         sleep(2);
 
         Booking::create([
@@ -172,6 +173,12 @@ class GuestShowComponent extends Component
         ]);
 
         return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
+    }
+
+    public function redirectToTheCreateBillPage(){
+        sleep(2);
+
+        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid.'/bills');
     }
 
     public function render()
