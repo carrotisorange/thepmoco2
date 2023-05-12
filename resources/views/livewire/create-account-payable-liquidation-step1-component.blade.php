@@ -281,55 +281,19 @@
                         </div>
                     </div>
 
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="total_type"
-                            class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Return/Refund</label>
-                        <select wire:model="total_type" {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300
-                            placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
-                            <option value="" selected>Select one</option>
-                            <option value="refund" {{ $total_type==='refund' ? 'selected' : '' }}>
-                                Refund
-                            </option>
 
-                            <option value="return" {{ $total_type==='return' ? 'selected' : '' }}>
-                                Return
-                            </option>
-
-
-                        </select>
-                        @error('total_type')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                       
-                        <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            <select wire:model="return_type" {{-- wire:change="updateParticular({{ $particular->id }})" --}}
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300
-                                                        placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
-                                <option value="" selected>Select one</option>
-                                <option value="petty_cash" {{ $return_type==='petty_cash' ? 'selected' : '' }}>
-                                    Petty Cash
-                                </option>
-                            
-                                <option value="reimbursement" {{ $return_type==='reimbursement' ? 'selected' : '' }}>
-                                    Reimbursement
-                                </option>
-                            
-                            
-                            </select>
-                            @error('return_type')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="total_amount" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Total Return/Refund</label>
+                        <label for="total_amount" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Total Return</label>
                        
                     
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            {{ number_format((int)App\Models\AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total') -
-                            (int)$this->cash_advance, 2)}}
+                            <input id="total_amount" name="total_amount" type="number" step="0.001" autocomplete="total_amount"
+                                wire:model="total_amount"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                            @error('total_amount')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                             {{-- <input id="total_amount" name="total_amount" type="number" step="0.001" autocomplete="total_amount"
                                 wire:model="total_amount"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />

@@ -57,7 +57,7 @@ class PropertyCalendarController extends Controller
     }
 
     public function store(Request $request){
-        sleep(2);
+        sleep(1);
         
         $validated = $request->validate([
             'guest' => 'required|string',
@@ -104,7 +104,7 @@ class PropertyCalendarController extends Controller
 
         $particular_id = 1; //rent 
 
-        $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
+        // $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
 
     //    if($request->is_send_email === 'no'){
          $this->send_mail_to_guest($guest);
