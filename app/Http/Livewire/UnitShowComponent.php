@@ -194,7 +194,7 @@ class UnitShowComponent extends Component
             'floors' => app('App\Http\Controllers\FloorController')->index(null),
             'categories' => app('App\Http\Controllers\CategoryController')->index(null),
             'statuses' => app('App\Http\Controllers\StatusController')->index(null),
-            'guests' => app('App\Http\Controllers\GuestController')->show_unit_guests($this->unit_details->uuid),
+            'bookings' => app('App\Http\Controllers\GuestController')->show_unit_guests($this->unit_details->uuid),
             'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($this->unit_details->uuid),
             'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid),
             'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($this->unit_details->uuid),
