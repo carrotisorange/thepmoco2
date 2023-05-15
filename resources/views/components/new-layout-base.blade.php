@@ -24,6 +24,12 @@
                     </div>
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
+
+                    <!-- help icon -->
+                    <a href="/help"><button title="help" class="py-5 px-3">
+                                <div class="inline-block font-medium text-gray-500">Need help?</div></a>
+                            </button>
+                            
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button
