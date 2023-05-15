@@ -393,9 +393,9 @@
                                         class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
-                                    @if($guests->count())
+                                    @if($bookings->count())
 
-                                    @include('tables.guests')
+                                    @include('tables.bookings')
 
                                     @else
                                     <div class="mt-10 text-center mb-10">

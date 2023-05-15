@@ -164,7 +164,7 @@ class PropertyCalendarController extends Controller
                 'moveout_at' => $moveout_at,
                 'unit_uuid' => $unit_uuid,
                 'property_uuid' => $property_uuid,
-                'price' => $price,
+                // 'price' => $price,
         ]);
 
         return $guest;

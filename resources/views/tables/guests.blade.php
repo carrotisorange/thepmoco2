@@ -6,7 +6,7 @@
             <x-th>Unit</x-th>
             <x-th>Mobile</x-th>
             <x-th>Email</x-th>
-            <x-th>Price</x-th>
+            {{-- <x-th>Price</x-th> --}}
             <x-th>Status</x-th>
             <x-th>Checkin</x-th>
             <x-th>Checkout</x-th>
@@ -30,7 +30,7 @@
                 $end = strtotime($item->moveout_at); // convert to timestamps
                 $days = (int)(($end - $start)/86400)
             ?>
-            <x-td>{{ number_format($item->price, 2) }} ({{ $days }} night/s)</x-td>
+            {{-- <x-td>{{ number_format($item->price, 2) }} ({{ $days }} night/s)</x-td> --}}
             <x-td>{{ $item->status }}</x-td>
             <x-td>
                 {{Carbon\Carbon::parse($item->movein_at)->format('M d, Y')}} @ {{ Carbon\Carbon::parse($item->arrival_time)->format('H:i:s') }}

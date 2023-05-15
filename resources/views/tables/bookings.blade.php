@@ -7,6 +7,7 @@
             <x-th>Check-in</x-th>
             <x-th>Check-out</x-th>
             <x-th>Status</x-th>
+            <x-th></x-th>
         </tr>
     </thead>
 
@@ -14,11 +15,14 @@
         @foreach ($bookings as $index => $booking)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
-            <x-td>{{ $booking->guest->guest }}</x-td>
-            <x-td>{{ $booking->unit->unit }}</x-td>
+           <x-td><a href="/property/{{ $booking->property_uuid }}/guest/{{ $booking->guest->uuid }}"
+                    class="text-indigo-500 text-decoration-line: underline">{{ $booking->guest->guest }}</a></x-td>
+            <x-td><a href="/property/{{ $booking->property_uuid }}/unit/{{ $booking->unit->uuid }}"
+                    class="text-indigo-500 text-decoration-line: underline">{{ $booking->unit->unit }}</a></x-td>
             <x-td>{{Carbon\Carbon::parse($booking->movein_at)->format('M d, Y')}}</x-td>
             <x-td>{{Carbon\Carbon::parse($booking->moveout_at)->format('M d, Y')}}</x-td>
             <x-td>{{ $booking->status }}</x-td>
+            <x-td></x-td>
         </tr>
         @endforeach
     </tbody>

@@ -9,12 +9,13 @@ use App\Models\Unit;
 use Carbon\Carbon;
 use DB;
 use Session;
+use App\Models\Booking;
 
 class GuestController extends Controller
 {
     public function show_unit_guests($unit_uuid)
     {
-       return Guest::where('unit_uuid', $unit_uuid)->get();
+       return Booking::where('unit_uuid', $unit_uuid)->get();
     }
 
     public function create(Property $property, Unit $unit)
