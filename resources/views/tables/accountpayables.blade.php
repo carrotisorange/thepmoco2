@@ -27,7 +27,8 @@
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
                 @foreach ($particulars as $particular)
                 @if($particular->unit_uuid)
-                {{ App\Models\Unit::find($particular->unit_uuid)->unit }},
+                {{
+                Str::limit(App\Models\Unit::find($particular->unit_uuid)->unit,20) }},
                 @else
 
                 @endif
@@ -38,7 +39,8 @@
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()->unique('unit_uuid'); ?>
                 @foreach ($particulars as $particular)
                 @if($particular->vendor_id)
-                {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }},
+                {{
+                Str::limit(App\Models\PropertyBiller::find($particular->vendor_id)->biller, 20) }},
                 @else
 
                 @endif
@@ -50,7 +52,8 @@
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(3)->get() ;?>
                 @foreach ($particulars as $particular)
-                {{ $particular->item }},
+              {{
+                    Str::limit($particular->item, 10) }},
                 @endforeach
             </x-td>
             <x-td>{{$accountpayable->status}}</x-td>
