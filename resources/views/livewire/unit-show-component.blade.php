@@ -207,7 +207,7 @@
                                     @if($inventories->count())
                                     <div class="p-4 flex justify-end">
                                         <button type="button" wire:loading.remove
-                                            wire:click="redirectToTheCreateUnitInventoryPage"
+                                            
                                             class="rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
 
                                             <i class="fa-solid fa-pen-to-square"></i>&nbsp; Update
@@ -235,7 +235,7 @@
 
                                         <div class="mt-6">
                                             <button type="button" wire:loading.remove
-                                                wire:click="redirectToTheCreateUnitInventoryPage"
+                                       onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/inventory/{{ Str::random(8) }}/create'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                                 <!-- Heroicon name: mini/plus -->
                                                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -245,10 +245,7 @@
                                                 </svg>
                                                 Add an inventory
                                             </button>
-                                            <button type="button" wire:loading disabled
-                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Loading...
-                                            </button>
+                                           
                                         </div>
                                     </div>
                                     @endif
@@ -285,7 +282,7 @@
 
                                         <div class="mt-6">
                                             <button type="button" wire:loading.remove
-                                                wire:click="redirectToTheCreateOwnerPage"
+                                               onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                                 <!-- Heroicon name: mini/plus -->
                                                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -296,10 +293,7 @@
                                                 Add an owner
                                             </button>
 
-                                            <button type="button" wire:loading disabled
-                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Loading...
-                                            </button>
+                                          
                                         </div>
                                     </div>
                                     @endif
@@ -356,7 +350,7 @@
 
                                         <div class="mt-6">
                                             <button type="button" wire:loading.remove
-                                                wire:click="redirectToTheCreateTenantPage"
+                                           onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                                 <!-- Heroicon name: mini/plus -->
                                                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -367,10 +361,7 @@
                                                 Add a tenant
                                             </button>
 
-                                            <button type="button" wire:loading disabled
-                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Loading...
-                                            </button>
+                                            
                                         </div>
                                     </div>
                                     @endif
@@ -409,7 +400,7 @@
 
                                         <div class="mt-6">
                                             <button type="button" wire:loading.remove
-                                                wire:click="redirectToTheCreateGuestPage"
+                                               onclick="window.location.href='/property/{{ Session::get('property') }}/calendar'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                                 <!-- Heroicon name: mini/plus -->
                                                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -420,11 +411,7 @@
                                                 Add a guest
                                             </button>
 
-                                            <button type="button" wire:loading disabled
-                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Loading...
-                                            </button>
-                                        </div>
+                                                                                  </div>
                                     </div>
                                     @endif
 
@@ -461,7 +448,7 @@
 
                                         <div class="mt-6">
                                             <button type="button" wire:loading.remove
-                                                wire:click="redirectToTheCreateConcernPage"
+                                            onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/concern/{{ Str::random(8) }}/create'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                                 <!-- Heroicon name: mini/plus -->
                                                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -472,10 +459,7 @@
                                                 Add a concern
                                             </button>
 
-                                            <button type="button" wire:loading disabled
-                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Loading...
-                                            </button>
+                                            
                                         </div>
                                     </div>
                                     @endif

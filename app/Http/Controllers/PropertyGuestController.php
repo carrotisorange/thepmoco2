@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPaymentToTenant;
 use \PDF;
 use App\Models\AdditionalGuest;
+use App\Models\Booking;
 
 class PropertyGuestController extends Controller
 {
@@ -32,10 +33,19 @@ class PropertyGuestController extends Controller
     }
 
     public function show (Property $property, Guest $guest){
-
+    
         return view('properties.guests.show', [
             'property' => $property,
             'guest_details' => $guest
+        ]);
+    }
+
+    public function edit(Property $property, Guest $guest, Booking $booking){
+        
+        return view('properties.guests.edit',[
+            'property' => $property,
+            'guest_details' => $guest,
+            'booking_details' => $booking
         ]);
     }
 

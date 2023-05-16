@@ -22,7 +22,8 @@
             <x-td>{{Carbon\Carbon::parse($booking->movein_at)->format('M d, Y')}}</x-td>
             <x-td>{{Carbon\Carbon::parse($booking->moveout_at)->format('M d, Y')}}</x-td>
             <x-td>{{ $booking->status }}</x-td>
-            <x-td></x-td>
+            <x-td><a href="/property/{{ $booking->property_uuid }}/guest/{{ $booking->guest->uuid }}/booking/{{ $booking->uuid }}/edit"
+                class="text-indigo-500 text-decoration-line: underline">Edit</a></x-td>
         </tr>
         @endforeach
     </tbody>
