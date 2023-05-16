@@ -17,14 +17,6 @@ class PropertyCalendarController extends Controller
 {
     public function index(Property $property){
 
-    app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
-
-        // return view('properties.calendars.pending',[
-        //     'property' => $property,
-        //     'units' => Property::find($property->uuid)->units,
-        //     // 'events' => $events,
-        // ]);
-       
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         app('App\Http\Controllers\PropertyController')->save_unit_stats($property->uuid);
@@ -33,19 +25,19 @@ class PropertyCalendarController extends Controller
                 
         $events = array();
 
-        // $bookings = Property::find($property->uuid)->guests->where('status', '!=', 'cancelled');
+        $bookings = Property::find($property->uuid)->bookings->where('status', '!=',
+        'cancelled');
 
-        $bookings = Property::find($property->uuid)->bookings->where('status', '!=', 'cancelled');
-
+   
 
         foreach($bookings as $booking){
             $events[] = [
-                'id' => $booking->guest_uuid,
-                'title' => $booking->unit->unit,
+                'id' => $booking->guest->uuid,
+                'title' => $booking->guest->guest.' @ '.$booking->unit->unit,
                 // 'unit' => $booking->unit->unit,
                 'start' => $booking->movein_at,
                 'end' => $booking->moveout_at,
-                // 'status' => $booking->status
+                'status' => $booking->status
             ];
         }
 
@@ -109,7 +101,6 @@ class PropertyCalendarController extends Controller
     //    if($request->is_send_email === 'no'){
          $this->send_mail_to_guest($guest);
     //    }
-
         $this->update_unit($request->unit_uuid);
 
         return response()->json($guest);
@@ -124,15 +115,15 @@ class PropertyCalendarController extends Controller
     }
 
     public function store_booking($booking_uuid, $guest_uuid, $unit_uuid, $property_uuid, $movein_at, $moveout_at, $price){
-        Booking::updateOrCreate(
-        [
-            'movein_at' => $movein_at,
-            'moveout_at' => $moveout_at,
-            'price' => $price,
-            'unit_uuid' => $unit_uuid,
-            'property_uuid' => $property_uuid,
-        ]
-        ,    
+        Booking::create(
+        // [
+        //     'movein_at' => $movein_at,
+        //     'moveout_at' => $moveout_at,
+        //     'price' => $price,
+        //     'unit_uuid' => $unit_uuid,
+        //     'property_uuid' => $property_uuid,
+        // ]
+        // ,    
         [
             'uuid' => $booking_uuid,
             'guest_uuid' => $guest_uuid,
@@ -146,15 +137,15 @@ class PropertyCalendarController extends Controller
 
     public function store_guest($guest_uuid, $guest, $email, $mobile_number, $movein_at, $moveout_at, $unit_uuid, $property_uuid, $price){
         
-        $guest = Guest::updateOrCreate(
-            [
-                'unit_uuid' => $unit_uuid,
-                'property_uuid' => $property_uuid,
-                'guest' => $guest,
-                'movein_at' => $movein_at,
-                'moveout_at' => $moveout_at,
-            ]
-            ,
+        $guest = Guest::create(
+            // [
+            //     'unit_uuid' => $unit_uuid,
+            //     'property_uuid' => $property_uuid,
+            //     'guest' => $guest,
+            //     'movein_at' => $movein_at,
+            //     'moveout_at' => $moveout_at,
+            // ]
+            // ,
             [
                 'uuid' => $guest_uuid,
                 'guest' => $guest,

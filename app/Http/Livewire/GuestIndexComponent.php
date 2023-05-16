@@ -6,12 +6,13 @@ use App\Models\Guest;
 use Livewire\Component;
 use Session;
 use Livewire\WithPagination;
+use App\Models\Booking;
 
 class GuestIndexComponent extends Component
 {
     use WithPagination;
 
-    public $guest;
+    public $uuid;
 
     public $status;
 
@@ -25,8 +26,8 @@ class GuestIndexComponent extends Component
     public function render()
     {
         return view('livewire.guest-index-component', [
-        'guests' => Guest::where('property_uuid', Session::get('property'))
-         ->where('guest','like', '%'.$this->guest.'%')
+        'bookings' => Booking::where('property_uuid', Session::get('property'))
+        ->where('uuid','like', '%'.$this->uuid.'%')
          ->when($this->status, function($query){
          $query->where('status',$this->status);
          })

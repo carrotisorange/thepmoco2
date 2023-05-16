@@ -23,16 +23,17 @@
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="unit_uuid">Unit</label>
-               <select wire:model.debounce.500ms="unit_uuid"
-                    class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    @foreach($units as $unit)
+                <x-form-select id="unit_uuid" name="unit_uuid" wire:model="unit_uuid" class="">
+                    <option value="">Select one</option>
+                    @foreach ($units as $unit)
                    <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid?
-                    'selected'
-                    : 'selected' }}>
-                    {{ $unit->unit }}
-                </option>
+                        'selected'
+                        : 'Select one' }}>
+                        {{ $unit->unit }}
+                    </option>
                     @endforeach
-                </select>
+                </x-form-select>
+              
                 @error('unit_uuid')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror

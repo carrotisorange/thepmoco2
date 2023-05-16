@@ -45,4 +45,8 @@ class Guest extends Model
     public function additional_guests(){
         return $this->hasMany(AdditionalGuest::class);
     }
+
+    public function bookings(){
+        return $this->hasMany(Booking::class);
+    }
 }

@@ -52,6 +52,10 @@ Route::get('/personnel-demo', function(){
     return view('help.personnel-demo');
 });
 
+Route::get('/utilities-demo', function(){
+    return view('help.utilities-demo');
+});
+
 Route::get('/bill-delete-demo', function(){
     return view('help.bill-delete-demo');
 });

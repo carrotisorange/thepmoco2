@@ -44,7 +44,7 @@
 {{ $salutation }}
 @else
 @lang('Regards'),<br>
-{{ auth()->user()->name }}
+The PMO Team
 @endif
 
 {{-- Subcopy --}}
