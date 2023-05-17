@@ -48,7 +48,7 @@
                                   @if($inventory->image)
                                   <img class="mx-auto h-20 w-20 rounded-full" src="{{ asset('/storage/'.$inventory->image) }}" alt="" />
                                 @else
-                                <img class="mx-auto h-20 w-20 rounded-full" src="{{ asset('/brands/avatar.png') }}"" alt="" />
+                              No image found
                                   @endif
                                 </x-td>
                                 <x-td>
