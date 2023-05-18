@@ -38,7 +38,7 @@ require __DIR__.'/checkout.php';
 // help
 Route::get('/help', function(){
     return view('help.help');
-});
+})->middleware(['auth', 'verified']);
 
 Route::get('/calendar-demo', function(){
     return view('help.calendar-demo');
