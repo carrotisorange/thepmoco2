@@ -46,7 +46,7 @@ class PropertyAccountPayableController extends Controller
         ->when($search, function ($query, $search) {
         $query->where('batch_no','like', '%'.$search.'%');
         })
-        ->orderBy('id', 'desc')->paginate($limitDisplayTo);
+        ->orderBy('status', 'asc')->paginate($limitDisplayTo);
     }
 
     public function export($property_uuid, $status=null, $created_at=null, $request_for=null, $limitDisplayTo=null){

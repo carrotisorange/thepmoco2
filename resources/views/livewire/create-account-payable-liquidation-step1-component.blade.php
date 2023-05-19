@@ -123,7 +123,7 @@
 
             <!-- table -->
          <div class="sm:col-span-6">
-                        <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5 md:rounded-lg">
+                        <div class="mb-5 mt-2 relative overflow-x-auto ring-opacity-5 md:rounded-lg">
                  
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="bg-gray-50">
@@ -149,7 +149,7 @@
 
                                         <x-td>
                                             <select wire:model="particulars.{{ $index }}.unit_uuid"     wire:change="updateParticular({{ $particular->id }})" --}}
-                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                 <option value="" selected>Select a unit</option>
                                                 @foreach ($units as $unit)
                                                 <option value="{{ $unit->uuid }}" {{ 'particulars'
@@ -166,7 +166,7 @@
                                         </x-td>
                                         <x-td>
                                             <select wire:model="particulars.{{ $index }}.vendor_id" 
-                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                 <option value="" selected>Select a unit</option>
                                                 @foreach ($vendors as $vendor)
                                                 <option value="{{ $vendor->id }}" {{ 'particulars'
@@ -182,7 +182,7 @@
                                         </x-td>
                                         <x-td>
                                             <input type="text" wire:model="particulars.{{ $index }}.or_number" 
-                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
 
                                             @error('particulars.{{ $index }}.or_number')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -190,14 +190,14 @@
                                         </x-td>
                                         <x-td>
                                             <input type="text" wire:model="particulars.{{ $index }}.item"
-                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-96 sm:text-sm border border-gray-700  rounded-md">
                                             @error('particulars.{{ $index }}.item')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </x-td>
                                         <x-td>
                                             <input type="number" wire:model="particulars.{{ $index }}.quantity" 
-                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                             @error('particulars.{{ $index }}.quantity')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -206,7 +206,7 @@
                                         <x-td>
                                             <input type="number" step="0.001"
                                                 wire:model="particulars.{{ $index }}.price" 
-                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                                class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                             @error('particulars.{{ $index }}.price')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
