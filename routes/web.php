@@ -63,6 +63,10 @@ Route::get('/owner-corner', function(){
     return view('landing.owner-corner');
 });
 
+Route::get('/tech-support', function(){
+    return view('landing.tech-support');
+});
+
 Route::get('/support', function(){
     return view('landing.support');
 });
