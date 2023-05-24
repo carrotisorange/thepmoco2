@@ -78,7 +78,7 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.file' => 'nullable',
             'particulars.*.unit_uuid' => 'nullable',
             'particulars.*.vendor_id' => 'nullable',
-            'quotation1' => 'required | max:102400',
+            'quotation1' => 'nullable | max:102400',
             'quotation2' => 'nullable | max:102400',
             'quotation3' => 'nullable | max:102400',
             'selected_quotation' => ['required_with:quotation1'],

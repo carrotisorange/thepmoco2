@@ -29,6 +29,18 @@
 </p>
 
 <p>
+    <b>Total Amount:</b>{{ number_format($accountPayableLiquidation->total, 2) }}
+</p>
+
+<p>
+    <b>Cash Advance:</b>{{ number_format($accountPayableLiquidation->cash_advance, 2) }}
+</p>
+
+<p>
+    <b>Total Return:</b>{{ number_format($accountPayableLiquidation->total_amount, 2) }}
+</p>
+
+<p>
     <b>Unit:</b>
     @if($accountPayableLiquidation->unit_uuid)
     {{ App\Models\Unit::find($accountPayableLiquidation->unit_uuid)->unit }}
@@ -44,6 +56,8 @@
     NA
     @endif
 </p>
+
+
 <p>
     <b>Particulars</b>
 </p>
