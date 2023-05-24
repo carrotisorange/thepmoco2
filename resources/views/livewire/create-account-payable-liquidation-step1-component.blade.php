@@ -289,7 +289,7 @@
                     
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
                             <input id="total_amount" name="total_amount" type="number" step="0.001" autocomplete="total_amount"
-                                wire:model="total_amount"
+                                value="{{ $total-$cash_advance }}" readonly
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
                             @error('total_amount')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

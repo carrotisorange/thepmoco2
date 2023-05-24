@@ -38,7 +38,6 @@ class AccountPayableIndexComponent extends Component
       
        return redirect('/property/'.$this->property->uuid.'/accountpayable/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
     }
-
     
      public function deleteAccountPayable($accountpayableId){
 

@@ -43,7 +43,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         $this->cash_advance = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cash_advance')->first();
         $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status', '!=', 'unknown')->count());
         $this->total_type = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_type')->first();
-        $this->total_amount = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_amount')->first();
+        $this->total_amount = $this->total-$this->cash_advance;
         $this->return_type =  AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('return_type')->first();
         $this->noted_by = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('noted_by')->first();
         $this->approved_by = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('approved_by')->first();

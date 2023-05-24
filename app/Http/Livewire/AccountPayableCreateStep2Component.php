@@ -26,7 +26,7 @@ class AccountPayableCreateStep2Component extends Component
     protected function rules()
     {
          return [
-            'quotation1' => 'required | mimes:jpg,bmp,png,pdf,docx | max:102400',
+            'quotation1' => 'nullable | mimes:jpg,bmp,png,pdf,docx | max:102400',
             'quotation2' => 'nullable | mimes:jpg,bmp,png,pdf,docx | max:102400',
             'quotation3' => 'nullable | mimes:jpg,bmp,png,pdf,docx | max:102400',
             'vendor' => 'nullable',
