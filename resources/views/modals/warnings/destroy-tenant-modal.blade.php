@@ -16,7 +16,7 @@
                         </h3>
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">When you delete this unit, all data that are associated
-                                with it will be deleted as well. <br> This includes contracts, guardians, refernces, concerns, bills, deposits, and collections.</p>
+                                with it will be deleted as well. <br> This includes contracts, guardians, references, concerns, bills, deposits, and collections.</p>
                         </div>
                         <div class="mt-2">
                             <p class="text-md text-gray-500">Are you sure you want to delete this tenant?</p>

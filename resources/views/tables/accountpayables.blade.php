@@ -112,7 +112,7 @@
                 @if($accountpayable->status === 'released')
                     @if(App\Models\AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->where('approved_by', '!=', '')->count())
                     <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
-                        target="_blank" class="text-blue-500 text-decoration-line: underline">View Liquidation</a>
+                        target="_blank" class="text-blue-500 text-decoration-line: underline">Liquidated</a>
                 
                     @else
                         @cannot('manager')

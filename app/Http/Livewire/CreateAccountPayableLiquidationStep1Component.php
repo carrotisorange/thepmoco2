@@ -43,10 +43,14 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         $this->cash_advance = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cash_advance')->first();
         $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status', '!=', 'unknown')->count());
         $this->total_type = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_type')->first();
-        $this->total_amount = $this->total-$this->cash_advance;
+        $this->total_amount = (double) $this->total- (double) $this->cash_advance;
         $this->return_type =  AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('return_type')->first();
         $this->noted_by = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('noted_by')->first();
         $this->approved_by = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('approved_by')->first();
+    }
+
+    public function dehydrate(){
+        $this->total_amount = (double) $this->total- (double) $this->cash_advance;
     }
 
     protected function rules()
@@ -111,13 +115,11 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Success!');
     }
 
-    public function updateParticular($id){
+    public function updateParticular(){
         try{
-            foreach ($this->particulars->where('id', $id) as $particular) {
-                AccountPayableLiquidationParticular::where('batch_no', $this->batch_no)
-                ->where('id', $id)
-                ->update([
-                    'item' => $particular->item,
+             foreach ($this->particulars as $particular) {
+                $particular->update([
+                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
                     'unit_uuid' => $particular->unit_uuid,
                     'vendor_id' => $particular->vendor_id,
@@ -125,9 +127,23 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                     'or_number' => $particular->or_number,
                     'total' => $particular->quantity * $particular->price,
                 ]);
-
-            session()->flash('success', 'Success!');
+                session()->flash('success', 'Success!');
             }
+            // foreach ($this->particulars->where('id', $id) as $particular) {
+            //     AccountPayableLiquidationParticular::where('batch_no', $this->batch_no)
+            //     ->where('id', $id)
+            //     ->update([
+            //         'item' => $particular->item,
+            //         'quantity' => $particular->quantity,
+            //         'unit_uuid' => $particular->unit_uuid,
+            //         'vendor_id' => $particular->vendor_id,
+            //         'price' => $particular->price,
+            //         'or_number' => $particular->or_number,
+            //         'total' => $particular->quantity * $particular->price,
+            //     ]);
+
+            // session()->flash('success', 'Success!');
+            // }
             
        }catch(\Exception $e){
             session()->flash('error', $e);
@@ -135,7 +151,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
     }
 
     public function removeParticular($id){
-        sleep(1);
+        // sleep(1);
         
         AccountPayableLiquidationParticular::where('id', $id)->delete();
 
@@ -149,7 +165,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
     }
 
     public function storeNewItem(){
-        sleep(2);
+        // sleep(2);
 
         AccountPayableLiquidationParticular::create(
         [

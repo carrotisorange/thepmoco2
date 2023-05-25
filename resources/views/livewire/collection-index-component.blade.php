@@ -80,7 +80,7 @@
             <div class="sm:col-span-3">
                 <select id="bill_type" wire:model="bill_type"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                    <option value="">Filter bill to</option>
+                    <option value="">Filter collection to</option>
                     <option value="guest_uuid">Guest</option>
                     <option value="owner_uuid">Owner</option>
                     <option value="tenant_uuid">Tenant</option>
