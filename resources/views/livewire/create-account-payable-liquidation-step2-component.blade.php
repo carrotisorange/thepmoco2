@@ -204,6 +204,11 @@
                                     class="fa-solid fa-hourglass-start"></i></h1>
                             <p class="mt-6 text-base leading-7 text-gray-600">The request has been sent to the manager.</p>
                             <div class="mt-10 flex items-center justify-center gap-x-6">
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable"
+                                    
+                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                    Create another liquidation
+                                </a>
                             <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1" 
                                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                    Edit Liquidation

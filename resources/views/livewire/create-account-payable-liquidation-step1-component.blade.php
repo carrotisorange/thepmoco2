@@ -110,15 +110,19 @@
    
     
             <div class="px-6 pt-5 flex justify-end items-center">
-                <button type="button" wire:click="storeNewItem" wire:loading.remove
+                <button type="button" wire:click="updateParticular" wire:loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                    Save Item
+                </button>
+                <button type="button" wire:click="storeNewItem" wure:loading.remove 
+                    class="ml-3 inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     New Item
                 </button>
 
-                <button type="button" wire:loading disabled
+                 <button type="button" wire:loading disabled wire:target="updateParticular"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Loading...
-                </button>
+                </button> 
             </div>
 
             <!-- table -->
@@ -137,7 +141,7 @@
                                     <x-th>QUANTITY</x-th>
                                     <x-th>AMOUNT</x-th>
                                     <x-th>TOTAL</x-th>
-                                    <x-th></x-th>
+                                    {{-- <x-th></x-th> --}}
                                     <x-th></x-th>
                                 </tr>
                             </thead>
@@ -148,7 +152,7 @@
                                         <x-td>{{ $index+1 }}</x-td>
 
                                         <x-td>
-                                            <select wire:model="particulars.{{ $index }}.unit_uuid"     wire:change="updateParticular({{ $particular->id }})" --}}
+                                            <select wire:model="particulars.{{ $index }}.unit_uuid"   
                                                 class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                 <option value="" selected>Select a unit</option>
                                                 @foreach ($units as $unit)
@@ -215,7 +219,7 @@
                                            {{ number_format((double)$particular->quantity * (double)$particular->price, 2) }}
                                         </x-td>
                                       
-                                        <x-td>
+                                        {{-- <x-td>
                                             <button type="button" wire:click="updateParticular({{ $particular->id }})"
                                                 wire:loading.remove wire:target="updateParticular"
                                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -225,7 +229,7 @@
                                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                 Loading...
                                             </button>
-                                        </x-td>
+                                        </x-td> --}}
                                         <x-td>
                                             <button type="button" wire:click="removeParticular({{ $particular->id }})" wire:loading.remove
                                                 wire:target="removeParticular"
@@ -288,18 +292,9 @@
                        
                     
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            <input id="total_amount" name="total_amount" type="number" step="0.001" autocomplete="total_amount"
-                                value="{{ $total-$cash_advance }}" readonly
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                            @error('total_amount')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                            {{-- <input id="total_amount" name="total_amount" type="number" step="0.001" autocomplete="total_amount"
-                                wire:model="total_amount"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                            @error('total_amount')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror --}}
+                           <div class="mt-2 sm:col-start-3 sm:mt-0">
+                           {{ number_format(App\Models\AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total')-$cash_advance,2) }}
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -348,7 +343,7 @@
                         </button>
                         <button type="button" wire:click="storeAccountPayableLiquidation" wire:loading.remove
                             class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                            Save
+                            Next
                         </button>
 
                         <button type="button" wire:loading disabled
