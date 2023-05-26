@@ -73,6 +73,15 @@ class AccountPayableCreateStep6Component extends Component
         $this->attachment = '';
     }
 
+    public function markAsReleased(){
+        AccountPayable::where('id', $this->accountpayable->id)
+        ->update([
+            'status' => 'released'
+        ]);
+
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id)->with('success', 'Success!');
+    }
+
     public function render()
     {
         return view('livewire.account-payable-create-step6-component',[
