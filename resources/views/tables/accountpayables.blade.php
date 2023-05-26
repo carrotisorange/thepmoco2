@@ -9,6 +9,7 @@
          
             <x-th>REQUESTED BY</x-th>
             <x-th>PARTICULARS</x-th>
+            <x-th>STATUS</x-th>
             <x-th>AMOUNT</x-th>
 
             <x-th></x-th>
@@ -53,7 +54,7 @@
                     Str::limit($particular->item, 10) }},
                 @endforeach
             </x-td>
-            {{-- <x-td></x-td> --}}
+            <x-td>{{ $accountpayable->status }}</x-td>
             <x-td><span title="{{$accountpayable->status}}">{{ number_format($accountpayable->amount, 2) }}</span></x-td>
             <x-td>
                 <button id="dropdownDefaultButton({{ $accountpayable->id }})({{ $accountpayable->id }})" data-dropdown-toggle="dropdown({{ $accountpayable->id }})"
