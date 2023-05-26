@@ -2,6 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
+            <x-th>Confirmation No</x-th>
             <x-th>Guest</x-th>
             <x-th>Unit</x-th>   
             <x-th>Check-in</x-th>
@@ -13,9 +14,10 @@
 
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($bookings as $index => $booking)
-        <div wire:key="booking-field-{{ $booking->uuid }}">
+        
         <tr>
             <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ $booking->uuid }}</x-td>
            <x-td><a href="/property/{{ $booking->property_uuid }}/guest/{{ $booking->guest->uuid }}"
                     class="text-indigo-500 text-decoration-line: underline">{{ $booking->guest->guest }}</a></x-td>
             <x-td><a href="/property/{{ $booking->property_uuid }}/unit/{{ $booking->unit->uuid }}"
@@ -31,11 +33,9 @@
                 </button>
             </x-td>
         </tr>
-        
-        
         <!-- Main modal -->
-        @livewire('edit-booking-component',['property' => App\Models\Property::find(Session::get('property')), 'booking' => $booking])
-        </div>
+        @livewire('edit-booking-component',['property' => App\Models\Property::find(Session::get('property')), 'booking' => $booking], key($booking->uuid))
+
         @endforeach
     </tbody>
 </table>

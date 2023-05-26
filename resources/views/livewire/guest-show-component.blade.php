@@ -1,5 +1,7 @@
 <div>
     @include('layouts.notifications')
+    @livewire('create-bill-component', ['property'=> $property, 'guest' => $guest_details])
+
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
@@ -28,20 +30,26 @@
                     <div id="ownerCreateDropdown"
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
-                            <li>
-                                <a href="/property/{{ $guest_details->property->uuid }}/guest/{{ $guest_details->uuid }}/bills"
-                                    class=" block py-2 px-4 text-sm
-                                                                                                    text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-                                                                                                    dark:text-gray-200 dark:hover:text-white">
-                                    New bills
+                             <li>
+                                <a href="#/" data-modal-toggle="create-bill-modal" class="block py-2 px-4 text-sm
+                                                                                text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                                dark:text-gray-200 dark:hover:text-white">
+                                    New bill
                                 </a>
                             </li>
-                           
+                          
                             <li>
-                                <a href="#/" data-modal-toggle="create-booking-modal" class=" block py-2 px-4 text-sm
+                                <a href="#/" data-modal-toggle="create-booking-modal" class="block py-2 px-4 text-sm
                                                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                 dark:text-gray-200 dark:hover:text-white">
                                     New booking
+                                </a>
+                            </li>
+                             <li>
+                                <a href="/property/{{ $this->guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills" class="block py-2 px-4 text-sm
+                                                                                text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                                dark:text-gray-200 dark:hover:text-white">
+                                    New collection
                                 </a>
                             </li>
 
@@ -119,6 +127,8 @@
 
                                         </div>
                                     </div>
+
+            
 
                                     <div class="sm:col-span-4">
                                         <div
@@ -236,7 +246,7 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No bills</h3>
                                         <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                         <div class="mt-6">
-                                            <button type="button" wire:click="redirectToTheCreateBillPage" wire:loading.remove
+                                            <button type="button" data-modal-toggle="create-bill-modal"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                                 <!-- Heroicon name: mini/plus -->
                                                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -244,7 +254,7 @@
                                                     <path
                                                         d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                                                 </svg>
-                                                Add a bill
+                                                Create first bill
                                             </button>
                                             <button type="button" wire:loading disabled
                                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -283,4 +293,5 @@
     @include('modals.create-additional-guest-modal')
     @include('modals.create-booking-modal')
     @include('modals.warnings.destroy-guest-modal')
+
 </div>

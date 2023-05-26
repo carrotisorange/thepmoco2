@@ -98,3 +98,4 @@
         </div>
         @include('modals.instructions.create-guest-modal')
     </div>
+</div>
