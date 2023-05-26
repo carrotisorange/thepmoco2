@@ -55,9 +55,9 @@
 
         </div>
 
-        <div class="mt-3">
+        {{-- <div class="mt-3">
             {{ $accountpayables->links() }}
-        </div>
+        </div> --}}
 
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             <div class="sm:col-span-6">
