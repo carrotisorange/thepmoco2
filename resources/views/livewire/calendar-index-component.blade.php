@@ -60,7 +60,7 @@
                                                 <option value="">Select a unit</option>
                                                 @foreach ($units as $unit )
                                                 <option value="{{ $unit->uuid }}">{{ $unit->unit }} - {{
-                                                    $unit->status->status }} - {{ number_format($unit->transient_rent,
+                                                    $unit->status->status }} - ₱ {{ number_format($unit->transient_rent,
                                                     2) }}/night</option>
                                                 @endforeach
                                             </select>

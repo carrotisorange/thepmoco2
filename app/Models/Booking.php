@@ -9,6 +9,10 @@ class Booking extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
+
+    protected $primaryKey = 'uuid';
+
     protected $attributes = [
         'status' => 'reserved'
     ];

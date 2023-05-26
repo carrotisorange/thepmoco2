@@ -13,6 +13,8 @@ use App\Models\AdditionalGuest;
 use App\Models\Bill;
 use App\Models\Collection;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendWelcomeMailToGuest;
 
 class GuestShowComponent extends Component
 {
@@ -91,9 +93,6 @@ class GuestShowComponent extends Component
 
         AdditionalGuest::create([
             'additional_guest' => $this->additional_guest, 
-            // 'birthdate' => $this->birthdate,
-            // 'has_disability' => $this->has_disability,
-            // 'disability' => $this->disability,
             'guest_uuid' => $this->guest_details->uuid
         ]);
 
@@ -133,7 +132,33 @@ class GuestShowComponent extends Component
             'guest_uuid' => $this->guest_details->uuid
         ]);
 
+        $this->send_mail_to_guest($this->guest_details);
+
         return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
+    }
+
+     public function send_mail_to_guest($guest)
+      {
+        $property = Property::find($guest->property_uuid);
+        
+        $details =[
+          'uuid' => $guest->uuid,
+          'guest' => $guest->guest,
+          'checkin_date' => $guest->movein_at,
+          'checkout_date' => $guest->moveout_at,
+        //   'unit' => $guest->unit->unit,
+        //   'price' => $guest->price,
+          'email' => $guest->email,
+          'property_name' => $property->property,
+          'property_mobile' => $property->mobile,
+          'property_facebook_page' => $property->facebook_page,
+          'property_telephone' => $property->telephone,
+          'property_email' => $property->email,
+          'property_address' => $property->barangay.', '.$property->city->city.', '.$property->province->province.' '.$property->country->country,
+          'note_to_transient' => $property->note_to_transient
+        ];
+
+         Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));
     }
 
     public function redirectToTheCreateBillPage(){
@@ -145,7 +170,7 @@ class GuestShowComponent extends Component
     public function render()
     {
         return view('livewire.guest-show-component',[
-            'units' => Property::find($this->property->uuid)->units,
+            'units' => Property::find($this->property->uuid)->units->where('rent_duration', 'transient'),
             'bills' => Guest::find($this->guest_details->uuid)->bills,
             'collections' => AcknowledgementReceipt::where('guest_uuid', $this->guest_details->uuid)->orderBy('id','desc')->paginate(5),
             'additional_guests' => AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->get(),
