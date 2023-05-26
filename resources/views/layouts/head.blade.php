@@ -8,13 +8,14 @@
 
 <title>@yield('title')</title>
 
-<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
+{{-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" /> --}}
 
 <!-- Favicon -->
 <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
 <!-- Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
 
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
@@ -24,16 +25,15 @@
 {{-- Fontawesome --}}
 <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
 
+@livewireStyles
+
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-@livewireStyles
-
-{{-- Alpine.js --}}
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 @yield('styles')
 
-
+{{-- Alpine.js --}}
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 

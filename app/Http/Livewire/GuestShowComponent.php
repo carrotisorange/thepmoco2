@@ -171,10 +171,11 @@ class GuestShowComponent extends Component
     {
         return view('livewire.guest-show-component',[
             'units' => Property::find($this->property->uuid)->units->where('rent_duration', 'transient'),
-            'bills' => Guest::find($this->guest_details->uuid)->bills,
+            'bills' => Guest::find($this->guest_details->uuid)->bills()->orderBy('created_at', 'desc')->get(),
             'collections' => AcknowledgementReceipt::where('guest_uuid', $this->guest_details->uuid)->orderBy('id','desc')->paginate(5),
             'additional_guests' => AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->get(),
             'bookings' => Booking::where('guest_uuid', $this->guest_details->uuid)->get(),
+           
         ]);
     }
 }

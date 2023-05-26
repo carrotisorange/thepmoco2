@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 class EditBookingComponent extends Component
 {
     public $property;
-    public $booking;
+    public Booking $booking;
 
     //input variables
     public $unit_uuid;
@@ -19,7 +19,7 @@ class EditBookingComponent extends Component
     public $moveout_at;
     public $status;
 
-    public function mount($booking){
+    public function mount(Booking $booking){
         $this->unit_uuid = $booking->unit_uuid;
         $this->movein_at = Carbon::parse($booking->movein_at)->format('Y-m-d');
         $this->moveout_at = Carbon::parse($booking->moveout_at)->format('Y-m-d');
