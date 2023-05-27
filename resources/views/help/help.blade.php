@@ -113,9 +113,11 @@
                 <div class="flex justify-center items-center">
                     <img src="{{ asset('/brands/help.png') }}" class="w-full">
                 </div>
-                <div class="flex justify-center items-center">
-                    <button><a href="https://thepropertymanager.online/about#contactus" class="bg-purple-100 hover:bg-purple-300 w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Contact Us Now</a></button>
-                </div>
+                <div class="flex justify-center items-center space-x-2">
+                    <button><a href="https://thepropertymanager.online/about#contactus" class="bg-purple-100 hover:bg-purple-300 w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">I need help in Managing Properties</a></button>
+                    <button><a href="https://thepropertymanager.online/tech-support" class="bg-purple-100 hover:bg-purple-300 w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">I need Tech Support</a></button>
+                
+                  </div>
             </div>
                 
 
