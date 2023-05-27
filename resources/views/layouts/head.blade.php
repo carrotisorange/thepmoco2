@@ -13,11 +13,10 @@
 <!-- Favicon -->
 <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
 <!-- Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -25,15 +24,17 @@
 {{-- Fontawesome --}}
 <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
 
-@livewireStyles
-
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-
-
-@yield('styles')
 
 {{-- Alpine.js --}}
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+@livewireStyles
+
+<script src="{{ asset('js/app.js') }}" defer></script>
+
+@yield('styles')
+
+
 
 
