@@ -111,7 +111,7 @@
                     <x-form-select id="interaction_id" name="interaction_id" wire:model="interaction_id" class="">
                         <option value="">Select one</option>
                         @foreach($interactions as $interaction)
-                        <option value="{{ $interaction->interaction }}" {{ $interaction->id===$interaction_id? 'selected' : 'Select one' }}>
+                        <option value="{{ $interaction->id }}" {{ $interaction->id===$interaction_id? 'selected' : 'Select one' }}>
                             {{ $interaction->interaction }}
                         </option>
                         @endforeach
