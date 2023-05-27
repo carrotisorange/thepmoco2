@@ -19,6 +19,7 @@ class ContractEditComponent extends Component
     public $end;
     public $rent;
     public $status;
+    public $interaction_id;
 
     public $tenant;
 
@@ -29,6 +30,7 @@ class ContractEditComponent extends Component
         $this->start = $contract_details->start;
         $this->end = $contract_details->end;
         $this->status = $contract_details->status;
+        $this->interaction_id = $contract_details->interaction_id;
     }
     
     protected function rules()
@@ -38,7 +40,8 @@ class ContractEditComponent extends Component
             'start' => 'required|date',
             'rent' => 'required',
             'end' => 'nullable',
-            'status' => 'required'
+            'status' => 'required',
+            'interaction_id' => 'required'
         ];
     }
 

@@ -27,7 +27,6 @@ class EditContractComponent extends Component
         $this->end = Carbon::parse($contract->end)->format('Y-m-d');
         $this->status = $contract->status;
         $this->rent = $contract->rent;
-        $this->rent = $contract->rent;
         $this->interaction_id = $contract->interaction_id;
     }
 
@@ -56,11 +55,11 @@ class EditContractComponent extends Component
     public function updateContract(){
         sleep(2);
 
-       try{
-         $validated = $this->validate();
-       }catch(\Exception $e){
-        ddd($e);
-       }
+        try{
+            $validated = $this->validate();
+        }catch(\Exception $e){
+            ddd($e);
+        }
 
         Contract::where('uuid', $this->contract->uuid)
         ->update($validated);
