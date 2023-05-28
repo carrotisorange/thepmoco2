@@ -64,7 +64,7 @@ class OwnerBillComponent extends Component
 
    public function payBills()
    {
-      sleep(2);
+      
       
       $collection_ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
 

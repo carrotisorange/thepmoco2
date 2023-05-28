@@ -57,7 +57,7 @@ class PropertyCreateComponent extends Component
 
      public function create()
      {
-         sleep(2);
+         
 
          $validatedData = $this->validate();
 
@@ -88,7 +88,7 @@ class PropertyCreateComponent extends Component
 
      public function cancel(){
       
-      sleep(2);
+      
 
       return redirect('/property');
      }

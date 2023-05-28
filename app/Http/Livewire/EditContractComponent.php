@@ -53,7 +53,7 @@ class EditContractComponent extends Component
     }
 
     public function updateContract(){
-        sleep(2);
+        
 
         try{
             $validated = $this->validate();

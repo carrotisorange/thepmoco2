@@ -88,49 +88,48 @@ class UnitShowComponent extends Component
 
     public function redirectToTheCreateUnitInventoryPage(){
         
-        sleep(2);
 
         return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateOwnerPage(){
         
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/owner/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateTenantPage(){
         
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/tenant/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateGuestPage(){
         
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/calendar');
     }
 
     public function redirectToTheCreateUtilitiesPage(){
         
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/utilities/');
     }
 
     public function redirectToTheCreateConcernPage(){
         
-        sleep(2);
+        
 
         return redirect('/property/'.Session::get('property').'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
     }
     
     public function submitForm()
     {
-        sleep(2);
+        
        
         $validatedData = $this->validate();
          
@@ -168,7 +167,7 @@ class UnitShowComponent extends Component
     }
 
      public function exportUnitInventory(){
-        sleep(2);
+        
 
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/export');
     }

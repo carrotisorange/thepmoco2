@@ -49,7 +49,7 @@ class CollectionIndexComponent extends Component
     }
 
     public function exportDCR(){
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid .'/dcr/'.$this->date);
     }

@@ -66,7 +66,7 @@ class BillIndexComponent extends Component
    }
 
    public function redirectToUnitsPage(){
-      sleep(2);
+      
 
       return redirect('/property/'.$this->property->uuid.'/unit/');
    }
@@ -85,7 +85,7 @@ class BillIndexComponent extends Component
 
    public function removeBills()
    {
-      sleep(2);
+      
 
       $random_str = Str::random(8);
        
@@ -245,7 +245,7 @@ class BillIndexComponent extends Component
 
    public function storeBills(){
 
-      sleep(2);
+      
 
       $attributes = $this->validate();
 
@@ -373,7 +373,7 @@ class BillIndexComponent extends Component
    }
 
    public function exportBills(){
-      sleep(2);
+      
       
       return redirect('/property/'.$this->property->uuid.'/bill/export/status/'.$this->status.'/particular/'.$this->particular.'/date/'.$this->posted_dates);
    }

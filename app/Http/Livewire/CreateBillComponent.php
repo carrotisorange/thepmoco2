@@ -42,7 +42,7 @@ class CreateBillComponent extends Component
     }
 
     public function storeBill(){
-        sleep(2);
+        
 
         $validated = $this->validate();
 

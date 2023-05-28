@@ -41,7 +41,7 @@ class BillEditComponent extends Component
 
     public function updateBill(){
 
-        sleep(2);
+        
         
         $this->validate();
 

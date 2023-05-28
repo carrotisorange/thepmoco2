@@ -15,17 +15,16 @@ class FinancialIndexComponent extends Component
     
     public $filter='daily';
 
-
     public function downloadCashflowReports(){
 
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/financial/cashflow/export/'.$this->filter);
     }
 
     public function downloadFinancialReports(){
 
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/financial/financial/export/'.$this->filter);
     }

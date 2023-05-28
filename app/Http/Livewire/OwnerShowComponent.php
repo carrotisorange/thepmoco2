@@ -117,7 +117,7 @@ class OwnerShowComponent extends Component
 
     public function sendCredentials()
     {
-        sleep(2);
+        
 
         if(!$this->owner_details->email){
             return back()->with('error', 'Error');
@@ -236,7 +236,7 @@ class OwnerShowComponent extends Component
         }
 
     public function deleteOwner(){
-        sleep(2);
+        
 
         DeedOfSale::where('owner_uuid', $this->owner_details->uuid)->delete();
         Spouse::where('owner_uuid', $this->owner_details->uuid)->delete();

@@ -92,7 +92,7 @@ class BillCreateComponent extends Component
     }
 
     public function redirectToContractShowPage(){
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid);
     }

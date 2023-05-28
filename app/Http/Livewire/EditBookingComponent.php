@@ -44,7 +44,6 @@ class EditBookingComponent extends Component
 
     public function updateBooking(){
 
-        sleep(2);
 
         $validated = $this->validate();
 

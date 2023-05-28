@@ -61,7 +61,7 @@ class GuestShowComponent extends Component
 
     public function updateGuest()
     {
-        sleep(2);
+        
        
         $validatedData = $this->validate(
             [
@@ -85,7 +85,7 @@ class GuestShowComponent extends Component
 
     public function store_additional_guest(){
 
-        sleep(2);
+        
 
         if(!$this->additional_guest){
             return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');
@@ -100,7 +100,7 @@ class GuestShowComponent extends Component
     }
 
     public function deleteGuest(){
-        sleep(2);
+        
 
         AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->delete();
         Bill::where('guest_uuid', $this->guest_details->uuid)->delete();
@@ -114,14 +114,14 @@ class GuestShowComponent extends Component
     }
 
     public function exportGuest(){
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid.'/export');
     }
 
     public function storeBooking(){
         
-        sleep(2);
+        
 
         Booking::create([
             'uuid' => app('App\Http\Controllers\PropertyController')->generate_uuid(),
@@ -162,7 +162,7 @@ class GuestShowComponent extends Component
     }
 
     public function redirectToTheCreateBillPage(){
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid.'/bills');
     }

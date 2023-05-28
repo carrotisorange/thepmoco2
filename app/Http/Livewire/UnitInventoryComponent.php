@@ -66,7 +66,7 @@ class UnitInventoryComponent extends Component
     
     public function uploadImage($id){
         
-        sleep(2);
+        
 
         return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/inventory/'.$id);
     }
@@ -98,13 +98,13 @@ class UnitInventoryComponent extends Component
 
     public function redirectToTheUnitPage(){
         
-        sleep(2);
+        
 
         return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid);
     }
 
     public function submitForm(){
-        sleep(2);
+        
 
         // UnitInventory::where('unit_uuid', $this->unitDetails->uuid)
         // ->update([
