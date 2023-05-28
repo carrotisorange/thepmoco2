@@ -36,7 +36,7 @@
         </tr>
         <!-- Main modal -->
         @livewire('edit-booking-component',['property' => App\Models\Property::find(Session::get('property')), 'booking'
-        => $booking], key($booking->uuid))
+        => $booking], key(Carbon\Carbon::now()->timestamp.''.$booking->id))
 
         @endforeach
     </tbody>

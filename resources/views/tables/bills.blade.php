@@ -129,8 +129,8 @@
                @endif
             </x-td>
         </tr>
-        @livewire('edit-bill-component', ['bill_details' => $bill], key($bill->id))
-        @livewire('delete-bill-component', ['bill' => $bill], key($bill->id))
+        @livewire('edit-bill-component', ['bill_details' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))
+        @livewire('delete-bill-component', ['bill' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))
         @endforeach
     </tbody>
 
