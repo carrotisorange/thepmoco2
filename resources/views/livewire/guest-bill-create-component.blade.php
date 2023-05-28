@@ -141,7 +141,7 @@
                 @endcan
 
             </div>
-            <div class="basis-1/4 ml-12 text-right">
+            {{-- <div class="basis-1/4 ml-12 text-right">
                 <button type="button" wire:loading disabled wire:target="removeBills"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Loading...
@@ -155,7 +155,7 @@
                 </button>
                 @endif
                 @endif
-            </div>
+            </div> --}}
         </div>
     </div>
 

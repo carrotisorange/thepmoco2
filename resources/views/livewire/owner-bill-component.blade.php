@@ -120,7 +120,7 @@
 
 
             </div>
-            <div class="basis-1/4 ml-12 text-right">
+            {{-- <div class="basis-1/4 ml-12 text-right">
 
                 @if($selectedBills)
                 <x-button
@@ -131,7 +131,7 @@
                 </x-button>
                 @endif
 
-            </div>
+            </div> --}}
         </div>
     </div>
     {{-- {{ $bills->links() }} --}}
