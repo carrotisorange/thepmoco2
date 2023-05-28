@@ -127,27 +127,27 @@ class TenantController extends Controller
 
     public function show_tenant_contracts($tenant_uuid)
     {
-       return Contract::where('tenant_uuid', $tenant_uuid)->orderBy('start','desc')->paginate(5);
+       return Contract::where('tenant_uuid', $tenant_uuid)->orderBy('start','desc')->get();
     }
 
     public function show_tenant_concerns($tenant_uuid)
     {
-       return Concern::where('tenant_uuid', $tenant_uuid)->orderBy('created_at','desc')->paginate(5);
+       return Concern::where('tenant_uuid', $tenant_uuid)->orderBy('created_at','desc')->get();
     }
 
     public function get_tenant_references($tenant_uuid)
     {
-       return Reference::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(5);
+       return Reference::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->get();
     }
 
     public function show_tenant_guardians($tenant_uuid)
     {
-       return Guardian::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(5);
+       return Guardian::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->get();
     }
 
     public function show_tenant_bills($tenant_uuid)
     {
-       return Bill::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->paginate(5);
+       return Bill::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->get();
     }
 
     public function show_tenant_collections($tenant_uuid)
