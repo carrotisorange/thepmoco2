@@ -6,10 +6,7 @@
         <div
             class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
             <div>
-                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
-                    <!-- Heroicon name: outline/check -->
-                    <i class="fa-solid fa-user-plus"></i>
-                </div>
+
                 <div class="mt-3 text-center sm:mt-5">
                     <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Additional Guest
                         Information
@@ -29,7 +26,7 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-{{-- 
+            {{--
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="birthdate">Birthdate</label>
                 <input type="date" id="birthdate" wire:model="birthdate"
@@ -47,7 +44,8 @@
                     <option value="no" {{ old('has_disability', $has_disability)=='no' ? 'selected' : 'selected' }}>
                         no
                     </option>
-                    <option value="yes" {{ old('has_disability', $has_disability)=='has_disability' ? 'selected' : 'selected' }}>
+                    <option value="yes" {{ old('has_disability', $has_disability)=='has_disability' ? 'selected'
+                        : 'selected' }}>
                         yes
                     </option>
                 </select>

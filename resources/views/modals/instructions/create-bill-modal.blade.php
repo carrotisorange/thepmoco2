@@ -6,10 +6,7 @@
         <div
             class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
             <div>
-                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
-                    <!-- Heroicon name: outline/check -->
-                    <i class="fa-solid fa-user-plus"></i>
-                </div>
+
                 <div class="mt-2 text-center sm:mt-5">
                     <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create bills
                     </h3>
@@ -35,7 +32,7 @@
             @if($active_contracts->count())
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="">Select a particular</label>
-                <select wire:model.debounce.500ms="particular_id" 
+                <select wire:model.debounce.500ms="particular_id"
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="">Please select one</option>
                     @foreach ($particulars as $item)

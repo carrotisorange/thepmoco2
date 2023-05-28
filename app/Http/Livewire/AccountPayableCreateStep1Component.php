@@ -47,6 +47,9 @@ class AccountPayableCreateStep1Component extends Component
     public $selected_quotation;
 
     public $biller;
+
+    public $first_approver;
+    public $second_approver;
     
     public function mount($accountpayable)
     {
@@ -150,13 +153,22 @@ class AccountPayableCreateStep1Component extends Component
         ]);
 
         $manager = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->pluck('user_id')->first();
+        
+        $accountpayable = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->pluck('user_id')->first();
 
         $content = $this->accountpayable;
 
         if($manager){
-            $email_manager = User::find($manager)->email;
+            $email_manager = User::find($this->first_approver)->email;
 
             Notification::route('mail', $email_manager)->notify(new SendAccountPayableStep2NotificationToManager($content));
+    
+        }
+
+        if($accountpayable){
+            $email_accountpayable = User::find($this->second_approver)->email;
+
+            Notification::route('mail', $email_accountpayable)->notify(new SendAccountPayableStep2NotificationToManager($content));
     
         }
 
@@ -273,6 +285,8 @@ class AccountPayableCreateStep1Component extends Component
         return view('livewire.account-payable-create-step1-component',[
             'units' => Property::find($this->property->uuid)->units,
             'vendors' => Property::find($this->property->uuid)->billers,
+            'managers' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->get(),
+            'accountpayables' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->get()
         ]);
     }
 }

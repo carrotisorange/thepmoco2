@@ -46,16 +46,6 @@ class TenantShowComponent extends Component
     public $employer;
     public $category;
 
-    public $guardian;
-    public $guardian_relationship_id;
-    public $guardian_mobile_number;
-    public $guardian_email;
-
-    public $reference;
-    public $reference_relationship_id;
-    public $reference_mobile_number;
-    public $reference_email;
-
     public $view = 'listView';
 
     public $isPaymentAllowed = false;
@@ -242,8 +232,6 @@ class TenantShowComponent extends Component
 
     public function deleteTenant(){
 
-        
-
         app('App\Http\Controllers\PropertyContractController')->destroy(null, $this->tenant_details->uuid);
         app('App\Http\Controllers\TenantGuardianController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantReferenceController')->destroy($this->tenant_details->uuid);
@@ -258,40 +246,6 @@ class TenantShowComponent extends Component
       return redirect('/property/'.$this->tenant_details->property_uuid.'/tenant/')->with('success', 'Success!');
  
     }
-
-    public function store_guardian(){
-
-        
-
-        $validatedData = $this->validate([
-            'guardian' => 'required',
-            'guardian_relationship_id' => ['required', Rule::exists('relationships', 'id')],
-            'guardian_mobile_number' => 'required',
-            'guardian_email' => ['nullable','email']
-        ]);
-
-        Guardian::create([
-            'tenant_uuid' => $this->tenant_details->uuid,
-            'guardian' => $this->guardian,
-            'email' => $this->guardian_email,
-            'mobile_number' => $this->guardian_mobile_number,
-            'relationship_id' => $this->guardian_relationship_id
-        ]);
-
-        return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant_details->uuid)->with('success', 'Success!');
-    }
-
-    public function delete_guardian($id){
-
-        sleep(1);
-
-        Guardian::where('id', $id)
-        ->delete();
-        
-        return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant_details->uuid)->with('success',
-        'Success!');
-    }
-
 
     public function render()
     {   
