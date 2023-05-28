@@ -77,7 +77,8 @@
             {{-- <x-td>
                 @if(!$contract->contract == null)
                 <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->contract }}/contract"
-                    target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contract</a>
+                    target="_blank"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Contract</a>
                 @else
                 No contract was uploaded.
                 @endif
@@ -90,57 +91,60 @@
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg></button>
-                    <div id="dropdown({{ $contract->uuid }})" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                            <li>
-                                <a href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    View</a>
-                               
-                            </li>
-                            <li>
+                <div id="dropdown({{ $contract->uuid }})"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                        <li>
+                            <a href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                                View</a>
 
-                               
-                              <a href="#/" data-modal-target="edit-contract-modal-{{$contract->uuid}}" data-modal-toggle="edit-contract-modal-{{$contract->uuid}}"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        </li>
+                        <li>
+
+
+                            <a href="#/" data-modal-target="edit-contract-modal-{{$contract->uuid}}"
+                                data-modal-toggle="edit-contract-modal-{{$contract->uuid}}"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                                 Edit</a>
-                            </li>
-                            <li>
-                               @if($contract->status != 'pendingmovein')
-                                <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/renew"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Renew</a>
-                                @endif
-                            </li>
-                            <li>
-                                @if($contract->status != 'pendingmovein')
-                                <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/transfer"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Transfer</a>
-                                @endif
-                                <li>
-                                @if($contract->status == 'active' || $contract->status == 'pendingmovein')
-                                <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-1"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Moveout</a>
-                                @elseif($contract->status == 'reserved')
-                                <a href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/movein/{{ Str::random(8) }}/create"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Movein</a>
-                                @elseif($contract->status == 'pendingmoveout')
-                                <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-2"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Moveout</a>
-                                @elseif($contract->status == 'cleared')
-                                <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-3"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Moveout</a>
-                                @endif
-                                </li>
-                                <li>
-                                    <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/delete"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
-                                </li>
-                        </ul>
-                    </div>
+                        </li>
+                        <li>
+                            @if($contract->status != 'pendingmovein')
+                            <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/renew"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Renew</a>
+                            @endif
+                        </li>
+                        <li>
+                            @if($contract->status != 'pendingmovein')
+                            <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/transfer"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Transfer</a>
+                            @endif
+                        <li>
+                            @if($contract->status == 'active' || $contract->status == 'pendingmovein')
+                            <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-1"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Moveout</a>
+                            @elseif($contract->status == 'reserved')
+                            <a href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/movein/{{ Str::random(8) }}/create"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Movein</a>
+                            @elseif($contract->status == 'pendingmoveout')
+                            <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-2"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Moveout</a>
+                            @elseif($contract->status == 'cleared')
+                            <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-3"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Moveout</a>
+                            @endif
+                        </li>
+                        <li>
+                            <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/delete"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete</a>
+                        </li>
+                    </ul>
+                </div>
             </x-td>
 
         </tr>
-           @livewire('edit-contract-component',['property' => App\Models\Property::find(Session::get('property')), 'contract' => $contract], key($contract->uuid))
+        @livewire('edit-contract-component',['property' => App\Models\Property::find(Session::get('property')),
+        'contract' => $contract], key($contract->uuid))
         @endforeach
     </tbody>
 </table>

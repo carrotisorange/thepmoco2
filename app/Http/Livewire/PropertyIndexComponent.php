@@ -52,21 +52,14 @@ class PropertyIndexComponent extends Component
     }
 
     public function exportPortfolio(){
-        sleep(2);
-
         return redirect('/user/'.auth()->user()->id.'/export/portfolio');
     }
 
     public function createNewProperty(){
-        sleep(2);
-
         return redirect('/property/'.Str::random(8).'/create');
     }
 
     public function submitForm(){
-        
-        sleep(2);
-
         return redirect('/property/'.Str::random(8).'/create');
     }
 

@@ -131,7 +131,7 @@
 
             </div>
 
-            <div class="sm:col-span-1">
+            <div class="sm:col-span-2">
                 <select id="small" wire:model="status"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="">Filter status</option>
@@ -142,7 +142,7 @@
 
             </div>
 
-            <div class="sm:col-span-1">
+            {{-- <div class="sm:col-span-1">
                 <select id="small" wire:model="limitDisplayTo"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="" selected>Limit display to</option>
@@ -152,14 +152,9 @@
                         @endif
                         @endfor
                 </select>
-            </div>
+            </div> --}}
 
         </div>
-
-        <div class="mt-3">
-            {{ $utilities->links() }}
-        </div>
-
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

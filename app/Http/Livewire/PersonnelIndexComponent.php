@@ -16,7 +16,7 @@ class PersonnelIndexComponent extends Component
     public $status;
 
    public function submitForm(){
-      sleep(2);
+      
       
       return redirect('/property/'.Session::get('property').'/user/'.Str::random(8).'/create');
    }

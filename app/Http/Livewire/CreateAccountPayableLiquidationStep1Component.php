@@ -85,7 +85,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
     }
 
     public function storeAccountPayableLiquidation(){
-        sleep(2);
+        
 
         $this->validate();
 
@@ -165,7 +165,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
     }
 
     public function storeNewItem(){
-        // sleep(2);
+        // 
 
         AccountPayableLiquidationParticular::create(
         [

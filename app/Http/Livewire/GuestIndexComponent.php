@@ -18,7 +18,7 @@ class GuestIndexComponent extends Component
 
     public function redirectToUnitSelectionPage(){
 
-        sleep(2);
+        
 
         return redirect('/property/'.Session::get('property').'/unit');
     }

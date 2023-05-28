@@ -7,7 +7,6 @@ use Livewire\Component;
 use Session;
 use App\Models\Utility;
 use App\Models\Unit;
-use App\Models\UtilityParameter;
 
 class UtilityEditComponent extends Component
 {
@@ -70,9 +69,6 @@ class UtilityEditComponent extends Component
     }
 
     public function returnToUtilitiesPage(){
-
-        sleep(2);
-
         
         Utility::where('property_uuid', $this->property_uuid)
         ->where('batch_no', $this->batch_no)

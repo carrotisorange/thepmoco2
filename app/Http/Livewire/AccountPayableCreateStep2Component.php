@@ -51,7 +51,7 @@ class AccountPayableCreateStep2Component extends Component
     }
 
     public function downloadInternalDocument(){
-        sleep(2);
+        
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step1/export');
 

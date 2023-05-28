@@ -92,7 +92,7 @@ class OwnerComponent extends Component
 
         public function submitForm()
         {
-                sleep(2);
+                
 
                 $validatedData = $this->validate();
 

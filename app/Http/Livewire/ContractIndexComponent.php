@@ -14,7 +14,7 @@ class ContractIndexComponent extends Component
     public $status;
     
     public function redirectToUnitSelectionPage(){
-        sleep(2);
+        
 
         // Session::put('tenant_uuid', $tenant->uuid);
 

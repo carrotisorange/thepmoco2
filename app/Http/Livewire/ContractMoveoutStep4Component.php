@@ -16,7 +16,7 @@ class ContractMoveoutStep4Component extends Component
 
     public function exportMoveoutClearanceForm(){
 
-        sleep(2);
+        
        
         return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3/export')->with('success', 'Success!');        
     
@@ -24,7 +24,7 @@ class ContractMoveoutStep4Component extends Component
 
     public function submitForm(){
         
-        sleep(2);
+        
         
          Contract::where('uuid', $this->contract->uuid)
          ->update([

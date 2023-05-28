@@ -51,6 +51,7 @@ use App\Http\Controllers\PropertyConcernController;
 use App\Http\Controllers\PropertyBillController;
 use App\Http\Controllers\PropertyCollectionController;
 use App\Http\Controllers\PropertyAccountPayableController;
+use App\Http\Controllers\PropertyBookingController;
 use App\Http\Controllers\PropertyCalendarController;
 use App\Http\Controllers\PropertyFinancialController;
 use App\Http\Controllers\PropertyUtilityController;
@@ -58,7 +59,11 @@ use App\Http\Controllers\PropertyGuestController;
 use App\Http\Controllers\PropertyLiquidationController;
 
 
+
+
 Route::group(['middleware'=>['auth', 'verified']], function(){
+
+    Route::put('/booking/{booking}/update', [PropertyBookingController::class, 'update']);
 
     Route::post('calendar', [PropertyCalendarController::class, 'store'])->name('calendar.store');
 

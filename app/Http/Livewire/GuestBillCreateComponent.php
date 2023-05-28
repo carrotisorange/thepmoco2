@@ -46,7 +46,7 @@ class GuestBillCreateComponent extends Component
 
    public function removeBills()
    {
-      sleep(2);
+      
 
       if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
       {
@@ -85,7 +85,7 @@ class GuestBillCreateComponent extends Component
 
    public function storeBill(){
 
-      sleep(2);
+      
 
       $this->validate();
 
@@ -156,7 +156,7 @@ class GuestBillCreateComponent extends Component
 
    public function payBills()
    {
-      sleep(2);
+      
 
       $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
 

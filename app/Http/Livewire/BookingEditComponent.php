@@ -57,7 +57,7 @@ class BookingEditComponent extends Component
 
     public function updateBooking()
     {
-        sleep(2);
+        
        
         $validatedData = $this->validate();
          
@@ -75,7 +75,7 @@ class BookingEditComponent extends Component
 
     public function store_additional_guest(){
 
-        sleep(2);
+        
 
         if(!$this->additional_guest){
             return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');

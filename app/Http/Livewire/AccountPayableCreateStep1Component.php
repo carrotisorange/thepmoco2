@@ -181,7 +181,7 @@ class AccountPayableCreateStep1Component extends Component
     }
 
     public function storeVendor(){
-        sleep(2);
+        
 
         $this->validate([
             'biller' => 'required'

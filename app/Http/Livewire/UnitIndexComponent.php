@@ -41,7 +41,7 @@ class UnitIndexComponent extends Component
     public $numberOfUnits = 1;
 
     public function storeUnits(){
-      sleep(2);
+      
 
       if($this->numberOfUnits <= 0 || !$this->numberOfUnits){
          session()->flash('error', 'Cannot accept value less than 0 or null.');
@@ -149,7 +149,7 @@ class UnitIndexComponent extends Component
 
     public function editUnits(){
       
-      sleep(2);
+      
 
       return redirect('/property/'.$this->property->uuid.'/unit/all/edit');
     }

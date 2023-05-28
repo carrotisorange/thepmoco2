@@ -34,23 +34,9 @@ class AccountPayableIndexComponent extends Component
     }
 
     public function exportAccountPayables(){
-       sleep(2);
+       
       
        return redirect('/property/'.$this->property->uuid.'/accountpayable/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
-    }
-    
-     public function deleteAccountPayable($accountpayableId){
-
-      sleep(2);
-
-      $batch_no = AccountPayable::find($accountpayableId)->batch_no;
-
-      AccountPayable::where('batch_no', $batch_no)->delete();
-
-      AccountPayableParticular::where('batch_no', $batch_no)->delete();
-
-    return redirect('/property/'.$this->property->uuid.'/accountpayable/')->with('success', 'Success!');   
-
     }
 
     public function render()

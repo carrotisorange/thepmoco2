@@ -120,7 +120,7 @@ class TenantShowComponent extends Component
 
     public function submitForm()
     {
-        sleep(2);
+        
        
         $validatedData = $this->validate();
          
@@ -139,38 +139,38 @@ class TenantShowComponent extends Component
     }
 
     public function redirectToTheCreateGuardianPage(){
-        sleep(2);
+        
 
         return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateReferencePage(){
-        sleep(2);
+        
 
         return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateConcernPage(){
-        sleep(2);
+        
 
         return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/concern/create');
     }
 
     public function redirectToTheCreateBillPage(){
-        sleep(2);
+        
 
         return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/bills');
     }
 
     public function redirectToTheCreateContractPage(){
-        sleep(2);
+        
 
         return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/units');
     }
 
     public function sendCredentials()
     {
-        sleep(2);
+        
 
         if(!$this->email){
             session()->flash('error', 'The email address is required.');
@@ -242,7 +242,7 @@ class TenantShowComponent extends Component
 
     public function deleteTenant(){
 
-        sleep(2);
+        
 
         app('App\Http\Controllers\PropertyContractController')->destroy(null, $this->tenant_details->uuid);
         app('App\Http\Controllers\TenantGuardianController')->destroy($this->tenant_details->uuid);
@@ -261,7 +261,7 @@ class TenantShowComponent extends Component
 
     public function store_guardian(){
 
-        sleep(2);
+        
 
         $validatedData = $this->validate([
             'guardian' => 'required',

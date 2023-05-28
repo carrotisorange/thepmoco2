@@ -63,7 +63,7 @@ class ContractCreateComponent extends Component
 
       public function makeReservation()
       {
-        sleep(2);
+        
 
         $contract_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
 

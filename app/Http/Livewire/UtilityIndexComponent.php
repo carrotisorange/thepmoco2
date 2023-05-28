@@ -37,13 +37,12 @@ class UtilityIndexComponent extends Component
     public $end_date;
     public $min_charge;
 
-
     public function mount()
     {
         $this->property_uuid = Session::get('property');
         $this->totalUtilitiesCount = Property::find(Session::get('property'))->utilities->count();
         $this->totalUnitsCount = Property::find($this->property_uuid)->units()->count();
-        $this->start_date = Carbon::now()->format('Y-m-d');
+        $this->filter_date = Carbon::parse(Property::find($this->property_uuid)->utilities()->orderBy('start_date', 'desc')->pluck('start_date')->first())->format('Y-m-d');
         $this->end_date = Carbon::now()->addMonth()->format('Y-m-d');
         $this->limitDisplayTo = 10;
     }
@@ -59,8 +58,8 @@ class UtilityIndexComponent extends Component
     protected function rules()
     {
         return [
-                 'start_date' => 'required|date',
-                 'end_date' => 'required|date|after:start_date',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date|after:start_date',
                 'kwh' => 'required',
                 'min_charge' => 'required'
             ];
@@ -118,7 +117,7 @@ class UtilityIndexComponent extends Component
           $dates = Utility::where('property_uuid', $this->property_uuid)
           ->select('start_date')
           ->whereNotNull('start_date')
-             ->where('is_posted', 1)
+          ->where('is_posted', 1)
           ->groupBy('start_date')
           ->get();
 
@@ -143,7 +142,7 @@ class UtilityIndexComponent extends Component
 
           ->orderBy('start_date', 'desc')
           ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
-          ->paginate($this->limitDisplayTo);
+          ->get();
 
         return view('livewire.utility-index-component',[
             'utilities' => $utilities,

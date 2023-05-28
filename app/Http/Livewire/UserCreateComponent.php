@@ -128,7 +128,7 @@ class UserCreateComponent extends Component
 
    public function storeUser()
    {
-      sleep(2);
+      
 
       $this->validate();
 
