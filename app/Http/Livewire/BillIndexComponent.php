@@ -36,7 +36,7 @@ class BillIndexComponent extends Component
 
    public $view = 'listView';  
 
-   public $isPaymentAllowed = true;
+   public $isPaymentAllowed = false;
 
    public $particular;
 
