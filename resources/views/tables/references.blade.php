@@ -1,35 +1,33 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-            <x-th>Name</x-th>
-            <x-th>Relationship</x-th>
-            <x-th>Contact</x-th>
+            <x-th>#</x-th>
+            <x-th> NAME</x-th>
+            <x-th> RELATIONSHIP</x-th>
+            <x-th> MOBILE</x-th>
+            <x-th>EMAIL </x-th>
             <x-th></x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-        @forelse ($references as $item)
+        @foreach ($references as $index => $reference)
         <tr>
-            <x-td>{{ $item->reference }}</x-td>
-            <x-td>{{ $item->relationship->relationship }}</x-td>
+            <x-td>{{ $index+1 }}</x-td>
+            <x-td> {{ $reference->reference }} </x-td>
+            <x-td> {{ $reference->relationship->relationship }}</x-td>
+            <x-td> {{ $reference->mobile_number }} </x-td>
+            <x-td> {{ $reference->email }} </x-td>
             <x-td>
-                <div class="text-sm text-gray-900">{{ $item->email }}
-                </div>
-                <div class="text-sm text-gray-500">{{
-                    $item->mobile_number }}
-                </div>
+                <button data-modal-target="edit-reference-modal-{{$reference->id}}"
+                    data-modal-toggle="edit-reference-modal-{{$reference->id}}"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    Edit
+                </button>
             </x-td>
-            <x-td>
-                <form method="POST" id="remove-button"
-                    action="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/reference/{{ $item->id }}">
-                    @csrf
-                    @method('delete')
-                    <x-form-button form="remove-button">Remove</x-form-button>
-                </form>
-            </x-td>
-            @empty
-            <x-td>No data found.</x-td>
+            
         </tr>
-        @endforelse
+        @livewire('edit-reference-component', ['reference_details' => $reference], key($reference->id))
+        @endforeach
     </tbody>
 </table>

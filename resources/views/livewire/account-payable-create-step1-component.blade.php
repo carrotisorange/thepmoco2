@@ -15,25 +15,14 @@
                     <label for="request_for" class="block text-sm font-medium text-gray-700">Request for</label>
                     <input type="text" wire:model="request_for" name="request_for" readonly
                             class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
-                    {{-- <select wire:model="request_for"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
-
-                        <option value="payment" {{ old('request_for', $request_for)=='payment' ? 'selected' : 'selected'
-                            }}>
-                            payment
-                        </option>
-                        <option value="purchase" {{ old('request_for', $request_for)=='purchase' ? 'selected'
-                            : 'selected' }}>
-                            purchase
-                        </option>
-                    </select> --}}
+                   
                     @error('request_for')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 {{-- creation date --}}
-                <div class="sm:col-span-2">
+                <div class="sm:col-span-3">
                     <label for="created_at" class="block text-sm font-medium text-gray-700">Request Date</label>
                     <input type="date" wire:model="created_at" name="created_at"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
@@ -42,7 +31,7 @@
                     @enderror
                 </div>
 
-                <div class="sm:col-span-2">
+                <div class="sm:col-span-3">
                     <label for="due_date" class="block text-sm font-medium text-gray-700">Due Date</label>
                     <input type="date" wire:model="due_date" name="due_date"
                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
@@ -51,17 +40,7 @@
                     @enderror
                 </div>
 
-                {{-- requester's name --}}
-                <div class="sm:col-span-2">
-                    <label for="requester" class="block text-sm font-medium text-gray-700">Requester's Name</label>
-                    <select id="requester_id" wire:model="requester_id"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
-                        <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
-                    </select>
-                    @error('requester_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
+              
                 @if($particulars->count())
                 <div class="sm:col-span-6">
                     {{-- <label for="particular" class="block text-sm font-medium text-gray-700"><b>Add all the
@@ -424,6 +403,43 @@
                     @enderror
                 </div>
 
+                {{-- requester's name --}}
+                <div class="sm:col-span-2">
+                    <label for="requester" class="block text-sm font-medium text-gray-700">Requester</label>
+                    <x-form-select id="requester_id" name="requester_id" wire:model="requester_id" class="">
+                        <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
+                    </x-form-select>
+                    @error('requester_id')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div class="sm:col-span-2">
+                    <label for="first_approver" class="block text-sm font-medium text-gray-700">1st Approver (Manager)</label>
+                    <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" class="">
+                        <option value="">Select one</option>
+                        @foreach ($managers as $manager)
+                        <option value="{{ $manager->user_id }}">{{ $manager->user->name }}</option>
+                        @endforeach
+                
+                    </x-form-select>
+                
+                </div>
+                
+                <div class="sm:col-span-2">
+                    <label for="requester" class="block text-sm font-medium text-gray-700">2nd Approver (Account Payable)</label>
+                    <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" class="">
+                        <option value="">Select one</option>
+                        @foreach ($accountpayables as $accountpayable)
+                        <option value="{{ $accountpayable->user_id }}">{{ $accountpayable->user->name }}</option>
+                        @endforeach
+                
+                    </x-form-select>
+                    @error('requester_id')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+                
 
                 <div class="col-start-6 flex items-center justify-end">
                     <button type="submit" wire:loading.remove wire:click="cancelRequest" 

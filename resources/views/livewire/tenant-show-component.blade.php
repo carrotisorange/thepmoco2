@@ -7,9 +7,6 @@
             </div>
             <div class="lg:col-start-5 lg:col-span-9">
                 <div class="flex justify-end">
-
-
-
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                         id="dropdownButton" data-dropdown-toggle="tenantCreateDropdown" type="button"><svg
@@ -35,7 +32,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/concern/create"
+                                <a href="#/" data-modal-toggle="create-concern-modal"
                                     class=" block py-2 px-4 text-sm
                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                     dark:text-gray-200 dark:hover:text-white">
@@ -58,16 +55,13 @@
                                     New guardian
                                 </a>
                             </li>
-                            {{-- <li>
-                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/guardian/{{ Str::random(8) }}/create"
+                            <li>
+                                <a href="#/" data-modal-toggle="create-reference-modal"
                                     class=" block py-2 px-4 text-sm
-                                                                                                text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-                                                                                                dark:text-gray-200 dark:hover:text-white">
-                                    New guardian
+                                                                                                            text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600                                                                   dark:text-gray-200 dark:hover:text-white">
+                                    New reference
                                 </a>
-                            </li> --}}
-
-
+                            </li>
                         </ul>
                     </div>
 
@@ -403,7 +397,7 @@
 
                                 </div>
                                 @if($references->count())
-                                @include('tenants.tables.references')
+                                @include('tables.references')
                                 @else
                                 <div class="mt-10 text-center mb-10">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -450,7 +444,7 @@
 
                                 </div>
                                 @if($concerns->count())
-                                @include('tenants.tables.concerns')
+                                @include('tables.concerns')
                                 @else
                                 <div class=" mt-10 text-center mb-10">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -462,8 +456,8 @@
                                     <h3 class="mt-2 text-sm font-medium text-gray-900">No concerns</h3>
                                     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                     <div class="mt-6">
-                                        <button type="button" wire:click="redirectToTheCreateConcernPage"
-                                            wire:loading.remove
+                                        <button type="button" data-modal-toggle="create-concern-modal"
+                                          
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                             <!-- Heroicon name: mini/plus -->
                                             <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -634,6 +628,7 @@
         </div>
 
     </div>
-    @include('modals.create-guardian-modal')
-    @include('modals.edit-guardian-modal')
+    @livewire('create-guardian-component', ['tenant'=> $tenant_details])
+    @livewire('create-reference-component',['tenant'=> $tenant_details])
+    @livewire('create-concern-component',['tenant'=> $tenant_details])
 </div>

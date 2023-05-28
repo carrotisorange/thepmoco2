@@ -6,10 +6,7 @@
         <div
             class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
             <div>
-                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
-                    <!-- Heroicon name: outline/check -->
-                    <i class="fa-solid fa-user-plus"></i>
-                </div>
+
                 <div class="mt-3 text-center sm:mt-5">
                     <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Contract
                         Information
@@ -37,7 +34,7 @@
                             'selected'
                             : 'Select one' }}>
                             {{ $unit->unit }} - {{ $unit->rent }}/mo
-                
+
                         </option>
                         @endforeach
                     </x-form-select>
@@ -83,7 +80,7 @@
                         <option value="">Select one</option>
 
                         <option value="active" {{ "active"===$status? 'selected' : 'Select one' }}>
-                          active
+                            active
                         </option>
                         <option value="inactive" {{ "inactive"===$status? 'selected' : 'Select one' }}>
                             inactive
@@ -111,14 +108,15 @@
                     <x-form-select id="interaction_id" name="interaction_id" wire:model="interaction_id" class="">
                         <option value="">Select one</option>
                         @foreach($interactions as $interaction)
-                        <option value="{{ $interaction->id }}" {{ $interaction->id===$interaction_id? 'selected' : 'Select one' }}>
+                        <option value="{{ $interaction->id }}" {{ $interaction->id===$interaction_id? 'selected' :
+                            'Select one' }}>
                             {{ $interaction->interaction }}
                         </option>
                         @endforeach
-                
-                
+
+
                     </x-form-select>
-                
+
                     @error('interaction_id')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
