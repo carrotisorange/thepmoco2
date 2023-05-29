@@ -36,17 +36,25 @@ class CreateParticularComponent extends Component
         if($is_particular_exists){
           $particular_id = $is_particular_exists;
         }else{
-          $particular_id = Particular::create($validated)->id;
+          $particular_id = Particular::create([
+            'particular' => strtolower($this->particular)
+          ])->id;
         }
 
-        PropertyParticular::create(
-            [   
-                'property_uuid'=> $this->property->uuid,
-                'particular_id'=> $particular_id,
-                'minimum_charge' => 0.00,
-                'due_date' => 28,
-                'surcharge' => 1
-        ]);
+        PropertyParticular::updateOrCreate(
+        [
+           'property_uuid'=> $this->property->uuid,
+           'particular_id'=> $particular_id,
+        ]
+        ,
+        [   
+            'property_uuid'=> $this->property->uuid,
+            'particular_id'=> $particular_id,
+            'minimum_charge' => 0.00,
+            'due_date' => 28,
+            'surcharge' => 1
+        ]
+      );
 
         return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest->uuid)->with('success', 'Success!');
     }
