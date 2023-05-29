@@ -242,7 +242,7 @@
                                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
-                                    @include('owners.tables.collections')
+                                    @include('tables.collections')
                                 </div>
                             </div>
                         </div>

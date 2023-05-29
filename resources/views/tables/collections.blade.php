@@ -2,6 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
+            <x-th>ID</x-th>
             <x-th> AR #</x-th>
             <x-th> BILL TO</x-th>
             <x-th> DATE APPLIED</x-th>
@@ -19,6 +20,7 @@
         @foreach($collections as $index => $item)
         <tr>
             <x-td><b>{{ $index+1 }}</b></x-td>
+            <x-td>{{ $item->id }}</x-td>
             <x-td>{{ $item->ar_no }}</x-td>
             <x-td>
                 @if($item->tenant_uuid)
