@@ -1,41 +1,25 @@
-<script src="https://cdn.tailwindcss.com"></script>
-<div class="-ml-8">
 
+<table class="text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="bg-gray-50">
+        <tr>
+            <x-th>#</x-th>
 
-      <div class="max-w-full sm:max-w-full lg:max-w-6xl h-full ">
-        <div class="mx-auto py-4">
-         
+            <x-th>UNIT</x-th>
+            <x-th>TENANT</x-th>
+            <x-th>START</x-th>
+            <x-th>END </x-th>
+            <x-th>RENT/MO</x-th>
+            <x-th>STATUS</x-th>
+            <x-th>INTERACTION</x-th>
+            {{-- <x-th>CONTRACT</x-th> --}}
+            <x-th></x-th>
 
-              <div class="item mb-2 ">
-                <div wire:id="rbWM5jbW8w1GcT2ql3DF" class="container w-full px-4 sm:px-8">
-
-                  <div class="flex flex-col">
-                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                      <div class="py-2 inline-block w-full sm:px-6 lg:px-8">
-
-                        <div class="table-wrp block max-h-96">
-                          <table class="w-full">
-                            <thead class="bg-gray-200 border-b border-gray-400 sticky top-0">
-                              <tr>
-                              <x-th>#</x-th>
-
-                                <x-th>UNIT</x-th>
-                                <x-th>TENANT</x-th>
-                                <x-th>START</x-th>
-                                <x-th>END </x-th>
-                                <x-th>RENT/MO</x-th>
-                                <x-th>STATUS</x-th>
-                                <x-th>INTERACTION</x-th>
-                                {{-- <x-th>CONTRACT</x-th> --}}
-                                <x-th></x-th>
-
-                                {{-- <x-th></x-th> --}}
-                              </tr>
-                            </thead>
-
-                            <tbody class="h-full bg-gray-50 overflow-y-auto">
-                            @foreach ($contracts as $index => $contract)
-        <tr class="border-b border-gray-400">
+            {{-- <x-th></x-th> --}}
+        </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+        @foreach ($contracts as $index => $contract)
+        <tr>
             <x-td> {{ $index+1 }} </x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
@@ -163,18 +147,5 @@
         @livewire('edit-contract-component',['property' => App\Models\Property::find(Session::get('property')),
         'contract' => $contract], key($contract->uuid))
         @endforeach
-                            </tbody>
-                          </table>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Livewire Component wire-end:rbWM5jbW8w1GcT2ql3DF -->
-
-              </div>
-            </div>
-         
-      </div>
-    </div>
+    </tbody>
+</table>
