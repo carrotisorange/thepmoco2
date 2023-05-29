@@ -6,6 +6,7 @@
             <x-td></x-td>
             @endif
             <x-td></x-td>
+            <x-td></x-td>
             <x-td> </x-td>
             <x-td></x-td>
             <x-td></x-td>
@@ -22,6 +23,7 @@
             @if($isPaymentAllowed)
             <x-th></x-th>
             @endif
+            <x-th>ID</x-th>
             <x-th>REFERENCE #</x-th>
             <x-th>DATE POSTED</x-th>
             <x-th>BILL TO</x-th>
@@ -47,6 +49,7 @@
                 @endif
             </x-th>
             @endif
+            <x-td>{{ $bill->id }}</x-td>
             <x-td>{{ $bill->unit->unit.'-'.$bill->bill_no}}</x-td>
 
             <x-td>
