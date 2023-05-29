@@ -3,7 +3,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
-
+            <x-th>ID</x-th>
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
             <x-th>START</x-th>
@@ -21,6 +21,7 @@
         @foreach ($contracts as $index => $contract)
         <tr>
             <x-td> {{ $index+1 }} </x-td>
+            <x-td>{{ $contract->uuid }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit/{{ $contract->unit->uuid }}">

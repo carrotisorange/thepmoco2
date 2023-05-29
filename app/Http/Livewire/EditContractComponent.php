@@ -64,7 +64,7 @@ class EditContractComponent extends Component
         Contract::where('uuid', $this->contract->uuid)
         ->update($validated);
 
-        return redirect('/property/'.$this->contract->property_uuid.'/contract')->with('success', 'Success!');
+         return redirect(url()->previous());
     }
 
     public function render()

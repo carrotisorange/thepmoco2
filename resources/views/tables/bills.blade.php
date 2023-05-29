@@ -58,16 +58,16 @@
             <x-td>
                 @if($bill->tenant_uuid)
                 <a title="tenant" class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">{{
-                    $bill->tenant->tenant}}</a> (T)
+                    href="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">
+                    {{  Str::limit($bill->tenant->tenant,10) }} </a> (T)
                 @elseif($bill->owner_uuid)
                 <a title="owner" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $bill->property_uuid }}/owner/{{ $bill->owner_uuid }}">{{
-                    $bill->owner->owner}}</a> (O)
+                    href="/property/{{ $bill->property_uuid }}/owner/{{ $bill->owner_uuid }}">
+                    {{  Str::limit($bill->owner->owner,10) }} </a> (O)
                 @elseif($bill->guest_uuid)
                 <a title="guest" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $bill->property_uuid }}/guest/{{ $bill->guest_uuid }}">{{
-                    $bill->guest->guest}}</a> (G)
+                    href="/property/{{ $bill->property_uuid }}/guest/{{ $bill->guest_uuid }}">
+                      {{  Str::limit($bill->guest->guest,10) }} </a> (G)
                 @else
                 NA
                 @endif
@@ -75,14 +75,14 @@
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ Session::get('property') }}/unit/{{ $bill->unit->uuid }}">
-                    {{ $bill->unit->unit}}
+                    {{ Str::limit($bill->unit->unit,10) }} </a> (T)
                 </a>
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
             </x-td>
             <x-td>
-                {{ $bill->particular->particular}}
+                {{ Str::limit($bill->particular->particular,10) }} </a> (T)
             </x-td>
             <x-td>
                 {{ number_format($bill->bill, 2) }}

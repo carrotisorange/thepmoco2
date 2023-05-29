@@ -7,6 +7,7 @@
             <x-th>ROLE</x-th>
             <x-th>MOBILE</x-th>
             <x-th>INVITED ON</x-th>
+            <x-th>AUTHORIZED?</x-th>
             <x-th></x-th>
         </tr>
     </thead>
@@ -46,6 +47,13 @@
             <x-td>{{ $personnel->user->role->role  }}</x-td>
             <x-td>{{ $personnel->user->mobile_number }}</x-td>
             <x-td>{{  Carbon\Carbon::parse($personnel->created_at)->format('M d, Y')}}</x-td>
+            <x-td>
+                @if($personnel->is_approved == '1')
+                Yes
+                @else   
+                No
+                @endif
+            </x-td>
             <x-td>
                 <button data-modal-target="edit-personnel-modal-{{$personnel->id}}"
                     data-modal-toggle="edit-personnel-modal-{{$personnel->id}}"

@@ -40,7 +40,7 @@ class CreateGuardianComponent extends Component
 
        Guardian::create($validated);
 
-        return redirect('/property/'.$this->tenant->property_uuid.'/tenant/'.$this->tenant->uuid)->with('success', 'Success!');
+        return redirect(url()->previous());
     }
 
     public function render()

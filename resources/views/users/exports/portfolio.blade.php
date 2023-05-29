@@ -9,7 +9,8 @@
         </th>
         @foreach ($data as $property)
         <td>
-            {{ $property->property->property }}
+           {{
+        Str::limit($property->property->property,10) }}
         </td>
         @endforeach
     </tr>
@@ -19,7 +20,9 @@
         </th>
         @foreach ($data as $property)
         <td>
-            {{ $property->property->type->type }}
+            {{
+            Str::limit($property->property->type->type,10) }}
+  
         </td>
         @endforeach
     </tr>

@@ -49,7 +49,7 @@ class EditBookingComponent extends Component
 
         Booking::where('uuid', $this->booking->uuid)->update($validated);
 
-        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->booking->guest_uuid)->with('success', 'Success!');
+       return redirect(url()->previous());
 
     }
 
