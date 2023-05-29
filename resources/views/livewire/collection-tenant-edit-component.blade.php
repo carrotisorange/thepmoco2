@@ -31,7 +31,7 @@
                             aria-hidden="true">
                             <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                         </svg>
-                        <button type="submit" class="ml-4 text-lg font-bold text-gray-700 hover:text-gray-700"
+                        <button type="button" disabled class="ml-4 text-lg font-bold text-gray-700 hover:text-gray-700"
                             aria-current="page">
                             Confirm Payments</button>
                     </div>
