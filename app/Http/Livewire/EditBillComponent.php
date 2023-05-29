@@ -22,9 +22,9 @@ class EditBillComponent extends Component
             'bill' => $this->bill
         ]);
 
-        return redirect('/property/'.$this->bill_details->property_uuid.'/bill/')->with('success', 'Success!');
+        return back()->with('success', 'Success!');
     }
-
+    
     public function render()
     {
         return view('livewire.edit-bill-component');

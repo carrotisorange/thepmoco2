@@ -41,8 +41,6 @@ class BillEditComponent extends Component
 
     public function updateBill(){
 
-        
-        
         $this->validate();
 
         Bill::where('id', $this->bill->id)
@@ -53,7 +51,7 @@ class BillEditComponent extends Component
             'particular_id' => $this->particular_id
         ]);
 
-        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->bill->guest_uuid)->with('success', 'Success');
+        return session()->flash('success', 'Success');
     }
     
     public function render()

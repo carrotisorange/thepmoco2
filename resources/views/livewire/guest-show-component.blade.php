@@ -225,6 +225,12 @@
                         <x-button
                             onclick="window.location.href='/property/{{ $guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills'">
                             Pay Bills</x-button>
+
+                        <x-button data-modal-toggle="create-bill-modal">
+                                Add Bill</x-button>
+
+                        <x-button data-modal-toggle="create-particular-modal">
+                            Add Particular</x-button>
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
@@ -293,5 +299,6 @@
     @include('modals.create-additional-guest-modal')
     @include('modals.create-booking-modal')
     @include('modals.warnings.destroy-guest-modal')
+    @livewire('create-particular-component', ['property' => $property, 'guest' => $guest_details])
 
 </div>

@@ -18,7 +18,7 @@ class PropertyParticularController extends Controller
          return Particular::join('property_particulars', 'particulars.id',
         'property_particulars.particular_id')
         ->where('property_uuid', $property_uuid)
-        ->get();
+        ->get()->unique('particular');
     }
 
      public function store($property_uuid){

@@ -43,8 +43,10 @@ class DeleteBillComponent extends Component
         // Collection::where('bill_id', $bill_id)->delete();
 
         // AcknowledgementReceipt::where('ar_no', $ar_no)->delete();
+
+        return back()->with('success', 'Success!');
         
-    return redirect('/property/'.$this->bill->property_uuid.'/bill/')->with('success', 'Success!');
+    // return redirect('/property/'.$this->bill->property_uuid.'/bill/')->with('success', 'Success!');
 
     }
 
