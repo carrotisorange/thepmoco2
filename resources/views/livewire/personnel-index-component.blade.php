@@ -6,27 +6,12 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @can('accountownerandmanager')
-                <button type="submit" wire:click="submitForm"
+                <button type="button" data-modal-target="create-personnel-modal"
+                    data-modal-toggle="create-personnel-modal"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-                    <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                        </circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                   <i class="fa-solid fa-plus"></i> &nbsp New Personnel
+                New Personnel
                 </button>
                 @endcan
-
-                {{-- <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/user/{{ Str::random(8) }}/create'"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-             
-                </button> --}}
-
             </div>
 
         </div>
@@ -88,8 +73,7 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No personnels</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new personnel</p>
                             <div class="mt-6">
-                                <button type="button"
-                                    onclick="window.location.href='/property/{{ Session::get('property') }}/unit'"
+                                <button type="button" data-modal-target="create-personnel-modal"
                                     class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                     <!-- Heroicon name: mini/plus -->
                                     <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -109,4 +93,5 @@
             </div>
         </div>
     </div>
+    @livewire('create-personnel-component',['property' => $property])
 </div>

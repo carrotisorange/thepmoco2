@@ -56,7 +56,7 @@ class CreateParticularComponent extends Component
         ]
       );
 
-        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest->uuid)->with('success', 'Success!');
+         return redirect(url()->previous());
     }
 
     public function render()

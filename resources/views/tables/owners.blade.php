@@ -28,7 +28,8 @@
             
                     </div>
                     <div class="text-gray-500">{{
-                        $owner->email }}</div>
+                        """_summary_
+                        """                        $owner->email }}</div>
                 </div>
             </div>
            </x-td>

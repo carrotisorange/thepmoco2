@@ -45,7 +45,7 @@ class EditReferenceComponent extends Component
 
         Reference::where('id', $this->reference_details->id)->update($validated);
 
-        return redirect('/property/'.Session::get('property').'/tenant/'.$this->reference_details->tenant_uuid)->with('success', 'Success!');
+        return redirect(url()->previous());
     }
 
     public function render()

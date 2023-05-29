@@ -128,8 +128,7 @@ class UserCreateComponent extends Component
 
    public function storeUser()
    {
-      
-
+   
       $this->validate();
 
        if($this->isUserExists()>0){

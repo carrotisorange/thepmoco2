@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\UserProperty;
 use Illuminate\Validation\Rule;
+use App\Models\Feature;
 
 class EditPersonnelComponent extends Component
 {
@@ -17,12 +18,14 @@ class EditPersonnelComponent extends Component
     public $email;
     public $role_id;
     public $status;
+    public $is_approved;
 
     public function mount($personnel){
         $this->name = $personnel->name;
         $this->email = $personnel->email;
         $this->role_id = $personnel->role_id;
         $this->status = $personnel->status;
+        $this->is_approved = $personnel->is_approved;
     }
 
     protected function rules()
@@ -31,7 +34,7 @@ class EditPersonnelComponent extends Component
             'role_id' => ['required', Rule::exists('roles', 'id')],
             'name' => 'required',
             'email' => 'required|email',
-            'status' => 'required'
+            'status' => 'required',
         ];
     }
 
@@ -49,16 +52,18 @@ class EditPersonnelComponent extends Component
 
         UserProperty::where('user_id', $this->personnel->id)
         ->update([
-            'role_id' => $this->role_id
+            'role_id' => $this->role_id,
+            'is_approved' => $this->is_approved
         ]);
 
-        return redirect('/property/'.$this->property->uuid.'/user')->with('success', 'Success!');
+         return redirect(url()->previous());
     }
 
     public function render()
     {
         return view('livewire.edit-personnel-component',[
             'roles' => app('App\Http\Controllers\RoleController')->get_roles($this->property->uuid),
+            'features' => Feature::all(),
         ]);
     }
 }
