@@ -1,8 +1,8 @@
 <x-new-layout>
-    @section('title','Personnels | '. Session::get('property_name'))
+    @section('title','Personnels | '. $property->property)
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
-            @livewire('personnel-index-component')
+            @livewire('personnel-index-component',['property'=> $property])
         </div>
     </div>
 </x-new-layout>

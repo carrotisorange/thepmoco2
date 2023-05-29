@@ -17,6 +17,7 @@ class PropertyPersonnelController extends Controller
         return view('properties.personnels.index',[
             'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users($property->uuid,auth()->user()->id),
             'properties' => app('App\Http\Controllers\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
+            'property' => $property
         ]);
     }
 }
