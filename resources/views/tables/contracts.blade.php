@@ -1,24 +1,41 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="bg-gray-50">
-        <tr>
-            <x-th>#</x-th>
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="-ml-8">
 
-            <x-th>UNIT</x-th>
-            <x-th>TENANT</x-th>
-            <x-th>START</x-th>
-            <x-th>END </x-th>
-            <x-th>RENT/MO</x-th>
-            <x-th>STATUS</x-th>
-            <x-th>INTERACTION</x-th>
-            {{-- <x-th>CONTRACT</x-th> --}}
-            <x-th></x-th>
 
-            {{-- <x-th></x-th> --}}
-        </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
-        @foreach ($contracts as $index => $contract)
-        <tr>
+      <div class="max-w-full sm:max-w-full lg:max-w-6xl h-full ">
+        <div class="mx-auto py-4">
+         
+
+              <div class="item mb-2 ">
+                <div wire:id="rbWM5jbW8w1GcT2ql3DF" class="container w-full px-4 sm:px-8">
+
+                  <div class="flex flex-col">
+                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div class="py-2 inline-block w-full sm:px-6 lg:px-8">
+
+                        <div class="table-wrp block max-h-96">
+                          <table class="w-full">
+                            <thead class="bg-gray-200 border-b border-gray-400 sticky top-0">
+                              <tr>
+                              <x-th>#</x-th>
+
+                                <x-th>UNIT</x-th>
+                                <x-th>TENANT</x-th>
+                                <x-th>START</x-th>
+                                <x-th>END </x-th>
+                                <x-th>RENT/MO</x-th>
+                                <x-th>STATUS</x-th>
+                                <x-th>INTERACTION</x-th>
+                                {{-- <x-th>CONTRACT</x-th> --}}
+                                <x-th></x-th>
+
+                                {{-- <x-th></x-th> --}}
+                              </tr>
+                            </thead>
+
+                            <tbody class="h-full bg-gray-50 overflow-y-auto">
+                            @foreach ($contracts as $index => $contract)
+        <tr class="border-b border-gray-400">
             <x-td> {{ $index+1 }} </x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
@@ -86,7 +103,7 @@
             <x-td>
                 <button id="dropdownDefaultButton({{ $contract->uuid }})({{ $contract->uuid }})"
                     data-dropdown-toggle="dropdown({{ $contract->uuid }})"
-                    class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+                    class="text-white bg-purple-500 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
                     type="button">Action <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -146,5 +163,18 @@
         @livewire('edit-contract-component',['property' => App\Models\Property::find(Session::get('property')),
         'contract' => $contract], key($contract->uuid))
         @endforeach
-    </tbody>
-</table>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Livewire Component wire-end:rbWM5jbW8w1GcT2ql3DF -->
+
+              </div>
+            </div>
+         
+      </div>
+    </div>
