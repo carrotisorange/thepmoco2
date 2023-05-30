@@ -56,7 +56,7 @@
                             @forelse ($contracts as $index => $item)
                             <tbody class="divide-y divide-gray-200 bg-white">
                                 <!-- Selected: "bg-gray-50" -->
-                                <tr>
+                                <tr class="border-b border-gray-200">
                           
                                     <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
                                     <td class="whitespace-nowrap ml-3 px-3 py-4 text-sm font-medium text-gray-900">{{

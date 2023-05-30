@@ -201,7 +201,7 @@
             <!-- Narrow sidebar-->
             <nav aria-label="Sidebar"
                 class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-white overflow-y-auto h-screen">
-                <div class="relative flex w-20 flex-col space-y-3 p-3">
+                <div class="relative flex w-20 flex-col space-y-8 p-3">
                     <!-- Dashboard -->
                     {{-- <x-nav-link href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}"
                         :active="request()->routeIs('tenant-dashboard')">
