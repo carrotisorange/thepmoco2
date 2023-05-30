@@ -7,11 +7,13 @@ use App\Models\Booking;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use App\Models\Bill;
+use App\Models\Guest;
+use App\Models\Contract;
 
 class CreateBillComponent extends Component
 {
     public $property;
-    public $guest;
+    public $bill_to;
 
     //input variables
     public $particular_id;
@@ -54,22 +56,34 @@ class CreateBillComponent extends Component
         
         $validated['bill_no'] = $bill_no;
         $validated['bill'] = $this->bill;
-        $validated['reference_no'] = $this->guest->reference_no;
+        $validated['reference_no'] = $this->bill_to->reference_no;
         $validated['due_date'] = Carbon::parse($this->start)->addDays(7);
         $validated['user_id'] = auth()->user()->id;
-        $validated['guest_uuid'] = $this->guest->uuid;
+        if(Guest::where('uuid', $this->bill_to->uuid)->count()){
+          $validated['guest_uuid'] = $this->bill_to->uuid;
+        }
+        else{
+          $validated['tenant_uuid'] = $this->bill_to->uuid;
+        }
+      
         $validated['property_uuid'] =$this->property->uuid;
         $validated['is_posted'] = true;
 
         Bill::create($validated);
 
-       return redirect(url()->previous());
+       return redirect(url()->previous())->with('success', 'Success!');
     }
 
     public function render()
     {
+      if(Guest::where('uuid', $this->bill_to->uuid)->count()){
+       $units = Booking::where('guest_uuid', $this->bill_to->uuid)->get();
+      }
+      else{
+        $units = Contract::where('tenant_uuid', $this->bill_to->uuid)->get();
+      }
         return view('livewire.create-bill-component',[
-            'units' => Booking::where('guest_uuid', $this->guest->uuid)->get(),
+            'units' => $units,
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
         ]);
     }

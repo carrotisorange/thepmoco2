@@ -27,10 +27,10 @@
                         <table class="min-w-full table-fixed">
                             <thead class="">
                                 <tr>
-                                   <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-sm font-semibold text-gray-900">
+                                   <th scope="col" class="px-3 py-3.5 text-sm font-semibold text-gray-900">
                                         REFERENCE #
                                     </th>
-                                    <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         REPORTED ON
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">

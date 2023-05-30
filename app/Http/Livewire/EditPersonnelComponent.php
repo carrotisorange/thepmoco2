@@ -17,24 +17,20 @@ class EditPersonnelComponent extends Component
     public $name;
     public $email;
     public $role_id;
-    public $status;
     public $is_approved;
 
     public function mount($personnel){
         $this->name = $personnel->name;
         $this->email = $personnel->email;
-        $this->role_id = $personnel->role_id;
-        $this->status = $personnel->status;
-        $this->is_approved = $personnel->is_approved;
+        $this->role_id = UserProperty::where('user_id', $this->personnel->id)->pluck('role_id')->first();
+        $this->is_approved = UserProperty::where('user_id', $this->personnel->id)->pluck('is_approved')->first();
     }
 
     protected function rules()
     {
         return [
             'role_id' => ['required', Rule::exists('roles', 'id')],
-            'name' => 'required',
-            'email' => 'required|email',
-            'status' => 'required',
+            'is_approved' => 'required'
         ];
     }
 
@@ -45,25 +41,28 @@ class EditPersonnelComponent extends Component
 
     public function updatePersonnel(){
 
-        $validated = $this->validate();
-
-        User::where('id', $this->personnel->id)
-        ->update($validated);
-
-        UserProperty::where('user_id', $this->personnel->id)
-        ->update([
-            'role_id' => $this->role_id,
-            'is_approved' => $this->is_approved
+        $validatedUserData = $this->validate([
+            'name' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')->ignore($this->personnel->id, 'id')],
         ]);
 
-         return redirect(url()->previous());
+        User::where('id', $this->personnel->id)
+        ->update($validatedUserData);
+
+        $validatedUserPropertyData = $this->validate();
+    
+        UserProperty::where('user_id', $this->personnel->id)
+        ->update($validatedUserPropertyData);
+
+        return redirect(url()->previous())->with('success', 'Success!');
     }
 
     public function render()
     {
+
         return view('livewire.edit-personnel-component',[
             'roles' => app('App\Http\Controllers\RoleController')->get_roles($this->property->uuid),
-            'features' => Feature::all(),
+
         ]);
     }
 }

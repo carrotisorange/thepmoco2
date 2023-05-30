@@ -86,8 +86,8 @@
                 @endif
             </x-td> --}}
             <x-td>
-                <button id="dropdownDefaultButton({{ $contract->uuid }})({{ $contract->uuid }})"
-                    data-dropdown-toggle="dropdown({{ $contract->uuid }})"
+                <button id="dropdownDefaultButton({{ $contract->uuid }})" data-dropdown-placement="left-end"
+                    data-dropdown-toggle="dropdown({{ $contract->uuid }})" 
                     class="text-white bg-purple-500 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
                     type="button">Action <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +103,6 @@
 
                         </li>
                         <li>
-
 
                             <a href="#/" data-modal-target="edit-contract-modal-{{$contract->uuid}}"
                                 data-modal-toggle="edit-contract-modal-{{$contract->uuid}}"
@@ -148,5 +147,6 @@
         @livewire('edit-contract-component',['property' => App\Models\Property::find(Session::get('property')),
         'contract' => $contract], key($contract->uuid))
         @endforeach
+       
     </tbody>
 </table>

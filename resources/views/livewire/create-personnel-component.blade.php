@@ -52,11 +52,19 @@
             </div>
 
             <div class="mt-5 sm:mt-6">
-
+                @can('accountownerandmanager')
                 <button type="button" wire:click="storePersonnel" wire:loading.remove
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                     <i class="fa-solid fa-arrow-right"></i>&nbsp Confirm
                 </button>
+                @else
+              <button type="button" disabled wire:loading.remove disabled
+                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                       <i class="fa-solid fa-lock"></i>&nbsp Update
+            </button>
+                    <p class="text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.</p>
+        
+                @endcan
                 <button type="button" wire:loading wire:target="storePersonnel" disabled
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                     Loading...

@@ -25,7 +25,7 @@
 
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                {{-- <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="unit_uuid">Unit</label>
                     <x-form-select id="unit_uuid" name="unit_uuid" wire:model="unit_uuid" class="">
                         <option value="">Select one</option>
@@ -42,7 +42,7 @@
                     @error('unit_uuid')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="start">Rent/mo</label>

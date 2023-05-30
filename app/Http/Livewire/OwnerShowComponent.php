@@ -226,7 +226,6 @@ class OwnerShowComponent extends Component
 
         session()->flash('success','Success!');
     }
-
     
       public function removeRepresentative($id)
         {
@@ -237,13 +236,13 @@ class OwnerShowComponent extends Component
 
     public function deleteOwner(){
         
-
         DeedOfSale::where('owner_uuid', $this->owner_details->uuid)->delete();
         Spouse::where('owner_uuid', $this->owner_details->uuid)->delete();
         Representative::where('owner_uuid', $this->owner_details->uuid)->delete();
         Bill::where('owner_uuid', $this->owner_details->uuid)->delete();
         Collection::where('owner_uuid', $this->owner_details->uuid)->delete();
         AcknowledgementReceipt::where('owner_uuid', $this->owner_details->uuid)->delete();
+        Owner::where('uuid', $this->owner_details->uuid)->delete();
 
         return redirect('/property/'.$this->owner_details->property_uuid.'/owner/')->with('success', 'Success!');
 

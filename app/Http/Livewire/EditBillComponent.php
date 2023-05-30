@@ -30,7 +30,7 @@ class EditBillComponent extends Component
             'end' => $this->end
         ]);
 
-    return redirect(url()->previous());
+    return redirect(url()->previous())->with('success', 'Success!');
 
         // return back()->with('success', 'Success!');
     }

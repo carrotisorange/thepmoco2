@@ -94,7 +94,7 @@
       
             </x-td>
             <x-td>
-                <button id="dropdownDefaultButton({{ $accountpayable->id }})({{ $accountpayable->id }})"
+                <button id="dropdownDefaultButton({{ $accountpayable->id }})({{ $accountpayable->id }})" data-dropdown-placement="left-end"
                     data-dropdown-toggle="dropdown({{ $accountpayable->id }})"
                     class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
                     type="button">Action <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"

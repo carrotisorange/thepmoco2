@@ -12,15 +12,11 @@
             </button>
             @endif
 
-            <button type="button" wire:click="addNewUnitInventory" wire:loading.remove
+            <button type="button" data-modal-target="create-unit-inventory-modal" data-modal-toggle="create-unit-inventory-modal"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                 New Item
             </button>
 
-            <button type="button" wire:loading disabled
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                Loading...
-            </button>
         </div>
     </div>
     <div class="sm:col-span-6">
@@ -31,7 +27,7 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <x-th>#</x-th>
-                            <x-th>IMAGE</x-th>
+                            {{-- <x-th>IMAGE</x-th> --}}
                             <x-th>ITEM </x-th>
                             <x-th>QUANTITY</x-th>
                             <x-th>REMARKS</x-th>
@@ -44,13 +40,13 @@
                         <div wire:key="inventory-field-{{ $inventory->id }}">
                             <tr>
                                 <x-td>{{ $index+1 }}</x-td>
-                                <x-td>
+                                {{-- <x-td>
                                   @if($inventory->image)
                                   <img class="mx-auto h-20 w-20 rounded-full" src="{{ asset('/storage/'.$inventory->image) }}" alt="" />
                                 @else
                               No image found
                                   @endif
-                                </x-td>
+                                </x-td> --}}
                                 <x-td>
                                     <input type="text" wire:model.debounce.500ms="inventories.{{ $index }}.item"
                                         wire:keyup="updateUnitInventory({{ $inventory->id }})"
@@ -76,7 +72,7 @@
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td>
-                                <x-td>
+                                {{-- <x-td>
                                     <button type="button" wire:click="uploadImage({{ $inventory->id }})"
                                         wire:loading.remove
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -86,21 +82,18 @@
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         Loading...
                                     </button>
-                                </x-td>
+                                </x-td> --}}
                                 <x-td>
-                                    <button type="button" wire:click="removeUnitInventory({{ $inventory->id }})"
+                                    <button type="button" data-modal-target="delete-unit-inventory-modal-{{ $inventory->id }}" data-modal-toggle="delete-unit-inventory-modal-{{ $inventory->id }}"
                                         wire:loading.remove
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         Remove
-                                    </button>
-                                    <button type="button" wire:loading disabled wire:target="removeUnitInventory"
-                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                        Loading...
                                     </button>
                                     @include('layouts.notifications')
                                 </x-td>
                             </tr>
                         </div>
+                       @livewire('delete-unit-inventory-component', ['inventory' => $inventory], key(Carbon\Carbon::now()->timestamp.''.$inventory->id))
                         @endforeach
                     </tbody>
                 </table>
@@ -140,6 +133,5 @@
         </button>
     </div>
     @endif
-
-
+    @livewire('create-unit-inventory-component',['unit' => $unitDetails])
 </div>
