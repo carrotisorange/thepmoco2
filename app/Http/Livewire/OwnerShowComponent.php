@@ -243,6 +243,7 @@ class OwnerShowComponent extends Component
         Collection::where('owner_uuid', $this->owner_details->uuid)->delete();
         AcknowledgementReceipt::where('owner_uuid', $this->owner_details->uuid)->delete();
         Owner::where('uuid', $this->owner_details->uuid)->delete();
+        User::where('owner_uuid', $this->owner_details->uuid)->delete();
 
         return redirect('/property/'.$this->owner_details->property_uuid.'/owner/')->with('success', 'Success!');
 
