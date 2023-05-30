@@ -239,8 +239,8 @@ class TenantShowComponent extends Component
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantBillController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantCollectionController')->destroy_collection_from_tenant_page($this->tenant_details->uuid);
-        
         app('App\Http\Controllers\PropertyTenantController')->destroy($this->tenant_details->uuid);
+        User::where('tenant_uuid', $this->tenant_details->uuid)->delete();
 
 
       return redirect('/property/'.$this->tenant_details->property_uuid.'/tenant/')->with('success', 'Success!');

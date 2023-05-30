@@ -108,7 +108,7 @@ class GuestShowComponent extends Component
         AcknowledgementReceipt::where('guest_uuid', $this->guest_details->uuid)->delete();
         Guest::where('uuid', $this->guest_details->uuid)->delete();
         Booking::where('guest_uuid', $this->guest_details->uuid)->delete();
-
+        
         return redirect('/property/'.$this->property->uuid.'/guest/')->with('success', 'Success!');
 
     }
