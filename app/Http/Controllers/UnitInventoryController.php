@@ -55,7 +55,7 @@ class UnitInventoryController extends Controller
             ->get()
         ];
 
-        $pdf = \PDF::loadView('inventories.export', $data)->setPaper('a4', 'landscape');
+        $pdf = \PDF::loadView('inventories.export', $data);
 
          $pdf->output();
 

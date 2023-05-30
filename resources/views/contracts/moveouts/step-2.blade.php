@@ -15,7 +15,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
                             <!-- Completed Step -->
-                            <a href="" class="group">
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-1" class="group">
                                 <span
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
@@ -48,7 +48,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Current Step -->
-                            <a href="#" aria-current="step">
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-2" aria-current="step">
                                 <span
                                     class="absolute top-0 left-0 h-full w-1 bg-purple-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
@@ -84,7 +84,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-3" class="group">
                                 <span
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
@@ -119,7 +119,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-4" class="group">
                                 <span
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
@@ -149,7 +149,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="relative overflow-hidden lg:flex-1">
+                    {{-- <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
                             <a href="#" class="group">
@@ -181,7 +181,7 @@
                                 </svg>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
 
 
                 </ol>
@@ -191,7 +191,8 @@
 
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
             {{-- start-step-3-form --}}
-            @livewire('contract-moveout-step2-component', ['contract' => $contract])
+            @livewire('unit-inventory-component', ['property' => $property,'unitDetails' => $contract->unit, 'tenant' => $contract->tenant, 'contract' => $contract, 'ismovein' => $ismovein])
+            {{-- @livewire('contract-moveout-step2-component', ['contract' => $contract]) --}}
             {{-- end-step-3-form --}}
         </div>
     </div>

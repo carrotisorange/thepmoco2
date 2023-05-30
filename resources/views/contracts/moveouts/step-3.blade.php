@@ -15,7 +15,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
                             <!-- Completed Step -->
-                            <a href="" class="group">
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-1" class="group">
                                 <span
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
@@ -47,7 +47,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
                             <!-- Completed Step -->
-                            <a href="" class="group">
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-2" class="group">
                                 <span
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
@@ -78,7 +78,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Current Step -->
-                            <a href="#" aria-current="step">
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-3" aria-current="step">
                                 <span
                                     class="absolute top-0 left-0 h-full w-1 bg-purple-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
@@ -114,7 +114,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ Session::get('property') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-4" class="group">
                                 <span
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
@@ -145,7 +145,7 @@
                         </div>
                     </li>
 
-                    <!-- Step 4 -->
+                    {{-- <!-- Step 4 -->
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
@@ -178,7 +178,7 @@
                                 </svg>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
 
 
                 </ol>
