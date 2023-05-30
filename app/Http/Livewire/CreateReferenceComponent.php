@@ -40,7 +40,7 @@ class CreateReferenceComponent extends Component
 
        Reference::create($validated);
 
-         return redirect(url()->previous());
+         return redirect(url()->previous())->with('success', 'Success!');
     }
 
     public function render()

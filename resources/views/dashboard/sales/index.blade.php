@@ -79,7 +79,7 @@
                         {{-- @if($user->checkoutoption_id == '1') --}}
                         <span
                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
-                            {{ $user->checkoutoption_id }}
+                            {{ $user->checkoutoption->option }}
                         </span>
                         {{-- @else
                         <span
@@ -90,7 +90,7 @@
                     </x-td>
                     
                     <x-td>
-                        {{-- {{ $user->discount_code }} --}}
+                        {{ $user->discount_code }}
                     </x-td>
                     <x-td>
                         @if($user->trial_ends_at)

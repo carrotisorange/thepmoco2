@@ -75,14 +75,14 @@
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ Session::get('property') }}/unit/{{ $bill->unit->uuid }}">
-                    {{ Str::limit($bill->unit->unit,10) }} </a> (T)
+                    {{ Str::limit($bill->unit->unit,10) }} </a>
                 </a>
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
             </x-td>
             <x-td>
-                {{ Str::limit($bill->particular->particular,10) }} </a> (T)
+                {{ Str::limit($bill->particular->particular,10) }} </a> 
             </x-td>
             <x-td>
                 {{ number_format($bill->bill, 2) }}

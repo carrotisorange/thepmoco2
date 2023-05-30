@@ -81,10 +81,10 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.file' => 'nullable',
             'particulars.*.unit_uuid' => 'nullable',
             'particulars.*.vendor_id' => 'nullable',
-            'quotation1' => 'nullable | max:102400',
-            'quotation2' => 'nullable | max:102400',
-            'quotation3' => 'nullable | max:102400',
-            'selected_quotation' => ['required_with:quotation1'],
+            // 'quotation1' => 'nullable | max:102400',
+            // 'quotation2' => 'nullable | max:102400',
+            // 'quotation3' => 'nullable | max:102400',
+            // 'selected_quotation' => ['required_with:quotation1'],
         ];
     }
 
@@ -98,10 +98,15 @@ class AccountPayableCreateStep1Component extends Component
     {
         sleep(1);
 
-        $this->validate();
+        $this->validate([
+             'quotation1' => 'nullable | max:102400',
+             'quotation2' => 'nullable | max:102400',
+             'quotation3' => 'nullable | max:102400',
+             'selected_quotation' => ['required_with:quotation1'],
+        ]);
 
         if(!$this->get_particulars()->count()){
-            return back()->with('error','Error!');
+            return redirect(url()->previous())->with('error', 'Please add at least 1 particular.');
         }
 
         AccountPayable::where('id', $this->accountpayable->id)

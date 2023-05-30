@@ -42,6 +42,7 @@ class BillController extends Controller
 
     public function create_new(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
         return view('bills.create-new',[
+            'property' => $property,
           'unit' => Unit::find($unit->uuid),
           'tenant' => $tenant,
           'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),

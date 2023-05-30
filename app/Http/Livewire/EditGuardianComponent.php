@@ -45,7 +45,7 @@ class EditGuardianComponent extends Component
 
         Guardian::where('id', $this->guardian_details->id)->update($validated);
 
-         return redirect(url()->previous());
+         return redirect(url()->previous())->with('success', 'Success!');
     }
 
     public function render()

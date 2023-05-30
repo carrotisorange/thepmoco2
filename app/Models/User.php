@@ -80,7 +80,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_account_receivable_update_allowed' => 1,
         'is_account_receivable_delete_allowed' => 1,
 
-        'plan_id' => null,
+        'plan_id' => 1,
 
         'is_portfolio_unlocked' => 1, 
         'is_contract_unlocked' => 1,
@@ -89,6 +89,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_ownerportal_unlocked' => 1,
         'is_accountpayable_unlocked' => 1,
         'is_accountreceivable_unlocked' => 1,
+
+        'checkoutoption_id' => 1
     ];
 
     public function roles()

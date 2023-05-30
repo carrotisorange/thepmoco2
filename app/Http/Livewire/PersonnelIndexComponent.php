@@ -25,6 +25,7 @@ class PersonnelIndexComponent extends Component
       ->join('properties', 'property_uuid', 'properties.uuid')
       ->select('*')
       ->where('property_uuid', $this->property->uuid)
+      ->where('user_id', '!=', auth()->user()->id)
       ->when($this->search, function($query){
       $query->where('name','like', '%'.$this->search.'%');
       })

@@ -21,24 +21,26 @@ class CreatePersonnelComponent extends Component
     public $email;
     public $mobile_number;
     
-   protected function rules()
-   {
-      return [
-         'email' => ['required', 'string', 'email', 'max:255'],
-         'role_id' => ['required', Rule::exists('roles', 'id')],
-      ];
-   }
+//    protected function rules()
+//    {
+//       return [
+//          'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')],
+//          'role_id' => ['required', Rule::exists('roles', 'id')],
+//       ];
+//    }
 
-   public function updated($propertyName)
-   {
-      $this->validateOnly($propertyName);
-   }
+//    public function updated($propertyName)
+//    {
+//       $this->validateOnly($propertyName);
+//    }
 
    public function storePersonnel(){
-    
-    $this->validate();
-    
 
+    $this->validate([
+        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')],
+        'role_id' => ['required', Rule::exists('roles', 'id')],
+    ]);
+    
     $username = Role::find($this->role_id)->role.''.UserProperty::where('property_uuid', $this->property->uuid)->count();
 
     $password = Str::random(8);
@@ -90,7 +92,7 @@ class CreatePersonnelComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
     }
 
-        return redirect(url()->previous());
+        return redirect(url()->previous())->with('success', 'Success!');
 
    }
 

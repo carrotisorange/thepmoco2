@@ -12,6 +12,7 @@ use App\Models\Particular;
 
 class BillCreateComponent extends Component
 {
+    public $property;
     public $tenant;
     public $unit;
 
@@ -94,12 +95,13 @@ class BillCreateComponent extends Component
     public function redirectToContractShowPage(){
         
 
-        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid);
+        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid);
     }
 
     public function render()
     {
         return view('livewire.bill-create-component',[
+            
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property')),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
             'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($this->tenant->uuid),

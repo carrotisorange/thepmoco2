@@ -54,17 +54,12 @@ class EditContractComponent extends Component
 
     public function updateContract(){
         
-
-        try{
-            $validated = $this->validate();
-        }catch(\Exception $e){
-            ddd($e);
-        }
-
+        $validated = $this->validate();
+   
         Contract::where('uuid', $this->contract->uuid)
         ->update($validated);
 
-         return redirect(url()->previous());
+         return redirect(url()->previous())->with('success', 'Success!');
     }
 
     public function render()
