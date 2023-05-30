@@ -102,13 +102,15 @@
                                 View</a>
 
                         </li>
+                        @if($contract->status != 'inactive' && $contract->status != 'forcedmoveout')
                         <li>
-
+                        
                             <a href="#/" data-modal-target="edit-contract-modal-{{$contract->uuid}}"
                                 data-modal-toggle="edit-contract-modal-{{$contract->uuid}}"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 Edit</a>
                         </li>
+                        @endif
                         <li>
                             @if($contract->status != 'pendingmovein')
                             <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/renew"
@@ -135,10 +137,10 @@
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Moveout</a>
                             @endif
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/delete"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </x-td>
