@@ -71,6 +71,15 @@ class UnitInventoryComponent extends Component
         return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/inventory/'.$id);
     }
 
+     public function skipUnitInventoryProcess()
+    {
+        sleep(1);
+
+        return
+        redirect('/property/'.$this->unitDetails->property_uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success',
+        'Success!');
+    }
+
     public function addNewUnitInventory(){
 
         sleep(1);

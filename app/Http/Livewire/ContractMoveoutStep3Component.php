@@ -14,11 +14,15 @@ class ContractMoveoutStep3Component extends Component
 {
     public $contract;
 
-    public $unpaid_bills;
+    public $bills;
+
+    public $view = 'listView';
+
+    public $isPaymentAllowed = false;
 
     public function mount($contract)
     {
-        $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->get();
+        $this->bills = Tenant::find($this->contract->tenant->uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->get();
     }
 
     public function submitForm()
