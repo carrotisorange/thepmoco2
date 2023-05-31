@@ -193,7 +193,18 @@
                     </div>
                     <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="inventories" role="tabpanel"
                         aria-labelledby="inventories-tab">
+                    <button type="button" wire:loading.remove
+                        onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/inventory/{{ Str::random(8) }}/create'"
+                        class="rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
 
+                        <i class="fa-solid fa-pen-to-square"></i>&nbsp; Update
+                    </button>
+                    &nbsp;
+                    <a target="_blank"
+                        href='/property/{{ $this->unit_details->property_uuid }}/unit/{{ $this->unit_details->uuid }}/inventory/{{ Str::random(8) }}/export'"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        <i class="fa-solid fa-download"></i> &nbsp; Export
+                    </a>
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
@@ -204,24 +215,9 @@
                                         class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
+                                    
                                     @if($inventories->count())
-                                    <div class="p-4 flex justify-end">
-                                        <button type="button" wire:loading.remove onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/inventory/{{ Str::random(8) }}/create'"
-                                            
-                                            class="rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-
-                                            <i class="fa-solid fa-pen-to-square"></i>&nbsp; Update
-                                        </button>
-                                        &nbsp;
-                                        <button type="button" wire:click="exportUnitInventory" wire:loading.remove
-                                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                            <i class="fa-solid fa-download"></i> &nbsp; Export
-                                        </button>
-                                        <button type="button" wire:loading disabled
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Loading...
-                                        </button>
-                                    </div>
+                                    
                                     @include('units.tables.inventories')
                                     @else
                                     <div class="mt-10 text-center mb-10">

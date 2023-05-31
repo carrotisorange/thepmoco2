@@ -2,7 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
-            <x-th>Image</x-th>
+            {{-- <x-th>Image</x-th> --}}
             <x-th>Item</x-th>
             <x-th>Quantity</x-th>
             <x-th>Remarks</x-th>
@@ -14,7 +14,7 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>{{ $index+1 }}</x-td>
-            <x-td><img class="mx-auto h-18 w-18 rounded-full" src="{{ asset('/storage/'.$item->image) }}" alt="" /></x-td>
+            {{-- <x-td><img class="mx-auto h-18 w-18 rounded-full" src="{{ asset('/storage/'.$item->image) }}" alt="" /></x-td> --}}
             <x-td>{{ $item->item }}</x-td>
             <x-td>{{ $item->quantity }}</x-td>
             <x-td>{{ $item->remarks }}</x-td>
