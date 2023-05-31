@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendBillToOwner;
+use Illuminate\Support\Str;
 
 class OwnerBillController extends Controller
 {
@@ -155,7 +156,7 @@ class OwnerBillController extends Controller
 
         $canvas->set_opacity(.2);
 
-        $canvas->page_text($width/5, $height/2, substr_replace($property->property, "", 18), null, 50, array(0,0,0),1,1,-30);
+        $canvas->page_text($width/5, $height/2, Str::limit("", 18), null, 50, array(0,0,0),1,1,-30);
 
         return $pdf;
     }

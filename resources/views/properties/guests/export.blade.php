@@ -43,7 +43,7 @@
             ;?>
     
     <p>
-        Length of stay: {{ $days }} day/s
+        Lengx-th of stay: {{ $days }} day/s
     </p>
     
     <p>
@@ -71,7 +71,7 @@
     </p>
     
     <p>
-        No of Person with Disability: {{ $guest->no_of_person_with_disability }}
+        No of Person wix-th Disability: {{ $guest->no_of_person_wix-th_disability }}
     </p>
     
     <p>
@@ -86,14 +86,14 @@
     <table class="">
     
         <tr>
-            <th>#</th>
-            <th>Name</th>
+            <x-th>#</x-th>
+            <x-th>Name</x-th>
         </tr>
     
         @foreach($additional_guests as $index => $additional_guest)
         <tr>
-            <td>{{ $index+1 }}</td>
-            <td>{{ $additional_guest->additional_guest }}</td>
+            <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ $additional_guest->additional_guest }}</x-td>
         </tr>
         @endforeach
     </table>

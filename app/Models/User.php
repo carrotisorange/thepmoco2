@@ -17,10 +17,11 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    public function getRouteKeyName()
-    {
-        return 'username';
-    }
+
+    // public function getRouteKeyName()
+    // {
+    //     return 'username';
+    // }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -33,7 +33,7 @@ class PersonnelIndexComponent extends Component
       $query->where('users.status', $this->status);
         })
      ->get();
-      
+
      return view('livewire.personnel-index-component', [
         'personnels' => $personnels,
         'statuses' => app('App\Http\Controllers\UserPropertyController')->get_user_statuses($this->property->uuid),

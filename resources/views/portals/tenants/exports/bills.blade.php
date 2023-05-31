@@ -28,25 +28,25 @@
     <table class="">
     
         <tr>
-            <th>Bill #</th>
-            <th>Date Posted</th>
-            <th>Unit</th>
-            <th>Particular</th>
-            <th>Period Covered</th>
-            <th>Amount Due</th>
+            <x-th>Bill #</x-th>
+            <x-th>Date Posted</x-th>
+            <x-th>Unit</x-th>
+            <x-th>Particular</x-th>
+            <x-th>Period Covered</x-th>
+            <x-th>Amount Due</x-th>
         </tr>
     
         @foreach($bills as $item)
     
         <tr>
             @if ($item->bill-$item->initial_payment > 0)
-            <td>{{ $item->bill_no }}</td>
-            <td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</td>
-            <td>{{ $item->unit->unit }}</td>
-            <td>{{ $item->particular->particular }}</td>
-            <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
-                Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
-            <td>{{ number_format(($item->bill-$item->initial_payment),2) }}</td>
+            <x-td>{{ $item->bill_no }}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
+            <x-td>{{ $item->unit->unit }}</x-td>
+            <x-td>{{ $item->particular->particular }}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
+                Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </x-td>
+            <x-td>{{ number_format(($item->bill-$item->initial_payment),2) }}</x-td>
             @endif
         </tr>
         @endforeach

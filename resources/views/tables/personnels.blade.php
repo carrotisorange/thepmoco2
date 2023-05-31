@@ -19,7 +19,7 @@
                 <div class="flex items-center">
                     <div class="h-10 w-10 flex-shrink-0">
                         <img onerror="this.onerror=null;this.src='{{ asset('/brands/avatar.png') }}';" class="h-10 w-10 rounded-full"
-                            src="{{ asset('/storage/'.$personnel->avatar) }}" alt="">
+                            src="{{ asset('/storage/'.$personnel->avatar) }}" alt=""> 
                     </div>
                     <div class="ml-4">
                         <div class="text-gray-900">
@@ -63,7 +63,7 @@
                 </button>
             </x-td>
         </tr>
-        @livewire('edit-personnel-component', ['property'=> $property, 'personnel' => $personnel], key(Carbon\Carbon::now()->timestamp.''.$personnel->id))
+        @livewire('edit-personnel-component', ['property'=> $property, 'personnel' => $personnel], key(Carbon\Carbon::now()->timestamp.''.$index.''.$personnel->id))
         @endforeach
     </tbody>
 </table>

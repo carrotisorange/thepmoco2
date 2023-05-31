@@ -6,24 +6,25 @@
         </p>
         <table class="">
             <tr>
-                <th>#</th>
-                <th>AR #</th>
-                <th>Bill #</th>
-                <th>Unit</th>
-                {{-- <th>Date</th> --}}
-                <th>Bill To</th>
-                <th>Particulars</th>
-                <th>Period Covered</th>
-                <th>Amount</th>
+                <x-th>#</x-th>
+                <x-th>AR #</x-th>
+                <x-th>Bill #</x-th>
+                <x-th>Unit</x-th>
+                {{-- <x-th>Date</x-th> --}}
+                <x-th>Bill To</x-th>
+                <x-th>Particulars</x-th>
+                <x-th>Period Covered</x-th>
+                <x-th>Amount</x-th>
             </tr>
             @foreach($collections as $index => $item)
+            <tbody class="bg-white divide-y divide-gray-200">
             <tr>
-                <td>{{ $index+1 }}</td>
-                <td>{{ $item->ar_no }}</td>
-                <td>{{ $item->bill->bill_no }}</td>
-                {{-- <td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</td> --}}
-                <td>{{ $item->unit->unit }}</td>
-                <td>
+                <x-td>{{ $index+1 }}</x-td>
+                <x-td>{{ $item->ar_no }}</x-td>
+                <x-td>{{ $item->bill->bill_no }}</x-td>
+                {{-- <x-td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</x-td> --}}
+                <x-td>{{ $item->unit->unit }}</x-td>
+                <x-td>
                     @if($item->tenant_uuid)
                     {{ $item->tenant->tenant}} (T)
                     @elseif($item->owner_uuid)
@@ -33,23 +34,24 @@
                     @else
                     NA
                     @endif
-                </td>
-                <td>{{ $item->bill->particular->particular }}</td>
-                <td>{{ Carbon\Carbon::parse($item->bill->start)->format('M d,
-                    Y').'-'.Carbon\Carbon::parse($item->bill->end)->format('M d, Y') }} </td>
-                <td>{{ number_format($item->collection,2) }}</td>
+                </x-td>
+                <x-td>{{ $item->bill->particular->particular }}</x-td>
+                <x-td>{{ Carbon\Carbon::parse($item->bill->start)->format('M d,
+                    Y').'-'.Carbon\Carbon::parse($item->bill->end)->format('M d, Y') }} </x-td>
+                <x-td>{{ number_format($item->collection,2) }}</x-td>
             </tr>
             @endforeach
             <tr>
-                <td><b>Total</b> </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><b>{{ number_format($collections->sum('collection'), 2) }}</b> </td>
+                <x-td><b>Total</b> </x-td>
+                <x-td></x-td>
+                <x-td></x-td>
+                <x-td></x-td>
+                <x-td></x-td>
+                <x-td></x-td>
+                <x-td></x-td>
+                <x-td><b>{{ number_format($collections->sum('collection'), 2) }}</b> </x-td>
             </tr>
+            </tbody>
         </table>
 
 @endsection

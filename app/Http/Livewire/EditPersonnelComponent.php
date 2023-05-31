@@ -20,26 +20,13 @@ class EditPersonnelComponent extends Component
     public $is_approved;
 
     public function mount($personnel){
-        $this->name = $personnel->name;
-        $this->email = $personnel->email;
-        $this->role_id = UserProperty::where('user_id', $this->personnel->id)->pluck('role_id')->first();
-        $this->is_approved = UserProperty::where('user_id', $this->personnel->id)->pluck('is_approved')->first();
+        $this->name = $personnel->user->name;
+        $this->email = $personnel->user->email;
+        $this->role_id = $personnel->role_id;
+        $this->is_approved = $personnel->is_approved;
     }
 
-    protected function rules()
-    {
-        return [
-            'role_id' => ['required', Rule::exists('roles', 'id')],
-            'is_approved' => 'required'
-        ];
-    }
-
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
-
-    public function updatePersonnel(){
+    public function updateButton(){
 
         $validatedUserData = $this->validate([
             'name' => 'required',
@@ -49,7 +36,10 @@ class EditPersonnelComponent extends Component
         User::where('id', $this->personnel->id)
         ->update($validatedUserData);
 
-        $validatedUserPropertyData = $this->validate();
+        $validatedUserPropertyData = $this->validate([
+            'role_id' => ['required', Rule::exists('roles', 'id')],
+            'is_approved' => 'required'
+        ]);
     
         UserProperty::where('user_id', $this->personnel->id)
         ->update($validatedUserPropertyData);
@@ -59,10 +49,8 @@ class EditPersonnelComponent extends Component
 
     public function render()
     {
-
         return view('livewire.edit-personnel-component',[
             'roles' => app('App\Http\Controllers\RoleController')->get_roles($this->property->uuid),
-
         ]);
     }
 }

@@ -23,8 +23,7 @@ class CreateBillComponent extends Component
     public $bill;
 
     public function mount(){
-      $this->start = Carbon::parse($this->start)->format('Y-m-d');
-      $this->end = Carbon::parse($this->end)->format('Y-m-d');
+      $this->start = Carbon::now()->format('Y-m-d');
     }
 
     protected function rules()
@@ -33,7 +32,7 @@ class CreateBillComponent extends Component
          'particular_id' => ['required', Rule::exists('particulars', 'id')],
          'start' => 'required|date',
          'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
-         'end' => 'nullable|date|after:start',
+         'end' => 'required|date|after:start',
          'bill' => 'required|numeric|min:1',
       ];
     }

@@ -19,7 +19,7 @@
                 action="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/bill/export">
                 @csrf
 
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Download Unpaid Bills</h3>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Export Unpaid Bills</h3>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-full px-3">
                         <x-label for="due_date">
