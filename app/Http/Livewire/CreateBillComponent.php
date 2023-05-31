@@ -23,8 +23,7 @@ class CreateBillComponent extends Component
     public $bill;
 
     public function mount(){
-      $this->start = Carbon::parse($this->start)->format('Y-m-d');
-      $this->end = Carbon::parse($this->end)->format('Y-m-d');
+      $this->start = Carbon::now()->format('Y-m-d');
     }
 
     protected function rules()

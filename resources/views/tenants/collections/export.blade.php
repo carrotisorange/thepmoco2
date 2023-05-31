@@ -60,7 +60,7 @@
     </tr>
 
     @foreach($collections as $item)
-
+    <tbody class="bg-white divide-y divide-gray-200">
     <tr>
         <x-td>{{ $item->bill->bill_no }}</x-td>
 
@@ -72,7 +72,7 @@
         <x-td>{{ number_format($item->collection,2) }}</x-td>
 
     </tr>
-
+    </tbody>
     @endforeach
 </table>
 </p>

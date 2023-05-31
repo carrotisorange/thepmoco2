@@ -17,6 +17,7 @@
                 <x-th>Amount</x-th>
             </tr>
             @foreach($collections as $index => $item)
+            <tbody class="bg-white divide-y divide-gray-200">
             <tr>
                 <x-td>{{ $index+1 }}</x-td>
                 <x-td>{{ $item->ar_no }}</x-td>
@@ -50,6 +51,7 @@
                 <x-td></x-td>
                 <x-td><b>{{ number_format($collections->sum('collection'), 2) }}</b> </x-td>
             </tr>
+            </tbody>
         </table>
 
 @endsection
