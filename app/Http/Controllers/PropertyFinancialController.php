@@ -7,6 +7,7 @@ use App\Models\Property;
 use DB;
 use Carbon\Carbon;
 use Session;
+use Illuminate\Support\Str;
 
 class PropertyFinancialController extends Controller
 {
@@ -128,7 +129,7 @@ class PropertyFinancialController extends Controller
 
           $canvas->set_opacity(.2);
 
-          $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+              $canvas->page_text($width/5, $height/2, Str::limit($property->property,15), null, 55, array(0,0,0),2,2,-30);
 
           return $pdf->stream($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
     }
@@ -183,7 +184,7 @@ class PropertyFinancialController extends Controller
 
           $canvas->set_opacity(.2);
 
-          $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+              $canvas->page_text($width/5, $height/2, Str::limit($property->property,15), null, 55, array(0,0,0),2,2,-30);
 
           return $pdf->stream($property->property.'-'.Carbon::now()->format('M d, Y').'-'.$type.'-reports.pdf');
     }

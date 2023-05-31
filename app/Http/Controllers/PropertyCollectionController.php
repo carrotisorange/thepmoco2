@@ -7,6 +7,7 @@ use App\Models\Property;
 use Session;
 use PDF;
 use Carbon\Carbon;
+use App\Models\AcknowledgementReceipt;
 
 class PropertyCollectionController extends Controller
 {
@@ -18,7 +19,8 @@ class PropertyCollectionController extends Controller
     
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
         
-        $collections = Property::find(Session::get('property'))->acknowledgementreceipts;
+        $collections = AcknowledgementReceipt::where('property_uuid', $property->uuid)->orderBy('id','desc')->get();
+        // $collections = Property::find(Session::get('property'))->acknowledgementreceipts;
 
         return view('properties.collections.index',[
           'property' => $property,

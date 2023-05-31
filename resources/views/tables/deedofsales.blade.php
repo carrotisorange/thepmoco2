@@ -46,9 +46,9 @@
             </x-td> --}}
             <x-td>
 
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $deedofsale->unit_uuid }}/owner/{{ $deedofsale->owner_uuid }}/deed_of_sale/{{ $deedofsale->uuid }}/delete"
+                {{-- <a href="/property/{{ Session::get('property') }}/unit/{{ $deedofsale->unit_uuid }}/owner/{{ $deedofsale->owner_uuid }}/deed_of_sale/{{ $deedofsale->uuid }}/delete"
                     class="text-red-500 text-decoration-line: underline">
-                    Remove</a>
+                    Remove</a> --}}
 
             </x-td>
 

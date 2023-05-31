@@ -16,7 +16,7 @@
                         </h3>
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">When you delete this owner, all data that are associated
-                                with it will be deleted as well. <br> This includes units, spouse, representatives,
+                                with the owner will be deleted as well. <br> This includes units, spouse, representatives,
                                 bills, collections, and banks.</p>
                         </div>
                         <div class="mt-2">
@@ -25,10 +25,19 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
+                    @can('accountownerandmanager')
                     <button type="button" wire:click="deleteOwner" wire:loading.remove
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:text-sm">
                         Confirm
                     </button>
+                  
+                    @else
+                    <button type="button" disabled wire:loading.remove
+                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:text-sm">
+                        <i class="fa-solid fa-lock"></i>&nbsp; Confirm
+                    </button>
+                    <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.</p>
+                    @endcan
                     <button type="button" wire:loading wire:target="deleteOwner" disabled
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:text-sm">
                         Loading...

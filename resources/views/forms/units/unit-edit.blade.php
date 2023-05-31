@@ -275,12 +275,12 @@
     <div class="mt-10 flex justify-end">
         <button type="button" data-modal-toggle="warning-destroy-unit-modal" wire:loading.remove
             class="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-            <i class="fa-solid fa-trash"></i>&nbsp; Delete
+            Delete
         </button>
         &nbsp
         <button type="button" wire:loading.remove wire:click="submitForm()"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-            <i class="fa-solid fa-check"></i> &nbsp; Update
+           Update
         </button>
         <button type="button" wire:loading disabled wire:target="submitForm"
             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
