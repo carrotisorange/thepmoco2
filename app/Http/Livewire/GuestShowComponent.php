@@ -14,6 +14,7 @@ use App\Models\Bill;
 use App\Models\Collection;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Unit;
 use App\Mail\SendWelcomeMailToGuest;
 
 class GuestShowComponent extends Component
@@ -29,7 +30,7 @@ class GuestShowComponent extends Component
     public $unit_uuid;
     public $movein_at;
     public $moveout_at;
-
+    public $price;
 
     public $view = 'listView';
 
@@ -61,8 +62,6 @@ class GuestShowComponent extends Component
 
     public function updateGuest()
     {
-        
-       
         $validatedData = $this->validate(
             [
                 'email' => 'required|email',
@@ -84,9 +83,6 @@ class GuestShowComponent extends Component
     }
 
     public function store_additional_guest(){
-
-        
-
         if(!$this->additional_guest){
             return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');
         }
@@ -121,20 +117,26 @@ class GuestShowComponent extends Component
 
     public function storeBooking(){
         
-        
-
-        Booking::create([
-            'uuid' => app('App\Http\Controllers\PropertyController')->generate_uuid(),
-            'unit_uuid' => $this->unit_uuid,
-            'movein_at' => $this->movein_at,
-            'moveout_at' => $this->moveout_at,
-            'property_uuid' => $this->property->uuid,
-            'guest_uuid' => $this->guest_details->uuid
+        $validated = $this->validate([
+            'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
+            'movein_at' => 'required|date',
+            'moveout_at' => 'required|date|after:movein_at',
+            'price' => 'nullable'
         ]);
+
+        $validated['uuid'] = app('App\Http\Controllers\PropertyController')->generate_uuid();
+        $validated['property_uuid'] = $this->property->uuid;
+        $validated['guest_uuid'] = $this->guest_details->uuid;
+
+        Booking::create($validated);
 
         $this->send_mail_to_guest($this->guest_details);
 
-        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Success!');
+    }
+
+    public function updatedUnitUuid(){
+        $this->price = Unit::find($this->unit_uuid)->transient_rent;
     }
 
      public function send_mail_to_guest($guest)

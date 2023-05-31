@@ -175,7 +175,7 @@
                                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
-                                    @include('owners.tables.units')
+                                    @include('tables.deedofsales')
                                 </div>
                             </div>
                         </div>
@@ -191,7 +191,7 @@
                                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
-                                    @include('owners.tables.representatives')
+                                    @include('tables.representatives')
                                 </div>
                             </div>
                         </div>
@@ -207,7 +207,7 @@
                                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
-                                    @include('owners.tables.spouse')
+                                    @include('tables.spouses')
                                 </div>
                             </div>
                         </div>
@@ -258,7 +258,7 @@
                                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3  sm:left-16">
 
                                     </div>
-                                    @include('owners.tables.banks')
+                                    @include('tables.banks')
                                 </div>
                             </div>
                         </div>

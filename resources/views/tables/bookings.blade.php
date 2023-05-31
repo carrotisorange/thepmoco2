@@ -5,6 +5,7 @@
             <x-th>Confirmation No</x-th>
             <x-th>Guest</x-th>
             <x-th>Unit</x-th>
+            <x-th>Rent/night</x-th>
             <x-th>Check-in</x-th>
             <x-th>Check-out</x-th>
             <x-th>Status</x-th>
@@ -22,6 +23,7 @@
                     class="text-indigo-500 text-decoration-line: underline">{{ $booking->guest->guest }}</a></x-td>
             <x-td><a href="/property/{{ $booking->property_uuid }}/unit/{{ $booking->unit->uuid }}"
                     class="text-indigo-500 text-decoration-line: underline">{{ $booking->unit->unit }}</a></x-td>
+            <x-td>{{ number_format($booking->price,2) }}</x-td>
             <x-td>{{Carbon\Carbon::parse($booking->movein_at)->format('M d, Y')}}</x-td>
             <x-td>{{Carbon\Carbon::parse($booking->moveout_at)->format('M d, Y')}}</x-td>
             <x-td>{{ $booking->status }}</x-td>

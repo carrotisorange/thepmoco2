@@ -22,6 +22,7 @@ class DeedOfSaleController extends Controller
         $this->authorize('is_owner_portal_create_allowed');
 
         return view('deed_of_sale.create',[
+            'property' => $property,
             'unit' => $unit,
             'owner' => $owner
         ]);

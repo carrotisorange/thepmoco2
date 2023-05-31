@@ -30,9 +30,9 @@
             <x-td>{{ $index+1 }}</x-td>
             {{-- <x-td><img class="mx-auto h-20 w-20 rounded-full" src="{{ public_path('/storage/'.$item->image) }}"
                     alt="" /></x-td> --}}
-            <x-td>{{ substr_replace($item->item, "...", 10) }}</x-td>
+            <x-td>{{ Str::limit($item->item,20) }}</x-td>
             <x-td>{{ $item->quantity }}</x-td>
-            <x-td>{{ substr_replace($item->remarks, "...", 20) }}</x-td>
+            <x-td>{{ Str::limit($item->remarks,20) }}</x-td>
             <x-td>{{Carbon\Carbon::parse($item->created_at)->format('M d, Y')}}</x-td>
             <x-td>{{Carbon\Carbon::parse($item->updated_at)->format('M d, Y')}}</x-td>
         </tr>

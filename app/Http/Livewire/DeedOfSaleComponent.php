@@ -3,12 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Models\DeedOfSale;
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use DB;
 use App\Models\Unit;
-use Session;
 
 use Livewire\Component;
 
@@ -17,31 +14,27 @@ class DeedOfSaleComponent extends Component
 
     use WithFileUploads;
 
+    public $property;
+
     public $unit;
     public $owner;
-
-    public function mount($unit, $owner)
-    {
-        $this->unit = $unit;
-        $this->owner = $owner;
-        $this->turnover_at = Carbon::now()->format('Y-m-d');
-    }
 
     public $title;
     public $tax_declaration;
     public $deed_of_sales;
     public $contract_to_sell;
     public $certificate_of_membership;
-    public $is_the_unit_for_rent_to_tenant;
+    public $contract;
 
     protected function rules()
     {
         return [
-            'title' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'tax_declaration' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'deed_of_sales' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'contract_to_sell' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'certificate_of_membership' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'title' => 'nullable | mimes:jpg,png,pdf,docx|max:10240',
+            'tax_declaration' => 'nullable | mimes:jpg,png,pdf,docx|max:10240',
+            'deed_of_sales' => 'nullable | mimes:jpg,png,pdf,docx|max:10240',
+            'contract_to_sell' => 'nullable | mimes:jpg,png,pdf,docx|max:10240',
+            'certificate_of_membership' => 'nullable | mimes:jpg,png,pdf,docx|max:10240',
+            'contract' => 'nullable | mimes:jpg,png,pdf,docx|max:10240',
         ];
     }
 
@@ -52,49 +45,37 @@ class DeedOfSaleComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
-
         try{
 
             $validatedData = $this->validate();
 
             $this->store_deed_of_sale($validatedData);
 
-            $this->update_unit();
+            app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, 5, 7);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, 7);
-
-            // if(Session::get('owner_uuid')){
-            //     return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/'.Str::random(8).'/create')->with('success','Deed of sale is successfully created.');
-            // }else{
-                return
-                redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Success!');
-            // }
+            return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Success!');
             
         }catch(\Exception $e)
         {
-            return back()->with('error','Cannot perform your action.');
+            return back()->with($e);
         }
-    }
-
-    public function update_unit()
-    {
-        Unit::where('unit', $this->unit->uuid)
-        ->update([
-            'is_the_unit_for_rent_to_tenant' => $this->is_the_unit_for_rent_to_tenant
-        ]);
     }
 
     public function store_deed_of_sale($validatedData)
     {
         $validatedData = $this->validate();
+
         $validatedData['uuid'] = Str::uuid();
         $validatedData['unit_uuid'] = $this->unit->uuid;
         $validatedData['owner_uuid'] = $this->owner->uuid;
         $validatedData['status'] = 'active';
         $validatedData['classification'] = 'regular';
-        $validatedData['property_uuid'] = Session::get('property');
-        
+        $validatedData['property_uuid'] = $this->property->uuid;
+
+        if($this->contract)
+        {
+            $validatedData['contract'] = $this->title->store('contracts');
+        }
 
         if($this->title)
         {
@@ -121,7 +102,7 @@ class DeedOfSaleComponent extends Component
             $validatedData['certificate_of_membership'] = $this->certificate_of_membership->store('certificate_of_memberships');
         }
 
-        DeedOfSale::create($validatedData)->uuid;
+        DeedOfSale::create($validatedData);
     }
 
     public function removeAttachment($attachment)

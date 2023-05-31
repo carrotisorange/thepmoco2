@@ -7,6 +7,7 @@ use Livewire\Component;
 use Carbon\Carbon;
 use App\Models\Booking;
 use Illuminate\Validation\Rule;
+use App\Models\Unit;
 
 class EditBookingComponent extends Component
 {
@@ -18,34 +19,29 @@ class EditBookingComponent extends Component
     public $movein_at;
     public $moveout_at;
     public $status;
+    public $price;
 
     public function mount(Booking $booking){
         $this->unit_uuid = $booking->unit_uuid;
         $this->movein_at = Carbon::parse($booking->movein_at)->format('Y-m-d');
         $this->moveout_at = Carbon::parse($booking->moveout_at)->format('Y-m-d');
         $this->status = $booking->status;
+        $this->price = $booking->price;
     }
-
-
-    protected function rules()
-    {
-        return [
-            'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
-            'movein_at' => 'required|date',
-            'moveout_at' => 'required|date|after:movein_at',
-            'status' => 'required'
-        ];
-    }
-
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
+    
+    public function updatedUnitUuid(){
+        $this->price = Unit::find($this->unit_uuid)->transient_rent;
     }
 
     public function updateBooking(){
 
-
-        $validated = $this->validate();
+        $validated = $this->validate([
+            'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
+            'movein_at' => 'required|date',
+            'moveout_at' => 'required|date|after:movein_at',
+            'status' => 'required',
+            'price' => 'nullable'
+        ]);
 
         Booking::where('uuid', $this->booking->uuid)->update($validated);
 

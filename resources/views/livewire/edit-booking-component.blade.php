@@ -33,13 +33,22 @@
                         <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid?
                             'selected'
                             : 'Select one' }}>
-                            {{ $unit->unit }} - ₱ {{ number_format($unit->transient_rent,
-                            2) }}/night
+                            {{ $unit->unit }} 
                         </option>
                         @endforeach
                     </x-form-select>
 
                     @error('unit_uuid')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="price">Rent/night</label>
+                    <input type="number" id="price" wire:model="price" readonly
+                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="" required>
+                    @error('price')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
