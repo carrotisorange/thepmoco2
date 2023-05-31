@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    
     <style>
         @page {
             margin: 100px 25px;
@@ -61,7 +62,24 @@
 
             padding: 5px;
         }
-    </style>
+
+        .watermark{
+        height:500px;
+        width:500px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 80;
+        right: 0;
+        z-index: -1;
+        opacity: 0.2;
+        }
+</style>
+
+
 </head>
 
 <body>
@@ -116,6 +134,45 @@
             Printed by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
         </p>
     </main>
+
+    <div class="watermark">
+<img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/240803611_1243262802782845_2256620312332033835_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=p3MumaNIVewAX_4yCfX&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCmU3j8-tp1lT3N-DmAtLdmKftAzut2N6zqlKZSfRmPAw&oe=647D0234" alt="martha logo" width="500" height="500">
+</div>
+<pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
 </body>
 
 </html>
