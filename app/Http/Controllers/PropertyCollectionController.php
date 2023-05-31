@@ -8,6 +8,7 @@ use Session;
 use PDF;
 use Carbon\Carbon;
 use App\Models\AcknowledgementReceipt;
+use Illuminate\Support\Str;
 
 class PropertyCollectionController extends Controller
 {
@@ -50,7 +51,7 @@ class PropertyCollectionController extends Controller
 
          $canvas->set_opacity(.2);
 
-         $canvas->page_text($width/5, $height/2, substr_replace($property->property, "", 18), null, 50,
+         $canvas->page_text($width/5, $height/2, Str::limit("", 18), null, 50,
          array(0,0,0),1,1,-30);
 
         return $pdf->stream($property->property.'-'.Carbon::parse($date)->format('M d,Y').'-dcr.pdf');

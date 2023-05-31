@@ -40,7 +40,7 @@
             <td>{{ $item->unit->unit.'-'.$item->bill_no}}</td>
             <td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</td>
             <td>{{ $item->unit->unit }}</td>
-            <td>{{ substr_replace($item->particular->particular, "...", 15) }}</td>
+            <td>{{ Str::limit($item->particular->particular, 15) }}</td>
             <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
                 Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
             <td>{{ number_format(($item->bill-$item->initial_payment),2) }}</td>
