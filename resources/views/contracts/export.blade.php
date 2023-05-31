@@ -35,25 +35,25 @@
     <p>
     <table class="">
         <tr>
-            <th>Bill #</th>
-            <th>Date Posted</th>
-            <th>Unit</th>
-            <th>Particular</th>
-            <th>Period Covered</th>
-            <th>Amount</th>
+            <x-th>Bill #</x-th>
+            <x-th>Date Posted</x-th>
+            <x-th>Unit</x-th>
+            <x-th>Particular</x-th>
+            <x-th>Period Covered</x-th>
+            <x-th>Amount</x-th>
         </tr>
     
         @forelse($bills as $item)
         <tr>
-            <td>{{ $item->bill_no }}</td>
-            <td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</td>
-            <td>{{ $item->unit->unit }}</td>
-            <td>{{ $item->particular->particular }}</td>
-            <td>{{ Carbon\Carbon::parse($item->start)->format('M d,
-                Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </td>
-            <td>{{ number_format($item->bill,2) }}</td>
+            <x-td>{{ $item->bill_no }}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
+            <x-td>{{ $item->unit->unit }}</x-td>
+            <x-td>{{ $item->particular->particular }}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
+                Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </x-td>
+            <x-td>{{ number_format($item->bill,2) }}</x-td>
             @empty
-            <td>No data found.</td>
+            <x-td>No data found.</x-td>
         </tr>
         @endforelse
     </table>
@@ -65,19 +65,19 @@
     <p>
     <table class="">
         <tr>
-            <th>Name</th>
-            <th>Relationship</th>
-            <th>Email</th>
-            <th>Mobile</th>
+            <x-th>Name</x-th>
+            <x-th>Relationship</x-th>
+            <x-th>Email</x-th>
+            <x-th>Mobile</x-th>
         </tr>
         @forelse($guardians as $item)
         <tr>
-            <td>{{ $item->guardian }}</td>
-            <td>{{ $item->relationship->relationship }}</td>
-            <td>{{ $item->email }}</td>
-            <td>{{ $item->mobile_number }}</td>
+            <x-td>{{ $item->guardian }}</x-td>
+            <x-td>{{ $item->relationship->relationship }}</x-td>
+            <x-td>{{ $item->email }}</x-td>
+            <x-td>{{ $item->mobile_number }}</x-td>
             @empty
-            <td>No data found.</td>
+            <x-td>No data found.</x-td>
         </tr>
         @endforelse
     </table>
@@ -90,19 +90,19 @@
     <table class="">
     
         <tr>
-            <th>Name</th>
-            <th>Relationship</th>
-            <th>Email</th>
-            <th>Mobile</th>
+            <x-th>Name</x-th>
+            <x-th>Relationship</x-th>
+            <x-th>Email</x-th>
+            <x-th>Mobile</x-th>
         </tr>
         @forelse($references as $item)
         <tr>
-            <td>{{ $item->reference }}</td>
-            <td>{{ $item->relationship->relationship }}</td>
-            <td>{{ $item->email }}</td>
-            <td>{{ $item->mobile_number }}</td>
+            <x-td>{{ $item->reference }}</x-td>
+            <x-td>{{ $item->relationship->relationship }}</x-td>
+            <x-td>{{ $item->email }}</x-td>
+            <x-td>{{ $item->mobile_number }}</x-td>
             @empty
-            <td>No data found.</td>
+            <x-td>No data found.</x-td>
         </tr>
     
         @endforelse
