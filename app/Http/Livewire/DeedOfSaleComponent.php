@@ -74,7 +74,7 @@ class DeedOfSaleComponent extends Component
 
         if($this->contract)
         {
-            $validatedData['contract'] = $this->title->store('contracts');
+            $validatedData['contract'] = $this->contract->store('contracts');
         }
 
         if($this->title)
