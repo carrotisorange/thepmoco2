@@ -17,8 +17,7 @@ use App\Models\Bill;
 use \PDF;
 use Carbon\Carbon;
 use App\Models\Contract;
-use App\Models\Wallet;
-use Google\Service\Pubsub\AcknowledgeRequest;
+use Illuminate\Support\Str;
 
 class TenantCollectionController extends Controller
 {
@@ -194,7 +193,7 @@ class TenantCollectionController extends Controller
 
          $canvas->set_opacity(.2);
 
-         $canvas->page_text($width/5, $height/2, $property->property, null, 55, array(0,0,0),2,2,-30);
+             $canvas->page_text($width/5, $height/2, Str::limit($property->property,15), null, 55, array(0,0,0),2,2,-30);
 
          return $pdf;
 

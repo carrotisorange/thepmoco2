@@ -12,11 +12,11 @@
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
                     <div class="mt-3 text-center sm:mt-5">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Delete a unit
+                        <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Delete a bill
                         </h3>
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">When you delete this unit, all data that are associated
-                                with
+                                with the bill
                                 will be deleted as well. <br> This includes, inventories, owners, tenants, guests,
                                 concerns,
                                 utilities, bills, and financials.</p>
