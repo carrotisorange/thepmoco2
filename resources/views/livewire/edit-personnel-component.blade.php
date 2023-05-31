@@ -16,11 +16,11 @@
                     </div>
                 </div>
             </div>
-            <form wire:submmit.prevent="updatePersonnel()">
+            {{-- <form wire:submmit.prevent="updateButton()"> --}}
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="birthdate">Name</label>
-                    <input type="name" wire:model="name"
+                    <label class="text-sm" for="name">Name</label>
+                    <input type="text" wire:model="name" name="name" id="name"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('name')
@@ -28,9 +28,9 @@
                     @enderror
                 </div>
 
-               <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="birthdate">Email</label>
-                    <input type="email" wire:model="email"
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="email">Email</label>
+                    <input type="email" wire:model="email" name="email" id="email"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('email')
@@ -40,7 +40,7 @@
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="role_id">Role</label>
-                    <x-form-select wire:model="role_id" class="">
+                    <x-form-select wire:model="role_id" name="role_id" id="role_id">
                         <option value="">Select one</option>
                         @foreach($roles as $role)
                         <option value="{{ $role->id }}" {{ $role->id===$role_id? 'selected' : 'Select one' }}>
@@ -53,34 +53,17 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-{{-- 
-                <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="status">Status</label>
-                    <x-form-select wire:model="status" class="">
-                       <option value="">Select one</option>
-                        <option value="active" {{ 'active'==$status ? 'Select one' : 'selected' }}>
-                            active</option>
-                        <option value="inactive" {{ 'inactive'==$status ? 'Select one' : 'selected' }}>inactive</option>
-                        <option value="banned" {{ 'banned'==$status ? 'Select one' : 'selected' }}>
-                            banned</option>
-                        <option value="pending" {{ 'pending'==$status ? 'Select one' : 'selected' }}>pending</option>
-                    </x-form-select>
-                
-                    @error('status')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div> --}}
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="is_approved">Is approved to access {{ $property->property }}?</label>
-                    <x-form-select wire:model="is_approved" class="">
+                    <x-form-select name="is_approved" id="is_approved" wire:model="is_approved" class="">
                         <option value="">Select one</option>
                         <option value="1" {{ '1'==$is_approved ? 'Select one' : 'selected' }}>
                             Yes</option>
                         <option value="0" {{ '0'==$is_approved ? 'Select one' : 'selected' }}>No</option>
-                       
+
                     </x-form-select>
-                
+
                     @error('is_approved')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -88,23 +71,24 @@
 
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
-                    <button type="button" wire:click="updatePersonnel" wire:loading.remove wire:target="updatePersonnel"
+                    <button type="button"  wire:loading.remove wire:target="updateButton" wire:click="updateButton"
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                         <i class="fa-solid fa-arrow-right"></i>&nbsp; Update
                     </button>
                     @else
-                    <button type="button" disabled wire:loading.remove wire:target="updatePersonnel"
+                    <button type="button" disabled wire:loading.remove wire:target="updateButton" 
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                         <i class="fa-solid fa-lock"></i>&nbsp; Update
                     </button>
-                    <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.</p>
+                    <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.
+                    </p>
                     @endcan
                     <button type="button" wire:loading disabled
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                         Loading...
                     </button>
                 </div>
-            </form>
+            {{-- </form> --}}
         </div>
     </div>
 </x-modal-component>

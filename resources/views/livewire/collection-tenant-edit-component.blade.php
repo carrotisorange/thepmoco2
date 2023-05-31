@@ -208,7 +208,7 @@
             href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/collection/{{ $batch_no }}">
             Cancel
         </a>
-        <x-button form="edit-form"
+        <x-button type="button" form="edit-form"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
             Confirm Payment
         </x-button>
