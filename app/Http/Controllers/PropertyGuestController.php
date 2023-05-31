@@ -322,8 +322,7 @@ class PropertyGuestController extends Controller
 
          $canvas->set_opacity(.2);
 
-         $canvas->page_text($width/5, $height/2, $property->property, null,
-         55, array(0,0,0),2,2,-30);
+         $canvas->page_text($width/5, $height/2, "", null, 55, array(0,0,0),2,2,-30);
 
         return $pdf->stream($guest->unit->unit.'-'.Carbon::now()->format('M d, Y').'-guest-info.pdf');
     }

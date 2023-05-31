@@ -68,7 +68,7 @@ class PropertyAccountPayableController extends Controller
 
           $canvas->set_opacity(.2);
 
-          $canvas->page_text($width/5, $height/2, Property::find($property_uuid)->property, null, 55,
+          $canvas->page_text($width/5, $height/2, "", null, 55,
           array(0,0,0),2,2,-30);
 
           return $pdf->stream(Property::find($property_uuid)->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
@@ -122,7 +122,7 @@ class PropertyAccountPayableController extends Controller
 
        $canvas->set_opacity(.2);
 
-       $canvas->page_text($width/5, $height/2,$accountPayable->property->property, null, 55, array(0,0,0),2,2,-30);
+       $canvas->page_text($width/5, $height/2,"", null, 55, array(0,0,0),2,2,-30);
 
        return $pdf->stream($accountPayable->property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
     }
