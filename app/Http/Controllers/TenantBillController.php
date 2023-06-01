@@ -81,7 +81,11 @@ class TenantBillController extends Controller
 
         $canvas->set_opacity(.2);
 
+<<<<<<< Updated upstream
         $canvas->page_text($width/5, $height/2, Str::limit("", 18), null, 50, array(0,0,0),1,1,-30);
+=======
+        $canvas->page_text($width/5, $height/2, substr_replace($property->property, "", 18), null, 50, array(0,0,0),1,1,-30);
+>>>>>>> Stashed changes
 
         return $pdf;
     }
