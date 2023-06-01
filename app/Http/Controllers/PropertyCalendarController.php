@@ -188,7 +188,7 @@ class PropertyCalendarController extends Controller
           'guest' => $guest->guest,
           'checkin_date' => $guest->movein_at,
           'checkout_date' => $guest->moveout_at,
-        //   'unit' => $guest->unit->unit,
+          'unit' => $guest->unit->unit,
         //   'price' => $guest->price,
           'email' => $guest->email,
           'property_name' => $property->property,

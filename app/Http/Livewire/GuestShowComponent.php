@@ -128,9 +128,9 @@ class GuestShowComponent extends Component
         $validated['property_uuid'] = $this->property->uuid;
         $validated['guest_uuid'] = $this->guest_details->uuid;
 
-        Booking::create($validated);
+        $booking = Booking::create($validated);
 
-        $this->send_mail_to_guest($this->guest_details);
+        $this->send_mail_to_guest($booking);
 
         return redirect(url()->previous())->with('success', 'Success!');
     }
@@ -139,18 +139,18 @@ class GuestShowComponent extends Component
         $this->price = Unit::find($this->unit_uuid)->transient_rent;
     }
 
-     public function send_mail_to_guest($guest)
+     public function send_mail_to_guest($booking)
       {
-        $property = Property::find($guest->property_uuid);
+        $property = Property::find($booking->property_uuid);
         
         $details =[
-          'uuid' => $guest->uuid,
-          'guest' => $guest->guest,
-          'checkin_date' => $guest->movein_at,
-          'checkout_date' => $guest->moveout_at,
-        //   'unit' => $guest->unit->unit,
+          'uuid' => $booking->uuid,
+          'guest' => $booking->guest->guest,
+          'checkin_date' => $booking->movein_at,
+          'checkout_date' => $booking->moveout_at,
+          'unit' => $booking->unit->unit,
         //   'price' => $guest->price,
-          'email' => $guest->email,
+          'email' => $booking->guest->email,
           'property_name' => $property->property,
           'property_mobile' => $property->mobile,
           'property_facebook_page' => $property->facebook_page,
@@ -160,7 +160,7 @@ class GuestShowComponent extends Component
           'note_to_transient' => $property->note_to_transient
         ];
 
-         Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));
+         Mail::to($booking->guest->email)->send(new SendWelcomeMailToGuest($details));
     }
 
     public function redirectToTheCreateBillPage(){
