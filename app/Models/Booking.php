@@ -24,4 +24,8 @@ class Booking extends Model
     public function guest(){
         return $this->belongsTo(Guest::class, 'guest_uuid');
     }
+
+    public function property(){
+        return $this->belongsTo(Property::class, 'property_uuid');
+    }
 }

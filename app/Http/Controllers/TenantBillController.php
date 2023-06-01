@@ -81,7 +81,7 @@ class TenantBillController extends Controller
 
         $canvas->set_opacity(.2);
 
-        $canvas->page_text($width/5, $height/2, Str::limit("", 18), null, 50, array(0,0,0),1,1,-30);
+        $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 50, array(0,0,0),1,1,-30);
 
         return $pdf;
     }
