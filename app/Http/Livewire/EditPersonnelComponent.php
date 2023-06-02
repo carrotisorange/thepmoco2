@@ -28,10 +28,13 @@ class EditPersonnelComponent extends Component
 
     public function updateButton(){
 
-        $is_role_exists = UserProperty::where('user_id', $this->personnel->user_id)->where('role_id', $this->role_id)->pluck('id')->first();
+        $is_email_exists = User::where('email', $this->email)->count();
 
-        if($is_role_exists){
-            return redirect(url()->previous())->with('error', 'Role already exists!');
+        if($is_email_exists){
+           $is_role_exists = UserProperty::where('user_id', $this->personnel->user_id)->where('role_id', $this->role_id)->pluck('id')->first();
+            if($is_role_exists){
+                return redirect(url()->previous())->with('error', 'Role already exists!');
+            }
         }
         
         $validatedUserData = $this->validate([
