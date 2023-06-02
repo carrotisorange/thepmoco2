@@ -86,8 +86,8 @@
             </x-td>
             <x-td>
                 {{ number_format($bill->bill, 2) }}
-                /{{ number_format($bill->initial_payment, 2) }}
-                /{{ number_format(($bill->bill-$bill->initial_payment), 2) }}
+                /{{ number_format(App\Models\Collection::where('bill_id', $bill->id)->sum('collection'), 2) }}
+                /{{ number_format(($bill->bill-App\Models\Collection::where('bill_id', $bill->id)->sum('collection')), 2) }}
 
                 @if($bill->status === 'paid')
                 <span title="paid"

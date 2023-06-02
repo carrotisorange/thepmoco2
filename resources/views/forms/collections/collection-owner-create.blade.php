@@ -25,7 +25,7 @@
                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                 </x-td>
-                <x-td>{{ number_format(($bill->bill-$bill->initial_payment), 2) }}
+                <x-td>{{ number_format(($bill->bill-App\Models\Collection::where('bill_id', $bill->id)->sum('collection')), 2) }}
                 </x-td>
                 <x-td>
                     <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden" value="{{ $bill->id }}" />

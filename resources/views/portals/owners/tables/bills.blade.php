@@ -36,10 +36,10 @@
             <x-td>{{ $bill->particular->particular }}</x-td>
             <x-td>{{ number_format($bill->bill, 2) }}</x-td>
             <x-td>{{
-                number_format($bill->initial_payment, 2)
+                number_format(App\Models\Collection::where('bill_id', $bill->id)->sum('collection'), 2)
                 }}</x-td>
             <x-td>{{
-                number_format(($bill->bill-$bill->initial_payment), 2) }}</x-td>
+                number_format(($bill->bill-App\Models\Collection::where('bill_id', $bill->id)->sum('collection')), 2) }}</x-td>
 
         </tr>
         @endforeach

@@ -89,11 +89,11 @@
             </div>
 
             <div class="sm:col-span-3">
-                <select id="mode_of_payment" wire:model="mode_of_payment"
+                <select id="form" wire:model="form"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="">Filter mode of payments </option>
                     @foreach ($mode_of_payments as $item)
-                    <option value="{{ $item->mode_of_payment }}">{{ $item->mode_of_payment }}</option>
+                    <option value="{{ $item->form }}">{{ $item->form }}</option>
                     @endforeach
                 </select>
 

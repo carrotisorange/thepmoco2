@@ -37,6 +37,17 @@ class TenantCollectionController extends Controller
         ]);
     }
 
+      public function get_tenant_collections($property_uuid, $tenant_uuid){
+        return Collection::
+        select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
+        ->where('property_uuid', $property_uuid)
+        ->where('tenant_uuid', $tenant_uuid)
+        ->where('is_posted', 1)
+        ->groupBy('ar_no')
+        ->orderBy('ar_no', 'desc')
+        ->get();
+    }
+
     public function edit(Property $property, Tenant $tenant, $batch_no)
     {
       $collections = Bill::where('tenant_uuid', $tenant->uuid)
@@ -110,54 +121,19 @@ class TenantCollectionController extends Controller
          }
     }
 
-     public function export(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
+     public function view(Property $property, Tenant $tenant, Collection $collection)
      {          
-         $balance = app('App\Http\Controllers\TenantBillController')->get_tenant_balance($ar->tenant_uuid);
+         $balance = app('App\Http\Controllers\TenantBillController')->get_tenant_balance($collection->tenant_uuid);
 
          $data = $this->get_collection_data(
-            $ar->created_at, 
-            $tenant->bill_reference_no, 
-            $tenant->tenant,
-            $ar->mode_of_payment,
-            User::find($ar->user_id)->name,
-            User::find($ar->user_id)->role->role,
-            $ar->ar_no,
-            $ar->amount,
-            $ar->cheque_no,
-            $ar->bank,
-            $property,
-            $ar->date_deposited,
-            Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
-            $balance
+            $tenant,
+            $collection,
+            $balance,
          );
 
-        $pdf = $this->generate_pdf($property, $data);
+         $folder_path = 'tenants.collections.export';
 
-        return $pdf->stream($tenant->tenant.'-ar.pdf');
-     }
-
-     public function view(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
-     {          
-         $balance = app('App\Http\Controllers\TenantBillController')->get_tenant_balance($ar->tenant_uuid);
-
-         $data = $this->get_collection_data(
-            $ar->created_at, 
-            $tenant->bill_reference_no, 
-            $tenant->tenant,
-            $ar->mode_of_payment,
-            User::find($ar->user_id)->name,
-            User::find($ar->user_id)->role->role,
-            $ar->ar_no,
-            $ar->amount,
-            $ar->cheque_no,
-            $ar->bank,
-            $property,
-            $ar->date_deposited,
-            Collection::where('tenant_uuid',$ar->tenant_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
-            $balance
-         );
-
-        $pdf = $this->generate_pdf($property, $data);
+        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
 
         return $pdf->stream($tenant->tenant.'-ar.pdf');
      }
@@ -176,45 +152,26 @@ class TenantCollectionController extends Controller
       return Storage::download(($proof_of_payment), 'AR_'.$ar->ar_no.'_'.$ar->tenant->tenant.'.png');
    }
 
-     public function generate_pdf(Property $property, $data)
+     public function get_collection_data($tenant, $collection, $balance)
      {
+              $aggregated_collection = Collection::where('property_uuid',
+              $collection->property_uuid)->where('tenant_uuid', $tenant->uuid)->where('is_posted', 1)->where('ar_no',
+              $collection->ar_no);
 
-         $pdf = PDF::loadView('tenants.collections.export', $data);
-
-         $pdf->output();
-               
-         $canvas = $pdf->getDomPDF()->getCanvas();
-
-         $height = $canvas->get_height();
-         
-         $width = $canvas->get_width();
-
-         $canvas->set_opacity(.2,"Multiply");
-
-         $canvas->set_opacity(.2);
-
-             $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 55, array(0,0,0),2,2,-30);
-
-         return $pdf;
-
-     }
-
-     public function get_collection_data($payment_made, $reference_no, $tenant, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $property, $date_deposited, $collections, $balance)
-     {
       return [
-         'created_at' => $payment_made,
-         'reference_no' => $reference_no,
-         'tenant' => $tenant,
-         'mode_of_payment' => $mode_of_payment,
-         'user' => $user,
-         'role' => $role,
-         'ar_no' => $ar_no,
-         'amount' => $amount,
-         'cheque_no' => $cheque_no,
-         'bank' => $bank,
-         'property' => $property,
-         'date_deposited' => $date_deposited,
-         'collections' => $collections,
+         'created_at' => $collection->updated_at,
+         'reference_no' => $tenant->bill_reference_no,
+         'tenant' => $tenant->tenant,
+         'mode_of_payment' => $collection->form,
+         'user' => $collection->user->name,
+         'role' => $collection->user->role->role,
+         'ar_no' => $collection->ar_no,
+         'amount' => $aggregated_collection->sum('collection'),
+         'cheque_no' => $collection->cheque_no,
+         'bank' => $collection->bank,
+         'property' => $tenant->property->property,
+         'date_deposited' => $collection->updated_at,
+         'collections' => $aggregated_collection->get(),
          'balance' => $balance
       ];
      }

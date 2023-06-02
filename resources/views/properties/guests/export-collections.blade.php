@@ -14,7 +14,7 @@
         Amount Paid: {{ number_format($amount, 2) }}
     </p>
     <p>
-        Guest: {{ $tenant }}
+        Guest: {{ $guest }}
     </p>
     
     <p>

@@ -62,8 +62,9 @@
                 </span>
                 @endif
             </x-td>
-            <x-td>{{ number_format($item->initial_payment, 2) }}</x-td>
-            <x-td>{{ number_format(($item->bill-$item->initial_payment), 2) }}</x-td>
+            <x-td>{{ number_format(App\Models\Collection::where('bill_id', $item->id)->sum('collection'), 2) }}</x-td>
+            <x-td>{{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),
+                2) }}</x-td>
         </tr>
         @endforeach
         <tr>

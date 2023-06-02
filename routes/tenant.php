@@ -32,11 +32,8 @@ Route::prefix('{role_id}/tenant/{user}')->group(function(){
         Route::get('concerns/{concern}/success','success_concerns')->name('tenant-concerns');
     });
 
-     Route::get('ar/{ar}/export', [TenantCollectionController::class, 'export']);
-     Route::get('ar/{ar}/view', [TenantCollectionController::class, 'view']);
+     Route::get('collection/{collection}/export', [TenantCollectionController::class, 'export']);
+     Route::get('collection/{collection}/view', [TenantCollectionController::class, 'view']);
 });
 
 Route::get('/tenant/{uuid:uuid}/user', [TenantController::class, 'generate_credentials']);
-
-
-

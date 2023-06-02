@@ -10,6 +10,7 @@
             <x-th>PARTICULARS</x-th>
             <x-th>AMOUNT</x-th>
             <x-th></x-th>
+            <x-th></x-th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -92,6 +93,13 @@
                 </span>
                 @endif
       
+            </x-td>
+            <x-td>
+                <button data-modal-target="view-accountpayable-modal-{{$accountpayable->id}}" data-modal-toggle="view-accountpayable-modal-{{$accountpayable->id}}"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    Edit
+                </button>
             </x-td>
             <x-td>
                 <button id="dropdownDefaultButton({{ $accountpayable->id }})({{ $accountpayable->id }})" data-dropdown-placement="left-end"
