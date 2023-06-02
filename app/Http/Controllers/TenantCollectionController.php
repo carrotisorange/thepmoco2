@@ -195,18 +195,6 @@ class TenantCollectionController extends Controller
 
             $bill = Bill::find($bill_id);
 
-            //ddd($bill->particular_id);
-
-            //store the deposit to tenant's wallet
-            // if($bill->particular_id === '3' || $bill->particular_id === '4'){
-            //       app('App\Http\Controllers\WalletController')->store(
-            //          $tenant->uuid,
-            //          '',
-            //          $collection,
-            //          $bill->particular->particular
-            //       );
-            // } 
-            
             //store the collection
             app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form);
 

@@ -123,7 +123,7 @@
     <main class="center">
         @yield('content')
         <p>
-            Printed by: {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
+            <b>Printed by:</b> {{ auth()->user()->name }},<br> {{ auth()->user()->role->role }}
         </p>
     </main>
 
