@@ -81,8 +81,6 @@ class UnitEditBulkComponent extends Component
 
     public function updateUnit()
     {
-        sleep (2);
-
         try{
             $this->validate();
             //update the selected unit
@@ -111,7 +109,7 @@ class UnitEditBulkComponent extends Component
 
     public function removeUnits()
     {
-        sleep(1);
+        
 
         foreach($this->selectedUnits as $unit => $val){
             if(Contract::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count())

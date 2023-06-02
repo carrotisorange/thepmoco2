@@ -7,14 +7,11 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <input type="date" wire:model="date"
                     class="nline-flex items-center justify-center rounded-md border border-transparentpx-4 py-2 text-sm font-mediumshadow-smfocus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                <a  href="/property/{{ $property->uuid }}/dcr/{{ $date }}" target="_blank"
+                <a href="/property/{{ $property->uuid }}/dcr/{{ $date }}" target="_blank"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                     Export DCR
                 </a>
-                <button type="button" disabled wire:target="exportDCR" wire:loading
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                    Loading...
-                </button>
+
                 <button type="button"
                     onclick="window.location.href='/property/{{ $property->uuid }}/collection/{{ 'pending' }}'"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
@@ -23,7 +20,7 @@
                 <div class="group inline-block">
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i> &nbsp New
+                        <span class="pr-1 font-semibold flex-1"> New
                             collection</span>
                         <span>
                             <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
@@ -51,7 +48,7 @@
                 {{-- <button type="button"
                     onclick="window.location.href='/property/{{ $property->uuid }}/user/{{ Str::random(8) }}/create'"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    <i class="fa-solid fa-plus"></i> &nbsp New collection
+                    New collection
                 </button> --}}
 
             </div>
@@ -125,7 +122,7 @@
                                 <div class="group inline-block">
                                     <button
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                        <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i> &nbsp
+                                        <span class="pr-1 font-semibold flex-1">
                                             New collection</span>
                                         <span>
                                             <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180

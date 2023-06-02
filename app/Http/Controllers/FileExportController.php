@@ -12,7 +12,6 @@ class FileExportController extends Controller
 {
      public function generate_pdf(Property $property, $data, $folder_path)
      {
-
          $pdf = PDF::loadView($folder_path, $data);
 
          $pdf->output();

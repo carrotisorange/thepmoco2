@@ -84,7 +84,7 @@ class PropertyEditComponent extends Component
 
     public function submitForm(Request $request)
     {   
-        sleep(1);
+        
 
         $validatedData = $this->validate();
         

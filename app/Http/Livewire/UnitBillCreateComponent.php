@@ -31,7 +31,7 @@ class UnitBillCreateComponent extends Component
     }
     public function submitForm(){
 
-        sleep(1);
+        
 
         try{
             if($this->type==='tenant'){

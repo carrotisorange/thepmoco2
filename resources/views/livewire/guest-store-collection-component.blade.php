@@ -120,7 +120,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="attachment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                    <span wire:loading.remove>Attach a deposit slip</span>
+                                    <span>Attach a deposit slip</span>
                                     <span wire:loading>Loading...</span>
                                     <input form="edit-form" name="attachment" id="attachment" type="file"
                                         class="sr-only" wire:model="attachment">
@@ -160,7 +160,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="proof_of_payment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                    <span wire:loading.remove>Attach a proof of payment</span>
+                                    <span>Attach a proof of payment</span>
                                     <span wire:loading>Loading...</span>
                                     <input form="edit-form" name="proof_of_payment" id="proof_of_payment" type="file"
                                         class="sr-only" wire:model="proof_of_payment">
@@ -228,7 +228,8 @@
                                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                 </x-td>
-                                <x-td>{{ number_format(($bill->bill-App\Models\Collection::where('bill_id', $bill->id)->sum('collection')), 2) }}
+                                <x-td>{{ number_format(($bill->bill-App\Models\Collection::where('bill_id',
+                                    $bill->id)->sum('collection')), 2) }}
                                 </x-td>
                                 <x-td>
                                     <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden"

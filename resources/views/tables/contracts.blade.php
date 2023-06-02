@@ -6,11 +6,10 @@
             <x-th>ID</x-th>
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
-            <x-th>START</x-th>
-            <x-th>END </x-th>
+            <x-th>PERIOD COVERED</x-th>
             <x-th>RENT/MO</x-th>
             <x-th>STATUS</x-th>
-            <x-th>INTERACTION</x-th>
+            {{-- <x-th>INTERACTION</x-th> --}}
             {{-- <x-th>CONTRACT</x-th> --}}
             <x-th></x-th>
 
@@ -43,8 +42,7 @@
 
 
             <x-td>
-                {{Carbon\Carbon::parse($contract->start)->format('M d, Y')}}</x-td>
-            <x-td>{{Carbon\Carbon::parse($contract->end)->format('M
+                {{Carbon\Carbon::parse($contract->start)->format('M d, Y')}} - {{Carbon\Carbon::parse($contract->end)->format('M
                 d, Y')}}</x-td>
 
 
@@ -71,11 +69,11 @@
                     </span>
                     @endif
             </x-td>
-            <x-td>
+            {{-- <x-td>
                 @if($contract->interaction_id)
                 {{ $contract->interaction->interaction }}
                 @endif
-            </x-td>
+            </x-td> --}}
             {{-- <x-td>
                 @if(!$contract->contract == null)
                 <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->contract }}/contract"

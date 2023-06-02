@@ -44,7 +44,7 @@ class GuardianComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         //validate inputs
         $validated_data = $this->validate();
@@ -82,7 +82,7 @@ class GuardianComponent extends Component
 
     public function removeGuardian($guardian_id)
     {
-        sleep(1);
+        
 
         return app('App\Http\Controllers\GuardianController')->destroy($guardian_id);
 

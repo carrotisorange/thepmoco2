@@ -96,7 +96,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         $this->validate([
              'quotation1' => 'nullable | max:102400',
@@ -202,7 +202,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function addNewParticular(){
 
-        sleep(1);
+        
 
         app('App\Http\Controllers\AccountPayableParticularController')->store($this->batch_no);
 
@@ -235,7 +235,7 @@ class AccountPayableCreateStep1Component extends Component
     }
 
     public function removeParticular($id){
-        sleep(1);
+        
         
         AccountPayableParticular::where('id', $id)->delete();
 
@@ -244,7 +244,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function cancelRequest(){
 
-        sleep(1);
+        
 
        $batch_no = AccountPayable::find($this->accountpayable->id)->batch_no;
 
@@ -285,7 +285,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function deleteAccountPayable($accountpayableId){
 
-      sleep(1);
+      
 
       $batch_no = AccountPayable::find($accountpayableId)->batch_no;
 

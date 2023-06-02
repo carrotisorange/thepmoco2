@@ -316,7 +316,7 @@ class UserCreateComponent extends Component
 
      public function removeUser($id)
      {   
-         sleep(1);
+         
 
          User::destroy($id);
 

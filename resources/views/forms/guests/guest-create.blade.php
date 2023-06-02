@@ -59,7 +59,8 @@
                     </div>
 
                     <div class="col-span-3">
-                        <label for="vehicle_details" class="block text-sm font-medium text-gray-700">Brand/Model/Year</label>
+                        <label for="vehicle_details"
+                            class="block text-sm font-medium text-gray-700">Brand/Model/Year</label>
                         <input type="text" wire:model.lazy="vehicle_details" autocomplete="vehicle_details"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         @error('vehicle_details')
@@ -90,15 +91,12 @@
                 </a>
 
 
-                <button type="submit" wire:loading.remove
+                <button type="submit"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Finish
                 </button>
 
-                <button type="button" wire:loading disabled
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Loading...
-                </button>
+             
             </div>
         </div>
     </div>

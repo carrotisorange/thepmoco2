@@ -48,7 +48,7 @@ class OwnerBillComponent extends Component
      {
          try{
             
-            sleep(1);
+            
 
             DB::beginTransaction();
             

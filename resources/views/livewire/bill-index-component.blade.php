@@ -8,14 +8,14 @@
                 @if($search || $status || $particular || $posted_dates || $bill_type)
                 <button wire:click="clearFilters()" wire.loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    type="button"><i class="fa-solid fa-delete-left"></i> &nbsp; Clear Filters
+                    type="button">Clear Filters
                 </button>
                 @endif
-                &nbsp;
+                
                 <div class="group inline-block">
                     <button wire.loading.remove
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i> &nbsp New
+                        <span class="pr-1 font-semibold flex-1"> New
                             bill</span>
                         <span>
                             <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
@@ -55,31 +55,21 @@
                 @if($view === 'listView')
                 <button wire:click="changeView('agingSummaryView')" wire.loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    type="button"><i class="fa-solid fa-image"></i> &nbsp; View Aging Summary
+                    type="button"> View Aging Summary
                 </button>
                 @else
                 <button wire:click="changeView('listView')" wire.loading.remove
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    type="button"><i class="fa-solid fa-list"></i> &nbsp; View List
+                    type="button"> View List
                 </button>
                 @endif
 
-                {{-- <button wire:click="exportBills" wire:loading.remove
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    type="button">Export
-                </button>
-
-                --}} <button wire:loading disabled
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    type="button">Loading...
-                </button>
-
             </div>
 
-            
+
         </div>
-<div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        
+        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+
             <div class="sm:col-span-3">
                 <select id="bill_type" wire:model="bill_type"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
@@ -88,9 +78,9 @@
                     <option value="owner_uuid">Owner</option>
                     <option value="tenant_uuid">Tenant</option>
                 </select>
-        
+
             </div>
-        
+
             <div class="sm:col-span-3">
                 <select id="status" wire:model="status"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
@@ -98,9 +88,9 @@
                     @foreach ($statuses as $item)
                     <option value="{{ $item->status }}">{{ $item->status }}</option>
                     @endforeach
-        
+
                 </select>
-        
+
             </div>
             <div class="sm:col-span-3">
                 <select id="particular" wire:model="particular"
@@ -109,9 +99,9 @@
                     @foreach ($particulars as $item)
                     <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
                     @endforeach
-        
+
                 </select>
-        
+
             </div>
             <div class="sm:col-span-3">
                 <select id="posted_dates" wire:model="posted_dates"
@@ -120,11 +110,11 @@
                     <option value="monthly">1-30 days</option>
                     <option value="quaterly">1-90 days</option>
                     <option value="alltime">90 days and over</option>
-        
+
                 </select>
-        
+
             </div>
-        
+
         </div>
 
         <div class="mt-3">
@@ -137,7 +127,7 @@
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
 
-             
+
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
 

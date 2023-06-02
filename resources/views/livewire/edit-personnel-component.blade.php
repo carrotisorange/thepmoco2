@@ -55,7 +55,8 @@
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="is_approved">Has authorization to access {{ $property->property }}?</label>
+                    <label class="text-sm" for="is_approved">Has authorization to access {{ $property->property
+                        }}?</label>
                     <x-form-select name="is_approved" id="is_approved" wire:model="is_approved" class="">
                         <option value="">Select one</option>
                         <option value="1" {{ '1'==$is_approved ? 'Select one' : 'selected' }}>
@@ -71,24 +72,22 @@
 
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
-                    <button type="button"  wire:loading.remove wire:target="updateButton" wire:click="updateButton"
+                    <button type="button" wire:target="updateButton" wire:click="updateButton"
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                        <i class="fa-solid fa-arrow-right"></i>&nbsp; Update
+                        ; Update
                     </button>
                     @else
-                    <button type="button" disabled wire:loading.remove wire:target="updateButton" 
+                    <button type="button" disabled wire:target="updateButton"
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                        <i class="fa-solid fa-lock"></i>&nbsp; Update
+                       Update
                     </button>
                     <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.
                     </p>
                     @endcan
-                    <button type="button" wire:loading disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                        Loading...
-                    </button>
+
                 </div>
-            {{-- </form> --}}
+                {{--
+            </form> --}}
         </div>
     </div>
 </x-modal-component>

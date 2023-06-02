@@ -7,41 +7,20 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($bills->count())
 
-                {{-- <x-button wire:loading.remove wire:click="saveBills()">Save as Draft ({{ $bills->count() }})
+                {{-- <x-button wire:click="saveBills()">Save as Draft ({{ $bills->count() }})
                 </x-button>
 
                 <div wire:loading wire:target="saveBills">
                     Processing...
                 </div> --}}
-                <button type="button" wire:loading.remove wire:click="postBills()" wire:target="updateBill"
+                <button type="button" wire:click="postBills()" wire:target="updateBill"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Post Bills ({{ $bills->count() }})
                 </button>
 
-                <button type="button" wire:loading wire:target="postBills" disabled
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Loading...
-                </button>
-
-                <button type="button" wire:loading wire:target="updateBill" disabled
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Loading...
-                </button>
+        
                 @endif
-{{-- 
-                @if($selectedBills)
-                <button type="button" wire:loading.remove onclick="confirmMessage()" wire:click="removeBills()"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Remove Bills ({{ count($selectedBills) }})
-                </button>
-
-                <button type="button" wire:loading wire:target="removeBills" disabled
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Loading...
-                </button>
-
-
-                @endif --}}
+               
             </div>
         </div>
 

@@ -20,11 +20,10 @@
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">What do you want to see?</h3>
                 <div class="text-center">
                     <div>
-                        <a href="/tenant/{{ $tenant->uuid }}/edit"><i class="fa-solid fa-user"></i>&nbspTenant
+                        <a href="/tenant/{{ $tenant->uuid }}/edit">Tenant
                         </a>
-                        &nbsp;&nbsp;
-                        <a href="/tenant/{{ $tenant->uuid }}/bills"><i
-                                class="fa-solid fa-file-invoice-dollar"></i>&nbspBills
+                      
+                        <a href="/tenant/{{ $tenant->uuid }}/bills">Bills
                         </a>
                     </div>
 

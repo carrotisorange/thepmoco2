@@ -14,8 +14,8 @@
                 <div class="sm:col-span-6">
                     <label for="request_for" class="block text-sm font-medium text-gray-700">Request for</label>
                     <input type="text" wire:model="request_for" name="request_for" readonly
-                            class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
-                   
+                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
+
                     @error('request_for')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -40,24 +40,21 @@
                     @enderror
                 </div>
 
-              
+
                 @if($particulars->count())
                 <div class="sm:col-span-6">
                     {{-- <label for="particular" class="block text-sm font-medium text-gray-700"><b>Add all the
                             particulars here</b></label> --}}
-                    <button type="button" wire:loading.remove wire:click="addNewParticular"
+                    <button type="button" wire:click="addNewParticular"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         Add new particular
                     </button>
 
-                    <button type="button" data-modal-toggle="instructions-create-vendor-modal" wire:loading.remove
+                    <button type="button" data-modal-toggle="instructions-create-vendor-modal"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         Add new vendor
                     </button>
-                    <button type="button" wire:loading disabled
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        Loading...
-                    </button>
+                  
                 </div>
                 @endif
 
@@ -86,8 +83,8 @@
                                         <tr>
                                             <x-td>{{ $index+1 }}</x-td>
                                             <x-td>
-                                                <select wire:model="particulars.{{ $index }}.unit_uuid"
-                                                    {{-- wire:change="updateParticular({{ $particular->id }})" --}}
+                                                <select wire:model="particulars.{{ $index }}.unit_uuid" {{--
+                                                    wire:change="updateParticular({{ $particular->id }})" --}}
                                                     class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($units as $unit)
@@ -103,8 +100,8 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <select wire:model="particulars.{{ $index }}.vendor_id"
-                                                    {{-- wire:change="updateParticular({{ $particular->id }})" --}}
+                                                <select wire:model="particulars.{{ $index }}.vendor_id" {{--
+                                                    wire:change="updateParticular({{ $particular->id }})" --}}
                                                     class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($vendors as $vendor)
@@ -120,16 +117,16 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <input type="text" wire:model="particulars.{{ $index }}.item"
-                                                    {{-- wire:keyup="updateParticular({{ $particular->id }})" --}}
+                                                <input type="text" wire:model="particulars.{{ $index }}.item" {{--
+                                                    wire:keyup="updateParticular({{ $particular->id }})" --}}
                                                     class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-96 sm:text-sm border border-gray-700  rounded-md">
                                                 @error('particulars.{{ $index }}.item')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <input type="number" wire:model="particulars.{{ $index }}.quantity"
-                                                    {{-- wire:keyup="updateParticular({{ $particular->id }})" --}}
+                                                <input type="number" wire:model="particulars.{{ $index }}.quantity" {{--
+                                                    wire:keyup="updateParticular({{ $particular->id }})" --}}
                                                     class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                 @error('particulars.{{ $index }}.quantity')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -138,49 +135,41 @@
                                             {{-- @if($request_for === 'payment') --}}
                                             <x-td>
                                                 <input type="number" step="0.001"
-                                                    wire:model="particulars.{{ $index }}.price"
-                                                    {{-- wire:keyup="updateParticular({{ $particular->id }})" --}}
+                                                    wire:model="particulars.{{ $index }}.price" {{--
+                                                    wire:keyup="updateParticular({{ $particular->id }})" --}}
                                                     class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                 @error('particulars.{{ $index }}.price')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                             {{ number_format((double) $particular->quantity * (double)$particular->price,2)}}
+                                                {{ number_format((double) $particular->quantity *
+                                                (double)$particular->price,2)}}
                                             </x-td>
                                             <x-td>
                                                 <button type="button"
                                                     wire:click="updateParticular({{ $particular->id }})"
-                                                    wire:loading.remove wire:target="updateParticular"
+                                                    wire:target="updateParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Save
                                                 </button>
-                                                <button type="button" wire:loading disabled
-                                                    wire:target="updateParticular"
-                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                                    Loading...
-                                                </button>
+                                           
                                             </x-td>
 
                                             {{-- @endif --}}
                                             <x-td>
                                                 <button type="button"
                                                     wire:click="removeParticular({{ $particular->id }})"
-                                                    wire:loading.remove 
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Remove
                                                 </button>
-                                                <button type="button" wire:loading disabled
-                                                    wire:target="removeParticular" wire:target="removeParticular"
-                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                                    Loading...
-                                                </button>
+                                       
                                                 @include('layouts.notifications')
                                             </x-td>
                                         </tr>
                                     </div>
                                     @endforeach
-                                   
+
                                 </tbody>
                             </table>
                             @else
@@ -194,20 +183,12 @@
                                 <h3 class="mt-2 text-sm font-semibold text-gray-900">No particulars</h3>
                                 <p class="mt-1 text-sm text-gray-500">Get started by adding a new particular.</p>
                                 <div class="mt-6">
-                                    <button type="button" wire:loading.remove wire:click="addNewParticular"
+                                    <button type="button" wire:click="addNewParticular"
                                         class="inline-flex items-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">
-                                        <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
-                                            aria-hidden="true">
-                                            <path
-                                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                        </svg>
+                                 
                                         New particular
                                     </button>
-                                    <button type="button" wire:loading disabled wire:target="addNewParticular" disabled
-                                        class="inline-flex items-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">
-
-                                        Loading...
-                                    </button>
+                              
                                 </div>
                             </div>
                             @endif
@@ -263,7 +244,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation1"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span wire:loading.remove>Upload a file</span>
+                                    <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation1" wire:model="quotation1" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -297,7 +278,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation2"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span wire:loading.remove>Upload a file</span>
+                                    <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation2" wire:model="quotation2" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -331,7 +312,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation3"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span wire:loading.remove>Upload a file</span>
+                                    <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation3" wire:model="quotation3" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -413,50 +394,44 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="sm:col-span-2">
-                    <label for="first_approver" class="block text-sm font-medium text-gray-700">1st Approver (Manager)</label>
+                    <label for="first_approver" class="block text-sm font-medium text-gray-700">1st Approver
+                        (Manager)</label>
                     <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" class="">
                         <option value="">Select one</option>
                         @foreach ($managers as $manager)
                         <option value="{{ $manager->user_id }}">{{ $manager->user->name }}</option>
                         @endforeach
-                
+
                     </x-form-select>
-                
+
                 </div>
-                
+
                 <div class="sm:col-span-2">
-                    <label for="requester" class="block text-sm font-medium text-gray-700">2nd Approver (Account Payable)</label>
+                    <label for="requester" class="block text-sm font-medium text-gray-700">2nd Approver (Account
+                        Payable)</label>
                     <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" class="">
                         <option value="">Select one</option>
                         @foreach ($accountpayables as $accountpayable)
                         <option value="{{ $accountpayable->user_id }}">{{ $accountpayable->user->name }}</option>
                         @endforeach
-                
+
                     </x-form-select>
                     @error('requester_id')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
 
                 <div class="col-start-6 flex items-center justify-end">
-                    <button type="submit" wire:loading.remove wire:click="cancelRequest" 
+                    <button type="submit" wire:click="cancelRequest"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Cancel
                     </button>
-                    <button type="button" wire:loading disabled
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
-                        Loading...
-                    </button>
-                    {{-- <button type="submit" wire:loading wire:target="submitForm" disabled
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
-                        Loading...
-                    </button> --}}
-                    <button type="button" wire:loading.remove wire:click="submitForm"
+                   
+                   
+                    <button type="button" wire:click="submitForm"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
                         Next
@@ -466,7 +441,7 @@
             </div>
 
         </form>
-       
+
     </div>
-@include('modals.instructions.create-vendor-modal')
+    @include('modals.instructions.create-vendor-modal')
 </div>

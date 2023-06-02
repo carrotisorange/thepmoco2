@@ -167,7 +167,7 @@ class UserEditComponent extends Component
 
     public function updateUser()
     {
-        sleep(1);
+        
        
         $validatedData = $this->validate();
          

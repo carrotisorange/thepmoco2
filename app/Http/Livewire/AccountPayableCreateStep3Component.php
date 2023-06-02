@@ -50,7 +50,7 @@ class AccountPayableCreateStep3Component extends Component
 
     public function approveRequest()
     {
-        sleep(1);
+        
 
         $this->validate();
 
@@ -73,7 +73,7 @@ class AccountPayableCreateStep3Component extends Component
 
     public function rejectRequest(){
         
-        sleep(1);
+        
 
         $this->validate();
 
