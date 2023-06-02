@@ -23,7 +23,7 @@
                     {{ $personnels->links() }}
                 </div> --}}
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
+                    {{-- <div class="sm:col-span-4">
 
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -52,7 +52,7 @@
                             @endforeach
                         </select>
 
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">

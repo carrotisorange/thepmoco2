@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="is_approved">Is approved to access {{ $property->property }}?</label>
+                    <label class="text-sm" for="is_approved">Has authorization to access {{ $property->property }}?</label>
                     <x-form-select name="is_approved" id="is_approved" wire:model="is_approved" class="">
                         <option value="">Select one</option>
                         <option value="1" {{ '1'==$is_approved ? 'Select one' : 'selected' }}>

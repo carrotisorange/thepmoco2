@@ -20,24 +20,11 @@ class CreatePersonnelComponent extends Component
     public $role_id;
     public $email;
     public $mobile_number;
-    
-//    protected function rules()
-//    {
-//       return [
-//          'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')],
-//          'role_id' => ['required', Rule::exists('roles', 'id')],
-//       ];
-//    }
-
-//    public function updated($propertyName)
-//    {
-//       $this->validateOnly($propertyName);
-//    }
 
    public function storePersonnel(){
 
     $this->validate([
-        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')],
+        'email' => ['required', 'string', 'email', 'max:255'],
         'role_id' => ['required', Rule::exists('roles', 'id')],
     ]);
     
@@ -46,6 +33,13 @@ class CreatePersonnelComponent extends Component
     $password = Str::random(8);
     
     $is_user_exists = User::where('email', $this->email)->pluck('id')->first();
+
+    
+        $is_role_exists = UserProperty::where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
+
+        if($is_role_exists){
+            return redirect(url()->previous())->with('error', 'Role already exists!');
+        }
 
         if($is_user_exists){
           $user = User::find($is_user_exists);

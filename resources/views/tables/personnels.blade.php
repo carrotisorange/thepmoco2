@@ -3,7 +3,7 @@
         <tr>
             <x-th>#</x-th>
             <x-th>NAME</x-th>
-            <x-th>STATUS</x-th>
+            {{-- <x-th>STATUS</x-th> --}}
             <x-th>ROLE</x-th>
             <x-th>MOBILE</x-th>
             <x-th>INVITED ON</x-th>
@@ -43,8 +43,8 @@
                     </div>
                 </div>
             </x-td>
-            <x-td>{{ $personnel->user->status }}</x-td>
-            <x-td>{{ $personnel->user->role->role  }}</x-td>
+            {{-- <x-td>{{ $personnel->user->status }}</x-td>     --}}
+            <x-td>{{ App\Models\Role::find($personnel->role_id)->role  }}</x-td>
             <x-td>{{ $personnel->user->mobile_number }}</x-td>
             <x-td>{{  Carbon\Carbon::parse($personnel->created_at)->format('M d, Y')}}</x-td>
             <x-td>
