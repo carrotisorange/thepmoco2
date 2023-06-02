@@ -27,7 +27,7 @@ class OwnerCollectionController extends Controller
     {
         return view('owners.collections.index',[
          'owner' => Owner::find($owner->uuid),
-         'collections' => app('App\Http\Controllers\OwnerController')->show_owner_collections($owner->uuid),
+          'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($property->uuid, $owner->uuid),
         ]);
     }
 
