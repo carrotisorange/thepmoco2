@@ -68,34 +68,13 @@
                     </div>
                 </div>
 
-                <div class="border-t">
-                    <div class="flex items-center px-8 py-5">
-                        <p class="text-sm font-medium">Operating Expense</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 px-8 pb-8">
-
-                        <div class="col-span-2">
-                            <label class="text-xs font-semibold" for="cardNumber">Billed to Owner</label>
-                        </div>
-
-                        <div class="col-span-2">
-                            <label class="text-xs font-semibold" for="cardNumber">1.</label>
-                        </div>
-
-                        <div class="cols-2">
-                            <label class="text-xs font-semibold" for="cardNumber">Total Operation Expense</label>
-                        </div>
-                        <input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text">
-                        <div class="cols-2">
-                            <label class="text-xs font-semibold" for="cardNumber">Net Profit</label>
-                        </div>
-                        <input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text">
-                    </div>
-                </div>
+                
 
             </div>
         </div>
 
+        
+                        
 
         <div class="bg-white">
 
@@ -154,8 +133,147 @@
                     </p>
                 </div>
             </div>
+
+            
         </div>
 
+        
 
     </div>
 </div>
+
+                    <table class="min-w-full divide-y divide-gray-300 pt-10">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
+                                        I. Revenue (Collections)</th>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        Particular</th>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        </th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 bg-white">
+                                <tr>
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
+                                    </td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        Particular</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        Amount</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
+                                    </td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        Particular</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        Amount</td>
+
+                                </tr>
+
+                                <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col"
+                                        class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left  text-gray-900 ">
+                                        II. Gross Revenue (Collections)</th>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        </th>
+                                    <th scope="col"
+                                        class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left  text-gray-900">
+                                        Amount</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 bg-white">
+                                <tr>
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
+                                    </td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                       Tax Rate</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        Amount</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
+                                    </td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                       Net Revenue</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        Amount</td>
+
+                                </tr>
+
+                                <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
+                                        III. Operating Expenses</th>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        Particular</th>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        </th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 bg-white">
+                                <tr>
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
+                                    </td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                       Particular</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        Amount</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
+                                    </td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                       Particular</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        Amount</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="font-bold text-base whitespace-nowrap py-2 pl-4 pr-3  text-gray-500 sm:pl-6">   
+                                    Total Operating Expenses</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                      </td>
+                                    <td class="font-bold text-base whitespace-nowrap px-2 py-2 text-gray-900">
+                                    Amount</td>
+
+                                </tr>
+
+                                <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col"
+                                        class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left text-gray-900 ">
+                                        IV. Net Income</th>
+                                    <th scope="col"
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        </th>
+                                    <th scope="col"
+                                        class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left text-gray-900">
+                                        Amount</th>
+
+                                </tr>
+                            </thead>
+                            
+                                
+                              
+                               
+                                
+                            </tbody>
+                        </table>
