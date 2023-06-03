@@ -14,7 +14,9 @@
                         </svg>
                     </button>
                 </div>
+               <div>
                 {{ $slot }}
+               </div>
             </div>
         </div>
     </div>

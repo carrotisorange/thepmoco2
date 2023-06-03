@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AcknowledgementReceipt;
 use Livewire\Component;
 use Session;
 use DB;
@@ -39,12 +38,6 @@ class CollectionIndexComponent extends Component
         $mode_of_payments = Collection::where('property_uuid', $this->property->uuid)
         ->groupBy('form')
         ->get();
-
-        // $mode_of_payments = AcknowledgementReceipt::where('property_uuid', $this->property->uuid)
-        // ->select('mode_of_payment', DB::raw('count(*) as count'))
-        // ->groupBy('mode_of_payment')
-        // ->get();
-
 
         return view('livewire.collection-index-component',[
             'collections' => $collections,
