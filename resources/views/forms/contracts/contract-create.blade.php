@@ -80,7 +80,7 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="image"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span wire:loading.remove>Upload a file</span>
+                                        <span>Upload a file</span>
                                         <span wire:loading>Loading...</span>
                                         <input id="image" name="image" type="file" class="sr-only"
                                             wire:model="contract">
@@ -132,15 +132,12 @@
                 wire:click="makeReservation()">
                 For reservation only
             </a> --}}
-            <button type="button" wire:loading.remove wire:click="makeReservation()"
+            <button type="button" wire:click="makeReservation()"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Mark as RESERVED
             </button>
-            <button type="button" wire:loading disabled
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Loading...
-            </button>
-            <button type="submit" wire:loading.remove
+          
+            <button type="submit"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Next
             </button>

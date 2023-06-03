@@ -76,7 +76,7 @@ class CollectionModalComponent extends ModalComponent
 
     public function payBill()
     {
-        sleep(1);
+        
 
         try{
             DB::beginTransaction();

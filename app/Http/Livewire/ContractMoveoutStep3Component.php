@@ -27,7 +27,7 @@ class ContractMoveoutStep3Component extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         Contract::where('uuid', $this->contract->uuid)
         ->update([

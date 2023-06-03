@@ -23,7 +23,7 @@
                     {{ $personnels->links() }}
                 </div> --}}
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
+                    {{-- <div class="sm:col-span-4">
 
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -52,7 +52,7 @@
                             @endforeach
                         </select>
 
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -76,12 +76,7 @@
                                 <button type="button" data-modal-target="create-personnel-modal"
                     data-modal-toggle="create-personnel-modal"
                                     class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                    <!-- Heroicon name: mini/plus -->
-                                    <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path
-                                            d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                    </svg>
+                                
                                     New Personnel
                                 </button>
                             </div>

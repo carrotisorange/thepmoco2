@@ -2,7 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
-            <x-th>REFERENCE #</x-th>
+            <x-th>ID</x-th>
             <x-th>UNIT </x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>PREVIOUS/CURRENT/CONSUMPTION</x-th>
@@ -18,7 +18,7 @@
         <tr>
             <x-th>{{ $index+1 }}</x-th>
             <x-th>
-                {{ $utility->unit.'-'.$utility->id }}
+               {{  $utility->id }}
             </x-th>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"

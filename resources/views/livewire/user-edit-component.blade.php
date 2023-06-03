@@ -199,15 +199,11 @@
                                 Cancel
                             </a>
 
-                            <button type="submit" wire:click="updateUser()" wire:loading.remove wire:target="updateUser"
+                            <button type="submit" wire:click="updateUser()" wire:target="updateUser"
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Update
                             </button>
 
-                            <button type="button" disabled wire:loading
-                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Loading...
-                            </button>
                         </div>
                     </div>
 

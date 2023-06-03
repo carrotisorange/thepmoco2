@@ -16,19 +16,13 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="mt-2 sm:mt-6">
-                <input type="text" id="action" wire:model="action"
-                    class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            </div> --}}
+
             <div class="mt-5 sm:mt-6">
-                <button type="button" wire:click="redirectToUnitSelectionPage" wire:loading.remove
+                <button type="button" wire:click="redirectToUnitSelectionPage"
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                    <i class="fa-solid fa-arrow-right"></i>&nbsp Select a unit
+                    Select a unit
                 </button>
-                <button type="button" wire:loading wire:target="redirectToUnitSelectionPage" disabled
-                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                    Loading...
-                </button>
+
             </div>
         </div>
     </div>

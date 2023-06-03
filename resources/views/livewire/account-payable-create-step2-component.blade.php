@@ -1,16 +1,11 @@
 <div>
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
-            <button type="button" wire:loading.remove wire:click="downloadInternalDocument"
-                wire:target="downloadInternalDocument"
+            <button type="button" wire:click="downloadInternalDocument" wire:target="downloadInternalDocument"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                Download Internal Document
+                Export Internal Document
             </button>
-            <button type="button" wire:loading wire:target="downloadInternalDocument" disabled
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
-                Loading...
-            </button>
+           
         </div>
         {{-- start-step-2-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
@@ -30,7 +25,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation1"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span wire:loading.remove>Upload a file</span>
+                                    <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation1" wire:model="quotation1" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -63,7 +58,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation2"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span wire:loading.remove>Upload a file</span>
+                                    <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation2" wire:model="quotation2" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -96,7 +91,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation3"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span wire:loading.remove>Upload a file</span>
+                                    <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation3" wire:model="quotation3" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -171,22 +166,9 @@
 
                 @endif
 
-
-
-
-                {{-- cancel, next button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                    {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property') }}/accountpayable/{{ $request_for }}/step-1">
-                        Cancel
-                    </a> --}}
-
-                    <button type="submit" wire:loading wire:target="submitForm" disabled
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
-                        Loading...
-                    </button>
-                    <button type="submit" wire:loading.remove wire:target="submitForm"
+                   
+                    <button type="submit" wire:target="submitForm"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                         Next
                     </button>

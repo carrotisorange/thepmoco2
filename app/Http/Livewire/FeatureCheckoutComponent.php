@@ -38,7 +38,7 @@ class FeatureCheckoutComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         $external_id = auth()->user()->id.'_'.Str::random(8);
         

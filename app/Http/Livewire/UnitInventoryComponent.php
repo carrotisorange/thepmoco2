@@ -73,7 +73,7 @@ class UnitInventoryComponent extends Component
 
      public function skipUnitInventoryProcess()
     {
-        sleep(1);
+        
 
         return
         redirect('/property/'.$this->unitDetails->property_uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success',
@@ -82,7 +82,7 @@ class UnitInventoryComponent extends Component
 
     public function addNewUnitInventory(){
 
-        sleep(1);
+        
 
         UnitInventory::create(
             [
@@ -97,7 +97,7 @@ class UnitInventoryComponent extends Component
 
     public function removeUnitInventory($id){
 
-        sleep(1);
+        
 
         UnitInventory::where('id', $id)->delete();
         

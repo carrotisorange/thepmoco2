@@ -1,7 +1,7 @@
 <form class="mt-6" method="post" wire:submit.prevent="processPayment()">
     <div class="grid grid-cols-12 gap-y-6 gap-x-4">
         <div class="col-span-full">
-            <label for="name" class="block text-sm font-medium text-gray-700">Full Name 
+            <label for="name" class="block text-sm font-medium text-gray-700">Full Name
             </label>
             <div class="mt-1">
                 <input type="text" wire:model.lazy="name" autocomplete="name" readonly
@@ -125,7 +125,7 @@
     </div> --}}
 
 
-    <button type="submit" wire:loading.remove 
+    <button type="submit"
         class="w-full mt-6 bg-purple-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Pay
         ₱{{
         number_format(($selected_plan->price-($selected_plan->price*$selected_checkout_option->discount))*$selected_checkout_option->policy,2)

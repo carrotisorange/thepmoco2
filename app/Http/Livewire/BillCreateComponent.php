@@ -63,7 +63,7 @@ class BillCreateComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
          $validated_data = $this->validate();    
 

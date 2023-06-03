@@ -98,7 +98,7 @@ class OwnerShowComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         $validatedData = $this->validate();
         
@@ -177,7 +177,7 @@ class OwnerShowComponent extends Component
 
     public function removeCredentials()
     {
-        sleep(1);
+        
 
         User::where('email', $this->owner_details->email)
         ->delete();
@@ -209,7 +209,7 @@ class OwnerShowComponent extends Component
 
     public function resetPassword()
     {
-        sleep(1);
+        
         
         $new_password = app('App\Http\Controllers\UserController')->generate_temporary_username();
 
@@ -251,6 +251,7 @@ class OwnerShowComponent extends Component
 
     public function render()
     {
+
         return view('livewire.owner-show-component',[
            'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
            'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
@@ -262,7 +263,7 @@ class OwnerShowComponent extends Component
             'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid),
             'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get(),
             'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->get(),
-            'collections' => AcknowledgementReceipt::where('owner_uuid', $this->owner_details->uuid)->get(),
+            'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($this->property->uuid, $this->owner_details->uuid),
             'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
             'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get()
         ]);

@@ -152,9 +152,6 @@ class UnitShowComponent extends Component
     }
 
     public function deleteUnit(){
-
-        sleep(3);
-
         app('App\Http\Controllers\PropertyContractController')->destroy($this->unit_details->uuid,null);
         app('App\Http\Controllers\PropertyDeedOfSaleController')->destroy($this->unit_details->uuid);
         app('App\Http\Controllers\PropertyUtilityController')->destroy($this->unit_details->uuid);

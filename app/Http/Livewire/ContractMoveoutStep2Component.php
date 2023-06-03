@@ -23,7 +23,7 @@ class ContractMoveoutStep2Component extends Component
 
     public function skipUnitInventoryProcess()
     {
-        sleep(1);
+        
 
         return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Success!');        
     }

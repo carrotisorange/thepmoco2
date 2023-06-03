@@ -190,72 +190,44 @@ class PropertyGuestController extends Controller
         return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');
     }
 
-    public function show_collections(Property $property, Guest $guest, AcknowledgementReceipt $ar)
-     {          
-         $balance = $this->get_guest_balance($ar->guest_uuid);
+    public function show_collections(Property $property, Guest $guest, Collection $collection)
+     {
+        $balance = $this->get_guest_balance($collection->guest_uuid);
 
-         $data = $this->get_collection_data(
-            $ar->created_at, 
-            $guest->uuid, 
-            $guest->guest,
-            $ar->mode_of_payment,
-            User::find($ar->user_id)->name,
-            User::find($ar->user_id)->role->role,
-            $ar->ar_no,
-            $ar->amount,
-            $ar->cheque_no,
-            $ar->bank,
-            $property,
-            $ar->date_deposited,
-            Collection::where('guest_uuid',$ar->guest_uuid)->where('batch_no', $ar->collection_batch_no)->orderBy('ar_no','asc')->get(),
-            $balance
-         );
+        $data = $this->get_collection_data(
+            $guest,
+            $collection,
+            $balance,
+        );
 
-        $pdf = $this->generate_pdf($property, $data, 'properties.guests.export-collections');
+        $folder_path = 'properties.guests.export-collections';
+
+        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
 
         return $pdf->stream($guest->guest.'-ar.pdf');
      }
 
-      public function generate_pdf(Property $property, $data, $folder_path)
+    public function get_collection_data($guest, $collection, $balance)
      {
+           $aggregated_collection = Collection::where('property_uuid',
+           $collection->property_uuid)->where('guest_uuid', $guest->uuid)->where('is_posted', 1)->where('ar_no',
+           $collection->ar_no);
 
-         $pdf = PDF::loadView($folder_path, $data);
-
-         $pdf->output();
-               
-         $canvas = $pdf->getDomPDF()->getCanvas();
-
-         $height = $canvas->get_height();
-         
-         $width = $canvas->get_width();
-
-         $canvas->set_opacity(.2,"Multiply");
-
-         $canvas->set_opacity(.2);
-
-        $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 55, array(0,0,0),2,2,-30);
-
-         return $pdf;
-
-     }
-
-      public function get_collection_data($payment_made, $reference_no, $tenant, $mode_of_payment, $user, $role, $ar_no, $amount, $cheque_no, $bank, $property, $date_deposited, $collections, $balance)
-     {
       return [
-         'created_at' => $payment_made,
-         'reference_no' => $reference_no,
-         'tenant' => $tenant,
-         'mode_of_payment' => $mode_of_payment,
-         'user' => $user,
-         'role' => $role,
-         'ar_no' => $ar_no,
-         'amount' => $amount,
-         'cheque_no' => $cheque_no,
-         'bank' => $bank,
-         'property' => $property,
-         'date_deposited' => $date_deposited,
-         'collections' => $collections,
-         'balance' => $balance
+         'created_at' => $collection->updated_at,
+         'reference_no' => $guest->bill_reference_no,
+         'guest' => $guest->guest,
+         'mode_of_payment' => $collection->form,
+         'user' => $collection->user->name,
+         'role' => $collection->user->role->role,
+         'ar_no' => $collection->ar_no,
+         'amount' => $aggregated_collection->sum('collection'),
+         'cheque_no' => $collection->cheque_no,
+         'bank' => $collection->bank,
+         'property' => $guest->property->property,
+         'date_deposited' => $collection->updated_at,
+         'collections' => $aggregated_collection->get(),
+         'balance' => $balance,
       ];
      }
 
@@ -332,8 +304,10 @@ class PropertyGuestController extends Controller
         app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
         $data = $this->get_bill_data($guest, $request->due_date, $request->penalty, $request->note_to_bill);
+
+        $folder_path = 'properties.guests.export-bills';
     
-        $pdf = $this->generate_pdf($property, $data, 'properties.guests.export-bills');
+        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
 
         return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
     }

@@ -47,8 +47,9 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Date</th>
                                                 <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description
-                                                    </th>
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Description
+                                                </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Unit</th>
@@ -80,11 +81,11 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
                                                 </td>
-                                               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                  Bill
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    Bill
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
-                                              $item->unit->unit }}
+                                                    $item->unit->unit }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
                                                     $item->bill_no }}
@@ -101,9 +102,11 @@
                                                     {{ number_format($item->bill, 2)}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {{ number_format(($item->bill-$item->initial_payment), 2) }}
+                                                    {{
+                                                    number_format(($item->bill-App\Models\Collection::where('bill_id',
+                                                    $item->id)->sum('collection')), 2) }}
                                                 </td>
-                                 
+
                                             </tr>
                                         </tbody>
                                         @endforeach
@@ -131,7 +134,7 @@
                                                     {{ number_format($item->collection, 2)}}
                                                 </td>
 
-                                            
+
                                             </tr>
                                         </tbody>
                                         @endforeach

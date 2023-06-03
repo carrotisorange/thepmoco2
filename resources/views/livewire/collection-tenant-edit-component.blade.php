@@ -119,7 +119,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="attachment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                    <span wire:loading.remove>Attach a deposit slip</span>
+                                    <span>Attach a deposit slip</span>
                                     <span wire:loading>Loading...</span>
                                     <input form="edit-form" name="attachment" id="attachment" type="file"
                                         class="sr-only" wire:model="attachment">
@@ -159,7 +159,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="proof_of_payment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                    <span wire:loading.remove>Attach a proof of payment</span>
+                                    <span>Attach a proof of payment</span>
                                     <span wire:loading>Loading...</span>
                                     <input form="edit-form" name="proof_of_payment" id="proof_of_payment" type="file"
                                         class="sr-only" wire:model="proof_of_payment">

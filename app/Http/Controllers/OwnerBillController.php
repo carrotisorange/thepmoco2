@@ -124,7 +124,9 @@ class OwnerBillController extends Controller
 
        $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
     
-       $pdf = $this->generate_pdf($data, $property);
+       $folder_path = 'owners.bills.export';
+
+       $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
 
        return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$owner->owner.'-soa.pdf');
     }
@@ -138,27 +140,6 @@ class OwnerBillController extends Controller
         Mail::to($request->email)->send(new SendBillToOwner($data));
 
         return back()->with('success', 'Success!');
-    }
-
-    public function generate_pdf($data, $property)
-    {
-        $pdf = PDF::loadView('owners.bills.export', $data);
-
-        $pdf->output();
-
-        $canvas = $pdf->getDomPDF()->getCanvas();
-
-        $height = $canvas->get_height();
-
-        $width = $canvas->get_width();
-
-        $canvas->set_opacity(.2,"Multiply");
-
-        $canvas->set_opacity(.2);
-
-        $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 50, array(0,0,0),1,1,-30);
-
-        return $pdf;
     }
 
     public function get_bill_data($owner, $due_date, $penalty, $note)

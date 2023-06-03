@@ -33,6 +33,10 @@ class Collection extends Model
         return $this->belongsTo(Owner::class, 'owner_uuid');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function guest(){
         return $this->belongsTo(Guest::class, 'guest_uuid');
     }
@@ -42,4 +46,9 @@ class Collection extends Model
         return $query->where('is_posted', true);
     }
 
+    public static function search($search)
+        {
+        return empty($search)? static::query()
+        : static::where('ar_no','like', '%'.$search.'%');
+    }
 }

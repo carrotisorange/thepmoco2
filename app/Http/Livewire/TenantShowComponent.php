@@ -220,7 +220,7 @@ class TenantShowComponent extends Component
 
     public function removeCredentials()
     {
-        sleep(1);
+        
 
         User::where('email', $this->tenant_details->email)
         ->delete();
@@ -259,7 +259,7 @@ class TenantShowComponent extends Component
             'contracts' => app('App\Http\Controllers\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
             'bills' => app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant_details->uuid),
             'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
-            'collections' => app('App\Http\Controllers\TenantController')->show_tenant_collections($this->tenant_details->uuid),
+            'collections' => app('App\Http\Controllers\TenantCollectionController')->get_tenant_collections($this->property->uuid, $this->tenant_details->uuid),
             'wallets' => Wallet::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('id','desc')->get(),
             'username' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('username'),
          ]);

@@ -5,7 +5,9 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="col-span-2">
                         <label for="unit_uuid" class="block text-sm font-medium text-gray-700">Unit</label>
-                        <select class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md" wire:model="unit_uuid" id="unit_uuid" name="unit_uuid">
+                        <select
+                            class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md"
+                            wire:model="unit_uuid" id="unit_uuid" name="unit_uuid">
                             <option value="">Select one</option>
                             @foreach ($units as $unit)
                             <option value="{{ $unit->uuid }}" {{ old('unit_uuid')==$unit->id?
@@ -13,7 +15,7 @@
                                 }}>{{ $unit->unit.' ('.$unit->status->status.')' }}</option>
                             @endforeach
                         </select>
-                     
+
                         @error('unit_uuid')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -117,17 +119,8 @@
             <button type="submit"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
-                <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                    </circle>
-                    <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                    </path>
-                </svg>
                 Next
             </button>
         </div>
     </div>
 </form>
-

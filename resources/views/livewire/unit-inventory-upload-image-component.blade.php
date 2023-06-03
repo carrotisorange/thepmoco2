@@ -48,7 +48,7 @@
                                         d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-                                <div class="flex text-sm text-gray-600" wire:loading.remove wire:target="submitForm">
+                                <div class="flex text-sm text-gray-600" wire:target="submitForm">
                                     <label for="image"
                                         class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                                         <span>Upload an image</span>
@@ -72,15 +72,12 @@
                     </div>
                 </div>
                 <p class="text-right">
-                    <button wire:click="submitForm()" wire:loading.remove
+                    <button wire:click="submitForm()"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                         type="button">Confirm
                     </button>
 
-                    <button wire:loading disabled
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                        type="button">Loading...
-                    </button>
+                   
                 </p>
             </div>
         </div>

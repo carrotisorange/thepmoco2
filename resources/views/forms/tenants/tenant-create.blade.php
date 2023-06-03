@@ -251,19 +251,20 @@
                     <div class="col-span-6">
 
                         <label class="block text-sm font-medium text-gray-700"> Upload Tenant ID (i.e.,
-                                Government-issued ID, school ID, employee ID)
-                            </label>
+                            Government-issued ID, school ID, employee ID)
+                        </label>
                     </div>
 
                     <div class="col-span-6 lg:col-span-2">
 
-                        <div class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                        <div
+                            class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
 
                                 <div class="flex text-sm text-gray-600">
                                     <label for="photo_id"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span wire:loading.remove>Upload a file</span>
+                                        <span>Upload a file</span>
                                         <span wire:loading>Loading...</span>
                                         <input id="photo_id" name="image" type="file" class="sr-only"
                                             wire:model="photo_id">
@@ -289,13 +290,14 @@
                     </div>
 
                     <div class="col-span-6 lg:col-span-2">
-                        <div class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                        <div
+                            class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
 
                                 <div class="flex text-sm text-gray-600">
                                     <label for="photo_id_2"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span wire:loading.remove>Upload a file</span>
+                                        <span>Upload a file</span>
                                         <span wire:loading>Loading...</span>
                                         <input id="photo_id_2" name="image" type="file" class="sr-only"
                                             wire:model="photo_id_2">
@@ -321,13 +323,14 @@
                     </div>
 
                     <div class="col-span-6 lg:col-span-2">
-                        <div class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                        <div
+                            class="py-4 bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
 
                                 <div class="flex text-sm text-gray-600">
                                     <label for="photo_id_3"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span wire:loading.remove>Upload a file</span>
+                                        <span>Upload a file</span>
                                         <span wire:loading>Loading...</span>
                                         <input id="photo_id_3" name="image" type="file" class="sr-only"
                                             wire:model="photo_id_3">
@@ -370,7 +373,7 @@
                 </div>
             </div>
             <div class="flex justify-end mt-2">
-              
+
 
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
@@ -381,20 +384,20 @@
                     Cancel
                 </a>
 
-                {{-- <button type="button" wire:loading.remove wire:click="exportTenantInformationSheet"
+                {{-- <button type="button" wire:click="exportTenantInformationSheet"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Tenant Information Sheet
                 </button> --}}
 
 
-                <button type="submit" wire:loading.remove
+                <button type="submit"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Next
                 </button>
 
                 <button type="button" wire:loading disabled
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Loading...
+                    Loading...
                 </button>
             </div>
         </div>

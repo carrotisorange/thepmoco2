@@ -284,7 +284,7 @@
                         href="/property/">
                         Cancel
                     </a>
-                    <x-form-button type="submit" wire:loading.remove wire:click="submitForm()" id="create-form">
+                    <x-form-button type="submit" wire:click="submitForm()" id="create-form">
                         Update
                     </x-form-button>
                 </div>

@@ -50,6 +50,10 @@ class Owner extends Model
         return $this->hasMany(Bank::class, 'owner_uuid');
     }
 
+    public function property(){
+        return $this->belongsTo(Property::class);
+    }
+
     public function enrollees()
     {
         return $this->hasMany(Enrollee::class);

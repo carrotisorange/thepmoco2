@@ -28,12 +28,21 @@ class EditPersonnelComponent extends Component
 
     public function updateButton(){
 
+        $is_email_exists = User::where('email', $this->email)->count();
+
+        if($is_email_exists){
+           $is_role_exists = UserProperty::where('user_id', $this->personnel->user_id)->where('role_id', $this->role_id)->pluck('id')->first();
+            if($is_role_exists){
+                return redirect(url()->previous())->with('error', 'Role already exists!');
+            }
+        }
+        
         $validatedUserData = $this->validate([
             'name' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')->ignore($this->personnel->id, 'id')],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')->ignore($this->personnel->user_id, 'id')],
         ]);
 
-        User::where('id', $this->personnel->id)
+        User::where('id', $this->personnel->user_id)
         ->update($validatedUserData);
 
         $validatedUserPropertyData = $this->validate([
@@ -41,7 +50,7 @@ class EditPersonnelComponent extends Component
             'is_approved' => 'required'
         ]);
     
-        UserProperty::where('user_id', $this->personnel->id)
+        UserProperty::where('id', $this->personnel->id)
         ->update($validatedUserPropertyData);
 
         return redirect(url()->previous())->with('success', 'Success!');

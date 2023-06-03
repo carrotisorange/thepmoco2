@@ -55,7 +55,7 @@ class ContractMoveinComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         //validate inputs
         $validatedData = $this->validate();

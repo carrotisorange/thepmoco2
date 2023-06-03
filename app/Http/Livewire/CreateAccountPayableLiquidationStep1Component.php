@@ -151,7 +151,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
     }
 
     public function removeParticular($id){
-        // sleep(1);
+        // 
         
         AccountPayableLiquidationParticular::where('id', $id)->delete();
 

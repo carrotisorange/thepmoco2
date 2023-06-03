@@ -41,7 +41,7 @@ class AccountPayableCreateStep5Component extends Component
 
     public function approveRequest()
     {
-        sleep(1);
+        
 
         $this->validate();
 
@@ -52,7 +52,7 @@ class AccountPayableCreateStep5Component extends Component
 
     public function rejectRequest(){
         
-        sleep(1);
+        
 
         $this->validate();
 

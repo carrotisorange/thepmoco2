@@ -29,7 +29,7 @@ class WalletCreateComponent extends Component
 
     public function submitForm(){
 
-        sleep(1);
+        
 
         $this->validate();
 

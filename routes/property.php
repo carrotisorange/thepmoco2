@@ -116,8 +116,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{guest:uuid}/booking/{booking:uuid}/edit', [PropertyGuestController::class, 'edit']);
         Route::get('{guest:uuid}/bills/{batch_no}/pay', [PropertyGuestController::class, 'store_collections']);
         Route::patch('{guest:uuid}/bills/{batch_no}/pay/update', [PropertyGuestController::class, 'update_collections']);
-        Route::get('{guest:uuid}/ar/{ar}/view', [PropertyGuestController::class, 'show_collections']);
-        Route::get('{guest:uuid}/ar/{ar}/attachment', [PropertyGuestController::class, 'view_attachment']);
+        Route::get('{guest:uuid}/collection/{collection}/view', [PropertyGuestController::class, 'show_collections']);
+        Route::get('{guest:uuid}/collection/{collection}/attachment', [PropertyGuestController::class, 'view_attachment']);
         Route::get('{guest:uuid}/export', [PropertyGuestController::class, 'export']);
         Route::get('{guest:uuid}/bill/export', [PropertyGuestController::class, 'export_bill']);
     });
@@ -252,10 +252,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             // Route::post('bill/store', [TenantBillController::class, 'store']);
             Route::get('bill/export', [TenantBillController::class, 'export']);
             Route::get('bill/send', [TenantBillController::class, 'send']);
-            Route::get('ar/{ar}/export', [TenantCollectionController::class, 'export']);
-            Route::get('ar/{ar}/view', [TenantCollectionController::class, 'view']);
-            Route::get('ar/{ar}/attachment', [TenantCollectionController::class, 'attachment']);
-            Route::get('ar/{ar}/proof_of_payment', [TenantCollectionController::class, 'proof_of_payment']);
+            Route::get('collection/{collection}/export', [TenantCollectionController::class, 'export']);
+            Route::get('collection/{collection}/view', [TenantCollectionController::class, 'view']);
+            Route::get('collection/{collection}/attachment', [TenantCollectionController::class, 'attachment']);
+            Route::get('collection/{collection}/proof_of_payment', [TenantCollectionController::class, 'proof_of_payment']);
             Route::get('concerns', [TenantConcernController::class, 'index'])->name('tenant');
             Route::get('concern/create', [TenantConcernController::class, 'create'])->name('concern');
             Route::get('concern/{concern}/edit', [TenantConcernController::class, 'edit'])->name('tenant');
@@ -335,10 +335,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('bill/export', [OwnerBillController::class, 'export']);
             Route::get('bill/send', [OwnerBillController::class, 'send']);
             Route::get('collections', [OwnerCollectionController::class, 'index'])->name('owner');
-            Route::get('ar/{ar}/export', [OwnerCollectionController::class, 'export']);
-            Route::get('ar/{ar}/view', [OwnerCollectionController::class, 'view']);
-            Route::get('ar/{ar}/attachment', [OwnerCollectionController::class, 'attachment']);
-            Route::get('ar/{ar}/proof_of_payment', [OwnerCollectionController::class, 'proof_of_payment']);
+            Route::get('collection/{collection}/export', [OwnerCollectionController::class, 'export']);
+            Route::get('collection/{collection}/view', [OwnerCollectionController::class, 'view']);
+            Route::get('collection/{collection}/attachment', [OwnerCollectionController::class, 'attachment']);
+            Route::get('collection/{collection}/proof_of_payment', [OwnerCollectionController::class, 'proof_of_payment']);
             Route::get('edit', [OwnerController::class, 'edit']);
 
             Route::get('bills/{batch_no}/pay', [OwnerCollectionController::class, 'edit']);
