@@ -6,8 +6,6 @@
             <x-th>REQUESTED BY</x-th>
             <x-th>BATCH NO</x-th>
             <x-th>UNITS</x-th>
-            {{-- <x-th>VENDORS</x-th>
-            <x-th>PARTICULARS</x-th> --}}
             <x-th>AMOUNT</x-th>
             <x-th></x-th>
             <x-th></x-th>
@@ -219,8 +217,6 @@
         <tr>
             <x-td><b>Total</b></x-td>
             <x-th></x-th>
-            {{-- <x-th></x-th>
-            <x-th></x-th> --}}
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>

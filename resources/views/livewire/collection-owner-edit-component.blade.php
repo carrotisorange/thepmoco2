@@ -208,10 +208,11 @@
             href="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/collection/{{ $batch_no }}">
             Cancel
         </a>
-        <x-button form="edit-form" type="button"
+       <button type="button" form="edit-form"
+            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
             Confirm Payment
-        </x-button>
+        </button>
     </div>
 
 

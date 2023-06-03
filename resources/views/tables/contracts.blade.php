@@ -20,7 +20,7 @@
         @foreach ($contracts as $index => $contract)
         <tr>
             <x-td> {{ $index+1 }} </x-td>
-            <x-td>{{ $contract->uuid }}</x-td>
+            <x-td>{{ Str::limit($contract->uuid, 10) }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit/{{ $contract->unit->uuid }}">

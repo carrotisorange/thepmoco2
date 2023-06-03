@@ -60,7 +60,7 @@
                 @else
                 <button type="button" disabled disabled
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                    <i class="fa-solid fa-lock"></i>&nbsp Update
+                    <i class="fa-solid fa-lock"></i>&nbsp Confirm
                 </button>
                 <p class="text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.</p>
 

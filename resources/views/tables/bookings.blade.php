@@ -18,7 +18,7 @@
 
         <tr>
             <x-td>{{ $index+1 }}</x-td>
-            <x-td>{{ $booking->uuid }}</x-td>
+         <x-td>{{ Str::limit($booking->uuid, 10) }}</x-td>
             <x-td><a href="/property/{{ $booking->property_uuid }}/guest/{{ $booking->guest->uuid }}"
                     class="text-indigo-500 text-decoration-line: underline">{{ $booking->guest->guest }}</a></x-td>
             <x-td><a href="/property/{{ $booking->property_uuid }}/unit/{{ $booking->unit->uuid }}"

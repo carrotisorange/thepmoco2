@@ -208,7 +208,7 @@ class TenantCollectionController extends Controller
             {
                 app('App\Http\Controllers\BillController')->update_bill_amount_due($bill_id, 'partially_paid');
 
-                app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id, $collection);
+               app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id, $collection);
             }
          }
 

@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\AccountPayable;
 use Livewire\Component;
 
 class ViewAccountpayableComponent extends Component
 {
-    public $accountpayable;
+    public AccountPayable $accountpayable;
     
     public function render()
     {
