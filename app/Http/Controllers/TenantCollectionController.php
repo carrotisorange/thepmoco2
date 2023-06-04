@@ -140,6 +140,7 @@ class TenantCollectionController extends Controller
 
    public function attachment(Property $property, Tenant $tenant, AcknowledgementReceipt $ar)
    {
+
       $attachment = $ar->attachment;
 
       return Storage::download(($attachment), 'AR_'.$ar->ar_no.'_'.$ar->tenant->tenant.'.png');
