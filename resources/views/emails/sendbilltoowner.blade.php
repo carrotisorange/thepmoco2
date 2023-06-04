@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hi, {{ $data['owner'] }}!
 
-Reference #: {{ $data['reference_no'] }}
+{{-- Reference #: {{ $data['reference_no'] }} --}}
 
 Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
 

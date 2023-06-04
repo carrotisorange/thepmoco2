@@ -5,7 +5,7 @@
     Guest: {{ $guest }}
 </p>
     <p>
-        Reference #: {{ $reference_no }}
+        {{-- Reference #: {{ $reference_no }} --}}
     </p>
     <p>
         AR #: {{ $ar_no }}

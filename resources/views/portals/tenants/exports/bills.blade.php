@@ -2,7 +2,7 @@
 @section('title', 'Bills')
 @section('content')
 <p>
-    Reference #: {{ $reference_no }}
+    {{-- Reference #: {{ $reference_no }} --}}
 </p>
 
 <p>
