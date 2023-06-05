@@ -71,6 +71,7 @@ class PropertyGuestController extends Controller
 
     public function update_collections(Request $request, Property $property, Guest $guest, $batch_no)
      {
+          Property::find($property->uuid)->collections()->where('guest_uuid', $guest->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
 

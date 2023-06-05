@@ -122,6 +122,8 @@ class OwnerCollectionController extends Controller
 
     public function update(Request $request, Property $property, Owner $owner, $batch_no)
     {
+        Property::find($property->uuid)->collections()->where('owner_uuid', $owner->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
+
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
 
          $counter = $this->get_selected_bills_count($batch_no);
