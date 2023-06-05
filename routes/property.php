@@ -59,8 +59,6 @@ use App\Http\Controllers\PropertyGuestController;
 use App\Http\Controllers\PropertyLiquidationController;
 
 
-
-
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::put('/booking/{booking}/update', [PropertyBookingController::class, 'update']);
