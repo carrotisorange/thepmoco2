@@ -71,15 +71,7 @@ class UserController extends Controller
 
         return $pdf;
     }
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create(Property $property, $random_str)
     {
         $this->authorize('accountownerandmanager');
@@ -98,13 +90,6 @@ class UserController extends Controller
         } 
     }
     
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store($name, $temporary_username, $password, $external_id, $email, $role_id, $mobile_number, $discount_code, $checkout_option, $plan_id)
     {
         session(['temporary_username' => $temporary_username]);
@@ -201,17 +186,9 @@ class UserController extends Controller
         return view('users.unlock');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
-    {        
+    {     
        if($user->id === auth()->user()->id || auth()->user()->role_id == '5' || auth()->user()->role_id == '9'){
-
-        //app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens',11);
 
            return view('users.edit', [
             'user' => $user,
