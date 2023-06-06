@@ -5,27 +5,17 @@ namespace App\Http\Controllers;
 use App\Mail\SendBillToTenant;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
-use Session;
-use Illuminate\Validation\Rule;
-use DB;
 use App\Models\Bill;
 use App\Models\Property;
 use App\Models\User;
 use Carbon\Carbon;
-use \PDF;
+
 use App\Models\Collection;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+
 
 class TenantBillController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
     public function index(Property $property, Tenant $tenant)
     {            
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
@@ -35,8 +25,6 @@ class TenantBillController extends Controller
             'property' => $property,
         ]);
     }
-
-    
 
     public function show_tenant_bills($tenant_uuid)
     {
@@ -79,14 +67,24 @@ class TenantBillController extends Controller
 
     public function get_bill_data($tenant, $due_date, $penalty, $note)
     {
+         $unpaid_bills = Bill::where('tenant_uuid', $tenant->uuid)->whereIn('status', ['unpaid','partially_paid'])->sum('bill');
+         $paid_bills = Collection::where('tenant_uuid', $tenant->uuid)->where('is_posted', 1)->sum('collection');
+
+        if($unpaid_bills<=0){ 
+            $balance=0; 
+        }else{ 
+            $balance=$unpaid_bills - $paid_bills;
+        }
+
         return $data = [
             'tenant' => $tenant->tenant,
             'reference_no' => $tenant->bill_reference_no,
             'due_date' => $due_date,
-            'penalty' => $penalty,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => $this->get_tenant_balance($tenant->uuid),
+            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->whereIn('status', ['unpaid','partially_paid'])->get(),
+            'balance' => $balance,
+            'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,
         ];
     }

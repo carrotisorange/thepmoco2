@@ -15,10 +15,8 @@ use App\Models\AcknowledgementReceipt;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPaymentToTenant;
-use \PDF;
 use App\Models\AdditionalGuest;
 use App\Models\Booking;
-use Illuminate\Support\Str;
 
 class PropertyGuestController extends Controller
 {
@@ -214,6 +212,18 @@ class PropertyGuestController extends Controller
            $collection->property_uuid)->where('guest_uuid', $guest->uuid)->where('is_posted', 1)->where('ar_no',
            $collection->ar_no);
 
+           
+          $unpaid_bills = Bill::where('guest_uuid', $guest->uuid)->whereIn('status',
+          ['unpaid','partially_paid'])->sum('bill');
+          $paid_bills = Collection::where('guest_uuid', $guest->uuid)->where('is_posted', 1)->sum('collection');
+
+            if($unpaid_bills<=0){ 
+                $balance=0; 
+            }else
+            { 
+                $balance=$unpaid_bills - $paid_bills; 
+            }
+
       return [
          'created_at' => $collection->updated_at,
          'reference_no' => $guest->bill_reference_no,
@@ -246,7 +256,6 @@ class PropertyGuestController extends Controller
 
     public function update(Request $request ,$uuid)
     {
-
         $booking = Guest::find($uuid);
         if(! $booking) {
             return response()->json([
@@ -315,13 +324,26 @@ class PropertyGuestController extends Controller
 
     public function get_bill_data($guest, $due_date, $penalty, $note)
     {
+          $unpaid_bills = Bill::where('guest_uuid', $guest->uuid)->whereIn('status',
+          ['unpaid','partially_paid'])->sum('bill');
+          $paid_bills = Collection::where('guest_uuid', $guest->uuid)->where('is_posted', 1)->sum('collection');
+
+        if($unpaid_bills<=0){ 
+            $balance=0; 
+        }else
+        { 
+            $balance=$unpaid_bills - $paid_bills; 
+        }
+
         return $data = [
             'guest' => $guest->guest,
             'due_date' => $due_date,
             'penalty' => $penalty,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => $this->get_guest_balance($guest->uuid),
+            'bills' => Bill::where('guest_uuid', $guest->uuid)->whereIn('status', ['unpaid','partially_paid'])->get(),
+            'balance' => $balance,
+            'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,
         ];
     }

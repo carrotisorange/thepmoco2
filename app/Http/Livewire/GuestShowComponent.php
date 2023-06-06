@@ -171,10 +171,19 @@ class GuestShowComponent extends Component
 
     public function render()
     {
+         $collections = Collection::
+          select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
+          ->where('property_uuid', $this->property->uuid)
+          ->where('guest_uuid', $this->guest_details->uuid)
+          ->where('is_posted', 1)
+          ->groupBy('ar_no')
+          ->orderBy('ar_no', 'desc')
+          ->get();
+
         return view('livewire.guest-show-component',[
             'units' => Property::find($this->property->uuid)->units->where('rent_duration', 'transient'),
             'bills' => Guest::find($this->guest_details->uuid)->bills()->orderBy('created_at', 'desc')->get(),
-            'collections' => AcknowledgementReceipt::where('guest_uuid', $this->guest_details->uuid)->orderBy('id','desc')->paginate(5),
+            'collections' => $collections,
             'additional_guests' => AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->get(),
             'bookings' => Booking::where('guest_uuid', $this->guest_details->uuid)->get(),
            

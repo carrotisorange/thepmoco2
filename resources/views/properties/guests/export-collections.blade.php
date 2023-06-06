@@ -42,7 +42,7 @@
     
     
     <p>
-        Unpaid Bills: {{ number_format(($balance->sum('bill') - $balance->sum('initial_payment')),2)}}
+        Unpaid Bills: {{ number_format($balance,2)}}
     </p>
     <br>
     <p>
