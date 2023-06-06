@@ -59,15 +59,15 @@
                 @if($bill->tenant_uuid)
                 <a title="tenant" class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">
-                    {{  Str::limit($bill->tenant->tenant,10) }} </a> (T)
+                    {{  Str::limit($bill->tenant->tenant,20) }} </a> (T)
                 @elseif($bill->owner_uuid)
                 <a title="owner" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $bill->property_uuid }}/owner/{{ $bill->owner_uuid }}">
-                    {{  Str::limit($bill->owner->owner,10) }} </a> (O)
+                    {{  Str::limit($bill->owner->owner,20) }} </a> (O)
                 @elseif($bill->guest_uuid)
                 <a title="guest" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $bill->property_uuid }}/guest/{{ $bill->guest_uuid }}">
-                      {{  Str::limit($bill->guest->guest,10) }} </a> (G)
+                      {{  Str::limit($bill->guest->guest,20) }} </a> (G)
                 @else
                 NA
                 @endif
@@ -75,14 +75,14 @@
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ Session::get('property') }}/unit/{{ $bill->unit->uuid }}">
-                    {{ Str::limit($bill->unit->unit,10) }} </a>
+                    {{ Str::limit($bill->unit->unit,20) }} </a>
                 </a>
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
             </x-td>
             <x-td>
-                {{ Str::limit($bill->particular->particular,10) }} </a> 
+                {{ Str::limit($bill->particular->particular,15) }} </a> 
             </x-td>
             <x-td>
                 {{ number_format($bill->bill, 2) }}

@@ -53,15 +53,15 @@
                @if($collection->tenant_uuid)
                 <a title="tenant" class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ $collection->property_uuid }}/tenant/{{ $collection->tenant_uuid }}">
-                    {{ Str::limit($collection->tenant->tenant,10) }} </a> (T)
+                    {{ Str::limit($collection->tenant->tenant,20) }} </a> (T)
                 @elseif($collection->owner_uuid)
                 <a title="owner" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $collection->property_uuid }}/owner/{{ $collection->owner_uuid }}">
-                    {{ Str::limit($collection->owner->owner,10) }} </a> (O)
+                    {{ Str::limit($collection->owner->owner,20) }} </a> (O)
                 @elseif($collection->guest_uuid)
                 <a title="guest" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $collection->property_uuid }}/guest/{{ $collection->guest_uuid }}">
-                    {{ Str::limit($collection->guest->guest,10) }} </a> (G)
+                    {{ Str::limit($collection->guest->guest,20) }} </a> (G)
                 @else
                 NA
                 @endif
@@ -77,14 +77,14 @@
             <x-td> {{ $collection->form }} </x-td>
             <x-td>
                 @if($collection->cheque_no)
-                {{ Str::limit($collection->cheque_no,10) }}
+                {{ Str::limit($collection->cheque_no,15) }}
                 @else
                 NA
                 @endif
             </x-td>
             <x-td>
                 @if($collection->bank)
-                {{ Str::limit($collection->bank,10) }}
+                {{ Str::limit($collection->bank,15) }}
                 @else
                 NA
                 @endif
