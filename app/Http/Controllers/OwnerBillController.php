@@ -9,20 +9,15 @@ use Illuminate\Validation\Rule;
 use App\Models\Bill;
 use DB;
 use Session;
-use \PDF;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendBillToOwner;
-use Illuminate\Support\Str;
+use App\Models\Collection;
 
 class OwnerBillController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Property $property, Owner $owner)
     {
         $bills = Owner::find($owner->uuid)
@@ -51,22 +46,6 @@ class OwnerBillController extends Controller
         return Bill::where('owner_uuid', $owner_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->orderBy('bill_no','desc')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, Property $property, Owner $owner)
     {
           $attributes = request()->validate([
@@ -144,59 +123,26 @@ class OwnerBillController extends Controller
 
     public function get_bill_data($owner, $due_date, $penalty, $note)
     {
+        $unpaid_bills = Bill::where('owner_uuid', $owner->uuid)->whereIn('status', ['unpaid','partially_paid'])->sum('bill');
+        $paid_bills = Collection::where('owner_uuid', $owner->uuid)->where('is_posted', 1)->sum('collection');
+
+        if($unpaid_bills<=0){ 
+            $balance=0; 
+        }else{ 
+            $balance=$unpaid_bills - $paid_bills; 
+        }
+
         return $data = [
             'owner' => $owner->owner,
             'reference_no' => $owner->bill_reference_no,
             'due_date' => $due_date,
-            'penalty' => $penalty,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => $this->get_owner_balance($owner->uuid),
+            'balance' => $balance,
+            'bills' => Bill::where('owner_uuid', $owner->uuid)->whereIn('status', ['unpaid','partially_paid'])->get(),
+            'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,
         ];
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+ 
 }

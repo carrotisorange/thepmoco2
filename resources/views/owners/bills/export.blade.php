@@ -11,11 +11,11 @@
     Owner: {{ $owner }}
 </p>
 <p>
-    Bills to be Paid: {{ number_format($bills->sum('bill')-$bills->sum('initial_payment'), 2) }}
+    Bills to be Paid: {{ number_format($balance, 2) }}
 </p>
 <p>
     <b class="text-red">Bills to be Paid After Due Date: {{
-        number_format(($bills->sum('bill')-$bills->sum('initial_payment') + $penalty), 2) }}</b>
+        number_format($balance_after_due_date, 2) }}</b>
 </p>
 <br>
 <p>
