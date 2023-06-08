@@ -30,13 +30,14 @@ class UserPropertyController extends Controller
         }
     }
 
-    public function store($property_uuid, $user_id, $is_account_owner, $is_approved)
+    public function store($property_uuid, $user_id, $is_account_owner, $is_approved, $role_id)
     {
         UserProperty::create([
             'property_uuid' => $property_uuid,
             'user_id' => $user_id,
             'is_account_owner' => $is_account_owner,
-            'is_approved' => $is_approved
+            'is_approved' => $is_approved,
+            'role_id' => $role_id
         ]);
     }
 

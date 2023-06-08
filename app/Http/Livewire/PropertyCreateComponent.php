@@ -58,7 +58,6 @@ class PropertyCreateComponent extends Component
      public function create()
      {
          
-
          $validatedData = $this->validate();
 
          try {
@@ -67,7 +66,9 @@ class PropertyCreateComponent extends Component
             
                $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData);
                
-               app('App\Http\Controllers\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1);
+               app('App\Http\Controllers\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1, 5);
+
+               app('App\Http\Controllers\UserRestrictionController')->store($new_property->uuid->toString(), auth()->user()->id);
                
                app('App\Http\Controllers\PropertyParticularController')->store($new_property->uuid->toString());
 
@@ -84,13 +85,6 @@ class PropertyCreateComponent extends Component
         }catch (\Throwable $e) {
             return back()->with('error', $e);
         }
-     }
-
-     public function cancel(){
-      
-      
-
-      return redirect('/property');
      }
 
      public function render()

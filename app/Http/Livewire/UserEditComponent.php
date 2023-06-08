@@ -5,13 +5,9 @@ use Illuminate\Validation\Rule;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use App\Models\Feature;
 use App\Models\User;
-use Auth;
-use App\Models\Role;
-use App\Models\Timestamp;
 use Livewire\WithPagination;
-use App\Models\Session;
+use App\Models\UserRestriction;
 
 class UserEditComponent extends Component
 {
@@ -29,41 +25,6 @@ class UserEditComponent extends Component
     public $user_id;
     public $gender;
 
-    public $is_portfolio_create_allowed;
-    public $is_portfolio_read_allowed;
-    public $is_portfolio_update_allowed;
-    public $is_portfolio_delete_allowed;
-
-    public $is_contract_create_allowed;
-    public $is_contract_read_allowed;
-    public $is_contract_update_allowed;
-    public $is_contract_delete_allowed;
-    
-    public $is_concern_create_allowed;
-    public $is_concern_read_allowed;
-    public $is_concern_update_allowed;
-    public $is_concern_delete_allowed;
-
-    public $is_tenant_portal_create_allowed;
-    public $is_tenant_portal_read_allowed;
-    public $is_tenant_portal_update_allowed;
-    public $is_tenant_portal_delete_allowed;
-
-    public $is_owner_portal_create_allowed;
-    public $is_owner_portal_read_allowed;
-    public $is_owner_portal_update_allowed;
-    public $is_owner_portal_delete_allowed;
-
-    public $is_account_payable_create_allowed;
-    public $is_account_payable_read_allowed;
-    public $is_account_payable_update_allowed;
-    public $is_account_payable_delete_allowed;
-
-    public $is_account_receivable_create_allowed;
-    public $is_account_receivable_read_allowed;
-    public $is_account_receivable_update_allowed;
-    public $is_account_receivable_delete_allowed;
-
     public function mount($user)
     {
         $this->name = $user->name;
@@ -75,44 +36,9 @@ class UserEditComponent extends Component
         $this->user_id = $user->id;
         $this->role_id = $user->role_id;
         $this->gender = $user->gender;
-
-        $this->is_portfolio_create_allowed = $user->is_portfolio_create_allowed;
-        $this->is_portfolio_read_allowed = $user->is_portfolio_read_allowed;
-        $this->is_portfolio_update_allowed = $user->is_portfolio_update_allowed;
-        $this->is_portfolio_delete_allowed = $user->is_portfolio_delete_allowed;
-
-        $this->is_contract_create_allowed = $user->is_contract_create_allowed;
-        $this->is_contract_read_allowed = $user->is_contract_read_allowed;
-        $this->is_contract_update_allowed = $user->is_contract_update_allowed;
-        $this->is_contract_delete_allowed = $user->is_contract_delete_allowed;
-
-        $this->is_concern_create_allowed = $user->is_concern_create_allowed;
-        $this->is_concern_read_allowed = $user->is_concern_read_allowed;
-        $this->is_concern_update_allowed = $user->is_concern_update_allowed;
-        $this->is_concern_delete_allowed = $user->is_concern_delete_allowed;
-
-        $this->is_tenant_portal_create_allowed = $user->is_tenant_portal_create_allowed;
-        $this->is_tenant_portal_read_allowed = $user->is_tenant_portal_read_allowed;
-        $this->is_tenant_portal_update_allowed = $user->is_tenant_portal_update_allowed;
-        $this->is_tenant_portal_delete_allowed = $user->is_tenant_portal_delete_allowed;
-
-        $this->is_owner_portal_create_allowed = $user->is_owner_portal_create_allowed;
-        $this->is_owner_portal_read_allowed = $user->is_owner_portal_read_allowed;
-        $this->is_owner_portal_update_allowed = $user->is_owner_portal_update_allowed;
-        $this->is_owner_portal_delete_allowed = $user->is_owner_portal_delete_allowed;
-
-        $this->is_account_payable_create_allowed = $user->is_account_payable_create_allowed;
-        $this->is_account_payable_read_allowed = $user->is_account_payable_read_allowed;
-        $this->is_account_payable_update_allowed = $user->is_account_payable_update_allowed;
-        $this->is_account_payable_delete_allowed = $user->is_account_payable_delete_allowed;
-
-        $this->is_account_receivable_create_allowed = $user->is_account_receivable_create_allowed;
-        $this->is_account_receivable_read_allowed = $user->is_account_receivable_read_allowed;
-        $this->is_account_receivable_update_allowed = $user->is_account_receivable_update_allowed;
-        $this->is_account_receivable_delete_allowed = $user->is_account_receivable_delete_allowed;  
     }
     
-     protected function rules()
+    protected function rules()
     {
         return [
                 'name' => ['required', 'string', 'max:255'],
@@ -123,40 +49,6 @@ class UserEditComponent extends Component
                 'status' => 'nullable',
                 'gender' => ['required'],
 
-                'is_portfolio_create_allowed' => 'nullable',
-                'is_portfolio_read_allowed' => 'nullable',
-                'is_portfolio_update_allowed' => 'nullable',
-                'is_portfolio_delete_allowed' => 'nullable',
-
-                'is_contract_create_allowed' => 'nullable',
-                'is_contract_read_allowed' => 'nullable',
-                'is_contract_update_allowed' => 'nullable',
-                'is_contract_delete_allowed' => 'nullable',
-
-                'is_concern_create_allowed' => 'nullable',
-                'is_concern_read_allowed' => 'nullable',
-                'is_concern_update_allowed' => 'nullable',
-                'is_concern_delete_allowed' => 'nullable',
-
-                'is_tenant_portal_create_allowed' => 'nullable',
-                'is_tenant_portal_read_allowed' => 'nullable',
-                'is_tenant_portal_update_allowed' => 'nullable',
-                'is_tenant_portal_delete_allowed' => 'nullable',
-
-                'is_owner_portal_create_allowed' => 'nullable',
-                'is_owner_portal_read_allowed' => 'nullable',
-                'is_owner_portal_update_allowed' => 'nullable',
-                'is_owner_portal_delete_allowed' => 'nullable',
-
-                'is_account_payable_create_allowed' => 'nullable',
-                'is_account_payable_read_allowed' => 'nullable',
-                'is_account_payable_update_allowed' => 'nullable',
-                'is_account_payable_delete_allowed' => 'nullable',
-
-                'is_account_receivable_create_allowed' => 'nullable',
-                'is_account_receivable_read_allowed' => 'nullable',
-                'is_account_receivable_update_allowed' => 'nullable',
-                'is_account_receivable_delete_allowed' => 'nullable',
             ];
     }
 
@@ -167,8 +59,6 @@ class UserEditComponent extends Component
 
     public function updateUser()
     {
-        
-       
         $validatedData = $this->validate();
          
         try{     
@@ -190,7 +80,6 @@ class UserEditComponent extends Component
     public function render()
     {
         return view('livewire.user-edit-component',[
-            'features' => Feature::all(),
             'properties' => User::find($this->user->id)->user_properties()->get(),
             'all_properties' => User::find(auth()->user()->id)->user_properties()->get(),
             'roles' => app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(),

@@ -1,4 +1,4 @@
-<footer class="">
+<footer id="footer">
     <div class="border-t mt-5 max-w-8xl mx-auto py-3 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div class="flex justify-center space-x-6 md:order-2">
            @auth
