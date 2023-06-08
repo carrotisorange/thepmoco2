@@ -5,7 +5,7 @@
     </x-slot>
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
-            class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+            class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
             <div>
 
                 <div class="mt-3 text-center sm:mt-5">

@@ -5,9 +5,8 @@
             <x-th>NAME</x-th>
             <x-th>ROLE</x-th>
             <x-th>MOBILE</x-th>
-            <x-th>INVITED ON</x-th>
-            <x-th>AUTHORIZED?</x-th>
-            <x-th></x-th>
+            <x-th>ADDED ON</x-th>
+            <x-th>IS AUTHORIZED?</x-th>
             <x-th></x-th>
         </tr>
     </thead>

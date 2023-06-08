@@ -44,7 +44,7 @@
       
             <x-td>{{ $collection->ar_no }}</x-td>
             <x-td>
-                <?php $bill_nos = App\Models\Collection::where('property_uuid', $collection->property_uuid)->where('ar_no', $collection->ar_no)->get();?>
+                <?php $bill_nos = App\Models\Collection::where('property_uuid', $collection->property_uuid)->where('ar_no', $collection->ar_no)->get()->unique('bill_no');?>
                 @foreach ($bill_nos as $bill_no)
                     {{ $bill_no->bill->bill_no }},
                 @endforeach
