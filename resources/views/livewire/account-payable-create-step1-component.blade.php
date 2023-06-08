@@ -40,20 +40,61 @@
                     @enderror
                 </div>
 
+                {{-- requester's name --}}
+                <div class="sm:col-span-2">
+                    <label for="requester" class="block text-sm font-medium text-gray-700">Requester</label>
+                    <x-form-select id="requester_id" name="requester_id" wire:model="requester_id" class="">
+                        <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
+                    </x-form-select>
+                    @error('requester_id')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div class="sm:col-span-2">
+                    <label for="first_approver" class="block text-sm font-medium text-gray-700">1st Approver
+                        (Manager)</label>
+                    <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" class="">
+                        <option value="">Select one</option>
+                        @foreach ($managers as $manager)
+                        <option value="{{ $manager->user_id }}">{{ $manager->user->name }}</option>
+                        @endforeach
+                
+                    </x-form-select>
+                
+                </div>
+                
+                <div class="sm:col-span-2">
+                    <label for="requester" class="block text-sm font-medium text-gray-700">2nd Approver (Account
+                        Payable)</label>
+                    <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" class="">
+                        <option value="">Select one</option>
+                        @foreach ($accountpayables as $accountpayable)
+                        <option value="{{ $accountpayable->user_id }}">{{ $accountpayable->user->name }}</option>
+                        @endforeach
+                
+                    </x-form-select>
+                    @error('requester_id')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
 
                 @if($particulars->count())
                 <div class="sm:col-span-6">
                     {{-- <label for="particular" class="block text-sm font-medium text-gray-700"><b>Add all the
                             particulars here</b></label> --}}
-                    <button type="button" wire:click="addNewParticular"
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        Add new particular
-                    </button>
+                   
 
                     <button type="button" data-modal-toggle="instructions-create-vendor-modal"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        Add new vendor
+                        New vendor
                     </button>
+
+                    <button type="button" wire:click="updateParticulars" wire:target="updateParticulars"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        Save
+                    </button> 
                   
                 </div>
                 @endif
@@ -73,7 +114,7 @@
                                         <x-th>QUANTITY</x-th>
                                         <x-th>PRICE</x-th>
                                         <x-th>TOTAL</x-th>
-                                        <x-th></x-th>
+                                        {{-- <x-th></x-th> --}}
                                         <x-th></x-th>
                                     </tr>
                                 </thead>
@@ -146,29 +187,51 @@
                                                 {{ number_format((double) $particular->quantity *
                                                 (double)$particular->price,2)}}
                                             </x-td>
+                                            {{-- @endif --}}
                                             <x-td>
-                                                <button type="button"
+                                                {{-- <button data-modal-target="delete-accountpayableparticular-modal-{{$particular->id}}" data-modal-toggle="delete-accountpayableparticular-modal-{{$particular->id}}"
+                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto"
+                                                    type="button">
+                                                    Remove
+                                                </button> --}}
+
+                                                <button type="button" wire:click="removeParticular({{ $particular->id }})"
+                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                                    Remove
+                                                </button>
+                                            
+                                                @include('layouts.notifications')
+                                            </x-td>
+                                            <x-td>
+                                                {{-- <button type="button"
                                                     wire:click="updateParticular({{ $particular->id }})"
                                                     wire:target="updateParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Save
+                                                </button> --}} 
+                                                @if($particular->id === $particular->max('id'))
+                                                <button type="button" wire:click="addNewParticular"
+                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                                    Add 
                                                 </button>
+                                                @endif
                                            
                                             </x-td>
 
-                                            {{-- @endif --}}
-                                            <x-td>
-                                                <button type="button"
-                                                    wire:click="removeParticular({{ $particular->id }})"
-                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                                    Remove
-                                                </button>
-                                       
-                                                @include('layouts.notifications')
-                                            </x-td>
+                                          
                                         </tr>
                                     </div>
                                     @endforeach
+                                    <tr>
+                                        <x-td><b>Total</b></x-td>
+                                        <x-th></x-th>
+                                        <x-th></x-th>
+                                        <x-th></x-th>
+                                        <x-th></x-th>
+                                        <x-th></x-th>
+                                        <x-td><b>{{ number_format($amount, 2)}}</b></x-td>
+                                        <x-th></x-th>
+                                    </tr>
 
                                 </tbody>
                             </table>
@@ -384,47 +447,7 @@
                     @enderror
                 </div>
 
-                {{-- requester's name --}}
-                <div class="sm:col-span-2">
-                    <label for="requester" class="block text-sm font-medium text-gray-700">Requester</label>
-                    <x-form-select id="requester_id" name="requester_id" wire:model="requester_id" class="">
-                        <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
-                    </x-form-select>
-                    @error('requester_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="first_approver" class="block text-sm font-medium text-gray-700">1st Approver
-                        (Manager)</label>
-                    <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" class="">
-                        <option value="">Select one</option>
-                        @foreach ($managers as $manager)
-                        <option value="{{ $manager->user_id }}">{{ $manager->user->name }}</option>
-                        @endforeach
-
-                    </x-form-select>
-
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="requester" class="block text-sm font-medium text-gray-700">2nd Approver (Account
-                        Payable)</label>
-                    <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" class="">
-                        <option value="">Select one</option>
-                        @foreach ($accountpayables as $accountpayable)
-                        <option value="{{ $accountpayable->user_id }}">{{ $accountpayable->user->name }}</option>
-                        @endforeach
-
-                    </x-form-select>
-                    @error('requester_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-
-                <div class="col-start-6 flex items-center justify-end">
+                               <div class="col-start-6 flex items-center justify-end">
                     <button type="submit" wire:click="cancelRequest"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Cancel
