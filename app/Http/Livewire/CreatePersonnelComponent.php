@@ -21,7 +21,7 @@ class CreatePersonnelComponent extends Component
     public $email;
     public $mobile_number;
 
-    public function storePersonnel(){
+   public function storePersonnel(){
 
     $this->validate([
         'email' => ['required', 'string', 'email', 'max:255'],
@@ -34,13 +34,14 @@ class CreatePersonnelComponent extends Component
     
     $is_user_exists = User::where('email', $this->email)->pluck('id')->first();
 
-    $is_role_exists = UserProperty::where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
+    
+        $is_role_exists = UserProperty::where('property_uuid',$this->property->uuid)->where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
 
-    if($is_role_exists){
-         return redirect(url()->previous())->with('error', 'Role already exists!');
-    }
+        if($is_role_exists){
+            return redirect(url()->previous())->with('error', 'Role already exists!');
+        }
 
-    if($is_user_exists){
+        if($is_user_exists){
           $user = User::find($is_user_exists);
         }else{
            $user = User::create(
@@ -62,10 +63,16 @@ class CreatePersonnelComponent extends Component
            );
         }
 
-    app('App\Http\Controllers\UserPropertyController')->store($this->property->uuid, $user->id, 0, 1, $this->role_id);
+    UserProperty::create(
 
-    app('App\Http\Controllers\UserRestrictionController')->store($user->id,$this->property->uuid);
-
+        [
+               'property_uuid' => $this->property->uuid,
+               'user_id' => $user->id,
+               'is_account_owner' => false,
+               'is_approved' => true,
+               'role_id' => $this->role_id
+        ]
+    );
 
     if($user->role_id == '5')
         {
@@ -83,6 +90,13 @@ class CreatePersonnelComponent extends Component
 
    }
 
+    public function isUserExists(){
+      DB::table('user_properties')
+      ->join('users', 'user_id', 'users.id')
+      ->join('properties', 'property_uuid', 'properties.uuid')
+      ->where('users.email', $this->email)
+      ->count();
+     }
     public function render()
     {
         return view('livewire.create-personnel-component',[
