@@ -52,7 +52,6 @@ class AccountPayableCreateStep1Component extends Component
     public $second_approver;
 
 
-    
     public function mount($accountpayable)
     {
         $this->request_for = 'payment/purchase';

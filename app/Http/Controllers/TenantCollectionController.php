@@ -71,7 +71,7 @@ class TenantCollectionController extends Controller
      public function get_collection_data($tenant, $collection)
      {
 
-         $unpaid_bills =  Bill::where('tenant_uuid', $tenant->uuid)->whereIn('status', ['unpaid', 'partially_paid'])->sum('bill');
+         $unpaid_bills =  Bill::where('tenant_uuid', $tenant->uuid)->sum('bill');
          $paid_bills = Collection::where('tenant_uuid', $tenant->uuid)->where('is_posted', 1)->sum('collection');
 
          if($unpaid_bills<=0){
@@ -168,7 +168,7 @@ class TenantCollectionController extends Controller
             ]);
          }
 
-         $this->send_payment_to_tenant($tenant, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
+         // $this->send_payment_to_tenant($tenant, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
    
          return redirect('/property/'.$property->uuid.'/tenant/'.$tenant->uuid.'/collections')->with('success',
          'Success!');

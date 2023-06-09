@@ -76,7 +76,7 @@ class OwnerCollectionController extends Controller
      public function get_collection_data($owner, $collection)
      {
         $aggregated_collection = Collection::where('property_uuid', $collection->property_uuid)->where('owner_uuid', $owner->uuid)->where('is_posted', 1)->where('ar_no', $collection->ar_no);
-        $unpaid_bills =  Bill::where('owner_uuid', $owner->uuid)->whereIn('status', ['unpaid', 'partially_paid'])->sum('bill');
+        $unpaid_bills =  Bill::where('owner_uuid', $owner->uuid)->sum('bill');
         $paid_bills = Collection::where('owner_uuid', $owner->uuid)->where('is_posted', 1)->sum('collection');
 
         if($unpaid_bills<=0){
