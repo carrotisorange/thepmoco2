@@ -49,7 +49,6 @@
 
                     </div>
                     @if($statuses->count())
-
                     @include('tables.contracts')
                     @else
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">

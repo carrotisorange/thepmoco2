@@ -69,7 +69,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->vendor = $accountpayable->vendor;
         $this->delivery_at = Carbon::parse($this->delivery_at)->format('Y-m-d');
         $this->particulars = $this->get_particulars();
-        $this->amount = $this->accountpayable->amount;
+        $this->amount = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
 
     }
 
@@ -261,7 +261,7 @@ class AccountPayableCreateStep1Component extends Component
                     'quantity' => $particular->quantity,
                     'price' => $particular->price,
                     'batch_no' => $this->batch_no,
-                    // 'total' => $particular->quantity * $particular->price,
+                    'total' => $particular->quantity * $particular->price,
                 ]);
 
             session()->flash('success', 'Success!');
