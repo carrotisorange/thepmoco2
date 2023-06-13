@@ -21,8 +21,7 @@ class PersonnelIndexComponent extends Component
 
    public function render()
    {
-
-      $personnels = UserProperty::where('user_id', '!=', auth()->user()->id)->where('property_uuid', $this->property->uuid)->get();
+      $personnels = UserProperty::where('property_uuid', $this->property->uuid)->whereNotIn('user_id', [auth()->user()->id, '97'])->get();
 
      return view('livewire.personnel-index-component', [
         'personnels' => $personnels,

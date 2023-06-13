@@ -166,8 +166,7 @@
                             ($accountpayable->status==='pending' || $accountpayable->status==='unknown'))
                             <a href="#/" data-modal-target="delete-accountpayable-modal-{{$accountpayable->id}}" data-modal-toggle="delete-accountpayable-modal-{{$accountpayable->id}}"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                               
-                                >Delete
+                               >Delete
                                 Request</a>
                             @endif
                         </li>
