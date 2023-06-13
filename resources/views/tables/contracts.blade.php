@@ -8,18 +8,23 @@
             <x-th>PERIOD COVERED</x-th>
             <x-th>RENT/MO</x-th>
             <x-th>STATUS</x-th>
-            {{-- <x-th>INTERACTION</x-th> --}}
+            <x-th>INTERACTION</x-th>
             {{-- <x-th>CONTRACT</x-th> --}}
+>>>>>>> 45dfd71bd6b9260de2878ccad8ebc0e15553856d
             <x-th></x-th>
-
-            {{-- <x-th></x-th> --}}
         </tr>
     </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    <tbody class=" bg-white divide-y divide-gray-200">
         @foreach ($contracts as $index => $contract)
         <tr>
+<<<<<<< HEAD
+        <div style="width: 10px"><x-td>{{ $index+1 }} </x-td></div>
+            <x-td>                
+                    {{ $contract->uuid }}
+                </x-td>
+=======
             <x-td> {{ $index+1 }} </x-td>
-            <x-td>{{ Str::limit($contract->uuid, 10) }}</x-td>
+            <x-td>{{ $contract->uuid }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit/{{ $contract->unit->uuid }}">
